@@ -5,23 +5,23 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
-import org.thoughtcrime.securesms.keyvalue.SvrValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.registration.RegistrationRepository;
+import org.thoughtcrime.securesms.keyvalue.SvrValues;
+import org.thoughtcrime.securesms.registration.data.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
-import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -91,7 +91,7 @@ public class RefreshAttributesJob extends BaseJob {
     boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
     String    registrationLockV2          = null;
     SvrValues svrValues                   = SignalStore.svr();
-    int       pniRegistrationId           = new RegistrationRepository(AppDependencies.getApplication()).getPniRegistrationId();
+    int       pniRegistrationId           = RegistrationRepository.getPniRegistrationId();
     String    recoveryPassword            = svrValues.getRecoveryPassword();
 
     if (svrValues.isRegistrationLockEnabled()) {

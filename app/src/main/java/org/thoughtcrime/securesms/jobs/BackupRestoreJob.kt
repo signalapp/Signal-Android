@@ -39,6 +39,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setMaxInstancesForFactory(1)
+      .setQueue("BackupRestoreJob")
       .build()
   )
 
@@ -85,6 +86,10 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
       throw IOException()
     }
 
+    if (isCanceled) {
+      return
+    }
+
     controller.update(
       title = context.getString(R.string.BackupProgressService_title),
       progress = 0f,
@@ -93,7 +98,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
 
     val self = Recipient.self()
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
-    BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, plaintext = false)
+    BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, plaintext = false, cancellationSignal = { isCanceled })
 
     SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
   }

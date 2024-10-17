@@ -86,7 +86,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
     transitionDebouncer.clear()
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
 
     // Note: We utilize this instead of 'replaceFragment' because there seems to be a bug

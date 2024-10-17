@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="delete">Xóa</string>
@@ -258,6 +261,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Nhấn để chụp ảnh, giữ để quay video</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Chụp</string>
     <string name="CameraXFragment_change_camera_description">Chuyển camera</string>
     <string name="CameraXFragment_open_gallery_description">Mở bộ sưu tập</string>
@@ -342,6 +346,8 @@
     <string name="CommunicationActions_invalid_link">Đường dẫn Vô hiệu lực</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Đường dẫn cuộc gọi này không hợp lệ. Đảm bảo rằng đường dẫn đầy đủ và chuẩn xác trước khi ấn để tham gia.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">Bạn đã đang ở trong một cuộc gọi</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -359,6 +365,8 @@
     <string name="ContactsCursorLoader__chats">Trò chuyện</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Tin nhắn</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Tin nhắn %1$s</string>
@@ -398,6 +406,7 @@
     <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở tệp đa phương tiện này.</string>
     <string name="ConversationItem_copied_text">Đã sao chép %1$s</string>
     <string name="ConversationItem_from_s">từ %1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">tới %1$s</string>
     <string name="ConversationItem_read_more">Xem thêm</string>
     <string name="ConversationItem_download_more">Tải thêm</string>
@@ -431,6 +440,7 @@
     <string name="ConversationActivity_send_edit">Gửi chỉnh sửa</string>
     <string name="ConversationActivity_compose_message">Soạn tin nhắn</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Xin lỗi, có lỗi thiết đặt tập tin đính kèm của bạn.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Nơi nhận không phải là địa chỉ SMS hay email hợp lệ!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Tin nhắn trống!</string>
     <string name="ConversationActivity_group_members">Thành viên trong nhóm</string>
@@ -563,6 +573,7 @@
         <item quantity="other">Đang lưu %1$d tệp đính kèm vào bộ nhớ…</item>
     </plurals>
     <string name="ConversationFragment_pending">Đang chờ…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -787,7 +798,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">Tạo bản sao lưu</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Mọi thứ đã sẵn sàng. Bắt đầu sao lưu ngay.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Tùy thuộc vào kích thước của bản sao lưu, quá trình này có thể mất một khoảng thời gian dài. Bạn có thể sử dụng điện thoại như bình thường khi quá trình sao lưu đang diễn ra.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -951,6 +962,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">Không có thiết bị liên kết</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Mở khóa để liên kết thiết bị</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Xác nhận trước khi liên kết</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Nhấn tiếp tục và nhập mã khóa điện thoại của bạn để xác nhận. Không nhập mã PIN Signal của bạn.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Tiếp tục</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -978,6 +995,7 @@
     <string name="DeviceListActivity_unlink_s">Gỡ liên kết \'%1$s\'?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Khi gỡ liên kết thiết bị này, nó sẽ không thể gửi hoặc nhận tin nhắn được nữa.</string>
     <string name="DeviceListActivity_network_connection_failed">Lỗi kết nối mạng</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Thử lại</string>
     <string name="DeviceListActivity_unlinking_device">Đang gỡ liên kết thiết bị…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Đang gỡ liên kết thiết bị</string>
@@ -1360,7 +1378,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Đường dẫn nhóm</string>
     <string name="ShareableGroupLinkDialogFragment__share">Chia sẻ</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Đặt lại đường dẫn</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Chấp nhận thành viên mới</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Cần chấp thuận từ quản trị viên</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Cần quản trị viên chấp nhận thành viên tham gia qua đường dẫn nhóm.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Bạn có muốn đặt lại đường dẫn nhóm? Người dùng khác sẽ không thể tham gia nhóm bằng đường dẫn hiện tại.</string>
 
@@ -1456,6 +1474,7 @@
         <item quantity="other">GỬI %1$d LỜI MỜI QUA SMS?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng nào để chia sẻ.</string>
 
     <!-- LearnMoreTextView -->
@@ -1865,6 +1884,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Cho phép %1$s nhắn tin cho bạn và chia sẻ tên và ảnh của bạn với họ? Bạn sẽ không nhận được tin nhắn nào cho tới khi bạn ngưng chặn họ.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Cho phép %1$s nhắn tin cho bạn? Bạn sẽ không nhận thêm tin nhắn mới cho tới khi bạn bỏ chặn họ.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Nhận cập nhật và tin tức từ %1$s? Bạn sẽ không nhận được cập nhật nào cho tới khi bạn bỏ chặn họ.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Tiếp tục cuộc trò chuyện của bạn với nhóm này và chia sẻ tên và ảnh của bạn với các thành viên nhóm?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Không thể tiếp tục sử dụng Nhóm Cũ này. Tạo một nhóm mới để kích hoạt các tính năng mới như @nhắc tên và quản trị.</string>
@@ -1890,6 +1910,7 @@
     <plurals name="MessageRequestProfileView_invited">
         <item quantity="other">+%1$d được mời</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">%1$d nhóm khác</item>
     </plurals>
@@ -1915,6 +1936,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">Không tìm thấy thiết bị nào.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Lỗi mạng.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Mã QR không đúng.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Xin lỗi, bạn có quá nhiều thiết bị liên kết, hãy thử gỡ một vài thiết bị</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải mã QR liên kết thiết bị chính xác.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Signal?</string>
@@ -1936,11 +1958,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Gửi mật khẩu</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Mật khẩu không đúng!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Mở khóa Signal</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Màn hình Khoá</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Bản đồ</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Thả ghim</string>
     <string name="PlacePickerActivity_accept_address">Chấp nhận địa chỉ</string>
 
@@ -2033,6 +2057,16 @@
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
+
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">Quay lại</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">Thông tin cuộc gọi</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Camera của bạn đang tắt</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Nhấn để bật camera</string>
@@ -2153,6 +2187,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">Không có ai khác đang ở đây</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s đang trong cuộc gọi này</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s đang trong cuộc gọi này</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s và %2$s đang trong cuộc gọi này</string>
 
@@ -2172,6 +2207,8 @@
     <string name="WebRtcCallView__additional_actions">Các thao tác khác</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Kết thúc cuộc gọi</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">Bật đổ chuông nhóm</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Đã xảy ra lỗi giao diện người dùng. Vui lòng báo cáo lỗi này với nhà phát triển.</string>
@@ -2409,6 +2446,7 @@
     <string name="SharedContactView_message">Tin nhắn Signal</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">Thêm</string>
 
     <!-- SignalPinReminders -->
@@ -2440,6 +2478,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">Chưa có nhãn dán nào được cài</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Nhãn dán từ tin nhắn sẽ được hiển thị ở đây</string>
     <string name="StickerManagementAdapter_untitled">Chưa đặt tên</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Không rõ</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2542,6 +2581,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Chúng tôi sẽ thử lại sau.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Cập nhật Signal thành công</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Bạn đã được tự động cập nhật lên phiên bản %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">Bạn đã cập nhật lên phiên bản %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Gửi tin nhắn?</string>
@@ -2659,6 +2699,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Tệp đa phương tiện không còn khả dụng.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Không thể phát tập tin đa phương tiện.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Có lỗi khi tìm tin nhắn.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Không thể tìm được ứng dụng có thể chia sẻ tệp đa phương tiện này.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Đóng</string>
@@ -2728,6 +2769,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Tin nhắn</string>
     <string name="NotificationChannel_calls">Cuộc gọi</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Thất bại</string>
     <string name="NotificationChannel_backups">Sao lưu</string>
     <string name="NotificationChannel_locked_status">Tình trạng khoá</string>
@@ -2737,6 +2779,7 @@
     <string name="NotificationChannel_missing_display_name">Vô danh</string>
     <string name="NotificationChannel_voice_notes">Ghi chú Âm thanh</string>
     <string name="NotificationChannel_contact_joined_signal">Liên hệ bắt đầu dùng Signal</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Không có hoạt động này để mở cài đặt kênh thông báo.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Kết nối chạy nền</string>
@@ -2954,6 +2997,7 @@
     <string name="conversation_activity__attachment_thumbnail">Ảnh nhỏ tập tin đính kèm</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Mở ngăn kéo chụp ảnh nhanh</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ghi âm và gửi tệp âm thanh</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Khoá ghi âm</string>
     <string name="conversation_activity__message_could_not_be_sent">Không thể gửi tin nhắn. Vui lòng kiểm tra kết nối mạng và thừ lại.</string>
 
@@ -2972,6 +3016,7 @@
     <string name="conversation_item_sent__message_read">Đã xem tin nhắn</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Ảnh liên hệ</string>
 
     <!-- ConversationUpdateItem -->
@@ -3056,6 +3101,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Mọi thứ có vẻ đã ổn!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Để bật thông báo cuộc gọi, hãy nhấn vào đây và bật \"Hiện thông báo.\"</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Để nhận thông báo cuộc gọi, nhấn vào đây và bật thông báo và đảm bảo Âm thanh và Pop-up được bật lên.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Để nhận thông báo cuộc gọi, nhấn vào đây và bật hoạt động nền trong cài đặt \"Pin\". </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Cài đặt</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Để nhận thông báo cuộc gọi, hãy vào Cài đặt và bật \"Hiện thông báo.\"</string>
@@ -3283,6 +3329,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Thông tin hỗ trợ</string>
     <string name="HelpFragment__signal_android_support_request">Yêu cầu hỗ trợ về Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3370,6 +3417,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Thêm xem trước liên kết trang web vào những tin nhắn bạn gửi.</string>
     <string name="preferences__change_passphrase">Đổi mật khẩu</string>
     <string name="preferences__change_your_passphrase">Đổi mật khẩu</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Bật khoá màn hình bằng mật khẩu</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá màn hình và thông báo bằng mật khẩu</string>
     <string name="preferences__screen_security">An ninh màn hình</string>
@@ -3382,6 +3430,7 @@
     <string name="preferences__pref_led_blink_title">Tần suất nháy LED</string>
     <string name="preferences__customize">Tùy chỉnh</string>
     <string name="preferences__change_sound_and_vibration">Thay đổi âm thanh và rung</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Âm thanh</string>
     <string name="preferences__silent">Im lặng</string>
     <string name="preferences__default">Mặc định</string>
@@ -3502,10 +3551,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn trên tất cả thiết bị. Hành động này không thể hoàn tác.</string>
     <string name="preferences_storage__delete_all_now">Xóa tất cả</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Vĩnh viễn</string>
     <string name="preferences_storage__one_year">1 năm</string>
     <string name="preferences_storage__six_months">6 tháng</string>
     <string name="preferences_storage__thirty_days">30 ngày</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Không</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="other">%1$s tin nhắn</item>
@@ -3529,6 +3580,7 @@
     <string name="preferences_notifications__show">Hiện</string>
     <string name="preferences_notifications__ringtone">Nhạc chuông</string>
     <string name="preferences_chats__message_text_size">Cỡ chữ tin nhắn</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Mức ưu tiên</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Khắc phục sự cố thông báo</string>
@@ -3757,6 +3809,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Quét mã QR địa chỉ của người được thanh toán</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Yêu cầu</string>
     <string name="CreatePaymentFragment__pay">Thanh toán</string>
     <string name="CreatePaymentFragment__available_balance_s">Số dư có sẵn: %1$s</string>
@@ -3887,6 +3940,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Bạn chỉ có thể ghim tối đa %1$d cuộc trò chuyện</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Ảnh Chân Dung Liên Hệ</string>
     <string name="conversation_list_item_view__archived">Đã lưu trữ</string>
 
@@ -3895,6 +3949,10 @@
     <string name="conversation_list_fragment__fab_content_description">Cuộc trò chuyện mới</string>
     <string name="conversation_list_fragment__open_camera_description">Mở Camera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Chưa có tin nhắn.\nBắt đầu bằng việc nhắn tin cho một người bạn.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4119,6 +4177,7 @@
     <string name="preferences_chats__chat_backups">Sao lưu tin nhắn</string>
     <string name="preferences_chats__transfer_account">Chuyển tài khoản</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Chuyển tài khoản sang một thiết bị Android mới</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Điền mật khẩu sao lưu</string>
     <string name="RegistrationActivity_restore">Khôi phục</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Không thể nhập bản sao lưu tạo từ bản Signal mới hơn</string>
@@ -4326,6 +4385,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Không thể mở Cài đặt Wi-Fi. Vui lòng bật Wi-Fi thủ công.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Cấp quyền truy cập vị trí</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Bật dịch vụ Vị trí</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Bật Wi-Fi</string>
@@ -4572,6 +4632,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Chia sẻ</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Gửi</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -4874,6 +4935,116 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Bàn phím</string>
     <string name="ChatsSettingsFragment__send_with_enter">Gửi với nút enter</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Tin nhắn</string>
@@ -4957,6 +5128,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Chất lượng tập tin đa phương tiện</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Chất lượng tập tin đa phương tiện đã gửi</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Việc gửi tập tin đa phương tiện chất lượng cao sẽ tốn nhiều lưu lượng hơn.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -5228,6 +5400,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Thêm vào story</string>
     <string name="MediaReviewFragment__add_a_message">Thêm vào một tin nhắn</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Thêm trả lời</string>
     <string name="MediaReviewFragment__send_to">Gửi đến</string>
     <string name="MediaReviewFragment__view_once_message">Đa phương tiện xem một lần</string>
@@ -5827,6 +6000,8 @@
     <plurals name="StoryViewerFragment__d_replies">
         <item quantity="other">%1$d câu trả lời</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Story hiện không còn ẩn</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Thêm</string>
     <!-- Used when view receipts are disabled -->
@@ -6773,7 +6948,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Sửa tên cuộc gọi</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Chấp nhận tất cả thành viên</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Cần chấp thuận từ quản trị viên</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Chia sẻ đường dẫn qua Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6829,7 +7004,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Thêm tên cuộc gọi</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Chấp nhận tất cả thành viên</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Cần chấp thuận từ quản trị viên</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Chia sẻ đường dẫn</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7038,10 +7213,10 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Sao lưu tập tin đa phương tiện đã được tắt</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Gói đăng ký sao lưu của bạn đã hết hạn</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="other">Gói đăng ký sao lưu tập tin đa phương tiện Signal của bạn đã bị hủy vì chúng tôi không thể xử lý khoản thanh toán của bạn. Bạn có %1$d ngày để tải xuống bất kỳ tập tin đa phương tiện nào có trong bản sao lưu của mình. Sau %1$d ngày, tập tin đa phương tiện trong bản sao lưu của bạn sẽ bị xóa.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="other">Gói đăng ký sao lưu của bạn đã hết hạn vì gói không thể được gia hạn với phương thức thanh toán hiện tại của bạn. Sau %1$d ngày, tập tin đa phương tiện trong bản sao lưu của bạn sẽ bị xóa.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Bạn có thể thanh toán cho gói sao lưu bất kỳ lúc nào để tiếp tục sao lưu tất cả tập tin đa phương tiện của mình. </string>
@@ -7058,9 +7233,9 @@
         <item quantity="other">Nếu chọn \"Bỏ qua\", tập tin đa phương tiện trong bản sao lưu của bạn sẽ được xóa trong %1$d ngày.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Không thể xử lý khoản thanh toán</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Gia hạn không thành công gói đăng ký sao lưu của bạn</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Chúng tôi gặp vấn đề khi xử lý khoản thanh toán hằng tháng cho gói đăng ký sao lưu của bạn. Hãy đảm bảo rằng phương thức thanh toán của bạn đã được cập nhật thông tin mới nhất. Nếu chưa, hãy cập nhật trên Google Pay. Signal sẽ thử xử lý lại khoản thanh toán trong vài ngày nữa.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Kiểm tra để đảm bảo rằng phương thức thanh toán của bạn đã được cập nhật thông tin mới nhất. Nhấn Quản lý gói đăng ký, tìm mục Phương thức thanh toán và nhấn Cập nhật.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Không thể hoàn tất sao lưu</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7069,12 +7244,16 @@
     <string name="BackupAlertBottomSheet__learn_more">Tìm hiểu thêm</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Bỏ qua</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Quản lý Gói Ủng hộ</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Đăng ký gói với giá %1$s/tháng</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">Tải tập tin đa phương tiện ngay</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Tải xuống sau</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Không tải tập tin đa phương tiện</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Để sau</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Tập tin đa phương tiện sẽ được xóa</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7086,9 +7265,38 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Giải phóng đến %1$s dung lượng để tải xuống tập tin đa phương tiện của bạn.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Giải phóng %1$s dung lượng để khôi phục tập tin đa phương tiện của bạn.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Đang khôi phục tập tin đa phương tiện</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Khôi phục được tạm dừng</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Hoàn tất khôi phục</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Đang chờ kết nối Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">Không có kết nối mạng…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Thiết bị hiện yếu pin</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s trên tổng số %2$s</string>
+
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Thẻ tín dụng hoặc ghi nợ</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7137,8 +7345,18 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Nâng cấp để bật tính năng này</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Tối ưu hóa lưu trữ là tính năng của gói trả phí Sao lưu Signal. Nâng cấp gói sao lưu để bắt đầu sử dụng tính năng này.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Nâng cấp ngay</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Đăng ký gói với giá %1$s/tháng</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Tập tin đa phương tiện không còn khả dụng</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="other">Gói sao lưu Signal hiện tại của bạn bao gồm tập tin đa phương tiện trong %1$d ngày gần nhất. Để bắt đầu sao lưu tất cả tập tin đa phương tiện, nâng cấp ngay.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Đăng ký gói với giá %1$s/tháng</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Việc xóa nay được đồng bộ trên tất cả thiết bị của bạn</string>
@@ -7147,19 +7365,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Lịch sử thanh toán</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Bản sao lưu tin nhắn và tất cả tập tin đa phương tiện</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Chi tiết Thanh toán</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Loại bản sao lưu</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Ngày chi trả</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Chia sẻ</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/tháng, gia hạn %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Sao lưu gần đây nhất %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Sao lưu tự động với dịch vụ lưu trữ bảo mật, được mã hóa đầu cuối của Signal.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Thiết Lập</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7174,6 +7388,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Tần suất sao lưu</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sao lưu bằng dữ liệu di động</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Xem mã khóa sao lưu</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Mở khóa để xem mã khóa sao lưu</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Tắt và xóa bản sao lưu</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7181,19 +7399,39 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Loại bản sao lưu đã thay đổi và gói đăng ký đã được hủy</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Quyên góp đã bị hủy bỏ</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Tải xuống hoàn tất</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Bản sao lưu sẽ được tạo trong đêm.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Loại bản sao lưu</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Gói sao lưu</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Đã tắt sao lưu</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/tháng</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">Bật sao lưu</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/tháng</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Bạn đang sử dụng gói miễn phí</string>
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Gia hạn %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Sao lưu lịch sử tin nhắn để không bao giờ mất dữ liệu khi bạn có điện thoại mới hoặc cài lại Signal.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Cách sao lưu khác</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Bản sao lưu trên thiết bị</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Lưu bản sao lưu của bạn trong một thư mục trên thiết bị này</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Quản lý hoặc hủy</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Nâng cấp</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7226,12 +7464,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Sao lưu thủ công</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Vui lòng nhập mã PIN, mật khẩu hoặc mã khóa dạng vẽ hình của thiết bị.</string>
-
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Thanh toán %1$s/tháng cho Signal</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Bạn sẽ được:</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7247,29 +7483,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Tìm hiểu thêm</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Nhập mã PIN của bạn</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Nhập mã PIN Signal của bạn để bật tính năng sao lưu</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Tiếp</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Đổi bàn phím</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Tạo PIN mới</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">Mã PIN bảo vệ bản sao lưu</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Mã PIN Signal cho phép bạn khôi phục bản sao lưu khi cài lại Signal. Chúng tôi khuyến nghị sử dụng mã PIN có ít nhất %1$d chữ số.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Nếu quên mã PIN, bạn sẽ không thể khôi phục bản sao lưu. Bạn có thể đổi mã PIN của mình bất kỳ lúc nào trong mục cài đặt.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Sử dụng mã PIN Signal hiện tại</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Tạo PIN mới</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Mã khóa sao lưu</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Mã khóa sao lưu của bạn là mã có 64 chữ số có tác dụng giúp bạn khôi phục bản sao lưu khi cài lại Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Nếu quên mã khóa, bạn sẽ không thể khôi phục bản sao lưu. Signal không thể giúp bạn khôi phục bản sao lưu.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Tiếp</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Lưu mã khóa sao lưu</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Cần có mã khóa này để khôi phục tài khoản và dữ liệu của bạn. Lưu mã này ở nơi an toàn. Nếu để mất, bạn sẽ không thể khôi phục tài khoản của mình.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Sao chép vào clipboard</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Tiếp</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Cất giữ an toàn mã khóa</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal sẽ không thể giúp bạn khôi phục bản sao lưu nếu bạn để mất mã khóa. Lưu mã khóa ở nơi an toàn và bảo mật, và không chia sẻ với ai khác.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Tôi đã lưu mã của mình</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Tiếp tục</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">Xem lại mã khóa</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7284,6 +7526,28 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Đổi loại bản sao lưu</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Hủy Gói Ủng hộ</string>
+    <!-- MessageBackupsType block amount for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__free">Miễn phí</string>
+    <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/tháng</string>
+    <!-- Title for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Tin nhắn văn bản + tập tin đa phương tiện</string>
+    <!-- Title for paid tier. Placeholder is days of media retention. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="other">Tin nhắn văn bản + tập tin đa phương tiện %1$d ngày qua</item>
+    </plurals>
+    <!-- Description text for text history feature -->
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Sao lưu toàn bộ tin nhắn văn bản</string>
+    <!-- Description text for paid tier media retention -->
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Sao lưu toàn bộ tập tin đa phương tiện</string>
+    <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">Dung lượng %1$s (%2$s ảnh)</string>
+    <!-- Description text for thanks -->
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Cảm ơn bạn đã hỗ trợ Signal!</string>
+    <!-- Description text for free tier media retention. Placeholder is retention day count. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="other">Tập tin đa phương tiện %1$d ngày qua</item>
+    </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

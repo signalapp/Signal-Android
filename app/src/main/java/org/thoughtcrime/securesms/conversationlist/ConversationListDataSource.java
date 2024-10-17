@@ -11,6 +11,7 @@ import androidx.annotation.VisibleForTesting;
 import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
@@ -40,16 +41,18 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
   protected final ThreadTable        threadTable;
   protected final ConversationFilter conversationFilter;
   protected final boolean            showConversationFooterTip;
+  protected final ChatFolderRecord   chatFolder;
 
-  protected ConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+  protected ConversationListDataSource(ChatFolderRecord chatFolder, @NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+    this.chatFolder                = chatFolder;
     this.threadTable               = SignalDatabase.threads();
     this.conversationFilter        = conversationFilter;
     this.showConversationFooterTip = showConversationFooterTip;
   }
 
-  public static ConversationListDataSource create(@NonNull ConversationFilter conversationFilter, boolean isArchived, boolean showConversationFooterTip) {
-    if (!isArchived) return new UnarchivedConversationListDataSource(conversationFilter, showConversationFooterTip);
-    else             return new ArchivedConversationListDataSource(conversationFilter, showConversationFooterTip);
+  public static ConversationListDataSource create(ChatFolderRecord chatFolder, @NonNull ConversationFilter conversationFilter, boolean isArchived, boolean showConversationFooterTip) {
+    if (!isArchived) return new UnarchivedConversationListDataSource(chatFolder, conversationFilter, showConversationFooterTip);
+    else             return new ArchivedConversationListDataSource(chatFolder, conversationFilter, showConversationFooterTip);
   }
 
   @Override
@@ -107,12 +110,14 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     SignalTrace.endSection();
 
     if (conversations.isEmpty() && start == 0 && length == 1) {
-      if (conversationFilter == ConversationFilter.OFF) {
-        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0, false)));
-      } else {
+      if (conversationFilter != ConversationFilter.OFF) {
         return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CONVERSATION_FILTER_EMPTY,
                                                                                                       0,
                                                                                                       showConversationFooterTip)));
+      } else if (chatFolder.getFolderType() != ChatFolderRecord.FolderType.ALL) {
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CHAT_FOLDER_EMPTY, 0, false)));
+      } else {
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0, false)));
       }
     } else {
       return conversations;
@@ -136,8 +141,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     private int totalCount;
 
-    ArchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
-      super(conversationFilter, showConversationFooterTip);
+    ArchivedConversationListDataSource(@NonNull ChatFolderRecord chatFolder, @NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+      super(chatFolder, conversationFilter, showConversationFooterTip);
     }
 
     @Override
@@ -168,31 +173,21 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     private int totalCount;
     private int pinnedCount;
     private int archivedCount;
-    private int unpinnedCount;
 
-    UnarchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
-      super(conversationFilter, showConversationFooterTip);
+    UnarchivedConversationListDataSource(@NonNull ChatFolderRecord chatFolder, @NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+      super(chatFolder, conversationFilter, showConversationFooterTip);
     }
 
     @Override
     protected int getTotalCount() {
-      int unarchivedCount = threadTable.getUnarchivedConversationListCount(conversationFilter);
+      int unarchivedCount = threadTable.getUnarchivedConversationListCount(conversationFilter, chatFolder);
 
-      pinnedCount   = threadTable.getPinnedConversationListCount(conversationFilter);
+      pinnedCount   = threadTable.getPinnedConversationListCount(conversationFilter, chatFolder);
       archivedCount = threadTable.getArchivedConversationListCount(conversationFilter);
-      unpinnedCount = unarchivedCount - pinnedCount;
       totalCount    = unarchivedCount;
 
-      if (archivedCount != 0) {
+      if (chatFolder.getFolderType() == ChatFolderRecord.FolderType.ALL && archivedCount != 0) {
         totalCount++;
-      }
-
-      if (pinnedCount != 0) {
-        if (unpinnedCount != 0) {
-          totalCount += 2;
-        } else {
-          totalCount += 1;
-        }
       }
 
       return totalCount;
@@ -203,26 +198,12 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       List<Cursor> cursors       = new ArrayList<>(5);
       long         originalLimit = limit;
 
-      if (offset == 0 && hasPinnedHeader()) {
-        MatrixCursor pinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
-        pinnedHeaderCursor.addRow(ConversationReader.PINNED_HEADER);
-        cursors.add(pinnedHeaderCursor);
-        limit--;
-      }
-
-      Cursor pinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, true, offset, limit);
+      Cursor pinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, true, offset, limit, chatFolder);
       cursors.add(pinnedCursor);
       limit -= pinnedCursor.getCount();
 
-      if (offset == 0 && hasUnpinnedHeader()) {
-        MatrixCursor unpinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
-        unpinnedHeaderCursor.addRow(ConversationReader.UNPINNED_HEADER);
-        cursors.add(unpinnedHeaderCursor);
-        limit--;
-      }
-
-      long   unpinnedOffset = Math.max(0, offset - pinnedCount - getHeaderOffset());
-      Cursor unpinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, false, unpinnedOffset, limit);
+      long   unpinnedOffset = Math.max(0, offset - pinnedCount);
+      Cursor unpinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, false, unpinnedOffset, limit, chatFolder);
       cursors.add(unpinnedCursor);
 
       boolean shouldInsertConversationFilterFooter = offset + originalLimit >= totalCount && hasConversationFilterFooter();
@@ -243,23 +224,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     }
 
     @VisibleForTesting
-    int getHeaderOffset() {
-      return (hasPinnedHeader() ? 1 : 0) + (hasUnpinnedHeader() ? 1 : 0);
-    }
-
-    @VisibleForTesting
-    boolean hasPinnedHeader() {
-      return pinnedCount != 0;
-    }
-
-    @VisibleForTesting
-    boolean hasUnpinnedHeader() {
-      return hasPinnedHeader() && unpinnedCount != 0;
-    }
-
-    @VisibleForTesting
     boolean hasArchivedFooter() {
-      return archivedCount != 0;
+      return archivedCount != 0 && chatFolder.getFolderType() == ChatFolderRecord.FolderType.ALL;
     }
 
     boolean hasConversationFilterFooter() {

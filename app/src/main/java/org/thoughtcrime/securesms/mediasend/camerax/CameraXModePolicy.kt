@@ -17,9 +17,9 @@ sealed class CameraXModePolicy {
 
   abstract val isQrScanEnabled: Boolean
 
-  abstract fun initialize(cameraController: CameraXController)
+  abstract fun initialize(cameraController: CameraController)
 
-  open fun initialize(cameraController: CameraXController, useCaseFlags: Int) {
+  open fun initialize(cameraController: CameraController, useCaseFlags: Int) {
     if (isQrScanEnabled) {
       cameraController.setEnabledUseCases(useCaseFlags or CameraController.IMAGE_ANALYSIS)
     } else {
@@ -27,9 +27,9 @@ sealed class CameraXModePolicy {
     }
   }
 
-  open fun setToImage(cameraController: CameraXController) = Unit
+  open fun setToImage(cameraController: CameraController) = Unit
 
-  open fun setToVideo(cameraController: CameraXController) = Unit
+  open fun setToVideo(cameraController: CameraController) = Unit
 
   /**
    * The device supports having Image and Video enabled at the same time
@@ -38,7 +38,7 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = true
 
-    override fun initialize(cameraController: CameraXController) {
+    override fun initialize(cameraController: CameraController) {
       super.initialize(cameraController, CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE)
     }
   }
@@ -50,15 +50,15 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = true
 
-    override fun initialize(cameraController: CameraXController) {
+    override fun initialize(cameraController: CameraController) {
       setToImage(cameraController)
     }
 
-    override fun setToImage(cameraController: CameraXController) {
+    override fun setToImage(cameraController: CameraController) {
       super.initialize(cameraController, CameraController.IMAGE_CAPTURE)
     }
 
-    override fun setToVideo(cameraController: CameraXController) {
+    override fun setToVideo(cameraController: CameraController) {
       super.initialize(cameraController, CameraController.VIDEO_CAPTURE)
     }
   }
@@ -70,7 +70,7 @@ sealed class CameraXModePolicy {
 
     override val isVideoSupported: Boolean = false
 
-    override fun initialize(cameraController: CameraXController) {
+    override fun initialize(cameraController: CameraController) {
       super.initialize(cameraController, CameraController.IMAGE_CAPTURE)
     }
   }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.profiles.manage;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +137,7 @@ public class EditProfileNameFragment extends Fragment {
     text.setEnabled(enabled);
     text.setFocusable(enabled);
     if (enabled) {
-      text.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME);
+      text.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
     } else {
       text.clearFocus();
       text.setInputType(EditorInfo.TYPE_NULL);

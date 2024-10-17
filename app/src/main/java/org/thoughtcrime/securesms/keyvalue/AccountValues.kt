@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import androidx.annotation.VisibleForTesting
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
@@ -31,7 +30,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.security.SecureRandom
 
-class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
+class AccountValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
 
   companion object {
     private val TAG = Log.tag(AccountValues::class.java)
@@ -73,26 +72,19 @@ class AccountValues internal constructor(store: KeyValueStore) : SignalStoreValu
     private const val KEY_USERNAME_SYNC_STATE = "phoneNumberPrivacy.usernameSyncState"
     private const val KEY_USERNAME_SYNC_ERROR_COUNT = "phoneNumberPrivacy.usernameErrorCount"
 
-    @VisibleForTesting
-    const val KEY_E164 = "account.e164"
-
-    @VisibleForTesting
-    const val KEY_ACI = "account.aci"
-
-    @VisibleForTesting
-    const val KEY_PNI = "account.pni"
-
-    @VisibleForTesting
-    const val KEY_IS_REGISTERED = "account.is_registered"
+    private const val KEY_E164 = "account.e164"
+    private const val KEY_ACI = "account.aci"
+    private const val KEY_PNI = "account.pni"
+    private const val KEY_IS_REGISTERED = "account.is_registered"
   }
 
   init {
     if (!store.containsKey(KEY_ACI)) {
-      migrateFromSharedPrefsV1(AppDependencies.application)
+      migrateFromSharedPrefsV1(context)
     }
 
     if (!store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
-      migrateFromSharedPrefsV2(AppDependencies.application)
+      migrateFromSharedPrefsV2(context)
     }
 
     store.getString(KEY_PNI, null)?.let { pni ->

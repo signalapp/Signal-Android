@@ -98,7 +98,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
                                                           .setQueue(queue)
                                                           .setLifespan(TimeUnit.DAYS.toMillis(1))
                                                           .setMaxAttempts(Parameters.UNLIMITED)
-                                                          .setPriority(Parameters.PRIORITY_LOW)
+                                                          .setGlobalPriority(Parameters.PRIORITY_LOW)
                                                           .build());
   }
 

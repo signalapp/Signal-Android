@@ -25,6 +25,7 @@ data class OutgoingMessage(
   val body: String = "",
   val distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
   val expiresIn: Long = 0L,
+  val expireTimerVersion: Int = threadRecipient.expireTimerVersion,
   val isViewOnce: Boolean = false,
   val outgoingQuote: QuoteModel? = null,
   val storyType: StoryType = StoryType.NONE,
@@ -70,6 +71,7 @@ data class OutgoingMessage(
     attachments: List<Attachment> = emptyList(),
     timestamp: Long,
     expiresIn: Long = 0L,
+    expireTimerVersion: Int = 1,
     viewOnce: Boolean = false,
     distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
     storyType: StoryType = StoryType.NONE,
@@ -92,6 +94,7 @@ data class OutgoingMessage(
     attachments = attachments,
     sentTimeMillis = timestamp,
     expiresIn = expiresIn,
+    expireTimerVersion = expireTimerVersion,
     isViewOnce = viewOnce,
     distributionType = distributionType,
     storyType = storyType,
@@ -119,6 +122,7 @@ data class OutgoingMessage(
     body: String? = "",
     timestamp: Long,
     expiresIn: Long = 0L,
+    expiresTimerVersion: Int = 1,
     viewOnce: Boolean = false,
     storyType: StoryType = StoryType.NONE,
     linkPreviews: List<LinkPreview> = emptyList(),
@@ -132,6 +136,7 @@ data class OutgoingMessage(
     attachments = slideDeck.asAttachments(),
     sentTimeMillis = timestamp,
     expiresIn = expiresIn,
+    expireTimerVersion = expiresTimerVersion,
     isViewOnce = viewOnce,
     storyType = storyType,
     linkPreviews = linkPreviews,
@@ -143,8 +148,8 @@ data class OutgoingMessage(
 
   val subscriptionId = -1
 
-  fun withExpiry(expiresIn: Long): OutgoingMessage {
-    return copy(expiresIn = expiresIn)
+  fun withExpiry(expiresIn: Long, expireTimerVersion: Int): OutgoingMessage {
+    return copy(expiresIn = expiresIn, expireTimerVersion = expireTimerVersion)
   }
 
   fun stripAttachments(): OutgoingMessage {
@@ -351,12 +356,13 @@ data class OutgoingMessage(
      * Helper for creating expiration update messages.
      */
     @JvmStatic
-    fun expirationUpdateMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+    fun expirationUpdateMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long, expireTimerVersion: Int): OutgoingMessage {
       return OutgoingMessage(
         threadRecipient = threadRecipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isExpirationUpdate = true,
+        expireTimerVersion = expireTimerVersion,
         isUrgent = false,
         isSecure = true
       )

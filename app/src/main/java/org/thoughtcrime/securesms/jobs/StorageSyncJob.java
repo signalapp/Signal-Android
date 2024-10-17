@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.AccountRecordProcessor;
+import org.thoughtcrime.securesms.storage.CallLinkRecordProcessor;
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor;
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor;
@@ -42,6 +43,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
+import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
@@ -287,7 +289,7 @@ public class StorageSyncJob extends BaseJob {
 
         db.beginTransaction();
         try {
-          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: " + remoteOnly.contacts.size() + ", GV1: " + remoteOnly.gv1.size() + ", GV2: " + remoteOnly.gv2.size() + ", Account: " + remoteOnly.account.size() + ", DLists: " + remoteOnly.storyDistributionLists.size());
+          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: " + remoteOnly.contacts.size() + ", GV1: " + remoteOnly.gv1.size() + ", GV2: " + remoteOnly.gv2.size() + ", Account: " + remoteOnly.account.size() + ", DLists: " + remoteOnly.storyDistributionLists.size() + ", call links: " + remoteOnly.callLinkRecords.size());
 
           processKnownRecords(context, remoteOnly);
 
@@ -384,7 +386,7 @@ public class StorageSyncJob extends BaseJob {
       db.beginTransaction();
       try {
         processKnownRecords(context, records);
-        SignalDatabase.unknownStorageIds().getAllWithTypes(knownTypes);
+        SignalDatabase.unknownStorageIds().deleteAllWithTypes(knownTypes);
         db.setTransactionSuccessful();
       } finally {
         db.endTransaction();
@@ -411,6 +413,7 @@ public class StorageSyncJob extends BaseJob {
     new GroupV2RecordProcessor(context).process(records.gv2, StorageSyncHelper.KEY_GENERATOR);
     new AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR);
     new StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR);
+    new CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR);
   }
 
   private static @NonNull List<StorageId> getAllLocalStorageIds(@NonNull Recipient self) {
@@ -468,6 +471,18 @@ public class StorageSyncJob extends BaseJob {
             throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
           }
           break;
+        case CALL_LINK:
+          RecipientRecord callLinkRecord = recipientTable.getByStorageId(id.getRaw());
+          if (callLinkRecord != null) {
+            if (callLinkRecord.getCallLinkRoomId() != null) {
+              records.add(StorageSyncModels.localToRemoteRecord(callLinkRecord));
+            } else {
+              throw new MissingRecipientModelError("Missing local recipient model (no CallLinkRoomId)! Type: " + id.getType());
+            }
+          } else {
+            throw new MissingRecipientModelError("Missing local recipient model! Type: " + id.getType());
+          }
+          break;
         default:
           SignalStorageRecord unknown = storageIdDatabase.getById(id.getRaw());
           if (unknown != null) {
@@ -501,6 +516,7 @@ public class StorageSyncJob extends BaseJob {
     final List<SignalAccountRecord>               account                = new LinkedList<>();
     final List<SignalStorageRecord>               unknown                = new LinkedList<>();
     final List<SignalStoryDistributionListRecord> storyDistributionLists = new LinkedList<>();
+    final List<SignalCallLinkRecord>              callLinkRecords        = new LinkedList<>();
 
     StorageRecordCollection(Collection<SignalStorageRecord> records) {
       for (SignalStorageRecord record : records) {
@@ -514,6 +530,8 @@ public class StorageSyncJob extends BaseJob {
           account.add(record.getAccount().get());
         } else if (record.getStoryDistributionList().isPresent()) {
           storyDistributionLists.add(record.getStoryDistributionList().get());
+        } else if (record.getCallLink().isPresent()) {
+          callLinkRecords.add(record.getCallLink().get());
         } else if (record.getId().isUnknown()) {
           unknown.add(record);
         } else {

@@ -59,11 +59,14 @@ public class JobManager implements ConstraintObserver.Notifier {
   private final Set<EmptyQueueListener> emptyQueueListeners = new CopyOnWriteArraySet<>();
 
   private volatile boolean initialized = false;
+  private volatile boolean shutdown    = false;
 
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
     this.application   = application;
     this.configuration = configuration;
-    this.executor      = new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"), ThreadUtil::isMainThread);
+    this.executor      = new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"), () -> {
+      return ThreadUtil.isMainThread() || Thread.currentThread().getName().equals("Instr: org.thoughtcrime.securesms.testing.SignalTestRunner");
+    });
     this.jobTracker    = configuration.getJobTracker();
     this.jobController = new JobController(application,
                                            configuration.getJobStorage(),
@@ -121,6 +124,13 @@ public class JobManager implements ConstraintObserver.Notifier {
 
       jobController.wakeUp();
     });
+  }
+
+  /**
+   * Shuts down the job manager entirely. Should only be used for testing!
+   */
+  public void shutdown() {
+    shutdown = true;
   }
 
   /**
@@ -198,7 +208,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     });
   }
 
-  public void addAll(@NonNull List<Job> jobs) {
+  public <T extends Job> void addAll(@NonNull List<T> jobs) {
     if (jobs.isEmpty()) {
       return;
     }
@@ -456,6 +466,10 @@ public class JobManager implements ConstraintObserver.Notifier {
    * it through here.
    */
   private void runOnExecutor(@NonNull Runnable runnable) {
+    if (shutdown) {
+      return;
+    }
+
     executor.execute(() -> {
       waitUntilInitialized();
       runnable.run();

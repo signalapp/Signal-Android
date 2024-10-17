@@ -82,6 +82,19 @@ public class UnknownStorageIdTable extends DatabaseTable {
     return ids;
   }
 
+  public void deleteAllWithTypes(List<Integer> types) {
+    SQLiteDatabase db = getWritableDatabase();
+    db.beginTransaction();
+    try {
+      for (int type : types) {
+        db.delete(TABLE_NAME, TYPE + " = ?", SqlUtil.buildArgs(type));
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   public @Nullable SignalStorageRecord getById(@NonNull byte[] rawId) {
     String   query = STORAGE_ID + " = ?";
     String[] args  = new String[] { Base64.encodeWithPadding(rawId) };

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -140,7 +142,7 @@ public final class ConversationUtil {
   }
 
   public static int getMaxShortcuts(@NonNull Context context) {
-    return Math.min(ShortcutManagerCompat.getMaxShortcutCountPerActivity(context), 150);
+    return Math.min(ShortcutManagerCompat.getMaxShortcutCountPerActivity(context), 10);
   }
 
   /**
@@ -279,7 +281,7 @@ public final class ConversationUtil {
     return new Person.Builder()
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
-                     .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
+                     .setUri(recipient.isSystemContact() && Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS) ? recipient.getContactUri().toString() : null)
                      .build();
   }
 
@@ -292,7 +294,7 @@ public final class ConversationUtil {
                      .setKey(getShortcutId(recipient.getId()))
                      .setName(recipient.getDisplayName(context))
                      .setIcon(AvatarUtil.getIconCompat(context, recipient))
-                     .setUri(recipient.isSystemContact() ? recipient.getContactUri().toString() : null)
+                     .setUri(recipient.isSystemContact() && Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS) ? recipient.getContactUri().toString() : null)
                      .build();
   }
 

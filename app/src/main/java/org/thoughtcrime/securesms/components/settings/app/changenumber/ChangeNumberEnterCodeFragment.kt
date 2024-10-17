@@ -23,13 +23,13 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
 import org.thoughtcrime.securesms.databinding.FragmentChangeNumberEnterCodeBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ReceivedSmsEvent
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
+import org.thoughtcrime.securesms.registration.sms.ReceivedSmsEvent
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
@@ -101,14 +101,14 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     binding.codeEntryLayout.callMeCountDown.apply {
       setTextResources(R.string.RegistrationActivity_call, R.string.RegistrationActivity_call_me_instead_available_in)
       setOnClickListener {
-        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.Mode.PHONE_CALL)
+        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.E164VerificationMode.PHONE_CALL)
       }
     }
 
     binding.codeEntryLayout.resendSmsCountDown.apply {
       setTextResources(R.string.RegistrationActivity_resend_code, R.string.RegistrationActivity_resend_sms_available_in)
       setOnClickListener {
-        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.Mode.SMS_WITHOUT_LISTENER)
+        viewModel.initiateChangeNumberSession(requireContext(), RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER)
       }
     }
 

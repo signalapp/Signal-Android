@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
@@ -16,9 +15,7 @@ import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
-import java.util.concurrent.TimeUnit
 
 /**
  * ViewModel for call log management.
@@ -82,22 +79,15 @@ class CallLogViewModel(
       controller.onDataInvalidated()
     }
 
-    if (RemoteConfig.adHocCalling) {
-      disposables += Observable
-        .interval(30, TimeUnit.SECONDS, Schedulers.computation())
-        .flatMapCompletable { callLogRepository.peekCallLinks() }
-        .subscribe()
-
-      disposables += AppDependencies
-        .signalCallManager
-        .peekInfoCache
-        .observeOn(Schedulers.computation())
-        .distinctUntilChanged()
-        .subscribe {
-          callLogPeekHelper.onDataSetInvalidated()
-          controller.onDataInvalidated()
-        }
-    }
+    disposables += AppDependencies
+      .signalCallManager
+      .peekInfoCache
+      .observeOn(Schedulers.computation())
+      .distinctUntilChanged()
+      .subscribe {
+        callLogPeekHelper.onDataSetInvalidated()
+        controller.onDataInvalidated()
+      }
   }
 
   override fun onCleared() {

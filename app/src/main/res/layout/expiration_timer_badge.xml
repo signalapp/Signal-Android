@@ -6,19 +6,20 @@
     android:id="@+id/expiration_badge_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="11dp"
+    android:layout_marginEnd="12dp"
     android:gravity="center"
-    android:visibility="gone"
+    android:visibility="visible"
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/menu_badge_icon"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="3dp"
+        android:layout_marginEnd="2dp"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_timer_conversation_badge" />
+        android:tint="@color/signal_colorOnSurfaceVariant"
+        app:srcCompat="@drawable/ic_timer_conversation_badge_compact_16" />
 
     <TextView
         android:id="@+id/expiration_badge"
@@ -26,10 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:gravity="center_horizontal|bottom"
-        android:paddingTop="1dp"
-        android:paddingBottom="3dp"
-        android:textColor="@color/signal_inverse_transparent_80"
-        android:textSize="14dp"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        style="@style/Signal.Text.BodySmall"
         tools:text="1w"
         tools:ignore="SpUsage" />
 </LinearLayout>

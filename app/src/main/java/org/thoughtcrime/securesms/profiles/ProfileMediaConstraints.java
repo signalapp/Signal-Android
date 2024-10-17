@@ -32,7 +32,7 @@ public class ProfileMediaConstraints extends MediaConstraints {
   }
 
   @Override
-  public long getVideoMaxSize(Context context) {
+  public long getVideoMaxSize() {
     return 0;
   }
 

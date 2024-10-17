@@ -97,7 +97,7 @@ class ShareableGroupLinkFragment : DSLSettingsFragment(
       dividerPref()
 
       switchPref(
-        title = DSLSettingsText.from(R.string.ShareableGroupLinkDialogFragment__approve_new_members),
+        title = DSLSettingsText.from(R.string.ShareableGroupLinkDialogFragment__require_admin_approval),
         summary = DSLSettingsText.from(R.string.ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link),
         isEnabled = groupLink.isEnabled && canEdit,
         isChecked = groupLink.isRequiresApproval,

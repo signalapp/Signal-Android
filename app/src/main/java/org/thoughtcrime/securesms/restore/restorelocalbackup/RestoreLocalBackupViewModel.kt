@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.BackupEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.RegistrationUtil
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.restore.RestoreRepository
 
 /**

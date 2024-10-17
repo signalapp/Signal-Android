@@ -72,7 +72,8 @@ public class JobMigrator {
                            jobSpec.getSerializedInputData(),
                            jobSpec.isRunning(),
                            jobSpec.isMemoryOnly(),
-                           jobSpec.getPriority());
+                           jobSpec.getGlobalPriority(),
+                           jobSpec.getQueuePriority());
       });
     }
 

@@ -56,11 +56,13 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.media3.common.MediaItem;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.RequestManager;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.common.collect.Sets;
 
@@ -78,7 +80,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
-import org.thoughtcrime.securesms.calls.links.CallLinkJoinButton;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -135,7 +136,6 @@ import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -143,6 +143,7 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
@@ -231,7 +232,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private                Stub<LinkPreviewView>                   linkPreviewStub;
   private                Stub<BorderlessImageView>               stickerStub;
   private                Stub<ViewOnceMessageView>               revealableStub;
-  private                Stub<CallLinkJoinButton>                joinCallLinkStub;
+  private                Stub<MaterialButton>                    joinCallLinkStub;
   private                Stub<Button>                            callToActionStub;
   private                Stub<GiftMessageView>                   giftViewStub;
   private                Stub<PaymentMessageView>                paymentViewStub;
@@ -1162,18 +1163,16 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
-      if (RemoteConfig.adHocCalling()) {
-        CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
-        if (callLinkRootKey != null) {
-          joinCallLinkStub.setVisibility(View.VISIBLE);
-          joinCallLinkStub.get().setTextColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorPrimary);
-          joinCallLinkStub.get().setStrokeColor(messageRecord.isOutgoing() ? R.color.signal_colorOnCustom : R.color.signal_colorOutline);
-          joinCallLinkStub.get().setJoinClickListener(v -> {
-            if (eventListener != null) {
-              eventListener.onJoinCallLink(callLinkRootKey);
-            }
-          });
-        }
+      CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
+      if (callLinkRootKey != null) {
+        joinCallLinkStub.setVisibility(View.VISIBLE);
+        joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorOnPrimary : R.color.signal_colorOnPrimaryContainer));
+        joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorTransparent2 : R.color.signal_colorOnPrimary));
+        joinCallLinkStub.get().setOnClickListener(v -> {
+          if (eventListener != null) {
+            eventListener.onJoinCallLink(callLinkRootKey);
+          }
+        });
       }
 
       if (hasBigImageLinkPreview(messageRecord)) {

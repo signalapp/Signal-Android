@@ -83,6 +83,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
       state.gatewayOrderStrategy.orderedGateways.forEach { gateway ->
         when (gateway) {
+          InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Unsupported payment method.")
           InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> renderGooglePayButton(state)
           InAppPaymentData.PaymentMethodType.PAYPAL -> renderPayPalButton(state)
           InAppPaymentData.PaymentMethodType.CARD -> renderCreditCardButton(state)

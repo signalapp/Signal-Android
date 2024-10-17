@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumberBinding
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.Challenge
@@ -421,7 +422,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
   }
 
-  private fun handleNonNormalizedNumberError(originalNumber: String, normalizedNumber: String, mode: RegistrationRepository.Mode) {
+  private fun handleNonNormalizedNumberError(originalNumber: String, normalizedNumber: String, mode: RegistrationRepository.E164VerificationMode) {
     try {
       val phoneNumber = PhoneNumberUtil.getInstance().parse(normalizedNumber, null)
 
@@ -440,9 +441,9 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
           spinnerView.setText(phoneNumber.countryCode.toString())
           phoneNumberInputLayout.setText(phoneNumber.nationalNumber.toString())
           when (mode) {
-            RegistrationRepository.Mode.SMS_WITH_LISTENER,
-            RegistrationRepository.Mode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext())
-            RegistrationRepository.Mode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext())
+            RegistrationRepository.E164VerificationMode.SMS_WITH_LISTENER,
+            RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER -> sharedViewModel.requestSmsCode(requireContext())
+            RegistrationRepository.E164VerificationMode.PHONE_CALL -> sharedViewModel.requestVerificationCall(requireContext())
           }
           dialogInterface.dismiss()
         }
@@ -570,18 +571,22 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun handlePromptForNoPlayServices() {
-    Log.d(TAG, "Device does not have Play Services, showing consent dialog.")
-    MaterialAlertDialogBuilder(requireContext()).apply {
-      setTitle(R.string.RegistrationActivity_missing_google_play_services)
-      setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
-      setPositiveButton(R.string.RegistrationActivity_i_understand) { _, _ ->
-        Log.d(TAG, "User confirmed number.")
-        sharedViewModel.onUserConfirmedPhoneNumber(requireContext())
+    val context = activity
+
+    if (context != null) {
+      Log.d(TAG, "Device does not have Play Services, showing consent dialog.")
+      MaterialAlertDialogBuilder(context).apply {
+        setTitle(R.string.RegistrationActivity_missing_google_play_services)
+        setMessage(R.string.RegistrationActivity_this_device_is_missing_google_play_services)
+        setPositiveButton(R.string.RegistrationActivity_i_understand) { _, _ ->
+          Log.d(TAG, "User confirmed number.")
+          sharedViewModel.onUserConfirmedPhoneNumber(AppDependencies.application)
+        }
+        setNegativeButton(android.R.string.cancel, null)
+        setOnCancelListener { fragmentViewModel.clearError() }
+        setOnDismissListener { fragmentViewModel.clearError() }
+        show()
       }
-      setNegativeButton(android.R.string.cancel, null)
-      setOnCancelListener { fragmentViewModel.clearError() }
-      setOnDismissListener { fragmentViewModel.clearError() }
-      show()
     }
   }
 

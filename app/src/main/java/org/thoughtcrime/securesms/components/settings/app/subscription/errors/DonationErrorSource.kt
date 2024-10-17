@@ -31,6 +31,11 @@ enum class DonationErrorSource(private val code: String) {
    */
   KEEP_ALIVE("keep-alive"),
 
+  /**
+   * Refers to backup payments.
+   */
+  BACKUPS("backups"),
+
   UNKNOWN("unknown");
 
   fun serialize(): String = code

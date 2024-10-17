@@ -55,6 +55,7 @@ class AccountAttributes @JsonCreator constructor(
 
   data class Capabilities @JsonCreator constructor(
     @JsonProperty val storage: Boolean,
-    @JsonProperty val deleteSync: Boolean
+    @JsonProperty val deleteSync: Boolean,
+    @JsonProperty val versionedExpirationTimer: Boolean
   )
 }

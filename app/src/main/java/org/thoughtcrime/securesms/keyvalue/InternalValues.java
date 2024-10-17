@@ -32,6 +32,8 @@ public final class InternalValues extends SignalStoreValues {
   public static final String CONVERSATION_ITEM_V2_MEDIA           = "internal.conversation_item_v2_media";
   public static final String FORCE_ENTER_RESTORE_V2_FLOW          = "internal.force_enter_restore_v2_flow";
   public static final String WEB_SOCKET_SHADOWING_STATS           = "internal.web_socket_shadowing_stats";
+  public static final String ENCODE_HEVC                          = "internal.hevc_encoding";
+  public static final String NEW_CALL_UI                          = "internal.new.call.ui";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -181,6 +183,22 @@ public final class InternalValues extends SignalStoreValues {
     } else {
       return false;
     }
+  }
+
+  public void setHevcEncoding(boolean enabled) {
+    putBoolean(ENCODE_HEVC, enabled);
+  }
+
+  public boolean getHevcEncoding() {
+    return getBoolean(ENCODE_HEVC, false);
+  }
+
+  public void setNewCallingUi(boolean enabled) {
+    putBoolean(NEW_CALL_UI, enabled);
+  }
+
+  public boolean getNewCallingUi() {
+    return getBoolean(NEW_CALL_UI, false);
   }
 
   public void setLastScrollPosition(int position) {

@@ -716,7 +716,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     if (groupState?.disappearingMessagesTimer != null) {
-      recipients.setExpireMessages(groupRecipientId, groupState.disappearingMessagesTimer!!.duration)
+      recipients.setExpireMessagesForGroup(groupRecipientId, groupState.disappearingMessagesTimer!!.duration)
     }
 
     if (groupId.isMms || Recipient.resolved(groupRecipientId).isProfileSharing) {
@@ -843,7 +843,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     if (decryptedGroup.disappearingMessagesTimer != null) {
-      recipients.setExpireMessages(groupRecipientId, decryptedGroup.disappearingMessagesTimer!!.duration)
+      recipients.setExpireMessagesForGroup(groupRecipientId, decryptedGroup.disappearingMessagesTimer!!.duration)
     }
 
     if (groupId.isMms || Recipient.resolved(groupRecipientId).isProfileSharing) {

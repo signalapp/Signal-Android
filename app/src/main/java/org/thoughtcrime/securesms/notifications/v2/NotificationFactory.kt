@@ -480,7 +480,7 @@ object NotificationFactory {
       notify(notificationId, notification)
       Log.internal().i(TAG, "Posted notification: $notification")
     } catch (e: SecurityException) {
-      Log.i(TAG, "Security exception when posting notification, clearing ringtone")
+      Log.w(TAG, "Security exception when posting notification, clearing ringtone", e)
       if (threadRecipient != null) {
         SignalExecutors.BOUNDED.execute {
           SignalDatabase.recipients.setMessageRingtone(threadRecipient.id, null)

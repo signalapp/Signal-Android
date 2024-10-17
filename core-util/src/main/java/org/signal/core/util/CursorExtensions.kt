@@ -202,6 +202,15 @@ inline fun Cursor.forEach(operation: (Cursor) -> Unit) {
   }
 }
 
+inline fun Cursor.forEachIndexed(operation: (Int, Cursor) -> Unit) {
+  use {
+    var i = 0
+    while (moveToNext()) {
+      operation(i++, this)
+    }
+  }
+}
+
 fun Cursor.iterable(): Iterable<Cursor> {
   return CursorIterable(this)
 }

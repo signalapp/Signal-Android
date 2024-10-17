@@ -25,7 +25,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.annotation.OptIn;
 import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
@@ -48,7 +47,6 @@ import org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 @OptIn(markerClass = UnstableApi.class)
 public class VideoPlayer extends FrameLayout {

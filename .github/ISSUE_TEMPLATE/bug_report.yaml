@@ -1,0 +1,75 @@
+name: 🛠️ Bug report
+description:  Let us know that something isn't working as intended
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before we begin, please note that this tracker is only for issues. It is not for questions, comments, or feature requests.
+        
+        If you would like to discuss a new feature or submit suggestions, please visit the [community forum](https://community.signalusers.org).
+
+        If you are looking for support, please visit our [support center](https://support.signal.org/) or email support@signal.org.
+        
+  - type: checkboxes
+    id: guidelines
+    attributes:
+      label: "Guidelines"
+      description: "Search issues here: https://github.com/signalapp/Signal-Android/issues"
+      options:
+        - label: I have searched searched open and closed issues for duplicates
+          required: true
+        - label: I am submitting a bug report for existing functionality that does not work as intended
+          required: true
+        - label: This isn't a feature request or a discussion topic
+          required: true
+  - type: textarea
+    id: description-of-bug
+    attributes:
+      label: Bug description
+      description: A clear and concise description of what the problem is that made you submit this report.
+      placeholder: When trying to do this, then...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: "How to take screenshots on Android: https://support.google.com/android/answer/9075928"
+      placeholder: You can drag and drop images into this text box.
+    validations:
+      required: false
+  - type: input
+    id: device-model
+    attributes:
+      label: Device
+      description: Usually located in system settings -> About Phone
+      placeholder: Manufacturer and model, e.g. Samsung S24
+    validations:
+      required: false
+  - type: input
+    id: android-version
+    attributes:
+      label: Android version
+      description: Usually located in system settings -> About Phone
+      placeholder: Android version, e.g. 14
+    validations:
+      required: false
+  - type: input
+    id: signal-version
+    attributes:
+      label: Signal version
+      description: You can see Signal's version number at Settings -> Help
+      placeholder: App version, e.g. 7.17.6
+    validations:
+      required: false
+  - type: textarea
+    id: debug-log
+    attributes:
+      label: Link to debug log
+      description: |
+        Submit a debug log via Settings -> Help -> Debug Log, then copy that URL here. Logs can only reliably cover ~24 hours, so please try to capture it as soon as you experience the bug!
+        See https://support.signal.org/hc/en-us/articles/360007318591#android_debug
+      placeholder: Debug log link, e.g. https://debuglogs.org/...
+    validations:
+      required: false

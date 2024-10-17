@@ -5,4 +5,8 @@
 
 package org.whispersystems.signalservice.internal.crypto
 
-data class AttachmentDigest(val digest: ByteArray, val incrementalDigest: ByteArray?, val incrementalMacChunkSize: Int)
+data class AttachmentDigest(
+  val digest: ByteArray,
+  val incrementalDigest: ByteArray?,
+  val incrementalMacChunkSize: Int
+)

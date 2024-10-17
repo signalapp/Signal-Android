@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
+import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -48,7 +49,7 @@ class InAppPaymentRecurringContextJob private constructor(
 
     const val KEY = "InAppPurchaseRecurringContextJob"
 
-    private fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
+    fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
       return InAppPaymentRecurringContextJob(
         inAppPaymentId = inAppPayment.id,
         parameters = Parameters.Builder()
@@ -60,12 +61,22 @@ class InAppPaymentRecurringContextJob private constructor(
       )
     }
 
+    /**
+     * Creates a job chain using data from the given InAppPayment. This object is passed by ID to the job,
+     * meaning the job will always load the freshest data it can about the payment.
+     */
     fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
-      return AppDependencies.jobManager
-        .startChain(create(inAppPayment))
-        .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
-        .then(RefreshOwnProfileJob())
-        .then(MultiDeviceProfileContentUpdateJob())
+      return if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        AppDependencies.jobManager
+          .startChain(create(inAppPayment))
+          .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+      } else {
+        AppDependencies.jobManager
+          .startChain(create(inAppPayment))
+          .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+          .then(RefreshOwnProfileJob())
+          .then(MultiDeviceProfileContentUpdateJob())
+      }
     }
   }
 
@@ -238,8 +249,8 @@ class InAppPaymentRecurringContextJob private constructor(
         warning("Charge failure detected on active subscription: ${chargeFailure.code}: ${chargeFailure.message}")
       }
 
-      if (inAppPayment.data.redemption!!.keepAlive == true) {
-        warning("Payment failure during keep-alive, allow keep-alive to retry later.")
+      if (inAppPayment.data.redemption!!.keepAlive == true && !subscription.isCanceled) {
+        warning("Payment failure for uncanceled subscription during keep-alive, allow keep-alive to retry later.")
 
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
@@ -247,7 +258,7 @@ class InAppPaymentRecurringContextJob private constructor(
             data = inAppPayment.data.copy(
               error = InAppPaymentData.Error(
                 type = InAppPaymentData.Error.Type.PAYMENT_PROCESSING,
-                data_ = "keep-alive"
+                data_ = InAppPaymentKeepAliveJob.KEEP_ALIVE
               )
             )
           )

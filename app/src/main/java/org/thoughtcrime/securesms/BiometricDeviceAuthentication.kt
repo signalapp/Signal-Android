@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms
 
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -35,8 +36,9 @@ class BiometricDeviceAuthentication(
     private val DISALLOWED_BIOMETRIC_VERSIONS = setOf(28, 29)
   }
 
-  fun canAuthenticate(): Boolean {
-    return biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+  fun canAuthenticate(context: Context): Boolean {
+    val isKeyGuardSecure = ServiceUtil.getKeyguardManager(context).isKeyguardSecure
+    return isKeyGuardSecure && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
   }
 
   fun authenticate(context: Context, force: Boolean, showConfirmDeviceCredentialIntent: () -> Unit): Boolean {
@@ -50,7 +52,12 @@ class BiometricDeviceAuthentication(
     return if (!DISALLOWED_BIOMETRIC_VERSIONS.contains(Build.VERSION.SDK_INT) && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
       if (force) {
         Log.i(TAG, "Listening for biometric authentication...")
-        biometricPrompt.authenticate(biometricPromptInfo)
+        try {
+          biometricPrompt.authenticate(biometricPromptInfo)
+        } catch (e: ActivityNotFoundException) {
+          Log.w(TAG, "Failed to launch confirm device credential settings", e)
+          return false
+        }
       } else {
         Log.i(TAG, "Skipping show system biometric or device lock dialog unless forced")
       }

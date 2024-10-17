@@ -36,7 +36,8 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Roaming Download         : ").append(Util.join(TextSecurePreferences.getRoamingMediaDownloadAllowed(context), ",")).append("\n")
                               .append("Mobile Download          : ").append(Util.join(TextSecurePreferences.getMobileMediaDownloadAllowed(context), ",")).append("\n")
                               .append("Phone Number Sharing     : ").append(SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()).append(" (").append(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()).append(")\n")
-                              .append("Phone Number Discoverable: ").append(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode()).append("\n");
+                              .append("Phone Number Discoverable: ").append(SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode()).append("\n")
+                              .append("Incognito keyboard       : ").append(TextSecurePreferences.isIncognitoKeyboardEnabled(context)).append("\n");
   }
 
   private static String getThreadTrimmingString() {

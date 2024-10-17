@@ -8,6 +8,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import org.junit.rules.ExternalResource
 import org.signal.libsignal.protocol.IdentityKey
@@ -25,18 +26,15 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.registration.RegistrationData
-import org.thoughtcrime.securesms.registration.RegistrationRepository
-import org.thoughtcrime.securesms.registration.RegistrationUtil
-import org.thoughtcrime.securesms.registration.VerifyResponse
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil
+import org.thoughtcrime.securesms.registration.data.RegistrationData
+import org.thoughtcrime.securesms.registration.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.ServiceResponseProcessor
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.UUID
 
 /**
@@ -48,6 +46,7 @@ import java.util.UUID
 class SignalActivityRule(private val othersCount: Int = 4, private val createGroup: Boolean = false) : ExternalResource() {
 
   val application: Application = AppDependencies.application
+  private val TEST_E164 = "+15555550101"
 
   lateinit var context: Context
     private set
@@ -93,31 +92,31 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     SignalStore.account.generateAciIdentityKeyIfNecessary()
     SignalStore.account.generatePniIdentityKeyIfNecessary()
 
-    val registrationRepository = RegistrationRepository(application)
-
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(Put("/v2/keys") { MockResponse().success() })
-    val response: ServiceResponse<VerifyResponse> = registrationRepository.registerAccount(
-      RegistrationData(
+    runBlocking {
+      val registrationData = RegistrationData(
         code = "123123",
-        e164 = "+15555550101",
+        e164 = TEST_E164,
         password = Util.getSecret(18),
-        registrationId = registrationRepository.registrationId,
-        profileKey = registrationRepository.getProfileKey("+15555550101"),
+        registrationId = RegistrationRepository.getRegistrationId(),
+        profileKey = RegistrationRepository.getProfileKey(TEST_E164),
         fcmToken = null,
-        pniRegistrationId = registrationRepository.pniRegistrationId,
+        pniRegistrationId = RegistrationRepository.getPniRegistrationId(),
         recoveryPassword = "asdfasdfasdfasdf"
-      ),
-      VerifyResponse(
-        verifyAccountResponse = VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false),
+      )
+      val remoteResult = RegistrationRepository.AccountRegistrationResult(
+        uuid = UUID.randomUUID().toString(),
+        pni = UUID.randomUUID().toString(),
+        storageCapable = false,
+        number = TEST_E164,
         masterKey = null,
         pin = null,
         aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.aciPreKeys),
         pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.pniPreKeys)
-      ),
-      false
-    ).blockingGet()
-
-    ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
+      )
+      val localRegistrationData = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(SignalStore.account.aciIdentityKey, SignalStore.account.pniIdentityKey, registrationData, remoteResult, false)
+      RegistrationRepository.registerAccountLocally(application, localRegistrationData)
+    }
 
     SignalStore.svr.optOut()
     RegistrationUtil.maybeMarkRegistrationComplete()
@@ -141,7 +140,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
       val recipientId = RecipientId.from(SignalServiceAddress(aci, "+15555551%03d".format(i)))
       SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
-      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, false))
+      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, false, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
       val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()

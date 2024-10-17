@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.thoughtcrime.securesms.video.TranscodingPreset
+import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities
 import org.thoughtcrime.video.app.transcode.MAX_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.MIN_VIDEO_MEGABITRATE
 import org.thoughtcrime.video.app.transcode.OPTIONS_AUDIO_KILOBITRATES
@@ -45,6 +46,7 @@ import kotlin.math.roundToInt
  */
 @Composable
 fun ConfigureEncodingParameters(
+  hevcCapable: Boolean = DeviceCapabilities.canEncodeHevc(),
   modifier: Modifier = Modifier,
   viewModel: TranscodeTestViewModel = viewModel()
 ) {
@@ -104,6 +106,8 @@ fun ConfigureEncodingParameters(
       CustomSettings(
         selectedResolution = viewModel.videoResolution,
         onResolutionSelected = { viewModel.videoResolution = it },
+        useHevc = viewModel.useHevc,
+        onUseHevcSettingChanged = { viewModel.useHevc = it },
         fastStartChecked = viewModel.enableFastStart,
         onFastStartSettingCheckChanged = { viewModel.enableFastStart = it },
         audioRemuxChecked = viewModel.enableAudioRemux,
@@ -112,6 +116,7 @@ fun ConfigureEncodingParameters(
         updateVideoSliderPosition = { viewModel.videoMegaBitrate = it },
         audioSliderPosition = viewModel.audioKiloBitrate,
         updateAudioSliderPosition = { viewModel.audioKiloBitrate = it.roundToInt() },
+        hevcCapable = hevcCapable,
         modifier = Modifier.padding(vertical = 16.dp)
       )
     }
@@ -139,7 +144,7 @@ private fun PresetPicker(
       .fillMaxWidth()
       .selectableGroup()
   ) {
-    TranscodingPreset.values().forEach {
+    TranscodingPreset.entries.forEach {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -169,6 +174,8 @@ private fun PresetPicker(
 private fun CustomSettings(
   selectedResolution: VideoResolution,
   onResolutionSelected: (VideoResolution) -> Unit,
+  useHevc: Boolean,
+  onUseHevcSettingChanged: (Boolean) -> Unit,
   fastStartChecked: Boolean,
   onFastStartSettingCheckChanged: (Boolean) -> Unit,
   audioRemuxChecked: Boolean,
@@ -177,6 +184,7 @@ private fun CustomSettings(
   updateVideoSliderPosition: (Float) -> Unit,
   audioSliderPosition: Int,
   updateAudioSliderPosition: (Float) -> Unit,
+  hevcCapable: Boolean,
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -185,7 +193,7 @@ private fun CustomSettings(
       .fillMaxWidth()
       .selectableGroup()
   ) {
-    VideoResolution.values().forEach {
+    VideoResolution.entries.forEach {
       Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -210,6 +218,22 @@ private fun CustomSettings(
   }
   VideoBitrateSlider(videoSliderPosition, updateVideoSliderPosition)
   AudioBitrateSlider(audioSliderPosition, updateAudioSliderPosition)
+
+  if (hevcCapable) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier
+        .padding(vertical = 8.dp, horizontal = 8.dp)
+        .fillMaxWidth()
+    ) {
+      Checkbox(
+        checked = useHevc,
+        onCheckedChange = { onUseHevcSettingChanged(it) }
+      )
+      Text(text = "Use HEVC encoder", style = MaterialTheme.typography.bodySmall)
+    }
+  }
+
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
@@ -297,5 +321,5 @@ private fun ConfigurationScreenPreviewUnchecked() {
   val vm: TranscodeTestViewModel = viewModel()
   vm.selectedVideos = listOf(Uri.parse("content://1"), Uri.parse("content://2"))
   vm.useAutoTranscodingSettings = false
-  ConfigureEncodingParameters()
+  ConfigureEncodingParameters(hevcCapable = true)
 }

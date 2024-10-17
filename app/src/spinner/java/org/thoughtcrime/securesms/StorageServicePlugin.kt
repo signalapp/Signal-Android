@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms
 
+import org.signal.core.util.Base64
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -10,7 +11,7 @@ class StorageServicePlugin : Plugin {
   override val path: String = PATH
 
   override fun get(): PluginResult {
-    val columns = listOf("Type", "Data")
+    val columns = listOf("Type", "Id", "Data")
     val rows = mutableListOf<List<String>>()
 
     val manager = AppDependencies.signalServiceAccountManager
@@ -37,10 +38,16 @@ class StorageServicePlugin : Plugin {
       } else if (record.storyDistributionList.isPresent) {
         row += "Distribution List"
         row += record.storyDistributionList.get().toProto().toString()
+      } else if (record.callLink.isPresent) {
+        row += "Call Link"
+        row += record.callLink.get().toProto().toString()
       } else {
         row += "Unknown"
         row += ""
       }
+
+      row.add(1, Base64.encodeWithPadding(record.id.raw))
+
       rows += row
     }
 

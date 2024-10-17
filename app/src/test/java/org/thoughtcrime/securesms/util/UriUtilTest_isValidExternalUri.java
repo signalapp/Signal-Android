@@ -1,3 +1,8 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 package org.thoughtcrime.securesms.util;
 
 import android.app.Application;
@@ -10,7 +15,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.ParameterizedRobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.thoughtcrime.securesms.BuildConfig;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,7 +28,7 @@ public class UriUtilTest_isValidExternalUri {
   private final String  input;
   private final boolean output;
 
-  private static final String APPLICATION_ID = BuildConfig.APPLICATION_ID;
+  private static final String APPLICATION_ID = "org.thoughtcrime.securesms";
 
   @ParameterizedRobolectricTestRunner.Parameters
   public static Collection<Object[]> data() {

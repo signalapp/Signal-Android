@@ -113,7 +113,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     }
   }
 
-  override fun onNewIntent(intent: Intent?) {
+  override fun onNewIntent(intent: Intent) {
     super.onNewIntent(intent)
     setIntent(intent)
     replaceStoryViewerFragment()

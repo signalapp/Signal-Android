@@ -11,9 +11,9 @@ import java.util.Optional;
 public class SharedContact {
 
   private final Name                          name;
-  private final Optional<Avatar>      avatar;
-  private final Optional<List<Phone>> phone;
-  private final Optional<List<Email>> email;
+  private final Optional<Avatar>              avatar;
+  private final Optional<List<Phone>>         phone;
+  private final Optional<List<Email>>         email;
   private final Optional<List<PostalAddress>> address;
   private final Optional<String>              organization;
 
@@ -103,28 +103,28 @@ public class SharedContact {
 
   public static class Name {
 
-    private final Optional<String> display;
     private final Optional<String> given;
     private final Optional<String> family;
     private final Optional<String> prefix;
     private final Optional<String> suffix;
     private final Optional<String> middle;
+    private final Optional<String> nickname;
 
-    public Name(Optional<String> display, Optional<String> given, Optional<String> family, Optional<String> prefix, Optional<String> suffix, Optional<String> middle) {
-      this.display = display;
-      this.given   = given;
-      this.family  = family;
-      this.prefix  = prefix;
-      this.suffix  = suffix;
-      this.middle  = middle;
+    public Name(Optional<String> given, Optional<String> family, Optional<String> prefix, Optional<String> suffix, Optional<String> middle, Optional<String> nickname) {
+      this.given    = given;
+      this.family   = family;
+      this.prefix   = prefix;
+      this.suffix   = suffix;
+      this.middle   = middle;
+      this.nickname = nickname;
     }
 
     public static Builder newBuilder() {
       return new Builder();
     }
 
-    public Optional<String> getDisplay() {
-      return display;
+    public Optional<String> getNickname() {
+      return nickname;
     }
 
     public Optional<String> getGiven() {
@@ -148,15 +148,15 @@ public class SharedContact {
     }
 
     public static class Builder {
-      private String display;
+      private String nickname;
       private String given;
       private String family;
       private String prefix;
       private String suffix;
       private String middle;
 
-      public Builder setDisplay(String display) {
-        this.display = display;
+      public Builder setNickname(String nickname) {
+        this.nickname = nickname;
         return this;
       }
 
@@ -186,12 +186,12 @@ public class SharedContact {
       }
 
       public Name build() {
-        return new Name(Optional.ofNullable(display),
-                        Optional.ofNullable(given),
+        return new Name(Optional.ofNullable(given),
                         Optional.ofNullable(family),
                         Optional.ofNullable(prefix),
                         Optional.ofNullable(suffix),
-                        Optional.ofNullable(middle));
+                        Optional.ofNullable(middle),
+                        Optional.ofNullable(nickname));
       }
     }
   }

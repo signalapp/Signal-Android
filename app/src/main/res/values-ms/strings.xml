@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
     <string name="delete">Padam</string>
@@ -258,6 +261,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Ketik untuk foto, tekan untuk video</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Tangkap</string>
     <string name="CameraXFragment_change_camera_description">Tukar kamera</string>
     <string name="CameraXFragment_open_gallery_description">Buka geleri</string>
@@ -342,6 +346,8 @@
     <string name="CommunicationActions_invalid_link">Pautan Tidak Sah</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Ini bukan pautan panggilan yang sah. Pastikan keseluruhan pautan tidak terjejas dan betul sebelum cuba menyertai.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">Anda sudah berada dalam panggilan</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -359,6 +365,8 @@
     <string name="ContactsCursorLoader__chats">Sembang</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Mesej</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Mesej %1$s</string>
@@ -398,6 +406,7 @@
     <string name="ConversationItem_unable_to_open_media">Tidak dapat mencari aplikasi untuk membuka media ini.</string>
     <string name="ConversationItem_copied_text">Menyalin %1$s</string>
     <string name="ConversationItem_from_s">daripada %1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">kepada %1$s</string>
     <string name="ConversationItem_read_more"> Baca selanjutnya</string>
     <string name="ConversationItem_download_more"> Muat turun selanjutnya</string>
@@ -431,6 +440,7 @@
     <string name="ConversationActivity_send_edit">Edit hantar</string>
     <string name="ConversationActivity_compose_message">Karang mesej</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Maaf, terdapat ralat menetapkan lampiran anda.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Penerima bukan SMS atau alamat emel yang sah!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Mesej kosong!</string>
     <string name="ConversationActivity_group_members">Ahli kumpulan</string>
@@ -563,6 +573,7 @@
         <item quantity="other">Menyimpan %1$d lampiran ke storan…</item>
     </plurals>
     <string name="ConversationFragment_pending">Menunggu…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -787,7 +798,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">Mencipta sandaran</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Anda sudah bersedia. Mulakan sandaran anda sekarang.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Bergantung pada saiz sandaran anda, ini mungkin mengambil masa yang lama. Anda boleh menggunakan telefon anda seperti biasa semasa sandaran dilakukan.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -951,6 +962,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">Tiada peranti dipautkan</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Buka kunci untuk pautkan peranti</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Sebelum memaut, sahkan itu anda</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Ketik teruskan dan masukkan kunci telefon anda untuk mengesahkan. Jangan masukkan PIN Signal anda.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Teruskan</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -978,6 +995,7 @@
     <string name="DeviceListActivity_unlink_s">Nyahpaut \'%1$s</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan menyahpautkan peranti ini, ia tidak akan dapat menghantar atau menerima mesej lagi.</string>
     <string name="DeviceListActivity_network_connection_failed">Gagal menyambung rangkaian</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Cuba lagi</string>
     <string name="DeviceListActivity_unlinking_device">Menyahpaut peranti…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Menyahpaut peranti</string>
@@ -1360,7 +1378,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Pautan kumpulan</string>
     <string name="ShareableGroupLinkDialogFragment__share">Kongsi</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Pautan tetapan semula</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Luluskan ahli baharu</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Memerlukan Kelulusan Pentadbir</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Memerlukan pentadbir untuk meluluskan ahli baharu yang menyertai kumpulan melalui pautan kumpulan.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Adakah anda pasti mahu menetapkan semula pautan kumpulan? Orang tidak dapat lagi menyertai kumpulan menggunakan pautan semasa.</string>
 
@@ -1456,6 +1474,7 @@
         <item quantity="other">Hantar %1$d jemputan SMS?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Mari tukar ke Signal: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Nampaknya anda tidak mempunyai sebarang aplikasi untuk dikongsi.</string>
 
     <!-- LearnMoreTextView -->
@@ -1865,6 +1884,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Benarkan %1$s menghantar mesej kepada anda dan kongsikan nama dan foto anda dengan mereka? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekatnya.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Benarkan %1$s mesej anda? Anda tidak akan menerima sebarang mesej sehingga anda menyahsekat mereka.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan kemas kini dan berita daripada %1$s? Anda tidak akan menerima sebarang kemas kini sehingga anda menyahsekat mereka.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Teruskan sembang anda dengan kumpulan ini dan kongsikan nama dan foto anda dengan ahli-ahlinya?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Kumpulan Legasi ini tidak boleh digunakan lagi. Buat kumpulan baharu untuk mengaktifkan ciri baharu seperti @sebutan dan pentadbir.</string>
@@ -1890,6 +1910,7 @@
     <plurals name="MessageRequestProfileView_invited">
         <item quantity="other">+%1$d dijemput</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">%1$d kumpulan tambahan</item>
     </plurals>
@@ -1915,6 +1936,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">Tiada peranti dijumpai.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Ralat rangkaian.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Kod QR tidak sah.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, anda mempunyai terlalu banyak peranti dipautkan, cuba alih keluar beberapa</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan kod QR pautan peranti yang sah.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Memautkan satu peranti Signal?</string>
@@ -1936,11 +1958,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Hantar frasa laluan</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frasa laluan tidak sah!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Buka Signal</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Kunci Skrin</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Peta</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Letakkan pin</string>
     <string name="PlacePickerActivity_accept_address">Terima alamat</string>
 
@@ -2033,6 +2057,16 @@
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
+
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">Kembali</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">Maklumat panggilan</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Kamera anda dimatikan</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ketik sini untuk dayakan video anda</string>
@@ -2153,6 +2187,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">Tiada seorang pun di sini</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s berada dalam panggilan ini</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s ada dalam panggilan ini</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s dan %2$s berada dalam panggilan ini</string>
 
@@ -2172,6 +2207,8 @@
     <string name="WebRtcCallView__additional_actions">Tindakan tambahan</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Tamatkan panggilan</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">Togol deringan kumpulan</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Ralat UI berlaku. Sila laporkan ralat ini kepada pembangun.</string>
@@ -2409,6 +2446,7 @@
     <string name="SharedContactView_message">Mesej Signal</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">Lagi</string>
 
     <!-- SignalPinReminders -->
@@ -2440,6 +2478,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">Tiada pelekat dipasang</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Pelekat daripada mesej masuk akan muncul di sini</string>
     <string name="StickerManagementAdapter_untitled">Tiada tajuk</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Tidak diketahui</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2542,6 +2581,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Kita akan cuba lagi nanti.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal berjaya dikemas kini</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Anda telah dikemas kini secara automatik kepada versi %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">Anda mengemas kini kepada versi %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Hantar mesej?</string>
@@ -2659,6 +2699,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Media tidak lagi tersedia.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Tidak dapat memainkan media.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Ralat mencari mesej.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak menemui aplikasi yang dapat kongsikan media ini.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Tutup</string>
@@ -2728,6 +2769,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Mesej</string>
     <string name="NotificationChannel_calls">Panggilan</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Kegagalan</string>
     <string name="NotificationChannel_backups">Sandaran</string>
     <string name="NotificationChannel_locked_status">Status kunci</string>
@@ -2737,6 +2779,7 @@
     <string name="NotificationChannel_missing_display_name">Tidak diketahui</string>
     <string name="NotificationChannel_voice_notes">Nota Suara</string>
     <string name="NotificationChannel_contact_joined_signal">Kenalan menyertai Signal</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Tidak ada aktiviti yang tersedia untuk membuka tetapan pemberitahuan.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Sambungan latar belakang</string>
@@ -2954,6 +2997,7 @@
     <string name="conversation_activity__attachment_thumbnail">Imej kecil lampiran</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Togol laci lampiran kamera pantas</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekod dan hantar lampiran audio</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Kunci lampiran audio merekod</string>
     <string name="conversation_activity__message_could_not_be_sent">Mesej tidak dapat dihantar. Periksa sambungan anda dan cuba lagi.</string>
 
@@ -2972,6 +3016,7 @@
     <string name="conversation_item_sent__message_read">Mesej dibaca</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Foto kenalan</string>
 
     <!-- ConversationUpdateItem -->
@@ -3056,6 +3101,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Semuanya kelihatan baik sekarang!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Untuk menerima pemberitahuan panggilan, ketik sini dan hidupkan \"Tunjukkan pemberitahuan\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Untuk menerima pemberitahuan panggilan, ketik sini dan hidupkan pemberitahuan dan pastikan Bunyi dan Tetingkap Timbul didayakan.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Untuk menerima pemberitahuan panggilan, ketik sini dan dayakan aktiviti latar belakang dalam tetapan \"Bateri\". </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Tetapan</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Untuk menerima pemberitahuan panggilan, ketik Tetapan dan hidupkan \"Tunjukkan pemberitahuan\".</string>
@@ -3283,6 +3329,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Maklumat Sokongan</string>
     <string name="HelpFragment__signal_android_support_request">Permintaan Sokongan Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3370,6 +3417,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Dapatkan pratonton pautan terus daripada laman web untuk mesej yang anda hantar.</string>
     <string name="preferences__change_passphrase">Tukar frasa laluan</string>
     <string name="preferences__change_your_passphrase">Tukar frasa laluan anda</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Dayakan frasa laluan kunci skrin</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Kunci skrin dan pemberitahuan dengan frasa laluan</string>
     <string name="preferences__screen_security">Keselamatan skrin</string>
@@ -3382,6 +3430,7 @@
     <string name="preferences__pref_led_blink_title">Corak kelip LED</string>
     <string name="preferences__customize">Sesuaikan</string>
     <string name="preferences__change_sound_and_vibration">Tukar bunyi dan getaran</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Bunyi</string>
     <string name="preferences__silent">Senyap</string>
     <string name="preferences__default">Lalai</string>
@@ -3502,10 +3551,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Semua sejarah mesej akan dialih keluar secara kekal daripada semua peranti. Tindakan ini tidak boleh dibatalkan.</string>
     <string name="preferences_storage__delete_all_now">Padam semua sekarang</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Selama-lamanya</string>
     <string name="preferences_storage__one_year">1 tahun</string>
     <string name="preferences_storage__six_months">6 bulan</string>
     <string name="preferences_storage__thirty_days">30 hari</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Tiada</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="other">%1$s mesej</item>
@@ -3529,6 +3580,7 @@
     <string name="preferences_notifications__show">Papar</string>
     <string name="preferences_notifications__ringtone">Nada dering</string>
     <string name="preferences_chats__message_text_size">Saiz huruf mesej</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Keutamaan</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Pemberitahuan Menyelesaikan Masalah</string>
@@ -3757,6 +3809,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Imbas kod QR alamat penerima pembayaran</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Permintaan</string>
     <string name="CreatePaymentFragment__pay">Bayar</string>
     <string name="CreatePaymentFragment__available_balance_s">Baki yang tersedia: %1$s</string>
@@ -3887,6 +3940,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Anda hanya boleh pin sebanyak %1$d sembang</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Imej Foto Kenalan</string>
     <string name="conversation_list_item_view__archived">Diarkib</string>
 
@@ -3895,6 +3949,10 @@
     <string name="conversation_list_fragment__fab_content_description">Sembang baharu</string>
     <string name="conversation_list_fragment__open_camera_description">Buka Kamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Belum ada sembang.\nMulakan dengan menghantar mesej kepada rakan.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4119,6 +4177,7 @@
     <string name="preferences_chats__chat_backups">Sandaran sembang</string>
     <string name="preferences_chats__transfer_account">Pindahkan akaun</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Pindahkan akaun ke peranti Android baharu</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Masukkan frasa laluan sandaran</string>
     <string name="RegistrationActivity_restore">Memulihkan</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Sandaran tak dapat diimport daripada versi Signal baru</string>
@@ -4326,6 +4385,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Tidak dapat membuka Tetapan Wi-Fi. Sila hidupkan Wi-Fi secara manual.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Berikan kebenaran lokasi</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Hidupkan perkhidmatan lokasi</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Hidupkan Wi-Fi</string>
@@ -4572,6 +4632,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Kongsi</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Hantar</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -4874,6 +4935,116 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Papan Kekunci</string>
     <string name="ChatsSettingsFragment__send_with_enter">Hantar dengan masukkan</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mesej</string>
@@ -4957,6 +5128,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kualiti media</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Kualiti media yang dihantar</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Menghantar media berkualiti tinggi akan menggunakan lebih banyak data.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -5228,6 +5400,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Tambah ke cerita</string>
     <string name="MediaReviewFragment__add_a_message">Tambah mesej</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Tambah balasan</string>
     <string name="MediaReviewFragment__send_to">Hantar kepada</string>
     <string name="MediaReviewFragment__view_once_message">Media lihat sekali</string>
@@ -5827,6 +6000,8 @@
     <plurals name="StoryViewerFragment__d_replies">
         <item quantity="other">%1$d balasan</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Cerita tidak lagi tersembunyi</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Tambah</string>
     <!-- Used when view receipts are disabled -->
@@ -6773,7 +6948,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Edit nama panggilan</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Luluskan semua ahli</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Memerlukan Kelulusan Pentadbir</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Kongsi pautan melalui Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6829,7 +7004,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Tambah nama panggilan</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Luluskan semua ahli</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Memerlukan Kelulusan Pentadbir</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Kongsi pautan</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7038,10 +7213,10 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Sandaran media dimatikan</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Langganan sandaran anda telah tamat tempoh</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="other">Pelan sandaran media Signal anda telah dibatalkan kerana kami tidak dapat memproses pembayaran anda. Anda mempunyai %1$d hari untuk memuat turun sebarang media yang disimpan dalam sandaran anda. Selepas %1$d hari, media dalam sandaran anda akan dipadamkan.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="other">Pelan sandaran anda telah tamat tempoh kerana ia tidak dapat diperbaharui dengan kaedah pembayaran semasa anda. Selepas %1$d hari, media dalam sandaran anda akan dipadam.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Anda boleh mula membayar untuk sandaran semula pada bila-bila masa untuk terus membuat sandaran semua media anda. </string>
@@ -7058,9 +7233,9 @@
         <item quantity="other">Jika anda pilih \"Langkau\", media dalam sandaran anda akan dipadamkan dalam masa %1$d hari.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Tidak dapat memproses pembayaran sandaran</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Langganan sandaran anda gagal diperbaharui</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Kami menghadapi masalah mengutip bayaran sandaran bulanan berulang anda. Pastikan kaedah pembayaran anda adalah terkini. Jika tidak, kemas kini dalam Google Pay. Signal akan cuba memproses pembayaran semula dalam beberapa hari.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Semak untuk pastikan kaedah pembayaran anda adalah terkini. Ketik Urus langganan dan di bawah Kaedah pembayaran, ketik Kemas Kini.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Tidak dapat melengkapkan sandaran</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7069,12 +7244,16 @@
     <string name="BackupAlertBottomSheet__learn_more">Ketahui lebih lanjut</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Langkau</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Urus langganan</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Langgan dengan %1$s/bulan</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">Muat turun media sekarang</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Muat turun kemudian</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Jangan muat turun media</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Bukan sekarang</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Media akan dipadamkan</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7086,9 +7265,38 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Kosongkan %1$s ruang untuk muat turun media anda.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Kosongkan %1$s ruang untuk memulihkan media anda.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Memulihkan media</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Pemulihan dijeda</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Restore selesai</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Menunggu Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">Tiada internet…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Bateri peranti lemah</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s daripada %2$s</string>
+
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kad kredit atau debit</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7137,8 +7345,18 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Naik taraf untuk mendayakan ciri ini</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Pengoptimuman storan hanya boleh digunakan dengan Sandaran Signal berbayar. Naik taraf pelan sandaran anda untuk mula menggunakan ciri ini.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Naik taraf sekarang</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Langgan dengan %1$s/bulan</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Media ini tidak lagi tersedia</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="other">Pelan sandaran Signal semasa anda termasuk %1$d hari media terkini anda. Untuk mula membuat sandaran semua media anda, naik taraf sekarang.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Langgan dengan %1$s/bulan</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Pemadaman kini disegerakkan merentas semua peranti anda</string>
@@ -7147,19 +7365,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Sejarah pembayaran</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Teks dan semua sandaran media</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Butiran pembayaran</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Jenis sandaran</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Tarikh bayar</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Kongsi</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/bulan, diperbaharui pada %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Sandaran terakhir %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Sandaran automatik dengan perkhidmatan storan disulitkan hujung ke hujung yang selamat oleh Signal.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Tetapkan</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7174,6 +7388,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Kekerapan sandaran</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sandarkan menggunakan selular</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Lihat kunci sandaran</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Buka kunci untuk melihat kunci sandaran</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Matikan dan padamkan sandaran</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7181,19 +7399,39 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Jenis sandaran ditukar dan langganan dibatalkan</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Langganan dibatalkan</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Muat turun selesai</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Sandaran akan dibuat semalaman.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Jenis sandaran</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Pelan sandaran</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Sandaran dilumpuhkan</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/bulan</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">Mendayakan sandaran</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/bulan</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Pelan sandaran anda adalah percuma</string>
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Memperbaharui %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Sandarkan sejarah mesej anda supaya anda tidak kehilangan data apabila menggunakan telefon baharu atau memasang semula Signal.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Cara lain untuk membuat sandaran</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Sandaran pada peranti</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Simpan sandaran anda ke folder pada peranti ini</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Urus atau batalkan</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Naik taraf</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7226,12 +7464,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Buat sandaran secara manual</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Sila masukkan pin, kata laluan atau corak peranti anda.</string>
-
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Bayar %1$s/bulan kepada Signal</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Anda akan terima:</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7247,29 +7483,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Ketahui lebih lanjut</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Masukkan PIN anda</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Masukkan PIN Signal anda untuk mendayakan sandaran</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Seterusnya</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Tukar papan kekunci</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Cipta PIN baharu</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN melindungi sandaran anda</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">PIN Signal membolehkan anda memulihkan sandaran anda apabila memasang semula Signal. Kami mengesyorkan anda menggunakan PIN dengan sekurang-kurangnya %1$d digit.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Jika terlupa PIN anda, anda tidak akan dapat memulihkan sandaran. Anda boleh menukar PIN pada bila-bila masa dalam tetapan.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Gunakan PIN Signal semasa</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Cipta PIN baharu</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kunci sandaran anda</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci sandaran anda ialah kod 64 digit yang boleh memulihkan sandaran apabila anda memasang semula Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Jika terlupa PIN, anda tidak akan dapat memulihkan sandaran. Signal tidak dapat membantu memulihkan sandaran anda.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Seterusnya</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Rekodkan kunci sandaran anda</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Kunci ini diperlukan untuk memulihkan akaun dan data anda. Simpan kunci ini di tempat yang selamat. Jika anda kehilangannya, anda tidak akan dapat memulihkan akaun anda.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Salin ke papan klip</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Seterusnya</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Pastikan kunci anda selamat</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal tidak akan dapat membantu memulihkan sandaran jika anda kehilangan kunci. Simpannya di tempat yang selamat dan jangan kongsikannya dengan orang lain.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Saya telah merekodkan kunci saya</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Teruskan</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">Lihat kunci lagi</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7284,6 +7526,28 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Tukar jenis sandaran</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Batal Langganan</string>
+    <!-- MessageBackupsType block amount for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__free">Percuma</string>
+    <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/bulan</string>
+    <!-- Title for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Teks + semua media anda</string>
+    <!-- Title for paid tier. Placeholder is days of media retention. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="other">Teks + %1$d hari media</item>
+    </plurals>
+    <!-- Description text for text history feature -->
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Sandaran mesej teks penuh</string>
+    <!-- Description text for paid tier media retention -->
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Sandaran media penuh</string>
+    <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s storan (%2$s foto)</string>
+    <!-- Description text for thanks -->
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Terima kasih kerana menyokong Signal!</string>
+    <!-- Description text for free tier media retention. Placeholder is retention day count. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="other">%1$d hari terakhir media</item>
+    </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

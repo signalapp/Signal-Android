@@ -36,6 +36,7 @@ import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.CallTable;
@@ -67,7 +68,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -89,11 +89,11 @@ import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserExce
 import org.whispersystems.signalservice.internal.push.SyncMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -391,11 +391,6 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
-    if (!RemoteConfig.adHocCalling()) {
-      Log.i(TAG, "Ad Hoc Calling is disabled. Ignoring request to peek.");
-      return;
-    }
-
     networkExecutor.execute(() -> {
       try {
         Recipient              callLinkRecipient = Recipient.resolved(id);
@@ -415,9 +410,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
         CallLinkAuthCredentialPresentation callLinkAuthCredentialPresentation = AppDependencies.getGroupsV2Authorization()
                                                                                                .getCallLinkAuthorizationForToday(
-                                                                                                           genericServerPublicParams,
-                                                                                                           CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
-                                                                                                       );
+                                                                                                   genericServerPublicParams,
+                                                                                                   CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
+                                                                                               );
 
         callManager.peekCallLinkCall(SignalStore.internal().groupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
@@ -428,21 +423,25 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
           String eraId = info.getEraId();
           if (eraId != null && !info.getJoinedMembers().isEmpty()) {
-            if (SignalDatabase.calls().insertAdHocCallFromObserveEvent(callLinkRecipient, System.currentTimeMillis(), eraId)) {
+            if (SignalDatabase.calls().insertAdHocCallFromLocalObserveEvent(callLinkRecipient, System.currentTimeMillis(), eraId)) {
               AppDependencies.getJobManager()
                              .add(CallSyncEventJob.createForObserved(callLinkRecipient.getId(), CallId.fromEra(eraId).longValue()));
             }
           }
 
-          linkPeekInfoStore.update(store -> {
-            Map<RecipientId, CallLinkPeekInfo> newHashMap = new HashMap<>(store);
-            newHashMap.put(id, CallLinkPeekInfo.fromPeekInfo(info));
-            return newHashMap;
-          });
+          emitCallLinkPeekInfoUpdate(id, info);
         });
       } catch (CallException | VerificationFailedException | InvalidInputException | IOException e) {
         Log.i(TAG, "error peeking call link", e);
       }
+    });
+  }
+
+  public void emitCallLinkPeekInfoUpdate(@NonNull RecipientId recipientId, @NonNull PeekInfo peekInfo) {
+    linkPeekInfoStore.update(store -> {
+      Map<RecipientId, CallLinkPeekInfo> newHashMap = new HashMap<>(store);
+      newHashMap.put(recipientId, CallLinkPeekInfo.fromPeekInfo(peekInfo));
+      return newHashMap;
     });
   }
 
@@ -990,7 +989,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         Log.i(TAG, "Starting call activity from foreground listener");
         startCallCardActivityIfPossible();
       }
-      AppDependencies.getAppForegroundObserver().removeListener(this);
+      AppForegroundObserver.removeListener(this);
       return s;
     });
   }
@@ -1024,31 +1023,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       try {
         TurnServerInfo turnServerInfo = AppDependencies.getSignalServiceAccountManager().getTurnServerInfo();
 
-        List<PeerConnection.IceServer> iceServers = new LinkedList<>();
-        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrlsWithIps())) {
-          if (url.startsWith("turn")) {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setUsername(turnServerInfo.getUsername())
-                                                   .setPassword(turnServerInfo.getPassword())
-                                                   .setHostname(turnServerInfo.getHostname())
-                                                   .createIceServer());
-          } else {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setHostname(turnServerInfo.getHostname())
-                                                   .createIceServer());
-          }
-        }
-        for (String url : ListUtil.emptyIfNull(turnServerInfo.getUrls())) {
-          if (url.startsWith("turn")) {
-            iceServers.add(PeerConnection.IceServer.builder(url)
-                                                   .setUsername(turnServerInfo.getUsername())
-                                                   .setPassword(turnServerInfo.getPassword())
-                                                   .createIceServer());
-          } else {
-            iceServers.add(PeerConnection.IceServer.builder(url).createIceServer());
-          }
+        List<TurnServerInfo> turnServerInfos = new ArrayList<>();
+        if (turnServerInfo != null) {
+          turnServerInfos.add(turnServerInfo);
+          turnServerInfos.addAll(turnServerInfo.getIceServers());
         }
 
+        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
         process((s, p) -> {
           RemotePeer activePeer = s.getCallInfoState().getActivePeer();
           if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
@@ -1063,6 +1044,39 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));
       }
     });
+  }
+
+  private static List<PeerConnection.IceServer> mapToIceServers(@NonNull List<TurnServerInfo> turnServerInfos) {
+    List<PeerConnection.IceServer> iceServers = new ArrayList<>();
+
+    for (TurnServerInfo turnServerInfo: turnServerInfos) {
+      if (turnServerInfo.getUrls() != null) {
+        iceServers.addAll(
+            turnServerInfo.getUrlsWithIps()
+                          .stream()
+                          .map(url ->
+                                   PeerConnection.IceServer.builder(url)
+                                                           .setUsername(turnServerInfo.getUsername())
+                                                           .setPassword(turnServerInfo.getPassword())
+                                                           .setHostname(turnServerInfo.getHostname())
+                                                           .createIceServer()
+                          ).toList());
+      }
+      if (turnServerInfo.getUrlsWithIps() != null) {
+        iceServers.addAll(
+            turnServerInfo.getUrls()
+                          .stream()
+                          .map(url ->
+                                   PeerConnection.IceServer.builder(url)
+                                                           .setUsername(turnServerInfo.getUsername())
+                                                           .setPassword(turnServerInfo.getPassword())
+                                                           .createIceServer()
+                          ).toList()
+        );
+      }
+    }
+
+    return iceServers;
   }
 
   public void sendGroupCallUpdateMessage(@NonNull Recipient recipient, @Nullable String groupCallEraId, final @Nullable CallId callId, boolean isIncoming, boolean isJoinEvent) {
@@ -1217,7 +1231,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void relaunchPipOnForeground() {
-    AppDependencies.getAppForegroundObserver().addListener(new RelaunchListener(AppDependencies.getAppForegroundObserver().isForegrounded()));
+    AppForegroundObserver.addListener(new RelaunchListener(AppForegroundObserver.isForegrounded()));
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,
@@ -1253,16 +1267,18 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
             WebRtcViewModel.State callState = s.getCallInfoState().getCallState();
 
             if (callState.getInOngoingCall()) {
-              Intent intent = new Intent(context, WebRtcCallActivity.class);
-              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-              intent.putExtra(WebRtcCallActivity.EXTRA_LAUNCH_IN_PIP, true);
-              context.startActivity(intent);
+              context.startActivity(
+                  new CallIntent.Builder(context)
+                      .withIntentFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                      .withLaunchInPip(true)
+                      .build()
+              );
             }
 
             return s;
           });
         }
-        AppDependencies.getAppForegroundObserver().removeListener(this);
+        AppForegroundObserver.removeListener(this);
       }
     }
 

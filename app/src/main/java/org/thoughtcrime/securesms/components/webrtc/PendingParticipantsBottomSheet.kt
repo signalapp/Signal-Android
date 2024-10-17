@@ -16,12 +16,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -37,14 +35,14 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.DarkPreview
+import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -83,7 +81,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
     }
 
     val participants = viewModel.pendingParticipants
-      .map { it.getAllPendingParticipants(launchTime).toList() }
+      .map { it.pendingParticipantCollection.getAllPendingParticipants(launchTime).toList() }
       .subscribeAsState(initial = emptyList())
 
     PendingParticipantsSheet(
@@ -132,29 +130,27 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 }
 
-@Preview(showSystemUi = true)
+@DarkPreview
 @Composable
 private fun PendingParticipantsSheetPreview() {
-  SignalTheme(isDarkMode = true) {
-    Surface(shape = RoundedCornerShape(18.dp, 18.dp)) {
-      PendingParticipantsSheet(
-        pendingParticipants = listOf(
-          PendingParticipantCollection.State.PENDING,
-          PendingParticipantCollection.State.APPROVED,
-          PendingParticipantCollection.State.DENIED
-        ).map {
-          PendingParticipantCollection.Entry(
-            recipient = Recipient.UNKNOWN,
-            state = it,
-            stateChangeAt = System.currentTimeMillis().milliseconds
-          )
-        },
-        onApproveAll = {},
-        onDenyAll = {},
-        onApprove = {},
-        onDeny = {}
-      )
-    }
+  Previews.BottomSheetPreview {
+    PendingParticipantsSheet(
+      pendingParticipants = listOf(
+        PendingParticipantCollection.State.PENDING,
+        PendingParticipantCollection.State.APPROVED,
+        PendingParticipantCollection.State.DENIED
+      ).map {
+        PendingParticipantCollection.Entry(
+          recipient = Recipient(systemContactName = "Test User"),
+          state = it,
+          stateChangeAt = System.currentTimeMillis().milliseconds
+        )
+      },
+      onApproveAll = {},
+      onDenyAll = {},
+      onApprove = {},
+      onDeny = {}
+    )
   }
 }
 

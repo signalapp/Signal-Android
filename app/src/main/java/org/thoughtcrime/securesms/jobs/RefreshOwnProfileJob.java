@@ -221,6 +221,11 @@ public class RefreshOwnProfileJob extends BaseJob {
       AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
     }
 
+    if (!Recipient.self().getVersionedExpirationTimerCapability().isSupported() && capabilities.isVersionedExpirationTimer()) {
+      Log.d(TAG, "Transitioned to versioned expiration timer capable, notify linked devices in case we were the last one");
+      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+    }
+
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
   }
 

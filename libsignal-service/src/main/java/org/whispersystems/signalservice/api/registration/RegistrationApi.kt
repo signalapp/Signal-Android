@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.registration
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
+import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse
 import org.whispersystems.signalservice.internal.push.BackupV3AuthCheckResponse
@@ -133,6 +134,12 @@ class RegistrationApi(
   fun changeNumber(requestBody: ChangePhoneNumberRequest): NetworkResult<VerifyAccountResponse> {
     return NetworkResult.fromFetch {
       pushServiceSocket.changeNumber(requestBody)
+    }
+  }
+
+  fun distributePniKeys(requestBody: PniKeyDistributionRequest): NetworkResult<VerifyAccountResponse> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.distributePniKeys(requestBody)
     }
   }
 }

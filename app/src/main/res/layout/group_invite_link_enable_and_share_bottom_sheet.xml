@@ -77,7 +77,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical|start"
-        android:text="@string/ShareableGroupLinkDialogFragment__approve_new_members"
+        android:text="@string/ShareableGroupLinkDialogFragment__require_admin_approval"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/text_color_primary_enabled_selector"

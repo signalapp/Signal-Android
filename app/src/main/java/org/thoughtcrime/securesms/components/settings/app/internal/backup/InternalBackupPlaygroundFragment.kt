@@ -29,6 +29,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -37,6 +38,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -55,12 +57,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Snackbars
@@ -70,10 +76,12 @@ import org.signal.core.util.getLength
 import org.signal.core.util.roundedString
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.BackupUploadState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
@@ -82,6 +90,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   private lateinit var exportFileLauncher: ActivityResultLauncher<Intent>
   private lateinit var importFileLauncher: ActivityResultLauncher<Intent>
   private lateinit var validateFileLauncher: ActivityResultLauncher<Intent>
+  private lateinit var savePlaintextcopyLauncher: ActivityResultLauncher<Intent>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -116,10 +125,20 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
       }
     }
+
+    savePlaintextcopyLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+      if (result.resultCode == RESULT_OK) {
+        result.data?.data?.let { uri ->
+          viewModel.fetchRemoteBackupAndWritePlaintext(requireContext().contentResolver.openOutputStream(uri))
+          Toast.makeText(requireContext(), "Check logs for progress.", Toast.LENGTH_SHORT).show()
+        } ?: Toast.makeText(requireContext(), "No URI selected", Toast.LENGTH_SHORT).show()
+      }
+    }
   }
 
   @Composable
   override fun FragmentContent() {
+    val context = LocalContext.current
     val state by viewModel.state
     val mediaState by viewModel.mediaState
 
@@ -134,6 +153,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
         Screen(
           state = state,
           onExportClicked = { viewModel.export() },
+          onExportDirectoryClicked = { LocalBackupJob.enqueueArchive() },
           onImportMemoryClicked = { viewModel.import() },
           onImportFileClicked = {
             val intent = Intent().apply {
@@ -143,6 +163,9 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             }
 
             importFileLauncher.launch(intent)
+          },
+          onImportDirectoryClicked = {
+            viewModel.import(SignalStore.settings.signalBackupDirectory!!)
           },
           onPlaintextClicked = { viewModel.onPlaintextToggled() },
           onSaveToDiskClicked = {
@@ -167,7 +190,25 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             validateFileLauncher.launch(intent)
           },
           onTriggerBackupJobClicked = { viewModel.triggerBackupJob() },
-          onRestoreFromRemoteClicked = { viewModel.restoreFromRemote() }
+          onWipeDataAndRestoreClicked = {
+            MaterialAlertDialogBuilder(context)
+              .setTitle("Are you sure?")
+              .setMessage("This will delete all of your chats! Make sure you've finished a backup first, we don't check for you. Only do this on a test device!")
+              .setPositiveButton("Wipe and restore") { _, _ -> viewModel.wipeAllDataAndRestoreFromRemote() }
+              .show()
+          },
+          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) },
+          onHaltAllJobs = { viewModel.haltAllJobs() },
+          onSavePlaintextCopy = {
+            val intent = Intent().apply {
+              action = Intent.ACTION_CREATE_DOCUMENT
+              type = "application/octet-stream"
+              addCategory(Intent.CATEGORY_OPENABLE)
+              putExtra(Intent.EXTRA_TITLE, "backup-plaintext-${System.currentTimeMillis()}.binproto")
+            }
+
+            savePlaintextcopyLauncher.launch(intent)
+          }
         )
       },
       mediaContent = { snackbarHostState ->
@@ -179,7 +220,8 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           deleteArchivedMedia = { viewModel.deleteArchivedMedia(it) },
           batchArchiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
           batchDeleteBackupAttachmentMedia = { viewModel.deleteArchivedMedia(it) },
-          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it) }
+          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it, asThumbnail = false) },
+          restoreArchivedMediaThumbnail = { viewModel.restoreArchivedMedia(it, asThumbnail = true) }
         )
       }
     )
@@ -249,17 +291,29 @@ fun Tabs(
 fun Screen(
   state: ScreenState,
   onExportClicked: () -> Unit = {},
+  onExportDirectoryClicked: () -> Unit = {},
   onImportMemoryClicked: () -> Unit = {},
   onImportFileClicked: () -> Unit = {},
+  onImportDirectoryClicked: () -> Unit = {},
   onPlaintextClicked: () -> Unit = {},
   onSaveToDiskClicked: () -> Unit = {},
   onValidateFileClicked: () -> Unit = {},
   onUploadToRemoteClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onTriggerBackupJobClicked: () -> Unit = {},
-  onRestoreFromRemoteClicked: () -> Unit = {}
+  onWipeDataAndRestoreClicked: () -> Unit = {},
+  onBackupTierSelected: (MessageBackupTier?) -> Unit = {},
+  onHaltAllJobs: () -> Unit = {},
+  onSavePlaintextCopy: () -> Unit = {}
 ) {
   val scrollState = rememberScrollState()
+  val options = remember {
+    mapOf(
+      "None" to null,
+      "Free" to MessageBackupTier.FREE,
+      "Paid" to MessageBackupTier.PAID
+    )
+  }
 
   Surface {
     Column(
@@ -270,6 +324,48 @@ fun Screen(
         .verticalScroll(scrollState)
         .padding(16.dp)
     ) {
+      Row(verticalAlignment = Alignment.CenterVertically) {
+        Text("Tier", fontWeight = FontWeight.Bold)
+        options.forEach { option ->
+          Row(verticalAlignment = Alignment.CenterVertically) {
+            RadioButton(
+              selected = option.value == state.backupTier,
+              onClick = { onBackupTierSelected(option.value) }
+            )
+            Text(option.key)
+          }
+        }
+      }
+
+      Dividers.Default()
+
+      Buttons.LargePrimary(
+        onClick = onTriggerBackupJobClicked
+      ) {
+        Text("Enqueue remote backup")
+      }
+
+      Button(
+        onClick = onWipeDataAndRestoreClicked,
+        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFC33C00))
+      ) {
+        Text("Wipe data and restore")
+      }
+
+      Buttons.LargeTonal(
+        onClick = onHaltAllJobs
+      ) {
+        Text("Halt all backup jobs")
+      }
+
+      Buttons.LargeTonal(
+        onClick = onSavePlaintextCopy
+      ) {
+        Text("Save plaintext copy of remote backup")
+      }
+
+      Dividers.Default()
+
       Row(
         verticalAlignment = Alignment.CenterVertically
       ) {
@@ -291,10 +387,10 @@ fun Screen(
       }
 
       Buttons.LargePrimary(
-        onClick = onTriggerBackupJobClicked,
-        enabled = !state.backupState.inProgress
+        onClick = onExportDirectoryClicked,
+        enabled = !state.backupState.inProgress && state.canReadWriteBackupDirectory
       ) {
-        Text("Trigger Backup Job")
+        Text("Export to backup directory")
       }
 
       Dividers.Default()
@@ -309,6 +405,12 @@ fun Screen(
         onClick = onImportFileClicked
       ) {
         Text("Import from file")
+      }
+      Buttons.LargeTonal(
+        onClick = onImportDirectoryClicked,
+        enabled = state.canReadWriteBackupDirectory
+      ) {
+        Text("Import from backup directory")
       }
 
       Buttons.LargeTonal(
@@ -386,10 +488,6 @@ fun Screen(
 
       Spacer(modifier = Modifier.height(8.dp))
 
-      Buttons.LargePrimary(onClick = onRestoreFromRemoteClicked) {
-        Text("Restore from remote")
-      }
-
       when (state.uploadState) {
         BackupUploadState.NONE -> {
           StateLabel("")
@@ -430,7 +528,8 @@ fun MediaList(
   deleteArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
   batchArchiveAttachmentMedia: (Set<AttachmentId>) -> Unit,
   batchDeleteBackupAttachmentMedia: (Set<AttachmentId>) -> Unit,
-  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
+  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
+  restoreArchivedMediaThumbnail: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
 ) {
   if (!enabled) {
     Text(
@@ -530,6 +629,14 @@ fun MediaList(
                   onClick = {
                     selectionState = selectionState.copy(expandedOption = null)
                     restoreArchivedMedia(attachment)
+                  }
+                )
+
+                DropdownMenuItem(
+                  text = { Text("Pseudo Restore Thumbnail") },
+                  onClick = {
+                    selectionState = selectionState.copy(expandedOption = null)
+                    restoreArchivedMediaThumbnail(attachment)
                   }
                 )
 

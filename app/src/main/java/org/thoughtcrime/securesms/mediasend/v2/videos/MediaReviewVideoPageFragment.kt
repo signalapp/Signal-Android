@@ -76,7 +76,7 @@ class MediaReviewVideoPageFragment : Fragment(R.layout.fragment_container), Vide
   }
 
   private fun requireUri(): Uri = requireNotNull(requireArguments().getParcelableCompat(ARG_URI, Uri::class.java))
-  private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize(requireContext())
+  private fun requireMaxAttachmentSize(): Long = sharedViewModel.getMediaConstraints().getVideoMaxSize()
   private fun requireIsVideoGif(): Boolean = requireNotNull(requireArguments().getBoolean(ARG_IS_VIDEO_GIF))
 
   companion object {

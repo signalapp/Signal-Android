@@ -19,12 +19,19 @@ object RingRtcDynamicConfiguration {
       return SignalStore.internal.callingAudioProcessingMethod()
     }
 
-    return when {
-      isHardwareBlocklisted() || isKnownFaultyHardwareImplementation() -> AudioProcessingMethod.ForceSoftwareAec3
-      isSoftwareBlocklisted() -> AudioProcessingMethod.ForceHardware
-      Build.VERSION.SDK_INT < 29 && RemoteConfig.useHardwareAecIfOlderThanApi29 -> AudioProcessingMethod.ForceHardware
-      Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAec3
-      else -> AudioProcessingMethod.ForceHardware
+    return if (shouldUseOboeAdm()) {
+      when {
+        shouldUseSoftwareAecForOboe() -> AudioProcessingMethod.ForceSoftwareAec3
+        else -> AudioProcessingMethod.ForceHardware
+      }
+    } else {
+      when {
+        isHardwareBlocklisted() || isKnownFaultyHardwareImplementation() -> AudioProcessingMethod.ForceSoftwareAec3
+        isSoftwareBlocklisted() -> AudioProcessingMethod.ForceHardware
+        Build.VERSION.SDK_INT < 29 && RemoteConfig.useHardwareAecIfOlderThanApi29 -> AudioProcessingMethod.ForceHardware
+        Build.VERSION.SDK_INT < 29 -> AudioProcessingMethod.ForceSoftwareAec3
+        else -> AudioProcessingMethod.ForceHardware
+      }
     }
   }
 
@@ -37,7 +44,7 @@ object RingRtcDynamicConfiguration {
     return RemoteConfig.hardwareAecBlocklistModels.asListContains(Build.MODEL)
   }
 
-  fun isKnownFaultyHardwareImplementation(): Boolean {
+  private fun isKnownFaultyHardwareImplementation(): Boolean {
     return Build.PRODUCT.contains(KNOWN_ISSUE_ROMS) ||
       Build.DISPLAY.contains(KNOWN_ISSUE_ROMS) ||
       Build.HOST.contains(KNOWN_ISSUE_ROMS)
@@ -45,5 +52,23 @@ object RingRtcDynamicConfiguration {
 
   private fun isSoftwareBlocklisted(): Boolean {
     return RemoteConfig.softwareAecBlocklistModels.asListContains(Build.MODEL)
+  }
+
+  @JvmStatic
+  fun shouldUseOboeAdm(): Boolean {
+    if (RemoteConfig.internalUser) {
+      return SignalStore.internal.callingEnableOboeAdm()
+    }
+
+    // For now, only allow the Oboe ADM to be used for custom ROMS.
+    return RemoteConfig.oboeDeployment && isKnownFaultyHardwareImplementation() && !shouldUseJavaAdm()
+  }
+
+  private fun shouldUseJavaAdm(): Boolean {
+    return RemoteConfig.useJavaAdmModels.asListContains(Build.MODEL)
+  }
+
+  private fun shouldUseSoftwareAecForOboe(): Boolean {
+    return RemoteConfig.useSoftwareAecForOboeModels.asListContains(Build.MODEL)
   }
 }

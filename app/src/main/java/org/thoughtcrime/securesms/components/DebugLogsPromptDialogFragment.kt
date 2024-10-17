@@ -16,6 +16,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -31,6 +32,7 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil
 class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
 
   companion object {
+    private val TAG = Log.tag(DebugLogsPromptDialogFragment::class)
     private const val KEY_PURPOSE = "purpose"
 
     @JvmStatic
@@ -46,6 +48,7 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
           )
         }.show(activity.supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
 
+        Log.i(TAG, "Showing debug log dialog prompt for $purpose")
         when (purpose) {
           Purpose.NOTIFICATIONS -> SignalStore.uiHints.lastNotificationLogsPrompt = System.currentTimeMillis()
           Purpose.CRASH -> SignalStore.uiHints.lastCrashPrompt = System.currentTimeMillis()

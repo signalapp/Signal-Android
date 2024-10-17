@@ -12,6 +12,7 @@ import org.signal.ringrtc.PeekInfo
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -57,6 +58,9 @@ class CallLinkConnectedActionProcessor(
 
     Log.i(tag, "Updating pending list with ${peekInfo.pendingUsers.size} entries.")
     val pendingParticipants: List<Recipient> = peekInfo.pendingUsers.map { Recipient.externalPush(ServiceId.ACI.from(it)) }
+
+    Log.i(tag, "Storing peek-info in in-memory cache.")
+    AppDependencies.signalCallManager.emitCallLinkPeekInfoUpdate(callLink.recipientId, peekInfo)
 
     return superState.builder()
       .changeCallInfoState()

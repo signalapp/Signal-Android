@@ -60,12 +60,14 @@ public interface MessageTypes {
   long BASE_PENDING_SECURE_SMS_FALLBACK   = 25;
   long BASE_PENDING_INSECURE_SMS_FALLBACK = 26;
   long BASE_DRAFT_TYPE                    = 27;
+  long BASE_SENDING_SKIPPED_TYPE          = 28;
 
   long[] OUTGOING_MESSAGE_TYPES = { BASE_OUTBOX_TYPE, BASE_SENT_TYPE,
                                     BASE_SENDING_TYPE, BASE_SENT_FAILED_TYPE,
                                     BASE_PENDING_SECURE_SMS_FALLBACK,
                                     BASE_PENDING_INSECURE_SMS_FALLBACK,
-                                    OUTGOING_AUDIO_CALL_TYPE, OUTGOING_VIDEO_CALL_TYPE };
+                                    OUTGOING_AUDIO_CALL_TYPE, OUTGOING_VIDEO_CALL_TYPE,
+                                    BASE_SENDING_SKIPPED_TYPE };
 
   // Message attributes
   long MESSAGE_ATTRIBUTE_MASK   = 0xE0;
@@ -118,6 +120,8 @@ public interface MessageTypes {
   long SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED  = 0x600000000L;
   long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
   long SPECIAL_TYPE_PAYMENTS_TOMBSTONE        = 0x900000000L;
+  long SPECIAL_TYPE_BLOCKED                   = 0xA00000000L;
+  long SPECIAL_TYPE_UNBLOCKED                 = 0xB00000000L;
 
   long IGNORABLE_TYPESMASK_WHEN_COUNTING = END_SESSION_BIT | KEY_EXCHANGE_IDENTITY_UPDATE_BIT | KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
@@ -151,6 +155,14 @@ public interface MessageTypes {
 
   static boolean isMessageRequestAccepted(long type) {
     return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED;
+  }
+
+  static boolean isBlocked(long type) {
+    return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_BLOCKED;
+  }
+
+  static boolean isUnblocked(long type) {
+    return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_UNBLOCKED;
   }
 
   static boolean isDraftMessageType(long type) {

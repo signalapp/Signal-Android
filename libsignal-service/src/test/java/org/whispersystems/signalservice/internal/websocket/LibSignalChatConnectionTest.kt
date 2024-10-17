@@ -239,7 +239,7 @@ class LibSignalChatConnectionTest {
   }
 
   companion object {
-    private val DEBUG_INFO: DebugInfo = DebugInfo(0, IpType.UNKNOWN, 100, "")
+    private val DEBUG_INFO: DebugInfo = DebugInfo(IpType.UNKNOWN, 100, "")
     private val RESPONSE_SUCCESS = LibSignalResponse(200, "", emptyMap(), byteArrayOf())
     private val RESPONSE_ERROR = LibSignalResponse(400, "", emptyMap(), byteArrayOf())
     private val RESPONSE_SERVER_ERROR = LibSignalResponse(500, "", emptyMap(), byteArrayOf())

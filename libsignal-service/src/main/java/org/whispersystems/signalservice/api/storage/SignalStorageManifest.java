@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
-import org.whispersystems.signalservice.api.messages.multidevice.MessageRequestResponseMessage;
-import org.whispersystems.signalservice.api.util.ProtoUtil;
+import org.signal.core.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 

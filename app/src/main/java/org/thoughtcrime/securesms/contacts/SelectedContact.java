@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.contacts.paged.ChatType;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -19,23 +20,29 @@ public final class SelectedContact {
   private final RecipientId recipientId;
   private final String      number;
   private final String      username;
+  private final ChatType    chatType;
 
   public static @NonNull SelectedContact forPhone(@Nullable RecipientId recipientId, @NonNull String number) {
-    return new SelectedContact(recipientId, number, null);
+    return new SelectedContact(recipientId, number, null, null);
   }
 
   public static @NonNull SelectedContact forUsername(@Nullable RecipientId recipientId, @NonNull String username) {
-    return new SelectedContact(recipientId, null, username);
+    return new SelectedContact(recipientId, null, username, null);
+  }
+
+  public static @NonNull SelectedContact forChatType(@NonNull ChatType chatType) {
+    return new SelectedContact(null, null, null, chatType);
   }
 
   public static @NonNull SelectedContact forRecipientId(@NonNull RecipientId recipientId) {
-    return new SelectedContact(recipientId, null, null);
+    return new SelectedContact(recipientId, null, null, null);
   }
 
-  private SelectedContact(@Nullable RecipientId recipientId, @Nullable String number, @Nullable String username) {
+  private SelectedContact(@Nullable RecipientId recipientId, @Nullable String number, @Nullable String username, @Nullable ChatType chatType) {
     this.recipientId = recipientId;
     this.number      = number;
     this.username    = username;
+    this.chatType    = chatType;
   }
 
   public @NonNull RecipientId getOrCreateRecipientId(@NonNull Context context) {
@@ -60,6 +67,14 @@ public final class SelectedContact {
     return username != null;
   }
 
+  public boolean hasChatType() {
+    return chatType != null;
+  }
+
+  public ChatType getChatType() {
+    return chatType;
+  }
+
   public @NonNull ContactSearchKey toContactSearchKey() {
     if (recipientId != null) {
       return new ContactSearchKey.RecipientSearchKey(recipientId, false);
@@ -67,6 +82,8 @@ public final class SelectedContact {
       return new ContactSearchKey.UnknownRecipientKey(ContactSearchConfiguration.SectionKey.PHONE_NUMBER, number);
     } else if (username != null) {
       return new ContactSearchKey.UnknownRecipientKey(ContactSearchConfiguration.SectionKey.USERNAME, username);
+    } else if (chatType != null) {
+      return new ContactSearchKey.ChatTypeSearchKey(chatType);
     } else {
       throw new IllegalStateException("Nothing to map!");
     }
@@ -86,6 +103,7 @@ public final class SelectedContact {
     }
 
     return number   != null && number  .equals(other.number)   ||
-           username != null && username.equals(other.username);
+           username != null && username.equals(other.username) ||
+           chatType != null && chatType.equals(other.chatType);
   }
 }

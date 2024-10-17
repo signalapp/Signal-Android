@@ -71,10 +71,6 @@ public abstract class DatabaseTable {
     AppDependencies.getDatabaseObserver().notifyStickerObservers();
   }
 
-  protected void notifyAttachmentListeners() {
-    AppDependencies.getDatabaseObserver().notifyAttachmentObservers();
-  }
-
   public void reset(SignalDatabase databaseHelper) {
     this.databaseHelper = databaseHelper;
   }

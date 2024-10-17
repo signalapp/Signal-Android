@@ -39,6 +39,7 @@ import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParamet
 import org.thoughtcrime.video.app.transcode.composables.SelectInput
 import org.thoughtcrime.video.app.transcode.composables.SelectOutput
 import org.thoughtcrime.video.app.transcode.composables.TranscodingJobProgress
+import org.thoughtcrime.video.app.transcode.composables.WorkState
 import org.thoughtcrime.video.app.ui.theme.SignalTheme
 
 /**
@@ -67,7 +68,7 @@ class TranscodeTestActivity : AppCompatActivity() {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
           val transcodingJobs = viewModel.getTranscodingJobsAsState().collectAsState(emptyList())
           if (transcodingJobs.value.isNotEmpty()) {
-            TranscodingJobProgress(transcodingJobs = transcodingJobs.value, resetButtonOnClick = { viewModel.reset() })
+            TranscodingJobProgress(transcodingJobs = transcodingJobs.value.map { WorkState.fromInfo(it) }, resetButtonOnClick = { viewModel.reset() })
           } else if (viewModel.selectedVideos.isEmpty()) {
             SelectInput { pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly)) }
           } else if (viewModel.outputDirectory == null) {

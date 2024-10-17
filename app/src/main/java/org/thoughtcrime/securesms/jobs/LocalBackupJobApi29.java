@@ -7,19 +7,19 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
-import androidx.documentfile.provider.DocumentFileHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Stopwatch;
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupEvent;
 import org.thoughtcrime.securesms.backup.BackupFileIOError;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.BackupVerifier;
+import org.signal.core.util.androidx.DocumentFileUtil;
+import org.signal.core.util.androidx.DocumentFileUtil.OperationResult;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -36,7 +36,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Backup Job for installs requiring Scoped Storage.
@@ -51,16 +50,6 @@ public final class LocalBackupJobApi29 extends BaseJob {
 
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
-
-  private static final int MAX_STORAGE_ATTEMPTS = 5;
-
-  private static final long[] WAIT_FOR_SCOPED_STORAGE = new long[] {
-      TimeUnit.SECONDS.toMillis(0),
-      TimeUnit.SECONDS.toMillis(2),
-      TimeUnit.SECONDS.toMillis(10),
-      TimeUnit.SECONDS.toMillis(20),
-      TimeUnit.SECONDS.toMillis(30)
-  };
 
   LocalBackupJobApi29(@NonNull Parameters parameters) {
     super(parameters);
@@ -189,43 +178,54 @@ public final class LocalBackupJobApi29 extends BaseJob {
   }
 
   private boolean verifyBackup(String backupPassword, DocumentFile temporaryFile, BackupEvent finishedEvent) throws FullBackupExporter.BackupCanceledException {
-    Boolean valid    = null;
-    int     attempts = 0;
+    OperationResult result = DocumentFileUtil.retryDocumentFileOperation((attempt, maxAttempts) -> {
+      Log.i(TAG, "Verify attempt " + (attempt + 1) + "/" + maxAttempts);
 
-    while (attempts < MAX_STORAGE_ATTEMPTS && valid == null && !isCanceled()) {
-      ThreadUtil.sleep(WAIT_FOR_SCOPED_STORAGE[attempts]);
+      try (InputStream cipherStream = DocumentFileUtil.inputStream(temporaryFile, context)) {
+        if (cipherStream == null) {
+          Log.w(TAG, "Found backup file but unable to open input stream");
+          return OperationResult.Retry.INSTANCE;
+        }
 
-      try (InputStream cipherStream = context.getContentResolver().openInputStream(temporaryFile.getUri())) {
+        boolean valid;
         try {
           valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount(), this::isCanceled);
         } catch (IOException e) {
           Log.w(TAG, "Unable to verify backup", e);
           valid = false;
         }
+
+        return new OperationResult.Success(valid);
       } catch (SecurityException | IOException e) {
-        attempts++;
-        Log.w(TAG, "Unable to find backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS, e);
+        Log.w(TAG, "Unable to find backup file", e);
       }
-    }
+
+      if (isCanceled()) {
+        return new OperationResult.Success(false);
+      }
+
+      return OperationResult.Retry.INSTANCE;
+    });
 
     if (isCanceled()) {
       throw new FullBackupExporter.BackupCanceledException();
     }
 
-    return valid != null ? valid : false;
+    return result.isSuccess() && ((OperationResult.Success) result).getValue();
   }
 
   @SuppressLint("NewApi")
   private void renameBackup(String fileName, DocumentFile temporaryFile) throws IOException {
-    int attempts = 0;
+    OperationResult result = DocumentFileUtil.retryDocumentFileOperation((attempt, maxAttempts) -> {
+      Log.i(TAG, "Rename attempt " + (attempt + 1) + "/" + maxAttempts);
+      if (DocumentFileUtil.renameTo(temporaryFile, context, fileName)) {
+        return new OperationResult.Success(true);
+      } else {
+        return OperationResult.Retry.INSTANCE;
+      }
+    });
 
-    while (attempts < MAX_STORAGE_ATTEMPTS && !DocumentFileHelper.renameTo(context, temporaryFile, fileName)) {
-      ThreadUtil.sleep(WAIT_FOR_SCOPED_STORAGE[attempts]);
-      attempts++;
-      Log.w(TAG, "Unable to rename backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS);
-    }
-
-    if (attempts >= MAX_STORAGE_ATTEMPTS) {
+    if (!result.isSuccess()) {
       Log.w(TAG, "Failed to rename temp file");
       throw new IOException("Renaming temporary backup file failed!");
     }

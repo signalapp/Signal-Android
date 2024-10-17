@@ -7,19 +7,18 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.InAppPaymentTable
-import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
+import org.whispersystems.signalservice.api.backup.BackupKey
 
 data class MessageBackupsFlowState(
+  val hasBackupSubscriberAvailable: Boolean = false,
+  val selectedMessageBackupTierLabel: String? = null,
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val currentMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val availableBackupTypes: List<MessageBackupsType> = emptyList(),
-  val selectedPaymentMethod: InAppPaymentData.PaymentMethodType? = null,
-  val availablePaymentMethods: List<InAppPaymentData.PaymentMethodType> = emptyList(),
-  val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
-  val startScreen: MessageBackupsScreen,
-  val screen: MessageBackupsScreen = startScreen,
-  val displayIncorrectPinError: Boolean = false
+  val startScreen: MessageBackupsStage,
+  val stage: MessageBackupsStage = startScreen,
+  val backupKey: BackupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+  val failure: Throwable? = null
 )

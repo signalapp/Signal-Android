@@ -69,6 +69,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     private const val COUNTRY_CODE_UZBEKISTAN = 998
     private const val COUNTRY_CODE_RUSSIA = 7
     private const val COUNTRY_CODE_VENEZUELA = 58
+    private const val COUNTRY_CODE_PAKISTAN = 92
 
     private const val G_HOST = "reflector-nrgwuv7kwq-uc.a.run.app"
     private const val F_SERVICE_HOST = "chat-signal.global.ssl.fastly.net"
@@ -172,7 +173,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     HostConfig("https://inbox.google.com", G_HOST, GMAIL_CONNECTION_SPEC)
   )
 
-  private val fUrls = arrayOf("https://github.githubassets.com", "https://pinterest.com", "https://www.redditstatic.com")
+  private val fUrls = arrayOf("https://slate.com", "https://www.zesty.io", "https://www.redditstatic.com")
 
   private val fConfig: SignalServiceConfiguration = SignalServiceConfiguration(
     signalServiceUrls = fUrls.map { SignalServiceUrl(it, F_SERVICE_HOST, fTrustStore, APP_CONNECTION_SPEC) }.toTypedArray(),
@@ -211,12 +212,15 @@ open class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_VENEZUELA to buildGConfiguration(
       listOf(HostConfig("https://www.google.co.ve", G_HOST, GMAIL_CONNECTION_SPEC)) + baseGHostConfigs
     ),
+    COUNTRY_CODE_PAKISTAN to buildGConfiguration(
+      listOf(HostConfig("https://www.google.com.pk", G_HOST, GMAIL_CONNECTION_SPEC)) + baseGHostConfigs
+    ),
     COUNTRY_CODE_IRAN to fConfig,
     COUNTRY_CODE_CUBA to fConfig,
     COUNTRY_CODE_RUSSIA to fConfig
   )
 
-  private val defaultCensoredConfiguration: SignalServiceConfiguration = buildGConfiguration(baseGHostConfigs)
+  private val defaultCensoredConfiguration: SignalServiceConfiguration = buildGConfiguration(baseGHostConfigs) + fConfig
 
   private val defaultCensoredCountryCodes: Set<Int> = setOf(
     COUNTRY_CODE_EGYPT,
@@ -225,7 +229,10 @@ open class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_QATAR,
     COUNTRY_CODE_IRAN,
     COUNTRY_CODE_CUBA,
-    COUNTRY_CODE_UZBEKISTAN
+    COUNTRY_CODE_UZBEKISTAN,
+    COUNTRY_CODE_RUSSIA,
+    COUNTRY_CODE_VENEZUELA,
+    COUNTRY_CODE_PAKISTAN
   )
 
   open val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(

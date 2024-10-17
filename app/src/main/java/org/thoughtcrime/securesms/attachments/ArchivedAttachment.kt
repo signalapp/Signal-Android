@@ -32,6 +32,7 @@ class ArchivedAttachment : Attachment {
     size: Long,
     cdn: Int,
     key: ByteArray,
+    iv: ByteArray?,
     cdnKey: String?,
     archiveCdn: Int?,
     archiveMediaName: String,
@@ -49,16 +50,18 @@ class ArchivedAttachment : Attachment {
     stickerLocator: StickerLocator?,
     gif: Boolean,
     quote: Boolean,
-    uuid: UUID?
+    uuid: UUID?,
+    fileName: String?
   ) : super(
     contentType = contentType ?: "",
     quote = quote,
     transferState = AttachmentTable.TRANSFER_NEEDS_RESTORE,
     size = size,
-    fileName = null,
+    fileName = fileName,
     cdn = Cdn.fromCdnNumber(cdn),
     remoteLocation = cdnKey,
     remoteKey = Base64.encodeWithoutPadding(key),
+    remoteIv = iv,
     remoteDigest = digest,
     incrementalDigest = incrementalMac,
     fastPreflightId = null,

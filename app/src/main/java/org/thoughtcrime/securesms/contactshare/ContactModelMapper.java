@@ -59,7 +59,7 @@ public class ContactModelMapper {
                                                                    .build());
     }
 
-    SharedContact.Name name = new SharedContact.Name.Builder().setDisplay(contact.getName().getDisplayName())
+    SharedContact.Name name = new SharedContact.Name.Builder().setNickname(contact.getName().getNickname())
                                                               .setGiven(contact.getName().getGivenName())
                                                               .setFamily(contact.getName().getFamilyName())
                                                               .setPrefix(contact.getName().getPrefix())
@@ -74,66 +74,14 @@ public class ContactModelMapper {
                                       .withAddresses(postalAddresses);
   }
 
-  public static Contact remoteToLocal(@NonNull SharedContact sharedContact) {
-    Name name = new Name(sharedContact.getName().getDisplay().orElse(null),
-        sharedContact.getName().getGiven().orElse(null),
-        sharedContact.getName().getFamily().orElse(null),
-        sharedContact.getName().getPrefix().orElse(null),
-        sharedContact.getName().getSuffix().orElse(null),
-        sharedContact.getName().getMiddle().orElse(null));
-
-    List<Phone> phoneNumbers = new LinkedList<>();
-    if (sharedContact.getPhone().isPresent()) {
-      for (SharedContact.Phone phone : sharedContact.getPhone().get()) {
-        phoneNumbers.add(new Phone(phone.getValue(),
-                                   remoteToLocalType(phone.getType()),
-                                   phone.getLabel().orElse(null)));
-      }
-    }
-
-    List<Email> emails = new LinkedList<>();
-    if (sharedContact.getEmail().isPresent()) {
-      for (SharedContact.Email email : sharedContact.getEmail().get()) {
-        emails.add(new Email(email.getValue(),
-                             remoteToLocalType(email.getType()),
-                             email.getLabel().orElse(null)));
-      }
-    }
-
-    List<PostalAddress> postalAddresses = new LinkedList<>();
-    if (sharedContact.getAddress().isPresent()) {
-      for (SharedContact.PostalAddress postalAddress : sharedContact.getAddress().get()) {
-        postalAddresses.add(new PostalAddress(remoteToLocalType(postalAddress.getType()),
-                                              postalAddress.getLabel().orElse(null),
-                                              postalAddress.getStreet().orElse(null),
-                                              postalAddress.getPobox().orElse(null),
-                                              postalAddress.getNeighborhood().orElse(null),
-                                              postalAddress.getCity().orElse(null),
-                                              postalAddress.getRegion().orElse(null),
-                                              postalAddress.getPostcode().orElse(null),
-                                              postalAddress.getCountry().orElse(null)));
-      }
-    }
-
-    Avatar avatar = null;
-    if (sharedContact.getAvatar().isPresent()) {
-      Attachment attachment = PointerAttachment.forPointer(Optional.of(sharedContact.getAvatar().get().getAttachment().asPointer())).get();
-      boolean    isProfile  = sharedContact.getAvatar().get().isProfile();
-
-      avatar = new Avatar(null, attachment, isProfile);
-    }
-
-    return new Contact(name, sharedContact.getOrganization().orElse(null), phoneNumbers, emails, postalAddresses, avatar);
-  }
-
   public static Contact remoteToLocal(@NonNull DataMessage.Contact contact) {
     DataMessage.Contact.Name contactName = contact.name != null ? contact.name : new DataMessage.Contact.Name();
-    Name name = new Name(contactName.displayName,
-                         contactName.givenName,
+    Name name = new Name(contactName.givenName,
                          contactName.familyName,
                          contactName.prefix,
                          contactName.suffix,
-                         contactName.middleName);
+                         contactName.middleName,
+                         contactName.nickname);
 
     List<Phone> phoneNumbers = new ArrayList<>(contact.number.size());
     for (DataMessage.Contact.Phone phone : contact.number) {
@@ -182,17 +130,6 @@ public class ContactModelMapper {
     return new Contact(name, contact.organization, phoneNumbers, emails, postalAddresses, avatar);
   }
 
-  private static Phone.Type remoteToLocalType(@Nullable SharedContact.Phone.Type type) {
-    if (type == null) return Phone.Type.CUSTOM;
-
-    switch (type) {
-      case HOME:   return Phone.Type.HOME;
-      case MOBILE: return Phone.Type.MOBILE;
-      case WORK:   return Phone.Type.WORK;
-      default:     return Phone.Type.CUSTOM;
-    }
-  }
-
   private static Phone.Type remoteToLocalType(@Nullable DataMessage.Contact.Phone.Type type) {
     if (type == null) return Phone.Type.CUSTOM;
 
@@ -201,17 +138,6 @@ public class ContactModelMapper {
       case MOBILE: return Phone.Type.MOBILE;
       case WORK:   return Phone.Type.WORK;
       default:     return Phone.Type.CUSTOM;
-    }
-  }
-
-  private static Email.Type remoteToLocalType(@Nullable SharedContact.Email.Type type) {
-    if (type == null) return Email.Type.CUSTOM;
-
-    switch (type) {
-      case HOME:   return Email.Type.HOME;
-      case MOBILE: return Email.Type.MOBILE;
-      case WORK:   return Email.Type.WORK;
-      default:     return Email.Type.CUSTOM;
     }
   }
 

@@ -57,7 +57,6 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
 import org.signal.core.ui.theme.LocalExtendedColors
 import org.signal.core.ui.theme.SignalTheme
-import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarImage
@@ -118,7 +117,6 @@ object CallInfoView {
           controlAndInfoState = controlAndInfoState,
           onShareLinkClicked = callbacks::onShareLinkClicked,
           onEditNameClicked = onEditNameClicked,
-          onToggleAdminApprovalClicked = callbacks::onToggleAdminApprovalClicked,
           onBlock = callbacks::onBlock,
           modifier = modifier
         )
@@ -129,7 +127,6 @@ object CallInfoView {
   interface Callbacks {
     fun onShareLinkClicked()
     fun onEditNameClicked(name: String)
-    fun onToggleAdminApprovalClicked(checked: Boolean)
     fun onBlock(callParticipant: CallParticipant)
   }
 }
@@ -145,7 +142,6 @@ private fun CallInfoPreview() {
         controlAndInfoState = ControlAndInfoState(),
         onShareLinkClicked = { },
         onEditNameClicked = { },
-        onToggleAdminApprovalClicked = { },
         onBlock = { }
       )
     }
@@ -158,7 +154,6 @@ private fun CallInfo(
   controlAndInfoState: ControlAndInfoState,
   onShareLinkClicked: () -> Unit,
   onEditNameClicked: () -> Unit,
-  onToggleAdminApprovalClicked: (Boolean) -> Unit,
   onBlock: (CallParticipant) -> Unit,
   modifier: Modifier = Modifier
 ) {
@@ -319,11 +314,6 @@ private fun CallInfo(
             stringResource(id = R.string.CallLinkDetailsFragment__add_call_name)
           },
           onClick = onEditNameClicked
-        )
-        Rows.ToggleRow(
-          checked = controlAndInfoState.callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
-          text = stringResource(id = R.string.CallLinkDetailsFragment__approve_all_members),
-          onCheckChanged = onToggleAdminApprovalClicked
         )
       }
     }

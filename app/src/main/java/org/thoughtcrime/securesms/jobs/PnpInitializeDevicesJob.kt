@@ -6,7 +6,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.signal.core.util.logging.Log
-import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
@@ -20,13 +19,11 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.VerifyResponse
-import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
-import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
@@ -98,11 +95,10 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
       try {
         Log.i(TAG, "Initializing PNI for linked devices")
-        val result: VerifyResponseWithoutKbs = initializeDevices(e164)
-          .map(::VerifyResponseWithoutKbs)
+        val result: NetworkResult<VerifyAccountResponse> = initializeDevices(e164)
           .safeBlockingGet()
 
-        result.error?.let { throw it }
+        result.getCause()?.let { throw it }
       } catch (e: InterruptedException) {
         throw IOException("Retry", e)
       } catch (t: Throwable) {
@@ -116,40 +112,34 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
     }
   }
 
-  private fun initializeDevices(newE164: String): Single<ServiceResponse<VerifyResponse>> {
+  private fun initializeDevices(newE164: String): Single<NetworkResult<VerifyAccountResponse>> {
     val accountManager = AppDependencies.signalServiceAccountManager
     val messageSender = AppDependencies.signalServiceMessageSender
 
     return Single.fromCallable {
       var completed = false
       var attempts = 0
-      lateinit var distributionResponse: ServiceResponse<VerifyAccountResponse>
+      lateinit var distributionResponse: NetworkResult<VerifyAccountResponse>
 
       while (!completed && attempts < 5) {
         val request = createInitializeDevicesRequest(
           newE164 = newE164
         )
 
-        distributionResponse = accountManager.distributePniKeys(request)
+        distributionResponse = accountManager.registrationApi.distributePniKeys(request)
 
-        val possibleError: Throwable? = distributionResponse.applicationError.orNull()
-        if (possibleError is MismatchedDevicesException) {
-          messageSender.handleChangeNumberMismatchDevices(possibleError.mismatchedDevices)
+        if (distributionResponse is NetworkResult.StatusCodeError &&
+          distributionResponse.exception is MismatchedDevicesException
+        ) {
+          messageSender.handleChangeNumberMismatchDevices((distributionResponse.exception as MismatchedDevicesException).mismatchedDevices)
           attempts++
         } else {
           completed = true
         }
       }
 
-      VerifyResponse.from(
-        response = distributionResponse,
-        masterKey = null,
-        pin = null,
-        aciPreKeyCollection = null,
-        pniPreKeyCollection = null
-      )
+      distributionResponse
     }.subscribeOn(Schedulers.single())
-      .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
 
   @WorkerThread

@@ -69,7 +69,7 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   }
 
   private fun requestCode() {
-    val mode = if (ChangeNumberVerifyFragmentArgs.fromBundle(requireArguments()).smsListenerEnabled) RegistrationRepository.Mode.SMS_WITH_LISTENER else RegistrationRepository.Mode.SMS_WITHOUT_LISTENER
+    val mode = if (ChangeNumberVerifyFragmentArgs.fromBundle(requireArguments()).smsListenerEnabled) RegistrationRepository.E164VerificationMode.SMS_WITH_LISTENER else RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER
     viewModel.initiateChangeNumberSession(requireContext(), mode)
   }
 

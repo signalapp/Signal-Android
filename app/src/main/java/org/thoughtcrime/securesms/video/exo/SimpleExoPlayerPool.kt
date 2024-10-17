@@ -30,7 +30,7 @@ class SimpleExoPlayerPool(context: Context) : ExoPlayerPool<ExoPlayer>(MAXIMUM_R
   private val mediaSourceFactory: MediaSource.Factory = DefaultMediaSourceFactory(dataSourceFactory)
 
   init {
-    AppDependencies.appForegroundObserver.addListener(this)
+    AppForegroundObserver.addListener(this)
   }
 
   /**

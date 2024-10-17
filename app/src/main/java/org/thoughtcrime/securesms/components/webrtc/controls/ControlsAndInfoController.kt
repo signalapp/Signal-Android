@@ -5,8 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.controls
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Color
@@ -27,7 +26,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Guideline
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
@@ -35,7 +33,6 @@ import androidx.transition.TransitionSet
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import com.google.android.material.bottomsheet.BottomSheetBehaviorHack
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
 import com.google.android.material.progressindicator.IndeterminateDrawable
 import com.google.android.material.shape.CornerFamily
@@ -51,16 +48,13 @@ import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.WebRtcCallActivity
-import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
-import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragmentArgs
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.components.webrtc.v2.CallInfoCallbacks
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
@@ -77,7 +71,7 @@ class ControlsAndInfoController private constructor(
   private val viewModel: WebRtcCallViewModel,
   private val controlsAndInfoViewModel: ControlsAndInfoViewModel,
   private val disposables: CompositeDisposable
-) : CallInfoView.Callbacks, Disposable by disposables {
+) : Disposable by disposables {
 
   constructor(
     webRtcCallActivity: WebRtcCallActivity,
@@ -138,6 +132,8 @@ class ControlsAndInfoController private constructor(
 
   private var previousCallControlHeightData = HeightData()
   private var controlState: WebRtcControls = WebRtcControls.NONE
+
+  private val callInfoCallbacks = CallInfoCallbacks(webRtcCallActivity, controlsAndInfoViewModel)
 
   init {
     raiseHandComposeView.apply {
@@ -206,22 +202,35 @@ class ControlsAndInfoController private constructor(
     BottomSheetBehaviorHack.setNestedScrollingChild(behavior, callInfoComposeView)
 
     behavior.addBottomSheetCallback(object : BottomSheetCallback() {
+      @SuppressLint("SwitchIntDef")
       override fun onStateChanged(bottomSheet: View, newState: Int) {
         overflowPopupWindow.dismiss()
-        if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-          controlsAndInfoViewModel.resetScrollState()
-          if (controlState.isFadeOutEnabled) {
-            hide(delay = HIDE_CONTROL_DELAY)
+        when (newState) {
+          BottomSheetBehavior.STATE_COLLAPSED -> {
+            controlsAndInfoViewModel.resetScrollState()
+            if (controlState.isFadeOutEnabled) {
+              hide(delay = HIDE_CONTROL_DELAY)
+            }
+            updateCallSheetVisibilities(0f)
           }
-        } else if (newState == BottomSheetBehavior.STATE_EXPANDED || newState == BottomSheetBehavior.STATE_DRAGGING) {
-          cancelScheduledHide()
-        } else if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-          controlsAndInfoViewModel.resetScrollState()
+          BottomSheetBehavior.STATE_EXPANDED -> {
+            cancelScheduledHide()
+            updateCallSheetVisibilities(1f)
+          }
+          BottomSheetBehavior.STATE_DRAGGING -> {
+            cancelScheduledHide()
+          }
+          BottomSheetBehavior.STATE_HIDDEN -> {
+            controlsAndInfoViewModel.resetScrollState()
+            updateCallSheetVisibilities(-1f)
+          }
         }
       }
 
       override fun onSlide(bottomSheet: View, slideOffset: Float) {
-        updateCallSheetVisibilities(slideOffset)
+        if (slideOffset <= 1 || slideOffset >= -1) {
+          updateCallSheetVisibilities(slideOffset)
+        }
       }
     })
 
@@ -229,7 +238,7 @@ class ControlsAndInfoController private constructor(
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
         val nestedScrollInterop = rememberNestedScrollInteropConnection()
-        CallInfoView.View(viewModel, controlsAndInfoViewModel, this@ControlsAndInfoController, Modifier.nestedScroll(nestedScrollInterop))
+        CallInfoView.View(viewModel, controlsAndInfoViewModel, callInfoCallbacks, Modifier.nestedScroll(nestedScrollInterop))
       }
     }
 
@@ -402,51 +411,6 @@ class ControlsAndInfoController private constructor(
 
   private fun cancelScheduledHide() {
     handler?.removeCallbacks(scheduleHideControlsRunnable)
-  }
-
-  override fun onShareLinkClicked() {
-    val mimeType = Intent.normalizeMimeType("text/plain")
-    val shareIntent = ShareCompat.IntentBuilder(webRtcCallActivity)
-      .setText(CallLinks.url(controlsAndInfoViewModel.rootKeySnapshot))
-      .setType(mimeType)
-      .createChooserIntent()
-
-    try {
-      webRtcCallActivity.startActivity(shareIntent)
-    } catch (e: ActivityNotFoundException) {
-      Toast.makeText(webRtcCallActivity, R.string.CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet, Toast.LENGTH_LONG).show()
-    }
-  }
-
-  override fun onEditNameClicked(name: String) {
-    EditCallLinkNameDialogFragment().apply {
-      arguments = EditCallLinkNameDialogFragmentArgs.Builder(name).build().toBundle()
-    }.show(webRtcCallActivity.supportFragmentManager, null)
-  }
-
-  override fun onToggleAdminApprovalClicked(checked: Boolean) {
-    controlsAndInfoViewModel.setApproveAllMembers(checked)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy(onSuccess = {
-        if (it !is UpdateCallLinkResult.Update) {
-          Log.w(TAG, "Failed to change restrictions. $it")
-          toastFailure()
-        }
-      }, onError = handleError("onApproveAllMembersChanged"))
-      .addTo(disposables)
-  }
-
-  override fun onBlock(callParticipant: CallParticipant) {
-    MaterialAlertDialogBuilder(webRtcCallActivity)
-      .setNegativeButton(android.R.string.cancel, null)
-      .setMessage(webRtcCallView.resources.getString(R.string.CallLinkInfoSheet__remove_s_from_the_call, callParticipant.recipient.getShortDisplayName(webRtcCallActivity)))
-      .setPositiveButton(R.string.CallLinkInfoSheet__remove) { _, _ ->
-        AppDependencies.signalCallManager.removeFromCallLink(callParticipant)
-      }
-      .setNeutralButton(R.string.CallLinkInfoSheet__block_from_call) { _, _ ->
-        AppDependencies.signalCallManager.blockFromCallLink(callParticipant)
-      }
-      .show()
   }
 
   private fun setName(name: String) {

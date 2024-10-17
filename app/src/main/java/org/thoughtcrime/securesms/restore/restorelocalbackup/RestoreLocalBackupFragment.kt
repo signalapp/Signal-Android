@@ -64,6 +64,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
     binding.restoreButton.setOnClickListener { presentBackupPassPhrasePromptDialog() }
 
     binding.cancelLocalRestoreButton.setOnClickListener {
+      Log.i(TAG, "Cancel clicked.")
       findNavController().navigateUp()
     }
 
@@ -146,10 +147,21 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
   private fun handleBackupImportError(importResult: RestoreRepository.BackupImportResult) {
     when (importResult) {
-      RestoreRepository.BackupImportResult.FAILURE_VERSION_DOWNGRADE -> Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
-      RestoreRepository.BackupImportResult.FAILURE_FOREIGN_KEY -> Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show()
-      RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
-      RestoreRepository.BackupImportResult.SUCCESS -> Log.w(TAG, "Successful backup import should not be handled in this function.", IllegalStateException())
+      RestoreRepository.BackupImportResult.FAILURE_VERSION_DOWNGRADE -> {
+        Log.i(TAG, "Notifying user of restore failure due to version downgrade.")
+        Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
+      }
+      RestoreRepository.BackupImportResult.FAILURE_FOREIGN_KEY -> {
+        Log.i(TAG, "Notifying user of restore failure due to foreign key.")
+        Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show()
+      }
+      RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> {
+        Log.i(TAG, "Notifying user of restore failure due to incorrect passphrase.")
+        Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
+      }
+      RestoreRepository.BackupImportResult.SUCCESS -> {
+        Log.w(TAG, "Successful backup import should not be handled in this function.", IllegalStateException())
+      }
     }
   }
 

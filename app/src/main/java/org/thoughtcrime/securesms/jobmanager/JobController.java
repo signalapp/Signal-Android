@@ -164,7 +164,7 @@ class JobController {
   }
 
   @WorkerThread
-  void submitJobs(@NonNull List<Job> jobs) {
+  <T extends Job> void submitJobs(@NonNull List<T> jobs) {
     List<Job> canRun = new ArrayList<>(jobs.size());
 
     synchronized (this) {
@@ -448,7 +448,8 @@ class JobController {
                                   null,
                                   false,
                                   job.getParameters().isMemoryOnly(),
-                                  job.getParameters().getPriority());
+                                  job.getParameters().getGlobalPriority(),
+                                  job.getParameters().getQueuePriority());
 
     List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
                                                  .map(key -> new ConstraintSpec(jobSpec.getId(), key, jobSpec.isMemoryOnly()))
@@ -556,7 +557,8 @@ class JobController {
                        inputData,
                        jobSpec.isRunning(),
                        jobSpec.isMemoryOnly(),
-                       jobSpec.getPriority());
+                       jobSpec.getGlobalPriority(),
+                       jobSpec.getQueuePriority());
   }
 
   interface Callback {

@@ -14,6 +14,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
@@ -39,12 +42,16 @@ class CreateCallLinkViewModel(
         restrictions = Restrictions.ADMIN_APPROVAL,
         revoked = false,
         expiration = Instant.MAX
-      )
+      ),
+      deletionTimestamp = 0L
     )
   )
 
   val callLink: State<CallLinkTable.CallLink> = _callLink
   val linkKeyBytes: ByteArray = credentials.linkKeyBytes
+
+  private val internalShowAlreadyInACall = MutableStateFlow(false)
+  val showAlreadyInACall: StateFlow<Boolean> = internalShowAlreadyInACall
 
   private val disposables = CompositeDisposable()
 
@@ -58,6 +65,10 @@ class CreateCallLinkViewModel(
   override fun onCleared() {
     super.onCleared()
     disposables.dispose()
+  }
+
+  fun setShowAlreadyInACall(showAlreadyInACall: Boolean) {
+    internalShowAlreadyInACall.update { showAlreadyInACall }
   }
 
   fun commitCallLink(): Single<EnsureCallLinkCreatedResult> {

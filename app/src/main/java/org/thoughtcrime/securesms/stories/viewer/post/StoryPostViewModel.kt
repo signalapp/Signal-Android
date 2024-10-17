@@ -83,7 +83,13 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
         val text: StoryTextPost = if (record.body.isNotEmpty()) {
           StoryTextPost.ADAPTER.decode(Base64.decode(record.body))
         } else {
-          throw Exception("Text post message body is empty.")
+          Log.w(TAG, "Failed to decode empty story text post body.")
+          store.update {
+            StoryPostState.TextPost(
+              loadState = StoryPostState.LoadState.FAILED
+            )
+          }
+          return@subscribeBy
         }
 
         val linkPreview = record.linkPreviews.firstOrNull()

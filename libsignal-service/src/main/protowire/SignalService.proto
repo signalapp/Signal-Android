@@ -177,7 +177,8 @@ message DataMessage {
       optional string prefix      = 3;
       optional string suffix      = 4;
       optional string middleName  = 5;
-      optional string displayName = 6;
+      reserved      /*displayName*/ 6;
+      optional string nickname    = 7;
     }
 
     message Phone {
@@ -332,6 +333,7 @@ message DataMessage {
   optional GroupContextV2     groupV2                 = 15;
   optional uint32             flags                   = 4;
   optional uint32             expireTimer             = 5;
+  optional uint32             expireTimerVersion      = 23;
   optional bytes              profileKey              = 6;
   optional uint64             timestamp               = 7;
   optional Quote              quote                   = 8;
@@ -629,7 +631,7 @@ message SyncMessage {
   message CallLinkUpdate {
     enum Type {
       UPDATE = 0;
-      DELETE = 1;
+      reserved 1; // was DELETE, superseded by storage service
     }
 
     optional bytes rootKey      = 1;
@@ -793,17 +795,18 @@ message ContactDetails {
     optional uint32 length      = 2;
   }
 
-  optional string   number        = 1;
-  optional string   aci           = 9;
-  optional string   name          = 2;
-  optional Avatar   avatar        = 3;
-  optional string   color         = 4;
-  optional Verified verified      = 5;
-  optional bytes    profileKey    = 6;
-  reserved          /*blocked*/     7;
-  optional uint32   expireTimer   = 8;
-  optional uint32   inboxPosition = 10;
-  optional bool     archived      = 11;
+  optional string   number             = 1;
+  optional string   aci                = 9;
+  optional string   name               = 2;
+  optional Avatar   avatar             = 3;
+  optional string   color              = 4;
+  optional Verified verified           = 5;
+  optional bytes    profileKey         = 6;
+  reserved          /*blocked*/          7;
+  optional uint32   expireTimer        = 8;
+  optional uint32   expireTimerVersion = 12;
+  optional uint32   inboxPosition      = 10;
+  optional bool     archived           = 11;
 }
 
 message GroupDetails {
@@ -817,17 +820,17 @@ message GroupDetails {
     optional string e164  = 2;
   }
 
-  optional bytes  id            = 1;
-  optional string name          = 2;
-  repeated string membersE164   = 3;
-  repeated Member members       = 9;
-  optional Avatar avatar        = 4;
-  optional bool   active        = 5 [default = true];
-  optional uint32 expireTimer   = 6;
-  optional string color         = 7;
-  optional bool   blocked       = 8;
-  optional uint32 inboxPosition = 10;
-  optional bool   archived      = 11;
+  optional bytes  id                 = 1;
+  optional string name               = 2;
+  repeated string membersE164        = 3;
+  repeated Member members            = 9;
+  optional Avatar avatar             = 4;
+  optional bool   active             = 5 [default = true];
+  optional uint32 expireTimer        = 6;
+  optional string color              = 7;
+  optional bool   blocked            = 8;
+  optional uint32 inboxPosition      = 10;
+  optional bool   archived           = 11;
 }
 
 message PaymentAddress {

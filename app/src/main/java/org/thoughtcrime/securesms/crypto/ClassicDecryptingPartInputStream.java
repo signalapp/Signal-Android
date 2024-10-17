@@ -19,7 +19,7 @@ package org.thoughtcrime.securesms.crypto;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.LimitedInputStream;
+import org.signal.core.util.stream.LimitedInputStream;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;

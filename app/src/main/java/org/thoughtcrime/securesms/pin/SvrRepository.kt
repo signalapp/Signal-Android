@@ -42,11 +42,16 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
+  private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
   private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
   /** An ordered list of SVR implementations to read from. They should be in priority order, with the most important one listed first. */
-  private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) listOf(svr3, svr2) else listOf(svr2)
+  private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
+    listOf(svr3, svr2)
+  } else {
+    listOf(svr2, svr2Legacy)
+  }
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
   private val writeImplementations: List<SecureValueRecovery>
@@ -57,6 +62,9 @@ object SvrRepository {
       }
       if (Svr3Migration.shouldWriteToSvr2) {
         implementations += svr2
+      }
+      if (Svr3Migration.shouldWriteToSvr2) {
+        implementations += svr2Legacy
       }
       return implementations
     }
@@ -89,10 +97,11 @@ object SvrRepository {
       val operations: List<Pair<SecureValueRecovery, () -> RestoreResponse>> = if (Svr3Migration.shouldReadFromSvr3) {
         listOf(
           svr3 to { restoreMasterKeyPreRegistrationFromV3(credentials.svr3, userPin) },
-          svr2 to { restoreMasterKeyPreRegistrationFromV2(credentials.svr2, userPin) }
+          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) }
         )
       } else {
-        listOf(svr2 to { restoreMasterKeyPreRegistrationFromV2(credentials.svr2, userPin) })
+        listOf(svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) })
+        listOf(svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) })
       }
 
       for ((implementation, operation) in operations) {
@@ -156,7 +165,6 @@ object SvrRepository {
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
             SignalStore.svr.isPinForgottenOrSkipped = false
-            SignalStore.storageService.setNeedsAccountRestore(false)
             SignalStore.pin.keyboardType = pinKeyboardType
             SignalStore.storageService.setNeedsAccountRestore(false)
 
@@ -412,11 +420,11 @@ object SvrRepository {
 
   @WorkerThread
   @VisibleForTesting
-  fun restoreMasterKeyPreRegistrationFromV2(credentials: AuthCredentials?, userPin: String): RestoreResponse {
+  fun restoreMasterKeyPreRegistrationFromV2(svr: SecureValueRecovery, credentials: AuthCredentials?, userPin: String): RestoreResponse {
     return if (credentials == null) {
       RestoreResponse.Missing
     } else {
-      svr2.restoreDataPreRegistration(credentials, shareSet = null, userPin)
+      svr.restoreDataPreRegistration(credentials, shareSet = null, userPin)
     }
   }
 

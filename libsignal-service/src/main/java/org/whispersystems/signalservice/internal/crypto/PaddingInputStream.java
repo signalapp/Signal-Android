@@ -6,6 +6,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 public class PaddingInputStream extends FilterInputStream {
 
@@ -36,6 +37,7 @@ public class PaddingInputStream extends FilterInputStream {
 
     if (paddingRemaining > 0) {
       length = Math.min(length, Util.toIntExact(paddingRemaining));
+      Arrays.fill(buffer, offset, length, (byte) 0x00);
       paddingRemaining -= length;
       return length;
     }

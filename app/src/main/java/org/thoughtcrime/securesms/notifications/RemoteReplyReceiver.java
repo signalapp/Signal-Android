@@ -75,9 +75,10 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
       SignalExecutors.BOUNDED.execute(() -> {
         long threadId;
 
-        Recipient     recipient      = Recipient.resolved(recipientId);
-        long          expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
-        ParentStoryId parentStoryId  = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
+        Recipient     recipient          = Recipient.resolved(recipientId);
+        long          expiresIn          = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
+        int           expireTimerVersion = recipient.getExpireTimerVersion();
+        ParentStoryId parentStoryId      = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
 
         switch (replyMethod) {
           case GroupMessage: {
@@ -86,6 +87,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                         new LinkedList<>(),
                                                         System.currentTimeMillis(),
                                                         expiresIn,
+                                                        expireTimerVersion,
                                                         false,
                                                         0,
                                                         StoryType.NONE,

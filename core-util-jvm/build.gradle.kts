@@ -4,11 +4,13 @@
  */
 
 val signalJavaVersion: JavaVersion by rootProject.extra
+val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
   id("java-library")
   id("org.jetbrains.kotlin.jvm")
   id("ktlint")
+  id("com.squareup.wire")
 }
 
 java {
@@ -16,9 +18,44 @@ java {
   targetCompatibility = signalJavaVersion
 }
 
+kotlin {
+  jvmToolchain {
+    languageVersion = JavaLanguageVersion.of(signalKotlinJvmTarget)
+  }
+}
+
+afterEvaluate {
+  listOf(
+    "runKtlintCheckOverMainSourceSet",
+    "runKtlintFormatOverMainSourceSet"
+  ).forEach { taskName ->
+    tasks.named(taskName) {
+      mustRunAfter(tasks.named("generateMainProtos"))
+    }
+  }
+}
+
+wire {
+  kotlin {
+    javaInterop = true
+  }
+
+  sourcePath {
+    srcDir("src/main/protowire")
+  }
+}
+
+tasks.runKtlintCheckOverMainSourceSet {
+  dependsOn(":core-util-jvm:generateMainProtos")
+}
+
 dependencies {
   implementation(libs.kotlin.reflect)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.core.jvm)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.kotlinx.coroutines.test)
 }

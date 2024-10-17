@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.calls.links
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -33,20 +34,21 @@ import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.Previews
+import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import java.time.Instant
 
-@Preview
+@SignalPreview
 @Composable
 private fun SignalCallRowPreview() {
   val callLink = remember {
@@ -60,20 +62,33 @@ private fun SignalCallRowPreview() {
         restrictions = org.signal.ringrtc.CallLinkState.Restrictions.NONE,
         expiration = Instant.MAX,
         revoked = false
-      )
+      ),
+      deletionTimestamp = 0L
     )
   }
-  SignalTheme(false) {
-    SignalCallRow(
-      callLink = callLink,
-      onJoinClicked = {}
-    )
+  Previews.Preview {
+    Column(
+      verticalArrangement = spacedBy(8.dp)
+    ) {
+      SignalCallRow(
+        callLink = callLink,
+        callLinkPeekInfo = null,
+        onJoinClicked = {}
+      )
+
+      SignalCallRow(
+        callLink = callLink,
+        callLinkPeekInfo = CallLinkPeekInfo(null, true, true),
+        onJoinClicked = {}
+      )
+    }
   }
 }
 
 @Composable
 fun SignalCallRow(
   callLink: CallLinkTable.CallLink,
+  callLinkPeekInfo: CallLinkPeekInfo?,
   onJoinClicked: (() -> Unit)?,
   modifier: Modifier = Modifier
 ) {
@@ -140,7 +155,13 @@ fun SignalCallRow(
         ),
         modifier = Modifier.align(CenterVertically)
       ) {
-        Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__join))
+        val textId = if (callLinkPeekInfo?.isJoined == true) {
+          R.string.CallLogAdapter__return
+        } else {
+          R.string.CreateCallLinkBottomSheetDialogFragment__join
+        }
+
+        Text(text = stringResource(id = textId))
       }
     }
   }

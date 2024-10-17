@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.PinOptOutDialog;
-import org.thoughtcrime.securesms.registration.RegistrationUtil;
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;

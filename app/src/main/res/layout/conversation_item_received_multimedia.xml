@@ -235,6 +235,9 @@
             android:id="@+id/conversation_item_join_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+            android:layout_marginBottom="20dp"
             android:layout="@layout/conversation_item_join_button" />
 
         <ViewStub

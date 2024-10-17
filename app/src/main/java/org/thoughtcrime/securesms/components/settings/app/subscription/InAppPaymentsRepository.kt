@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.push.DonationProcessor
-import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 import java.security.SecureRandom
 import java.util.Currency
 import java.util.Optional
@@ -95,7 +95,7 @@ object InAppPaymentsRepository {
 
     val donationError: DonationError = when (error) {
       is DonationError -> error
-      is DonationProcessorError -> error.toDonationError(donationErrorSource, paymentSourceType)
+      is InAppPaymentProcessorError -> error.toDonationError(donationErrorSource, paymentSourceType)
       else -> DonationError.genericBadgeRedemptionFailure(donationErrorSource)
     }
 
@@ -178,8 +178,12 @@ object InAppPaymentsRepository {
     return when (inAppPayment.type) {
       InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN.")
       InAppPaymentType.ONE_TIME_GIFT, InAppPaymentType.ONE_TIME_DONATION -> "$JOB_PREFIX${inAppPayment.id.serialize()}"
-      InAppPaymentType.RECURRING_DONATION, InAppPaymentType.RECURRING_BACKUP -> "$JOB_PREFIX${inAppPayment.type.code}"
+      InAppPaymentType.RECURRING_DONATION, InAppPaymentType.RECURRING_BACKUP -> getRecurringJobQueueKey(inAppPayment.type)
     }
+  }
+
+  fun getRecurringJobQueueKey(inAppPaymentType: InAppPaymentType): String {
+    return "$JOB_PREFIX${inAppPaymentType.code}"
   }
 
   /**
@@ -224,6 +228,7 @@ object InAppPaymentsRepository {
       DonationErrorSource.ONE_TIME -> InAppPaymentType.ONE_TIME_DONATION
       DonationErrorSource.MONTHLY -> InAppPaymentType.RECURRING_DONATION
       DonationErrorSource.GIFT -> InAppPaymentType.ONE_TIME_GIFT
+      DonationErrorSource.BACKUPS -> InAppPaymentType.RECURRING_BACKUP
       DonationErrorSource.GIFT_REDEMPTION -> InAppPaymentType.UNKNOWN
       DonationErrorSource.KEEP_ALIVE -> InAppPaymentType.UNKNOWN
       DonationErrorSource.UNKNOWN -> InAppPaymentType.UNKNOWN
@@ -235,6 +240,7 @@ object InAppPaymentsRepository {
    */
   fun PaymentSourceType.toPaymentMethodType(): InAppPaymentData.PaymentMethodType {
     return when (this) {
+      PaymentSourceType.GooglePlayBilling -> InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
       PaymentSourceType.PayPal -> InAppPaymentData.PaymentMethodType.PAYPAL
       PaymentSourceType.Stripe.CreditCard -> InAppPaymentData.PaymentMethodType.CARD
       PaymentSourceType.Stripe.GooglePay -> InAppPaymentData.PaymentMethodType.GOOGLE_PAY
@@ -255,6 +261,7 @@ object InAppPaymentsRepository {
       InAppPaymentData.PaymentMethodType.IDEAL -> PaymentSourceType.Stripe.IDEAL
       InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> PaymentSourceType.Stripe.SEPADebit
       InAppPaymentData.PaymentMethodType.UNKNOWN -> PaymentSourceType.Unknown
+      InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> PaymentSourceType.GooglePlayBilling
     }
   }
 
@@ -264,7 +271,7 @@ object InAppPaymentsRepository {
       InAppPaymentType.ONE_TIME_GIFT -> DonationErrorSource.GIFT
       InAppPaymentType.ONE_TIME_DONATION -> DonationErrorSource.ONE_TIME
       InAppPaymentType.RECURRING_DONATION -> DonationErrorSource.MONTHLY
-      InAppPaymentType.RECURRING_BACKUP -> DonationErrorSource.UNKNOWN // TODO [message-backups] error handling
+      InAppPaymentType.RECURRING_BACKUP -> DonationErrorSource.BACKUPS
     }
   }
 
@@ -406,18 +413,28 @@ object InAppPaymentsRepository {
 
   /**
    * Retrieves whether or not we should force a cancel before next subscribe attempt for in app payments of the given
-   * type. This method will first check the database, and then fall back on the deprecated SignalStore value.
+   * type. This method will first check the database, and then fall back on the deprecated SignalStore value. This method
+   * will also access and check the current subscriber data, if it exists.
    */
   @JvmStatic
   @WorkerThread
   fun getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType: InAppPaymentSubscriberRecord.Type): Boolean {
     val latestSubscriber = getSubscriber(subscriberType)
 
-    return latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+    val localState = latestSubscriber?.requiresCancel ?: if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
       SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt
     } else {
       false
     }
+
+    if (latestSubscriber != null) {
+      val remoteState = AppDependencies.donationsService.getSubscription(latestSubscriber.subscriberId)
+      val result = remoteState.result.getOrNull() ?: return localState
+
+      return result.activeSubscription?.isCanceled ?: localState
+    }
+
+    return localState
   }
 
   /**
@@ -561,6 +578,7 @@ object InAppPaymentsRepository {
         InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT
         InAppPaymentData.PaymentMethodType.IDEAL -> PendingOneTimeDonation.PaymentMethodType.IDEAL
         InAppPaymentData.PaymentMethodType.PAYPAL -> PendingOneTimeDonation.PaymentMethodType.PAYPAL
+        InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("One-time donation do not support purchase via Google Play Billing.")
       },
       amount = data.amount!!,
       badge = data.badge!!,
@@ -651,6 +669,7 @@ object InAppPaymentsRepository {
       InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> DonationProcessor.STRIPE
       InAppPaymentData.PaymentMethodType.IDEAL -> DonationProcessor.STRIPE
       InAppPaymentData.PaymentMethodType.PAYPAL -> DonationProcessor.PAYPAL
+      InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Google Play Billing does not support donation payments.")
     }
   }
 

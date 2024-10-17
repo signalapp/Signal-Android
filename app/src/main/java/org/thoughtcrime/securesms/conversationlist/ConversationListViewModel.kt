@@ -2,16 +2,22 @@ package org.thoughtcrime.securesms.conversationlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
@@ -25,7 +31,10 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
@@ -53,10 +62,15 @@ class ConversationListViewModel(
   val megaphoneState: Flowable<Megaphone> = store.mapDistinctForUi { it.megaphone }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
   val filterRequestState: Flowable<ConversationFilterRequest> = store.mapDistinctForUi { it.filterRequest }
+  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = store.mapDistinctForUi { it.chatFolders }
   val hasNoConversations: Flowable<Boolean>
 
   val controller = ProxyPagingController<Long>()
 
+  val folders: List<ChatFolderMappingModel>
+    get() = store.state.chatFolders
+  val currentFolder: ChatFolderRecord
+    get() = store.state.currentFolder
   val conversationFilterRequest: ConversationFilterRequest
     get() = store.state.filterRequest
   val megaphone: Megaphone
@@ -74,13 +88,14 @@ class ConversationListViewModel(
     conversationListDataSource = store
       .stateFlowable
       .subscribeOn(Schedulers.io())
-      .map { it.filterRequest }
+      .map { it.filterRequest to it.currentFolder }
       .distinctUntilChanged()
-      .map {
+      .map { (filterRequest, folder) ->
         ConversationListDataSource.create(
-          it.filter,
+          folder,
+          filterRequest.filter,
           isArchived,
-          SignalStore.uiHints.canDisplayPullToFilterTip() && it.source === ConversationFilterSource.OVERFLOW
+          SignalStore.uiHints.canDisplayPullToFilterTip() && filterRequest.source === ConversationFilterSource.OVERFLOW
         )
       }
       .replay(1)
@@ -98,6 +113,17 @@ class ConversationListViewModel(
       .conversationList
       .throttleLatest(500, TimeUnit.MILLISECONDS)
       .subscribe { controller.onDataInvalidated() }
+      .addTo(disposables)
+
+    Flowables.combineLatest(
+      RxDatabaseObserver
+        .conversationList
+        .debounce(250, TimeUnit.MILLISECONDS),
+      RxDatabaseObserver
+        .chatFolders
+        .throttleLatest(500, TimeUnit.MILLISECONDS)
+    )
+      .subscribe { loadCurrentFolders() }
       .addTo(disposables)
 
     val pinnedCount = RxDatabaseObserver
@@ -191,6 +217,28 @@ class ConversationListViewModel(
     megaphoneRepository.markVisible(visible.event)
   }
 
+  private fun loadCurrentFolders() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadCount = true)
+
+      val selectedFolderId = if (currentFolder.id == -1L) {
+        folders.firstOrNull()?.id
+      } else {
+        currentFolder.id
+      }
+      val chatFolders = folders.map { folder ->
+        ChatFolderMappingModel(folder, selectedFolderId == folder.id)
+      }
+
+      store.update {
+        it.copy(
+          currentFolder = folders.find { folder -> folder.id == selectedFolderId } ?: ChatFolderRecord(),
+          chatFolders = chatFolders
+        )
+      }
+    }
+  }
+
   fun getNotificationProfiles(): Flowable<List<NotificationProfile>> {
     return notificationProfilesRepository.getProfiles()
       .observeOn(AndroidSchedulers.mainThread())
@@ -203,7 +251,55 @@ class ConversationListViewModel(
     }
   }
 
+  fun select(chatFolder: ChatFolderRecord) {
+    store.update {
+      it.copy(
+        currentFolder = chatFolder,
+        chatFolders = folders.map { model ->
+          model.copy(isSelected = chatFolder.id == model.chatFolder.id)
+        }
+      )
+    }
+  }
+
+  fun onMuteChatFolder(chatFolder: ChatFolderRecord, until: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val ids = SignalDatabase.threads.getRecipientIdsByChatFolder(chatFolder)
+      val recipientIds: List<RecipientId> = ids.filter { id ->
+        Recipient.resolved(id).muteUntil != until
+      }
+      if (recipientIds.isNotEmpty()) {
+        SignalDatabase.recipients.setMuted(recipientIds, until)
+      }
+    }
+  }
+
+  fun deleteChatFolder(chatFolder: ChatFolderRecord) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.deleteChatFolder(chatFolder)
+      val updatedFolders = folders.filter { folder -> folder.chatFolder.id != chatFolder.id }
+
+      store.update {
+        it.copy(
+          currentFolder = updatedFolders.first().chatFolder,
+          chatFolders = updatedFolders
+        )
+      }
+    }
+  }
+
+  fun markChatFolderRead(chatFolder: ChatFolderRecord) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val ids = SignalDatabase.threads.getThreadIdsByChatFolder(chatFolder)
+      val messageIds = SignalDatabase.threads.setRead(ids, false)
+      AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
+      MarkReadReceiver.process(messageIds)
+    }
+  }
+
   private data class ConversationListState(
+    val chatFolders: List<ChatFolderMappingModel> = emptyList(),
+    val currentFolder: ChatFolderRecord = ChatFolderRecord(),
     val conversations: List<Conversation> = emptyList(),
     val megaphone: Megaphone = Megaphone.NONE,
     val selectedConversations: ConversationSet = ConversationSet(),

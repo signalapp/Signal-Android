@@ -75,6 +75,7 @@ object Dialogs {
     confirm: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
+    onDismissRequest: () -> Unit = onDismiss,
     modifier: Modifier = Modifier,
     dismiss: String = NoDismiss,
     confirmColor: Color = Color.Unspecified,
@@ -82,8 +83,14 @@ object Dialogs {
     properties: DialogProperties = DialogProperties()
   ) {
     androidx.compose.material3.AlertDialog(
-      onDismissRequest = onDismiss,
-      title = { Text(text = title) },
+      onDismissRequest = onDismissRequest,
+      title = if (title.isNotEmpty()) {
+        {
+          Text(text = title)
+        }
+      } else {
+        null
+      },
       text = { Text(text = body) },
       confirmButton = {
         TextButton(onClick = {

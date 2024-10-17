@@ -152,7 +152,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   override fun getJobsInQueue(queue: String): List<JobSpec> {
     return minimalJobs
       .filter { it.queueKey == queue }
-      .map { it.toJobSpec() }
+      .mapNotNull { it.toJobSpec() }
   }
 
   @Synchronized
@@ -200,12 +200,14 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     if (job == null || !job.isMemoryOnly) {
       jobDatabase.updateJobAfterRetry(id, currentTime, runAttempt, nextBackoffInterval, serializedData)
 
-      // Note: All other fields are accounted for in the min spec. We only need to update from disk if serialized data changes.
+      // Note: Serialized data and run attempt are the only JobSpec-specific fields that need to be updated -- the rest are in MinimalJobSpec and will be
+      //       updated below.
       val cached = jobSpecCache[id]
-      if (cached != null && !cached.serializedData.contentEquals(serializedData)) {
-        jobDatabase.getJobSpec(id)?.let {
-          jobSpecCache[id] = it
-        }
+      if (cached != null) {
+        jobSpecCache[id] = cached.copy(
+          serializedData = serializedData,
+          runAttempt = runAttempt
+        )
       }
     }
 
@@ -289,19 +291,17 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun deleteJobs(ids: List<String>) {
-    val jobsToDelete: Set<JobSpec> = ids
-      .mapNotNull { getJobSpec(it) }
+    val jobsToDelete: Set<MinimalJobSpec> = ids
+      .mapNotNull { id ->
+        minimalJobs.firstOrNull { it.id == id }
+      }
       .toSet()
 
     val durableJobIdsToDelete: List<String> = jobsToDelete
       .filterNot { it.isMemoryOnly }
       .map { it.id }
 
-    val minimalJobsToDelete: Set<MinimalJobSpec> = jobsToDelete
-      .map { it.toMinimalJobSpec() }
-      .toSet()
-
-    val affectedQueues: Set<String> = minimalJobsToDelete.mapNotNull { it.queueKey }.toSet()
+    val affectedQueues: Set<String> = jobsToDelete.mapNotNull { it.queueKey }.toSet()
 
     if (durableJobIdsToDelete.isNotEmpty()) {
       jobDatabase.deleteJobs(durableJobIdsToDelete)
@@ -310,8 +310,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     val deleteIds: Set<String> = ids.toSet()
     minimalJobs.removeIf { deleteIds.contains(it.id) }
     jobSpecCache.keys.removeAll(deleteIds)
-    eligibleJobs.removeAll(minimalJobsToDelete)
-    migrationJobs.removeAll(minimalJobsToDelete)
+    eligibleJobs.removeIf { deleteIds.contains(it.id) }
+    migrationJobs.removeIf { deleteIds.contains(it.id) }
 
     mostEligibleJobForQueue.keys.removeAll(affectedQueues)
 
@@ -396,7 +396,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
             createTime = updated.createTime,
             lastRunAttemptTime = updated.lastRunAttemptTime,
             nextBackoffInterval = updated.nextBackoffInterval,
-            priority = updated.priority,
+            globalPriority = updated.globalPriority,
             isRunning = updated.isRunning,
             isMemoryOnly = updated.isMemoryOnly
           )
@@ -413,35 +413,36 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   /**
    * Heart of a lot of the in-memory job management. Will ensure that we have an up-to-date list of eligible jobs in sorted order.
    */
-  private fun placeJobInEligibleList(job: MinimalJobSpec) {
-    var jobToPlace: MinimalJobSpec? = job
+  private fun placeJobInEligibleList(jobCandidate: MinimalJobSpec) {
+    val existingJobInQueue = jobCandidate.queueKey?.let { mostEligibleJobForQueue[it] }
+    if (existingJobInQueue != null) {
+      if (jobCandidate.globalPriority < existingJobInQueue.globalPriority) {
+        return
+      }
 
-    if (job.queueKey != null) {
-      val existingJobInQueue = mostEligibleJobForQueue[job.queueKey]
-      if (existingJobInQueue != null) {
-        // We only want a single job from each queue. It should be the oldest job with the highest priority.
-        if (job.priority > existingJobInQueue.priority || (job.priority == existingJobInQueue.priority && job.createTime < existingJobInQueue.createTime)) {
-          mostEligibleJobForQueue[job.queueKey] = job
-          eligibleJobs.remove(existingJobInQueue)
-        } else {
-          // There's a more eligible job in the queue already, so no need to put it in the eligible list
-          jobToPlace = null
+      if (jobCandidate.globalPriority == existingJobInQueue.globalPriority) {
+        if (jobCandidate.queuePriority < existingJobInQueue.queuePriority) {
+          return
+        }
+
+        if (jobCandidate.queuePriority == existingJobInQueue.queuePriority && jobCandidate.createTime >= existingJobInQueue.createTime) {
+          return
         }
       }
     }
 
-    if (jobToPlace == null) {
-      return
-    }
+    // At this point, we know that the job candidate has a higher global priority, higher queue priority, or their priorities are the same but with an older creation time.
+    // That means we know it's now the most eligible job in its queue.
 
-    jobToPlace.queueKey?.let { queueKey ->
-      mostEligibleJobForQueue[queueKey] = job
+    jobCandidate.queueKey?.let { queueKey ->
+      eligibleJobs.removeIf { it.id == existingJobInQueue?.id }
+      mostEligibleJobForQueue[queueKey] = jobCandidate
     }
 
     // At this point, anything queue-related has been handled. We just need to insert this job in the correct spot in the list.
     // Thankfully, we're using a TreeSet, so sorting is automatic.
 
-    eligibleJobs += jobToPlace
+    eligibleJobs += jobCandidate
   }
 
   /**
@@ -453,10 +454,10 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     }
 
     if (updated.queueKey == Job.Parameters.MIGRATION_QUEUE_KEY) {
-      migrationJobs.remove(current)
+      migrationJobs.removeIf { it.id == current.id }
       migrationJobs += updated
     } else {
-      eligibleJobs.remove(current)
+      eligibleJobs.removeIf { current.id == it.id }
       current.queueKey?.let { queueKey ->
         if (mostEligibleJobForQueue[queueKey] == current) {
           mostEligibleJobForQueue.remove(queueKey)
@@ -514,22 +515,23 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
    * Converts a [MinimalJobSpec] to a [JobSpec]. We prefer using the cache, but if it's not found, we'll hit the database.
    * We consider this a "recent access" and will cache it for future use.
    */
-  private fun MinimalJobSpec.toJobSpec(): JobSpec {
+  private fun MinimalJobSpec.toJobSpec(): JobSpec? {
     return jobSpecCache.getOrPut(this.id) {
-      jobDatabase.getJobSpec(this.id) ?: throw IllegalArgumentException("JobSpec not found for id: $id")
+      jobDatabase.getJobSpec(this.id) ?: return null
     }
   }
 
   private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {
     override fun compare(o1: MinimalJobSpec, o2: MinimalJobSpec): Int {
-      // We want to sort by priority descending, then createTime ascending
+      // We want to sort by priority descending, then createTime ascending.
+      // This is for determining which job to run across multiple queues, so queue priority is not considered.
 
       // CAUTION: This is used by a TreeSet, so it must be consistent with equals.
       //          If this compare function says two objects are equal, then only one will be allowed in the set!
       //          This is why the last step is to compare the IDs.
       return when {
-        o1.priority > o2.priority -> -1
-        o1.priority < o2.priority -> 1
+        o1.globalPriority > o2.globalPriority -> -1
+        o1.globalPriority < o2.globalPriority -> 1
         o1.createTime < o2.createTime -> -1
         o1.createTime > o2.createTime -> 1
         else -> o1.id.compareTo(o2.id)
@@ -543,8 +545,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   private object EligibleFullJobComparator : Comparator<JobSpec> {
     override fun compare(o1: JobSpec, o2: JobSpec): Int {
       return when {
-        o1.priority > o2.priority -> -1
-        o1.priority < o2.priority -> 1
+        o1.globalPriority > o2.globalPriority -> -1
+        o1.globalPriority < o2.globalPriority -> 1
         o1.createTime < o2.createTime -> -1
         o1.createTime > o2.createTime -> 1
         else -> o1.id.compareTo(o2.id)
@@ -569,7 +571,8 @@ fun JobSpec.toMinimalJobSpec(): MinimalJobSpec {
     createTime = this.createTime,
     lastRunAttemptTime = this.lastRunAttemptTime,
     nextBackoffInterval = this.nextBackoffInterval,
-    priority = this.priority,
+    globalPriority = this.globalPriority,
+    queuePriority = this.queuePriority,
     isRunning = this.isRunning,
     isMemoryOnly = this.isMemoryOnly
   )

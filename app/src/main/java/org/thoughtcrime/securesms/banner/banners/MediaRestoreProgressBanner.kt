@@ -5,85 +5,126 @@
 
 package org.thoughtcrime.securesms.banner.banners
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.net.ConnectivityManager
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatus
+import org.signal.core.util.bytes
+import org.signal.core.util.throttleLatest
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusBanner
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.safeUnregisterReceiver
+import kotlin.time.Duration.Companion.seconds
 
-class MediaRestoreProgressBanner(private val data: MediaRestoreEvent) : Banner() {
+@OptIn(ExperimentalCoroutinesApi::class)
+class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener) : Banner<BackupStatusData>() {
 
-  companion object {
-    private val TAG = Log.tag(MediaRestoreProgressBanner::class)
+  private var totalRestoredSize: Long = 0
 
-    /**
-     * Create a Lifecycle-aware [Flow] of [MediaRestoreProgressBanner] that observes the database for changes in attachments and emits banners when attachments are updated.
-     */
-    @JvmStatic
-    fun createLifecycleAwareFlow(lifecycleOwner: LifecycleOwner): Flow<MediaRestoreProgressBanner> {
-      if (SignalStore.backup.isRestoreInProgress) {
-        val observer = LifecycleObserver()
-        lifecycleOwner.lifecycle.addObserver(observer)
-        return observer.flow
-      } else {
-        return emptyFlow()
+  override val enabled: Boolean
+    get() = SignalStore.backup.isRestoreInProgress || totalRestoredSize > 0
+
+  override val dataFlow: Flow<BackupStatusData> by lazy {
+    SignalStore
+      .backup
+      .totalRestorableAttachmentSizeFlow
+      .flatMapLatest { size ->
+        when {
+          size > 0 -> {
+            totalRestoredSize = size
+            getActiveRestoreFlow()
+          }
+
+          totalRestoredSize > 0 -> {
+            flowOf(
+              BackupStatusData.RestoringMedia(
+                bytesTotal = totalRestoredSize.bytes.also { totalRestoredSize = 0 },
+                restoreStatus = BackupStatusData.RestoreStatus.FINISHED
+              )
+            )
+          }
+
+          else -> flowOf(BackupStatusData.RestoringMedia())
+        }
       }
-    }
   }
-
-  override var enabled: Boolean = data.totalBytes > 0L && data.totalBytes != data.completedBytes
 
   @Composable
-  override fun DisplayBanner() {
-    BackupStatus(data = BackupStatusData.RestoringMedia(data.completedBytes, data.totalBytes))
+  override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
+    BackupStatusBanner(
+      data = model,
+      onSkipClick = listener::onSkip,
+      onDismissClick = listener::onDismissComplete
+    )
   }
 
-  data class MediaRestoreEvent(val completedBytes: Long, val totalBytes: Long)
+  private fun getActiveRestoreFlow(): Flow<BackupStatusData.RestoringMedia> {
+    val flow: Flow<Unit> = callbackFlow {
+      val onChange = { trySend(Unit) }
 
-  private class LifecycleObserver : DefaultLifecycleObserver {
-    private var attachmentObserver: DatabaseObserver.Observer? = null
-    private val _mutableSharedFlow = MutableSharedFlow<MediaRestoreEvent>(replay = 1)
+      val observer = DatabaseObserver.Observer {
+        onChange()
+      }
 
-    val flow = _mutableSharedFlow.map { MediaRestoreProgressBanner(it) }
-
-    override fun onStart(owner: LifecycleOwner) {
-      val queryObserver = DatabaseObserver.Observer {
-        owner.lifecycleScope.launch {
-          _mutableSharedFlow.emit(loadData())
+      val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+          onChange()
         }
       }
 
-      attachmentObserver = queryObserver
-      queryObserver.onChanged()
-      AppDependencies.databaseObserver.registerAttachmentObserver(queryObserver)
-    }
+      onChange()
 
-    override fun onStop(owner: LifecycleOwner) {
-      attachmentObserver?.let {
-        AppDependencies.databaseObserver.unregisterObserver(it)
+      AppDependencies.databaseObserver.registerAttachmentUpdatedObserver(observer)
+      AppDependencies.application.registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+      AppDependencies.application.registerReceiver(receiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+
+      awaitClose {
+        AppDependencies.databaseObserver.unregisterObserver(observer)
+        AppDependencies.application.safeUnregisterReceiver(receiver)
       }
     }
 
-    private suspend fun loadData() = withContext(Dispatchers.IO) {
-      // TODO [backups]: define and query data for interrupted/paused restores
-      val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
-      val remainingAttachmentSize = SignalDatabase.attachments.getTotalRestorableAttachmentSize()
-      val completedBytes = totalRestoreSize - remainingAttachmentSize
-      MediaRestoreEvent(completedBytes, totalRestoreSize)
-    }
+    return flow
+      .throttleLatest(1.seconds)
+      .map {
+        when {
+          !WifiConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
+          !NetworkConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET)
+          !BatteryNotLowConstraint.isMet() -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.LOW_BATTERY)
+          else -> {
+            val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
+            val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
+            val completedBytes = totalRestoreSize - remainingAttachmentSize
+
+            BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
+          }
+        }
+      }
+      .flowOn(Dispatchers.IO)
+  }
+
+  interface RestoreProgressBannerListener {
+    fun onSkip()
+    fun onDismissComplete()
   }
 }

@@ -60,7 +60,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
-import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection;
+import org.thoughtcrime.securesms.service.webrtc.state.PendingParticipantsState;
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.MultiReactionBurstLayout;
 import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
@@ -446,15 +446,20 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     pendingParticipantsViewListener = listener;
   }
 
-  public void updatePendingParticipantsList(@NonNull PendingParticipantCollection pendingParticipantCollection) {
-    if (pendingParticipantCollection.getUnresolvedPendingParticipants().isEmpty()) {
+  public void updatePendingParticipantsList(@NonNull PendingParticipantsState state) {
+    if (state.isInPipMode()) {
+      pendingParticipantsViewStub.setVisibility(View.GONE);
+      return;
+    }
+
+    if (state.getPendingParticipantCollection().getUnresolvedPendingParticipants().isEmpty()) {
       if (pendingParticipantsViewStub.resolved()) {
         pendingParticipantsViewStub.get().setListener(pendingParticipantsViewListener);
-        pendingParticipantsViewStub.get().applyState(pendingParticipantCollection);
+        pendingParticipantsViewStub.get().applyState(state.getPendingParticipantCollection());
       }
     } else {
       pendingParticipantsViewStub.get().setListener(pendingParticipantsViewListener);
-      pendingParticipantsViewStub.get().applyState(pendingParticipantCollection);
+      pendingParticipantsViewStub.get().applyState(state.getPendingParticipantCollection());
     }
   }
 
@@ -486,7 +491,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
     if (state.getGroupCallState().isNotIdle()) {
       if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
-        if (callParticipantsViewState.isStartedFromCallLink()) {
+        if (state.isCallLink()) {
           TextView warningTextView = callLinkWarningCard.get().findViewById(R.id.call_screen_call_link_warning_textview);
           warningTextView.setText(SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled() ? R.string.WebRtcCallView__anyone_who_joins_pnp_enabled : R.string.WebRtcCallView__anyone_who_joins_pnp_disabled);
           callLinkWarningCard.setVisibility(View.VISIBLE);
@@ -525,10 +530,8 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), displaySmallSelfPipInLandscape);
 
     if (state.isLargeVideoGroup()) {
-      moveSnackbarAboveParticipantRail(true);
       adjustLayoutForLargeCount();
     } else {
-      moveSnackbarAboveParticipantRail(state.isViewingFocusedParticipant());
       adjustLayoutForSmallCount();
     }
   }
@@ -619,14 +622,15 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void setRecipient(@NonNull Recipient recipient) {
+    collapsedToolbar.setTitle(recipient.getDisplayName(getContext()));
+    recipientName.setText(recipient.getDisplayName(getContext()));
+
     if (recipient.getId() == recipientId) {
       return;
     }
 
     recipientId = recipient.getId();
     largeHeaderAvatar.setRecipient(recipient, false);
-    collapsedToolbar.setTitle(recipient.getDisplayName(getContext()));
-    recipientName.setText(recipient.getDisplayName(getContext()));
   }
 
   public void setStatus(@Nullable String status) {
@@ -645,14 +649,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
 
   private void setStatus(@StringRes int statusRes) {
     setStatus(getContext().getString(statusRes));
-  }
-
-  private @NonNull View getPipBarrier() {
-    if (collapsedToolbar.isEnabled()) {
-      return collapsedToolbar;
-    } else {
-      return largeHeader;
-    }
   }
 
   public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
@@ -900,28 +896,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
                           layoutPositions.reactionBottomViewId,
                           ConstraintSet.TOP,
                           ViewUtil.dpToPx(layoutPositions.reactionBottomMargin));
-
-    constraintSet.applyTo(this);
-  }
-
-  private void moveSnackbarAboveParticipantRail(boolean aboveRail) {
-    if (aboveRail) {
-      updatePendingParticipantsBottomConstraint(callParticipantsRecycler);
-    } else {
-      updatePendingParticipantsBottomConstraint(aboveControlsGuideline);
-    }
-  }
-
-  private void updatePendingParticipantsBottomConstraint(View anchor) {
-    ConstraintSet constraintSet = new ConstraintSet();
-    constraintSet.setForceId(false);
-    constraintSet.clone(this);
-
-    constraintSet.connect(R.id.call_screen_pending_recipients,
-                          ConstraintSet.BOTTOM,
-                          anchor.getId(),
-                          ConstraintSet.TOP,
-                          ViewUtil.dpToPx(8));
 
     constraintSet.applyTo(this);
   }

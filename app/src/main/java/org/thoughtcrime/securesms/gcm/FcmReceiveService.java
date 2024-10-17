@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.registration.PushChallengeRequest;
+import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 

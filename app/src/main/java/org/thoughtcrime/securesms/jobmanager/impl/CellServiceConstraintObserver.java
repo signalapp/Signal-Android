@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import android.app.Application;
 import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyCallback;
@@ -44,7 +46,10 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
     if (Build.VERSION.SDK_INT >= 31) {
       telephonyManager.registerTelephonyCallback(SignalExecutors.BOUNDED, new ServiceStateListenerApi31());
     } else {
-      SignalExecutors.BOUNDED.execute(() -> {
+      HandlerThread handlerThread = SignalExecutors.getAndStartHandlerThread("CellServiceConstraintObserver", Thread.NORM_PRIORITY);
+      Handler       handler       = new Handler(handlerThread.getLooper());
+
+      handler.post(() -> {
         telephonyManager.listen(serviceStateListener, PhoneStateListener.LISTEN_SERVICE_STATE);
       });
     }

@@ -80,11 +80,11 @@ public final class SettingsValues extends SignalStoreValues {
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
-  SettingsValues(@NonNull KeyValueStore store) {
+  SettingsValues(@NonNull KeyValueStore store, Context context) {
     super(store);
 
     if (!store.containsKey(SCREEN_LOCK_ENABLED)) {
-      migrateFromSharedPrefsV1(AppDependencies.getApplication());
+      migrateFromSharedPrefsV1(context);
     }
   }
 

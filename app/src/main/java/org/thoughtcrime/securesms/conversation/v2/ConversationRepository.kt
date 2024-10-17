@@ -30,7 +30,6 @@ import org.signal.core.util.concurrent.MaybeCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
-import org.signal.core.util.toOptional
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.thoughtcrime.securesms.R
@@ -38,13 +37,6 @@ import org.thoughtcrime.securesms.ShortcutLauncherActivity
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings
-import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder
-import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
-import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder
-import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsReminder
-import org.thoughtcrime.securesms.components.reminder.Reminder
-import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder
-import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
@@ -74,9 +66,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob
-import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardUtil
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState
 import org.thoughtcrime.securesms.mms.OutgoingMessage
@@ -101,14 +91,13 @@ import org.thoughtcrime.securesms.util.hasTextSlide
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
-import java.util.Optional
 import kotlin.math.max
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 class ConversationRepository(
   private val localContext: Context,
-  private val isInBubble: Boolean
+  val isInBubble: Boolean
 ) {
 
   companion object {
@@ -236,13 +225,17 @@ class ConversationRepository(
           emitter.onComplete()
         }
       } else {
-        MessageSender.sendPushWithPreUploadedMedia(
+        val sendSuccessful = MessageSender.sendPushWithPreUploadedMedia(
           AppDependencies.application,
           message,
           preUploadResults,
           threadId
         ) {
           emitter.onComplete()
+        }
+
+        if (!sendSuccessful) {
+          emitter.tryOnError(IllegalStateException("Could not send pre-uploaded attachments because they did not exist!"))
         }
       }
     }
@@ -301,35 +294,6 @@ class ConversationRepository(
 
   private fun getUnreadMentionsCount(threadId: Long): Int {
     return SignalDatabase.messages.getUnreadMentionCount(threadId)
-  }
-
-  fun getReminder(groupRecord: GroupRecord?): Maybe<Optional<Reminder>> {
-    return Maybe.fromCallable {
-      val reminder: Reminder? = when {
-        ExpiredBuildReminder.isEligible() -> ExpiredBuildReminder(applicationContext)
-        UnauthorizedReminder.isEligible(applicationContext) -> UnauthorizedReminder()
-        ServiceOutageReminder.isEligible(applicationContext) -> {
-          AppDependencies.jobManager.add(ServiceOutageDetectionJob())
-          ServiceOutageReminder()
-        }
-
-        groupRecord != null && groupRecord.actionableRequestingMembersCount > 0 -> {
-          PendingGroupJoinRequestsReminder(groupRecord.actionableRequestingMembersCount)
-        }
-
-        groupRecord != null && groupRecord.gv1MigrationSuggestions.isNotEmpty() -> {
-          GroupsV1MigrationSuggestionsReminder(groupRecord.gv1MigrationSuggestions)
-        }
-
-        isInBubble && !SignalStore.tooltips.hasSeenBubbleOptOutTooltip() && Build.VERSION.SDK_INT > 29 -> {
-          BubbleOptOutReminder()
-        }
-
-        else -> null
-      }
-
-      reminder.toOptional()
-    }
   }
 
   @Suppress("IfThenToElvis")

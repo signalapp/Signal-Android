@@ -13,6 +13,7 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
@@ -33,6 +34,9 @@ import org.thoughtcrime.securesms.testing.assertIsNot
 import org.thoughtcrime.securesms.testing.assertIsNotNull
 import org.thoughtcrime.securesms.testing.assertIsSize
 import org.thoughtcrime.securesms.util.IdentityUtil
+import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.util.UUID
 
 @Suppress("ClassName")
@@ -574,30 +578,35 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     // Has all three
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(
       id = attachments[0].attachmentId,
-      attachment = attachments[0].copy(digest = byteArrayOf(attachments[0].attachmentId.id.toByte())),
-      uploadTimestamp = message1.timestamp + 1
+      uploadResult = attachments[0].toUploadResult(
+        digest = byteArrayOf(attachments[0].attachmentId.id.toByte()),
+        uploadTimestamp = message1.timestamp + 1
+      )
     )
 
     // Missing uuid and digest
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(
       id = attachments[1].attachmentId,
-      attachment = attachments[1],
-      uploadTimestamp = message1.timestamp + 1
+      uploadResult = attachments[1].toUploadResult(uploadTimestamp = message1.timestamp + 1)
     )
 
     // Missing uuid and plain text
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(
       id = attachments[2].attachmentId,
-      attachment = attachments[2].copy(digest = byteArrayOf(attachments[2].attachmentId.id.toByte())),
-      uploadTimestamp = message1.timestamp + 1
+      uploadResult = attachments[2].toUploadResult(
+        digest = byteArrayOf(attachments[2].attachmentId.id.toByte()),
+        uploadTimestamp = message1.timestamp + 1
+      )
     )
     SignalDatabase.rawDatabase.update(AttachmentTable.TABLE_NAME).values(AttachmentTable.DATA_HASH_END to null).where("${AttachmentTable.ID} = ?", attachments[2].attachmentId).run()
 
     // Different has all three
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(
       id = attachments[3].attachmentId,
-      attachment = attachments[3].copy(digest = byteArrayOf(attachments[3].attachmentId.id.toByte())),
-      uploadTimestamp = message1.timestamp + 1
+      uploadResult = attachments[3].toUploadResult(
+        digest = byteArrayOf(attachments[3].attachmentId.id.toByte()),
+        uploadTimestamp = message1.timestamp + 1
+      )
     )
 
     attachments = SignalDatabase.attachments.getAttachmentsForMessage(message1.messageId)
@@ -674,6 +683,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       cdn = this.cdn,
       location = this.remoteLocation,
       key = this.remoteKey,
+      iv = this.remoteIv,
       digest = digest,
       incrementalDigest = this.incrementalDigest,
       incrementalMacChunkSize = this.incrementalMacChunkSize,
@@ -693,11 +703,28 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       uploadTimestamp = this.uploadTimestamp,
       dataHash = this.dataHash,
       archiveCdn = this.archiveCdn,
-      archiveThumbnailCdn = this.archiveThumbnailCdn,
       archiveMediaName = this.archiveMediaName,
       archiveMediaId = this.archiveMediaId,
       thumbnailRestoreState = this.thumbnailRestoreState,
+      archiveTransferState = this.archiveTransferState,
       uuid = uuid
+    )
+  }
+
+  private fun Attachment.toUploadResult(
+    digest: ByteArray = this.remoteDigest ?: byteArrayOf(),
+    uploadTimestamp: Long = this.uploadTimestamp
+  ): AttachmentUploadResult {
+    return AttachmentUploadResult(
+      remoteId = SignalServiceAttachmentRemoteId.V4(this.remoteLocation ?: "some-location"),
+      cdnNumber = this.cdn.cdnNumber,
+      key = this.remoteKey?.let { Base64.decode(it) } ?: Util.getSecretBytes(64),
+      iv = this.remoteIv ?: Util.getSecretBytes(16),
+      digest = digest,
+      incrementalDigest = this.incrementalDigest,
+      incrementalDigestChunkSize = this.incrementalMacChunkSize,
+      dataSize = this.size,
+      uploadTimestamp = uploadTimestamp
     )
   }
 }

@@ -289,7 +289,7 @@ sealed class NotificationBuilder(protected val context: Context) {
           val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
             .setBot(false)
             .setName(notificationItem.getPersonName(context))
-            .setUri(notificationItem.getPersonUri())
+            .setUri(notificationItem.getPersonUri(context))
             .setIcon(notificationItem.getPersonIcon(context))
 
           if (includeShortcut) {

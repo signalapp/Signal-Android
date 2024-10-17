@@ -17,5 +17,6 @@ data class LinkDeviceSettingsState(
   val linkDeviceResult: LinkDeviceRepository.LinkDeviceResult = LinkDeviceRepository.LinkDeviceResult.UNKNOWN,
   val showFinishedSheet: Boolean = false,
   val seenIntroSheet: Boolean = false,
-  val pendingNewDevice: Boolean = false
+  val pendingNewDevice: Boolean = false,
+  val seenEducationSheet: Boolean = false
 )

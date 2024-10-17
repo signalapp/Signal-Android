@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.core.view.ViewCompat
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsChange
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.TimeUnit
@@ -26,8 +25,8 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
 ) {
 
   private var enabled: Boolean = true
-  private var pendingUpdate: CallStateUpdate? = null
-  private var lastUpdate: CallStateUpdate? = null
+  private var pendingUpdate: CallControlsChange? = null
+  private var lastUpdate: CallControlsChange? = null
   private val dismissDebouncer = Debouncer(2, TimeUnit.SECONDS)
   private val iconView = contentView.findViewById<ImageView>(R.id.icon)
   private val descriptionView = contentView.findViewById<TextView>(R.id.description)
@@ -51,30 +50,30 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
     }
   }
 
-  fun onCallStateUpdate(callStateUpdate: CallStateUpdate) {
-    if (isShowing && lastUpdate == callStateUpdate) {
+  fun onCallStateUpdate(callControlsChange: CallControlsChange) {
+    if (isShowing && lastUpdate == callControlsChange) {
       dismissDebouncer.publish { dismiss() }
     } else if (isShowing) {
       dismissDebouncer.clear()
-      pendingUpdate = callStateUpdate
+      pendingUpdate = callControlsChange
       dismiss()
     } else {
       pendingUpdate = null
-      lastUpdate = callStateUpdate
-      presentCallState(callStateUpdate)
+      lastUpdate = callControlsChange
+      presentCallState(callControlsChange)
       show()
     }
   }
 
-  private fun presentCallState(callStateUpdate: CallStateUpdate) {
-    if (callStateUpdate.iconRes == null) {
+  private fun presentCallState(callControlsChange: CallControlsChange) {
+    if (callControlsChange.iconRes == null) {
       iconView.setImageDrawable(null)
     } else {
-      iconView.setImageResource(callStateUpdate.iconRes)
+      iconView.setImageResource(callControlsChange.iconRes)
     }
 
-    iconView.visible = callStateUpdate.iconRes != null
-    descriptionView.setText(callStateUpdate.stringRes)
+    iconView.visible = callControlsChange.iconRes != null
+    descriptionView.setText(callControlsChange.stringRes)
   }
 
   private fun show() {
@@ -104,18 +103,5 @@ class CallStateUpdatePopupWindow(private val parent: ViewGroup) : PopupWindow(
       View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
       View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
     )
-  }
-
-  enum class CallStateUpdate(
-    @DrawableRes val iconRes: Int?,
-    @StringRes val stringRes: Int
-  ) {
-    RINGING_ON(R.drawable.symbol_bell_ring_compact_16, R.string.CallStateUpdatePopupWindow__ringing_on),
-    RINGING_OFF(R.drawable.symbol_bell_slash_compact_16, R.string.CallStateUpdatePopupWindow__ringing_off),
-    RINGING_DISABLED(null, R.string.CallStateUpdatePopupWindow__group_is_too_large),
-    MIC_ON(R.drawable.symbol_mic_compact_16, R.string.CallStateUpdatePopupWindow__mic_on),
-    MIC_OFF(R.drawable.symbol_mic_slash_compact_16, R.string.CallStateUpdatePopupWindow__mic_off),
-    SPEAKER_ON(R.drawable.symbol_speaker_24, R.string.CallStateUpdatePopupWindow__speaker_on),
-    SPEAKER_OFF(R.drawable.symbol_speaker_slash_24, R.string.CallStateUpdatePopupWindow__speaker_off)
   }
 }

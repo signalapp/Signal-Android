@@ -27,6 +27,7 @@ object DonationSerializationHelper {
     return PendingOneTimeDonation(
       badge = Badges.toDatabaseBadge(badge),
       paymentMethodType = when (paymentSourceType) {
+        PaymentSourceType.GooglePlayBilling -> error("Unsupported payment source.")
         PaymentSourceType.PayPal -> PendingOneTimeDonation.PaymentMethodType.PAYPAL
         PaymentSourceType.Stripe.CreditCard, PaymentSourceType.Stripe.GooglePay, PaymentSourceType.Unknown -> PendingOneTimeDonation.PaymentMethodType.CARD
         PaymentSourceType.Stripe.SEPADebit -> PendingOneTimeDonation.PaymentMethodType.SEPA_DEBIT

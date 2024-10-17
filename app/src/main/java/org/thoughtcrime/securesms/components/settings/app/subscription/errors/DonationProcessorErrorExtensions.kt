@@ -9,9 +9,9 @@ import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeFailureCode
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
-import org.whispersystems.signalservice.internal.push.exceptions.DonationProcessorError
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 
-fun DonationProcessorError.toDonationError(
+fun InAppPaymentProcessorError.toDonationError(
   source: DonationErrorSource,
   method: PaymentSourceType
 ): DonationError {
@@ -43,6 +43,10 @@ fun DonationProcessorError.toDonationError(
           DonationError.PaymentSetupError.PayPalCodedError(source, this, code.toInt())
         }
       }
+    }
+    ActiveSubscription.Processor.GOOGLE_PLAY_BILLING -> {
+      check(method is PaymentSourceType.GooglePlayBilling)
+      DonationError.PaymentSetupError.GenericError(source, this)
     }
   }
 }

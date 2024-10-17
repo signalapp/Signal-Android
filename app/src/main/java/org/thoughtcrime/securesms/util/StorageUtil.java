@@ -46,6 +46,24 @@ public class StorageUtil {
     return backups;
   }
 
+  public static File getOrCreateBackupV2Directory() throws NoExternalStorageException {
+    File storage = Environment.getExternalStorageDirectory();
+
+    if (!storage.canWrite()) {
+      throw new NoExternalStorageException();
+    }
+
+    File backups = getBackupV2Directory();
+
+    if (!backups.exists()) {
+      if (!backups.mkdirs()) {
+        throw new NoExternalStorageException("Unable to create backup directory...");
+      }
+    }
+
+    return backups;
+  }
+
   public static File getBackupDirectory() throws NoExternalStorageException {
     File storage = Environment.getExternalStorageDirectory();
     File signal  = new File(storage, "Signal");
@@ -54,6 +72,18 @@ public class StorageUtil {
     //noinspection ConstantConditions
     if (BuildConfig.APPLICATION_ID.startsWith(PRODUCTION_PACKAGE_ID + ".")) {
       backups = new File(backups, BuildConfig.APPLICATION_ID.substring(PRODUCTION_PACKAGE_ID.length() + 1));
+    }
+
+    return backups;
+  }
+
+  public static File getBackupV2Directory() throws NoExternalStorageException {
+    File storage = Environment.getExternalStorageDirectory();
+    File backups  = new File(storage, "Signal");
+
+    //noinspection ConstantConditions
+    if (BuildConfig.APPLICATION_ID.startsWith(PRODUCTION_PACKAGE_ID + ".")) {
+      backups = new File(storage, BuildConfig.APPLICATION_ID.substring(PRODUCTION_PACKAGE_ID.length() + 1));
     }
 
     return backups;
@@ -115,7 +145,9 @@ public class StorageUtil {
   }
 
   public static boolean canOnlyReadSelectedMediaStore() {
-    return Build.VERSION.SDK_INT >= 34 && Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED);
+    return Build.VERSION.SDK_INT >= 34 &&
+           Permissions.hasAll(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) &&
+           !Permissions.hasAny(AppDependencies.getApplication(), Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO);
   }
 
   public static boolean canReadAllFromMediaStore() {

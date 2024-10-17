@@ -292,13 +292,13 @@ class InAppPaymentCheckoutDelegate(
         }
 
         is DonationError.BadgeRedemptionError.DonationPending -> {
-          Log.d(TAG, "User launched an external application.", true)
-          errorHandlerCallback?.onUserLaunchedAnExternalApplication()
+          Log.d(TAG, "Long-running donation is still pending.", true)
+          errorHandlerCallback?.navigateToDonationPending(inAppPayment)
         }
 
         is DonationError.UserLaunchedExternalApplication -> {
-          Log.d(TAG, "Long-running donation is still pending.", true)
-          errorHandlerCallback?.navigateToDonationPending(inAppPayment)
+          Log.d(TAG, "User launched an external application.", true)
+          errorHandlerCallback?.onUserLaunchedAnExternalApplication()
         }
 
         else -> {

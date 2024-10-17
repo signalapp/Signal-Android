@@ -15,10 +15,12 @@ abstract class FragmentWrapperActivity : PassphraseRequiredActivity() {
   protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
   protected open val contentViewId: Int = R.layout.fragment_container
 
-  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    super.onCreate(savedInstanceState, ready)
-    setContentView(contentViewId)
+  override fun onPreCreate() {
     dynamicTheme.onCreate(this)
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    setContentView(contentViewId)
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()

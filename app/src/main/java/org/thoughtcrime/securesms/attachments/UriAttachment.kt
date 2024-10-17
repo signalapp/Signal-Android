@@ -14,7 +14,7 @@ class UriAttachment : Attachment {
 
   constructor(
     uri: Uri,
-    contentType: String,
+    contentType: String?,
     transferState: Int,
     size: Long,
     fileName: String?,
@@ -50,7 +50,7 @@ class UriAttachment : Attachment {
   @JvmOverloads
   constructor(
     dataUri: Uri,
-    contentType: String,
+    contentType: String?,
     transferState: Int,
     size: Long,
     width: Int,
@@ -75,6 +75,7 @@ class UriAttachment : Attachment {
     cdn = Cdn.CDN_0,
     remoteLocation = null,
     remoteKey = null,
+    remoteIv = null,
     remoteDigest = null,
     incrementalDigest = null,
     fastPreflightId = fastPreflightId,

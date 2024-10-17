@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -25,11 +27,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.EditTextUtil;
 import org.signal.core.util.StringUtil;
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;

@@ -9,8 +9,8 @@ import com.google.common.io.CountingInputStream
 import org.signal.core.util.readFully
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.readVarInt32
+import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.MacInputStream
-import org.signal.core.util.stream.TruncatingInputStream
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.whispersystems.signalservice.api.backup.BackupKey
@@ -45,7 +45,7 @@ class EncryptedBackupReader(
   init {
     val keyMaterial = key.deriveBackupSecrets(aci)
 
-    validateMac(keyMaterial.macKey, length, dataStream())
+    dataStream().use { validateMac(keyMaterial.macKey, length, it) }
 
     countingStream = CountingInputStream(dataStream())
     val iv = countingStream.readNBytesOrThrow(16)
@@ -56,7 +56,7 @@ class EncryptedBackupReader(
 
     stream = GZIPInputStream(
       CipherInputStream(
-        TruncatingInputStream(
+        LimitedInputStream(
           wrapped = countingStream,
           maxBytes = length - MAC_SIZE
         ),
@@ -121,7 +121,7 @@ class EncryptedBackupReader(
       }
 
       val macStream = MacInputStream(
-        wrapped = TruncatingInputStream(dataStream, maxBytes = streamLength - MAC_SIZE),
+        wrapped = LimitedInputStream(dataStream, maxBytes = streamLength - MAC_SIZE),
         mac = mac
       )
 

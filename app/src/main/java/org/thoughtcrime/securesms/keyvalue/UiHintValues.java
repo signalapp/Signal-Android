@@ -27,6 +27,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String DISMISSED_CONTACTS_PERMISSION_BANNER     = "uihints.dismissed_contacts_permission_banner";
   private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
   private static final String LAST_SUPPORT_VERSION_SEEN                = "uihints.last_support_version_seen";
+  private static final String HAS_EVER_ENABLED_REMOTE_BACKUPS          = "uihints.has_ever_enabled_remote_backups";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -39,7 +40,7 @@ public class UiHintValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Arrays.asList(NEVER_DISPLAY_PULL_TO_FILTER_TIP, HAS_COMPLETED_USERNAME_ONBOARDING, HAS_SEEN_TEXT_FORMATTING_ALERT);
+    return Arrays.asList(NEVER_DISPLAY_PULL_TO_FILTER_TIP, HAS_COMPLETED_USERNAME_ONBOARDING, HAS_SEEN_TEXT_FORMATTING_ALERT, HAS_EVER_ENABLED_REMOTE_BACKUPS);
   }
 
   public void markHasSeenGroupSettingsMenuToast() {
@@ -199,5 +200,13 @@ public class UiHintValues extends SignalStoreValues {
    */
   public void setLastSupportVersionSeen(int version) {
     putInteger(LAST_SUPPORT_VERSION_SEEN, version);
+  }
+
+  public void markHasEverEnabledRemoteBackups() {
+    putBoolean(HAS_EVER_ENABLED_REMOTE_BACKUPS, true);
+  }
+
+  public boolean getHasEverEnabledRemoteBackups() {
+    return getBoolean(HAS_EVER_ENABLED_REMOTE_BACKUPS, false);
   }
 }

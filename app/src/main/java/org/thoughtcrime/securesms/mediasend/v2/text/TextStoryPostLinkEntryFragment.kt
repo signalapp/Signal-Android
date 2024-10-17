@@ -50,7 +50,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
           Triple("$scheme$it", input.selectionStart + scheme.length, input.selectionEnd + scheme.length)
         }
 
-        linkPreviewViewModel.onTextChanged(requireContext(), uriString.toString(), selectionStart, selectionEnd)
+        linkPreviewViewModel.onTextChanged(uriString.toString(), selectionStart, selectionEnd)
       }
     )
 

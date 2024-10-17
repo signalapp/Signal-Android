@@ -20,6 +20,7 @@ object TestMms {
     sentTimeMillis: Long = System.currentTimeMillis(),
     receivedTimestampMillis: Long = System.currentTimeMillis(),
     expiresIn: Long = 0,
+    expireTimerVersion: Int = 1,
     viewOnce: Boolean = false,
     distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
     type: Long = MessageTypes.BASE_INBOX_TYPE,
@@ -29,23 +30,24 @@ object TestMms {
     storyType: StoryType = StoryType.NONE
   ): Long {
     val message = OutgoingMessage(
-      recipient,
-      body,
-      emptyList(),
-      sentTimeMillis,
-      expiresIn,
-      viewOnce,
-      distributionType,
-      storyType,
-      null,
-      false,
-      null,
-      emptyList(),
-      emptyList(),
-      emptyList(),
-      emptySet(),
-      emptySet(),
-      null
+      recipient = recipient,
+      body = body,
+      attachments = emptyList(),
+      timestamp = sentTimeMillis,
+      expiresIn = expiresIn,
+      expireTimerVersion = expireTimerVersion,
+      viewOnce = viewOnce,
+      distributionType = distributionType,
+      storyType = storyType,
+      parentStoryId = null,
+      isStoryReaction = false,
+      quote = null,
+      contacts = emptyList(),
+      previews = emptyList(),
+      mentions = emptyList(),
+      networkFailures = emptySet(),
+      mismatches = emptySet(),
+      giftBadge = null
     )
 
     return insert(
@@ -61,7 +63,7 @@ object TestMms {
     )
   }
 
-  fun insert(
+  private fun insert(
     db: SQLiteDatabase,
     message: OutgoingMessage,
     recipientId: RecipientId = message.threadRecipient.id,
@@ -81,6 +83,7 @@ object TestMms {
       put(MessageTable.DATE_RECEIVED, receivedTimestampMillis)
       put(MessageTable.SMS_SUBSCRIPTION_ID, message.subscriptionId)
       put(MessageTable.EXPIRES_IN, message.expiresIn)
+      put(MessageTable.EXPIRE_TIMER_VERSION, message.expireTimerVersion)
       put(MessageTable.VIEW_ONCE, message.isViewOnce)
       put(MessageTable.FROM_RECIPIENT_ID, recipientId.serialize())
       put(MessageTable.TO_RECIPIENT_ID, recipientId.serialize())

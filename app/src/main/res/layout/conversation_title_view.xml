@@ -80,12 +80,13 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/verified_indicator"
-            android:layout_width="12dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="3dp"
-            android:tint="@color/signal_inverse_transparent_80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:layout_marginEnd="2dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_check_24"
+            app:srcCompat="@drawable/ic_safety_number_compact_16"
             tools:visibility="visible" />
 
         <TextView
@@ -99,7 +100,7 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:text="@string/ConversationTitleView_verified"
-            android:textColor="@color/signal_inverse_transparent_80"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
             android:textDirection="ltr" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -111,7 +112,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:textColor="@color/signal_inverse_transparent_80"
+            android:textColor="@color/signal_colorOnSurfaceVariant"
             android:textDirection="ltr"
             tools:text="(123) 123-1234" />
 

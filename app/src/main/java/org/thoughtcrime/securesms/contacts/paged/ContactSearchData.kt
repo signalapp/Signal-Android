@@ -70,6 +70,14 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
   ) : ContactSearchData(ContactSearchKey.Header(sectionKey))
 
   /**
+   * A row containing a chat type (filters that can be applied to a chat folders)
+   */
+  class ChatTypeRow(
+    val imageResId: Int,
+    val chatType: ChatType
+  ) : ContactSearchData(ContactSearchKey.ChatTypeSearchKey(chatType))
+
+  /**
    * A row which the user can click to view all entries for a given section.
    */
   class Expand(val sectionKey: ContactSearchConfiguration.SectionKey) : ContactSearchData(ContactSearchKey.Expand(sectionKey))

@@ -25,13 +25,13 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeBinding
-import org.thoughtcrime.securesms.registration.ReceivedSmsEvent
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.SignalStrengthPhoneStateListener
+import org.thoughtcrime.securesms.registration.sms.ReceivedSmsEvent
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
@@ -286,7 +286,9 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
   private inner class PhoneStateCallback : SignalStrengthPhoneStateListener.Callback {
     override fun onNoCellSignalPresent() {
-      bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
+      if (isAdded) {
+        bottomSheet.showSafely(childFragmentManager, BOTTOM_SHEET_TAG)
+      }
     }
 
     override fun onCellSignalPresent() {

@@ -266,6 +266,7 @@ public class IndividualSendJob extends PushSendJob {
                                                                                                .withAttachments(serviceAttachments)
                                                                                                .withTimestamp(message.getSentTimeMillis())
                                                                                                .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                               .withExpireTimerVersion(message.getExpireTimerVersion())
                                                                                                .withViewOnce(message.isViewOnce())
                                                                                                .withProfileKey(profileKey.orElse(null))
                                                                                                .withSticker(sticker.orElse(null))

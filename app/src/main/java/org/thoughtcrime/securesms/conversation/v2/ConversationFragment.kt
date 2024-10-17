@@ -63,6 +63,8 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.ConversationLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -80,6 +82,10 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -106,6 +112,7 @@ import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
@@ -197,6 +204,7 @@ import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewMo
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
@@ -210,7 +218,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
@@ -228,6 +235,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInfoBotto
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
+import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
@@ -503,6 +511,7 @@ class ConversationFragment :
   private var pinnedShortcutReceiver: BroadcastReceiver? = null
   private var searchMenuItem: MenuItem? = null
   private var isSearchRequested: Boolean = false
+  private var previousPage: KeyboardPage? = null
   private var previousPages: Set<KeyboardPage>? = null
   private var reShowScheduleMessagesBar: Boolean = false
   private var composeTextEventsListener: ComposeTextEventsListener? = null
@@ -1016,17 +1025,33 @@ class ConversationFragment :
       VoiceMessageRecordingSessionCallbacks()
     )
 
-    binding.conversationBanner.listener = ConversationBannerListener()
-    viewModel
-      .reminder
-      .subscribeBy { reminder ->
-        if (reminder.isPresent) {
-          binding.conversationBanner.showReminder(reminder.get())
-        } else {
-          binding.conversationBanner.clearReminder()
+    val conversationBannerListener = ConversationBannerListener()
+    binding.conversationBanner.listener = conversationBannerListener
+
+    lifecycleScope.launch {
+      viewModel
+        .getBannerFlows(
+          context = requireContext(),
+          groupJoinClickListener = conversationBannerListener::reviewJoinRequestsAction,
+          onSuggestionAddMembers = {
+            conversationGroupViewModel.groupRecordSnapshot?.let { groupRecord ->
+              GroupsV1MigrationSuggestionsDialog.show(requireActivity(), groupRecord.id.requireV2(), groupRecord.gv1MigrationSuggestions)
+            }
+          },
+          onSuggestionNoThanks = conversationGroupViewModel::onSuggestedMembersBannerDismissed,
+          bubbleClickListener = conversationBannerListener::changeBubbleSettingAction
+        )
+        .distinctUntilChanged()
+        .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        .flowOn(Dispatchers.Main)
+        .collect {
+          binding.conversationBanner.collectAndShowBanners(it)
         }
-      }
-      .addTo(disposables)
+    }
+
+    if (TextSecurePreferences.getServiceOutage(context)) {
+      AppDependencies.jobManager.add(ServiceOutageDetectionJob())
+    }
 
     viewModel
       .identityRecordsObservable
@@ -1045,8 +1070,14 @@ class ConversationFragment :
       this::handleReplyToMessage
     ).attachToRecyclerView(binding.conversationItemRecycler)
 
-    draftViewModel.loadShareOrDraftData(shareDataTimestampViewModel.timestamp)
-      .subscribeBy { data -> handleShareOrDraftData(data) }
+    viewModel
+      .inputReadyState
+      .take(1)
+      .flatMapMaybe { inputReadyState ->
+        draftViewModel.loadShareOrDraftData(shareDataTimestampViewModel.timestamp)
+          .map { inputReadyState to it }
+      }
+      .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
       .addTo(disposables)
 
     disposables.add(
@@ -1239,7 +1270,7 @@ class ConversationFragment :
         videoGif,
         Optional.empty(),
         Optional.empty(),
-        Optional.empty(),
+        Optional.of(AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code)),
         Optional.empty()
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
@@ -1437,6 +1468,7 @@ class ConversationFragment :
   private fun presentScrollButtons(scrollButtonState: ConversationScrollButtonState) {
     Log.d(TAG, "Update scroll state $scrollButtonState")
     binding.scrollToBottom.setUnreadCount(scrollButtonState.unreadCount)
+    binding.scrollToMention.setUnreadCount(0)
     binding.scrollToMention.isShown = scrollButtonState.hasMentions && scrollButtonState.showScrollButtons
     binding.scrollToBottom.isShown = scrollButtonState.showScrollButtons
   }
@@ -1459,7 +1491,9 @@ class ConversationFragment :
   private fun handleVideoCall() {
     val recipient = viewModel.recipientSnapshot ?: return
     if (!recipient.isGroup) {
-      CommunicationActions.startVideoCall(this, recipient)
+      CommunicationActions.startVideoCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
       return
     }
 
@@ -1475,7 +1509,9 @@ class ConversationFragment :
         if (notAllowed) {
           ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
         } else {
-          CommunicationActions.startVideoCall(this, recipient)
+          CommunicationActions.startVideoCall(this, recipient) {
+            YouAreAlreadyInACallSnackbar.show(requireView())
+          }
         }
       }
   }
@@ -1491,8 +1527,17 @@ class ConversationFragment :
     }
   }
 
-  private fun handleShareOrDraftData(data: ShareOrDraftData) {
+  private fun handleShareOrDraftData(inputReadyState: InputReadyState, data: ShareOrDraftData) {
     shareDataTimestampViewModel.timestamp = args.shareDataTimestamp
+
+    if (inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false) {
+      Toast.makeText(requireContext(), R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group, Toast.LENGTH_SHORT).show()
+      draftViewModel.clearDraft()
+      return
+    } else if (inputReadyState.shouldClearDraft()) {
+      draftViewModel.clearDraft()
+      return
+    }
 
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
@@ -1914,6 +1959,10 @@ class ConversationFragment :
         onComplete = {
           onSendComplete()
           afterSendComplete()
+        },
+        onError = {
+          Log.w(TAG, "Error received during send!", it)
+          toast(R.string.ConversationActivity_error_sending_media)
         }
       )
   }
@@ -1928,7 +1977,7 @@ class ConversationFragment :
 
     updateLinkPreviewState()
 
-    draftViewModel.onSendComplete()
+    draftViewModel.clearDraft()
 
     inputPanel.exitEditMessageMode()
 
@@ -2318,7 +2367,8 @@ class ConversationFragment :
   }
 
   private fun handleEditMessage(conversationMessage: ConversationMessage) {
-    if (!MessageConstraintsUtil.isWithinMaxEdits(conversationMessage.messageRecord)) {
+    val isNoteToSelf = viewModel.recipientSnapshot?.isSelf ?: false
+    if (!isNoteToSelf && !MessageConstraintsUtil.isWithinMaxEdits(conversationMessage.messageRecord)) {
       Log.i(TAG, "Too many edits to the message")
       Dialogs.showAlertDialog(requireContext(), null, resources.getQuantityString(R.plurals.ConversationActivity_edit_message_too_many_edits, MessageConstraintsUtil.MAX_EDIT_COUNT, MessageConstraintsUtil.MAX_EDIT_COUNT))
 
@@ -2914,7 +2964,9 @@ class ConversationFragment :
     override fun onJoinGroupCallClicked() {
       val activity = activity ?: return
       val recipient = viewModel.recipientSnapshot ?: return
-      CommunicationActions.startVideoCall(activity, recipient)
+      CommunicationActions.startVideoCall(activity, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) {
@@ -3232,7 +3284,9 @@ class ConversationFragment :
     }
 
     override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
-      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey)
+      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun onShowSafetyTips(forGroup: Boolean) {
@@ -3372,7 +3426,9 @@ class ConversationFragment :
 
     override fun handleDial() {
       val recipient: Recipient = viewModel.recipientSnapshot ?: return
-      CommunicationActions.startVoiceCall(this@ConversationFragment, recipient)
+      CommunicationActions.startVoiceCall(this@ConversationFragment, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     }
 
     override fun handleViewMedia() {
@@ -3675,7 +3731,8 @@ class ConversationFragment :
         contacts = emptyList(),
         clearCompose = true,
         linkPreviews = emptyList(),
-        isViewOnce = result.isViewOnce
+        isViewOnce = result.isViewOnce,
+        bypassPreSendSafetyNumberCheck = true
       ) {
         viewModel.deleteSlideData(slides)
       }
@@ -3694,7 +3751,8 @@ class ConversationFragment :
         clearCompose = true,
         linkPreviews = emptyList(),
         preUploadResults = result.preUploadResults,
-        isViewOnce = result.isViewOnce
+        isViewOnce = result.isViewOnce,
+        bypassPreSendSafetyNumberCheck = true
       )
     }
 
@@ -4095,6 +4153,7 @@ class ConversationFragment :
 
     override fun onEnterEditMode() {
       updateToggleButtonState()
+      previousPage = keyboardPagerViewModel.page().value
       previousPages = keyboardPagerViewModel.pages().value
       keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
       onKeyboardChanged(KeyboardPage.EMOJI)
@@ -4108,6 +4167,11 @@ class ConversationFragment :
       if (previousPages != null) {
         keyboardPagerViewModel.setPages(previousPages!!)
         previousPages = null
+      }
+      if (previousPage != null) {
+        keyboardPagerViewModel.switchToPage(previousPage!!)
+        onKeyboardChanged(previousPage!!)
+        previousPage = null
       }
       updateLinkPreviewState()
     }
@@ -4260,11 +4324,6 @@ class ConversationFragment :
   @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
   fun onGroupCallPeekEvent(groupCallPeekEvent: GroupCallPeekEvent) {
     groupCallViewModel.onGroupCallPeekEvent(groupCallPeekEvent)
-  }
-
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onReminderUpdateEvent(reminderUpdateEvent: ReminderUpdateEvent) {
-    viewModel.refreshReminder()
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)

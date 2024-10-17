@@ -521,15 +521,6 @@ object RemoteConfig {
     defaultValue = null
   )
 
-  /** Whether to use the custom streaming muxer or built in android muxer.  */
-  @JvmStatic
-  @get:JvmName("useStreamingVideoMuxer")
-  val useStreamingVideoMuxer: Boolean by remoteBoolean(
-    key = "android.customVideoMuxer.1",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** The time in between routine CDS refreshes, in seconds.  */
   @JvmStatic
   @get:JvmName("cdsRefreshIntervalSeconds")
@@ -716,6 +707,27 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether the Oboe ADM should be used or not.  */
+  val oboeDeployment: Boolean by remoteBoolean(
+    key = "android.calling.oboeDeployment",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
+  /** A comma-separated list of models that should use the Java ADM instead of the Oboe ADM.  */
+  val useJavaAdmModels: String by remoteString(
+    key = "android.calling.useJavaAdmList",
+    defaultValue = "",
+    hotSwappable = true
+  )
+
+  /** A comma-separated list of models that should use software AEC for calling with the Oboe ADM.  */
+  val useSoftwareAecForOboeModels: String by remoteString(
+    key = "android.calling.useSoftwareAecForOboe",
+    defaultValue = "",
+    hotSwappable = true
+  )
+
   /** A comma-separated list of manufacturers that *should* use Telecom for calling.  */
   val telecomManufacturerAllowList: String by remoteString(
     key = "android.calling.telecomAllowList",
@@ -832,17 +844,6 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = true,
     sticky = true
-  )
-
-  /**
-   * Whether or not ad-hoc calling is enabled
-   */
-  @JvmStatic
-  @get:JvmName("adHocCalling")
-  val adHocCalling: Boolean by remoteBoolean(
-    key = "android.calling.ad.hoc.3",
-    defaultValue = false,
-    hotSwappable = false
   )
 
   /** Maximum number of attachments allowed to be sent/received.  */
@@ -1031,15 +1032,6 @@ object RemoteConfig {
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
-  /** Whether or not to use the custom CameraX controller class  */
-  @JvmStatic
-  @get:JvmName("customCameraXController")
-  val customCameraXController: Boolean by remoteBoolean(
-    key = "android.cameraXCustomController",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
@@ -1091,15 +1083,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether to use the new Banner system instead of the old Reminder system.  */
-  @JvmStatic
-  @get:JvmName("newBannerUi")
-  val newBannerUi: Boolean by remoteBoolean(
-    key = "android.newBannerUi",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Which phase we're in for the SVR3 migration  */
   val svr3MigrationPhase: Int by remoteInt(
     key = "global.svr3.phase",
@@ -1118,6 +1101,22 @@ object RemoteConfig {
     key = "android.connectivityWarningConfig",
     defaultValue = "",
     hotSwappable = true
+  )
+
+  @JvmStatic
+  @get:JvmName("newCallUi")
+  val newCallUi: Boolean by remoteBoolean(
+    key = "android.newCallUi",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
+  @JvmStatic
+  @get:JvmName("useHevcEncoder")
+  val useHevcEncoder: Boolean by remoteBoolean(
+    key = "android.useHevcEncoder",
+    defaultValue = false,
+    hotSwappable = false
   )
 
   // endregion

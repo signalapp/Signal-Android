@@ -186,6 +186,7 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   public UUID restoreFromBackup(@NonNull RecipientId recipientId,
                                 long timestamp,
                                 long blockIndex,
+                                long blockTimestamp,
                                 @NonNull String note,
                                 @NonNull Direction direction,
                                 @NonNull State state,
@@ -194,10 +195,16 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
                                 @Nullable byte[] transaction,
                                 @Nullable byte[] receipt,
                                 @Nullable PaymentMetaData metaData,
-                                boolean seen) {
+                                boolean seen,
+                                @Nullable FailureReason failureReason)
+  {
     UUID uuid = UUID.randomUUID();
     try {
       create(uuid, recipientId, null, timestamp, blockIndex, note, direction, state, amount, fee, transaction, receipt, metaData, seen);
+      updateBlockDetails(uuid, blockIndex, blockTimestamp);
+      if (failureReason != null) {
+        markPaymentFailed(uuid, failureReason);
+      }
     } catch (SerializationException | PublicKeyConflictException e) {
       return null;
     }
@@ -619,13 +626,20 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   }
 
   private static @NonNull PaymentTransaction readPayment(@NonNull Cursor cursor) {
+    State         state         = State.deserialize(CursorUtil.requireInt(cursor, STATE));
+    FailureReason failureReason = null;
+
+    if (state == State.FAILED) {
+      failureReason = FailureReason.deserialize(CursorUtil.requireInt(cursor, FAILURE));
+    }
+
     return new PaymentTransaction(UUID.fromString(CursorUtil.requireString(cursor, PAYMENT_UUID)),
                                   getRecipientId(cursor),
                                   MobileCoinPublicAddress.fromBase58NullableOrThrow(CursorUtil.requireString(cursor, ADDRESS)),
                                   CursorUtil.requireLong(cursor, TIMESTAMP),
                                   Direction.deserialize(CursorUtil.requireInt(cursor, DIRECTION)),
-                                  State.deserialize(CursorUtil.requireInt(cursor, STATE)),
-                                  FailureReason.deserialize(CursorUtil.requireInt(cursor, FAILURE)),
+                                  state,
+                                  failureReason,
                                   CursorUtil.requireString(cursor, NOTE),
                                   getMoneyValue(CursorUtil.requireBlob(cursor, AMOUNT)),
                                   getMoneyValue(CursorUtil.requireBlob(cursor, FEE)),

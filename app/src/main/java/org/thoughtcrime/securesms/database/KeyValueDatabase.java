@@ -82,13 +82,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   @Override
   public void onCreate(SQLiteDatabase db) {
     Log.i(TAG, "onCreate()");
-
     db.execSQL(CREATE_TABLE);
-
-    if (SignalDatabase.hasTable("key_value")) {
-      Log.i(TAG, "Found old key_value table. Migrating data.");
-      migrateDataFromPreviousDatabase(SignalDatabase.getRawDatabase(), db);
-    }
   }
 
   @Override
@@ -99,15 +93,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   @Override
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
-
     db.setForeignKeyConstraintsEnabled(true);
-
-    SignalExecutors.BOUNDED.execute(() -> {
-      if (SignalDatabase.hasTable("key_value")) {
-        Log.i(TAG, "Dropping original key_value table from the main database.");
-        SignalDatabase.getRawDatabase().execSQL("DROP TABLE key_value");
-      }
-    });
   }
 
   @Override
@@ -200,38 +186,8 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return getWritableDatabase();
   }
 
-  private static void migrateDataFromPreviousDatabase(@NonNull SQLiteDatabase oldDb, @NonNull SQLiteDatabase newDb) {
-    try (Cursor cursor = oldDb.rawQuery("SELECT * FROM key_value", null)) {
-      while (cursor.moveToNext()) {
-        int type = CursorUtil.requireInt(cursor, "type");
-        ContentValues values = new ContentValues();
-        values.put(KEY, CursorUtil.requireString(cursor, "key"));
-        values.put(TYPE, type);
-
-        switch (type) {
-          case 0:
-            values.put(VALUE, CursorUtil.requireBlob(cursor, "value"));
-            break;
-          case 1:
-            values.put(VALUE, CursorUtil.requireBoolean(cursor, "value"));
-            break;
-          case 2:
-            values.put(VALUE, CursorUtil.requireFloat(cursor, "value"));
-            break;
-          case 3:
-            values.put(VALUE, CursorUtil.requireInt(cursor, "value"));
-            break;
-          case 4:
-            values.put(VALUE, CursorUtil.requireLong(cursor, "value"));
-            break;
-          case 5:
-            values.put(VALUE, CursorUtil.requireString(cursor, "value"));
-            break;
-        }
-
-        newDb.insert(TABLE_NAME, null, values);
-      }
-    }
+  public void clear() {
+    getWritableDatabase().delete(TABLE_NAME, null, null);
   }
 
   private enum Type {

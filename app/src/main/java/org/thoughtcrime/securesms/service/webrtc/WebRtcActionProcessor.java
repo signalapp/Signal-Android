@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadat
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
@@ -99,7 +100,7 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleIsInCallQuery(@NonNull WebRtcServiceState currentState, @Nullable ResultReceiver resultReceiver) {
     if (resultReceiver != null) {
-      resultReceiver.send(0, null);
+      resultReceiver.send(0, ActiveCallData.fromCallState(currentState).toBundle());
     }
     return currentState;
   }
@@ -692,7 +693,7 @@ public abstract class WebRtcActionProcessor {
       activePeer = remotePeer;
     }
 
-    AppDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
+    AppForegroundObserver.removeListener(webRtcInteractor.getForegroundListener());
 
     if (activePeer.getState() != CallState.IDLE) {
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);

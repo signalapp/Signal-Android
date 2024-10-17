@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">네</string>
     <string name="no">아니요</string>
     <string name="delete">삭제</string>
@@ -258,6 +261,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">사진은 탭하고, 동영상은 길게 누르세요.</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">캡처</string>
     <string name="CameraXFragment_change_camera_description">카메라 변경</string>
     <string name="CameraXFragment_open_gallery_description">갤러리 열기</string>
@@ -342,6 +346,8 @@
     <string name="CommunicationActions_invalid_link">잘못된 링크</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">통화 링크가 올바르지 않습니다. 통화에 참여하기 전에 링크가 정확한지 확인하세요.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">이미 통화에 참여 중입니다.</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -359,6 +365,8 @@
     <string name="ContactsCursorLoader__chats">대화</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">메시지</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s에 메시지 보내기</string>
@@ -398,6 +406,7 @@
     <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없습니다.</string>
     <string name="ConversationItem_copied_text">%1$s 복사됨</string>
     <string name="ConversationItem_from_s">%1$s에서</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s에게</string>
     <string name="ConversationItem_read_more">더 알아보기</string>
     <string name="ConversationItem_download_more">더 다운로드</string>
@@ -431,6 +440,7 @@
     <string name="ConversationActivity_send_edit">수정한 메시지 보내기</string>
     <string name="ConversationActivity_compose_message">메시지 작성</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">죄송합니다. 파일 첨부 설정 중 오류가 발생했습니다.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">수신자가 올바른 SMS 또는 이메일 주소가 아닙니다!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">메시지가 비어 있습니다!</string>
     <string name="ConversationActivity_group_members">그룹 멤버</string>
@@ -563,6 +573,7 @@
         <item quantity="other">첨부 파일 %1$d개를 저장 공간에 저장 중…</item>
     </plurals>
     <string name="ConversationFragment_pending">대기 중…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">데이터(Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -787,7 +798,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">백업 생성</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">준비됐습니다. 지금 백업을 시작하세요.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">백업 용량에 따라 시간이 더 오래 걸릴 수 있습니다. 백업하는 동안 평상시처럼 휴대폰을 사용하셔도 됩니다.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -951,6 +962,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">연결된 기기 없음</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">잠금 해제하여 기기 연결</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">연결 전 본인 확인</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">계속을 탭하고 휴대폰 잠금을 풀어 확인하세요. Signal PIN을 입력하지 마세요.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">계속</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -978,6 +995,7 @@
     <string name="DeviceListActivity_unlink_s">\'%1$s\' 기기를 연결 해제하시겠습니까?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">기기를 연결 해제하면 메시지를 보내거나 받을 수 없습니다.</string>
     <string name="DeviceListActivity_network_connection_failed">네트워크 연결 실패</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">다시 시도해 주세요.</string>
     <string name="DeviceListActivity_unlinking_device">기기 연결 해제 중…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">기기 연결 해제 중</string>
@@ -1360,7 +1378,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">그룹 링크</string>
     <string name="ShareableGroupLinkDialogFragment__share">공유</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">링크 초기화</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">새 멤버 승인</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">관리자 승인 필요</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">그룹 링크로 참가하려는 새 멤버를 승인하려면 관리자 권한이 필요합니다.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">그룹 링크를 초기화하시겠습니까? 이 링크로 사람들이 그룹에 참가할 수 없게 됩니다.</string>
 
@@ -1456,6 +1474,7 @@
         <item quantity="other">SMS 초대 %1$d개를 보내시겠습니까?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 옮겨요! %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">공유하기 위해 사용할 수 있는 앱이 없습니다.</string>
 
     <!-- LearnMoreTextView -->
@@ -1865,6 +1884,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s 님이 내게 메시지를 보내고 내 이름과 사진을 공유할 수 있도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">%1$s 님이 내게 메시지를 보내도록 허용할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s의 업데이트와 메시지를 받아보시겠어요? 차단을 해제할 때까지 모든 업데이트를 차단합니다.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">이 그룹과 대화를 계속하고 멤버들에게 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">이 레거시 그룹은 더 이상 사용할 수 없습니다. 새 그룹을 만들어 @멘션 및 관리자와 같은 새로운 기능을 활성화하세요.</string>
@@ -1890,6 +1910,7 @@
     <plurals name="MessageRequestProfileView_invited">
         <item quantity="other">+%1$d명 초대함</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">%1$d개의 추가 그룹</item>
     </plurals>
@@ -1915,6 +1936,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">기기를 찾을 수 없습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">네트워크 오류가 발생했습니다.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">잘못된 QR 코드입니다.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">죄송합니다. 이미 너무 많은 기기가 연결되어 있습니다. 일부를 제거하세요.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">죄송합니다. 올바른 기기 연결 QR 코드가 아닙니다.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
@@ -1936,11 +1958,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">암호 제출</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">잘못된 암호입니다!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Signal 잠금 해제</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - 잠금 화면</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">지도</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">고정</string>
     <string name="PlacePickerActivity_accept_address">주소 허용</string>
 
@@ -2033,6 +2057,16 @@
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
+
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">뒤로 가기</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">통화 정보</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">카메라가 꺼졌습니다.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">비디오를 사용하려면 탭하세요</string>
@@ -2153,6 +2187,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">아무도 없음</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s 님이 통화 중입니다.</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s이 이 통화에 있습니다</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 및 %2$s 님이 통화에 참여했습니다.</string>
 
@@ -2172,6 +2207,8 @@
     <string name="WebRtcCallView__additional_actions">작업 더 보기</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">전화 종료</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">그룹 벨소리 토글</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI 오류가 발생했습니다. 이 오류를 개발자에게 보고해 주세요.</string>
@@ -2409,6 +2446,7 @@
     <string name="SharedContactView_message">Signal 메시지</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">더 보기</string>
 
     <!-- SignalPinReminders -->
@@ -2440,6 +2478,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">설치된 스티커 없음</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">받은 메시지의 스티커가 여기에 표시됩니다.</string>
     <string name="StickerManagementAdapter_untitled">제목 없음</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">알 수 없음</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2542,6 +2581,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">나중에 다시 시도하겠습니다.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal을 업데이트했습니다.</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">%1$s 버전으로 자동 업데이트되었습니다.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">%1$s 버전으로 업데이트했습니다.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">메시지를 보내시겠습니까?</string>
@@ -2659,6 +2699,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">미디어를 더 이상 이용할 수 없습니다.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">미디어를 재생할 수 없습니다.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">메시지 검색 중 오류가 발생했습니다.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">미디어를 공유할 수 있는 앱을 찾을 수 없습니다.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">닫기</string>
@@ -2728,6 +2769,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">메시지</string>
     <string name="NotificationChannel_calls">전화</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">실패</string>
     <string name="NotificationChannel_backups">백업</string>
     <string name="NotificationChannel_locked_status">잠금 상태</string>
@@ -2737,6 +2779,7 @@
     <string name="NotificationChannel_missing_display_name">알 수 없음</string>
     <string name="NotificationChannel_voice_notes">음성 노트</string>
     <string name="NotificationChannel_contact_joined_signal">연락처가 Signal에 등록함</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">알림 채널 설정을 열 수 있는 활동이 없습니다.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">백그라운드 연결</string>
@@ -2954,6 +2997,7 @@
     <string name="conversation_activity__attachment_thumbnail">첨부 파일 섬네일</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">빠른 카메라 첨부 파일 창 전환</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">오디오 첨부 파일 녹음 후 보내기</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">오디오 첨부 파일 녹음 잠금</string>
     <string name="conversation_activity__message_could_not_be_sent">메시지를 보낼 수 없습니다. 연결을 확인하고 다시 시도하세요.</string>
 
@@ -2972,6 +3016,7 @@
     <string name="conversation_item_sent__message_read">메시지 읽음</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
 
     <!-- ConversationUpdateItem -->
@@ -3056,6 +3101,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">모두 좋아보이네요!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">전화 알림을 받으려면 여기를 탭하고 \'알림 표시\'를 켜세요.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">전화 알림을 받으려면 여기를 탭하고 알림을 켜고 소리 및 팝업이 활성화되어 있는지 확인하세요.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">전화 알림을 받으려면 여기를 탭하고 \'배터리\' 설정에서 백그라운드 활동을 활성화하세요. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">설정</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">전화 알림을 받으려면 설정을 탭하고 \'알림 표시\'를 켭니다.</string>
@@ -3283,6 +3329,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">지원 정보</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android 지원 요청</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3370,6 +3417,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">보내는 메시지에 첨부된 웹 사이트의 링크 미리보기를 불러옵니다.</string>
     <string name="preferences__change_passphrase">암호 변경</string>
     <string name="preferences__change_your_passphrase">암호 변경</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">암호 화면 잠금 활성화</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">암호로 화면 및 알림 금기</string>
     <string name="preferences__screen_security">화면 보안</string>
@@ -3382,6 +3430,7 @@
     <string name="preferences__pref_led_blink_title">LED 반복 패턴</string>
     <string name="preferences__customize">사용자 정의</string>
     <string name="preferences__change_sound_and_vibration">소리와 진동 변경하기</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">소리</string>
     <string name="preferences__silent">무음</string>
     <string name="preferences__default">기본값</string>
@@ -3502,10 +3551,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">모든 기기에서 모든 메시지 기록을 영구적으로 제거합니다. 이 작업은 취소할 수 없습니다.</string>
     <string name="preferences_storage__delete_all_now">지금 모두 삭제</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">영원히</string>
     <string name="preferences_storage__one_year">1년</string>
     <string name="preferences_storage__six_months">6개월</string>
     <string name="preferences_storage__thirty_days">30일</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">없음</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="other">메시지 %1$s개</item>
@@ -3529,6 +3580,7 @@
     <string name="preferences_notifications__show">표시</string>
     <string name="preferences_notifications__ringtone">알림 벨소리</string>
     <string name="preferences_chats__message_text_size">메시지 글꼴 사이즈</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">우선순위</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">알림 문제 해결</string>
@@ -3757,6 +3809,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">수취인의 주소 QR 코드를 스캔하세요.</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">요청</string>
     <string name="CreatePaymentFragment__pay">지불</string>
     <string name="CreatePaymentFragment__available_balance_s">사용 가능한 잔액: %1$s</string>
@@ -3887,6 +3940,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">최대 %1$d개 대화만 고정할 수 있습니다.</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">연락처 사진</string>
     <string name="conversation_list_item_view__archived">보관됨</string>
 
@@ -3895,6 +3949,10 @@
     <string name="conversation_list_fragment__fab_content_description">새 대화</string>
     <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">아직 대화가 없습니다.\n친구에게 메시지를 보내 시작해 보세요.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4119,6 +4177,7 @@
     <string name="preferences_chats__chat_backups">대화 백업</string>
     <string name="preferences_chats__transfer_account">계정 이전</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">새 Android 장치로 계정 이전</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">백업 암호 입력</string>
     <string name="RegistrationActivity_restore">복원</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Signal 최신 버전에서 백업을 가져올 수 없습니다.</string>
@@ -4326,6 +4385,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi 설정을 열 수 없습니다. Wi-Fi를 수동으로 켜세요.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">위치 권한 부여</string>
     <string name="DeviceTransferSetup__turn_on_location_services">위치 서비스 켜기</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi 켜기</string>
@@ -4572,6 +4632,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">공유</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">보내기</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -4874,6 +4935,116 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">키보드</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enter 키로 보내기</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">메시지</string>
@@ -4957,6 +5128,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">미디어 품질</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">미디어 전송 품질</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">고품질 미디어는 더 많은 모바일 데이터를 사용할 수 있습니다.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -5228,6 +5400,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">스토리에 추가</string>
     <string name="MediaReviewFragment__add_a_message">메시지 추가</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">답장 추가</string>
     <string name="MediaReviewFragment__send_to">받는 사람</string>
     <string name="MediaReviewFragment__view_once_message">한 번만 볼 수 있는 미디어</string>
@@ -5827,6 +6000,8 @@
     <plurals name="StoryViewerFragment__d_replies">
         <item quantity="other">답장 %1$d개</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">스토리를 더 이상 숨기지 않음</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">추가</string>
     <!-- Used when view receipts are disabled -->
@@ -6773,7 +6948,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">통화 이름 수정</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">모든 멤버 승인</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">관리자 승인 필요</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Signal을 통해 링크 공유</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6829,7 +7004,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">통화 이름 추가</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">모든 멤버 승인</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">관리자 승인 필요</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">링크 공유</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7038,10 +7213,10 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">미디어 백업 사용 안 함</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">백업 구독 만료</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="other">결제를 처리할 수 없어 Signal 미디어 백업 플랜을 취소했습니다. 다음 %1$d일 동안 백업에 저장된 미디어를 다운로드할 수 있습니다. %1$d일이 지나면 백업의 미디어를 삭제합니다.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="other">현재 결제 방법으로 갱신할 수 없어 백업 플랜이 만료되었습니다. %1$d일 후 백업의 미디어가 삭제됩니다.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">언제든 백업 비용을 다시 결제하기 시작하여 모든 미디어를 계속 백업할 수 있습니다. </string>
@@ -7058,9 +7233,9 @@
         <item quantity="other">\'건너 뛰기\'를 선택하면 %1$d일 후 백업의 미디어가 삭제됩니다.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">백업 결제를 처리할 수 없음</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">백업 구독 갱신 실패</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">월간 백업 결제를 처리하는 도중 문제가 발생했습니다. 결제 수단이 최신 상태인지 확인해 주세요. 최신 상태가 아니라면 Google Pay에서 업데이트하세요. Signal에서 며칠 후 다시 결제 처리를 시도합니다.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">결제 방법이 최신 상태인지 확인하세요. 구독 관리를 탭한 다음 결제 방법에서 업데이트를 탭하세요.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">백업을 완료할 수 없음</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7069,12 +7244,16 @@
     <string name="BackupAlertBottomSheet__learn_more">자세히 알아보기</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">건너뛰기</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">구독 관리</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">월 %1$s로 구독</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">지금 미디어 다운로드</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">나중에 다운로드</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">미디어 다운로드 안 함</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">나중에</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">미디어가 삭제됩니다.</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7086,9 +7265,38 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">미디어를 다운로드하려면 %1$s의 여유 공간을 확보하세요.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">미디어를 복원하려면 %1$s의 여유 공간을 확보하세요.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">미디어 복원 중</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">복원을 일시 중지함</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">복구가 완료되었습니다.</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi를 기다리는 중…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">인터넷 연결 없음…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">기기 배터리 부족</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%2$s 중 %1$s</string>
+
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">신용 또는 직불 카드</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7137,8 +7345,18 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">업그레이드하여 이 기능 활성화</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">저장 공간 최적화는 유료 Signal 백업으로만 사용할 수 있습니다. 이 기능을 사용하기 시작하려면 백업 플랜을 업그레이드하세요.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">지금 업그레이드</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">월 %1$s로 구독</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">이 미디어를 더 이상 사용할 수 없음</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="other">현재 Signal 백업 플랜은 최근 %1$d일 미디어를 포함합니다. 모든 미디어를 백업하려면 지금 업그레이드하세요.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">월 %1$s로 구독</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">이제 모든 기기에서 삭제를 동기화합니다</string>
@@ -7147,19 +7365,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">확인</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">결제 기록</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">텍스트 및 모든 미디어 백업</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">결제 세부 정보</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">백업 종류</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">지불 날짜</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">공유</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">월 %1$s, %2$s 갱신</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">마지막 백업 %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal의 안전한 엔드투엔드 암호화 스토리지 서비스를 사용하는 자동 백업.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">설정</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7174,6 +7388,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">백업 빈도</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">백업 셀룰러 데이터 사용</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">백업 키 보기</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">잠금 해제하여 백업 키 보기</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">백업 끄기 및 삭제</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7181,19 +7399,39 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">백업 종류를 변경하고 구독을 취소했습니다.</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">구독 취소 완료</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">다운로드 완료</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">밤사이 백업을 생성합니다.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">백업 종류</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">백업 플랜</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">백업 사용 안 함</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/월</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">백업 활성화</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/월</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">백업 플랜이 무료입니다.</string>
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">%1$s 갱신</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">새 휴대폰을 사용하거나 Signal을 다시 설치할 때 데이터를 잃지 않도록 메시지 기록을 백업하세요.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">다른 백업 방법</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">기기 내 백업</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">백업을 이 기기의 폴더에 저장합니다.</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">관리 또는 취소</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">업그레이드</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7226,12 +7464,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">수동 백업</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">기기 PIN, 암호 또는 패턴을 입력하세요.</string>
-
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Signal에 매달 %1$s 지불</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">혜택:</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7247,29 +7483,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">자세히 알아보기</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">PIN 입력</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Signal PIN을 입력하여 백업을 활성화하세요.</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">다음</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">키보드 전환</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">새로운 PIN 만들기</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN을 사용한 백업 보호</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Signal 재설치 시 Signal PIN을 사용하여 백업을 복원할 수 있습니다. %1$d자리 이상의 PIN을 사용하는 것이 좋습니다.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">PIN을 잊어버리면 백업을 복원할 수 없습니다. 설정에서 언제든지 PIN을 변경할 수 있습니다.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">현재 Signal PIN 사용</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">새로운 PIN 만들기</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">내 백업 키</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">백업 키는 Signal을 다시 설치할 경우 백업을 복원하는 데 사용할 수 있는 64자리 코드입니다.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">키를 잊어버리면 백업을 복원할 수 없습니다. Signal은 백업을 복원하도록 도와드릴 수 없습니다.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">다음</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">백업 키 기록</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">이 키는 계정과 데이터를 복원하는 데 필요합니다. 안전한 곳에 보관해 두세요. 키를 분실하면 계정을 복원할 수 없습니다.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">클립보드에 복사</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">다음</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">키를 안전하게 보관하세요</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">키를 분실할 경우 Signal은 백업을 복원하도록 도와드릴 수 없습니다. 안전한 곳에 키를 보관해 두고, 다른 사람과 공유하지 마세요.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">키를 기록했음</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">계속</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">키 다시 보기</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7284,6 +7526,28 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">백업 유형 변경</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">구독 취소</string>
+    <!-- MessageBackupsType block amount for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__free">무료</string>
+    <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/월</string>
+    <!-- Title for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">문자 + 모든 미디어</string>
+    <!-- Title for paid tier. Placeholder is days of media retention. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="other">문자 + %1$d일간의 미디어</item>
+    </plurals>
+    <!-- Description text for text history feature -->
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">전체 문자 메시지 백업</string>
+    <!-- Description text for paid tier media retention -->
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">전체 미디어 백업</string>
+    <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s 스토리지(%2$s 사진)</string>
+    <!-- Description text for thanks -->
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Signal을 지원해 주셔서 감사합니다!</string>
+    <!-- Description text for free tier media retention. Placeholder is retention day count. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="other">지난 %1$d일간의 미디어</item>
+    </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

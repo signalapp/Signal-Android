@@ -14,18 +14,18 @@ import java.util.Objects;
 
 public final class SingleColorChatWallpaper implements ChatWallpaper, Parcelable {
 
-  public static final ChatWallpaper BLUSH      = new SingleColorChatWallpaper(0xFFE26983, 0f);
-  public static final ChatWallpaper COPPER     = new SingleColorChatWallpaper(0xFFDF9171, 0f);
-  public static final ChatWallpaper DUST       = new SingleColorChatWallpaper(0xFF9E9887, 0f);
-  public static final ChatWallpaper CELADON    = new SingleColorChatWallpaper(0xFF89AE8F, 0f);
-  public static final ChatWallpaper RAINFOREST = new SingleColorChatWallpaper(0xFF146148, 0f);
-  public static final ChatWallpaper PACIFIC    = new SingleColorChatWallpaper(0xFF32C7E2, 0f);
-  public static final ChatWallpaper FROST      = new SingleColorChatWallpaper(0xFF7C99B6, 0f);
-  public static final ChatWallpaper NAVY       = new SingleColorChatWallpaper(0xFF403B91, 0f);
-  public static final ChatWallpaper LILAC      = new SingleColorChatWallpaper(0xFFC988E7, 0f);
-  public static final ChatWallpaper PINK       = new SingleColorChatWallpaper(0xFFE297C3, 0f);
-  public static final ChatWallpaper EGGPLANT   = new SingleColorChatWallpaper(0xFF624249, 0f);
-  public static final ChatWallpaper SILVER     = new SingleColorChatWallpaper(0xFFA2A2AA, 0f);
+  public static final SingleColorChatWallpaper BLUSH      = new SingleColorChatWallpaper(0xFFE26983, 0f);
+  public static final SingleColorChatWallpaper COPPER     = new SingleColorChatWallpaper(0xFFDF9171, 0f);
+  public static final SingleColorChatWallpaper DUST       = new SingleColorChatWallpaper(0xFF9E9887, 0f);
+  public static final SingleColorChatWallpaper CELADON    = new SingleColorChatWallpaper(0xFF89AE8F, 0f);
+  public static final SingleColorChatWallpaper RAINFOREST = new SingleColorChatWallpaper(0xFF146148, 0f);
+  public static final SingleColorChatWallpaper PACIFIC    = new SingleColorChatWallpaper(0xFF32C7E2, 0f);
+  public static final SingleColorChatWallpaper FROST      = new SingleColorChatWallpaper(0xFF7C99B6, 0f);
+  public static final SingleColorChatWallpaper NAVY       = new SingleColorChatWallpaper(0xFF403B91, 0f);
+  public static final SingleColorChatWallpaper LILAC      = new SingleColorChatWallpaper(0xFFC988E7, 0f);
+  public static final SingleColorChatWallpaper PINK       = new SingleColorChatWallpaper(0xFFE297C3, 0f);
+  public static final SingleColorChatWallpaper EGGPLANT   = new SingleColorChatWallpaper(0xFF624249, 0f);
+  public static final SingleColorChatWallpaper SILVER     = new SingleColorChatWallpaper(0xFFA2A2AA, 0f);
 
   private final @ColorInt int   color;
   private final           float dimLevelInDarkTheme;
@@ -93,6 +93,10 @@ public final class SingleColorChatWallpaper implements ChatWallpaper, Parcelable
   @Override
   public int hashCode() {
     return Objects.hash(color, dimLevelInDarkTheme);
+  }
+
+  public int getColor() {
+    return color;
   }
 
   public static final Creator<SingleColorChatWallpaper> CREATOR = new Creator<SingleColorChatWallpaper>() {

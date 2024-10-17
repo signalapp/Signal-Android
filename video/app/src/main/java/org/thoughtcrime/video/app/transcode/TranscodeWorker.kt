@@ -21,14 +21,16 @@ import androidx.work.Data
 import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import org.signal.core.util.getLength
 import org.signal.core.util.readLength
 import org.thoughtcrime.securesms.video.StreamingTranscoder
 import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
+import org.thoughtcrime.securesms.video.videoconverter.MediaConverter.VideoCodec
 import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
 import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
 import org.thoughtcrime.video.app.R
+import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
 import java.time.Instant
@@ -48,80 +50,85 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
       return Result.failure()
     }
 
-    val notificationId = inputData.getInt(KEY_NOTIFICATION_ID, -1)
-    if (notificationId < 0) {
-      Log.w(TAG, "$logPrefix Notification ID was null!")
-      return Result.failure()
-    }
-
-    val inputUri = inputData.getString(KEY_INPUT_URI)
-    if (inputUri == null) {
-      Log.w(TAG, "$logPrefix Input URI was null!")
-      return Result.failure()
-    }
-
-    val outputDirUri = inputData.getString(KEY_OUTPUT_URI)
-    if (outputDirUri == null) {
-      Log.w(TAG, "$logPrefix Output URI was null!")
-      return Result.failure()
-    }
-
-    val postProcessForFastStart = inputData.getBoolean(KEY_ENABLE_FASTSTART, true)
-    val transcodingPreset = inputData.getString(KEY_TRANSCODING_PRESET_NAME)
-    val resolution = inputData.getInt(KEY_SHORT_EDGE, -1)
-    val videoBitrate = inputData.getInt(KEY_VIDEO_BIT_RATE, -1)
-    val audioBitrate = inputData.getInt(KEY_AUDIO_BIT_RATE, -1)
-    val audioRemux = inputData.getBoolean(KEY_ENABLE_AUDIO_REMUX, true)
-
-    val input = DocumentFile.fromSingleUri(applicationContext, Uri.parse(inputUri))?.name
-    if (input == null) {
+    val inputParams = InputParams(inputData)
+    val inputFilename = DocumentFile.fromSingleUri(applicationContext, inputParams.inputUri)?.name?.removeFileExtension()
+    if (inputFilename == null) {
       Log.w(TAG, "$logPrefix Could not read input file name!")
       return Result.failure()
     }
 
-    val filenameBase = "transcoded-${Instant.now()}-$input"
+    val filenameBase = "transcoded-${Instant.now()}-$inputFilename"
     val tempFilename = "$filenameBase$TEMP_FILE_EXTENSION"
     val finalFilename = "$filenameBase$OUTPUT_FILE_EXTENSION"
 
-    val tempFile = createFile(Uri.parse(outputDirUri), tempFilename)
-    if (tempFile == null) {
-      Log.w(TAG, "$logPrefix Could not create temp file!")
-      return Result.failure()
-    }
-
-    val datasource = WorkerMediaDataSource(applicationContext, Uri.parse(inputUri))
-
-    val transcoder = if (resolution > 0 && videoBitrate > 0) {
-      Log.d(TAG, "$logPrefix Initializing StreamingTranscoder with custom parameters: B:V=$videoBitrate, B:A=$audioBitrate, res=$resolution, audioRemux=$audioRemux")
-      StreamingTranscoder.createManuallyForTesting(datasource, null, videoBitrate, audioBitrate, resolution, audioRemux)
-    } else if (transcodingPreset != null) {
-      StreamingTranscoder(datasource, null, TranscodingPreset.valueOf(transcodingPreset), DEFAULT_FILE_SIZE_LIMIT, audioRemux)
-    } else {
-      throw IllegalArgumentException("Improper input data! No TranscodingPreset defined, or invalid manual parameters!")
-    }
-
-    setForeground(createForegroundInfo(-1, notificationId))
-    applicationContext.contentResolver.openOutputStream(tempFile.uri).use { outputStream ->
+    setForeground(createForegroundInfo(-1, inputParams.notificationId))
+    applicationContext.openFileOutput(tempFilename, Context.MODE_PRIVATE).use { outputStream ->
       if (outputStream == null) {
         Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
         return Result.failure()
       }
+
+      applicationContext.contentResolver.openInputStream(inputParams.inputUri).use { inputStream ->
+        applicationContext.openFileOutput(inputFilename, Context.MODE_PRIVATE).use { outputStream ->
+          Log.i(TAG, "Started copying input to internal storage.")
+          inputStream?.copyTo(outputStream)
+          Log.i(TAG, "Finished copying input to internal storage.")
+        }
+      }
+    }
+
+    val datasource = WorkerMediaDataSource(File(applicationContext.filesDir, inputFilename))
+
+    val transcoder = if (inputParams.resolution > 0 && inputParams.videoBitrate > 0) {
+      if (inputParams.videoCodec == null) {
+        Log.w(TAG, "$logPrefix Video codec was null!")
+        return Result.failure()
+      }
+      Log.d(TAG, "$logPrefix Initializing StreamingTranscoder with custom parameters: CODEC:${inputParams.videoCodec} B:V=${inputParams.videoBitrate}, B:A=${inputParams.audioBitrate}, res=${inputParams.resolution}, audioRemux=${inputParams.audioRemux}")
+      StreamingTranscoder.createManuallyForTesting(datasource, null, inputParams.videoCodec, inputParams.videoBitrate, inputParams.audioBitrate, inputParams.resolution, inputParams.audioRemux)
+    } else if (inputParams.transcodingPreset != null) {
+      StreamingTranscoder(datasource, null, inputParams.transcodingPreset, DEFAULT_FILE_SIZE_LIMIT, inputParams.audioRemux)
+    } else {
+      throw IllegalArgumentException("Improper input data! No TranscodingPreset defined, or invalid manual parameters!")
+    }
+
+    applicationContext.openFileOutput(tempFilename, Context.MODE_PRIVATE).use { outputStream ->
       transcoder.transcode({ percent: Int ->
         if (lastProgress != percent) {
           lastProgress = percent
           Log.v(TAG, "$logPrefix Updating progress percent to $percent%")
           setProgressAsync(Data.Builder().putInt(KEY_PROGRESS, percent).build())
-          setForegroundAsync(createForegroundInfo(percent, notificationId))
+          setForegroundAsync(createForegroundInfo(percent, inputParams.notificationId))
         }
       }, outputStream, { isStopped })
     }
+
     Log.v(TAG, "$logPrefix Initial transcode completed successfully!")
-    if (!postProcessForFastStart) {
-      tempFile.renameTo(finalFilename)
+
+    val finalFile = createFile(inputParams.outputDirUri, finalFilename) ?: run {
+      Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
+      return Result.failure()
+    }
+
+    if (!inputParams.postProcessForFastStart) {
+      applicationContext.openFileInput(tempFilename).use { tempFileStream ->
+        if (tempFileStream == null) {
+          Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
+          return Result.failure()
+        }
+        applicationContext.contentResolver.openOutputStream(finalFile.uri, "w").use { finalFileStream ->
+          if (finalFileStream == null) {
+            Log.w(TAG, "$logPrefix Could not open output file for I/O!")
+            return Result.failure()
+          }
+
+          tempFileStream.copyTo(finalFileStream)
+        }
+      }
       Log.v(TAG, "$logPrefix Rename successful.")
     } else {
       val tempFileLength: Long
-      applicationContext.contentResolver.openInputStream(tempFile.uri).use { tempFileStream ->
+      applicationContext.openFileInput(tempFilename).use { tempFileStream ->
         if (tempFileStream == null) {
           Log.w(TAG, "$logPrefix Could not open temp file for I/O!")
           return Result.failure()
@@ -129,17 +136,14 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
 
         tempFileLength = tempFileStream.readLength()
       }
-      val finalFile = createFile(Uri.parse(outputDirUri), finalFilename) ?: run {
-        Log.w(TAG, "$logPrefix Could not create final file for faststart processing!")
-        return Result.failure()
-      }
+
       applicationContext.contentResolver.openOutputStream(finalFile.uri, "w").use { finalFileStream ->
         if (finalFileStream == null) {
           Log.w(TAG, "$logPrefix Could not open output file for I/O!")
           return Result.failure()
         }
 
-        val inputStreamFactory = { applicationContext.contentResolver.openInputStream(tempFile.uri) ?: throw IOException("Could not open temp file for reading!") }
+        val inputStreamFactory = { applicationContext.openFileInput(tempFilename) ?: throw IOException("Could not open temp file for reading!") }
         val bytesCopied = Mp4FaststartPostProcessor(inputStreamFactory).processAndWriteTo(finalFileStream)
 
         if (bytesCopied != tempFileLength) {
@@ -147,12 +151,13 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
           return Result.failure()
         }
 
-        if (!tempFile.delete()) {
-          Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
-          return Result.failure()
-        }
+        Log.v(TAG, "$logPrefix Faststart postprocess successful.")
       }
-      Log.v(TAG, "$logPrefix Faststart postprocess successful.")
+      val tempFile = File(applicationContext.filesDir, tempFilename)
+      if (!tempFile.delete()) {
+        Log.w(TAG, "$logPrefix Failed to delete temp file after processing!")
+        return Result.failure()
+      }
     }
     Log.v(TAG, "$logPrefix Overall transcode job successful.")
     return Result.success()
@@ -194,10 +199,18 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
     return DocumentFile.fromTreeUri(applicationContext, treeUri)?.createFile(VideoConstants.VIDEO_MIME_TYPE, filename)
   }
 
-  private class WorkerMediaDataSource(context: Context, private val uri: Uri) : InputStreamMediaDataSource() {
+  private fun String.removeFileExtension(): String {
+    val lastDot = this.lastIndexOf('.')
+    return if (lastDot != -1) {
+      this.substring(0, lastDot)
+    } else {
+      this
+    }
+  }
 
-    private val contentResolver = context.contentResolver
-    private val size = contentResolver.getLength(uri) ?: throw IllegalStateException()
+  private class WorkerMediaDataSource(private val file: File) : InputStreamMediaDataSource() {
+
+    private val size = file.length()
 
     private var inputStream: InputStream? = null
 
@@ -211,22 +224,37 @@ class TranscodeWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(
 
     override fun createInputStream(position: Long): InputStream {
       inputStream?.close()
-      val openedInputStream = contentResolver.openInputStream(uri) ?: throw IllegalStateException()
+      val openedInputStream = FileInputStream(file)
       openedInputStream.skip(position)
       inputStream = openedInputStream
       return openedInputStream
     }
   }
 
+  private data class InputParams(private val inputData: Data) {
+    val notificationId: Int = inputData.getInt(KEY_NOTIFICATION_ID, -1)
+    val inputUri: Uri = Uri.parse(inputData.getString(KEY_INPUT_URI))
+    val outputDirUri: Uri = Uri.parse(inputData.getString(KEY_OUTPUT_URI))
+    val postProcessForFastStart: Boolean = inputData.getBoolean(KEY_ENABLE_FASTSTART, true)
+    val transcodingPreset: TranscodingPreset? = inputData.getString(KEY_TRANSCODING_PRESET_NAME)?.let { TranscodingPreset.valueOf(it) }
+
+    @VideoCodec val videoCodec: String? = inputData.getString(KEY_VIDEO_CODEC)
+    val resolution: Int = inputData.getInt(KEY_SHORT_EDGE, -1)
+    val videoBitrate: Int = inputData.getInt(KEY_VIDEO_BIT_RATE, -1)
+    val audioBitrate: Int = inputData.getInt(KEY_AUDIO_BIT_RATE, -1)
+    val audioRemux: Boolean = inputData.getBoolean(KEY_ENABLE_AUDIO_REMUX, true)
+  }
+
   companion object {
     private const val TAG = "TranscodeWorker"
     private const val OUTPUT_FILE_EXTENSION = ".mp4"
-    private const val TEMP_FILE_EXTENSION = ".tmp"
+    const val TEMP_FILE_EXTENSION = ".tmp"
     private const val DEFAULT_FILE_SIZE_LIMIT: Long = 100 * 1024 * 1024
     const val KEY_INPUT_URI = "input_uri"
     const val KEY_OUTPUT_URI = "output_uri"
     const val KEY_TRANSCODING_PRESET_NAME = "transcoding_quality_preset"
     const val KEY_PROGRESS = "progress"
+    const val KEY_VIDEO_CODEC = "video_codec"
     const val KEY_LONG_EDGE = "resolution_long_edge"
     const val KEY_SHORT_EDGE = "resolution_short_edge"
     const val KEY_VIDEO_BIT_RATE = "video_bit_rate"

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.webrtc
 
 import android.content.Context
+import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
@@ -14,8 +15,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -55,7 +58,15 @@ class PendingParticipantsView @JvmOverloads constructor(
     avatar.setAvatar(firstRecipient)
     avatar.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
-    name.text = firstRecipient.getShortDisplayName(context)
+    name.text = SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
+      .append(" ")
+      .append(
+        SpanUtil.ofSize(
+          SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
+          16
+        )
+      )
+    name.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
     allow.setOnClickListener { listener?.onAllowPendingRecipient(firstRecipient) }
     reject.setOnClickListener { listener?.onRejectPendingRecipient(firstRecipient) }

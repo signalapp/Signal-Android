@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
@@ -43,7 +44,7 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
       currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled()
     );
 
-    AppDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
+    AppForegroundObserver.removeListener(webRtcInteractor.getForegroundListener());
     webRtcInteractor.startAudioCommunication();
     webRtcInteractor.activateCall(activePeer.getId());
 

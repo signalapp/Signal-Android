@@ -181,12 +181,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     galleryItemsWithSelection.observe(viewLifecycleOwner) {
-      if (StorageUtil.canReadAllFromMediaStore()) {
-        binding.mediaGalleryMissingPermissions.visible = false
-        binding.mediaGalleryManageContainer.visible = false
-        shouldEnableScrolling = true
-        galleryAdapter.submitList(it)
-      } else if (StorageUtil.canOnlyReadSelectedMediaStore() && it.isEmpty()) {
+      if (StorageUtil.canOnlyReadSelectedMediaStore() && it.isEmpty()) {
         binding.mediaGalleryMissingPermissions.visible = true
         binding.mediaGalleryManageContainer.visible = false
         binding.mediaGalleryPermissionText.text = getString(R.string.MediaGalleryFragment__no_photos_found)
@@ -198,6 +193,11 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
         binding.mediaGalleryMissingPermissions.visible = false
         binding.mediaGalleryManageContainer.visible = true
         binding.mediaGalleryManageButton.setOnClickListener { v -> showManageContextMenu(v, v.rootView as ViewGroup, false, false) }
+        shouldEnableScrolling = true
+        galleryAdapter.submitList(it)
+      } else if (StorageUtil.canReadAnyFromMediaStore()) {
+        binding.mediaGalleryMissingPermissions.visible = false
+        binding.mediaGalleryManageContainer.visible = false
         shouldEnableScrolling = true
         galleryAdapter.submitList(it)
       } else {

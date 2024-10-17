@@ -3,7 +3,10 @@ package org.thoughtcrime.securesms.keyvalue
 import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
+import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.unmockkAll
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -18,6 +21,8 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 @Config(manifest = Config.NONE, application = Application::class)
 class PaymentsValuesTest {
 
+  private lateinit var paymentValues: PaymentsValues
+
   @Before
   fun setup() {
     if (!AppDependencies.isInitialized) {
@@ -25,29 +30,32 @@ class PaymentsValuesTest {
     }
 
     mockkObject(RemoteConfig)
+    mockkObject(SignalStore)
+
+    paymentValues = mockk()
+    every { paymentValues.paymentsAvailability } answers { callOriginal() }
+
+    every { SignalStore.payments } returns paymentValues
+
+    every { SignalStore.account.isRegistered } returns true
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   @Test
   fun `when unregistered, expect NOT_IN_REGION`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, false)
-      }
-    )
+    every { SignalStore.account.isRegistered } returns false
 
     assertEquals(PaymentsAvailability.NOT_IN_REGION, SignalStore.payments.paymentsAvailability)
   }
 
   @Test
   fun `when flag disabled and no account, expect DISABLED_REMOTELY`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, false)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns false
     every { RemoteConfig.payments } returns false
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
@@ -56,14 +64,8 @@ class PaymentsValuesTest {
 
   @Test
   fun `when flag disabled but has account, expect WITHDRAW_ONLY`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, true)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns true
     every { RemoteConfig.payments } returns false
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
@@ -72,14 +74,8 @@ class PaymentsValuesTest {
 
   @Test
   fun `when flag enabled and no account, expect REGISTRATION_AVAILABLE`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, false)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns false
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
@@ -88,14 +84,8 @@ class PaymentsValuesTest {
 
   @Test
   fun `when flag enabled and has account, expect WITHDRAW_AND_SEND`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, true)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns true
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns ""
 
@@ -104,14 +94,8 @@ class PaymentsValuesTest {
 
   @Test
   fun `when flag enabled and no account and in the country blocklist, expect NOT_IN_REGION`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, false)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns false
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
@@ -120,31 +104,11 @@ class PaymentsValuesTest {
 
   @Test
   fun `when flag enabled and has account and in the country blocklist, expect WITHDRAW_ONLY`() {
-    setupStore(
-      KeyValueDataSet().apply {
-        putBoolean(AccountValues.KEY_IS_REGISTERED, true)
-        putString(AccountValues.KEY_E164, "+15551234567")
-        putBoolean(PaymentsValues.MOB_PAYMENTS_ENABLED, true)
-      }
-    )
-
+    every { SignalStore.account.e164 } returns "+15551234567"
+    every { paymentValues.mobileCoinPaymentsEnabled() } returns true
     every { RemoteConfig.payments } returns true
     every { RemoteConfig.paymentsCountryBlocklist } returns "1"
 
     assertEquals(PaymentsAvailability.WITHDRAW_ONLY, SignalStore.payments.paymentsAvailability)
-  }
-
-  /**
-   * Account values will overwrite some values upon first access, so this takes care of that
-   */
-  private fun setupStore(dataset: KeyValueDataSet) {
-    val store = KeyValueStore(
-      MockKeyValuePersistentStorage.withDataSet(
-        dataset.apply {
-          putString(AccountValues.KEY_ACI, "")
-        }
-      )
-    )
-    SignalStore.testInject(store)
   }
 }

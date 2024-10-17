@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.components.webrtc
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import kotlin.math.min
 
 /**
@@ -13,15 +16,30 @@ class ToggleButtonOutputState {
         throw IndexOutOfBoundsException("Index: $value, size: ${availableOutputs.size}")
       }
       field = value
+      currentDevice = getCurrentOutput()
     }
+
+  /**
+   * Observable state of currently selected device.
+   */
+  var currentDevice by mutableStateOf(getCurrentOutput())
+    private set
+
+  /**
+   * Observable state of available devices.
+   */
+  var availableDevices by mutableStateOf(getOutputs())
+    private set
 
   var isEarpieceAvailable: Boolean
     get() = availableOutputs.contains(WebRtcAudioOutput.HANDSET)
     set(value) {
       if (value) {
         availableOutputs.add(WebRtcAudioOutput.HANDSET)
+        availableDevices = getOutputs()
       } else {
         availableOutputs.remove(WebRtcAudioOutput.HANDSET)
+        availableDevices = getOutputs()
         selectedDevice = min(selectedDevice, availableOutputs.size - 1)
       }
     }
@@ -31,8 +49,10 @@ class ToggleButtonOutputState {
     set(value) {
       if (value) {
         availableOutputs.add(WebRtcAudioOutput.BLUETOOTH_HEADSET)
+        availableDevices = getOutputs()
       } else {
         availableOutputs.remove(WebRtcAudioOutput.BLUETOOTH_HEADSET)
+        availableDevices = getOutputs()
         selectedDevice = min(selectedDevice, availableOutputs.size - 1)
       }
     }
@@ -41,8 +61,10 @@ class ToggleButtonOutputState {
     set(value) {
       if (value) {
         availableOutputs.add(WebRtcAudioOutput.WIRED_HEADSET)
+        availableDevices = getOutputs()
       } else {
         availableOutputs.remove(WebRtcAudioOutput.WIRED_HEADSET)
+        availableDevices = getOutputs()
         selectedDevice = min(selectedDevice, availableOutputs.size - 1)
       }
     }

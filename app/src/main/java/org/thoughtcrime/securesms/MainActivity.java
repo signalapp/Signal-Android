@@ -18,6 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.donations.StripeApi;
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
 import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet;
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
@@ -243,7 +244,9 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   private void handleCallLinkInIntent(Intent intent) {
     Uri data = intent.getData();
     if (data != null) {
-      CommunicationActions.handlePotentialCallLinkUrl(this, data.toString());
+      CommunicationActions.handlePotentialCallLinkUrl(this, data.toString(), () -> {
+        YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content));
+      });
     }
   }
 

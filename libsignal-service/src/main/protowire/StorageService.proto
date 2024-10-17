@@ -50,6 +50,7 @@ message ManifestRecord {
       GROUPV2                 = 3;
       ACCOUNT                 = 4;
       STORY_DISTRIBUTION_LIST = 5;
+      CALL_LINK               = 7;
     }
 
     bytes raw  = 1;
@@ -69,6 +70,7 @@ message StorageRecord {
     GroupV2Record               groupV2               = 3;
     AccountRecord               account               = 4;
     StoryDistributionListRecord storyDistributionList = 5;
+    CallLinkRecord              callLink              = 7;
   }
 }
 
@@ -217,6 +219,8 @@ message AccountRecord {
            string                 username                        = 33;
            bool                   hasCompletedUsernameOnboarding  = 34;
            UsernameLink           usernameLink                    = 35;
+           bytes                  backupsSubscriberId             = 36;
+           string                 backupsSubscriberCurrencyCode   = 37;
 }
 
 message StoryDistributionListRecord {
@@ -226,4 +230,10 @@ message StoryDistributionListRecord {
            uint64 deletedAtTimestamp  = 4;
            bool   allowsReplies       = 5;
            bool   isBlockList         = 6;
+}
+
+message CallLinkRecord {
+  bytes rootKey               = 1;
+  bytes adminPasskey          = 2;
+  uint64 deletedAtTimestampMs = 3;
 }

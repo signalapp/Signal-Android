@@ -108,7 +108,7 @@ public class SharedContactRepository {
     NameDetails nameDetails = SystemContactsRepository.getNameDetails(context, contactId);
 
     if (nameDetails != null) {
-      Name name = new Name(nameDetails.getDisplayName(), nameDetails.getGivenName(), nameDetails.getFamilyName(), nameDetails.getPrefix(), nameDetails.getSuffix(), nameDetails.getMiddleName());
+      Name name = new Name(nameDetails.getGivenName(), nameDetails.getFamilyName(), nameDetails.getPrefix(), nameDetails.getSuffix(), nameDetails.getMiddleName(), null);
       if (!name.isEmpty()) {
         return name;
       }
@@ -116,7 +116,7 @@ public class SharedContactRepository {
 
     String org = SystemContactsRepository.getOrganizationName(context, contactId);
     if (!TextUtils.isEmpty(org)) {
-      return new Name(org, org, null, null, null, null);
+      return new Name(org, null, null, null, null, null);
     }
 
     return null;

@@ -3,6 +3,7 @@ syntax = "proto3";
 package signal.backup;
 
 option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
+option swift_prefix = "BackupProto_";
 
 message BackupInfo {
   uint64 version = 1;
@@ -157,7 +158,7 @@ message Group {
   // We would use Groups.proto if we could, but we want a plaintext version to improve export readability.
   // For documentation, defer to Groups.proto. The only name change is Group -> GroupSnapshot to avoid the naming conflict.
   message GroupSnapshot {
-    bytes publicKey = 1;
+    reserved /*publicKey*/ 1;  // The field is deprecated in the context of static group state
     GroupAttributeBlob title = 2;
     GroupAttributeBlob description = 11;
     string avatarUrl = 3;
@@ -190,8 +191,8 @@ message Group {
 
     bytes userId = 1;
     Role role = 2;
-    bytes profileKey = 3;
-    reserved /*presentation*/ 4; // The field is deprecated in the context of static group state
+    reserved /*profileKey*/ 3; // This field is ignored in Backups, in favor of Contact frames for members
+    reserved /*presentation*/ 4; // This field is deprecated in the context of static group state
     uint32 joinedAtVersion = 5;
   }
 
@@ -203,8 +204,8 @@ message Group {
 
   message MemberPendingAdminApproval {
     bytes userId = 1;
-    bytes profileKey = 2;
-    reserved /*presentation*/ 3; // The field is deprecated in the context of static group state
+    reserved /*profileKey*/ 2; // This field is ignored in Backups, in favor of Contact frames for members
+    reserved /*presentation*/ 3; // This field is deprecated in the context of static group state
     uint64 timestamp = 4;
   }
 
@@ -242,6 +243,7 @@ message Chat {
   bool markedUnread = 7;
   bool dontNotifyForMentionsIfMuted = 8;
   ChatStyle style = 9;
+  uint32 expireTimerVersion = 10;
 }
 
 /**
@@ -339,27 +341,54 @@ message ChatItem {
     ChatUpdateMessage updateMessage = 15;
     PaymentNotification paymentNotification = 16;
     GiftBadge giftBadge = 17;
+    ViewOnceMessage viewOnceMessage = 18;
   }
 }
 
 message SendStatus {
-  enum Status {
-    UNKNOWN = 0;
-    FAILED = 1;
-    PENDING = 2;
-    SENT = 3;
-    DELIVERED = 4;
-    READ = 5;
-    VIEWED = 6;
-    SKIPPED = 7; // e.g. user in group was blocked, so we skipped sending to them
+  message Pending {}
+
+  message Sent {
+    bool sealedSender = 1;
+  }
+
+  message Delivered {
+    bool sealedSender = 1;
+  }
+
+  message Read {
+    bool sealedSender = 1;
+  }
+
+  message Viewed {
+    bool sealedSender = 1;
+  }
+
+  // e.g. user in group was blocked, so we skipped sending to them
+  message Skipped {}
+
+  message Failed {
+    enum FailureReason {
+      UNKNOWN = 0; // A valid value -- could indicate a crash or lack of information
+      NETWORK = 1;
+      IDENTITY_KEY_MISMATCH = 2;
+    }
+
+    FailureReason reason = 1;
   }
 
   uint64 recipientId = 1;
-  Status deliveryStatus = 2;
-  bool networkFailure = 3;
-  bool identityKeyMismatch = 4;
-  bool sealedSender = 5;
-  uint64 lastStatusUpdateTimestamp = 6; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
+  uint64 timestamp = 2; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
+
+  oneof deliveryStatus {
+    Pending pending = 3;
+    Sent sent = 4;
+    Delivered delivered = 5;
+    Read read = 6;
+    Viewed viewed = 7;
+    Skipped skipped = 8;
+    Failed failed = 9;
+  }
 }
 
 message Text {
@@ -441,6 +470,12 @@ message GiftBadge {
   State state = 2;
 }
 
+message ViewOnceMessage {
+  // Will be null for viewed messages
+  MessageAttachment attachment = 1;
+  repeated Reaction reactions = 2;
+}
+
 message ContactAttachment {
   message Name {
     optional string givenName = 1;
@@ -448,7 +483,7 @@ message ContactAttachment {
     optional string prefix = 3;
     optional string suffix = 4;
     optional string middleName = 5;
-    optional string displayName = 6;
+    optional string nickname = 6;
   }
 
   message Phone {
@@ -565,7 +600,7 @@ message FilePointer {
     optional uint32 cdnNumber = 2;
     bytes key = 3;
     bytes digest = 4;
-    uint64 size = 5;
+    uint32 size = 5;
     // Fallback in case backup tier upload failed.
     optional string transitCdnKey = 6;
     optional uint32 transitCdnNumber = 7;
@@ -623,10 +658,9 @@ message Quote {
 
   optional uint64 targetSentTimestamp = 1; // null if the target message could not be found at time of quote insert
   uint64 authorId = 2;
-  optional string text = 3;
+  optional Text text = 3;
   repeated QuotedAttachment attachments = 4;
-  repeated BodyRange bodyRanges = 5;
-  Type type = 6;
+  Type type = 5;
 }
 
 message BodyRange {
@@ -652,8 +686,9 @@ message Reaction {
   string emoji = 1;
   uint64 authorId = 2;
   uint64 sentTimestamp = 3;
-  optional uint64 receivedTimestamp = 4;
-  uint64 sortOrder = 5; // A higher sort order means that a reaction is more recent
+  // A higher sort order means that a reaction is more recent. Some clients may export this as
+  // incrementing numbers (e.g. 1, 2, 3), others as timestamps.
+  uint64 sortOrder = 4;
 }
 
 message ChatUpdateMessage {
@@ -700,6 +735,7 @@ message IndividualCall {
   Direction direction = 3;
   State state = 4;
   uint64 startedCallTimestamp = 5;
+  bool read = 6;
 }
 
 message GroupCall {
@@ -731,6 +767,7 @@ message GroupCall {
   uint64 startedCallTimestamp = 5;
   // The time the call ended. 0 indicates an unknown time.
   uint64 endedCallTimestamp = 6;
+  bool read = 7;
 }
 
 message SimpleChatUpdate {
@@ -749,6 +786,9 @@ message SimpleChatUpdate {
     PAYMENT_ACTIVATION_REQUEST = 11;
     UNSUPPORTED_PROTOCOL_MESSAGE = 12;
     REPORTED_SPAM = 13;
+    BLOCKED = 14;
+    UNBLOCKED = 15;
+    MESSAGE_REQUEST_ACCEPTED = 16;
   }
 
   Type type = 1;
@@ -1035,7 +1075,7 @@ message StickerPack {
 message ChatStyle {
   message Gradient {
     uint32 angle = 1; // degrees
-    repeated fixed32 colors = 2;
+    repeated fixed32 colors = 2; // 0xAARRGGBB
     repeated float positions = 3; // percent from 0 to 1
   }
 
@@ -1043,7 +1083,7 @@ message ChatStyle {
     uint64 id = 1;
 
     oneof color {
-      fixed32 solid = 2;
+      fixed32 solid = 2; // 0xAARRGGBB
       Gradient gradient = 3;
     }
   }
@@ -1104,6 +1144,8 @@ message ChatStyle {
 
   oneof wallpaper {
     WallpaperPreset wallpaperPreset = 1;
+    // This `FilePointer` is expected not to contain a `fileName`, `width`,
+    // `height`, or `caption`.
     FilePointer wallpaperPhoto = 2;
   }
 

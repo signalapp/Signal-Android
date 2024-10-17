@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.OptimizeMediaJob
+import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -95,7 +97,12 @@ class ManageStorageSettingsViewModel : ViewModel() {
     val storageState = getOnDeviceStorageOptimizationState()
     if (storageState >= OnDeviceStorageOptimizationState.DISABLED) {
       SignalStore.backup.optimizeStorage = enabled
-      store.update { it.copy(onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED) }
+      store.update {
+        it.copy(
+          onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED,
+          storageOptimizationStateChanged = true
+        )
+      }
     }
   }
 
@@ -109,6 +116,16 @@ class ManageStorageSettingsViewModel : ViewModel() {
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED
+    }
+  }
+
+  override fun onCleared() {
+    if (state.value.storageOptimizationStateChanged) {
+      when (state.value.onDeviceStorageOptimizationState) {
+        OnDeviceStorageOptimizationState.DISABLED -> RestoreOptimizedMediaJob.enqueue()
+        OnDeviceStorageOptimizationState.ENABLED -> OptimizeMediaJob.enqueue()
+        else -> Unit
+      }
     }
   }
 
@@ -136,11 +153,12 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   @Immutable
   data class ManageStorageState(
-    val keepMessagesDuration: KeepMessagesDuration = KeepMessagesDuration.FOREVER,
-    val lengthLimit: Int = NO_LIMIT,
-    val syncTrimDeletes: Boolean = true,
+    val keepMessagesDuration: KeepMessagesDuration,
+    val lengthLimit: Int,
+    val syncTrimDeletes: Boolean,
     val breakdown: MediaTable.StorageBreakdown? = null,
-    val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState
+    val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState,
+    val storageOptimizationStateChanged: Boolean = false
   ) {
     companion object {
       const val NO_LIMIT = 0

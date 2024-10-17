@@ -380,33 +380,4 @@
     </fragment>
 
     <!-- endregion -->
-
-    <!-- region Backups -->
-
-    <fragment
-        android:id="@+id/messageBackupsFlowFragment"
-        android:name="org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowFragment"
-        android:label="message_backups_flow_fragment">
-
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_creditCardFragment"
-            app:destination="@id/creditCardFragment" />
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_stripePaymentInProgressFragment"
-            app:destination="@id/stripePaymentInProgressFragment" />
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_paypalPaymentInProgressFragment"
-            app:destination="@id/paypalPaymentInProgressFragment" />
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_bankTransferMandateFragment"
-            app:destination="@id/bankTransferMandateFragment" />
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_donationPendingBottomSheet"
-            app:destination="@id/donationPendingBottomSheet" />
-        <action
-            android:id="@+id/action_donateToSignalFragment_to_idealTransferDetailsFragment"
-            app:destination="@id/idealTransferDetailsFragment" />
-    </fragment>
-
-    <!-- endregion -->
 </navigation>

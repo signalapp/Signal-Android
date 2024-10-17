@@ -52,11 +52,12 @@ public final class VCardUtil {
             return null;
         }
 
-        Contact.Name name = new Contact.Name(displayName,
+        Contact.Name name = new Contact.Name(
                 vName != null ? vName.getGiven() : null,
                 vName != null ? vName.getFamily() : null,
                 vName != null && !vName.getPrefixes().isEmpty() ? vName.getPrefixes().get(0) : null,
                 vName != null && !vName.getSuffixes().isEmpty() ? vName.getSuffixes().get(0) : null,
+                null,
                 null);
 
 

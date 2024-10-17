@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 /**
  * Rebuilds the full-text search index for the messages table.
  */
+@Deprecated("Do not use! Perform the index rebuild synchronously instead.")
 internal class RebuildMessageSearchIndexMigrationJob(
   parameters: Parameters = Parameters.Builder().build()
 ) : MigrationJob(parameters) {
@@ -22,7 +23,14 @@ internal class RebuildMessageSearchIndexMigrationJob(
 
   override fun performMigration() {
     val startTime = System.currentTimeMillis()
-    SignalDatabase.messageSearch.rebuildIndex()
+
+    val success = SignalDatabase.messageSearch.rebuildIndex()
+
+    if (!success) {
+      Log.w(TAG, "Failed to rebuild search index. Resetting tables. That will enqueue a job to reset the index as a side-effect.")
+      SignalDatabase.messageSearch.fullyResetTables()
+    }
+
     Log.d(TAG, "It took ${System.currentTimeMillis() - startTime} ms to rebuild the search index.")
   }
 

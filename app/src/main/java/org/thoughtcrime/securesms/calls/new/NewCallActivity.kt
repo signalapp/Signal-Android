@@ -15,7 +15,9 @@ import org.thoughtcrime.securesms.ContactSelectionActivity
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.InviteActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
+import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -37,7 +39,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
 
   override fun onSelectionChanged() = Unit
 
-  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId?>, number: String?, callback: Consumer<Boolean?>) {
+  override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId?>, number: String?, chatType: Optional<ChatType>, callback: Consumer<Boolean?>) {
     if (recipientId.isPresent) {
       launch(Recipient.resolved(recipientId.get()))
     } else {
@@ -81,9 +83,13 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
 
   private fun launch(recipient: Recipient) {
     if (recipient.isGroup) {
-      CommunicationActions.startVideoCall(this, recipient)
+      CommunicationActions.startVideoCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content))
+      }
     } else {
-      CommunicationActions.startVoiceCall(this, recipient)
+      CommunicationActions.startVoiceCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(findViewById(android.R.id.content))
+      }
     }
   }
 

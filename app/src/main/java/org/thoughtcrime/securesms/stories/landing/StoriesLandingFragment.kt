@@ -10,7 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.IdRes
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
@@ -23,17 +23,13 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.banner.BannerManager
+import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
+import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
-import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder
-import org.thoughtcrime.securesms.components.reminder.Reminder
-import org.thoughtcrime.securesms.components.reminder.ReminderView
-import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -44,13 +40,11 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.events.ReminderUpdateEvent
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
@@ -61,7 +55,6 @@ import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
-import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -81,7 +74,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   private lateinit var emptyNotice: View
   private lateinit var cameraFab: FloatingActionButton
 
-  private lateinit var reminderView: Stub<ReminderView>
+  private lateinit var bannerView: Stub<ComposeView>
 
   private val lifecycleDisposable = LifecycleDisposable()
 
@@ -112,13 +105,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     viewModel.markStoriesRead()
 
     AppDependencies.expireStoriesManager.scheduleIfNecessary()
-    EventBus.getDefault().register(this)
   }
 
   override fun onPause() {
     super.onPause()
     requireListener<SearchBinder>().getSearchAction().setOnClickListener(null)
-    EventBus.getDefault().unregister(this)
   }
 
   private fun initializeSearchAction() {
@@ -143,53 +134,29 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    reminderView = ViewUtil.findStubById(view, R.id.reminder)
-    updateReminders()
+    bannerView = ViewUtil.findStubById(view, R.id.banner_stub)
+    initializeBanners()
   }
 
-  @Subscribe(threadMode = ThreadMode.MAIN)
-  fun onEvent(event: ReminderUpdateEvent?) {
-    updateReminders()
-  }
-
-  private fun updateReminders() {
-    if (ExpiredBuildReminder.isEligible()) {
-      showReminder(ExpiredBuildReminder(context))
-    } else if (UnauthorizedReminder.isEligible(context)) {
-      showReminder(UnauthorizedReminder())
-    } else {
-      hideReminders()
-    }
-  }
-
-  private fun showReminder(reminder: Reminder) {
-    if (!reminderView.resolved()) {
-      reminderView.get().addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
-        recyclerView?.setPadding(0, bottom - top, 0, 0)
+  private fun initializeBanners() {
+    val bannerManager = BannerManager(
+      banners = listOf(
+        DeprecatedBuildBanner(),
+        UnauthorizedBanner(requireContext())
+      ),
+      onNewBannerShownListener = {
+        if (bannerView.resolved()) {
+          bannerView.get().addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
+            recyclerView?.setPadding(0, bottom - top, 0, 0)
+          }
+          recyclerView?.clipToPadding = false
+        }
+      },
+      onNoBannerShownListener = {
+        recyclerView?.clipToPadding = true
       }
-      recyclerView?.clipToPadding = false
-    }
-    reminderView.get().showReminder(reminder)
-    reminderView.get().setOnActionClickListener { reminderActionId: Int -> this.handleReminderAction(reminderActionId) }
-  }
-
-  private fun hideReminders() {
-    if (reminderView.resolved()) {
-      reminderView.get().hide()
-      recyclerView?.clipToPadding = true
-    }
-  }
-
-  private fun handleReminderAction(@IdRes reminderActionId: Int) {
-    when (reminderActionId) {
-      R.id.reminder_action_update_now -> {
-        PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
-      }
-
-      R.id.reminder_action_re_register -> {
-        startActivity(RegistrationActivity.newIntentForReRegistration(requireContext()))
-      }
-    }
+    )
+    bannerManager.updateContent(bannerView.get())
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {

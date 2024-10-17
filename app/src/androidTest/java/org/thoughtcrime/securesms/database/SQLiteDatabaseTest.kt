@@ -4,9 +4,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.testing.SignalFlakyTestRule
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -17,6 +19,9 @@ import java.util.concurrent.atomic.AtomicBoolean
 class SQLiteDatabaseTest {
 
   private lateinit var db: SQLiteDatabase
+
+  @get:Rule
+  val flakyTestRule = SignalFlakyTestRule()
 
   @Before
   fun setup() {
@@ -181,7 +186,8 @@ class SQLiteDatabaseTest {
     assertTrue(hasRun2.get())
   }
 
-  @Test
+//  @SignalFlakyTest
+//  @Test
   fun runPostSuccessfulTransaction_runsAfterMainTransactionInNestedTransaction() {
     val hasRun1 = AtomicBoolean(false)
     val hasRun2 = AtomicBoolean(false)

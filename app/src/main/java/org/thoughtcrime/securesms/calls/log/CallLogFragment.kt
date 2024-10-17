@@ -35,6 +35,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.Material3SearchToolbar
@@ -62,7 +63,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -151,6 +151,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
+          viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
         binding.emptyState.visible = filteredCount == 0
@@ -257,13 +258,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     val count = callLogActionMode.getCount()
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, count, count))
-      .setMessage(
-        if (RemoteConfig.adHocCalling) {
-          getString(R.string.CallLogFragment__call_links_youve_created)
-        } else {
-          null
-        }
-      )
+      .setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(count, viewModel.stageSelectionDeletion())
         callLogActionMode.end()
@@ -391,12 +386,16 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun onStartAudioCallClicked(recipient: Recipient) {
-    CommunicationActions.startVoiceCall(this, recipient)
+    CommunicationActions.startVoiceCall(this, recipient) {
+      YouAreAlreadyInACallSnackbar.show(requireView())
+    }
   }
 
   override fun onStartVideoCallClicked(recipient: Recipient, canUserBeginCall: Boolean) {
     if (canUserBeginCall) {
-      CommunicationActions.startVideoCall(this, recipient)
+      CommunicationActions.startVideoCall(this, recipient) {
+        YouAreAlreadyInACallSnackbar.show(requireView())
+      }
     } else {
       ConversationDialogs.displayCannotStartGroupCallDueToPermissionsDialog(requireContext())
     }
@@ -410,13 +409,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun deleteCall(call: CallLogRow) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(resources.getQuantityString(R.plurals.CallLogFragment__delete_d_calls, 1, 1))
-      .setMessage(
-        if (RemoteConfig.adHocCalling) {
-          getString(R.string.CallLogFragment__call_links_youve_created)
-        } else {
-          null
-        }
-      )
+      .setMessage(getString(R.string.CallLogFragment__call_links_youve_created))
       .setPositiveButton(R.string.CallLogFragment__delete) { _, _ ->
         performDeletion(1, viewModel.stageCallDeletion(call))
       }

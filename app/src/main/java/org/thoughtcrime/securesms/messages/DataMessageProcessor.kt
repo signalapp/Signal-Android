@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.messages
 
-import ProtoUtil.isNotEmpty
 import android.content.Context
 import android.text.TextUtils
 import com.mobilecoin.lib.exceptions.SerializationException
@@ -8,6 +7,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -158,7 +158,7 @@ object DataMessageProcessor {
     when {
       message.isInvalid -> handleInvalidMessage(context, senderRecipient.id, groupId, envelope.timestamp!!)
       message.isEndSession -> insertResult = handleEndSessionMessage(context, senderRecipient.id, envelope, metadata)
-      message.isExpirationUpdate -> insertResult = handleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient.id, groupId, message.expireTimerDuration, receivedTime, false)
+      message.isExpirationUpdate -> insertResult = handleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient.id, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime, false)
       message.isStoryReaction -> insertResult = handleStoryReaction(context, envelope, metadata, message, senderRecipient.id, groupId)
       message.reaction != null -> messageId = handleReaction(context, envelope, message, senderRecipient.id, earlyMessageCacheEntry)
       message.hasRemoteDelete -> messageId = handleRemoteDelete(context, envelope, message, senderRecipient.id, earlyMessageCacheEntry)
@@ -321,10 +321,11 @@ object DataMessageProcessor {
   private fun handleExpirationUpdate(
     envelope: Envelope,
     metadata: EnvelopeMetadata,
-    senderRecipientId: RecipientId,
+    senderRecipient: Recipient,
     threadRecipientId: RecipientId,
     groupId: GroupId.V2?,
     expiresIn: Duration,
+    expireTimerVersion: Int?,
     receivedTime: Long,
     sideEffect: Boolean
   ): InsertResult? {
@@ -340,10 +341,15 @@ object DataMessageProcessor {
       return null
     }
 
+    if (expireTimerVersion != null && expireTimerVersion < senderRecipient.expireTimerVersion) {
+      log(envelope.timestamp!!, "Old expireTimerVersion. Received: $expireTimerVersion, Current: ${senderRecipient.expireTimerVersion}. Ignoring.")
+      return null
+    }
+
     try {
       val mediaMessage = IncomingMessage(
         type = MessageType.EXPIRATION_UPDATE,
-        from = senderRecipientId,
+        from = senderRecipient.id,
         sentTimeMillis = envelope.timestamp!! - if (sideEffect) 1 else 0,
         serverTimeMillis = envelope.serverTimestamp!!,
         receivedTimeMillis = receivedTime,
@@ -353,7 +359,13 @@ object DataMessageProcessor {
       )
 
       val insertResult: InsertResult? = SignalDatabase.messages.insertMessageInbox(mediaMessage, -1).orNull()
-      SignalDatabase.recipients.setExpireMessages(threadRecipientId, expiresIn.inWholeSeconds.toInt())
+
+      if (expireTimerVersion != null) {
+        SignalDatabase.recipients.setExpireMessages(threadRecipientId, expiresIn.inWholeSeconds.toInt(), expireTimerVersion)
+      } else {
+        // TODO [expireVersion] After unsupported builds expire, we can remove this branch
+        SignalDatabase.recipients.setExpireMessagesWithoutIncrementingVersion(threadRecipientId, expiresIn.inWholeSeconds.toInt())
+      }
 
       if (insertResult != null) {
         return insertResult
@@ -372,15 +384,16 @@ object DataMessageProcessor {
   fun handlePossibleExpirationUpdate(
     envelope: Envelope,
     metadata: EnvelopeMetadata,
-    senderRecipientId: RecipientId,
+    senderRecipient: Recipient,
     threadRecipient: Recipient,
     groupId: GroupId.V2?,
     expiresIn: Duration,
+    expireTimerVersion: Int?,
     receivedTime: Long
   ) {
-    if (threadRecipient.expiresInSeconds.toLong() != expiresIn.inWholeSeconds) {
+    if (threadRecipient.expiresInSeconds.toLong() != expiresIn.inWholeSeconds || ((expireTimerVersion ?: -1) > threadRecipient.expireTimerVersion)) {
       warn(envelope.timestamp!!, "Message expire time didn't match thread expire time. Handling timer update.")
-      handleExpirationUpdate(envelope, metadata, senderRecipientId, threadRecipient.id, groupId, expiresIn, receivedTime, true)
+      handleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient.id, groupId, expiresIn, expireTimerVersion, receivedTime, true)
     }
   }
 
@@ -741,7 +754,7 @@ object DataMessageProcessor {
           threadRecipient = senderRecipient
         }
 
-        handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient, groupId, message.expireTimerDuration, receivedTime)
+        handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
         if (message.hasGroupContext) {
           parentStoryId = GroupReply(storyMessageId.id)
@@ -892,7 +905,7 @@ object DataMessageProcessor {
       val attachments: List<Attachment> = message.attachments.toPointersWithinLimit()
       val messageRanges: BodyRangeList? = if (message.bodyRanges.isNotEmpty()) message.bodyRanges.asSequence().take(BODY_RANGE_PROCESSING_LIMIT).filter { it.mentionAci == null }.toList().toBodyRangeList() else null
 
-      handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient, groupId, message.expireTimerDuration, receivedTime)
+      handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
       val mediaMessage = IncomingMessage(
         type = MessageType.NORMAL,
@@ -972,7 +985,7 @@ object DataMessageProcessor {
 
     val body = message.body ?: ""
 
-    handlePossibleExpirationUpdate(envelope, metadata, senderRecipient.id, threadRecipient, groupId, message.expireTimerDuration, receivedTime)
+    handlePossibleExpirationUpdate(envelope, metadata, senderRecipient, threadRecipient, groupId, message.expireTimerDuration, message.expireTimerVersion, receivedTime)
 
     notifyTypingStoppedFromIncomingMessage(context, senderRecipient, threadRecipient.id, metadata.sourceDeviceId)
 

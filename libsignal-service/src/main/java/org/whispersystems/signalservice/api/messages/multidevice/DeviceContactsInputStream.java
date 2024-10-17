@@ -6,14 +6,13 @@
 
 package org.whispersystems.signalservice.api.messages.multidevice;
 
+import org.signal.core.util.stream.LimitedInputStream;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
-import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -47,27 +46,24 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       throw new IOException("Missing contact address!");
     }
 
-    Optional<ACI>                           aci           = Optional.ofNullable(ACI.parseOrNull(details.aci));
-    Optional<String>                        e164          = Optional.ofNullable(details.number);
-    Optional<String>                        name          = Optional.ofNullable(details.name);
-    Optional<SignalServiceAttachmentStream> avatar        = Optional.empty();
-    Optional<String>                        color         = details.color != null ? Optional.of(details.color) : Optional.empty();
-    Optional<VerifiedMessage>               verified      = Optional.empty();
-    Optional<ProfileKey>                    profileKey    = Optional.empty();
-    Optional<Integer>                       expireTimer   = Optional.empty();
-    Optional<Integer>                       inboxPosition = Optional.empty();
-    boolean                                 archived      = false;
+    Optional<ACI>                 aci                = Optional.ofNullable(ACI.parseOrNull(details.aci));
+    Optional<String>              e164               = Optional.ofNullable(details.number);
+    Optional<String>              name               = Optional.ofNullable(details.name);
+    Optional<DeviceContactAvatar> avatar             = Optional.empty();
+    Optional<String>              color              = details.color != null ? Optional.of(details.color) : Optional.empty();
+    Optional<VerifiedMessage>     verified           = Optional.empty();
+    Optional<ProfileKey>          profileKey         = Optional.empty();
+    Optional<Integer>             expireTimer        = Optional.empty();
+    Optional<Integer>             expireTimerVersion = Optional.empty();
+    Optional<Integer>             inboxPosition      = Optional.empty();
+    boolean                       archived           = false;
 
-    if (details.avatar != null) {
+    if (details.avatar != null && details.avatar.length != null) {
       long        avatarLength      = details.avatar.length;
       InputStream avatarStream      = new LimitedInputStream(in, avatarLength);
-      String      avatarContentType = details.avatar.contentType;
+      String      avatarContentType = details.avatar.contentType != null ? details.avatar.contentType : "image/*";
 
-      avatar = Optional.of(SignalServiceAttachment.newStreamBuilder()
-                                                  .withStream(avatarStream)
-                                                  .withContentType(avatarContentType)
-                                                  .withLength(avatarLength)
-                                                  .build());
+      avatar = Optional.of(new DeviceContactAvatar(avatarStream, avatarLength, avatarContentType));
     }
 
     if (details.verified != null) {
@@ -107,13 +103,17 @@ public class DeviceContactsInputStream extends ChunkedInputStream {
       expireTimer = Optional.of(details.expireTimer);
     }
 
+    if (details.expireTimerVersion != null && details.expireTimerVersion > 0) {
+      expireTimerVersion = Optional.of(details.expireTimerVersion);
+    }
+
     if (details.inboxPosition != null) {
       inboxPosition = Optional.of(details.inboxPosition);
     }
 
     archived = details.archived;
 
-    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, expireTimer, inboxPosition, archived);
+    return new DeviceContact(aci, e164, name, avatar, color, verified, profileKey, expireTimer, expireTimerVersion, inboxPosition, archived);
   }
 
 }

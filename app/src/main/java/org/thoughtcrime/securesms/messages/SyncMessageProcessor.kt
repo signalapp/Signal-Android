@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.messages
 
-import ProtoUtil.isNotEmpty
 import android.content.Context
 import com.mobilecoin.lib.exceptions.SerializationException
 import okio.ByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.orNull
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -95,7 +95,6 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -130,6 +129,7 @@ import java.util.Optional
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 object SyncMessageProcessor {
 
@@ -353,6 +353,7 @@ object SyncMessageProcessor {
         body = body,
         timestamp = sent.timestamp!!,
         expiresIn = targetMessage.expiresIn,
+        expireTimerVersion = targetMessage.expireTimerVersion,
         isSecure = true,
         bodyRanges = bodyRanges,
         messageToEdit = targetMessage.id
@@ -366,6 +367,7 @@ object SyncMessageProcessor {
         sentTimeMillis = sent.timestamp!!,
         body = body,
         expiresIn = targetMessage.expiresIn,
+        expireTimerVersion = targetMessage.expireTimerVersion,
         isUrgent = true,
         isSecure = true,
         bodyRanges = bodyRanges,
@@ -429,6 +431,7 @@ object SyncMessageProcessor {
       attachments = syncAttachments.ifEmpty { (targetMessage as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: emptyList() },
       timestamp = sent.timestamp!!,
       expiresIn = targetMessage.expiresIn,
+      expireTimerVersion = targetMessage.expireTimerVersion,
       viewOnce = viewOnce,
       quote = quote,
       contacts = sharedContacts,
@@ -666,7 +669,7 @@ object SyncMessageProcessor {
 
   @Throws(MmsException::class)
   private fun handleSynchronizeSentExpirationUpdate(sent: Sent, sideEffect: Boolean = false): Long {
-    log(sent.timestamp!!, "Synchronize sent expiration update.")
+    log(sent.timestamp!!, "Synchronize sent expiration update. sideEffect: $sideEffect")
 
     val groupId: GroupId? = getSyncMessageDestination(sent).groupId.orNull()
 
@@ -676,13 +679,30 @@ object SyncMessageProcessor {
     }
 
     val recipient: Recipient = getSyncMessageDestination(sent)
-    val expirationUpdateMessage: OutgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, if (sideEffect) sent.timestamp!! - 1 else sent.timestamp!!, sent.message!!.expireTimerDuration.inWholeMilliseconds)
     val threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-    val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
+    val expirationUpdateMessage: OutgoingMessage = OutgoingMessage.expirationUpdateMessage(
+      threadRecipient = recipient,
+      sentTimeMillis = if (sideEffect) sent.timestamp!! - 1 else sent.timestamp!!,
+      expiresIn = sent.message!!.expireTimerDuration.inWholeMilliseconds,
+      expireTimerVersion = sent.message!!.expireTimerVersion ?: 1
+    )
 
-    SignalDatabase.messages.markAsSent(messageId, true)
+    if (sent.message?.expireTimerVersion == null) {
+      // TODO [expireVersion] After unsupported builds expire, we can remove this branch
+      SignalDatabase.recipients.setExpireMessagesWithoutIncrementingVersion(recipient.id, sent.message!!.expireTimerDuration.inWholeSeconds.toInt())
+      val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
+      SignalDatabase.messages.markAsSent(messageId, true)
+    } else if (sent.message!!.expireTimerVersion!! >= recipient.expireTimerVersion) {
+      SignalDatabase.recipients.setExpireMessages(recipient.id, sent.message!!.expireTimerDuration.inWholeSeconds.toInt(), sent.message!!.expireTimerVersion!!)
 
-    SignalDatabase.recipients.setExpireMessages(recipient.id, sent.message!!.expireTimerDuration.inWholeSeconds.toInt())
+      if (sent.message!!.expireTimerDuration != recipient.expiresInSeconds.seconds) {
+        log(sent.timestamp!!, "Not inserted update message as timer value did not change")
+        val messageId: Long = SignalDatabase.messages.insertMessageOutbox(expirationUpdateMessage, threadId, false, null)
+        SignalDatabase.messages.markAsSent(messageId, true)
+      }
+    } else {
+      warn(sent.timestamp!!, "[SynchronizeExpiration] Ignoring expire timer update with old version. Received: ${sent.message!!.expireTimerVersion}, Current: ${recipient.expireTimerVersion}")
+    }
 
     return threadId
   }
@@ -749,7 +769,7 @@ object SyncMessageProcessor {
         isSecure = true
       )
 
-      if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
+      if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt() || ((dataMessage.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
         handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
       }
 
@@ -814,7 +834,7 @@ object SyncMessageProcessor {
       isSecure = true
     )
 
-    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
+    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt() || ((dataMessage.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
       handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
     }
 
@@ -861,7 +881,7 @@ object SyncMessageProcessor {
     val expiresInMillis = dataMessage.expireTimerDuration.inWholeMilliseconds
     val bodyRanges = dataMessage.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
 
-    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt()) {
+    if (recipient.expiresInSeconds != dataMessage.expireTimerDuration.inWholeSeconds.toInt() || ((dataMessage.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
       handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
     }
 
@@ -1315,12 +1335,6 @@ object SyncMessageProcessor {
     }
 
     val roomId = CallLinkRoomId.fromCallLinkRootKey(callLinkRootKey)
-    if (callLinkUpdate.type == CallLinkUpdate.Type.DELETE) {
-      log(envelopeTimestamp, "Synchronize call link deletion.")
-      SignalDatabase.callLinks.deleteCallLink(roomId)
-
-      return
-    }
 
     if (SignalDatabase.callLinks.callLinkExists(roomId)) {
       log(envelopeTimestamp, "Synchronize call link for a link we already know about. Updating credentials.")
@@ -1341,9 +1355,12 @@ object SyncMessageProcessor {
             linkKeyBytes = callLinkRootKey.keyBytes,
             adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
           ),
-          state = SignalCallLinkState()
+          state = SignalCallLinkState(),
+          deletionTimestamp = 0L
         )
       )
+
+      StorageSyncHelper.scheduleSyncForDataChange()
     }
 
     AppDependencies.jobManager.add(RefreshCallLinkDetailsJob(callLinkUpdate))
@@ -1389,11 +1406,6 @@ object SyncMessageProcessor {
 
   @Throws(BadGroupIdException::class)
   private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (!RemoteConfig.adHocCalling && callEvent.type == SyncMessage.CallEvent.Type.AD_HOC_CALL) {
-      log(envelopeTimestamp, "Ad-Hoc calling is not currently supported by this client, ignoring.")
-      return
-    }
-
     val callId: Long = callEvent.id!!
     val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
@@ -1409,7 +1421,7 @@ object SyncMessageProcessor {
       }
 
       val recipient = resolveCallLinkRecipient(callEvent)
-      SignalDatabase.calls.insertOrUpdateAdHocCallFromObserveEvent(
+      SignalDatabase.calls.insertOrUpdateAdHocCallFromRemoteObserveEvent(
         callRecipient = recipient,
         timestamp = callEvent.timestamp!!,
         callId = callId

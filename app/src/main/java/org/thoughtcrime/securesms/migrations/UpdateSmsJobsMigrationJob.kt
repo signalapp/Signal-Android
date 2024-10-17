@@ -32,7 +32,10 @@ internal class UpdateSmsJobsMigrationJob(
 
   override fun performMigration() {
     val idOffset = SignalStore.plaintext.smsMigrationIdOffset
-    check(idOffset >= 0) { "Invalid ID offset of $idOffset -- this shouldn't be possible!" }
+    if (idOffset < 0) {
+      Log.w(TAG, "Invalid ID offset of $idOffset -- this shouldn't be possible!")
+      return
+    }
 
     AppDependencies.jobManager.update { jobSpec ->
       when (jobSpec.factoryKey) {

@@ -10,9 +10,11 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.FutureTransformers;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
+import org.signal.core.util.stream.LimitedInputStream;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
+import org.whispersystems.signalservice.api.attachment.AttachmentDownloadResult;
 import org.whispersystems.signalservice.api.backup.BackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
@@ -67,17 +69,9 @@ public class SignalServiceMessageReceiver {
 
   /**
    * Construct a SignalServiceMessageReceiver.
-   *
-   * @param urls The URL of the Signal Service.
-   * @param credentials The Signal Service user's credentials.
    */
-  public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
-                                      CredentialsProvider credentials,
-                                      String signalAgent,
-                                      ClientZkProfileOperations clientZkProfileOperations,
-                                      boolean automaticNetworkRetry)
-  {
-    this.socket = new PushServiceSocket(urls, credentials, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
+  public SignalServiceMessageReceiver(PushServiceSocket socket) {
+    this.socket = socket;
   }
 
   /**
@@ -93,7 +87,7 @@ public class SignalServiceMessageReceiver {
    */
   public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes)
       throws IOException, InvalidMessageException, MissingConfigurationException {
-    return retrieveAttachment(pointer, destination, maxSizeBytes, null);
+    return retrieveAttachment(pointer, destination, maxSizeBytes, null).getDataStream();
   }
 
   public ListenableFuture<ProfileAndCredential> retrieveProfile(SignalServiceAddress address,
@@ -164,12 +158,21 @@ public class SignalServiceMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, ProgressListener listener)
+  public AttachmentDownloadResult retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException {
     if (!pointer.getDigest().isPresent()) throw new InvalidMessageException("No attachment digest!");
 
     socket.retrieveAttachment(pointer.getCdnNumber(), Collections.emptyMap(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
-    return AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().orElse(0), pointer.getKey(), pointer.getDigest().get(), null, 0);
+
+    byte[] iv = new byte[16];
+    try (InputStream tempStream = new FileInputStream(destination)) {
+      StreamUtil.readFully(tempStream, iv);
+    }
+
+    return new AttachmentDownloadResult(
+        AttachmentCipherInputStream.createForAttachment(destination, pointer.getSize().orElse(0), pointer.getKey(), pointer.getDigest().get(), null, 0),
+        iv
+    );
   }
 
   /**
@@ -184,14 +187,14 @@ public class SignalServiceMessageReceiver {
    *
    * @return An InputStream that streams the plaintext attachment contents.
    */
-  public InputStream retrieveArchivedAttachment(@Nonnull BackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
-                                                @Nonnull Map<String, String> readCredentialHeaders,
-                                                @Nonnull File archiveDestination,
-                                                @Nonnull SignalServiceAttachmentPointer pointer,
-                                                @Nonnull File attachmentDestination,
-                                                long maxSizeBytes,
-                                                boolean ignoreDigest,
-                                                @Nullable ProgressListener listener)
+  public AttachmentDownloadResult retrieveArchivedAttachment(@Nonnull BackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
+                                                             @Nonnull Map<String, String> readCredentialHeaders,
+                                                             @Nonnull File archiveDestination,
+                                                             @Nonnull SignalServiceAttachmentPointer pointer,
+                                                             @Nonnull File attachmentDestination,
+                                                             long maxSizeBytes,
+                                                             boolean ignoreDigest,
+                                                             @Nullable ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException
   {
     if (!ignoreDigest && pointer.getDigest().isEmpty()) {
@@ -205,19 +208,30 @@ public class SignalServiceMessageReceiver {
                                        .map(s -> AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(s)))
                                        .orElse(0L);
 
+    // There's two layers of encryption -- one from the backup, and one from the attachment. This only strips the outermost backup encryption layer.
     try (InputStream backupDecrypted = AttachmentCipherInputStream.createForArchivedMedia(archivedMediaKeyMaterial, archiveDestination, originalCipherLength)) {
       try (FileOutputStream fos = new FileOutputStream(attachmentDestination)) {
+        // TODO [backup] I don't think we should be doing the full copy here. This is basically doing the entire download inline in this single line.
         StreamUtil.copy(backupDecrypted, fos);
       }
     }
 
-    return AttachmentCipherInputStream.createForAttachment(attachmentDestination,
-                                                           pointer.getSize().orElse(0),
-                                                           pointer.getKey(),
-                                                           ignoreDigest ? null : pointer.getDigest().get(),
-                                                           null,
-                                                           0,
-                                                           ignoreDigest);
+    byte[] iv = new byte[16];
+    try (InputStream tempStream = new FileInputStream(attachmentDestination)) {
+      StreamUtil.readFully(tempStream, iv);
+    }
+
+    LimitedInputStream dataStream = AttachmentCipherInputStream.createForAttachment(
+        attachmentDestination,
+        pointer.getSize().orElse(0),
+        pointer.getKey(),
+        ignoreDigest ? null : pointer.getDigest().get(),
+        null,
+        0,
+        ignoreDigest
+    );
+
+    return new AttachmentDownloadResult(dataStream, iv);
   }
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, ProgressListener listener) throws MissingConfigurationException, IOException {

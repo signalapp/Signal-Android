@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.recipients
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.groups.GroupId
@@ -102,6 +104,22 @@ object RecipientCreator {
   }
 
   @JvmStatic
+  @WorkerThread
+  fun forRecord(context: Context, record: RecipientRecord): Recipient {
+    val recipient = if (record.groupId != null) {
+      getGroupRecipientDetails(record)
+    } else if (record.distributionListId != null) {
+      getDistributionListRecipientDetails(record)
+    } else if (record.callLinkRoomId != null) {
+      getCallLinkRecipientDetails(record)
+    } else {
+      forIndividual(context, record)
+    }
+
+    return recipient
+  }
+
+  @JvmStatic
   fun forUnknown(): Recipient {
     return Recipient.UNKNOWN
   }
@@ -149,6 +167,7 @@ object RecipientCreator {
       callVibrate = record.callVibrateState,
       isBlocked = record.isBlocked,
       expiresInSeconds = record.expireMessages,
+      expireTimerVersion = record.expireTimerVersion,
       participantIdsValue = participantIds ?: LinkedList(),
       isActiveGroup = groupRecord.map { it.isActive }.orElse(false),
       profileName = record.signalProfileName,
@@ -185,5 +204,44 @@ object RecipientCreator {
       nickname = record.nickname,
       note = record.note
     )
+  }
+
+  @WorkerThread
+  private fun getGroupRecipientDetails(record: RecipientRecord): Recipient {
+    val groupRecord = SignalDatabase.groups.getGroup(record.id)
+
+    return if (groupRecord.isPresent) {
+      forGroup(groupRecord.get(), record)
+    } else {
+      forUnknownGroup(record.id, record.groupId)
+    }
+  }
+
+  @WorkerThread
+  private fun getDistributionListRecipientDetails(record: RecipientRecord): Recipient {
+    val groupRecord = SignalDatabase.distributionLists.getList(record.distributionListId!!)
+
+    // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
+    if (groupRecord != null) {
+      val title = if (groupRecord.isUnknown) null else groupRecord.name
+      val members = groupRecord.members.filterNot { it.isUnknown }
+
+      return forDistributionList(title, members, record)
+    }
+
+    return forDistributionList(null, null, record)
+  }
+
+  @WorkerThread
+  private fun getCallLinkRecipientDetails(record: RecipientRecord): Recipient {
+    val callLink = SignalDatabase.callLinks.getCallLinkByRoomId(record.callLinkRoomId!!)
+
+    if (callLink != null) {
+      val name = callLink.state.name
+
+      return forCallLink(name, record, callLink.avatarColor)
+    }
+
+    return forCallLink(null, record, AvatarColor.UNKNOWN)
   }
 }

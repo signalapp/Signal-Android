@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
+import io.mockk.unmockkAll
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,12 +14,9 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.assertIs
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
-import org.thoughtcrime.securesms.keyvalue.AccountValues
-import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
-import org.thoughtcrime.securesms.keyvalue.KeyValueStore
-import org.thoughtcrime.securesms.keyvalue.MockKeyValuePersistentStorage
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -32,15 +31,13 @@ class CrashConfigTest {
       AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
 
-    val store = KeyValueStore(
-      MockKeyValuePersistentStorage.withDataSet(
-        KeyValueDataSet().apply {
-          putString(AccountValues.KEY_ACI, UUID.randomUUID().toString())
-        }
-      )
-    )
+    mockkObject(SignalStore)
+    every { SignalStore.account.aci } returns ServiceId.ACI.from(UUID.randomUUID())
+  }
 
-    SignalStore.testInject(store)
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   @Test

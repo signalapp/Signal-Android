@@ -166,7 +166,7 @@ public class MediaUploadRepository {
     PreUploadResult result     = uploadResults.get(media);
 
     if (result != null) {
-      Log.d(TAG, "Canceling upload jobs for " + result.getJobIds().size() + " media items.");
+      Log.d(TAG, "Canceling attachment upload job for " + result.getAttachmentId());
       Stream.of(result.getJobIds()).forEach(jobManager::cancel);
       uploadResults.remove(media);
       SignalDatabase.attachments().deleteAttachment(result.getAttachmentId());

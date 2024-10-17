@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class ChatColorsTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
 
   companion object {
-    private const val TABLE_NAME = "chat_colors"
+    const val TABLE_NAME = "chat_colors"
     private const val ID = "_id"
     private const val CHAT_COLORS = "chat_colors"
 

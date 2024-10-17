@@ -185,8 +185,12 @@ public final class PartProvider extends BaseContentProvider {
   }
 
   private ParcelFileDescriptor getParcelStreamForAttachment(AttachmentId attachmentId) throws IOException {
-    long       plaintextLength = StreamUtil.getStreamLength(SignalDatabase.attachments().getAttachmentStream(attachmentId, 0));
-    MemoryFile memoryFile      = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
+    long plaintextLength;
+    try (InputStream in = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0)) {
+      plaintextLength = StreamUtil.getStreamLength(in);
+    }
+
+    MemoryFile memoryFile = new MemoryFile(attachmentId.toString(), Util.toIntExact(plaintextLength));
 
     InputStream  in  = SignalDatabase.attachments().getAttachmentStream(attachmentId, 0);
     OutputStream out = memoryFile.getOutputStream();

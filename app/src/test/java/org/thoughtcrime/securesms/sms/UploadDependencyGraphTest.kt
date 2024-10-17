@@ -240,6 +240,7 @@ class UploadDependencyGraphTest {
       cdn = attachment.cdn,
       location = attachment.remoteLocation,
       key = attachment.remoteKey,
+      iv = attachment.remoteIv,
       digest = attachment.remoteDigest,
       incrementalDigest = attachment.incrementalDigest,
       incrementalMacChunkSize = attachment.incrementalMacChunkSize,
@@ -261,8 +262,8 @@ class UploadDependencyGraphTest {
       archiveMediaId = null,
       archiveMediaName = null,
       archiveCdn = 0,
-      archiveThumbnailCdn = 0,
       thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.NONE,
+      archiveTransferState = AttachmentTable.ArchiveTransferState.NONE,
       uuid = null
     )
   }

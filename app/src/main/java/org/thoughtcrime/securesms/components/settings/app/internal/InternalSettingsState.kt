@@ -23,5 +23,7 @@ data class InternalSettingsState(
   val canClearOnboardingState: Boolean,
   val pnpInitialized: Boolean,
   val useConversationItemV2ForMedia: Boolean,
-  val hasPendingOneTimeDonation: Boolean
+  val hasPendingOneTimeDonation: Boolean,
+  val hevcEncoding: Boolean,
+  val newCallingUi: Boolean
 )

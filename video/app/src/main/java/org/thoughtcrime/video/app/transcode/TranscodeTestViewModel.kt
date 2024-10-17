@@ -18,6 +18,7 @@ import androidx.work.WorkInfo
 import kotlinx.coroutines.flow.Flow
 import org.thoughtcrime.securesms.video.TranscodingPreset
 import org.thoughtcrime.securesms.video.TranscodingQuality
+import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
 import java.util.UUID
 import kotlin.math.roundToInt
 
@@ -39,6 +40,7 @@ class TranscodeTestViewModel : ViewModel() {
   var videoMegaBitrate by mutableFloatStateOf(calculateVideoMegaBitrateFromPreset(transcodingPreset))
   var videoResolution by mutableStateOf(convertPresetToVideoResolution(transcodingPreset))
   var audioKiloBitrate by mutableIntStateOf(calculateAudioKiloBitrateFromPreset(transcodingPreset))
+  var useHevc by mutableStateOf(false)
   var useAutoTranscodingSettings by mutableStateOf(true)
   var enableFastStart by mutableStateOf(true)
   var enableAudioRemux by mutableStateOf(true)
@@ -64,6 +66,7 @@ class TranscodeTestViewModel : ViewModel() {
         output,
         forceSequentialQueueProcessing,
         TranscodeTestRepository.CustomTranscodingOptions(
+          if (useHevc) MediaConverter.VIDEO_CODEC_H265 else MediaConverter.VIDEO_CODEC_H264,
           videoResolution,
           (videoMegaBitrate * MEGABIT).roundToInt(),
           audioKiloBitrate * KILOBIT,
@@ -87,7 +90,7 @@ class TranscodeTestViewModel : ViewModel() {
 
   fun setOutputDirectoryAndCleanFailedTranscodes(context: Context, folderUri: Uri) {
     outputDirectory = folderUri
-    repository.cleanFailedTranscodes(context, folderUri)
+    repository.cleanPrivateStorage(context)
   }
 
   fun reset() {

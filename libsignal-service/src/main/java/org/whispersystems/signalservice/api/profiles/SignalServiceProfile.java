@@ -195,12 +195,16 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean deleteSync;
 
+    @JsonProperty
+    private boolean versionedExpirationTimer;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean deleteSync) {
-      this.storage    = storage;
-      this.deleteSync = deleteSync;
+    public Capabilities(boolean storage, boolean deleteSync, boolean versionedExpirationTimer) {
+      this.storage                  = storage;
+      this.deleteSync               = deleteSync;
+      this.versionedExpirationTimer = versionedExpirationTimer;
     }
 
     public boolean isStorage() {
@@ -209,6 +213,10 @@ public class SignalServiceProfile {
 
     public boolean isDeleteSync() {
       return deleteSync;
+    }
+
+    public boolean isVersionedExpirationTimer() {
+      return versionedExpirationTimer;
     }
   }
 

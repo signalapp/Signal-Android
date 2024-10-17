@@ -11,7 +11,8 @@ object AppCapabilities {
   fun getCapabilities(storageCapable: Boolean): AccountAttributes.Capabilities {
     return AccountAttributes.Capabilities(
       storage = storageCapable,
-      deleteSync = true
+      deleteSync = true,
+      versionedExpirationTimer = true
     )
   }
 }

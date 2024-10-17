@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord;
 
 import java.io.IOException;

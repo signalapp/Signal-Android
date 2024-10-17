@@ -265,12 +265,9 @@ class ManageDonationsFragment :
     state: ManageDonationsState
   ) {
     presentSubscriptionSettingsWithState(state) {
-      val activeCurrency = Currency.getInstance(activeSubscription.currency)
-      val activeAmount = activeSubscription.amount.movePointLeft(activeCurrency.defaultFractionDigits)
-
       customPref(
         ActiveSubscriptionPreference.Model(
-          price = FiatMoney(activeAmount, activeCurrency),
+          price = FiatMoney.fromSignalNetworkAmount(activeSubscription.amount, Currency.getInstance(activeSubscription.currency)),
           subscription = subscription,
           renewalTimestamp = TimeUnit.SECONDS.toMillis(activeSubscription.endOfCurrentPeriod),
           redemptionState = state.getMonthlyDonorRedemptionState(),
@@ -281,9 +278,7 @@ class ManageDonationsFragment :
           activeSubscription = activeSubscription,
           subscriberRequiresCancel = state.subscriberRequiresCancel,
           onRowClick = {
-            if (it != ManageDonationsState.RedemptionState.IN_PROGRESS) {
-              launcher.launch(InAppPaymentType.RECURRING_DONATION)
-            }
+            launcher.launch(InAppPaymentType.RECURRING_DONATION)
           },
           onPendingClick = {
             displayPendingDialog(it)

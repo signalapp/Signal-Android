@@ -121,7 +121,8 @@ class ConversationListSearchAdapter(
         emptySet(),
         ConversationSet(),
         model.thread.query,
-        true
+        true,
+        false
       )
     }
   }

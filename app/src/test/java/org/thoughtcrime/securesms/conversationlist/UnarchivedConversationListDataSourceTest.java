@@ -13,6 +13,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
@@ -20,6 +21,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -45,6 +48,8 @@ public class UnarchivedConversationListDataSourceTest {
 
   private ConversationListDataSource.UnarchivedConversationListDataSource testSubject;
 
+  private ChatFolderRecord allChatsFolder;
+
   private ThreadTable threadTable;
 
   @Before
@@ -54,8 +59,10 @@ public class UnarchivedConversationListDataSourceTest {
     when(SignalDatabase.threads()).thenReturn(threadTable);
     when(AppDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
 
-    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.OFF, false);
+    allChatsFolder = setupAllChatsFolder();
+    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(allChatsFolder, ConversationFilter.OFF, false);
   }
+
 
   @Test
   public void givenNoConversations_whenIGetTotalCount_thenIExpectZero() {
@@ -64,9 +71,6 @@ public class UnarchivedConversationListDataSourceTest {
 
     // THEN
     assertEquals(0, result);
-    assertEquals(0, testSubject.getHeaderOffset());
-    assertFalse(testSubject.hasPinnedHeader());
-    assertFalse(testSubject.hasUnpinnedHeader());
     assertFalse(testSubject.hasConversationFilterFooter());
     assertFalse(testSubject.hasArchivedFooter());
   }
@@ -81,36 +85,15 @@ public class UnarchivedConversationListDataSourceTest {
 
     // THEN
     assertEquals(1, result);
-    assertEquals(0, testSubject.getHeaderOffset());
-    assertFalse(testSubject.hasPinnedHeader());
-    assertFalse(testSubject.hasUnpinnedHeader());
     assertFalse(testSubject.hasConversationFilterFooter());
     assertTrue(testSubject.hasArchivedFooter());
   }
 
   @Test
-  public void givenSinglePinnedAndArchivedConversations_whenIGetTotalCount_thenIExpectThree() {
+  public void givenSinglePinnedAndArchivedConversations_whenIGetTotalCount_thenIExpectTwo() {
     // GIVEN
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
-    when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
-
-    // WHEN
-    int result = testSubject.getTotalCount();
-
-    // THEN
-    assertEquals(3, result);
-    assertEquals(1, testSubject.getHeaderOffset());
-    assertTrue(testSubject.hasPinnedHeader());
-    assertFalse(testSubject.hasUnpinnedHeader());
-    assertFalse(testSubject.hasConversationFilterFooter());
-    assertTrue(testSubject.hasArchivedFooter());
-  }
-
-  @Test
-  public void givenSingleUnpinnedAndArchivedConversations_whenIGetTotalCount_thenIExpectTwo() {
-    // GIVEN
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
     when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
 
     // WHEN
@@ -118,27 +101,36 @@ public class UnarchivedConversationListDataSourceTest {
 
     // THEN
     assertEquals(2, result);
-    assertEquals(0, testSubject.getHeaderOffset());
-    assertFalse(testSubject.hasPinnedHeader());
-    assertFalse(testSubject.hasUnpinnedHeader());
     assertFalse(testSubject.hasConversationFilterFooter());
     assertTrue(testSubject.hasArchivedFooter());
   }
 
   @Test
-  public void givenSinglePinnedAndSingleUnpinned_whenIGetTotalCount_thenIExpectFour() {
+  public void givenSingleUnpinnedAndArchivedConversations_whenIGetTotalCount_thenIExpectTwo() {
     // GIVEN
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(2);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
+    when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
 
     // WHEN
     int result = testSubject.getTotalCount();
 
     // THEN
-    assertEquals(4, result);
-    assertEquals(2, testSubject.getHeaderOffset());
-    assertTrue(testSubject.hasPinnedHeader());
-    assertTrue(testSubject.hasUnpinnedHeader());
+    assertEquals(2, result);
+    assertFalse(testSubject.hasConversationFilterFooter());
+    assertTrue(testSubject.hasArchivedFooter());
+  }
+
+  @Test
+  public void givenSinglePinnedAndSingleUnpinned_whenIGetTotalCount_thenIExpectTwo() {
+    // GIVEN
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(2);
+
+    // WHEN
+    int result = testSubject.getTotalCount();
+
+    // THEN
+    assertEquals(2, result);
     assertFalse(testSubject.hasConversationFilterFooter());
     assertFalse(testSubject.hasArchivedFooter());
   }
@@ -152,8 +144,8 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor cursor = testSubject.getCursor(0, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100, allChatsFolder);
     assertEquals(0, cursor.getCount());
   }
 
@@ -168,17 +160,17 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor cursor = testSubject.getCursor(0, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100, allChatsFolder);
     assertEquals(1, cursor.getCount());
   }
 
   @Test
-  public void givenSinglePinnedAndArchivedConversations_whenIGetCursor_thenIExpectThree() {
+  public void givenSinglePinnedAndArchivedConversations_whenIGetCursor_thenIExpectTwo() {
     // GIVEN
     setupThreadDatabaseCursors(1, 0);
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
     when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
     testSubject.getTotalCount();
 
@@ -186,16 +178,16 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor cursor = testSubject.getCursor(0, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 99);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 98);
-    assertEquals(3, cursor.getCount());
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 99, allChatsFolder);
+    assertEquals(2, cursor.getCount());
   }
 
   @Test
   public void givenSingleUnpinnedAndArchivedConversations_whenIGetCursor_thenIExpectTwo() {
     // GIVEN
     setupThreadDatabaseCursors(0, 1);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
     when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
     testSubject.getTotalCount();
 
@@ -203,42 +195,42 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor cursor = testSubject.getCursor(0, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 100, allChatsFolder);
     assertEquals(2, cursor.getCount());
   }
 
   @Test
-  public void givenSinglePinnedAndSingleUnpinned_whenIGetCursor_thenIExpectFour() {
+  public void givenSinglePinnedAndSingleUnpinned_whenIGetCursor_thenIExpectTwo() {
     // GIVEN
     setupThreadDatabaseCursors(1, 1);
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(1);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(2);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(1);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(2);
     testSubject.getTotalCount();
 
     // WHEN
     Cursor cursor = testSubject.getCursor(0, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 99);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 97);
-    assertEquals(4, cursor.getCount());
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 0, 99, allChatsFolder);
+    assertEquals(2, cursor.getCount());
   }
 
   @Test
   public void givenLoadingSecondPage_whenIGetCursor_thenIExpectProperOffsetAndCursorCount() {
     // GIVEN
     setupThreadDatabaseCursors(0, 100);
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(4);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(104);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(4);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(104);
     testSubject.getTotalCount();
 
     // WHEN
     Cursor cursor = testSubject.getCursor(50, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 50, 100);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 44, 100);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 50, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 46, 100, allChatsFolder);
     assertEquals(100, cursor.getCount());
   }
 
@@ -246,8 +238,8 @@ public class UnarchivedConversationListDataSourceTest {
   public void givenHasArchivedAndLoadingLastPage_whenIGetCursor_thenIExpectProperOffsetAndCursorCount() {
     // GIVEN
     setupThreadDatabaseCursors(0, 99);
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF)).thenReturn(4);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF)).thenReturn(103);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(4);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF, allChatsFolder)).thenReturn(103);
     when(threadTable.getArchivedConversationListCount(ConversationFilter.OFF)).thenReturn(12);
     testSubject.getTotalCount();
 
@@ -255,8 +247,8 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor cursor = testSubject.getCursor(50, 100);
 
     // THEN
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 50, 100);
-    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 44, 100);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, true, 50, 100, allChatsFolder);
+    verify(threadTable).getUnarchivedConversationList(ConversationFilter.OFF, false, 46, 100, allChatsFolder);
     assertEquals(100, cursor.getCount());
 
     cursor.moveToLast();
@@ -266,10 +258,10 @@ public class UnarchivedConversationListDataSourceTest {
   @Test
   public void givenHasNoArchivedAndIsFiltered_whenIGetCursor_thenIExpectConversationFilterFooter() {
     // GIVEN
-    ConversationListDataSource.UnarchivedConversationListDataSource testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.UNREAD, false);
+    ConversationListDataSource.UnarchivedConversationListDataSource testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(allChatsFolder, ConversationFilter.UNREAD, false);
     setupThreadDatabaseCursors(0, 3);
-    when(threadTable.getPinnedConversationListCount(ConversationFilter.UNREAD)).thenReturn(0);
-    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.UNREAD)).thenReturn(3);
+    when(threadTable.getPinnedConversationListCount(ConversationFilter.UNREAD, allChatsFolder)).thenReturn(0);
+    when(threadTable.getUnarchivedConversationListCount(ConversationFilter.UNREAD, allChatsFolder)).thenReturn(3);
     when(threadTable.getArchivedConversationListCount(ConversationFilter.UNREAD)).thenReturn(0);
     testSubject.getTotalCount();
 
@@ -292,7 +284,26 @@ public class UnarchivedConversationListDataSourceTest {
     Cursor unpinnedCursor = mock(Cursor.class);
     when(unpinnedCursor.getCount()).thenReturn(unpinned);
 
-    when(threadTable.getUnarchivedConversationList(any(), eq(true), anyLong(), anyLong())).thenReturn(pinnedCursor);
-    when(threadTable.getUnarchivedConversationList(any(), eq(false), anyLong(), anyLong())).thenReturn(unpinnedCursor);
+    when(threadTable.getUnarchivedConversationList(any(), eq(true), anyLong(), anyLong(), any())).thenReturn(pinnedCursor);
+    when(threadTable.getUnarchivedConversationList(any(), eq(false), anyLong(), anyLong(), any())).thenReturn(unpinnedCursor);
+  }
+
+  private ChatFolderRecord setupAllChatsFolder() {
+    return new ChatFolderRecord(
+        1,
+        "",
+        -1,
+        new ArrayList<>(),
+        new ArrayList<>(),
+        new HashSet<>(),
+        new HashSet<>(),
+        false,
+        false,
+        false,
+        false,
+        false,
+        ChatFolderRecord.FolderType.ALL,
+        0
+    );
   }
 }

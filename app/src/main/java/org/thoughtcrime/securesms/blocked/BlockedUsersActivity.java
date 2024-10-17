@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
+import org.thoughtcrime.securesms.contacts.paged.ChatType;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -97,7 +98,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType, @NonNull Consumer<Boolean> callback) {
     final String displayName = recipientId.map(id -> Recipient.resolved(id).getDisplayName(this)).orElse(number);
 
     AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)
@@ -126,7 +127,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType) {
 
   }
 

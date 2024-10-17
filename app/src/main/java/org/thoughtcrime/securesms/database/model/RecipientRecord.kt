@@ -43,6 +43,7 @@ data class RecipientRecord(
   val messageRingtone: Uri?,
   val callRingtone: Uri?,
   val expireMessages: Int,
+  val expireTimerVersion: Int,
   val registered: RegisteredState,
   val profileKey: ByteArray?,
   val expiringProfileKeyCredential: ExpiringProfileKeyCredential?,
@@ -119,13 +120,15 @@ data class RecipientRecord(
 
   data class Capabilities(
     val rawBits: Long,
-    val deleteSync: Recipient.Capability
+    val deleteSync: Recipient.Capability,
+    val versionedExpirationTimer: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
-        0,
-        Recipient.Capability.UNKNOWN
+        rawBits = 0,
+        deleteSync = Recipient.Capability.UNKNOWN,
+        versionedExpirationTimer = Recipient.Capability.UNKNOWN
       )
     }
   }

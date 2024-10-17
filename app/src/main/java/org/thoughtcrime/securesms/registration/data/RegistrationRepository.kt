@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.registration.data
 
 import android.app.backup.BackupManager
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import kotlinx.coroutines.Dispatchers
@@ -43,10 +44,9 @@ import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.registration.PushChallengeRequest
-import org.thoughtcrime.securesms.registration.RegistrationData
-import org.thoughtcrime.securesms.registration.VerifyAccountRepository
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getAciIdentityKeyPair
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getAciPreKeyCollection
+import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getPniIdentityKeyPair
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil.getPniPreKeyCollection
 import org.thoughtcrime.securesms.registration.data.network.BackupAuthCheckResult
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionC
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCreationResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
+import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
@@ -165,6 +166,11 @@ object RegistrationRepository {
   suspend fun registerAccountLocally(context: Context, data: LocalRegistrationMetadata) =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccountLocally()")
+      val aciIdentityKeyPair = data.getAciIdentityKeyPair()
+      val pniIdentityKeyPair = data.getPniIdentityKeyPair()
+      SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
+      SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentityKeyPair.publicKey.serialize(), pniIdentityKeyPair.privateKey.serialize())
+
       val aciPreKeyCollection = data.getAciPreKeyCollection()
       val pniPreKeyCollection = data.getPniPreKeyCollection()
       val aci: ACI = ACI.parseOrThrow(data.aci)
@@ -275,7 +281,7 @@ object RegistrationRepository {
   /**
    * Validates a session ID.
    */
-  suspend fun validateSession(context: Context, sessionId: String, e164: String, password: String): RegistrationSessionCheckResult =
+  private suspend fun validateSession(context: Context, sessionId: String, e164: String, password: String): RegistrationSessionCheckResult =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
       Log.d(TAG, "Validating registration session with service.")
@@ -345,7 +351,7 @@ object RegistrationRepository {
   /**
    * Asks the service to send a verification code through one of our supported channels (SMS, phone call).
    */
-  suspend fun requestSmsCode(context: Context, sessionId: String, e164: String, password: String, mode: Mode): VerificationCodeRequestResult =
+  suspend fun requestSmsCode(context: Context, sessionId: String, e164: String, password: String, mode: E164VerificationMode): VerificationCodeRequestResult =
     withContext(Dispatchers.IO) {
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, e164, SignalServiceAddress.DEFAULT_DEVICE_ID, password).registrationApi
 
@@ -386,7 +392,7 @@ object RegistrationRepository {
   /**
    * Submit the necessary assets as a verified account so that the user can actually use the service.
    */
-  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: VerifyAccountRepository.MasterKeyProducer? = null): RegisterAccountResult =
+  suspend fun registerAccount(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String? = null, masterKeyProducer: MasterKeyProducer? = null): RegisterAccountResult =
     withContext(Dispatchers.IO) {
       Log.v(TAG, "registerAccount()")
       val api: RegistrationApi = AccountManagerFactory.getInstance().createUnauthenticated(context, registrationData.e164, SignalServiceAddress.DEFAULT_DEVICE_ID, registrationData.password).registrationApi
@@ -427,8 +433,8 @@ object RegistrationRepository {
       SignalStore.account.generatePniIdentityKeyIfNecessary()
       val pniIdentity: IdentityKeyPair = SignalStore.account.pniIdentityKey
 
-      val aciPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account.aciPreKeys)
-      val pniPreKeyCollection = org.thoughtcrime.securesms.registration.RegistrationRepository.generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account.pniPreKeys)
+      val aciPreKeyCollection = generateSignedAndLastResortPreKeys(aciIdentity, SignalStore.account.aciPreKeys)
+      val pniPreKeyCollection = generateSignedAndLastResortPreKeys(pniIdentity, SignalStore.account.pniPreKeys)
 
       val result: NetworkResult<AccountRegistrationResult> = api.registerAccount(sessionId, registrationData.recoveryPassword, accountAttributes, aciPreKeyCollection, pniPreKeyCollection, registrationData.fcmToken, true)
         .map { accountRegistrationResponse: VerifyAccountResponse ->
@@ -582,7 +588,24 @@ object RegistrationRepository {
     return started == true
   }
 
-  enum class Mode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
+  @VisibleForTesting
+  fun generateSignedAndLastResortPreKeys(identity: IdentityKeyPair, metadataStore: PreKeyMetadataStore): PreKeyCollection {
+    val signedPreKey = PreKeyUtil.generateSignedPreKey(metadataStore.nextSignedPreKeyId, identity.privateKey)
+    val lastResortKyberPreKey = PreKeyUtil.generateLastResortKyberPreKey(metadataStore.nextKyberPreKeyId, identity.privateKey)
+
+    return PreKeyCollection(
+      identity.publicKey,
+      signedPreKey,
+      lastResortKyberPreKey
+    )
+  }
+
+  fun interface MasterKeyProducer {
+    @Throws(IOException::class, SvrWrongPinException::class, SvrNoDataException::class)
+    fun produceMasterKey(): MasterKey
+  }
+
+  enum class E164VerificationMode(val isSmsRetrieverSupported: Boolean, val transport: PushServiceSocket.VerificationCodeTransport) {
     SMS_WITH_LISTENER(true, PushServiceSocket.VerificationCodeTransport.SMS),
     SMS_WITHOUT_LISTENER(false, PushServiceSocket.VerificationCodeTransport.SMS),
     PHONE_CALL(false, PushServiceSocket.VerificationCodeTransport.VOICE)

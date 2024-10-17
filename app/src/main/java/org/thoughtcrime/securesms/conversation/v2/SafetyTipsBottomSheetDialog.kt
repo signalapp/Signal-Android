@@ -148,7 +148,7 @@ private fun SafetyTipsContent(forGroup: Boolean = false, modifier: Modifier = Mo
 
       HorizontalPager(
         state = pagerState,
-        beyondBoundsPageCount = size,
+        beyondViewportPageCount = size,
         modifier = Modifier.padding(top = 24.dp)
       ) {
         SafetyTip(tips[it])

@@ -11,6 +11,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
@@ -25,6 +26,7 @@ class ThreadTableTest_active {
   val databaseRule = SignalDatabaseRule()
 
   private lateinit var recipient: Recipient
+  private val allChats: ChatFolderRecord = ChatFolderRecord(folderType = ChatFolderRecord.FolderType.ALL)
 
   @Before
   fun setUp() {
@@ -41,7 +43,8 @@ class ThreadTableTest_active {
       ConversationFilter.OFF,
       false,
       0,
-      10
+      10,
+      allChats
     ).use { threads ->
       assertEquals(1, threads.count)
 
@@ -63,7 +66,8 @@ class ThreadTableTest_active {
       ConversationFilter.OFF,
       false,
       0,
-      10
+      10,
+      allChats
     ).use { threads ->
       assertEquals(0, threads.count)
     }
@@ -83,7 +87,8 @@ class ThreadTableTest_active {
       ConversationFilter.OFF,
       false,
       0,
-      10
+      10,
+      allChats
     ).use { threads ->
       assertEquals(0, threads.count)
     }

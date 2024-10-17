@@ -8,7 +8,6 @@ import android.os.IBinder
 import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationCompat
 import kotlinx.collections.immutable.toImmutableSet
-import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -28,10 +27,13 @@ import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.asChain
 import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.util.SleepTimer
+import org.whispersystems.signalservice.api.util.UptimeSleepTimer
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -128,7 +130,7 @@ class IncomingMessageObserver(private val context: Application) {
       }
     }
 
-    AppDependencies.appForegroundObserver.addListener(object : AppForegroundObserver.Listener {
+    AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
         onAppForegrounded()
       }
@@ -353,9 +355,13 @@ class IncomingMessageObserver(private val context: Application) {
 
   private inner class MessageRetrievalThread : Thread("MessageRetrievalService"), Thread.UncaughtExceptionHandler {
 
+    private var sleepTimer: SleepTimer
+
     init {
       Log.i(TAG, "Initializing! (${this.hashCode()})")
       uncaughtExceptionHandler = this
+
+      sleepTimer = if (!SignalStore.account.fcmEnabled || SignalStore.internal.isWebsocketModeForced) AlarmSleepTimer(context) else UptimeSleepTimer()
     }
 
     override fun run() {
@@ -366,7 +372,7 @@ class IncomingMessageObserver(private val context: Application) {
         if (attempts > 1) {
           val backoff = BackoffUtil.exponentialBackoff(attempts, TimeUnit.SECONDS.toMillis(30))
           Log.w(TAG, "Too many failed connection attempts,  attempts: $attempts backing off: $backoff")
-          ThreadUtil.sleep(backoff)
+          sleepTimer.sleep(backoff)
         }
 
         waitForConnectionNecessary()

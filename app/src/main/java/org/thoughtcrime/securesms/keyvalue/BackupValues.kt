@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.keyvalue
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.coroutines.flow.Flow
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -37,13 +39,15 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
-    /**
-     * Specifies whether remote backups are enabled on this device.
-     */
-    private const val KEY_BACKUPS_ENABLED = "backup.enabled"
+    private const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
+
+    private const val KEY_BACKUP_UPLOADED = "backup.backupUploaded"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
+
+  override fun onFirstEverAppLaunch() = Unit
+  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   private var cachedCdnCredentialsTimestamp: Long by longValue(KEY_CDN_READ_CREDENTIALS_TIMESTAMP, 0L)
   private var cachedCdnCredentials: String? by stringValue(KEY_CDN_READ_CREDENTIALS, null)
@@ -52,9 +56,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
 
-  override fun onFirstEverAppLaunch() = Unit
-  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
-
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
@@ -62,9 +63,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
-  var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
   var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
+
+  /**
+   * When uploading a backup, we store the progress state here so that I can remain across app restarts.
+   */
+  var archiveUploadState: ArchiveUploadProgressState? by protoValue(KEY_ARCHIVE_UPLOAD_STATE, ArchiveUploadProgressState.ADAPTER)
 
   val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
@@ -73,20 +78,32 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     @JvmName("backsUpMedia")
     get() = backupTier == MessageBackupTier.PAID
 
-  var areBackupsEnabled: Boolean
-    get() {
-      return getBoolean(KEY_BACKUPS_ENABLED, false)
-    }
-    set(value) {
-      store
-        .beginWrite()
-        .putBoolean(KEY_BACKUPS_ENABLED, value)
-        .putLong(KEY_NEXT_BACKUP_TIME, -1)
-        .putBoolean(KEY_BACKUPS_INITIALIZED, false)
-        .apply()
-    }
+  /** True if the user has backups enabled, otherwise false. */
+  val areBackupsEnabled: Boolean
+    get() = backupTier != null
+
+  /** True if we believe we have successfully uploaded a backup, otherwise false. */
+  var hasBackupBeenUploaded: Boolean by booleanValue(KEY_BACKUP_UPLOADED, false)
+
+  /**
+   * Call when the user disables backups. Clears/resets all relevant fields.
+   */
+  fun disableBackups() {
+    store
+      .beginWrite()
+      .putLong(KEY_NEXT_BACKUP_TIME, -1)
+      .putBoolean(KEY_BACKUPS_INITIALIZED, false)
+      .putBoolean(KEY_BACKUP_UPLOADED, false)
+      .apply()
+    backupTier = null
+  }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
+
+  private val totalRestorableAttachmentSizeValue = longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
+  var totalRestorableAttachmentSize: Long by totalRestorableAttachmentSizeValue
+  val totalRestorableAttachmentSizeFlow: Flow<Long>
+    get() = totalRestorableAttachmentSizeValue.toFlow()
 
   val isRestoreInProgress: Boolean
     get() = totalRestorableAttachmentSize > 0

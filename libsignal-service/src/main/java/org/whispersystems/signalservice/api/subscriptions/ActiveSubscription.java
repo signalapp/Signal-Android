@@ -19,7 +19,8 @@ public final class ActiveSubscription {
 
   public enum Processor {
     STRIPE("STRIPE"),
-    BRAINTREE("BRAINTREE");
+    BRAINTREE("BRAINTREE"),
+    GOOGLE_PLAY_BILLING("GOOGLE_PLAY_BILLING");
 
     private final String code;
 

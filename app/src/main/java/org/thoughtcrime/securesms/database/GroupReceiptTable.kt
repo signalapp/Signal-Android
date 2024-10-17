@@ -133,7 +133,7 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
       .readToList { it.toGroupReceiptInfo() }
   }
 
-  fun getGroupReceiptInfoForMessages(ids: Set<Long>): Map<Long, List<GroupReceiptInfo>> {
+  fun getGroupReceiptInfoForMessages(ids: Collection<Long>): Map<Long, List<GroupReceiptInfo>> {
     if (ids.isEmpty()) {
       return emptyMap()
     }

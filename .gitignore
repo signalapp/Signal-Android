@@ -29,4 +29,5 @@ jni/libspeex/.deps/
 pkcs11.password
 dev.keystore
 maps.key
-local/
+/local/
+kls_database.db

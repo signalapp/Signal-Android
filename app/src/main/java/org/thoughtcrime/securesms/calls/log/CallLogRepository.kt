@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.CallLinkPeekJob
 import org.thoughtcrime.securesms.jobs.CallLogEventSendJob
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
@@ -20,6 +19,7 @@ class CallLogRepository(
   private val updateCallLinkRepository: UpdateCallLinkRepository = UpdateCallLinkRepository(),
   private val callLogPeekHelper: CallLogPeekHelper
 ) : CallLogPagedDataSource.CallRepository {
+
   override fun getCallsCount(query: String?, filter: CallLogFilter): Int {
     return SignalDatabase.calls.getCallsCount(query, filter)
   }
@@ -151,36 +151,11 @@ class CallLogRepository(
         updateCallLinkRepository.deleteCallLink(it.credentials!!)
       }
     ).reduce(0) { acc, current ->
-      acc + (if (current is UpdateCallLinkResult.Update) 0 else 1)
+      acc + (if (current is UpdateCallLinkResult.Delete) 0 else 1)
     }.doOnTerminate {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }.doOnDispose {
       SignalDatabase.calls.updateAdHocCallEventDeletionTimestamps()
     }
-  }
-
-  fun peekCallLinks(): Completable {
-    return Completable.fromAction {
-      val callLinks: List<CallLogRow.CallLink> = SignalDatabase.callLinks.getCallLinks(
-        query = null,
-        offset = 0,
-        limit = 10
-      )
-
-      val callEvents: List<CallLogRow.Call> = SignalDatabase.calls.getCalls(
-        offset = 0,
-        limit = 10,
-        searchTerm = null,
-        filter = CallLogFilter.AD_HOC
-      )
-
-      val recipients = (callLinks.map { it.recipient } + callEvents.map { it.peer }).toSet()
-
-      val jobs = recipients.take(10).map {
-        CallLinkPeekJob(it.id)
-      }
-
-      AppDependencies.jobManager.addAll(jobs)
-    }.subscribeOn(Schedulers.io())
   }
 }

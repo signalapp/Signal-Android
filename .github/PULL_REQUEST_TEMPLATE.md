@@ -1,7 +1,7 @@
 <!-- You can remove this first section if you have contributed before -->
 ### First time contributor checklist
 <!-- replace the empty checkboxes [ ] below with checked ones [x] accordingly -->
-- [ ] I have read [how to contribute](https://github.com/signalapp/Signal-Android/blob/master/CONTRIBUTING.md) to this project
+- [ ] I have read [how to contribute](https://github.com/signalapp/Signal-Android/blob/main/CONTRIBUTING.md) to this project
 - [ ] I have signed the [Contributor License Agreement](https://signal.org/cla/)
 
 ### Contributor checklist

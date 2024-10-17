@@ -57,19 +57,7 @@ public class DonationsService {
     }
   }
 
-  public DonationsService(
-      SignalServiceConfiguration configuration,
-      CredentialsProvider credentialsProvider,
-      String signalAgent,
-      GroupsV2Operations groupsV2Operations,
-      boolean automaticNetworkRetry
-  )
-  {
-    this(new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry));
-  }
-
-  // Visible for testing.
-  DonationsService(@NonNull PushServiceSocket pushServiceSocket) {
+  public DonationsService(@NonNull PushServiceSocket pushServiceSocket) {
     this.pushServiceSocket = pushServiceSocket;
   }
 
@@ -192,6 +180,16 @@ public class DonationsService {
       synchronized (mutex) {
         pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
       }
+      return new Pair<>(EmptyResponse.INSTANCE, 200);
+    });
+  }
+
+  public ServiceResponse<EmptyResponse> linkGooglePlayBillingPurchaseTokenToSubscriberId(SubscriberId subscriberId, String purchaseToken, Object mutex) {
+    return wrapInServiceResponse(() -> {
+      synchronized (mutex) {
+        pushServiceSocket.linkPlayBillingPurchaseToken(subscriberId.serialize(), purchaseToken);
+      }
+
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }

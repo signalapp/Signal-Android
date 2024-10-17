@@ -109,7 +109,7 @@ public class LinkPreviewViewModel extends ViewModel {
     }
   }
 
-  public void onTextChanged(@NonNull Context context, @NonNull String text, int cursorStart, int cursorEnd) {
+  public void onTextChanged(@NonNull String text, int cursorStart, int cursorEnd) {
     if (!enabled && !enablePlaceholder) return;
 
     debouncer.publish(() -> {

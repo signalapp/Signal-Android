@@ -38,6 +38,8 @@ import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.logging.Log;
 import org.signal.glide.transforms.SignalDownsampleStrategy;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -404,9 +406,22 @@ public class ThumbnailView extends FrameLayout {
       return new SettableFuture<>(false);
     }
 
-    Log.i(TAG, "loading part with id " + slide.asAttachment().getUri()
+    Attachment slideAttachment = slide.asAttachment();
+    String     id;
+    if (slideAttachment instanceof DatabaseAttachment) {
+      id = ((DatabaseAttachment) slideAttachment).attachmentId.serialize();
+    } else {
+      final Uri uri = slideAttachment.getUri();
+      if (uri != null) {
+        id = slideAttachment.getUri().toString();
+      } else {
+        id = slideAttachment.getClass().getSimpleName();
+      }
+    }
+
+    Log.i(TAG, "loading part with id " + id
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
-               slide.asAttachment().fastPreflightId);
+               slideAttachment.fastPreflightId);
 
     BlurHash previousBlurHash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
 

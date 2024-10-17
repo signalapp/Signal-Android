@@ -92,7 +92,7 @@ public class JobMigratorTest {
 
   private static JobStorage simpleJobStorage() {
     JobStorage jobStorage = mock(JobStorage.class);
-    JobSpec    job        = new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, null, null, false, false, 0);
+    JobSpec    job        = new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, null, null, false, false, 0, 0);
 
     when(jobStorage.debugGetJobSpecs(anyInt())).thenReturn(new ArrayList<>(Collections.singletonList(job)));
     doAnswer(invocation -> {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyvalue
 
-import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -33,6 +32,7 @@ class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreVal
   companion object {
     private val TAG = Log.tag(PaymentsValues::class.java)
 
+    private const val MOB_PAYMENTS_ENABLED = "mob_payments_enabled"
     private const val PAYMENTS_ENTROPY = "payments_entropy"
     private const val MOB_LEDGER = "mob_ledger"
     private const val PAYMENTS_CURRENT_CURRENCY = "payments_current_currency"
@@ -50,9 +50,6 @@ class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreVal
     private const val SHOW_SAVE_RECOVERY_PHRASE = "mob_show_save_recovery_phrase"
 
     private val LARGE_BALANCE_THRESHOLD = Money.mobileCoin(BigDecimal.valueOf(500))
-
-    @VisibleForTesting
-    const val MOB_PAYMENTS_ENABLED = "mob_payments_enabled"
   }
 
   @get:JvmName("isPaymentLockEnabled")

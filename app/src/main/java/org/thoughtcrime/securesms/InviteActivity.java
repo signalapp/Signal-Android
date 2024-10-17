@@ -27,15 +27,14 @@ import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.components.ContactFilterView.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.contacts.paged.ChatType;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -131,13 +130,13 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   }
 
   @Override
-  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Consumer<Boolean> callback) {
+  public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType, @NonNull Consumer<Boolean> callback) {
     updateSmsButtonText(contactsFragment.getSelectedContacts().size() + 1);
     callback.accept(true);
   }
 
   @Override
-  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType) {
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
   }
 

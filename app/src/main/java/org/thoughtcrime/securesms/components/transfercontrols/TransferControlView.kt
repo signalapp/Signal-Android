@@ -529,6 +529,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
         val existingEvent = mutableMap[attachment]
         if (existingEvent == null || updateEvent.completed > existingEvent.completed) {
           mutableMap[attachment] = updateEvent
+        } else if (updateEvent.completed < 0) {
+          mutableMap.remove(attachment)
         }
         verboseLog("onEventAsync compression update")
         return@updateState it.copy(compressionProgress = mutableMap.toMap())
@@ -538,6 +540,8 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
         val existingEvent = mutableMap[attachment]
         if (existingEvent == null || updateEvent.completed > existingEvent.completed) {
           mutableMap[attachment] = updateEvent
+        } else if (updateEvent.completed < 0) {
+          mutableMap.remove(attachment)
         }
         verboseLog("onEventAsync network update")
         return@updateState it.copy(networkProgress = mutableMap.toMap())

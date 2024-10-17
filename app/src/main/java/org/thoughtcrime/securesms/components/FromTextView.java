@@ -44,6 +44,10 @@ public class FromTextView extends SimpleEmojiTextView {
   }
 
   public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix, boolean asThread, boolean showSelfAsYou) {
+    setText(recipient, fromString, suffix, asThread, showSelfAsYou, false);
+  }
+
+  public void setText(Recipient recipient, @Nullable CharSequence fromString, @Nullable CharSequence suffix, boolean asThread, boolean showSelfAsYou, boolean isPinned) {
     SpannableStringBuilder builder  = new SpannableStringBuilder();
 
     if (asThread && recipient.isSelf() && showSelfAsYou) {
@@ -66,25 +70,34 @@ public class FromTextView extends SimpleEmojiTextView {
              .append(SpanUtil.buildCenteredImageSpan(official));
     }
 
+    if (recipient.isMuted()) {
+      builder.append(" ")
+             .append(SpanUtil.buildCenteredImageSpan(getMuted()));
+    }
+
     setText(builder);
 
     if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
-    else if (recipient.isMuted())   setCompoundDrawablesRelativeWithIntrinsicBounds(getMuted(), null, null, null);
+    else if (isPinned)              setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
     else                            setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
   }
 
   private Drawable getBlocked() {
-    return getDrawable(R.drawable.symbol_block_16);
+    return getDrawable(R.drawable.symbol_block_16, R.color.signal_icon_tint_secondary);
   }
 
   private Drawable getMuted() {
-    return getDrawable(R.drawable.ic_bell_disabled_16);
+    return getDrawable(R.drawable.ic_bell_disabled_16, R.color.signal_icon_tint_secondary);
   }
 
-  private Drawable getDrawable(@DrawableRes int drawable) {
+  private Drawable getPinned() {
+    return getDrawable(R.drawable.symbol_pin_16, R.color.signal_colorOnSurface);
+  }
+
+  private Drawable getDrawable(@DrawableRes int drawable, int colorRes) {
     Drawable mutedDrawable = ContextUtil.requireDrawable(getContext(), drawable);
-    mutedDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
-    DrawableUtil.tint(mutedDrawable, ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary));
+    mutedDrawable.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
+    DrawableUtil.tint(mutedDrawable, ContextCompat.getColor(getContext(), colorRes));
     return mutedDrawable;
   }
 }

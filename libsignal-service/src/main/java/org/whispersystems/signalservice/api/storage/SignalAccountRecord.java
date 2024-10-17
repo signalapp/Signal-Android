@@ -1,11 +1,11 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.payments.PaymentsConstants;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
-import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 import org.whispersystems.signalservice.internal.storage.protos.OptionalBool;
 
@@ -38,6 +38,7 @@ public final class SignalAccountRecord implements SignalRecord {
   private final Payments                 payments;
   private final List<String>             defaultReactions;
   private final Subscriber               subscriber;
+  private final Subscriber               backupsSubscriber;
 
   public SignalAccountRecord(StorageId id, AccountRecord proto) {
     this.id               = id;
@@ -51,6 +52,7 @@ public final class SignalAccountRecord implements SignalRecord {
     this.pinnedConversations  = new ArrayList<>(proto.pinnedConversations.size());
     this.defaultReactions     = new ArrayList<>(proto.preferredReactionEmoji);
     this.subscriber           = new Subscriber(proto.subscriberCurrencyCode, proto.subscriberId.toByteArray());
+    this.backupsSubscriber    = new Subscriber(proto.backupsSubscriberCurrencyCode, proto.backupsSubscriberId.toByteArray());
 
     if (proto.payments != null) {
       this.payments = new Payments(proto.payments.enabled, OptionalUtil.absentIfEmpty(proto.payments.entropy));
@@ -207,6 +209,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("HasCompletedUsernameOnboarding");
       }
 
+      if (!Objects.equals(this.getBackupsSubscriber(), that.getBackupsSubscriber())) {
+        diff.add("BackupsSubscriber");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -299,6 +305,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public Subscriber getSubscriber() {
     return subscriber;
+  }
+
+  public Subscriber getBackupsSubscriber() {
+    return backupsSubscriber;
   }
 
   public boolean isDisplayBadgesOnProfile() {
@@ -661,6 +671,18 @@ public final class SignalAccountRecord implements SignalRecord {
       } else {
         builder.subscriberId(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberId);
         builder.subscriberCurrencyCode(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberCurrencyCode);
+      }
+
+      return this;
+    }
+
+    public Builder setBackupsSubscriber(Subscriber subscriber) {
+      if (subscriber.id.isPresent() && subscriber.currencyCode.isPresent()) {
+        builder.backupsSubscriberId(ByteString.of(subscriber.id.get()));
+        builder.backupsSubscriberCurrencyCode(subscriber.currencyCode.get());
+      } else {
+        builder.backupsSubscriberId(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberId);
+        builder.backupsSubscriberCurrencyCode(StorageRecordProtoUtil.getDefaultAccountRecord().subscriberCurrencyCode);
       }
 
       return this;

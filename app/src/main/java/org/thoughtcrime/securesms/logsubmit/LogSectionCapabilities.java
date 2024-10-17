@@ -35,6 +35,7 @@ public final class LogSectionCapabilities implements LogSection {
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
                                                .append("DeleteSync: ").append(localCapabilities.getDeleteSync()).append("\n")
+                                               .append("VersionedExpirationTimer: ").append(localCapabilities.getVersionedExpirationTimer()).append("\n")
                                                .append("\n")
                                                .append("-- Global").append("\n");
 

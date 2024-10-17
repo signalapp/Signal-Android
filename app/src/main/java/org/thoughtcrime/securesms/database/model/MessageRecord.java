@@ -99,6 +99,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final int                      subscriptionId;
   private final long                     expiresIn;
   private final long                     expireStarted;
+  private final int                      expireTimerVersion;
   private final boolean                  unidentified;
   private final List<ReactionRecord>     reactions;
   private final long                     serverTimestamp;
@@ -119,6 +120,7 @@ public abstract class MessageRecord extends DisplayRecord {
                 int subscriptionId,
                 long expiresIn,
                 long expireStarted,
+                int expireTimerVersion,
                 boolean hasReadReceipt,
                 boolean unidentified,
                 @NonNull List<ReactionRecord> reactions,
@@ -140,6 +142,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.subscriptionId      = subscriptionId;
     this.expiresIn           = expiresIn;
     this.expireStarted       = expireStarted;
+    this.expireTimerVersion  = expireTimerVersion;
     this.unidentified        = unidentified;
     this.reactions           = reactions;
     this.serverTimestamp     = dateServer;
@@ -223,8 +226,8 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isIdentityUpdate()) {
       return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)), R.drawable.ic_update_safety_number_16);
     } else if (isIdentityVerified()) {
-      if (isOutgoing()) return fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, r.getDisplayName(context)), R.drawable.ic_update_verified_16);
-      else              return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, r.getDisplayName(context)), R.drawable.ic_update_verified_16);
+      if (isOutgoing()) return fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified, r.getDisplayName(context)), R.drawable.ic_safety_number_16);
+      else              return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device, r.getDisplayName(context)), R.drawable.ic_safety_number_16);
     } else if (isIdentityDefault()) {
       if (isOutgoing()) return fromRecipient(getToRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified, r.getDisplayName(context)), R.drawable.ic_update_info_16);
       else              return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device, r.getDisplayName(context)), R.drawable.ic_update_info_16);
@@ -752,6 +755,10 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public long getExpireStarted() {
     return expireStarted;
+  }
+
+  public int getExpireTimerVersion() {
+    return expireTimerVersion;
   }
 
   public boolean isUnidentified() {

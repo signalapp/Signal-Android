@@ -39,7 +39,8 @@ tasks.withType<KotlinCompile>().configureEach {
 afterEvaluate {
   listOf(
     "runKtlintCheckOverMainSourceSet",
-    "runKtlintFormatOverMainSourceSet"
+    "runKtlintFormatOverMainSourceSet",
+    "sourcesJar"
   ).forEach { taskName ->
     tasks.named(taskName) {
       mustRunAfter(tasks.named("generateMainProtos"))

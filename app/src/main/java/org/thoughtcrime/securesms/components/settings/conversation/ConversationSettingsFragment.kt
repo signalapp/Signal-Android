@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.Badges.displayBadges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.badges.view.ViewBadgeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -442,11 +443,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
                 .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
                 .show()
             } else {
-              CommunicationActions.startVideoCall(requireActivity(), state.recipient)
+              CommunicationActions.startVideoCall(requireActivity(), state.recipient) {
+                YouAreAlreadyInACallSnackbar.show(requireView())
+              }
             }
           },
           onAudioClick = {
-            CommunicationActions.startVoiceCall(requireActivity(), state.recipient)
+            CommunicationActions.startVoiceCall(requireActivity(), state.recipient) {
+              YouAreAlreadyInACallSnackbar.show(requireView())
+            }
           },
           onMuteClick = {
             if (!state.buttonStripState.isMuted) {

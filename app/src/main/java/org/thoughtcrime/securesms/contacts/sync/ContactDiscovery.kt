@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.registration.RegistrationUtil
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -207,7 +207,7 @@ object ContactDiscovery {
     if (!SignalStore.settings.isNotifyWhenContactJoinsSignal) return
 
     Recipient.resolvedList(newUserIds)
-      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 }
+      .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) && it.hasE164 && !it.isBlocked }
       .map {
         Log.i(TAG, "Inserting 'contact joined' message for ${it.id}. E164: ${it.e164}")
         val message = IncomingMessage.contactJoined(it.id, System.currentTimeMillis())

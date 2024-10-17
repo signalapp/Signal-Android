@@ -51,7 +51,7 @@ import kotlin.time.Duration.Companion.seconds
 class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
 
   companion object {
-    private const val TABLE_NAME = "in_app_payment"
+    const val TABLE_NAME = "in_app_payment"
 
     /**
      * Row ID
@@ -282,19 +282,6 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
         InAppPaymentType.serialize(InAppPaymentType.RECURRING_DONATION),
         InAppPaymentType.serialize(InAppPaymentType.ONE_TIME_DONATION),
         InAppPaymentType.serialize(InAppPaymentType.ONE_TIME_GIFT)
-      )
-      .run()
-  }
-
-  /**
-   * Returns whether there are any pending donations in the database.
-   */
-  fun hasPending(type: InAppPaymentType): Boolean {
-    return readableDatabase.exists(TABLE_NAME)
-      .where(
-        "$STATE = ? AND $TYPE = ?",
-        State.serialize(State.PENDING),
-        InAppPaymentType.serialize(type)
       )
       .run()
   }

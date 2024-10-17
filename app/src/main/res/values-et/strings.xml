@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">Jah</string>
     <string name="no">Ei</string>
     <string name="delete">Kustuta</string>
@@ -260,6 +263,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Koputa pildi, hoia all video tegemiseks</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Pildista</string>
     <string name="CameraXFragment_change_camera_description">Vaheta kaamerat</string>
     <string name="CameraXFragment_open_gallery_description">Ava galerii</string>
@@ -345,6 +349,8 @@
     <string name="CommunicationActions_invalid_link">Vigane link</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">See ei ole kehtiv kõnelink. Kontrolli, kas kogu link on korrektne ja vajadusel paranda enne liitumiskatset.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">Sa oled juba kõnes</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -362,6 +368,8 @@
     <string name="ContactsCursorLoader__chats">Vestlused</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Sõnumid</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Sõnum %1$s</string>
@@ -401,6 +409,7 @@
     <string name="ConversationItem_unable_to_open_media">Ei leia rakendust, mis oleks võimeline seda meediafaili avama.</string>
     <string name="ConversationItem_copied_text">%1$s kopeeritud</string>
     <string name="ConversationItem_from_s">%1$s kaudu</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">SIMile %1$s</string>
     <string name="ConversationItem_read_more">  Loe rohkem</string>
     <string name="ConversationItem_download_more">  Laadi rohkem alla</string>
@@ -434,6 +443,7 @@
     <string name="ConversationActivity_send_edit">Saada muudatus</string>
     <string name="ConversationActivity_compose_message">Koosta sõnum</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Vabandust, sinu manuse seadmisega tekkis viga.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Saaja ei ole sobiv SMS või e-posti aadress!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Sõnum on tühi!</string>
     <string name="ConversationActivity_group_members">Grupiliikmed</string>
@@ -574,6 +584,7 @@
         <item quantity="other">%1$d manuse salvestamine sisemällu…</item>
     </plurals>
     <string name="ConversationFragment_pending">Ootel…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Andmeside (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -807,7 +818,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">Loo varukoopia</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Ongi valmis. Alusta kohe varundamisega.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Olenevalt varukoopia suurusest võib selleks kuluda palju aega. Varundamise ajal saad oma telefoni tavapäraselt kasutada.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -971,6 +982,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">Lingitud seadmeid pole</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Seadme linkimiseks tee lukust lahti</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Enne sidumist kinnita oma isik</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Toksa, et jätkata ning sisesta kinnitamiseks oma telefoni lukustuskood. Ära sisesta oma Signali PIN-koodi.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Jätka</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -998,6 +1015,7 @@
     <string name="DeviceListActivity_unlink_s">Eemaldada \"%1$s\" linkimine?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Eemaldades selle seadme lingi, ei ole see enam võimeline sõnumeid saatma ja vastu võtma.</string>
     <string name="DeviceListActivity_network_connection_failed">Võrguühendus ebaõnnestus</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Proovi uuesti</string>
     <string name="DeviceListActivity_unlinking_device">Seadme lingi eemaldamine…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Eemaldan seadme lingi</string>
@@ -1400,7 +1418,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Grupilink</string>
     <string name="ShareableGroupLinkDialogFragment__share">Jaga</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Lähtesta link</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Võta uued liikmed vastu</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Küsi administraatori nõusolekut</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Nõua grupilingi kaudu liituvate uute liikmete administraatori poolt kinnitamist.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Kas sa tõesti soovid vestluse linki lähtestada? Inimesed ei saa siis varasema lingi kaudu enam vestlusega liituda.</string>
 
@@ -1499,6 +1517,7 @@
         <item quantity="other">Saadad %1$d SMS-kutset?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
 
     <!-- LearnMoreTextView -->
@@ -1923,6 +1942,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Kas lubad kasutajal %1$s sulle sõnumeid saata ja jagad temaga oma nime ja fotot? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Kas lubad kasutajal %1$s sulle sõnumeid saata? Sa ei saa sõnumeid enne kui oled blokeeringu eemaldanud.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Kas soovid näha kasutaja %1$s uuendusi ja uudiseid? Sa ei saa uuendusi enne kui oled blokeeringu eemaldanud.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Kas jätkata vestlust selle grupiga ja jagada sinu nime ning fotot grupi liikmetele?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Seda aegunud gruppi ei saa enam kasutada. Loo uus grupp, et aktiveerida uued funktsioonid nagu @mainimised ja administraatorid.</string>
@@ -1951,6 +1971,7 @@
         <item quantity="one">+%1$d kutsutud</item>
         <item quantity="other">+%1$d kutsutud</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%1$d lisagrupp</item>
         <item quantity="other">%1$d lisagrupp</item>
@@ -1977,6 +1998,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">Seadet ei leitud.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Võrgu viga.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Sobimatu QR-kood.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Vabandust, sul on juba liiga palju seadmeid lingitud, proovi mõned eemaldada</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Vabandust, see ei ole sobiv seadme linkimise QR-kood.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Lingid Signali seadme?</string>
@@ -1999,11 +2021,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Saada salasõna</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salasõna!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Lukusta Signal lahti</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android: ekraanilukk</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Kaart</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Kukuta nööpnõel</string>
     <string name="PlacePickerActivity_accept_address">Kinnita aadress</string>
 
@@ -2097,6 +2121,16 @@
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
+
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">Mine tagasi</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">Kõne teave</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Sinu kaamera on väljas</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Klõpsa siia enda video käivitamiseks</string>
@@ -2227,6 +2261,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">Kedagi teist pole siin</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s on selles kõnes</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s on selles kõnes</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s on selles kõnes</string>
 
@@ -2247,6 +2282,8 @@
     <string name="WebRtcCallView__additional_actions">Lisategevused</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Lõpeta kõne</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">Grupihelina sisse või välja lülitamine</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Tekkis UI tõrge. Palun teavita arendajaid sellest veast.</string>
@@ -2494,6 +2531,7 @@
     <string name="SharedContactView_message">Signali sõnum</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">Rohkem</string>
 
     <!-- SignalPinReminders -->
@@ -2525,6 +2563,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">Kleepse pole paigaldatud</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Kleepsud sissetulevatelt sõnumitelt kuvatakse siin</string>
     <string name="StickerManagementAdapter_untitled">Nimetu</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Tundmatu</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2627,6 +2666,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Proovime hiljem uuesti.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal on edukalt uuendatud</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Sinu versioon on automaatselt uuendatud versioonile %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">Uuendasid versioonile %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Saadad sõnumi?</string>
@@ -2745,6 +2785,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Meedia ei ole enam saadaval.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Meediat ei saa esitada.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Viga sõnumi leidmisel.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ei leia rakendust, mis oleks võimeline seda meediafaili jagama.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Sulge</string>
@@ -2816,6 +2857,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Sõnumid</string>
     <string name="NotificationChannel_calls">Kõned</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Ebaõnnestumised</string>
     <string name="NotificationChannel_backups">Varukoopiad</string>
     <string name="NotificationChannel_locked_status">Luku olek</string>
@@ -2825,6 +2867,7 @@
     <string name="NotificationChannel_missing_display_name">Tundmatu</string>
     <string name="NotificationChannel_voice_notes">Häälmärkmed</string>
     <string name="NotificationChannel_contact_joined_signal">Kontakt liitus Signaliga</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Teavituste kanali sätete avamiseks pole tegevusi.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Taustaühendus</string>
@@ -3046,6 +3089,7 @@
     <string name="conversation_activity__attachment_thumbnail">Manuse pisipilt</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Lülita kiire kaamera manuse sahtel sisse või välja</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Salvesta ja saada helimanus</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lukusta helimanuse salvestamine</string>
     <string name="conversation_activity__message_could_not_be_sent">Sõnumi saatmine ei õnnestunud. Kontrolli internetiühendust ja proovi uuesti.</string>
 
@@ -3064,6 +3108,7 @@
     <string name="conversation_item_sent__message_read">Sõnum loetud</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Kontakti foto</string>
 
     <!-- ConversationUpdateItem -->
@@ -3148,6 +3193,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Nüüd on kõik hästi!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Kõnede teavituste saamiseks klõpsa siia ja lülita sisse \"Näita teavitusi\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Kõnede teavituste saamiseks klõpsa siia, luba teavitused ja kontrolli, et heli ja hüpikaknad oleks lubatud.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Kõnede teavituste saamiseks klõpsa Sätted ja luba aku sätetes taustategevused. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Sätted</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Kõnede teavituste saamiseks klõpsa Sätted ja lülita sisse \"Näita teavitusi\".</string>
@@ -3382,6 +3428,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Kasutajatoe info</string>
     <string name="HelpFragment__signal_android_support_request">Signali Androidi kasutajatoetaotlus</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3470,6 +3517,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hangib lingieelvaated otse saitidelt, mida sõnumina saadad.</string>
     <string name="preferences__change_passphrase">Muuda salasõna</string>
     <string name="preferences__change_your_passphrase">Muuda oma salasõna</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Luba salaväljendiga ekraanilukk</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukusta ekraan ja teavitused salasõnaga</string>
     <string name="preferences__screen_security">Kuva turvamine</string>
@@ -3482,6 +3530,7 @@
     <string name="preferences__pref_led_blink_title">LEDi välkumismuster</string>
     <string name="preferences__customize">Kohanda</string>
     <string name="preferences__change_sound_and_vibration">Muuda heli ja vibratsiooni</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Heli</string>
     <string name="preferences__silent">Vaikne</string>
     <string name="preferences__default">Vaikimisi</string>
@@ -3603,10 +3652,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Kogu sõnumiajalugu kustutatakse püsivalt. Seda toimingut ei saa tagasi võtta.</string>
     <string name="preferences_storage__delete_all_now">Kustuta kõik kohe</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Igaveseks</string>
     <string name="preferences_storage__one_year">1 aasta</string>
     <string name="preferences_storage__six_months">6 kuud</string>
     <string name="preferences_storage__thirty_days">30 päeva</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Puudub</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="one">%1$s sõnum</item>
@@ -3631,6 +3682,7 @@
     <string name="preferences_notifications__show">Kuva</string>
     <string name="preferences_notifications__ringtone">Helin</string>
     <string name="preferences_chats__message_text_size">Sõnumi fondisuurus</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Prioriteet</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Teavituste tõrkeotsing</string>
@@ -3859,6 +3911,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Sisesta makse saaja QR-koodi aadress</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Taotlus</string>
     <string name="CreatePaymentFragment__pay">Maksa</string>
     <string name="CreatePaymentFragment__available_balance_s">Saadavalolev saldo: %1$s</string>
@@ -3990,6 +4043,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Sa saad kinnitada kuni %1$d vestlust</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Kontakti foto pilt</string>
     <string name="conversation_list_item_view__archived">Arhiveeritud</string>
 
@@ -3998,6 +4052,10 @@
     <string name="conversation_list_fragment__fab_content_description">Uus vestlus</string>
     <string name="conversation_list_fragment__open_camera_description">Ava kaamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Vestlused puuduvad.\nTee algust ja saada sõbrale sõnum.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4230,6 +4288,7 @@
     <string name="preferences_chats__chat_backups">Vestluste varukoopiad</string>
     <string name="preferences_chats__transfer_account">Kanna konto üle</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Kanna konto üle uude Android-seadmesse</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Sisesta varukoopia salasõna</string>
     <string name="RegistrationActivity_restore">Taasta</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varukoopiaid importida</string>
@@ -4437,6 +4496,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">WiFi sätete avamine ei õnnestunud. Palun lülita WiFi käsitsi sisse.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Luba juurdepääs asukohale</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Lülita sisse asukohateenused</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Lülita Wi-Fi sisse</string>
@@ -4690,6 +4750,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Jaga</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Saada</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -4993,6 +5054,119 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Klaviatuur</string>
     <string name="ChatsSettingsFragment__send_with_enter">Saada Enter-klahviga</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="one">%1$d chat type</item>
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="one">%1$d chat</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="one">%1$d chat excluded</item>
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Sõnumid</string>
@@ -5077,6 +5251,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Meedia kvaliteet</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Saadetud meedia kvaliteet</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Kõrge kvaliteediga meedia saatmine kasutab rohkem andmesidet.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -5355,6 +5530,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Lisa loosse</string>
     <string name="MediaReviewFragment__add_a_message">Lisa sõnum</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Lisa vastus</string>
     <string name="MediaReviewFragment__send_to">Vali saaja</string>
     <string name="MediaReviewFragment__view_once_message">Ühekordselt vaadatav meediasisu</string>
@@ -5959,6 +6135,8 @@
         <item quantity="one">%1$d vastus</item>
         <item quantity="other">%1$d vastust</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Lugu ei ole enam peidetud</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Lisa</string>
     <!-- Used when view receipts are disabled -->
@@ -6926,7 +7104,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Muuda kõne nime</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Võta uued liikmed vastu</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Küsi administraatori nõusolekut</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Jaga linki Signali kaudu</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -6982,7 +7160,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Lisa kõne nimi</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Võta uued liikmed vastu</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Küsi administraatori nõusolekut</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Jaga linki</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7194,11 +7372,11 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Meedia varundamine on välja lülitatud</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Sinu varundamiste tellimus lõppes</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Sinu Signali meedia varundamise plaan on tühistatud, sest me ei saanud su makset töödelda. Sul on %1$d päev aega varundatud meedia alla laadimiseks. Pärast %1$d päeva varukoopias olev meedia kustutatakse.</item>
-        <item quantity="other">Sinu Signali meedia varundamise plaan on tühistatud, sest me ei saanud su makset töödelda. Sul on %1$d päeva aega varundatud meedia alla laadimiseks. Pärast %1$d päeva varukoopias olev meedia kustutatakse.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="one">Sinu varundamise plaan on aegunud, sest me ei saanud seda su praeguse maksemeetodiga uuendada. %1$d päeva pärast varukoopias olev meedia kustutatakse.</item>
+        <item quantity="other">Sinu varundamise plaan on aegunud, sest me ei saanud seda su praeguse maksemeetodiga uuendada. %1$d päeva pärast varukoopias olev meedia kustutatakse.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Selleks, et oma meedia varundamist jätkata, saad igal ajal uuesti varundamise eest tasumist alustada. </string>
@@ -7216,9 +7394,9 @@
         <item quantity="other">Kui valid „Jäta vahele“, kustutatakse su varukoopias olev meedia %1$d päeva pärast.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Varundamise makset ei õnnestu töödelda</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Sinu varukoopiate tellimust ei saanud uuendada</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Meil on probleeme sinu igakuise varundamise makse töötlemisega. Palun veendu, et sinu maksemeetod on ajakohane. Kui ei ole, siis palun uuenda seda Google Pay kaudu. Signal proovib makset paari päeva pärast uuesti töödelda.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Palun veendu, et sinu maksemeetod on ajakohane. Toksa Halda tellimust ning seejärel Maksete all Uuenda.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Varundamine ei õnnestunud</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7227,12 +7405,16 @@
     <string name="BackupAlertBottomSheet__learn_more">Rohkem teavet</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Jäta vahele</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Tellimuse haldamine</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Telli hinnaga %1$s kuus</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">Lae meedia alla</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Lae hiljem alla</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Ära lae meediat alla</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Mitte praegu</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Meedia kustutatakse</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7244,9 +7426,38 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Meedia allalaadimiseks vabasta %1$s ruumi.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Oma meedia taastamiseks vabasta %1$s ruumi.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Meedia taastamine</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Taastamine peatatud</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Taastamine õnnestus</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Ootan WiFit …</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">Internetti ei ole …</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Seadme akutase on madal</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s / %2$s</string>
+
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Krediit- või deebetkaart</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7295,8 +7506,19 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Selle funktsiooni lubamiseks on vajalik uuendamine</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Salvestusruumi saab optimeerida ainult Signali tasulise varundamise tasemega. Selle funktsiooni kasutamiseks uuenda oma varundamisplaani.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Uuenda kohe</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Telli hinnaga %1$s kuus</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">See meedia ei ole enam saadaval</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="one">Sinu praegune Signali varundamise plaan sisaldab viimase %1$d päeva meediat. Uuenda tellimust, et alustada kogu meedia varundamist.</item>
+        <item quantity="other">Sinu praegune Signali varundamise plaan sisaldab viimase %1$d päeva meediat. Uuenda tellimust, et alustada kogu meedia varundamist.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Telli hinnaga %1$s kuus</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Kustutamine on nüüd kõigi su seadmete üleselt sünkroniseeritud</string>
@@ -7305,19 +7527,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">Maksete ajalugu</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Sõnumite ja kogu meedia varukoopia</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Makse andmed</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Varukoopia tüüp</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Tasumiskuupäev</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Jaga</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/kuu, uueneb %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Viimane varukoopia: %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automaatsed varukoopiad Signali turvalise otspunktkrüptitud salvestusteenuse abil.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Seadista</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7332,6 +7550,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Varundamise sagedus</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Varunda mobiiliside kaudu</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Vaata varukoopia võtit</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ava, et vaadata varukoopia võtit</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Lülita välja ja kustuta varukoopia</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7339,19 +7561,39 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Varukoopia tüüpi muudeti ja tellimus tühistati</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Tellimus tühistatud</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Allalaadimine on lõpetatud</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Varukoopia luuakse öösel.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Varukoopia tüüp</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Varundamisplaan</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Varundamine on keelatud</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s kuus</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">Luba varundamine</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/kuu</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Sul on tasuta varundamisplaan</string>
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Uueneb %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Varunda oma sõnumiajalugu, et mitte kaotada andmeid, kui telefoni välja vahetad ja Signali uuesti paigaldad.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Muud viisid varundamiseks</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Seadmesisesed varukoopiad</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Salvesta oma varukoopiad selles seadmes olevasse kausta</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Halda või tühista</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Uuenda</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7384,12 +7626,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Varunda käsitsi</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Sisesta oma seadme PIN-kood, salasõna või muster.</string>
-
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Maksa Signalile %1$s kuus</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Saad:</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7405,29 +7645,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Rohkem teavet</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Sisesta enda PIN-kood</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Varundamise võimaldamiseks sisesta oma Signali PIN-kood</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Edasi</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Vaheta klaviatuuri</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Loo uus PIN-kood</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN-koodid kaitsevad sinu varukoopiat</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Oma Signali PIN-koodiga saad varukoopia taastada, kui Signali uuesti paigaldad. Soovitame kasutada vähemalt %1$d numbri pikkust PIN-koodi.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Kui oma PIN-koodi unustad, ei ole sul võimalik oma varukoopiat taastada. Saad oma PIN-koodi sätete alt igal ajal muuta.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Kasuta praegust Signali PIN-koodi</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Loo uus PIN-kood</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Sinu varukoopia võti</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Sinu varukoopia võti on 64-kohaline kood, mille abil saad varukoopia taastada, kui Signali uuesti paigaldad.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Kui oma võtme unustad, ei ole sul võimalik oma varukoopiat taastada. Signal ei saa sul aidata varukoopiat taastada.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Edasi</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Pane oma võti kirja</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Seda võtit on vaja sinu andmete ja konto taastamiseks. Hoia seda turvalises kohas. Kui selle kaotad, ei ole sul võimalik oma kontot taastada.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopeeri lõikelauale</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Edasi</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Hoia oma võtit turvaliselt</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Kui oma võtme ära kaotad, ei saa Signal aidata sul varukoopiat taastada. Hoia seda turvalises kohas ning ära jaga teistega.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Olen oma võtme üles kirjutanud</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Jätka</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">Vaata võtit veelkord</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7442,6 +7688,30 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Muuda varundamise tüüpi</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Tühista tellimus</string>
+    <!-- MessageBackupsType block amount for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__free">Tasuta</string>
+    <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/kuu</string>
+    <!-- Title for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Tekstsõnumid + kogu su meedia</string>
+    <!-- Title for paid tier. Placeholder is days of media retention. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="one">Tekst + %1$d päev meediat</item>
+        <item quantity="other">Tekst + %1$d päeva meediat</item>
+    </plurals>
+    <!-- Description text for text history feature -->
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Kõigi tekstsõnumite varundamine</string>
+    <!-- Description text for paid tier media retention -->
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Kogu meedia varundamine</string>
+    <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s salvestusruumist (%2$s fotot)</string>
+    <!-- Description text for thanks -->
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Aitäh, et toetad Signalit!</string>
+    <!-- Description text for free tier media retention. Placeholder is retention day count. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="one">Viimane päev meediat</item>
+        <item quantity="other">Viimased %1$d päeva meediat</item>
+    </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

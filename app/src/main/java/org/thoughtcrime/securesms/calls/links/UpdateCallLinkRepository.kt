@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobs.CallLinkUpdateSendJob
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkManager
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
 /**
  * Repository for performing update operations on call links:
@@ -65,6 +66,7 @@ class UpdateCallLinkRepository(
         is UpdateCallLinkResult.Delete -> {
           SignalDatabase.callLinks.markRevoked(credentials.roomId)
           AppDependencies.jobManager.add(CallLinkUpdateSendJob(credentials.roomId))
+          StorageSyncHelper.scheduleSyncForDataChange()
         }
         else -> {}
       }

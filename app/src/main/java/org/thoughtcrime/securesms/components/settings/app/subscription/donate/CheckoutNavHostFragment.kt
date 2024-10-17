@@ -37,7 +37,7 @@ class CheckoutNavHostFragment : NavHostFragment() {
           InAppPaymentType.UNKNOWN -> error("Unsupported start destination")
           InAppPaymentType.ONE_TIME_GIFT -> R.id.giftFlowStartFragment
           InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.RECURRING_DONATION -> R.id.donateToSignalFragment
-          InAppPaymentType.RECURRING_BACKUP -> R.id.messageBackupsFlowFragment
+          InAppPaymentType.RECURRING_BACKUP -> error("Unsupported start destination")
         }
       )
 

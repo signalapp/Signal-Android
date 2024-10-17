@@ -1,18 +1,19 @@
 package org.thoughtcrime.securesms.wallpaper;
 
-import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.storage.FileStorage;
+import org.thoughtcrime.securesms.mms.PartUriParser;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -26,31 +27,28 @@ public final class WallpaperStorage {
 
   private static final String TAG = Log.tag(WallpaperStorage.class);
 
-  private static final String DIRECTORY     = "wallpapers";
-  private static final String FILENAME_BASE = "wallpaper";
-
   /**
    * Saves the provided input stream as a new wallpaper file.
    */
   @WorkerThread
-  public static @NonNull ChatWallpaper save(@NonNull Context context, @NonNull InputStream wallpaperStream, @NonNull String extension) throws IOException {
-    String name = FileStorage.save(context, wallpaperStream, DIRECTORY, FILENAME_BASE, extension);
+  public static @NonNull ChatWallpaper save(@NonNull InputStream wallpaperStream) throws IOException {
+    AttachmentId attachmentId = SignalDatabase.attachments().insertWallpaper(wallpaperStream);
 
-    return ChatWallpaperFactory.create(PartAuthority.getWallpaperUri(name));
+    if (SignalStore.backup().backsUpMedia()) {
+      AppDependencies.getJobManager().add(new UploadAttachmentToArchiveJob(attachmentId));
+    }
+
+    return ChatWallpaperFactory.create(PartAuthority.getAttachmentDataUri(attachmentId));
   }
 
   @WorkerThread
-  public static @NonNull InputStream read(@NonNull Context context, String filename) throws IOException {
-    return FileStorage.read(context, DIRECTORY, filename);
-  }
-
-  @WorkerThread
-  public static @NonNull List<ChatWallpaper> getAll(@NonNull Context context) {
-    return FileStorage.getAll(context, DIRECTORY, FILENAME_BASE)
-                      .stream()
-                      .map(PartAuthority::getWallpaperUri)
-                      .map(ChatWallpaperFactory::create)
-                      .collect(Collectors.toList());
+  public static @NonNull List<ChatWallpaper> getAll() {
+    return SignalDatabase.attachments()
+                         .getAllWallpapers()
+                         .stream()
+                         .map(PartAuthority::getAttachmentDataUri)
+                         .map(ChatWallpaperFactory::create)
+                         .collect(Collectors.toList());
   }
 
   /**
@@ -58,7 +56,7 @@ public final class WallpaperStorage {
    * if we discover it's unused, we'll delete the file.
    */
   @WorkerThread
-  public static void onWallpaperDeselected(@NonNull Context context, @NonNull Uri uri) {
+  public static void onWallpaperDeselected(@NonNull Uri uri) {
     Uri globalUri = SignalStore.wallpaper().getWallpaperUri();
     if (Objects.equals(uri, globalUri)) {
       return;
@@ -69,12 +67,7 @@ public final class WallpaperStorage {
       return;
     }
 
-    String filename      = PartAuthority.getWallpaperFilename(uri);
-    File   directory     = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    File   wallpaperFile = new File(directory, filename);
-
-    if (!wallpaperFile.delete()) {
-      Log.w(TAG, "Failed to delete " + filename + "!");
-    }
+    AttachmentId attachmentId = new PartUriParser(uri).getPartId();
+    SignalDatabase.attachments().deleteAttachment(attachmentId);
   }
 }

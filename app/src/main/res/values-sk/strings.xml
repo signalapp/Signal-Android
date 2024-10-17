@@ -22,6 +22,9 @@
   <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
+    <!-- First placeholder is productId, second placeholder is app package -->
+    <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
+
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
     <string name="delete">Vymazať</string>
@@ -264,6 +267,7 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Pre fotografiu ťuknite, pre video podržte</string>
+    <!-- Accessibility content description to describe the capture button when taking an image/video -->
     <string name="CameraXFragment_capture_description">Zachytiť</string>
     <string name="CameraXFragment_change_camera_description">Zmeniť fotoaparát</string>
     <string name="CameraXFragment_open_gallery_description">Otvoriť galériu</string>
@@ -351,6 +355,8 @@
     <string name="CommunicationActions_invalid_link">Neplatný odkaz</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Toto nie je platný odkaz na hovor. Uistite sa, že je celý odkaz správny a v poriadku pred tým, ako sa pokúsite pripojiť.</string>
+    <!-- Displayed in a snackbar when the user is already in a call -->
+    <string name="CommunicationActions__you_are_already_in_a_call">Už sa zúčastňujete hovoru</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -368,6 +374,8 @@
     <string name="ContactsCursorLoader__chats">Čety</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Správy</string>
+    <!-- Header for conversation search section labeled "Chat types" -->
+    <string name="ContactsCursorLoader__chat_types">Chat types</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Správa %1$s</string>
@@ -407,6 +415,7 @@
     <string name="ConversationItem_unable_to_open_media">Nepodarilo sa nájst aplikáciu schopnú otvoriť tento typ súboru.</string>
     <string name="ConversationItem_copied_text">Skopírovaných %1$s</string>
     <string name="ConversationItem_from_s">od %1$s</string>
+    <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">pre %1$s</string>
     <string name="ConversationItem_read_more">  Čítať ďalej</string>
     <string name="ConversationItem_download_more">  Stiahnuť viac</string>
@@ -440,6 +449,7 @@
     <string name="ConversationActivity_send_edit">Odoslať úpravu</string>
     <string name="ConversationActivity_compose_message">Vytvoriť správu</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Nastala chyba pri vytváraní prílohy.</string>
+    <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Príjemca nie je platná SMS alebo emailová adresa!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Správa je prázdna!</string>
     <string name="ConversationActivity_group_members">Členovia skupiny</string>
@@ -596,6 +606,7 @@
         <item quantity="other">Ukladám %1$d príloh do úložiska…</item>
     </plurals>
     <string name="ConversationFragment_pending">Čaká na spracovanie…</string>
+    <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Dáta (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
@@ -847,7 +858,7 @@
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__create_backup">Vytvoriť zálohu</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Hotovo Môžete spustiť zálohovanie.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">V závislosti od veľkosti zálohy to môže trvať dlhšie. Počas zálohovania môžete telefón používať ako obvykle.</string>
     <!-- Action button to dismiss sheet and back up later -->
@@ -1011,6 +1022,12 @@
     <string name="LinkDeviceFragment__no_linked_devices">Žiadne prepojené zariadenia</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
     <string name="LinkDeviceFragment__unlock_to_link">Odomknite na prepojenie zariadenia</string>
+    <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
+    <string name="LinkDeviceFragment__before_linking">Pred prepojením zariadenia potvrďte, že ste to vy</string>
+    <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Ťuknite na Pokračovať a potvrďte odomknutím telefónu. Nezadávajte svoj Signal PIN.</string>
+    <!-- Button that dismisses the bottom sheet -->
+    <string name="LinkDeviceFragment__continue">Pokračovať</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1038,6 +1055,7 @@
     <string name="DeviceListActivity_unlink_s">Odpojiť \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Po odpojení zariadenia nebudete môcť prijímať, ani odosielať správy.</string>
     <string name="DeviceListActivity_network_connection_failed">Pripojenie k sieti zlyhalo</string>
+    <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Skúsiť znova</string>
     <string name="DeviceListActivity_unlinking_device">Odpojuje sa zariadenie…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Odpojenie zariadenia</string>
@@ -1480,7 +1498,7 @@
     <string name="ShareableGroupLinkDialogFragment__group_link">Odkaz do skupiny</string>
     <string name="ShareableGroupLinkDialogFragment__share">Zdieľať</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Zresetovať odkaz</string>
-    <string name="ShareableGroupLinkDialogFragment__approve_new_members">Schválenie nových členov</string>
+    <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Vyžadovať schválenie administrátorom</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vyžadovať schválenie adminom pri nových členoch, ktorí sa pridajú prostredníctvom odkazu do skupiny.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste si istý/á, že chcete zresetovať odkaz do skupiny? Ľudia sa už viac nebudú môcť do skupiny pridať prostredníctvom aktuálneho odkazu.</string>
 
@@ -1585,6 +1603,7 @@
         <item quantity="other">Odoslať %1$d SMS pozvánok?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Prejdime na Signal: %1$s</string>
+    <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by ste mohli zdieľať.</string>
 
     <!-- LearnMoreTextView -->
@@ -2039,6 +2058,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Povoliť používateľovi %1$s, aby vám posielal správy a zdieľať s ním vaše meno a fotku? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">Chcete povoliť používateľovi %1$s, aby vám poslal správu? Kým ho neodblokujete, nepríjmete od neho žiadne správy.</string>
+    <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Chcete dostávať aktualizácie a novinky od používateľa %1$s? Kým ich neodblokujete, nebudete dostávať žiadne aktualizácie.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Pokračovať v čete v tejto skupine a zdieľať vaše meno a fotku s jej členmi?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Túto zastaranú skupinu už nie je možné používať. Vytvorte novú skupinu na aktiváciu nových funkcií, ako sú @zmienky a správcovia.</string>
@@ -2073,6 +2093,7 @@
         <item quantity="many">+%1$d pozvaných</item>
         <item quantity="other">+%1$d pozvaných</item>
     </plurals>
+    <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%1$d ďalšia skupina</item>
         <item quantity="few">%1$d ďalšie skupiny</item>
@@ -2101,6 +2122,7 @@
     <string name="DeviceProvisioningActivity_content_progress_no_device">Nebolo nájdené žiadne zariadenie.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Chyba siete.</string>
     <string name="DeviceProvisioningActivity_content_progress_key_error">Neplatný QR kód.</string>
+    <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Máte príliš veľa pripojených zariadení, skúste niektoré odpojiť</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tento QR kód neslúži na pridanie zariadenia.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Pridať zariadenie so Signalom?</string>
@@ -2125,11 +2147,13 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Odomknúť Signal</string>
+    <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Zámok obrazovky</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Mapa</string>
 
+    <!-- Content description of the pin image -->
     <string name="PlacePickerActivity_drop_pin">Umiestniť značku</string>
     <string name="PlacePickerActivity_accept_address">Prijať adresu</string>
 
@@ -2225,6 +2249,16 @@
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
+
+    <!-- CallScreenTopBar -->
+    <!-- Content description for navigation icon -->
+    <string name="CallScreenTopBar__go_back">Ísť naspäť</string>
+    <!-- Content description for info icon -->
+    <string name="CallScreenTopBar__call_information">Informácie o hovore</string>
+
+    <!-- CallScreenPreJoinOverlay -->
+    <!-- Displayed when users camera is disabled -->
+    <string name="CallScreenPreJoinOverlay__your_camera_is_off">Váš fotoaparát je vypnutý</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ťuknite sem pre spustenie videa</string>
@@ -2375,6 +2409,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">Nikto iný tu nie je</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s je v tomto hovore</string>
+    <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s sú v tomto hovore</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s sú v tomto hovore</string>
 
@@ -2397,6 +2432,8 @@
     <string name="WebRtcCallView__additional_actions">Dalšie možnosti</string>
     <!-- Content description for end-call button -->
     <string name="WebRtcCallView__end_call">Ukončiť hovor</string>
+    <!-- Content description for toggling group ring state -->
+    <string name="WebRtcCallView__toggle_group_ringing">Zapnúť/vypnúť zvonenie pre skupinový hovor</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Vyskytla sa chyba používateľského rozhrania. Nahláste túto chybu vývojárom.</string>
@@ -2664,6 +2701,7 @@
     <string name="SharedContactView_message">Signal správa</string>
 
     <!-- SignalBottomActionBar -->
+    <!-- Text to describe a button that will show more options -->
     <string name="SignalBottomActionBar_more">Viac</string>
 
     <!-- SignalPinReminders -->
@@ -2695,6 +2733,7 @@
     <string name="StickerManagementAdapter_no_stickers_installed">Žiadne nainštalované nálepky</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tu uvidíte nálepky z prichádzajúcich správ</string>
     <string name="StickerManagementAdapter_untitled">Nepomenovaná</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Neznáme</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2797,6 +2836,7 @@
     <string name="ApkUpdateNotifications_failed_general_body">Skúsime to znova neskôr.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal bol úspešne aktualizovaný</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Aplikácia bola automaticky aktualizovaná na verziu %1$s.</string>
+    <string name="ApkUpdateNotifications_manual_update_success_body">Aktualizovali ste Signal na verziu %1$s.</string>
 
     <!-- UntrustedSendDialog -->
     <string name="UntrustedSendDialog_send_message">Odoslať správu?</string>
@@ -2917,6 +2957,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Médiá už nie sú dostupné.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
     <string name="MediaPreviewActivity_unable_to_play_media">Nemožno prehrať médiá.</string>
+    <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Chyba pri vyhľadávaní správy.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepodarilo sa nájsť aplikáciu schopnú zdieľať tento typ súboru.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Zatvoriť</string>
@@ -2992,6 +3033,7 @@
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Správy</string>
     <string name="NotificationChannel_calls">Volania</string>
+    <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Chyby</string>
     <string name="NotificationChannel_backups">Zálohy</string>
     <string name="NotificationChannel_locked_status">Stav zámku</string>
@@ -3001,6 +3043,7 @@
     <string name="NotificationChannel_missing_display_name">Neznáma</string>
     <string name="NotificationChannel_voice_notes">Hlasové poznámky</string>
     <string name="NotificationChannel_contact_joined_signal">Váš kontakt začal používať Signal</string>
+    <!-- Toast shown when there is no application available to open the settings -->
     <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">Na otvorenie nastavení kanála upozornení nie je k dispozícii žiadna aktivita.</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">Pripojenie na pozadí</string>
@@ -3230,6 +3273,7 @@
     <string name="conversation_activity__attachment_thumbnail">Ikona prílohy</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Prepnúť na rýchlu prílohu fotoaparátom</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nahrať a odoslať zvukovú prílohu</string>
+    <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Zamknúť nahrávanie zvukovej prílohy</string>
     <string name="conversation_activity__message_could_not_be_sent">Nepodarilo sa odoslať správu. Skontrolujte svoje pripojenie na internet a skúste znovu.</string>
 
@@ -3248,6 +3292,7 @@
     <string name="conversation_item_sent__message_read">Správa prečítaná</string>
 
     <!-- conversation_item_received -->
+    <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">Fotka kontaktu</string>
 
     <!-- ConversationUpdateItem -->
@@ -3332,6 +3377,7 @@
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Všetko teraz vyzerá byť v poriadku!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu a zapnite možnosť „Zobraziť upozornenia“.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite tu, zapnite upozornenia a uistite sa, že sú povolené zvuky a kontextové okná.</string>
+    <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Ak chcete dostávať oznámenia o hovoroch, ťuknite tu a povoľte aktivitu na pozadí v nastaveniach batérie. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Nastavenia</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Ak chcete dostávať upozornenia na hovory, ťuknite na Nastavenia a zapnite možnosť „Zobraziť upozornenia“.</string>
@@ -3580,6 +3626,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Podporné informácie</string>
     <string name="HelpFragment__signal_android_support_request">Žiadosť o podporu pre Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
@@ -3670,6 +3717,7 @@
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Získať ukážky stránok priamo z webových prepojení pre správy, ktoré odošlete.</string>
     <string name="preferences__change_passphrase">Zmeniť heslo</string>
     <string name="preferences__change_your_passphrase">Zmeniť heslo</string>
+    <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Chrániť obrazovku heslom</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Uzamknúť obrazovku a upozornenia pomocou hesla</string>
     <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
@@ -3682,6 +3730,7 @@
     <string name="preferences__pref_led_blink_title">Sekvencia blikania LED</string>
     <string name="preferences__customize">Prispôsobiť</string>
     <string name="preferences__change_sound_and_vibration">Zmeniť zvuk a vibrovanie</string>
+    <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Zvuk</string>
     <string name="preferences__silent">Ticho</string>
     <string name="preferences__default">Predvolená</string>
@@ -3805,10 +3854,12 @@
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">Celá história správ bude natrvalo odstránená zo všetkých zariadení. Túto akciu nie je možné vrátiť späť.</string>
     <string name="preferences_storage__delete_all_now">Zmazať všetky teraz</string>
+    <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">Navždy</string>
     <string name="preferences_storage__one_year">1 rok</string>
     <string name="preferences_storage__six_months">6 mesiacov</string>
     <string name="preferences_storage__thirty_days">30 dní</string>
+    <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">Žiadny</string>
     <plurals name="preferences_storage__s_messages_plural">
         <item quantity="one">%1$s správa</item>
@@ -3835,6 +3886,7 @@
     <string name="preferences_notifications__show">Zobraziť</string>
     <string name="preferences_notifications__ringtone">Zvonenie</string>
     <string name="preferences_chats__message_text_size">Veľkosť písma správy</string>
+    <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">Priorita</string>
     <!-- Option in settings to trouble shoot delayed notifications -->
     <string name="preferences_notifications__troubleshoot">Riešiť problémy s upozorneniami</string>
@@ -4063,6 +4115,7 @@
     <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Naskenujte QR kód adresu príjemcu platby</string>
 
     <!-- CreatePaymentFragment -->
+    <!-- Button text to request the payment from a user -->
     <string name="CreatePaymentFragment__request">Žiadosť</string>
     <string name="CreatePaymentFragment__pay">Zaplať</string>
     <string name="CreatePaymentFragment__available_balance_s">Disponibilný zostatok: %1$s</string>
@@ -4196,6 +4249,7 @@
     <string name="conversation_list__you_can_only_pin_up_to_d_chats">Môžete pripnúť maximálne %1$d čety</string>
 
     <!-- conversation_list_item_view -->
+    <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">Fotka kontaktu</string>
     <string name="conversation_list_item_view__archived">Archivované</string>
 
@@ -4204,6 +4258,10 @@
     <string name="conversation_list_fragment__fab_content_description">Nový čet</string>
     <string name="conversation_list_fragment__open_camera_description">Otvoriť fotoaparát</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Zatiaľ tu nie sú žiadne čety.\nZačnite poslaním správy priateľovi.</string>
+    <!-- Message shown when there are no chats in the chat folder to display -->
+    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <!-- Button text that will open up chat folder settings -->
+    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4452,6 +4510,7 @@
     <string name="preferences_chats__chat_backups">Zálohy četov</string>
     <string name="preferences_chats__transfer_account">Preniesť účet</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Preniesť účet do nového Android zariadenia</string>
+    <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
     <string name="RegistrationActivity_restore">Obnovenie</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Zálohy z novších verzií Signalu nie je možné importovať</string>
@@ -4659,6 +4718,7 @@
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nie je možné otvoriť Wi-Fi nastavenia. Prosím, zapnite Wi-Fi.</string>
+    <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
     <string name="DeviceTransferSetup__grant_location_permission">Povoliť prístup k polohe</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Zapnúť služby polohy</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Zapnúť Wi-Fi</string>
@@ -4926,6 +4986,7 @@
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Zdieľať</string>
+    <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Poslať</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
@@ -5231,6 +5292,125 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Klávesnica</string>
     <string name="ChatsSettingsFragment__send_with_enter">Odoslať stlačením tlačidla „Enter“</string>
+    <!-- Heading within chats settings for chat folders -->
+    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <!-- Option within settings to add a new chat folder -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+
+    <!-- ChatFoldersFragment -->
+    <!-- Description of what chat folders are -->
+    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <!-- Header for section showing current chat folders -->
+    <string name="ChatFoldersFragment__folders">Folders</string>
+    <!-- Text next to button that allows users to create a new chat folder -->
+    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Name of a chat folder that represents the folder containing all chats -->
+    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <!-- Header for section showing suggested chat folders for users to have -->
+    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <!-- Name of a chat folder that contains all chats that currently have unread messages -->
+    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <!-- Description of the suggested unread chat folder -->
+    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <!-- Description of the suggested 1:1 chat folder -->
+    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <!-- Name of a chat folder that contains all groups chats -->
+    <string name="ChatFoldersFragment__groups">Groups</string>
+    <!-- Description of the suggested group chat folder -->
+    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <!-- Button text to add a suggested folder to a user\'s chat folders -->
+    <string name="ChatFoldersFragment__add">Add</string>
+    <!-- Toast shown when a folder gets added where %s is the name of the folder -->
+    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <!-- Option in context menu to edit the folder -->
+    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Option in context menu to delete the folder -->
+    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Option in context menu to add a new folder -->
+    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <!-- Option in context menu to mute all chats in the folder -->
+    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <!-- Option in context menu to reorder the positions of the folder -->
+    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <!-- Option in context menu to mark all of the chats in a folder as read -->
+    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <!-- Text describing the number of chat types in a folder -->
+    <plurals name="ChatFoldersFragment__d_chat_types">
+        <item quantity="one">%1$d chat type</item>
+        <item quantity="few">%1$d chat types</item>
+        <item quantity="many">%1$d chat types</item>
+        <item quantity="other">%1$d chat types</item>
+    </plurals>
+    <!-- Text describing the number of chat in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats">
+        <item quantity="one">%1$d chat</item>
+        <item quantity="few">%1$d chats</item>
+        <item quantity="many">%1$d chats</item>
+        <item quantity="other">%1$d chats</item>
+    </plurals>
+    <!-- Text describing the number of chats that are excluded in a folder -->
+    <plurals name="ChatFoldersFragment__d_chats_excluded">
+        <item quantity="one">%1$d chat excluded</item>
+        <item quantity="few">%1$d chats excluded</item>
+        <item quantity="many">%1$d chats excluded</item>
+        <item quantity="other">%1$d chats excluded</item>
+    </plurals>
+
+    <!-- CreateFoldersFragment -->
+    <!-- Title of the screen when creating a folder, displayed in the toolbar -->
+    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <!-- Hint text shown in text field to enter a name for the folder -->
+    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <!-- Section title representing what chats are included in the folder -->
+    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <!-- Text next to button that allows users to add chats to the folder    -->
+    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <!-- Description explaining the purpose of the included chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <!-- Section title representing what chats are excluded from the folder -->
+    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <!-- Text next to button that allows users to exclude chats from the folder   -->
+    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <!-- Description explaining the purpose of the excluded chats section -->
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <!-- Toggle switch for folder to show unread chats -->
+    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <!-- Explanation of unread toggle option -->
+    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <!-- Toggle switch to display muted chats in chat folders -->
+    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <!-- Button text to create a folder -->
+    <string name="CreateFoldersFragment__create">Create</string>
+    <!-- Alert dialog title to create a chat folder -->
+    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
+    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <!-- Section title shown when editing an existing folder   -->
+    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <!-- Button text to save the changes to a folder after it has been edited -->
+    <string name="CreateFoldersFragment__save">Save</string>
+    <!-- Alert dialog title to save changes made to the current folder -->
+    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <!-- Alert dialog description when saving a folder that has had changes made to it -->
+    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <!-- Alert dialog confirmation button text to save the changes -->
+    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <string name="CreateFoldersFragment__discard">Discard</string>
+    <!-- Text that when pressed will delete the current folder -->
+    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <!-- Alert dialog title to delete the current folder -->
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+
+    <!-- ChooseChatsFragment -->
+    <!-- Section title representing chat types that can be added to the folder  -->
+    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <!-- Done button label to save selected chats to folder -->
+    <string name="ChooseChatsFragment__done">Done</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Správy</string>
@@ -5317,6 +5497,7 @@
 
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Kvalita médií</string>
+    <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Kvalita odoslaných médií</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Odosielanie médií vo vysokej kvalite využije viac dát.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
@@ -5609,6 +5790,7 @@
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">Pridať do príbehu</string>
     <string name="MediaReviewFragment__add_a_message">Pridajte správu</string>
+    <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Pridať odpoveď</string>
     <string name="MediaReviewFragment__send_to">Odoslať</string>
     <string name="MediaReviewFragment__view_once_message">Médiá na jedno pozretie</string>
@@ -6223,6 +6405,8 @@
         <item quantity="many">%1$d odpovedí</item>
         <item quantity="other">%1$d odpovedí</item>
     </plurals>
+    <!-- Toast / Snackbar label when unhiding a story during viewer -->
+    <string name="StoryViewerPageFragment__story_no_longer_hidden">Príbeh už nie je skrytý</string>
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Pridať</string>
     <!-- Used when view receipts are disabled -->
@@ -7232,7 +7416,7 @@
     <!-- Option to open a full screen dialog to edit a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__edit_call_name">Upraviť názov hovoru</string>
     <!-- Toggle to require approval for all members before joining -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__approve_all_members">Schváliť všetkých členov</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Vyžadovať schválenie administrátorom</string>
     <!-- Row label to share the link via Signal -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Zdieľať odkaz cez Signal</string>
     <!-- Row label to copy the link to the clipboard -->
@@ -7288,7 +7472,7 @@
     <!-- Displayed in a text row, allowing the user to click and add a call name -->
     <string name="CallLinkDetailsFragment__add_call_name">Pridať názov hovoru</string>
     <!-- Displayed in a toggle row, allowing the user to click to enable or disable member approval -->
-    <string name="CallLinkDetailsFragment__approve_all_members">Schváliť všetkých členov</string>
+    <string name="CallLinkDetailsFragment__require_admin_approval">Vyžadovať schválenie administrátorom</string>
     <!-- Displayed in a text row, allowing the user to share the call link -->
     <string name="CallLinkDetailsFragment__share_link">Zdieľať odkaz</string>
     <!-- Displayed in a text row, allowing the user to delete the call link -->
@@ -7506,13 +7690,13 @@
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
-    <string name="BackupAlertBottomSheet__media_backups_are_off">Zálohovanie médií je vypnuté</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_expired">Platnosť vášho predplatného záloh vypršala</string>
     <!-- Sheet body part 1 when media backups have been disabled. Placeholder is the number of days until deletion. -->
-    <plurals name="BackupAlertBottomSheet__your_signal_media_backup_plan">
-        <item quantity="one">Váš plán zálohovania médií Signal bol zrušený, pretože sa nám nepodarilo spracovať vašu platbu. Na stiahnutie akýchkoľvek médií uložených vo vašej zálohe máte %1$d deň. Po %1$d dni budú médiá vo vašej zálohe vymazané.</item>
-        <item quantity="few">Váš plán zálohovania médií Signal bol zrušený, pretože sa nám nepodarilo spracovať vašu platbu. Na stiahnutie akýchkoľvek médií uložených vo vašej zálohe máte %1$d dni. Po %1$d dňoch budú médiá vo vašej zálohe vymazané.</item>
-        <item quantity="many">Váš plán zálohovania médií Signal bol zrušený, pretože sa nám nepodarilo spracovať vašu platbu. Na stiahnutie akýchkoľvek médií uložených vo vašej zálohe máte %1$d dňa. Po %1$d dni budú médiá vo vašej zálohe vymazané.</item>
-        <item quantity="other">Váš plán zálohovania médií Signal bol zrušený, pretože sa nám nepodarilo spracovať vašu platbu. Na stiahnutie akýchkoľvek médií uložených vo vašej zálohe máte %1$d dní. Po %1$d dňoch budú médiá vo vašej zálohe vymazané.</item>
+    <plurals name="BackupAlertBottomSheet__your_backup_plan_has_expired">
+        <item quantity="one">Platnosť vášho zálohovacieho plánu vypršala, pretože ho nebolo možné obnoviť pomocou vášho aktuálneho spôsobu platby. Za %1$d deň budú médiá vo vašej zálohe vymazané.</item>
+        <item quantity="few">Platnosť vášho zálohovacieho plánu vypršala, pretože ho nebolo možné obnoviť pomocou vášho aktuálneho spôsobu platby. Po %1$d dňoch budú médiá vo vašej zálohe vymazané.</item>
+        <item quantity="many">Platnosť vášho zálohovacieho plánu vypršala, pretože ho nebolo možné obnoviť pomocou vášho aktuálneho spôsobu platby. Po %1$d dňoch budú médiá vo vašej zálohe vymazané.</item>
+        <item quantity="other">Platnosť vášho zálohovacieho plánu vypršala, pretože ho nebolo možné obnoviť pomocou vášho aktuálneho spôsobu platby. Po %1$d dňoch budú médiá vo vašej zálohe vymazané.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Kedykoľvek môžete začať opäť platiť za zálohy. Budete tak môcť pokračovať v zálohovaní všetkých svojich médií. </string>
@@ -7532,9 +7716,9 @@
         <item quantity="other">Ak vyberiete možnosť Preskočiť, médiá vo vašej zálohe sa vymažú o %1$d dní.</item>
     </plurals>
     <!-- Sheet title when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__cant_process_backup_payment">Platbu za zálohu nie je možné spracovať</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Vaše predplatné záloh sa nepodarilo obnoviť</string>
     <!-- Sheet body when user payment failed to process -->
-    <string name="BackupAlertBottomSheet__were_having_trouble_collecting__google_pay">Nedarí sa nám spracovať vašu opakovanú mesačnú platbu za zálohovanie. Uistite sa, že je váš spôsob platby aktuálny. Ak nie, aktualizujte ho v službe Google Pay. Signal sa pokúsi spracovať platbu znova o niekoľko dní.</string>
+    <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Skontrolujte, či je váš spôsob platby aktuálny. Ťuknite na Spravovať predplatné a v časti Spôsoby platby ťuknite na Aktualizovať.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Zálohovanie sa nepodarilo dokončiť</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7543,12 +7727,16 @@
     <string name="BackupAlertBottomSheet__learn_more">Zistiť viac</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip">Preskočiť</string>
+    <!-- Primary action button to manage subscription in Google Play -->
+    <string name="BackupAlertBottomSheet__manage_subscription">Spravovať predplatné</string>
+    <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Predplatiť za %1$s mesačne</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_media_now">Stiahnuť médiá teraz</string>
-    <!-- Secondary action button text to dismiss sheet, noting the user can download later -->
-    <string name="BackupAlertBottomSheet__download_later">Stiahnuť neskôr</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
     <string name="BackupAlertBottomSheet__dont_download_media">Nestiahnuť médiá</string>
+    <!-- Secondary generic action button to dismiss sheet without performing an action -->
+    <string name="BackupAlertBottomSheet__not_now">Teraz nie</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Médiá budú vymazané</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7560,9 +7748,38 @@
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
-    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Uvoľnite %1$s miesta na stiahnutie médií.</string>
+    <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Ak chcete obnoviť svoje médiá, uvoľnite %1$s.</string>
+    <!-- Status title for banner when user is actively restoring media from a backup -->
+    <string name="BackupStatus__restoring_media">Obnovujú sa médiá</string>
+    <!-- Status title for banner when user has paused restore media from a backup -->
+    <string name="BackupStatus__restore_paused">Obnovovanie bolo pozastavené</string>
+    <!-- Status title for banner when user has completed restoring restore media from a backup -->
+    <string name="BackupStatus__restore_complete">Obnova dokončená</string>
+
+    <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatus__status_waiting_for_wifi">Čaká sa na Wi-Fi…</string>
+    <!-- Status subtitle for banner when restoring media pauses for internet in general -->
+    <string name="BackupStatus__status_no_internet">Žiadne internetové pripojenie…</string>
+    <!-- Status subtitle for banner when restoring media pauses for low battery -->
+    <string name="BackupStatus__status_device_has_low_battery">Zariadenie má slabú batériu</string>
+    <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
+    <string name="BackupStatus__status_size_of_size">%1$s z %2$s</string>
+
+    <!-- BackupStatusRow -->
+    <!-- Content description for x icon at the end of the linear progress indicator -->
+    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
+    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <!-- Text row label to skip download -->
+    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <!-- Text displayed when a backup could not be completed -->
+    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
 
     <!-- BackupsTypeSettingsFragment -->
+    <!-- Displayed as the user\'s payment method as a label in a preference row -->
+    <string name="BackupsTypeSettingsFragment__google_play">Google Play</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
     <string name="BackupsTypeSettingsFragment__credit_or_debit_card">Kreditná alebo debetná karta</string>
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7611,8 +7828,21 @@
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Ak chcete povoliť túto funkciu, upgradujte</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optimalizáciu úložiska je možné využiť iba v prípade, ak používate platenú verziu Signal záloh. Ak chcete používať túto funkciu, aktualizujte svoj plán zálohovania.</string>
-    <!-- Primary action to launch upgrade flow -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_now">Aktualizovať teraz</string>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Predplatiť za %1$s mesačne</string>
+
+    <!-- UpgradeToStartMediaBackupSheet -->
+    <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
+    <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Toto médium už nie je dostupné</string>
+    <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
+    <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
+        <item quantity="one">Váš aktuálny zálohovací plán Signal zahŕňa váš posledný %1$d deň médií. Ak chcete začať zálohovať všetky svoje médiá, upgradujte teraz.</item>
+        <item quantity="few">Váš aktuálny zálohovací plán Signal zahŕňa vaše posledné %1$d dni médií. Ak chcete začať zálohovať všetky svoje médiá, upgradujte teraz.</item>
+        <item quantity="many">Váš aktuálny zálohovací plán Signal zahŕňa vášho posledného %1$d dňa médií. Ak chcete začať zálohovať všetky svoje médiá, upgradujte teraz.</item>
+        <item quantity="other">Váš aktuálny zálohovací plán Signal zahŕňa vašich posledných %1$d dní médií. Ak chcete začať zálohovať všetky svoje médiá, upgradujte teraz.</item>
+    </plurals>
+    <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Predplatiť za %1$s mesačne</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Vymazávanie je teraz synchronizované na všetkých vašich zariadeniach</string>
@@ -7621,19 +7851,15 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
-    <!-- RemoteBackupsPaymentHistoryFragment -->
-    <!-- Title of the screen for payment history -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_history">História platieb</string>
-    <!-- Description for backup rows -->
-    <string name="RemoteBackupsPaymentHistoryFragment__text_and_all_media_backup">Zálohovanie správ a všetkých médií</string>
-    <!-- Title of the screen for payment details -->
-    <string name="RemoteBackupsPaymentHistoryFragment__payment_details">Platobné údaje</string>
-    <!-- Title of row specifying the type of backup -->
-    <string name="RemoteBackupsPaymentHistoryFragment__backup_type">Typ zálohy</string>
-    <!-- Title of row specifying the date the backup was paid on -->
-    <string name="RemoteBackupsPaymentHistoryFragment__date_paid">Dátum zaplatenia</string>
-    <!-- Button label to share the receipt -->
-    <string name="RemoteBackupsPaymentHistoryFragment__share">Zdieľať</string>
+    <!-- BackupsSettingsFragment -->
+    <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/mesiac, obnovenie %2$s</string>
+    <!-- Subtitle for row for active backup, placeholder is last date of backup -->
+    <string name="BackupsSettingsFragment_last_backup_s">Posledná záloha %1$s</string>
+    <!-- Subtitle for row for no backup ever created -->
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatické zálohovanie pomocou zabezpečeného úložiska Signal chráneného end-to-end šifrovaním.</string>
+    <!-- Action button label to set up backups -->
+    <string name="BackupsSettingsFragment_set_up">Nastaviť</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
@@ -7648,6 +7874,10 @@
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frekvencia zálohovania</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Zálohovať pomocou mobilnej siete</string>
+    <!-- Row label for viewing backup key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Zobraziť záložný kľúč</string>
+    <!-- Prompt title for unlocking device to view backup key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ak chcete zobraziť záložný kľúč, odomknite</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Vypnúť a vymazať zálohu</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7655,19 +7885,39 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Typ zálohy sa zmenil a predplatné bolo zrušené</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Predplatné bolo zrušené</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Sťahovanie dokončené</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Zálohovanie prebehne počas noci.</string>
+    <!-- Text displayed in card when subscription is inactive -->
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
     <!-- Title text in row detailing selected backup type -->
-    <string name="RemoteBackupsSettingsFragment__backup_type">Typ zálohy</string>
+    <string name="RemoteBackupsSettingsFragment__backup_plan">Plán zálohovania</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Zálohy sú vypnuté</string>
-    <!-- Format string for backup and cost. First placeholder is backup title, second is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_dot_s_per_month">%1$s · %2$s/mesačne</string>
-    <!-- Button label to enable backups -->
-    <string name="RemoteBackupsSettingsFragment__enable_backups">Povoliť zálohovanie</string>
+    <!-- Format string for backup and cost. First placeholder is cost per month. -->
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mesiac</string>
+    <!-- String for free backups -->
+    <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Váš plán zálohovania je bezplatný</string>
+    <!-- Displays the date the subscription will renew. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__renews_s">Obnoví sa %1$s</string>
+    <!-- Displays the date the subscription will expire. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <!-- Displays the date the subscription expired. Placeholder is the date. -->
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <!-- Displayed at the top of the screen when no backup is currently enabled -->
+    <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Zálohujte si históriu správ, aby ste pri výmene telefónu alebo opätovnom nainštalovaní Signalu už nikdy neprišli o dáta.</string>
+    <!-- Section header for other ways to back up -->
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Iné spôsoby zálohovania</string>
+    <!-- Row title for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Zálohy na zariadení</string>
+    <!-- Row label for performing on-device backup -->
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Uložte si zálohy do priečinka na tomto zariadení</string>
+    <!-- Button label to manage or cancel backups -->
+    <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Spravovať alebo zrušiť</string>
+    <!-- button label to upgrade backups -->
+    <string name="RemoteBackupsSettingsFragment__upgrade">Aktualizovať</string>
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
@@ -7700,12 +7950,10 @@
     <string name="RemoteBackupsSettingsFragment__manually_back_up">Manuálne zálohovanie</string>
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Zadajte PIN kód, heslo alebo vzor svojho zariadenia.</string>
-
-    <!-- MessageBackupsCheckoutSheet -->
-    <!-- Sheet title. Placeholder is formatted price. -->
-    <string name="MessageBackupsCheckoutSheet__pay_s_per_month">Zaplaťte Signalu %1$s mesačne</string>
-    <!-- Sheet subtitle -->
-    <string name="MessageBackupsCheckoutSheet__youll_get">Získate:</string>
+    <!-- Button label to re-enable backups (launches into checkout flow) -->
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <!-- Notice displayed when backups have been disabled and deleted -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7721,29 +7969,35 @@
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Zistiť viac</string>
 
-    <!-- MessageBackupsPinConfirmationScreen -->
-    <!-- Screen title -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_pin">Zadajte svoj PIN</string>
-    <!-- Screen subtitle -->
-    <string name="MessageBackupsPinConfirmationScreen__enter_your_signal_pin_to_enable_backups">Ak chcete povoliť zálohovanie, zadajte Signal PIN</string>
-    <!-- Action button to confirm pin entry and continue -->
-    <string name="MessageBackupsPinConfirmationScreen__next">Ďalej</string>
-    <!-- Action button to switch keyboard type -->
-    <string name="MessageBackupsPinConfirmationScreen__switch_keyboard">Prepnúť klávesnicu</string>
-    <!-- Action button to create a new pin if we type the incorrect one -->
-    <string name="MessageBackupsPinConfirmationScreen__create_new_pin">Vytvoriť nový PIN</string>
-
-    <!-- MessageBackupsPinEducationScreen -->
+    <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsPinEducationScreen__pins_protect_your_backup">PIN kódy chránia vašu zálohu</string>
-    <!-- Notice about pin length. Placeholder is recommended pin length -->
-    <string name="MessageBackupsPinEducationScreen__your_signal_pin_lets_you">Váš Signal PIN vám umožňuje obnoviť zálohu, keď znovu nainštalujete Signal. Odporúčame použiť PIN, ktorý má aspoň %1$d číslic.</string>
-    <!-- Notice about changing your pin. -->
-    <string name="MessageBackupsPinEducationScreen__if_you_forget_your_pin">Ak zabudnete svoj PIN, nebudete môcť obnoviť zálohu. PIN si môžete kedykoľvek zmeniť v nastaveniach.</string>
-    <!-- Action button label to utilize current pin -->
-    <string name="MessageBackupsPinEducationScreen__use_current_signal_pin">Použiť aktuálny Signal PIN</string>
-    <!-- Action button to create a new pin -->
-    <string name="MessageBackupsPinEducationScreen__create_new_pin">Vytvoriť nový PIN</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Váš záložný kľúč</string>
+    <!-- Screen body part 1 -->
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Váš záložný kľúč je 64-ciferný kód, ktorý vám umožňuje obnoviť zálohu, keď znovu nainštalujete Signal.</string>
+    <!-- Screen body part 2 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ak zabudnete svoj kľúč, nebudete môcť obnoviť zálohu. Signal vám nemôže pomôcť obnoviť zálohu.</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyEducationScreen__next">Ďalej</string>
+
+    <!-- MessageBackupsKeyRecordScreen -->
+    <!-- Screen headline -->
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Uložte si záložný kľúč</string>
+    <!-- Screen subhead -->
+    <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Tento kľúč je potrebný na obnovenie vášho účtu a údajov. Uložte ho na bezpečné miesto. Ak ho stratíte, nebudete môcť svoj účet obnoviť.</string>
+    <!-- Copy to clipboard button label -->
+    <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopírovať</string>
+    <!-- Action button label -->
+    <string name="MessageBackupsKeyRecordScreen__next">Ďalej</string>
+    <!-- Bottom sheet title -->
+    <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Uchovajte svoj kľúč v bezpečí</string>
+    <!-- Bottom sheet subtitle -->
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal vám nebude môcť pomôcť obnoviť zálohu, ak stratíte kľúč. Uschovajte ho na bezpečnom mieste a s nikým ho nezdieľajte.</string>
+    <!-- Checkbox label -->
+    <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Uložil/a som svoj kľúč</string>
+    <!-- Sheet action button label -->
+    <string name="MessageBackupsKeyRecordScreen__continue">Pokračovať</string>
+    <!-- Sheet secondary action button label -->
+    <string name="MessageBackupsKeyRecordScreen__see_key_again">Pozrieť si kľúč znova</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7758,6 +8012,34 @@
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Zmeniť typ zálohy</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Zrušiť predplatné</string>
+    <!-- MessageBackupsType block amount for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__free">Zadarmo</string>
+    <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/mesiac</string>
+    <!-- Title for free tier -->
+    <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Správy + všetky vaše médiá</string>
+    <!-- Title for paid tier. Placeholder is days of media retention. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media">
+        <item quantity="one">Správy + %1$d deň médií</item>
+        <item quantity="few">Správy + %1$d dni médií</item>
+        <item quantity="many">Správy + %1$d dňa médií</item>
+        <item quantity="other">Správy + %1$d dní médií</item>
+    </plurals>
+    <!-- Description text for text history feature -->
+    <string name="MessageBackupsTypeSelectionScreen__full_text_message_backup">Úplná záloha textových správ</string>
+    <!-- Description text for paid tier media retention -->
+    <string name="MessageBackupsTypeSelectionScreen__full_media_backup">Úplná záloha médií</string>
+    <!-- Description text for storage space for paid tier media. Placeholder 1 is for byte amount, placeholder 2 is for a photo count estimate -->
+    <string name="MessageBackupsTypeSelectionScreen__s_of_storage_s_photos">%1$s ukladacieho priestoru (~%2$s fotografií)</string>
+    <!-- Description text for thanks -->
+    <string name="MessageBackupsTypeSelectionScreen__thanks_for_supporting_signal">Ďakujeme, že podporujete Signal!</string>
+    <!-- Description text for free tier media retention. Placeholder is retention day count. -->
+    <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
+        <item quantity="one">Posledný %1$d deň médií</item>
+        <item quantity="few">Posledné %1$d dni médií</item>
+        <item quantity="many">Posledného %1$d dňa médií</item>
+        <item quantity="other">Posledných %1$d dní médií</item>
+    </plurals>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

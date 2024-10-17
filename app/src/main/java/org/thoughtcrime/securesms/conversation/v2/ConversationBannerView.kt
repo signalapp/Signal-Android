@@ -14,11 +14,12 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.transition.addListener
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.banner.Banner
+import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView
-import org.thoughtcrime.securesms.components.reminder.Reminder
-import org.thoughtcrime.securesms.components.reminder.ReminderView
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.database.model.IdentityRecord
@@ -46,7 +47,7 @@ class ConversationBannerView @JvmOverloads constructor(
   defStyleAttr: Int = 0
 ) : LinearLayoutCompat(context, attrs, defStyleAttr) {
   private val unverifiedBannerStub: Stub<UnverifiedBannerView> by lazy { ViewUtil.findStubById(this, R.id.unverified_banner_stub) }
-  private val reminderStub: Stub<ReminderView> by lazy { ViewUtil.findStubById(this, R.id.reminder_stub) }
+  private val bannerStub: Stub<ComposeView> by lazy { ViewUtil.findStubById(this, R.id.banner_stub) }
   private val reviewBannerStub: Stub<ReviewBannerView> by lazy { ViewUtil.findStubById(this, R.id.review_banner_stub) }
   private val voiceNotePlayerStub: Stub<View> by lazy { ViewUtil.findStubById(this, R.id.voice_note_player_stub) }
 
@@ -56,31 +57,11 @@ class ConversationBannerView @JvmOverloads constructor(
     orientation = VERTICAL
   }
 
-  fun showReminder(reminder: Reminder) {
-    show(
-      stub = reminderStub
-    ) {
-      showReminder(reminder)
-      setOnActionClickListener {
-        when (it) {
-          R.id.reminder_action_update_now -> listener?.updateAppAction()
-          R.id.reminder_action_re_register -> listener?.reRegisterAction()
-          R.id.reminder_action_review_join_requests -> listener?.reviewJoinRequestsAction()
-          R.id.reminder_action_gv1_suggestion_no_thanks -> listener?.gv1SuggestionsAction(it)
-          R.id.reminder_action_bubble_not_now, R.id.reminder_action_bubble_turn_off -> {
-            listener?.changeBubbleSettingAction(disableSetting = it == R.id.reminder_action_bubble_turn_off)
-          }
-        }
-      }
-      setOnHideListener {
-        clearReminder()
-        true
-      }
+  fun collectAndShowBanners(flows: List<Banner<*>>) {
+    val bannerManager = BannerManager(flows)
+    show(stub = bannerStub) {
+      bannerManager.updateContent(this)
     }
-  }
-
-  fun clearReminder() {
-    hide(reminderStub)
   }
 
   fun showUnverifiedBanner(identityRecords: IdentityRecordList) {
@@ -157,10 +138,6 @@ class ConversationBannerView @JvmOverloads constructor(
 
     val slideTransition = Slide(Gravity.TOP)
     val changeTransition = ChangeBounds().apply {
-      if (reminderStub.isVisible) {
-        addTarget(reminderStub.get())
-      }
-
       if (unverifiedBannerStub.isVisible) {
         addTarget(unverifiedBannerStub.get())
       }

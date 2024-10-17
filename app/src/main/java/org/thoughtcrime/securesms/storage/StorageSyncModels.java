@@ -7,6 +7,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme;
+import org.thoughtcrime.securesms.database.CallLinkTable;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -20,8 +21,10 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
+import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
@@ -35,6 +38,7 @@ import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public final class StorageSyncModels {
@@ -63,6 +67,7 @@ public final class StorageSyncModels {
       case GV1:               return SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId));
       case GV2:               return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.getSyncExtras().getGroupMasterKey()));
       case DISTRIBUTION_LIST: return SignalStorageRecord.forStoryDistributionList(localToRemoteStoryDistributionList(settings, rawStorageId));
+      case CALL_LINK:         return SignalStorageRecord.forCallLink(localToRemoteCallLink(settings, rawStorageId));
       default:                throw new AssertionError("Unsupported type!");
     }
   }
@@ -224,6 +229,32 @@ public final class StorageSyncModels {
                                   .setHideStory(hideStory)
                                   .setStorySendMode(storySendMode)
                                   .build();
+  }
+
+  private static @NonNull SignalCallLinkRecord localToRemoteCallLink(@NonNull RecipientRecord recipient, @NonNull byte[] rawStorageId) {
+    CallLinkRoomId callLinkRoomId = recipient.getCallLinkRoomId();
+
+    if (callLinkRoomId == null) {
+      throw new AssertionError("Must have a callLinkRoomId!");
+    }
+
+    CallLinkTable.CallLink callLink = SignalDatabase.callLinks().getCallLinkByRoomId(callLinkRoomId);
+    if (callLink == null) {
+      throw new AssertionError("Must have a call link record!");
+    }
+
+    if (callLink.getCredentials() == null) {
+      throw new AssertionError("Must have call link credentials!");
+    }
+
+    long   deletedTimestamp = Math.max(0, SignalDatabase.callLinks().getDeletedTimestampByRoomId(callLinkRoomId));
+    byte[] adminPassword    = deletedTimestamp > 0 ? new byte[]{} : Objects.requireNonNull(callLink.getCredentials().getAdminPassBytes(), "Non-deleted call link requires admin pass!");
+
+    return new SignalCallLinkRecord.Builder(rawStorageId, null)
+                                   .setRootKey(callLink.getCredentials().getLinkKeyBytes())
+                                   .setAdminPassKey(adminPassword)
+                                   .setDeletedTimestamp(deletedTimestamp)
+                                   .build();
   }
 
   private static @NonNull SignalStoryDistributionListRecord localToRemoteStoryDistributionList(@NonNull RecipientRecord recipient, @NonNull byte[] rawStorageId) {

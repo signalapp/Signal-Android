@@ -34,13 +34,11 @@ public class PartAuthority {
   private static final String PART_URI_STRING           = "content://" + AUTHORITY + "/part";
   private static final String PART_THUMBNAIL_STRING     = "content://" + AUTHORITY + "/thumbnail";
   private static final String STICKER_URI_STRING        = "content://" + AUTHORITY + "/sticker";
-  private static final String WALLPAPER_URI_STRING      = "content://" + AUTHORITY + "/wallpaper";
   private static final String EMOJI_URI_STRING          = "content://" + AUTHORITY + "/emoji";
   private static final String AVATAR_PICKER_URI_STRING  = "content://" + AUTHORITY + "/avatar_picker";
   private static final Uri    PART_CONTENT_URI          = Uri.parse(PART_URI_STRING);
   private static final Uri    PART_THUMBNAIL_URI        = Uri.parse(PART_THUMBNAIL_STRING);
   private static final Uri    STICKER_CONTENT_URI       = Uri.parse(STICKER_URI_STRING);
-  private static final Uri    WALLPAPER_CONTENT_URI     = Uri.parse(WALLPAPER_URI_STRING);
   private static final Uri    EMOJI_CONTENT_URI         = Uri.parse(EMOJI_URI_STRING);
   private static final Uri    AVATAR_PICKER_CONTENT_URI = Uri.parse(AVATAR_PICKER_URI_STRING);
 
@@ -84,7 +82,6 @@ public class PartAuthority {
       case STICKER_ROW:       return SignalDatabase.stickers().getStickerStream(ContentUris.parseId(uri));
       case PERSISTENT_ROW:    return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
       case BLOB_ROW:          return BlobProvider.getInstance().getStream(context, uri);
-      case WALLPAPER_ROW:     return WallpaperStorage.read(context, getWallpaperFilename(uri));
       case EMOJI_ROW:         return EmojiFiles.openForReading(context, getEmojiFilename(uri));
       case AVATAR_PICKER_ROW: return AvatarPickerStorage.read(context, getAvatarPickerFilename(uri));
       case THUMBNAIL_ROW:     return SignalDatabase.attachments().getAttachmentThumbnailStream(new PartUriParser(uri).getPartId(), 0);
@@ -190,10 +187,6 @@ public class PartAuthority {
     return ContentUris.withAppendedId(STICKER_CONTENT_URI, id);
   }
 
-  public static Uri getWallpaperUri(String filename) {
-    return Uri.withAppendedPath(WALLPAPER_CONTENT_URI, filename);
-  }
-
   public static Uri getAvatarPickerUri(String filename) {
     return Uri.withAppendedPath(AVATAR_PICKER_CONTENT_URI, filename);
   }
@@ -218,6 +211,7 @@ public class PartAuthority {
     int match = uriMatcher.match(uri);
     switch (match) {
     case PART_ROW:
+    case THUMBNAIL_ROW:
     case PERSISTENT_ROW:
     case BLOB_ROW:
       return true;
@@ -226,7 +220,8 @@ public class PartAuthority {
   }
 
   public static boolean isAttachmentUri(@NonNull Uri uri) {
-    return uriMatcher.match(uri) == PART_ROW;
+    int match = uriMatcher.match(uri);
+    return match == PART_ROW || match == THUMBNAIL_ROW;
   }
 
   public static @NonNull AttachmentId requireAttachmentId(@NonNull Uri uri) {

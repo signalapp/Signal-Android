@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.push.exceptions.DonationReceiptCredentialError
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
 import java.io.IOException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -238,7 +238,7 @@ class InAppPaymentOneTimeContextJob private constructor(
             notified = false,
             state = InAppPaymentTable.State.END,
             data = inAppPayment.data.copy(
-              error = InAppPaymentsRepository.buildPaymentFailure(inAppPayment, (applicationError as? DonationReceiptCredentialError)?.chargeFailure)
+              error = InAppPaymentsRepository.buildPaymentFailure(inAppPayment, (applicationError as? InAppPaymentReceiptCredentialError)?.chargeFailure)
             )
           )
         )

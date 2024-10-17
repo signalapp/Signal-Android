@@ -5,16 +5,22 @@
 
 package org.whispersystems.signalservice.api.crypto
 
-class AttachmentCipherStreamUtil {
-  companion object {
-    @JvmStatic
-    fun getCiphertextLength(plaintextLength: Long): Long {
-      return 16 + (plaintextLength / 16 + 1) * 16 + 32
-    }
+object AttachmentCipherStreamUtil {
 
-    @JvmStatic
-    fun getPlaintextLength(ciphertextLength: Long): Long {
-      return ((ciphertextLength - 16 - 32) / 16 - 1) * 16
-    }
+  /**
+   * Given the size of the plaintext, this will return the length of ciphertext output.
+   * @param inputSize Size of the plaintext fed into the stream. This does *not* automatically include padding. Add that yourself before calling if needed.
+   */
+  @JvmStatic
+  fun getCiphertextLength(plaintextLength: Long): Long {
+    val ivLength: Long = 16
+    val macLength: Long = 32
+    val blockLength: Long = (plaintextLength / 16 + 1) * 16
+    return ivLength + macLength + blockLength
+  }
+
+  @JvmStatic
+  fun getPlaintextLength(ciphertextLength: Long): Long {
+    return ((ciphertextLength - 16 - 32) / 16 - 1) * 16
   }
 }

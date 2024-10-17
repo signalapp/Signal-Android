@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
 /**
@@ -49,7 +46,7 @@ fun MessageBackupsEducationScreen(
   Scaffolds.Settings(
     onNavigationClick = onNavigationClick,
     navigationIconPainter = painterResource(id = R.drawable.symbol_x_24),
-    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups)
+    title = ""
   ) {
     Column(
       modifier = Modifier
@@ -65,11 +62,11 @@ fun MessageBackupsEducationScreen(
       ) {
         item {
           Image(
-            painter = painterResource(id = R.drawable.ic_signal_logo_large), // TODO [message-backups] Final image asset
+            painter = painterResource(id = R.drawable.image_signal_backups), // TODO [message-backups] Final image asset
             contentDescription = null,
             modifier = Modifier
-              .padding(top = 48.dp)
-              .size(88.dp)
+              .padding(top = 24.dp)
+              .size(80.dp)
           )
         }
 
@@ -175,7 +172,6 @@ private fun NotableFeatureRow(
       modifier = Modifier
         .padding(end = 8.dp)
         .size(32.dp)
-        .background(color = SignalTheme.colors.colorSurface2, shape = CircleShape)
         .padding(6.dp)
     )
 

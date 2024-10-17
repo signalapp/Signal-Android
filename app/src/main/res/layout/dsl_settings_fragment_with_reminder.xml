@@ -20,11 +20,11 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <ViewStub
-        android:id="@+id/reminder_stub"
+        android:id="@+id/banner_stub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inflatedId="@+id/reminder"
-        android:layout="@layout/conversation_activity_reminderview_stub"
+        android:inflatedId="@+id/banner_compose_view"
+        android:layout="@layout/conversation_list_banner_view"
         app:layout_constraintTop_toTopOf="@id/recycler"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -143,9 +143,6 @@ public class Contact implements Parcelable {
   public static class Name implements Parcelable {
 
     @JsonProperty
-    private final String displayName;
-
-    @JsonProperty
     private final String givenName;
 
     @JsonProperty
@@ -160,27 +157,27 @@ public class Contact implements Parcelable {
     @JsonProperty
     private final String middleName;
 
-    public Name(@JsonProperty("displayName") @Nullable String displayName,
+    @JsonProperty
+    private final String nickname;
+
+    public Name(
          @JsonProperty("givenName")   @Nullable String givenName,
          @JsonProperty("familyName")  @Nullable String familyName,
          @JsonProperty("prefix")      @Nullable String prefix,
          @JsonProperty("suffix")      @Nullable String suffix,
-         @JsonProperty("middleName")  @Nullable String middleName)
+         @JsonProperty("middleName")  @Nullable String middleName,
+         @JsonProperty("nickname")    @Nullable String nickname)
     {
-      this.displayName = displayName;
       this.givenName  = givenName;
       this.familyName = familyName;
       this.prefix     = prefix;
       this.suffix     = suffix;
       this.middleName = middleName;
+      this.nickname   = nickname;
     }
 
     private Name(Parcel in) {
       this(in.readString(), in.readString(), in.readString(), in.readString(), in.readString(), in.readString());
-    }
-
-    public @Nullable String getDisplayName() {
-      return displayName;
     }
 
     public @Nullable String getGivenName() {
@@ -203,8 +200,12 @@ public class Contact implements Parcelable {
       return middleName;
     }
 
+    public @Nullable String getNickname() {
+      return nickname;
+    }
+
     public boolean isEmpty() {
-      return TextUtils.isEmpty(displayName) &&
+      return TextUtils.isEmpty(nickname) &&
              TextUtils.isEmpty(givenName)   &&
              TextUtils.isEmpty(familyName)  &&
              TextUtils.isEmpty(prefix)      &&
@@ -219,12 +220,12 @@ public class Contact implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-      dest.writeString(displayName);
       dest.writeString(givenName);
       dest.writeString(familyName);
       dest.writeString(prefix);
       dest.writeString(suffix);
       dest.writeString(middleName);
+      dest.writeString(nickname);
     }
 
     public static final Creator<Name> CREATOR = new Creator<Name>() {

@@ -23,6 +23,7 @@ import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
+import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -170,6 +171,7 @@ public class SignalServiceMessageSender {
   private static final int RETRY_COUNT = 4;
 
   private final PushServiceSocket             socket;
+  private final SignalWebSocket               webSocket;
   private final SignalServiceAccountDataStore aciStore;
   private final SignalSessionLock             sessionLock;
   private final SignalServiceAddress          localAddress;
@@ -185,19 +187,18 @@ public class SignalServiceMessageSender {
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
 
-  public SignalServiceMessageSender(SignalServiceConfiguration urls,
-                                    CredentialsProvider credentialsProvider,
+  public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
-                                    String signalAgent,
                                     SignalWebSocket signalWebSocket,
                                     Optional<EventListener> eventListener,
-                                    ClientZkProfileOperations clientZkProfileOperations,
                                     ExecutorService executor,
-                                    long maxEnvelopeSize,
-                                    boolean automaticNetworkRetry)
+                                    long maxEnvelopeSize)
   {
-    this.socket            = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
+    CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
+
+    this.socket            = pushServiceSocket;
+    this.webSocket         = signalWebSocket;
     this.aciStore          = store.aci();
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
@@ -799,8 +800,8 @@ public class SignalServiceMessageSender {
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
-    byte[]             attachmentKey    = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getSecretKey).orElseGet(() -> Util.getSecretBytes(64));
-    byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getIV).orElseGet(() -> Util.getSecretBytes(16));
+    byte[]             attachmentKey    = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getAttachmentKey).orElseGet(() -> Util.getSecretBytes(64));
+    byte[]             attachmentIV     = attachment.getResumableUploadSpec().map(ResumableUploadSpec::getAttachmentIv).orElseGet(() -> Util.getSecretBytes(16));
     long               paddedLength     = PaddingInputStream.getPaddedSize(attachment.getLength());
     InputStream        dataStream       = new PaddingInputStream(attachment.getInputStream(), attachment.getLength());
     long               ciphertextLength = AttachmentCipherStreamUtil.getCiphertextLength(paddedLength);
@@ -811,7 +812,7 @@ public class SignalServiceMessageSender {
                                                                  new AttachmentCipherOutputStreamFactory(attachmentKey, attachmentIV),
                                                                  attachment.getListener(),
                                                                  attachment.getCancelationSignal(),
-                                                                 attachment.getResumableUploadSpec().orElse(null));
+                                                                 attachment.getResumableUploadSpec().get());
 
     if (attachment.getResumableUploadSpec().isEmpty()) {
       throw new IllegalStateException("Attachment must have a resumable upload spec.");
@@ -1059,6 +1060,7 @@ public class SignalServiceMessageSender {
     if (message.getExpiresInSeconds() > 0) {
       builder.expireTimer(message.getExpiresInSeconds());
     }
+    builder.expireTimerVersion(message.getExpireTimerVersion());
 
     if (message.getProfileKey().isPresent()) {
       builder.profileKey(ByteString.of(message.getProfileKey().get()));
@@ -1752,12 +1754,12 @@ public class SignalServiceMessageSender {
     for (SharedContact contact : contacts) {
       DataMessage.Contact.Name.Builder nameBuilder = new DataMessage.Contact.Name.Builder();
 
-      if (contact.getName().getFamily().isPresent())  nameBuilder.familyName(contact.getName().getFamily().get());
-      if (contact.getName().getGiven().isPresent())   nameBuilder.givenName(contact.getName().getGiven().get());
-      if (contact.getName().getMiddle().isPresent())  nameBuilder.middleName(contact.getName().getMiddle().get());
-      if (contact.getName().getPrefix().isPresent())  nameBuilder.prefix(contact.getName().getPrefix().get());
-      if (contact.getName().getSuffix().isPresent())  nameBuilder.suffix(contact.getName().getSuffix().get());
-      if (contact.getName().getDisplay().isPresent()) nameBuilder.displayName(contact.getName().getDisplay().get());
+      if (contact.getName().getFamily().isPresent())   nameBuilder.familyName(contact.getName().getFamily().get());
+      if (contact.getName().getGiven().isPresent())    nameBuilder.givenName(contact.getName().getGiven().get());
+      if (contact.getName().getMiddle().isPresent())   nameBuilder.middleName(contact.getName().getMiddle().get());
+      if (contact.getName().getPrefix().isPresent())   nameBuilder.prefix(contact.getName().getPrefix().get());
+      if (contact.getName().getSuffix().isPresent())   nameBuilder.suffix(contact.getName().getSuffix().get());
+      if (contact.getName().getNickname().isPresent()) nameBuilder.nickname(contact.getName().getNickname().get());
 
       DataMessage.Contact.Builder contactBuilder = new DataMessage.Contact.Builder().name(nameBuilder.build());
 

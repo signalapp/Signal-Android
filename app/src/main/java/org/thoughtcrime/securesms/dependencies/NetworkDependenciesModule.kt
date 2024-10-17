@@ -27,13 +27,17 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.SignalWebSocket
+import org.whispersystems.signalservice.api.archive.ArchiveApi
+import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
+import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
 import java.security.KeyManagementException
@@ -63,7 +67,7 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(signalWebSocket, protocolStore, signalServiceNetworkAccess.getConfiguration())
+    provider.provideSignalServiceMessageSender(signalWebSocket, protocolStore, pushServiceSocket)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
@@ -71,8 +75,12 @@ class NetworkDependenciesModule(
     provider.provideIncomingMessageObserver()
   }
 
+  val pushServiceSocket: PushServiceSocket by lazy {
+    provider.providePushServiceSocket(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+  }
+
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
-    provider.provideSignalServiceAccountManager(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+    provider.provideSignalServiceAccountManager(pushServiceSocket, groupsV2Operations)
   }
 
   val libsignalNetwork: Network by lazy {
@@ -99,7 +107,7 @@ class NetworkDependenciesModule(
   }
 
   val signalServiceMessageReceiver: SignalServiceMessageReceiver by lazy {
-    provider.provideSignalServiceMessageReceiver(signalServiceNetworkAccess.getConfiguration())
+    provider.provideSignalServiceMessageReceiver(pushServiceSocket)
   }
 
   val payments: Payments by lazy {
@@ -107,7 +115,7 @@ class NetworkDependenciesModule(
   }
 
   val callLinksService: CallLinksService by lazy {
-    provider.provideCallLinksService(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+    provider.provideCallLinksService(pushServiceSocket)
   }
 
   val profileService: ProfileService by lazy {
@@ -115,7 +123,19 @@ class NetworkDependenciesModule(
   }
 
   val donationsService: DonationsService by lazy {
-    provider.provideDonationsService(signalServiceNetworkAccess.getConfiguration(), groupsV2Operations)
+    provider.provideDonationsService(pushServiceSocket)
+  }
+
+  val archiveApi: ArchiveApi by lazy {
+    provider.provideArchiveApi(pushServiceSocket)
+  }
+
+  val keysApi: KeysApi by lazy {
+    provider.provideKeysApi(pushServiceSocket)
+  }
+
+  val attachmentApi: AttachmentApi by lazy {
+    provider.provideAttachmentApi(signalWebSocket, pushServiceSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

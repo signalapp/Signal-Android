@@ -6,13 +6,15 @@ import android.app.Application
 import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkObject
 import io.mockk.slot
+import io.mockk.unmockkAll
 import io.mockk.verify
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.`is`
+import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -28,15 +30,18 @@ import org.signal.storageservice.protos.groups.GroupChangeResponse
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.TestZkGroupServer
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -73,12 +78,17 @@ class GroupManagerV2Test_edit {
 
   private lateinit var manager: GroupManagerV2
 
-  @get:Rule
-  val signalStore: SignalStoreRule = SignalStoreRule()
-
   @Suppress("UsePropertyAccessSyntax")
   @Before
   fun setUp() {
+    if (!AppDependencies.isInitialized) {
+      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
+    }
+
+    mockkObject(RemoteConfig)
+    mockkObject(SignalStore)
+    every { RemoteConfig.internalUser } returns false
+
     ThreadUtil.enforceAssertions = false
     Log.initialize(SystemOutLogger())
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
@@ -104,6 +114,11 @@ class GroupManagerV2Test_edit {
       groupCandidateHelper,
       sendGroupUpdateHelper
     )
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   private fun given(init: GroupStateTestData.() -> Unit) {

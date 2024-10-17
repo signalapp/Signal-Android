@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
@@ -128,7 +129,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
       boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
       if (!started) {
         Log.i(TAG, "Unable to start call activity due to OS version or not being in the foreground");
-        AppDependencies.getAppForegroundObserver().addListener(webRtcInteractor.getForegroundListener());
+        AppForegroundObserver.addListener(webRtcInteractor.getForegroundListener());
       }
     }
 
@@ -185,7 +186,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                             new byte[0],
                                                                             AUDIO_LEVELS_INTERVAL,
                                                                             RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-                                                                            SignalStore.internal().callingEnableOboeAdm(),
+                                                                            RingRtcDynamicConfiguration.shouldUseOboeAdm(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     try {

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="36dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:paddingHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    android:layout_marginEnd="16dp"
+    android:backgroundTint="@color/signal_colorSurfaceVariant"
+    android:background="@drawable/rounded_rectangle_surface_variant" >
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Signal.Text.LabelLarge"
+        tools:text="All chats" />
+
+    <TextView
+        android:id="@+id/unread_count"
+        style="@style/Signal.Text.LabelSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/unread_count_background_new"
+        android:includeFontPadding="false"
+        android:minWidth="16dp"
+        android:gravity="center"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="2dp"
+        android:textColor="@color/signal_colorBackground"
+        tools:text="4" />
+
+</LinearLayout>

@@ -13,6 +13,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.signal.core.ui.theme.LocalSnackbarColors
 import org.signal.core.ui.theme.SignalTheme
@@ -24,8 +25,8 @@ import org.signal.core.ui.theme.SignalTheme
  */
 object Snackbars {
   @Composable
-  fun Host(snackbarHostState: SnackbarHostState) {
-    SnackbarHost(hostState = snackbarHostState) {
+  fun Host(snackbarHostState: SnackbarHostState, modifier: Modifier = Modifier) {
+    SnackbarHost(hostState = snackbarHostState, modifier = modifier) {
       Default(snackbarData = it)
     }
   }

@@ -277,7 +277,7 @@ class DonateToSignalFragment :
 
       space(20.dp)
 
-      if (state.inAppPaymentType == InAppPaymentType.RECURRING_DONATION && state.monthlyDonationState.isSubscriptionActive) {
+      if (state.inAppPaymentType == InAppPaymentType.RECURRING_DONATION && (state.monthlyDonationState.isSubscriptionActive || state.monthlyDonationState.isSubscriptionInProgress)) {
         primaryButton(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
           isEnabled = state.canUpdate,
@@ -410,10 +410,7 @@ class DonateToSignalFragment :
           val isActive = state.activeLevel == subscription.level && state.isSubscriptionActive
 
           val activePrice = state.activeSubscription?.let { sub ->
-            val activeCurrency = Currency.getInstance(sub.currency)
-            val activeAmount = sub.amount.movePointLeft(activeCurrency.defaultFractionDigits)
-
-            FiatMoney(activeAmount, activeCurrency)
+            FiatMoney.fromSignalNetworkAmount(sub.amount, Currency.getInstance(sub.currency))
           }
 
           customPref(

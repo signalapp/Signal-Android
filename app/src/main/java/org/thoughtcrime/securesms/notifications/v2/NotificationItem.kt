@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.notifications.v2
 
+import android.Manifest
 import android.content.Context
 import android.net.Uri
 import android.text.SpannableString
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -115,8 +117,8 @@ sealed class NotificationItem(val threadRecipient: Recipient, protected val reco
     return timestamp.compareTo(other.timestamp)
   }
 
-  fun getPersonUri(): String? {
-    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact && authorRecipient.isSystemContact) {
+  fun getPersonUri(context: Context): String? {
+    return if (SignalStore.settings.messageNotificationsPrivacy.isDisplayContact && authorRecipient.isSystemContact && Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       authorRecipient.contactUri.toString()
     } else {
       null

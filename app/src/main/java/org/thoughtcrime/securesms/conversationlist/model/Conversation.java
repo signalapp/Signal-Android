@@ -45,6 +45,7 @@ public class Conversation {
     ARCHIVED_FOOTER,
     CONVERSATION_FILTER_FOOTER,
     CONVERSATION_FILTER_EMPTY,
+    CHAT_FOLDER_EMPTY,
     EMPTY
   }
 }

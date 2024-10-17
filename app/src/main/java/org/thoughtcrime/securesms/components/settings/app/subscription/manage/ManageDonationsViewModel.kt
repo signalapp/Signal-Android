@@ -66,7 +66,7 @@ class ManageDonationsViewModel : ViewModel() {
 
     disposables += Single.fromCallable {
       InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)
-    }.subscribeBy { requiresCancel ->
+    }.subscribeOn(Schedulers.io()).subscribeBy { requiresCancel ->
       store.update {
         it.copy(subscriberRequiresCancel = requiresCancel)
       }

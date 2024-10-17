@@ -25,8 +25,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public final class ContactUtil {
 
@@ -63,8 +66,12 @@ public final class ContactUtil {
       return "";
     }
 
-    if (!TextUtils.isEmpty(contact.getName().getDisplayName())) {
-      return contact.getName().getDisplayName();
+    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
+      return contact.getName().getNickname();
+    }
+
+    if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
+      return ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
     }
 
     if (!TextUtils.isEmpty(contact.getOrganization())) {
@@ -136,7 +143,13 @@ public final class ContactUtil {
   }
 
   public static List<RecipientId> getRecipients(@NonNull Context context, @NonNull Contact contact) {
-    return Stream.of(contact.getPhoneNumbers()).map(phone -> Recipient.external(context, phone.getNumber())).map(Recipient::getId).toList();
+    return contact
+        .getPhoneNumbers()
+        .stream()
+        .map(phone -> PhoneNumberFormatter.get(context).formatOrNull(phone.getNumber()))
+        .filter(number -> number != null)
+        .map(phone -> SignalDatabase.recipients().getOrInsertFromE164(phone))
+        .collect(Collectors.toList());
   }
 
   @WorkerThread
@@ -144,8 +157,11 @@ public final class ContactUtil {
     Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
-    if (!TextUtils.isEmpty(contact.getName().getDisplayName())) {
-      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getDisplayName());
+    if (!TextUtils.isEmpty(contact.getName().getNickname())) {
+      intent.putExtra(ContactsContract.Intents.Insert.NAME, contact.getName().getNickname());
+    } else if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
+      String displayName = ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
+      intent.putExtra(ContactsContract.Intents.Insert.NAME, displayName);
     }
 
     if (!TextUtils.isEmpty(contact.getOrganization())) {

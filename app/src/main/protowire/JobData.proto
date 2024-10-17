@@ -41,7 +41,7 @@ message CallLogEventSendJobData {
 message CallLinkUpdateSendJobData {
   enum Type {
     UPDATE = 0;
-    DELETE = 1;
+    reserved 1; // was DELETE, superseded by storage service
   }
 
   string        callLinkRoomId = 1;
@@ -56,17 +56,6 @@ message AttachmentUploadJobData {
 
 message PreKeysSyncJobData {
   bool forceRefreshRequested = 1;
-}
-
-message ArchiveAttachmentJobData {
-  uint64 attachmentId = 1;
-}
-
-message ArchiveAttachmentBackfillJobData {
-  optional uint64 attachmentId = 1;
-  ResumableUpload uploadSpec = 2;
-  optional uint32 count = 3;
-  optional uint32 totalCount = 4;
 }
 
 message ArchiveThumbnailUploadJobData {
@@ -117,4 +106,34 @@ message GroupCallPeekJobData {
   uint64 groupRecipientId  = 1;
   uint64 senderRecipientId = 2;
   uint64 serverTimestamp   = 3;
+}
+
+message RestoreLocalAttachmentJobData {
+  uint64 attachmentId = 1;
+  uint64 messageId = 2;
+  string fileUri = 3;
+  uint64 fileSize = 4;
+}
+
+message BackfillDigestJobData {
+  uint64 attachmentId = 1;
+}
+
+message BackfillDigestsForDataFileJobData {
+  string dataFile = 1;
+}
+
+message RestoreAttachmentJobData {
+  uint64 messageId = 1;
+  uint64 attachmentId = 2;
+  bool manual = 3;
+}
+
+message CopyAttachmentToArchiveJobData {
+  uint64 attachmentId = 1;
+}
+
+message UploadAttachmentToArchiveJobData {
+  uint64 attachmentId = 1;
+  ResumableUpload uploadSpec = 2;
 }

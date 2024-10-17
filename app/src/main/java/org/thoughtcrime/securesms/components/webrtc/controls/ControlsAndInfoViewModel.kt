@@ -13,7 +13,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsRepository
@@ -53,11 +52,6 @@ class ControlsAndInfoViewModel(
 
   fun resetScrollState() {
     _state.value = _state.value.copy(resetScrollState = System.currentTimeMillis())
-  }
-
-  fun setApproveAllMembers(approveAllMembers: Boolean): Single<UpdateCallLinkResult> {
-    val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository.setCallRestrictions(credentials, if (approveAllMembers) CallLinkState.Restrictions.ADMIN_APPROVAL else CallLinkState.Restrictions.NONE)
   }
 
   fun setName(name: String): Single<UpdateCallLinkResult> {

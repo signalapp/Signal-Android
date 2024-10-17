@@ -19,7 +19,7 @@ public class ChargingConstraint implements Constraint {
 
   @Override
   public boolean isMet() {
-    return ChargingConstraintObserver.isCharging();
+    return ChargingAndBatteryIsNotLowConstraintObserver.isCharging();
   }
 
   @Override

@@ -137,7 +137,19 @@
               android:launchMode="singleTask"
               android:exported="false" />
 
-    <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"
+        <activity
+            android:name=".components.webrtc.v2.CallActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:taskAffinity=".calling"
+            android:theme="@style/TextSecure.DarkTheme.WebRTCCall"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"
               android:theme="@style/TextSecure.DarkNoActionBar"
               android:noHistory="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -1104,6 +1116,12 @@
               android:exported="false"/>
 
     <activity android:name=".components.settings.app.subscription.donate.CheckoutFlowActivity"
+            android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:exported="false"/>
+
+    <activity android:name=".backup.v2.ui.subscription.MessageBackupsCheckoutActivity"
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
