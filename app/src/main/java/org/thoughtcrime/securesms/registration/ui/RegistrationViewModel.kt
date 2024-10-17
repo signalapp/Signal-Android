@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -743,21 +744,26 @@ class RegistrationViewModel : ViewModel() {
 
     var reglock = registrationLocked
 
-    val sessionId = getOrCreateValidSession(context)?.body?.id ?: return
-    val registrationData = getRegistrationData()
+    val session: RegistrationSessionMetadataJson? = getOrCreateValidSession(context)?.body
+    val sessionId: String = session?.id ?: return
+    val registrationData: RegistrationData = getRegistrationData()
 
-    Log.d(TAG, "Submitting verification code…")
+    if (session.verified) {
+      Log.i(TAG, "Session is already verified, registering account.")
+    } else {
+      Log.d(TAG, "Submitting verification code…")
 
-    val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
+      val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
 
-    val submissionSuccessful = verificationResponse is Success
-    val alreadyVerified = verificationResponse is AlreadyVerified
+      val submissionSuccessful = verificationResponse is Success
+      val alreadyVerified = verificationResponse is AlreadyVerified
 
-    Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified")
+      Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified")
 
-    if (!submissionSuccessful && !alreadyVerified) {
-      handleSessionStateResult(context, verificationResponse)
-      return
+      if (!submissionSuccessful && !alreadyVerified) {
+        handleSessionStateResult(context, verificationResponse)
+        return
+      }
     }
 
     Log.d(TAG, "Submitting registration…")
