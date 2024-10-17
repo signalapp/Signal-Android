@@ -44,13 +44,6 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_appSettingsFragment_to_deviceActivity"
-            app:destination="@id/deviceActivity"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-        <action
             android:id="@+id/action_appSettingsFragment_to_linkDeviceFragment"
             app:destination="@id/linkDeviceFragment"
             app:enterAnim="@anim/fragment_open_enter"
@@ -232,13 +225,7 @@
 
     <!-- endregion -->
 
-    <!-- Linked Devices V1-->
-    <activity
-        android:id="@+id/deviceActivity"
-        android:name="org.thoughtcrime.securesms.DeviceActivity"
-        android:label="device_activity" />
-
-    <!-- Linked Devices V2 -->
+    <!-- Linked Devices -->
     <fragment
         android:id="@+id/linkDeviceFragment"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceFragment"

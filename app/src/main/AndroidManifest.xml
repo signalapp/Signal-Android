@@ -867,12 +867,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-     <activity android:name=".DeviceActivity"
-               android:screenOrientation="portrait"
-               android:label="@string/AndroidManifest__linked_devices"
-               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-               android:exported="false"/>
-
     <activity android:name=".logsubmit.SubmitDebugLogActivity"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
