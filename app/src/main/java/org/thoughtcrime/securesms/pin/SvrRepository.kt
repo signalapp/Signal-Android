@@ -100,8 +100,10 @@ object SvrRepository {
           svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) }
         )
       } else {
-        listOf(svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) })
-        listOf(svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) })
+        listOf(
+          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
+          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
+        )
       }
 
       for ((implementation, operation) in operations) {
