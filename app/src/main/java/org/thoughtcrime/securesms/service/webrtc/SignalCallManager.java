@@ -1060,7 +1060,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                            .setPassword(turnServerInfo.getPassword())
                                                            .setHostname(turnServerInfo.getHostname())
                                                            .createIceServer()
-                          ).toList());
+                          ).collect(Collectors.toList()));
       }
       if (turnServerInfo.getUrlsWithIps() != null) {
         iceServers.addAll(
