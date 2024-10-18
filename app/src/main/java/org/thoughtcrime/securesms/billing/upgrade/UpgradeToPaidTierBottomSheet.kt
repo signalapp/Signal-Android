@@ -12,7 +12,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.Dialogs
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -32,6 +34,18 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
 
   companion object {
     const val RESULT_KEY = "UpgradeToPaidTierBottomSheet.RESULT_KEY"
+
+    fun addResultListener(fragment: Fragment, onUpgradedToPaidTier: () -> Unit) {
+      fragment.setFragmentResultListener(RESULT_KEY) { key, bundle ->
+        if (RESULT_KEY == key) {
+          val didCompleteSignup = bundle.getBoolean(RESULT_KEY, false)
+
+          if (didCompleteSignup) {
+            onUpgradedToPaidTier()
+          }
+        }
+      }
+    }
   }
 
   private val viewModel: MessageBackupsFlowViewModel by viewModel {

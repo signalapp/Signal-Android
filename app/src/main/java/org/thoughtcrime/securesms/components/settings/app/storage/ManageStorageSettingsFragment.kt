@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.storage
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -63,6 +64,7 @@ import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
+import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
@@ -81,6 +83,12 @@ import java.text.NumberFormat
 class ManageStorageSettingsFragment : ComposeFragment() {
 
   private val viewModel by viewModel<ManageStorageSettingsViewModel> { ManageStorageSettingsViewModel() }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    UpgradeToPaidTierBottomSheet.addResultListener(this) {
+      viewModel.setOptimizeStorage(true)
+    }
+  }
 
   @ExperimentalMaterial3Api
   @Composable
