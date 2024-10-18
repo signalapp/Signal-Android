@@ -1050,7 +1050,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     List<PeerConnection.IceServer> iceServers = new ArrayList<>();
 
     for (TurnServerInfo turnServerInfo: turnServerInfos) {
-      if (turnServerInfo.getUrls() != null) {
+      if (turnServerInfo.getUrlsWithIps() != null) {
         iceServers.addAll(
             turnServerInfo.getUrlsWithIps()
                           .stream()
@@ -1062,7 +1062,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                            .createIceServer()
                           ).collect(Collectors.toList()));
       }
-      if (turnServerInfo.getUrlsWithIps() != null) {
+
+      if (turnServerInfo.getUrls() != null) {
         iceServers.addAll(
             turnServerInfo.getUrls()
                           .stream()
@@ -1071,8 +1072,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                            .setUsername(turnServerInfo.getUsername())
                                                            .setPassword(turnServerInfo.getPassword())
                                                            .createIceServer()
-                          ).toList()
-        );
+                          ).collect(Collectors.toList()));
       }
     }
 
