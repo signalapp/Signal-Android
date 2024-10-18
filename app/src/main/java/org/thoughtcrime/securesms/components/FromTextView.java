@@ -78,9 +78,9 @@ public class FromTextView extends SimpleEmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked())                          setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
-    else if (RemoteConfig.getShowChatFolders() && isPinned)  setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
-    else                                                     setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+    if      (recipient.isBlocked())                           setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
+    else if (RemoteConfig.getInlinePinnedChats() && isPinned) setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
+    else                                                      setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
   }
 
   private Drawable getBlocked() {

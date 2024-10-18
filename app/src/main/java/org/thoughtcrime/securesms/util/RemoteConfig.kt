@@ -1111,6 +1111,14 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether or not to use the new pinned chat UI. */
+  @JvmStatic
+  val inlinePinnedChats: Boolean by remoteBoolean(
+    key = "android.inlinePinnedChats",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   @JvmStatic
   @get:JvmName("newCallUi")
   val newCallUi: Boolean by remoteBoolean(

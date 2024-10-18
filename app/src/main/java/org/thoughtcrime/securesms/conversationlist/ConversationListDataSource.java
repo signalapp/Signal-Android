@@ -193,7 +193,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         totalCount++;
       }
 
-      if (!RemoteConfig.getShowChatFolders() && pinnedCount != 0) {
+      if (!RemoteConfig.getInlinePinnedChats() && pinnedCount != 0) {
         if (unpinnedCount != 0) {
           totalCount += 2;
         } else {
@@ -209,7 +209,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       List<Cursor> cursors       = new ArrayList<>(5);
       long         originalLimit = limit;
 
-      if (!RemoteConfig.getShowChatFolders() && offset == 0 && hasPinnedHeader()) {
+      if (!RemoteConfig.getInlinePinnedChats() && offset == 0 && hasPinnedHeader()) {
         MatrixCursor pinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
         pinnedHeaderCursor.addRow(ConversationReader.PINNED_HEADER);
         cursors.add(pinnedHeaderCursor);
@@ -220,7 +220,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       cursors.add(pinnedCursor);
       limit -= pinnedCursor.getCount();
 
-      if (!RemoteConfig.getShowChatFolders() && offset == 0 && hasUnpinnedHeader()) {
+      if (!RemoteConfig.getInlinePinnedChats() && offset == 0 && hasUnpinnedHeader()) {
         MatrixCursor unpinnedHeaderCursor = new MatrixCursor(ConversationReader.HEADER_COLUMN);
         unpinnedHeaderCursor.addRow(ConversationReader.UNPINNED_HEADER);
         cursors.add(unpinnedHeaderCursor);
@@ -250,7 +250,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     @VisibleForTesting
     int getHeaderOffset() {
-      if (RemoteConfig.getShowChatFolders()) {
+      if (RemoteConfig.getInlinePinnedChats()) {
         return 0;
       } else {
         return (hasPinnedHeader() ? 1 : 0) + (hasUnpinnedHeader() ? 1 : 0);

@@ -62,7 +62,7 @@ public class UnarchivedConversationListDataSourceTest {
 
     when(SignalDatabase.threads()).thenReturn(threadTable);
     when(AppDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
-    when(RemoteConfig.getShowChatFolders()).thenReturn(true);
+    when(RemoteConfig.getInlinePinnedChats()).thenReturn(true);
 
     allChatsFolder = setupAllChatsFolder();
     testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(allChatsFolder, ConversationFilter.OFF, false);
