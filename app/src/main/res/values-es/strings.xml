@@ -2509,7 +2509,7 @@
     <string name="ReviewBannerView__view">Ver</string>
 
     <!-- Search -->
-    <string name="SearchFragment_no_results">No se han encontrado resultados para \"%1$s\"</string>
+    <string name="SearchFragment_no_results">No se ha encontrado ningún resultado para \"%1$s\"</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2891,7 +2891,7 @@
     <string name="SearchToolbar_search">Buscar</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">Buscar chats sin leer</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Buscar chats, personas y mensajes</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Buscar chats, contactos y mensajes</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">Cerrar</string>
@@ -3436,13 +3436,13 @@
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Describe el problema detalladamente para ayudarnos a entender la incidencia.</string>
     <string-array name="HelpFragment__categories_5">
         <item>Selecciona una opción</item>
-        <item>Algo no está funcionando</item>
-        <item>Solicitud de función</item>
+        <item>Hay algo que no funciona bien</item>
+        <item>Solicitar función</item>
         <item>Pregunta</item>
         <item>Feedback</item>
         <item>Otros</item>
         <item>Pagos (MobileCoin)</item>
-        <item>Donaciones; Insignias</item>
+        <item>Donaciones e insignias</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envío de registro de depuración de Android Signal</string>
@@ -4718,7 +4718,7 @@
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s en tu cuenta de pagos</string>
     <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
     <string name="DeleteAccountFragment__no_number">Número no especificado</string>
-    <string name="DeleteAccountFragment__the_phone_number">El número de teléfono que has introducido no coincide con el de tu cuenta.</string>
+    <string name="DeleteAccountFragment__the_phone_number">El número de teléfono que has introducido no coincide con el de tu cuenta de Signal.</string>
     <string name="DeleteAccountFragment__are_you_sure">¿Seguro que quieres eliminar tu cuenta?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y reinicia la aplicación. Signal se cerrará después de completarse el proceso.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
@@ -5008,7 +5008,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Número de teléfono anterior</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Tu número nuevo</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Número de teléfono nuevo</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">El número introducido no coincide con el de tu cuenta de Signal.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">El número de teléfono que has introducido no coincide con el de tu cuenta de Signal.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Debes especificar el código de país de tu número anterior</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Debes especificar tu número de teléfono anterior</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Debes especificar el código de país de tu número nuevo</string>
@@ -5079,11 +5079,11 @@
     <!-- Description of the suggested 1:1 chat folder -->
     <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">Grupos</string>
     <!-- Description of the suggested group chat folder -->
     <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">Añadir</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
     <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
     <!-- Option in context menu to edit the folder -->
@@ -5097,7 +5097,7 @@
     <!-- Option in context menu to reorder the positions of the folder -->
     <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">Marcar todos como leídos</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="one">%1$d chat type</item>
@@ -5126,7 +5126,7 @@
     <!-- Description explaining the purpose of the included chats section -->
     <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">Excepciones</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
     <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
     <!-- Description explaining the purpose of the excluded chats section -->
@@ -5136,9 +5136,9 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">Considerar chats silenciados</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
+    <string name="CreateFoldersFragment__create">Crear</string>
     <!-- Alert dialog title to create a chat folder -->
     <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
@@ -5148,7 +5148,7 @@
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
+    <string name="CreateFoldersFragment__save">Guardar</string>
     <!-- Alert dialog title to save changes made to the current folder -->
     <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
@@ -5156,7 +5156,7 @@
     <!-- Alert dialog confirmation button text to save the changes -->
     <string name="CreateFoldersFragment__save_changes">Save changes</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__discard">Descartar</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
     <!-- Alert dialog title to delete the current folder -->
@@ -5166,7 +5166,7 @@
     <!-- Section title representing chat types that can be added to the folder  -->
     <string name="ChooseChatsFragment__chat_types">Chat types</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">Listo</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Mensajes</string>
@@ -5294,7 +5294,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Donar a Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal se mantiene gracias a gente como tú. Dona mensualmente y recibe una insignia.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Personas como tú hacen que Signal sea una realidad. Haz una donación mensual y recibe una insignia para lucir en tu perfil.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Donar</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -5317,7 +5317,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Apoya la misión de Signal</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal se mantiene gracias a gente como tú. Dona y recibe una insignia para tu perfil.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Personas como tú hacen que Signal sea una realidad. Haz tu donación y recibe una insignia para lucir en tu perfil.</string>
     <string name="BecomeASustainerMegaphone__not_now">Ahora no</string>
     <string name="BecomeASustainerMegaphone__donate">Donar</string>
 
@@ -5614,9 +5614,9 @@
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s apoya a Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s apoya a Signal con una donación mensual. Signal es una asociación sin ánimo de lucro, sin anuncios ni fondos de inversión, sostenida por gente como tú.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s apoya a Signal con una donación mensual. Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s apoya a Signal con una donación. Signal es una asociación sin ánimo de lucro, sin anuncios ni fondos de inversión, sostenida por gente como tú.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s apoya a Signal con una donación. Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
 
     <string name="ImageView__badge">Insignia</string>
 
@@ -5657,7 +5657,7 @@
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de una insignia, puedes seleccionar cuál quieres que otras personas vean en tu perfil.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Consigue insignias para tu perfil al ayudar a Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene únicamente gracias al apoyo de personas como tú.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Donar a Signal</string>
@@ -6818,7 +6818,7 @@
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__learn_more">Más información</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__done">Hecho</string>
+    <string name="DonationPendingBottomSheet__done">Listo</string>
 
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">No se ha podido procesar la donación</string>
@@ -6834,7 +6834,7 @@
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Hemos recibido tu transferencia bancaria. Puedes añadir esta insignia a tu perfil para mostrar que apoyas a Signal.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
-    <string name="DonationCompleteBottomSheet__done">Hecho</string>
+    <string name="DonationCompleteBottomSheet__done">Listo</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Cancelando…</string>
@@ -7112,7 +7112,7 @@
     <!-- Row label to share the link with the external share sheet -->
     <string name="CreateCallLinkBottomSheetDialogFragment__share_link">Compartir enlace</string>
     <!-- Button text to dismiss the sheet and add it as an upcoming call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__done">Hecho</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__done">Listo</string>
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">No se puede compartir el enlace de la llamada.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
@@ -7197,7 +7197,7 @@
     <!-- Button label for a button that will reset your username and give you a new link -->
     <string name="UsernameLinkSettings_reset_button_label">Reiniciar</string>
     <!-- Button label for a button that indicates that the user is done changing the current setting -->
-    <string name="UsernameLinkSettings_done_button_label">Hecho</string>
+    <string name="UsernameLinkSettings_done_button_label">Listo</string>
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Código</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->

@@ -5079,11 +5079,11 @@
     <!-- Description of the suggested 1:1 chat folder -->
     <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">Mga Grupo</string>
     <!-- Description of the suggested group chat folder -->
     <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">Mag-add</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
     <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
     <!-- Option in context menu to edit the folder -->
@@ -5097,7 +5097,7 @@
     <!-- Option in context menu to reorder the positions of the folder -->
     <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">Markahan ang lahat na nabasa na</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="one">%1$d chat type</item>
@@ -5138,7 +5138,7 @@
     <!-- Toggle switch to display muted chats in chat folders -->
     <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
+    <string name="CreateFoldersFragment__create">Lumikha</string>
     <!-- Alert dialog title to create a chat folder -->
     <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
@@ -5148,7 +5148,7 @@
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
+    <string name="CreateFoldersFragment__save">I-save</string>
     <!-- Alert dialog title to save changes made to the current folder -->
     <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
@@ -5156,7 +5156,7 @@
     <!-- Alert dialog confirmation button text to save the changes -->
     <string name="CreateFoldersFragment__save_changes">Save changes</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__discard">I-discard</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
     <!-- Alert dialog title to delete the current folder -->

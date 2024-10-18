@@ -4960,11 +4960,11 @@
     <!-- Description of the suggested 1:1 chat folder -->
     <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">گۇرۇپپا</string>
     <!-- Description of the suggested group chat folder -->
     <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">قوشۇش</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
     <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
     <!-- Option in context menu to edit the folder -->
@@ -4978,14 +4978,14 @@
     <!-- Option in context menu to reorder the positions of the folder -->
     <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">ھەممىسى ئوقۇلدى</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="other">%1$d chat types</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="other">%1$d chats</item>
+        <item quantity="other">%1$d پاراڭ</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
@@ -5004,7 +5004,7 @@
     <!-- Description explaining the purpose of the included chats section -->
     <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">ئايرىم ئەھۋاللار</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
     <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
     <!-- Description explaining the purpose of the excluded chats section -->
@@ -5014,9 +5014,9 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">ئۈنسىز پاراڭلارنى ئۆز ئىچىگە ئېلىش</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
+    <string name="CreateFoldersFragment__create">قۇر</string>
     <!-- Alert dialog title to create a chat folder -->
     <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
@@ -5026,7 +5026,7 @@
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
+    <string name="CreateFoldersFragment__save">ساقلاش</string>
     <!-- Alert dialog title to save changes made to the current folder -->
     <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
@@ -5034,7 +5034,7 @@
     <!-- Alert dialog confirmation button text to save the changes -->
     <string name="CreateFoldersFragment__save_changes">Save changes</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__discard">تاشلىۋەت</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
     <!-- Alert dialog title to delete the current folder -->
@@ -5044,7 +5044,7 @@
     <!-- Section title representing chat types that can be added to the folder  -->
     <string name="ChooseChatsFragment__chat_types">Chat types</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">تامام</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">ئۇچۇرلار</string>

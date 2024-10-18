@@ -3058,7 +3058,7 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
     <string name="UsernameEditFragment_change_confirmation_message">سيُؤدي تغيير اسم المُستخدم الخاص بك إلى إعادة تعيين الرابط وكود الـ QR الحاليين الخاصين بك. هل أنت متأكِّد؟</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
-    <string name="UsernameEditFragment_continue">مواصلة</string>
+    <string name="UsernameEditFragment_continue">متابعة</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
         <item quantity="zero">%1$d جهة اتصال تستخدم سيجنال!‏</item>
@@ -3237,13 +3237,13 @@
     <string name="QuickResponseService_problem_sending_message">مشكلة في إرسال الرسائل!</string>
 
     <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">تم حفظ الوسائط</string>
+    <string name="SaveAttachmentTask_saved">تمَّ حفظ الوسائط</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">بحث</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">البحث في الدردشات غير المقروءة</string>
-    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">البحث عن الدردشات، جهات الاتصال، والرسائل</string>
+    <string name="SearchToolbar_search_for_conversations_contacts_and_messages">البحث عن الدردشات، وجهات الاتصال، والرسائل</string>
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">إغلاق</string>
@@ -3303,16 +3303,16 @@
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
-    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">هذا الجهاز لم يعد مسجلاً هذا على الأرجح بسبب قيامك بتسجيل رقم هاتفك على سيجنال في جهاز مختلف.</string>
+    <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">هذا الجهاز لم يَعُد مسجَّلًا.على الأغلب بسبب قيامك بتسجيل رقم هاتفك المُقترِن بسيجنال في جهازٍ مختلف.</string>
     <!-- Action in reminder banner that will take user to re-register -->
-    <string name="UnauthorizedReminder_reregister_action">أعد تسجيل الجهاز</string>
+    <string name="UnauthorizedReminder_reregister_action">أعِد تسجيل الجهاز</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
     <string name="LoggedOutNotification_you_have_been_logged_out">تمَّ تسجيل خروجك من تطبيق سيجنال على هذا الجهاز.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">حدِّث تطبيق سيجنال للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدثًا.</string>
+    <string name="EnclaveFailureReminder_update_signal">حدِّث تطبيق سيجنال للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدَّثًا.</string>
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
@@ -3367,7 +3367,7 @@
     <string name="contact_selection_activity__invite_to_signal">ادعُ إلى سيجنال</string>
     <string name="contact_selection_activity__new_group">مجموعة جديدة</string>
     <!-- Row item title for refreshing contacts -->
-    <string name="contact_selection_activity__refresh_contacts">تحديث قائمة الاتصال</string>
+    <string name="contact_selection_activity__refresh_contacts">تحديث جهات الاتصال</string>
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">هل تفتقد إلى جهة اتصال؟ حاول التحديث من جديد</string>
     <!-- Row item title for finding people on Signal via your contacts -->
@@ -3396,16 +3396,16 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">لستَ بحاجة إلى إضافة نفسك إلى المجموعة</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">وصلت المجموعة إلى الحد الأقصى.</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوا.</string>
-    <string name="ContactSelectionListFragment_recommended_member_limit_reached">تم وصول الأعضاء إلى الحد المُوصى به</string>
-    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">تعمل مجموعات سيجنال بشكل أفضل مع %1$d عضوا أو أقل. سيؤدي إضافة المزيد من الأعضاء إلى ظهور تأخر في إرسال الرسائل واستلامها.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">أقصى حد للأعضاء في مجموعات سيجنال هو %1$d عضوًا.</string>
+    <string name="ContactSelectionListFragment_recommended_member_limit_reached">تمَّ الوصول إلى حد الأعضاء المُوصى به</string>
+    <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">تعمل مجموعات سيجنال بشكلٍ أفضل مع %1$d عضو (أعضاء) أو أقل. ستؤدي إضافة المزيد من الأعضاء إلى تأخُّر في إرسال الرسائل واستلامها.</string>
     <plurals name="ContactSelectionListFragment_d_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
-        <item quantity="two">%1$d أعضاء</item>
+        <item quantity="two">%1$d عضوين</item>
         <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضو</item>
-        <item quantity="other">%1$d عضو</item>
+        <item quantity="many">%1$d عضوًا</item>
+        <item quantity="other">%1$d عضوٍ</item>
     </plurals>
     <!-- Text on row item to find user by phone number -->
     <string name="ContactSelectionListFragment__find_by_phone_number">العثور عبر رقم الهاتف</string>
@@ -3430,10 +3430,10 @@
     <plurals name="contact_selection_list_item__number_of_members">
         <item quantity="zero">%1$d عضو</item>
         <item quantity="one">%1$d عضو</item>
-        <item quantity="two">%1$d أعضاء</item>
+        <item quantity="two">%1$d عضوان</item>
         <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضوا</item>
-        <item quantity="other">%1$d عضو</item>
+        <item quantity="many">%1$d عضوًا</item>
+        <item quantity="other">%1$d عضوٍ</item>
     </plurals>
     <!-- Displays number of viewers for a story -->
     <plurals name="contact_selection_list_item__number_of_viewers">
@@ -3447,19 +3447,19 @@
 
     <!-- conversation_activity -->
     <string name="conversation_activity__type_message_push">‫رسالة سيجنال</string>
-    <string name="conversation_activity__type_message_sms_insecure">رسائل SMS غير مؤمّنة</string>
+    <string name="conversation_activity__type_message_sms_insecure">رسالة قصيرة غير مؤمَّنة</string>
     <string name="conversation_activity__type_message_mms_insecure">رسالة متعدّدة الوسائط غير مؤمنة</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
     <string name="conversation_activity__sim_n">SIM %1$d</string>
-    <string name="conversation_activity__send">أرسل</string>
+    <string name="conversation_activity__send">إرسال</string>
     <string name="conversation_activity__compose_description">تحرير الرسالة</string>
     <string name="conversation_activity__emoji_toggle_description">تبديل لوحة مفاتيح الرموز التعبيرية</string>
-    <string name="conversation_activity__attachment_thumbnail">صورة للمرفق مُصغَّرة</string>
-    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">فتح دُرج مرفقات الكاميرا</string>
-    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">تسجيل وإرسال مرفق صوتي</string>
+    <string name="conversation_activity__attachment_thumbnail">صورة مُصغَّرة للملف المُرفَق</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">فتح دُرج مُرفَقات الكاميرا</string>
+    <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">تسجيل وإرسال مُرفَق صوتي</string>
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
-    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل التسجيل الصوتي</string>
-    <string name="conversation_activity__message_could_not_be_sent">لم تُرسَل الرسالة، علبك التأكد من اتصالك بالانترنت ثم المحاولة مجددا.</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">قفل تسجيل المُرفَق الصوتي</string>
+    <string name="conversation_activity__message_could_not_be_sent">لم تُرسَل الرسالة. عليك التأكُّد من اتصالك بالانترنت ثم المحاولة مُجدَّدًا.</string>
 
     <!-- conversation_input_panel -->
     <string name="conversation_input_panel__slide_to_cancel">مرِّر للإلغاء</string>
@@ -3470,18 +3470,18 @@
     <string name="conversation_item__secure_message_description">رسالة آمنة</string>
 
     <!-- conversation_item_sent -->
-    <string name="conversation_item_sent__send_failed_indicator_description">الإرسال فشل</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">فشل الإرسال</string>
     <string name="conversation_item_sent__pending_approval_description">في انتظار الموافقة</string>
-    <string name="conversation_item_sent__delivered_description">تم تسليم الرسالة</string>
-    <string name="conversation_item_sent__message_read">تمّت قراءة الرسالة</string>
+    <string name="conversation_item_sent__delivered_description">تمَّ التسليم</string>
+    <string name="conversation_item_sent__message_read">تمَّت قراءة الرسالة</string>
 
     <!-- conversation_item_received -->
     <!-- Content description for profile pictures -->
     <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
 
     <!-- ConversationUpdateItem -->
-    <string name="ConversationUpdateItem_loading">قيد التحميل</string>
-    <string name="ConversationUpdateItem_learn_more">لمعرفة المزيد</string>
+    <string name="ConversationUpdateItem_loading">جارٍ التحميل</string>
+    <string name="ConversationUpdateItem_learn_more">اعرف المزيد</string>
     <string name="ConversationUpdateItem_join_call">الانضمام للمكالمة</string>
     <!-- Action button label for starting a new call in the current conversation -->
     <string name="ConversationUpdateItem_call_back">إعادة الاتصال</string>
@@ -5555,11 +5555,11 @@
     <!-- Description of the suggested 1:1 chat folder -->
     <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">المجموعات</string>
     <!-- Description of the suggested group chat folder -->
     <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">إضافة</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
     <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
     <!-- Option in context menu to edit the folder -->
@@ -5573,7 +5573,7 @@
     <!-- Option in context menu to reorder the positions of the folder -->
     <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">اعتبارها رسائل مقروءة</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="zero">%1$d chat types</item>
@@ -5585,12 +5585,12 @@
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="zero">%1$d chats</item>
-        <item quantity="one">%1$d chat</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="zero">%1$d دردشات</item>
+        <item quantity="one">%1$d دردشة</item>
+        <item quantity="two">%1$d دردشتين</item>
+        <item quantity="few">%1$d دردشات</item>
+        <item quantity="many">%1$d دردشةً</item>
+        <item quantity="other">%1$d دردشةٍ</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
@@ -5614,7 +5614,7 @@
     <!-- Description explaining the purpose of the included chats section -->
     <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">الاستثناءات</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
     <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
     <!-- Description explaining the purpose of the excluded chats section -->
@@ -5624,9 +5624,9 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">تَضمين الدردشاتِ المَكتومة</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
+    <string name="CreateFoldersFragment__create">إنشاء</string>
     <!-- Alert dialog title to create a chat folder -->
     <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
@@ -5636,7 +5636,7 @@
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
+    <string name="CreateFoldersFragment__save">حفظ</string>
     <!-- Alert dialog title to save changes made to the current folder -->
     <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
@@ -5644,7 +5644,7 @@
     <!-- Alert dialog confirmation button text to save the changes -->
     <string name="CreateFoldersFragment__save_changes">Save changes</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__discard">تجاهل</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
     <!-- Alert dialog title to delete the current folder -->
@@ -5654,7 +5654,7 @@
     <!-- Section title representing chat types that can be added to the folder  -->
     <string name="ChooseChatsFragment__chat_types">Chat types</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">تمّ</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">الرسائل</string>
