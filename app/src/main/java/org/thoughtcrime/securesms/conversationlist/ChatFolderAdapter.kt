@@ -42,17 +42,18 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
           context = itemView.context,
           anchorView = view,
           folderType = model.chatFolder.folderType,
+          unreadCount = folder.unreadCount,
+          isMuted = folder.isMuted,
           onEdit = { callbacks.onEdit(model.chatFolder) },
-          onAdd = { callbacks.onAdd() },
           onMuteAll = { callbacks.onMuteAll(model.chatFolder) },
+          onUnmuteAll = { callbacks.onUnmuteAll(model.chatFolder) },
           onReadAll = { callbacks.onReadAll(model.chatFolder) },
-          onDelete = { callbacks.onDelete(model.chatFolder) },
-          onReorder = { callbacks.onReorder() }
+          onFolderSettings = { callbacks.onFolderSettings() }
         )
         true
       }
       if (model.isSelected) {
-        itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurfaceVariant))
+        itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
       } else {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.transparent))
       }
@@ -70,10 +71,9 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
   interface Callbacks {
     fun onChatFolderClicked(chatFolder: ChatFolderRecord)
     fun onEdit(chatFolder: ChatFolderRecord)
-    fun onAdd()
     fun onMuteAll(chatFolder: ChatFolderRecord)
+    fun onUnmuteAll(chatFolder: ChatFolderRecord)
     fun onReadAll(chatFolder: ChatFolderRecord)
-    fun onDelete(chatFolder: ChatFolderRecord)
-    fun onReorder()
+    fun onFolderSettings()
   }
 }

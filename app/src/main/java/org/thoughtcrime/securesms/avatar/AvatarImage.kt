@@ -19,7 +19,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 @Composable
 fun AvatarImage(
   recipient: Recipient,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  useProfile: Boolean = true
 ) {
   if (LocalInspectionMode.current) {
     Spacer(
@@ -31,7 +32,11 @@ fun AvatarImage(
       factory = ::AvatarImageView,
       modifier = modifier.background(color = Color.Transparent, shape = CircleShape)
     ) {
-      it.setAvatarUsingProfile(recipient)
+      if (useProfile) {
+        it.setAvatarUsingProfile(recipient)
+      } else {
+        it.setAvatar(recipient)
+      }
     }
   }
 }

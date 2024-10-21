@@ -18,6 +18,7 @@ import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
@@ -629,6 +630,26 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
 
     return allCount + forcedUnreadCount
+  }
+
+  /**
+   * Returns whether or not there are any unmuted chats in a chat folder
+   */
+  fun hasUnmutedChatsInFolder(folder: ChatFolderRecord): Boolean {
+    val chatFolderQuery = folder.toQuery()
+
+    val unmutedChats =
+      """
+      SELECT COUNT(${RecipientTable.MUTE_UNTIL})
+      FROM $TABLE_NAME
+        LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE 
+        $ARCHIVED = 0 AND
+        ${RecipientTable.MUTE_UNTIL} = 0
+        $chatFolderQuery 
+      """
+
+    return readableDatabase.rawQuery(unmutedChats, null).readToSingleBoolean()
   }
 
   /**

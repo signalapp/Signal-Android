@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -229,16 +230,14 @@ fun CreateFolderScreen(
         FolderRow(
           icon = R.drawable.symbol_plus_compact_16,
           title = stringResource(R.string.CreateFoldersFragment__add_chats),
-          onClick = onAddChat,
-          modifier = Modifier.padding(start = 12.dp)
+          onClick = onAddChat
         )
 
         if (state.currentFolder.showIndividualChats) {
           FolderRow(
             icon = R.drawable.symbol_person_light_24,
             title = stringResource(R.string.ChatFoldersFragment__one_on_one_chats),
-            onClick = onAddChat,
-            modifier = Modifier.padding(start = 12.dp)
+            onClick = onAddChat
           )
         }
 
@@ -246,8 +245,7 @@ fun CreateFolderScreen(
           FolderRow(
             icon = R.drawable.symbol_group_light_20,
             title = stringResource(R.string.ChatFoldersFragment__groups),
-            onClick = onAddChat,
-            modifier = Modifier.padding(start = 12.dp)
+            onClick = onAddChat
           )
         }
       }
@@ -277,8 +275,7 @@ fun CreateFolderScreen(
         FolderRow(
           icon = R.drawable.symbol_plus_compact_16,
           title = stringResource(R.string.CreateFoldersFragment__exclude_chats),
-          onClick = onRemoveChat,
-          modifier = Modifier.padding(start = 12.dp)
+          onClick = onRemoveChat
         )
       }
 
@@ -334,6 +331,9 @@ fun CreateFolderScreen(
       }
     } else if (!isNewFolder) {
       Buttons.MediumTonal(
+        colors = ButtonDefaults.filledTonalButtonColors(
+          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
+        ),
         enabled = hasChanges,
         onClick = { onCreateConfirmed(true) },
         modifier = modifier
@@ -451,10 +451,11 @@ fun ChatRow(
         recipient = recipient,
         modifier = Modifier
           .padding(start = 24.dp, end = 16.dp)
-          .size(40.dp)
+          .size(40.dp),
+        useProfile = false
       )
     }
 
-    Text(text = recipient.getShortDisplayName(LocalContext.current))
+    Text(text = if (recipient.isSelf) stringResource(id = R.string.note_to_self) else recipient.getShortDisplayName(LocalContext.current))
   }
 }

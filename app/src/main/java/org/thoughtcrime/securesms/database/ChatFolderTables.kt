@@ -152,7 +152,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Maps the chat folder ids to its corresponding chat folder
    */
-  fun getChatFolders(includeUnreads: Boolean = false): List<ChatFolderRecord> {
+  fun getChatFolders(includeUnreadAndMutedCount: Boolean = false): List<ChatFolderRecord> {
     val includedChats: Map<Long, List<Long>> = getIncludedChats()
     val excludedChats: Map<Long, List<Long>> = getExcludedChats()
 
@@ -178,10 +178,11 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         )
       }
 
-    if (includeUnreads) {
+    if (includeUnreadAndMutedCount) {
       return folders.map { folder ->
         folder.copy(
-          unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+          unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder),
+          isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
         )
       }
     }

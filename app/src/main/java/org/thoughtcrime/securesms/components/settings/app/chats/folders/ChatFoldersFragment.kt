@@ -104,24 +104,22 @@ fun FoldersScreen(
     }
 
   Column(modifier = modifier.verticalScroll(rememberScrollState())) {
-    Column(modifier = Modifier.padding(start = 24.dp)) {
-      Text(
-        text = stringResource(id = R.string.ChatFoldersFragment__organize_your_chats),
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 12.dp)
-      )
-      Text(
-        text = stringResource(id = R.string.ChatFoldersFragment__folders),
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
-      )
-      FolderRow(
-        icon = R.drawable.symbol_plus_compact_16,
-        title = stringResource(R.string.ChatFoldersFragment__create_a_folder),
-        onClick = { onFolderClicked(ChatFolderRecord()) }
-      )
-    }
+    Text(
+      text = stringResource(id = R.string.ChatFoldersFragment__organize_your_chats),
+      style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 12.dp, start = 24.dp)
+    )
+    Text(
+      text = stringResource(id = R.string.ChatFoldersFragment__folders),
+      style = MaterialTheme.typography.titleMedium,
+      modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 24.dp)
+    )
+    FolderRow(
+      icon = R.drawable.symbol_plus_compact_16,
+      title = stringResource(R.string.ChatFoldersFragment__create_a_folder),
+      onClick = { onFolderClicked(ChatFolderRecord()) }
+    )
 
     val columnHeight = dimensionResource(id = R.dimen.chat_folder_row_height).value * state.folders.size
     LazyColumn(
@@ -142,8 +140,7 @@ fun FoldersScreen(
               { onFolderClicked(folder) }
             } else null,
             elevation = elevation,
-            showDragHandle = true,
-            modifier = Modifier.padding(start = 12.dp)
+            showDragHandle = true
           )
         }
       }
@@ -167,8 +164,7 @@ fun FoldersScreen(
             icon = R.drawable.symbol_chat_badge_24,
             title = title,
             subtitle = stringResource(R.string.ChatFoldersFragment__unread_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
+            onAdd = { onAdd(chatFolder) }
           )
         }
         ChatFolderRecord.FolderType.INDIVIDUAL -> {
@@ -177,8 +173,7 @@ fun FoldersScreen(
             icon = R.drawable.symbol_person_light_24,
             title = title,
             subtitle = stringResource(R.string.ChatFoldersFragment__only_direct_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
+            onAdd = { onAdd(chatFolder) }
           )
         }
         ChatFolderRecord.FolderType.GROUP -> {
@@ -187,8 +182,7 @@ fun FoldersScreen(
             icon = R.drawable.symbol_group_light_20,
             title = title,
             subtitle = stringResource(R.string.ChatFoldersFragment__only_group_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
+            onAdd = { onAdd(chatFolder) }
           )
         }
         ChatFolderRecord.FolderType.ALL -> {
@@ -239,17 +233,19 @@ fun FolderRow(
     verticalAlignment = Alignment.CenterVertically,
     modifier = if (onClick != null) {
       modifier
-        .padding(end = 12.dp)
         .clickable(onClick = onClick)
         .fillMaxWidth()
         .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))
         .shadow(elevation = elevation)
+        .background(MaterialTheme.colorScheme.background)
+        .padding(start = 24.dp, end = 12.dp)
     } else {
       modifier
-        .padding(end = 12.dp)
         .fillMaxWidth()
         .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))
         .shadow(elevation = elevation)
+        .background(MaterialTheme.colorScheme.background)
+        .padding(start = 24.dp, end = 12.dp)
     }
   ) {
     Image(

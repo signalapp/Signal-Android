@@ -24,7 +24,7 @@ class ChatFoldersViewModel : ViewModel() {
 
   fun loadCurrentFolders(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadCount = false)
+      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = false)
       val suggestedFolders = getSuggestedFolders(context, folders)
 
       internalState.update {

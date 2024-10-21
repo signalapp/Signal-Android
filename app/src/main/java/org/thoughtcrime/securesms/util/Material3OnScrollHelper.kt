@@ -25,6 +25,7 @@ open class Material3OnScrollHelper(
   private val context: Context,
   private val setStatusBarColor: (Int) -> Unit,
   private val getStatusBarColor: () -> Int,
+  private val setChatFolderColor: (Int) -> Unit = {},
   private val views: List<View>,
   private val viewStubs: List<Stub<out View>> = emptyList(),
   lifecycleOwner: LifecycleOwner
@@ -33,16 +34,39 @@ open class Material3OnScrollHelper(
   constructor(activity: Activity, view: View, lifecycleOwner: LifecycleOwner) : this(activity = activity, views = listOf(view), lifecycleOwner = lifecycleOwner)
 
   constructor(activity: Activity, views: List<View>, viewStubs: List<Stub<out View>> = emptyList(), lifecycleOwner: LifecycleOwner) : this(
+    activity = activity,
+    views = views,
+    viewStubs = viewStubs,
+    lifecycleOwner = lifecycleOwner,
+    setChatFolderColor = {}
+  )
+
+  constructor(
+    activity: Activity,
+    views: List<View>,
+    viewStubs: List<Stub<out View>> = emptyList(),
+    lifecycleOwner: LifecycleOwner,
+    setChatFolderColor: (Int) -> Unit = {}
+  ) : this(
     context = activity,
     setStatusBarColor = { WindowUtil.setStatusBarColor(activity.window, it) },
     getStatusBarColor = { WindowUtil.getStatusBarColor(activity.window) },
+    setChatFolderColor = setChatFolderColor,
     views = views,
     viewStubs = viewStubs,
     lifecycleOwner = lifecycleOwner
   )
 
-  open val activeColorSet: ColorSet = ColorSet(R.color.signal_colorSurface2)
-  open val inactiveColorSet: ColorSet = ColorSet(R.color.signal_colorBackground)
+  open val activeColorSet: ColorSet = ColorSet(
+    toolbarColorRes = R.color.signal_colorSurface2,
+    statusBarColorRes = R.color.signal_colorSurface2,
+    chatFolderColorRes = R.color.signal_colorBackground
+  )
+  open val inactiveColorSet: ColorSet = ColorSet(
+    toolbarColorRes = R.color.signal_colorBackground,
+    statusBarColorRes = R.color.signal_colorBackground,
+    chatFolderColorRes = R.color.signal_colorSurface2
+  )
 
   protected var previousStatusBarColor: Int = getStatusBarColor()
 
@@ -94,6 +118,7 @@ open class Material3OnScrollHelper(
     val colorSet = if (active == true) activeColorSet else inactiveColorSet
     setToolbarColor(ContextCompat.getColor(context, colorSet.toolbarColorRes))
     setStatusBarColor(ContextCompat.getColor(context, colorSet.statusBarColorRes))
+    setChatFolderColor(ContextCompat.getColor(context, colorSet.chatFolderColorRes))
   }
 
   private fun updateActiveState(isActive: Boolean) {
@@ -118,12 +143,15 @@ open class Material3OnScrollHelper(
         val endToolbarColor = ContextCompat.getColor(context, endColorSet.toolbarColorRes)
         val startStatusBarColor = ContextCompat.getColor(context, startColorSet.statusBarColorRes)
         val endStatusBarColor = ContextCompat.getColor(context, endColorSet.statusBarColorRes)
+        val startChatFolderColor = ContextCompat.getColor(context, startColorSet.chatFolderColorRes)
+        val endChatFolderColor = ContextCompat.getColor(context, endColorSet.chatFolderColorRes)
 
         animator = ValueAnimator.ofFloat(0f, 1f).apply {
           duration = 200
           addUpdateListener {
             setToolbarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startToolbarColor, endToolbarColor))
             setStatusBarColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startStatusBarColor, endStatusBarColor))
+            setChatFolderColor(ArgbEvaluatorCompat.getInstance().evaluate(it.animatedFraction, startChatFolderColor, endChatFolderColor))
           }
           start()
         }
@@ -157,8 +185,10 @@ open class Material3OnScrollHelper(
    */
   data class ColorSet(
     @ColorRes val toolbarColorRes: Int,
-    @ColorRes val statusBarColorRes: Int
+    @ColorRes val statusBarColorRes: Int,
+    @ColorRes val chatFolderColorRes: Int
   ) {
     constructor(@ColorRes color: Int) : this(color, color)
+    constructor(@ColorRes toolbarColorRes: Int, @ColorRes statusBarColorRes: Int) : this(toolbarColorRes, statusBarColorRes, toolbarColorRes)
   }
 }

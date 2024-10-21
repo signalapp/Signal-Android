@@ -386,4 +386,14 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       viewLifecycleOwner
     ).attach(recyclerView)
   }
+
+  override fun bindScrollHelper(recyclerView: RecyclerView, chatFolders: RecyclerView, setChatFolder: (Int) -> Unit) {
+    Material3OnScrollHelper(
+      activity = requireActivity(),
+      views = listOf(_toolbarBackground, chatFolders),
+      viewStubs = listOf(_searchToolbar),
+      lifecycleOwner = viewLifecycleOwner,
+      setChatFolderColor = setChatFolder
+    ).attach(recyclerView)
+  }
 }

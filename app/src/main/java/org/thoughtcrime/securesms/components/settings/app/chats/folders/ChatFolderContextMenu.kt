@@ -18,25 +18,27 @@ object ChatFolderContextMenu {
     anchorView: View,
     rootView: ViewGroup = anchorView.rootView as ViewGroup,
     folderType: ChatFolderRecord.FolderType,
+    unreadCount: Int,
+    isMuted: Boolean,
     onEdit: () -> Unit = {},
-    onAdd: () -> Unit = {},
     onMuteAll: () -> Unit = {},
+    onUnmuteAll: () -> Unit = {},
     onReadAll: () -> Unit = {},
-    onDelete: () -> Unit = {},
-    onReorder: () -> Unit = {}
+    onFolderSettings: () -> Unit = {}
   ) {
     show(
       context = context,
       anchorView = anchorView,
       rootView = rootView,
       folderType = folderType,
+      unreadCount = unreadCount,
+      isMuted = isMuted,
       callbacks = object : Callbacks {
         override fun onEdit() = onEdit()
-        override fun onAdd() = onAdd()
         override fun onMuteAll() = onMuteAll()
+        override fun onUnmuteAll() = onUnmuteAll()
         override fun onReadAll() = onReadAll()
-        override fun onDelete() = onDelete()
-        override fun onReorder() = onReorder()
+        override fun onFolderSettings() = onFolderSettings()
       }
     )
   }
@@ -45,60 +47,44 @@ object ChatFolderContextMenu {
     context: Context,
     anchorView: View,
     rootView: ViewGroup,
+    unreadCount: Int,
+    isMuted: Boolean,
     folderType: ChatFolderRecord.FolderType,
     callbacks: Callbacks
   ) {
     val actions = mutableListOf<ActionItem>().apply {
-      if (folderType == ChatFolderRecord.FolderType.ALL) {
-        add(
-          ActionItem(R.drawable.symbol_plus_24, context.getString(R.string.ChatFoldersFragment__add_new_folder)) {
-            callbacks.onAdd()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_bell_slash_24, context.getString(R.string.ChatFoldersFragment__mute_all)) {
-            callbacks.onMuteAll()
-          }
-        )
+      if (unreadCount > 0) {
         add(
           ActionItem(R.drawable.symbol_chat_check, context.getString(R.string.ChatFoldersFragment__mark_all_read)) {
             callbacks.onReadAll()
           }
         )
+      }
+
+      if (isMuted) {
         add(
-          ActionItem(R.drawable.symbol_exchange_24, context.getString(R.string.ChatFoldersFragment__reorder_folder)) {
-            callbacks.onReorder()
+          ActionItem(R.drawable.symbol_bell_24, context.getString(R.string.ChatFoldersFragment__unmute_all)) {
+            callbacks.onUnmuteAll()
+          }
+        )
+      } else {
+        add(
+          ActionItem(R.drawable.symbol_bell_slash_24, context.getString(R.string.ChatFoldersFragment__mute_all)) {
+            callbacks.onMuteAll()
+          }
+        )
+      }
+
+      if (folderType == ChatFolderRecord.FolderType.ALL) {
+        add(
+          ActionItem(R.drawable.symbol_folder_settings, context.getString(R.string.conversation_list_fragment__folder_settings)) {
+            callbacks.onFolderSettings()
           }
         )
       } else {
         add(
           ActionItem(R.drawable.symbol_edit_24, context.getString(R.string.ChatFoldersFragment__edit_folder)) {
             callbacks.onEdit()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_plus_24, context.getString(R.string.ChatFoldersFragment__add_new_folder)) {
-            callbacks.onAdd()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_bell_slash_24, context.getString(R.string.ChatFoldersFragment__mute_all)) {
-            callbacks.onMuteAll()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_chat_check, context.getString(R.string.ChatFoldersFragment__mark_all_read)) {
-            callbacks.onReadAll()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.ChatFoldersFragment__delete_folder)) {
-            callbacks.onDelete()
-          }
-        )
-        add(
-          ActionItem(R.drawable.symbol_exchange_24, context.getString(R.string.ChatFoldersFragment__reorder_folder)) {
-            callbacks.onReorder()
           }
         )
       }
@@ -113,10 +99,9 @@ object ChatFolderContextMenu {
 
   private interface Callbacks {
     fun onEdit()
-    fun onAdd()
     fun onMuteAll()
+    fun onUnmuteAll()
     fun onReadAll()
-    fun onDelete()
-    fun onReorder()
+    fun onFolderSettings()
   }
 }
