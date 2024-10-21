@@ -116,7 +116,9 @@ class ManageStorageSettingsFragment : ComposeFragment() {
             onSyncTrimThreadDeletes = { viewModel.setSyncTrimDeletes(it) },
             onDeleteChatHistory = { navController.navigate("confirm-delete-chat-history") },
             onToggleOnDeviceStorageOptimization = { enabled ->
-              if (state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER) {
+              if (state.isPaidTierPending) {
+                navController.navigate("paid-tier-pending")
+              } else if (state.onDeviceStorageOptimizationState == ManageStorageSettingsViewModel.OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER) {
                 UpgradeToEnableOptimizedStorageSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
               } else {
                 viewModel.setOptimizeStorage(enabled)
@@ -234,6 +236,19 @@ class ManageStorageSettingsFragment : ComposeFragment() {
                 viewModel.setChatLengthLimit(newLengthLimit)
               }
             },
+            onDismiss = { navController.popBackStack() }
+          )
+        }
+
+        dialog(
+          route = "paid-tier-pending"
+        ) {
+          // TODO [backups] Finalized copy
+          Dialogs.SimpleAlertDialog(
+            title = "Paid tier pending",
+            body = "TODO",
+            confirm = stringResource(android.R.string.ok),
+            onConfirm = {},
             onDismiss = { navController.popBackStack() }
           )
         }

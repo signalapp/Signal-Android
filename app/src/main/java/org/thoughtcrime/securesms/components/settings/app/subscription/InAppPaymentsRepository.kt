@@ -14,6 +14,12 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.distinctUntilChanged
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -76,6 +82,28 @@ object InAppPaymentsRepository {
     return Completable.fromAction {
       SignalDatabase.inAppPayments.update(inAppPayment)
     }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Returns a flow of InAppPayment objects for the latest RECURRING_BACKUP object.
+   */
+  fun observeLatestBackupPayment(): Flow<InAppPaymentTable.InAppPayment> {
+    return callbackFlow {
+      fun refresh() {
+        val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+        if (latest != null) {
+          trySendBlocking(latest)
+        }
+      }
+
+      val observer = InAppPaymentObserver {
+        refresh()
+      }
+      AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
+      awaitClose {
+        AppDependencies.databaseObserver.unregisterObserver(observer)
+      }
+    }.conflate().distinctUntilChanged()
   }
 
   /**
