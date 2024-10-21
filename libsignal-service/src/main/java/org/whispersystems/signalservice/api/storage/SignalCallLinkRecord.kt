@@ -19,12 +19,6 @@ class SignalCallLinkRecord(private val id: StorageId, private val proto: CallLin
   val adminPassKey: ByteArray = proto.adminPasskey.toByteArray()
   val deletionTimestamp: Long = proto.deletedAtTimestampMs
 
-  init {
-    if (deletionTimestamp != 0L && adminPassKey.isNotEmpty()) {
-      throw IllegalStateException("Cannot have nonzero deletion timestamp ($deletionTimestamp) and admin passkey!")
-    }
-  }
-
   fun toProto(): CallLinkRecord {
     return proto
   }
