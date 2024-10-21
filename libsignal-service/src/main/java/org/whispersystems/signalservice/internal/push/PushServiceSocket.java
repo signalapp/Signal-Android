@@ -684,8 +684,7 @@ public class PushServiceSocket {
   }
 
   public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
-    //noinspection CharsetObjectCanBeUsed
-    makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, URLEncoder.encode(destination, StandardCharsets.UTF_8.name())), "PUT",
+    makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, urlEncode(destination)), "PUT",
                        JsonUtil.toJson(new ProvisioningMessage(Base64.encodeWithPadding(body))));
   }
 
@@ -1008,8 +1007,7 @@ public class PushServiceSocket {
     if (cdnPath instanceof SignalServiceAttachmentRemoteId.V2) {
       path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V2) cdnPath).getCdnId());
     } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.V4) {
-      //noinspection CharsetObjectCanBeUsed
-      String urlEncodedKey = URLEncoder.encode(((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey(), StandardCharsets.UTF_8.name());
+      String urlEncodedKey = urlEncode(((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey());
       path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, urlEncodedKey);
     } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.Backup) {
       SignalServiceAttachmentRemoteId.Backup backupCdnId = (SignalServiceAttachmentRemoteId.Backup) cdnPath;
@@ -1221,7 +1219,7 @@ public class PushServiceSocket {
    */
   public @NonNull ACI getAciByUsernameHash(String usernameHash) throws IOException {
     String response = makeServiceRequestWithoutAuthentication(
-        String.format(GET_USERNAME_PATH, URLEncoder.encode(usernameHash, StandardCharsets.UTF_8.name())),
+        String.format(GET_USERNAME_PATH, urlEncode(usernameHash)),
         "GET",
         null,
         NO_HEADERS,
@@ -1429,17 +1427,17 @@ public class PushServiceSocket {
    */
   public BankMandate getBankMandate(Locale locale, String bankTransferType) throws IOException {
     Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
-    String              result  = makeServiceRequestWithoutAuthentication(String.format(BANK_MANDATE, bankTransferType), "GET", null, headers, NO_HANDLER);
+    String              result  = makeServiceRequestWithoutAuthentication(String.format(BANK_MANDATE, urlEncode(bankTransferType)), "GET", null, headers, NO_HANDLER);
 
     return JsonUtil.fromJson(result, BankMandate.class);
   }
 
   public void linkPlayBillingPurchaseToken(String subscriberId, String purchaseToken) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, purchaseToken), "POST", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
+    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, urlEncode(purchaseToken)), "POST", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
   }
 
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, level, currencyCode, idempotencyKey), "PUT", "", NO_HEADERS, new InAppPaymentResponseCodeHandler());
+    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, urlEncode(level), urlEncode(currencyCode), idempotencyKey), "PUT", "", NO_HEADERS, new InAppPaymentResponseCodeHandler());
   }
 
   public ActiveSubscription getSubscription(String subscriberId) throws IOException {
@@ -1459,20 +1457,20 @@ public class PushServiceSocket {
    * @param type One of CARD or SEPA_DEBIT
    */
   public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId, String type) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, type), "POST", "");
+    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(type)), "POST", "");
     return JsonUtil.fromJson(response, StripeClientSecret.class);
   }
 
   public void setDefaultStripeSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(paymentMethodId)), "POST", "");
   }
 
   public void setDefaultIdealSubscriptionPaymentMethod(String subscriberId, String setupIntentId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, setupIntentId), "POST", "");
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(setupIntentId)), "POST", "");
   }
 
   public void setDefaultPaypalSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(paymentMethodId)), "POST", "");
   }
 
   public ReceiptCredentialResponse submitReceiptCredentials(String subscriptionId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
@@ -3221,6 +3219,11 @@ public class PushServiceSocket {
     RegistrationSessionMetadataJson responseBody = JsonUtil.fromJson(readBodyString(response), RegistrationSessionMetadataJson.class);
 
     return new RegistrationSessionMetadataResponse(responseHeaders, responseBody, null);
+  }
+
+  private static @Nonnull String urlEncode(@Nonnull String data) throws IOException {
+    //noinspection CharsetObjectCanBeUsed
+    return URLEncoder.encode(data, StandardCharsets.UTF_8.name());
   }
 
   public static final class GroupHistory {
