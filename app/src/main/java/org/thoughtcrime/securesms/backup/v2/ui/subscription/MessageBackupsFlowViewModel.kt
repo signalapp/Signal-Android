@@ -97,6 +97,13 @@ class MessageBackupsFlowViewModel(
 
             try {
               Log.d(TAG, "Attempting to handle successful purchase.")
+
+              internalStateFlow.update {
+                it.copy(
+                  stage = MessageBackupsStage.PROCESS_PAYMENT
+                )
+              }
+
               handleSuccess(result, id)
 
               internalStateFlow.update {

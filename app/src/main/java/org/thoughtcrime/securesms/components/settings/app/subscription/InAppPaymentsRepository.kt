@@ -99,6 +99,9 @@ object InAppPaymentsRepository {
       val observer = InAppPaymentObserver {
         refresh()
       }
+
+      refresh()
+
       AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       awaitClose {
         AppDependencies.databaseObserver.unregisterObserver(observer)

@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener) : Banner<BackupStatusData>() {
+class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener = EmptyListener) : Banner<BackupStatusData>() {
 
   private var totalRestoredSize: Long = 0
 
@@ -126,5 +126,10 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   interface RestoreProgressBannerListener {
     fun onSkip()
     fun onDismissComplete()
+  }
+
+  private object EmptyListener : RestoreProgressBannerListener {
+    override fun onSkip() = Unit
+    override fun onDismissComplete() = Unit
   }
 }

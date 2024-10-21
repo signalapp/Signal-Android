@@ -9,7 +9,6 @@ import androidx.annotation.VisibleForTesting
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -66,19 +65,14 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    if (!SignalStore.backup.backupsInitialized) {
-      Log.i(TAG, "Backups are not initialized on this device. Exiting.")
+    if (!SignalStore.backup.areBackupsEnabled) {
+      Log.i(TAG, "Backups are not enabled on this device. Exiting.")
       return Result.success()
     }
 
     if (!AppDependencies.billingApi.isApiAvailable()) {
       Log.i(TAG, "Google Play Billing API is not available on this device. Exiting.")
       return Result.success()
-    }
-
-    BackupRepository.getBackupTier().runIfSuccessful {
-      Log.i(TAG, "Successfully retrieved backup tier $it. Applying.")
-      SignalStore.backup.backupTier = it
     }
 
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()

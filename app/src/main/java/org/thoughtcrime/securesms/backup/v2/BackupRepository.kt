@@ -119,16 +119,20 @@ object BackupRepository {
     }
   }
 
+  /**
+   * If the user is on a paid tier, this method will unsubscribe them from that tier.
+   * It will then disable backups.
+   *
+   * Returns true if we were successful, false otherwise.
+   */
   @WorkerThread
-  fun turnOffAndDeleteBackup(): Boolean {
+  fun turnOffAndDisableBackups(): Boolean {
     return try {
       Log.d(TAG, "Attempting to disable backups.")
-      getBackupTier().runIfSuccessful { tier ->
-        if (tier == MessageBackupTier.PAID) {
-          Log.d(TAG, "User is currently on a paid tier. Canceling.")
-          RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
-          Log.d(TAG, "Successfully canceled paid tier.")
-        }
+      if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
+        Log.d(TAG, "User is currently on a paid tier. Canceling.")
+        RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+        Log.d(TAG, "Successfully canceled paid tier.")
       }
 
       Log.d(TAG, "Disabling backups.")
@@ -636,14 +640,11 @@ object BackupRepository {
   }
 
   /**
-   * If backups are initialized, this method will query the server for the current backup level.
-   * If backups are not initialized, this method will return either the stored tier or a 404 result.
+   * If backups are enabled, sync with the network. Otherwise, return a 404.
    */
   fun getBackupTier(): NetworkResult<MessageBackupTier> {
-    return if (SignalStore.backup.backupsInitialized) {
+    return if (SignalStore.backup.areBackupsEnabled) {
       getBackupTier(Recipient.self().requireAci())
-    } else if (SignalStore.backup.backupTier != null) {
-      NetworkResult.Success(SignalStore.backup.backupTier!!)
     } else {
       NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
     }

@@ -118,11 +118,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
           availableBackupTypes = state.availableBackupTypes.filter { it.tier == MessageBackupTier.FREE || state.hasBackupSubscriberAvailable },
-          onMessageBackupsTierSelected = { tier ->
-            val type = state.availableBackupTypes.first { it.tier == tier }
-
-            viewModel.onMessageBackupTierUpdated(tier)
-          },
+          onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
           onNavigationClick = viewModel::goToPreviousStage,
           onReadMoreClicked = {},
           onNextClicked = viewModel::goToNextStage

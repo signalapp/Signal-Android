@@ -25,6 +25,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
+    private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -64,7 +65,32 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
-  var backupTier: MessageBackupTier? by enumValue(KEY_BACKUP_TIER, null, MessageBackupTier.Serializer)
+
+  /**
+   * This is the 'latest' backup tier. This isn't necessarily the user's current backup tier, so this should only ever
+   * be used to display backup tier information to the user in the settings fragments, not to check whether the user
+   * currently has backups enabled.
+   */
+  val latestBackupTier: MessageBackupTier? by enumValue(KEY_LATEST_BACKUP_TIER, null, MessageBackupTier.Serializer)
+
+  /**
+   * When seting the backup tier, we also want to write to the latestBackupTier, as long as
+   * the value is non-null. This gives us a 1-deep history of the selected backup tier for
+   * use in the UI
+   */
+  var backupTier: MessageBackupTier?
+    get() = MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
+    set(value) {
+      val serializedValue = MessageBackupTier.serialize(value)
+      if (value != null) {
+        store.beginWrite()
+          .putLong(KEY_BACKUP_TIER, serializedValue)
+          .putLong(KEY_LATEST_BACKUP_TIER, serializedValue)
+          .apply()
+      } else {
+        putLong(KEY_BACKUP_TIER, serializedValue)
+      }
+    }
 
   /**
    * When uploading a backup, we store the progress state here so that I can remain across app restarts.
