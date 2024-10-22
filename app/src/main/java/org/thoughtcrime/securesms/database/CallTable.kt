@@ -104,13 +104,15 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       )
     """
 
+    const val CALL_LOG_INDEX = "call_log_index"
+
     val CREATE_INDEXES = arrayOf(
       "CREATE INDEX call_call_id_index ON $TABLE_NAME ($CALL_ID)",
       "CREATE INDEX call_message_id_index ON $TABLE_NAME ($MESSAGE_ID)",
-      "CREATE INDEX call_peer_index ON $TABLE_NAME ($PEER)"
+      "CREATE INDEX call_peer_index ON $TABLE_NAME ($PEER)",
+      "CREATE INDEX $CALL_LOG_INDEX ON $TABLE_NAME ($TIMESTAMP, $PEER, $EVENT, $TYPE, $DELETION_TIMESTAMP)"
     )
   }
-
   fun markAllCallEventsRead(timestamp: Long = Long.MAX_VALUE) {
     val updateCount = writableDatabase
       .update(TABLE_NAME)
@@ -1269,9 +1271,28 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     }
 
     val projection = if (isCount) {
-      "COUNT(*) OVER() as count,"
+      "COUNT(*) OVER() as count"
     } else {
-      "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, $LOCAL_JOINED, $GROUP_CALL_ACTIVE, children, in_period, ${MessageTable.BODY},"
+      "p.$ID, p.$TIMESTAMP, $EVENT, $DIRECTION, $PEER, p.$TYPE, $CALL_ID, $MESSAGE_ID, $RINGER, $LOCAL_JOINED, $GROUP_CALL_ACTIVE, children, in_period, ${MessageTable.BODY}"
+    }
+
+    val recipientSearchProjection = if (searchTerm.isNullOrEmpty()) {
+      ""
+    } else {
+      """
+        ,LOWER(
+          COALESCE(
+            NULLIF(${GroupTable.TABLE_NAME}.${GroupTable.TITLE}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.NICKNAME_JOINED_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.NICKNAME_GIVEN_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}, ''),
+            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}, '')
+          )
+        ) AS sort_name
+      """.trimIndent()
     }
 
     val join = if (isCount) {
@@ -1305,18 +1326,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     //language=sql
     val statement = """
       SELECT $projection
-        LOWER(
-          COALESCE(
-            NULLIF(${GroupTable.TABLE_NAME}.${GroupTable.TITLE}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.NICKNAME_JOINED_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.NICKNAME_GIVEN_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_JOINED_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.SYSTEM_GIVEN_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}, ''),
-            NULLIF(${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}, '')
-          )
-        ) AS sort_name
+        $recipientSearchProjection
       FROM (
         WITH cte AS (
           SELECT
@@ -1360,7 +1370,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
                 AND ${filterClause.where}
             ) as in_period
           FROM
-            $TABLE_NAME c
+            $TABLE_NAME c INDEXED BY $CALL_LOG_INDEX
           WHERE ${filterClause.where}
           ORDER BY
             $TIMESTAMP DESC
@@ -1427,7 +1437,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   fun getCallsCount(searchTerm: String?, filter: CallLogFilter): Int {
-    return getCallsCursor(true, 0, 0, searchTerm, filter).use {
+    return getCallsCursor(true, 0, 1, searchTerm, filter).use {
       if (it.moveToFirst()) {
         it.getInt(0)
       } else {
