@@ -1,3 +1,5 @@
+@file:JvmName("BundleExtensions")
+
 package org.signal.core.util
 
 import android.os.Build

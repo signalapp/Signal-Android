@@ -16,13 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.BundleExtensions;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.donations.StripeApi;
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
+import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet;
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment;
 import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet;
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment;
-import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
@@ -31,6 +32,8 @@ import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.notifications.VitalsViewModel;
+import org.thoughtcrime.securesms.stories.Stories;
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTab;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppStartup;
@@ -43,7 +46,8 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 
 public class MainActivity extends PassphraseRequiredActivity implements VoiceNoteMediaControllerOwner {
 
-  public static final int RESULT_CONFIG_CHANGED = Activity.RESULT_FIRST_USER + 901;
+  private static final String KEY_STARTING_TAB      = "STARTING_TAB";
+  public static final  int    RESULT_CONFIG_CHANGED = Activity.RESULT_FIRST_USER + 901;
 
   private final DynamicTheme  dynamicTheme = new DynamicNoActionBarTheme();
   private final MainNavigator navigator    = new MainNavigator(this);
@@ -62,6 +66,13 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_NEW_TASK |
                     Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+    return intent;
+  }
+
+  public static @NonNull Intent clearTopAndOpenTab(@NonNull Context context, @NonNull ConversationListTab startingTab) {
+    Intent intent = clearTop(context);
+    intent.putExtra(KEY_STARTING_TAB, startingTab);
 
     return intent;
   }
@@ -91,8 +102,14 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     mediaController = new VoiceNoteMediaController(this, true);
 
+
+    ConversationListTab startingTab = null;
+    if (getIntent().getExtras() != null) {
+      startingTab = BundleExtensions.getSerializableCompat(getIntent().getExtras(), KEY_STARTING_TAB, ConversationListTab.class);
+    }
+
     ConversationListTabRepository         repository = new ConversationListTabRepository();
-    ConversationListTabsViewModel.Factory factory    = new ConversationListTabsViewModel.Factory(repository);
+    ConversationListTabsViewModel.Factory factory    = new ConversationListTabsViewModel.Factory(startingTab, repository);
 
     handleDeeplinkIntent(getIntent());
 
@@ -147,6 +164,21 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     handleDeeplinkIntent(intent);
+
+    if (intent.getExtras() != null) {
+      ConversationListTab startingTab = BundleExtensions.getSerializableCompat(intent.getExtras(), KEY_STARTING_TAB, ConversationListTab.class);
+      if (startingTab != null) {
+        switch (startingTab) {
+          case CHATS -> conversationListTabsViewModel.onChatsSelected();
+          case CALLS -> conversationListTabsViewModel.onCallsSelected();
+          case STORIES -> {
+            if (Stories.isFeatureEnabled()) {
+              conversationListTabsViewModel.onStoriesSelected();
+            }
+          }
+        }
+      }
+    }
   }
 
   @Override
