@@ -2,6 +2,10 @@ package org.thoughtcrime.securesms.components.settings.app.chats
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.BackupUtil
@@ -22,7 +26,8 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings.isPreferSystemEmoji,
       enterKeySends = SignalStore.settings.isEnterKeySends,
-      localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application)
+      localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
+      folderCount = 0
     )
   )
 
@@ -58,11 +63,24 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
   }
 
   fun refresh() {
-    val backupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application)
+    viewModelScope.launch(Dispatchers.IO) {
+      val count = ChatFoldersRepository.getFolderCount()
+      val backupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application)
 
-    if (store.state.localBackupsEnabled != backupsEnabled
-    ) {
-      store.update { it.copy(localBackupsEnabled = backupsEnabled) }
+      if (store.state.localBackupsEnabled != backupsEnabled) {
+        store.update {
+          it.copy(
+            folderCount = count,
+            localBackupsEnabled = backupsEnabled
+          )
+        }
+      } else {
+        store.update {
+          it.copy(
+            folderCount = count
+          )
+        }
+      }
     }
   }
 }

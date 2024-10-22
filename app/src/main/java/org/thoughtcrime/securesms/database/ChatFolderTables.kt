@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.groupBy
 import org.signal.core.util.insertInto
@@ -230,6 +231,18 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
       .groupBy { cursor ->
         cursor.requireLong(ChatFolderMembershipTable.CHAT_FOLDER_ID) to cursor.requireLong(ChatFolderMembershipTable.THREAD_ID)
       }
+  }
+
+  /**
+   * Returns the number of user-made folders
+   */
+  fun getFolderCount(): Int {
+    return readableDatabase
+      .count()
+      .from(ChatFolderTable.TABLE_NAME)
+      .where("${ChatFolderTable.FOLDER_TYPE} != ${ChatFolderRecord.FolderType.ALL.value}")
+      .run()
+      .readToSingleInt()
   }
 
   /**

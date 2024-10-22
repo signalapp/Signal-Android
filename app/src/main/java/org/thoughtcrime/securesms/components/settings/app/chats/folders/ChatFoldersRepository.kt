@@ -44,4 +44,8 @@ object ChatFoldersRepository {
   fun getFolder(id: Long): ChatFolderRecord {
     return SignalDatabase.chatFolders.getChatFolder(id)
   }
+
+  fun getFolderCount(): Int {
+    return SignalDatabase.chatFolders.getFolderCount()
+  }
 }
