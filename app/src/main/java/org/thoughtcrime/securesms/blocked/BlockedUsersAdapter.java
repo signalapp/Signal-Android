@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.whispersystems.signalservice.api.util.OptionalUtil;
 
 import java.util.Objects;
 
@@ -44,14 +42,14 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapt
 
     private final AvatarImageView avatar;
     private final TextView        displayName;
-    private final TextView        numberOrUsername;
+    private final TextView        username;
 
     public ViewHolder(@NonNull View itemView, Consumer<Integer> clickConsumer) {
       super(itemView);
 
       this.avatar           = itemView.findViewById(R.id.avatar);
       this.displayName      = itemView.findViewById(R.id.display_name);
-      this.numberOrUsername = itemView.findViewById(R.id.number_or_username);
+      this.username         = itemView.findViewById(R.id.username);
 
       itemView.setOnClickListener(unused -> {
         if (getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -64,19 +62,13 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, BlockedUsersAdapt
       avatar.setAvatar(recipient);
       displayName.setText(recipient.getDisplayName(itemView.getContext()));
 
-      if (recipient.hasAUserSetDisplayName(itemView.getContext())) {
-        String identifier = OptionalUtil.or(recipient.getE164().map(PhoneNumberFormatter::prettyPrint),
-                                            recipient.getUsername())
-                                        .orElse(null);
+      String identifier = recipient.getUsername().orElse(null);
 
-        if (identifier != null) {
-          numberOrUsername.setText(identifier);
-          numberOrUsername.setVisibility(View.VISIBLE);
-        } else {
-          numberOrUsername.setVisibility(View.GONE);
-        }
+      if (identifier != null) {
+        username.setText(identifier);
+        username.setVisibility(View.VISIBLE);
       } else {
-        numberOrUsername.setVisibility(View.GONE);
+        username.setVisibility(View.GONE);
       }
     }
   }
