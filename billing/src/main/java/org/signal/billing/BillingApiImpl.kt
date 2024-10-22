@@ -151,7 +151,7 @@ internal class BillingApiImpl(
   init {
     coroutineScope.launch {
       createConnectionFlow()
-        .retry { it is RetryException } // TODO [message-backups] - consider a delay here
+        .retry { it is RetryException }
         .collect { newState ->
           Log.d(TAG, "Updating Google Play Billing connection state: $newState")
           connectionState.update {

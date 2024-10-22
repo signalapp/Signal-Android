@@ -7,9 +7,11 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,6 +32,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -210,7 +213,11 @@ private fun BottomSheetContent(
 
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(vertical = 24.dp)
+      modifier = Modifier
+        .padding(vertical = 24.dp)
+        .defaultMinSize(minWidth = 220.dp)
+        .clip(shape = RoundedCornerShape(percent = 50))
+        .clickable(onClick = { checked = !checked })
     ) {
       Checkbox(
         checked = checked,
@@ -226,14 +233,18 @@ private fun BottomSheetContent(
     Buttons.LargeTonal(
       enabled = checked,
       onClick = onContinueClick,
-      modifier = Modifier.padding(bottom = 16.dp)
+      modifier = Modifier
+        .padding(bottom = 16.dp)
+        .defaultMinSize(minWidth = 220.dp)
     ) {
       Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__continue))
     }
 
     TextButton(
       onClick = onSeeKeyAgainClick,
-      modifier = Modifier.padding(bottom = 24.dp)
+      modifier = Modifier
+        .padding(bottom = 24.dp)
+        .defaultMinSize(minWidth = 220.dp)
     ) {
       Text(
         text = stringResource(R.string.MessageBackupsKeyRecordScreen__see_key_again)
@@ -249,5 +260,13 @@ private fun MessageBackupsKeyRecordScreenPreview() {
     MessageBackupsKeyRecordScreen(
       backupKey = BackupKey(Random.nextBytes(32))
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BottomSheetContentPreview() {
+  Previews.BottomSheetPreview {
+    BottomSheetContent({}, {})
   }
 }

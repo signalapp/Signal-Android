@@ -7737,6 +7737,8 @@
         <item quantity="one">Last %1$d day of media</item>
         <item quantity="other">Last %1$d days of media</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

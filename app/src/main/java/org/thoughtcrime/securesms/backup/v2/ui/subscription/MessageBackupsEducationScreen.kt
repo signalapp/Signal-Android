@@ -62,7 +62,7 @@ fun MessageBackupsEducationScreen(
       ) {
         item {
           Image(
-            painter = painterResource(id = R.drawable.image_signal_backups), // TODO [message-backups] Final image asset
+            painter = painterResource(id = R.drawable.image_signal_backups),
             contentDescription = null,
             modifier = Modifier
               .padding(top = 24.dp)

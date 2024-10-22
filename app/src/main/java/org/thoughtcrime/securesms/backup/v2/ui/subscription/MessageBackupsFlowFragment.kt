@@ -142,7 +142,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       }
 
       if (state.stage == MessageBackupsStage.COMPLETED) {
-        requireActivity().setResult(Activity.RESULT_OK)
+        requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
         requireActivity().finishAfterTransition()
       }
     }
