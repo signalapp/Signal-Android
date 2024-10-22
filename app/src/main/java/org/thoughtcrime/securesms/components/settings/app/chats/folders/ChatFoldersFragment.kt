@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -55,6 +56,7 @@ import org.signal.core.ui.copied.androidx.compose.rememberDragDropState
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -79,6 +81,7 @@ class ChatFoldersFragment : ComposeFragment() {
     ) { contentPadding: PaddingValues ->
       FoldersScreen(
         state = state,
+        navController = navController,
         modifier = Modifier.padding(contentPadding),
         onFolderClicked = {
           navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id))
@@ -106,6 +109,7 @@ class ChatFoldersFragment : ComposeFragment() {
 @Composable
 fun FoldersScreen(
   state: ChatFoldersSettingsState,
+  navController: NavController? = null,
   modifier: Modifier = Modifier,
   onFolderClicked: (ChatFolderRecord) -> Unit = {},
   onAdd: (ChatFolderRecord) -> Unit = {},
@@ -121,6 +125,13 @@ fun FoldersScreen(
     rememberDragDropState(listState, includeHeader = true, includeFooter = true) { fromIndex, toIndex ->
       onPositionUpdated(fromIndex, toIndex)
     }
+
+  LaunchedEffect(Unit) {
+    if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
+      SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+      navController?.safeNavigate(R.id.action_chatFoldersFragment_to_chatFoldersEducationSheet)
+    }
+  }
 
   if (state.showDeleteDialog) {
     Dialogs.SimpleAlertDialog(

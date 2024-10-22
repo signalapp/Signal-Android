@@ -28,6 +28,7 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_SEEN_DELETE_SYNC_EDUCATION_SHEET     = "uihints.has_seen_delete_sync_education_sheet";
   private static final String LAST_SUPPORT_VERSION_SEEN                = "uihints.last_support_version_seen";
   private static final String HAS_EVER_ENABLED_REMOTE_BACKUPS          = "uihints.has_ever_enabled_remote_backups";
+  private static final String HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET    = "uihints.has_seen_chat_folders_education_sheet";
 
   UiHintValues(@NonNull KeyValueStore store) {
     super(store);
@@ -208,5 +209,13 @@ public class UiHintValues extends SignalStoreValues {
 
   public boolean getHasEverEnabledRemoteBackups() {
     return getBoolean(HAS_EVER_ENABLED_REMOTE_BACKUPS, false);
+  }
+
+  public void setHasSeenChatFoldersEducationSheet(boolean seen) {
+    putBoolean(HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET, seen);
+  }
+
+  public boolean getHasSeenChatFoldersEducationSheet() {
+    return getBoolean(HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET, false);
   }
 }

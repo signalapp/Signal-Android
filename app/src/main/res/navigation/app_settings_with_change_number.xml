@@ -384,7 +384,14 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatFoldersFragment_to_chatFoldersEducationSheet"
+            app:destination="@id/chatFoldersEducationSheet" />
     </fragment>
+
+    <dialog
+        android:id="@+id/chatFoldersEducationSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet"/>
 
     <fragment
         android:id="@+id/createFoldersFragment"
