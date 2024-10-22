@@ -129,7 +129,7 @@ class CreateFoldersFragment : ComposeFragment() {
         onToggleShowMuted = { viewModel.toggleShowMutedChats(it) },
         onDeleteClicked = { viewModel.showDeleteDialog(true) },
         onDeleteConfirmed = {
-          viewModel.deleteFolder()
+          viewModel.deleteFolder(requireContext())
           navController.popBackStack()
         },
         onDeleteDismissed = {

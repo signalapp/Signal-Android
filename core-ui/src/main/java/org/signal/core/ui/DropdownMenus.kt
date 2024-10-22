@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.copied.androidx.compose.material3.DropdownMenu
@@ -32,6 +33,8 @@ object DropdownMenus {
   fun Menu(
     controller: MenuController = remember { MenuController() },
     modifier: Modifier = Modifier,
+    offsetX: Dp = dimensionResource(id = R.dimen.core_ui__gutter),
+    offsetY: Dp = 0.dp,
     content: @Composable ColumnScope.(MenuController) -> Unit
   ) {
     MaterialTheme(shapes = MaterialTheme.shapes.copy(extraSmall = RoundedCornerShape(18.dp))) {
@@ -39,8 +42,8 @@ object DropdownMenus {
         expanded = controller.isShown(),
         onDismissRequest = controller::hide,
         offset = DpOffset(
-          x = dimensionResource(id = R.dimen.core_ui__gutter),
-          y = 0.dp
+          x = offsetX,
+          y = offsetY
         ),
         content = { content(controller) },
         modifier = modifier

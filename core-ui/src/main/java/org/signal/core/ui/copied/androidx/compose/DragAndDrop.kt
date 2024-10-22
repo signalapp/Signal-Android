@@ -3,7 +3,6 @@ package org.signal.core.ui.copied.androidx.compose
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -23,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
@@ -33,13 +33,14 @@ import kotlinx.coroutines.launch
  * https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/foundation/foundation/integration-tests/foundation-demos/src/main/java/androidx/compose/foundation/demos/LazyColumnDragAndDropDemo.kt
  *
  * Allows for dragging and dropping to reorder within lazy columns
+ * Supports adding non-draggable headers and footers.
  */
 @Composable
-fun rememberDragDropState(lazyListState: LazyListState, onMove: (Int, Int) -> Unit): DragDropState {
+fun rememberDragDropState(lazyListState: LazyListState, includeHeader: Boolean, includeFooter: Boolean, onMove: (Int, Int) -> Unit): DragDropState {
   val scope = rememberCoroutineScope()
   val state =
     remember(lazyListState) {
-      DragDropState(state = lazyListState, onMove = onMove, scope = scope)
+      DragDropState(state = lazyListState, onMove = onMove, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
     }
   LaunchedEffect(state) {
     while (true) {
@@ -54,6 +55,8 @@ class DragDropState
 internal constructor(
   private val state: LazyListState,
   private val scope: CoroutineScope,
+  private val includeHeader: Boolean,
+  private val includeFooter: Boolean,
   private val onMove: (Int, Int) -> Unit
 ) {
   var draggingItemIndex by mutableStateOf<Int?>(null)
@@ -80,7 +83,11 @@ internal constructor(
 
   internal fun onDragStart(offset: Offset) {
     state.layoutInfo.visibleItemsInfo
-      .firstOrNull { item -> offset.y.toInt() in item.offset..(item.offset + item.size) }
+      .firstOrNull { item ->
+        offset.y.toInt() in item.offset..(item.offset + item.size) &&
+          (!includeHeader || item.index != 0) &&
+          (!includeFooter || item.index != (state.layoutInfo.totalItemsCount - 1))
+      }
       ?.also {
         draggingItemIndex = it.index
         draggingItemInitialOffset = it.offset
@@ -106,6 +113,10 @@ internal constructor(
   }
 
   internal fun onDrag(offset: Offset) {
+    if ((includeHeader && draggingItemIndex == 0) ||
+      (includeFooter && draggingItemIndex == (state.layoutInfo.totalItemsCount - 1))
+    ) return
+
     draggingItemDraggedDelta += offset.y
 
     val draggingItem = draggingItemLayoutInfo ?: return
@@ -116,19 +127,20 @@ internal constructor(
     val targetItem =
       state.layoutInfo.visibleItemsInfo.find { item ->
         middleOffset.toInt() in item.offset..item.offsetEnd &&
-          draggingItem.index != item.index
+          item.index != draggingItem.index &&
+          (!includeHeader || item.index != 0) &&
+          (!includeFooter || item.index != (state.layoutInfo.totalItemsCount - 1))
       }
-    if (targetItem != null) {
-      if (
-        draggingItem.index == state.firstVisibleItemIndex ||
-        targetItem.index == state.firstVisibleItemIndex
-      ) {
-        state.requestScrollToItem(
-          state.firstVisibleItemIndex,
-          state.firstVisibleItemScrollOffset
-        )
+
+    if (targetItem != null &&
+      (!includeHeader || targetItem.index != 0) &&
+      (!includeFooter || targetItem.index != (state.layoutInfo.totalItemsCount - 1))
+    ) {
+      if (includeHeader) {
+        onMove.invoke(draggingItem.index - 1, targetItem.index - 1)
+      } else {
+        onMove.invoke(draggingItem.index, targetItem.index)
       }
-      onMove.invoke(draggingItem.index, targetItem.index)
       draggingItemIndex = targetItem.index
     } else {
       val overscroll =
@@ -149,16 +161,18 @@ internal constructor(
     get() = this.offset + this.size
 }
 
-fun Modifier.dragContainer(dragDropState: DragDropState): Modifier {
+fun Modifier.dragContainer(dragDropState: DragDropState, leftDpOffset: Dp, rightDpOffset: Dp): Modifier {
   return pointerInput(dragDropState) {
-    detectDragGesturesAfterLongPress(
+    detectDragGestures(
       onDrag = { change, offset ->
         change.consume()
         dragDropState.onDrag(offset = offset)
       },
       onDragStart = { offset -> dragDropState.onDragStart(offset) },
       onDragEnd = { dragDropState.onDragInterrupted() },
-      onDragCancel = { dragDropState.onDragInterrupted() }
+      onDragCancel = { dragDropState.onDragInterrupted() },
+      leftDpOffset = leftDpOffset,
+      rightDpOffset = rightDpOffset
     )
   }
 }
