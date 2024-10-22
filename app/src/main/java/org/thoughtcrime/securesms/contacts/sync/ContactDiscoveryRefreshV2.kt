@@ -5,7 +5,6 @@ import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResult
 import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
@@ -96,9 +95,8 @@ object ContactDiscoveryRefreshV2 {
         setOf(e164),
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.empty(),
-        BuildConfig.CDSI_MRENCLAVE,
         10_000,
-        if (RemoteConfig.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
+        AppDependencies.libsignalNetwork
       ) {
         Log.i(TAG, "Ignoring token for one-off lookup.")
       }
@@ -161,9 +159,8 @@ object ContactDiscoveryRefreshV2 {
         newE164s,
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.ofNullable(token),
-        BuildConfig.CDSI_MRENCLAVE,
         timeoutMs,
-        if (RemoteConfig.useLibsignalNetForCdsiLookup) AppDependencies.libsignalNetwork else null
+        AppDependencies.libsignalNetwork
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

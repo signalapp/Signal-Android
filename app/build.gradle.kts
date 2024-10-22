@@ -209,7 +209,6 @@ android {
     buildConfigField("String[]", "SIGNAL_CDSI_IPS", rootProject.extra["cdsi_ips"] as String)
     buildConfigField("String[]", "SIGNAL_SVR2_IPS", rootProject.extra["svr2_ips"] as String)
     buildConfigField("String", "SIGNAL_AGENT", "\"OWA\"")
-    buildConfigField("String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\"")
     buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"a6622ad4656e1abcd0bc0ff17c229477747d2ded0495c4ebee7ed35c1789fa97\"")
     buildConfigField("String", "SVR2_MRENCLAVE", "\"9314436a9a144992bb3680770ea5fd7934a7ffd29257844a33763a238903d570\"")
     buildConfigField("String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\"")

@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.api.services;
 
 import org.signal.cdsi.proto.ClientRequest;
 import org.signal.cdsi.proto.ClientResponse;
-import org.signal.core.util.logging.Log;
 import org.signal.libsignal.net.CdsiLookupRequest;
 import org.signal.libsignal.net.CdsiLookupResponse;
 import org.signal.libsignal.net.Network;
@@ -18,7 +17,6 @@ import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhauste
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -37,7 +35,7 @@ import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -55,35 +53,24 @@ public final class CdsiV2Service {
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave, @Nullable Network network) {
-
-    if (network != null) {
-      this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
-        try {
-          Log.i(TAG, "Starting CDSI lookup via libsignal-net");
-          Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
-          return Single.fromFuture(cdsiRequest)
-              .onErrorResumeNext((Throwable err) -> {
-                if (err instanceof ExecutionException && err.getCause() != null) {
-                  err = err.getCause();
-                }
-                return Single.error(mapLibsignalError(err));
-              })
-              .map(CdsiV2Service::parseLibsignalResponse)
-              .toObservable();
-        } catch (Exception exception) {
-          return Observable.error(mapLibsignalError(exception));
-        }
-      };
-    } else {
-      CdsiSocket cdsiSocket = new CdsiSocket(configuration, mrEnclave);
-      this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
-        return cdsiSocket
-            .connect(username, password, buildClientRequest(request), tokenSaver)
-            .map(CdsiV2Service::parseEntries);
-      };
+  public CdsiV2Service(@Nonnull Network network) {
+    this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
+      try {
+        Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
+        return Single.fromFuture(cdsiRequest)
+                     .onErrorResumeNext((Throwable err) -> {
+                       if (err instanceof ExecutionException && err.getCause() != null) {
+                         err = err.getCause();
+                       }
+                       return Single.error(mapLibsignalError(err));
+                     })
+                     .map(CdsiV2Service::parseLibsignalResponse)
+                     .toObservable();
+      } catch (Exception exception) {
+        return Observable.error(mapLibsignalError(exception));
       }
-    }
+    };
+  }
 
   public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
     return cdsiRequestHandler.handleRequest(username, password, request, tokenSaver)
