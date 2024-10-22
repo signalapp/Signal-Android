@@ -369,7 +369,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Mensajes</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">Tipos de chat</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Enviar mensaje a %1$s</string>
@@ -4053,9 +4053,9 @@
     <string name="conversation_list_fragment__open_camera_description">Abrir cámara</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Todavía no hay chats.\nComienza a chatear con tus amistades.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">No hay chats para mostrar</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">Ajustes de las carpetas</string>
 
 
     <!-- conversation_secure_verified -->
@@ -5055,53 +5055,53 @@
     <string name="ChatsSettingsFragment__keyboard">Teclado</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enviar con Intro</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">Carpetas de chats</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Añadir una carpeta de chats</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">Organiza tus chats en carpetas y cambia rápidamente de una a otra en tu lista de chats.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">Carpetas</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">Crear una carpeta</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">Todos los chats</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">Carpetas sugeridas</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">No leídos</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">Mensajes no leídos de todos los chats</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">Chats individuales</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">Solo mensajes de chats directos</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">Grupos</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">Solo mensajes de chats grupales</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">Añadir</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">Carpeta añadida: %1$s</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">Editar carpeta</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">Eliminar carpeta</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">Añadir nueva carpeta</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">Silenciar todo</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">Reordenar carpetas</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Marcar todos como leídos</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d tipo de chat</item>
+        <item quantity="other">%1$d tipos de chat</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5110,61 +5110,61 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d chat excluido</item>
+        <item quantity="other">%1$d chats excluidos</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">Crear una carpeta</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">Nombre de la carpeta (obligatorio)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">Chats incluidos</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">Añadir chats</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">Selecciona los chats que quieres que aparezcan en esta carpeta.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">Excepciones</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">Excluir chats</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Selecciona los chats que no quieres que aparezcan en esta carpeta.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">Mostrar solo los chats no leídos</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">Cuando esta opción está habilitada, solo se mostrarán en esta carpeta los chats con mensajes no leídos.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
     <string name="CreateFoldersFragment__include_muted_chats">Considerar chats silenciados</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Crear</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">¿Crear carpeta?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">¿Quieres crear la carpeta de chats \"%1$s\"?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">Crear carpeta</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">Editar carpeta</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Guardar</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">¿Guardar cambios?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">¿Quieres guardar los cambios que has hecho en esta carpeta de chats?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">Guardar cambios</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">Descartar</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">Eliminar carpeta</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">¿Eliminar esta carpeta de chats?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">Tipos de chat</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Listo</string>
 
@@ -5614,9 +5614,9 @@
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s apoya a Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s apoya a Signal con una donación mensual. Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s apoya a Signal con una donación mensual. Al ser una organización sin ánimo de lucro, sin anuncios ni inversores, Signal se sostiene gracias al apoyo de personas como tú.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s apoya a Signal con una donación. Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s apoya a Signal con una donación. Al ser una organización sin ánimo de lucro, sin anuncios ni inversores, Signal se sostiene gracias al apoyo de personas como tú.</string>
 
     <string name="ImageView__badge">Insignia</string>
 
@@ -5657,7 +5657,7 @@
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de una insignia, puedes seleccionar cuál quieres que otras personas vean en tu perfil.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Consigue insignias para tu perfil al ayudar a Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal es una organización sin ánimo de lucro, sin anuncios ni inversores. Nuestra misión se sostiene gracias al apoyo de personas como tú.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Al ser una organización sin ánimo de lucro, sin anuncios ni inversores, Signal se sostiene gracias al apoyo de personas como tú.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Donar a Signal</string>
@@ -7445,15 +7445,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">Cancelar descarga</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">Descargando: %1$s de %2$s (%3$s %%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">No hay suficiente espacio para descargar tu copia de seguridad. Para continuar, libera %1$s de espacio.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">Omitir descarga</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"No se ha podido completar tu última copia de seguridad. Asegúrate de que tu teléfono esté conectado a una red Wi-Fi y toca \"Iniciar copia\" para volver a intentarlo."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7561,13 +7561,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Se ha cambiado el tipo de copia de seguridad y se ha cancelado tu suscripción</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Suscripción cancelada</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Descarga completa</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">La copia de seguridad se creará durante la noche.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Suscripción inactiva</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Plan de copias de seguridad</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7579,9 +7579,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Se renueva el %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Caduca el %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Caduca el %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Haz una copia de seguridad de tu historial de mensajes para no perder ningún dato cuando compras un teléfono nuevo o reinstalas Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7627,9 +7627,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Introduce el PIN, la contraseña o el patrón de tu dispositivo.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Volver a habilitar copias</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Se han desactivado las copias de seguridad y se han eliminado tus datos del servicio de almacenamiento seguro de Signal.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

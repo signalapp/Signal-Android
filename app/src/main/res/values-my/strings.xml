@@ -366,7 +366,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">မက်ဆေ့ချ်များ</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">ချက်(တ်)အမျိုးအစားများ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">စာတို %1$s</string>
@@ -3950,9 +3950,9 @@
     <string name="conversation_list_fragment__open_camera_description">ကင်မရာဖွင့်ပါ</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ချက်(တ်)မရှိသေးပါ။\nသူငယ်ချင်းတစ်ယောက်ထံ မက်ဆေ့ချ်ပို့ခြင်းဖြင့် စတင်လိုက်ပါ။</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">ပြသရန် ချက်(တ်)မရှိပါ</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">ဖိုင်တွဲ ဆက်တင်</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4936,52 +4936,52 @@
     <string name="ChatsSettingsFragment__keyboard">ကီးဘုတ်</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enter ဖြင့် ပို့ပါ</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">ချက်(တ်)ဖိုင်တွဲများ</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">ချက်(တ်)ဖိုင်တွဲတစ်ခုထည့်ရန်</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">သင့်ချက်(တ်)များကို ဖိုင်တွဲများတွင် စုစည်းပြီး သင့်ချက်(တ်)စာရင်းတွင် အမြန်ပြောင်းပါ။</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">ဖိုင်တွဲများ</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">ဖိုင်တွဲတစ်ခု ဖန်တီးရန်</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">ချက်(တ်)အားလုံး</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">အကြံပြုထားသောဖိုင်တွဲများ</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">မဖတ်ရသေး</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">ချက်(တ်)အားလုံးမှ မဖတ်ရသေးသော မက်ဆေ့ချ်များ</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 ချက်(တ်)များ</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">တိုက်ရိုက်ချက်(တ်)မှ မက်ဆေ့ချ်များသာ</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">အဖွဲ့များ</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">အဖွဲ့လိုက်ချက်(တ်)မှ မက်ဆေ့ချ်များသာ</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">ပေါင်းထည့်မယ်</string>
+    <string name="ChatFoldersFragment__add">ပေါင်းထည့်မည်</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">%1$s ဖိုင်တွဲကို ထည့်ထားသည်။</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">ဖိုင်တွဲကို တည်းဖြတ်ရန်</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">ဖိုင်တွဲကိုဖျက်မည်</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">ဖိုင်တွဲအသစ်ထည့်မည်</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">အားလုံးကို အသံပိတ်ရန်</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">ဖိုင်တွဲများကို ပြန်စီမည်</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">အားလုံးကို ဖတ်ပြီးသားအဖြစ် မှတ်ပါ။</string>
+    <string name="ChatFoldersFragment__mark_all_read">အားလုံးကို ဖတ်ပြီးသားအဖြစ် မှတ်ပါ</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="other">ချက်(တ်)အမျိုးအစား %1$d ခု</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -4989,60 +4989,60 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="other">ချက်(တ်) %1$d ခုကို ဖယ်ထုတ်ထားသည်</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">ဖိုင်တွဲတစ်ခု ဖန်တီးရန်</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">ဖိုင်တွဲအမည် (လိုအပ်ပါသည်)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">ပါဝင်သော ချက်(တ်)များ</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">ချက်(တ်)ထည့်သွင်းရန်</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">ဤဖိုင်တွဲတွင် သင်ပေါ်စေလိုသော ချက်(တ်)များကို ရွေးပါ။</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">ခြွင်းချက်များ</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">ချက်(တ်)ကို ဖယ်ထုတ်မည်</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">ဤဖိုင်တွဲတွင် မပေါ်စေလိုသော ချက်(တ်)များကို ရွေးပါ။</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">မဖတ်ရသေးသည့် ချက်(တ်)များကိုသာပြရန်</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">ဖွင့်ထားသောအခါ မဖတ်ရသေးသော မက်ဆေ့ချ်ရှိသည့် ချက်(တ်)များကိုသာ ဤဖိုင်တွဲတွင် ပြပါမည်။</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">အသံပိတ်ထားသော ချက်(တ်)များ ပါဝင်ရန်</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">ဖန်တီးပါ</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">ဖိုင်တွဲကို ဖန်တီးမလား။</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">ချက်(တ်)ဖိုင်တွဲ \"%1$s\" ကို ဖန်တီးလိုပါသလား။</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">ဖိုင်တွဲ ဖန်တီးမည်</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">ဖိုင်တွဲကို တည်းဖြတ်ရန်</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">သိမ်းရန်</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">အပြောင်းအလဲကို သိမ်းမလား။</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">ဤချက်(တ်)ဖိုင်တွဲတွင် ပြုလုပ်ထားသော အပြောင်းအလဲများကို သိမ်းဆည်းလိုပါသလား။</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">အပြောင်းအလဲကို သိမ်းဆည်းမည်</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">ပယ်ဖျက်မည်</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">ဖိုင်တွဲကိုဖျက်မည်</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">ဤချက်(တ်)ဖိုင်တွဲကို ဖျက်မလား။</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">ချက်(တ်)အမျိုးအစားများ</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">ပြီးပါပြီ</string>
 
@@ -7284,15 +7284,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ဒေါင်းလုဒ်လုပ်ခြင်း ပယ်ဖျက်မည်</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">%2$s မှ %1$s (%3$s%%) ကို ဒေါင်းလုဒ်လုပ်နေသည်</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">သင်၏ ဘက်ခ်အပ်ကို ဒေါင်းလုဒ်လုပ်ရန် နေရာမလုံလောက်ပါ။ ဆက်၍လုပ်ဆောင်ရန် နေရာလွတ် %1$s ထားပေးပါ။</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">ဒေါင်းလုဒ်ကို ကျော်လိုက်မည်</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"သင်၏နောက်ဆုံး ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ပါ။ သင့်ဖုန်းကို Wi-Fi နှင့် ချိတ်ဆက်ထားကြောင်းသေချာစေပြီး ထပ်၍စမ်းကြည့်ရန် ယခုဘက်ခ်အပ်လုပ်မည်ကို နှိပ်ပါ။"</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7399,13 +7399,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">ဘက်ခ်အပ်အမျိုးအစားပြောင်းပြီး ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်လိုက်ပါပြီ</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်လိုက်ပါပြီ</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ဒေါင်းလုဒ် ပြီးပါပြီ</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ဘက်ခ်အပ်ကို ညတွင်းချင်း ဖန်တီးပါမည်။</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">ပုံမှန်လှူဒါန်းမှု အသက်မဝင်ပါ</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">ဘက်ခ်အပ်အစီအစဉ်</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7417,9 +7417,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">%1$s တွင် သက်တမ်းတိုးသည်</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">%1$s တွင် သက်တမ်းကုန်မည်</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">%1$s တွင် သက်တမ်းကုန်မည်</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">ဖုန်းအသစ်ရသောအခါ သို့မဟုတ် Signal ကို ပြန်လည်ထည့်သွင်းသည့်အခါ ဒေတာမဆုံးရှုံးစေရန် မက်ဆေ့ချ်မှတ်တမ်းကို ဘက်ခ်အပ်လုပ်ပါ။</string>
     <!-- Section header for other ways to back up -->
@@ -7465,9 +7465,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">သင့်စက်၏ ပင်နံပါတ်၊ စကားဝှက် သို့မဟုတ် ပုံစံကို ထည့်ပါ။</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">ဘက်ခ်အပ် ပြန်လည်လုပ်ဆောင်မည်</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">ဘက်ခ်အပ်ကို ပိတ်ထားသဖြင့် Signal ၏ လုံခြုံသော သိုလှောင်ရေးဝန်ဆောင်မှုမှ သင့်ဒေတာများကို ဖျက်လိုက်ပါပြီ။</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

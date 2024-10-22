@@ -375,7 +375,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">הודעות</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">סוגי צ׳אטים</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s של הודעה</string>
@@ -4259,9 +4259,9 @@
     <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">אין צ׳אטים עדיין.\nאפשר להתחיל באמצעות שליחת הודעה לחבר או חברה.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">אין צ׳אטים להצגה</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">הגדרות תיקיה</string>
 
 
     <!-- conversation_secure_verified -->
@@ -5293,55 +5293,55 @@
     <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
     <string name="ChatsSettingsFragment__send_with_enter">שליחה עם enter</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">תיקיות צ׳אטים</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">הוספת תיקיית צ׳אטים</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">ארגון הצ׳אטים שלך בתיקיות והחלפה מהירה ביניהם ברשימת הצ׳אטים שלך.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">תיקיות</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">יצירת תיקיה</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">כל הצ׳אטים</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">תיקיות מוצעות</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">לא נקראו</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">הודעות שלא נקראו מכל הצ׳אטים</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">צ׳אטים 1:1</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">רק הודעות מצ׳אטים ישירים</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">קבוצות</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">רק הודעות מצ׳אטים קבוצתיים</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">הוסף</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">תיקיה נוספה: %1$s.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">עריכת תיקיה</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">מחיקת תיקיה</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">הוספת תיקיה חדשה</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">השתקת הכל</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">סידור תיקיות מחדש</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">סמן הכול כנקרא</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="two">%1$d chat types</item>
-        <item quantity="many">%1$d chat types</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">סוג צ׳אט %1$d</item>
+        <item quantity="two">%1$d סוגי צ׳אטים</item>
+        <item quantity="many">%1$d סוגי צ׳אטים</item>
+        <item quantity="other">%1$d סוגי צ׳אטים</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5352,63 +5352,63 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="two">%1$d chats excluded</item>
-        <item quantity="many">%1$d chats excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">צ׳אט %1$d לא כלול</item>
+        <item quantity="two">%1$d צ׳אטים לא כלולים</item>
+        <item quantity="many">%1$d צ׳אטים לא כלולים</item>
+        <item quantity="other">%1$d צ׳אטים לא כלולים</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">יצירת תיקיה</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">שם תיקיה (חובה)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">צ׳אטים כלולים</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">הוספת צ׳אטים</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">יש לבחור צ׳אטים שברצונך לכלול בתיקיה הזו.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">יוצאי דופן</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">החרגת צ׳אטים</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">אפשר לבחור צ׳אטים שלא יופיעו בתיקיה הזו.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">להציג רק צ׳אטים שלא נקראו</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">כשאפשרות זו מופעלת, רק צ׳אטים עם הודעות שלא נקראו יוצגו בתיקיה הזו.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
     <string name="CreateFoldersFragment__include_muted_chats">כלילת צ׳אטים מושתקים</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">צור</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">ליצור תיקיה?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">האם ברצונך ליצור את תיקיית הצ׳אטים ״%1$s״?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">יצירת תיקיה</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">עריכת תיקיה</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">שמירה</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">לשמור שינויים?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">האם ברצונך לשמור את השינויים שביצעת בתיקיית הצ׳אטים הזו?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">שמירת שינויים</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">השמט</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">מחיקת תיקיה</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">למחוק את תיקיית הצ׳אטים הזו?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">סוגי צ׳אטים</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">סיום</string>
 
@@ -7767,15 +7767,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ביטול הורדה</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">מורידים: %1$s מתוך %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">אין מספיק מקום כדי להוריד את הגיבוי שלך. כדי להמשיך, יש לפנות שטח של %1$s.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">דילוג על הורדה</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"לא ניתן היה להשלים את הגיבוי האחרון שלך. חשוב לוודא שהטלפון שלך מחובר ל–Wi–Fi וללחוץ ״לגבות כעת״ כדי לנסות שוב."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7885,13 +7885,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">סוג הגיבוי השתנה והמנוי בוטל</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">מנוי בוטל</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ההורדה הושלמה</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">הגיבוי ייווצר במהלך הלילה.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">מנוי לא פעיל</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">תכנית גיבוי</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7903,9 +7903,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">מתחדש ב–%1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">תאריך תפוגה: %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">תאריך התפוגה היה: %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">אפשר לגבות את היסטוריית ההודעות כך שאף פעם לא מאבדים נתונים כשמחליפים טלפון או מתקינים מחדש את Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7951,9 +7951,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">יש להכניס את קוד ה–PIN, הסיסמה, או התבנית של המכשיר שלך.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">הפעלת גיבויים מחדש</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">הגיבויים הושבתו והנתונים שלך נמחקו משירות האחסון המאובטח של Signal.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

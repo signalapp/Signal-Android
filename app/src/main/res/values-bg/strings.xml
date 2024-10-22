@@ -369,7 +369,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Съобщения</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">Видове чатове</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Съобщение %1$s</string>
@@ -4053,9 +4053,9 @@
     <string name="conversation_list_fragment__open_camera_description">Отвори Kамера</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Все още няма чатове.\nЗапочнете, като изпратите съобщение на някой приятел.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">Няма чатове за показване</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">Настройки за папки</string>
 
 
     <!-- conversation_secure_verified -->
@@ -5055,53 +5055,53 @@
     <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
     <string name="ChatsSettingsFragment__send_with_enter">Изпратете с enter</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">Папки за чат</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Добавяне на папка за чат</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">Организирайте чатовете си в папки и бързо превключвайте между тях в списъка с чатове.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">Папки</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">Създаване на папка</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">Всички чатове</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">Предложени папки</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">Непрочетени</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">Непрочетени съобщения от всички чатове</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">Чатове 1:1</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">Само съобщения от директни чатове</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">Групи</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">Само съобщения от групови чатове</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Добави</string>
+    <string name="ChatFoldersFragment__add">Добавяне</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">Папката „%1$s“ е добавена.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">Редактиране на папка</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">Изтриване на папка</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">Добавяне на нова папка</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">Заглушаване на всички</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">Пренареждане на папките</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Маркиране на всички като прочетени</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d вид чатове</item>
+        <item quantity="other">%1$d вида чатове</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5110,61 +5110,61 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d изключен чат</item>
+        <item quantity="other">%1$d изключени чата</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">Създаване на папка</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">Име на папка (задължително)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">Включени чатове</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">Добавяне на чатове</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">Изберете чатовете, които искате да се показват в тази папка.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">Изключения</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">Изключване на чатове</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Изберете чатовете, които не искате да се показват в тази папка.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">Показване само на непрочетените чатове</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">Когато е активирано, в тази папка ще се показват само чатове с непрочетени съобщения.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">Включване на заглушените чатове</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Създаване</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">Създаване на папка?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">Искате ли да създадете папката за чат „%1$s“?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">Създаване на папка</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">Редактиране на папка</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Запази</string>
+    <string name="CreateFoldersFragment__save">Запазване</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">Запазване на промените?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">Искате ли да запазите промените, направени по тази папка за чат?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">Запазване на промените</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">Отхвърляне</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">Изтриване на папка</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Изтриване на тази папка за чат?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">Видове чатове</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Готово</string>
 
@@ -7445,15 +7445,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">Отмяна на изтеглянето</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">Изтегляне: %1$s от %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">Недостатъчно място за изтегляне на вашето резервно копие. За да продължите, освободете %1$s пространство.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">Пропускане на изтеглянето</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"Последното ви резервно копиране не можа да бъде завършено. Уверете се, че телефонът ви е свързан към Wi-Fi и докоснете „Резервно копиране сега“, за да опитате отново."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7561,13 +7561,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Видът резервно копие е променен и абонаментът е отменен</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Абонаментът е отменен</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Изтеглянето е завършено</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Резервното копие ще бъде създадено през нощта.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Абонаментът е неактивен</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">План за резервно копиране</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7579,9 +7579,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Подновява се на %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Изтича на %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Изтекъл на %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Създайте резервно копие на историята на съобщенията си, за да не изгубите данните, когато си вземете нов телефон или преинсталирате Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7627,9 +7627,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Моля, въведете ПИН, парола или фигура за вашето устройство.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Повторно активиране на резервното копиране</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Резервните копия са изключени и данните ви са изтрити от услугата за сигурно съхранение на Signal.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

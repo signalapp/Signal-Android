@@ -366,7 +366,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">메시지</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">대화 유형</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s에 메시지 보내기</string>
@@ -3950,9 +3950,9 @@
     <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">아직 대화가 없습니다.\n친구에게 메시지를 보내 시작해 보세요.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">표시할 대화가 없습니다.</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">폴더 설정</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4936,52 +4936,52 @@
     <string name="ChatsSettingsFragment__keyboard">키보드</string>
     <string name="ChatsSettingsFragment__send_with_enter">Enter 키로 보내기</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">대화 폴더</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">대화 폴더 추가</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">대화를 폴더로 정리하여 대화 목록에서 대화 간에 빠르게 전환하세요.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">폴더</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">폴더 만들기</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">모든 대화</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">추천 폴더</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">읽지 않음</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">모든 대화의 읽지 않은 메시지</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 대화</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">직접 대화의 메시지만</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">그룹</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">그룹 대화의 메시지만</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">추가</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">%1$s 폴더를 추가했습니다.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">폴더 수정</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">폴더 삭제</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">새 폴더 추가</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">모두 음소거</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">폴더 순서 재정렬</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">모두 읽음으로 표시</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="other">대화 유형 %1$d개</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -4989,60 +4989,60 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="other">대화 %1$d개를 제외함</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">폴더 만들기</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">폴더 이름(필수)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">포함된 대화</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">대화 추가</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">이 폴더에 표시하려는 대화를 선택하세요.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">예외</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">대화 제외</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">이 폴더에 표시하지 않으려는 대화를 선택하세요.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">읽지 않은 대화만 표시</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">사용하도록 설정할 경우 읽지 않은 메시지가 있는 대화만 이 폴더에 표시됩니다.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
     <string name="CreateFoldersFragment__include_muted_chats">알림을 끈 대화 포함</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">만들기</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">폴더를 만드시겠습니까?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">\'%1$s\' 대화 폴더를 만드시겠습니까?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">폴더 만들기</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">폴더 수정</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">저장</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">변경 내용을 저장하시겠습니까?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">이 대화 폴더에 적용한 변경 내용을 저장하시겠습니까?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">변경 내용 저장</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">파기</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">폴더 삭제</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">이 대화 폴더를 삭제하시겠습니까?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">대화 유형</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">확인</string>
 
@@ -7284,15 +7284,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">다운로드 취소</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">다운로드하는 중: %1$s/%2$s(%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">백업을 다운로드할 공간이 부족합니다. 계속하려면 %1$s의 공간을 확보하세요.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">다운로드 건너뛰기</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"마지막 백업을 완료하지 못했습니다. 휴대폰이 Wi-Fi에 연결되어 있는지 확인하고 지금 백업을 탭하여 다시 시도하세요."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7399,13 +7399,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">백업 종류를 변경하고 구독을 취소했습니다.</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">구독을 취소했습니다.</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">다운로드 완료</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">밤사이 백업을 생성합니다.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">구독 비활성</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">백업 플랜</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7417,9 +7417,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">%1$s 갱신</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">%1$s에 만료됨</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">%1$s에 만료됨</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">새 휴대폰을 사용하거나 Signal을 다시 설치할 때 데이터를 잃지 않도록 메시지 기록을 백업하세요.</string>
     <!-- Section header for other ways to back up -->
@@ -7465,9 +7465,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">기기 PIN, 암호 또는 패턴을 입력하세요.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">백업 재활성화</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">백업을 사용하지 않도록 설정했으며, Signal의 안전한 저장소 서비스에서 데이터를 삭제했습니다.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

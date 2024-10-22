@@ -369,7 +369,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">സന്ദേശങ്ങൾ</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">ചാറ്റ് തരങ്ങൾ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">സന്ദേശ൦ %1$s</string>
@@ -4053,9 +4053,9 @@
     <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ഇതുവരെ ചാറ്റുകളൊന്നുമില്ല.\nഒരു സുഹൃത്തിന് സന്ദേശമയച്ചുകൊണ്ട് ആരംഭിക്കുക.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">പ്രദർശിപ്പിക്കാൻ ചാറ്റുകളൊന്നുമില്ല</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">ഫോൾഡർ ക്രമീകരണങ്ങൾ</string>
 
 
     <!-- conversation_secure_verified -->
@@ -5055,53 +5055,53 @@
     <string name="ChatsSettingsFragment__keyboard">കീബോർഡ്</string>
     <string name="ChatsSettingsFragment__send_with_enter">എൻ്റർ ചെയ്ത് അയയ്ക്കുക</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
+    <string name="ChatsSettingsFragment__chat_folders">ചാറ്റ് ഫോൾഡറുകൾ</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">ഒരു ചാറ്റ് ഫോൾഡർ ചേർക്കുക</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">നിങ്ങളുടെ ചാറ്റുകൾ ഫോൾഡറുകളായി ഓർഗനൈസുചെയ്യുകയും നിങ്ങളുടെ ചാറ്റ് ലിസ്റ്റിൽ അവയ്ക്കിടയിൽ വേഗത്തിൽ മാറുകയും ചെയ്യുക.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">ഫോൾഡറുകൾ</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">ഒരു ഫോൾഡർ സൃഷ്ടിക്കുക</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">എല്ലാ ചാറ്റുകളും</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">നിർദ്ദേശിക്കപ്പെട്ട ഫോൾഡറുകൾ</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unreads">വായിക്കാത്തവ</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">എല്ലാ ചാറ്റുകളിൽ നിന്നുമുള്ള വായിക്കാത്ത സന്ദേശങ്ങൾ</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 ചാറ്റുകൾ</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">നേരിട്ടുള്ള ചാറ്റുകളിൽ നിന്നുള്ള സന്ദേശങ്ങൾ മാത്രം</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">ഗ്രൂപ്പുകൾ</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">ഗ്രൂപ്പ് ചാറ്റുകളിൽ നിന്നുള്ള സന്ദേശം മാത്രം</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">ചേർക്കുക</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">%1$s ഫോൾഡർ ചേർത്തു.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
+    <string name="ChatFoldersFragment__edit_folder">ഫോൾഡർ എഡിറ്റ് ചെയ്യുക</string>
     <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
+    <string name="ChatFoldersFragment__delete_folder">ഫോൾഡർ ഇല്ലാതാക്കുക</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">പുതിയ ഫോൾഡർ ചേർക്കുക</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
+    <string name="ChatFoldersFragment__mute_all">എല്ലാം മ്യൂട്ട് ചെയ്യുക</string>
     <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__reorder_folder">ഫോൾഡറുകൾ പുനഃക്രമീകരിക്കുക</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">എല്ലാം വായിച്ചതായി കാണിക്കൂ</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d ചാറ്റ് തരം</item>
+        <item quantity="other">%1$d ചാറ്റ് തരങ്ങൾ</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5110,61 +5110,61 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d ചാറ്റ് ഒഴിവാക്കി</item>
+        <item quantity="other">%1$d ചാറ്റുകൾ ഒഴിവാക്കി</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">ഒരു ഫോൾഡർ സൃഷ്ടിക്കുക</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">ഫോൾഡറിൻ്റെ പേര് (ആവശ്യമാണ്)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">ചാറ്റുകൾ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">ചാറ്റുകൾ ചേർക്കുക</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">ഈ ഫോൾഡറിൽ ദൃശ്യമാകാൻ ആഗ്രഹിക്കുന്ന ചാറ്റുകൾ തിരഞ്ഞെടുക്കുക.</string>
     <!-- Section title representing what chats are excluded from the folder -->
     <string name="CreateFoldersFragment__exceptions">ഉള്‍പ്പെടാത്തവ</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">ചാറ്റുകൾ ഒഴിവാക്കുക</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">ഈ ഫോൾഡറിൽ ദൃശ്യമാകാൻ നിങ്ങൾ ആഗ്രഹിക്കാത്ത ചാറ്റുകൾ തിരഞ്ഞെടുക്കുക.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ മാത്രം കാണിക്കുക</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ, വായിക്കാത്ത സന്ദേശങ്ങളുള്ള ചാറ്റുകൾ മാത്രമേ ഈ ഫോൾഡറിൽ കാണിക്കൂ.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">മ്യൂട്ട് ചെയ്ത ചാറ്റുകൾ ഉൾപ്പെടുത്തുക</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">സൃഷ്ടിക്കൂ</string>
     <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
+    <string name="CreateFoldersFragment__create_folder_title">ഫോൾഡർ സൃഷ്ടിക്കണോ?</string>
     <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_create">നിങ്ങൾക്ക് \"%1$s\" എന്ന ചാറ്റ് ഫോൾഡർ സൃഷ്ടിക്കണോ?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create_folder">ഫോൾഡർ സൃഷ്ടിക്കുക</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">ഫോൾഡർ എഡിറ്റ് ചെയ്യുക</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">സംരക്ഷിക്കൂ</string>
     <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
+    <string name="CreateFoldersFragment__save_changes_title">മാറ്റങ്ങൾ സംരക്ഷിക്കണോ?</string>
     <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
+    <string name="CreateFoldersFragment__do_you_want_to_save">ഈ ചാറ്റ് ഫോൾഡറിൽ നിങ്ങൾ വരുത്തിയ മാറ്റങ്ങൾ സംരക്ഷിക്കണോ?</string>
     <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
+    <string name="CreateFoldersFragment__save_changes">മാറ്റങ്ങൾ സംരക്ഷിക്കുക</string>
     <!-- Alert dialog button to dismiss the dialog and discard any changes -->
     <string name="CreateFoldersFragment__discard">കളയുക</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">ഫോൾഡർ ഇല്ലാതാക്കുക</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">ഈ ചാറ്റ് ഫോൾഡർ ഇല്ലാതാക്കണോ?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">ചാറ്റ് തരങ്ങൾ</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">പൂർത്തിയായി</string>
 
@@ -7445,15 +7445,15 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ഡൗൺലോഡ് റദ്ദാക്കുക</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">ഡൗൺലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">നിങ്ങളുടെ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യാൻ മതിയായ ഇടമില്ല. തുടരാൻ %1$s ഇടം ശൂന്യമാക്കുക.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">ഡൗൺലോഡ് ഒഴിവാക്കുക</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">"നിങ്ങളുടെ അവസാന ബാക്കപ്പ് പൂർത്തിയാക്കാനായില്ല. നിങ്ങളുടെ ഫോൺ Wi-Fi-ലേക്ക് കണക്‌റ്റ് ചെയ്‌തിട്ടുണ്ടെന്ന് ഉറപ്പുവരുത്തുക, വീണ്ടും ശ്രമിക്കാൻ ഇപ്പോൾ ബാക്കപ്പ് ടാപ്പ് ചെയ്യുക."</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7561,13 +7561,13 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">ബാക്കപ്പ് തരം മാറ്റി, സബ്സ്ക്രിപ്ഷൻ റദ്ദാക്കി</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">സബ്സ്ക്രിപ്ഷൻ റദ്ദാക്കി</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ഡൗൺലോഡ് പൂർത്തിയായി</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ഒറ്റരാത്രികൊണ്ട് ബാക്കപ്പ് സൃഷ്ടിക്കപ്പെടും.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">സബ്സ്ക്രിപ്ഷൻ നിഷ്‌ക്രിയമാണ്</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">ബാക്കപ്പ് പ്ലാൻ</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7579,9 +7579,9 @@
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">%1$s പുതുക്കുന്നു</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">%1$s-ന് കാലഹരണപ്പെടുന്നു</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">%1$s-ന് കാലഹരണപ്പെട്ടു</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">നിങ്ങളുടെ സന്ദേശ ചരിത്രം ബാക്കപ്പ് ചെയ്യുക, അതുവഴി നിങ്ങൾക്ക് ഒരു പുതിയ ഫോൺ ലഭിക്കുമ്പോഴോ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോഴോ ഒരിക്കലും ഡാറ്റ നഷ്‌ടപ്പെടില്ല.</string>
     <!-- Section header for other ways to back up -->
@@ -7627,9 +7627,9 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">നിങ്ങളുടെ ഉപകരണ PIN, പാസ്‌വേഡ് അല്ലെങ്കിൽ പാറ്റേൺ നൽകുക.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">ബാക്കപ്പുകൾ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കുക</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Signal-ൻ്റെ സുരക്ഷിത സംഭരണ സേവനത്തിൽ നിന്ന് ബാക്കപ്പുകൾ ഓഫാക്കി നിങ്ങളുടെ ഡാറ്റ ഇല്ലാതാക്കി.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

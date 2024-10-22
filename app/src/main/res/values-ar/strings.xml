@@ -3274,11 +3274,11 @@
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">روابط أو كودات الـ QR</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">أسماء المُستخدمين لها رمز ورابط استجابة سريعة فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك في الآن.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">أسماء المُستخدمين لها رابط وكود QR فريدين يُمكنك مُشاركتُهما مع أصدقائك لكي يبدؤوا الدردشة معك بسرعة.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">ليس الآن</string>
     <!-- Button label for continue -->
-    <string name="NewWaysToConnectDialogFragment__set_up_your_username">إعداد اسم المستخدم</string>
+    <string name="NewWaysToConnectDialogFragment__set_up_your_username">إعداد اسم المُستخدم</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">شغِّل الفيديو</string>
@@ -3501,9 +3501,9 @@
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">إرسال مدفوعات</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">تفعيل الدفوعات</string>
+    <string name="ConversationUpdateItem_activate_payments">تفعيل المدفوعات</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">لقد حذفت هذا الشخص، وبمراسلتك لهم سَتتم إضافتهم إلى قائمتك.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">حذفتَ جهة الاتصال هذه، وبمراسلتك لها سَتتم إضافتها إلى قائمتك.</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">الخيارات:</string>
     <!-- Update item button text shown for a profile name change. -->
@@ -3558,23 +3558,23 @@
     <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">تمَّ تفعيل إشعارات المكالمات.</string>
     <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">تفعيل إشعارات المكالمات</string>
     <string name="EnableCallNotificationSettingsDialog__enable_background_activity">تفعيل نشاط الخلفية</string>
-    <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">يبدو أن كل شيء جيد الآن !</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">لتلقي إشعارات المكالمات، يكفي اللمس هنا وتشغيل « إظهار الإشعارات ».</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">لتلقي إشعارات المكالمات، يُرجى اللمس هنا ثم تفعيل الإشعارات وبعدها التأكد من أن الأصوات والنوافذ المنبثقة مُفعَّلة.</string>
+    <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">يبدو أن كل شيء جيد الآن!</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">لتلقي إشعارات المكالمات، يكفي النقر هنا وتشغيل \"إظهار الإشعارات\".</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">لتلقي إشعارات المكالمات، يُرجى النقر هنا ثم تفعيل الإشعارات وبعدها التأكُّد من أن الأصوات والنوافذ المنبثقة مُفعَّلة.</string>
     <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">لتلقي إشعارات المكالمات، يُرجى اللمس هنا ثم تفعيل أنشطة الخلفية في إعدادات البطارية. </string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">لتلقي إشعارات المكالمات، يُرجى النقر هنا ثم تفعيل نشاط الخلفية في إعدادات \"البطارية\". </string>
     <string name="EnableCallNotificationSettingsDialog__settings">الإعدادات</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">لتلقي إشعارات المكالمات، يكفي لمس « الإعدادات » ثم تفعيل « إظهار الإشعارات ».</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">لتلقي إشعارات المكالمات، يُرجى لمس « الإعدادات » ثم تفعيل الإشعارات وبعدها التأكد من أن الأصوات والنوافذ المنبثقة مُفعَّلة.</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">لتلقي إشعارات المكالمات، يُرجى لمس « الإعدادات » ثم تفعيل أنشطة الخلفية في إعدادات البطارية.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">لتلقي إشعارات المكالمات، يكفي النقر على \"الإعدادات\" ثم تفعيل \"إظهار الإشعارات\".</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">لتلقي إشعارات المكالمات، يُرجى النقر على \"الإعدادات\" ثم تفعيل الإشعارات وبعدها التأكُّد من أن الأصوات والنوافذ المنبثقة مُفعَّلة.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">لتلقي إشعارات المكالمات، يُرجى لمس \"الإعدادات\" ثم تفعيل أنشطة الخلفية في إعدادات \"البطارية\".</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
+    <string name="country_selection_fragment__loading_countries">جارٍ تحميل البلدان…</string>
     <string name="country_selection_fragment__search">بحث</string>
-    <string name="country_selection_fragment__no_matching_countries">لا توجد دولة مطابقة</string>
+    <string name="country_selection_fragment__no_matching_countries">لا توجد دول مطابقة</string>
 
     <!-- device_add_fragment -->
-    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح رمز الاستجابة السريع المبين على الجهاز لربطه.</string>
+    <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح كود الـ QR الظاهر على الجهاز لربطه.</string>
 
     <!-- device_link_fragment -->
     <string name="device_link_fragment__link_device">ربط الجهاز</string>
@@ -3613,8 +3613,8 @@
         <item quantity="one">%1$d ساعة</item>
         <item quantity="two">%1$d ساعتين</item>
         <item quantity="few">%1$d ساعات</item>
-        <item quantity="many">%1$d ساعات</item>
-        <item quantity="other">%1$d ساعات</item>
+        <item quantity="many">%1$d ساعةً</item>
+        <item quantity="other">%1$d ساعةٍ</item>
     </plurals>
 
     <string name="expiration_hours_abbreviated">%1$d ساعة</string>
@@ -3624,8 +3624,8 @@
         <item quantity="one">%1$d يوم</item>
         <item quantity="two">%1$d يومين</item>
         <item quantity="few">%1$d أيام</item>
-        <item quantity="many">%1$d أيام</item>
-        <item quantity="other">%1$d أيام</item>
+        <item quantity="many">%1$d يومًا</item>
+        <item quantity="other">%1$d يومٍ</item>
     </plurals>
 
     <string name="expiration_days_abbreviated">%1$d يوم</string>
@@ -3635,25 +3635,25 @@
         <item quantity="one">%1$d أسبوع</item>
         <item quantity="two">%1$d أسبوعين</item>
         <item quantity="few">%1$d أسابيع</item>
-        <item quantity="many">%1$d أسابيع</item>
-        <item quantity="other">%1$d أسابيع</item>
+        <item quantity="many">%1$d أسبوعًا</item>
+        <item quantity="other">%1$d أسبوعٍ</item>
     </plurals>
 
     <string name="expiration_weeks_abbreviated">%1$d أسبوع</string>
     <string name="expiration_combined">‏%1$s‏%2$s‏</string>
 
     <!-- unverified safety numbers -->
-    <string name="IdentityUtil_unverified_banner_one">رقم اﻷمان مع %1$s قد تغير ولم يعد التحقُّق السابق منه وافٍ.</string>
-    <string name="IdentityUtil_unverified_banner_two">التحقق من أرقام السلامة مع كل من %1$s و%2$s لم يعد واف بعد الآن.</string>
-    <string name="IdentityUtil_unverified_banner_many">أرقام السلامة مع كل من %1$s، %2$s، و%3$s قد تغيّيرت، والتحقّق غير وافٍ بعد الآن.</string>
+    <string name="IdentityUtil_unverified_banner_one">رقم اﻷمان مع %1$s قد تغيَّر ولم يعد التحقُّق السابق منه سارٍ.</string>
+    <string name="IdentityUtil_unverified_banner_two">لم يعد التحقُّق من أرقام الأمان مع كل من %1$s و%2$s سارٍ بعد الآن.</string>
+    <string name="IdentityUtil_unverified_banner_many">لم يعد التحقُّق من أرقام الأمان مع كل من %1$s، %2$s، و%3$s سارٍ بعد الآن.</string>
 
-    <string name="IdentityUtil_unverified_dialog_one">لقد تغير رقم اﻷمان مع %1$s والتحقُّق السابق غير وافٍ، قد يعني هذا إما محاولة أحد ما اعتراض المحادثة أو ببساطة قيام %1$s بإعادة تثبيت سيجنال.</string>
-    <string name="IdentityUtil_unverified_dialog_two">لقد تغير رقم اﻷمان مع كل من %1$s و%2$s، والتحقُّق السابق غير وافٍ، وهذا يعني إما محاولة أحدٍ اعتراض المحادثة أو ببساطة قيامهما بإعادة تثبيت سيجنال.</string>
-    <string name="IdentityUtil_unverified_dialog_many">تم تغيير أرقام السلامة مع %1$s، %2$s، و%3$s، والتحقّق السابق غير وافٍ، وهذا يعني إما محاولة أحداً لاعتراض المحادثة أو ببساطة قيامهم بإعادة تثبيت سيجنال.</string>
+    <string name="IdentityUtil_unverified_dialog_one">تغيَّر رقم اﻷمان مع %1$s والتحقُّق السابق غير سارٍ. قد يعني هذا إما محاولة شخص ما مقاطعة المحادثة أو ببساطة قيام %1$s بإعادة تثبيت سيجنال.</string>
+    <string name="IdentityUtil_unverified_dialog_two">التحقُّق من رقم اﻷمان الخاص بك مع كل من %1$s و%2$s لم يعُد ساريًا. وهذا يعني إما محاولة شخص ما مقاطعة المحادثة أو ببساطة قيامه بإعادة تثبيت سيجنال.</string>
+    <string name="IdentityUtil_unverified_dialog_many">لتحقُّق من رقم اﻷمان الخاص بك مع كل من %1$s، %2$s، و%3$s لم يعُد ساريًا، وهذا يعني إما محاولة شخص ما مقاطعة المحادثة أو ببساطة قيامه بإعادة تثبيت سيجنال.</string>
 
-    <string name="IdentityUtil_untrusted_dialog_one">لقد تغير رقم اﻷمان بينك وبين %1$s للتو.</string>
-    <string name="IdentityUtil_untrusted_dialog_two">لقد تغيرت أرقام السلامة للتو مع كل من%1$s و%2$s.</string>
-    <string name="IdentityUtil_untrusted_dialog_many">لقد تغيرت أرقام السلامة مع كل من %1$s و %2$s و %3$s للتو.</string>
+    <string name="IdentityUtil_untrusted_dialog_one">تغيَّر رقم اﻷمان بينك وبين %1$s الآن.</string>
+    <string name="IdentityUtil_untrusted_dialog_two">تغيَّرت أرقام الأمان الآن مع كل من %1$s و%2$s.</string>
+    <string name="IdentityUtil_untrusted_dialog_many">تغيَّرت أرقام الأمان مع كل من %1$s و %2$s و %3$s الآن.</string>
 
     <plurals name="identity_others">
         <item quantity="zero">%1$d آخر</item>
@@ -3665,23 +3665,23 @@
     </plurals>
 
     <!-- giphy_activity -->
-    <string name="giphy_activity_toolbar__search_gifs">البحث عن الصور المتحركة</string>
+    <string name="giphy_activity_toolbar__search_gifs">البحث في الصور المتحركة</string>
 
     <!-- giphy_fragment -->
-    <string name="giphy_fragment__nothing_found">لم نعثر على شيء</string>
+    <string name="giphy_fragment__nothing_found">لم يظهر شيء عند البحث</string>
 
     <!-- load_more_header -->
     <string name="load_more_header__loading">جارٍ التحميل</string>
 
     <!-- media_overview_activity -->
-    <string name="media_overview_activity__no_media">لا يوجد ملف متعدّد الوسائط</string>
+    <string name="media_overview_activity__no_media">لا يوجد ملف وسائط</string>
 
     <!-- message_recipients_list_item -->
-    <string name="message_recipients_list_item__view">إظهار</string>
+    <string name="message_recipients_list_item__view">عرض</string>
     <string name="message_recipients_list_item__resend">اعادة إرسال</string>
 
     <!-- Displayed in a toast when user long presses an item in MyStories -->
-    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">لقد نُسخ ثم أُرسل مع التاريخ إلى الحافظة</string>
+    <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">تمَّ نسخ المخطَّط الزمني وإرساله إلى الحافظة</string>
     <!-- Displayed when there are no outgoing stories -->
     <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">ستظهر تحديثات قصتك هنا.</string>
 
@@ -3689,12 +3689,12 @@
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
         <item quantity="one">%1$s انضم إلى المجموعة.</item>
-        <item quantity="two">%1$s انضموا إلى المجموعة.</item>
+        <item quantity="two">%1$s انضما إلى المجموعة.</item>
         <item quantity="few">%1$s انضموا إلى المجموعة.</item>
         <item quantity="many">%1$s انضموا إلى المجموعة.</item>
         <item quantity="other">%1$s انضموا إلى المجموعة.</item>
     </plurals>
-    <string name="GroupUtil_group_name_is_now">أسم المجموعة الآن \'%1$s\'.</string>
+    <string name="GroupUtil_group_name_is_now">اسم المجموعة الآن هو \'%1$s\'.</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">فتح القفل</string>

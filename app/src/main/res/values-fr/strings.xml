@@ -180,7 +180,7 @@
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
     <string name="CreditCardFragment__invalid_month">Mois non valide</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Année requise</string>
+    <string name="CreditCardFragment__year_required">Veuillez indiquer une année.</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Année non valide</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
@@ -1264,7 +1264,7 @@
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Vous pouvez ajouter ou inviter des amis après avoir créé ce groupe.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Nom du groupe (requis)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Nom du groupe (facultatif)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est requis.</string>
+    <string name="AddGroupDetailsFragment__this_field_is_required">Ce champ est obligatoire.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Échec de création du groupe.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Réessayez plus tard.</string>
     <string name="AddGroupDetailsFragment__remove">Retirer</string>
@@ -3313,7 +3313,7 @@
     <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Impossible de distribuer du contenu de %1$s. Il peut s’agir d’un message, d’un sticker, d’une réaction ou d’une confirmation de lecture.</string>
 
     <!-- profile_create_activity -->
-    <string name="CreateProfileActivity_first_name_required">Prénom (requis)</string>
+    <string name="CreateProfileActivity_first_name_required">Prénom (champ obligatoire)</string>
     <string name="CreateProfileActivity_last_name_optional">Nom de famille (facultatif)</string>
     <string name="CreateProfileActivity_next">Suivant</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vous seul pouvez afficher le nom personnalisé du groupe MMS et ses photos.</string>
@@ -5083,7 +5083,7 @@
     <!-- Description of the suggested group chat folder -->
     <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Ajouter</string>
+    <string name="ChatFoldersFragment__add">Créer</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
     <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
     <!-- Option in context menu to edit the folder -->
@@ -6326,13 +6326,13 @@
     <!-- Name story screen note under text field -->
     <string name="CreateStoryWithViewersFragment__only_you_can">Vous seul pouvez voir le titre de cette story.</string>
     <!-- Name story screen label hint -->
-    <string name="CreateStoryWithViewersFragment__story_name_required">Titre de la story (requis)</string>
+    <string name="CreateStoryWithViewersFragment__story_name_required">Titre de la story (champ obligatoire)</string>
     <!-- Name story screen viewers subheading -->
     <string name="CreateStoryWithViewersFragment__viewers">Spectateurs</string>
     <!-- Name story screen create button label -->
     <string name="CreateStoryWithViewersFragment__create">Créer</string>
     <!-- Name story screen error when save attempted with no label -->
-    <string name="CreateStoryWithViewersFragment__this_field_is_required">Ce champ est requis.</string>
+    <string name="CreateStoryWithViewersFragment__this_field_is_required">Ce champ est obligatoire.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
     <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Titre déjà utilisé pour une autre story.</string>
     <!-- Text for select all action when editing recipients for a story -->
