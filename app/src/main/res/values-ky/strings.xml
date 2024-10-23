@@ -719,6 +719,15 @@
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">%1$d тандалды</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Билдирмелер профили</string>
@@ -4937,8 +4946,24 @@
     <string name="ChatsSettingsFragment__send_with_enter">Enter\'ди басып жөнөтүү</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">Маектер папкалары</string>
-    <!-- Option within settings to add a new chat folder -->
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">Маек папкасын кошуу</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">%1$d folders</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">Continue</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -4952,7 +4977,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Сунушталган папкалар</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Окула электер</string>
+    <string name="ChatFoldersFragment__unread">Unread</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Бардык маектердеги окула элек билдирүүлөр</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -4969,14 +4994,10 @@
     <string name="ChatFoldersFragment__folder_added">%1$s папкасы кошулду.</string>
     <!-- Option in context menu to edit the folder -->
     <string name="ChatFoldersFragment__edit_folder">Папканы оңдоо</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Папканы өчүрүү</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Жаңы папка кошуу</string>
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Баарынын үнүн басуу</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Папкалардын иретин өзгөртүү</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Баарын окулду деп белгилөө</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -4991,6 +5012,8 @@
     <plurals name="ChatFoldersFragment__d_chats_excluded">
         <item quantity="other">%1$d маек чыгарылды</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
@@ -5039,6 +5062,8 @@
     <string name="CreateFoldersFragment__delete_folder">Папканы өчүрүү</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">Бул маектер папкасын өчүрөсүзбү?</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">See all</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
@@ -5618,6 +5643,10 @@
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">Салым иштелүүдө…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">Төлөм иштетилүүдө…</string>
+
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -7406,12 +7435,18 @@
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Камдык көчүрмөсү түндө түзүлөт.</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Жазылуу токтотулду</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Камдык көчүрүү планы</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Камдык көчүрмөлөр өчүрүлгөн</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">Айына %1$s</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Камдык көчүрүү планыңыз акысыз</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7468,6 +7503,10 @@
     <string name="RemoteBackupsSettingsFragment__reenable_backups">Кайра иштетүү</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Камдык көчүрмөлөрдү сактоо функциясы өчүрүлгөндүктөн, Signal\'дын сактагычында сакталган нерселериңиз өчүп калды.</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7548,6 +7587,8 @@
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
         <item quantity="other">Соңку %1$d күндөгү медиа файлдар</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

@@ -739,6 +739,15 @@
         <item quantity="one">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
         <item quantity="other">%1$d ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್</string>
@@ -5056,8 +5065,25 @@
     <string name="ChatsSettingsFragment__send_with_enter">ಎಂಟರ್ ಮೂಲಕ ಕಳುಹಿಸಿ</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">ಚಾಟ್ ಫೋಲ್ಡರ್ ಗಳು</string>
-    <!-- Option within settings to add a new chat folder -->
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">ಚಾಟ್ ಫೋಲ್ಡರ್ ಸೇರಿಸಲಾಗಿದೆ</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d folder</item>
+        <item quantity="other">%1$d folders</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">Continue</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5071,7 +5097,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">ಸೂಚಿಸಿದ ಫೋಲ್ಡರ್ ಗಳು</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">ಓದದಿರುವ</string>
+    <string name="ChatFoldersFragment__unread">Unread</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">ಎಲ್ಲ ಚಾಟ್‍ಗಳಲ್ಲಿನ ಓದದಿರುವ ಮೆಸೇಜ್ ಗಳು</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5088,14 +5114,10 @@
     <string name="ChatFoldersFragment__folder_added">%1$s ಫೋಲ್ಡರ್ ಸೇರಿಸಲಾಗಿದೆ.</string>
     <!-- Option in context menu to edit the folder -->
     <string name="ChatFoldersFragment__edit_folder">ಫೋಲ್ಡರ್ ಗಳನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">ಫೋಲ್ಡರ್ ಅಳಿಸಿ</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">ಹೊಸ ಫೋಲ್ಡರ್ ಸೇರಿಸಿ</string>
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">ಎಲ್ಲವನ್ನೂ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">ರೆಕಾರ್ಡರ್ ಫೋಲ್ಡರ್ ಗಳು</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -5113,6 +5135,8 @@
         <item quantity="one">%1$d ಚಾಟ್ ಹೊರತುಪಡಿಸಲಾಗಿದೆ</item>
         <item quantity="other">%1$dಚಾಟ್ ಗಳನ್ನು ಹೊರತುಪಡಿಸಲಾಗಿದೆ</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
@@ -5161,6 +5185,8 @@
     <string name="CreateFoldersFragment__delete_folder">ಫೋಲ್ಡರ್ ಅಳಿಸಿ</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">ಈ ಚಾಟ್ ಫೋಲ್ಡರ್ ಅಳಿಸಿ ಹಾಕಬೇಕೆ?</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">See all</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
@@ -5750,6 +5776,10 @@
     <!-- *PaymentInProgressFragment strings -->
     <string name="InAppPaymentInProgressFragment__processing_donation">ದೇಣಿಗೆಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -7568,12 +7598,18 @@
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ರಾತ್ರಿಯಲ್ಲಿ ಬ್ಯಾಕಪ್ ಅನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">ಸಬ್‍ಸ್ಕ್ರಿಪ್ಷನ್ ನಿಷ್ಕ್ರಿಯವಾಗಿದೆ</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">ಬ್ಯಾಕಪ್ ಪ್ಲಾನ್</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/ತಿಂಗಳು</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪ್ಲಾನ್ ಉಚಿತ</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7630,6 +7666,10 @@
     <string name="RemoteBackupsSettingsFragment__reenable_backups">ಬ್ಯಾಕಪ್ ಗಳನ್ನು ಮತ್ತೆ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">ಬ್ಯಾಕಪ್ ಗಳನ್ನು ಆಫ್ ಮಾಡಲಾಗಿದೆ ಮತ್ತು Signal ನ ಸುರಕ್ಷಾ ಸ್ಟೋರೇಜ್ ಸೇವೆಗಾಗಿ ಸುರಕ್ಷತೆಗಾಗಿ ನಿಮ್ಮ ಡೇಟಾಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7712,6 +7752,8 @@
         <item quantity="one">ಮೀಡಿಯಾದ ಕೊನೆಯ %1$d ದಿನ</item>
         <item quantity="other">ಮೀಡಿಯಾದ ಕೊನೆಯ %1$d ದಿನಗಳು</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
