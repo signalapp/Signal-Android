@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.ListUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
@@ -56,6 +55,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
+import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -85,6 +85,7 @@ import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMess
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.push.SyncMessage;
 
@@ -801,6 +802,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         Log.i(TAG, "onSendCallMessage onFailure: ", e);
         RetrieveProfileJob.enqueue(recipient.getId());
         process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), UNTRUSTED_IDENTITY));
+      } catch (ProofRequiredException e) {
+        Log.i(TAG, "onSendCallMessage onFailure: ", e);
+        ProofRequiredExceptionHandler.handle(context, e, recipient, -1L, -1L);
+        process((s, p) -> p.handleResendMediaKeys(s));
+        process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), NETWORK_FAILURE));
       } catch (IOException e) {
         Log.i(TAG, "onSendCallMessage onFailure: ", e);
         process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), NETWORK_FAILURE));
@@ -1147,6 +1153,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                                        isCallFull));
   }
 
+  public void resendMediaKeys() {
+    process((s, p) -> p.handleResendMediaKeys(s));
+  }
+
   public void sendCallMessage(@NonNull final RemotePeer remotePeer,
                               @NonNull final SignalServiceCallMessage callMessage)
   {
@@ -1170,6 +1180,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                         UNTRUSTED_IDENTITY,
                                                                                         Optional.ofNullable(e.getIdentityKey())));
       } catch (IOException e) {
+        if (e instanceof ProofRequiredException) {
+          ProofRequiredExceptionHandler.handle(context, (ProofRequiredException) e, null, -1L, -1L);
+          process((s, p) -> p.handleResendMediaKeys(s));
+        }
+
         processSendMessageFailureWithChangeDetection(remotePeer,
                                                      (s, p) -> p.handleMessageSentError(s,
                                                                                         remotePeer.getCallId(),
