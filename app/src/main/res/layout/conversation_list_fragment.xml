@@ -39,6 +39,8 @@
         android:minHeight="52dp"
         android:clipToPadding="false"
         android:paddingStart="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/banner_barrier" />
 

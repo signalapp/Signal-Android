@@ -60,28 +60,26 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       dividerPref()
 
-      if (RemoteConfig.showChatFolders) {
-        sectionHeaderPref(R.string.ChatsSettingsFragment__chat_folders)
+      sectionHeaderPref(R.string.ChatsSettingsFragment__chat_folders)
 
-        if (state.folderCount == 0) {
-          clickPref(
-            title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_chat_folder),
-            onClick = {
-              Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
-            }
-          )
-        } else {
-          clickPref(
-            title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_edit_chat_folder),
-            summary = DSLSettingsText.from(resources.getQuantityString(R.plurals.ChatsSettingsFragment__d_folder, state.folderCount, state.folderCount)),
-            onClick = {
-              Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
-            }
-          )
-        }
-
-        dividerPref()
+      if (state.folderCount == 0) {
+        clickPref(
+          title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_chat_folder),
+          onClick = {
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
+          }
+        )
+      } else {
+        clickPref(
+          title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_edit_chat_folder),
+          summary = DSLSettingsText.from(resources.getQuantityString(R.plurals.ChatsSettingsFragment__d_folder, state.folderCount, state.folderCount)),
+          onClick = {
+            Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
+          }
+        )
       }
+
+      dividerPref()
 
       sectionHeaderPref(R.string.ChatsSettingsFragment__keyboard)
 
