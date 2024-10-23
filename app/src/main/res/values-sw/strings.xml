@@ -5057,7 +5057,7 @@
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">Folda la magumzo</string>
     <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__add_chat_folder">Weka folda la gumzo</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5073,11 +5073,11 @@
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
     <string name="ChatFoldersFragment__unreads">Hazijasomwa</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">Jumbe ambazo hazijasomwa kutoka kwenye magumzo yote</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
     <string name="ChatFoldersFragment__one_on_one_chats">Magumzo ya 1:1</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">Jumbe kutoka kwenye magumzo ya moja kwa moja tu</string>
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">Makundi</string>
     <!-- Description of the suggested group chat folder -->
@@ -5091,7 +5091,7 @@
     <!-- Option in context menu to delete the folder -->
     <string name="ChatFoldersFragment__delete_folder">Futa folda</string>
     <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__add_new_folder">Weka folda jipya</string>
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Nyamazisha yote</string>
     <!-- Option in context menu to reorder the positions of the folder -->
@@ -5100,8 +5100,8 @@
     <string name="ChatFoldersFragment__mark_all_read">Alamisha zote zilimesomwa</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d aina ya gumzo</item>
+        <item quantity="other">%1$d aina ya magumzo</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5110,8 +5110,8 @@
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d gumzo halijajumuishwa</item>
+        <item quantity="other">%1$d magumzo hayajajumuishwa</item>
     </plurals>
 
     <!-- CreateFoldersFragment -->
@@ -5122,7 +5122,7 @@
     <!-- Section title representing what chats are included in the folder -->
     <string name="CreateFoldersFragment__included_chats">Magumzo yaliyojumuishwa</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">Weka magumzo</string>
     <!-- Description explaining the purpose of the included chats section -->
     <string name="CreateFoldersFragment__choose_chats_you_want">Chagua magumzo unayotaka yaonekane kwenye folda hili.</string>
     <!-- Section title representing what chats are excluded from the folder -->
@@ -5146,7 +5146,7 @@
     <!-- Alert dialog confirmation button text to save the changes -->
     <string name="CreateFoldersFragment__create_folder">Tengeneza folda</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">Badili folda</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Hifadhi</string>
     <!-- Alert dialog title to save changes made to the current folder -->
@@ -5160,7 +5160,7 @@
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Futa folda</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Ungependa kufuta folda hili la gumzo?</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->

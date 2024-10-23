@@ -7267,7 +7267,7 @@
     <!-- Displayed for missed calls declined by notification profile -->
     <string name="CallLogAdapter__missed_notification_profile">Пропущено під час увімкненого профілю сповіщень</string>
     <!-- Displayed on Group Call button if user is not in the call -->
-    <string name="CallLogAdapter__join">Приєднатись</string>
+    <string name="CallLogAdapter__join">Приєднатися</string>
     <!-- Displayed on Group Call button if user is in the call -->
     <string name="CallLogAdapter__return">Повернутись</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
@@ -7390,7 +7390,7 @@
     <!-- Call link creation item title on calls tab -->
     <string name="CreateCallLink__create_a_call_link">Створити посилання на виклик</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Поділіться посиланням на виклик у Signal</string>
+    <string name="CreateCallLink__share_a_link_for">Виклик у Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
     <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Ось посилання, за яким можна приєднатися до виклику в Signal: %1$s</string>
 
@@ -7410,7 +7410,7 @@
     <!-- Displayed as a default name for the signal call -->
     <string name="CreateCallLinkBottomSheetDialogFragment__signal_call">Виклик у Signal</string>
     <!-- Displayed on a small button to allow user to instantly join call -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__join">Приєднатись</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__join">Приєднатися</string>
     <!-- Option to open a full screen dialog to add a call name -->
     <string name="CreateCallLinkBottomSheetDialogFragment__add_call_name">Додати назву виклику</string>
     <!-- Option to open a full screen dialog to edit a call name -->
@@ -7418,7 +7418,7 @@
     <!-- Toggle to require approval for all members before joining -->
     <string name="CreateCallLinkBottomSheetDialogFragment__require_admin_approval">Адміністратор затверджує учасників</string>
     <!-- Row label to share the link via Signal -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Поділитися посиланням через Signal</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__share_link_via_signal">Надіслати посилання в Signal</string>
     <!-- Row label to copy the link to the clipboard -->
     <string name="CreateCallLinkBottomSheetDialogFragment__copy_link">Копіювати посилання</string>
     <!-- Row label to share the link with the external share sheet -->

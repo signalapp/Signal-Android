@@ -5065,7 +5065,7 @@
     <!-- Header for section showing current chat folders -->
     <string name="ChatFoldersFragment__folders">Carpetas</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Crear una carpeta</string>
+    <string name="ChatFoldersFragment__create_a_folder">Nueva carpeta</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
     <string name="ChatFoldersFragment__all_chats">Todos los chats</string>
     <!-- Header for section showing suggested chat folders for users to have -->
@@ -5093,7 +5093,7 @@
     <!-- Option in context menu to add a new folder -->
     <string name="ChatFoldersFragment__add_new_folder">Añadir nueva carpeta</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Silenciar todo</string>
+    <string name="ChatFoldersFragment__mute_all">Silenciar todos</string>
     <!-- Option in context menu to reorder the positions of the folder -->
     <string name="ChatFoldersFragment__reorder_folder">Reordenar carpetas</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
@@ -5116,7 +5116,7 @@
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Crear una carpeta</string>
+    <string name="CreateFoldersFragment__create_a_folder">Nueva carpeta</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
     <string name="CreateFoldersFragment__folder_name">Nombre de la carpeta (obligatorio)</string>
     <!-- Section title representing what chats are included in the folder -->
