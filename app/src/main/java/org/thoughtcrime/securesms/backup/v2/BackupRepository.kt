@@ -487,6 +487,9 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
+      // Add back default All Chats chat folder after clearing data
+      SignalDatabase.chatFolders.insertAllChatFolder()
+
       val importState = ImportState(backupKey)
       val chatItemInserter: ChatItemArchiveImporter = ChatItemArchiveProcessor.beginImport(importState)
 

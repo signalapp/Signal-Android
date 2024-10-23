@@ -395,6 +395,15 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
     }
   }
 
+  /**
+   * Inserts the default 'All chats' folder in cases where it could get deleted (eg backups)
+   */
+  fun insertAllChatFolder() {
+    writableDatabase.withinTransaction { db ->
+      db.insert(ChatFolderTable.TABLE_NAME, null, getAllChatsFolderContentValues())
+    }
+  }
+
   private fun Collection<Long>.toContentValues(chatFolderId: Long, membershipType: MembershipType): List<ContentValues> {
     return map {
       contentValuesOf(
