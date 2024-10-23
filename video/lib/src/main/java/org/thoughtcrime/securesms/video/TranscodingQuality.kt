@@ -42,7 +42,9 @@ enum class TranscodingPreset(@VideoCodec val videoCodec: String, val videoShortE
   LEVEL_1(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_SD, VideoConstants.VIDEO_BITRATE_L1, VideoConstants.AUDIO_BITRATE),
   LEVEL_2(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L2, VideoConstants.AUDIO_BITRATE),
   LEVEL_3(MediaConverter.VIDEO_CODEC_H264, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L3, VideoConstants.AUDIO_BITRATE),
-  LEVEL_4(MediaConverter.VIDEO_CODEC_H265, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L3, VideoConstants.AUDIO_BITRATE);
+
+  /** Experimetnal H265 level */
+  LEVEL_3_H265(MediaConverter.VIDEO_CODEC_H265, VideoConstants.VIDEO_SHORT_EDGE_HD, VideoConstants.VIDEO_BITRATE_L3, VideoConstants.AUDIO_BITRATE);
 
   fun calculateMaxVideoUploadDurationInSeconds(upperFileSizeLimit: Long): Int {
     val upperFileSizeLimitWithMargin = (upperFileSizeLimit / 1.1).toLong()
