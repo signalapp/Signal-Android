@@ -481,8 +481,8 @@ object RegistrationRepository {
         } else {
           Log.i(TAG, "Push challenge timed out.")
         }
-        Log.i(TAG, "Push challenge unsuccessful. Updating registration state accordingly.")
-        return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(NullPointerException())
+        Log.i(TAG, "Push challenge unsuccessful. Continuing with session created without one.")
+        return@withContext sessionCreationResponse
       } catch (ex: Exception) {
         Log.w(TAG, "Exception caught, but the earlier try block should have caught it?", ex)
         return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(ex)
