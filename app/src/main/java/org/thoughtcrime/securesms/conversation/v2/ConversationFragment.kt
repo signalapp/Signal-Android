@@ -705,6 +705,12 @@ class ConversationFragment :
     super.onConfigurationChanged(newConfig)
     ToolbarDependentMarginListener(binding.toolbar)
     inlineQueryController.onOrientationChange(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+
+    // Recreate start call dialog on orientation change
+    val recipient: Recipient = viewModel.recipientSnapshot ?: return
+    CommunicationActions.startVoiceCall(this@ConversationFragment, recipient) {
+      YouAreAlreadyInACallSnackbar.show(requireView())
+    }
   }
 
   override fun onDestroyView() {
