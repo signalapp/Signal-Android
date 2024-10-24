@@ -12,6 +12,7 @@ import org.json.JSONException
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.orNull
@@ -83,7 +84,11 @@ import java.io.IOException
 import java.util.HashMap
 import java.util.LinkedList
 import java.util.Queue
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Future
 import kotlin.jvm.optionals.getOrNull
+import kotlin.time.Duration.Companion.days
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
@@ -98,9 +103,10 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
  */
 class ChatItemArchiveExporter(
   private val db: SignalDatabase,
-  private val cursor: Cursor,
+  private val backupStartTime: Long,
   private val batchSize: Int,
-  private val mediaArchiveEnabled: Boolean
+  private val mediaArchiveEnabled: Boolean,
+  private val cursorGenerator: (Long, Int) -> Cursor
 ) : Iterator<ChatItem?>, Closeable {
 
   private val eventTimer = EventTimer()
@@ -113,8 +119,12 @@ class ChatItemArchiveExporter(
 
   private val revisionMap: HashMap<Long, ArrayList<ChatItem>> = HashMap()
 
+  private var lastSeenReceivedTime = 0L
+
+  private var records: LinkedHashMap<Long, BackupMessageRecord> = readNextMessageRecordBatch(emptySet())
+
   override fun hasNext(): Boolean {
-    return buffer.isNotEmpty() || (cursor.count > 0 && !cursor.isLast && !cursor.isAfterLast)
+    return buffer.isNotEmpty() || records.isNotEmpty()
   }
 
   override fun next(): ChatItem? {
@@ -122,19 +132,8 @@ class ChatItemArchiveExporter(
       return buffer.remove()
     }
 
-    val records: LinkedHashMap<Long, BackupMessageRecord> = LinkedHashMap(batchSize)
-
-    for (i in 0 until batchSize) {
-      if (cursor.moveToNext()) {
-        val record = cursor.toBackupMessageRecord()
-        records[record.id] = record
-      } else {
-        break
-      }
-    }
-    eventTimer.emit("messages")
-
     val extraData = fetchExtraMessageData(db, records.keys)
+    eventTimer.emit("extra-data")
 
     for ((id, record) in records) {
       val builder = record.toBasicChatItemBuilder(extraData.groupReceiptsById[id])
@@ -288,6 +287,13 @@ class ChatItemArchiveExporter(
         previousEdits += builder.build()
       }
     }
+    eventTimer.emit("transform")
+
+    val recordIds = HashSet(records.keys)
+    records.clear()
+
+    records = readNextMessageRecordBatch(recordIds)
+    eventTimer.emit("messages")
 
     return if (buffer.isNotEmpty()) {
       buffer.remove()
@@ -297,46 +303,45 @@ class ChatItemArchiveExporter(
   }
 
   override fun close() {
-    cursor.close()
-    Log.w(TAG, "[ChatItemArchiveExporter] ${eventTimer.stop().summary}")
+    Log.d(TAG, "[ChatItemArchiveExporter][batchSize = $batchSize] ${eventTimer.stop().summary}")
+  }
+
+  private fun readNextMessageRecordBatch(pastIds: Set<Long>): LinkedHashMap<Long, BackupMessageRecord> {
+    return cursorGenerator(lastSeenReceivedTime, batchSize).use { cursor ->
+      val records: LinkedHashMap<Long, BackupMessageRecord> = LinkedHashMap(batchSize)
+      while (cursor.moveToNext()) {
+        cursor.toBackupMessageRecord(pastIds, backupStartTime)?.let { record ->
+          records[record.id] = record
+          lastSeenReceivedTime = record.dateReceived
+        }
+      }
+      records
+    }
   }
 
   private fun fetchExtraMessageData(db: SignalDatabase, messageIds: Set<Long>): ExtraMessageData {
-    // TODO [backup] This seems to be a wash
-//    val executor = SignalExecutors.BOUNDED
-//
-//    val mentionsFuture = executor.submitTyped {
-//      db.mentionTable.getMentionsForMessages(messageIds)
-//    }
-//
-//    val reactionsFuture = executor.submitTyped {
-//      db.reactionTable.getReactionsForMessages(messageIds)
-//    }
-//
-//    val attachmentsFuture = executor.submitTyped {
-//      db.attachmentTable.getAttachmentsForMessages(messageIds)
-//    }
-//
-//    val groupReceiptsFuture = executor.submitTyped {
-//      db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
-//    }
-//
-//    val mentionsResult = mentionsFuture.get()
-//    val reactionsResult = reactionsFuture.get()
-//    val attachmentsResult = attachmentsFuture.get()
-//    val groupReceiptsResult = groupReceiptsFuture.get()
+    val executor = SignalExecutors.BOUNDED
 
-    val mentionsResult = db.mentionTable.getMentionsForMessages(messageIds)
-    eventTimer.emit("mentions")
+    val mentionsFuture = executor.submitTyped {
+      db.mentionTable.getMentionsForMessages(messageIds)
+    }
 
-    val reactionsResult = db.reactionTable.getReactionsForMessages(messageIds)
-    eventTimer.emit("reactions")
+    val reactionsFuture = executor.submitTyped {
+      db.reactionTable.getReactionsForMessages(messageIds)
+    }
 
-    val attachmentsResult = db.attachmentTable.getAttachmentsForMessages(messageIds)
-    eventTimer.emit("attachments")
+    val attachmentsFuture = executor.submitTyped {
+      db.attachmentTable.getAttachmentsForMessages(messageIds)
+    }
 
-    val groupReceiptsResult = db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
-    eventTimer.emit("receipts")
+    val groupReceiptsFuture = executor.submitTyped {
+      db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
+    }
+
+    val mentionsResult = mentionsFuture.get()
+    val reactionsResult = reactionsFuture.get()
+    val attachmentsResult = attachmentsFuture.get()
+    val groupReceiptsResult = groupReceiptsFuture.get()
 
     return ExtraMessageData(
       mentionsById = mentionsResult,
@@ -1104,13 +1109,25 @@ private fun String.e164ToLong(): Long? {
   return fixed.toLongOrNull()
 }
 
-// private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
-//  return this.submit(callable)
-// }
+private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
+  return this.submit(callable)
+}
 
-private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
+private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {
+  val id = this.requireLong(MessageTable.ID)
+  if (pastIds.contains(id)) {
+    return null
+  }
+
+  val expiresIn = this.requireLong(MessageTable.EXPIRES_IN)
+  val expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED)
+
+  if (expireStarted != 0L && expireStarted + expiresIn < backupStartTime + 1.days.inWholeMilliseconds) {
+    return null
+  }
+
   return BackupMessageRecord(
-    id = this.requireLong(MessageTable.ID),
+    id = id,
     dateSent = this.requireLong(MessageTable.DATE_SENT),
     dateReceived = this.requireLong(MessageTable.DATE_RECEIVED),
     dateServer = this.requireLong(MessageTable.DATE_SERVER),
@@ -1120,8 +1137,8 @@ private fun Cursor.toBackupMessageRecord(): BackupMessageRecord {
     bodyRanges = this.requireBlob(MessageTable.MESSAGE_RANGES),
     fromRecipientId = this.requireLong(MessageTable.FROM_RECIPIENT_ID),
     toRecipientId = this.requireLong(MessageTable.TO_RECIPIENT_ID),
-    expiresIn = this.requireLong(MessageTable.EXPIRES_IN),
-    expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED),
+    expiresIn = expiresIn,
+    expireStarted = expireStarted,
     remoteDeleted = this.requireBoolean(MessageTable.REMOTE_DELETED),
     sealedSender = this.requireBoolean(MessageTable.UNIDENTIFIED),
     linkPreview = this.requireString(MessageTable.LINK_PREVIEWS),

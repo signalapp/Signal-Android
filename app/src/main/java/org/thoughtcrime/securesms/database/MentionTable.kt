@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.database.Cursor
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.insertInto
@@ -77,12 +78,16 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
   }
 
   fun getMentionsForMessages(messageIds: Collection<Long>): Map<Long, List<Mention>> {
-    val ids = messageIds.joinToString(separator = ",") { it.toString() }
+    if (messageIds.isEmpty()) {
+      return emptyMap()
+    }
+
+    val query = SqlUtil.buildFastCollectionQuery(MESSAGE_ID, messageIds)
 
     return readableDatabase
       .select()
       .from("$TABLE_NAME INDEXED BY $MESSAGE_ID_INDEX")
-      .where("$MESSAGE_ID IN ($ids)")
+      .where(query.where, query.whereArgs)
       .run()
       .use { cursor -> readMentions(cursor) }
   }

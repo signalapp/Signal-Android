@@ -283,7 +283,10 @@ object BackupRepository {
 
     try {
       val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot(mainDbName)
+      eventTimer.emit("main-db-snapshot")
+
       val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot(keyValueDbName)
+      eventTimer.emit("store-db-snapshot")
 
       val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
 

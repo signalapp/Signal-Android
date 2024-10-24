@@ -171,6 +171,22 @@ public final class SqlUtilTest {
   }
 
   @Test
+  public void buildFastCollectionQuery_single() {
+    SqlUtil.Query updateQuery = SqlUtil.buildFastCollectionQuery("a", Arrays.asList(1));
+
+    assertEquals("a IN (SELECT e.value FROM json_each(?) e)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "[\"1\"]" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
+  public void buildFastCollectionQuery_multiple() {
+    SqlUtil.Query updateQuery = SqlUtil.buildFastCollectionQuery("a", Arrays.asList(1, 2, 3));
+
+    assertEquals("a IN (SELECT e.value FROM json_each(?) e)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "[\"1\",\"2\",\"3\"]" }, updateQuery.getWhereArgs());
+  }
+
+  @Test
   public void buildCustomCollectionQuery_single_singleBatch() {
     List<String[]> args = new ArrayList<>();
     args.add(SqlUtil.buildArgs(1, 2));
