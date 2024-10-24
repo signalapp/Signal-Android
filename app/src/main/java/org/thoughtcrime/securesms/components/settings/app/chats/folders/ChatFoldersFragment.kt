@@ -95,7 +95,7 @@ class ChatFoldersFragment : ComposeFragment() {
           viewModel.showDeleteDialog(true)
         },
         onDeleteConfirmed = {
-          viewModel.deleteFolder(context = requireContext(), forceRefresh = true)
+          viewModel.deleteFolder(context = requireContext())
         },
         onDeleteDismissed = {
           viewModel.showDeleteDialog(false)

@@ -147,13 +147,11 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun deleteFolder(context: Context, forceRefresh: Boolean = false) {
+  fun deleteFolder(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
       ChatFoldersRepository.deleteFolder(internalState.value.originalFolder)
 
-      if (forceRefresh) {
-        loadCurrentFolders(context)
-      }
+      loadCurrentFolders(context)
       internalState.update {
         it.copy(showDeleteDialog = false)
       }
