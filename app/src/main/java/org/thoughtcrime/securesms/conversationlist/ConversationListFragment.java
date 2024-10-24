@@ -1065,7 +1065,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void onChatFoldersChanged(List<ChatFolderMappingModel> folders) {
-    chatFolderList.setVisibility(folders.size() > 1 ? View.VISIBLE : View.GONE);
+    chatFolderList.setVisibility(folders.size() > 1 && !isArchived() ? View.VISIBLE : View.GONE);
     chatFolderAdapter.submitList(new ArrayList<>(folders));
   }
 
