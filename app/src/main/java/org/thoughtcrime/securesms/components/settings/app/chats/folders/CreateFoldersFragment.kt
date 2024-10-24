@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -150,6 +151,9 @@ class CreateFoldersFragment : ComposeFragment() {
           if (shouldExit) {
             navController.popBackStack()
           }
+        },
+        onShowToast = {
+          Toast.makeText(requireContext(), R.string.CreateFoldersFragment__please_enter_name, Toast.LENGTH_LONG).show()
         }
       )
     }
@@ -176,7 +180,8 @@ fun CreateFolderScreen(
   onDeleteConfirmed: () -> Unit = {},
   onDeleteDismissed: () -> Unit = {},
   onCreateConfirmed: (Boolean) -> Unit = {},
-  onCreateDismissed: (Boolean) -> Unit = {}
+  onCreateDismissed: (Boolean) -> Unit = {},
+  onShowToast: () -> Unit = {}
 ) {
   var expandIncluded by remember { mutableStateOf(false) }
   var expandExcluded by remember { mutableStateOf(false) }
@@ -370,10 +375,26 @@ fun CreateFolderScreen(
     } else if (!isNewFolder) {
       Buttons.MediumTonal(
         colors = ButtonDefaults.filledTonalButtonColors(
+          contentColor = if (state.currentFolder.name.isEmpty()) {
+            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+          } else {
+            MaterialTheme.colorScheme.onSurface
+          },
+          containerColor = if (state.currentFolder.name.isEmpty()) {
+            MaterialTheme.colorScheme.surfaceVariant
+          } else {
+            MaterialTheme.colorScheme.primaryContainer
+          },
           disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         enabled = hasChanges,
-        onClick = { onCreateConfirmed(true) },
+        onClick = {
+          if (state.currentFolder.name.isEmpty()) {
+            onShowToast()
+          } else {
+            onCreateConfirmed(true)
+          }
+        },
         modifier = modifier
           .align(Alignment.BottomEnd)
           .padding(end = 16.dp, bottom = 16.dp)

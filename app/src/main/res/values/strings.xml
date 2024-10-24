@@ -5191,6 +5191,8 @@
     <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
     <string name="CreateFoldersFragment__see_all">See all</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
