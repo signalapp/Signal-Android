@@ -12,6 +12,8 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.CoroutineJob
@@ -78,40 +80,43 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
 
-    val subscriberId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-    if (subscriberId == null && hasActivePurchase) {
-      Log.w(TAG, "User has active Google Play Billing purchase but no subscriber id! User should cancel backup and resubscribe.")
-      // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
+    synchronized(InAppPaymentSubscriberRecord.Type.BACKUP) {
+      val subscriberId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
+      if (subscriberId == null && hasActivePurchase) {
+        Log.w(TAG, "User has active Google Play Billing purchase but no subscriber id! User should cancel backup and resubscribe.")
+        // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
+        return Result.success()
+      }
+
+      val tier = SignalStore.backup.backupTier
+      if (subscriberId == null && tier == MessageBackupTier.PAID) {
+        Log.w(TAG, "User has no subscriber id but PAID backup tier. User will need to cancel and resubscribe.")
+        // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
+        return Result.success()
+      }
+
+      val inAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+      val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
+      if (activeSubscription?.isActive == true && tier != MessageBackupTier.PAID && inAppPayment?.state != InAppPaymentTable.State.PENDING) {
+        Log.w(TAG, "User has an active subscription but no backup tier and no pending redemption.")
+        // TODO [message-backups] Set UI flag hint here to launch error sheet?
+        return Result.success()
+      }
+
+      if (activeSubscription?.isActive != true && tier == MessageBackupTier.PAID) {
+        Log.w(TAG, "User subscription is inactive or does not exist. User will need to cancel and resubscribe.")
+        // TODO [message-backups] Set UI hint?
+        return Result.success()
+      }
+
+      if (activeSubscription?.isActive != true && hasActivePurchase) {
+        Log.w(TAG, "User subscription is inactive but user has a recent purchase. User will need to cancel and resubscribe.")
+        // TODO [message-backups] Set UI hint?
+        return Result.success()
+      }
+
       return Result.success()
     }
-
-    val tier = SignalStore.backup.backupTier
-    if (subscriberId == null && tier == MessageBackupTier.PAID) {
-      Log.w(TAG, "User has no subscriber id but PAID backup tier. User will need to cancel and resubscribe.")
-      // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
-      return Result.success()
-    }
-
-    val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
-    if (activeSubscription?.isActive == true && tier != MessageBackupTier.PAID) {
-      Log.w(TAG, "User has an active subscription but no backup tier.")
-      // TODO [message-backups] Set UI flag hint here to launch error sheet?
-      return Result.success()
-    }
-
-    if (activeSubscription?.isActive != true && tier == MessageBackupTier.PAID) {
-      Log.w(TAG, "User subscription is inactive or does not exist. User will need to cancel and resubscribe.")
-      // TODO [message-backups] Set UI hint?
-      return Result.success()
-    }
-
-    if (activeSubscription?.isActive != true && hasActivePurchase) {
-      Log.w(TAG, "User subscription is inactive but user has a recent purchase. User will need to cancel and resubscribe.")
-      // TODO [message-backups] Set UI hint?
-      return Result.success()
-    }
-
-    return Result.success()
   }
 
   override fun serialize(): ByteArray? = null
