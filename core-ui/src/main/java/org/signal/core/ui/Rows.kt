@@ -1,6 +1,8 @@
 package org.signal.core.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -132,6 +134,7 @@ object Rows {
     icon: Painter? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
     onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
   ) {
     TextRow(
@@ -157,6 +160,7 @@ object Rows {
       },
       modifier = modifier,
       onClick = onClick,
+      onLongClick = onLongClick,
       enabled = enabled
     )
   }
@@ -164,18 +168,24 @@ object Rows {
   /**
    * Customizable text row that allows [text] and [icon] to be provided as composable functions instead of primitives.
    */
+  @OptIn(ExperimentalFoundationApi::class)
   @Composable
   fun TextRow(
     text: @Composable RowScope.() -> Unit,
     modifier: Modifier = Modifier,
     icon: (@Composable RowScope.() -> Unit)? = null,
     onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
   ) {
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = enabled && onClick != null, onClick = onClick ?: {})
+        .combinedClickable(
+          enabled = enabled && (onClick != null || onLongClick != null),
+          onClick = onClick ?: {},
+          onLongClick = onLongClick ?: {}
+        )
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {

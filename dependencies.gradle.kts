@@ -37,6 +37,7 @@ dependencyResolutionManagement {
 
       // Accompanist
       library("accompanist-permissions", "com.google.accompanist", "accompanist-permissions").versionRef("accompanist")
+      library("accompanist-drawablepainter", "com.google.accompanist:accompanist-drawablepainter:0.36.0")
 
       // Desugaring
       library("android-tools-desugar", "com.android.tools:desugar_jdk_libs:1.1.6")

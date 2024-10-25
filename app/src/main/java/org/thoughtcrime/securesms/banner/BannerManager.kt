@@ -7,8 +7,10 @@ package org.thoughtcrime.securesms.banner
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
@@ -57,6 +59,21 @@ class BannerManager @JvmOverloads constructor(
 
           onNewBannerShownListener()
         } ?: onNoBannerShownListener()
+      }
+    }
+  }
+
+  /**
+   * Displays the current banner.
+   */
+  @Composable
+  fun Banner() {
+    val banner by rememberUpdatedState(banners.firstOrNull { it.enabled } as Banner<Any>?)
+
+    banner?.let { nonNullBanner ->
+      val state by nonNullBanner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
+      state?.let { model ->
+        nonNullBanner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
       }
     }
   }

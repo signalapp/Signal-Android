@@ -568,6 +568,7 @@ dependencies {
   implementation(libs.dnsjava)
   implementation(libs.kotlinx.collections.immutable)
   implementation(libs.accompanist.permissions)
+  implementation(libs.accompanist.drawablepainter)
   implementation(libs.kotlin.stdlib.jdk8)
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.coroutines.play.services)
