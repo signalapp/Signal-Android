@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Locale
@@ -89,7 +90,7 @@ class LinkDeviceFragment : ComposeFragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    viewModel.initialize(requireContext())
+    viewModel.initialize()
 
     biometricDeviceLockLauncher = registerForActivityResult(BiometricDeviceLockContract()) { result: Int ->
       if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
@@ -118,18 +119,37 @@ class LinkDeviceFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsState()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
+    val context = LocalContext.current
 
-    LaunchedEffect(state.toastDialog) {
-      if (state.toastDialog.isNotEmpty()) {
-        Toast.makeText(requireContext(), state.toastDialog, Toast.LENGTH_LONG).show()
-        viewModel.clearToast()
+    LaunchedEffect(state.oneTimeEvent) {
+      when (val event = state.oneTimeEvent) {
+        LinkDeviceSettingsState.OneTimeEvent.None -> {
+          Unit
+        }
+        is LinkDeviceSettingsState.OneTimeEvent.ToastLinked -> {
+          Toast.makeText(context, context.getString(R.string.LinkDeviceFragment__s_linked, event.name), Toast.LENGTH_LONG).show()
+        }
+        is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked -> {
+          Toast.makeText(context, context.getString(R.string.LinkDeviceFragment__s_unlinked, event.name), Toast.LENGTH_LONG).show()
+        }
+        LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> {
+          Toast.makeText(context, context.getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
+        }
+        LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> {
+          navController.navigateToQrScannerIfAuthed()
+        }
+        LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> {
+          navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
+        }
+        LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet -> {
+          if (navController.currentDestination?.id == R.id.linkDeviceFinishedSheet) {
+            navController.popBackStack()
+          }
+        }
       }
-    }
 
-    LaunchedEffect(state.showFinishedSheet) {
-      if (state.showFinishedSheet) {
-        navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
-        viewModel.markFinishedSheetSeen()
+      if (state.oneTimeEvent != LinkDeviceSettingsState.OneTimeEvent.None) {
+        viewModel.clearOneTimeEvent()
       }
     }
 
@@ -148,21 +168,24 @@ class LinkDeviceFragment : ComposeFragment() {
       navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
-      DeviceDescriptionScreen(
+      DeviceListScreen(
         state = state,
-        navController = navController,
         modifier = Modifier.padding(contentPadding),
-        onLearnMore = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
-        onLinkDevice = {
-          if (biometricAuth.canAuthenticate(requireContext())) {
-            navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceEducationSheet)
-          } else {
-            navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-          }
-        },
-        setDeviceToRemove = { device -> viewModel.setDeviceToRemove(device) },
-        onRemoveDevice = { device -> viewModel.removeDevice(requireContext(), device) }
+        onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
+        onLinkNewDeviceClicked = { navController.navigateToQrScannerIfAuthed() },
+        onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
+        onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
+        onSyncFailureRetryRequested = { deviceId -> viewModel.onSyncErrorRetryRequested(deviceId) },
+        onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() }
       )
+    }
+  }
+
+  private fun NavController.navigateToQrScannerIfAuthed() {
+    if (biometricAuth.canAuthenticate(requireContext())) {
+      this.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceEducationSheet)
+    } else {
+      this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
     }
   }
 
@@ -190,23 +213,51 @@ class LinkDeviceFragment : ComposeFragment() {
 }
 
 @Composable
-fun DeviceDescriptionScreen(
+fun DeviceListScreen(
   state: LinkDeviceSettingsState,
-  navController: NavController? = null,
   modifier: Modifier = Modifier,
-  onLearnMore: () -> Unit = {},
-  onLinkDevice: () -> Unit = {},
-  setDeviceToRemove: (Device?) -> Unit = {},
-  onRemoveDevice: (Device) -> Unit = {}
+  onLearnMoreClicked: () -> Unit = {},
+  onLinkNewDeviceClicked: () -> Unit = {},
+  onDeviceSelectedForRemoval: (Device?) -> Unit = {},
+  onDeviceRemovalConfirmed: (Device) -> Unit = {},
+  onSyncFailureRetryRequested: (Int?) -> Unit = {},
+  onSyncFailureIgnored: () -> Unit = {}
 ) {
-  if (state.progressDialogMessage != -1 && state.progressDialogMessage != R.string.LinkDeviceFragment__loading) {
-    if (navController?.currentDestination?.id == R.id.linkDeviceFinishedSheet &&
-      state.progressDialogMessage == R.string.LinkDeviceFragment__linking_device
-    ) {
-      navController.popBackStack()
+  // If a bottom sheet is showing, we don't want the spinner underneath
+  if (!state.bottomSheetVisible) {
+    when (state.dialogState) {
+      DialogState.None -> {
+        Unit
+      }
+      DialogState.Linking -> {
+        Dialogs.IndeterminateProgressDialog(stringResource(id = R.string.LinkDeviceFragment__linking_device))
+      }
+      DialogState.Unlinking -> {
+        Dialogs.IndeterminateProgressDialog(stringResource(id = R.string.DeviceListActivity_unlinking_device))
+      }
+      DialogState.SyncingMessages -> {
+        Dialogs.IndeterminateProgressDialog(stringResource(id = R.string.LinkDeviceFragment__syncing_messages))
+      }
+      is DialogState.SyncingFailed,
+      DialogState.SyncingTimedOut -> {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
+          body = stringResource(R.string.LinkDeviceFragment__sync_failure_body),
+          confirm = stringResource(R.string.LinkDeviceFragment__sync_failure_retry_button),
+          onConfirm = {
+            if (state.dialogState is DialogState.SyncingFailed) {
+              onSyncFailureRetryRequested(state.dialogState.deviceId)
+            } else {
+              onSyncFailureRetryRequested(null)
+            }
+          },
+          dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
+          onDismiss = onSyncFailureIgnored
+        )
+      }
     }
-    Dialogs.IndeterminateProgressDialog(stringResource(id = state.progressDialogMessage))
   }
+
   if (state.deviceToRemove != null) {
     val device: Device = state.deviceToRemove
     val name = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
@@ -215,8 +266,8 @@ fun DeviceDescriptionScreen(
       body = stringResource(id = R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive),
       confirm = stringResource(R.string.LinkDeviceFragment__unlink),
       dismiss = stringResource(android.R.string.cancel),
-      onConfirm = { onRemoveDevice(device) },
-      onDismiss = { setDeviceToRemove(null) }
+      onConfirm = { onDeviceRemovalConfirmed(device) },
+      onDismiss = { onDeviceSelectedForRemoval(null) }
     )
   }
 
@@ -235,13 +286,13 @@ fun DeviceDescriptionScreen(
       text = AnnotatedString(stringResource(id = R.string.LearnMoreTextView_learn_more)),
       style = LocalTextStyle.current.copy(color = MaterialTheme.colorScheme.primary)
     ) {
-      onLearnMore()
+      onLearnMoreClicked()
     }
 
     Spacer(modifier = Modifier.size(20.dp))
 
     Buttons.LargeTonal(
-      onClick = onLinkDevice,
+      onClick = onLinkNewDeviceClicked,
       modifier = Modifier.defaultMinSize(300.dp).padding(bottom = 8.dp)
     ) {
       Text(stringResource(id = R.string.LinkDeviceFragment__link_a_new_device))
@@ -255,7 +306,7 @@ fun DeviceDescriptionScreen(
         style = MaterialTheme.typography.titleMedium,
         modifier = Modifier.padding(start = 24.dp, top = 12.dp, bottom = 12.dp)
       )
-      if (state.progressDialogMessage == R.string.LinkDeviceFragment__loading) {
+      if (state.deviceListLoading) {
         Spacer(modifier = Modifier.size(30.dp))
         CircularProgressIndicator(
           modifier = Modifier
@@ -277,7 +328,7 @@ fun DeviceDescriptionScreen(
         )
       } else {
         state.devices.forEach { device ->
-          DeviceRow(device, setDeviceToRemove)
+          DeviceRow(device, onDeviceSelectedForRemoval)
         }
       }
     }
@@ -356,14 +407,75 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
 
 @SignalPreview
 @Composable
-private fun DeviceScreenPreview() {
-  val previewDevices = listOf(
-    Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000),
-    Device(1, "Sam's iPad", 1715793182000, 1716053122000)
-  )
-  val previewState = LinkDeviceSettingsState(devices = previewDevices)
-
+private fun DeviceListScreenPreview() {
   Previews.Preview {
-    DeviceDescriptionScreen(previewState)
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        devices = listOf(
+          Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000),
+          Device(1, "Sam's iPad", 1715793182000, 1716053122000)
+        )
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenLoadingPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        deviceListLoading = true
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenLinkingPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.Linking
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenUnlinkingPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.Unlinking
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenSyncingMessagesPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.SyncingMessages
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenSyncingFailedPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.SyncingTimedOut
+      )
+    )
   }
 }

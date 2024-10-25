@@ -112,7 +112,17 @@ class AttachmentApi(
     }
   }
 
-  private fun getResumableUploadUrl(uploadForm: AttachmentUploadForm): NetworkResult<String> {
+  /**
+   * Uploads a raw file using the v4 upload scheme. No additional encryption is supplied! Always prefer [uploadAttachmentV4], unless you are using a separate
+   * encryption scheme (i.e. like backup files).
+   */
+  fun uploadPreEncryptedFileToAttachmentV4(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, inputStream: InputStream, inputStreamLength: Long): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, inputStream, inputStreamLength)
+    }
+  }
+
+  fun getResumableUploadUrl(uploadForm: AttachmentUploadForm): NetworkResult<String> {
     return NetworkResult.fromFetch {
       pushServiceSocket.getResumableUploadUrl(uploadForm)
     }

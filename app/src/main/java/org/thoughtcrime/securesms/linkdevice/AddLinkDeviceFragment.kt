@@ -49,7 +49,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
       viewModel.markIntroSheetSeen()
     }
 
-    if ((state.qrCodeFound || state.qrCodeInvalid) && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {
+    if (state.qrCodeState != LinkDeviceSettingsState.QrCodeState.NONE && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {
       navController.popBackStack()
     }
 
@@ -60,14 +60,16 @@ class AddLinkDeviceFragment : ComposeFragment() {
       onRequestPermissions = { askPermissions() },
       onShowFrontCamera = { viewModel.showFrontCamera() },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
-      onQrCodeApproved = { viewModel.addDevice() },
-      onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
-      onQrCodeRetry = { viewModel.onQrCodeScanned(state.url) },
-      onLinkDeviceSuccess = {
-        viewModel.onLinkDeviceResult(true)
+      onQrCodeApproved = {
         navController.popBackStack()
+        viewModel.addDevice()
       },
-      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(false) }
+      onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
+      onQrCodeRetry = { viewModel.onQrCodeScanned(state.linkUri.toString()) },
+      onLinkDeviceSuccess = {
+        viewModel.onLinkDeviceResult(showSheet = true)
+      },
+      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(showSheet = false) }
     )
   }
 
@@ -115,8 +117,7 @@ private fun MainScreen(
       hasPermission = hasPermissions,
       onRequestPermissions = onRequestPermissions,
       showFrontCamera = state.showFrontCamera,
-      qrCodeFound = state.qrCodeFound,
-      qrCodeInvalid = state.qrCodeInvalid,
+      qrCodeState = state.qrCodeState,
       onQrCodeScanned = onQrCodeScanned,
       onQrCodeAccepted = onQrCodeApproved,
       onQrCodeDismissed = onQrCodeDismissed,

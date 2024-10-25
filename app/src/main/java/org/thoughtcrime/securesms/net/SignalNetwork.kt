@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.keys.KeysApi
+import org.whispersystems.signalservice.api.link.LinkDeviceApi
 
 /**
  * A convenient way to access network operations, similar to [org.thoughtcrime.securesms.database.SignalDatabase] and [org.thoughtcrime.securesms.keyvalue.SignalStore].
@@ -22,4 +23,7 @@ object SignalNetwork {
 
   val keys: KeysApi
     get() = AppDependencies.keysApi
+
+  val linkDevice: LinkDeviceApi
+    get() = AppDependencies.linkDeviceApi
 }

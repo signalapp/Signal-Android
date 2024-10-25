@@ -245,19 +245,27 @@ object BackupRepository {
     }
   }
 
-  fun export(outputStream: OutputStream, append: (ByteArray) -> Unit, plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis(), cancellationSignal: () -> Boolean = { false }) {
+  fun export(
+    outputStream: OutputStream,
+    append: (ByteArray) -> Unit,
+    backupKey: BackupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+    plaintext: Boolean = false,
+    currentTime: Long = System.currentTimeMillis(),
+    mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    cancellationSignal: () -> Boolean = { false }
+  ) {
     val writer: BackupExportWriter = if (plaintext) {
       PlainTextBackupWriter(outputStream)
     } else {
       EncryptedBackupWriter(
-        key = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+        key = backupKey,
         aci = SignalStore.account.aci!!,
         outputStream = outputStream,
         append = append
       )
     }
 
-    export(currentTime = currentTime, isLocal = false, writer = writer, cancellationSignal = cancellationSignal)
+    export(currentTime = currentTime, isLocal = false, writer = writer, mediaBackupEnabled = mediaBackupEnabled, cancellationSignal = cancellationSignal)
   }
 
   /**
@@ -273,6 +281,7 @@ object BackupRepository {
     currentTime: Long,
     isLocal: Boolean,
     writer: BackupExportWriter,
+    mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
     exportExtras: ((SignalDatabase) -> Unit)? = null
@@ -288,7 +297,7 @@ object BackupRepository {
       val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot(keyValueDbName)
       eventTimer.emit("store-db-snapshot")
 
-      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled)
 
       var frameCount = 0L
 

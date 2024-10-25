@@ -86,6 +86,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
 
     ArchiveUploadProgress.onMessageBackupCreated()
 
+    // TODO [backup] Need to make this resumable
     FileInputStream(tempBackupFile).use {
       when (val result = BackupRepository.uploadBackupFile(it, tempBackupFile.length())) {
         is NetworkResult.Success -> {

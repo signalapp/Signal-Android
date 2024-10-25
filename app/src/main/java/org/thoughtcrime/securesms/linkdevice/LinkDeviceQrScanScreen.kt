@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import org.signal.core.ui.Dialogs
 import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
 import org.thoughtcrime.securesms.qr.QrScanScreens
 import java.util.concurrent.TimeUnit
@@ -27,13 +28,12 @@ fun LinkDeviceQrScanScreen(
   hasPermission: Boolean,
   onRequestPermissions: () -> Unit,
   showFrontCamera: Boolean?,
-  qrCodeFound: Boolean,
-  qrCodeInvalid: Boolean,
+  qrCodeState: LinkDeviceSettingsState.QrCodeState,
   onQrCodeScanned: (String) -> Unit,
   onQrCodeAccepted: () -> Unit,
   onQrCodeDismissed: () -> Unit,
   onQrCodeRetry: () -> Unit,
-  linkDeviceResult: LinkDeviceRepository.LinkDeviceResult,
+  linkDeviceResult: LinkDeviceResult,
   onLinkDeviceSuccess: () -> Unit,
   onLinkDeviceFailure: () -> Unit,
   modifier: Modifier = Modifier
@@ -41,35 +41,41 @@ fun LinkDeviceQrScanScreen(
   val lifecycleOwner = LocalLifecycleOwner.current
   val context = LocalContext.current
 
-  if (qrCodeFound) {
-    Dialogs.SimpleAlertDialog(
-      title = stringResource(id = R.string.DeviceProvisioningActivity_link_this_device),
-      body = stringResource(id = R.string.AddLinkDeviceFragment__this_device_will_see_your_groups_contacts),
-      confirm = stringResource(id = R.string.device_list_fragment__link_new_device),
-      onConfirm = onQrCodeAccepted,
-      dismiss = stringResource(id = android.R.string.cancel),
-      onDismiss = onQrCodeDismissed
-    )
-  } else if (qrCodeInvalid) {
-    Dialogs.SimpleAlertDialog(
-      title = stringResource(id = R.string.AddLinkDeviceFragment__linking_device_failed),
-      body = stringResource(id = R.string.AddLinkDeviceFragment__this_qr_code_not_valid),
-      confirm = stringResource(id = R.string.AddLinkDeviceFragment__retry),
-      onConfirm = onQrCodeRetry,
-      dismiss = stringResource(id = android.R.string.cancel),
-      onDismiss = onQrCodeDismissed
-    )
+  when (qrCodeState) {
+    LinkDeviceSettingsState.QrCodeState.NONE -> {
+      Unit
+    }
+    LinkDeviceSettingsState.QrCodeState.VALID -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(id = R.string.DeviceProvisioningActivity_link_this_device),
+        body = stringResource(id = R.string.AddLinkDeviceFragment__this_device_will_see_your_groups_contacts),
+        confirm = stringResource(id = R.string.device_list_fragment__link_new_device),
+        onConfirm = onQrCodeAccepted,
+        dismiss = stringResource(id = android.R.string.cancel),
+        onDismiss = onQrCodeDismissed
+      )
+    }
+    LinkDeviceSettingsState.QrCodeState.INVALID -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(id = R.string.AddLinkDeviceFragment__linking_device_failed),
+        body = stringResource(id = R.string.AddLinkDeviceFragment__this_qr_code_not_valid),
+        confirm = stringResource(id = R.string.AddLinkDeviceFragment__retry),
+        onConfirm = onQrCodeRetry,
+        dismiss = stringResource(id = android.R.string.cancel),
+        onDismiss = onQrCodeDismissed
+      )
+    }
   }
 
   LaunchedEffect(linkDeviceResult) {
     when (linkDeviceResult) {
-      LinkDeviceRepository.LinkDeviceResult.SUCCESS -> onLinkDeviceSuccess()
-      LinkDeviceRepository.LinkDeviceResult.NO_DEVICE -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_no_device, onLinkDeviceFailure)
-      LinkDeviceRepository.LinkDeviceResult.NETWORK_ERROR -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_network_error, onLinkDeviceFailure)
-      LinkDeviceRepository.LinkDeviceResult.KEY_ERROR -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_key_error, onLinkDeviceFailure)
-      LinkDeviceRepository.LinkDeviceResult.LIMIT_EXCEEDED -> makeToast(context, R.string.DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already, onLinkDeviceFailure)
-      LinkDeviceRepository.LinkDeviceResult.BAD_CODE -> makeToast(context, R.string.DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code, onLinkDeviceFailure)
-      LinkDeviceRepository.LinkDeviceResult.UNKNOWN -> Unit
+      is LinkDeviceResult.Success -> onLinkDeviceSuccess()
+      is LinkDeviceResult.NoDevice -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_no_device, onLinkDeviceFailure)
+      is LinkDeviceResult.NetworkError -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_network_error, onLinkDeviceFailure)
+      is LinkDeviceResult.KeyError -> makeToast(context, R.string.DeviceProvisioningActivity_content_progress_key_error, onLinkDeviceFailure)
+      is LinkDeviceResult.LimitExceeded -> makeToast(context, R.string.DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already, onLinkDeviceFailure)
+      is LinkDeviceResult.BadCode -> makeToast(context, R.string.DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code, onLinkDeviceFailure)
+      is LinkDeviceResult.None -> Unit
     }
   }
 

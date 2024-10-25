@@ -33,7 +33,10 @@ message ProvisionMessage {
   optional bool   readReceipts          = 7;
   optional uint32 provisioningVersion   = 9;
   optional bytes  masterKey             = 13;
-  // NEXT ID: 14
+  optional bytes  ephemeralBackupKey    = 14; // 32 bytes
+  optional string accountEntropyPool    = 15;
+  optional bytes  mediaRootBackupKey    = 16; // 32-bytes
+  // NEXT ID: 17
 }
 
 enum ProvisioningVersion {

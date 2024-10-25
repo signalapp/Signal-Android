@@ -509,10 +509,6 @@ public class SignalServiceAccountManager {
     return pushServiceSocket.getAccountDataReport();
   }
 
-  public String getNewDeviceVerificationCode() throws IOException {
-    return this.pushServiceSocket.getNewDeviceVerificationCode();
-  }
-
   public void addDevice(String deviceIdentifier,
                         ECPublicKey deviceKey,
                         IdentityKeyPair aciIdentityKeyPair,
@@ -552,7 +548,7 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getDevices();
   }
 
-  public void removeDevice(long deviceId) throws IOException {
+  public void removeDevice(int deviceId) throws IOException {
     this.pushServiceSocket.removeDevice(deviceId);
   }
 
