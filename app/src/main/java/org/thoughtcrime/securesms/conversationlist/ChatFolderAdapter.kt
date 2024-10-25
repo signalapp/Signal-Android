@@ -53,7 +53,11 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
         true
       }
       if (model.isSelected) {
-        itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
+        itemView.backgroundTintList = if (callbacks.isScrolled()) {
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorBackground))
+        } else {
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
+        }
       } else {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.transparent))
       }
@@ -75,5 +79,6 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
     fun onUnmuteAll(chatFolder: ChatFolderRecord)
     fun onReadAll(chatFolder: ChatFolderRecord)
     fun onFolderSettings()
+    fun isScrolled(): Boolean
   }
 }

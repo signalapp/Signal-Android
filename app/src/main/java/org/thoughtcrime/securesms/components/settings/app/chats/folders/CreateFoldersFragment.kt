@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ButtonDefaults
@@ -44,6 +45,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -57,6 +59,7 @@ import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -76,7 +79,7 @@ class CreateFoldersFragment : ComposeFragment() {
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-          if (viewModel.hasChanges()) {
+          if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
             viewModel.showConfirmationDialog(true)
           } else {
             findNavController().popBackStack()
@@ -96,13 +99,21 @@ class CreateFoldersFragment : ComposeFragment() {
     LaunchedEffect(Unit) {
       if (state.originalFolder == state.currentFolder) {
         viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
+        viewModel.addThreadToIncludedChat(arguments?.getLong(KEY_THREAD_ID))
+      }
+    }
+
+    LaunchedEffect(Unit) {
+      if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
+        SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+        navController.safeNavigate(R.id.action_createFoldersFragment_to_chatFoldersEducationSheet)
       }
     }
 
     Scaffolds.Settings(
       title = if (isNewFolder) stringResource(id = R.string.CreateFoldersFragment__create_a_folder) else stringResource(id = R.string.CreateFoldersFragment__edit_folder),
       onNavigationClick = {
-        if (viewModel.hasChanges()) {
+        if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
           viewModel.showConfirmationDialog(true)
         } else {
           navController.popBackStack()
@@ -161,6 +172,7 @@ class CreateFoldersFragment : ComposeFragment() {
 
   companion object {
     private val KEY_FOLDER_ID = "folder_id"
+    private val KEY_THREAD_ID = "thread_id"
   }
 }
 
@@ -195,24 +207,14 @@ fun CreateFolderScreen(
       dismiss = stringResource(id = android.R.string.cancel),
       onDismiss = onDeleteDismissed
     )
-  } else if (state.showConfirmationDialog && isNewFolder) {
-    Dialogs.SimpleAlertDialog(
-      title = stringResource(id = R.string.CreateFoldersFragment__create_folder_title),
-      body = stringResource(id = R.string.CreateFoldersFragment__do_you_want_to_create, state.currentFolder.name),
-      confirm = stringResource(id = R.string.CreateFoldersFragment__create_folder),
-      onConfirm = { onCreateConfirmed(false) },
-      dismiss = stringResource(id = R.string.CreateFoldersFragment__discard),
-      onDismiss = { onCreateDismissed(true) },
-      onDismissRequest = { onCreateDismissed(false) }
-    )
   } else if (state.showConfirmationDialog) {
     Dialogs.SimpleAlertDialog(
-      title = stringResource(id = R.string.CreateFoldersFragment__save_changes_title),
-      body = stringResource(id = R.string.CreateFoldersFragment__do_you_want_to_save),
-      confirm = stringResource(id = R.string.CreateFoldersFragment__save_changes),
-      onConfirm = { onCreateConfirmed(false) },
-      dismiss = stringResource(id = R.string.CreateFoldersFragment__discard),
-      onDismiss = { onCreateDismissed(true) },
+      title = stringResource(id = R.string.CreateFoldersFragment__discard_changes_title),
+      body = stringResource(id = R.string.CreateFoldersFragment__you_will_lose_changes),
+      confirm = stringResource(id = R.string.CreateFoldersFragment__discard),
+      onConfirm = { onCreateDismissed(true) },
+      dismiss = stringResource(id = android.R.string.cancel),
+      onDismiss = { onCreateDismissed(false) },
       onDismissRequest = { onCreateDismissed(false) }
     )
   }
@@ -224,6 +226,7 @@ fun CreateFolderScreen(
           value = state.currentFolder.name,
           label = { Text(text = stringResource(id = R.string.CreateFoldersFragment__folder_name)) },
           onValueChange = onNameChange,
+          keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
           singleLine = true,
           modifier = modifier
             .fillMaxWidth()

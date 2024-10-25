@@ -5167,23 +5167,15 @@
     <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Create</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Save</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">Discard</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Delete folder</string>

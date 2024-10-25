@@ -143,7 +143,9 @@ class ConversationListViewModel(
         if (conversations.isNotEmpty()) {
           false
         } else {
-          SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter) == 0
+          val archivedCount = SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter)
+          val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount(filterRequest.filter)
+          (archivedCount + unarchivedCount) == 0
         }
       }
       .observeOn(AndroidSchedulers.mainThread())

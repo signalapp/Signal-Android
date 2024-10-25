@@ -1485,12 +1485,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (conversation.getThreadRecord().isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id, false)));
     } else {
-      if (RemoteConfig.internalUser() && viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL) {
+      if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL) {
         List<ChatFolderRecord> folders = viewModel.getFolders().stream().map(ChatFolderMappingModel::getChatFolder).collect(Collectors.toList());
         items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
           AddToFolderBottomSheet.showChatFolderSheet(folders, conversation.getThreadRecord().getThreadId()).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
         ));
-      } else if (RemoteConfig.internalUser()){
+      } else {
         items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
       }
       items.add(new ActionItem(R.drawable.symbol_archive_24, getResources().getString(R.string.ConversationListFragment_archive), () -> handleArchive(id, false)));
@@ -1690,6 +1690,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   @Override
+  public boolean isScrolled() {
+    return list.canScrollVertically(-1);
+  }
+
+  @Override
   public void onChatFolderClicked(@NonNull ChatFolderRecord chatFolder) {
     int oldIndex = -1;
     int newIndex = -1;
@@ -1724,7 +1729,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onEdit(@NonNull ChatFolderRecord chatFolder) {
-    startActivity(AppSettingsActivity.createChatFolder(requireContext(), chatFolder.getId()));
+    startActivity(AppSettingsActivity.createChatFolder(requireContext(), chatFolder.getId(), null));
   }
 
   @Override

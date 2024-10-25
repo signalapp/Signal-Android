@@ -402,6 +402,10 @@
             android:name="folder_id"
             app:argType="long" />
 
+        <argument
+            android:name="thread_id"
+            app:argType="long" />
+
         <action
             android:id="@+id/action_createFoldersFragment_to_chooseChatsFragment"
             app:destination="@id/chooseChatsFragment"
@@ -413,6 +417,10 @@
                 android:name="include_chats"
                 app:argType="boolean" />
         </action>
+
+        <action
+            android:id="@+id/action_createFoldersFragment_to_chatFoldersEducationSheet"
+            app:destination="@id/chatFoldersEducationSheet" />
     </fragment>
 
     <fragment

@@ -77,7 +77,7 @@ class AddToFolderBottomSheet private constructor() : ComposeBottomSheetDialogFra
         dismissAllowingStateLoss()
       },
       onCreate = {
-        requireContext().startActivity(AppSettingsActivity.createChatFolder(requireContext(), -1))
+        requireContext().startActivity(AppSettingsActivity.createChatFolder(requireContext(), -1, threadId))
         dismissAllowingStateLoss()
       }
     )
