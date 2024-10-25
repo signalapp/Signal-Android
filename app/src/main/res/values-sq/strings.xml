@@ -5083,7 +5083,7 @@
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
     <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
     <!-- Button text to dismiss bottom sheet -->
-    <string name="ChatFoldersEducationSheet__continue">Continue</string>
+    <string name="ChatFoldersEducationSheet__continue">Vazhdo</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5097,7 +5097,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Dosjet e sugjeruara</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Unread</string>
+    <string name="ChatFoldersFragment__unread">Të palexuara</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Mesazhe të palexuara nga të gjitha bisedat</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5163,30 +5163,24 @@
     <string name="CreateFoldersFragment__include_muted_chats">Përfshi bisedat pa zë</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Krijoje</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Të krijohet dosja?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Dëshiron të krijosh dosjen \"%1$s\" të bisedës?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Krijo dosje</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Përpuno dosjen</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Ruaj</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Të ruhen ndryshimet?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Dëshiron të ruash ndryshimet që ke bërë në dosjen e bisedës?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Ruaj ndryshimet</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">Hidhe tej</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Fshi dosjen</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">Të fshihet dosja e bisedë?</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
-    <string name="CreateFoldersFragment__see_all">See all</string>
+    <string name="CreateFoldersFragment__see_all">Shihi të gjitha</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->

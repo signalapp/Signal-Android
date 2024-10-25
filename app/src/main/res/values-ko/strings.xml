@@ -4963,7 +4963,7 @@
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
     <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
     <!-- Button text to dismiss bottom sheet -->
-    <string name="ChatFoldersEducationSheet__continue">Continue</string>
+    <string name="ChatFoldersEducationSheet__continue">계속</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -4977,7 +4977,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">추천 폴더</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Unread</string>
+    <string name="ChatFoldersFragment__unread">읽지 않음</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">모든 대화의 읽지 않은 메시지</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5013,7 +5013,7 @@
         <item quantity="other">대화 %1$d개를 제외함</item>
     </plurals>
     <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
-    <string name="ChatFolderAdapter__99p">99+</string>
+    <string name="ChatFolderAdapter__99p">99개 이상</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
@@ -5040,30 +5040,24 @@
     <string name="CreateFoldersFragment__include_muted_chats">알림을 끈 대화 포함</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">만들기</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">폴더를 만드시겠습니까?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">\'%1$s\' 대화 폴더를 만드시겠습니까?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">폴더 만들기</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">폴더 수정</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">저장</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">변경 내용을 저장하시겠습니까?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">이 대화 폴더에 적용한 변경 내용을 저장하시겠습니까?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">변경 내용 저장</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">파기</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">폴더 삭제</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">이 대화 폴더를 삭제하시겠습니까?</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
-    <string name="CreateFoldersFragment__see_all">See all</string>
+    <string name="CreateFoldersFragment__see_all">모두 보기</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->

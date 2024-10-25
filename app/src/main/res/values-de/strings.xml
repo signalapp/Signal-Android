@@ -3603,13 +3603,13 @@
     <!-- Description for the confirmation dialog of changing the app icon. -->
     <string name="preferences__app_icon_dialog_description">Signal muss beendet werden, um das App-Symbol und den Namen zu ändern. Bei Benachrichtigungen werden immer das Standardsymbol von Signal und der Name angezeigt.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">Wähle ein App-Symbol und einen Namen aus, die dann auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt werden. Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt. Mehr erfahren</string>
+    <string name="preferences__app_icon_warning_learn_more">Wähle ein App-Symbol und einen Namen aus, die dann auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt werden. Bei Benachrichtigungen werden immer das Standardsymbol von Signal und der Name angezeigt. Mehr erfahren</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
     <string name="preferences__app_icon_warning">App-Symbole und Namen werden auf dem Startbildschirm und im App-Drawer deines Mobiltelefons angezeigt.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">Bei Benachrichtigungen werden immer das Standard-Icon von Signal und der Name angezeigt.</string>
+    <string name="preferences__app_icon_notification_warning">Bei Benachrichtigungen werden immer das Standardsymbol von Signal und der Name angezeigt.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">Mehr erfahren</string>
+    <string name="preferences__app_icon_learn_more">Mehr erfahren</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik, die zeigt, wo das neue App-Symbol zu sehen sein wird.</string>
     <string name="preferences__disable_pin">PIN deaktivieren</string>
@@ -3821,7 +3821,7 @@
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Benachrichtigungen</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Erhalte Benachrichtigungen, wenn du neue Nachrichten erhältst.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Erhalte Benachrichtigungen, wenn du neue Nachrichten bekommst.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Kontakte</string>
     <!-- Contacts permission row description -->
@@ -4060,7 +4060,7 @@
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">Neuer Chat</string>
     <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Chats.\nLeg los und schreib einer Freundin oder einem Freund.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Chats.\nLeg los und schreib einem deiner Kontakte.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Keine Chats zum Anzeigen</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4232,8 +4232,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-Registrierung – Hilfe benötigt für PIN für Android (v2-PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tag ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
-        <item quantity="other">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tagen ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
+        <item quantity="one">Um deine Privatsphäre und Sicherheit zu schützen, kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tag ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
+        <item quantity="other">Um deine Privatsphäre und Sicherheit zu schützen, kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tagen ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -4646,9 +4646,9 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">%1$s wurde blockiert.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">%1$s konnte nicht blockiert werden.</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">%1$s wurde freigegeben.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">»%1$s« wurde blockiert.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">»%1$s« konnte nicht blockiert werden.</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">»%1$s« wurde freigegeben.</string>
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
@@ -4675,7 +4675,7 @@
         <item quantity="one">%1$d gemeinsame Gruppe</item>
         <item quantity="other">%1$d gemeinsame Gruppen</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s aus Gruppe entfernen?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">»%1$s« aus Gruppe entfernen?</string>
     <string name="ReviewCardDialogFragment__remove">Entfernen</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Gruppenmitglied konnte nicht entfernt werden.</string>
 
@@ -4781,7 +4781,7 @@
     <string name="ChatWallpaperFragment__contact_name">Kontaktname</string>
     <string name="ChatWallpaperFragment__reset">Zurücksetzen</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Hintergrundvorschau</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Möchtest du alle Chat-Farben zurücksetzen?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Möchtest du alle Chat-Farben überschreiben?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Möchtest du alle Hintergründe zurücksetzen?</string>
     <string name="ChatWallpaperFragment__reset_default_colors">Standardfarben zurücksetzen</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Alle Farben zurücksetzen</string>
@@ -4825,7 +4825,7 @@
     <string name="payment_info_card_save_recovery_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">Deine Wiederherstellungsphrase gibt dir eine weitere Möglichkeit, dein Zahlungskonto wiederherzustellen.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Speichere deinen Satz</string>
+    <string name="payment_info_card_save_your_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="payment_info_card_update_your_pin">Aktualisiere deine PIN</string>
     <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand sollest du zum erhöhten Schutz deines Kontos eventuell zu einer alphanumerischen PIN wechseln.</string>
     <string name="payment_info_card_update_pin">PIN aktualisieren</string>
@@ -4853,8 +4853,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Wiederherstellungsphrase eingeben</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine Phrase mit %1$d-Wort, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
-        <item quantity="other">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine Phrase mit %1$d-Wort, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
+        <item quantity="one">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine %1$d-Wort-Phrase, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
+        <item quantity="other">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Du kannst dein Guthaben auch mit einer Wiederherstellungsphrase wiederherstellen. Das ist eine %1$d-Wort-Phrase, die nur du kennst. Schreibe sie auf und bewahre sie an einem sicheren Ort auf.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du hast ein Guthaben! Zeit, deine Wiederherstellungsphrase zu speichern – ein Schlüssel mit 24 Wörtern, mit dem du dein Guthaben wiederherstellen kannst.</string>
@@ -5083,7 +5083,7 @@
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
     <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
     <!-- Button text to dismiss bottom sheet -->
-    <string name="ChatFoldersEducationSheet__continue">Continue</string>
+    <string name="ChatFoldersEducationSheet__continue">Fortfahren</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5097,7 +5097,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Vorgeschlagene Ordner</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Unread</string>
+    <string name="ChatFoldersFragment__unread">Ungelesen</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Ungelesene Nachrichten aus allen Chats</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5163,30 +5163,24 @@
     <string name="CreateFoldersFragment__include_muted_chats">Stummgeschaltete Chats einschließen</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Erstellen</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Ordner erstellen?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Möchtest du den Chat-Ordner »%1$s« erstellen?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Ordner erstellen</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">Ordner bearbeiten</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Speichern</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Änderungen speichern?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Möchtest du deine am Chat-Ordner vorgenommenen Änderungen speichern?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Änderungen speichern</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">Verwerfen</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">Ordner löschen</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">Diesen Chat-Ordner löschen?</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
-    <string name="CreateFoldersFragment__see_all">See all</string>
+    <string name="CreateFoldersFragment__see_all">Alle anzeigen</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
@@ -5474,7 +5468,7 @@
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ist kein Signal-Nutzer</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">%1$s ist kein Signal-Nutzer</string>
+    <string name="NewConversationActivity__">%1$s nutzt Signal nicht</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="one">%1$s nutzt Signal nicht</item>
@@ -5527,7 +5521,7 @@
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Die Videos werden auf 30-Sekunden-Clips gekürzt und als mehrere Storys verschickt.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
-    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videos, die an Storys gesendet werden, dürfen nicht länger als 30 Sekunden sein.</string>
+    <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videos, die als Storys gesendet werden, dürfen nicht länger als 30 Sekunden sein.</string>
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d Nachricht senden</item>
@@ -5646,13 +5640,13 @@
 
     <string name="ImageView__badge">Abzeichen</string>
 
-    <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
-    <string name="SubscribeFragment__confirm_cancellation">Kündigung bestätigen?</string>
+    <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende stornieren</string>
+    <string name="SubscribeFragment__confirm_cancellation">Stornierung bestätigen?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Es findet lediglich eine einmalige Abbuchung statt. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
     <string name="SubscribeFragment__not_now">Jetzt nicht</string>
     <string name="SubscribeFragment__confirm">Bestätigen</string>
     <string name="SubscribeFragment__update_subscription">Regelmäßige Spende aktualisieren</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine regelmäßige Spende wurde gekündigt.</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Deine regelmäßige Spende wurde storniert.</string>
     <string name="SubscribeFragment__update_subscription_question">Regelmäßige Spende aktualisieren</string>
     <string name="SubscribeFragment__update">Aktualisieren</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Heute wird die volle Summe (%1$s) des neuen Spendenbeitrags abgebucht. Deine regelmäßige Spende verlängert sich monatlich.</string>
@@ -5668,7 +5662,7 @@
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Privates Messaging. Keine Werbung, kein Tracking, keine Überwachung.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal wird durch Spenden finanziert, was bedeutet, dass dein Datenschutz bei allem, was wir tun, im Mittelpunkt steht. Signal wurde für dich entwickelt; nicht für deine Daten oder für den Profit.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal wird durch Spenden finanziert, was bedeutet, dass dein Datenschutz bei allem, was wir tun, im Mittelpunkt steht. Signal wurde für dich entwickelt; nicht für Profit oder um an deine Daten zu kommen.</string>
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Wenn du kannst, dann spende bitte noch heute, damit Signal weiterhin Spaß macht, zuverlässig bleibt und für alle verfügbar ist.</string>
 
@@ -5756,12 +5750,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost hinzufügen</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Jetzt nicht</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Deine regelmäßige monatliche Spende wurde automatisch gekündigt, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nun nicht mehr in deinem Profil sichtbar.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Deine regelmäßige monatliche Spende wurde automatisch storniert, da du längere Zeit inaktiv warst. Dein %1$s-Abzeichen ist nun nicht mehr in deinem Profil sichtbar.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Deine regelmäßige monatliche Spende wurde gekündigt, da wir deine Zahlung nicht verarbeiten konnten. Dein Abzeichen ist nun nicht mehr in deinem Profil sichtbar.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Deine regelmäßige monatliche Spende wurde storniert, da wir deine Zahlung nicht verarbeiten konnten. Dein Abzeichen ist nun nicht mehr in deinem Profil sichtbar.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Deine wiederkehrende monatliche Spende wurde storniert. %1$s Dein %2$s Abzeichen ist in deinem Profil nicht länger sichtbar.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kannst Signal weiterhin nutzen, aber um die App zu unterstützen und dein Abzeichen zu reaktivieren, solltest du deine Spende verlängern.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kannst Signal weiterhin nutzen, aber um die App zu unterstützen und dein Abzeichen zu reaktivieren, verlängere deine Spende.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Regelmäßige Spende verlängern</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Zu Google Pay gehen</string>
@@ -5816,8 +5810,8 @@
     <string name="DonationsErrors__your_payment_was_processed_but">Deine Spende wurde bearbeitet, aber Signal konnte deine Spendenmitteilung nicht versenden. Bitte kontaktiere den Support.</string>
     <string name="DonationsErrors__your_badge_could_not">Dein Abzeichen konnte deinem Konto nicht hinzugefügt werden, eventuell wurde jedoch die Zahlung abgebucht. Bitte kontaktiere den Support.</string>
     <string name="DonationsErrors__your_payment_is_still">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht gekündigt werden</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Kündigung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht storniert werden</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Stornierung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dein Gerät unterstützt Google Pay nicht, daher kannst du nicht spenden, um ein Abzeichen zu erhalten. Aber durch eine Spende auf unserer Website kannst du Signal trotzdem unterstützen.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzwerkfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
     <string name="NetworkFailure__retry">Erneut versuchen</string>
@@ -6068,7 +6062,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Einmalig</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">Für einen Freund/eine Freundin</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Für einen Freund</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">Spende für einen Freund</string>
     <!-- Donation receipts donation type heading -->
@@ -6454,7 +6448,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s hat in deinem Namen an Signal gespendet! Zeige in deinem Profil deine Unterstützung für Signal.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Du hast im Namen von %1$s eine Spende an Signal getätigt. Sie erhalten die Möglichkeit, ihre Unterstützung in ihrem Profil zu zeigen.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Du hast im Namen von %1$s eine Spende an Signal getätigt. Die Person erhält die Möglichkeit, ihre Unterstützung in ihrem Profil zu zeigen.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Einlösen</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6462,7 +6456,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Abzeichen einlösen…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">Du hast im Namen von %1$s eine Spende an Signal getätigt. Sie erhalten die Möglichkeit, ihre Unterstützung in ihrem Profil zu zeigen.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Du hast im Namen von %1$s eine Spende an Signal getätigt. Die Person erhält die Möglichkeit, ihre Unterstützung in ihrem Profil zu zeigen.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Dein Abzeichen ist abgelaufen</string>
     <!-- Expired gift sheet top description text -->

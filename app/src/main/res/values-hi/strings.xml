@@ -5083,7 +5083,7 @@
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
     <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
     <!-- Button text to dismiss bottom sheet -->
-    <string name="ChatFoldersEducationSheet__continue">Continue</string>
+    <string name="ChatFoldersEducationSheet__continue">जारी रखें</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5097,7 +5097,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">सुझाए गए फ़ोल्डर</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Unread</string>
+    <string name="ChatFoldersFragment__unread">अनपढ़ा करें</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">सभी चैट से पढ़े न गए संदेश</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5163,30 +5163,24 @@
     <string name="CreateFoldersFragment__include_muted_chats">म्यूट की गई चैट शामिल करें</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">बनाएँ</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">फ़ोल्डर बनाएँ?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">क्या आप चैट फ़ोल्डर \"%1$s\" को बनाना चाहते हैं?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">फ़ोल्डर बनाएँ</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">फ़ोल्डर संपादित करें</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">सेव</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">बदलाव सेव करें?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">क्या आप इस चैट फ़ोल्डर में किए गए बदलावों को सेव करना चाहते हैं?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">बदलाव सेव करें</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">रद्द करें</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">फ़ोल्डर डिलीट करें</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">इस चैट फ़ोल्डर को डिलीट करें?</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
-    <string name="CreateFoldersFragment__see_all">See all</string>
+    <string name="CreateFoldersFragment__see_all">सभी देखें</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->

@@ -3380,9 +3380,9 @@
     <!-- Row item description for refreshing contacts -->
     <string name="contact_selection_activity__missing_someone">هل تفتقد إلى جهة اتصال؟ حاوِل التحديث من جديد</string>
     <!-- Row item title for finding people on Signal via your contacts -->
-    <string name="contact_selection_activity__find_people_you_know">اعثر على الأشخاص الذين تعرفهم على Signal</string>
+    <string name="contact_selection_activity__find_people_you_know">اعثُر على الأشخاص الذين تعرفهم على سيجنال</string>
     <!-- Row item description asking users for access to their contacts to find people they know -->
-    <string name="contact_selection_activity__allow_access_to_contacts">امنح الوصول إلى جهات اتصالك</string>
+    <string name="contact_selection_activity__allow_access_to_contacts">اسمح بالوصول إلى جهات الاتصال على جهازك</string>
     <!-- Row header title for more section -->
     <string name="contact_selection_activity__more">المزيد</string>
 
@@ -3421,15 +3421,15 @@
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">إيجاد بحسب اسم المُستخدم</string>
     <!-- Dialog title asking users for contact permission -->
-    <string name="ContactSelectionListFragment_allow_access_contacts">السماح بالوصول إلى جهات الاتصال</string>
+    <string name="ContactSelectionListFragment_allow_access_contacts">اسمح بالوصول إلى جهات الاتصال</string>
     <!-- Dialog description that will explain the steps needed to give contact permissions -->
-    <string name="ContactSelectionListFragment_to_find_people">للعثور على الأشخاص الذين تعرفهم على Signal:</string>
+    <string name="ContactSelectionListFragment_to_find_people">للعثور على الأشخاص الذين تعرفهم على سيجنال:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
-    <string name="ContactSelectionListFragment__allow_access">إعطاء الصلاحية</string>
+    <string name="ContactSelectionListFragment__allow_access">منح الصلاحية</string>
     <!-- Text on button to dismiss Signal\'s request for contact permissions -->
-    <string name="ContactSelectionListFragment__no_thanks">لا شكراً</string>
+    <string name="ContactSelectionListFragment__no_thanks">لا، شكرًا</string>
     <!-- Text asking for user\'s contact permission -->
-    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">امنح الوصول إلى جهات اتصالك. جهات اتصالك مشفرة وغير مرئية لخدمة Signal.</string>
+    <string name="ContactSelectionListFragment__allow_access_to_your_contacts_encrypted">اسمح بالوصول إلى جهات الاتصال على جهازك. جهات اتصالك مُشفَّرة وغير مرئية لخدمة سيجنال.</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">سيجنال بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
@@ -3514,7 +3514,7 @@
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
     <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">حذفتَ جهة الاتصال هذه، وبمراسلتك لها سَتتم إضافتها إلى قائمتك.</string>
     <!-- Update item button text shown for the accepted message request update message -->
-    <string name="ConversationUpdateItem_options">الخيارات:</string>
+    <string name="ConversationUpdateItem_options">الخيارات</string>
     <!-- Update item button text shown for a profile name change. -->
     <string name="ConversationUpdateItem_update">تحديث التطبيق</string>
 
@@ -3768,24 +3768,24 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقّق من أمان التشفير من الطرف للطرف مع %1$s، قارن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الرمز على جهازه.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقُّق من أمان التشفير من طرف لطرف مع %1$s، قارِن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الكود على جهازه.</string>
     <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
     <string name="verify_display_fragment__successful_match">مطابقة ناجحة</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">فشل التحقُّق من رقم الأمان</string>
     <string name="verify_display_fragment__loading">جارٍ التحميل…</string>
-    <string name="verify_display_fragment__mark_as_verified">علِّم كمُتحقَّق منه</string>
-    <string name="verify_display_fragment__clear_verification">محو التحقق</string>
+    <string name="verify_display_fragment__mark_as_verified">تحديد كتمَّ التحقُّق منه</string>
+    <string name="verify_display_fragment__clear_verification">إزالة التحقُّق</string>
 
     <!-- verity_scan_fragment -->
-    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">امسح رمز الاستجابة السريعة المعروض على جهاز جهة اتصالك.</string>
+    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">امسح كود الـ QR المعروض على جهاز جهة اتصالك.</string>
 
     <!-- webrtc_answer_decline_button -->
-    <string name="webrtc_answer_decline_button__swipe_up_to_answer">إسحب للأعلى للإجابة</string>
-    <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب للأسفل لرفض المكالمة</string>
+    <string name="webrtc_answer_decline_button__swipe_up_to_answer">اسحَب للأعلى للإجابة</string>
+    <string name="webrtc_answer_decline_button__swipe_down_to_reject">اسحَب للأسفل للرفض</string>
 
     <!-- message_details_header -->
-    <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلب انتباهك.</string>
-    <string name="message_details_header_sent">أرسِلَت</string>
+    <string name="message_details_header__issues_need_your_attention">بعض المشاكل تتطلَّب انتباهك.</string>
+    <string name="message_details_header_sent">أُرسِلَت</string>
     <string name="message_details_header_received">تمَّ الاستلام</string>
     <string name="message_details_header_disappears">مُختفية</string>
     <string name="message_details_header_via">بواسطة</string>
@@ -3793,38 +3793,38 @@
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">مُعلَّق</string>
     <string name="message_details_recipient_header__sent_to">تمَّ الإرسال إلى</string>
-    <string name="message_details_recipient_header__sent_from">أُرسلًت من</string>
-    <string name="message_details_recipient_header__delivered_to">سُلمَت إلى</string>
-    <string name="message_details_recipient_header__read_by">قُرأَت من قبل</string>
+    <string name="message_details_recipient_header__sent_from">أُرسِلَت من</string>
+    <string name="message_details_recipient_header__delivered_to">سُلِّمَت إلى</string>
+    <string name="message_details_recipient_header__read_by">قُرِأَت من قبل</string>
     <string name="message_details_recipient_header__not_sent">لم تُرسَل</string>
-    <string name="message_details_recipient_header__viewed">اطلعَ عليها</string>
+    <string name="message_details_recipient_header__viewed">شاهَدها</string>
     <string name="message_details_recipient_header__skipped">تمَّ التخطي</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">فشل الإرسال</string>
-    <string name="message_details_recipient__new_safety_number">رقم الأمان جديد</string>
+    <string name="message_details_recipient__new_safety_number">رقم الأمان الجديد</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
     <string name="MessageDetails__view_edit_history">عرض سِجل التعديلات</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">إنشاء عبارة سرية</string>
     <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
-    <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
-    <string name="AndroidManifest__verify_safety_number">تحقق من رقم اﻷمان</string>
+    <string name="AndroidManifest__change_passphrase">تغيير العبارة السرية</string>
+    <string name="AndroidManifest__verify_safety_number">تحقَّق من رقم اﻷمان</string>
     <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
     <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
-    <string name="AndroidManifest__linked_devices">الأجهزة المرتبطة</string>
-    <string name="AndroidManifest__invite_friends">دعوة الأصدقاء</string>
+    <string name="AndroidManifest__linked_devices">الأجهزة المُرتبِطة</string>
+    <string name="AndroidManifest__invite_friends">اُدْعُ الأصدقاء</string>
     <string name="AndroidManifest_archived_conversations">الدردشات المؤرشفة</string>
 
     <!-- HelpFragment -->
-    <string name="HelpFragment__have_you_read_our_faq_yet">هل قرأت قسم الأسئلة الشائعة لدينا ؟</string>
+    <string name="HelpFragment__have_you_read_our_faq_yet">هل قرأت قسم الأسئلة الشائعة لدينا؟</string>
     <string name="HelpFragment__next">التالي</string>
-    <string name="HelpFragment__contact_us">تواصل معنا</string>
+    <string name="HelpFragment__contact_us">تواصَل معنا</string>
     <string name="HelpFragment__tell_us_whats_going_on">أخبرنا بالذي يجري</string>
-    <string name="HelpFragment__include_debug_log">أرفق سِجل التصحيح.</string>
-    <string name="HelpFragment__whats_this">ما هذا ؟</string>
-    <string name="HelpFragment__how_do_you_feel">ما هو شعورك ؟ (اختياري)</string>
+    <string name="HelpFragment__include_debug_log">أرفِق سِجل التصحيح.</string>
+    <string name="HelpFragment__whats_this">ما هذا؟</string>
+    <string name="HelpFragment__how_do_you_feel">كيف تشعر؟ (اختياري)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">يُرجى إخبارنا عن سبب تواصلك معنا.</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
@@ -3835,10 +3835,10 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">معلومات الدعم</string>
-    <string name="HelpFragment__signal_android_support_request">طلب الدعم حول سيجنال Android</string>
+    <string name="HelpFragment__signal_android_support_request">طلب الدعم من سيجنال أندرويد</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
-    <string name="HelpFragment__please_be_as_descriptive_as_possible">نرجو منك الشرح لنا بإسهاب قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
+    <string name="HelpFragment__please_be_as_descriptive_as_possible">يُرجى تقديم شرح مُفصَّل قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
     <string-array name="HelpFragment__categories_5">
         <item>يُرجى تحديد خيار</item>
         <item>شيء ما لا يعمل</item>
@@ -3847,7 +3847,7 @@
         <item>الملاحظات</item>
         <item>أخرى</item>
         <item>عمليات الدفع (MobileCoin)</item>
-        <item>تبرّعات وشارات</item>
+        <item>تبرُّعات وشارات</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
@@ -3858,21 +3858,21 @@
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ابتسامات وأشخاص</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تمَّ الاستخدام مُؤخَّرًا</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">أوجُه سمايلي وأشخاص</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">الطبيعة</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">الأطعمة</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">الطعام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">الأنشطة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">الأماكن</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">الأشياء</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يعثر على أي نتيجة</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__use_default">استخدم الافتراضي</string>
-    <string name="arrays__use_custom">تخصيص</string>
+    <string name="arrays__use_default">استخدِم الافتراضي</string>
+    <string name="arrays__use_custom">استخدِم التخصيص</string>
 
     <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
     <string name="arrays__mute_for_eight_hours">كتم لمدة 8 ساعات</string>
@@ -3881,8 +3881,8 @@
     <string name="arrays__always">دائمًا</string>
 
     <string name="arrays__settings_default">الإعدادات الافتراضية</string>
-    <string name="arrays__enabled">مفعل</string>
-    <string name="arrays__disabled">معطل</string>
+    <string name="arrays__enabled">مُفعَّل</string>
+    <string name="arrays__disabled">مُعطَّل</string>
 
     <string name="arrays__name_and_message">الاسم والرسالة</string>
     <string name="arrays__name_only">الاسم فقط</string>
@@ -3896,12 +3896,12 @@
     <string name="arrays__small">صغير</string>
     <string name="arrays__normal">طبيعي</string>
     <string name="arrays__large">كبير</string>
-    <string name="arrays__extra_large">كبير جداً</string>
+    <string name="arrays__extra_large">كبير جدًا</string>
 
     <string name="arrays__default">افتراضي</string>
-    <string name="arrays__high">بالغ الأهميّة</string>
+    <string name="arrays__high">ذو أهمية مرتفعة</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
-    <string name="arrays__max">قصوى</string>
+    <string name="arrays__max">ذو أهمية بالغة</string>
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
@@ -5563,7 +5563,7 @@
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
     <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
     <!-- Button text to dismiss bottom sheet -->
-    <string name="ChatFoldersEducationSheet__continue">Continue</string>
+    <string name="ChatFoldersEducationSheet__continue">متابعة</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
@@ -5577,7 +5577,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">المجلدات المقترَحة</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Unread</string>
+    <string name="ChatFoldersFragment__unread">غير مقروءة</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">الرسائل غير المقروءة من جميع الدردشات</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5655,30 +5655,24 @@
     <string name="CreateFoldersFragment__include_muted_chats">تَضمين الدردشاتِ المَكتومة</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">إنشاء</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">هل تريد إنشاء مجلد؟</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">هل تريد إنشاء مجلد الدردشة \"%1$s\"؟</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">إنشاء مجلد</string>
     <!-- Section title shown when editing an existing folder   -->
     <string name="CreateFoldersFragment__edit_folder">تعديل المجلد</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">حفظ</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">هل تريد حفظ التغييرات؟</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">هل تريد حفظ التغييرات التي قمتَ بها في مجلد الدردشة هذا؟</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">حفظ التغييرات</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">تجاهل</string>
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">حذف المجلد</string>
     <!-- Alert dialog title to delete the current folder -->
     <string name="CreateFoldersFragment__delete_this_chat_folder">أترغبُ بحذف مجلد الدردشة هذا؟</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
-    <string name="CreateFoldersFragment__see_all">See all</string>
+    <string name="CreateFoldersFragment__see_all">مشاهدة الكل</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
