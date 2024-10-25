@@ -50,6 +50,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME = "backup.failed.acknowledged.snooze.time"
     private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT = "backup.failed.acknowledged.snooze.count"
 
+    private const val KEY_MEDIA_ROOT_BACKUP_KEY = "backup.mediaRootBackupKey"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
 
@@ -71,6 +73,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
+
+  var mediaRootBackupKey: ByteArray? by nullableBlobValue(KEY_MEDIA_ROOT_BACKUP_KEY, null)
 
   /**
    * This is the 'latest' backup tier. This isn't necessarily the user's current backup tier, so this should only ever

@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.backup.v2
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
@@ -365,7 +367,8 @@ object BackupRepository {
         writer.write(
           BackupInfo(
             version = VERSION,
-            backupTimeMs = exportState.backupTime
+            backupTimeMs = exportState.backupTime,
+            mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey?.toByteString() ?: ByteString.EMPTY
           )
         )
         frameCount++
@@ -554,6 +557,8 @@ object BackupRepository {
         return ImportResult.Failure
       }
 
+      SignalStore.backup.mediaRootBackupKey = header.mediaRootBackupKey.toByteArray()
+
       // Add back self after clearing data
       val selfId: RecipientId = SignalDatabase.recipients.getAndPossiblyMerge(selfData.aci, selfData.pni, selfData.e164, pniVerified = true, changeSelf = true)
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
@@ -736,7 +741,7 @@ object BackupRepository {
     return initBackupAndFetchAuth(backupKey)
       .map { credential ->
         val zkCredential = SignalNetwork.archive.getZkCredential(backupKey, aci, credential)
-        if (zkCredential.backupLevel == BackupLevel.MEDIA) {
+        if (zkCredential.backupLevel == BackupLevel.PAID) {
           MessageBackupTier.PAID
         } else {
           MessageBackupTier.FREE

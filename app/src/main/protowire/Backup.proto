@@ -8,6 +8,7 @@ option swift_prefix = "BackupProto_";
 message BackupInfo {
   uint64 version = 1;
   uint64 backupTimeMs = 2;
+  bytes mediaRootBackupKey = 3; // 32-byte random value generated when the backup is uploaded for the first time.
 }
 
 // Frames must follow in the following ordering rules:

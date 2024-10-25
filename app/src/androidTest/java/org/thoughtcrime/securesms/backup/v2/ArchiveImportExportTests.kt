@@ -310,11 +310,11 @@ class ArchiveImportExportTests {
     }
 
     if (importComparable.unknownFieldMessages.isNotEmpty()) {
-      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages}")
+      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages.contentToString()}")
     }
 
     if (exportComparable.unknownFieldMessages.isNotEmpty()) {
-      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages}")
+      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages.contentToString()}")
     }
 
     val canonicalImport = importComparable.comparableString

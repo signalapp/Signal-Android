@@ -980,6 +980,7 @@ class ChatItemArchiveImporter(
     }
 
   private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
+    // TODO [backup] quote status not passed through?
     val thumbnail = this.thumbnail?.toLocalAttachment()
 
     if (thumbnail != null) {
@@ -990,6 +991,7 @@ class ChatItemArchiveImporter(
       return null
     }
 
+    // TODO [backup] Need to do the normal ArchiveAttachment thing -- not sure why the conversion to a pointer
     return PointerAttachment.forPointer(
       quotedAttachment = DataMessage.Quote.QuotedAttachment(
         contentType = this.contentType,
