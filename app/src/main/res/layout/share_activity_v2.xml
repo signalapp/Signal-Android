@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="@dimen/signal_m3_toolbar_height"
+        app:navigationIconTint="@color/signal_colorOnSurface"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge"
         tools:title="Share with" />
 
