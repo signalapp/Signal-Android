@@ -33,7 +33,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -68,11 +67,11 @@ import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
@@ -159,7 +158,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("confirm-delete-chat-history") {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__delete_message_history),
-            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && Recipient.self().deleteSyncCapability.isSupported) {
+            body = if (SignalStore.account.hasLinkedDevices && Recipient.self().deleteSyncCapability.isSupported) {
               stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device)
             } else {
               stringResource(id = R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device)
@@ -175,7 +174,7 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog("double-confirm-delete-chat-history", dialogProperties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)) {
           Dialogs.SimpleAlertDialog(
             title = stringResource(id = R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history),
-            body = if (TextSecurePreferences.isMultiDevice(LocalContext.current) && Recipient.self().deleteSyncCapability.isSupported) {
+            body = if (SignalStore.account.hasLinkedDevices && Recipient.self().deleteSyncCapability.isSupported) {
               stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device)
             } else {
               stringResource(id = R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)

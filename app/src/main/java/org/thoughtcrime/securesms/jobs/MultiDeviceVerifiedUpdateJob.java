@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -93,7 +94,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
     }
 
     try {
-      if (!TextSecurePreferences.isMultiDevice(context)) {
+      if (!SignalStore.account().hasLinkedDevices()) {
         Log.i(TAG, "Not multi device...");
         return;
       }

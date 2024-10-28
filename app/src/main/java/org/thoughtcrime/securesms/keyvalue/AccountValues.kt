@@ -76,6 +76,8 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_ACI = "account.aci"
     private const val KEY_PNI = "account.pni"
     private const val KEY_IS_REGISTERED = "account.is_registered"
+
+    private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
   }
 
   init {
@@ -85,6 +87,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     if (!store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) {
       migrateFromSharedPrefsV2(context)
+    }
+
+    if (!store.containsKey(KEY_HAS_LINKED_DEVICES)) {
+      migrateFromSharedPrefsV3(context)
     }
 
     store.getString(KEY_PNI, null)?.let { pni ->
@@ -445,6 +451,12 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     AppDependencies.groupsV2Authorization.clear()
   }
 
+  /**
+   * Whether or not the user has linked devices.
+   */
+  @get:JvmName("hasLinkedDevices")
+  var hasLinkedDevices by booleanValue(KEY_HAS_LINKED_DEVICES, false)
+
   /** Do not alter. If you need to migrate more stuff, create a new method. */
   private fun migrateFromSharedPrefsV1(context: Context) {
     Log.i(TAG, "[V1] Migrating account values from shared prefs.")
@@ -526,6 +538,13 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       .remove("pref_gcm_registration_id_version")
       .remove("pref_gcm_registration_id_last_set_time")
       .commit()
+  }
+
+  /** Do not alter. If you need to migrate more stuff, create a new method. */
+  private fun migrateFromSharedPrefsV3(context: Context) {
+    Log.i(TAG, "[V3] Migrating account values from shared prefs.")
+
+    putBoolean(KEY_HAS_LINKED_DEVICES, TextSecurePreferences.getBooleanPreference(context, "pref_multi_device", false))
   }
 
   private fun SharedPreferences.hasStringData(key: String): Boolean {

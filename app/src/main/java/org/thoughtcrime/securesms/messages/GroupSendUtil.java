@@ -459,7 +459,7 @@ public final class GroupSendUtil {
       throw new CancelationException();
     }
 
-    boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && TextSecurePreferences.isMultiDevice(context);
+    boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && SignalStore.account().hasLinkedDevices();
 
     if (legacyTargets.size() > 0 || onlyTargetIsSelfWithLinkedDevice) {
       if (legacyTargets.size() > 0) {

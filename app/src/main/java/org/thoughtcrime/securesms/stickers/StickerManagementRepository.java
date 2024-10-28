@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ final class StickerManagementRepository {
     SignalExecutors.SERIAL.execute(() -> {
       stickerDatabase.uninstallPack(packId);
 
-      if (TextSecurePreferences.isMultiDevice(context)) {
+      if (SignalStore.account().hasLinkedDevices()) {
         AppDependencies.getJobManager().add(new MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.REMOVE));
       }
     });
@@ -94,7 +95,7 @@ final class StickerManagementRepository {
 
       jobManager.add(StickerPackDownloadJob.forInstall(packId, packKey, notify));
 
-      if (TextSecurePreferences.isMultiDevice(context)) {
+      if (SignalStore.account().hasLinkedDevices()) {
         jobManager.add(new MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.INSTALL));
       }
     });

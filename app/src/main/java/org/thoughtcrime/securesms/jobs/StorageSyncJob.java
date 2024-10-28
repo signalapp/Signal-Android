@@ -194,7 +194,7 @@ public class StorageSyncJob extends BaseJob {
     try {
       boolean needsMultiDeviceSync = performSync();
 
-      if (TextSecurePreferences.isMultiDevice(context) && needsMultiDeviceSync) {
+      if (SignalStore.account().hasLinkedDevices() && needsMultiDeviceSync) {
         AppDependencies.getJobManager().add(new MultiDeviceStorageSyncRequestJob());
       }
 

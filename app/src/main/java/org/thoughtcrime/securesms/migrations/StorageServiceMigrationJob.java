@@ -52,7 +52,7 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
     JobManager jobManager = AppDependencies.getJobManager();
 
-    if (TextSecurePreferences.isMultiDevice(context)) {
+    if (SignalStore.account().hasLinkedDevices()) {
       Log.i(TAG, "Multi-device.");
       jobManager.startChain(new StorageSyncJob())
                 .then(new MultiDeviceKeysUpdateJob())

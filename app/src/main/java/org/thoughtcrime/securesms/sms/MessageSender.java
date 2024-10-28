@@ -614,7 +614,7 @@ public class MessageSender {
            recipient.isSelf()                   &&
            sendType == SendType.SIGNAL          &&
            SignalStore.account().isRegistered() &&
-           !TextSecurePreferences.isMultiDevice(context);
+           !SignalStore.account().hasLinkedDevices();
   }
 
   private static void sendLocalMediaSelf(long messageId) {

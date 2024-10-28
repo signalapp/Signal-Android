@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -72,7 +71,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
       return
     }
 
-    if (!TextSecurePreferences.isMultiDevice(context)) {
+    if (!SignalStore.account.hasLinkedDevices) {
       Log.i(TAG, "Not multi device, aborting...")
       SignalStore.misc.hasPniInitializedDevices = true
       return

@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
@@ -161,7 +160,7 @@ object LinkDeviceRepository {
 
     return when (deviceLinkResult) {
       is NetworkResult.Success -> {
-        TextSecurePreferences.setMultiDevice(AppDependencies.application, true)
+        SignalStore.account.hasLinkedDevices = true
         LinkDeviceResult.Success(verificationCodeResult.tokenIdentifier)
       }
       is NetworkResult.ApplicationError -> throw deviceLinkResult.throwable

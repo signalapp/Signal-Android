@@ -36,7 +36,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
     private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
-    private const val LOCK_SCREEN_ATTEMPT_COUNT = "misc.lock_screen_attempt_count"
     private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
     private const val LAST_WEBSOCKET_CONNECT_TIME = "misc.last_websocket_connect_time"
     private const val LAST_CONNECTIVITY_WARNING_TIME = "misc.last_connectivity_warning_time"
@@ -165,6 +164,7 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   /**
    * Whether or not the user has linked devices.
    */
+  @get:JvmName("hasLinkedDevices")
   var hasLinkedDevices by booleanValue(HAS_LINKED_DEVICES, false)
 
   /**
@@ -252,15 +252,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * When the next scheduled database analysis is.
    */
   var nextDatabaseAnalysisTime: Long by longValue(NEXT_DATABASE_ANALYSIS_TIME, 0)
-
-  /**
-   * How many times the lock screen has been seen and _not_ unlocked. Used to determine if the user is confused by how to bypass the lock screen.
-   */
-  var lockScreenAttemptCount: Int by integerValue(LOCK_SCREEN_ATTEMPT_COUNT, 0)
-
-  fun incrementLockScreenAttemptCount() {
-    lockScreenAttemptCount++
-  }
 
   var lastNetworkResetDueToStreamResets: Long by longValue(LAST_NETWORK_RESET_TIME, 0L)
 
