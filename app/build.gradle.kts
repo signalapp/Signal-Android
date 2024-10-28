@@ -270,7 +270,6 @@ android {
         "proguard/proguard-glide.pro",
         "proguard/proguard-shortcutbadger.pro",
         "proguard/proguard-retrofit.pro",
-        "proguard/proguard-webrtc.pro",
         "proguard/proguard-klinker.pro",
         "proguard/proguard-mobilecoin.pro",
         "proguard/proguard-retrolambda.pro",
