@@ -740,14 +740,16 @@
         <item quantity="other">%1$d தேர்ந்தெடுக்கப்பட்டது</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <string name="ConversationListFragment_add_to_folder">கோப்புறையைச் சேர்</string>
     <!-- Context menu option to remove a chat from a folder -->
-    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+    <string name="ConversationListFragment_remove_from_folder">கோப்புறையிலிருந்து நீக்குக</string>
 
     <!-- Bottom sheet title when choosing a folder to add a chat to -->
-    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <string name="AddToFolderBottomSheet_choose_a_folder">கோப்புறையைத் தேர்வு செய்க</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" இல் சேர்க்கப்பட்டது</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">அறிவிப்பு சுயவிவரம்</string>
@@ -5068,20 +5070,20 @@
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">சாட் கோப்புறையைச் சேர்</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">கோப்புறைகளைச் சேர்க்கவும் அல்லது திருத்தவும்</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d கோப்புறை</item>
+        <item quantity="other">%1$d கோப்புறைகள்</item>
     </plurals>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
-    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">குடும்பம், நண்பர்கள், அலுவலகம் மற்றும் பலவற்றிற்கான கோப்புறைகளை உருவாக்கவும்</string>
     <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
-    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">படிக்காத சாட்ஸை மட்டும் காட்டு என்பதைத் தேர்வு செய்க </string>
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
-    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">எளிமையாகப் பரிந்துரைக்கப்பட்ட கோப்புறைகளை சேர்க்கவும்</string>
     <!-- Button text to dismiss bottom sheet -->
     <string name="ChatFoldersEducationSheet__continue">தொடர்க</string>
 
@@ -5117,7 +5119,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">அனைத்தையும் மியூட் செய்</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
+    <string name="ChatFoldersFragment__unmute_all">அனைத்தையும் ஒலியடக்கு</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">அனைத்தையும் படித்தாக குறியிடு</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -5773,7 +5775,7 @@
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
-    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+    <string name="InAppDonations__recurring_d">தொடர்ச்சியான %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -7593,7 +7595,7 @@
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">சந்தா செயலில் இல்லை</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">காப்புப்பிரதிகளை ஆஃப் செய்துள்ளீர்கள்</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">காப்புப்பிரதி திட்டம்</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7601,9 +7603,9 @@
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/மாதம்</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
-    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <string name="RemoteBackupsSettingsFragment__payment_pending">கட்டணம் நிலுவையில் உள்ளது…</string>
     <!-- Displayed in card while waiting for network -->
-    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">நெட்வொர்க்கிற்காக காத்திருக்கிறது…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">உங்கக் காப்புப்பிரதி திட்டம் இலவசமாக உள்ளது</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7661,9 +7663,9 @@
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">சிக்னலின் பாதுகாப்பான சேமிப்பகச் சேவையிலிருந்து காப்புப்பிரதிகள் முடக்கப்பட்டு உங்கள் தரவு அழிக்கப்பட்டது.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">உங்கள் காப்புப்பிரதியை பதிவிறக்குதல்</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்கு நீண்ட நேரம் ஆகலாம். பதிவிறக்கம் நடைபெறும் போது நீங்கள் வழக்கம் போல் உங்கள் ஃபோனைப் பயன்படுத்தலாம்.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7747,7 +7749,7 @@
         <item quantity="other">மீடியாவின் கடைசி %1$d நாட்கள்</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">தற்போதைய திட்டம்</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

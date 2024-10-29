@@ -820,14 +820,16 @@
         <item quantity="other">تمَّ تحديد %1$d</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <string name="ConversationListFragment_add_to_folder">إضافة إلى المجلد</string>
     <!-- Context menu option to remove a chat from a folder -->
-    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+    <string name="ConversationListFragment_remove_from_folder">حذف من المجلد</string>
 
     <!-- Bottom sheet title when choosing a folder to add a chat to -->
-    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <string name="AddToFolderBottomSheet_choose_a_folder">اِختر مجلد</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_added_to_s">تمَّت الإضافة إلى \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">مركز الإشعارات</string>
@@ -3516,7 +3518,7 @@
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">الخيارات</string>
     <!-- Update item button text shown for a profile name change. -->
-    <string name="ConversationUpdateItem_update">تحديث التطبيق</string>
+    <string name="ConversationUpdateItem_update">تحديث</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">تشغيل … إيقاف مؤقَّت</string>
@@ -3744,15 +3746,15 @@
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">تحديث سيجنال</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
-    <string name="EditProfileFragment_deprecated_dialog_body">لقد انتهت صلاحية هذا الإصدار من سيجنال. حدِّث الآن للاستمرار في استخدام تطبيق سيجنال.</string>
+    <string name="EditProfileFragment_deprecated_dialog_body">انتهتْ صلاحية هذا الإصدار من سيجنال. حدِّث الآن للاستمرار في استخدام تطبيق سيجنال.</string>
     <!-- The button on a dialog prompting user to update to the latest version of Signal. When clicked, the user will be taken to the store to update their app. -->
     <string name="EditProfileFragment_deprecated_dialog_update_button">تحديث التطبيق</string>
     <!-- The title of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_title">الجهاز غير مُسجل</string>
+    <string name="EditProfileFragment_unregistered_dialog_title">الجهاز غير مُسجَّل</string>
     <!-- The body of a dialog informing the user that they cannot use this app feature when they are unregistered. -->
-    <string name="EditProfileFragment_unregistered_dialog_body">هذا الجهاز لم يعد مسجلاً. سجّل من جديد لتُحدث تغييرات على حسابك.</string>
+    <string name="EditProfileFragment_unregistered_dialog_body">هذا الجهاز لم يعد مُسجَّلًا. سجِّل من جديد لتُحدِث تغييرات على حسابك.</string>
     <!-- The button on a dialog informing the user that they cannot use this app feature when they are unregistered. When clicked, the user will be taken to a screen to help them re-register. -->
-    <string name="EditProfileFragment_unregistered_dialog_reregister_button">إعادة-التسجيل</string>
+    <string name="EditProfileFragment_unregistered_dialog_reregister_button">إعادة التسجيل</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">اسمك</string>
@@ -3854,7 +3856,7 @@
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">تقديم</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">لا شكراً</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">لا، شكرًا</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
@@ -3915,26 +3917,26 @@
 
     <!-- preferences.xml -->
     <string name="preferences_beta">الإصدار التجريبي</string>
-    <string name="preferences__sms_mms">رسائل SMS والرسائل متعدّدة الوسائط MMS</string>
+    <string name="preferences__sms_mms">رسائل SMS ورسائل MMS</string>
     <string name="preferences__pref_use_address_book_photos">استخدام صور دفتر العناوين</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">عرض صور جهات الاتصال من دفتر عناوينك إذا كان متاحا</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">عرض صور جهات الاتصال من دفتر عناوينك إذا كان متاحًا</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">إبقاء الدردشات المكتومة مُؤرشفة</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">سَتبقى الدردشات المكتومة المؤرشفة عند وصول رسالة جديدة.</string>
-    <string name="preferences__generate_link_previews">توليد معاينة الوصلات</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">يمكنك جلب معاينة وصلات المواقع مباشرة للرسائل التي سترسلها.</string>
-    <string name="preferences__change_passphrase">غير العبارة السرية</string>
-    <string name="preferences__change_your_passphrase">غير العبارة السرية</string>
+    <string name="preferences__generate_link_previews">توليد معاينات الروابط</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">يمكنك استرجاع معاينات روابط المواقع مباشرة للرسائل التي سترسلها.</string>
+    <string name="preferences__change_passphrase">تغيير العبارة السرية</string>
+    <string name="preferences__change_your_passphrase">تغيير العبارة السرية</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">تفعيل عبارة السرية لقفل الشاشة</string>
+    <string name="preferences__enable_passphrase">تفعيل العبارة السرية لقفل الشاشة</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">قفل الشاشة وإخطارات الرسائل بعبارة سرية</string>
     <string name="preferences__screen_security">تأمين الشاشة</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">غلق سيجنال تلقائيا بعد مدة زمنية محدّدة من اللّانشاط</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">غلق سيجنال تلقائيًا بعد مدة زمنية مُحدَّدة من اللّانشاط</string>
     <string name="preferences__inactivity_timeout_passphrase">تحديد مدة تذكر العبارة السرية</string>
     <string name="preferences__inactivity_timeout_interval">مدة الصلاحية</string>
     <string name="preferences__notifications">الإشعارات</string>
-    <string name="preferences__led_color">لون ضوء التنبيه LED</string>
+    <string name="preferences__led_color">لون LED</string>
     <string name="preferences__led_color_unknown">مجهول</string>
     <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
     <string name="preferences__customize">تخصيص</string>
@@ -3944,13 +3946,13 @@
     <string name="preferences__silent">صامت</string>
     <string name="preferences__default">افتراضي</string>
     <string name="preferences__repeat_alerts">تكرار التنبيهات</string>
-    <string name="preferences__never">أبدا</string>
-    <string name="preferences__one_time">مرة واحدة</string>
-    <string name="preferences__two_times">مرتان</string>
-    <string name="preferences__three_times">ثلاث مرات</string>
-    <string name="preferences__five_times">خمس مرات</string>
-    <string name="preferences__ten_times">عشر مرات</string>
-    <string name="preferences__vibrate">هزاز</string>
+    <string name="preferences__never">أبدًا</string>
+    <string name="preferences__one_time">مرّة واحدة</string>
+    <string name="preferences__two_times">مرّتان</string>
+    <string name="preferences__three_times">ثلاث مرّات</string>
+    <string name="preferences__five_times">خمس مرّات</string>
+    <string name="preferences__ten_times">عشر مرّات</string>
+    <string name="preferences__vibrate">هزّاز</string>
     <string name="preferences__green">أخضر</string>
     <string name="preferences__red">أحمر</string>
     <string name="preferences__blue">أزرق</string>
@@ -3961,37 +3963,37 @@
     <string name="preferences__none">لا شيء</string>
     <string name="preferences__fast">سريع</string>
     <string name="preferences__normal">طبيعي</string>
-    <string name="preferences__slow">بطىء</string>
+    <string name="preferences__slow">بطيء</string>
     <string name="preferences__help">المساعدة</string>
-    <string name="preferences__advanced">متقدم</string>
+    <string name="preferences__advanced">مُتقدِّم</string>
     <string name="preferences__donate_to_signal">التبرع لـ سيجنال</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">الخصوصية</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">القِصَص</string>
-    <string name="preferences__mms_user_agent">الوكيل المستخدم لرسائل الوسائط المتعددة</string>
+    <string name="preferences__mms_user_agent">وكيل المُستخدم لرسائل الوسائط المتعددة</string>
     <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
     <string name="preferences__mmsc_url">رابط MMSC</string>
     <string name="preferences__mms_proxy_host">مستضيف خدمة MMS</string>
     <string name="preferences__mms_proxy_port">منفذ الوسيط MMS</string>
     <string name="preferences__mmsc_username">اسم المُستخدم MMSC</string>
-    <string name="preferences__mmsc_password">كلمة السر MMSC</string>
+    <string name="preferences__mmsc_password">كلمة السر لمركز MMSC</string>
     <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
     <string name="preferences__data_and_storage">البيانات والتخزين</string>
     <string name="preferences__storage">التخزين</string>
-    <string name="preferences__payments">الدفوعات</string>
+    <string name="preferences__payments">عمليات الدفع</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">قفل عملية الدفع</string>
-    <string name="preferences__conversation_length_limit">أقصى عدد من الرسائل في الدردشة</string>
+    <string name="preferences__conversation_length_limit">الحد الأقصى للرسائل في الدردشة</string>
     <string name="preferences__keep_messages">احتفظ بالرسائل</string>
-    <string name="preferences__clear_message_history">محو محفوظات الرسائل</string>
-    <string name="preferences__linked_devices">الأجهزة المرتبطة</string>
+    <string name="preferences__clear_message_history">مسح سجل الرسائل</string>
+    <string name="preferences__linked_devices">الأجهزة المُرتبِطة</string>
     <string name="preferences__light_theme">فاتح</string>
     <string name="preferences__dark_theme">داكن</string>
     <string name="preferences__appearance">المظهر</string>
     <string name="preferences__theme">المظهر</string>
-    <string name="preferences__chat_color_and_wallpaper">لون الدردشة والخلفية</string>
+    <string name="preferences__chat_color_and_wallpaper">الخلفية ولون الدردشة</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">أيقونة التطبيق</string>
     <!-- Approval for changing the app icon. -->
@@ -3999,55 +4001,55 @@
     <!-- Cancelling the operation of changing the app icon. -->
     <string name="preferences__app_icon_dialog_cancel">إلغاء</string>
     <!-- Title for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_title">غيّر أيقونة واسم التطبيق إلى \"%1$s\"</string>
+    <string name="preferences__app_icon_dialog_title">غيِّر أيقونة واسم التطبيق إلى \"%1$s\"</string>
     <!-- Description for the confirmation dialog of changing the app icon. -->
-    <string name="preferences__app_icon_dialog_description">سيتعيّن إغلاق سيجنال لتغيير أيقونة واسم التطبيق. ستُظهر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا.</string>
+    <string name="preferences__app_icon_dialog_description">لتغيير أيقونة واسم التطبيق، يتعيّن إغلاق سيجنال. ستُظهر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا.</string>
     <!-- Visible warning label for the limitations of changing the app icon with learn more call to action. -->
-    <string name="preferences__app_icon_warning_learn_more">اختر أيقونة واسم تطبيق اللذيْن سَيظهران على شاشة هاتفك الرئيسية ودرج التطبيقات. ستُظهر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا. معرفة المزيد</string>
+    <string name="preferences__app_icon_warning_learn_more">اختر أيقونة واسم تطبيق اللذيْن سَيظهران على شاشة هاتفك الرئيسية وحافظة التطبيقات. ستُظهر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا. اعرف المزيد</string>
     <!-- Visible warning label for the limitations of changing the app icon. -->
-    <string name="preferences__app_icon_warning">تظهر أيقونات وأسماء التطبيقات على الشاشة الرئيسية ودرج التطبيقات.</string>
+    <string name="preferences__app_icon_warning">تَظهرُ أيقونات وأسماء التطبيقات على الشاشة الرئيسية وفي حافظة التطبيقات.</string>
     <!-- Visible warning label explaining that changing the app icon and name does not affect notifications. -->
-    <string name="preferences__app_icon_notification_warning">ستُظهر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا.</string>
+    <string name="preferences__app_icon_notification_warning">ستُظهِر الإشعارات أيقونة واسم سيجنال الافتراضيين دائمًا.</string>
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
-    <string name="preferences__app_icon_learn_more">معرفة المزيد</string>
+    <string name="preferences__app_icon_learn_more">اعرف المزيد</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">رسم يُوضح المكان الذي سَتظهر فيه أيقونة التطبيق البديلة.</string>
-    <string name="preferences__disable_pin">تعطيل الرقم التعريفي الشخصي</string>
-    <string name="preferences__enable_pin">تفعيل الرقم التعريفي الشخصي</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرقم التعريفي الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل إلى سيجنال إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرقم التعريفي الشخصي.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">إن الأرقام التعريفية الشخصية تُبقي المعلومات المحفوظة في سيجنال مُعمَّاة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها بالرمز التعريفي الشخصي لفتح التطبيق.</string>
-    <string name="preferences__system_default">افتراضات النظام</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">رسم يُوضِّح المكان الذي سَتظهر فيه أيقونة التطبيق البديلة.</string>
+    <string name="preferences__disable_pin">تعطيل رقم التعريف الشخصي</string>
+    <string name="preferences__enable_pin">تفعيل رقم التعريف الشخصي</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل رقم التعريف الشخصي، ستضيع جميع البيانات عند قيامك بإعادة التسجيل في سيجنال إلا إذا قمت باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل بينما رقم التعريف الشخصي في حالة تعطيل.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">الأرقام التعريفية الشخصية تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
+    <string name="preferences__system_default">الوضع الافتراضي للنظام</string>
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
-    <string name="preferences__advanced_pin_settings">إعدادات الرقم التعريفي الشخصي المتقدمة</string>
+    <string name="preferences__advanced_pin_settings">إعدادات رقم التعريف الشخصي المُتقدِّمة</string>
     <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مستخدمي سيجنال</string>
     <string name="preferences__submit_debug_log">إرسال سِجل التصحيح</string>
     <string name="preferences__delete_account">حذف الحساب</string>
-    <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل القصيرة والرسائل متعددة الوسائط MMS/SMS ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
-    <string name="preferences__incognito_keyboard">لوحة مفاتيح مستترة</string>
-    <string name="preferences__read_receipts">قراءة وصولات القراءة</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة رسائلك.</string>
+    <string name="preferences__support_wifi_calling">وضع التوافق مع \"التواصل بالواي فاي\"</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
+    <string name="preferences__incognito_keyboard">لوحة مفاتيح في وضع متخفي</string>
+    <string name="preferences__read_receipts">تأكيدات بالقراءة</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتَ بإلغاء تفعيل إيصالات تأكيد القراءة، فلن يمكنك رؤية إيصالات القراءة من الآخرين.</string>
     <string name="preferences__typing_indicators">مؤشرات الكتابة</string>
-    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">إذا تم إلغاء تفعيل المؤشر على الكتابة، فلن يمكنك كذلك رؤية المؤشر عند قيام الآخرين بالكتابة.</string>
-    <string name="preferences__request_keyboard_to_disable">الطلب من لوحة المفاتيح عدم تعلم الجمل الجديدة.</string>
-    <string name="preferences__this_setting_is_not_a_guarantee">إن هذا الإعداد غير مضمون، وقد تتجاهله لوحة مفاتيحك.</string>
+    <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">إذا تمَّ إلغاء تفعيل مؤشرات الكتابة، فلن يمكنك رؤية المؤشر عند قيام الآخرين بالكتابة.</string>
+    <string name="preferences__request_keyboard_to_disable">الطلب من لوحة المفاتيح عدم تمكين التعلُّم المُخصَّص.</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">هذا الإعداد غير مضمون، وقد تتجاهله لوحة مفاتيحك.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
-    <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
+    <string name="preferences_chats__when_using_wifi">عند استخدام الواي فاي</string>
     <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
     <string name="preferences_chats__media_auto_download">التنزيل التلقائي للوسائط</string>
-    <string name="preferences_chats__message_history">محفوظات الرسائل</string>
-    <string name="preferences_storage__storage_usage">استخدام سعة التخزين</string>
+    <string name="preferences_chats__message_history">سجل الرسائل</string>
+    <string name="preferences_storage__storage_usage">استخدام مساحة التخزين</string>
     <string name="preferences_storage__photos">الصور</string>
     <string name="preferences_storage__videos">الفيديوهات</string>
     <string name="preferences_storage__files">الملفات</string>
-    <string name="preferences_storage__audio">صوت</string>
+    <string name="preferences_storage__audio">الصوت</string>
     <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
-    <string name="preferences_storage__delete_older_messages">حذف الرسائل القديمة؟</string>
+    <string name="preferences_storage__delete_older_messages">أترغبُ بحذف الرسائل القديمة؟</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">حذف سِجل الرسائل؟</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ستُحذَف جميع محفوظات الرسائل والوسائط الأقدم من %1$s من جهازك بصفة نهائية.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط الأقدم من %1$s من جهازك.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="zero">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
@@ -4057,19 +4059,19 @@
         <item quantity="many">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
         <item quantity="other">سَيتم تقليم كل الدردشات إلى أحدث %1$s رسالة.</item>
     </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ستُحذَف جميع محفوظات الرسائل والوسائط من جهازك بصفة نهائية.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط من جهازك.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">سيُؤدي هذا إلى حذف جميع محفوظات الرسائل والوسائط من هذا الجهاز وأي أجهزة متصلة.</string>
-    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل محفوظات الرسائل؟</string>
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذف محفوظات الرسائل نهائيًا. لن يتم التراجع عن هذا الإجراء.</string>
+    <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل سجلات الرسائل؟</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذَف كل سجلات الرسائل نهائيًا. لا يمكن التراجع عن هذا الإجراء.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ستُحذف جميع محفوظات الرسائل نهائيًا من كل الأجهزة. لا يُمكن التراجع عن هذا الإجراء.</string>
     <string name="preferences_storage__delete_all_now">حذف الكل الآن</string>
     <!-- Option for keeping messages forever when managing storage -->
-    <string name="preferences_storage__forever">للأبد</string>
+    <string name="preferences_storage__forever">بشكل دائم</string>
     <string name="preferences_storage__one_year">عام واحد</string>
     <string name="preferences_storage__six_months">6 أشهر</string>
-    <string name="preferences_storage__thirty_days">30 يوما</string>
+    <string name="preferences_storage__thirty_days">30 يومًا</string>
     <!-- Option for setting no limit of the length of chat messages -->
     <string name="preferences_storage__none">لا شيء</string>
     <plurals name="preferences_storage__s_messages_plural">
@@ -4081,23 +4083,23 @@
         <item quantity="other">%1$s رسالة</item>
     </plurals>
 
-    <string name="preferences_storage__custom">مخصص</string>
+    <string name="preferences_storage__custom">مُخصَّص</string>
     <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادوم سيجنال لتجنّب الإفصاح عن عنوان بروتوكول الانترنت الخاص بك إلى جهة الاتصال. تفعيل الخاصيّة سيقلل من جودة المكالمة.</string>
-    <string name="preferences_advanced__always_relay_calls">مناوبة الاتصالات دوماً</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادم سيجنال لتجنُّب الإفصاح عن عنوان بروتوكول الإنترنت الخاص بك إلى جهة الاتصال. تفعيل الخاصيّة سيُقلِّل من جودة المكالمة.</string>
+    <string name="preferences_advanced__always_relay_calls">دعم المكالمات دومًا</string>
     <!-- Privacy settings payments section title -->
-    <string name="preferences_app_protection__payments">الدفوعات</string>
+    <string name="preferences_app_protection__payments">عمليات الدفع</string>
     <string name="preferences_chats__chats">الدردشات</string>
     <string name="preferences_app_updates__title">تحديثات التطبيق</string>
-    <string name="preferences_data_and_storage__manage_storage">إدارة التخزين</string>
+    <string name="preferences_data_and_storage__manage_storage">إدارة مساحة التخزين</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
-    <string name="preferences_data_and_storage__never">أبدا</string>
-    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi وبيانات المحمول</string>
-    <string name="preferences_data_and_storage__mobile_data_only">بيانات المحمول فقط</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
+    <string name="preferences_data_and_storage__never">أبدًا</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">الواي فاي وبيانات الجوّال</string>
+    <string name="preferences_data_and_storage__mobile_data_only">بيانات الجوّال فقط</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">قد يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
     <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
-    <string name="preferences_notifications__show">اظهار</string>
-    <string name="preferences_notifications__ringtone">الرّنة</string>
+    <string name="preferences_notifications__show">إظهار</string>
+    <string name="preferences_notifications__ringtone">النغمة</string>
     <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
     <!-- Option in settings that will provide a shortcut to notification system settings to control the priority of Signal notifications -->
     <string name="preferences_notifications__priority">الأولوية</string>
@@ -4109,13 +4111,13 @@
     <string name="preferences_communication__censorship_circumvention">تجاوز الرقابة</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">في حالة التفعيل، سيُحاول تطبيق سيجنال تجاوز الرقابة. لا تُفعِّل هذه الميزة إلا إذا كنتَ في مكان يخضع فيه سيجنال للرقابة.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">تمَّ تنشيط تجاوز الرقابة إستنادًا على رقم الهاتف الخاص بحسابك.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">تمَّ تنشيط خاصية \"تجاوز الرقابة\" استنادًا إلى رقم الهاتف الخاص بحسابك.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">أنتَ قَد عطَّلتَ يدويًا تجاوز الرقابة.</string>
+    <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">قُمتَ بتعطيل خاصية \"تجاوز الرقابة\" يدويًا.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
     <string name="preferences_communication__censorship_circumvention_is_not_necessary_you_are_already_connected">تجاوز الرقابة ليس ضُروريًا ؛ أنت بالفعل مُتصل بخدمة سيجنال.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
-    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">لا يمكن تفعيل تجاوز الرقابة إلا عند الاتصال بالإنترنت.</string>
+    <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">لا يمكن تفعيل تجاوز الرقابة إلّا عند الاتصال بالإنترنت.</string>
     <string name="preferences_communication__category_sealed_sender">المُرسِل المختوم</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
@@ -5544,24 +5546,24 @@
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">إضافة مجلد دردشة</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">إضافة مجلدات أو تعديلها</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="zero">%1$d folders</item>
-        <item quantity="one">%1$d folder</item>
-        <item quantity="two">%1$d folders</item>
-        <item quantity="few">%1$d folders</item>
-        <item quantity="many">%1$d folders</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="zero">%1$d مجلدات</item>
+        <item quantity="one">%1$d مجلد</item>
+        <item quantity="two">%1$d مجلدين</item>
+        <item quantity="few">%1$d مجلدات</item>
+        <item quantity="many">%1$d مجلدًا</item>
+        <item quantity="other">%1$d مجلد</item>
     </plurals>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
-    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">أنشِئ مجلدات للعائلة والأصدقاء والعمل وأكثر</string>
     <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
-    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">اِختر إظهار الدردشات غير المقروءة فقط </string>
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
-    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">إضافة المجلدات المُقترَحة بسهولة</string>
     <!-- Button text to dismiss bottom sheet -->
     <string name="ChatFoldersEducationSheet__continue">متابعة</string>
 
@@ -5597,7 +5599,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">كتم الجميع</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
+    <string name="ChatFoldersFragment__unmute_all">إلغاء كتم صوت للجميع</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">اعتبار كل الرسائل مقروءة</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -6305,7 +6307,7 @@
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
-    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+    <string name="InAppDonations__recurring_d">%1$d مُتكرِّر</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -6523,17 +6525,17 @@
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">الجدولة</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">البدأ</string>
+    <string name="EditNotificationProfileSchedule__start">البدء</string>
     <!-- Label for showing the end time for the schedule -->
-    <string name="EditNotificationProfileSchedule__end">نهاية</string>
+    <string name="EditNotificationProfileSchedule__end">الانتهاء</string>
     <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">اﻷحد</string>
+    <string name="EditNotificationProfileSchedule__sunday_first_letter">الأحد</string>
     <!-- First letter of Monday -->
-    <string name="EditNotificationProfileSchedule__monday_first_letter">الاثنين</string>
+    <string name="EditNotificationProfileSchedule__monday_first_letter">الإثنين</string>
     <!-- First letter of Tuesday -->
     <string name="EditNotificationProfileSchedule__tuesday_first_letter">الثلاثاء</string>
     <!-- First letter of Wednesday -->
-    <string name="EditNotificationProfileSchedule__wednesday_first_letter">اﻷربعاء</string>
+    <string name="EditNotificationProfileSchedule__wednesday_first_letter">الأربعاء</string>
     <!-- First letter of Thursday -->
     <string name="EditNotificationProfileSchedule__thursday_first_letter">الخميس</string>
     <!-- First letter of Friday -->
@@ -8245,7 +8247,7 @@
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">الاشتراك غير فعَّال</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">أوقفتَ النسخ الاحتياطية</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">خطة النسخ الاحتياطي</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -8253,9 +8255,9 @@
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/شهريًا</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
-    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <string name="RemoteBackupsSettingsFragment__payment_pending">عملية الدفع مُعلَّقة…</string>
     <!-- Displayed in card while waiting for network -->
-    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">جارٍ انتظار الشبكة…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">خطة النسخ الاحتياطي الخاصة بك مجانية</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -8313,9 +8315,9 @@
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">تمَّ إيقاف النسخ الاحتياطية وتمَّ حذف بياناتك من خدمة التخزين الآمنة لسيجنال.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">جارٍتنزيل النسخة الاحتياطية الخاصة بك</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل اعتيادي أثناء إجراء عملية التنزيل.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8407,7 +8409,7 @@
         <item quantity="other">الأيام %1$d الأخيرة من الوسائط</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">الخطة الحالية</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

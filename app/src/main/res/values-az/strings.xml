@@ -740,14 +740,16 @@
         <item quantity="other">%1$d seçildi</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <string name="ConversationListFragment_add_to_folder">Qovluğa əlavə et</string>
     <!-- Context menu option to remove a chat from a folder -->
-    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+    <string name="ConversationListFragment_remove_from_folder">Qovluqdan sil</string>
 
     <!-- Bottom sheet title when choosing a folder to add a chat to -->
-    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <string name="AddToFolderBottomSheet_choose_a_folder">Bir qovluq seç</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" qovluğuna əlavə edildi</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Bildiriş profili</string>
@@ -5068,20 +5070,20 @@
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">Bir çat qovluğu əlavə et</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Qovluqlar əlavə et və ya redaktə et</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d qovluq</item>
+        <item quantity="other">%1$d qovluq</item>
     </plurals>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
-    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Ailə, dostlar, iş və s. üçün qovluqlar yarat</string>
     <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
-    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Yalnız oxunmamış çatları göstər </string>
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
-    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Tövsiyə olunan qovluqları asanlıqla əlavə et</string>
     <!-- Button text to dismiss bottom sheet -->
     <string name="ChatFoldersEducationSheet__continue">Davam et</string>
 
@@ -5097,7 +5099,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Təqdim olunan qovluqlar</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Oxunmadı</string>
+    <string name="ChatFoldersFragment__unread">Oxunmamışlar</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Bütün çatlardan oxunmamış mesajlar</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5117,7 +5119,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Hamısının səsini bağla</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
+    <string name="ChatFoldersFragment__unmute_all">Hamısını səssiz et</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Hamısını oxundu olaraq işarələ</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -5773,7 +5775,7 @@
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
-    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+    <string name="InAppDonations__recurring_d">Təkrarlanma %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -6009,9 +6011,9 @@
     <!-- First letter of Saturday -->
     <string name="EditNotificationProfileSchedule__saturday_first_letter">Şə</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_start_time">Başlama vaxtı</string>
+    <string name="EditNotificationProfileSchedule__set_start_time">Başlama vaxtı təyin et</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_end_time">Bitmə vaxtı</string>
+    <string name="EditNotificationProfileSchedule__set_end_time">Bitmə vaxtı təyin et</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
     <string name="EditNotificationProfileSchedule__save">Saxla</string>
     <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
@@ -7593,7 +7595,7 @@
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Abunəlik qeyri-aktivdir</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Ehtiyat nüsxələri qeyri-aktiv etdiniz</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Ehtiyat nüsxə planı</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7601,9 +7603,9 @@
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/ay</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
-    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Ödəniş gözləmədədir…</string>
     <!-- Displayed in card while waiting for network -->
-    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Şəbəkəyə qoşulur…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Ehtiyat nüsxə planınız pulsuzdur</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7661,9 +7663,9 @@
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Ehtiyat nüsxələr deaktiv edilib və verilənləriniz Signal-ın təhlükəsiz saxlama xidmətindən silinib.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Ehtiyat nüsxənin endirilməsi</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Ehtiyat nüsxə həcmindən asılı olaraq, bu, bir qədər uzun çəkə bilər. Endirmə müddətində telefondan həmişəki kimi istifadə edə bilərsiniz.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7747,7 +7749,7 @@
         <item quantity="other">Media faylı saxlamaq üçün son %1$d gün</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Cari plan</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

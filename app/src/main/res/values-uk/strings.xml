@@ -780,14 +780,16 @@
         <item quantity="other">Вибрано %1$d</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <string name="ConversationListFragment_add_to_folder">Додати в папку</string>
     <!-- Context menu option to remove a chat from a folder -->
-    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+    <string name="ConversationListFragment_remove_from_folder">Вилучити з папки</string>
 
     <!-- Bottom sheet title when choosing a folder to add a chat to -->
-    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <string name="AddToFolderBottomSheet_choose_a_folder">Виберіть папку</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_added_to_s">Додано в «%1$s»</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Профіль сповіщень</string>
@@ -5306,22 +5308,22 @@
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">Додати папку для чатів</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Створити або змінити папки</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="few">%1$d folders</item>
-        <item quantity="many">%1$d folders</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d папка</item>
+        <item quantity="few">%1$d папки</item>
+        <item quantity="many">%1$d папок</item>
+        <item quantity="other">%1$d папки</item>
     </plurals>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
-    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Створюйте папки для чатів з рідними, друзями, колегами тощо</string>
     <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
-    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Майте папки лише для непрочитаних повідомлень </string>
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
-    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Швидко додавайте рекомендовані папки</string>
     <!-- Button text to dismiss bottom sheet -->
     <string name="ChatFoldersEducationSheet__continue">Продовжити</string>
 
@@ -5337,7 +5339,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Зразки папок</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">Не прочитано</string>
+    <string name="ChatFoldersFragment__unread">Непрочитані</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Непрочитані повідомлення з усіх чатів</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5357,7 +5359,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Вимкнути всі сповіщення</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
+    <string name="ChatFoldersFragment__unmute_all">Увімкнути сповіщення для всіх</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Позначити всі як прочитані</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -6039,7 +6041,7 @@
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
-    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+    <string name="InAppDonations__recurring_d">Регулярно %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -6275,9 +6277,9 @@
     <!-- First letter of Saturday -->
     <string name="EditNotificationProfileSchedule__saturday_first_letter">С</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_start_time">Час початку</string>
+    <string name="EditNotificationProfileSchedule__set_start_time">Час увімкнення профілю</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_end_time">Час закінчення</string>
+    <string name="EditNotificationProfileSchedule__set_end_time">Час вимкнення профілю</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
     <string name="EditNotificationProfileSchedule__save">Зберегти</string>
     <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
@@ -7919,7 +7921,7 @@
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Передплата неактивна</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Резервне копіювання вимкнено</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">План резервного копіювання</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7927,9 +7929,9 @@
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/місяць</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
-    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Триває опрацювання платежу…</string>
     <!-- Displayed in card while waiting for network -->
-    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Очікування мережі…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Безплатно</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7987,9 +7989,9 @@
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Резервне копіювання вимкнено, а ваші дані видалено із захищеного сховища даних Signal.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Завантаження резервної копії</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Що більший розмір резервної копії, то довше триватиме її завантаження. Поки воно триває, ви можете користуватися телефоном як зазвичай.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8077,7 +8079,7 @@
         <item quantity="other">Медіафайли за %1$d минулі дня</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Поточний план</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

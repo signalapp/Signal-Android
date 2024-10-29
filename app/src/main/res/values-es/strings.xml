@@ -740,14 +740,16 @@
         <item quantity="other">%1$d seleccionados</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Add to folder</string>
+    <string name="ConversationListFragment_add_to_folder">Añadir a la carpeta</string>
     <!-- Context menu option to remove a chat from a folder -->
-    <string name="ConversationListFragment_remove_from_folder">Remove from folder</string>
+    <string name="ConversationListFragment_remove_from_folder">Eliminar de la carpeta</string>
 
     <!-- Bottom sheet title when choosing a folder to add a chat to -->
-    <string name="AddToFolderBottomSheet_choose_a_folder">Choose a folder</string>
+    <string name="AddToFolderBottomSheet_choose_a_folder">Selecciona una carpeta</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_added_to_s">Added to \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_added_to_s">Añadido a \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Perfil de notificaciones</string>
@@ -2431,11 +2433,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">¿Es correcto el número de abajo?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">¿Es correcto el siguiente número?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Verificación adicional necesaria</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará un código de verificación a este número. Se pueden aplicar tarifas de operador.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará un código de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Recibirás una llamada para verificar este número.</string>
     <string name="RegistrationActivity_edit_number">Editar número</string>
     <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play no instalados</string>
@@ -2484,9 +2486,9 @@
 
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_country_code_description">Código de país</string>
-    <string name="RegistrationActivity_call">Llamada</string>
+    <string name="RegistrationActivity_call">Enviar código por llamada</string>
     <string name="RegistrationActivity_verification_code">Código de verificación</string>
-    <string name="RegistrationActivity_resend_code">Enviar código de nuevo</string>
+    <string name="RegistrationActivity_resend_code">Reenviar código</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">¿Tienes problemas para registrarte?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
@@ -3591,7 +3593,7 @@
     <string name="preferences__dark_theme">Oscuro</string>
     <string name="preferences__appearance">Apariencia</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_color_and_wallpaper">Color y fondo de pantalla del chat</string>
+    <string name="preferences__chat_color_and_wallpaper">Color y fondo del chat</string>
     <!-- Clickable settings text allowing the user to change the icon visible on their phone\'s home screen. -->
     <string name="preferences__app_icon">Icono de la aplicación</string>
     <!-- Approval for changing the app icon. -->
@@ -3630,7 +3632,7 @@
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si desactivas las confirmaciones de lectura, no podrás ver las confirmaciones de lectura de nadie.</string>
     <string name="preferences__typing_indicators">Indicadores de escritura</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de escritura, no podrás ver los indicadores de escritura de nadie.</string>
-    <string name="preferences__request_keyboard_to_disable">Solicitar deshabilitar el aprendizaje personalizado del teclado.</string>
+    <string name="preferences__request_keyboard_to_disable">Elige deshabilitar el aprendizaje personalizado del teclado.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Aunque actives esta opción, es posible que tu teclado la ignore.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
@@ -3821,7 +3823,7 @@
     <!-- Notifications permission row title -->
     <string name="GrantPermissionsFragment__notifications">Notificaciones</string>
     <!-- Notifications permission row description -->
-    <string name="GrantPermissionsFragment__get_notified_when">Recibir notificaciones cuando lleguen nuevos mensajes.</string>
+    <string name="GrantPermissionsFragment__get_notified_when">Recibe notificaciones cuando te lleguen mensajes nuevos.</string>
     <!-- Contacts permission row title -->
     <string name="GrantPermissionsFragment__contacts">Contactos</string>
     <!-- Contacts permission row description -->
@@ -3829,7 +3831,7 @@
     <!-- Phone calls permission row title -->
     <string name="GrantPermissionsFragment__phone_calls">Llamadas telefónicas</string>
     <!-- Phone calls permission row description -->
-    <string name="GrantPermissionsFragment__make_registering_easier">Facilita el registro y habilita funciones adicionales de llamadas.</string>
+    <string name="GrantPermissionsFragment__make_registering_easier">Facilita el registro de tu cuenta y habilita funciones de llamada adicionales.</string>
     <!-- Storage permission row title -->
     <string name="GrantPermissionsFragment__storage">Almacenamiento</string>
     <!-- Storage permission row description -->
@@ -4219,7 +4221,7 @@
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Introduce tu PIN</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduce el PIN que has creado para tu cuenta. El PIN no es el código de verificación que se envía por SMS.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduce el PIN que has creado para tu cuenta de Signal. El PIN no es el código de verificación que se envía por SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introduce el PIN que creaste para tu cuenta.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -4336,11 +4338,11 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tu copia de seguridad contiene un archivo muy grande que no se puede guardar. Bórralo y crea una copia de seguridad nueva.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para gestionar las copias de seguridad.</string>
-    <string name="RegistrationActivity_wrong_number">¿Número erróneo?</string>
+    <string name="RegistrationActivity_wrong_number">¿Número incorrecto?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
-    <string name="RegistrationActivity_call_me_instead_available_in">Llámame (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Enviar código por llamada (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
-    <string name="RegistrationActivity_resend_sms_available_in">Volver a enviar código (%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_resend_sms_available_in">Reenviar código (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacta con el equipo de asistencia de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registro de Signal: Código de verificación en Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
@@ -4822,10 +4824,10 @@
     <string name="payment_info_card_hide_this_card">¿Ocultar esta tarjeta?</string>
     <string name="payment_info_card_hide">Ocultar</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">Guardar la frase de recuperación</string>
+    <string name="payment_info_card_save_recovery_phrase">Guardar frase de recuperación</string>
     <string name="payment_info_card_your_recovery_phrase_gives_you">La frase de recuperación también te permite restaurar tu cuenta de pagos.</string>
     <!-- Button in save recovery phrase card -->
-    <string name="payment_info_card_save_your_phrase">Guardar tu frase</string>
+    <string name="payment_info_card_save_your_phrase">Guardar frase</string>
     <string name="payment_info_card_update_your_pin">Actualiza tu PIN</string>
     <string name="payment_info_card_with_a_high_balance">Si tienes un saldo elevado, te recomendamos cambiar tu PIN de Signal por uno alfanumérico para añadir protección extra a tu cuenta.</string>
     <string name="payment_info_card_update_pin">Actualizar PIN</string>
@@ -4850,7 +4852,7 @@
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Ver frase de recuperación</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Guardar la frase de recuperación</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Guardar frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introducir frase de recuperación</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
         <item quantity="one">Tu saldo se restaurará automáticamente cuando reinstales Signal si confirmas el PIN de tu cuenta de Signal. También puedes restaurar tu saldo con la frase de recuperación: una clave de %1$d palabra que es única para ti. Anótala y guárdala en un sitio seguro.</item>
@@ -5068,20 +5070,20 @@
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
     <string name="ChatsSettingsFragment__add_chat_folder">Añadir una carpeta de chats</string>
     <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
-    <string name="ChatsSettingsFragment__add_edit_chat_folder">Add or edit folders</string>
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Añadir o editar carpetas</string>
     <!-- Text describing the number of folders you have -->
     <plurals name="ChatsSettingsFragment__d_folder">
-        <item quantity="one">%1$d folder</item>
-        <item quantity="other">%1$d folders</item>
+        <item quantity="one">%1$d carpeta</item>
+        <item quantity="other">%1$d carpetas</item>
     </plurals>
 
     <!-- ChatFoldersEducationSheet -->
     <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
-    <string name="ChatFoldersEducationSheet__create_folders_for_family">Create folders for family, friends, work and more</string>
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Crea carpetas para tu familia, amigos, trabajo y mucho más</string>
     <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
-    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Choose to show only unread chats </string>
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Opta por mostrar solo los chats no leídos </string>
     <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
-    <string name="ChatFoldersEducationSheet__easily_add_suggested">Easily add suggested folders</string>
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Añade fácilmente carpetas sugeridas</string>
     <!-- Button text to dismiss bottom sheet -->
     <string name="ChatFoldersEducationSheet__continue">Continuar</string>
 
@@ -5097,7 +5099,7 @@
     <!-- Header for section showing suggested chat folders for users to have -->
     <string name="ChatFoldersFragment__suggested_folders">Carpetas sugeridas</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">No leído</string>
+    <string name="ChatFoldersFragment__unread">No leída</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">Mensajes no leídos de todos los chats</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5117,7 +5119,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Silenciar todos</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Unmute all</string>
+    <string name="ChatFoldersFragment__unmute_all">Reactivar notificaciones</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Marcar todos como leídos</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -5234,13 +5236,13 @@
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
-    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar el icono de estado</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Se muestra un icono en los detalles del mensaje cuando se ha entregado con la opción de remitente confidencial.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostrar icono de estado</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Se muestra un icono en los detalles del mensaje cuando se ha entregado con la función Remitente confidencial.</string>
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Si activas esta función, los mensajes enviados y recibidos en nuevos chats que tú inicies desaparecerán tras ser vistos.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si activas esta función, los mensajes enviados y recibidos en este chat desaparecerán tras ser vistos.</string>
-    <string name="ExpireTimerSettingsFragment__off">Desactivado</string>
+    <string name="ExpireTimerSettingsFragment__off">No</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 semanas</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 semana</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 día</string>
@@ -5272,7 +5274,7 @@
     <!-- DataAndStorageSettingsFragment -->
     <string name="DataAndStorageSettingsFragment__media_quality">Calidad de archivos multimedia</string>
     <!-- Category title for the quality of the media to be sent -->
-    <string name="DataAndStorageSettingsFragment__sent_media_quality">Calidad de fotos y vídeos</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Archivos multimedia enviados</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Si seleccionas la opción de alta calidad, se usarán más datos.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Alta</string>
@@ -5619,8 +5621,8 @@
 
 
     <string name="BadgesOverviewFragment__my_badges">Mis insignias</string>
-    <string name="BadgesOverviewFragment__featured_badge">Insignia a mostrar</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar insignias en el perfil</string>
+    <string name="BadgesOverviewFragment__featured_badge">Insignia en mi perfil</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Mostrar insignias en mi perfil</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">No se ha podido actualizar el perfil</string>
 
 
@@ -5672,7 +5674,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Insignia a mostrar</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Insignia en mi perfil</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continuar</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de una insignia, puedes seleccionar cuál quieres que otras personas vean en tu perfil.</string>
 
@@ -5685,12 +5687,12 @@
     <string name="ManageDonationsFragment__more">Más</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_support">Mi apoyo</string>
+    <string name="ManageDonationsFragment__my_support">Mi contribución</string>
     <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Justificantes de donación</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
-    <string name="ManageDonationsFragment__subscription_faq">Preguntas y respuestas sobre la suscripción</string>
+    <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre las suscripciones</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Otras formas de aportar</string>
     <!-- Preference label to launch badge gifting -->
@@ -5773,7 +5775,7 @@
 
     <!--InAppDonations -->
     <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
-    <string name="InAppDonations__recurring_d">Recurring %1$d</string>
+    <string name="InAppDonations__recurring_d">Recurrente: %1$d</string>
 
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
@@ -6676,7 +6678,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacidad por encima de los beneficios</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">La privacidad por encima de las ganancias</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Continuar</string>
     <!-- Description below title -->
@@ -7593,7 +7595,7 @@
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Suscripción inactiva</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">You turned off backups</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Has desactivado las copias de seguridad</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Plan de copias de seguridad</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
@@ -7601,9 +7603,9 @@
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mes</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
-    <string name="RemoteBackupsSettingsFragment__payment_pending">Payment pending…</string>
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Pago pendiente…</string>
     <!-- Displayed in card while waiting for network -->
-    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Waiting for network…</string>
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Esperando red…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Tu plan de copias de seguridad es gratis</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
@@ -7661,9 +7663,9 @@
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Se han desactivado las copias de seguridad y se han eliminado tus datos del servicio de almacenamiento seguro de Signal.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Descargando tu copia de seguridad</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7747,7 +7749,7 @@
         <item quantity="other">Últimos %1$d días de archivos multimedia</item>
     </plurals>
     <!-- Text designating that an option is your current plan -->
-    <string name="MessageBackupsTypeSelectionScreen__current_plan">Current plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Plan actual</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
