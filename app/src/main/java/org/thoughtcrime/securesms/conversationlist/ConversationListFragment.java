@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -1066,7 +1067,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void onChatFoldersChanged(List<ChatFolderMappingModel> folders) {
     chatFolderList.setVisibility(folders.size() > 1 && !isArchived() ? View.VISIBLE : View.GONE);
-    chatFolderAdapter.submitList(new ArrayList<>(folders));
+    if (chatFolderList.getLayoutManager() != null) {
+      Parcelable savedState = chatFolderList.getLayoutManager().onSaveInstanceState();
+      chatFolderAdapter.submitList(new ArrayList<>(folders), () -> chatFolderList.getLayoutManager().onRestoreInstanceState(savedState));
+    }
   }
 
   private void onMegaphoneChanged(@NonNull Megaphone megaphone) {
@@ -1485,10 +1489,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (conversation.getThreadRecord().isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id, false)));
     } else {
-      if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL) {
+      if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
+          conversation.getThreadRecord().getRecipient().isIndividual() ||
+          conversation.getThreadRecord().getRecipient().isPushV2Group()) {
         List<ChatFolderRecord> folders = viewModel.getFolders().stream().map(ChatFolderMappingModel::getChatFolder).collect(Collectors.toList());
         items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
-          AddToFolderBottomSheet.showChatFolderSheet(folders, conversation.getThreadRecord().getThreadId()).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+          AddToFolderBottomSheet.showChatFolderSheet(folders, conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient().isIndividual()).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
         ));
       } else {
         items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
@@ -1713,6 +1719,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       }
     }
 
+    if (isScrolled()) {
+      list.smoothScrollToPosition(0);
+    }
+
+    if (oldIndex == newIndex) {
+      return;
+    }
+
     if (oldIndex < newIndex) {
       smoothScroller.setTargetPosition(Math.min(newIndex + 1, viewModel.getFolders().size()));
     } else {
@@ -1724,7 +1738,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     viewModel.select(chatFolder);
-    list.smoothScrollToPosition(0);
   }
 
   @Override
