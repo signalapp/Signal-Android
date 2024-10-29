@@ -276,6 +276,7 @@ object BackupRepository {
   fun localExport(
     main: OutputStream,
     localBackupProgressEmitter: ExportProgressListener,
+    cancellationSignal: () -> Boolean = { false },
     archiveAttachment: (AttachmentTable.LocalArchivableAttachment, () -> InputStream?) -> Unit
   ) {
     val writer = EncryptedBackupWriter(
@@ -285,7 +286,7 @@ object BackupRepository {
       append = { main.write(it) }
     )
 
-    export(currentTime = System.currentTimeMillis(), isLocal = true, writer = writer, progressEmitter = localBackupProgressEmitter) { dbSnapshot ->
+    export(currentTime = System.currentTimeMillis(), isLocal = true, writer = writer, progressEmitter = localBackupProgressEmitter, cancellationSignal = cancellationSignal) { dbSnapshot ->
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
         .getLocalArchivableAttachments()
@@ -308,10 +309,11 @@ object BackupRepository {
     }
   }
 
+  @JvmOverloads
   fun export(
     outputStream: OutputStream,
     append: (ByteArray) -> Unit,
-    messageBackupKey: org.whispersystems.signalservice.api.backup.MessageBackupKey = SignalStore.backup.messageBackupKey,
+    messageBackupKey: MessageBackupKey = SignalStore.backup.messageBackupKey,
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
     mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
@@ -361,6 +363,7 @@ object BackupRepository {
       eventTimer.emit("store-db-snapshot")
 
       val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled)
+      val selfRecipientId = dbSnapshot.recipientTable.getByAci(signalStoreSnapshot.accountValues.aci!!).get().toLong().let { RecipientId.from(it) }
 
       var frameCount = 0L
 
@@ -383,18 +386,18 @@ object BackupRepository {
             frameCount++
           }
           if (cancellationSignal()) {
-            Log.w(TAG, "[import] Cancelled! Stopping")
+            Log.w(TAG, "[export] Cancelled! Stopping")
             return@export
           }
 
           progressEmitter?.onRecipient()
-          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState) {
+          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState, selfRecipientId) {
             writer.write(it)
             eventTimer.emit("recipient")
             frameCount++
           }
           if (cancellationSignal()) {
-            Log.w(TAG, "[import] Cancelled! Stopping")
+            Log.w(TAG, "[export] Cancelled! Stopping")
             return@export
           }
 
@@ -409,10 +412,14 @@ object BackupRepository {
           }
 
           progressEmitter?.onCall()
-          AdHocCallArchiveProcessor.export(dbSnapshot) { frame ->
+          AdHocCallArchiveProcessor.export(dbSnapshot, exportState) { frame ->
             writer.write(frame)
             eventTimer.emit("call")
             frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
           }
 
           progressEmitter?.onSticker()
@@ -421,15 +428,23 @@ object BackupRepository {
             eventTimer.emit("sticker-pack")
             frameCount++
           }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
 
           progressEmitter?.onMessage()
-          ChatItemArchiveProcessor.export(dbSnapshot, exportState, cancellationSignal) { frame ->
+          ChatItemArchiveProcessor.export(dbSnapshot, exportState, selfRecipientId, cancellationSignal) { frame ->
             writer.write(frame)
             eventTimer.emit("message")
             frameCount++
 
             if (frameCount % 1000 == 0L) {
               Log.d(TAG, "[export] Exported $frameCount frames so far.")
+              if (cancellationSignal()) {
+                Log.w(TAG, "[export] Cancelled! Stopping")
+                return@export
+              }
             }
           }
         }

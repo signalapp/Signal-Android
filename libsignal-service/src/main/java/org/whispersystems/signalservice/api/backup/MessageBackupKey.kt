@@ -20,6 +20,13 @@ class MessageBackupKey(override val value: ByteArray) : BackupKey {
   }
 
   /**
+   * The private key used to generate anonymous credentials when interacting with the backup service.
+   */
+  override fun deriveAnonymousCredentialPrivateKey(aci: ACI): ECPrivateKey {
+    return LibSignalBackupKey(value).deriveEcKey(aci.libSignalAci)
+  }
+
+  /**
    * The cryptographic material used to encrypt a backup.
    */
   fun deriveBackupSecrets(aci: ACI): BackupKeyMaterial {
@@ -35,16 +42,9 @@ class MessageBackupKey(override val value: ByteArray) : BackupKey {
   }
 
   /**
-   * The private key used to generate anonymous credentials when interacting with the backup service.
-   */
-  override fun deriveAnonymousCredentialPrivateKey(aci: ACI): ECPrivateKey {
-    return LibSignalBackupKey(value).deriveEcKey(aci.libSignalAci)
-  }
-
-  /**
    * Identifies a the location of a user's backup.
    */
-  private fun deriveBackupId(aci: ACI): BackupId {
+  fun deriveBackupId(aci: ACI): BackupId {
     return BackupId(
       LibSignalBackupKey(value).deriveBackupId(aci.libSignalAci)
     )

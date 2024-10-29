@@ -7,6 +7,7 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.protocol.ecc.Curve
+import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -238,6 +239,21 @@ object LinkDeviceRepository {
       return LinkUploadArchiveResult.BackupCreationFailure(e)
     }
     stopwatch.split("create-backup")
+
+    when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey)) {
+      ArchiveValidator.ValidationResult.Success -> {
+        Log.d(TAG, "Successfully passed validation.")
+      }
+      is ArchiveValidator.ValidationResult.ReadError -> {
+        Log.w(TAG, "Failed to read the file during validation!", result.exception)
+        return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
+      }
+      is ArchiveValidator.ValidationResult.ValidationError -> {
+        Log.w(TAG, "The backup file fails validation!", result.exception)
+        return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
+      }
+    }
+    stopwatch.split("validate-backup")
 
     val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm()) {
       is NetworkResult.Success -> result.result

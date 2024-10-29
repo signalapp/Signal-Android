@@ -24,12 +24,16 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.database.getThreadGroupStatus
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
+import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.MessageAttachment
@@ -75,6 +79,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -88,6 +93,7 @@ import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Future
 import kotlin.jvm.optionals.getOrNull
+import kotlin.math.max
 import kotlin.time.Duration.Companion.days
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
@@ -103,9 +109,11 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
  */
 class ChatItemArchiveExporter(
   private val db: SignalDatabase,
+  private val selfRecipientId: RecipientId,
   private val backupStartTime: Long,
   private val batchSize: Int,
   private val mediaArchiveEnabled: Boolean,
+  private val exportState: ExportState,
   private val cursorGenerator: (Long, Int) -> Cursor
 ) : Iterator<ChatItem?>, Closeable {
 
@@ -136,7 +144,11 @@ class ChatItemArchiveExporter(
     eventTimer.emit("extra-data")
 
     for ((id, record) in records) {
-      val builder = record.toBasicChatItemBuilder(extraData.groupReceiptsById[id])
+      val builder = record.toBasicChatItemBuilder(selfRecipientId, extraData.isGroupThreadById[id] ?: false, extraData.groupReceiptsById[id], exportState, backupStartTime)
+
+      if (builder == null) {
+        continue
+      }
 
       when {
         record.remoteDeleted -> {
@@ -209,11 +221,12 @@ class ChatItemArchiveExporter(
 
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
+          builder.expireStartDate = 0
           builder.expiresInMs = 0
         }
 
         MessageTypes.isProfileChange(record.type) -> {
-          builder.updateMessage = record.toRemoteProfileChangeUpdate()
+          builder.updateMessage = record.toRemoteProfileChangeUpdate() ?: continue
         }
 
         MessageTypes.isSessionSwitchoverType(record.type) -> {
@@ -225,12 +238,20 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
-          builder.updateMessage = record.toRemoteGroupUpdate()
+          builder.updateMessage = record.toRemoteGroupUpdate() ?: continue
+        }
+
+        MessageTypes.isGroupV1MigrationEvent(record.type) -> {
+          builder.updateMessage = ChatUpdateMessage(
+            groupChange = GroupChangeChatUpdate(
+              updates = listOf(GroupChangeChatUpdate.Update(groupV2MigrationUpdate = GroupV2MigrationUpdate()))
+            )
+          )
         }
 
         MessageTypes.isCallLog(record.type) -> {
           val call = db.callTable.getCallByMessageId(record.id)
-          builder.updateMessage = call?.toRemoteCallUpdate(db, record)
+          builder.updateMessage = call?.toRemoteCallUpdate(db, record) ?: continue
         }
 
         MessageTypes.isPaymentsNotification(record.type) -> {
@@ -338,16 +359,22 @@ class ChatItemArchiveExporter(
       db.groupReceiptTable.getGroupReceiptInfoForMessages(messageIds)
     }
 
+    val isGroupThreadFuture = executor.submitTyped {
+      db.threadTable.getThreadGroupStatus(messageIds)
+    }
+
     val mentionsResult = mentionsFuture.get()
     val reactionsResult = reactionsFuture.get()
     val attachmentsResult = attachmentsFuture.get()
     val groupReceiptsResult = groupReceiptsFuture.get()
+    val isGroupThreadResult = isGroupThreadFuture.get()
 
     return ExtraMessageData(
       mentionsById = mentionsResult,
       reactionsById = reactionsResult,
       attachmentsById = attachmentsResult,
-      groupReceiptsById = groupReceiptsResult
+      groupReceiptsById = groupReceiptsResult,
+      isGroupThreadById = isGroupThreadResult
     )
   }
 }
@@ -356,10 +383,10 @@ private fun simpleUpdate(type: SimpleChatUpdate.Type): ChatUpdateMessage {
   return ChatUpdateMessage(simpleUpdate = SimpleChatUpdate(type = type))
 }
 
-private fun BackupMessageRecord.toBasicChatItemBuilder(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): ChatItem.Builder {
+private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: RecipientId, isGroupThread: Boolean, groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?, exportState: ExportState, backupStartTime: Long): ChatItem.Builder? {
   val record = this
 
-  return ChatItem.Builder().apply {
+  val builder = ChatItem.Builder().apply {
     chatId = record.threadId
     authorId = record.fromRecipientId
     dateSent = record.dateSent
@@ -369,19 +396,40 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(groupReceipts: List<Group
     sms = record.type.isSmsType()
     if (record.type.isDirectionlessType()) {
       directionless = ChatItem.DirectionlessMessageDetails()
-    } else if (MessageTypes.isOutgoingMessageType(record.type)) {
+    } else if (MessageTypes.isOutgoingMessageType(record.type) || record.fromRecipientId == selfRecipientId.toLong()) {
       outgoing = ChatItem.OutgoingMessageDetails(
-        sendStatus = record.toRemoteSendStatus(groupReceipts)
+        sendStatus = record.toRemoteSendStatus(isGroupThread, groupReceipts, exportState)
       )
+
+      if (expiresInMs > 0 && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
+        Log.w(TAG, "Outgoing expiring message was sent but the timer wasn't started! Fixing.")
+        expireStartDate = record.dateReceived
+      }
     } else {
       incoming = ChatItem.IncomingMessageDetails(
-        dateServerSent = record.dateServer,
+        dateServerSent = max(record.dateServer, 0),
         dateReceived = record.dateReceived,
         read = record.read,
         sealedSender = record.sealedSender
       )
+
+      if (expiresInMs > 0 && incoming?.read == true && expireStartDate == 0L) {
+        Log.w(TAG, "Incoming expiring message was read but the timer wasn't started! Fixing.")
+        expireStartDate = record.dateReceived
+      }
     }
   }
+
+  if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs > 0 && builder.expireStartDate + builder.expiresInMs < backupStartTime + 1.days.inWholeMilliseconds) {
+    Log.w(TAG, "Message expires too soon! Must skip.")
+    return null
+  }
+
+  if (builder.expireStartDate > 0 && builder.expiresInMs == 0L) {
+    builder.expireStartDate = 0
+  }
+
+  return builder
 }
 
 private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage? {
@@ -492,6 +540,8 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
             CallTable.Event.MISSED_NOTIFICATION_PROFILE -> IndividualCall.State.MISSED_NOTIFICATION_PROFILE
             CallTable.Event.ACCEPTED -> IndividualCall.State.ACCEPTED
             CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
+            CallTable.Event.ONGOING -> IndividualCall.State.ACCEPTED
+            CallTable.Event.DELETE -> return null
             else -> IndividualCall.State.UNKNOWN_STATE
           },
           startedCallTimestamp = this.timestamp,
@@ -715,9 +765,10 @@ private fun BackupMessageRecord.toRemoteStandardMessage(db: SignalDatabase, medi
     ?.filterNot { linkPreviewAttachments.contains(it) }
     ?.filterNot { it == longTextAttachment }
     ?: emptyList()
+  val hasVoiceNote = messageAttachments.any { it.voiceNote }
   return StandardMessage(
     quote = this.toRemoteQuote(mediaArchiveEnabled, quotedAttachments),
-    text = text,
+    text = text.takeUnless { hasVoiceNote },
     attachments = messageAttachments.toRemoteAttachments(mediaArchiveEnabled),
     linkPreview = linkPreviews.map { it.toRemoteLinkPreview(mediaArchiveEnabled) },
     longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
@@ -786,16 +837,22 @@ private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(mediaArchiveEnable
     Quote.QuotedAttachment(
       contentType = attachment.contentType,
       fileName = attachment.fileName,
-      thumbnail = attachment.toRemoteMessageAttachment(mediaArchiveEnabled, contentTypeOverride = "image/jpeg").takeUnless { it.pointer?.invalidAttachmentLocator != null }
+      thumbnail = attachment.toRemoteMessageAttachment(
+        mediaArchiveEnabled = mediaArchiveEnabled,
+        flagOverride = MessageAttachment.Flag.NONE,
+        contentTypeOverride = "image/jpeg"
+      ).takeUnless { it.pointer?.invalidAttachmentLocator != null }
     )
   }
 }
 
-private fun DatabaseAttachment.toRemoteMessageAttachment(mediaArchiveEnabled: Boolean, contentTypeOverride: String? = null): MessageAttachment {
+private fun DatabaseAttachment.toRemoteMessageAttachment(mediaArchiveEnabled: Boolean, flagOverride: MessageAttachment.Flag? = null, contentTypeOverride: String? = null): MessageAttachment {
   return MessageAttachment(
     pointer = this.toRemoteFilePointer(mediaArchiveEnabled, contentTypeOverride),
     wasDownloaded = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE,
-    flag = if (this.voiceNote) {
+    flag = if (flagOverride != null) {
+      flagOverride
+    } else if (this.voiceNote) {
       MessageAttachment.Flag.VOICE_MESSAGE
     } else if (this.videoGif) {
       MessageAttachment.Flag.GIF
@@ -914,14 +971,18 @@ private fun List<ReactionRecord>?.toRemote(): List<Reaction> {
     } ?: emptyList()
 }
 
-private fun BackupMessageRecord.toRemoteSendStatus(groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?): List<SendStatus> {
-  if (!groupReceipts.isNullOrEmpty()) {
-    return groupReceipts.toRemoteSendStatus(this, this.networkFailureRecipientIds, this.identityMismatchRecipientIds)
+private fun BackupMessageRecord.toRemoteSendStatus(isGroupThread: Boolean, groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?, exportState: ExportState): List<SendStatus> {
+  if (isGroupThread || !groupReceipts.isNullOrEmpty()) {
+    return groupReceipts.toRemoteSendStatus(this, this.networkFailureRecipientIds, this.identityMismatchRecipientIds, exportState)
+  }
+
+  if (!exportState.recipientIds.contains(this.toRecipientId)) {
+    return emptyList()
   }
 
   val statusBuilder = SendStatus.Builder()
     .recipientId(this.toRecipientId)
-    .timestamp(this.receiptTimestamp)
+    .timestamp(max(this.receiptTimestamp, 0))
 
   when {
     this.identityMismatchRecipientIds.contains(this.toRecipientId) -> {
@@ -970,61 +1031,67 @@ private fun BackupMessageRecord.toRemoteSendStatus(groupReceipts: List<GroupRece
   return listOf(statusBuilder.build())
 }
 
-private fun List<GroupReceiptTable.GroupReceiptInfo>.toRemoteSendStatus(messageRecord: BackupMessageRecord, networkFailureRecipientIds: Set<Long>, identityMismatchRecipientIds: Set<Long>): List<SendStatus> {
-  return this.map {
-    val statusBuilder = SendStatus.Builder()
-      .recipientId(it.recipientId.toLong())
-      .timestamp(it.timestamp)
-
-    when {
-      identityMismatchRecipientIds.contains(it.recipientId.toLong()) -> {
-        statusBuilder.failed = SendStatus.Failed(
-          reason = SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH
-        )
-      }
-      MessageTypes.isFailedMessageType(messageRecord.type) && networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
-        statusBuilder.failed = SendStatus.Failed(
-          reason = SendStatus.Failed.FailureReason.NETWORK
-        )
-      }
-      MessageTypes.isFailedMessageType(messageRecord.type) -> {
-        statusBuilder.failed = SendStatus.Failed(
-          reason = SendStatus.Failed.FailureReason.UNKNOWN
-        )
-      }
-      it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
-        statusBuilder.pending = SendStatus.Pending()
-      }
-      it.status == GroupReceiptTable.STATUS_UNDELIVERED -> {
-        statusBuilder.sent = SendStatus.Sent(
-          sealedSender = it.isUnidentified
-        )
-      }
-      it.status == GroupReceiptTable.STATUS_DELIVERED -> {
-        statusBuilder.delivered = SendStatus.Delivered(
-          sealedSender = it.isUnidentified
-        )
-      }
-      it.status == GroupReceiptTable.STATUS_READ -> {
-        statusBuilder.read = SendStatus.Read(
-          sealedSender = it.isUnidentified
-        )
-      }
-      it.status == GroupReceiptTable.STATUS_VIEWED -> {
-        statusBuilder.viewed = SendStatus.Viewed(
-          sealedSender = it.isUnidentified
-        )
-      }
-      it.status == GroupReceiptTable.STATUS_SKIPPED -> {
-        statusBuilder.skipped = SendStatus.Skipped()
-      }
-      else -> {
-        statusBuilder.pending = SendStatus.Pending()
-      }
-    }
-
-    statusBuilder.build()
+private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(messageRecord: BackupMessageRecord, networkFailureRecipientIds: Set<Long>, identityMismatchRecipientIds: Set<Long>, exportState: ExportState): List<SendStatus> {
+  if (this == null) {
+    return emptyList()
   }
+
+  return this
+    .filter { exportState.recipientIds.contains(it.recipientId.toLong()) }
+    .map {
+      val statusBuilder = SendStatus.Builder()
+        .recipientId(it.recipientId.toLong())
+        .timestamp(max(it.timestamp, 0))
+
+      when {
+        identityMismatchRecipientIds.contains(it.recipientId.toLong()) -> {
+          statusBuilder.failed = SendStatus.Failed(
+            reason = SendStatus.Failed.FailureReason.IDENTITY_KEY_MISMATCH
+          )
+        }
+        MessageTypes.isFailedMessageType(messageRecord.type) && networkFailureRecipientIds.contains(it.recipientId.toLong()) -> {
+          statusBuilder.failed = SendStatus.Failed(
+            reason = SendStatus.Failed.FailureReason.NETWORK
+          )
+        }
+        MessageTypes.isFailedMessageType(messageRecord.type) -> {
+          statusBuilder.failed = SendStatus.Failed(
+            reason = SendStatus.Failed.FailureReason.UNKNOWN
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_UNKNOWN -> {
+          statusBuilder.pending = SendStatus.Pending()
+        }
+        it.status == GroupReceiptTable.STATUS_UNDELIVERED -> {
+          statusBuilder.sent = SendStatus.Sent(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_DELIVERED -> {
+          statusBuilder.delivered = SendStatus.Delivered(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_READ -> {
+          statusBuilder.read = SendStatus.Read(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_VIEWED -> {
+          statusBuilder.viewed = SendStatus.Viewed(
+            sealedSender = it.isUnidentified
+          )
+        }
+        it.status == GroupReceiptTable.STATUS_SKIPPED -> {
+          statusBuilder.skipped = SendStatus.Skipped()
+        }
+        else -> {
+          statusBuilder.pending = SendStatus.Pending()
+        }
+      }
+
+      statusBuilder.build()
+    }
 }
 
 private fun String?.parseNetworkFailures(): Set<Long> {
@@ -1205,5 +1272,6 @@ data class ExtraMessageData(
   val mentionsById: Map<Long, List<Mention>>,
   val reactionsById: Map<Long, List<ReactionRecord>>,
   val attachmentsById: Map<Long, List<DatabaseAttachment>>,
-  val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>>
+  val groupReceiptsById: Map<Long, List<GroupReceiptTable.GroupReceiptInfo>>,
+  val isGroupThreadById: Map<Long, Boolean>
 )

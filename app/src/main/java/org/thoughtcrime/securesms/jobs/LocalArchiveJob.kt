@@ -96,7 +96,7 @@ class LocalArchiveJob internal constructor(parameters: Parameters) : Job(paramet
 
       try {
         try {
-          val result = LocalArchiver.export(snapshotFileSystem, archiveFileSystem.filesFileSystem, stopwatch)
+          val result = LocalArchiver.export(snapshotFileSystem, archiveFileSystem.filesFileSystem, stopwatch, cancellationSignal = { isCanceled })
           Log.i(TAG, "Archive finished with result: $result")
           if (result !is org.signal.core.util.Result.Success) {
             return Result.failure()

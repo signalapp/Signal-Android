@@ -7,15 +7,18 @@ package org.thoughtcrime.securesms.backup.v2.database
 
 import org.signal.core.util.logging.Log
 import org.signal.core.util.select
+import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 private val TAG = "MessageTableArchiveExtensions"
 
-fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean): ChatItemArchiveExporter {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
   // We create a covering index for the query to drastically speed up perf here.
   // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
   val startTime = System.currentTimeMillis()
@@ -62,11 +65,26 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
   )
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
 
+  // Unfortunately we have some bad legacy data where the from_recipient_id is a group.
+  // This cleans it up. Reminder, this is only a snapshot of the data.
+  db.rawWritableDatabase.execSQL(
+    """
+      UPDATE ${MessageTable.TABLE_NAME}
+      SET ${MessageTable.FROM_RECIPIENT_ID} = ${selfRecipientId.toLong()}
+      WHERE ${MessageTable.FROM_RECIPIENT_ID} IN (
+        SELECT ${GroupTable.RECIPIENT_ID}
+        FROM ${GroupTable.TABLE_NAME}
+      )
+    """
+  )
+
   return ChatItemArchiveExporter(
     db = db,
     backupStartTime = backupTime,
     batchSize = 10_000,
     mediaArchiveEnabled = mediaBackupEnabled,
+    selfRecipientId = selfRecipientId,
+    exportState = exportState,
     cursorGenerator = { lastSeenReceivedTime, count ->
       readableDatabase
         .select(

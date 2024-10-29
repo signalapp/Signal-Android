@@ -54,7 +54,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       """
       ${RecipientTable.TYPE} = ? AND (
         ${RecipientTable.ACI_COLUMN} NOT NULL OR
-        ${RecipientTable.PNI_COLUMN} NOT NULL OR
+        (${RecipientTable.PNI_COLUMN} NOT NULL AND ${RecipientTable.E164} NOT NULL) OR
         ${RecipientTable.E164} NOT NULL
       )
       """,
@@ -84,7 +84,12 @@ fun RecipientTable.getGroupsForBackup(): GroupArchiveExporter {
         INNER JOIN ${GroupTable.TABLE_NAME} ON ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} = ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID}
       """
     )
-    .where("${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY} IS NOT NULL")
+    .where(
+      """
+      ${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY} IS NOT NULL AND
+      ${GroupTable.TABLE_NAME}.${GroupTable.V2_REVISION} >= 0
+      """
+    )
     .run()
 
   return GroupArchiveExporter(cursor)

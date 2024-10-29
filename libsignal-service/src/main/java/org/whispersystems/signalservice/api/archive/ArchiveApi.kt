@@ -89,7 +89,6 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 204: Success
    * - 400: Invalid credential
    * - 429: Rate-limited
-   *
    */
   fun triggerBackupIdReservation(messageBackupKey: MessageBackupKey, mediaRootBackupKey: MediaRootBackupKey, aci: ACI): NetworkResult<Unit> {
     return NetworkResult.fromFetch {

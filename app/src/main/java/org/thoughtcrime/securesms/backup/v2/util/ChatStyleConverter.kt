@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.util
 
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.ChatStyle
@@ -22,6 +23,8 @@ import org.thoughtcrime.securesms.wallpaper.GradientChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.SingleColorChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.UriChatWallpaper
 
+private val TAG = Log.tag(ChatStyleConverter::class)
+
 /**
  * Contains a collection of methods to chat styles to and from their archive format.
  * These are in a file of their own just because they're rather long (with all of the various constants to map between) and used in multiple places.
@@ -34,6 +37,10 @@ object ChatStyleConverter {
     chatWallpaper: Wallpaper?
   ): ChatStyle? {
     if (chatColors == null && chatWallpaper == null) {
+      return null
+    }
+
+    if (chatColorId == ChatColors.Id.NotSet && chatWallpaper == null) {
       return null
     }
 
@@ -70,6 +77,16 @@ object ChatStyleConverter {
       }
 
       chatStyleBuilder.dimWallpaperInDarkMode = chatWallpaper.dimLevelInDarkTheme > 0
+    }
+
+    if (!chatStyleBuilder.hasBubbleColorSet()) {
+      if (chatStyleBuilder.hasWallpaperSet()) {
+        Log.w(TAG, "Wallpaper is set but no bubble color. Defaulting to automatic.")
+        chatStyleBuilder.autoBubbleColor = ChatStyle.AutomaticBubbleColor()
+      } else {
+        Log.w(TAG, "After building the chat style, it's empty. Returning null.")
+        return null
+      }
     }
 
     return chatStyleBuilder.build()
@@ -147,6 +164,7 @@ fun ChatColors.toRemote(): ChatStyle.BubbleColorPreset? {
     ChatColorsPalette.Bubbles.SEA -> return ChatStyle.BubbleColorPreset.GRADIENT_SEA
     ChatColorsPalette.Bubbles.TANGERINE -> return ChatStyle.BubbleColorPreset.GRADIENT_TANGERINE
   }
+  Log.w(TAG, "No matching remote bubble preset for ${this.serialize()}")
   return null
 }
 
@@ -193,7 +211,7 @@ fun ChatStyle.parseChatWallpaper(wallpaperAttachmentId: AttachmentId?): ChatWall
   }
 }
 
-private fun Int.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset {
+private fun Int.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset? {
   return when (this) {
     SingleColorChatWallpaper.BLUSH.color -> ChatStyle.WallpaperPreset.SOLID_BLUSH
     SingleColorChatWallpaper.COPPER.color -> ChatStyle.WallpaperPreset.SOLID_COPPER
@@ -207,7 +225,10 @@ private fun Int.toRemoteWallpaperPreset(): ChatStyle.WallpaperPreset {
     SingleColorChatWallpaper.PINK.color -> ChatStyle.WallpaperPreset.SOLID_PINK
     SingleColorChatWallpaper.EGGPLANT.color -> ChatStyle.WallpaperPreset.SOLID_EGGPLANT
     SingleColorChatWallpaper.SILVER.color -> ChatStyle.WallpaperPreset.SOLID_SILVER
-    else -> ChatStyle.WallpaperPreset.UNKNOWN_WALLPAPER_PRESET
+    else -> {
+      Log.w(TAG, "No matching remote wallpaper preset for $this")
+      null
+    }
   }
 }
 
@@ -231,4 +252,12 @@ private fun Wallpaper.File.toFilePointer(db: SignalDatabase): FilePointer? {
   val attachmentId: AttachmentId = UriUtil.parseOrNull(this.uri)?.let { PartUriParser(it).partId } ?: return null
   val attachment = db.attachmentTable.getAttachment(attachmentId)
   return attachment?.toRemoteFilePointer(mediaArchiveEnabled = true)
+}
+
+private fun ChatStyle.Builder.hasBubbleColorSet(): Boolean {
+  return this.customColorId != null || this.autoBubbleColor != null || this.bubbleColorPreset != null
+}
+
+private fun ChatStyle.Builder.hasWallpaperSet(): Boolean {
+  return this.wallpaperPreset != null || this.wallpaperPhoto != null
 }

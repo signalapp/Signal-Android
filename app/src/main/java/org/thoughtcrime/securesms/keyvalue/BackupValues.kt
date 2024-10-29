@@ -203,70 +203,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   /** Store that lets you interact with media ZK credentials. */
   val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP)
 
-  inner class CredentialStore(val authKey: String, val cdnKey: String, val cdnTimestampKey: String) {
-    /**
-     * Retrieves the stored media credentials, mapped by the day they're valid. The day is represented as
-     * the unix time (in seconds) of the start of the day. Wrapped in a [ArchiveServiceCredentials]
-     * type to make it easier to use. See [ArchiveServiceCredentials.getForCurrentTime].
-     */
-    val byDay: ArchiveServiceCredentials
-      get() {
-        val serialized = store.getString(authKey, null) ?: return ArchiveServiceCredentials()
-
-        return try {
-          val map = JsonUtil.fromJson(serialized, SerializedCredentials::class.java).credentialsByDay
-          ArchiveServiceCredentials(map)
-        } catch (e: IOException) {
-          Log.w(TAG, "Invalid JSON! Clearing.", e)
-          putString(authKey, null)
-          ArchiveServiceCredentials()
-        }
-      }
-
-    /** Adds the given credentials to the existing list of stored credentials. */
-    fun add(credentials: List<ArchiveServiceCredential>) {
-      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
-      current.putAll(credentials.associateBy { it.redemptionTime })
-      putString(authKey, JsonUtil.toJson(SerializedCredentials(current)))
-    }
-
-    /** Trims out any credentials that are for days older than the given timestamp. */
-    fun clearOlderThan(startOfDayInSeconds: Long) {
-      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
-      val updated = current.filterKeys { it < startOfDayInSeconds }
-      putString(authKey, JsonUtil.toJson(SerializedCredentials(updated)))
-    }
-
-    /** Clears all credentials. */
-    fun clearAll() {
-      putString(authKey, null)
-      cdnReadCredentials = null
-    }
-
-    /** Credentials to read from the CDN. */
-    var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
-      get() {
-        val cacheAge = System.currentTimeMillis() - getLong(cdnTimestampKey, 0)
-        val cached = getString(cdnKey, null)
-
-        return if (cached != null && (cacheAge > 0 && cacheAge < cachedCdnCredentialsExpiresIn.inWholeMilliseconds)) {
-          try {
-            JsonUtil.fromJson(cached, GetArchiveCdnCredentialsResponse::class.java)
-          } catch (e: IOException) {
-            Log.w(TAG, "Invalid JSON! Clearing.", e)
-            putString(cdnKey, null)
-            null
-          }
-        } else {
-          null
-        }
-      }
-      set(value) {
-        putString(cdnKey, value?.let { JsonUtil.toJson(it) })
-        putLong(cdnTimestampKey, System.currentTimeMillis())
-      }
-  }
-
   fun markMessageBackupFailure() {
     store.beginWrite()
       .putBoolean(KEY_BACKUP_FAIL, true)
@@ -337,5 +273,70 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       val startOfDayInSeconds: Long = currentTime.inWholeDays.days.inWholeSeconds
       return this[startOfDayInSeconds]
     }
+  }
+
+  inner class CredentialStore(private val authKey: String, private val cdnKey: String, private val cdnTimestampKey: String) {
+    /**
+     * Retrieves the stored media credentials, mapped by the day they're valid. The day is represented as
+     * the unix time (in seconds) of the start of the day. Wrapped in a [ArchiveServiceCredentials]
+     * type to make it easier to use. See [ArchiveServiceCredentials.getForCurrentTime].
+     */
+    val byDay: ArchiveServiceCredentials
+      get() {
+        val serialized = store.getString(authKey, null) ?: return ArchiveServiceCredentials()
+
+        return try {
+          val map = JsonUtil.fromJson(serialized, SerializedCredentials::class.java).credentialsByDay
+          ArchiveServiceCredentials(map)
+        } catch (e: IOException) {
+          Log.w(TAG, "Invalid JSON! Clearing.", e)
+          putString(authKey, null)
+          ArchiveServiceCredentials()
+        }
+      }
+
+    /** Adds the given credentials to the existing list of stored credentials. */
+    fun add(credentials: List<ArchiveServiceCredential>) {
+      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
+      current.putAll(credentials.associateBy { it.redemptionTime })
+      putString(authKey, JsonUtil.toJson(SerializedCredentials(current)))
+    }
+
+    /** Trims out any credentials that are for days older than the given timestamp. */
+    fun clearOlderThan(startOfDayInSeconds: Long) {
+      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
+      val updated = current.filterKeys { it < startOfDayInSeconds }
+      putString(authKey, JsonUtil.toJson(SerializedCredentials(updated)))
+    }
+
+    /** Clears all credentials. */
+    fun clearAll() {
+      putString(authKey, null)
+      putString(cdnKey, null)
+      putLong(cdnTimestampKey, 0)
+    }
+
+    /** Credentials to read from the CDN. */
+    var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
+      get() {
+        val cacheAge = System.currentTimeMillis() - getLong(cdnTimestampKey, 0)
+        val cached = getString(cdnKey, null)
+
+        return if (cached != null && (cacheAge > 0 && cacheAge < cachedCdnCredentialsExpiresIn.inWholeMilliseconds)) {
+          try {
+            JsonUtil.fromJson(cached, GetArchiveCdnCredentialsResponse::class.java)
+          } catch (e: IOException) {
+            Log.w(TAG, "Invalid JSON! Clearing.", e)
+            putString(cdnKey, null)
+            null
+          }
+        } else {
+          null
+        }
+      }
+      set(value) {
+        putString(cdnKey, value?.let { JsonUtil.toJson(it) })
+        putLong(cdnTimestampKey, System.currentTimeMillis())
+      }
   }
 }

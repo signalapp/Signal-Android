@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -82,8 +83,25 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
-    BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled })
+    val backupKey = SignalStore.backup.messageBackupKey
+    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled })
     stopwatch.split("export")
+
+    when (val result = ArchiveValidator.validate(tempBackupFile, backupKey)) {
+      ArchiveValidator.ValidationResult.Success -> {
+        Log.d(TAG, "Successfully passed validation.")
+      }
+      is ArchiveValidator.ValidationResult.ReadError -> {
+        Log.w(TAG, "Failed to read the file during validation!", result.exception)
+        return Result.retry(defaultBackoff())
+      }
+      is ArchiveValidator.ValidationResult.ValidationError -> {
+        // TODO [backup] UX
+        Log.w(TAG, "The backup file fails validation! Message: " + result.exception.message)
+        return Result.failure()
+      }
+    }
+    stopwatch.split("validate")
 
     if (isCanceled) {
       return Result.failure()
