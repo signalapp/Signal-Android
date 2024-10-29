@@ -250,12 +250,14 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
 
   {
-    Log.d(TAG, "[" + errorMessage.getTimestamp() + "] Sending a retry receipt.");
+    long timestamp = System.currentTimeMillis();
+
+    Log.d(TAG, "[" + timestamp + "] Sending a retry receipt for target message " + errorMessage.getTimestamp());
 
     PlaintextContent content         = new PlaintextContent(errorMessage);
     EnvelopeContent  envelopeContent = EnvelopeContent.plaintext(content, groupId);
 
-    sendMessage(recipient, sealedSenderAccess, System.currentTimeMillis(), envelopeContent, false, null, null, false, false);
+    sendMessage(recipient, sealedSenderAccess, timestamp, envelopeContent, false, null, null, false, false);
   }
 
   /**
