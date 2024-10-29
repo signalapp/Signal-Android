@@ -552,8 +552,9 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.removeDevice(deviceId);
   }
 
-  public TurnServerInfo getTurnServerInfo() throws IOException {
-    return this.pushServiceSocket.getTurnServerInfo();
+  public List<TurnServerInfo> getTurnServerInfo() throws IOException {
+    List<TurnServerInfo> relays = this.pushServiceSocket.getCallingRelays().getRelays();
+    return relays != null ? relays : Collections.emptyList();
   }
 
   public void checkNetworkConnection() throws IOException {

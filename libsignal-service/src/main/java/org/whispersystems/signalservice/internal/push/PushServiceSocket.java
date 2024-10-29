@@ -71,7 +71,6 @@ import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
-import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -249,7 +248,7 @@ public class PushServiceSocket {
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
 
-  private static final String TURN_SERVER_INFO           = "/v1/calling/relays";
+  private static final String CALLING_RELAYS = "/v2/calling/relays";
 
   private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
@@ -1551,9 +1550,9 @@ public class PushServiceSocket {
     return getAuthCredentials(PAYMENTS_AUTH_PATH);
   }
 
-  public TurnServerInfo getTurnServerInfo() throws IOException {
-    String response = makeServiceRequest(TURN_SERVER_INFO, "GET", null);
-    return JsonUtil.fromJson(response, TurnServerInfo.class);
+  public GetCallingRelaysResponse getCallingRelays() throws IOException {
+    String response = makeServiceRequest(CALLING_RELAYS, "GET", null);
+    return JsonUtil.fromJson(response, GetCallingRelaysResponse.class);
   }
 
   public String getStorageAuth() throws IOException {

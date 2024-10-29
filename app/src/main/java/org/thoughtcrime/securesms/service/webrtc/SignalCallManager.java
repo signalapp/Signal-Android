@@ -1027,14 +1027,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {
-        TurnServerInfo turnServerInfo = AppDependencies.getSignalServiceAccountManager().getTurnServerInfo();
-
-        List<TurnServerInfo> turnServerInfos = new ArrayList<>();
-        if (turnServerInfo != null) {
-          turnServerInfos.add(turnServerInfo);
-          turnServerInfos.addAll(turnServerInfo.getIceServers());
-        }
-
+        List<TurnServerInfo> turnServerInfos = AppDependencies.getSignalServiceAccountManager().getTurnServerInfo();
         List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
         process((s, p) -> {
           RemotePeer activePeer = s.getCallInfoState().getActivePeer();
