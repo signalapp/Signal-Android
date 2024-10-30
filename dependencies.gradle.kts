@@ -215,7 +215,7 @@ dependencyResolutionManagement {
     }
 
     create("lintLibs") {
-      version("lint", "30.2.2")
+      version("lint", "31.4.0") // Lint version is AGP version + 23.0.0
 
       library("lint-api", "com.android.tools.lint", "lint-api").versionRef("lint")
       library("lint-checks", "com.android.tools.lint", "lint-checks").versionRef("lint")
