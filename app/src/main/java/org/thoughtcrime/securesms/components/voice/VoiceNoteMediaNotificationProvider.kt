@@ -36,6 +36,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import java.util.Arrays
+import androidx.media3.session.R as Media3SessionR
+import androidx.media3.ui.R as Media3UiR
 
 /**
  * This handles all of the notification and playback APIs for playing back a voice note.
@@ -192,9 +194,9 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
       commandButtons.add(
         CommandButton.Builder()
           .setPlayerCommand(Player.COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM)
-          .setIconResId(R.drawable.exo_icon_rewind)
+          .setIconResId(Media3UiR.drawable.exo_icon_rewind)
           .setDisplayName(
-            context.getString(R.string.media3_controls_seek_to_previous_description)
+            context.getString(Media3SessionR.string.media3_controls_seek_to_previous_description)
           )
           .setExtras(commandButtonExtras)
           .build()
@@ -207,11 +209,11 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
         CommandButton.Builder()
           .setPlayerCommand(Player.COMMAND_PLAY_PAUSE)
           .setIconResId(
-            if (showPauseButton) R.drawable.exo_notification_pause else R.drawable.exo_notification_play
+            if (showPauseButton) Media3UiR.drawable.exo_notification_pause else Media3UiR.drawable.exo_notification_play
           )
           .setExtras(commandButtonExtras)
           .setDisplayName(
-            if (showPauseButton) context.getString(R.string.media3_controls_pause_description) else context.getString(R.string.media3_controls_play_description)
+            if (showPauseButton) context.getString(Media3SessionR.string.media3_controls_pause_description) else context.getString(Media3SessionR.string.media3_controls_play_description)
           )
           .build()
       )
@@ -221,9 +223,9 @@ class VoiceNoteMediaNotificationProvider(val context: Context) : MediaNotificati
       commandButtons.add(
         CommandButton.Builder()
           .setPlayerCommand(Player.COMMAND_STOP)
-          .setIconResId(R.drawable.exo_notification_stop)
+          .setIconResId(Media3UiR.drawable.exo_notification_stop)
           .setExtras(commandButtonExtras)
-          .setDisplayName(context.getString(R.string.media3_controls_seek_to_next_description))
+          .setDisplayName(context.getString(Media3SessionR.string.media3_controls_seek_to_next_description))
           .build()
       )
     }

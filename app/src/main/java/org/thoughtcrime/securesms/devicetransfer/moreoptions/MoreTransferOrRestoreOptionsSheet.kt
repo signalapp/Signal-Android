@@ -42,6 +42,7 @@ import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Lists a set of options the user can choose from for restoring backup or skipping restoration
@@ -112,7 +113,7 @@ private fun MoreOptionsSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
 

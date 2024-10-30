@@ -84,7 +84,7 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
         Column(
           modifier = Modifier
             .padding(
-              horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.core_ui__gutter)
+              horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.gutter)
             )
             .padding(top = 20.dp, bottom = 16.dp)
         ) {

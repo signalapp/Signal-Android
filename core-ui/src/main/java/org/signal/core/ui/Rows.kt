@@ -200,7 +200,7 @@ object Rows {
   @Composable
   fun defaultPadding(): PaddingValues {
     return PaddingValues(
-      horizontal = dimensionResource(id = R.dimen.core_ui__gutter),
+      horizontal = dimensionResource(id = R.dimen.gutter),
       vertical = 16.dp
     )
   }

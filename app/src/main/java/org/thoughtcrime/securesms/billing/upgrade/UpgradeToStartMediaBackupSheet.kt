@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBl
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Bottom sheet notifying user that the media they selected is no longer available. This
@@ -73,7 +74,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
 
@@ -114,7 +115,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
       onClick = onSubscribeClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 8.dp)
     ) {
       val resources = LocalContext.current.resources
@@ -132,7 +133,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
       onClick = onCancelClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 16.dp)
     ) {
       Text(

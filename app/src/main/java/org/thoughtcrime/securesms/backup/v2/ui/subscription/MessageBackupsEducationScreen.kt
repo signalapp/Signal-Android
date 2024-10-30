@@ -32,6 +32,7 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Educational content which allows user to proceed to set up automatic backups
@@ -52,7 +53,7 @@ fun MessageBackupsEducationScreen(
       modifier = Modifier
         .fillMaxSize()
         .padding(it)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
     ) {
       LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,

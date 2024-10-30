@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * This launches the bottom sheet on Android 12+ devices for selecting which audio device to use during a call.
@@ -81,7 +82,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
         initialDeviceId = currentDeviceId,
         onDeviceSelected = onAudioDeviceSelected,
         modifier = Modifier.padding(
-          horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+          horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
         )
       )
     }

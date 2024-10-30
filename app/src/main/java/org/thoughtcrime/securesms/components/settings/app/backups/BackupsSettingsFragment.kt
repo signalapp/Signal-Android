@@ -52,6 +52,7 @@ import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Top-level backups settings screen.
@@ -118,7 +119,7 @@ private fun BackupsSettingsContent(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__back_up_your_message_history),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter), vertical = 16.dp)
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter), vertical = 16.dp)
         )
       }
 
@@ -326,7 +327,7 @@ private fun LoadingBackupsRow() {
     modifier = Modifier
       .fillMaxWidth()
       .height(56.dp)
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     CircularProgressIndicator()
   }

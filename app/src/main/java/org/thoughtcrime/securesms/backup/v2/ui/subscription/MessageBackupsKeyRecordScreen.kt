@@ -52,6 +52,7 @@ import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import kotlin.random.Random
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen displaying the backup key allowing the user to write it down
@@ -78,7 +79,7 @@ fun MessageBackupsKeyRecordScreen(
     Column(
       modifier = Modifier
         .padding(paddingValues)
-        .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -193,7 +194,7 @@ private fun BottomSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
     Text(

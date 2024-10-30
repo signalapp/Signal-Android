@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
 import java.time.Instant
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Bottom sheet for creating call links
@@ -313,7 +314,7 @@ private fun CreateCallLinkBottomSheetContent(
       Buttons.MediumTonal(
         onClick = onDoneClicked,
         modifier = Modifier
-          .padding(end = dimensionResource(id = R.dimen.core_ui__gutter))
+          .padding(end = dimensionResource(id = CoreUiR.dimen.gutter))
           .align(Alignment.End)
       ) {
         Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__done))

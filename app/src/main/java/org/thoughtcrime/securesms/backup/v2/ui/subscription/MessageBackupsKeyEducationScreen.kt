@@ -27,6 +27,7 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen detailing how a backups key is used to restore a backup
@@ -44,7 +45,7 @@ fun MessageBackupsKeyEducationScreen(
     Column(
       modifier = Modifier
         .padding(it)
-        .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {

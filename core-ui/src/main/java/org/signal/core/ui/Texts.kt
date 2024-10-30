@@ -32,7 +32,7 @@ object Texts {
       style = MaterialTheme.typography.titleSmall,
       modifier = modifier
         .padding(
-          horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+          horizontal = dimensionResource(id = R.dimen.gutter)
         )
         .padding(top = 16.dp, bottom = 12.dp)
     )

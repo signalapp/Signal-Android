@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBl
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Sheet describing how users must upgrade to enable optimized storage.
@@ -84,7 +85,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       style = MaterialTheme.typography.titleLarge,
       textAlign = TextAlign.Center,
       modifier = Modifier
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
     )
 
     Text(
@@ -94,7 +95,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       textAlign = TextAlign.Center,
       modifier = Modifier
         .padding(top = 10.dp, bottom = 28.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
     )
 
     MessageBackupsTypeBlock(
@@ -107,7 +108,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
         it.copy(iconColorNormal = it.iconColorSelected)
       },
       modifier = Modifier
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 50.dp)
     )
 
@@ -116,7 +117,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       onClick = onSubscribeClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 8.dp)
     ) {
       val resources = LocalContext.current.resources
@@ -134,7 +135,7 @@ private fun UpgradeToEnableOptimizedStorageSheetContent(
       onClick = onCancelClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 16.dp)
     ) {
       Text(

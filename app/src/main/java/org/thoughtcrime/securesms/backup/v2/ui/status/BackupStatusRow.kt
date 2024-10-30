@@ -39,6 +39,7 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.util.ByteSize
 import org.thoughtcrime.securesms.R
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Backup status displayable as a row on a settings page.
@@ -53,7 +54,7 @@ fun BackupStatusRow(
     if (backupStatusData !is BackupStatusData.CouldNotCompleteBackup) {
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
       ) {
         LinearProgressIndicator(
           color = progressColor(backupStatusData),
@@ -76,7 +77,7 @@ fun BackupStatusRow(
       is BackupStatusData.RestoringMedia -> {
         Text(
           text = getRestoringMediaString(backupStatusData),
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
 
@@ -87,7 +88,7 @@ fun BackupStatusRow(
             backupStatusData.requiredSpace,
             "%d".format((backupStatusData.progress * 100).roundToInt())
           ),
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
 
         Rows.TextRow(
@@ -116,7 +117,7 @@ fun BackupStatusRow(
             append(stringResource(R.string.BackupStatusRow__your_last_backup))
           },
           inlineContent = inlineContentMap,
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
     }

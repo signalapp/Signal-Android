@@ -32,6 +32,7 @@ import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Bottom sheet allowing the user to immediately start a backup or delay.
@@ -84,7 +85,7 @@ private fun CreateBackupBottomSheetContent(
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
       .padding(bottom = 24.dp)
   ) {
     BottomSheets.Handle()

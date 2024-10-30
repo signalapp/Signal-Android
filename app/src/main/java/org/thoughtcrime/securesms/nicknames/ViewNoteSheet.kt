@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows user to view the full note for a given recipient.
@@ -117,7 +118,7 @@ private fun ViewNoteBottomSheetContent(
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+    modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
 
@@ -151,7 +152,6 @@ private fun ViewNoteBottomSheetContent(
       factory = { context ->
         val view = EmojiTextView(context)
 
-        @Suppress("DEPRECATION")
         view.setTextAppearance(context, R.style.Signal_Text_BodyLarge)
         view.movementMethod = LinkMovementMethodCompat.getInstance()
 

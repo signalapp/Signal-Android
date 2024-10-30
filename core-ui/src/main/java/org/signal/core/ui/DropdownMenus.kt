@@ -33,7 +33,7 @@ object DropdownMenus {
   fun Menu(
     controller: MenuController = remember { MenuController() },
     modifier: Modifier = Modifier,
-    offsetX: Dp = dimensionResource(id = R.dimen.core_ui__gutter),
+    offsetX: Dp = dimensionResource(id = R.dimen.gutter),
     offsetY: Dp = 0.dp,
     content: @Composable ColumnScope.(MenuController) -> Unit
   ) {

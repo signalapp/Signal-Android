@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ByteUnit
 import java.math.BigDecimal
 import java.util.Currency
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen which allows the user to select their preferred backup type.
@@ -83,7 +84,7 @@ fun MessageBackupsTypeSelectionScreen(
     Column(
       modifier = Modifier
         .padding(paddingValues)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .fillMaxSize()
     ) {
       LazyColumn(

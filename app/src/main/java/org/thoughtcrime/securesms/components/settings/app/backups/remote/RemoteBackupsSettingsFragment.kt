@@ -105,6 +105,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Remote backups settings fragment.
@@ -272,7 +273,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   private inner class AuthListener : BiometricPrompt.AuthenticationCallback() {
     override fun onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticationFailed")
-      Toast.makeText(requireContext(), R.string.authentication_required, Toast.LENGTH_SHORT).show()
+      Toast.makeText(requireContext(), androidx.media3.session.R.string.authentication_required, Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
@@ -901,7 +902,7 @@ private fun InProgressBackupRow(
 ) {
   Row(
     modifier = Modifier
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Column(
@@ -932,7 +933,7 @@ private fun LastBackupRow(
 ) {
   Row(
     modifier = Modifier
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Column(

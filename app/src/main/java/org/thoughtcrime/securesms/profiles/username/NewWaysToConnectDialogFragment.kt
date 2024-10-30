@@ -33,6 +33,7 @@ import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displays an explanation page about usernames and gives the user
@@ -88,7 +89,7 @@ private fun NewWaysToConnectDialogContent(
             textAlign = TextAlign.Center,
             modifier = Modifier
               .fillMaxWidth()
-              .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+              .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
               .padding(top = 4.dp, bottom = 36.dp)
           )
         }
@@ -121,7 +122,7 @@ private fun NewWaysToConnectDialogContent(
       Buttons.LargeTonal(
         onClick = onSetUpUsernameClick,
         modifier = Modifier
-          .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+          .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
           .padding(top = 16.dp)
           .defaultMinSize(minWidth = 221.dp)
           .align(alignment = Alignment.CenterHorizontally)
@@ -135,8 +136,8 @@ private fun NewWaysToConnectDialogContent(
         onClick = onNotNowClick,
         modifier = Modifier
           .padding(
-            start = dimensionResource(id = R.dimen.core_ui__gutter),
-            end = dimensionResource(id = R.dimen.core_ui__gutter),
+            start = dimensionResource(id = CoreUiR.dimen.gutter),
+            end = dimensionResource(id = CoreUiR.dimen.gutter),
             top = 8.dp,
             bottom = 16.dp
           )
@@ -171,7 +172,7 @@ private fun NewWaysToConnectRowItem(
   Row(
     modifier = modifier
       .padding(
-        horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+        horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
       )
       .padding(
         bottom = 40.dp
