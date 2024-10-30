@@ -58,8 +58,10 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
         } else {
           ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
         }
+        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurface))
       } else {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.transparent))
+        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurfaceVariant))
       }
     }
 

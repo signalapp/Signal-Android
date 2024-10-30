@@ -1070,7 +1070,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       FROM $TABLE_NAME
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE 
-        $ACTIVE = 1
+        $ACTIVE = 1 AND
+        $ARCHIVED = 0
         $folderQuery
       """
     return readableDatabase.rawQuery(query, null).readToList { cursor -> cursor.requireLong(ID) }
@@ -1081,7 +1082,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       readableDatabase
         .select(RECIPIENT_ID)
         .from(TABLE_NAME)
-        .where("$ACTIVE = 1")
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0")
         .run()
         .readToList { cursor ->
           RecipientId.from(cursor.requireLong(RECIPIENT_ID))
@@ -1094,7 +1095,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         FROM $TABLE_NAME
           LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
         WHERE 
-          $ACTIVE = 1
+          $ACTIVE = 1 AND
+          $ARCHIVED = 0
           $folderQuery
         """
       readableDatabase.rawQuery(query, null).readToList { cursor ->

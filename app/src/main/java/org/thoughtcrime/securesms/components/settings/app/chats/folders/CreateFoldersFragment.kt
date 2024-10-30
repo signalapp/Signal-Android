@@ -82,7 +82,7 @@ class CreateFoldersFragment : ComposeFragment() {
           if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
             viewModel.showConfirmationDialog(true)
           } else {
-            findNavController().popBackStack()
+            requireActivity().onNavigateUp()
           }
         }
       }
@@ -116,7 +116,7 @@ class CreateFoldersFragment : ComposeFragment() {
         if (viewModel.hasChanges() && !viewModel.hasEmptyName()) {
           viewModel.showConfirmationDialog(true)
         } else {
-          navController.popBackStack()
+          requireActivity().onNavigateUp()
         }
       },
       navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
@@ -142,25 +142,23 @@ class CreateFoldersFragment : ComposeFragment() {
         onDeleteClicked = { viewModel.showDeleteDialog(true) },
         onDeleteConfirmed = {
           viewModel.deleteFolder(requireContext())
-          navController.popBackStack()
+          requireActivity().onNavigateUp()
         },
         onDeleteDismissed = {
           viewModel.showDeleteDialog(false)
         },
-        onCreateConfirmed = { shouldExit ->
+        onCreateConfirmed = {
           if (isNewFolder) {
             viewModel.createFolder(requireContext())
           } else {
             viewModel.updateFolder(requireContext())
           }
-          if (shouldExit) {
-            navController.popBackStack()
-          }
+          requireActivity().onNavigateUp()
         },
         onCreateDismissed = { shouldExit ->
           viewModel.showConfirmationDialog(false)
           if (shouldExit) {
-            navController.popBackStack()
+            requireActivity().onNavigateUp()
           }
         },
         onShowToast = {
@@ -191,7 +189,7 @@ fun CreateFolderScreen(
   onDeleteClicked: () -> Unit = {},
   onDeleteConfirmed: () -> Unit = {},
   onDeleteDismissed: () -> Unit = {},
-  onCreateConfirmed: (Boolean) -> Unit = {},
+  onCreateConfirmed: () -> Unit = {},
   onCreateDismissed: (Boolean) -> Unit = {},
   onShowToast: () -> Unit = {}
 ) {
@@ -368,7 +366,7 @@ fun CreateFolderScreen(
 
     if (hasChanges && isNewFolder) {
       Buttons.MediumTonal(
-        onClick = { onCreateConfirmed(true) },
+        onClick = { onCreateConfirmed() },
         modifier = modifier
           .align(Alignment.BottomEnd)
           .padding(end = 16.dp, bottom = 16.dp)
@@ -395,7 +393,7 @@ fun CreateFolderScreen(
           if (state.currentFolder.name.isEmpty()) {
             onShowToast()
           } else {
-            onCreateConfirmed(true)
+            onCreateConfirmed()
           }
         },
         modifier = modifier
