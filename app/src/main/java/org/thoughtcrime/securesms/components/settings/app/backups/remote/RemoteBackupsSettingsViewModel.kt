@@ -20,6 +20,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
+import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -149,6 +150,44 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           )
         )
       }
+
+      return
+    }
+
+    if (SignalStore.backup.subscriptionStateMismatchDetected) {
+      Log.d(TAG, "[subscriptionStateMismatchDetected] A mismatch was detected.")
+
+      val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
+        is BillingPurchaseResult.Success -> purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth()
+        else -> false
+      }
+
+      Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
+
+      val activeSubscription = withContext(Dispatchers.IO) {
+        RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
+      }
+
+      val hasActiveSignalSubscription = activeSubscription?.isActive == true
+
+      Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveSignalSubscription: $hasActiveSignalSubscription")
+
+      val type = withContext(Dispatchers.IO) {
+        BackupRepository.getBackupsType(MessageBackupTier.PAID) as MessageBackupsType.Paid
+      }
+
+      if (hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription) {
+        _state.update {
+          it.copy(
+            backupState = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
+              messageBackupsType = type,
+              renewalTime = activeSubscription!!.activeSubscription.endOfCurrentPeriod.seconds
+            )
+          )
+        }
+      }
+
+      // TODO [backups] - handle other cases.
 
       return
     }

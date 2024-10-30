@@ -14,7 +14,9 @@ import androidx.biometric.BiometricPrompt
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +28,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
@@ -45,8 +48,10 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -94,6 +99,8 @@ import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -199,6 +206,18 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onSkipMediaRestore() {
       // TODO - [backups] Skip media restoration
     }
+
+    override fun onLearnMoreAboutLostSubscription() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.SUBSCRIPTION_NOT_FOUND)
+    }
+
+    override fun onRenewLostSubscription() {
+      // TODO - [backups] Need process here (cancel first?)
+    }
+
+    override fun onContactSupport() {
+      // TODO - [backups] Need to contact support.
+    }
   }
 
   private fun displayBackupKey() {
@@ -275,6 +294,9 @@ private interface ContentCallbacks {
   fun onViewBackupKeyClick() = Unit
   fun onSkipMediaRestore() = Unit
   fun onCancelMediaRestore() = Unit
+  fun onRenewLostSubscription() = Unit
+  fun onLearnMoreAboutLostSubscription() = Unit
+  fun onContactSupport() = Unit
 }
 
 @Composable
@@ -313,11 +335,21 @@ private fun RemoteBackupsSettingsContent(
             is RemoteBackupsSettingsState.BackupState.Loading -> {
               LoadingCard()
             }
+
             is RemoteBackupsSettingsState.BackupState.Error -> {
               ErrorCard()
             }
+
             is RemoteBackupsSettingsState.BackupState.Pending -> {
               PendingCard(state.price)
+            }
+
+            is RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay -> {
+              SubscriptionMismatchMissingGooglePlayCard(
+                state = state,
+                onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
+                onRenewClick = contentCallbacks::onRenewLostSubscription
+              )
             }
 
             RemoteBackupsSettingsState.BackupState.None -> Unit
@@ -403,6 +435,13 @@ private fun RemoteBackupsSettingsContent(
 
     RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP -> {
       DownloadingYourBackupDialog(onDismiss = contentCallbacks::onDialogDismissed)
+    }
+
+    RemoteBackupsSettingsState.Dialog.SUBSCRIPTION_NOT_FOUND -> {
+      SubscriptionNotFoundBottomSheet(
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onContactSupport = contentCallbacks::onContactSupport
+      )
     }
   }
 
@@ -728,6 +767,85 @@ private fun PendingCard(
 }
 
 @Composable
+private fun SubscriptionMismatchMissingGooglePlayCard(
+  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+  onRenewClick: () -> Unit = {},
+  onLearnMoreClick: () -> Unit = {}
+) {
+  Column(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(horizontal = 16.dp, vertical = 12.dp)
+      .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
+      .padding(24.dp)
+  ) {
+    val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
+
+    Row {
+      Text(
+        text = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+        modifier = Modifier
+          .weight(1f)
+          .padding(end = 13.dp)
+      )
+
+      Box {
+        Image(
+          painter = painterResource(R.drawable.image_signal_backups),
+          contentDescription = null,
+          modifier = Modifier.size(64.dp)
+        )
+
+        Box(
+          modifier = Modifier
+            .size(22.dp)
+            .background(
+              color = Color(0xFFFFCC00),
+              shape = CircleShape
+            )
+            .border(5.dp, color = SignalTheme.colors.colorSurface2, shape = CircleShape)
+            .align(Alignment.TopEnd)
+        )
+      }
+    }
+
+    Row(
+      horizontalArrangement = spacedBy(16.dp)
+    ) {
+      Buttons.LargeTonal(
+        onClick = onRenewClick,
+        colors = ButtonDefaults.filledTonalButtonColors().copy(
+          containerColor = SignalTheme.colors.colorTransparent5,
+          contentColor = colorResource(R.color.signal_light_colorOnSurface)
+        ),
+        modifier = Modifier
+          .padding(top = 24.dp)
+          .weight(1f)
+      ) {
+        Text(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__renew)
+        )
+      }
+
+      Buttons.LargeTonal(
+        onClick = onLearnMoreClick,
+        colors = ButtonDefaults.filledTonalButtonColors().copy(
+          containerColor = SignalTheme.colors.colorTransparent5,
+          contentColor = colorResource(R.color.signal_light_colorOnSurface)
+        ),
+        modifier = Modifier
+          .padding(top = 24.dp)
+          .weight(1f)
+      ) {
+        Text(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__learn_more)
+        )
+      }
+    }
+  }
+}
+
+@Composable
 private fun InProgressBackupRow(
   progress: Int?,
   totalProgress: Int?
@@ -991,6 +1109,22 @@ private fun PendingCardPreview() {
   Previews.Preview {
     PendingCard(
       price = FiatMoney(BigDecimal.TEN, Currency.getInstance(Locale.getDefault()))
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
+  Previews.Preview {
+    SubscriptionMismatchMissingGooglePlayCard(
+      state = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 100_000_000
+        ),
+        renewalTime = System.currentTimeMillis().milliseconds + 30.days
+      )
     )
   }
 }

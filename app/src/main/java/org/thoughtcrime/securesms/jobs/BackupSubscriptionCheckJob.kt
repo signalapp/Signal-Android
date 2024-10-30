@@ -9,6 +9,7 @@ import androidx.annotation.VisibleForTesting
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -58,22 +59,26 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
   override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
-      Log.i(TAG, "User is not registered. Exiting.")
+      Log.i(TAG, "User is not registered. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
 
     if (!RemoteConfig.messageBackups) {
-      Log.i(TAG, "Message backups are not enabled. Exiting.")
+      Log.i(TAG, "Message backups are not enabled. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
 
     if (!SignalStore.backup.areBackupsEnabled) {
-      Log.i(TAG, "Backups are not enabled on this device. Exiting.")
+      Log.i(TAG, "Backups are not enabled on this device. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
 
     if (!AppDependencies.billingApi.isApiAvailable()) {
-      Log.i(TAG, "Google Play Billing API is not available on this device. Exiting.")
+      Log.i(TAG, "Google Play Billing API is not available on this device. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
 
@@ -81,41 +86,35 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
 
     synchronized(InAppPaymentSubscriberRecord.Type.BACKUP) {
-      val subscriberId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-      if (subscriberId == null && hasActivePurchase) {
-        Log.w(TAG, "User has active Google Play Billing purchase but no subscriber id! User should cancel backup and resubscribe.")
-        // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
-        return Result.success()
-      }
-
-      val tier = SignalStore.backup.backupTier
-      if (subscriberId == null && tier == MessageBackupTier.PAID) {
-        Log.w(TAG, "User has no subscriber id but PAID backup tier. User will need to cancel and resubscribe.")
-        // TODO [message-backups] Set UI flag hint here to launch sheet (designs pending)
-        return Result.success()
-      }
-
       val inAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+
+      if (inAppPayment?.state == InAppPaymentTable.State.PENDING) {
+        Log.i(TAG, "User has a pending in-app payment. Clearing mismatch value and re-checking later.")
+        SignalStore.backup.subscriptionStateMismatchDetected = false
+        return Result.success()
+      }
+
       val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
-      if (activeSubscription?.isActive == true && tier != MessageBackupTier.PAID && inAppPayment?.state != InAppPaymentTable.State.PENDING) {
-        Log.w(TAG, "User has an active subscription but no backup tier and no pending redemption.")
-        // TODO [message-backups] Set UI flag hint here to launch error sheet?
-        return Result.success()
+      val hasActiveSignalSubscription = activeSubscription?.isActive == true
+
+      Log.i(TAG, "Synchronizing backup tier with value from server.")
+      BackupRepository.getBackupTier().runIfSuccessful {
+        SignalStore.backup.backupTier = it
       }
 
-      if (activeSubscription?.isActive != true && tier == MessageBackupTier.PAID) {
-        Log.w(TAG, "User subscription is inactive or does not exist. User will need to cancel and resubscribe.")
-        // TODO [message-backups] Set UI hint?
+      val hasActivePaidBackupTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
+      val hasValidActiveState = hasActivePaidBackupTier && hasActiveSignalSubscription && hasActivePurchase
+      val hasValidInactiveState = !hasActivePaidBackupTier && !hasActiveSignalSubscription && !hasActivePurchase
+
+      if (hasValidActiveState || hasValidInactiveState) {
+        Log.i(TAG, "Valid state: (hasValidActiveState: $hasValidActiveState, hasValidInactiveState: $hasValidInactiveState). Clearing mismatch value and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = false
+        return Result.success()
+      } else {
+        Log.w(TAG, "State mismatch: (hasActivePaidBackupTier: $hasActivePaidBackupTier, hasActiveSignalSubscription: $hasActiveSignalSubscription, hasActivePurchase: $hasActivePurchase). Setting mismatch value and exiting.", true)
+        SignalStore.backup.subscriptionStateMismatchDetected = true
         return Result.success()
       }
-
-      if (activeSubscription?.isActive != true && hasActivePurchase) {
-        Log.w(TAG, "User subscription is inactive but user has a recent purchase. User will need to cancel and resubscribe.")
-        // TODO [message-backups] Set UI hint?
-        return Result.success()
-      }
-
-      return Result.success()
     }
   }
 

@@ -43,6 +43,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
     private const val KEY_BACKUP_UPLOADED = "backup.backupUploaded"
+    private const val KEY_SUBSCRIPTION_STATE_MISMATCH = "backup.subscriptionStateMismatch"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
@@ -72,6 +73,12 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * currently has backups enabled.
    */
   val latestBackupTier: MessageBackupTier? by enumValue(KEY_LATEST_BACKUP_TIER, null, MessageBackupTier.Serializer)
+
+  /**
+   * Denotes if there was a mismatch detected between the user's Signal subscription, on-device Google Play subscription,
+   * and what zk authorization we think we have.
+   */
+  var subscriptionStateMismatchDetected: Boolean by booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false)
 
   /**
    * When seting the backup tier, we also want to write to the latestBackupTier, as long as

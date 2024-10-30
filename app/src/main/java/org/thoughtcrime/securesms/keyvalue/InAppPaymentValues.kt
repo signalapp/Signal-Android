@@ -469,6 +469,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
         }
         markDonationManuallyCancelled()
       } else {
+        SignalStore.backup.subscriptionStateMismatchDetected = false
         markBackupSubscriptionpManuallyCancelled()
 
         SignalStore.backup.disableBackups()
@@ -513,6 +514,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
       } else {
         clearBackupSubscriptionManuallyCancelled()
 
+        SignalStore.backup.subscriptionStateMismatchDetected = false
         SignalStore.backup.backupTier = MessageBackupTier.PAID
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       }

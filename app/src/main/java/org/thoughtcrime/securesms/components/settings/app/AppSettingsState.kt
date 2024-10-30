@@ -15,7 +15,8 @@ data class AppSettingsState(
   val showInternalPreferences: Boolean = RemoteConfig.internalUser,
   val showPayments: Boolean = SignalStore.payments.paymentsAvailability.showPaymentsMenu(),
   val showAppUpdates: Boolean = Environment.IS_NIGHTLY,
-  val showBackups: Boolean = RemoteConfig.messageBackups
+  val showBackups: Boolean = RemoteConfig.messageBackups,
+  val backupFailureState: BackupFailureState = BackupFailureState.NONE
 ) {
   fun isRegisteredAndUpToDate(): Boolean {
     return !userUnregistered && !clientDeprecated

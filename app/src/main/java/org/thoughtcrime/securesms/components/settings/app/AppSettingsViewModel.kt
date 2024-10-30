@@ -60,7 +60,20 @@ class AppSettingsViewModel : ViewModel() {
     }
   }
 
-  fun refreshExpiredGiftBadge() {
-    store.update { it.copy(hasExpiredGiftBadge = SignalStore.inAppPayments.getExpiredGiftBadge() != null) }
+  fun refresh() {
+    store.update {
+      it.copy(
+        hasExpiredGiftBadge = SignalStore.inAppPayments.getExpiredGiftBadge() != null,
+        backupFailureState = getBackupFailureState()
+      )
+    }
+  }
+
+  private fun getBackupFailureState(): BackupFailureState {
+    return if (SignalStore.backup.subscriptionStateMismatchDetected) {
+      BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
+    } else {
+      BackupFailureState.NONE
+    }
   }
 }

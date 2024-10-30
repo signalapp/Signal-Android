@@ -11,10 +11,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
@@ -119,7 +122,7 @@ class AppSettingsFragment : ComposeFragment(), Callbacks {
 
   override fun onResume() {
     super.onResume()
-    viewModel.refreshExpiredGiftBadge()
+    viewModel.refresh()
     viewModel.refreshDeprecatedOrUnregistered()
   }
 
@@ -182,6 +185,44 @@ private fun AppSettingsContent(
             self = self,
             callbacks = callbacks
           )
+        }
+
+        if (state.backupFailureState != BackupFailureState.NONE) {
+          item {
+            Dividers.Default()
+          }
+
+          item {
+            Rows.TextRow(
+              text = {
+                Text(text = stringResource(R.string.AppSettingsFragment__renew_your_signal_backups_subscription))
+              },
+              icon = {
+                Box {
+                  Icon(
+                    painter = painterResource(R.drawable.symbol_backup_24),
+                    tint = MaterialTheme.colorScheme.onSurface,
+                    contentDescription = null
+                  )
+
+                  Box(
+                    modifier = Modifier
+                      .absoluteOffset(3.dp, (-2).dp)
+                      .background(color = Color(0xFFFFCC00), shape = CircleShape)
+                      .size(12.dp)
+                      .align(Alignment.TopEnd)
+                  )
+                }
+              },
+              onClick = {
+                callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+              }
+            )
+          }
+
+          item {
+            Dividers.Default()
+          }
         }
 
         item {
@@ -555,7 +596,8 @@ private fun AppSettingsContentPreview() {
         showInternalPreferences = true,
         showPayments = true,
         showAppUpdates = true,
-        showBackups = true
+        showBackups = true,
+        backupFailureState = BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())
