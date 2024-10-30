@@ -5,6 +5,10 @@ plugins {
 
 android {
   namespace = "org.signal.donations"
+
+  buildFeatures {
+    buildConfig = true
+  }
 }
 
 dependencies {
