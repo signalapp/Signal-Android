@@ -64,6 +64,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
@@ -172,7 +173,6 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -393,11 +393,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     archiveDecoration = new ConversationListArchiveItemDecoration(new ColorDrawable(getResources().getColor(R.color.conversation_list_archive_background_end)));
     itemAnimator      = new ConversationListItemAnimator();
 
-    chatFolderAdapter = new ChatFolderAdapter(this);
+    chatFolderAdapter                          = new ChatFolderAdapter(this);
+    DefaultItemAnimator chatFolderItemAnimator = getChatFolderItemAnimator();
 
     chatFolderList.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false));
     chatFolderList.setAdapter(chatFolderAdapter);
-    chatFolderList.setItemAnimator(null);
+    chatFolderList.setItemAnimator(chatFolderItemAnimator);
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(itemAnimator);
@@ -477,6 +478,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         return 150;
       }
     };
+  }
+
+  private @NonNull DefaultItemAnimator getChatFolderItemAnimator() {
+    int duration = 150;
+    DefaultItemAnimator animator = new DefaultItemAnimator();
+    animator.setAddDuration(duration);
+    animator.setMoveDuration(duration);
+    animator.setRemoveDuration(duration);
+    animator.setChangeDuration(duration);
+    return animator;
   }
 
   @Override
@@ -1067,10 +1078,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void onChatFoldersChanged(List<ChatFolderMappingModel> folders) {
     chatFolderList.setVisibility(folders.size() > 1 && !isArchived() ? View.VISIBLE : View.GONE);
-    if (chatFolderList.getLayoutManager() != null) {
-      Parcelable savedState = chatFolderList.getLayoutManager().onSaveInstanceState();
-      chatFolderAdapter.submitList(new ArrayList<>(folders), () -> chatFolderList.getLayoutManager().onRestoreInstanceState(savedState));
-    }
+    chatFolderAdapter.submitList(new ArrayList<>(folders));
   }
 
   private void onMegaphoneChanged(@NonNull Megaphone megaphone) {
