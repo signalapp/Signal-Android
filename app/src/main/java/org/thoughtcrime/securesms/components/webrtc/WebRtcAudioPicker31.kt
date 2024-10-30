@@ -13,6 +13,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.fragment.app.FragmentActivity
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.util.logging.Log
+import org.signal.core.ui.R as CoreUiR
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
@@ -81,7 +82,7 @@ class WebRtcAudioPicker31(private val audioOutputChangedListener: OnAudioOutputC
         initialDeviceId = currentDeviceId,
         onDeviceSelected = onAudioDeviceSelected,
         modifier = Modifier.padding(
-          horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+          horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
         )
       )
     }

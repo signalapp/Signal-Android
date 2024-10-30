@@ -37,6 +37,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
@@ -103,7 +104,7 @@ fun SignalCallRow(
   Row(
     modifier = modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .border(
         width = 1.25.dp,
         color = MaterialTheme.colorScheme.outline,

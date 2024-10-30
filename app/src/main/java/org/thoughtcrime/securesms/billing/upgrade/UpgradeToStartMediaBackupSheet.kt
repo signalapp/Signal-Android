@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -73,7 +74,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
 
@@ -114,7 +115,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
       onClick = onSubscribeClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 8.dp)
     ) {
       val resources = LocalContext.current.resources
@@ -132,7 +133,7 @@ private fun UpgradeToStartMediaBackupSheetContent(
       onClick = onCancelClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 256.dp)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(bottom = 16.dp)
     ) {
       Text(

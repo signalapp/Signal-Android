@@ -73,6 +73,7 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.TextFields
 import org.signal.core.ui.theme.SignalTheme
@@ -391,7 +392,7 @@ private fun Content(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
-          .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+          .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
           .padding(top = 8.dp)
       )
 
@@ -577,7 +578,7 @@ private fun CountryPrefixRowItem(
     modifier = Modifier
       .fillMaxWidth()
       .clickable(onClick = onClick)
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Text(

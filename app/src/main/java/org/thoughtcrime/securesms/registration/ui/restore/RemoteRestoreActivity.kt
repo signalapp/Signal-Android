@@ -47,6 +47,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
@@ -262,7 +263,7 @@ class RemoteRestoreActivity : BaseActivity() {
   ) {
     Column(
       modifier = Modifier
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
         .padding(top = 40.dp, bottom = 24.dp)
     ) {
       Text(

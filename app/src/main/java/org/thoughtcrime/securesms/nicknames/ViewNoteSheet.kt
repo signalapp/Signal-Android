@@ -35,6 +35,7 @@ import androidx.core.text.method.LinkMovementMethodCompat
 import androidx.core.text.util.LinkifyCompat
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -117,7 +118,7 @@ private fun ViewNoteBottomSheetContent(
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+    modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
 
@@ -151,7 +152,6 @@ private fun ViewNoteBottomSheetContent(
       factory = { context ->
         val view = EmojiTextView(context)
 
-        @Suppress("DEPRECATION")
         view.setTextAppearance(context, R.style.Signal_Text_BodyLarge)
         view.movementMethod = LinkMovementMethodCompat.getInstance()
 

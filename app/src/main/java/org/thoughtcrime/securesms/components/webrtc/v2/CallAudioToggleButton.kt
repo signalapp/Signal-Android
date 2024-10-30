@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.IconButtons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.AudioStateUpdater
@@ -221,13 +222,13 @@ private fun LegacyAudioPickerContent(
     modifier = Modifier
       .padding(8.dp)
       .padding(
-        horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+        horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
       )
   )
 
   LazyColumn(
     modifier = Modifier.padding(
-      horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+      horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
     )
   ) {
     items(

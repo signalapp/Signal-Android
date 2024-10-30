@@ -35,6 +35,7 @@ import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
@@ -118,7 +119,7 @@ private fun BackupsSettingsContent(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__back_up_your_message_history),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter), vertical = 16.dp)
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter), vertical = 16.dp)
         )
       }
 
@@ -302,7 +303,7 @@ private fun LoadingBackupsRow() {
     modifier = Modifier
       .fillMaxWidth()
       .height(56.dp)
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     CircularProgressIndicator()
   }

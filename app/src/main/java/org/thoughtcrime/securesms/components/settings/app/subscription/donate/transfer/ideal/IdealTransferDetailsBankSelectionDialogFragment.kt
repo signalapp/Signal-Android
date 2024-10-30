@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
@@ -93,7 +94,7 @@ private fun BankSelectionContent(
             .clickable { onBankSelected(it) }
             .fillMaxWidth()
             .defaultMinSize(minHeight = 56.dp)
-            .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter), vertical = 8.dp)
+            .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter), vertical = 8.dp)
         ) {
           Image(
             painter = painterResource(id = uiValues.icon),

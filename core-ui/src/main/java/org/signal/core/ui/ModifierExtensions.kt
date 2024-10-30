@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.Dp
  */
 @Composable
 fun Modifier.horizontalGutters(
-  gutterSize: Dp = dimensionResource(R.dimen.core_ui__gutter)
+  gutterSize: Dp = dimensionResource(R.dimen.gutter)
 ): Modifier {
   return padding(horizontal = gutterSize)
 }

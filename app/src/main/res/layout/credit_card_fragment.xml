@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:paddingHorizontal="@dimen/core_ui__gutter"
+        android:paddingHorizontal="@dimen/gutter"
         android:text="@string/CreditCardFragment__enter_your_card_details"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"

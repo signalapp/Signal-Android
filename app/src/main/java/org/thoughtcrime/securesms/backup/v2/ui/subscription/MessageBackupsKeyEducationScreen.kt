@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
@@ -44,7 +45,7 @@ fun MessageBackupsKeyEducationScreen(
     Column(
       modifier = Modifier
         .padding(it)
-        .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {

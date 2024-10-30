@@ -303,7 +303,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     dialogView.setText(spannableDialogText);
     dialogView.setMovementMethod(LongClickMovementMethod.getInstance(this));
 
-    ViewUtil.setPadding(dialogView, (int) ThemeUtil.getThemedDimen(this, R.attr.dialogPreferredPadding));
+    ViewUtil.setPadding(dialogView, (int) ThemeUtil.getThemedDimen(this, androidx.appcompat.R.attr.dialogPreferredPadding));
 
     builder.setView(dialogView);
     builder.show();

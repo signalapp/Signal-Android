@@ -39,6 +39,7 @@ import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.ui.SignalPreview
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -313,7 +314,7 @@ private fun CreateCallLinkBottomSheetContent(
       Buttons.MediumTonal(
         onClick = onDoneClicked,
         modifier = Modifier
-          .padding(end = dimensionResource(id = R.dimen.core_ui__gutter))
+          .padding(end = dimensionResource(id = CoreUiR.dimen.gutter))
           .align(Alignment.End)
       ) {
         Text(text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__done))

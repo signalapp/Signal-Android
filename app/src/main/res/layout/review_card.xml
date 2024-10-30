@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/core_ui__gutter"
+    android:layout_marginHorizontal="@dimen/gutter"
     android:layout_marginBottom="16dp"
     android:background="@drawable/review_card_outline">
 

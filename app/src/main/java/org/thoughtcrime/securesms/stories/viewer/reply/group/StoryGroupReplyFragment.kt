@@ -127,7 +127,7 @@ class StoryGroupReplyFragment :
 
       val dialog = (parentFragment as FixedRoundedCornerBottomSheetDialogFragment).dialog as BottomSheetDialog
       BottomSheetBehaviorHack.setNestedScrollingChild(dialog.behavior, view)
-      dialog.findViewById<View>(R.id.design_bottom_sheet)?.invalidate()
+      dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.invalidate()
       return false
     }
   }

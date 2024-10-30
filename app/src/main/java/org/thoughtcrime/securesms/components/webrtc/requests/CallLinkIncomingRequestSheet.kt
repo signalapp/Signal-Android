@@ -36,6 +36,7 @@ import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
@@ -153,7 +154,7 @@ private fun CallLinkIncomingRequestSheetContent(
           text = state.groupsInCommon,
           textAlign = TextAlign.Center,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(vertical = 6.dp, horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(vertical = 6.dp, horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
     }

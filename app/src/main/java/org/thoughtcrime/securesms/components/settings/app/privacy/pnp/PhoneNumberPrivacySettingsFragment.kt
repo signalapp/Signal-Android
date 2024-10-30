@@ -27,6 +27,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.signal.core.ui.Dividers
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.Texts
@@ -149,7 +150,7 @@ private fun Screen(
             ),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter), vertical = 16.dp)
+            modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter), vertical = 16.dp)
           )
         }
 
@@ -189,7 +190,7 @@ private fun Screen(
             ),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter), vertical = 16.dp)
+            modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter), vertical = 16.dp)
           )
         }
       }

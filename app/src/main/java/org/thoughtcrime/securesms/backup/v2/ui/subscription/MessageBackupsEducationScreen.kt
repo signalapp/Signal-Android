@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
 
@@ -52,7 +53,7 @@ fun MessageBackupsEducationScreen(
       modifier = Modifier
         .fillMaxSize()
         .padding(it)
-        .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
     ) {
       LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -230,7 +230,7 @@ sealed interface BackupStatusData {
 
     override val title: String
       @Composable
-      get() = stringResource(R.string.default_error_msg)
+      get() = stringResource(androidx.biometric.R.string.default_error_msg)
 
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
   }

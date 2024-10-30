@@ -40,6 +40,7 @@ import androidx.core.os.bundleOf
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.R as CoreUiR
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -137,7 +138,7 @@ private fun TurnOnNotificationsSheetContent(
 ) {
   Column(
     modifier = Modifier
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(bottom = 32.dp)
   ) {
     BottomSheets.Handle(

@@ -28,6 +28,7 @@ import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -84,7 +85,7 @@ private fun CreateBackupBottomSheetContent(
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
       .padding(bottom = 24.dp)
   ) {
     BottomSheets.Handle()

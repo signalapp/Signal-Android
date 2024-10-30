@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="18dp"
-        android:layout_marginHorizontal="@dimen/core_ui__gutter"
+        android:layout_marginHorizontal="@dimen/gutter"
         android:textAppearance="@style/Signal.Text.BodyMedium"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         tools:text="@string/ReviewCardDialogFragment__d_group_members_have_the_same_name" />

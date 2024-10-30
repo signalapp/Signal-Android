@@ -22,7 +22,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginVertical="12dp"
-        android:layout_marginStart="@dimen/core_ui__gutter"
+        android:layout_marginStart="@dimen/gutter"
         android:background="@color/signal_colorSurfaceVariant"
         android:importantForAccessibility="no"
         app:contentPadding="8dp"
@@ -38,7 +38,7 @@
         android:id="@+id/check_box"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="@dimen/core_ui__gutter"
+        android:layout_marginEnd="@dimen/gutter"
         android:background="?contactCheckboxBackground"
         android:button="@null"
         android:clickable="false"
@@ -64,7 +64,7 @@
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toBottomOf="@id/contact_header"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_goneMarginEnd="@dimen/core_ui__gutter"
+        app:layout_goneMarginEnd="@dimen/gutter"
         tools:drawableStart="@drawable/ic_bell_24"
         tools:drawableTint="@color/signal_icon_tint_secondary"
         tools:text="@sample/contacts.json/data/name" />
@@ -86,7 +86,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_goneMarginEnd="@dimen/core_ui__gutter"
+        app:layout_goneMarginEnd="@dimen/gutter"
         tools:text="@sample/contacts.json/data/number" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

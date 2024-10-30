@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.R as MaterialR
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -59,8 +60,8 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
 
     dialogBackground = MaterialShapeDrawable(shapeAppearanceModel)
 
-    val bottomSheetStyle = ThemeUtil.getThemedResourceId(ContextThemeWrapper(requireContext(), themeResId), R.attr.bottomSheetStyle)
-    backgroundColor = ThemeUtil.getThemedColor(ContextThemeWrapper(requireContext(), bottomSheetStyle), R.attr.backgroundTint)
+    val bottomSheetStyle = ThemeUtil.getThemedResourceId(ContextThemeWrapper(requireContext(), themeResId), MaterialR.attr.bottomSheetStyle)
+    backgroundColor = ThemeUtil.getThemedColor(ContextThemeWrapper(requireContext(), bottomSheetStyle), MaterialR.attr.backgroundTint)
     dialogBackground.fillColor = ColorStateList.valueOf(backgroundColor)
 
     dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {

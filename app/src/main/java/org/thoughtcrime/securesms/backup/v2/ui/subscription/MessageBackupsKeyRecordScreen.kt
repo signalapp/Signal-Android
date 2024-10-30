@@ -45,6 +45,7 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
+import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
@@ -78,7 +79,7 @@ fun MessageBackupsKeyRecordScreen(
     Column(
       modifier = Modifier
         .padding(paddingValues)
-        .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -193,7 +194,7 @@ private fun BottomSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
     Text(
