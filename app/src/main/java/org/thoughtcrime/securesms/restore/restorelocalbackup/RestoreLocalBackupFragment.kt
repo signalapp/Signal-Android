@@ -93,12 +93,11 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
       }
     }
 
-    restoreLocalBackupViewModel.backupComplete.observe(viewLifecycleOwner) {
-      if (it.first) {
-        val importResult = it.second
-        if (importResult == null) {
-          onBackupCompletedSuccessfully()
-        } else {
+    restoreLocalBackupViewModel.importResult.observe(viewLifecycleOwner) { importResult ->
+      when (importResult) {
+        null -> Unit
+        RestoreRepository.BackupImportResult.SUCCESS -> onBackupCompletedSuccessfully()
+        else -> {
           handleBackupImportError(importResult)
           restoreLocalBackupViewModel.backupImportErrorShown()
         }
@@ -151,14 +150,17 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
         Log.i(TAG, "Notifying user of restore failure due to version downgrade.")
         Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_downgrade, Toast.LENGTH_LONG).show()
       }
+
       RestoreRepository.BackupImportResult.FAILURE_FOREIGN_KEY -> {
         Log.i(TAG, "Notifying user of restore failure due to foreign key.")
         Toast.makeText(requireContext(), R.string.RegistrationActivity_backup_failure_foreign_key, Toast.LENGTH_LONG).show()
       }
+
       RestoreRepository.BackupImportResult.FAILURE_UNKNOWN -> {
         Log.i(TAG, "Notifying user of restore failure due to incorrect passphrase.")
         Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_backup_passphrase, Toast.LENGTH_LONG).show()
       }
+
       RestoreRepository.BackupImportResult.SUCCESS -> {
         Log.w(TAG, "Successful backup import should not be handled in this function.", IllegalStateException())
       }
