@@ -16,6 +16,8 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.ParcelUtil
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Note: We have to use our own Parcelable implementation because we need to do custom stuff to preserve
@@ -145,6 +147,12 @@ abstract class Attachment(
 
   val isPermanentlyFailed: Boolean
     get() = transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE
+
+  /**
+   * Denotes whether the media for the given attachment is no longer available for download.
+   */
+  val isMediaNoLongerAvailableForDownload: Boolean
+    get() = isPermanentlyFailed && uploadTimestamp.milliseconds > 30.days
 
   val isSticker: Boolean
     get() = stickerLocator != null

@@ -7565,6 +7565,16 @@
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Subscribe for %1$s/month</string>
 
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Deleting is now synced across all of your devices</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->

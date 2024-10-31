@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
 import org.thoughtcrime.securesms.badges.gifts.viewgift.received.ViewReceivedGiftBottomSheet
 import org.thoughtcrime.securesms.badges.gifts.viewgift.sent.ViewSentGiftBottomSheet
+import org.thoughtcrime.securesms.billing.upgrade.UpgradeToStartMediaBackupSheet
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.components.ComposeText
@@ -2893,6 +2894,14 @@ class ConversationFragment :
 
     override fun onPaymentTombstoneClicked() {
       this@ConversationFragment.showPaymentTombstoneLearnMoreDialog()
+    }
+
+    override fun onDisplayMediaNoLongerAvailableSheet() {
+      if (SignalStore.backup.areBackupsEnabled) {
+        UpgradeToStartMediaBackupSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      } else {
+        MediaNoLongerAvailableBottomSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+      }
     }
 
     override fun onMessageWithErrorClicked(messageRecord: MessageRecord) {
