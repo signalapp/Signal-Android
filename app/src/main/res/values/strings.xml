@@ -7695,7 +7695,7 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Downloading your backup</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depending on the size of your backup, this could take a long time. You can use your phone as you normally do while the download takes place.</string>
-    <!-- Displayed in card when user has a signal subscription but the device doesn't see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Backups</item>
         <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Backups</item>

@@ -981,14 +981,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">Мои поврзани уреди</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">Неповрзан</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">Неповрзан: %1$s</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" unlinked</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">\"%1$s\" linked</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Поврзување на уред…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">Уредот е одобрен</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">Се вчитува…</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">Syncing messages…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Нема поврзани уреди</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -999,6 +1003,14 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Доперете на „продолжи“ и отклучете го телефонот за да потврдите. Не го внесувајте вашиот Signal PIN.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Продолжи</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">Message sync failed</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">Your messages couldn\'t be transferred to your linked device. You can try re-linking and transferring again, or continue without transferring your message history.</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Try linking again</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continue without transferring</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1023,7 +1035,7 @@
     <string name="AddLinkDeviceFragment__retry">Обидете се повторно</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">Да го одврзам \'%1$s\'?</string>
+    <string name="DeviceListActivity_unlink_s">Unlink \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ако го одврзете овој уред истиот повеќе нема да може да праќа и прима пораки.</string>
     <string name="DeviceListActivity_network_connection_failed">Мрежната врска е неуспешна</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -4948,6 +4960,9 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">Квалитет на медиумски датотеки</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Backups subscription</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Покани ги пријателите</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Идентификацискиот број на претплатникот донатор е копиран</string>
@@ -7546,6 +7561,16 @@
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Претплатете се за %1$s/месечно</string>
 
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Бришењето сега е синхронизирано на сите ваши уреди</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
@@ -7666,6 +7691,55 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Се презема резервнатата копија</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Во зависност од големината на резервната копија, ова може да потрае. Можете најнормално да го користите телефонот додека се прави резервната копија.</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Backups</item>
+        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Backups</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">Learn more</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d day.</item>
+        <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">Download</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d day.</item>
+        <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">Skip</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">A network error occurred. Please check your internet connection and try again.</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Subscription not found</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Your subscription couldn\'t be restored.</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">This could happen if:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">You\'re signed into the Play Store with a different Google account.</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">You transferred from an iPhone.</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Your subscription recently expired.</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">If you have an active subscription on your old phone consider canceling it before it renews.</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">Got it</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">Contact support</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

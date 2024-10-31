@@ -981,14 +981,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">Meine gekoppelten Geräte</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">Entkoppeln</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s entkoppelt</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" unlinked</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">\"%1$s\" linked</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Gerät wird gekoppelt…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">Gerät freigeschaltet</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">Wird geladen …</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">Syncing messages…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Keine gekoppelten Geräte</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -999,6 +1003,14 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tippe auf »Weiter« und gib zur Bestätigung den Entsperrcode deines Telefons ein. Gib nicht deine Signal-PIN ein.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Fortfahren</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">Message sync failed</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">Your messages couldn\'t be transferred to your linked device. You can try re-linking and transferring again, or continue without transferring your message history.</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Try linking again</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continue without transferring</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1023,7 +1035,7 @@
     <string name="AddLinkDeviceFragment__retry">Erneut versuchen</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">»%1$s« entkoppeln?</string>
+    <string name="DeviceListActivity_unlink_s">Unlink \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Wenn du dieses Gerät entkoppelst, kannst du keine weiteren Nachrichten darüber versenden oder empfangen.</string>
     <string name="DeviceListActivity_network_connection_failed">Keine Netzverbindung</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -4948,6 +4960,9 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">Medienqualität</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Backups subscription</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Spender-ID in die Zwischenablage kopiert</string>
@@ -5119,7 +5134,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">Alle stummschalten</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">Alle stummschalten</string>
+    <string name="ChatFoldersFragment__unmute_all">Stummschaltung aufheben</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">Alle gelesen</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -6715,7 +6730,7 @@
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
         <item quantity="one">Erhalte ein %1$s-Abzeichen für %2$d Tag</item>
-        <item quantity="other">Erhalte ein %1$s-Abzeichen für %2$d Tag(e)</item>
+        <item quantity="other">Erhalte ein %1$s-Abzeichen für %2$d Tage</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">Überweisung</string>
@@ -6770,7 +6785,7 @@
     <!-- Button label to read more of the bank mandate that is currently off screen -->
     <string name="BankTransferMandateFragment__read_more">Weiterlesen</string>
     <!-- Text displayed when mandate load fails -->
-    <string name="BankTransferMandateFragment__failed_to_load_mandate">Lastschriftanfrage konnte nicht geladen werden</string>
+    <string name="BankTransferMandateFragment__failed_to_load_mandate">Lastschriftmandat konnte nicht geladen werden</string>
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
@@ -6778,7 +6793,7 @@
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Mehr erfahren</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers/der Kontoinhaberin</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
@@ -6812,7 +6827,7 @@
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Mehr erfahren</string>
     <!-- Hint label for text entry box for name on bank account -->
-    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers/der Kontoinhaberin</string>
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers</string>
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">E-Mail</string>
     <!-- Default label for bank selection -->
@@ -6858,7 +6873,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Spende abgeschlossen</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Deine Überweisung ist eingegangen. Du kannst dieses Abzeichen in deinem Profil anzeigen, um deine Unterstützung zu bekunden.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Deine Überweisung ist eingegangen. Du kannst dieses Abzeichen in deinem Profil anzeigen, um deine Unterstützung für Signal zu zeigen.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Fertig</string>
 
@@ -6897,7 +6912,7 @@
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Deine Daten sind vertraulich</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Deine persönlichen Daten werden von Signal nicht erfasst oder gespeichert, wenn du einen Betrag spendest.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Wir nutzen den Zahlungsdienstleister Stripe, um deine Spenden zu erhalten. Wir haben keinen Zugriff auf die Informationen, die du ihnen zur Verfügung stellst, und speichern diese auch nicht.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Wir nutzen den Zahlungsdienstleister Stripe, um deine Spenden zu erhalten. Wir haben keinen Zugriff auf die Informationen, die du Stripe zur Verfügung stellst, und speichern diese auch nicht.</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal kann und wird deine Spende nicht mit deinem Signal-Konto in Verbindung bringen.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Danke für deine Unterstützung!</string>
 
@@ -6907,7 +6922,7 @@
     <!-- Line item on the sheet explaining group stories -->
     <string name="GroupStoryEducationSheet__share_story_updates_to">Teile Story-Updates in einem Gruppen-Chat, in dem du bereits Mitglied bist.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Jede*r im Gruppen-Chat kann etwas zur Story hinzufügen.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Jede Person im Gruppen-Chat kann etwas zur Story hinzufügen.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
     <string name="GroupStoryEducationSheet__all_group_chat_members">Alle Mitglieder im Gruppen-Chat können Antworten auf die Story sehen.</string>
     <!-- Button label to dismiss sheet -->
@@ -7020,7 +7035,7 @@
     <string name="CallLogFragment__deletion_failed">Löschen fehlgeschlagen.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="one">Der Link konnte nicht gelöscht werden. Überprüfe deine Internetverbindung und versuche es erneut.</item>
+        <item quantity="one">Der Anruflink konnte nicht gelöscht werden. Überprüfe deine Internetverbindung und versuche es erneut.</item>
         <item quantity="other">Nicht alle Anruflinks konnten gelöscht werden. Überprüfe deine Internetverbindung und versuche es erneut.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
@@ -7196,7 +7211,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Link löschen?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Dieser Link wird für alle, die ihn benutzt haben, nicht mehr funktionieren.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Dieser Link wird für alle, die ihn haben, nicht mehr funktionieren.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">Link</string>
@@ -7227,7 +7242,7 @@
     <!-- Label for a tab that shows a screen to view your username QR code -->
     <string name="UsernameLinkSettings_code_tab_name">Code</string>
     <!-- Label for a tab that shows a screen to scan a QR code -->
-    <string name="UsernameLinkSettings_scan_tab_name">Scan</string>
+    <string name="UsernameLinkSettings_scan_tab_name">Scannen</string>
     <!-- Description text shown underneath the username QR code scanner -->
     <string name="UsernameLinkSettings_qr_scan_description">Scanne den QR-Code auf dem Gerät deines Kontakts ein.</string>
     <!-- App bar title for the username QR code color picker screen -->
@@ -7285,7 +7300,7 @@
     <string name="PendingParticipantsBottomSheet__approve">Bestätigen</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_title">Benachrichtigungen im Vollbildmodus aktivieren?</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_title">Vollbildbenachrichtigungen aktivieren?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_body">Verpasse nie wieder einen Anruf von deinen Kontakten und Gruppen.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
@@ -7293,11 +7308,11 @@
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
     <string name="GrantFullScreenIntentPermission_megaphone_not_now">Jetzt nicht</string>
     <!-- Title of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Benachrichtigungen im Vollbildmodus aktivieren</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_title">Vollbildbenachrichtigungen aktivieren</string>
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Um Anrufbenachrichtigungen von deinen Kontakten und Gruppen zu erhalten:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Benachrichtigungen im Vollbildmodus erlauben</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Vollbildbenachrichtigungen erlauben</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Monatliche Spende beendet</string>
@@ -7546,6 +7561,16 @@
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
 
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Der Löschvorgang wird jetzt auf all deinen Geräten synchronisiert</string>
     <!-- Educational bottom sheet dialog message shown to notify about delete syncs causing deletes to happen across all devices -->
@@ -7666,6 +7691,55 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Deine Datensicherung wird heruntergeladen</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Je nach Größe deiner Datensicherung könnte dies etwas dauern. Während die Datensicherung heruntergeladen wird, kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Backups</item>
+        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Backups</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">Learn more</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d day.</item>
+        <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">Download</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d day.</item>
+        <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">Skip</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">A network error occurred. Please check your internet connection and try again.</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Subscription not found</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Your subscription couldn\'t be restored.</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">This could happen if:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">You\'re signed into the Play Store with a different Google account.</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">You transferred from an iPhone.</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Your subscription recently expired.</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">If you have an active subscription on your old phone consider canceling it before it renews.</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">Got it</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">Contact support</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
