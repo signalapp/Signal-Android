@@ -366,6 +366,25 @@ fun Screen(
 
       Dividers.Default()
 
+      Buttons.LargeTonal(
+        onClick = {
+          SignalStore.backup.backupsInitialized = false
+        }
+      ) {
+        Text("Clear backup init flag")
+      }
+
+      Buttons.LargeTonal(
+        onClick = {
+          SignalStore.backup.messageCredentials.clearAll()
+          SignalStore.backup.mediaCredentials.clearAll()
+        }
+      ) {
+        Text("Clear backup credentials")
+      }
+
+      Dividers.Default()
+
       Row(
         verticalAlignment = Alignment.CenterVertically
       ) {

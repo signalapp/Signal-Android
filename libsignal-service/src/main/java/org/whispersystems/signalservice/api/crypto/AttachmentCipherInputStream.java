@@ -11,7 +11,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream;
 import org.signal.libsignal.protocol.kdf.HKDF;
-import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.ByteArrayInputStream;
@@ -126,7 +126,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
   /**
    * Decrypt archived media to it's original attachment encrypted blob.
    */
-  public static LimitedInputStream createForArchivedMedia(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength)
+  public static LimitedInputStream createForArchivedMedia(MediaRootBackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength)
       throws InvalidMessageException, IOException
   {
     Mac mac = initMac(archivedMediaKeyMaterial.getMacKey());
@@ -139,7 +139,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
       verifyMac(macVerificationStream, file.length(), mac, null);
     }
 
-    InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getCipherKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
+    InputStream inputStream = new AttachmentCipherInputStream(new FileInputStream(file), archivedMediaKeyMaterial.getAesKey(), file.length() - BLOCK_SIZE - mac.getMacLength());
 
     if (originalCipherTextLength != 0) {
       return new LimitedInputStream(inputStream, originalCipherTextLength);
@@ -148,7 +148,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     }
   }
 
-  public static LimitedInputStream createStreamingForArchivedAttachment(BackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
+  public static LimitedInputStream createStreamingForArchivedAttachment(MediaRootBackupKey.MediaKeyMaterial archivedMediaKeyMaterial, File file, long originalCipherTextLength, long plaintextLength, byte[] combinedKeyMaterial, byte[] digest, byte[] incrementalDigest, int incrementalMacChunkSize)
       throws InvalidMessageException, IOException
   {
     final InputStream archiveStream = createForArchivedMedia(archivedMediaKeyMaterial, file, originalCipherTextLength);
@@ -204,7 +204,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
     return new AttachmentCipherInputStream(new ByteArrayInputStream(data), parts[0], data.length - BLOCK_SIZE - mac.getMacLength());
   }
 
-  private AttachmentCipherInputStream(InputStream inputStream, byte[] cipherKey, long totalDataSize)
+  private AttachmentCipherInputStream(InputStream inputStream, byte[] aesKey, long totalDataSize)
       throws IOException
   {
     super(inputStream);
@@ -214,7 +214,7 @@ public class AttachmentCipherInputStream extends FilterInputStream {
       readFully(iv);
 
       this.cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-      this.cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
+      this.cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(aesKey, "AES"), new IvParameterSpec(iv));
 
       this.done          = false;
       this.totalRead     = 0;

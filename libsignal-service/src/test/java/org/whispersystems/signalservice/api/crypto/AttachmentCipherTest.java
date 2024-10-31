@@ -7,7 +7,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.signal.libsignal.protocol.kdf.HKDFv3;
-import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -290,13 +290,13 @@ public final class AttachmentCipherTest {
 
   @Test
   public void archive_encryptDecrypt() throws IOException, InvalidMessageException {
-    byte[]                         key             = Util.getSecretBytes(64);
-    BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
-    byte[]                         plaintextInput  = "Peter Parker".getBytes();
-    EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
-    File                           cipherFile      = writeToFile(encryptResult.ciphertext);
-    InputStream                    inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
-    byte[]                         plaintextOutput = readInputStreamFully(inputStream);
+    byte[]                              key            = Util.getSecretBytes(64);
+    MediaRootBackupKey.MediaKeyMaterial keyMaterial    = AttachmentCipherTestHelper.createMediaKeyMaterial(key);
+    byte[]                              plaintextInput = "Peter Parker".getBytes();
+    EncryptResult                       encryptResult   = encryptData(plaintextInput, key, false);
+    File                                cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream                         inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
+    byte[]                              plaintextOutput = readInputStreamFully(inputStream);
 
     assertArrayEquals(plaintextInput, plaintextOutput);
 
@@ -305,13 +305,13 @@ public final class AttachmentCipherTest {
 
   @Test
   public void archive_encryptDecryptEmpty() throws IOException, InvalidMessageException {
-    byte[]                         key             = Util.getSecretBytes(64);
-    BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
-    byte[]                         plaintextInput  = "".getBytes();
-    EncryptResult                  encryptResult   = encryptData(plaintextInput, key, false);
-    File                           cipherFile      = writeToFile(encryptResult.ciphertext);
-    InputStream                    inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
-    byte[]                         plaintextOutput = readInputStreamFully(inputStream);
+    byte[]                              key             = Util.getSecretBytes(64);
+    MediaRootBackupKey.MediaKeyMaterial keyMaterial     = AttachmentCipherTestHelper.createMediaKeyMaterial(key);
+    byte[]                              plaintextInput  = "".getBytes();
+    EncryptResult                       encryptResult   = encryptData(plaintextInput, key, false);
+    File                                cipherFile      = writeToFile(encryptResult.ciphertext);
+    InputStream                         inputStream     = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
+    byte[]                              plaintextOutput = readInputStreamFully(inputStream);
 
     assertArrayEquals(plaintextInput, plaintextOutput);
 
@@ -324,11 +324,11 @@ public final class AttachmentCipherTest {
     boolean hitCorrectException = false;
 
     try {
-      byte[]                         key            = Util.getSecretBytes(64);
-      byte[]                         badKey         = Util.getSecretBytes(64);
-      BackupKey.MediaKeyMaterial     keyMaterial    = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), badKey, Util.getSecretBytes(16));
-      byte[]                         plaintextInput = "Gwen Stacy".getBytes();
-      EncryptResult                  encryptResult  = encryptData(plaintextInput, key, false);
+      byte[]                              key            = Util.getSecretBytes(64);
+      byte[]                              badKey         = Util.getSecretBytes(64);
+      MediaRootBackupKey.MediaKeyMaterial keyMaterial    = AttachmentCipherTestHelper.createMediaKeyMaterial(badKey);
+      byte[]                              plaintextInput = "Gwen Stacy".getBytes();
+      EncryptResult                       encryptResult  = encryptData(plaintextInput, key, false);
 
       cipherFile = writeToFile(encryptResult.ciphertext);
 
@@ -372,9 +372,9 @@ public final class AttachmentCipherTest {
 
       File cipherFile = writeToFile(encryptedData);
 
-      BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
-      InputStream                    decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, length);
-      byte[]                         plaintextOutput = readInputStreamFully(decryptedStream);
+      MediaRootBackupKey.MediaKeyMaterial keyMaterial     = AttachmentCipherTestHelper.createMediaKeyMaterial(key);
+      InputStream                         decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, length);
+      byte[]                              plaintextOutput = readInputStreamFully(decryptedStream);
 
       assertArrayEquals(plaintextInput, plaintextOutput);
 
@@ -397,7 +397,7 @@ public final class AttachmentCipherTest {
 
       cipherFile = writeToFile(badMacCiphertext);
 
-      BackupKey.MediaKeyMaterial     keyMaterial     = BackupKey.MediaKeyMaterial.forMedia(Util.getSecretBytes(15), key, Util.getSecretBytes(16));
+      MediaRootBackupKey.MediaKeyMaterial keyMaterial = AttachmentCipherTestHelper.createMediaKeyMaterial(key);
       AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.length);
       fail();
     } catch (InvalidMessageException e) {

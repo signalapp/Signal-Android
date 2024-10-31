@@ -50,7 +50,7 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import kotlin.random.Random
 
 /**
@@ -60,7 +60,7 @@ import kotlin.random.Random
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageBackupsKeyRecordScreen(
-  backupKey: BackupKey,
+  messageBackupKey: MessageBackupKey,
   onNavigationClick: () -> Unit = {},
   onCopyToClipboardClick: (String) -> Unit = {},
   onNextClick: () -> Unit = {}
@@ -104,8 +104,8 @@ fun MessageBackupsKeyRecordScreen(
         modifier = Modifier.padding(top = 12.dp)
       )
 
-      val backupKeyString = remember(backupKey) {
-        backupKey.value.toList().chunked(2).map { Hex.toStringCondensed(it.toByteArray()) }.joinToString("  ")
+      val backupKeyString = remember(messageBackupKey) {
+        messageBackupKey.value.toList().chunked(2).map { Hex.toStringCondensed(it.toByteArray()) }.joinToString("  ")
       }
 
       Box(
@@ -258,7 +258,7 @@ private fun BottomSheetContent(
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
-      backupKey = BackupKey(Random.nextBytes(32))
+      messageBackupKey = MessageBackupKey(Random.nextBytes(32))
     )
   }
 }

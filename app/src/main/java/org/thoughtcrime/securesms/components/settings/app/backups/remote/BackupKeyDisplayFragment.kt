@@ -19,7 +19,7 @@ class BackupKeyDisplayFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     MessageBackupsKeyRecordScreen(
-      backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey(),
+      messageBackupKey = SignalStore.backup.messageBackupKey,
       onNavigationClick = { findNavController().popBackStack() },
       onCopyToClipboardClick = { Util.copyToClipboard(requireContext(), it) },
       onNextClick = { findNavController().popBackStack() }

@@ -15,8 +15,7 @@ class ArchiveMediaRequest(
   @JsonProperty val objectLength: Int,
   @JsonProperty val mediaId: String,
   @JsonProperty val hmacKey: String,
-  @JsonProperty val encryptionKey: String,
-  @JsonProperty val iv: String
+  @JsonProperty val encryptionKey: String
 ) {
   class SourceAttachment(
     @JsonProperty val cdn: Int,

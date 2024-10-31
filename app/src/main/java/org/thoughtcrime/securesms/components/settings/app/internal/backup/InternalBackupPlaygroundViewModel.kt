@@ -475,14 +475,15 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       attachments: List<BackupAttachment> = this.attachments,
       inProgress: Set<AttachmentId> = this.inProgressMediaIds
     ): MediaState {
-      val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+      val backupKey = SignalStore.backup.messageBackupKey
+      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
       val updatedAttachments = attachments.map {
         val state = if (inProgress.contains(it.dbAttachment.attachmentId)) {
           BackupAttachment.State.IN_PROGRESS
         } else if (it.dbAttachment.archiveMediaName != null) {
           if (it.dbAttachment.remoteDigest != null) {
-            val mediaId = backupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
+            val mediaId = mediaRootBackupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
             if (it.dbAttachment.archiveMediaId == mediaId) {
               BackupAttachment.State.UPLOADED_FINAL
             } else {
@@ -552,10 +553,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
       val encryptedStream = tempBackupFile.inputStream()
       val iv = encryptedStream.readNBytesOrThrow(16)
-      val backupKey = SignalStore.svr.orCreateMasterKey.deriveBackupKey()
+      val backupKey = SignalStore.backup.messageBackupKey
       val keyMaterial = backupKey.deriveBackupSecrets(Recipient.self().aci.get())
       val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
-        init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+        init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.aesKey, "AES"), IvParameterSpec(iv))
       }
 
       val plaintextStream = GZIPInputStream(

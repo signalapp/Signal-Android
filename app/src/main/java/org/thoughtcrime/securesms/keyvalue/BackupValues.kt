@@ -2,15 +2,20 @@ package org.thoughtcrime.securesms.keyvalue
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.coroutines.flow.Flow
+import okio.withLock
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
+import java.util.concurrent.locks.ReentrantLock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -19,7 +24,8 @@ import kotlin.time.Duration.Companion.milliseconds
 class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
     val TAG = Log.tag(BackupValues::class.java)
-    private const val KEY_CREDENTIALS = "backup.credentials"
+    private const val KEY_MESSAGE_CREDENTIALS = "backup.messageCredentials"
+    private const val KEY_MEDIA_CREDENTIALS = "backup.mediaCredentials"
     private const val KEY_CDN_READ_CREDENTIALS = "backup.cdn.readCredentials"
     private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
@@ -53,6 +59,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MEDIA_ROOT_BACKUP_KEY = "backup.mediaRootBackupKey"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
+
+    private val lock = ReentrantLock()
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -74,7 +82,35 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 
-  var mediaRootBackupKey: ByteArray? by nullableBlobValue(KEY_MEDIA_ROOT_BACKUP_KEY, null)
+  /**
+   * Key used to backup messages.
+   */
+  val messageBackupKey: MessageBackupKey
+    get() = SignalStore.svr.getOrCreateMasterKey().derivateMessageBackupKey()
+
+  /**
+   * Key used to backup media. Purely random and separate from the message backup key.
+   */
+  var mediaRootBackupKey: MediaRootBackupKey
+    get() {
+      lock.withLock {
+        val value: ByteArray? = getBlob(KEY_MEDIA_ROOT_BACKUP_KEY, null)
+        if (value != null) {
+          return MediaRootBackupKey(value)
+        }
+
+        Log.i(TAG, "Generating MediaRootBackupKey...", Throwable())
+        val bytes = Util.getSecretBytes(32)
+        putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, bytes)
+        return MediaRootBackupKey(bytes)
+      }
+    }
+    set(value) {
+      lock.withLock {
+        Log.i(TAG, "Setting MediaRootBackupKey", Throwable())
+        putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value)
+      }
+    }
 
   /**
    * This is the 'latest' backup tier. This isn't necessarily the user's current backup tier, so this should only ever
@@ -153,24 +189,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   val isRestoreInProgress: Boolean
     get() = totalRestorableAttachmentSize > 0
 
-  /**
-   * Retrieves the stored credentials, mapped by the day they're valid. The day is represented as
-   * the unix time (in seconds) of the start of the day. Wrapped in a [ArchiveServiceCredentials]
-   * type to make it easier to use. See [ArchiveServiceCredentials.getForCurrentTime].
-   */
-  val credentialsByDay: ArchiveServiceCredentials
-    get() {
-      val serialized = store.getString(KEY_CREDENTIALS, null) ?: return ArchiveServiceCredentials()
+  /** Store that lets you interact with message ZK credentials. */
+  val messageCredentials = CredentialStore(KEY_MESSAGE_CREDENTIALS)
 
-      return try {
-        val map = JsonUtil.fromJson(serialized, SerializedCredentials::class.java).credentialsByDay
-        ArchiveServiceCredentials(map)
-      } catch (e: IOException) {
-        Log.w(TAG, "Invalid JSON! Clearing.", e)
-        putString(KEY_CREDENTIALS, null)
-        ArchiveServiceCredentials()
-      }
-    }
+  /** Store that lets you interact with media ZK credentials. */
+  val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS)
 
   var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
     get() {
@@ -194,26 +217,44 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       cachedCdnCredentialsTimestamp = System.currentTimeMillis()
     }
 
-  /**
-   * Adds the given credentials to the existing list of stored credentials.
-   */
-  fun addCredentials(credentials: List<ArchiveServiceCredential>) {
-    val current: MutableMap<Long, ArchiveServiceCredential> = credentialsByDay.toMutableMap()
-    current.putAll(credentials.associateBy { it.redemptionTime })
-    putString(KEY_CREDENTIALS, JsonUtil.toJson(SerializedCredentials(current)))
-  }
+  inner class CredentialStore(val key: String) {
+    /**
+     * Retrieves the stored media credentials, mapped by the day they're valid. The day is represented as
+     * the unix time (in seconds) of the start of the day. Wrapped in a [ArchiveServiceCredentials]
+     * type to make it easier to use. See [ArchiveServiceCredentials.getForCurrentTime].
+     */
+    val byDay: ArchiveServiceCredentials
+      get() {
+        val serialized = store.getString(key, null) ?: return ArchiveServiceCredentials()
 
-  /**
-   * Trims out any credentials that are for days older than the given timestamp.
-   */
-  fun clearCredentialsOlderThan(startOfDayInSeconds: Long) {
-    val current: MutableMap<Long, ArchiveServiceCredential> = credentialsByDay.toMutableMap()
-    val updated = current.filterKeys { it < startOfDayInSeconds }
-    putString(KEY_CREDENTIALS, JsonUtil.toJson(SerializedCredentials(updated)))
-  }
+        return try {
+          val map = JsonUtil.fromJson(serialized, SerializedCredentials::class.java).credentialsByDay
+          ArchiveServiceCredentials(map)
+        } catch (e: IOException) {
+          Log.w(TAG, "Invalid JSON! Clearing.", e)
+          putString(key, null)
+          ArchiveServiceCredentials()
+        }
+      }
 
-  fun clearAllCredentials() {
-    putString(KEY_CREDENTIALS, null)
+    /** Adds the given credentials to the existing list of stored credentials. */
+    fun add(credentials: List<ArchiveServiceCredential>) {
+      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
+      current.putAll(credentials.associateBy { it.redemptionTime })
+      putString(key, JsonUtil.toJson(SerializedCredentials(current)))
+    }
+
+    /** Trims out any credentials that are for days older than the given timestamp. */
+    fun clearOlderThan(startOfDayInSeconds: Long) {
+      val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
+      val updated = current.filterKeys { it < startOfDayInSeconds }
+      putString(key, JsonUtil.toJson(SerializedCredentials(updated)))
+    }
+
+    /** Clears all credentials. */
+    fun clearAll() {
+      putString(key, null)
+    }
   }
 
   fun markMessageBackupFailure() {

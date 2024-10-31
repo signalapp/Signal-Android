@@ -225,7 +225,7 @@ class RestoreAttachmentJob private constructor(
 
         messageReceiver
           .retrieveArchivedAttachment(
-            SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
+            SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
             cdnCredentials,
             archiveFile,
             pointer,

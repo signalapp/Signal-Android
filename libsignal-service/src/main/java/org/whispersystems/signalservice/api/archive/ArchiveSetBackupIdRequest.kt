@@ -19,7 +19,10 @@ import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequest
 class ArchiveSetBackupIdRequest(
   @JsonProperty
   @JsonSerialize(using = BackupAuthCredentialRequestSerializer::class)
-  val backupAuthCredentialRequest: BackupAuthCredentialRequest
+  val messagesBackupAuthCredentialRequest: BackupAuthCredentialRequest,
+  @JsonProperty
+  @JsonSerialize(using = BackupAuthCredentialRequestSerializer::class)
+  val mediaBackupAuthCredentialRequest: BackupAuthCredentialRequest
 ) {
   class BackupAuthCredentialRequestSerializer : JsonSerializer<BackupAuthCredentialRequest>() {
     override fun serialize(value: BackupAuthCredentialRequest, gen: JsonGenerator, serializers: SerializerProvider) {

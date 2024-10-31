@@ -34,13 +34,13 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
 
   return try {
     val (remoteId, cdnNumber) = if (useArchiveCdn) {
-      val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
       val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
 
       val id = SignalServiceAttachmentRemoteId.Backup(
         backupDir = backupDirectories.backupDir,
         mediaDir = backupDirectories.mediaDir,
-        mediaId = backupKey.deriveMediaId(MediaName(archiveMediaName!!)).encode()
+        mediaId = mediaRootBackupKey.deriveMediaId(MediaName(archiveMediaName!!)).encode()
       )
 
       id to archiveCdn
@@ -91,11 +91,11 @@ fun DatabaseAttachment.createArchiveThumbnailPointer(): SignalServiceAttachmentP
     throw InvalidAttachmentException("empty encrypted key")
   }
 
-  val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+  val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
   val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
   return try {
-    val key = backupKey.deriveThumbnailTransitKey(getThumbnailMediaName())
-    val mediaId = backupKey.deriveMediaId(getThumbnailMediaName()).encode()
+    val key = mediaRootBackupKey.deriveThumbnailTransitKey(getThumbnailMediaName())
+    val mediaId = mediaRootBackupKey.deriveMediaId(getThumbnailMediaName()).encode()
     SignalServiceAttachmentPointer(
       cdnNumber = archiveCdn,
       remoteId = SignalServiceAttachmentRemoteId.Backup(

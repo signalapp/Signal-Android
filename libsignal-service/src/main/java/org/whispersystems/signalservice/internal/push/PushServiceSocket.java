@@ -540,8 +540,8 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, ArchiveServiceCredentialsResponse.class);
   }
 
-  public void setArchiveBackupId(BackupAuthCredentialRequest request) throws IOException {
-    String body = JsonUtil.toJson(new ArchiveSetBackupIdRequest(request));
+  public void setArchiveBackupId(BackupAuthCredentialRequest messageRequest, BackupAuthCredentialRequest mediaRequest) throws IOException {
+    String body = JsonUtil.toJson(new ArchiveSetBackupIdRequest(messageRequest, mediaRequest));
     makeServiceRequest(ARCHIVE_BACKUP_ID, "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
   }
 

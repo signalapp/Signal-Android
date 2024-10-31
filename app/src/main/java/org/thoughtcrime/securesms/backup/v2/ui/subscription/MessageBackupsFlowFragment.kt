@@ -103,7 +103,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         val context = LocalContext.current
 
         MessageBackupsKeyRecordScreen(
-          backupKey = state.backupKey,
+          messageBackupKey = state.messageBackupKey,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {

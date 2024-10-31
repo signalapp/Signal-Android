@@ -92,13 +92,13 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
-    val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     val specResult = BackupRepository
       .getAttachmentUploadForm()
       .then { form ->
         SignalNetwork.attachments.getResumableUploadSpec(
-          key = backupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()),
+          key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()),
           iv = attachment.remoteIv!!,
           uploadForm = form
         )
@@ -133,13 +133,12 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.retry(defaultBackoff())
     }
 
-    val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
-    val mediaSecrets = backupKey.deriveMediaSecrets(attachment.getThumbnailMediaName())
+    val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(attachment.getThumbnailMediaName())
 
     return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
         // save attachment thumbnail
-        val archiveMediaId = attachment.archiveMediaId ?: backupKey.deriveMediaId(attachment.getMediaName()).encode()
+        val archiveMediaId = attachment.archiveMediaId ?: mediaRootBackupKey.deriveMediaId(attachment.getMediaName()).encode()
         SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(attachmentId, archiveMediaId, mediaSecrets.id, thumbnailResult.data)
 
         Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
