@@ -7694,6 +7694,26 @@
     <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Learn more</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d day.</item>
+        <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">Download</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d day.</item>
+        <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">Skip</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">A network error occurred. Please check your internet connection and try again.</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

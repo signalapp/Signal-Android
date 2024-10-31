@@ -112,7 +112,8 @@ data class RemoteBackupsSettingsState(
     PROGRESS_SPINNER,
     DOWNLOADING_YOUR_BACKUP,
     TURN_OFF_FAILED,
-    SUBSCRIPTION_NOT_FOUND
+    SUBSCRIPTION_NOT_FOUND,
+    SKIP_MEDIA_RESTORE_PROTECTION
   }
 
   enum class Snackbar {

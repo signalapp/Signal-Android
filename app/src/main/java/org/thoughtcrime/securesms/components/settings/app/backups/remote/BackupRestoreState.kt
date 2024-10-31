@@ -10,7 +10,12 @@ import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 /**
  * State container for BackupStatusData, including the enabled state.
  */
-data class BackupRestoreState(
-  val enabled: Boolean,
-  val backupStatusData: BackupStatusData
-)
+sealed interface BackupRestoreState {
+  data object None : BackupRestoreState
+  data class Ready(
+    val bytes: String
+  ) : BackupRestoreState
+  data class FromBackupStatusData(
+    val backupStatusData: BackupStatusData
+  ) : BackupRestoreState
+}

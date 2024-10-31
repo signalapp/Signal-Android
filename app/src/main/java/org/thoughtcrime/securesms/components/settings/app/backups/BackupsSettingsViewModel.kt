@@ -23,8 +23,10 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
+import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Currency
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -58,6 +60,11 @@ class BackupsSettingsViewModel : ViewModel() {
 
   private fun loadEnabledState() {
     viewModelScope.launch(Dispatchers.IO) {
+      if (!RemoteConfig.messageBackups || !AppDependencies.billingApi.isApiAvailable()) {
+        internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable) }
+        return@launch
+      }
+
       val enabledState = when (SignalStore.backup.backupTier) {
         MessageBackupTier.FREE -> getEnabledStateForFreeTier()
         MessageBackupTier.PAID -> getEnabledStateForPaidTier()

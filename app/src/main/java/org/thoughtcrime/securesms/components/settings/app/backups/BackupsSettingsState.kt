@@ -24,6 +24,11 @@ data class BackupsSettingsState(
     data object Loading : EnabledState
 
     /**
+     * Google Play Billing is not available on this device
+     */
+    data object NotAvailable : EnabledState
+
+    /**
      * Backups have never been enabled.
      */
     data object Never : EnabledState

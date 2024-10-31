@@ -126,12 +126,16 @@ private fun BackupsSettingsContent(
         when (backupsSettingsState.enabledState) {
           BackupsSettingsState.EnabledState.Loading -> {
             LoadingBackupsRow()
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Inactive -> {
             InactiveBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           is BackupsSettingsState.EnabledState.Active -> {
@@ -139,29 +143,28 @@ private fun BackupsSettingsContent(
               enabledState = backupsSettingsState.enabledState,
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Never -> {
             NeverEnabledBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Failed -> {
-            Text(text = "TODO")
+            WaitingForNetworkRow()
+            OtherWaysToBackUpHeading()
           }
+
+          BackupsSettingsState.EnabledState.NotAvailable -> Unit
         }
       }
 
       item {
-        Dividers.Default()
-      }
-
-      item {
-        Texts.SectionHeader(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__other_ways_to_backup)
-        )
-
         Rows.TextRow(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__on_device_backups),
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
@@ -170,6 +173,15 @@ private fun BackupsSettingsContent(
       }
     }
   }
+}
+
+@Composable
+private fun OtherWaysToBackUpHeading() {
+  Dividers.Default()
+
+  Texts.SectionHeader(
+    text = stringResource(R.string.RemoteBackupsSettingsFragment__other_ways_to_backup)
+  )
 }
 
 @Composable
@@ -211,6 +223,18 @@ private fun NeverEnabledBackupsRow(
           )
         }
       }
+    }
+  )
+}
+
+@Composable
+private fun WaitingForNetworkRow() {
+  Rows.TextRow(
+    text = {
+      Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__waiting_for_network))
+    },
+    icon = {
+      CircularProgressIndicator()
     }
   )
 }
@@ -324,6 +348,26 @@ private fun BackupsSettingsContentPreview() {
         )
       )
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BackupsSettingsContentNotAvailablePreview() {
+  Previews.Preview {
+    BackupsSettingsContent(
+      backupsSettingsState = BackupsSettingsState(
+        enabledState = BackupsSettingsState.EnabledState.NotAvailable
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun WaitingForNetworkRowPreview() {
+  Previews.Preview {
+    WaitingForNetworkRow()
   }
 }
 
