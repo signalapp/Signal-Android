@@ -2453,7 +2453,7 @@ class AttachmentTable(
       contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize())
       contentValues.put(ATTACHMENT_UUID, attachment.uuid?.toString())
 
-      if (attachment.transformProperties?.videoEdited == true) {
+      if (attachment.transformProperties?.videoTrimStartTimeUs != 0L) {
         contentValues.putNull(BLUR_HASH)
       } else {
         contentValues.put(BLUR_HASH, uploadTemplate.getVisualHashStringOrNull())
