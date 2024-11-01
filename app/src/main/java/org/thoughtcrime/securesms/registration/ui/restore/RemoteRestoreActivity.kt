@@ -47,7 +47,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
@@ -69,6 +68,7 @@ import org.thoughtcrime.securesms.restore.transferorrestore.TransferOrRestoreMor
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
 import java.util.Locale
+import org.signal.core.ui.R as CoreUiR
 
 class RemoteRestoreActivity : BaseActivity() {
   companion object {

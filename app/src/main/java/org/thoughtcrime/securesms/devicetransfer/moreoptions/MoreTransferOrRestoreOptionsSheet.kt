@@ -39,10 +39,10 @@ import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Lists a set of options the user can choose from for restoring backup or skipping restoration

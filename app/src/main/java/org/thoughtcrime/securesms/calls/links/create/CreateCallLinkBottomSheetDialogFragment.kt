@@ -39,7 +39,6 @@ import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.ui.SignalPreview
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -61,6 +60,7 @@ import org.thoughtcrime.securesms.sharing.v2.ShareActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
 import java.time.Instant
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Bottom sheet for creating call links

@@ -62,7 +62,6 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
@@ -96,6 +95,7 @@ import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Remote backups settings fragment.

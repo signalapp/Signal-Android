@@ -24,10 +24,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen detailing how a backups key is used to restore a backup

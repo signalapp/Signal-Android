@@ -45,7 +45,6 @@ import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
@@ -53,6 +52,7 @@ import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.whispersystems.signalservice.api.backup.BackupKey
 import kotlin.random.Random
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen displaying the backup key allowing the user to write it down

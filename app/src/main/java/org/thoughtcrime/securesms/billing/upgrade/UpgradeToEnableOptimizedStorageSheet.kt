@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -35,6 +34,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeBl
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeIconColors
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.testBackupTypes
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Sheet describing how users must upgrade to enable optimized storage.

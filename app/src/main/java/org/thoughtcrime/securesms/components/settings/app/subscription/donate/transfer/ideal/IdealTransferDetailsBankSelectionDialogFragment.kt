@@ -27,10 +27,10 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Dialog fragment for selecting the bank for the iDEAL donation.

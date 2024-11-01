@@ -13,11 +13,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.fragment.app.FragmentActivity
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.util.logging.Log
-import org.signal.core.ui.R as CoreUiR
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.webrtc.audio.AudioDeviceMapping
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * This launches the bottom sheet on Android 12+ devices for selecting which audio device to use during a call.

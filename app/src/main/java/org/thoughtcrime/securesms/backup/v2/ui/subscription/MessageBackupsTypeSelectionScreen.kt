@@ -46,7 +46,6 @@ import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
@@ -60,6 +59,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ByteUnit
 import java.math.BigDecimal
 import java.util.Currency
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen which allows the user to select their preferred backup type.

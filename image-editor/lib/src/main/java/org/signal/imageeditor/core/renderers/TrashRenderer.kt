@@ -10,10 +10,10 @@ import android.view.animation.Interpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.signal.core.util.DimensionUnit
-import org.signal.core.util.R as CoreUtilR
 import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
+import org.signal.core.util.R as CoreUtilR
 
 internal class TrashRenderer : InvalidateableRenderer(), Renderer, Parcelable {
 

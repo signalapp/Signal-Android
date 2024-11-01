@@ -22,9 +22,7 @@ import androidx.media3.session.CommandButton
 import androidx.media3.session.DefaultMediaNotificationProvider
 import androidx.media3.session.MediaNotification
 import androidx.media3.session.MediaSession
-import androidx.media3.session.R as Media3SessionR
 import androidx.media3.session.SessionCommand
-import androidx.media3.ui.R as Media3UiR
 import com.google.common.collect.ImmutableList
 import org.signal.core.util.PendingIntentFlags.cancelCurrent
 import org.signal.core.util.concurrent.SignalExecutors
@@ -38,6 +36,8 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.AvatarUtil
 import java.util.Arrays
+import androidx.media3.session.R as Media3SessionR
+import androidx.media3.ui.R as Media3UiR
 
 /**
  * This handles all of the notification and playback APIs for playing back a voice note.

@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.IconButtons
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.AudioStateUpdater
@@ -43,6 +42,7 @@ import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioPicker31
+import org.signal.core.ui.R as CoreUiR
 
 private const val SHOW_PICKER_THRESHOLD = 3
 

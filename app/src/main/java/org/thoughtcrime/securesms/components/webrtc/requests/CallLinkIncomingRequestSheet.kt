@@ -36,7 +36,6 @@ import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Rows
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
@@ -48,6 +47,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displayed when the user presses the user avatar in the call link join request

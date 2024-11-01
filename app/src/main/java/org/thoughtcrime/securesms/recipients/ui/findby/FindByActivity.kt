@@ -73,7 +73,6 @@ import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
-import org.signal.core.ui.R as CoreUiR
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.TextFields
 import org.signal.core.ui.theme.SignalTheme
@@ -88,6 +87,7 @@ import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows the user to look up another Signal user by phone number or username and
