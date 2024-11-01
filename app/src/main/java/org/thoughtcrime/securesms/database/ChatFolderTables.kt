@@ -234,13 +234,12 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
-   * Returns the number of user-made folders
+   * Returns the number of folders a user has, including the default 'All Chats'
    */
   fun getFolderCount(): Int {
     return readableDatabase
       .count()
       .from(ChatFolderTable.TABLE_NAME)
-      .where("${ChatFolderTable.FOLDER_TYPE} != ${ChatFolderRecord.FolderType.ALL.value}")
       .run()
       .readToSingleInt()
   }

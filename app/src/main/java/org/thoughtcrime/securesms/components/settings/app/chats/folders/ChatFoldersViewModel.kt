@@ -327,8 +327,7 @@ class ChatFoldersViewModel : ViewModel() {
     val originalFolder = state.value.originalFolder
 
     return if (currentFolder.id == -1L) {
-      currentFolder.name.isNotEmpty() &&
-        (currentFolder.includedRecipients.isNotEmpty() || currentFolder.showIndividualChats || currentFolder.showGroupChats)
+      currentFolder.includedRecipients.isNotEmpty() || currentFolder.showIndividualChats || currentFolder.showGroupChats
     } else {
       originalFolder != currentFolder ||
         originalFolder.includedRecipients != currentFolder.includedRecipients ||

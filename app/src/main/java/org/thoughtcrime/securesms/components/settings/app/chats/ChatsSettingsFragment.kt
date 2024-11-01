@@ -62,7 +62,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       sectionHeaderPref(R.string.ChatsSettingsFragment__chat_folders)
 
-      if (state.folderCount == 0) {
+      if (state.folderCount == 1) {
         clickPref(
           title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_chat_folder),
           onClick = {

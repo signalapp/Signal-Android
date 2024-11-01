@@ -364,42 +364,35 @@ fun CreateFolderScreen(
       }
     }
 
-    if (hasChanges && isNewFolder) {
-      Buttons.MediumTonal(
-        onClick = { onCreateConfirmed() },
-        modifier = modifier
-          .align(Alignment.BottomEnd)
-          .padding(end = 16.dp, bottom = 16.dp)
-      ) {
-        Text(text = stringResource(R.string.CreateFoldersFragment__create))
-      }
-    } else if (!isNewFolder) {
-      Buttons.MediumTonal(
-        colors = ButtonDefaults.filledTonalButtonColors(
-          contentColor = if (state.currentFolder.name.isEmpty()) {
-            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
-          } else {
-            MaterialTheme.colorScheme.onSurface
-          },
-          containerColor = if (state.currentFolder.name.isEmpty()) {
-            MaterialTheme.colorScheme.surfaceVariant
-          } else {
-            MaterialTheme.colorScheme.primaryContainer
-          },
-          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
-        ),
-        enabled = hasChanges,
-        onClick = {
-          if (state.currentFolder.name.isEmpty()) {
-            onShowToast()
-          } else {
-            onCreateConfirmed()
-          }
+    Buttons.MediumTonal(
+      colors = ButtonDefaults.filledTonalButtonColors(
+        contentColor = if (state.currentFolder.name.isEmpty()) {
+          MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+        } else {
+          MaterialTheme.colorScheme.onSurface
         },
-        modifier = modifier
-          .align(Alignment.BottomEnd)
-          .padding(end = 16.dp, bottom = 16.dp)
-      ) {
+        containerColor = if (state.currentFolder.name.isEmpty()) {
+          MaterialTheme.colorScheme.surfaceVariant
+        } else {
+          MaterialTheme.colorScheme.primaryContainer
+        },
+        disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
+      ),
+      enabled = hasChanges,
+      onClick = {
+        if (state.currentFolder.name.isEmpty()) {
+          onShowToast()
+        } else {
+          onCreateConfirmed()
+        }
+      },
+      modifier = modifier
+        .align(Alignment.BottomEnd)
+        .padding(end = 16.dp, bottom = 16.dp)
+    ) {
+      if (isNewFolder) {
+        Text(text = stringResource(R.string.CreateFoldersFragment__create))
+      } else {
         Text(text = stringResource(R.string.CreateFoldersFragment__save))
       }
     }
