@@ -26,8 +26,10 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     val TAG = Log.tag(BackupValues::class.java)
     private const val KEY_MESSAGE_CREDENTIALS = "backup.messageCredentials"
     private const val KEY_MEDIA_CREDENTIALS = "backup.mediaCredentials"
-    private const val KEY_CDN_READ_CREDENTIALS = "backup.cdn.readCredentials"
-    private const val KEY_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.cdn.readCredentials.timestamp"
+    private const val KEY_MESSAGE_CDN_READ_CREDENTIALS = "backup.messageCdnReadCredentials"
+    private const val KEY_MESSAGE_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.messageCdnReadCredentialsTimestamp"
+    private const val KEY_MEDIA_CDN_READ_CREDENTIALS = "backup.mediaCdnReadCredentials"
+    private const val KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.mediaCdnReadCredentialsTimestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
     private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
@@ -67,8 +69,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   override fun onFirstEverAppLaunch() = Unit
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
-  private var cachedCdnCredentialsTimestamp: Long by longValue(KEY_CDN_READ_CREDENTIALS_TIMESTAMP, 0L)
-  private var cachedCdnCredentials: String? by stringValue(KEY_CDN_READ_CREDENTIALS, null)
   var cachedBackupDirectory: String? by stringValue(KEY_CDN_BACKUP_DIRECTORY, null)
   var cachedBackupMediaDirectory: String? by stringValue(KEY_CDN_BACKUP_MEDIA_DIRECTORY, null)
   var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
@@ -198,34 +198,12 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     get() = totalRestorableAttachmentSize > 0
 
   /** Store that lets you interact with message ZK credentials. */
-  val messageCredentials = CredentialStore(KEY_MESSAGE_CREDENTIALS)
+  val messageCredentials = CredentialStore(KEY_MESSAGE_CREDENTIALS, KEY_MESSAGE_CDN_READ_CREDENTIALS, KEY_MESSAGE_CDN_READ_CREDENTIALS_TIMESTAMP)
 
   /** Store that lets you interact with media ZK credentials. */
-  val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS)
+  val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP)
 
-  var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
-    get() {
-      val cacheAge = System.currentTimeMillis() - cachedCdnCredentialsTimestamp
-      val cached = cachedCdnCredentials
-
-      return if (cached != null && (cacheAge > 0 && cacheAge < cachedCdnCredentialsExpiresIn.inWholeMilliseconds)) {
-        try {
-          JsonUtil.fromJson(cached, GetArchiveCdnCredentialsResponse::class.java)
-        } catch (e: IOException) {
-          Log.w(TAG, "Invalid JSON! Clearing.", e)
-          cachedCdnCredentials = null
-          null
-        }
-      } else {
-        null
-      }
-    }
-    set(value) {
-      cachedCdnCredentials = value?.let { JsonUtil.toJson(it) }
-      cachedCdnCredentialsTimestamp = System.currentTimeMillis()
-    }
-
-  inner class CredentialStore(val key: String) {
+  inner class CredentialStore(val authKey: String, val cdnKey: String, val cdnTimestampKey: String) {
     /**
      * Retrieves the stored media credentials, mapped by the day they're valid. The day is represented as
      * the unix time (in seconds) of the start of the day. Wrapped in a [ArchiveServiceCredentials]
@@ -233,14 +211,14 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
      */
     val byDay: ArchiveServiceCredentials
       get() {
-        val serialized = store.getString(key, null) ?: return ArchiveServiceCredentials()
+        val serialized = store.getString(authKey, null) ?: return ArchiveServiceCredentials()
 
         return try {
           val map = JsonUtil.fromJson(serialized, SerializedCredentials::class.java).credentialsByDay
           ArchiveServiceCredentials(map)
         } catch (e: IOException) {
           Log.w(TAG, "Invalid JSON! Clearing.", e)
-          putString(key, null)
+          putString(authKey, null)
           ArchiveServiceCredentials()
         }
       }
@@ -249,20 +227,43 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     fun add(credentials: List<ArchiveServiceCredential>) {
       val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
       current.putAll(credentials.associateBy { it.redemptionTime })
-      putString(key, JsonUtil.toJson(SerializedCredentials(current)))
+      putString(authKey, JsonUtil.toJson(SerializedCredentials(current)))
     }
 
     /** Trims out any credentials that are for days older than the given timestamp. */
     fun clearOlderThan(startOfDayInSeconds: Long) {
       val current: MutableMap<Long, ArchiveServiceCredential> = byDay.toMutableMap()
       val updated = current.filterKeys { it < startOfDayInSeconds }
-      putString(key, JsonUtil.toJson(SerializedCredentials(updated)))
+      putString(authKey, JsonUtil.toJson(SerializedCredentials(updated)))
     }
 
     /** Clears all credentials. */
     fun clearAll() {
-      putString(key, null)
+      putString(authKey, null)
     }
+
+    /** Credentials to read from the CDN. */
+    var cdnReadCredentials: GetArchiveCdnCredentialsResponse?
+      get() {
+        val cacheAge = System.currentTimeMillis() - getLong(cdnTimestampKey, 0)
+        val cached = getString(cdnKey, null)
+
+        return if (cached != null && (cacheAge > 0 && cacheAge < cachedCdnCredentialsExpiresIn.inWholeMilliseconds)) {
+          try {
+            JsonUtil.fromJson(cached, GetArchiveCdnCredentialsResponse::class.java)
+          } catch (e: IOException) {
+            Log.w(TAG, "Invalid JSON! Clearing.", e)
+            putString(cdnKey, null)
+            null
+          }
+        } else {
+          null
+        }
+      }
+      set(value) {
+        putString(cdnKey, value?.let { JsonUtil.toJson(it) })
+        putLong(cdnTimestampKey, System.currentTimeMillis())
+      }
   }
 
   fun markMessageBackupFailure() {

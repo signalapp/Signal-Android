@@ -812,7 +812,7 @@ object BackupRepository {
       .then { credential ->
         SignalNetwork.archive.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential.messageCredential)
       }
-      .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .map { pair ->
         val (cdnCredentials, info) = pair
         val messageReceiver = AppDependencies.signalServiceMessageReceiver
@@ -828,7 +828,7 @@ object BackupRepository {
       .then { credential ->
         SignalNetwork.archive.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential.messageCredential)
       }
-      .then { info -> getCdnReadCredentials(info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
       .then { pair ->
         val (cdnCredentials, info) = pair
         val messageReceiver = AppDependencies.signalServiceMessageReceiver
@@ -1053,27 +1053,40 @@ object BackupRepository {
   /**
    * Retrieve credentials for reading from the backup cdn.
    */
-  fun getCdnReadCredentials(cdnNumber: Int): NetworkResult<GetArchiveCdnCredentialsResponse> {
-    val cached = SignalStore.backup.cdnReadCredentials
+  fun getCdnReadCredentials(credentialType: CredentialType, cdnNumber: Int): NetworkResult<GetArchiveCdnCredentialsResponse> {
+    val credentialStore = when (credentialType) {
+      CredentialType.MESSAGE -> SignalStore.backup.messageCredentials
+      CredentialType.MEDIA -> SignalStore.backup.mediaCredentials
+    }
+
+    val cached = credentialStore.cdnReadCredentials
     if (cached != null) {
       return NetworkResult.Success(cached)
     }
 
-    val backupKey = SignalStore.backup.messageBackupKey
+    val messageBackupKey = SignalStore.backup.messageBackupKey
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
-    return initBackupAndFetchAuth(backupKey, mediaRootBackupKey)
+    val credentialBackupKey = when (credentialType) {
+      CredentialType.MESSAGE -> messageBackupKey
+      CredentialType.MEDIA -> mediaRootBackupKey
+    }
+
+    return initBackupAndFetchAuth(messageBackupKey, mediaRootBackupKey)
       .then { credential ->
         SignalNetwork.archive.getCdnReadCredentials(
           cdnNumber = cdnNumber,
-          messageBackupKey = backupKey,
+          backupKey = credentialBackupKey,
           aci = SignalStore.account.requireAci(),
-          serviceCredential = credential.mediaCredential
+          serviceCredential = when (credentialType) {
+            CredentialType.MESSAGE -> credential.messageCredential
+            CredentialType.MEDIA -> credential.mediaCredential
+          }
         )
       }
       .also {
         if (it is NetworkResult.Success) {
-          SignalStore.backup.cdnReadCredentials = it.result
+          credentialStore.cdnReadCredentials = it.result
         }
       }
       .also { Log.i(TAG, "getCdnReadCredentialsResult: $it") }
@@ -1281,6 +1294,10 @@ object BackupRepository {
     fun onSticker()
     fun onMessage()
     fun onAttachment(currentProgress: Long, totalCount: Long)
+  }
+
+  enum class CredentialType {
+    MESSAGE, MEDIA
   }
 }
 

@@ -60,10 +60,21 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
     }
   }
 
-  fun getCdnReadCredentials(cdnNumber: Int, messageBackupKey: MessageBackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
+  /**
+   * Gets credentials needed to read from the CDN. Make sure you use the right [backupKey] depending on whether you're doing a message or media operation.
+   *
+   * GET /v1/archives/auth/read
+   *
+   * - 200: Success
+   * - 400: Bad arguments, or made on an authenticated channel
+   * - 401: Bad presentation, invalid public key signature, no matching backupId on teh server, or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   * - 429: Rate-limited
+   */
+  fun getCdnReadCredentials(cdnNumber: Int, backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(messageBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(messageBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(backupKey, aci, serviceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
 
       pushServiceSocket.getArchiveCdnReadCredentials(cdnNumber, presentationData.toArchiveCredentialPresentation())
     }
