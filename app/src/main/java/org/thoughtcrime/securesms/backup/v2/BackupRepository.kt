@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
@@ -91,6 +92,7 @@ import java.io.OutputStream
 import java.time.ZonedDateTime
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
 object BackupRepository {
@@ -117,6 +119,64 @@ object BackupRepository {
         // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
       }
     }
+  }
+
+  /**
+   * Whether the yellow dot should be displayed on the conversation list avatar.
+   */
+  @JvmStatic
+  fun shouldDisplayBackupFailedIndicator(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupFailure) {
+      return false
+    }
+
+    val now = System.currentTimeMillis().milliseconds
+    val alertAfter = SignalStore.backup.nextBackupFailureSnoozeTime
+
+    return alertAfter <= now
+  }
+
+  /**
+   * Whether the "Could not complete backup" row should be displayed in settings.
+   */
+  fun shouldDisplayBackupFailedSettingsRow(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.hasBackupFailure
+  }
+
+  /**
+   * Updates the watermark for the indicator display.
+   */
+  @JvmStatic
+  fun markBackupFailedIndicatorClicked() {
+    SignalStore.backup.updateMessageBackupFailureWatermark()
+  }
+
+  /**
+   * Whether or not the "Could not complete backup" sheet should be displayed.
+   */
+  @JvmStatic
+  fun shouldDisplayBackupFailedSheet(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    val lastBackupTime = SignalStore.backup.lastBackupTime.milliseconds
+    val isTimeoutElapsed = when (SignalStore.backup.backupFrequency) {
+      BackupFrequency.DAILY -> lastBackupTime > 7.days
+      BackupFrequency.WEEKLY -> lastBackupTime > 14.days
+      BackupFrequency.MONTHLY -> lastBackupTime > 44.days
+      BackupFrequency.MANUAL -> false
+    }
+
+    return isTimeoutElapsed && false // TODO [backups] -- watermarking necessary, otherwise this'll show up on every resume.
+  }
+
+  private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
+    return !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled || !SignalStore.backup.hasBackupBeenUploaded
   }
 
   /**

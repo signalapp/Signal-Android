@@ -6,6 +6,7 @@ import androidx.lifecycle.map
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
@@ -70,7 +71,9 @@ class AppSettingsViewModel : ViewModel() {
   }
 
   private fun getBackupFailureState(): BackupFailureState {
-    return if (SignalStore.backup.subscriptionStateMismatchDetected) {
+    return if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
+      BackupFailureState.COULD_NOT_COMPLETE_BACKUP
+    } else if (SignalStore.backup.subscriptionStateMismatchDetected) {
       BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
     } else {
       BackupFailureState.NONE

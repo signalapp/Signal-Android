@@ -94,6 +94,9 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.v2.BackupRepository;
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert;
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertDelegate;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
@@ -173,6 +176,7 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
@@ -570,6 +574,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (this.bannerManager != null) {
       this.bannerManager.updateContent(bannerView.get());
+    }
+
+    if (BackupRepository.shouldDisplayBackupFailedSheet()) {
+      BackupAlertBottomSheet.Companion.create(BackupAlert.COULD_NOT_COMPLETE_BACKUP).show(getParentFragmentManager(), null);
     }
   }
 

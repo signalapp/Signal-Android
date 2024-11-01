@@ -65,7 +65,12 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
 
   override fun getFactoryKey(): String = KEY
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    if (!isCanceled) {
+      Log.w(TAG, "Failed to backup user messages. Marking failure state.")
+      SignalStore.backup.markMessageBackupFailure()
+    }
+  }
 
   override fun run(): Result {
     val stopwatch = Stopwatch("BackupMessagesJob")
@@ -126,6 +131,7 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
       ArchiveUploadProgress.onMessageBackupFinishedEarly()
     }
 
+    SignalStore.backup.clearMessageBackupFailure()
     return Result.success()
   }
 

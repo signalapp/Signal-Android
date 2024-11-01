@@ -71,6 +71,18 @@
                 app:layout_constraintStart_toStartOf="@id/toolbar_icon"
                 tools:alpha="1" />
 
+            <View
+                android:id="@+id/backups_failed_indicator"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:alpha="0"
+                android:background="@drawable/backups_failed_background"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_icon"
+                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
+                tools:alpha="1" />
+
             <TextView
                 android:id="@+id/conversation_list_title"
                 android:layout_width="0dp"

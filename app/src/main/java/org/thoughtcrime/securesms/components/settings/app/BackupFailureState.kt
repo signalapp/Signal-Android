@@ -10,5 +10,6 @@ package org.thoughtcrime.securesms.components.settings.app
  */
 enum class BackupFailureState {
   NONE,
+  COULD_NOT_COMPLETE_BACKUP,
   SUBSCRIPTION_STATE_MISMATCH
 }

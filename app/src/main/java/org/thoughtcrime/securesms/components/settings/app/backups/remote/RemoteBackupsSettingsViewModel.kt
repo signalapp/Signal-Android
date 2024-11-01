@@ -28,6 +28,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
@@ -90,6 +91,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           }
         } else if (SignalStore.backup.totalRestorableAttachmentSize > 0L) {
           _restoreState.update { BackupRestoreState.Ready(SignalStore.backup.totalRestorableAttachmentSize.bytes.toUnitString()) }
+        } else if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
+          _restoreState.update { BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup) }
         } else {
           _restoreState.update { BackupRestoreState.None }
         }

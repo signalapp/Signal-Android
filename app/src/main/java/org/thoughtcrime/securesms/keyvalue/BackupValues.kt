@@ -14,6 +14,7 @@ import java.io.IOException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.milliseconds
 
 class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   companion object {
@@ -44,6 +45,10 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_BACKUP_UPLOADED = "backup.backupUploaded"
     private const val KEY_SUBSCRIPTION_STATE_MISMATCH = "backup.subscriptionStateMismatch"
+
+    private const val KEY_BACKUP_FAIL = "backup.failed"
+    private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME = "backup.failed.acknowledged.snooze.time"
+    private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT = "backup.failed.acknowledged.snooze.count"
 
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
   }
@@ -117,6 +122,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** True if we believe we have successfully uploaded a backup, otherwise false. */
   var hasBackupBeenUploaded: Boolean by booleanValue(KEY_BACKUP_UPLOADED, false)
+
+  val hasBackupFailure: Boolean = getBoolean(KEY_BACKUP_FAIL, false)
+  val nextBackupFailureSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, 0L).milliseconds
 
   /**
    * Call when the user disables backups. Clears/resets all relevant fields.
@@ -202,6 +210,36 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   fun clearAllCredentials() {
     putString(KEY_CREDENTIALS, null)
+  }
+
+  fun markMessageBackupFailure() {
+    store.beginWrite()
+      .putBoolean(KEY_BACKUP_FAIL, true)
+      .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, System.currentTimeMillis())
+      .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT, 0)
+      .apply()
+  }
+
+  fun updateMessageBackupFailureWatermark() {
+    if (!hasBackupFailure) {
+      return
+    }
+
+    val snoozeCount = getLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT, 0) + 1
+    val nextSnooze = when (snoozeCount) {
+      1L -> 48.hours
+      2L -> 72.hours
+      else -> Long.MAX_VALUE.hours
+    }
+
+    store.beginWrite()
+      .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, (System.currentTimeMillis().milliseconds + nextSnooze).inWholeMilliseconds)
+      .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT, snoozeCount)
+      .apply()
+  }
+
+  fun clearMessageBackupFailure() {
+    putBoolean(KEY_BACKUP_FAIL, false)
   }
 
   class SerializedCredentials(
