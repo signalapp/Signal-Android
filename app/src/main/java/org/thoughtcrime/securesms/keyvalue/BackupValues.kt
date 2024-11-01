@@ -55,6 +55,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_FAIL = "backup.failed"
     private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME = "backup.failed.acknowledged.snooze.time"
     private const val KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT = "backup.failed.acknowledged.snooze.count"
+    private const val KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME = "backup.failed.sheet.snooze"
 
     private const val KEY_MEDIA_ROOT_BACKUP_KEY = "backup.mediaRootBackupKey"
 
@@ -78,7 +79,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
 
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
-  var lastBackupTime: Long by longValue(KEY_LAST_BACKUP_TIME, -1)
+  var lastBackupTime: Long
+    get() = getLong(KEY_LAST_BACKUP_TIME, -1)
+    set(value) {
+      putLong(KEY_LAST_BACKUP_TIME, value)
+      clearMessageBackupFailureSheetWatermark()
+    }
+
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 
@@ -165,6 +172,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   val hasBackupFailure: Boolean = getBoolean(KEY_BACKUP_FAIL, false)
   val nextBackupFailureSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, 0L).milliseconds
+  val nextBackupFailureSheetSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, getNextBackupFailureSheetSnoozeTime(lastBackupTime.milliseconds).inWholeMilliseconds).milliseconds
 
   /**
    * Call when the user disables backups. Clears/resets all relevant fields.
@@ -285,6 +293,28 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   fun clearMessageBackupFailure() {
     putBoolean(KEY_BACKUP_FAIL, false)
+  }
+
+  fun updateMessageBackupFailureSheetWatermark() {
+    val lastSnoozeTime = getLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, lastBackupTime).milliseconds
+    val nextSnoozeTime = getNextBackupFailureSheetSnoozeTime(lastSnoozeTime)
+
+    putLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, nextSnoozeTime.inWholeMilliseconds)
+  }
+
+  private fun clearMessageBackupFailureSheetWatermark() {
+    remove(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME)
+  }
+
+  private fun getNextBackupFailureSheetSnoozeTime(previous: Duration): Duration {
+    val timeoutPerSnooze = when (SignalStore.backup.backupFrequency) {
+      BackupFrequency.DAILY -> 7.days
+      BackupFrequency.WEEKLY -> 14.days
+      BackupFrequency.MONTHLY -> 14.days
+      BackupFrequency.MANUAL -> Int.MAX_VALUE.days
+    }
+
+    return previous + timeoutPerSnooze
   }
 
   class SerializedCredentials(

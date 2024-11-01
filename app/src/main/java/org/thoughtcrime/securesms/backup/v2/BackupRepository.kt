@@ -93,7 +93,6 @@ import java.io.OutputStream
 import java.time.ZonedDateTime
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
-import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBackupKey
 
@@ -159,6 +158,13 @@ object BackupRepository {
   }
 
   /**
+   * Updates the watermark for the sheet display.
+   */
+  fun markBackupFailedSheetDismissed() {
+    SignalStore.backup.updateMessageBackupFailureSheetWatermark()
+  }
+
+  /**
    * Whether or not the "Could not complete backup" sheet should be displayed.
    */
   @JvmStatic
@@ -167,15 +173,7 @@ object BackupRepository {
       return false
     }
 
-    val lastBackupTime = SignalStore.backup.lastBackupTime.milliseconds
-    val isTimeoutElapsed = when (SignalStore.backup.backupFrequency) {
-      BackupFrequency.DAILY -> lastBackupTime > 7.days
-      BackupFrequency.WEEKLY -> lastBackupTime > 14.days
-      BackupFrequency.MONTHLY -> lastBackupTime > 44.days
-      BackupFrequency.MANUAL -> false
-    }
-
-    return isTimeoutElapsed && false // TODO [backups] -- watermarking necessary, otherwise this'll show up on every resume.
+    return System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
