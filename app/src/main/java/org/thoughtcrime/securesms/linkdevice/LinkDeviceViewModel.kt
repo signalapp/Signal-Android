@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDeviceName
@@ -35,15 +33,8 @@ class LinkDeviceViewModel : ViewModel() {
   private val _state = MutableStateFlow(LinkDeviceSettingsState())
   val state = _state.asStateFlow()
 
-  private lateinit var listener: JobTracker.JobListener
-
   fun initialize() {
     loadDevices()
-  }
-
-  override fun onCleared() {
-    super.onCleared()
-    AppDependencies.jobManager.removeListener(listener)
   }
 
   fun setDeviceToRemove(device: Device?) {
