@@ -1075,7 +1075,7 @@
     <string name="AddLinkDeviceFragment__retry">Сканувати знову</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">Unlink \"%1$s\"?</string>
+    <string name="DeviceListActivity_unlink_s">Відв\'язати «%1$s»?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Якщо відв\'язати цей пристрій, він більше не зможе надсилати та отримувати повідомлення.</string>
     <string name="DeviceListActivity_network_connection_failed">Зв\'язок з мережею відсутній</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -3396,7 +3396,7 @@
     <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
     <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Сповіщення про виклики ввімкнено.</string>
     <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Увімкнути сповіщення про виклики</string>
-    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Увімкніть фонову активність</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Увімкнути фонову активність</string>
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Тепер усе добре!</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Щоб отримувати сповіщення про виклики, натисніть тут і ввімкніть «Показувати сповіщення».</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Щоб отримувати сповіщення про виклики, натисніть тут і ввімкніть сповіщення, а також перевірте, чи ввімкнено звук і спливні сповіщення.</string>
@@ -3600,20 +3600,20 @@
     <string name="webrtc_answer_decline_button__swipe_down_to_reject">Потягніть вниз, щоб відхилити</string>
 
     <!-- message_details_header -->
-    <string name="message_details_header__issues_need_your_attention">Є деякі проблеми, що потребують вашої уваги.</string>
+    <string name="message_details_header__issues_need_your_attention">Є проблеми, що потребують вашої уваги.</string>
     <string name="message_details_header_sent">Надіслано</string>
     <string name="message_details_header_received">Отримано</string>
     <string name="message_details_header_disappears">Зникне через</string>
     <string name="message_details_header_via">Через</string>
 
     <!-- message_details_recipient_header -->
-    <string name="message_details_recipient_header__pending_send">Очікування</string>
+    <string name="message_details_recipient_header__pending_send">Інформацію ще не отримано</string>
     <string name="message_details_recipient_header__sent_to">Кому надіслано:</string>
     <string name="message_details_recipient_header__sent_from">Відправник</string>
     <string name="message_details_recipient_header__delivered_to">Кому доставлено:</string>
     <string name="message_details_recipient_header__read_by">Хто прочитав:</string>
     <string name="message_details_recipient_header__not_sent">Не надіслано</string>
-    <string name="message_details_recipient_header__viewed">Переглянули</string>
+    <string name="message_details_recipient_header__viewed">Хто переглянув:</string>
     <string name="message_details_recipient_header__skipped">Кому не доставлено:</string>
 
     <!-- message_Details_recipient -->
@@ -3623,11 +3623,11 @@
     <string name="MessageDetails__view_edit_history">Переглянути правки</string>
 
     <!-- AndroidManifest.xml -->
-    <string name="AndroidManifest__create_passphrase">Створити фразу-пароль</string>
-    <string name="AndroidManifest__select_contacts">Обрати контакти</string>
-    <string name="AndroidManifest__change_passphrase">Змінити фразу-пароль</string>
+    <string name="AndroidManifest__create_passphrase">Створити пароль</string>
+    <string name="AndroidManifest__select_contacts">Вибрати контакти</string>
+    <string name="AndroidManifest__change_passphrase">Змінити пароль</string>
     <string name="AndroidManifest__verify_safety_number">Перевірка коду безпеки</string>
-    <string name="AndroidManifest__media_preview">Попередній перегляд медіа</string>
+    <string name="AndroidManifest__media_preview">Попередній вигляд медіафайлів</string>
     <string name="AndroidManifest__message_details">Про повідомлення</string>
     <string name="AndroidManifest__linked_devices">Зв\'язані пристрої</string>
     <string name="AndroidManifest__invite_friends">Запросити друзів</string>
@@ -3640,7 +3640,7 @@
     <string name="HelpFragment__tell_us_whats_going_on">Поясніть, що сталося</string>
     <string name="HelpFragment__include_debug_log">Долучити журнал налагодження.</string>
     <string name="HelpFragment__whats_this">Що це?</string>
-    <string name="HelpFragment__how_do_you_feel">Який у вас настрій?</string>
+    <string name="HelpFragment__how_do_you_feel">Який у вас настрій? (необов\'язково)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Яка причина вашого звернення?</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
@@ -3650,11 +3650,11 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
-    <string name="HelpFragment__support_info">Допоміжна інформація</string>
-    <string name="HelpFragment__signal_android_support_request">Запит на підтримку Signal на Android</string>
+    <string name="HelpFragment__support_info">Інформація для служби підтримки</string>
+    <string name="HelpFragment__signal_android_support_request">Звернення в службу підтримки щодо Signal для Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
-    <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити логи</string>
-    <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, пишіть якомога детальніше, щоб допомогти нам зрозуміти проблему.</string>
+    <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити журнал налагодження</string>
+    <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, опишіть проблему якомога детальніше, це нам допоможе.</string>
     <string-array name="HelpFragment__categories_5">
         <item>Виберіть варіант</item>
         <item>Щось не працює</item>
@@ -3675,11 +3675,11 @@
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Це повідомлення</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Недавні</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Посмішки &amp; Люди</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Смайлики і люди</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Природа</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Їжа</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Активність</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Місця</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Заняття</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">Місцевості</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Предмети</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Символи</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Прапори</string>
@@ -3721,10 +3721,10 @@
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
-        <item quantity="one">%1$d год</item>
-        <item quantity="few">%1$d год</item>
-        <item quantity="many">%1$d год</item>
-        <item quantity="other">%1$d год</item>
+        <item quantity="one">%1$d година</item>
+        <item quantity="few">%1$d години</item>
+        <item quantity="many">%1$d годин</item>
+        <item quantity="other">%1$d години</item>
     </plurals>
 
     <!-- preferences.xml -->
@@ -3738,24 +3738,24 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Заархівовані чати з вимкненими сповіщеннями залишаються в архіві, якщо надходять нові повідомлення.</string>
     <string name="preferences__generate_link_previews">Генерувати попередній вигляд вебсторінок</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Показувати попередній вигляд вебсторінок за посиланнями, які ви надсилаєте в повідомленнях.</string>
-    <string name="preferences__change_passphrase">Змінити фразу-пароль</string>
-    <string name="preferences__change_your_passphrase">Змінить вашу фразу-пароль</string>
+    <string name="preferences__change_passphrase">Змінити пароль</string>
+    <string name="preferences__change_your_passphrase">Змініть свій пароль</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Увімкнути фразу-пароль</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Захистити Сигнал та сповіщення повідомлень фразою-паролем</string>
+    <string name="preferences__enable_passphrase">Увімкнути блокування екрана паролем</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокувати екран і сповіщення паролем</string>
     <string name="preferences__screen_security">Безпека екрана</string>
-    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоблокувати Signal після певного часу неактивності</string>
-    <string name="preferences__inactivity_timeout_passphrase">Фраза-пароль після спливання часу неактивності</string>
-    <string name="preferences__inactivity_timeout_interval">Інтервал часу неактивності</string>
+    <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично блокувати Signal після певного періоду бездіяльності</string>
+    <string name="preferences__inactivity_timeout_passphrase">Пароль у разі бездіяльності</string>
+    <string name="preferences__inactivity_timeout_interval">Мінімальна тривалість періоду бездіяльності</string>
     <string name="preferences__notifications">Сповіщення</string>
     <string name="preferences__led_color">Колір LED</string>
     <string name="preferences__led_color_unknown">Невідомо</string>
-    <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
+    <string name="preferences__pref_led_blink_title">Схема мерехтіння LED</string>
     <string name="preferences__customize">Налаштувати</string>
-    <string name="preferences__change_sound_and_vibration">Змінити звук та вібрацію</string>
+    <string name="preferences__change_sound_and_vibration">Змінити звук і вібрацію</string>
     <!-- Preference menu item to control the sound of notifications -->
-    <string name="preferences__sound">Звук</string>
-    <string name="preferences__silent">Беззвучно</string>
+    <string name="preferences__sound">Мелодія</string>
+    <string name="preferences__silent">Без звуку</string>
     <string name="preferences__default">Системна</string>
     <string name="preferences__repeat_alerts">Повторювати звуковий сигнал</string>
     <string name="preferences__never">Ніколи</string>
@@ -3770,7 +3770,7 @@
     <string name="preferences__blue">Синій</string>
     <string name="preferences__orange">Помаранчевий</string>
     <string name="preferences__cyan">Бірюзовий</string>
-    <string name="preferences__magenta">Фіолетовий</string>
+    <string name="preferences__magenta">Малиновий</string>
     <string name="preferences__white">Білий</string>
     <string name="preferences__none">Без обмежень</string>
     <string name="preferences__fast">Швидко</string>
@@ -3791,7 +3791,7 @@
     <string name="preferences__mmsc_username">Ім\'я користувача MMSC</string>
     <string name="preferences__mmsc_password">Пароль MMSC</string>
     <string name="preferences__sms_delivery_reports">Звіти про доставку SMS</string>
-    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запитувати звіт про доставку для кожного відісланого вами SMS</string>
+    <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Надсилати запит на звіт про доставку для кожного вашого надісланого SMS-повідомлення</string>
     <string name="preferences__data_and_storage">Дані та пам\'ять</string>
     <string name="preferences__storage">Пам\'ять</string>
     <string name="preferences__payments">Платежі</string>
@@ -3827,18 +3827,18 @@
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Зображення, яке показує, де буде видно змінений значок застосунку.</string>
     <string name="preferences__disable_pin">Вимкнути PIN-код</string>
-    <string name="preferences__enable_pin">Ввімкнути PIN</string>
+    <string name="preferences__enable_pin">Увімкнути PIN-код</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Якщо ви вимкнете PIN-код, то в разі повторної реєстрації в Signal усі ваші дані буде втрачено. Щоб цього уникнути, необхідно заздалегідь вручну створити їхню резервну копію. З вимкненим PIN-кодом неможливо ввімкнути блокування реєстрації.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коди зберігають інформацію в Signal зашифрованою, тому тільки ви можете отримати до неї доступ. Ваш профіль, налаштування та контакти буде відновлено, коли ви встановите застосунок знов. PIN-код не потрібен, щоб відкрити застосунок.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коди забезпечують шифрування інформації, що зберігається в Signal, щоб отримати до неї доступ могли тільки ви. Ваш профіль, налаштування та контакти відновляться, коли ви знову встановите Signal. Щоб відкрити застосунок, PIN-код не потрібен.</string>
     <string name="preferences__system_default">Системна</string>
     <string name="preferences__language">Мова</string>
-    <string name="preferences__signal_messages_and_calls">Повідомлення та виклики Signal</string>
+    <string name="preferences__signal_messages_and_calls">Повідомлення і виклики Signal</string>
     <string name="preferences__advanced_pin_settings">Керування PIN-кодом</string>
-    <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
+    <string name="preferences__free_private_messages_and_calls">Безплатні конфіденційні повідомлення і виклики для користувачів Signal</string>
     <string name="preferences__submit_debug_log">Надіслати журнал налагодження</string>
     <string name="preferences__delete_account">Видалити акаунт</string>
-    <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнен на вашому пристрої)</string>
+    <string name="preferences__support_wifi_calling">Режим сумісності з викликами через WiFi</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте, тільки на вашому пристрої активовано виклики через WiFi)</string>
     <string name="preferences__incognito_keyboard">Клавіатура в анонімному режимі</string>
     <string name="preferences__read_receipts">Відмітки про читання</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Якщо вимкнути відмітки про читання, ви не будете бачити, чи ваші повідомлення прочитали.</string>
@@ -4652,7 +4652,7 @@
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">Використовувати блокування екрана</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
-    <string name="ScreenLockSettingsFragment__your_android_device">Якщо ви вийдете із застосунку чи перейдете в інший, то повинні будете розблокувати Signal — так само, як розблоковуєте свій пристрій. Під час блокування екрану застосунку в сповіщеннях не буде показано вміст повідомлень.</string>
+    <string name="ScreenLockSettingsFragment__your_android_device">Якщо ви вийдете із застосунку чи перейдете в інший, то повинні будете розблокувати Signal — так само, як розблоковуєте свій пристрій. Під час блокування екрана застосунку в сповіщеннях не буде показано вміст повідомлень.</string>
     <!-- Title text explaining when users should start the screen lock -->
     <string name="ScreenLockSettingsFragment__start_screen_lock">Активувати блокування екрана</string>
     <!-- Option text explaining that screen lock should start immediately -->
@@ -5364,7 +5364,7 @@
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">Групи</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Тільки повідомлення з групових чатів</string>
+    <string name="ChatFoldersFragment__only_group_messages">Only messages from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">Додати</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
@@ -5431,7 +5431,7 @@
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">Зберегти</string>
     <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
-    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <string name="CreateFoldersFragment__discard_changes_title">Відхилити зміни?</string>
     <!-- Alert dialog description explaining that any changes made will be discarded -->
     <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
     <!-- Alert dialog confirmation text to discard the changes -->
@@ -7889,13 +7889,13 @@
 
     <!-- MediaNoLongerAvailableSheet -->
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
-    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Цей медіафайл більше не доступний</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
     <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
     <!-- Primary action button on bottom sheet -->
-    <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
+    <string name="MediaNoLongerAvailableSheet__continue">Продовжити</string>
     <!-- Secondary action button on bottom sheet -->
-    <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+    <string name="MediaNoLongerAvailableSheet__not_now">Не зараз</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Тепер видалення синхронізується на всіх ваших пристроях</string>
@@ -8027,7 +8027,7 @@
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
     <!-- Button label to learn more about why subscription disappeared -->
-    <string name="RemoteBackupsSettingsFragment__learn_more">Learn more</string>
+    <string name="RemoteBackupsSettingsFragment__learn_more">Докладніше</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d day.</item>
@@ -8036,7 +8036,7 @@
         <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
     </plurals>
     <!-- Displayed in row when backup is available for download to let user start download -->
-    <string name="RemoteBackupsSettingsFragment__download">Download</string>
+    <string name="RemoteBackupsSettingsFragment__download">Вивантажити</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
     <!-- Dialog body for skiping download of backed up media -->
@@ -8047,7 +8047,7 @@
         <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
     </plurals>
     <!-- Positive dialog action to skip download -->
-    <string name="RemoteBackupsSettingsFragment__skip">Skip</string>
+    <string name="RemoteBackupsSettingsFragment__skip">Пропустити</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8069,9 +8069,9 @@
     <!-- Note underneath bullet points -->
     <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">If you have an active subscription on your old phone consider canceling it before it renews.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__got_it">Got it</string>
+    <string name="SubscriptionNotFoundBottomSheet__got_it">Зрозуміло</string>
     <!-- Action button label to contact support -->
-    <string name="SubscriptionNotFoundBottomSheet__contact_support">Contact support</string>
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">Звернутися в службу підтримки</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->

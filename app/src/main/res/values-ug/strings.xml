@@ -729,7 +729,7 @@
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" كە قوشۇلدى</string>
     <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_this_chat_is_already">بۇ پاراڭ ئاللىقاچان « %1$s» ھۆججەت قىسقۇچىدا</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">ئۇقتۇرۇش ئارخىپى</string>
@@ -962,9 +962,9 @@
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">ئاجرىتىڭ</string>
     <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" unlinked</string>
+    <string name="LinkDeviceFragment__s_unlinked">«%1$s» ئۇلىنىشتىن ئۈزۈلدى</string>
     <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_linked">\"%1$s\" linked</string>
+    <string name="LinkDeviceFragment__s_linked">«%1$s» ئۇلاندى</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">ئۈسكۈنىنى باغلاۋاتىدۇ…</string>
     <!-- Toast message shown after a device has been linked -->
@@ -972,7 +972,7 @@
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">قاچىلىنىۋاتىدۇ…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
-    <string name="LinkDeviceFragment__syncing_messages">Syncing messages…</string>
+    <string name="LinkDeviceFragment__syncing_messages">ئۇچۇرلارنى ماسقەدەملەش…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">باغلانغان ئۈسكۈنە يوق</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -984,13 +984,13 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">داۋاملاشتۇرۇش</string>
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
-    <string name="LinkDeviceFragment__sync_failure_title">Message sync failed</string>
+    <string name="LinkDeviceFragment__sync_failure_title">ئۇچۇر ماسقەدەملەش مەغلۇپ بولدى</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
-    <string name="LinkDeviceFragment__sync_failure_body">Your messages couldn\'t be transferred to your linked device. You can try re-linking and transferring again, or continue without transferring your message history.</string>
+    <string name="LinkDeviceFragment__sync_failure_body">ئۇچۇرلىرىڭىزنى ئۇلانغان ئۈسكۈنىڭىزگە يۆتكىگىلى بولمىدى. قايتا ئۇلاشنى ۋە يۆتكەشنى سىناپ باقسىڭىز ۋەياكى ئۇچۇر تارىخىڭىزنى يۆتكىمەي داۋاملاشتۇرسىڭىز بولىدۇ.</string>
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Try linking again</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">قايتا ئۇلاشنى سىناڭ</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
-    <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continue without transferring</string>
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">يۆتكىمەي تۇرۇپلا داۋاملاشتۇرۇڭ</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1015,7 +1015,7 @@
     <string name="AddLinkDeviceFragment__retry">قايتا سىنا</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">Unlink \"%1$s\"?</string>
+    <string name="DeviceListActivity_unlink_s">«%1$s» نى ئاجرىتامسىز؟</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">بۇ ئۈسكۈنىنى ئاجراتقاندىن كېيىن، ئۇ داۋاملىق ئۇچۇر ئەۋەتەلمەيدۇ ياكى قوبۇل قىلالمايدۇ.</string>
     <string name="DeviceListActivity_network_connection_failed">تور ئۇلىنىشى مەغلۇپ بولدى</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -4842,7 +4842,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">سىگنال زاپاسلاش مۇشتەرىلىكىڭىزنى يېڭىلاڭ</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">دوستلىرىڭىزنى تەكلىپ قىلىڭ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5004,7 +5004,7 @@
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">گۇرۇپپىلار</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">پەقەت گۇرۇپپا پاراڭلىرىدىن كەلگەن ئۇچۇر</string>
+    <string name="ChatFoldersFragment__only_group_messages">Only messages from group chats</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">قوشۇش</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
@@ -5062,9 +5062,9 @@
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">ساقلاش</string>
     <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
-    <string name="CreateFoldersFragment__discard_changes_title">Discard changes?</string>
+    <string name="CreateFoldersFragment__discard_changes_title">ئۆزگىرىشلەرنى تاشلىۋەت</string>
     <!-- Alert dialog description explaining that any changes made will be discarded -->
-    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <string name="CreateFoldersFragment__you_will_lose_changes">بۇ ھۆججەت قىسقۇچقا قىلغان ئۆزگەرتىشلىرىڭىزنى يوقىتىسىز.</string>
     <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">تاشلىۋەت</string>
     <!-- Text that when pressed will delete the current folder -->
@@ -5074,7 +5074,7 @@
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
     <string name="CreateFoldersFragment__see_all">ھەممىنى كۆرسەت</string>
     <!-- Toast shown when trying to make a folder with no name -->
-    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
+    <string name="CreateFoldersFragment__please_enter_name">ھۆججەت قىسقۇچ نامىنى كىرگۈزۈڭ</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
@@ -7400,13 +7400,13 @@
 
     <!-- MediaNoLongerAvailableSheet -->
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
-    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">This media is no longer available</string>
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">بۇ مېدىيا ئەمدى مەۋجۇت ئەمەس</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">بارلىق مېدىيالىرىڭىزنى زاپاسلاشنى باشلاش ئۈچۈن ، سىگنال زاپاسلىشىنى قوزغىتىڭ ۋە ھەقلىق دەرىجىنى تاللاڭ.</string>
     <!-- Primary action button on bottom sheet -->
-    <string name="MediaNoLongerAvailableSheet__continue">Continue</string>
+    <string name="MediaNoLongerAvailableSheet__continue">داۋاملاشتۇرۇش</string>
     <!-- Secondary action button on bottom sheet -->
-    <string name="MediaNoLongerAvailableSheet__not_now">Not now</string>
+    <string name="MediaNoLongerAvailableSheet__not_now">ھازىر ئەمەس</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">ئۆچۈرۈش ھازىر بارلىق ئۈسكۈنىلىرىڭىزدە ماسقەدەملىنىدۇ</string>
@@ -7530,50 +7530,50 @@
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">زاپاسلايدىغان مەلۇماتلارنىڭ ھەجىمىگە قارىتا ، بۇنىڭغا ئۇزۇن ۋاقىت كېتىشى مۇمكىن. زاپاسلاش ئېلىپ بېرىلۋاتقاندىمۇ تېلېفونىڭىزنى ئادەتتىكىدەكلا ئىشلىتەلەيسىز.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Backups</item>
+        <item quantity="other">بۇ ئۈسكۈنىدىكى مۇشتەرىلىكىڭىز كېيىنكى %1$d كۈن ئىچىدە كۈچكە ئىگە. داۋاملىق سىگنال زاپاسلىشىنى ئىشلىتىشنى يېڭىلاڭ</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
-    <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
+    <string name="RemoteBackupsSettingsFragment__renew">يېڭىلاش</string>
     <!-- Button label to learn more about why subscription disappeared -->
-    <string name="RemoteBackupsSettingsFragment__learn_more">Learn more</string>
+    <string name="RemoteBackupsSettingsFragment__learn_more">تەپسىلاتى</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
+        <item quantity="other">بۇ ئۈسكۈنىدە %1$s زاپاسلىغان مەلۇماتلىرىڭىز يوق. مۇشتەرىلىكىڭىز %2$d كۈندە ئاخىرلاشقاندا زاپاسلىغان مەلۇماتلىرىڭىز ئۆچۈرۈلىدۇ.</item>
     </plurals>
     <!-- Displayed in row when backup is available for download to let user start download -->
-    <string name="RemoteBackupsSettingsFragment__download">Download</string>
+    <string name="RemoteBackupsSettingsFragment__download">چۈشۈر</string>
     <!-- Dialog title for skipping download of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">چۈشۈرۈشتىن ۋاز كېچەمسىز؟</string>
     <!-- Dialog body for skiping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
-        <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
+        <item quantity="other">ئەگەر زاپاسلاۋاتقاندا قالغان مېدىيا ۋە قوشۇمچە ھۆججەتلەرنى چۈشۈرۈشتىن ۋاز كەچسىڭىز ، ئۇلار %1$d كۈندە ئۆچۈرۈلىدۇ.</item>
     </plurals>
     <!-- Positive dialog action to skip download -->
-    <string name="RemoteBackupsSettingsFragment__skip">Skip</string>
+    <string name="RemoteBackupsSettingsFragment__skip">ئاتلا</string>
     <!-- Dialog title for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">تورسىز زاپاسلاشنى توختاتقىلى ۋە ئۆچۈرگىلى بولمىدى</string>
     <!-- Dialog body for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">A network error occurred. Please check your internet connection and try again.</string>
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">تور خاتالىقى كۆرۈلدى. تور ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
-    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Subscription not found</string>
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">مۇشتەرىلىك تېپىلمىدى</string>
     <!-- Displayed below title on bottom sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Your subscription couldn\'t be restored.</string>
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">مۇشتەرىلىكىڭىزنى ئەسلىگە كەلتۈرگىلى بولمىدى.</string>
     <!-- Displayed below title on bottom sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">This could happen if:</string>
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">ئېھتىماللىقىلار:</string>
     <!-- First item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">You\'re signed into the Play Store with a different Google account.</string>
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">سىز باشقا Google ھېساباتى بىلەن Play Store نى ئاچقان.</string>
     <!-- Second item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">You transferred from an iPhone.</string>
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">سىز ئايفوندىن يۆتكەلگەن.</string>
     <!-- Third item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Your subscription recently expired.</string>
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">مۇشتەرىلىكىڭىزنىڭ ۋاقتى يېقىندا توشقان.</string>
     <!-- Note underneath bullet points -->
-    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">If you have an active subscription on your old phone consider canceling it before it renews.</string>
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">ئەگەر كونا تېلېفونىڭىزدا ئاكتىپ مۇشتەرىلىكىڭىز بولسا يېڭىلىنىشتىن بۇرۇن ئۇنى ئەمەلدىن قالدۇرۇڭ.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__got_it">Got it</string>
+    <string name="SubscriptionNotFoundBottomSheet__got_it">بىلدىم</string>
     <!-- Action button label to contact support -->
-    <string name="SubscriptionNotFoundBottomSheet__contact_support">Contact support</string>
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">ياردەم خادىمى بىلەن ئالاقىلىشىش</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
