@@ -108,7 +108,7 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow implement
   }
 
   private void show() {
-    if (!isEnabled) {
+    if (!isEnabled || !parent.isAttachedToWindow()) {
       return;
     }
 
