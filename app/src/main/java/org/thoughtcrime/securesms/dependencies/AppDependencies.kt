@@ -2,12 +2,11 @@ package org.thoughtcrime.securesms.dependencies
 
 import android.annotation.SuppressLint
 import android.app.Application
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.OkHttpClient
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
+import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
@@ -209,14 +208,14 @@ object AppDependencies {
     provider.provideBillingApi()
   }
 
-  private val _webSocketObserver: Subject<WebSocketConnectionState> = BehaviorSubject.create()
+  private val _webSocketObserver: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.create()
 
   /**
    * An observable that emits the current state of the WebSocket connection across the various lifecycles
    * of the [signalWebSocket].
    */
   @JvmStatic
-  val webSocketObserver: Observable<WebSocketConnectionState> = _webSocketObserver
+  val webSocketObserver: LatestValueObservable<WebSocketConnectionState> = LatestValueObservable(_webSocketObserver)
 
   private val _networkModule = resettableLazy {
     NetworkDependenciesModule(application, provider, _webSocketObserver)
