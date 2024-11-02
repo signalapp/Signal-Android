@@ -5469,7 +5469,7 @@
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Blokér</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Fjern %1$s?&lt;br /&gt;</string>
+    <string name="NewConversationActivity__remove_s">Fjern %1$s?</string>
     <!-- Dialog message when removing a contact -->
     <string name="NewConversationActivity__you_wont_see_this_person">Du ser ikke denne person, når du søger. Du modtager en anmodning, hvis vedkommende skriver til dig i fremtiden.</string>
     <!-- Snackbar message after removing a contact -->
