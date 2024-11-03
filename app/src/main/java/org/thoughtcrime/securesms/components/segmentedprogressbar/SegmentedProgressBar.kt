@@ -226,10 +226,10 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
           0, segments.lastIndex -> {
             path.reset()
             path.addRoundRect(rectangle, corners, Path.Direction.CW)
-            canvas?.drawPath(path, drawingComponents.second[drawingIndex])
+            canvas.drawPath(path, drawingComponents.second[drawingIndex])
           }
 
-          else -> canvas?.drawRect(
+          else -> canvas.drawRect(
             rectangle,
             drawingComponents.second[drawingIndex]
           )

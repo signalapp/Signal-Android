@@ -54,7 +54,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
       Log.i(TAG, "Already created Release Channel recipient ${SignalStore.releaseChannel.releaseChannelRecipientId}")
 
       val recipient = Recipient.resolved(SignalStore.releaseChannel.releaseChannelRecipientId!!)
-      if (recipient.profileAvatar == null || recipient.profileAvatar?.isEmpty() == true) {
+      if (recipient.profileAvatar.isNullOrEmpty()) {
         setAvatar(recipient.id)
       }
     } else {

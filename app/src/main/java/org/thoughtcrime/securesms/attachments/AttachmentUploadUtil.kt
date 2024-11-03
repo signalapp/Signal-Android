@@ -69,7 +69,7 @@ object AttachmentUploadUtil {
   @Throws(IOException::class)
   private fun getImageBlurHash(context: Context, attachment: Attachment): String? {
     if (attachment.blurHash != null) {
-      return attachment.blurHash!!.hash
+      return attachment.blurHash.hash
     }
 
     if (attachment.uri == null) {
