@@ -97,7 +97,7 @@ enum class IdealBank(
     }
 
     fun fromCode(code: String): IdealBank {
-      return values().first { it.code == code }
+      return entries.first { it.code == code }
     }
   }
 

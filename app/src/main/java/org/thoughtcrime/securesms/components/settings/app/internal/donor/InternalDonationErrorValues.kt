@@ -55,7 +55,7 @@ fun DonationErrorValueTypeSelector(
       expanded = expanded,
       onDismissRequest = { expanded = false }
     ) {
-      DonationErrorValue.Type.values().filterNot {
+      DonationErrorValue.Type.entries.filterNot {
         selectedPaymentMethodType == PendingOneTimeDonation.PaymentMethodType.PAYPAL && it == DonationErrorValue.Type.FAILURE_CODE
       }.forEach { item ->
         DropdownMenuItem(
@@ -149,8 +149,8 @@ private fun DeclineCodeErrorsDropdown(
 ) {
   val values = remember(paymentMethodType) {
     when (paymentMethodType) {
-      PendingOneTimeDonation.PaymentMethodType.PAYPAL -> PayPalDeclineCode.KnownCode.values()
-      else -> StripeDeclineCode.Code.values()
+      PendingOneTimeDonation.PaymentMethodType.PAYPAL -> PayPalDeclineCode.KnownCode.entries.toTypedArray()
+      else -> StripeDeclineCode.Code.entries.toTypedArray()
     }.map { it.name }.toTypedArray()
   }
 
@@ -162,7 +162,7 @@ private fun FailureCodeErrorsDropdown(
   onErrorCodeSelected: (String) -> Unit
 ) {
   val values = remember {
-    StripeFailureCode.Code.values().map { it.name }.toTypedArray()
+    StripeFailureCode.Code.entries.map { it.name }.toTypedArray()
   }
 
   ValuesDropdown(values = values, onErrorCodeSelected = onErrorCodeSelected)

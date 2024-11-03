@@ -21,7 +21,7 @@ object TypefaceCache {
    */
   fun warm(context: Context, script: SupportedScript) {
     val appContext = context.applicationContext
-    TextFont.values().forEach {
+    TextFont.entries.forEach {
       get(appContext, it, script).subscribe()
     }
   }

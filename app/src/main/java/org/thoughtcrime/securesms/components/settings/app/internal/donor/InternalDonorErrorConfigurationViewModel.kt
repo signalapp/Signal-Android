@@ -77,8 +77,8 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun setSelectedUnexpectedSubscriptionCancellation(unexpectedSubscriptionCancellationIndex: Int) {
     store.update {
       it.copy(
-        selectedUnexpectedSubscriptionCancellation = if (unexpectedSubscriptionCancellationIndex in UnexpectedSubscriptionCancellation.values().indices) {
-          UnexpectedSubscriptionCancellation.values()[unexpectedSubscriptionCancellationIndex]
+        selectedUnexpectedSubscriptionCancellation = if (unexpectedSubscriptionCancellationIndex in UnexpectedSubscriptionCancellation.entries.toTypedArray().indices) {
+          UnexpectedSubscriptionCancellation.entries[unexpectedSubscriptionCancellationIndex]
         } else {
           null
         }
@@ -89,8 +89,8 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun setStripeDeclineCode(stripeDeclineCodeIndex: Int) {
     store.update {
       it.copy(
-        selectedStripeDeclineCode = if (stripeDeclineCodeIndex in StripeDeclineCode.Code.values().indices) {
-          StripeDeclineCode.Code.values()[stripeDeclineCodeIndex]
+        selectedStripeDeclineCode = if (stripeDeclineCodeIndex in StripeDeclineCode.Code.entries.toTypedArray().indices) {
+          StripeDeclineCode.Code.entries[stripeDeclineCodeIndex]
         } else {
           null
         }

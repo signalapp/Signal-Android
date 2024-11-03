@@ -516,19 +516,19 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       radioListPref(
         title = DSLSettingsText.from("Audio processing method"),
-        listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),
-        selected = CallManager.AudioProcessingMethod.values().indexOf(state.callingAudioProcessingMethod),
+        listItems = CallManager.AudioProcessingMethod.entries.map { it.name }.toTypedArray(),
+        selected = CallManager.AudioProcessingMethod.entries.indexOf(state.callingAudioProcessingMethod),
         onSelected = {
-          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.values()[it])
+          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.entries[it])
         }
       )
 
       radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
-        listItems = CallManager.DataMode.values().map { it.name }.toTypedArray(),
-        selected = CallManager.DataMode.values().indexOf(state.callingDataMode),
+        listItems = CallManager.DataMode.entries.map { it.name }.toTypedArray(),
+        selected = CallManager.DataMode.entries.indexOf(state.callingDataMode),
         onSelected = {
-          viewModel.setInternalCallingDataMode(CallManager.DataMode.values()[it])
+          viewModel.setInternalCallingDataMode(CallManager.DataMode.entries[it])
         }
       )
 

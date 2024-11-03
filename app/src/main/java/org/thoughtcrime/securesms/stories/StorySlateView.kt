@@ -163,7 +163,7 @@ class StorySlateView @JvmOverloads constructor(
 
     companion object {
       fun fromCode(code: Int): State {
-        return values().firstOrNull {
+        return entries.firstOrNull {
           it.code == code
         } ?: HIDDEN
       }

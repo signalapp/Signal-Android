@@ -4703,7 +4703,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): VibrateState {
-        return values()[id]
+        return entries[id]
       }
 
       fun fromBoolean(enabled: Boolean): VibrateState {
@@ -4719,7 +4719,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): RegisteredState {
-        return values()[id]
+        return entries[id]
       }
     }
   }
@@ -4732,7 +4732,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromMode(mode: Int): SealedSenderAccessMode {
-        return values()[mode]
+        return entries[mode]
       }
     }
   }
@@ -4748,7 +4748,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): InsightsBannerTier {
-        return values()[id]
+        return entries[id]
       }
     }
   }
@@ -4763,7 +4763,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): RecipientType {
-        return values()[id]
+        return entries[id]
       }
     }
   }
@@ -4774,7 +4774,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): MentionSetting {
-        return values()[id]
+        return entries[id]
       }
     }
   }
@@ -4789,7 +4789,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): PhoneNumberSharingState {
-        return values()[id]
+        return entries[id]
       }
     }
   }
@@ -4801,7 +4801,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     companion object {
       fun fromId(id: Int): PhoneNumberDiscoverableState {
-        return PhoneNumberDiscoverableState.values()[id]
+        return entries[id]
       }
     }
   }

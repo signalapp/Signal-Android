@@ -250,13 +250,13 @@ class DigitalClockStickerDrawable(
     DARK_WITH_RED_TEXT(4);
 
     fun next(): Style {
-      val values = Style.values()
+      val values = entries.toTypedArray()
 
       return values[(values.indexOf(this) + 1) % values.size]
     }
 
     companion object {
-      fun fromType(type: Int) = Style.values().first { it.type == type }
+      fun fromType(type: Int) = entries.first { it.type == type }
     }
   }
 }

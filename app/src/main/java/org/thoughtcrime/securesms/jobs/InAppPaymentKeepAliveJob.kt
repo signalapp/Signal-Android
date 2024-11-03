@@ -320,7 +320,7 @@ class InAppPaymentKeepAliveJob private constructor(
     override fun create(parameters: Parameters, serializedData: ByteArray?): InAppPaymentKeepAliveJob {
       return InAppPaymentKeepAliveJob(
         parameters,
-        InAppPaymentSubscriberRecord.Type.values().first { it.code == JsonJobData.deserialize(serializedData).getInt(DATA_TYPE) }
+        InAppPaymentSubscriberRecord.Type.entries.first { it.code == JsonJobData.deserialize(serializedData).getInt(DATA_TYPE) }
       )
     }
   }

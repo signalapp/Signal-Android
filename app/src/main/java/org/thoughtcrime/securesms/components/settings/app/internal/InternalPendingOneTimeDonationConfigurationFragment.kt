@@ -140,7 +140,7 @@ private fun Content(
             expanded = expanded,
             onDismissRequest = { expanded = false }
           ) {
-            PendingOneTimeDonation.PaymentMethodType.values().forEach { item ->
+            PendingOneTimeDonation.PaymentMethodType.entries.forEach { item ->
               DropdownMenuItem(
                 text = { Text(text = item.name) },
                 onClick = {

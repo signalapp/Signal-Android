@@ -13,6 +13,6 @@ enum class GifQuickSearchOption(private val rank: Int, val image: Int, val query
   ANGRY(7, R.drawable.ic_gif_angry_24, "angry");
 
   companion object {
-    val ranked: List<GifQuickSearchOption> by lazy { values().sortedBy { it.rank } }
+    val ranked: List<GifQuickSearchOption> by lazy { entries.sortedBy { it.rank } }
   }
 }

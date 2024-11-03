@@ -64,7 +64,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
     @JvmStatic
     fun getAction(bundle: Bundle): Action {
       val code = bundle.getInt(ACTION, 0)
-      return Action.values().first { it.code == code }
+      return Action.entries.first { it.code == code }
     }
   }
 

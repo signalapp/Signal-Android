@@ -210,13 +210,13 @@ class AnalogClockStickerDrawable(val context: Context) : Drawable(), Animatable 
     GREEN(3);
 
     fun next(): Style {
-      val values = Style.values()
+      val values = entries.toTypedArray()
 
       return values[(values.indexOf(this) + 1) % values.size]
     }
 
     companion object {
-      fun fromType(type: Int) = Style.values().first { it.type == type }
+      fun fromType(type: Int) = entries.first { it.type == type }
     }
   }
 }

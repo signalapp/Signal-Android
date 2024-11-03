@@ -111,7 +111,7 @@ class NotificationProfileScheduleTest {
 
   @Test
   fun `when enabled schedule 12am to 12am for all days then return true`() {
-    val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 2400, daysEnabled = DayOfWeek.values().toSet())
+    val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 2400, daysEnabled = DayOfWeek.entries.toSet())
 
     assertTrue(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
     assertTrue(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
@@ -128,7 +128,7 @@ class NotificationProfileScheduleTest {
 
   @Test
   fun `when disabled schedule 12am to 12am for all days then return false`() {
-    val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 2400, daysEnabled = DayOfWeek.values().toSet())
+    val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 2400, daysEnabled = DayOfWeek.entries.toSet())
 
     assertFalse(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
     assertFalse(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
@@ -145,7 +145,7 @@ class NotificationProfileScheduleTest {
 
   @Test
   fun `when end time is midnight return midnight of next day from now`() {
-    val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 2400, daysEnabled = DayOfWeek.values().toSet())
+    val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 2400, daysEnabled = DayOfWeek.entries.toSet())
     assertThat(schedule.endDateTime(sunday930am), `is`(monday0am))
   }
 }

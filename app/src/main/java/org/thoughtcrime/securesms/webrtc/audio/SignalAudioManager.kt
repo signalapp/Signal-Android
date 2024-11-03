@@ -384,7 +384,7 @@ class FullSignalAudioManager(context: Context, eventListener: EventListener?) : 
     if (isId) {
       throw IllegalArgumentException("Passing audio device address $device to legacy audio manager")
     }
-    val mappedDevice = AudioDevice.values()[device]
+    val mappedDevice = AudioDevice.entries[device]
     val actualDevice: AudioDevice = if (mappedDevice == AudioDevice.EARPIECE && audioDevices.contains(AudioDevice.WIRED_HEADSET)) AudioDevice.WIRED_HEADSET else mappedDevice
 
     Log.d(TAG, "selectAudioDevice(): device: $device actualDevice: $actualDevice")

@@ -16,7 +16,7 @@ enum class UnexpectedSubscriptionCancellation(val status: String) {
   companion object {
     @JvmStatic
     fun fromStatus(status: String?): UnexpectedSubscriptionCancellation? {
-      return values().firstOrNull { it.status == status }
+      return entries.firstOrNull { it.status == status }
     }
   }
 }

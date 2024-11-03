@@ -565,7 +565,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     companion object {
       fun deserialize(value: Long): UsernameSyncState {
-        return values().firstOrNull { it.value == value } ?: throw IllegalArgumentException("Invalid value: $value")
+        return entries.firstOrNull { it.value == value } ?: throw IllegalArgumentException("Invalid value: $value")
       }
     }
   }

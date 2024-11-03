@@ -93,8 +93,8 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
       radioListPref(
         title = DSLSettingsText.from(R.string.DataAndStorageSettingsFragment__sent_media_quality),
         listItems = sentMediaQualityLabels,
-        selected = SentMediaQuality.values().indexOf(state.sentMediaQuality),
-        onSelected = { viewModel.setSentMediaQuality(SentMediaQuality.values()[it]) }
+        selected = SentMediaQuality.entries.indexOf(state.sentMediaQuality),
+        onSelected = { viewModel.setSentMediaQuality(SentMediaQuality.entries[it]) }
       )
 
       textPref(

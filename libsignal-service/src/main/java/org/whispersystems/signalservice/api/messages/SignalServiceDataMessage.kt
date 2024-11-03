@@ -269,7 +269,7 @@ class SignalServiceDataMessage private constructor(
       companion object {
         @JvmStatic
         fun fromProto(protoType: QuoteProto.Type): Type {
-          return values().firstOrNull { it.protoType == protoType } ?: NORMAL
+          return entries.firstOrNull { it.protoType == protoType } ?: NORMAL
         }
       }
     }

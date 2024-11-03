@@ -25,7 +25,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
     UsernameLinkQrColorPickerState(
       username = SignalStore.account.username!!,
       qrCodeData = QrCodeState.Loading,
-      colorSchemes = UsernameQrCodeColorScheme.values().asList().toImmutableList(),
+      colorSchemes = UsernameQrCodeColorScheme.entries.toImmutableList(),
       selectedColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   )

@@ -30,7 +30,7 @@ object Avatars {
     A210("A210", 0xFF5C5C5C.toInt());
 
     fun deserialize(code: String): ForegroundColor {
-      return values().find { it.code == code } ?: throw IllegalArgumentException()
+      return entries.find { it.code == code } ?: throw IllegalArgumentException()
     }
 
     fun serialize(): String = code
@@ -39,7 +39,7 @@ object Avatars {
   /**
    * Mapping which associates color codes to ColorPair objects containing background and foreground colors.
    */
-  val colorMap: Map<String, ColorPair> = ForegroundColor.values().map {
+  val colorMap: Map<String, ColorPair> = ForegroundColor.entries.map {
     ColorPair(AvatarColor.deserialize(it.serialize()), it)
   }.associateBy {
     it.code
@@ -134,7 +134,7 @@ object Avatars {
 
   @JvmStatic
   fun getForegroundColor(avatarColor: AvatarColor): ForegroundColor {
-    return ForegroundColor.values().firstOrNull { it.serialize() == avatarColor.serialize() } ?: ForegroundColor.A210
+    return ForegroundColor.entries.firstOrNull { it.serialize() == avatarColor.serialize() } ?: ForegroundColor.A210
   }
 
   data class DefaultAvatar(

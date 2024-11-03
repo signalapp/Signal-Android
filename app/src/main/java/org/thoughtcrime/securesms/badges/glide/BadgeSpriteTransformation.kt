@@ -190,7 +190,7 @@ class BadgeSpriteTransformation(
     private val TAG = Log.tag(BadgeSpriteTransformation::class.java)
 
     private fun getDensity(density: String): Density {
-      return Density.values().first { it.density == density }
+      return Density.entries.first { it.density == density }
     }
 
     private fun getFrame(size: Size, density: Density, isDarkTheme: Boolean): Frame {
