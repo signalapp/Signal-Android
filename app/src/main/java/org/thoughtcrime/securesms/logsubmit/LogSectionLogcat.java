@@ -21,7 +21,7 @@ public class LogSectionLogcat implements LogSection {
       final Process        process        = Runtime.getRuntime().exec("logcat -d");
       final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
       final StringBuilder  log            = new StringBuilder();
-      final String         separator      = System.getProperty("line.separator");
+      final String         separator      = System.lineSeparator();
 
       String line;
       while ((line = bufferedReader.readLine()) != null) {
