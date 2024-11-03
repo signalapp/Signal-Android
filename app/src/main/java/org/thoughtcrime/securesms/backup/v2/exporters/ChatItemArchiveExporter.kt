@@ -282,7 +282,7 @@ class ChatItemArchiveExporter(
         var previousEdits = revisionMap[record.latestRevisionId]
         if (previousEdits == null) {
           previousEdits = ArrayList()
-          revisionMap[record.latestRevisionId!!] = previousEdits
+          revisionMap[record.latestRevisionId] = previousEdits
         }
         previousEdits += builder.build()
       }

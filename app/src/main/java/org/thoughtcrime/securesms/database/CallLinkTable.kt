@@ -116,7 +116,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     AppDependencies.databaseObserver.notifyCallLinkObservers(callLink.roomId)
     AppDependencies.databaseObserver.notifyCallUpdateObservers()
 
-    return recipientId!!
+    return recipientId
   }
 
   fun updateCallLinkCredentials(
