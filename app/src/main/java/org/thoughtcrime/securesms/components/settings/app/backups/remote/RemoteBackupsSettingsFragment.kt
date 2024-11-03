@@ -1091,7 +1091,7 @@ private fun BackupFrequencyDialog(
           modifier = Modifier.padding(24.dp)
         )
 
-        BackupFrequency.values().forEach {
+        BackupFrequency.entries.forEach {
           Rows.RadioRow(
             selected = selected == it,
             text = getTextForFrequency(backupsFrequency = it),

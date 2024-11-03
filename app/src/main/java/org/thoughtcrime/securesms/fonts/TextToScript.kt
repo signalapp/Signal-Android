@@ -25,7 +25,7 @@ object TextToScript {
   )
 
   fun guessScript(text: CharSequence): SupportedScript {
-    val scriptCounts: MutableMap<SupportedScript, Int> = SupportedScript.values().associate { it to 0 }.toMutableMap()
+    val scriptCounts: MutableMap<SupportedScript, Int> = SupportedScript.entries.associate { it to 0 }.toMutableMap()
     val input = text.toString()
 
     for (i in 0 until input.codePointCount(0, input.length)) {

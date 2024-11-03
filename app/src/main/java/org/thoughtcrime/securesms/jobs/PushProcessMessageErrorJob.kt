@@ -66,7 +66,7 @@ class PushProcessMessageErrorJob private constructor(
     override fun create(parameters: Parameters, serializedData: ByteArray?): PushProcessMessageErrorJob {
       val data = JsonJobData.deserialize(serializedData)
 
-      val state = MessageState.values()[data.getInt(KEY_MESSAGE_STATE)]
+      val state = MessageState.entries[data.getInt(KEY_MESSAGE_STATE)]
       check(state != MessageState.DECRYPTED_OK && state != MessageState.NOOP)
 
       val exceptionMetadata = ExceptionMetadata(

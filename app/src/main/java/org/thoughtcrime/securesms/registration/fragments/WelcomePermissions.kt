@@ -48,6 +48,6 @@ object WelcomePermissions {
 
   @JvmStatic
   fun getWelcomePermissions(isUserBackupSelectionRequired: Boolean): Array<String> {
-    return Permissions.values().map { it.getPermissions(isUserBackupSelectionRequired) }.flatten().toTypedArray()
+    return Permissions.entries.map { it.getPermissions(isUserBackupSelectionRequired) }.flatten().toTypedArray()
   }
 }

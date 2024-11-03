@@ -43,7 +43,7 @@ enum class DonationErrorSource(private val code: String) {
   companion object {
     @JvmStatic
     fun deserialize(code: String): DonationErrorSource {
-      return values().firstOrNull { it.code == code } ?: UNKNOWN
+      return entries.firstOrNull { it.code == code } ?: UNKNOWN
     }
   }
 }

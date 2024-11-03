@@ -2793,7 +2793,7 @@ class AttachmentTable(
 
     companion object {
       fun deserialize(value: Int): ThumbnailRestoreState {
-        return values().firstOrNull { it.value == value } ?: NONE
+        return entries.firstOrNull { it.value == value } ?: NONE
       }
     }
   }
@@ -2833,7 +2833,7 @@ class AttachmentTable(
 
     companion object {
       fun deserialize(value: Int): ArchiveTransferState {
-        return values().firstOrNull { it.value == value } ?: NONE
+        return entries.firstOrNull { it.value == value } ?: NONE
       }
     }
   }

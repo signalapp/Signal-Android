@@ -165,7 +165,7 @@ class ContactSelectionListAdapter(
       FIND_BY_PHONE_NUMBER("find-by-phone-number");
 
       companion object {
-        fun fromCode(code: String) = values().first { it.code == code }
+        fun fromCode(code: String) = entries.first { it.code == code }
       }
     }
 

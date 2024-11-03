@@ -22,6 +22,6 @@ enum class StripeIntentStatus(private val code: String) {
   companion object {
     @JvmStatic
     @JsonCreator
-    fun fromCode(code: String): StripeIntentStatus = StripeIntentStatus.values().first { it.code == code }
+    fun fromCode(code: String): StripeIntentStatus = entries.first { it.code == code }
   }
 }

@@ -131,7 +131,7 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
 
     private val TAG = Log.tag(DonationError::class.java)
 
-    private val donationErrorSubjectSourceMap: Map<DonationErrorSource, Subject<DonationError>> = DonationErrorSource.values().associate { source ->
+    private val donationErrorSubjectSourceMap: Map<DonationErrorSource, Subject<DonationError>> = DonationErrorSource.entries.associate { source ->
       source to PublishSubject.create()
     }
 

@@ -65,7 +65,7 @@ class RestoreActivity : BaseActivity() {
 
       companion object {
         fun deserialize(value: Int): NavTarget {
-          return values().firstOrNull { it.value == value } ?: NONE
+          return entries.firstOrNull { it.value == value } ?: NONE
         }
       }
     }

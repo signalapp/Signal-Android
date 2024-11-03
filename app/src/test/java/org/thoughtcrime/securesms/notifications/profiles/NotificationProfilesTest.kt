@@ -184,7 +184,7 @@ class NotificationProfilesTest {
     every { notificationProfileValues.manuallyEnabledUntil } returns 0
     every { notificationProfileValues.manuallyDisabledAt } returns sunday830am.toMillis(ZoneOffset.UTC)
 
-    val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 2200, end = 1000, daysEnabled = DayOfWeek.values().toSet())
+    val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 2200, end = 1000, daysEnabled = DayOfWeek.entries.toSet())
     val profiles = listOf(first.copy(schedule = schedule))
     assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), nullValue())
   }

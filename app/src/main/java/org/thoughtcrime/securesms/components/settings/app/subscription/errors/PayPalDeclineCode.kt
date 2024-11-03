@@ -122,7 +122,7 @@ data class PayPalDeclineCode(
     PROCESSOR_NETWORK_UNAVAILABLE_TRY_AGAIN(3000);
 
     companion object {
-      fun fromCode(code: Int): KnownCode? = values().firstOrNull { it.code == code }
+      fun fromCode(code: Int): KnownCode? = entries.firstOrNull { it.code == code }
     }
   }
 }

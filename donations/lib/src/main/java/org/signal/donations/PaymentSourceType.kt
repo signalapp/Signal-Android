@@ -58,7 +58,7 @@ sealed class PaymentSourceType {
 
   companion object {
     fun fromCode(code: String?): PaymentSourceType {
-      return when (Codes.values().firstOrNull { it.code == code } ?: Codes.UNKNOWN) {
+      return when (Codes.entries.firstOrNull { it.code == code } ?: Codes.UNKNOWN) {
         Codes.UNKNOWN -> Unknown
         Codes.PAY_PAL -> PayPal
         Codes.CREDIT_CARD -> Stripe.CreditCard

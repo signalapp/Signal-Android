@@ -55,7 +55,7 @@ data class RemoteMegaphoneRecord(
 
     companion object {
       fun from(id: String?): ActionId? {
-        return values().firstOrNull { it.id == id }
+        return entries.firstOrNull { it.id == id }
       }
     }
   }

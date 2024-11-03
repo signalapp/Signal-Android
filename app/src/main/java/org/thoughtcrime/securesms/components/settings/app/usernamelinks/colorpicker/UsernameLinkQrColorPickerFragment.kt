@@ -183,7 +183,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
     SignalTheme(isDarkMode = false) {
       Surface {
         ColorPicker(
-          colors = UsernameQrCodeColorScheme.values().toList().toImmutableList(),
+          colors = UsernameQrCodeColorScheme.entries.toImmutableList(),
           selected = UsernameQrCodeColorScheme.Blue,
           onSelectionChanged = {}
         )

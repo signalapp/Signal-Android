@@ -85,7 +85,7 @@ private fun BankSelectionContent(
     navigationIconPainter = painterResource(id = R.drawable.symbol_x_24)
   ) { paddingValues ->
     LazyColumn(modifier = Modifier.padding(paddingValues)) {
-      items(IdealBank.values()) {
+      items(IdealBank.entries.toTypedArray()) {
         val uiValues = it.getUIValues()
 
         Row(

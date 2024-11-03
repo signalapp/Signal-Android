@@ -388,7 +388,7 @@ private fun SetKeepMessagesScreen(
         .verticalScroll(rememberScrollState())
     ) {
       KeepMessagesDuration
-        .values()
+        .entries
         .forEach {
           Rows.RadioRow(
             text = stringResource(id = it.stringResource),

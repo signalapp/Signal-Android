@@ -33,7 +33,7 @@ class PushProcessMessageJobMigration : JobMigration(10) {
     private fun migrateJob(jobData: JobData): JobData {
       val data = JsonJobData.deserialize(jobData.data)
       return if (data.hasInt("message_state")) {
-        val state = MessageState.values()[data.getInt("message_state")]
+        val state = MessageState.entries[data.getInt("message_state")]
         return when (state) {
           MessageState.NOOP -> jobData.withFactoryKey(FailingJob.KEY)
 
