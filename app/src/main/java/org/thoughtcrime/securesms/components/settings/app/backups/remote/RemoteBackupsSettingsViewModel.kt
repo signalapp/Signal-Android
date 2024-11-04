@@ -114,6 +114,18 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     MessageBackupListener.schedule(AppDependencies.application)
   }
 
+  fun beginMediaRestore() {
+    // TODO - [backups] Begin media restore.
+  }
+
+  fun skipMediaRestore() {
+    // TODO [backups] -- Clear the error as necessary
+  }
+
+  fun cancelMediaRestore() {
+    // TODO - [backups] Cancel in-progress media restoration
+  }
+
   fun requestDialog(dialog: RemoteBackupsSettingsState.Dialog) {
     _state.update { it.copy(dialog = dialog) }
   }

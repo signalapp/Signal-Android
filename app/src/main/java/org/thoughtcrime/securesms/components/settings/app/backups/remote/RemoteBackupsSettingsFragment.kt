@@ -204,11 +204,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onStartMediaRestore() {
-      // TODO - [backups] Begin media restore.
+      viewModel.beginMediaRestore()
     }
 
     override fun onCancelMediaRestore() {
-      // TODO - [backups] Cancel in-progress media restoration
+      viewModel.cancelMediaRestore()
     }
 
     override fun onDisplaySkipMediaRestoreProtectionDialog() {
@@ -216,7 +216,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onSkipMediaRestore() {
-      // TODO - [backups] Skip disk-full media restoration
+      viewModel.skipMediaRestore()
     }
 
     override fun onLearnMoreAboutLostSubscription() {
