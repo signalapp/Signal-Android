@@ -392,8 +392,14 @@ public final class AudioView extends FrameLayout {
     if (this.duration != null) {
       this.duration.setTextColor(foregroundTint);
     }
-    this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-    this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
+
+    if (this.seekBar.getProgressDrawable() != null) {
+      this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
+    }
+
+    if (this.seekBar.getThumb() != null) {
+      this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
+    }
   }
 
   public void getSeekBarGlobalVisibleRect(@NonNull Rect rect) {
