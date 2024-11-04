@@ -1583,7 +1583,7 @@ class AttachmentTable(
       SELECT
           $mmsId,
           $CONTENT_TYPE,
-          $TRANSFER_PROGRESS_PENDING,
+          $TRANSFER_NEEDS_RESTORE,
           $CDN_NUMBER,
           $REMOTE_LOCATION,
           $REMOTE_DIGEST,

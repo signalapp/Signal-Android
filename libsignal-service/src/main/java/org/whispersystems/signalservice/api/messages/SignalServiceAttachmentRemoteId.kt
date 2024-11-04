@@ -24,7 +24,7 @@ sealed interface SignalServiceAttachmentRemoteId {
     override fun toString() = cdnKey
   }
 
-  data class Backup(val backupDir: String, val mediaDir: String, val mediaId: String) : SignalServiceAttachmentRemoteId {
+  data class Backup(val mediaCdnPath: String, val mediaId: String) : SignalServiceAttachmentRemoteId {
     override fun toString() = mediaId
   }
 

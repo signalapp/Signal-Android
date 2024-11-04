@@ -42,8 +42,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
     private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
 
-    private const val KEY_CDN_BACKUP_DIRECTORY = "backup.cdn.directory"
-    private const val KEY_CDN_BACKUP_MEDIA_DIRECTORY = "backup.cdn.mediaDirectory"
+    private const val KEY_CDN_MEDIA_PATH = "backup.cdn.mediaPath"
 
     private const val KEY_BACKUP_OVER_CELLULAR = "backup.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
@@ -69,8 +68,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   override fun onFirstEverAppLaunch() = Unit
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
-  var cachedBackupDirectory: String? by stringValue(KEY_CDN_BACKUP_DIRECTORY, null)
-  var cachedBackupMediaDirectory: String? by stringValue(KEY_CDN_BACKUP_MEDIA_DIRECTORY, null)
+  var cachedMediaCdnPath: String? by stringValue(KEY_CDN_MEDIA_PATH, null)
   var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
 
@@ -116,6 +114,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       lock.withLock {
         Log.i(TAG, "Setting MediaRootBackupKey", Throwable())
         putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value)
+        mediaCredentials.clearAll()
+        cachedMediaCdnPath = null
       }
     }
 
@@ -240,6 +240,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     /** Clears all credentials. */
     fun clearAll() {
       putString(authKey, null)
+      cdnReadCredentials = null
     }
 
     /** Credentials to read from the CDN. */

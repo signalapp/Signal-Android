@@ -337,7 +337,7 @@ public class PushServiceSocket {
   private static final String ARCHIVE_MEDIA_LIST          = "/v1/archives/media?limit=%d";
   private static final String ARCHIVE_MEDIA_BATCH         = "/v1/archives/media/batch";
   private static final String ARCHIVE_MEDIA_DELETE        = "/v1/archives/media/delete";
-  private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s/%s";
+  private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
 
   private static final String SET_SHARE_SET_PATH = "/v3/backup/share-set";
 
@@ -1033,20 +1033,21 @@ public class PushServiceSocket {
     downloadFromCdn(destination, cdnNumber, headers, cdnPath, maxSizeBytes, listener);
   }
 
-  public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
+  public void retrieveAttachment(int cdnNumber, Map<String, String> headers, SignalServiceAttachmentRemoteId remoteId, File destination, long maxSizeBytes, ProgressListener listener)
       throws IOException, MissingConfigurationException
   {
     final String path;
-    if (cdnPath instanceof SignalServiceAttachmentRemoteId.V2) {
-      path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V2) cdnPath).getCdnId());
-    } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.V4) {
-      String urlEncodedKey = urlEncode(((SignalServiceAttachmentRemoteId.V4) cdnPath).getCdnKey());
+    if (remoteId instanceof SignalServiceAttachmentRemoteId.V2) {
+      path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, ((SignalServiceAttachmentRemoteId.V2) remoteId).getCdnId());
+    } else if (remoteId instanceof SignalServiceAttachmentRemoteId.V4) {
+      String urlEncodedKey = urlEncode(((SignalServiceAttachmentRemoteId.V4) remoteId).getCdnKey());
       path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, urlEncodedKey);
-    } else if (cdnPath instanceof SignalServiceAttachmentRemoteId.Backup) {
-      SignalServiceAttachmentRemoteId.Backup backupCdnId = (SignalServiceAttachmentRemoteId.Backup) cdnPath;
-      path = String.format(Locale.US, ARCHIVE_MEDIA_DOWNLOAD_PATH, backupCdnId.getBackupDir(), backupCdnId.getMediaDir(), backupCdnId.getMediaId());
+    } else if (remoteId instanceof SignalServiceAttachmentRemoteId.Backup) {
+      //noinspection PatternVariableCanBeUsed
+      SignalServiceAttachmentRemoteId.Backup backupCdnRemoteId = (SignalServiceAttachmentRemoteId.Backup) remoteId;
+      path = String.format(Locale.US, ARCHIVE_MEDIA_DOWNLOAD_PATH, backupCdnRemoteId.getMediaCdnPath(), backupCdnRemoteId.getMediaId());
     } else {
-      throw new IllegalArgumentException("Invalid cdnPath type: " + cdnPath.getClass().getSimpleName());
+      throw new IllegalArgumentException("Invalid cdnPath type: " + remoteId.getClass().getSimpleName());
     }
     downloadFromCdn(destination, cdnNumber, headers, path, maxSizeBytes, listener);
   }

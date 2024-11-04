@@ -221,7 +221,7 @@ class RestoreAttachmentJob private constructor(
 
       val downloadResult = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
-        val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MESSAGE, attachment.archiveCdn).successOrThrow().headers
+        val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn).successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(
@@ -265,6 +265,7 @@ class RestoreAttachmentJob private constructor(
           return
         } else if (e.code == 401 && useArchiveCdn) {
           SignalStore.backup.mediaCredentials.cdnReadCredentials = null
+          SignalStore.backup.cachedMediaCdnPath = null
           throw RetryLaterException(e)
         }
       }

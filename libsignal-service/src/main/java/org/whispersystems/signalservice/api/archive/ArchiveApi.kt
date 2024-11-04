@@ -138,14 +138,15 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   }
 
   /**
-   * Fetches metadata about your current backup.
-   * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a
-   * backup yet.
+   * Fetches metadata about your current backup. This will be different for different key/credential pairs. For example, message credentials will always
+   * return 0 for used space since that is stored under the media key/credential.
+   *
+   * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
    */
-  fun getBackupInfo(messageBackupKey: MessageBackupKey, aci: ACI, messageServiceCredential: ArchiveServiceCredential): NetworkResult<ArchiveGetBackupInfoResponse> {
+  fun getBackupInfo(backupKey: BackupKey, aci: ACI, messageServiceCredential: ArchiveServiceCredential): NetworkResult<ArchiveGetBackupInfoResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(messageBackupKey, aci, messageServiceCredential)
-      val presentationData = CredentialPresentationData.from(messageBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(backupKey, aci, messageServiceCredential)
+      val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveBackupInfo(presentationData.toArchiveCredentialPresentation())
     }
   }

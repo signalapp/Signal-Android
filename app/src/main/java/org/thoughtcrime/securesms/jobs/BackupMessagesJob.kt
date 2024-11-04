@@ -98,8 +98,14 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
           Log.i(TAG, "Successfully uploaded backup file.")
           SignalStore.backup.hasBackupBeenUploaded = true
         }
-        is NetworkResult.NetworkError -> return Result.retry(defaultBackoff())
-        is NetworkResult.StatusCodeError -> return Result.retry(defaultBackoff())
+        is NetworkResult.NetworkError -> {
+          Log.i(TAG, "Network failure", result.getCause())
+          return Result.retry(defaultBackoff())
+        }
+        is NetworkResult.StatusCodeError -> {
+          Log.i(TAG, "Status code failure", result.getCause())
+          return Result.retry(defaultBackoff())
+        }
         is NetworkResult.ApplicationError -> throw result.throwable
       }
     }

@@ -5,6 +5,8 @@
 
 package org.signal.core.util
 
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -69,4 +71,11 @@ fun CharSequence?.isNotNullOrBlank(): Boolean {
     returns(true) implies (this@isNotNullOrBlank != null)
   }
   return !this.isNullOrBlank()
+}
+
+/**
+ * Encode this string in a url-safe way with UTF-8 encoding.
+ */
+fun String.urlEncode(): String {
+  return URLEncoder.encode(this, StandardCharsets.UTF_8.name())
 }

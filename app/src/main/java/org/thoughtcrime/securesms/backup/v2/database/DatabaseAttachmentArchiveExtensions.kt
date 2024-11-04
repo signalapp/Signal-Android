@@ -35,11 +35,10 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
   return try {
     val (remoteId, cdnNumber) = if (useArchiveCdn) {
       val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-      val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
+      val mediaCdnPath = BackupRepository.getArchivedMediaCdnPath().successOrThrow()
 
       val id = SignalServiceAttachmentRemoteId.Backup(
-        backupDir = backupDirectories.backupDir,
-        mediaDir = backupDirectories.mediaDir,
+        mediaCdnPath = mediaCdnPath,
         mediaId = mediaRootBackupKey.deriveMediaId(MediaName(archiveMediaName!!)).encode()
       )
 
@@ -92,15 +91,14 @@ fun DatabaseAttachment.createArchiveThumbnailPointer(): SignalServiceAttachmentP
   }
 
   val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-  val backupDirectories = BackupRepository.getCdnBackupDirectories().successOrThrow()
+  val mediaCdnPath = BackupRepository.getArchivedMediaCdnPath().successOrThrow()
   return try {
     val key = mediaRootBackupKey.deriveThumbnailTransitKey(getThumbnailMediaName())
     val mediaId = mediaRootBackupKey.deriveMediaId(getThumbnailMediaName()).encode()
     SignalServiceAttachmentPointer(
       cdnNumber = archiveCdn,
       remoteId = SignalServiceAttachmentRemoteId.Backup(
-        backupDir = backupDirectories.backupDir,
-        mediaDir = backupDirectories.mediaDir,
+        mediaCdnPath = mediaCdnPath,
         mediaId = mediaId
       ),
       contentType = null,

@@ -223,6 +223,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           }
 
           else -> {
+            Log.w(TAG, "Error checking remote backup state", result.getCause())
             _state.value = _state.value.copy(remoteBackupState = RemoteBackupState.GeneralError)
           }
         }

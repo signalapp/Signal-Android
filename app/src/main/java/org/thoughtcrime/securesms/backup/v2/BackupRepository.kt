@@ -23,6 +23,7 @@ import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.stream.NonClosingOutputStream
+import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
@@ -112,6 +113,7 @@ object BackupRepository {
         SignalStore.backup.backupsInitialized = false
         SignalStore.backup.messageCredentials.clearAll()
         SignalStore.backup.mediaCredentials.clearAll()
+        SignalStore.backup.cachedMediaCdnPath = null
       }
 
       403 -> {
@@ -716,7 +718,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey, mediaRootBackupKey)
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential.messageCredential)
+        SignalNetwork.archive.getBackupInfo(mediaRootBackupKey, SignalStore.account.requireAci(), credential.mediaCredential)
           .map { it.usedSpace }
       }
   }
@@ -744,7 +746,7 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey, mediaRootBackupKey)
       .map { credential ->
-        val zkCredential = SignalNetwork.archive.getZkCredential(backupKey, aci, credential.mediaCredential)
+        val zkCredential = SignalNetwork.archive.getZkCredential(backupKey, aci, credential.messageCredential)
         if (zkCredential.backupLevel == BackupLevel.PAID) {
           MessageBackupTier.PAID
         } else {
@@ -762,16 +764,16 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey, mediaRootBackupKey)
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential.messageCredential)
+        SignalNetwork.archive.getBackupInfo(mediaRootBackupKey, SignalStore.account.requireAci(), credential.mediaCredential)
           .map { it to credential }
       }
       .then { pair ->
-        val (info, credential) = pair
+        val (mediaBackupInfo, credential) = pair
         SignalNetwork.archive.debugGetUploadedMediaItemMetadata(mediaRootBackupKey, SignalStore.account.requireAci(), credential.mediaCredential)
           .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
           .map { mediaObjects ->
             BackupMetadata(
-              usedSpace = info.usedSpace ?: 0,
+              usedSpace = mediaBackupInfo.usedSpace ?: 0,
               mediaCount = mediaObjects.size.toLong()
             )
           }
@@ -1119,21 +1121,15 @@ object BackupRepository {
   }
 
   /**
-   * Retrieves backupDir and mediaDir, preferring cached value if available.
+   * Retrieves media-specific cdn path, preferring cached value if available.
    *
-   * These will only ever change if the backup expires.
+   * This will change if the backup expires, a new backup-id is set, or the delete all endpoint is called.
    */
-  fun getCdnBackupDirectories(): NetworkResult<BackupDirectories> {
-    val cachedBackupDirectory = SignalStore.backup.cachedBackupDirectory
-    val cachedBackupMediaDirectory = SignalStore.backup.cachedBackupMediaDirectory
+  fun getArchivedMediaCdnPath(): NetworkResult<String> {
+    val cachedMediaPath = SignalStore.backup.cachedMediaCdnPath
 
-    if (cachedBackupDirectory != null && cachedBackupMediaDirectory != null) {
-      return NetworkResult.Success(
-        BackupDirectories(
-          backupDir = cachedBackupDirectory,
-          mediaDir = cachedBackupMediaDirectory
-        )
-      )
+    if (cachedMediaPath != null) {
+      return NetworkResult.Success(cachedMediaPath)
     }
 
     val backupKey = SignalStore.backup.messageBackupKey
@@ -1141,15 +1137,14 @@ object BackupRepository {
 
     return initBackupAndFetchAuth(backupKey, mediaRootBackupKey)
       .then { credential ->
-        SignalNetwork.archive.getBackupInfo(backupKey, SignalStore.account.requireAci(), credential.messageCredential).map {
+        SignalNetwork.archive.getBackupInfo(mediaRootBackupKey, SignalStore.account.requireAci(), credential.mediaCredential).map {
           SignalStore.backup.usedBackupMediaSpace = it.usedSpace ?: 0L
-          BackupDirectories(it.backupDir!!, it.mediaDir!!)
+          "${it.backupDir!!.urlEncode()}/${it.mediaDir!!.urlEncode()}"
         }
       }
       .also {
         if (it is NetworkResult.Success) {
-          SignalStore.backup.cachedBackupDirectory = it.result.backupDir
-          SignalStore.backup.cachedBackupMediaDirectory = it.result.mediaDir
+          SignalStore.backup.cachedMediaCdnPath = it.result
         }
       }
   }
@@ -1302,8 +1297,6 @@ object BackupRepository {
 }
 
 data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
-
-data class BackupDirectories(val backupDir: String, val mediaDir: String)
 
 class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
   val recipientIds: MutableSet<Long> = hashSetOf()
