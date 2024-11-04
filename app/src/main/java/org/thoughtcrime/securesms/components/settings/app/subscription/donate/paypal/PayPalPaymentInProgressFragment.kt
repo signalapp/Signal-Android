@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.In
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse

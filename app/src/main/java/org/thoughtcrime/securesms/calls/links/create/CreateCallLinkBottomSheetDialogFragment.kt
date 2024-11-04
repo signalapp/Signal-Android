@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.BottomSheets
@@ -88,7 +88,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
   @Composable
   override fun SheetContent() {
     val callLink: CallLinkTable.CallLink by viewModel.callLink
-    val displayAlreadyInACallSnackbar: Boolean by viewModel.showAlreadyInACall.collectAsState(false)
+    val displayAlreadyInACallSnackbar: Boolean by viewModel.showAlreadyInACall.collectAsStateWithLifecycle(false)
 
     CreateCallLinkBottomSheetContent(
       callLink = callLink,

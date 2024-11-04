@@ -9,12 +9,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.Dialogs
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -71,7 +71,7 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
 
   @Composable
   override fun SheetContent() {
-    val state by viewModel.stateFlow.collectAsState()
+    val state by viewModel.stateFlow.collectAsStateWithLifecycle()
 
     val paidBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.PAID } as? MessageBackupsType.Paid
     val freeBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.FREE } as? MessageBackupsType.Free

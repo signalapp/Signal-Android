@@ -17,7 +17,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.delay
@@ -110,7 +110,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
       val lifecycleOwner = LocalLifecycleOwner.current
       val callControlsState by webRtcCallViewModel.getCallControlsState(lifecycleOwner).subscribeAsState(initial = CallControlsState())
       val callParticipantsState by webRtcCallViewModel.callParticipantsState.subscribeAsState(initial = CallParticipantsState())
-      val callScreenState by viewModel.callScreenState.collectAsState()
+      val callScreenState by viewModel.callScreenState.collectAsStateWithLifecycle()
       val recipient by remember(callScreenState.callRecipientId) {
         Recipient.observable(callScreenState.callRecipientId)
       }.subscribeAsState(Recipient.UNKNOWN)
@@ -151,7 +151,7 @@ class CallActivity : BaseActivity(), CallControlsCallback {
         }
       }
 
-      val callScreenDialogType by viewModel.dialog.collectAsState(CallScreenDialogType.NONE)
+      val callScreenDialogType by viewModel.dialog.collectAsStateWithLifecycle(CallScreenDialogType.NONE)
 
       SignalTheme {
         Surface {
