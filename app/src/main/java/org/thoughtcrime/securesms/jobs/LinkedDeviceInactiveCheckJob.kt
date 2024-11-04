@@ -69,6 +69,7 @@ class LinkedDeviceInactiveCheckJob private constructor(
 
     val devices = try {
       AppDependencies.signalServiceAccountManager.devices
+        .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
     } catch (e: IOException) {
       return Result.retry(defaultBackoff())
     }
@@ -84,7 +85,6 @@ class LinkedDeviceInactiveCheckJob private constructor(
     }
 
     val leastActiveDevice: LeastActiveLinkedDevice? = devices
-      .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
       .filter { it.name != null }
       .minByOrNull { it.lastSeen }
       ?.let {
