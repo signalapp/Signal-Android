@@ -114,12 +114,12 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   private fun performSecondaryAction() {
     when (backupAlert) {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> {
-        // TODO [message-backups] - Dismiss and notify later
+        // TODO [backups] - Dismiss and notify later
       }
 
       BackupAlert.PAYMENT_PROCESSING -> Unit
       BackupAlert.MEDIA_BACKUPS_ARE_OFF -> {
-        // TODO [message-backups] - Silence and remind on last day
+        // TODO [backups] - Silence and remind on last day
       }
 
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> {
@@ -144,7 +144,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun performFullMediaDownload() {
-    // TODO [message-backups] -- We need to force this to download everything
+    // TODO [backups] -- We need to force this to download everything
     AppDependencies.jobManager.add(BackupRestoreMediaJob())
   }
 }
@@ -208,15 +208,15 @@ private fun BackupAlertSheetContent(
 
     when (backupAlert) {
       BackupAlert.COULD_NOT_COMPLETE_BACKUP -> CouldNotCompleteBackup(
-        daysSinceLastBackup = 7 // TODO [message-backups]
+        daysSinceLastBackup = 7 // TODO [backups]
       )
 
       BackupAlert.PAYMENT_PROCESSING -> PaymentProcessingBody()
-      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> MediaBackupsAreOffBody(30) // TODO [message-backups] -- Get this value from backend
+      BackupAlert.MEDIA_BACKUPS_ARE_OFF -> MediaBackupsAreOffBody(30) // TODO [backups] -- Get this value from backend
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> MediaWillBeDeletedTodayBody()
       BackupAlert.DISK_FULL -> DiskFullBody(
-        requiredSpace = "12 GB", // TODO [message-backups] Where does this value come from?
-        daysUntilDeletion = 30 // TODO [message-backups] Where does this value come from?
+        requiredSpace = "12 GB", // TODO [backups] Where does this value come from?
+        daysUntilDeletion = 30 // TODO [backups] Where does this value come from?
       )
     }
 
@@ -311,7 +311,7 @@ private fun DiskFullBody(
   )
 
   Text(
-    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__if_you_choose_skip, daysUntilDeletion.toInt(), daysUntilDeletion), // TODO [message-backups] Learn More link
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__if_you_choose_skip, daysUntilDeletion.toInt(), daysUntilDeletion), // TODO [backups] Learn More link
     textAlign = TextAlign.Center,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
@@ -349,7 +349,7 @@ private fun primaryActionString(
   pricePerMonth: String
 ): String {
   return when (backupAlert) {
-    BackupAlert.COULD_NOT_COMPLETE_BACKUP -> stringResource(android.R.string.ok) // TODO [message-backups] -- Finalized copy
+    BackupAlert.COULD_NOT_COMPLETE_BACKUP -> stringResource(android.R.string.ok) // TODO [backups] -- Finalized copy
     BackupAlert.PAYMENT_PROCESSING -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
     BackupAlert.MEDIA_BACKUPS_ARE_OFF -> stringResource(R.string.BackupAlertBottomSheet__subscribe_for_s_month, pricePerMonth)
     BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
@@ -361,7 +361,7 @@ private fun primaryActionString(
 private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
   return remember(backupAlert) {
     when (backupAlert) {
-      BackupAlert.COULD_NOT_COMPLETE_BACKUP -> android.R.string.cancel // TODO [message-backups] -- Finalized copy
+      BackupAlert.COULD_NOT_COMPLETE_BACKUP -> android.R.string.cancel // TODO [backups] -- Finalized copy
       BackupAlert.PAYMENT_PROCESSING -> R.string.BackupAlertBottomSheet__not_now
       BackupAlert.MEDIA_BACKUPS_ARE_OFF -> R.string.BackupAlertBottomSheet__not_now
       BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> R.string.BackupAlertBottomSheet__dont_download_media

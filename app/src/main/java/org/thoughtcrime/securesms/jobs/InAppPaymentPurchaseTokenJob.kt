@@ -144,7 +144,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
     when (status) {
       402 -> {
         warning("The purchaseToken payment is incomplete or invalid.", applicationError)
-        // TODO [message-backups] -- Is this a recoverable failure?
+        // TODO [backups] -- Is this a recoverable failure?
         throw IOException("TODO -- recoverable?")
       }
 

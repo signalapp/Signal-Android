@@ -16,10 +16,10 @@ object GooglePlayBillingDependencies : BillingDependencies {
   override val context: Context get() = AppDependencies.application
 
   override suspend fun getProductId(): String {
-    return "backup" // TODO [message-backups] This really shouldn't be hardcoded into the app.
+    return "backup" // TODO [backups] This really shouldn't be hardcoded into the app.
   }
 
   override suspend fun getBasePlanId(): String {
-    return "monthly" // TODO [message-backups] This really shouldn't be hardcoded into the app.
+    return "monthly" // TODO [backups] This really shouldn't be hardcoded into the app.
   }
 }

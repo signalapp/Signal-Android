@@ -189,7 +189,7 @@ private fun LogInWithoutTransferringOption(
         modifier = Modifier.padding(horizontal = 18.dp)
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] Finalized asset.
+          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [backups] Finalized asset.
           contentDescription = null,
           tint = MaterialTheme.colorScheme.primary,
           modifier = Modifier.size(36.dp)
@@ -225,7 +225,7 @@ private fun TransferFromAndroidDeviceOption(
         modifier = Modifier.padding(horizontal = 18.dp)
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] Finalized asset.
+          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [backups] Finalized asset.
           contentDescription = null,
           tint = MaterialTheme.colorScheme.primary,
           modifier = Modifier.size(36.dp)
@@ -261,7 +261,7 @@ private fun RestoreLocalBackupOption(
         modifier = Modifier.padding(horizontal = 18.dp)
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [message-backups] Finalized asset.
+          painter = painterResource(id = R.drawable.symbol_backup_light), // TODO [backups] Finalized asset.
           contentDescription = null,
           tint = MaterialTheme.colorScheme.primary,
           modifier = Modifier.size(36.dp)

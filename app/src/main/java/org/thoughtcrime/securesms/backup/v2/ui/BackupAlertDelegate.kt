@@ -19,7 +19,7 @@ object BackupAlertDelegate {
   fun delegate(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        // TODO [message-backups]
+        // TODO [backups]
         // 1. Get unnotified backup upload failures
         // 2. Get unnotified backup download failures
         // 3. Get unnotified backup payment failures

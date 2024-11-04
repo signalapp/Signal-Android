@@ -99,8 +99,8 @@ class DonationErrorParams<V> private constructor(
         )
 
         else -> DonationErrorParams(
-          title = R.string.DonationsErrors__couldnt_add_badge, // TODO [message-backups] -- This will need a backups-specific string
-          message = R.string.DonationsErrors__your_badge_could_not, // TODO [message-backups] -- This will need a backups-specific string
+          title = R.string.DonationsErrors__couldnt_add_badge, // TODO [backups] -- This will need a backups-specific string
+          message = R.string.DonationsErrors__your_badge_could_not, // TODO [backups] -- This will need a backups-specific string
           positiveAction = callback.onContactSupport(context),
           negativeAction = null
         )

@@ -70,7 +70,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         }
 
         InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [message-backups] Remove hardcode
+          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION) // TODO [backups] Remove hardcode
         }
       }
     }
