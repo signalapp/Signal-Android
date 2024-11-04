@@ -29,6 +29,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
@@ -68,6 +69,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImag
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -101,11 +103,16 @@ class AppSettingsFragment : ComposeFragment(), Callbacks {
       )
     }
 
+    val nestedScrollConnection = remember {
+      StatusBarColorNestedScrollConnection(requireActivity())
+    }
+
     AppSettingsContent(
       self = self!!,
       state = state!!,
       bannerManager = bannerManager,
-      callbacks = this
+      callbacks = this,
+      lazyColumnModifier = Modifier.nestedScroll(nestedScrollConnection)
     )
   }
 
@@ -165,7 +172,8 @@ private fun AppSettingsContent(
   self: BioRecipientState,
   state: AppSettingsState,
   bannerManager: BannerManager,
-  callbacks: Callbacks
+  callbacks: Callbacks,
+  lazyColumnModifier: Modifier = Modifier
 ) {
   val isRegisteredAndUpToDate by rememberUpdatedState(state.isRegisteredAndUpToDate())
 
@@ -180,7 +188,9 @@ private fun AppSettingsContent(
     ) {
       bannerManager.Banner()
 
-      LazyColumn {
+      LazyColumn(
+        modifier = lazyColumnModifier
+      ) {
         item {
           BioRow(
             self = self,
