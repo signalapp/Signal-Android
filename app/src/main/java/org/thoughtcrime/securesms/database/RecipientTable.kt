@@ -2061,7 +2061,18 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
    * Migrates all recipients using [legacyUri] for their wallpaper to [newUri].
    * Needed for an app migration.
    */
-  fun migrateWallpaperUri(legacyUri: Uri, newUri: Uri): Int {
+  fun migrateWallpaperUri(legacyUri: Uri, newUri: Uri?): Int {
+    if (newUri == null) {
+      return writableDatabase
+        .update(TABLE_NAME)
+        .values(
+          WALLPAPER to null,
+          WALLPAPER_URI to null
+        )
+        .where("$WALLPAPER_URI = ?", legacyUri)
+        .run()
+    }
+
     val newWallpaper = ChatWallpaperFactory.create(newUri)
 
     return writableDatabase
