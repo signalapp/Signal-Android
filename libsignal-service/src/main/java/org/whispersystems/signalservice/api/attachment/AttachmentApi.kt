@@ -107,7 +107,8 @@ class AttachmentApi(
         incrementalDigest = digestInfo.incrementalDigest,
         incrementalDigestChunkSize = digestInfo.incrementalMacChunkSize,
         uploadTimestamp = attachmentStream.uploadTimestamp,
-        dataSize = attachmentStream.length
+        dataSize = attachmentStream.length,
+        blurHash = attachmentStream.blurHash.get()
       )
     }
   }

@@ -1299,7 +1299,8 @@ class AttachmentTable(
       REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to uploadResult.incrementalDigestChunkSize,
       DATA_SIZE to uploadResult.dataSize,
       DATA_HASH_END to dataHashEnd,
-      UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp
+      UPLOAD_TIMESTAMP to uploadResult.uploadTimestamp,
+      BLUR_HASH to uploadResult.blurHash
     )
 
     val dataFilePath = getDataFilePath(id) ?: throw IOException("No data file found for attachment!")
