@@ -349,7 +349,7 @@ private fun primaryActionString(
   pricePerMonth: String
 ): String {
   return when (backupAlert) {
-    BackupAlert.COULD_NOT_COMPLETE_BACKUP -> stringResource(android.R.string.ok) // TODO [backups] -- Finalized copy
+    BackupAlert.COULD_NOT_COMPLETE_BACKUP -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
     BackupAlert.PAYMENT_PROCESSING -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
     BackupAlert.MEDIA_BACKUPS_ARE_OFF -> stringResource(R.string.BackupAlertBottomSheet__subscribe_for_s_month, pricePerMonth)
     BackupAlert.MEDIA_WILL_BE_DELETED_TODAY -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
