@@ -225,7 +225,7 @@ object NotificationFactory {
 
     builder.apply {
       setSmallIcon(R.drawable.ic_notification)
-      setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      setColor(ContextCompat.getColor(context, R.color.notification_background_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
@@ -274,7 +274,7 @@ object NotificationFactory {
 
     builder.apply {
       setSmallIcon(R.drawable.ic_notification)
-      setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      setColor(ContextCompat.getColor(context, R.color.notification_background_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
@@ -458,7 +458,7 @@ object NotificationFactory {
 
     builder.apply {
       setSmallIcon(R.drawable.ic_notification)
-      setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      setColor(ContextCompat.getColor(context, R.color.notification_background_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setChannelId(conversation.getChannelId())

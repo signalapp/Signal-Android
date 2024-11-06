@@ -10,6 +10,7 @@ class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_PREVIOUS_MANIFEST_MD5 = "releasechannel.previous_manifest_md5"
     private const val KEY_HIGHEST_VERSION_NOTE_RECEIVED = "releasechannel.highest_version_note_received"
     private const val KEY_MET_CONVERSATION_REQUIREMENT = "releasechannel.met_conversation_requirement"
+    private const val KEY_HAS_UPDATED_AVATAR = "releasechannel.has_updated_avatar"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -36,4 +37,5 @@ class ReleaseChannelValues(store: KeyValueStore) : SignalStoreValues(store) {
   var previousManifestMd5 by blobValue(KEY_PREVIOUS_MANIFEST_MD5, ByteArray(0))
   var highestVersionNoteReceived by integerValue(KEY_HIGHEST_VERSION_NOTE_RECEIVED, 0)
   var hasMetConversationRequirement by booleanValue(KEY_MET_CONVERSATION_REQUIREMENT, false)
+  var hasUpdatedAvatar by booleanValue(KEY_HAS_UPDATED_AVATAR, false)
 }
