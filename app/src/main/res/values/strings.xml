@@ -7431,15 +7431,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Your media will be deleted today</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Your Signal media backup plan has been canceled because we couldn\'t process your payment. This is your last chance to download the media in your backup before it is deleted.</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Can\'t complete download</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Free up %1$s on this device</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Your device does not have enough free space. Free up %1$s of space to download the media stored in your backup.</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">If you choose \"Skip\" the media in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you choose \"Skip\" the media in your backup will be deleted in %1$d days.</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">To finish downloading your Signal Backup your device needs %1$s of storage space.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">To free up space offload or delete unused apps or content large in file size.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Your backups subscription failed to renew</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7451,9 +7448,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <!-- Primary action button when user doesn't have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">Got it</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7464,6 +7463,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">Don\'t download media</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Not now</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">Try later</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Media will be deleted</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7472,6 +7473,12 @@
     <string name="BackupAlertBottomSheet__download">Download</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">Don\'t download</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">Skip</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">Skip restore?</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore">If you skip restore the remaining media and attachments in your backup will be deleted the next time your device completes a new backup.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7482,6 +7489,8 @@
     <string name="BackupStatus__restore_paused">Restore paused</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Restore complete</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">Details</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Waiting for Wi-Fi…</string>

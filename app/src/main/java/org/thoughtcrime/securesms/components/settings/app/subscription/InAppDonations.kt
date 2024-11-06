@@ -5,7 +5,6 @@ import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
@@ -28,9 +27,9 @@ object InAppDonations {
     return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable() || isSEPADebitAvailable() || isIDEALAvailable()
   }
 
-  fun isPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType): Boolean {
+  fun isDonationsPaymentSourceAvailable(paymentSourceType: PaymentSourceType, inAppPaymentType: InAppPaymentType): Boolean {
     if (inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
-      return paymentSourceType == PaymentSourceType.GooglePlayBilling && AppDependencies.billingApi.isApiAvailable()
+      error("Not supported.")
     }
 
     return when (paymentSourceType) {

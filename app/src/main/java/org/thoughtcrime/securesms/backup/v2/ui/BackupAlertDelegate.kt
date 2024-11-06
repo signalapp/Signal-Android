@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 
 /**
  * Delegate that controls whether and which backup alert sheet is displayed.
@@ -19,12 +20,12 @@ object BackupAlertDelegate {
   fun delegate(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        // TODO [backups]
-        // 1. Get unnotified backup upload failures
-        // 2. Get unnotified backup download failures
-        // 3. Get unnotified backup payment failures
+        if (BackupRepository.shouldDisplayBackupFailedSheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup).show(fragmentManager, null)
+        }
 
-        // Decide which do display
+        // TODO [backups]
+        // Get unnotified backup download failures & display sheet
       }
     }
   }

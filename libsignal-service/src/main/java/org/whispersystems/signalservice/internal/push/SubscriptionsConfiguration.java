@@ -105,8 +105,15 @@ public class SubscriptionsConfiguration {
     @JsonProperty("storageAllowanceBytes")
     private long storageAllowanceBytes;
 
+    @JsonProperty("playProductId")
+    private String playProductId;
+
     public long getStorageAllowanceBytes() {
       return storageAllowanceBytes;
+    }
+
+    public String getPlayProductId() {
+      return playProductId;
     }
   }
 

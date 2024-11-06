@@ -134,9 +134,9 @@ class InAppPaymentsBottomSheetDelegate(
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy { inAppPayments ->
       for (payment in inAppPayments) {
         if (isPaymentProcessingError(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.COULD_NOT_COMPLETE_BACKUP).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup).show(fragmentManager, null)
         } else if (isUnexpectedCancellation(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.MEDIA_BACKUPS_ARE_OFF).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.MediaBackupsAreOff).show(fragmentManager, null)
         }
       }
     }
@@ -146,7 +146,7 @@ class InAppPaymentsBottomSheetDelegate(
         InAppPaymentsRepository.getExpiredBackupDeletionState()
       }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy {
         if (it == InAppPaymentsRepository.ExpiredBackupDeletionState.DELETE_TODAY) {
-          BackupAlertBottomSheet.create(BackupAlert.MEDIA_WILL_BE_DELETED_TODAY).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
         }
       }
     }

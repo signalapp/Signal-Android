@@ -249,8 +249,10 @@ internal class BillingApiImpl(
    * Returns whether or not subscriptions are supported by a user's device. Lack of subscription support is generally due
    * to out-of-date Google Play API
    */
-  override fun isApiAvailable(): Boolean {
-    return billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+  override suspend fun isApiAvailable(): Boolean {
+    return doOnConnectionReady {
+      billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+    }
   }
 
   private suspend fun queryProductsInternal(): ProductDetailsResult {

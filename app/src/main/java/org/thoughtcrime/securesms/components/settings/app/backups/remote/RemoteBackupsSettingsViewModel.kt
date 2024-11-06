@@ -119,7 +119,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun skipMediaRestore() {
-    // TODO [backups] -- Clear the error as necessary
+    BackupRepository.skipMediaRestore()
   }
 
   fun cancelMediaRestore() {

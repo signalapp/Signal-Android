@@ -73,7 +73,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
     BackupStatusBanner(
       data = model,
-      onSkipClick = listener::onSkip,
+      onActionClick = listener::onActionClick,
       onDismissClick = listener::onDismissComplete
     )
   }
@@ -124,12 +124,12 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   }
 
   interface RestoreProgressBannerListener {
-    fun onSkip()
+    fun onActionClick(data: BackupStatusData)
     fun onDismissComplete()
   }
 
   private object EmptyListener : RestoreProgressBannerListener {
-    override fun onSkip() = Unit
+    override fun onActionClick(data: BackupStatusData) = Unit
     override fun onDismissComplete() = Unit
   }
 }

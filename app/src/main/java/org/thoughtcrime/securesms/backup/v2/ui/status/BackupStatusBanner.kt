@@ -57,7 +57,7 @@ private const val NONE = -1
 @Composable
 fun BackupStatusBanner(
   data: BackupStatusData,
-  onSkipClick: () -> Unit = {},
+  onActionClick: (BackupStatusData) -> Unit = {},
   onDismissClick: () -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
 ) {
@@ -119,7 +119,7 @@ fun BackupStatusBanner(
 
     if (data.actionRes != NONE) {
       Buttons.Small(
-        onClick = onSkipClick,
+        onClick = { onActionClick(data) },
         modifier = Modifier.padding(start = 8.dp)
       ) {
         Text(text = stringResource(id = data.actionRes))
@@ -250,7 +250,7 @@ sealed interface BackupStatusData {
       get() = stringResource(R.string.BackupStatus__free_up_s_of_space_to_download_your_media, requiredSpace)
 
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
-    override val actionRes: Int = R.string.registration_activity__skip
+    override val actionRes: Int = R.string.BackupStatus__details
   }
 
   /**

@@ -33,7 +33,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -94,11 +93,10 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.backup.v2.ArchiveValidator;
-import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertDelegate;
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
@@ -163,7 +161,6 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment;
-import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -178,12 +175,10 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
@@ -193,10 +188,6 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -581,10 +572,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (this.bannerManager != null) {
       this.bannerManager.updateContent(bannerView.get());
     }
-
-    if (BackupRepository.shouldDisplayBackupFailedSheet()) {
-      BackupAlertBottomSheet.Companion.create(BackupAlert.COULD_NOT_COMPLETE_BACKUP).show(getParentFragmentManager(), null);
-    }
   }
 
   @Override
@@ -928,8 +915,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         }),
         new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
           @Override
-          public void onSkip() {
-            // TODO [backups] add skip restore ability
+          public void onActionClick(@NonNull BackupStatusData backupStatusData) {
+            if (backupStatusData instanceof BackupStatusData.NotEnoughFreeSpace) {
+              BackupAlertBottomSheet.create(new BackupAlert.DiskFull(((BackupStatusData.NotEnoughFreeSpace) backupStatusData).getRequiredSpace()))
+                                    .show(getParentFragmentManager(), null);
+            }
           }
 
           @Override

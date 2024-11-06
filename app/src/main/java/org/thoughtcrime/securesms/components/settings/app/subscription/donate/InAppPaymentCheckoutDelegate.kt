@@ -101,7 +101,7 @@ class InAppPaymentCheckoutDelegate(
   }
 
   fun handleGatewaySelectionResponse(inAppPayment: InAppPaymentTable.InAppPayment) {
-    if (InAppDonations.isPaymentSourceAvailable(inAppPayment.data.paymentMethodType.toPaymentSourceType(), inAppPayment.type)) {
+    if (InAppDonations.isDonationsPaymentSourceAvailable(inAppPayment.data.paymentMethodType.toPaymentSourceType(), inAppPayment.type)) {
       when (inAppPayment.data.paymentMethodType) {
         InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> launchGooglePay(inAppPayment)
         InAppPaymentData.PaymentMethodType.PAYPAL -> launchPayPal(inAppPayment)

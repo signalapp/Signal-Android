@@ -125,6 +125,11 @@ object BackupRepository {
     }
   }
 
+  @JvmStatic
+  fun skipMediaRestore() {
+    // TODO [backups] -- Clear the error as necessary
+  }
+
   /**
    * Whether the yellow dot should be displayed on the conversation list avatar.
    */

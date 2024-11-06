@@ -19,7 +19,7 @@ interface BillingApi {
    */
   fun getBillingPurchaseResults(): Flow<BillingPurchaseResult> = emptyFlow()
 
-  fun isApiAvailable(): Boolean = false
+  suspend fun isApiAvailable(): Boolean = false
 
   suspend fun queryProduct(): BillingProduct? = null
 
