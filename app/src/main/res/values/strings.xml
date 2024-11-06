@@ -3461,7 +3461,7 @@
     <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories_5">
+    <string-array name="HelpFragment__categories_6">
         <item>Please select an option</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
@@ -3470,6 +3470,7 @@
         <item>Other</item>
         <item>Payments (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
