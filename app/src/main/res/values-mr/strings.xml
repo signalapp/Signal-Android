@@ -749,7 +749,7 @@
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" मध्ये समाविष्ट केले</string>
     <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">This chat is already in the folder \"%1$s\"</string>
+    <string name="AddToFolderBottomSheet_this_chat_is_already">हे चॅट आधीपासूनच \"%1$s\" फोल्डरमध्ये आहे</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">सूचना प्रोफाइल</string>
@@ -982,9 +982,9 @@
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">अनलिंक करा</string>
     <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" unlinked</string>
+    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" अनलिंक केले</string>
     <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_linked">\"%1$s\" linked</string>
+    <string name="LinkDeviceFragment__s_linked">\"%1$s\" लिंक केले</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">डिव्हाइस लिंक करत आहे…</string>
     <!-- Toast message shown after a device has been linked -->
@@ -992,7 +992,7 @@
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">लोड होत आहे…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
-    <string name="LinkDeviceFragment__syncing_messages">Syncing messages…</string>
+    <string name="LinkDeviceFragment__syncing_messages">संदेश सिंक करत आहे…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">कोणताही लिंक केला डिव्हाइस नाही</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -1004,13 +1004,13 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">सुरू ठेवा</string>
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
-    <string name="LinkDeviceFragment__sync_failure_title">Message sync failed</string>
+    <string name="LinkDeviceFragment__sync_failure_title">संदेश सिंक अयशस्वी</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
-    <string name="LinkDeviceFragment__sync_failure_body">Your messages couldn\'t be transferred to your linked device. You can try re-linking and transferring again, or continue without transferring your message history.</string>
+    <string name="LinkDeviceFragment__sync_failure_body">आपले संदेश आपल्या लिंक केलेल्या डिव्हाइसकडे हस्तांतरित करता आले नाहीत. आपण पुन्हा लिंक करून मग हस्तांतरित करून पाहू शकता, किंवा आपला संदेश इतिहास हस्तांतरित न करता पुढे जाऊ शकता.</string>
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Try linking again</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">पुन्हा लिंक करून पाहा</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
-    <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continue without transferring</string>
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">हस्तांतरित न करता पुढे जा</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -3457,15 +3457,16 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
-    <string-array name="HelpFragment__categories_5">
-        <item>कृपया एक पर्याय निवडा</item>
-        <item>काहीतरी काम करत नाही</item>
-        <item>वैशिष्ट्य विनंती</item>
-        <item>प्रश्न</item>
-        <item>अभिप्राय</item>
-        <item>इतर</item>
-        <item>पेमेंट्स (मोबाईलकॉईन)</item>
-        <item>देणगी व बॅजेस</item>
+    <string-array name="HelpFragment__categories_6">
+        <item>Please select an option</item>
+        <item>Something\'s Not Working</item>
+        <item>Feature Request</item>
+        <item>Question</item>
+        <item>Feedback</item>
+        <item>Other</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android डीबग लॉग सबमिशन</string>
@@ -4961,7 +4962,9 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">आपले सिग्नल बॅकअप्स सदस्यत्व रीन्यू करा</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">आपल्या मित्रांना आमंत्रित करा</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5187,7 +5190,7 @@
     <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
     <string name="CreateFoldersFragment__discard_changes_title">बदल रद्द करायचे ?</string>
     <!-- Alert dialog description explaining that any changes made will be discarded -->
-    <string name="CreateFoldersFragment__you_will_lose_changes">You\'ll lose the changes you\'ve made to this folder.</string>
+    <string name="CreateFoldersFragment__you_will_lose_changes">आपण या फोल्डरमध्ये केलेले बदल आपण गमावून बसाल.</string>
     <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">टाकून द्या</string>
     <!-- Text that when pressed will delete the current folder -->
@@ -5197,7 +5200,7 @@
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
     <string name="CreateFoldersFragment__see_all">सर्व पहा</string>
     <!-- Toast shown when trying to make a folder with no name -->
-    <string name="CreateFoldersFragment__please_enter_name">Please enter a folder name</string>
+    <string name="CreateFoldersFragment__please_enter_name">कृपया एका फोल्डरचे नाव लिहा</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
@@ -7425,15 +7428,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">आपला मिडीया आज हटवला जाईल</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">आम्ही आपल्या पेमेंट्सवर प्रक्रिया करू न शकल्याने आपला Signal मिडीया बॅकअप प्लॅन रद्द करण्यात आला आहे. आपल्या बॅकअप मधील आपला मिडीया हटवला जाण्यापूर्वी डाउनलोड करण्याची ही आपली शेवटची संधी आहे.</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">डाउनलोड पूर्ण करू शकत नाही</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Free up %1$s on this device</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">आपल्या डिव्हाइसमध्ये पुरेशी मोकळी जागा नाही. आपल्या बॅकअप मध्ये संग्रहित मिडीया डाउनलोड करण्यासाठी %1$s जागा मोकळी करा.</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">आपण जर आपल्या बॅकअपमध्ये मिडीया \"वगळा\" निवडल्यास मिडीया %1$d दिवसामध्ये हटवला जाईल.</item>
-        <item quantity="other">आपण जर आपल्या बॅकअपमध्ये मिडीया \"वगळा\" निवडल्यास मिडीया %1$d दिवसांत हटवले जाईल.</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">To finish downloading your Signal Backup your device needs %1$s of storage space.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">To free up space offload or delete unused apps or content large in file size.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">आपल्या बॅकअप सदस्यत्वाचे नूतनीकरण अयशस्वी झाले</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7445,7 +7445,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">अधिक जाणून घ्या</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">वगळा</string>
+    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <!-- Primary action button to start backup immediately -->
+    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <!-- Primary action button when user doesn\'t have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">Got it</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">सदस्यत्व व्यवस्थापित करा</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7456,6 +7460,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">मिडीया डाउनलोड करू नका</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">आता नाही</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">Try later</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">मिडीया हटवला जाईल</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7464,6 +7470,12 @@
     <string name="BackupAlertBottomSheet__download">डाऊनलोड करा</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">डाउनलोड करू नका</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">वगळा</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">Skip restore?</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore">If you skip restore the remaining media and attachments in your backup will be deleted the next time your device completes a new backup.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7474,6 +7486,8 @@
     <string name="BackupStatus__restore_paused">विराम दिलेले पुर्नस्थित करा</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">पुनर्संचयन पूर्ण</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">Details</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi च्या प्रतिक्षेत …</string>
@@ -7565,7 +7579,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">हा मिडीया यापुढे उपलब्ध नाही</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">आपला सर्व मीडिया बॅकअप करण्यासाठी, सिग्नल बॅकअप्स सक्रिय करा आणि पेड टिअर निवडा.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">सुरू ठेवा</string>
     <!-- Secondary action button on bottom sheet -->
@@ -7693,49 +7707,49 @@
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">आपल्या बॅकअपच्या आकारानुसार याला बराच वेळ लागू शकतो. डाऊनलोड होईपर्यंत आपण आपला फोन नेहमीप्रमाणे वापरू शकता.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Backups</item>
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Backups</item>
+        <item quantity="one">या डिव्हाईसवरील आपले सदस्यत्व पुढील %1$d दिवसासाठी वैध आहे. सिग्नल बॅकअप्स वापरत राहण्यासाठी रीन्यू करा</item>
+        <item quantity="other">या डिव्हाईसवरील आपले सदस्यत्व पुढील %1$d दिवसांसाठी वैध आहे. सिग्नल बॅकअप्स वापरत राहण्यासाठी रीन्यू करा</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
-    <string name="RemoteBackupsSettingsFragment__renew">Renew</string>
+    <string name="RemoteBackupsSettingsFragment__renew">रीन्यू करा</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">अधिक जाणून घ्या</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d day.</item>
-        <item quantity="other">You have %1$s of backup data that’s not on this device. Your backup will be deleted when your subscription ends in %2$d days.</item>
+        <item quantity="one">आपल्याकडे %1$s बॅकअप डेटा आहे पण तो या डिव्हाईसवर नाही. आपले सदस्यत्व %2$d दिवसाने संपल्यावर आपला बॅकअप हटवला जाईल.</item>
+        <item quantity="other">आपल्याकडे %1$s बॅकअप डेटा आहे पण तो या डिव्हाईसवर नाही. आपले सदस्यत्व %2$d दिवसांनी संपल्यावर आपला बॅकअप हटवला जाईल.</item>
     </plurals>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">डाऊनलोड करा</string>
     <!-- Dialog title for skipping download of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_download_question">Skip download?</string>
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">डाउनलोड वगळायचे?</string>
     <!-- Dialog body for skiping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
-        <item quantity="one">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d day.</item>
-        <item quantity="other">If you skip downloading the remaining media and attachments in your backup will be deleted in %1$d days.</item>
+        <item quantity="one">जर आपण डाऊनलोड करणे वगळलेत तर आपल्या बॅकअप मधील उर्वरित मीडिया आणि अटॅचमेंट्स %1$d दिवसात हटवले जातील.</item>
+        <item quantity="other">जर आपण डाऊनलोड करणे वगळलेत तर आपल्या बॅकअप मधील उर्वरित मीडिया आणि अटॅचमेंट्स %1$d दिवसांत हटवले जातील.</item>
     </plurals>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">वगळा</string>
     <!-- Dialog title for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Couldn\'t turn off and delete backups</string>
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">बॅकअप्स बंद करता आणि हटवता आले नाहीत</string>
     <!-- Dialog body for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">A network error occurred. Please check your internet connection and try again.</string>
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">नेटवर्कमध्ये त्रुटी उद्भवली. कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
-    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Subscription not found</string>
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">सदस्यत्व सापडले नाही</string>
     <!-- Displayed below title on bottom sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Your subscription couldn\'t be restored.</string>
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">आपले सदस्यत्व पूर्ववत करता आले नाही.</string>
     <!-- Displayed below title on bottom sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">This could happen if:</string>
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">असे होऊ शकते जर :</string>
     <!-- First item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">You\'re signed into the Play Store with a different Google account.</string>
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">आपण प्ले स्टोरवर दुसऱ्या गूगल अकाऊंट वरून लॉग्ड इन असाल तर.</string>
     <!-- Second item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">You transferred from an iPhone.</string>
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">आपण आयफोन वरून इथे आला असाल तर.</string>
     <!-- Third item in a bulleted list of reasons -->
-    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Your subscription recently expired.</string>
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">आपले सदस्यत्व अलीकडे संपले असेल तर.</string>
     <!-- Note underneath bullet points -->
-    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">If you have an active subscription on your old phone consider canceling it before it renews.</string>
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">जर आपले सदस्यत्व आपल्या जुन्या फोनवर सक्रिय असेल तर ते रीन्यू होण्याआधीच रद्द करण्याचा विचार करा.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
     <string name="SubscriptionNotFoundBottomSheet__got_it">कळले</string>
     <!-- Action button label to contact support -->

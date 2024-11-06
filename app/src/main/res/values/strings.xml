@@ -7452,7 +7452,7 @@
     <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
-    <!-- Primary action button when user doesn't have enough space -->
+    <!-- Primary action button when user doesn\'t have enough space -->
     <string name="BackupAlertBottomSheet__got_it">Got it</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Manage subscription</string>
