@@ -134,7 +134,7 @@ class InAppPaymentsBottomSheetDelegate(
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy { inAppPayments ->
       for (payment in inAppPayments) {
         if (isPaymentProcessingError(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.FailedToRenew).show(fragmentManager, null)
         } else if (isUnexpectedCancellation(payment.state, payment.data)) {
           BackupAlertBottomSheet.create(BackupAlert.MediaBackupsAreOff).show(fragmentManager, null)
         }

@@ -49,9 +49,10 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
+import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
@@ -61,7 +62,7 @@ import org.signal.core.ui.R as CoreUiR
 /**
  * Notifies the user of an issue with their backup.
  */
-class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
+class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
 
   companion object {
     private const val ARG_ALERT = "alert"
@@ -79,24 +80,33 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   @Composable
-  override fun SheetContent() {
+  override fun UpgradeSheetContent(
+    paidBackupType: MessageBackupsType.Paid,
+    freeBackupType: MessageBackupsType.Free,
+    isSubscribeEnabled: Boolean,
+    onSubscribeClick: () -> Unit
+  ) {
     var pricePerMonth by remember { mutableStateOf("-") }
     val resources = LocalContext.current.resources
 
-    LaunchedEffect(Unit) {
-      val price = AppDependencies.billingApi.queryProduct()?.price ?: return@LaunchedEffect
-      pricePerMonth = FiatMoneyUtil.format(resources, price, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    LaunchedEffect(paidBackupType.pricePerMonth) {
+      pricePerMonth = FiatMoneyUtil.format(resources, paidBackupType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    }
+
+    val performPrimaryAction = remember(onSubscribeClick) {
+      createPrimaryAction(onSubscribeClick)
     }
 
     BackupAlertSheetContent(
       backupAlert = backupAlert,
-      onPrimaryActionClick = this::performPrimaryAction,
+      isSubscribeEnabled = isSubscribeEnabled,
+      onPrimaryActionClick = performPrimaryAction,
       onSecondaryActionClick = this::performSecondaryAction
     )
   }
 
   @Stable
-  private fun performPrimaryAction() {
+  private fun createPrimaryAction(onSubscribeClick: () -> Unit): () -> Unit = {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> {
         BackupMessagesJob.enqueue()
@@ -104,11 +114,14 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       }
 
       BackupAlert.FailedToRenew -> launchManageBackupsSubscription()
-      BackupAlert.MediaBackupsAreOff, BackupAlert.MediaWillBeDeletedToday -> {
+      BackupAlert.MediaBackupsAreOff -> {
+        onSubscribeClick()
+      }
+      BackupAlert.MediaWillBeDeletedToday -> {
         performFullMediaDownload()
       }
 
-      is BackupAlert.DiskFull -> Unit
+      is BackupAlert.DiskFull -> Unit // dismiss the sheet and keep your restore paused until you free up space.
     }
 
     dismissAllowingStateLoss()
@@ -119,10 +132,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> Unit
       BackupAlert.FailedToRenew -> Unit
-      BackupAlert.MediaBackupsAreOff -> {
-        // TODO [backups] - Silence and remind on last day
-      }
-
+      BackupAlert.MediaBackupsAreOff -> Unit
       BackupAlert.MediaWillBeDeletedToday -> {
         displayLastChanceDialog()
       }
@@ -182,6 +192,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 private fun BackupAlertSheetContent(
   backupAlert: BackupAlert,
   pricePerMonth: String = "",
+  isSubscribeEnabled: Boolean = true,
   onPrimaryActionClick: () -> Unit = {},
   onSecondaryActionClick: () -> Unit = {}
 ) {
@@ -250,6 +261,7 @@ private fun BackupAlertSheetContent(
     val padBottom = if (secondaryActionResource > 0) 16.dp else 56.dp
 
     Buttons.LargeTonal(
+      enabled = isSubscribeEnabled,
       onClick = onPrimaryActionClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 220.dp)
@@ -259,7 +271,11 @@ private fun BackupAlertSheetContent(
     }
 
     if (secondaryActionResource > 0) {
-      TextButton(onClick = onSecondaryActionClick, modifier = Modifier.padding(bottom = 32.dp)) {
+      TextButton(
+        enabled = isSubscribeEnabled,
+        onClick = onSecondaryActionClick,
+        modifier = Modifier.padding(bottom = 32.dp)
+      ) {
         Text(text = stringResource(id = secondaryActionResource))
       }
     }
@@ -447,14 +463,28 @@ private fun BackupAlertSheetContentPreviewDiskFull() {
 @Parcelize
 sealed class BackupAlert : Parcelable {
 
+  /**
+   * This value is driven by a watermarking system and will be dismissed and snoozed whenever the sheet is closed.
+   * This value is driven by failure to complete a backup within a timeout based on the user's chosen backup frequency.
+   */
   data class CouldNotCompleteBackup(
     val daysSinceLastBackup: Int
   ) : BackupAlert()
 
+  /**
+   * This value is driven by InAppPayment state, and will be automatically cleared when the sheet is displayed.
+   */
   data object FailedToRenew : BackupAlert()
 
+  /**
+   * This value is driven by InAppPayment state, and will be automatically cleared when the sheet is displayed.
+   * This value is displayed if we hit an 'unexpected cancellation' of a user's backup.
+   */
   data object MediaBackupsAreOff : BackupAlert()
 
+  /**
+   * TODO [backups] - This value is driven as "60D after the last time the user pinged their backup"
+   */
   data object MediaWillBeDeletedToday : BackupAlert()
 
   /**

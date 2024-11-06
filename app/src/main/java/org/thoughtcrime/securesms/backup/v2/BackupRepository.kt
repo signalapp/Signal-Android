@@ -139,7 +139,7 @@ object BackupRepository {
 
   @JvmStatic
   fun skipMediaRestore() {
-    // TODO [backups] -- Clear the error as necessary
+    // TODO [backups] -- Clear the error as necessary, cancel anything remaining in the restore
   }
 
   /**
