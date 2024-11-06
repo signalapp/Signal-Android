@@ -154,7 +154,7 @@ object LinkDeviceRepository {
       aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
       pniIdentityKeyPair = SignalStore.account.pniIdentityKey,
       profileKey = ProfileKeyUtil.getSelfProfileKey(),
-      masterKey = SignalStore.svr.getOrCreateMasterKey(),
+      masterKey = SignalStore.svr.masterKey,
       code = verificationCodeResult.verificationCode,
       ephemeralMessageBackupKey = ephemeralMessageBackupKey
     )

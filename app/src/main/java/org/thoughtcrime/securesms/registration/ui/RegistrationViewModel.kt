@@ -619,7 +619,7 @@ class RegistrationViewModel : ViewModel() {
       if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
         Log.d(TAG, "Found recovery password, attempting to re-register.")
         viewModelScope.launch(context = coroutineExceptionHandler) {
-          verifyReRegisterInternal(context, pin, SignalStore.svr.getOrCreateMasterKey())
+          verifyReRegisterInternal(context, pin, SignalStore.svr.masterKey)
           setInProgress(false)
         }
       } else {
@@ -789,7 +789,7 @@ class RegistrationViewModel : ViewModel() {
       reglock = true
       if (pin == null && SignalStore.svr.registrationLockToken != null) {
         Log.d(TAG, "Retrying registration with stored credentials.")
-        result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr.pin) { SignalStore.svr.getOrCreateMasterKey() }
+        result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr.pin) { SignalStore.svr.masterKey }
       } else if (result.svr2Credentials != null || result.svr3Credentials != null) {
         Log.d(TAG, "Retrying registration with received credentials (svr2: ${result.svr2Credentials != null}, svr3: ${result.svr3Credentials != null}).")
         val svr2Credentials = result.svr2Credentials
@@ -894,7 +894,7 @@ class RegistrationViewModel : ViewModel() {
     val currentState = store.value
     val code = currentState.enteredCode
     val e164: String = currentState.phoneNumber?.toE164() ?: throw IllegalStateException("Can't construct registration data without E164!")
-    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.getRecoveryPassword() else null
+    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.recoveryPassword else null
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), currentState.fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
   }
 

@@ -111,7 +111,6 @@ import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWra
 
 import java.io.InterruptedIOException;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
@@ -167,7 +166,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", this::initializeRx)
                             .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
-                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
+                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("lifecycle-observer", () -> AppForegroundObserver.addListener(this))

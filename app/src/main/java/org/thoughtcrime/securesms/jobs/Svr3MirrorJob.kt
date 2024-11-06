@@ -72,8 +72,8 @@ class Svr3MirrorJob private constructor(parameters: Parameters, private var seri
       val svr3: SecureValueRecoveryV3 = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
       val session: PinChangeSession = serializedChangeSession?.let { session ->
-        svr3.resumePinChangeSession(pin, SignalStore.svr.getOrCreateMasterKey(), session)
-      } ?: svr3.setPin(pin, SignalStore.svr.getOrCreateMasterKey())
+        svr3.resumePinChangeSession(pin, SignalStore.svr.masterKey, session)
+      } ?: svr3.setPin(pin, SignalStore.svr.masterKey)
 
       serializedChangeSession = session.serialize()
 

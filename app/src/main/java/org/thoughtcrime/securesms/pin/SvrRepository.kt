@@ -235,7 +235,7 @@ object SvrRepository {
   @JvmStatic
   fun setPin(userPin: String, keyboardType: PinKeyboardType): BackupResponse {
     return operationLock.withLock {
-      val masterKey: MasterKey = SignalStore.svr.getOrCreateMasterKey()
+      val masterKey: MasterKey = SignalStore.svr.masterKey
 
       val writeTargets = writeImplementations
 
@@ -367,7 +367,7 @@ object SvrRepository {
       check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr.getOrCreateMasterKey())
+      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr.masterKey)
       SignalStore.svr.isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }

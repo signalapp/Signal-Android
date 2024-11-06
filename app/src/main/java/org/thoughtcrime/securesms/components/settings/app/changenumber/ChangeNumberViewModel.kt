@@ -507,7 +507,7 @@ class ChangeNumberViewModel : ViewModel() {
     val currentState = store.value
     val code = currentState.enteredCode ?: throw IllegalStateException("Can't construct registration data without entered code!")
     val e164: String = number.e164Number ?: throw IllegalStateException("Can't construct registration data without E164!")
-    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.getRecoveryPassword() else null
+    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.recoveryPassword else null
     val fcmToken = RegistrationRepository.getFcmToken(context)
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
   }

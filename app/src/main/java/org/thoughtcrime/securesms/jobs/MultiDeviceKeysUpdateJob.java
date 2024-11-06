@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
@@ -72,7 +71,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
     SignalServiceMessageSender messageSender     = AppDependencies.getSignalServiceMessageSender();
     StorageKey                 storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
-    messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.ofNullable(storageServiceKey), Optional.of(SignalStore.svr().getOrCreateMasterKey())))
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.ofNullable(storageServiceKey), Optional.of(SignalStore.svr().getMasterKey())))
     );
   }
 

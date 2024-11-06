@@ -93,7 +93,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * Key used to backup messages.
    */
   val messageBackupKey: MessageBackupKey
-    get() = SignalStore.svr.getOrCreateMasterKey().derivateMessageBackupKey()
+    get() = SignalStore.svr.masterKey.derivateMessageBackupKey()
 
   /**
    * Key used to backup media. Purely random and separate from the message backup key.
@@ -108,14 +108,14 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
         Log.i(TAG, "Generating MediaRootBackupKey...", Throwable())
         val bytes = Util.getSecretBytes(32)
-        putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, bytes)
+        store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, bytes).commit()
         return MediaRootBackupKey(bytes)
       }
     }
     set(value) {
       lock.withLock {
         Log.i(TAG, "Setting MediaRootBackupKey", Throwable())
-        putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value)
+        store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value).commit()
         mediaCredentials.clearAll()
         cachedMediaCdnPath = null
       }
