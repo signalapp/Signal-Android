@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui
 
+import android.content.DialogInterface
 import android.os.Parcelable
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.Image
@@ -97,7 +98,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   @Stable
   private fun performPrimaryAction() {
     when (backupAlert) {
-      BackupAlert.CouldNotCompleteBackup -> {
+      is BackupAlert.CouldNotCompleteBackup -> {
         BackupMessagesJob.enqueue()
         startActivity(AppSettingsActivity.remoteBackups(requireContext()))
       }
@@ -116,10 +117,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   @Stable
   private fun performSecondaryAction() {
     when (backupAlert) {
-      BackupAlert.CouldNotCompleteBackup -> {
-        // TODO [backups] - Dismiss and notify later
-      }
-
+      is BackupAlert.CouldNotCompleteBackup -> Unit
       BackupAlert.FailedToRenew -> Unit
       BackupAlert.MediaBackupsAreOff -> {
         // TODO [backups] - Silence and remind on last day
@@ -135,6 +133,15 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
     }
 
     dismissAllowingStateLoss()
+  }
+
+  override fun onDismiss(dialog: DialogInterface) {
+    super.onDismiss(dialog)
+
+    when (backupAlert) {
+      is BackupAlert.CouldNotCompleteBackup -> BackupRepository.markBackupFailedSheetDismissed()
+      else -> Unit
+    }
   }
 
   private fun displayLastChanceDialog() {
@@ -229,8 +236,8 @@ private fun BackupAlertSheetContent(
     )
 
     when (backupAlert) {
-      BackupAlert.CouldNotCompleteBackup -> CouldNotCompleteBackup(
-        daysSinceLastBackup = 7 // TODO [backups]
+      is BackupAlert.CouldNotCompleteBackup -> CouldNotCompleteBackup(
+        daysSinceLastBackup = backupAlert.daysSinceLastBackup
       )
 
       BackupAlert.FailedToRenew -> PaymentProcessingBody()
@@ -339,7 +346,7 @@ private fun rememberBackupsIconColors(backupAlert: BackupAlert): BackupsIconColo
   return remember(backupAlert) {
     when (backupAlert) {
       BackupAlert.FailedToRenew, BackupAlert.MediaBackupsAreOff -> error("Not icon-based options.")
-      BackupAlert.CouldNotCompleteBackup, is BackupAlert.DiskFull -> BackupsIconColors.Warning
+      is BackupAlert.CouldNotCompleteBackup, is BackupAlert.DiskFull -> BackupsIconColors.Warning
       BackupAlert.MediaWillBeDeletedToday -> BackupsIconColors.Error
     }
   }
@@ -348,7 +355,7 @@ private fun rememberBackupsIconColors(backupAlert: BackupAlert): BackupsIconColo
 @Composable
 private fun titleString(backupAlert: BackupAlert): String {
   return when (backupAlert) {
-    BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_complete_backup)
+    is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_complete_backup)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_failed_to_renew)
     BackupAlert.MediaBackupsAreOff -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_expired)
     BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__your_media_will_be_deleted_today)
@@ -362,7 +369,7 @@ private fun primaryActionString(
   pricePerMonth: String
 ): String {
   return when (backupAlert) {
-    BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
+    is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
     BackupAlert.MediaBackupsAreOff -> stringResource(R.string.BackupAlertBottomSheet__subscribe_for_s_month, pricePerMonth)
     BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
@@ -374,7 +381,7 @@ private fun primaryActionString(
 private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
   return remember(backupAlert) {
     when (backupAlert) {
-      BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
+      is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
       BackupAlert.FailedToRenew -> R.string.BackupAlertBottomSheet__not_now
       BackupAlert.MediaBackupsAreOff -> R.string.BackupAlertBottomSheet__not_now
       BackupAlert.MediaWillBeDeletedToday -> R.string.BackupAlertBottomSheet__dont_download_media
@@ -388,7 +395,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotCompleteBackup
+      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7)
     )
   }
 }
@@ -440,7 +447,9 @@ private fun BackupAlertSheetContentPreviewDiskFull() {
 @Parcelize
 sealed class BackupAlert : Parcelable {
 
-  data object CouldNotCompleteBackup : BackupAlert()
+  data class CouldNotCompleteBackup(
+    val daysSinceLastBackup: Int
+  ) : BackupAlert()
 
   data object FailedToRenew : BackupAlert()
 

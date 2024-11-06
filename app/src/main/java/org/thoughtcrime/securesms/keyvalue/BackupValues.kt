@@ -84,6 +84,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       clearMessageBackupFailureSheetWatermark()
     }
 
+  val daysSinceLastBackup: Int get() = (System.currentTimeMillis().milliseconds - lastBackupTime.milliseconds).inWholeDays.toInt()
+
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 

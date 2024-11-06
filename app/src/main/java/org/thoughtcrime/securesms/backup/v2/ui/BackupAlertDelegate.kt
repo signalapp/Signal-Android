@@ -11,6 +11,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Delegate that controls whether and which backup alert sheet is displayed.
@@ -21,7 +22,7 @@ object BackupAlertDelegate {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
         if (BackupRepository.shouldDisplayBackupFailedSheet()) {
-          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
         }
 
         // TODO [backups]
