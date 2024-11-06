@@ -548,9 +548,13 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     SignalExecutors.BOUNDED_IO.execute {
       Log.d(TAG, "Downloading file...")
       val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
-      if (!BackupRepository.downloadBackupFile(tempBackupFile)) {
-        Log.e(TAG, "Failed to download backup file")
-        throw IOException()
+
+      when (val result = BackupRepository.downloadBackupFile(tempBackupFile)) {
+        is NetworkResult.Success -> Log.i(TAG, "Download successful")
+        else -> {
+          Log.w(TAG, "Failed to download backup file", result.getCause())
+          throw IOException(result.getCause())
+        }
       }
 
       val encryptedStream = tempBackupFile.inputStream()

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.BackupProgressService
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import java.io.IOException
 
@@ -81,9 +82,12 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
     }
 
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
-    if (!BackupRepository.downloadBackupFile(tempBackupFile, progressListener)) {
-      Log.e(TAG, "Failed to download backup file")
-      throw IOException()
+    when (val result = BackupRepository.downloadBackupFile(tempBackupFile, progressListener)) {
+      is NetworkResult.Success -> Log.i(TAG, "Download successful")
+      else -> {
+        Log.w(TAG, "Failed to download backup file", result.getCause())
+        throw IOException(result.getCause())
+      }
     }
 
     if (isCanceled) {

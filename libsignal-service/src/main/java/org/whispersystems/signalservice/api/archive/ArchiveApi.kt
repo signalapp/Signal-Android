@@ -71,10 +71,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 403: Forbidden
    * - 429: Rate-limited
    */
-  fun getCdnReadCredentials(cdnNumber: Int, backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<GetArchiveCdnCredentialsResponse> {
+  fun getCdnReadCredentials(cdnNumber: Int, aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<GetArchiveCdnCredentialsResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(backupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
 
       pushServiceSocket.getArchiveCdnReadCredentials(cdnNumber, presentationData.toArchiveCredentialPresentation())
     }
@@ -111,10 +111,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 403: Forbidden
    * - 429: Rate-limited
    */
-  fun setPublicKey(backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<Unit> {
+  fun setPublicKey(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(backupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.setArchivePublicKey(presentationData.publicKey, presentationData.toArchiveCredentialPresentation())
     }
   }
@@ -128,10 +128,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 403: Insufficient permissions
    * - 429: Rate-limited
    */
-  fun getMessageBackupUploadForm(messageBackupKey: MessageBackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
+  fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(messageBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(messageBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveMessageBackupUploadForm(presentationData.toArchiveCredentialPresentation())
     }
   }
@@ -142,10 +142,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    *
    * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
    */
-  fun getBackupInfo(backupKey: BackupKey, aci: ACI, messageServiceCredential: ArchiveServiceCredential): NetworkResult<ArchiveGetBackupInfoResponse> {
+  fun getBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<ArchiveGetBackupInfoResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(backupKey, aci, messageServiceCredential)
-      val presentationData = CredentialPresentationData.from(backupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveBackupInfo(presentationData.toArchiveCredentialPresentation())
     }
   }
@@ -153,10 +153,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   /**
    * Lists the media objects in the backup
    */
-  fun listMediaObjects(mediaRootBackupKey: MediaRootBackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
+  fun listMediaObjects(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
     }
   }
@@ -194,10 +194,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 403: Forbidden
    * - 429: Rate-limited
    */
-  fun getMediaUploadForm(mediaRootBackupKey: MediaRootBackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<AttachmentUploadForm> {
+  fun getMediaUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>): NetworkResult<AttachmentUploadForm> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.getArchiveMediaUploadForm(presentationData.toArchiveCredentialPresentation())
     }
   }
@@ -206,13 +206,13 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * Retrieves all media items in the user's archive. Note that this could be a very large number of items, making this only suitable for debugging.
    * Use [getArchiveMediaItemsPage] in production.
    */
-  fun debugGetUploadedMediaItemMetadata(mediaRootBackupKey: MediaRootBackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): NetworkResult<List<StoredMediaObject>> {
+  fun debugGetUploadedMediaItemMetadata(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>): NetworkResult<List<StoredMediaObject>> {
     return NetworkResult.fromFetch {
       val mediaObjects: MutableList<StoredMediaObject> = ArrayList()
 
       var cursor: String? = null
       do {
-        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(mediaRootBackupKey, aci, serviceCredential, 512, cursor).successOrThrow()
+        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(aci, archiveServiceAccess, 512, cursor).successOrThrow()
         mediaObjects += response.storedMediaObjects
         cursor = response.cursor
       } while (cursor != null)
@@ -226,10 +226,10 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * @param limit The maximum number of items to return.
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
-  fun getArchiveMediaItemsPage(mediaRootBackupKey: MediaRootBackupKey, aci: ACI, mediaServiceCredential: ArchiveServiceCredential, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
+  fun getArchiveMediaItemsPage(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, mediaServiceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
 
       pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
     }
@@ -247,14 +247,13 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    *   429: Rate-limited
    */
   fun copyAttachmentToArchive(
-    mediaRootBackupKey: MediaRootBackupKey,
     aci: ACI,
-    serviceCredential: ArchiveServiceCredential,
+    archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     item: ArchiveMediaRequest
   ): NetworkResult<ArchiveMediaResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
 
       pushServiceSocket.archiveAttachmentMedia(presentationData.toArchiveCredentialPresentation(), item)
     }
@@ -264,14 +263,13 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
    */
   fun copyAttachmentToArchive(
-    mediaRootBackupKey: MediaRootBackupKey,
     aci: ACI,
-    serviceCredential: ArchiveServiceCredential,
+    archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     items: List<ArchiveMediaRequest>
   ): NetworkResult<BatchArchiveMediaResponse> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
 
       val request = BatchArchiveMediaRequest(items = items)
 
@@ -290,27 +288,26 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun deleteArchivedMedia(
-    mediaRootBackupKey: MediaRootBackupKey,
     aci: ACI,
-    serviceCredential: ArchiveServiceCredential,
+    archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     mediaToDelete: List<DeleteArchivedMediaRequest.ArchivedMediaObject>
   ): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(mediaRootBackupKey, aci, serviceCredential)
-      val presentationData = CredentialPresentationData.from(mediaRootBackupKey, aci, zkCredential, backupServerPublicParams)
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       val request = DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete)
 
       pushServiceSocket.deleteArchivedMedia(presentationData.toArchiveCredentialPresentation(), request)
     }
   }
 
-  fun getZkCredential(backupKey: BackupKey, aci: ACI, serviceCredential: ArchiveServiceCredential): BackupAuthCredential {
-    val backupAuthResponse = BackupAuthCredentialResponse(serviceCredential.credential)
-    val backupRequestContext = BackupAuthCredentialRequestContext.create(backupKey.value, aci.rawUuid)
+  fun getZkCredential(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): BackupAuthCredential {
+    val backupAuthResponse = BackupAuthCredentialResponse(archiveServiceAccess.credential.credential)
+    val backupRequestContext = BackupAuthCredentialRequestContext.create(archiveServiceAccess.backupKey.value, aci.rawUuid)
 
     return backupRequestContext.receiveResponse(
       backupAuthResponse,
-      Instant.ofEpochSecond(serviceCredential.redemptionTime),
+      Instant.ofEpochSecond(archiveServiceAccess.credential.redemptionTime),
       backupServerPublicParams
     )
   }
