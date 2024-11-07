@@ -5,12 +5,15 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import android.os.Environment
+import android.os.StatFs
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
+import org.signal.core.util.ByteSize
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.bytes
@@ -125,6 +128,13 @@ object BackupRepository {
         // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
       }
     }
+  }
+
+  fun getFreeStorageSpace(): ByteSize {
+    val statFs = StatFs(Environment.getDataDirectory().absolutePath)
+    val free = (statFs.availableBlocksLong) * statFs.blockSizeLong
+
+    return free.bytes
   }
 
   @JvmStatic
