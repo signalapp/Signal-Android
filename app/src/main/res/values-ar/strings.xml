@@ -4074,11 +4074,11 @@
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط من جهازك.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">سيُؤدي هذا إلى حذف جميع محفوظات الرسائل والوسائط من هذا الجهاز وأي أجهزة متصلة.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">سيُؤدي هذا إلى حذف كل سجل الرسائل والوسائط بشكل نهائي من هذا الجهاز وأي أجهزة متصلة.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">هل أنت متأكد من أنك تريد حذف كل سجلات الرسائل؟</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">ستُحذَف كل سجلات الرسائل نهائيًا. لا يمكن التراجع عن هذا الإجراء.</string>
     <!-- Secondary warning dialog message about deleting all chat message history from everything everywhere including linked devices -->
-    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">ستُحذف جميع محفوظات الرسائل نهائيًا من كل الأجهزة. لا يُمكن التراجع عن هذا الإجراء.</string>
+    <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone_linked_device">سيُحذَف كل سجل الرسائل نهائيًا من كل الأجهزة. لا يُمكن التراجع عن هذا الإجراء.</string>
     <string name="preferences_storage__delete_all_now">حذف الكل الآن</string>
     <!-- Option for keeping messages forever when managing storage -->
     <string name="preferences_storage__forever">بشكل دائم</string>
@@ -4260,9 +4260,9 @@
 
     <!-- PermissionDeniedBottomSheet -->
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
-    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. انقر على \"إعدادات\" أسفله</string>
+    <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. انقر على \"الإعدادات\" في الأسفل</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s تمكين الصلاحية</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s امنح الصلاحية</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
     <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. انقر على \"الأذونات\"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
@@ -4368,7 +4368,7 @@
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">ملاحظة</string>
     <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
-    <string name="EditNoteFragment__content_description_save_note">حفظ الملحوظة</string>
+    <string name="EditNoteFragment__content_description_save_note">حفظ الملاحظة</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">تأكيد الدفع</string>
@@ -4385,12 +4385,12 @@
     <string name="ConfirmPayment__payment_will_continue_processing">سوف تستمر معالجة عملية الدفع</string>
     <string name="ConfirmPaymentFragment__invalid_recipient">المُستلِم غير صحيح</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
-    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">تعذّر إظهار قفل عملية الدفع</string>
+    <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">تعذَّر إظهار قفل عملية الدفع</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">فعَّلتَ قفل عملية الدفع في الإعدادات، لكن لا يُمكن إظهاره.</string>
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">الانتقال إلى \"الإعدادات\"</string>
-    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">لم يقم هذا الشخص بتفعيل المدفوعات</string>
+    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">لم يقم هذا الشخص بتفعيل المدفوعات.</string>
     <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">تعذَّر طلب رسوم الشبكة. للاستمرار في هذا الدفع، يُرجى النقر على \"حسنًا\" ثم المحاولة مرّة أخرى.</string>
 
     <!-- BiometricDeviceAuthentication -->
@@ -4451,17 +4451,17 @@
     <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">إعادة التوجيه</string>
     <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="conversation_selection__menu_reply">الرَّد</string>
+    <string name="conversation_selection__menu_reply">الرد</string>
     <!-- Button to edit a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_edit">تعديل</string>
     <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">حفظ</string>
     <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_resend_message">اعادة إرسال</string>
+    <string name="conversation_selection__menu_resend_message">إعادة الإرسال</string>
     <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_multi_select">حَدِّد</string>
+    <string name="conversation_selection__menu_multi_select">اختيار</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_payment_details">تفاصيل عمليات الدفع</string>
+    <string name="conversation_selection__menu_payment_details">تفاصيل عملية الدفع</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4471,23 +4471,23 @@
     <!-- conversation_list_batch -->
 
     <!-- conversation_list -->
-    <string name="conversation_list_settings_shortcut">مختصر للإعدادات</string>
+    <string name="conversation_list_settings_shortcut">اختصار الإعدادات</string>
     <string name="conversation_list_search_description">بحث</string>
-    <string name="conversation_list__pinned">مثبَّت</string>
+    <string name="conversation_list__pinned">المُثبَّتة</string>
     <string name="conversation_list__chats">الدردشات</string>
     <!-- A warning shown in a toast that tells you that you can\'t pin any more chats. Pinning a chat means keeping the chat at the top of your chat list. The placeholder represents how many chats you\'re allowed to pin. -->
-    <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d دردشات فقط</string>
+    <string name="conversation_list__you_can_only_pin_up_to_d_chats">يمكنك تثبيت ما يصل إلى %1$d دردشات فقط.</string>
 
     <!-- conversation_list_item_view -->
     <!-- Content description for contact avatar photo -->
     <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
-    <string name="conversation_list_item_view__archived">الأرشيف</string>
+    <string name="conversation_list_item_view__archived">المؤرشفة</string>
 
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">دردشة جديدة</string>
     <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
-    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا دردشات حتى الآن.\nابدأ عن طريق محادثة صديق.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا دردشات حتى الآن.\nابدأ من خلال مراسلة صديق.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">لا توجد أي دردشات للعرض</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4504,7 +4504,7 @@
 
     <!-- conversation -->
     <string name="conversation__menu_group_settings">إعدادات المجموعة</string>
-    <string name="conversation__menu_leave_group">أترك المجموعة</string>
+    <string name="conversation__menu_leave_group">اترُك المجموعة</string>
     <string name="conversation__menu_view_all_media">جميع الوسائط</string>
     <string name="conversation__menu_conversation_settings">إعدادات الدردشة</string>
     <string name="conversation__menu_add_shortcut">إضافة إلى الشاشة الرئيسية</string>
@@ -4515,7 +4515,7 @@
     <!-- conversation_popup -->
 
     <!-- conversation_callable_insecure -->
-    <string name="conversation_add_to_contacts__menu_add_to_contacts">أضف إلى جهات الاتصال</string>
+    <string name="conversation_add_to_contacts__menu_add_to_contacts">إضافة إلى جهات الاتصال</string>
 
     <!-- conversation scheduled messages bar -->
 
@@ -4549,20 +4549,20 @@
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
     <string name="text_secure_normal__menu_settings">الإعدادات</string>
-    <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
-    <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
-    <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
+    <string name="text_secure_normal__menu_clear_passphrase">قَفْل</string>
+    <string name="text_secure_normal__mark_all_as_read">اعتبار كل الرسائل مقروءة</string>
+    <string name="text_secure_normal__invite_friends">اُدْعُ الأصدقاء</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">تصفية الدردشات غير المقروءة</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">مَحوُ فلتر المحادثات غير المقروءة</string>
+    <string name="text_secure_normal__clear_unread_filter">مسح فلتر المحادثات غير المقروءة</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
-    <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
+    <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارِن مع الحافظة</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_service_outage_text">يواجه سيجنال بعض المشاكل التقنيّة حاليّاً. نعمل بجد لإعادة الخدمة بأسرع وقت ممكن.</string>
+    <string name="reminder_header_service_outage_text">يواجه سيجنال بعض المشاكل التقنيّة حاليًا. نعمل بجد لإعادة الخدمة بأسرع وقتٍ ممكن.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">لا يُمكن لاكتشاف جهات الاتصال الخاصة لتطبيق سيجنال مُعالجة جهات اتصال هاتفك مؤقتًا.</string>
@@ -4579,10 +4579,10 @@
 
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__media_content_description">لمحة عن الوسائط</string>
+    <string name="media_preview_activity__media_content_description">معاينة الوسائط</string>
 
     <!-- new_conversation_activity -->
-    <string name="new_conversation_activity__refresh">إنعاش</string>
+    <string name="new_conversation_activity__refresh">تحديث</string>
     <!-- redphone_audio_popup_menu -->
 
     <!-- Edit KBS Pin -->
@@ -4590,47 +4590,47 @@
     <!-- BaseKbsPinFragment -->
     <string name="BaseKbsPinFragment__next">التالي</string>
     <!-- Button label to prompt them to create a password ("PIN") using numbers and letters rather than only numbers. -->
-    <string name="BaseKbsPinFragment__create_alphanumeric_pin">إنشاء الرقم التعريفي الشخصي بالأحرف والأرقام</string>
+    <string name="BaseKbsPinFragment__create_alphanumeric_pin">إنشاء رقم تعريف شخصي من أحرف وأرقام</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
-    <string name="BaseKbsPinFragment__create_numeric_pin">إنشاء الرقم التعريفي الشخصي بالأرقام</string>
+    <string name="BaseKbsPinFragment__create_numeric_pin">إنشاء رقم تعريف شخصي من أرقام</string>
   <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
-        <item quantity="zero">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حرف على الأقل</item>
-        <item quantity="one">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حرف على الأقل</item>
-        <item quantity="two">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حروف على الأقل</item>
-        <item quantity="few">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حروف على الأقل</item>
-        <item quantity="many">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حرفا على الأقل</item>
-        <item quantity="other">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d حرف على الأقل</item>
+        <item quantity="zero">يجب أن يحتوي رقم التعريف الشخصي على %1$d حرف على الأقل</item>
+        <item quantity="one">يجب أن يحتوي رقم التعريف الشخصي على %1$d حرف على الأقل</item>
+        <item quantity="two">يجب أن يحتوي رقم التعريف الشخصي على %1$d حروف على الأقل</item>
+        <item quantity="few">يجب أن يحتوي رقم التعريف الشخصي على %1$d حروف على الأقل</item>
+        <item quantity="many">يجب أن يحتوي رقم التعريف الشخصي على %1$d حرفًا على الأقل</item>
+        <item quantity="other">يجب أن يحتوي رقم التعريف الشخصي على %1$d حرف على الأقل</item>
     </plurals>
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-        <item quantity="zero">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d رقم على الأقل</item>
-        <item quantity="one">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d رقم على الأقل</item>
-        <item quantity="two">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d أرقام على الأقل</item>
-        <item quantity="few">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d أرقام على الأقل</item>
-        <item quantity="many">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d رقما على الأقل</item>
-        <item quantity="other">يجب أن يحتوي الرقم التعريفي الشخصي على %1$d رقم على الأقل</item>
+        <item quantity="zero">يجب أن يحتوي رقم التعريف الشخصي على %1$d رقم على الأقل</item>
+        <item quantity="one">يجب أن يحتوي رقم التعريف الشخصي على %1$d رقم على الأقل</item>
+        <item quantity="two">يجب أن يحتوي رقم التعريف الشخصي على %1$d رقمين على الأقل</item>
+        <item quantity="few">يجب أن يحتوي رقم التعريف الشخصي على %1$d أرقامٍ على الأقل</item>
+        <item quantity="many">يجب أن يحتوي رقم التعريف الشخصي على %1$d رقمًا على الأقل</item>
+        <item quantity="other">يجب أن يحتوي رقم التعريف الشخصي على %1$d رقمٍ على الأقل</item>
     </plurals>
-    <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
-    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير الرقم التعريفي الشخصي في أي وقت طالما بقي هذا الجهاز مسجلا.</string>
-    <string name="CreateKbsPinFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">يمكن أن تساعدك أرقام التعريف الشخصية على استعادة حسابك والحفاظ على معلوماتك مُشفّرة مع سيجنال. </string>
-    <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقما تعريفيا شخصيا أمتن.</string>
+    <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريف شخصي جديد</string>
+    <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير رقم التعريف الشخصي في أي وقت طالما بقي هذا الجهاز مسجلًا.</string>
+    <string name="CreateKbsPinFragment__create_your_pin">إنشاء رقم التعريف الشخصي الخاص بك</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">يمكن أن تساعدك أرقام التعريف الشخصية على استعادة حسابك والحفاظ على معلوماتك مُشفَّرة مع سيجنال. </string>
+    <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقمًا تعريفيًا شخصيًا أقوى.</string>
 
     <!-- ConfirmKbsPinFragment -->
-    <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية غير متطابقة. يرجى المحاولة ثانية.</string>
+    <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية غير متطابقة. يُرجى المحاولة مرّة أخرى.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">أعد إدخال رقم التعريف الشخصي الذي أنشأته للتو.</string>
-    <string name="ConfirmKbsPinFragment__confirm_your_pin">يرجى تأكيد الرقم التعريفي الشخصي.</string>
-    <string name="ConfirmKbsPinFragment__pin_creation_failed">فشل إنشاء الرقم التعريفي الشخصي</string>
-    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">لم يتم حفظ الرقم التعريفي الشخصي الخاص بك. سنطلب منك إنشاء رقم تعريفي شخصي لاحقا.</string>
-    <string name="ConfirmKbsPinFragment__pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
-    <string name="ConfirmKbsPinFragment__re_enter_your_pin">أعد إدخال رقم التعريف الشخصي</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">يجري إنشاء الرقم التعريفي الشخصي…</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">أعِد إدخال رقم التعريف الشخصي الذي أنشأته للتو.</string>
+    <string name="ConfirmKbsPinFragment__confirm_your_pin">يُرجى تأكيد الرقم التعريفي الشخصي.</string>
+    <string name="ConfirmKbsPinFragment__pin_creation_failed">فشل إنشاء رقم التعريف الشخصي</string>
+    <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">لم يتم حفظ رقم التعريف الشخصي الخاص بك. سنطلب منك إنشاء رقم تعريفي شخصي لاحقًا.</string>
+    <string name="ConfirmKbsPinFragment__pin_created">تمَّ إنشاء رقم تعريف شخصي.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_your_pin">أعِد إدخال رقم التعريف الشخصي</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">جارٍإنشاء رقم التعريف الشخصي…</string>
 
     <!-- KbsSplashFragment -->
-    <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
+    <string name="KbsSplashFragment__introducing_pins">نقدم لكم أرقام التعريف الشخصية (PINS)</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في سيجنال مُعمَّاة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع حسابك الشخصي و إعداداتك وجهات اتصالك عندما يُعاد تثبيت سيجنال. لن تكون لك الحاجة إلى الرقم التعريفي لفتح واستخدام التطبيق.</string>
     <string name="KbsSplashFragment__learn_more">لمعرفة المزيد</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -7842,7 +7842,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">حذف الرابط؟</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">لن يشتغل هذا الرابط لأي أحد يتحصّل عليه.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">الرابط</string>

@@ -604,7 +604,7 @@
     <string name="ConversationFragment_failed_to_open_message">No se ha podido abrir el mensaje</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puedes deslizar hacia la derecha sobre cualquier mensaje para responder rápidamente</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puedes deslizar hacia la izquierda sobre cualquier mensaje para responder rápidamente</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Los archivos multimedia para ver solo una vez se eliminan después de ser enviados</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Los archivos multimedia de visualización única se eliminan después de ser enviados</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ya has visto este mensaje</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">En este chat puedes añadir notas que solo tú podrás ver. Si tu cuenta tiene dispositivos vinculados, las notas nuevas se sincronizarán.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d participantes usan el mismo nombre.</string>
@@ -2523,7 +2523,7 @@
     <string name="RevealableMessageView_view_photo">Ver foto</string>
     <string name="RevealableMessageView_view_video">Ver vídeo</string>
     <string name="RevealableMessageView_viewed">Visto</string>
-    <string name="RevealableMessageView_media">Archivos multimedia</string>
+    <string name="RevealableMessageView_media">Archivo multimedia</string>
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
@@ -2634,7 +2634,7 @@
     <string name="ThreadRecord_sticker">Sticker</string>
     <string name="ThreadRecord_view_once_photo">Foto de visualización única</string>
     <string name="ThreadRecord_view_once_video">Vídeo de visualización única</string>
-    <string name="ThreadRecord_view_once_media">Archivo de visualización única</string>
+    <string name="ThreadRecord_view_once_media">Archivo multimedia</string>
     <string name="ThreadRecord_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
     <string name="ThreadRecord_you_deleted_this_message">Mensaje eliminado.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
@@ -2857,7 +2857,7 @@
     <string name="MessageNotifier_reacted_s_to_your_gif">Reacción a tu GIF: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu archivo: %1$s.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reacción a tu audio: %1$s.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu archivo multimedia para ver una vez: %1$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu archivo multimedia: %1$s.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">Ha reaccionado con %1$s a tu pago.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu sticker: %1$s.</string>
@@ -3075,7 +3075,7 @@
     <!-- Text on row item to find user by username -->
     <string name="ContactSelectionListFragment__find_by_username">Buscar por alias</string>
     <!-- Dialog title asking users for contact permission -->
-    <string name="ContactSelectionListFragment_allow_access_contacts">Permitir acceso a los contactos</string>
+    <string name="ContactSelectionListFragment_allow_access_contacts">Permitir acceso a tus contactos</string>
     <!-- Dialog description that will explain the steps needed to give contact permissions -->
     <string name="ContactSelectionListFragment_to_find_people">Para encontrar a personas que conoces en Signal:</string>
     <!-- Text on button prompting users to give Signal contact permissions -->
@@ -3173,7 +3173,7 @@
     <string name="QuoteView_video">Vídeo</string>
     <string name="QuoteView_photo">Foto</string>
     <string name="QuoteView_gif">GIF</string>
-    <string name="QuoteView_view_once_media">Archivo de visualización única</string>
+    <string name="QuoteView_view_once_media">Archivo multimedia</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_you">Tú</string>
     <string name="QuoteView_original_missing">No se ha encontrado el mensaje original</string>
@@ -5573,7 +5573,7 @@
     <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Añadir una respuesta</string>
     <string name="MediaReviewFragment__send_to">Enviar a</string>
-    <string name="MediaReviewFragment__view_once_message">Archivo de visualización única</string>
+    <string name="MediaReviewFragment__view_once_message">Archivo multimedia</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Uno o más elementos son demasiado grandes</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Uno o más elementos no son válidos</string>
     <string name="MediaReviewFragment__too_many_items_selected">Hay demasiados elementos seleccionados</string>
@@ -7214,7 +7214,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">¿Eliminar enlace?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Este enlace ya no funcionará para nadie.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">Enlace</string>
