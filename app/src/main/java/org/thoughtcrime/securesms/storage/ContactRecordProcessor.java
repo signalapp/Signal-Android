@@ -61,8 +61,9 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
    * The reasons are nuanced, but the TL;DR is that we want to split unregistered users into separate rows so that a user
    * could re-register and get a different ACI.
    */
+
   @Override
-  public void process(@NonNull Collection<SignalContactRecord> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
+  public void process(@NonNull Collection<? extends SignalContactRecord> remoteRecords, @NonNull StorageKeyGenerator keyGenerator) throws IOException {
     List<SignalContactRecord> unregisteredAciOnly = new ArrayList<>();
 
     for (SignalContactRecord remoteRecord : remoteRecords) {
@@ -92,7 +93,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
    * Note: This method could be written more succinctly, but the logs are useful :)
    */
   @Override
-  boolean isInvalid(@NonNull SignalContactRecord remote) {
+  public boolean isInvalid(@NonNull SignalContactRecord remote) {
     boolean hasAci = remote.getAci().isPresent() && remote.getAci().get().isValid();
     boolean hasPni = remote.getPni().isPresent() && remote.getPni().get().isValid();
 
@@ -114,7 +115,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   }
 
   @Override
-  @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
     Optional<RecipientId> found = remote.getAci().isPresent() ? recipientTable.getByAci(remote.getAci().get()) : Optional.empty();
 
     if (found.isEmpty() && remote.getNumber().isPresent()) {
@@ -141,7 +142,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   }
 
   @Override
-  @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull SignalContactRecord merge(@NonNull SignalContactRecord remote, @NonNull SignalContactRecord local, @NonNull StorageKeyGenerator keyGenerator) {
     String profileGivenName;
     String profileFamilyName;
 
@@ -258,12 +259,12 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   }
 
   @Override
-  void insertLocal(@NonNull SignalContactRecord record) {
+  public void insertLocal(@NonNull SignalContactRecord record) {
     recipientTable.applyStorageSyncContactInsert(record);
   }
 
   @Override
-  void updateLocal(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
+  public void updateLocal(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
     recipientTable.applyStorageSyncContactUpdate(update);
   }
 

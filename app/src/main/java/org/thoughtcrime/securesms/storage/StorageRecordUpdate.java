@@ -14,7 +14,6 @@ public class StorageRecordUpdate<E extends SignalRecord> {
   private final E oldRecord;
   private final E newRecord;
 
-  @VisibleForTesting
   public StorageRecordUpdate(@NonNull E oldRecord, @NonNull E newRecord) {
     this.oldRecord = oldRecord;
     this.newRecord = newRecord;

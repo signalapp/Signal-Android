@@ -40,12 +40,12 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  boolean isInvalid(@NonNull SignalGroupV2Record remote) {
+  public boolean isInvalid(@NonNull SignalGroupV2Record remote) {
     return remote.getMasterKeyBytes().length != GroupMasterKey.SIZE;
   }
 
   @Override
-  @NonNull Optional<SignalGroupV2Record> getMatching(@NonNull SignalGroupV2Record record, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull Optional<SignalGroupV2Record> getMatching(@NonNull SignalGroupV2Record record, @NonNull StorageKeyGenerator keyGenerator) {
     GroupId.V2 groupId = GroupId.v2(record.getMasterKeyOrThrow());
 
     Optional<RecipientId> recipientId = recipientTable.getByGroupId(groupId);
@@ -64,7 +64,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull SignalGroupV2Record merge(@NonNull SignalGroupV2Record remote, @NonNull SignalGroupV2Record local, @NonNull StorageKeyGenerator keyGenerator) {
     byte[]                      unknownFields              = remote.serializeUnknownFields();
     boolean                     blocked                    = remote.isBlocked();
     boolean                     profileSharing             = remote.isProfileSharingEnabled();
@@ -97,12 +97,12 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  void insertLocal(@NonNull SignalGroupV2Record record) {
+  public void insertLocal(@NonNull SignalGroupV2Record record) {
     recipientTable.applyStorageSyncGroupV2Insert(record);
   }
 
   @Override
-  void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV2Record> update) {
+  public void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV2Record> update) {
     recipientTable.applyStorageSyncGroupV2Update(update);
   }
 

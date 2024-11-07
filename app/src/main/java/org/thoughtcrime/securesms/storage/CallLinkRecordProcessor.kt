@@ -26,11 +26,11 @@ internal class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCal
     }
   }
 
-  internal override fun isInvalid(remote: SignalCallLinkRecord): Boolean {
+  override fun isInvalid(remote: SignalCallLinkRecord): Boolean {
     return remote.adminPassKey.isNotEmpty() && remote.deletionTimestamp > 0L
   }
 
-  internal override fun getMatching(remote: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): Optional<SignalCallLinkRecord> {
+  override fun getMatching(remote: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): Optional<SignalCallLinkRecord> {
     Log.d(TAG, "Attempting to get matching record...")
     val rootKey = CallLinkRootKey(remote.rootKey)
     val roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey)
@@ -52,7 +52,7 @@ internal class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCal
    * An earlier deletion takes precedence over a later deletion
    * Other fields should not change, except for the clearing of the admin passkey on deletion
    */
-  internal override fun merge(remote: SignalCallLinkRecord, local: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): SignalCallLinkRecord {
+  override fun merge(remote: SignalCallLinkRecord, local: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): SignalCallLinkRecord {
     return if (remote.isDeleted() && local.isDeleted()) {
       if (remote.deletionTimestamp < local.deletionTimestamp) {
         remote

@@ -45,7 +45,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
    * Note: This method could be written more succinctly, but the logs are useful :)
    */
   @Override
-  boolean isInvalid(@NonNull SignalGroupV1Record remote) {
+  public boolean isInvalid(@NonNull SignalGroupV1Record remote) {
     try {
       GroupId.V1            id       = GroupId.v1(remote.getGroupId());
       Optional<GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
@@ -63,7 +63,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record, @NonNull StorageKeyGenerator keyGenerator) {
     GroupId.V1 groupId = GroupId.v1orThrow(record.getGroupId());
 
     Optional<RecipientId> recipientId = recipientTable.getByGroupId(groupId);
@@ -74,7 +74,7 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  @NonNull SignalGroupV1Record merge(@NonNull SignalGroupV1Record remote, @NonNull SignalGroupV1Record local, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull SignalGroupV1Record merge(@NonNull SignalGroupV1Record remote, @NonNull SignalGroupV1Record local, @NonNull StorageKeyGenerator keyGenerator) {
     byte[]  unknownFields  = remote.serializeUnknownFields();
     boolean blocked        = remote.isBlocked();
     boolean profileSharing = remote.isProfileSharingEnabled();
@@ -101,12 +101,12 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   }
 
   @Override
-  void insertLocal(@NonNull SignalGroupV1Record record) {
+  public void insertLocal(@NonNull SignalGroupV1Record record) {
     recipientTable.applyStorageSyncGroupV1Insert(record);
   }
 
   @Override
-  void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
+  public void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
     recipientTable.applyStorageSyncGroupV1Update(update);
   }
 

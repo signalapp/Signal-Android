@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
    *  </ul>
    */
   @Override
-  boolean isInvalid(@NonNull SignalStoryDistributionListRecord remote) {
+  public boolean isInvalid(@NonNull SignalStoryDistributionListRecord remote) {
     UUID remoteUuid = UuidUtil.parseOrNull(remote.getIdentifier());
     if (remoteUuid == null) {
       Log.d(TAG, "Bad distribution list identifier -- marking as invalid");
@@ -68,7 +69,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
   }
 
   @Override
-  @NonNull Optional<SignalStoryDistributionListRecord> getMatching(@NonNull SignalStoryDistributionListRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull Optional<SignalStoryDistributionListRecord> getMatching(@NonNull SignalStoryDistributionListRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
     Log.d(TAG, "Attempting to get matching record...");
     RecipientId matching = SignalDatabase.distributionLists().getRecipientIdForSyncRecord(remote);
     if (matching == null && UuidUtil.parseOrThrow(remote.getIdentifier()).equals(DistributionId.MY_STORY.asUuid())) {
@@ -104,7 +105,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
   }
 
   @Override
-  @NonNull SignalStoryDistributionListRecord merge(@NonNull SignalStoryDistributionListRecord remote, @NonNull SignalStoryDistributionListRecord local, @NonNull StorageKeyGenerator keyGenerator) {
+  public @NonNull SignalStoryDistributionListRecord merge(@NonNull SignalStoryDistributionListRecord remote, @NonNull SignalStoryDistributionListRecord local, @NonNull StorageKeyGenerator keyGenerator) {
     byte[]                     unknownFields      = remote.serializeUnknownFields();
     byte[]                     identifier         = remote.getIdentifier();
     String                     name               = remote.getName();
@@ -133,12 +134,12 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
   }
 
   @Override
-  void insertLocal(@NonNull SignalStoryDistributionListRecord record) throws IOException {
+  public void insertLocal(@NonNull SignalStoryDistributionListRecord record) throws IOException {
     SignalDatabase.distributionLists().applyStorageSyncStoryDistributionListInsert(record);
   }
 
   @Override
-  void updateLocal(@NonNull StorageRecordUpdate<SignalStoryDistributionListRecord> update) {
+  public void updateLocal(@NonNull StorageRecordUpdate<SignalStoryDistributionListRecord> update) {
     SignalDatabase.distributionLists().applyStorageSyncStoryDistributionListUpdate(update);
   }
 
