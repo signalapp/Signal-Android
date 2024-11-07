@@ -221,14 +221,14 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       var localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
       var idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
 
-      if (idDifference.hasTypeMismatches() && SignalStore.account.isPrimaryDevice) {
+      if (idDifference.hasTypeMismatches && SignalStore.account.isPrimaryDevice) {
         Log.w(TAG, "[Remote Sync] Found type mismatches in the ID sets! Scheduling a force push after this sync completes.")
         needsForcePush = true
       }
 
       Log.i(TAG, "[Remote Sync] Pre-Merge ID Difference :: $idDifference")
 
-      if (idDifference.localOnlyIds.size > 0) {
+      if (idDifference.localOnlyIds.isNotEmpty()) {
         val updated = SignalDatabase.recipients.removeStorageIdsFromLocalOnlyUnregisteredRecipients(idDifference.localOnlyIds)
 
         if (updated > 0) {
@@ -375,7 +375,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
   }
 
-  private fun getAllLocalStorageIds(self: Recipient): List<StorageId?> {
+  private fun getAllLocalStorageIds(self: Recipient): List<StorageId> {
     return SignalDatabase.recipients.getContactStorageSyncIds() +
       listOf(StorageId.forAccount(self.storageId)) +
       SignalDatabase.unknownStorageIds.allUnknownIds

@@ -72,25 +72,25 @@ public final class StorageSyncHelperTest {
   @Test
   public void findIdDifference_allOverlap() {
     IdDifferenceResult result = StorageSyncHelper.findIdDifference(keyListOf(1, 2, 3), keyListOf(1, 2, 3));
-    assertTrue(result.getLocalOnlyIds().isEmpty());
-    assertTrue(result.getRemoteOnlyIds().isEmpty());
-    assertFalse(result.hasTypeMismatches());
+    assertTrue(result.localOnlyIds.isEmpty());
+    assertTrue(result.remoteOnlyIds.isEmpty());
+    assertFalse(result.getHasTypeMismatches());
   }
 
   @Test
   public void findIdDifference_noOverlap() {
     IdDifferenceResult result = StorageSyncHelper.findIdDifference(keyListOf(1, 2, 3), keyListOf(4, 5, 6));
-    assertContentsEqual(keyListOf(1, 2, 3), result.getRemoteOnlyIds());
-    assertContentsEqual(keyListOf(4, 5, 6), result.getLocalOnlyIds());
-    assertFalse(result.hasTypeMismatches());
+    assertContentsEqual(keyListOf(1, 2, 3), result.remoteOnlyIds);
+    assertContentsEqual(keyListOf(4, 5, 6), result.localOnlyIds);
+    assertFalse(result.getHasTypeMismatches());
   }
 
   @Test
   public void findIdDifference_someOverlap() {
     IdDifferenceResult result = StorageSyncHelper.findIdDifference(keyListOf(1, 2, 3), keyListOf(2, 3, 4));
-    assertContentsEqual(keyListOf(1), result.getRemoteOnlyIds());
-    assertContentsEqual(keyListOf(4), result.getLocalOnlyIds());
-    assertFalse(result.hasTypeMismatches());
+    assertContentsEqual(keyListOf(1), result.remoteOnlyIds);
+    assertContentsEqual(keyListOf(4), result.localOnlyIds);
+    assertFalse(result.getHasTypeMismatches());
   }
 
   @Test
@@ -104,9 +104,9 @@ public final class StorageSyncHelperTest {
                                                                                put(200, 1);
                                                                              }}));
 
-    assertTrue(result.getLocalOnlyIds().isEmpty());
-    assertTrue(result.getRemoteOnlyIds().isEmpty());
-    assertTrue(result.hasTypeMismatches());
+    assertTrue(result.localOnlyIds.isEmpty());
+    assertTrue(result.remoteOnlyIds.isEmpty());
+    assertTrue(result.getHasTypeMismatches());
   }
 
   @Test
@@ -122,9 +122,9 @@ public final class StorageSyncHelperTest {
                                                                      put(400, 1);
                                                                    }}));
 
-    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(300), 1)), result.getRemoteOnlyIds());
-    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(400), 1)), result.getLocalOnlyIds());
-    assertTrue(result.hasTypeMismatches());
+    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(300), 1)), result.remoteOnlyIds);
+    assertContentsEqual(Arrays.asList(StorageId.forType(byteArray(400), 1)), result.localOnlyIds);
+    assertTrue(result.getHasTypeMismatches());
   }
 
   @Test

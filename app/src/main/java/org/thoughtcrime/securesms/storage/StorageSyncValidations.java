@@ -31,12 +31,12 @@ public final class StorageSyncValidations {
                               boolean forcePushPending,
                               @NonNull Recipient self)
   {
-    validateManifestAndInserts(result.getManifest(), result.getInserts(), self);
+    validateManifestAndInserts(result.manifest, result.inserts, self);
 
-    if (result.getDeletes().size() > 0) {
-      Set<String> allSetEncoded = Stream.of(result.getManifest().getStorageIds()).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
+    if (result.deletes.size() > 0) {
+      Set<String> allSetEncoded = Stream.of(result.manifest.getStorageIds()).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
 
-      for (byte[] delete : result.getDeletes()) {
+      for (byte[] delete : result.deletes) {
         String encoded = Base64.encodeWithPadding(delete);
         if (allSetEncoded.contains(encoded)) {
           throw new DeletePresentInFullIdSetError();
@@ -49,7 +49,7 @@ public final class StorageSyncValidations {
       return;
     }
 
-    if (result.getManifest().getVersion() != previousManifest.getVersion() + 1) {
+    if (result.manifest.getVersion() != previousManifest.getVersion() + 1) {
       throw new IncorrectManifestVersionError();
     }
 
@@ -59,13 +59,13 @@ public final class StorageSyncValidations {
     }
 
     Set<ByteBuffer> previousIds = Stream.of(previousManifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> newIds      = Stream.of(result.getManifest().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> newIds      = Stream.of(result.manifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);
     Set<ByteBuffer> manifestDeletes = SetUtil.difference(previousIds, newIds);
 
-    Set<ByteBuffer> declaredInserts = Stream.of(result.getInserts()).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> declaredDeletes = Stream.of(result.getDeletes()).map(ByteBuffer::wrap).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredInserts = Stream.of(result.inserts).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredDeletes = Stream.of(result.deletes).map(ByteBuffer::wrap).collect(Collectors.toSet());
 
     if (declaredInserts.size() > manifestInserts.size()) {
       Log.w(TAG, "DeclaredInserts: " + declaredInserts.size() + ", ManifestInserts: " + manifestInserts.size());
