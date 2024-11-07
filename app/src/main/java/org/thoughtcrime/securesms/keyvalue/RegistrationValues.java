@@ -96,7 +96,7 @@ public final class RegistrationValues extends SignalStoreValues {
     putBoolean(SKIPPED_TRANSFER_OR_RESTORE, true);
   }
 
-  public void clearSkippedTransferOrRestore() {
+  public void debugClearSkippedTransferOrRestore() {
     putBoolean(SKIPPED_TRANSFER_OR_RESTORE, false);
   }
 

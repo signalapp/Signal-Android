@@ -24,7 +24,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -170,13 +169,13 @@ private fun PreviewWithCodeShort() {
     Surface {
       Column {
         QrCodeBadge(
-          data = QrCodeState.Present(QrCodeData.forData("https://signal.org", 64)),
+          data = QrCodeState.Present(QrCodeData.forData("https://signal.org")),
           colorScheme = UsernameQrCodeColorScheme.Blue,
           username = "parker.42",
           usernameCopyable = false
         )
         QrCodeBadge(
-          data = QrCodeState.Present(QrCodeData.forData("https://signal.org", 64)),
+          data = QrCodeState.Present(QrCodeData.forData("https://signal.org")),
           colorScheme = UsernameQrCodeColorScheme.Blue,
           username = "parker.42",
           usernameCopyable = true
@@ -193,14 +192,14 @@ private fun PreviewWithCodeLong() {
     Surface {
       Column {
         QrCodeBadge(
-          data = QrCodeState.Present(QrCodeData.forData("https://signal.org", 64)),
+          data = QrCodeState.Present(QrCodeData.forData("https://signal.org")),
           colorScheme = UsernameQrCodeColorScheme.Blue,
           username = "TheAmazingSpiderMan.42",
           usernameCopyable = false
         )
         Spacer(modifier = Modifier.height(8.dp))
         QrCodeBadge(
-          data = QrCodeState.Present(QrCodeData.forData("https://signal.org", 64)),
+          data = QrCodeState.Present(QrCodeData.forData("https://signal.org")),
           colorScheme = UsernameQrCodeColorScheme.Blue,
           username = "TheAmazingSpiderMan.42",
           usernameCopyable = true
@@ -249,7 +248,7 @@ private fun PreviewAllColorsP2() {
 @Composable
 private fun SampleCode(colorScheme: UsernameQrCodeColorScheme) {
   QrCodeBadge(
-    data = QrCodeState.Present(QrCodeData.forData("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdf", 64)),
+    data = QrCodeState.Present(QrCodeData.forData("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdf")),
     colorScheme = colorScheme,
     username = "parker.42"
   )

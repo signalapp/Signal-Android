@@ -73,6 +73,8 @@ final class NewDeviceServerTask implements ServerTask {
 
     long end = System.currentTimeMillis();
     Log.i(TAG, "Receive took: " + (end - start));
+
+    EventBus.getDefault().post(new Status(0, Status.State.RESTORE_COMPLETE));
   }
 
   @Subscribe(threadMode = ThreadMode.POSTING)
@@ -80,7 +82,7 @@ final class NewDeviceServerTask implements ServerTask {
     if (event.getType() == BackupEvent.Type.PROGRESS) {
       EventBus.getDefault().post(new Status(event.getCount(), Status.State.IN_PROGRESS));
     } else if (event.getType() == BackupEvent.Type.FINISHED) {
-      EventBus.getDefault().post(new Status(event.getCount(), Status.State.SUCCESS));
+      EventBus.getDefault().post(new Status(event.getCount(), Status.State.TRANSFER_COMPLETE));
     }
   }
 
@@ -103,7 +105,8 @@ final class NewDeviceServerTask implements ServerTask {
 
     public enum State {
       IN_PROGRESS,
-      SUCCESS,
+      TRANSFER_COMPLETE,
+      RESTORE_COMPLETE,
       FAILURE_VERSION_DOWNGRADE,
       FAILURE_FOREIGN_KEY,
       FAILURE_UNKNOWN

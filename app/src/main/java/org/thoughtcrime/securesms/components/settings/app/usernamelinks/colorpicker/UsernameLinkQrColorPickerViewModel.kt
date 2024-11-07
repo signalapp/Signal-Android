@@ -39,7 +39,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
     if (usernameLink != null) {
       disposable += Single
-        .fromCallable { QrCodeData.forData(usernameLink.toLink(), 64) }
+        .fromCallable { QrCodeData.forData(usernameLink.toLink()) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { qrData ->

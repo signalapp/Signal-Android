@@ -15,6 +15,7 @@ import java.util.BitSet
 class QrCodeData(
   val width: Int,
   val height: Int,
+  val canSupportIconOverlay: Boolean,
   private val bits: BitSet
 ) {
 
@@ -34,13 +35,17 @@ class QrCodeData(
 
     /**
      * Converts the provided string data into a QR representation.
+     *
+     * @param supportIconOverlay indicates data can be rendered with the icon overlay. Rendering with an icon relies on more error correction
+     * data in the QR which requires a denser rendering which is sometimes not easily scanned by our scanner. Set to false if data is expected to be
+     * long to prevent scanning issues.
      */
     @WorkerThread
-    fun forData(data: String, size: Int): QrCodeData {
+    fun forData(data: String, supportIconOverlay: Boolean = true): QrCodeData {
       val qrCodeWriter = QRCodeWriter()
-      val hints = mapOf(EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.Q.toString())
+      val hints = mapOf(EncodeHintType.ERROR_CORRECTION to if (supportIconOverlay) ErrorCorrectionLevel.Q.toString() else ErrorCorrectionLevel.L.toString())
 
-      val padded = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, size, size, hints)
+      val padded = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 64, 64, hints)
       val dimens = padded.enclosingRectangle
       val xStart = dimens[0]
       val yStart = dimens[1]
@@ -58,7 +63,7 @@ class QrCodeData(
         }
       }
 
-      return QrCodeData(width, height, bitSet)
+      return QrCodeData(width, height, supportIconOverlay, bitSet)
     }
   }
 }

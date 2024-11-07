@@ -11,10 +11,11 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.QrScanResult
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.io.FileDescriptor
 import java.util.Optional
@@ -71,6 +72,15 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
       .subscribe { data ->
         internalEvents.onNext(MediaCaptureEvent.DeviceLinkScannedFromQrCode)
       }
+
+    if (SignalStore.account.isRegistered) {
+      disposables += qrData
+        .throttleFirst(5, TimeUnit.SECONDS)
+        .filter { it.startsWith("sgnl://rereg") && QuickRegistrationRepository.isValidReRegistrationQr(it) }
+        .subscribe { data ->
+          internalEvents.onNext(MediaCaptureEvent.ReregistrationScannedFromQrCode(data))
+        }
+    }
   }
 
   override fun onCleared() {

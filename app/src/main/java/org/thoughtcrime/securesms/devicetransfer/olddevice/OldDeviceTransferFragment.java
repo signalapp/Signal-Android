@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.devicetransfer.DeviceTransferFragment;
+import org.thoughtcrime.securesms.restore.devicetransfer.DeviceTransferFragment;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 
 import java.text.NumberFormat;
@@ -66,16 +66,16 @@ public final class OldDeviceTransferFragment extends DeviceTransferFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(@NonNull OldDeviceClientTask.Status event) {
       if (event.isDone()) {
-        transferFinished = true;
+        setTransferFinished(true);
         ignoreTransferStatusEvents();
         EventBus.getDefault().removeStickyEvent(TransferStatus.class);
         DeviceToDeviceTransferService.stop(requireContext());
         SafeNavigation.safeNavigate(NavHostFragment.findNavController(OldDeviceTransferFragment.this), R.id.action_oldDeviceTransfer_to_oldDeviceTransferComplete);
       } else {
         if (event.getEstimatedMessageCount() == 0) {
-          status.setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
+          getStatus().setText(getString(R.string.DeviceTransfer__d_messages_so_far, event.getMessageCount()));
         } else {
-          status.setText(getString(R.string.DeviceTransfer__s_of_messages_so_far, formatter.format(event.getCompletionPercentage())));
+          getStatus().setText(getString(R.string.DeviceTransfer__s_of_messages_so_far, formatter.format(event.getCompletionPercentage())));
         }
       }
     }

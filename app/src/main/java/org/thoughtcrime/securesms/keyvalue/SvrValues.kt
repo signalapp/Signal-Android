@@ -25,6 +25,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     private const val SVR2_AUTH_TOKENS = "kbs.kbs_auth_tokens"
     private const val SVR_LAST_AUTH_REFRESH_TIMESTAMP = "kbs.kbs_auth_tokens.last_refresh_timestamp"
     private const val SVR3_AUTH_TOKENS = "kbs.svr3_auth_tokens"
+    private const val RESTORED_VIA_ACCOUNT_ENTROPY_KEY = "kbs.restore_via_account_entropy_pool"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -52,14 +53,22 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   }
 
   @Synchronized
-  fun setMasterKey(masterKey: MasterKey, pin: String) {
-    store.beginWrite()
-      .putBlob(MASTER_KEY, masterKey.serialize())
-      .putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
-      .putString(PIN, pin)
-      .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
-      .putBoolean(OPTED_OUT, false)
-      .commit()
+  fun setMasterKey(masterKey: MasterKey, pin: String?) {
+    store.beginWrite().apply {
+      putBlob(MASTER_KEY, masterKey.serialize())
+      putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
+      putBoolean(OPTED_OUT, false)
+
+      if (pin != null) {
+        putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
+        putString(PIN, pin)
+        remove(RESTORED_VIA_ACCOUNT_ENTROPY_KEY)
+      } else {
+        putBoolean(RESTORED_VIA_ACCOUNT_ENTROPY_KEY, true)
+        remove(LOCK_LOCAL_PIN_HASH)
+        remove(PIN)
+      }
+    }.commit()
   }
 
   @Synchronized
@@ -85,9 +94,9 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     return getLong(LAST_CREATE_FAILED_TIMESTAMP, -1) > 0
   }
 
+  /** Returns the Master Key, lazily creating one if needed. */
   @get:Synchronized
   val masterKey: MasterKey
-    /** Returns the Master Key, lazily creating one if needed. */
     get() {
       val blob = store.getBlob(MASTER_KEY, null)
       if (blob != null) {
@@ -123,7 +132,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   val recoveryPassword: String?
     get() {
       val masterKey = rawMasterKey
-      return if (masterKey != null && hasPin()) {
+      return if (masterKey != null && hasOptedInWithAccess()) {
         masterKey.deriveRegistrationRecoveryPassword()
       } else {
         null
@@ -137,9 +146,17 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   val localPinHash: String? by stringValue(LOCK_LOCAL_PIN_HASH, null)
 
   @Synchronized
+  fun hasOptedInWithAccess(): Boolean {
+    return hasPin() || restoredViaAccountEntropyPool
+  }
+
+  @Synchronized
   fun hasPin(): Boolean {
     return localPinHash != null
   }
+
+  @get:Synchronized
+  val restoredViaAccountEntropyPool by booleanValue(RESTORED_VIA_ACCOUNT_ENTROPY_KEY, false)
 
   @get:Synchronized
   @set:Synchronized
@@ -229,6 +246,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
       .putBlob(MASTER_KEY, MasterKey.createNew(SecureRandom()).serialize())
       .remove(LOCK_LOCAL_PIN_HASH)
       .remove(PIN)
+      .remove(RESTORED_VIA_ACCOUNT_ENTROPY_KEY)
       .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
       .commit()
   }

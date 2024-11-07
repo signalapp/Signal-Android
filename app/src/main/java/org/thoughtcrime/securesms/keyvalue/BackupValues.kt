@@ -154,7 +154,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
 
   /**
-   * When uploading a backup, we store the progress state here so that I can remain across app restarts.
+   * When uploading a backup, we store the progress state here so that it can remain across app restarts.
    */
   var archiveUploadState: ArchiveUploadProgressState? by protoValue(KEY_ARCHIVE_UPLOAD_STATE, ArchiveUploadProgressState.ADAPTER)
 

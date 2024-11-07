@@ -63,13 +63,17 @@ fun DrawScope.drawQr(
   val deadzonePaddingPercent = 0.045f
 
   // We want an even number of dots on either side of the deadzone
-  val deadzoneRadius: Int = (data.height * (deadzonePercent + deadzonePaddingPercent)).toInt().let { candidateDeadzoneHeight ->
-    if ((data.height - candidateDeadzoneHeight) % 2 == 0) {
-      candidateDeadzoneHeight
-    } else {
-      candidateDeadzoneHeight + 1
-    }
-  } / 2
+  val deadzoneRadius: Int = if (data.canSupportIconOverlay) {
+    (data.height * (deadzonePercent + deadzonePaddingPercent)).toInt().let { candidateDeadzoneHeight ->
+      if ((data.height - candidateDeadzoneHeight) % 2 == 0) {
+        candidateDeadzoneHeight
+      } else {
+        candidateDeadzoneHeight + 1
+      }
+    } / 2
+  } else {
+    0
+  }
 
   val cellWidthPx: Float = size.width / data.width
   val cornerRadius = CornerRadius(7f, 7f)
@@ -108,25 +112,27 @@ fun DrawScope.drawQr(
     }
   }
 
-  // Logo border
-  val logoBorderRadiusPx = ((deadzonePercent - deadzonePaddingPercent) * size.width) / 2
-  drawCircle(
-    color = foregroundColor,
-    radius = logoBorderRadiusPx,
-    style = Stroke(width = cellWidthPx * 0.75f),
-    center = this.center
-  )
-
-  // Logo
-  val logoWidthPx = (((deadzonePercent - deadzonePaddingPercent) * 0.6f) * size.width).toInt()
-  val logoOffsetPx = ((size.width - logoWidthPx) / 2).toInt()
-  if (logo != null) {
-    drawImage(
-      image = logo,
-      dstOffset = IntOffset(logoOffsetPx, logoOffsetPx),
-      dstSize = IntSize(logoWidthPx, logoWidthPx),
-      colorFilter = ColorFilter.tint(foregroundColor)
+  if (data.canSupportIconOverlay) {
+    // Logo border
+    val logoBorderRadiusPx = ((deadzonePercent - deadzonePaddingPercent) * size.width) / 2
+    drawCircle(
+      color = foregroundColor,
+      radius = logoBorderRadiusPx,
+      style = Stroke(width = cellWidthPx * 0.75f),
+      center = this.center
     )
+
+    // Logo
+    val logoWidthPx = (((deadzonePercent - deadzonePaddingPercent) * 0.6f) * size.width).toInt()
+    val logoOffsetPx = ((size.width - logoWidthPx) / 2).toInt()
+    if (logo != null) {
+      drawImage(
+        image = logo,
+        dstOffset = IntOffset(logoOffsetPx, logoOffsetPx),
+        dstSize = IntSize(logoWidthPx, logoWidthPx),
+        colorFilter = ColorFilter.tint(foregroundColor)
+      )
+    }
   }
 }
 
@@ -135,7 +141,7 @@ fun DrawScope.drawQr(
 private fun Preview() {
   Surface {
     QrCode(
-      data = QrCodeData.forData("https://signal.org", 64),
+      data = QrCodeData.forData("https://signal.org"),
       modifier = Modifier.size(350.dp)
     )
   }

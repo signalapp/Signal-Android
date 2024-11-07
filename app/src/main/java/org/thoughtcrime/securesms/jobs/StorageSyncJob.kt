@@ -139,7 +139,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
   @Throws(IOException::class, RetryLaterException::class, UntrustedIdentityException::class)
   override fun onRun() {
-    if (!SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) {
+    if (!SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) {
       Log.i(TAG, "Doesn't have a PIN. Skipping.")
       return
     }

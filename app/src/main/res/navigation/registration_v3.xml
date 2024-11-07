@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_registration_welcome">
+
+        <action
+            android:id="@+id/go_to_enterPhoneNumber"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_welcomeFragment_to_grantPermissionsFragment"
+            app:destination="@id/grantPermissionsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/go_to_selectRestoreMethod"
+            app:destination="@id/selectRestoreMethod"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/go_to_restoreViaQr"
+            app:destination="@id/restoreViaQr"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/grantPermissionsFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.permissions.GrantPermissionsFragment"
+        android:label="fragment_grant_permissions">
+
+        <argument
+            android:name="welcomeUserSelection"
+            app:argType="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeUserSelection" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/restoreViaQr"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreViaQrFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectRestoreMethod"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.SelectManualRestoreMethodFragment">
+
+        <action
+            android:id="@+id/go_to_enterPhoneNumber"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <argument
+            android:name="welcomeUserSelection"
+            app:argType="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeUserSelection" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterPhoneNumberFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberFragment"
+        android:label="fragment_enter_phone_number"
+        tools:layout="@layout/fragment_registration_enter_phone_number">
+
+        <action
+            android:id="@+id/action_enterVerificationCode"
+            app:destination="@id/enterCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_requestCaptcha"
+            app:destination="@id/captchaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_editProxy"
+            app:destination="@+id/registrationProxyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment"
+            app:destination="@id/reRegisterWithPinFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/enterPhoneNumberFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_phoneNumberRegistrationLock"
+            app:destination="@id/registrationLockFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/enterPhoneNumberFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_phoneNumberAccountLocked"
+            app:destination="@id/accountLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/go_to_enterBackupKey"
+            app:destination="@id/enterBackupKey"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <argument
+            android:name="enterPhoneNumberMode"
+            app:argType="org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberMode" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterBackupKey"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.EnterBackupKeyFragment">
+
+        <action
+            android:id="@+id/go_to_enterPhoneNumber"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/welcomeFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryPickerFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment"
+        android:label="fragment_country_picker"
+        tools:layout="@layout/fragment_registration_country_picker" />
+
+    <fragment
+        android:id="@+id/enterCodeFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.entercode.EnterCodeFragment"
+        android:label="fragment_enter_code"
+        tools:layout="@layout/fragment_registration_enter_code">
+
+        <action
+            android:id="@+id/action_requireKbsLockPin"
+            app:destination="@id/registrationLockFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_requestCaptcha"
+            app:destination="@id/captchaFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_accountLocked"
+            app:destination="@id/accountLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationLockFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.registrationlock.RegistrationLockFragment"
+        android:label="fragment_kbs_lock"
+        tools:layout="@layout/fragment_registration_lock">
+
+        <action
+            android:id="@+id/action_accountLocked"
+            app:destination="@id/accountLockedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/welcomeFragment"
+            app:popUpToInclusive="true" />
+
+        <argument
+            android:name="timeRemaining"
+            app:argType="long" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/reRegisterWithPinFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.reregisterwithpin.ReRegisterWithPinFragment"
+        tools:layout="@layout/fragment_registration_lock">
+
+        <action
+            android:id="@+id/action_reRegisterWithPinFragment_to_enterPhoneNumberFragment"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/reRegisterWithPinFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountLockedFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.accountlocked.AccountLockedFragment"
+        android:label="fragment_account_locked"
+        tools:layout="@layout/account_locked_fragment" />
+
+    <fragment
+        android:id="@+id/captchaFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.captcha.RegistrationCaptchaFragment"
+        android:label="fragment_captcha"
+        tools:layout="@layout/fragment_registration_captcha" />
+
+
+    <fragment
+        android:id="@+id/registrationProxyFragment"
+        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
+        android:label="fragment_registration_edit_proxy"
+        tools:layout="@layout/edit_proxy_fragment" />
+
+    <action
+        android:id="@+id/action_restart_to_welcomeFragment"
+        app:destination="@id/welcomeFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpTo="@id/welcomeFragment"
+        app:popUpToInclusive="true" />
+
+</navigation>

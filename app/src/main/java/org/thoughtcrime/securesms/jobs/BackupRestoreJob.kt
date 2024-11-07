@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
@@ -75,7 +76,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
           progress = progress.toFloat() / total.toFloat(),
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress, total))
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.bytes, total.bytes))
       }
 
       override fun shouldCancel() = isCanceled

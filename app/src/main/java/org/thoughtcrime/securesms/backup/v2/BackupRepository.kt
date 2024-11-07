@@ -13,6 +13,7 @@ import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Stopwatch
+import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LimitedWorker
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.forceForeignKeyConstraintsEnabled
@@ -644,7 +645,7 @@ object BackupRepository {
 
           else -> Log.w(TAG, "Unrecognized frame")
         }
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead(), totalLength))
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_RESTORE, frameReader.getBytesRead().bytes, totalLength.bytes))
       }
 
       if (chatItemInserter.flush()) {
@@ -1176,7 +1177,7 @@ object BackupRepository {
     return if (SignalStore.backup.backupsInitialized) {
       getArchiveServiceAccessPair().runOnStatusCodeError(resetInitializedStateErrorAction)
     } else if (isPreRestoreDuringRegistration()) {
-      Log.w(TAG, "Requesting/using auth credentials in pre-restore state")
+      Log.w(TAG, "Requesting/using auth credentials in pre-restore state", Throwable())
       getArchiveServiceAccessPair()
     } else {
       val messageBackupKey = SignalStore.backup.messageBackupKey

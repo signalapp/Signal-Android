@@ -94,6 +94,8 @@ dependencies {
   api(libs.rxjava3.rxjava)
 
   implementation(libs.kotlin.stdlib.jdk8)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.core.jvm)
 
   implementation(project(":core-util-jvm"))
 
@@ -102,6 +104,7 @@ dependencies {
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockito.core)
   testImplementation(testLibs.mockk)
+  testImplementation(testLibs.hamcrest.hamcrest)
 
   testFixturesImplementation(libs.libsignal.client)
   testFixturesImplementation(testLibs.junit.junit)

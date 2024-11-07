@@ -36,6 +36,7 @@ import org.signal.core.ui.theme.SignalTheme
 
 object Dialogs {
 
+  const val NoTitle = ""
   const val NoDismiss = ""
 
   @Composable

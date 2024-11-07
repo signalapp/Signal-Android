@@ -104,7 +104,7 @@ class GrantPermissionsFragment : ComposeFragment() {
     when (welcomeAction) {
       WelcomeAction.CONTINUE -> findNavController().safeNavigate(GrantPermissionsFragmentDirections.actionEnterPhoneNumber())
       WelcomeAction.RESTORE_BACKUP -> {
-        val restoreIntent = RestoreActivity.getIntentForTransferOrRestore(requireActivity())
+        val restoreIntent = RestoreActivity.getRestoreIntent(requireActivity())
         launchRestoreActivity.launch(restoreIntent)
       }
     }

@@ -622,15 +622,4 @@ object RegistrationRepository {
       latch.countDown()
     }
   }
-
-  data class AccountRegistrationResult(
-    val uuid: String,
-    val pni: String,
-    val storageCapable: Boolean,
-    val number: String,
-    val masterKey: MasterKey?,
-    val pin: String?,
-    val aciPreKeyCollection: PreKeyCollection,
-    val pniPreKeyCollection: PreKeyCollection
-  )
 }

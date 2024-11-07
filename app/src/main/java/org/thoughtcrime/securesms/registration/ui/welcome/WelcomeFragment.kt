@@ -83,7 +83,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome) 
     } else {
       sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
 
-      val restoreIntent = RestoreActivity.getIntentForTransferOrRestore(requireActivity())
+      val restoreIntent = RestoreActivity.getRestoreIntent(requireActivity())
       launchRestoreActivity.launch(restoreIntent)
     }
   }

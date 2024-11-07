@@ -1,6 +1,5 @@
 package org.whispersystems.signalservice.api.svr
 
-import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
@@ -9,30 +8,19 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.attest.AttestationDataException
 import org.signal.libsignal.protocol.logging.Log
-import org.signal.libsignal.protocol.util.Pair
 import org.signal.libsignal.sgxsession.SgxCommunicationFailureException
 import org.signal.libsignal.svr2.Svr2Client
-import org.whispersystems.signalservice.api.push.TrustStore
+import org.whispersystems.signalservice.api.buildOkHttpClient
+import org.whispersystems.signalservice.api.chooseUrl
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.whispersystems.signalservice.api.util.Tls12SocketFactory
-import org.whispersystems.signalservice.api.util.TlsProxySocketFactory
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Hex
-import org.whispersystems.signalservice.internal.util.Util
 import java.io.IOException
-import java.security.KeyManagementException
-import java.security.NoSuchAlgorithmException
 import java.time.Instant
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.X509TrustManager
-import kotlin.jvm.Throws
 import okhttp3.Response as OkHttpResponse
 import org.signal.svr2.proto.Request as Svr2Request
 import org.signal.svr2.proto.Response as Svr2Response
@@ -44,8 +32,8 @@ internal class Svr2Socket(
   configuration: SignalServiceConfiguration,
   private val mrEnclave: String
 ) {
-  private val svr2Url: SignalSvr2Url = chooseUrl(configuration.signalSvr2Urls)
-  private val okhttp: OkHttpClient = buildOkHttpClient(configuration, svr2Url)
+  private val svr2Url: SignalSvr2Url = configuration.signalSvr2Urls.chooseUrl()
+  private val okhttp: OkHttpClient = svr2Url.buildOkHttpClient(configuration)
 
   @Throws(IOException::class)
   fun makeRequest(authorization: AuthCredentials, clientRequest: Svr2Request): Svr2Response {
@@ -212,43 +200,5 @@ internal class Svr2Socket(
 
   companion object {
     private val TAG = Svr2Socket::class.java.simpleName
-
-    private fun buildOkHttpClient(configuration: SignalServiceConfiguration, svr2Url: SignalSvr2Url): OkHttpClient {
-      val socketFactory = createTlsSocketFactory(svr2Url.trustStore)
-      val builder = OkHttpClient.Builder()
-        .sslSocketFactory(Tls12SocketFactory(socketFactory.first()), socketFactory.second())
-        .connectionSpecs(svr2Url.connectionSpecs.orElse(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
-        .retryOnConnectionFailure(false)
-        .readTimeout(30, TimeUnit.SECONDS)
-        .connectTimeout(30, TimeUnit.SECONDS)
-
-      for (interceptor in configuration.networkInterceptors) {
-        builder.addInterceptor(interceptor)
-      }
-
-      if (configuration.signalProxy.isPresent) {
-        val proxy = configuration.signalProxy.get()
-        builder.socketFactory(TlsProxySocketFactory(proxy.host, proxy.port, configuration.dns))
-      }
-
-      return builder.build()
-    }
-
-    private fun createTlsSocketFactory(trustStore: TrustStore): Pair<SSLSocketFactory, X509TrustManager> {
-      return try {
-        val context = SSLContext.getInstance("TLS")
-        val trustManagers = BlacklistingTrustManager.createFor(trustStore)
-        context.init(null, trustManagers, null)
-        Pair(context.socketFactory, trustManagers[0] as X509TrustManager)
-      } catch (e: NoSuchAlgorithmException) {
-        throw AssertionError(e)
-      } catch (e: KeyManagementException) {
-        throw AssertionError(e)
-      }
-    }
-
-    private fun chooseUrl(urls: Array<SignalSvr2Url>): SignalSvr2Url {
-      return urls[(Math.random() * urls.size).toInt()]
-    }
   }
 }

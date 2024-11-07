@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.registrationv3.olddevice.TransferAccountActivity
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -67,6 +68,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
           Log.w(TAG, "Failed to render captured media.")
           Toast.makeText(requireContext(), R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
         }
+
         is MediaCaptureEvent.MediaCaptureRendered -> {
           if (isFirst()) {
             sharedViewModel.addCameraFirstCapture(event.media)
@@ -76,6 +78,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
           navigator.goToReview(findNavController())
         }
+
         is MediaCaptureEvent.UsernameScannedFromQrCode -> {
           MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.MediaCaptureFragment_username_dialog_title, event.username))
@@ -87,6 +90,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
             .setNegativeButton(android.R.string.cancel, null)
             .show()
         }
+
         is MediaCaptureEvent.DeviceLinkScannedFromQrCode -> {
           MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.MediaCaptureFragment_device_link_dialog_title)
@@ -97,6 +101,11 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+        }
+
+        is MediaCaptureEvent.ReregistrationScannedFromQrCode -> {
+          startActivity(TransferAccountActivity.intent(requireContext(), event.data))
+          requireActivity().finish()
         }
       }
     }

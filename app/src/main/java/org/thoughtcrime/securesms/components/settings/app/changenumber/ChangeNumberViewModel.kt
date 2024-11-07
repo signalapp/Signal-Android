@@ -392,7 +392,7 @@ class ChangeNumberViewModel : ViewModel() {
   private suspend fun changeNumberWithRecoveryPassword(): Boolean {
     Log.v(TAG, "changeNumberWithRecoveryPassword()")
     SignalStore.svr.recoveryPassword?.let { recoveryPassword ->
-      if (SignalStore.svr.hasPin()) {
+      if (SignalStore.svr.hasOptedInWithAccess()) {
         val result = repository.changeNumberWithRecoveryPassword(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
 
         if (result is ChangeNumberResult.Success) {

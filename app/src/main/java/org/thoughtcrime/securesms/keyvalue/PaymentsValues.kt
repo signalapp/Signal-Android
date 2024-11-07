@@ -243,7 +243,8 @@ class PaymentsValues internal constructor(store: KeyValueStore) : SignalStoreVal
   fun showUpdatePinInfoCard(): Boolean {
     return if (userHasLargeBalance() &&
       SignalStore.svr.hasPin() &&
-      !SignalStore.svr.hasOptedOut() && SignalStore.pin.keyboardType == PinKeyboardType.NUMERIC
+      !SignalStore.svr.hasOptedOut() &&
+      SignalStore.pin.keyboardType == PinKeyboardType.NUMERIC
     ) {
       store.getBoolean(SHOW_CASHING_OUT_INFO_CARD, true)
     } else {

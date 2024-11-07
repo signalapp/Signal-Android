@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
+import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 
 /**
  * Shared view model for the restore flow.
@@ -35,12 +35,6 @@ class RestoreViewModel : ViewModel() {
   fun onRestoreFromLocalBackupSelected() {
     store.update {
       it.copy(restorationType = BackupRestorationType.LOCAL_BACKUP)
-    }
-  }
-
-  fun onRestoreFromRemoteBackupSelected() {
-    store.update {
-      it.copy(restorationType = BackupRestorationType.REMOTE_BACKUP)
     }
   }
 

@@ -69,10 +69,10 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
 
       @Suppress("DEPRECATION")
       clickPref(
-        title = DSLSettingsText.from(if (state.hasPin) R.string.preferences_app_protection__change_your_pin else R.string.preferences_app_protection__create_a_pin),
+        title = DSLSettingsText.from(if (state.hasOptedInWithAccess) R.string.preferences_app_protection__change_your_pin else R.string.preferences_app_protection__create_a_pin),
         isEnabled = state.isDeprecatedOrUnregistered(),
         onClick = {
-          if (state.hasPin) {
+          if (state.hasOptedInWithAccess) {
             startActivityForResult(CreateSvrPinActivity.getIntentForPinChangeFromSettings(requireContext()), CreateSvrPinActivity.REQUEST_NEW_PIN)
           } else {
             startActivityForResult(CreateSvrPinActivity.getIntentForPinCreate(requireContext()), CreateSvrPinActivity.REQUEST_NEW_PIN)
@@ -94,7 +94,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
         title = DSLSettingsText.from(R.string.preferences_app_protection__registration_lock),
         summary = DSLSettingsText.from(R.string.AccountSettingsFragment__require_your_signal_pin),
         isChecked = state.registrationLockEnabled,
-        isEnabled = state.hasPin && state.isDeprecatedOrUnregistered(),
+        isEnabled = (state.hasOptedInWithAccess) && state.isDeprecatedOrUnregistered(),
         onClick = {
           setRegistrationLockEnabled(!state.registrationLockEnabled)
         }
@@ -125,7 +125,6 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_chats__transfer_account),
         summary = DSLSettingsText.from(R.string.preferences_chats__transfer_account_to_a_new_android_device),
-        isEnabled = state.isDeprecatedOrUnregistered(),
         onClick = {
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
         }
