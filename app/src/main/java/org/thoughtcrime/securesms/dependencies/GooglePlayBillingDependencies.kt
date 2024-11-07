@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.dependencies
 
 import android.content.Context
-import org.signal.billing.BillingError
 import org.signal.core.util.billing.BillingDependencies
+import org.signal.core.util.billing.BillingError
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Locale
 

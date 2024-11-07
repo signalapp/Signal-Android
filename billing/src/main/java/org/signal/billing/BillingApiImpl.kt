@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.billing.BillingDependencies
+import org.signal.core.util.billing.BillingError
 import org.signal.core.util.billing.BillingProduct
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.logging.Log
