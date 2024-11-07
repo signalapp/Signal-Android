@@ -1670,31 +1670,16 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
       @Override
       protected void executeAction(@Nullable Long parameter) {
-        Context context = requireActivity();
-
         pinnedThreadIds = threadTable.getPinnedThreadIds();
         threadTable.archiveConversation(threadId);
-
-        if (unreadCount > 0) {
-          List<MarkedMessageInfo> messageIds = threadTable.setRead(threadId, false);
-          AppDependencies.getMessageNotifier().updateNotification(context);
-          MarkReadReceiver.process(messageIds);
-        }
 
         ConversationUtil.refreshRecipientShortcuts();
       }
 
       @Override
       protected void reverseAction(@Nullable Long parameter) {
-        Context context = requireActivity();
-
         threadTable.unarchiveConversation(threadId);
         threadTable.restorePins(pinnedThreadIds);
-
-        if (unreadCount > 0) {
-          threadTable.incrementUnread(threadId, unreadCount, unreadSelfMentionsCount);
-          AppDependencies.getMessageNotifier().updateNotification(context);
-        }
 
         ConversationUtil.refreshRecipientShortcuts();
       }
