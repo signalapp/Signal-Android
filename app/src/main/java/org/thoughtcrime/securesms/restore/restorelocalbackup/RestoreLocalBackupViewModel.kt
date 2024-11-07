@@ -90,7 +90,7 @@ class RestoreLocalBackupViewModel(fileBackupUri: Uri) : ViewModel() {
       if (importResult == RestoreRepository.BackupImportResult.SUCCESS) {
         SignalStore.registration.localRegistrationMetadata?.let {
           RegistrationRepository.registerAccountLocally(context, it)
-          SignalStore.registration.clearLocalRegistrationMetadata()
+          SignalStore.registration.localRegistrationMetadata = null
           RegistrationUtil.maybeMarkRegistrationComplete()
         }
 

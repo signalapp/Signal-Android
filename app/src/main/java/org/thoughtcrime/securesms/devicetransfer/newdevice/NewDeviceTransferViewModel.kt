@@ -20,7 +20,7 @@ class NewDeviceTransferViewModel : ViewModel() {
     viewModelScope.launch {
       SignalStore.registration.localRegistrationMetadata?.let { metadata ->
         RegistrationRepository.registerAccountLocally(context, metadata)
-        SignalStore.registration.clearLocalRegistrationMetadata()
+        SignalStore.registration.localRegistrationMetadata = null
         RegistrationUtil.maybeMarkRegistrationComplete()
       }
 

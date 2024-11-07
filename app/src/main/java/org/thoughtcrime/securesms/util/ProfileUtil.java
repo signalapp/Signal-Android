@@ -376,7 +376,7 @@ public final class ProfileUtil {
                                                                                     avatar,
                                                                                     badgeIds,
                                                                                     SignalStore.phoneNumberPrivacy().isPhoneNumberSharingEnabled()).orElse(null);
-    SignalStore.registration().markHasUploadedProfile();
+    SignalStore.registration().setHasUploadedProfile(true);
     if (!avatar.keepTheSame) {
       SignalDatabase.recipients().setProfileAvatar(Recipient.self().getId(), avatarPath);
     }
