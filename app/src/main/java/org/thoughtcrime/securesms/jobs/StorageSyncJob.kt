@@ -369,7 +369,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
   private fun processKnownRecords(context: Context, records: StorageRecordCollection) {
     ContactRecordProcessor().process(records.contacts, StorageSyncHelper.KEY_GENERATOR)
     GroupV1RecordProcessor().process(records.gv1, StorageSyncHelper.KEY_GENERATOR)
-    GroupV2RecordProcessor(context).process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
+    GroupV2RecordProcessor().process(records.gv2, StorageSyncHelper.KEY_GENERATOR)
     AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
     StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR)
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
