@@ -219,6 +219,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.databinding.V2ConversationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.dependencies.AppDependencies.jobManager
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
@@ -238,6 +239,7 @@ import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestio
 import org.thoughtcrime.securesms.groups.v2.GroupBlockJoinRequestResult
 import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob
+import org.thoughtcrime.securesms.jobs.TypingSendJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
@@ -4094,6 +4096,17 @@ class ConversationFragment :
   //region Input Panel Callbacks
 
   private inner class InputPanelListener : InputPanel.Listener {
+
+    private fun handleTypingIndicatorOnVoiceChange(isStopped: Boolean) {
+      val recipient = viewModel.recipientSnapshot
+
+      if (recipient == null || recipient.isBlocked || recipient.isSelf) {
+        return
+      }
+
+      jobManager.add(TypingSendJob(args.threadId, !isStopped))
+    }
+
     override fun onVoiceNoteDraftPlay(audioUri: Uri, progress: Double) {
       getVoiceNoteMediaController().startSinglePlaybackForDraft(audioUri, args.threadId, progress)
     }
@@ -4113,6 +4126,7 @@ class ConversationFragment :
 
     override fun onRecorderStarted() {
       voiceMessageRecordingDelegate.onRecorderStarted()
+      handleTypingIndicatorOnVoiceChange(isStopped = false)
     }
 
     override fun onRecorderLocked() {
@@ -4123,6 +4137,7 @@ class ConversationFragment :
     override fun onRecorderFinished() {
       updateToggleButtonState()
       voiceMessageRecordingDelegate.onRecorderFinished()
+      handleTypingIndicatorOnVoiceChange(isStopped = true)
     }
 
     override fun onRecorderCanceled(byUser: Boolean) {
@@ -4130,6 +4145,7 @@ class ConversationFragment :
         updateToggleButtonState()
       }
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
+      handleTypingIndicatorOnVoiceChange(isStopped = true)
     }
 
     override fun onRecorderPermissionRequired() {
