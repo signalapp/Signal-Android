@@ -136,7 +136,7 @@ class InAppPaymentsBottomSheetDelegate(
         if (isPaymentProcessingError(payment.state, payment.data)) {
           BackupAlertBottomSheet.create(BackupAlert.FailedToRenew).show(fragmentManager, null)
         } else if (isUnexpectedCancellation(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.MediaBackupsAreOff).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.MediaBackupsAreOff(payment.endOfPeriodSeconds)).show(fragmentManager, null)
         }
       }
     }
