@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
+import kotlin.concurrent.withLock
 
 class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
@@ -101,7 +102,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun save(): Completable {
     val snapshot = store.state
     val saveState = Completable.fromAction {
-      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
+      InAppPaymentSubscriberRecord.Type.DONATION.lock.withLock {
         when {
           snapshot.selectedBadge?.isGift() == true -> handleGiftExpiration(snapshot)
           snapshot.selectedBadge?.isBoost() == true -> handleBoostExpiration(snapshot)
@@ -116,7 +117,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
   fun clearErrorState(): Completable {
     return Completable.fromAction {
-      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
+      InAppPaymentSubscriberRecord.Type.DONATION.lock.withLock {
         SignalStore.inAppPayments.setExpiredBadge(null)
         SignalStore.inAppPayments.setExpiredGiftBadge(null)
         SignalStore.inAppPayments.unexpectedSubscriptionCancelationReason = null

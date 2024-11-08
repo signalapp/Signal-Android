@@ -214,7 +214,7 @@ object RecurringInAppPaymentRepository {
               subscriptionLevel,
               subscriber.currency.currencyCode,
               levelUpdateOperation.idempotencyKey.serialize(),
-              subscriberType
+              subscriberType.lock
             )
           }
           .flatMapCompletable {

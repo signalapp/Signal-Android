@@ -167,7 +167,7 @@ class ExternalLaunchDonationJob private constructor(
         subscriptionLevel,
         subscriber.currency.currencyCode,
         levelUpdateOperation.idempotencyKey.serialize(),
-        subscriber.type
+        subscriber.type.lock
       )
 
       getResultOrThrow(updateSubscriptionLevelResponse, doOnApplicationError = {

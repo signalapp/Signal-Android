@@ -29,6 +29,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.concurrent.locks.Lock;
 
 /**
  * Job to redeem a verified donation receipt. It is up to the Job prior in the chain to specify a valid
@@ -157,8 +158,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   @Override
   protected void onRun() throws Exception {
     if (isForSubscription()) {
-      synchronized (InAppPaymentSubscriberRecord.Type.DONATION) {
+      Lock lock = InAppPaymentSubscriberRecord.Type.DONATION.getLock();
+      lock.lock();
+      try {
         doRun();
+      } finally {
+        lock.unlock();
       }
     } else {
       doRun();

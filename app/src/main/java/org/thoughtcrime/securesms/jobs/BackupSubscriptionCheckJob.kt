@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import kotlin.concurrent.withLock
 
 /**
  * Checks and rectifies state pertaining to backups subscriptions.
@@ -85,7 +86,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
 
-    synchronized(InAppPaymentSubscriberRecord.Type.BACKUP) {
+    InAppPaymentSubscriberRecord.Type.BACKUP.lock.withLock {
       val inAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
 
       if (inAppPayment?.state == InAppPaymentTable.State.PENDING) {

@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.locks.Lock;
 
 import okio.ByteString;
 
@@ -57,8 +58,12 @@ public class SubscriptionKeepAliveJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    synchronized (InAppPaymentSubscriberRecord.Type.DONATION) {
+    Lock lock = InAppPaymentSubscriberRecord.Type.DONATION.getLock();
+    lock.lock();
+    try {
       doRun();
+    } finally {
+      lock.unlock();
     }
   }
 

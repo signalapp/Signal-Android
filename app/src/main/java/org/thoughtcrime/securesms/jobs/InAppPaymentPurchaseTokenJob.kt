@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import kotlin.concurrent.withLock
 
 /**
  * Submits a purchase token to the server to link it with a subscriber id.
@@ -76,7 +77,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
   }
 
   override fun onRun() {
-    synchronized(InAppPaymentsRepository.resolveMutex(inAppPaymentId)) {
+    InAppPaymentsRepository.resolveLock(inAppPaymentId).withLock {
       doRun()
     }
   }
@@ -87,7 +88,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
     val response = AppDependencies.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
       inAppPayment.subscriberId!!,
       inAppPayment.data.redemption!!.googlePlayBillingPurchaseToken!!,
-      InAppPaymentSubscriberRecord.Type.BACKUP
+      InAppPaymentSubscriberRecord.Type.BACKUP.lock
     )
 
     if (response.applicationError.isPresent) {

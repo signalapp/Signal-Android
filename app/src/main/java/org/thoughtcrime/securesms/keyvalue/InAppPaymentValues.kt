@@ -33,6 +33,7 @@ import java.util.Currency
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.withLock
 
 /**
  * Key-Value store for in app payment related values. Note that most of this file will be deprecated after the release of
@@ -449,7 +450,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
    */
   @WorkerThread
   fun updateLocalStateForManualCancellation(subscriberType: InAppPaymentSubscriberRecord.Type) {
-    synchronized(subscriberType) {
+    subscriberType.lock.withLock {
       Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing donation values.")
       clearLevelOperations()
 
@@ -493,7 +494,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
    */
   @WorkerThread
   fun updateLocalStateForLocalSubscribe(subscriberType: InAppPaymentSubscriberRecord.Type) {
-    synchronized(subscriberType) {
+    subscriberType.lock.withLock {
       clearLevelOperations()
 
       if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {

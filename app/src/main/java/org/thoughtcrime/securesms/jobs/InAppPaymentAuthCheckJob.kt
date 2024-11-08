@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.util.Environment
 import org.whispersystems.signalservice.internal.ServiceResponse
+import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -77,7 +78,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     var hasRetry = false
     for (payment in unauthorizedInAppPayments) {
       val verificationStatus: CheckResult<Unit> = if (payment.type.recurring) {
-        synchronized(payment.type.requireSubscriberType().inAppPaymentType) {
+        payment.type.requireSubscriberType().lock.withLock {
           checkRecurringPayment(payment)
         }
       } else {
@@ -244,7 +245,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
         level,
         subscriber.currency.currencyCode,
         updateOperation.idempotencyKey.serialize(),
-        subscriber.type
+        subscriber.type.lock
       )
 
       val updateLevelResult = checkResult(updateLevelResponse)
