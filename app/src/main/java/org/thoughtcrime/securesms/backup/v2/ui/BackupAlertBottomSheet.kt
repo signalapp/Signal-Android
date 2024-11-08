@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.R as CoreUiR
 
@@ -253,7 +254,7 @@ private fun BackupAlertSheetContent(
       )
 
       BackupAlert.FailedToRenew -> PaymentProcessingBody()
-      is BackupAlert.MediaBackupsAreOff -> MediaBackupsAreOffBody(30) // TODO [backups] -- Get this value from backend
+      is BackupAlert.MediaBackupsAreOff -> MediaBackupsAreOffBody(backupAlert.endOfPeriodSeconds)
       BackupAlert.MediaWillBeDeletedToday -> MediaWillBeDeletedTodayBody()
       is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = backupAlert.requiredSpace)
     }
@@ -307,10 +308,13 @@ private fun PaymentProcessingBody() {
 
 @Composable
 private fun MediaBackupsAreOffBody(
-  daysUntilDeletion: Long
+  endOfPeriodSeconds: Long
 ) {
+  // TODO [backups] Get value from config to calculate days until deletion.
+  val daysUntilDeletion = remember { endOfPeriodSeconds.days + 60.days }.inWholeDays.toInt()
+
   Text(
-    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion.toInt(), daysUntilDeletion),
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion, daysUntilDeletion),
     textAlign = TextAlign.Center,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
