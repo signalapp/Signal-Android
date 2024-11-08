@@ -112,6 +112,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V252_AttachmentOffl
 import org.thoughtcrime.securesms.database.helpers.migration.V253_CreateChatFolderTables
 import org.thoughtcrime.securesms.database.helpers.migration.V254_AddChatFolderConstraint
 import org.thoughtcrime.securesms.database.helpers.migration.V255_AddCallTableLogIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V256_FixIncrementalDigestColumns
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -226,10 +227,11 @@ object SignalDatabaseMigrations {
     252 to V252_AttachmentOffloadRestoredAtColumn,
     253 to V253_CreateChatFolderTables,
     254 to V254_AddChatFolderConstraint,
-    255 to V255_AddCallTableLogIndex
+    255 to V255_AddCallTableLogIndex,
+    256 to V256_FixIncrementalDigestColumns
   )
 
-  const val DATABASE_VERSION = 255
+  const val DATABASE_VERSION = 256
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
