@@ -3359,14 +3359,14 @@
     <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Please select an option</item>
-        <item>Something\'s Not Working</item>
-        <item>Feature Request</item>
-        <item>Question</item>
-        <item>Feedback</item>
-        <item>Other</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>กรุณาเลือกหนึ่งรายการ</item>
+        <item>มีบางอย่างไม่ทำงาน</item>
+        <item>คำขอฟีเจอร์</item>
+        <item>คำถาม</item>
+        <item>ข้อเสนอแนะ</item>
+        <item>อื่น</item>
+        <item>การชำระเงิน (MobileCoin)</item>
+        <item>การบริจาคและโล่</item>
         <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -4845,7 +4845,7 @@
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">ต่ออายุแพ็กเกจสำรองข้อมูล Signal ของคุณ</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">การสำรองข้อมูลไม่เสร็จสมบูรณ์</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7057,7 +7057,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">ลบลิงก์ใช่หรือไม่</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ทุกคนจะไม่สามารถใช้ลิงก์นี้ได้อีก</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">ลิงก์</string>
@@ -7284,11 +7284,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <string name="BackupAlertBottomSheet__skip_restore">ข้ามการกู้คืน</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupAlertBottomSheet__back_up_now">สำรองข้อมูลเดี๋ยวนี้</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">Got it</string>
+    <string name="BackupAlertBottomSheet__got_it">เข้าใจแล้ว</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">จัดการการเป็นสมาชิก</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7326,7 +7326,7 @@
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">กู้คืนเสร็จสิ้น</string>
     <!-- Status action label for seeing more details about storage space -->
-    <string name="BackupStatus__details">Details</string>
+    <string name="BackupStatus__details">รายละเอียด</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">กำลังรอสัญญาณ Wi-Fi…</string>

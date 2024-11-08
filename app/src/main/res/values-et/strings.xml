@@ -3458,14 +3458,14 @@
     <string name="HelpFragment__could_not_upload_logs">Logide üleslaadimine ei õnnestunud</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Palun ole võimalikult kirjeldav, et aidata meil probleemist aru saada.</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Please select an option</item>
-        <item>Something\'s Not Working</item>
-        <item>Feature Request</item>
-        <item>Question</item>
-        <item>Feedback</item>
-        <item>Other</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>Palun tee valik</item>
+        <item>Miski ei tööta</item>
+        <item>Funktsiooni taotlus</item>
+        <item>Küsimus</item>
+        <item>Tagasiside</item>
+        <item>Muu</item>
+        <item>Maksed (MobileCoin)</item>
+        <item>Annetused &amp; Märgid</item>
         <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -4964,7 +4964,7 @@
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Uuenda oma Signali varukoopia tellimust</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">Varundamine ei õnnestunud</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Kutsu enda sõbrad</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7214,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Kas kustutada link?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">See link ei toimi enam mitte kellegi jaoks, kellel see on.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">Link</string>
@@ -7445,11 +7445,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Rohkem teavet</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <string name="BackupAlertBottomSheet__skip_restore">Jäta taastamine vahele</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupAlertBottomSheet__back_up_now">Varunda kohe</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">Got it</string>
+    <string name="BackupAlertBottomSheet__got_it">Sain aru</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Tellimuse haldamine</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7487,7 +7487,7 @@
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Taastamine õnnestus</string>
     <!-- Status action label for seeing more details about storage space -->
-    <string name="BackupStatus__details">Details</string>
+    <string name="BackupStatus__details">Üksikasjad</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Ootan WiFit …</string>

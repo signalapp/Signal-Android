@@ -3458,14 +3458,14 @@
     <string name="HelpFragment__could_not_upload_logs">Günlükler karşıya yüklenemedi</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Lütfen sorunu anlamamıza yardımcı olabilecek şekilde açıklayın.</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Please select an option</item>
-        <item>Something\'s Not Working</item>
-        <item>Feature Request</item>
-        <item>Question</item>
-        <item>Feedback</item>
-        <item>Other</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>Lütfen bir seçeneği seç</item>
+        <item>Bir Şeyler Yolunda Gitmiyor</item>
+        <item>Özellik İsteği</item>
+        <item>Soru</item>
+        <item>Geri bildirim</item>
+        <item>Diğer</item>
+        <item>Ödemeler (MobileCoin)</item>
+        <item>Bağışlar &amp; Rozetler</item>
         <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -4964,7 +4964,7 @@
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signal Yedeklemeleri aboneliğini yenile</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">Yedekleme tamamlanamadı</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Arkadaşlarınızı davet edin</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7214,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Bağlantı silinsin mi?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">Bu bağlantı artık ona sahip olan hiç kimse için çalışmayacaktır.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">Bağlantı</string>
@@ -7445,11 +7445,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Daha fazlasını öğren</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <string name="BackupAlertBottomSheet__skip_restore">Geri yüklemeyi atla</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupAlertBottomSheet__back_up_now">Şimdi yedekle</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">Got it</string>
+    <string name="BackupAlertBottomSheet__got_it">Anladım</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Aboneliği yönet</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7487,7 +7487,7 @@
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Geri yükleme tamamlandı</string>
     <!-- Status action label for seeing more details about storage space -->
-    <string name="BackupStatus__details">Details</string>
+    <string name="BackupStatus__details">Detaylar</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi bekleniyor…</string>

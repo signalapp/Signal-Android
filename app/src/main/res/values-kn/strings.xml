@@ -3458,14 +3458,14 @@
     <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Please select an option</item>
-        <item>Something\'s Not Working</item>
-        <item>Feature Request</item>
-        <item>Question</item>
-        <item>Feedback</item>
-        <item>Other</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>ಆಯ್ಕೆಯೊಂದನ್ನು ಆರಿಸಿ</item>
+        <item>ಏನೋ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ</item>
+        <item>ಫೀಚರ್ ವಿನಂತಿ</item>
+        <item>ಪ್ರಶ್ನೆ</item>
+        <item>ಫೀಡ್‌ಬ್ಯಾಕ್</item>
+        <item>ಇತರೆ</item>
+        <item>ಪಾವತಿಗಳು (MobileCoin)</item>
+        <item>ದೇಣಿಗೆಗಳು &amp; ಬ್ಯಾಡ್ಜ್‌ಗಳು</item>
         <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -4964,7 +4964,7 @@
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">ನಿಮ್ಮ Signal ಬ್ಯಾಕಪ್ ಚಂದಾದಾರಿಕೆ ನವೀಕರಿಸಿ</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">ಬ್ಯಾಕಪ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">ನಿಮ್ಮ ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7214,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">ಲಿಂಕ್ ಅಳಿಸಬೇಕೇ?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ಈ ಲಿಂಕ್ ಹೊಂದಿರುವ ಯಾರಿಗೂ ಇನ್ನು ಮುಂದೆ ಈ ಲಿಂಕ್ ಕಾರ್ಯನಿರ್ವಹಿಸುವುದಿಲ್ಲ.</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">ಲಿಂಕ್</string>
@@ -7445,11 +7445,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <string name="BackupAlertBottomSheet__skip_restore">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupAlertBottomSheet__back_up_now">ಈಗ ಬ್ಯಾಕಪ್‌‌ ಮಾಡಿ</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">Got it</string>
+    <string name="BackupAlertBottomSheet__got_it">ಅರ್ಥವಾಯಿತು</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">ಚಂದಾ ನಿರ್ವಹಿಸಿ</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7487,7 +7487,7 @@
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">ಮರುಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
     <!-- Status action label for seeing more details about storage space -->
-    <string name="BackupStatus__details">Details</string>
+    <string name="BackupStatus__details">ವಿವರಗಳು</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ಗಾಗಿ ಕಾಯುತ್ತಿದೆ…</string>

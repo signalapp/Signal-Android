@@ -3458,14 +3458,14 @@
     <string name="HelpFragment__could_not_upload_logs">ਲੌਗ ਅੱਪਲੋਡ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕੇ</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">ਮਸਲੇ ਬਾਰੇ ਸਾਨੂੰ ਸਮਝਾਉਣ ਲਈ ਮਦਦ ਵਾਸਤੇ ਜਿੰਨਾ ਵੀ ਹੋ ਸਕੇ ਵੇਰਵਾ ਦਿਓ।</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Please select an option</item>
-        <item>Something\'s Not Working</item>
-        <item>Feature Request</item>
-        <item>Question</item>
-        <item>Feedback</item>
-        <item>Other</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਵਿਕਲਪ ਚੁਣੋ</item>
+        <item>ਕੋਈ ਚੀਜ਼ ਕੰਮ ਨਹੀਂ ਕਰ ਰਹੀ ਹੈ</item>
+        <item>ਫੀਚਰ ਲਈ ਬੇਨਤੀ</item>
+        <item>ਸਵਾਲ</item>
+        <item>ਫੀਡਬੈਕ</item>
+        <item>ਹੋਰ</item>
+        <item>ਭੁਗਤਾਨ (MobileCoin)</item>
+        <item>ਦਾਨ ਅਤੇ ਬੈਜ</item>
         <item>Signal Android Backup</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -4964,7 +4964,7 @@
     <!-- String alerting user that something is wrong with their backups subscription -->
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">ਆਪਣੀ Signal ਬੈਕਅੱਪ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਨੂੰ ਰੀਨਿਊ ਕਰੋ</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Couldn\'t complete backup</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">ਆਪਣੇ ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7214,7 @@
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">ਕੀ ਲਿੰਕ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
-    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">This link will no longer work for anyone who has it.</string>
+    <string name="CallLinkDetailsFragment__this_link_will_no_longer_work">ਇਹ ਲਿੰਕ ਜਿਹਨਾਂ ਕੋਲ ਵੀ ਹੈ ਉਹਨਾਂ ਲਈ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ।</string>
 
     <!-- Button label for the link button in the username link settings -->
     <string name="UsernameLinkSettings_link_button_label">ਲਿੰਕ</string>
@@ -7445,11 +7445,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">Skip restore</string>
+    <string name="BackupAlertBottomSheet__skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">Back up now</string>
+    <string name="BackupAlertBottomSheet__back_up_now">ਹੁਣ ਬੈਕਅੱਪ ਲਓ</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">Got it</string>
+    <string name="BackupAlertBottomSheet__got_it">ਸਮਝ ਗਏ</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਨੂੰ ਪ੍ਰਬੰਧਿਤ ਕਰੋ</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7487,7 +7487,7 @@
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">ਰੀਸਟੋਰ ਕਰਨ ਦਾ ਕਾਰਜ ਪੂਰਾ ਹੋਇਆ</string>
     <!-- Status action label for seeing more details about storage space -->
-    <string name="BackupStatus__details">Details</string>
+    <string name="BackupStatus__details">ਵੇਰਵਾ</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
