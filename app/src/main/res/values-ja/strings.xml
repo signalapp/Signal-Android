@@ -6538,7 +6538,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">下の「設定へ」ボタンをタップしてください</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">「アラームとリマインダーの設定を許可する」を有効にする。</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">「アラームとリマインダーの設定を許可する」を有効にする。</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">設定へ</string>
 

@@ -6690,7 +6690,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Toca el botó \"Anar a Ajustos\" a continuació</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activa \"Permet la configuració d\'alarmes i recordatoris\".</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">Activa \"Permet la configuració d\'alarmes i recordatoris\".</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Anar a ajustos</string>
 

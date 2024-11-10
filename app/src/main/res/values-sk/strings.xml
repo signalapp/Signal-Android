@@ -6994,7 +6994,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Ťuknite na tlačidlo „Prejsť na nastavenia“ nižšie</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Zapnite možnosť „Povoliť alarmy a pripomenutia.“</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">Zapnite možnosť „Povoliť alarmy a pripomenutia.“</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Prejsť na nastavenia</string>
 

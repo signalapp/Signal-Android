@@ -121,7 +121,7 @@
         android:minWidth="28dp"
         android:minHeight="28dp"
         android:padding="4dp"
-        android:text="@string/BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders"
+        android:text="@string/BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant"

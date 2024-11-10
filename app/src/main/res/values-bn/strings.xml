@@ -6690,7 +6690,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">নীচের \"সেটিংসে যান\" বাটনে ট্যাপ করুন</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"সেটিংস অ্যালার্ম এবং রিমাইন্ডারের অনুমতি দিন\" চালু করুন।</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">\"সেটিংস অ্যালার্ম এবং রিমাইন্ডারের অনুমতি দিন\" চালু করুন।</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">সেটিংস-এ যান</string>
 

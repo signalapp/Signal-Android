@@ -6690,7 +6690,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">దిగువన ‘‘సెట్టింగ్‌లకు వెళ్లండి’’ బటన్‌పై తట్టండి</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">‘‘సెట్టింగ్స్ అలారమ్‌లు మరియు రిమైండర్లను అనుమతించండి’’ ఆన్ చేయండి.</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">‘‘సెట్టింగ్స్ అలారమ్‌లు మరియు రిమైండర్లను అనుమతించండి’’ ఆన్ చేయండి.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
 

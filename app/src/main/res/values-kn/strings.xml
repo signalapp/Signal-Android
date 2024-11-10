@@ -6690,7 +6690,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">ಕೆಳಗಿನ \"ಸೆಟ್ಟಿಂಗ್ ಗಳಿಗೆ ಹೋಗಿ\" ಬಟನ್ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"ಸೆಟ್ಟಿಂಗ್ ಗಳ ಅಲಾರಂಗಳು ಮತ್ತು ಜ್ಞಾಪನೆಗಳನ್ನು ಅನುಮತಿಸಿ\" ಆನ್ ಮಾಡಿ.</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">\"ಸೆಟ್ಟಿಂಗ್ ಗಳ ಅಲಾರಂಗಳು ಮತ್ತು ಜ್ಞಾಪನೆಗಳನ್ನು ಅನುಮತಿಸಿ\" ಆನ್ ಮಾಡಿ.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
 

@@ -6538,7 +6538,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">ចុចប៊ូតុង \"ចូលទៅកាន់ការកំណត់\" ខាងក្រោម</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">បើក \"អនុញ្ញាតការកំណត់ម៉ោងរោទ៍ និងការរំលឹក\"។</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_setting_alarms_and_reminders">បើក \"អនុញ្ញាតការកំណត់ម៉ោងរោទ៍ និងការរំលឹក\"។</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
 
