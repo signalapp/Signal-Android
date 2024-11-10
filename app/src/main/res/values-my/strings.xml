@@ -6538,7 +6538,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">အောက်ပါ \"Go to settings\" ခလုတ်ကို နှိပ်ပါ</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"Allow settings alarms and reminders\" ကို ဖွင့်ပါ။</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"Allow setting alarms and reminders\" ကို ဖွင့်ပါ။</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
 
