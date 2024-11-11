@@ -37,7 +37,7 @@ class RecipientTableTest_applyStorageSyncContactUpdate {
     val oldRecord: SignalContactRecord = StorageSyncModels.localToRemoteRecord(SignalDatabase.recipients.getRecordForSync(harness.others[0])!!).contact.get()
 
     val newProto = oldRecord
-      .toProto()
+      .proto
       .newBuilder()
       .identityState(ContactRecord.IdentityState.DEFAULT)
       .build()

@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import okio.ByteString;
 
-public final class SignalGroupV1Record implements SignalRecord {
+public final class SignalGroupV1Record implements SignalRecord<GroupV1Record> {
 
   private static final String TAG = SignalGroupV1Record.class.getSimpleName();
 
@@ -33,53 +33,13 @@ public final class SignalGroupV1Record implements SignalRecord {
     return id;
   }
 
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forGroupV1(this);
+  @Override public GroupV1Record getProto() {
+    return proto;
   }
 
   @Override
-  public String describeDiff(SignalRecord other) {
-    if (other instanceof SignalGroupV1Record) {
-      SignalGroupV1Record that = (SignalGroupV1Record) other;
-      List<String>        diff = new LinkedList<>();
-
-      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
-        diff.add("ID");
-      }
-
-      if (!Arrays.equals(this.groupId, that.groupId)) {
-        diff.add("MasterKey");
-      }
-
-      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
-        diff.add("Blocked");
-      }
-
-      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
-        diff.add("ProfileSharing");
-      }
-
-      if (!Objects.equals(this.isArchived(), that.isArchived())) {
-        diff.add("Archived");
-      }
-
-      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
-        diff.add("ForcedUnread");
-      }
-
-      if (!Objects.equals(this.getMuteUntil(), that.getMuteUntil())) {
-        diff.add("MuteUntil");
-      }
-
-      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
-        diff.add("UnknownFields");
-      }
-
-      return diff.toString();
-    } else {
-      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
-    }
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forGroupV1(this);
   }
 
   public boolean hasUnknownFields() {
@@ -112,10 +72,6 @@ public final class SignalGroupV1Record implements SignalRecord {
 
   public long getMuteUntil() {
     return proto.mutedUntilTimestamp;
-  }
-
-  public GroupV1Record toProto() {
-    return proto;
   }
 
   @Override

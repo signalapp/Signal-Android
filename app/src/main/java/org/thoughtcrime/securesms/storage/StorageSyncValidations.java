@@ -177,7 +177,7 @@ public final class StorageSyncValidations {
         }
       }
 
-      if (insert.getAccount().isPresent() && !insert.getAccount().get().getProfileKey().isPresent()) {
+      if (insert.getAccount().isPresent() && insert.getAccount().get().getProto().profileKey.size() == 0) {
         Log.w(TAG, "Uploading a null profile key in our AccountRecord!");
       }
     }

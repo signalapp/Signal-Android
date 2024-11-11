@@ -100,13 +100,11 @@ import java.util.stream.Collectors
  * - Update the respective model (i.e. [SignalContactRecord])
  * - Add getters
  * - Update the builder
- * - Update [SignalRecord.describeDiff].
- * - Update the respective record processor (i.e [ContactRecordProcessor]). You need to make
- * sure that you're:
- * - Merging the attributes, likely preferring remote
- * - Adding to doParamsMatch()
- * - Adding the parameter to the builder chain when creating a merged model
- * - Update builder usage in StorageSyncModels
+ * - Update the respective record processor (i.e [ContactRecordProcessor]). You need to make sure that you're:
+ *   - Merging the attributes, likely preferring remote
+ *   - Adding to doParamsMatch()
+ *   - Adding the parameter to the builder chain when creating a merged model
+ *   - Update builder usage in StorageSyncModels
  * - Handle the new data when writing to the local storage
  * (i.e. [RecipientTable.applyStorageSyncContactUpdate]).
  * - Make sure that whenever you change the field in the UI, we rotate the storageId for that row

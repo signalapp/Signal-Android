@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfBlank
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.Curve
@@ -401,10 +402,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   var username: String?
     get() {
       val value = getString(KEY_USERNAME, null)
-      return if (value.isNullOrBlank()) null else value
+      return value.nullIfBlank()
     }
     set(value) {
-      putString(KEY_USERNAME, value)
+      putString(KEY_USERNAME, value.nullIfBlank())
     }
 
   /** The local user's username link components, if set. */

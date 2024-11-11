@@ -15,7 +15,7 @@ import java.util.TreeSet
  * our local store). We use it for a [TreeSet], so mainly it's just important that the '0'
  * case is correct. Other cases are whatever, just make it something stable.
  */
-abstract class DefaultStorageRecordProcessor<E : SignalRecord> : StorageRecordProcessor<E>, Comparator<E> {
+abstract class DefaultStorageRecordProcessor<E : SignalRecord<*>> : StorageRecordProcessor<E>, Comparator<E> {
   companion object {
     private val TAG = Log.tag(DefaultStorageRecordProcessor::class.java)
   }
@@ -37,16 +37,15 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord> : StorageRecordPr
   @Throws(IOException::class)
   override fun process(remoteRecords: Collection<E>, keyGenerator: StorageKeyGenerator) {
     val matchedRecords: MutableSet<E> = TreeSet(this)
-    var i = 0
 
-    for (remote in remoteRecords) {
+    for ((i, remote) in remoteRecords.withIndex()) {
       if (isInvalid(remote)) {
         warn(i, remote, "Found invalid key! Ignoring it.")
       } else {
         val local = getMatching(remote, keyGenerator)
 
         if (local.isPresent) {
-          val merged = merge(remote, local.get(), keyGenerator)
+          val merged: E = merge(remote, local.get(), keyGenerator)
 
           if (matchedRecords.contains(local.get())) {
             warn(i, remote, "Multiple remote records map to the same local record! Ignoring this one.")
@@ -54,7 +53,7 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord> : StorageRecordPr
             matchedRecords.add(local.get())
 
             if (merged != remote) {
-              info(i, remote, "[Remote Update] " + StorageRecordUpdate(remote, merged).toString())
+              info(i, remote, "[Remote Update] " + remote.describeDiff(merged))
             }
 
             if (merged != local.get()) {
@@ -68,8 +67,6 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord> : StorageRecordPr
           insertLocal(remote)
         }
       }
-
-      i++
     }
   }
 

@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 import okio.ByteString;
 
-public class SignalStoryDistributionListRecord implements SignalRecord {
+public class SignalStoryDistributionListRecord implements SignalRecord<StoryDistributionListRecord> {
 
   private static final String TAG = SignalStoryDistributionListRecord.class.getSimpleName();
 
@@ -42,12 +43,13 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
   }
 
   @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forStoryDistributionList(this);
+  public StoryDistributionListRecord getProto() {
+    return proto;
   }
 
-  public StoryDistributionListRecord toProto() {
-    return proto;
+  @Override
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forStoryDistributionList(this);
   }
 
   public byte[] serializeUnknownFields() {
@@ -76,46 +78,6 @@ public class SignalStoryDistributionListRecord implements SignalRecord {
 
   public boolean isBlockList() {
     return proto.isBlockList;
-  }
-
-  @Override
-  public String describeDiff(SignalRecord other) {
-    if (other instanceof SignalStoryDistributionListRecord) {
-      SignalStoryDistributionListRecord that = (SignalStoryDistributionListRecord) other;
-      List<String>                      diff = new LinkedList<>();
-
-      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
-        diff.add("ID");
-      }
-
-      if (!Arrays.equals(this.getIdentifier(), that.getIdentifier())) {
-        diff.add("Identifier");
-      }
-
-      if (!Objects.equals(this.getName(), that.getName())) {
-        diff.add("Name");
-      }
-
-      if (!Objects.equals(this.recipients, that.recipients)) {
-        diff.add("RecipientUuids");
-      }
-
-      if (this.getDeletedAtTimestamp() != that.getDeletedAtTimestamp()) {
-        diff.add("DeletedAtTimestamp");
-      }
-
-      if (this.allowsReplies() != that.allowsReplies()) {
-        diff.add("AllowsReplies");
-      }
-
-      if (this.isBlockList() != that.isBlockList()) {
-        diff.add("BlockList");
-      }
-
-      return diff.toString();
-    } else {
-      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
-    }
   }
 
   @Override

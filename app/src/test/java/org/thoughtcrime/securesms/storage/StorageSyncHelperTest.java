@@ -180,7 +180,7 @@ public final class StorageSyncHelperTest {
                                   .setProfileGivenName(profileName);
   }
 
-  private static <E extends SignalRecord> StorageRecordUpdate<E> update(E oldRecord, E newRecord) {
+  private static <E extends SignalRecord<?>> StorageRecordUpdate<E> update(E oldRecord, E newRecord) {
     return new StorageRecordUpdate<>(oldRecord, newRecord);
   }
 

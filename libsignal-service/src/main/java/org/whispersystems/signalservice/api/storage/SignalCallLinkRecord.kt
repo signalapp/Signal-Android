@@ -8,56 +8,21 @@ package org.whispersystems.signalservice.api.storage
 import okio.ByteString.Companion.toByteString
 import org.whispersystems.signalservice.internal.storage.protos.CallLinkRecord
 import java.io.IOException
-import java.util.LinkedList
 
 /**
  * A record in storage service that represents a call link that was already created.
  */
-class SignalCallLinkRecord(private val id: StorageId, private val proto: CallLinkRecord) : SignalRecord {
+class SignalCallLinkRecord(
+  override val id: StorageId,
+  override val proto: CallLinkRecord
+) : SignalRecord<CallLinkRecord> {
 
   val rootKey: ByteArray = proto.rootKey.toByteArray()
   val adminPassKey: ByteArray = proto.adminPasskey.toByteArray()
   val deletionTimestamp: Long = proto.deletedAtTimestampMs
 
-  fun toProto(): CallLinkRecord {
-    return proto
-  }
-
-  override fun getId(): StorageId {
-    return id
-  }
-
   override fun asStorageRecord(): SignalStorageRecord {
     return SignalStorageRecord.forCallLink(this)
-  }
-
-  override fun describeDiff(other: SignalRecord?): String {
-    return when (other) {
-      is SignalCallLinkRecord -> {
-        val diff = LinkedList<String>()
-        if (!rootKey.contentEquals(other.rootKey)) {
-          diff.add("RootKey")
-        }
-
-        if (!adminPassKey.contentEquals(other.adminPassKey)) {
-          diff.add("AdminPassKey")
-        }
-
-        if (deletionTimestamp != other.deletionTimestamp) {
-          diff.add("DeletionTimestamp")
-        }
-
-        diff.toString()
-      }
-
-      null -> {
-        "Other was null!"
-      }
-
-      else -> {
-        "Different class. ${this::class.java.getSimpleName()} | ${other::class.java.getSimpleName()}"
-      }
-    }
   }
 
   fun isDeleted(): Boolean {

@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
@@ -14,7 +15,7 @@ import java.util.Objects;
 
 import okio.ByteString;
 
-public final class SignalGroupV2Record implements SignalRecord {
+public final class SignalGroupV2Record implements SignalRecord<GroupV2Record> {
 
   private static final String TAG = SignalGroupV2Record.class.getSimpleName();
 
@@ -35,65 +36,13 @@ public final class SignalGroupV2Record implements SignalRecord {
     return id;
   }
 
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forGroupV2(this);
+  @Override public GroupV2Record getProto() {
+    return proto;
   }
 
   @Override
-  public String describeDiff(SignalRecord other) {
-    if (other instanceof SignalGroupV2Record) {
-      SignalGroupV2Record that = (SignalGroupV2Record) other;
-      List<String>        diff = new LinkedList<>();
-
-      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
-        diff.add("ID");
-      }
-
-      if (!Arrays.equals(this.getMasterKeyBytes(), that.getMasterKeyBytes())) {
-        diff.add("MasterKey");
-      }
-
-      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
-        diff.add("Blocked");
-      }
-
-      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
-        diff.add("ProfileSharing");
-      }
-
-      if (!Objects.equals(this.isArchived(), that.isArchived())) {
-        diff.add("Archived");
-      }
-
-      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
-        diff.add("ForcedUnread");
-      }
-
-      if (!Objects.equals(this.getMuteUntil(), that.getMuteUntil())) {
-        diff.add("MuteUntil");
-      }
-
-      if (!Objects.equals(this.notifyForMentionsWhenMuted(), that.notifyForMentionsWhenMuted())) {
-        diff.add("NotifyForMentionsWhenMuted");
-      }
-
-      if (shouldHideStory() != that.shouldHideStory()) {
-        diff.add("HideStory");
-      }
-
-      if (!Objects.equals(this.getStorySendMode(), that.getStorySendMode())) {
-        diff.add("StorySendMode");
-      }
-
-      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
-        diff.add("UnknownFields");
-      }
-
-      return diff.toString();
-    } else {
-      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
-    }
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forGroupV2(this);
   }
 
   public boolean hasUnknownFields() {
@@ -146,10 +95,6 @@ public final class SignalGroupV2Record implements SignalRecord {
 
   public GroupV2Record.StorySendMode getStorySendMode() {
     return proto.storySendMode;
-  }
-
-  public GroupV2Record toProto() {
-    return proto;
   }
 
   @Override

@@ -124,9 +124,9 @@ public class StorageAccountRestoreJob extends BaseJob {
 
     JobManager jobManager = AppDependencies.getJobManager();
 
-    if (accountRecord.getAvatarUrlPath().isPresent()) {
+    if (!accountRecord.getProto().avatarUrlPath.isEmpty()) {
       Log.i(TAG,  "Fetching avatar...");
-      Optional<JobTracker.JobState> state = jobManager.runSynchronously(new RetrieveProfileAvatarJob(Recipient.self(), accountRecord.getAvatarUrlPath().get()), LIFESPAN/2);
+      Optional<JobTracker.JobState> state = jobManager.runSynchronously(new RetrieveProfileAvatarJob(Recipient.self(), accountRecord.getProto().avatarUrlPath), LIFESPAN / 2);
 
       if (state.isPresent()) {
         Log.i(TAG, "Avatar retrieved successfully. " + state.get());

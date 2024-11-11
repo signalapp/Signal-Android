@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.storage
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
 import org.signal.core.util.logging.Log
@@ -28,6 +29,10 @@ import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.safeSetBackupsSubscriber
+import org.whispersystems.signalservice.api.storage.safeSetPayments
+import org.whispersystems.signalservice.api.storage.safeSetSubscriber
+import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.util.OptionalUtil.byteArrayEquals
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
@@ -130,52 +135,54 @@ object StorageSyncHelper {
 
     val storageId = selfRecord?.storageId ?: self.storageId
 
-    val account = SignalAccountRecord.Builder(storageId, selfRecord?.syncExtras?.storageProto)
-      .setProfileKey(self.profileKey)
-      .setGivenName(self.profileName.givenName)
-      .setFamilyName(self.profileName.familyName)
-      .setAvatarUrlPath(self.profileAvatar)
-      .setNoteToSelfArchived(selfRecord != null && selfRecord.syncExtras.isArchived)
-      .setNoteToSelfForcedUnread(selfRecord != null && selfRecord.syncExtras.isForcedUnread)
-      .setTypingIndicatorsEnabled(TextSecurePreferences.isTypingIndicatorsEnabled(context))
-      .setReadReceiptsEnabled(TextSecurePreferences.isReadReceiptsEnabled(context))
-      .setSealedSenderIndicatorsEnabled(TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context))
-      .setLinkPreviewsEnabled(SignalStore.settings.isLinkPreviewsEnabled)
-      .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE)
-      .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy.phoneNumberSharingMode))
-      .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
-      .setPreferContactAvatars(SignalStore.settings.isPreferSystemContactPhotos)
-      .setPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
-      .setPrimarySendsSms(false)
-      .setUniversalExpireTimer(SignalStore.settings.universalExpireTimer)
-      .setDefaultReactions(SignalStore.emoji.reactions)
-      .setSubscriber(StorageSyncModels.localToRemoteSubscriber(getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)))
-      .setBackupsSubscriber(StorageSyncModels.localToRemoteSubscriber(getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)))
-      .setDisplayBadgesOnProfile(SignalStore.inAppPayments.getDisplayBadgesOnProfile())
-      .setSubscriptionManuallyCancelled(isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION))
-      .setKeepMutedChatsArchived(SignalStore.settings.shouldKeepMutedChatsArchived())
-      .setHasSetMyStoriesPrivacy(SignalStore.story.userHasBeenNotifiedAboutStories)
-      .setHasViewedOnboardingStory(SignalStore.story.userHasViewedOnboardingStory)
-      .setStoriesDisabled(SignalStore.story.isFeatureDisabled)
-      .setStoryViewReceiptsState(storyViewReceiptsState)
-      .setHasSeenGroupStoryEducationSheet(SignalStore.story.userHasSeenGroupStoryEducationSheet)
-      .setUsername(SignalStore.account.username)
-      .setHasCompletedUsernameOnboarding(SignalStore.uiHints.hasCompletedUsernameOnboarding())
+    val accountRecord = SignalAccountRecord.newBuilder(selfRecord?.syncExtras?.storageProto).apply {
+      profileKey = self.profileKey?.toByteString() ?: ByteString.EMPTY
+      givenName = self.profileName.givenName
+      familyName = self.profileName.familyName
+      avatarUrlPath = self.profileAvatar ?: ""
+      noteToSelfArchived = selfRecord != null && selfRecord.syncExtras.isArchived
+      noteToSelfMarkedUnread = selfRecord != null && selfRecord.syncExtras.isForcedUnread
+      typingIndicators = TextSecurePreferences.isTypingIndicatorsEnabled(context)
+      readReceipts = TextSecurePreferences.isReadReceiptsEnabled(context)
+      sealedSenderIndicators = TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context)
+      linkPreviews = SignalStore.settings.isLinkPreviewsEnabled
+      unlistedPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE
+      phoneNumberSharingMode = StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy.phoneNumberSharingMode)
+      pinnedConversations = StorageSyncModels.localToRemotePinnedConversations(pinned)
+      preferContactAvatars = SignalStore.settings.isPreferSystemContactPhotos
+      primarySendsSms = false
+      universalExpireTimer = SignalStore.settings.universalExpireTimer
+      preferredReactionEmoji = SignalStore.emoji.reactions
+      displayBadgesOnProfile = SignalStore.inAppPayments.getDisplayBadgesOnProfile()
+      subscriptionManuallyCancelled = isUserManuallyCancelled(InAppPaymentSubscriberRecord.Type.DONATION)
+      keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived()
+      hasSetMyStoriesPrivacy = SignalStore.story.userHasBeenNotifiedAboutStories
+      hasViewedOnboardingStory = SignalStore.story.userHasViewedOnboardingStory
+      storiesDisabled = SignalStore.story.isFeatureDisabled
+      storyViewReceiptsEnabled = storyViewReceiptsState
+      hasSeenGroupStoryEducationSheet = SignalStore.story.userHasSeenGroupStoryEducationSheet
+      hasCompletedUsernameOnboarding = SignalStore.uiHints.hasCompletedUsernameOnboarding()
+      username = SignalStore.account.username ?: ""
+      usernameLink = SignalStore.account.usernameLink?.let { linkComponents ->
+        AccountRecord.UsernameLink(
+          entropy = linkComponents.entropy.toByteString(),
+          serverId = linkComponents.serverId.toByteArray().toByteString(),
+          color = StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc.usernameQrCodeColorScheme)
+        )
+      }
 
-    val linkComponents = SignalStore.account.usernameLink
-    if (linkComponents != null) {
-      account.setUsernameLink(
-        AccountRecord.UsernameLink.Builder()
-          .entropy(linkComponents.entropy.toByteString())
-          .serverId(linkComponents.serverId.toByteArray().toByteString())
-          .color(StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc.usernameQrCodeColorScheme))
-          .build()
-      )
-    } else {
-      account.setUsernameLink(null)
+      getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
+        safeSetSubscriber(it.subscriberId.bytes.toByteString(), it.currency.currencyCode)
+      }
+
+      getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)?.let {
+        safeSetBackupsSubscriber(it.subscriberId.bytes.toByteString(), it.currency.currencyCode)
+      }
+
+      safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
     }
 
-    return SignalStorageRecord.forAccount(account.build())
+    return SignalStorageRecord.forAccount(accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)))
   }
 
   @JvmStatic
@@ -188,62 +195,56 @@ object StorageSyncHelper {
   fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, update: StorageRecordUpdate<SignalAccountRecord>, fetchProfile: Boolean) {
     SignalDatabase.recipients.applyStorageSyncAccountUpdate(update)
 
-    TextSecurePreferences.setReadReceiptsEnabled(context, update.new.isReadReceiptsEnabled)
-    TextSecurePreferences.setTypingIndicatorsEnabled(context, update.new.isTypingIndicatorsEnabled)
-    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.new.isSealedSenderIndicatorsEnabled)
-    SignalStore.settings.isLinkPreviewsEnabled = update.new.isLinkPreviewsEnabled
-    SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (update.new.isPhoneNumberUnlisted) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
-    SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.new.phoneNumberSharingMode)
-    SignalStore.settings.isPreferSystemContactPhotos = update.new.isPreferContactAvatars
-    SignalStore.payments.setEnabledAndEntropy(update.new.payments.isEnabled, Entropy.fromBytes(update.new.payments.entropy.orElse(null)))
-    SignalStore.settings.universalExpireTimer = update.new.universalExpireTimer
-    SignalStore.emoji.reactions = update.new.defaultReactions
-    SignalStore.inAppPayments.setDisplayBadgesOnProfile(update.new.isDisplayBadgesOnProfile)
-    SignalStore.settings.setKeepMutedChatsArchived(update.new.isKeepMutedChatsArchived)
-    SignalStore.story.userHasBeenNotifiedAboutStories = update.new.hasSetMyStoriesPrivacy()
-    SignalStore.story.userHasViewedOnboardingStory = update.new.hasViewedOnboardingStory()
-    SignalStore.story.isFeatureDisabled = update.new.isStoriesDisabled
-    SignalStore.story.userHasSeenGroupStoryEducationSheet = update.new.hasSeenGroupStoryEducationSheet()
-    SignalStore.uiHints.setHasCompletedUsernameOnboarding(update.new.hasCompletedUsernameOnboarding())
+    TextSecurePreferences.setReadReceiptsEnabled(context, update.new.proto.readReceipts)
+    TextSecurePreferences.setTypingIndicatorsEnabled(context, update.new.proto.typingIndicators)
+    TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, update.new.proto.sealedSenderIndicators)
+    SignalStore.settings.isLinkPreviewsEnabled = update.new.proto.linkPreviews
+    SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode = if (update.new.proto.unlistedPhoneNumber) PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE else PhoneNumberDiscoverabilityMode.DISCOVERABLE
+    SignalStore.phoneNumberPrivacy.phoneNumberSharingMode = StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.new.proto.phoneNumberSharingMode)
+    SignalStore.settings.isPreferSystemContactPhotos = update.new.proto.preferContactAvatars
+    SignalStore.payments.setEnabledAndEntropy(update.new.proto.payments?.enabled == true, Entropy.fromBytes(update.new.proto.payments?.entropy?.toByteArray()))
+    SignalStore.settings.universalExpireTimer = update.new.proto.universalExpireTimer
+    SignalStore.emoji.reactions = update.new.proto.preferredReactionEmoji
+    SignalStore.inAppPayments.setDisplayBadgesOnProfile(update.new.proto.displayBadgesOnProfile)
+    SignalStore.settings.setKeepMutedChatsArchived(update.new.proto.keepMutedChatsArchived)
+    SignalStore.story.userHasBeenNotifiedAboutStories = update.new.proto.hasSetMyStoriesPrivacy
+    SignalStore.story.userHasViewedOnboardingStory = update.new.proto.hasViewedOnboardingStory
+    SignalStore.story.isFeatureDisabled = update.new.proto.storiesDisabled
+    SignalStore.story.userHasSeenGroupStoryEducationSheet = update.new.proto.hasSeenGroupStoryEducationSheet
+    SignalStore.uiHints.setHasCompletedUsernameOnboarding(update.new.proto.hasCompletedUsernameOnboarding)
 
-    if (update.new.storyViewReceiptsState == OptionalBool.UNSET) {
-      SignalStore.story.viewedReceiptsEnabled = update.new.isReadReceiptsEnabled
+    if (update.new.proto.storyViewReceiptsEnabled == OptionalBool.UNSET) {
+      SignalStore.story.viewedReceiptsEnabled = update.new.proto.readReceipts
     } else {
-      SignalStore.story.viewedReceiptsEnabled = update.new.storyViewReceiptsState == OptionalBool.ENABLED
+      SignalStore.story.viewedReceiptsEnabled = update.new.proto.storyViewReceiptsEnabled == OptionalBool.ENABLED
     }
 
-    if (update.new.storyViewReceiptsState == OptionalBool.UNSET) {
-      SignalStore.story.viewedReceiptsEnabled = update.new.isReadReceiptsEnabled
-    } else {
-      SignalStore.story.viewedReceiptsEnabled = update.new.storyViewReceiptsState == OptionalBool.ENABLED
-    }
-
-    val remoteSubscriber = StorageSyncModels.remoteToLocalSubscriber(update.new.subscriber, InAppPaymentSubscriberRecord.Type.DONATION)
+    val remoteSubscriber = StorageSyncModels.remoteToLocalSubscriber(update.new.proto.subscriberId, update.new.proto.subscriberCurrencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
     if (remoteSubscriber != null) {
       setSubscriber(remoteSubscriber)
     }
 
-    if (update.new.isSubscriptionManuallyCancelled && !update.old.isSubscriptionManuallyCancelled) {
+    if (update.new.proto.subscriptionManuallyCancelled && !update.old.proto.subscriptionManuallyCancelled) {
       SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
     }
 
-    if (fetchProfile && update.new.avatarUrlPath.isPresent) {
-      AppDependencies.jobManager.add(RetrieveProfileAvatarJob(self, update.new.avatarUrlPath.get()))
+    if (fetchProfile && update.new.proto.avatarUrlPath.isNotBlank()) {
+      AppDependencies.jobManager.add(RetrieveProfileAvatarJob(self, update.new.proto.avatarUrlPath))
     }
 
-    if (update.new.username != update.old.username) {
-      SignalStore.account.username = update.new.username
+    if (update.new.proto.username != update.old.proto.username) {
+      SignalStore.account.username = update.new.proto.username
       SignalStore.account.usernameSyncState = AccountValues.UsernameSyncState.IN_SYNC
       SignalStore.account.usernameSyncErrorCount = 0
     }
 
-    if (update.new.usernameLink != null) {
+    if (update.new.proto.usernameLink != null) {
       SignalStore.account.usernameLink = UsernameLinkComponents(
-        update.new.usernameLink!!.entropy.toByteArray(),
-        UuidUtil.parseOrThrow(update.new.usernameLink!!.serverId.toByteArray())
+        update.new.proto.usernameLink!!.entropy.toByteArray(),
+        UuidUtil.parseOrThrow(update.new.proto.usernameLink!!.serverId.toByteArray())
       )
 
-      SignalStore.misc.usernameQrCodeColorScheme = StorageSyncModels.remoteToLocalUsernameColor(update.new.usernameLink!!.color)
+      SignalStore.misc.usernameQrCodeColorScheme = StorageSyncModels.remoteToLocalUsernameColor(update.new.proto.usernameLink!!.color)
     }
   }
 

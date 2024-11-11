@@ -17,8 +17,11 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.forEach
+import org.signal.core.util.hasUnknownFields
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
+import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.optionalString
 import org.signal.core.util.or
 import org.signal.core.util.orNull
@@ -1024,12 +1027,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun applyStorageSyncAccountUpdate(update: StorageRecordUpdate<SignalAccountRecord>) {
-    val profileName = ProfileName.fromParts(update.new.givenName.orElse(null), update.new.familyName.orElse(null))
-    val localKey = ProfileKeyUtil.profileKeyOptional(update.old.profileKey.orElse(null))
-    val remoteKey = ProfileKeyUtil.profileKeyOptional(update.new.profileKey.orElse(null))
-    val profileKey: String? = remoteKey.or(localKey).map { obj: ProfileKey -> obj.serialize() }.map { source: ByteArray? -> Base64.encodeWithPadding(source!!) }.orElse(null)
-    if (!remoteKey.isPresent) {
-      Log.w(TAG, "Got an empty profile key while applying an account record update! The parsed local key is ${if (localKey.isPresent) "present" else "not present"}. The raw local key is ${if (update.old.profileKey.isPresent) "present" else "not present"}. The resulting key is ${if (profileKey != null) "present" else "not present"}.")
+    val profileName = ProfileName.fromParts(update.new.proto.givenName, update.new.proto.familyName)
+    val localKey = update.old.proto.profileKey.nullIfEmpty()?.toByteArray()?.let { ProfileKeyUtil.profileKeyOrNull(it) }
+    val remoteKey = update.new.proto.profileKey.nullIfEmpty()?.toByteArray()?.let { ProfileKeyUtil.profileKeyOrNull(it) }
+    val profileKey: String? = (remoteKey ?: localKey)?.let { Base64.encodeWithPadding(it.serialize()) }
+
+    if (remoteKey == null) {
+      Log.w(TAG, "Got an empty profile key while applying an account record update! The parsed local key is ${if (localKey != null) "present" else "not present"}. The raw local key is ${if (update.old.proto.profileKey.isNotEmpty()) "present" else "not present"}. The resulting key is ${if (profileKey != null) "present" else "not present"}.")
     }
 
     val values = ContentValues().apply {
@@ -1043,21 +1047,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.w(TAG, "Avoided attempt to apply null profile key in account record update!")
       }
 
-      put(USERNAME, update.new.username)
+      put(USERNAME, update.new.proto.username.nullIfBlank())
       put(STORAGE_SERVICE_ID, Base64.encodeWithPadding(update.new.id.raw))
 
-      if (update.new.hasUnknownFields()) {
-        put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(Objects.requireNonNull(update.new.serializeUnknownFields())))
+      if (update.new.proto.hasUnknownFields()) {
+        put(STORAGE_SERVICE_PROTO, Base64.encodeWithPadding(update.new.serializeUnknownFields()!!))
       } else {
         putNull(STORAGE_SERVICE_PROTO)
       }
     }
 
-    if (update.new.username != null) {
+    if (update.new.proto.username.nullIfBlank() != null) {
       writableDatabase
         .update(TABLE_NAME)
         .values(USERNAME to null)
-        .where("$USERNAME = ?", update.new.username!!)
+        .where("$USERNAME = ?", update.new.proto.username)
         .run()
     }
 

@@ -33,6 +33,7 @@ java {
 tasks.withType<KotlinCompile>().configureEach {
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
+    freeCompilerArgs = listOf("-Xjvm-default=all")
   }
 }
 

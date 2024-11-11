@@ -64,17 +64,17 @@ public final class SignalStorageModels {
     StorageRecord.Builder builder = new StorageRecord.Builder();
 
     if (record.getContact().isPresent()) {
-      builder.contact(record.getContact().get().toProto());
+      builder.contact(record.getContact().get().getProto());
     } else if (record.getGroupV1().isPresent()) {
-      builder.groupV1(record.getGroupV1().get().toProto());
+      builder.groupV1(record.getGroupV1().get().getProto());
     } else if (record.getGroupV2().isPresent()) {
-      builder.groupV2(record.getGroupV2().get().toProto());
+      builder.groupV2(record.getGroupV2().get().getProto());
     } else if (record.getAccount().isPresent()) {
-      builder.account(record.getAccount().get().toProto());
+      builder.account(record.getAccount().get().getProto());
     } else if (record.getStoryDistributionList().isPresent()) {
-      builder.storyDistributionList(record.getStoryDistributionList().get().toProto());
+      builder.storyDistributionList(record.getStoryDistributionList().get().getProto());
     } else if (record.getCallLink().isPresent()) {
-      builder.callLink(record.getCallLink().get().toProto());
+      builder.callLink(record.getCallLink().get().getProto());
     } else {
       throw new InvalidStorageWriteError();
     }

@@ -71,10 +71,11 @@ import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
-import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalServiceAddress
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import java.io.Closeable
 import java.io.IOException
 import java.util.Collections
@@ -1522,7 +1523,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalAccountRecord) {
     writableDatabase.withinTransaction { db ->
-      applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived, record.isNoteToSelfForcedUnread)
+      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread)
 
       db.updateAll(TABLE_NAME)
         .values(PINNED to 0)
@@ -1530,19 +1531,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       var pinnedPosition = 1
 
-      for (pinned: PinnedConversation in record.pinnedConversations) {
-        val pinnedRecipient: Recipient? = if (pinned.contact.isPresent) {
-          Recipient.externalPush(pinned.contact.get())
-        } else if (pinned.groupV1Id.isPresent) {
+      for (pinned: AccountRecord.PinnedConversation in record.proto.pinnedConversations) {
+        val pinnedRecipient: Recipient? = if (pinned.contact != null) {
+          Recipient.externalPush(pinned.contact!!.toSignalServiceAddress())
+        } else if (pinned.legacyGroupId != null) {
           try {
-            Recipient.externalGroupExact(GroupId.v1(pinned.groupV1Id.get()))
+            Recipient.externalGroupExact(GroupId.v1(pinned.legacyGroupId!!.toByteArray()))
           } catch (e: BadGroupIdException) {
             Log.w(TAG, "Failed to parse pinned groupV1 ID!", e)
             null
           }
-        } else if (pinned.groupV2MasterKey.isPresent) {
+        } else if (pinned.groupMasterKey != null) {
           try {
-            Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(pinned.groupV2MasterKey.get())))
+            Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(pinned.groupMasterKey!!.toByteArray())))
           } catch (e: InvalidInputException) {
             Log.w(TAG, "Failed to parse pinned groupV2 master key!", e)
             null

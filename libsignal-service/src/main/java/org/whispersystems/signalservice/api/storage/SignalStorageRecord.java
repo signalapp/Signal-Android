@@ -7,7 +7,7 @@ import org.whispersystems.signalservice.internal.storage.protos.CallLinkRecord;
 import java.util.Objects;
 import java.util.Optional;
 
-public class SignalStorageRecord implements SignalRecord {
+public class SignalStorageRecord {
 
   private final StorageId                                   id;
   private final Optional<SignalStoryDistributionListRecord> storyDistributionList;
@@ -89,19 +89,8 @@ public class SignalStorageRecord implements SignalRecord {
     this.callLink              = callLink;
   }
 
-  @Override
   public StorageId getId() {
     return id;
-  }
-
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return this;
-  }
-
-  @Override
-  public String describeDiff(SignalRecord other) {
-    return "Diffs not supported.";
   }
 
   public int getType() {

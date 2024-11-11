@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.storage
 
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.isNotEmpty
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
@@ -16,7 +19,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
@@ -82,18 +84,33 @@ object StorageSyncModels {
   }
 
   @JvmStatic
-  fun localToRemotePinnedConversations(records: List<RecipientRecord>): List<SignalAccountRecord.PinnedConversation> {
+  fun localToRemotePinnedConversations(records: List<RecipientRecord>): List<AccountRecord.PinnedConversation> {
     return records
       .filter { it.recipientType == RecipientType.GV1 || it.recipientType == RecipientType.GV2 || it.registered == RecipientTable.RegisteredState.REGISTERED }
       .map { localToRemotePinnedConversation(it) }
   }
 
   @JvmStatic
-  private fun localToRemotePinnedConversation(settings: RecipientRecord): SignalAccountRecord.PinnedConversation {
+  private fun localToRemotePinnedConversation(settings: RecipientRecord): AccountRecord.PinnedConversation {
     return when (settings.recipientType) {
-      RecipientType.INDIVIDUAL -> SignalAccountRecord.PinnedConversation.forContact(SignalServiceAddress(settings.serviceId, settings.e164))
-      RecipientType.GV1 -> SignalAccountRecord.PinnedConversation.forGroupV1(settings.groupId!!.requireV1().decodedId)
-      RecipientType.GV2 -> SignalAccountRecord.PinnedConversation.forGroupV2(settings.syncExtras.groupMasterKey!!.serialize())
+      RecipientType.INDIVIDUAL -> {
+        AccountRecord.PinnedConversation(
+          contact = AccountRecord.PinnedConversation.Contact(
+            serviceId = settings.serviceId?.toString() ?: "",
+            e164 = settings.e164 ?: ""
+          )
+        )
+      }
+      RecipientType.GV1 -> {
+        AccountRecord.PinnedConversation(
+          legacyGroupId = settings.groupId!!.requireV1().decodedId.toByteString()
+        )
+      }
+      RecipientType.GV2 -> {
+        AccountRecord.PinnedConversation(
+          groupMasterKey = settings.syncExtras.groupMasterKey!!.serialize().toByteString()
+        )
+      }
       else -> throw AssertionError("Unexpected group type!")
     }
   }
@@ -271,33 +288,23 @@ object StorageSyncModels {
     }
   }
 
-  /**
-   * TODO - need to store the subscriber type
-   */
-  fun localToRemoteSubscriber(subscriber: InAppPaymentSubscriberRecord?): SignalAccountRecord.Subscriber {
-    return if (subscriber == null) {
-      SignalAccountRecord.Subscriber(null, null)
-    } else {
-      SignalAccountRecord.Subscriber(subscriber.currency.currencyCode, subscriber.subscriberId.bytes)
-    }
-  }
-
   fun remoteToLocalSubscriber(
-    subscriber: SignalAccountRecord.Subscriber,
+    subscriberId: ByteString,
+    subscriberCurrencyCode: String,
     type: InAppPaymentSubscriberRecord.Type
   ): InAppPaymentSubscriberRecord? {
-    if (subscriber.id.isPresent) {
-      val subscriberId = SubscriberId.fromBytes(subscriber.id.get())
+    if (subscriberId.isNotEmpty()) {
+      val subscriberId = SubscriberId.fromBytes(subscriberId.toByteArray())
       val localSubscriberRecord = inAppPaymentSubscribers.getBySubscriberId(subscriberId)
       val requiresCancel = localSubscriberRecord != null && localSubscriberRecord.requiresCancel
       val paymentMethodType = localSubscriberRecord?.paymentMethodType ?: InAppPaymentData.PaymentMethodType.UNKNOWN
 
       val currency: Currency
-      if (subscriber.currencyCode.isEmpty) {
+      if (subscriberCurrencyCode.isBlank()) {
         return null
       } else {
         try {
-          currency = Currency.getInstance(subscriber.currencyCode.get())
+          currency = Currency.getInstance(subscriberCurrencyCode)
         } catch (e: IllegalArgumentException) {
           return null
         }

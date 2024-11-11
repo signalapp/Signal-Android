@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ProtoUtil;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -20,7 +21,7 @@ import javax.annotation.Nullable;
 
 import okio.ByteString;
 
-public final class SignalContactRecord implements SignalRecord {
+public final class SignalContactRecord implements SignalRecord<ContactRecord> {
 
   private static final String TAG = SignalContactRecord.class.getSimpleName();
 
@@ -69,124 +70,13 @@ public final class SignalContactRecord implements SignalRecord {
   }
 
   @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forContact(this);
+  public ContactRecord getProto() {
+    return proto;
   }
 
   @Override
-  public String describeDiff(SignalRecord other) {
-    if (other instanceof SignalContactRecord) {
-      SignalContactRecord that = (SignalContactRecord) other;
-      List<String>        diff = new LinkedList<>();
-
-      if (!Arrays.equals(this.id.getRaw(), that.id.getRaw())) {
-        diff.add("ID");
-      }
-
-      if (!Objects.equals(this.getAci(), that.getAci())) {
-        diff.add("ACI");
-      }
-
-      if (!Objects.equals(this.getPni(), that.getPni())) {
-        diff.add("PNI");
-      }
-
-      if (!Objects.equals(this.getNumber(), that.getNumber())) {
-        diff.add("E164");
-      }
-
-      if (!Objects.equals(this.profileGivenName, that.profileGivenName)) {
-        diff.add("ProfileGivenName");
-      }
-
-      if (!Objects.equals(this.profileFamilyName, that.profileFamilyName)) {
-        diff.add("ProfileFamilyName");
-      }
-
-      if (!Objects.equals(this.systemGivenName, that.systemGivenName)) {
-        diff.add("SystemGivenName");
-      }
-
-      if (!Objects.equals(this.systemFamilyName, that.systemFamilyName)) {
-        diff.add("SystemFamilyName");
-      }
-
-      if (!Objects.equals(this.systemNickname, that.systemNickname)) {
-        diff.add("SystemNickname");
-      }
-
-      if (!OptionalUtil.byteArrayEquals(this.profileKey, that.profileKey)) {
-        diff.add("ProfileKey");
-      }
-
-      if (!Objects.equals(this.username, that.username)) {
-        diff.add("Username");
-      }
-
-      if (!OptionalUtil.byteArrayEquals(this.identityKey, that.identityKey)) {
-        diff.add("IdentityKey");
-      }
-
-      if (!Objects.equals(this.getIdentityState(), that.getIdentityState())) {
-        diff.add("IdentityState");
-      }
-
-      if (!Objects.equals(this.isBlocked(), that.isBlocked())) {
-        diff.add("Blocked");
-      }
-
-      if (!Objects.equals(this.isProfileSharingEnabled(), that.isProfileSharingEnabled())) {
-        diff.add("ProfileSharing");
-      }
-
-      if (!Objects.equals(this.isArchived(), that.isArchived())) {
-        diff.add("Archived");
-      }
-
-      if (!Objects.equals(this.isForcedUnread(), that.isForcedUnread())) {
-        diff.add("ForcedUnread");
-      }
-
-      if (!Objects.equals(this.getMuteUntil(), that.getMuteUntil())) {
-        diff.add("MuteUntil");
-      }
-
-      if (shouldHideStory() != that.shouldHideStory()) {
-        diff.add("HideStory");
-      }
-
-      if (getUnregisteredTimestamp() != that.getUnregisteredTimestamp()) {
-        diff.add("UnregisteredTimestamp");
-      }
-
-      if (isHidden() != that.isHidden()) {
-        diff.add("Hidden");
-      }
-
-      if (isPniSignatureVerified() != that.isPniSignatureVerified()) {
-        diff.add("PniSignatureVerified");
-      }
-
-      if (!Objects.equals(this.hasUnknownFields(), that.hasUnknownFields())) {
-        diff.add("UnknownFields");
-      }
-
-      if (!Objects.equals(this.nicknameGivenName, that.nicknameGivenName)) {
-        diff.add("NicknameGivenName");
-      }
-
-      if (!Objects.equals(this.nicknameFamilyName, that.nicknameFamilyName)) {
-        diff.add("NicknameFamilyName");
-      }
-
-      if (!Objects.equals(this.note, that.note)) {
-        diff.add("Note");
-      }
-
-      return diff.toString();
-    } else {
-      return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
-    }
+  public SignalStorageRecord asStorageRecord() {
+    return SignalStorageRecord.forContact(this);
   }
 
   public boolean hasUnknownFields() {
@@ -308,10 +198,6 @@ public final class SignalContactRecord implements SignalRecord {
    */
   public SignalContactRecord withoutPni() {
     return new SignalContactRecord(id, proto.newBuilder().pni("").build());
-  }
-
-  public ContactRecord toProto() {
-    return proto;
   }
 
   @Override
