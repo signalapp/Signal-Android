@@ -37,6 +37,12 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
+import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.toSignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
+import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
 import java.io.IOException
@@ -475,18 +481,18 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
     init {
       for (record in records) {
-        if (record.contact.isPresent) {
-          contacts += record.contact.get()
-        } else if (record.groupV1.isPresent) {
-          gv1 += record.groupV1.get()
-        } else if (record.groupV2.isPresent) {
-          gv2 += record.groupV2.get()
-        } else if (record.account.isPresent) {
-          account += record.account.get()
-        } else if (record.storyDistributionList.isPresent) {
-          storyDistributionLists += record.storyDistributionList.get()
-        } else if (record.callLink.isPresent) {
-          callLinkRecords += record.callLink.get()
+        if (record.proto.contact != null) {
+          contacts += record.proto.contact!!.toSignalContactRecord(record.id)
+        } else if (record.proto.groupV1 != null) {
+          gv1 += record.proto.groupV1!!.toSignalGroupV1Record(record.id)
+        } else if (record.proto.groupV2 != null) {
+          gv2 += record.proto.groupV2!!.toSignalGroupV2Record(record.id)
+        } else if (record.proto.account != null) {
+          account += record.proto.account!!.toSignalAccountRecord(record.id)
+        } else if (record.proto.storyDistributionList != null) {
+          storyDistributionLists += record.proto.storyDistributionList!!.toSignalStoryDistributionListRecord(record.id)
+        } else if (record.proto.callLink != null) {
+          callLinkRecords += record.proto.callLink!!.toSignalCallLinkRecord(record.id)
         } else if (record.id.isUnknown) {
           unknown += record
         } else {

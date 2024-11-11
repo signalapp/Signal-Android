@@ -156,20 +156,6 @@ public final class StorageSyncHelperTest {
     assertTrue(StorageSyncHelper.profileKeyChanged(update(a, b)));
   }
 
-  private static SignalStorageRecord record(SignalRecord record) {
-    if (record instanceof SignalContactRecord) {
-      return SignalStorageRecord.forContact(record.getId(), (SignalContactRecord) record);
-    } else if (record instanceof SignalGroupV1Record) {
-      return SignalStorageRecord.forGroupV1(record.getId(), (SignalGroupV1Record) record);
-    } else if (record instanceof SignalGroupV2Record) {
-      return SignalStorageRecord.forGroupV2(record.getId(), (SignalGroupV2Record) record);
-    } else if (record instanceof SignalAccountRecord) {
-      return SignalStorageRecord.forAccount(record.getId(), (SignalAccountRecord) record);
-    } else {
-      return SignalStorageRecord.forUnknown(record.getId());
-    }
-  }
-
   private static SignalContactRecord.Builder contactBuilder(int key,
                                                             ACI aci,
                                                             String e164,

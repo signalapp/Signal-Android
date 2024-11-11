@@ -21,10 +21,6 @@ class SignalCallLinkRecord(
   val adminPassKey: ByteArray = proto.adminPasskey.toByteArray()
   val deletionTimestamp: Long = proto.deletedAtTimestampMs
 
-  override fun asStorageRecord(): SignalStorageRecord {
-    return SignalStorageRecord.forCallLink(this)
-  }
-
   fun isDeleted(): Boolean {
     return deletionTimestamp > 0
   }

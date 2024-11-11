@@ -8,7 +8,6 @@ import org.signal.core.util.nullIfEmpty
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.buildAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.safeSetBackupsSubscriber
@@ -35,7 +34,11 @@ class AccountRecordProcessor(
 
   private var foundAccountRecord = false
 
-  constructor(context: Context, self: Recipient) : this(context, self, buildAccountRecord(context, self).account.get())
+  constructor(context: Context, self: Recipient) : this(
+    context = context,
+    self = self,
+    localAccountRecord = StorageSyncHelper.buildAccountRecord(context, self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
+  )
 
   /**
    * We want to catch:

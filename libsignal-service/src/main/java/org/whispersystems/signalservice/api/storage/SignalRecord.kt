@@ -6,7 +6,6 @@ import kotlin.reflect.full.memberProperties
 interface SignalRecord<E> {
   val id: StorageId
   val proto: E
-  fun asStorageRecord(): SignalStorageRecord
 
   fun describeDiff(other: SignalRecord<*>): String {
     if (this::class != other::class) {

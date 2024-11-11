@@ -53,10 +53,6 @@ fun AccountRecord.Builder.safeSetBackupsSubscriber(subscriberId: ByteString, sub
   return this
 }
 
-fun AccountRecord.Builder.toSignalAccountRecord(storageId: StorageId): SignalAccountRecord {
-  return SignalAccountRecord(storageId, this.build())
-}
-
 fun AccountRecord.PinnedConversation.Contact.toSignalServiceAddress(): SignalServiceAddress {
   val serviceId = ServiceId.parseOrNull(this.serviceId)
   return SignalServiceAddress(serviceId, this.e164)

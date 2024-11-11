@@ -23,24 +23,24 @@ class StorageServicePlugin : Plugin {
     for (record in signalStorageRecords) {
       val row = mutableListOf<String>()
 
-      if (record.account.isPresent) {
+      if (record.proto.account != null) {
         row += "Account"
-        row += record.account.get().toProto().toString()
-      } else if (record.contact.isPresent) {
+        row += record.proto.account.toString()
+      } else if (record.proto.contact != null) {
         row += "Contact"
-        row += record.contact.get().toProto().toString()
-      } else if (record.groupV1.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.groupV1 != null) {
         row += "GV1"
-        row += record.groupV1.get().toProto().toString()
-      } else if (record.groupV2.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.groupV2 != null) {
         row += "GV2"
-        row += record.groupV2.get().toProto().toString()
-      } else if (record.storyDistributionList.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.storyDistributionList != null) {
         row += "Distribution List"
-        row += record.storyDistributionList.get().toProto().toString()
-      } else if (record.callLink.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.callLink != null) {
         row += "Call Link"
-        row += record.callLink.get().toProto().toString()
+        row += record.proto.callLink.toString()
       } else {
         row += "Unknown"
         row += ""

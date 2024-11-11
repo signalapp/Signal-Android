@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.storage.safeSetBackupsSubscriber
 import org.whispersystems.signalservice.api.storage.safeSetPayments
 import org.whispersystems.signalservice.api.storage.safeSetSubscriber
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
+import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.util.OptionalUtil.byteArrayEquals
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
@@ -182,12 +183,12 @@ object StorageSyncHelper {
       safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
     }
 
-    return SignalStorageRecord.forAccount(accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)))
+    return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
   }
 
   @JvmStatic
   fun applyAccountStorageSyncUpdates(context: Context, self: Recipient, updatedRecord: SignalAccountRecord, fetchProfile: Boolean) {
-    val localRecord = buildAccountRecord(context, self).account.get()
+    val localRecord = buildAccountRecord(context, self).let { it.proto.account!!.toSignalAccountRecord(it.id) }
     applyAccountStorageSyncUpdates(context, self, StorageRecordUpdate(localRecord, updatedRecord), fetchProfile)
   }
 

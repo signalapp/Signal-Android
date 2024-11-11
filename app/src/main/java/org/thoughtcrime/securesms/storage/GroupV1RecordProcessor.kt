@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
+import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import java.util.Optional
 
 /**
@@ -53,7 +54,7 @@ class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val 
     return recipientId
       .map { recipientTable.getRecordForSync(it)!! }
       .map { settings: RecipientRecord -> StorageSyncModels.localToRemoteRecord(settings) }
-      .map { record: SignalStorageRecord -> record.groupV1.get() }
+      .map { record: SignalStorageRecord -> record.proto.groupV1!!.toSignalGroupV1Record(record.id) }
   }
 
   override fun merge(remote: SignalGroupV1Record, local: SignalGroupV1Record, keyGenerator: StorageKeyGenerator): SignalGroupV1Record {

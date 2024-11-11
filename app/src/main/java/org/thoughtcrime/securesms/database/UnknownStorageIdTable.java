@@ -116,7 +116,7 @@ public class UnknownStorageIdTable extends DatabaseTable {
 
     for (SignalStorageRecord insert : inserts) {
       ContentValues values = new ContentValues();
-      values.put(TYPE, insert.getType());
+      values.put(TYPE, insert.getId().getType());
       values.put(STORAGE_ID, Base64.encodeWithPadding(insert.getId().getRaw()));
 
       db.insert(TABLE_NAME, null, values);

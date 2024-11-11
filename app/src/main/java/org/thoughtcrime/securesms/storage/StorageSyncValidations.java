@@ -9,10 +9,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Base64;
 import org.signal.core.util.SetUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.nio.ByteBuffer;
@@ -166,18 +168,18 @@ public final class StorageSyncValidations {
         throw new UnknownInsertError();
       }
 
-      if (insert.getContact().isPresent()) {
-        SignalContactRecord contact = insert.getContact().get();
+      if (insert.getProto().contact != null) {
+        ContactRecord contact = insert.getProto().contact;
 
-        if (self.requireAci().equals(contact.getAci().orElse(null)) ||
-            self.requirePni().equals(contact.getPni().orElse(null)) ||
-            self.requireE164().equals(contact.getNumber().orElse("")))
+        if (self.requireAci().equals(ServiceId.ACI.parseOrNull(contact.aci)) ||
+            self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni)) ||
+            self.requireE164().equals(contact.e164))
         {
           throw new SelfAddedAsContactError();
         }
       }
 
-      if (insert.getAccount().isPresent() && insert.getAccount().get().getProto().profileKey.size() == 0) {
+      if (insert.getProto().account != null && insert.getProto().account.profileKey.size() == 0) {
         Log.w(TAG, "Uploading a null profile key in our AccountRecord!");
       }
     }

@@ -7,6 +7,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
 import java.util.Optional
@@ -78,14 +80,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
         throw InvalidGroupTypeException()
       }
 
-      val record = StorageSyncModels.localToRemoteRecord(recordForSync).storyDistributionList
-      if (record.isPresent) {
-        Log.d(TAG, "Found a matching record.")
-        return record
-      } else {
-        Log.e(TAG, "Could not resolve the record")
-        throw UnexpectedEmptyOptionalException()
-      }
+      return StorageSyncModels.localToRemoteRecord(recordForSync).let { it.proto.storyDistributionList!!.toSignalStoryDistributionListRecord(it.id) }.asOptional()
     } else {
       Log.d(TAG, "Could not find a matching record. Returning an empty.")
       return Optional.empty()

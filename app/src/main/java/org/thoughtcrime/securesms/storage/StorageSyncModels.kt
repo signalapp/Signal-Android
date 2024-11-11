@@ -25,6 +25,7 @@ import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
@@ -50,17 +51,17 @@ object StorageSyncModels {
       throw AssertionError("Must have a storage key!")
     }
 
-    return SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, settings.storageId, groupMasterKey))
+    return localToRemoteGroupV2(settings, settings.storageId, groupMasterKey).toSignalStorageRecord()
   }
 
   @JvmStatic
   fun localToRemoteRecord(settings: RecipientRecord, rawStorageId: ByteArray): SignalStorageRecord {
     return when (settings.recipientType) {
-      RecipientType.INDIVIDUAL -> SignalStorageRecord.forContact(localToRemoteContact(settings, rawStorageId))
-      RecipientType.GV1 -> SignalStorageRecord.forGroupV1(localToRemoteGroupV1(settings, rawStorageId))
-      RecipientType.GV2 -> SignalStorageRecord.forGroupV2(localToRemoteGroupV2(settings, rawStorageId, settings.syncExtras.groupMasterKey!!))
-      RecipientType.DISTRIBUTION_LIST -> SignalStorageRecord.forStoryDistributionList(localToRemoteStoryDistributionList(settings, rawStorageId))
-      RecipientType.CALL_LINK -> SignalStorageRecord.forCallLink(localToRemoteCallLink(settings, rawStorageId))
+      RecipientType.INDIVIDUAL -> localToRemoteContact(settings, rawStorageId).toSignalStorageRecord()
+      RecipientType.GV1 -> localToRemoteGroupV1(settings, rawStorageId).toSignalStorageRecord()
+      RecipientType.GV2 -> localToRemoteGroupV2(settings, rawStorageId, settings.syncExtras.groupMasterKey!!).toSignalStorageRecord()
+      RecipientType.DISTRIBUTION_LIST -> localToRemoteStoryDistributionList(settings, rawStorageId).toSignalStorageRecord()
+      RecipientType.CALL_LINK -> localToRemoteCallLink(settings, rawStorageId).toSignalStorageRecord()
       else -> throw AssertionError("Unsupported type!")
     }
   }

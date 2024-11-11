@@ -47,11 +47,6 @@ public class SignalStoryDistributionListRecord implements SignalRecord<StoryDist
     return proto;
   }
 
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forStoryDistributionList(this);
-  }
-
   public byte[] serializeUnknownFields() {
     return hasUnknownFields ? proto.encode() : null;
   }

@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
+import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.util.Optional
 
@@ -39,7 +40,7 @@ class GroupV2RecordProcessor(private val recipientTable: RecipientTable, private
           StorageSyncModels.localToRemoteRecord(settings, remote.masterKeyOrThrow)
         }
       }
-      .map { record: SignalStorageRecord -> record.groupV2.get() }
+      .map { record: SignalStorageRecord -> record.proto.groupV2!!.toSignalGroupV2Record(record.id) }
   }
 
   override fun merge(remote: SignalGroupV2Record, local: SignalGroupV2Record, keyGenerator: StorageKeyGenerator): SignalGroupV2Record {

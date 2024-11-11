@@ -37,11 +37,6 @@ public final class SignalGroupV1Record implements SignalRecord<GroupV1Record> {
     return proto;
   }
 
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forGroupV1(this);
-  }
-
   public boolean hasUnknownFields() {
     return hasUnknownFields;
   }

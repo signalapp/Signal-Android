@@ -96,12 +96,12 @@ public class StorageAccountRestoreJob extends BaseJob {
       return;
     }
 
-    SignalAccountRecord accountRecord = record.getAccount().orElse(null);
-    if (accountRecord == null) {
+    if (record.getProto().account == null) {
       Log.w(TAG, "The storage record didn't actually have an account on it! Not restoring.");
       return;
     }
 
+    SignalAccountRecord accountRecord = new SignalAccountRecord(record.getId(), record.getProto().account);
 
     Log.i(TAG, "Applying changes locally...");
     SignalDatabase.getRawDatabase().beginTransaction();

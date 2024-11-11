@@ -31,10 +31,6 @@ class SignalAccountRecord(
     }
   }
 
-  override fun asStorageRecord(): SignalStorageRecord {
-    return SignalStorageRecord.forAccount(this)
-  }
-
   fun serializeUnknownFields(): ByteArray? {
     return if (proto.hasUnknownFields()) proto.encode() else null
   }

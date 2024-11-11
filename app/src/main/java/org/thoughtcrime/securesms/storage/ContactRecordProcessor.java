@@ -138,7 +138,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
                     return StorageSyncModels.localToRemoteRecord(updatedSettings);
                   }
                 })
-                .map(r -> r.getContact().get());
+                .map(r -> new SignalContactRecord(r.getId(), r.getProto().contact));
   }
 
   @Override

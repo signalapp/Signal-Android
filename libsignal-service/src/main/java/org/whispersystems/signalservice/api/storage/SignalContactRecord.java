@@ -74,11 +74,6 @@ public final class SignalContactRecord implements SignalRecord<ContactRecord> {
     return proto;
   }
 
-  @Override
-  public SignalStorageRecord asStorageRecord() {
-    return SignalStorageRecord.forContact(this);
-  }
-
   public boolean hasUnknownFields() {
     return hasUnknownFields;
   }
