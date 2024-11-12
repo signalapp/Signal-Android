@@ -509,40 +509,6 @@ public class SignalServiceAccountManager {
     return pushServiceSocket.getAccountDataReport();
   }
 
-  public void addDevice(String deviceIdentifier,
-                        ECPublicKey deviceKey,
-                        IdentityKeyPair aciIdentityKeyPair,
-                        IdentityKeyPair pniIdentityKeyPair,
-                        ProfileKey profileKey,
-                        MasterKey masterKey,
-                        String code)
-      throws InvalidKeyException, IOException
-  {
-    String e164 = credentials.getE164();
-    ACI    aci  = credentials.getAci();
-    PNI    pni  = credentials.getPni();
-
-    Preconditions.checkArgument(e164 != null, "Missing e164!");
-    Preconditions.checkArgument(aci != null, "Missing ACI!");
-    Preconditions.checkArgument(pni != null, "Missing PNI!");
-
-    PrimaryProvisioningCipher cipher  = new PrimaryProvisioningCipher(deviceKey);
-    ProvisionMessage.Builder  message = new ProvisionMessage.Builder()
-                                                            .aciIdentityKeyPublic(ByteString.of(aciIdentityKeyPair.getPublicKey().serialize()))
-                                                            .aciIdentityKeyPrivate(ByteString.of(aciIdentityKeyPair.getPrivateKey().serialize()))
-                                                            .pniIdentityKeyPublic(ByteString.of(pniIdentityKeyPair.getPublicKey().serialize()))
-                                                            .pniIdentityKeyPrivate(ByteString.of(pniIdentityKeyPair.getPrivateKey().serialize()))
-                                                            .aci(aci.toString())
-                                                            .pni(pni.toStringWithoutPrefix())
-                                                            .number(e164)
-                                                            .profileKey(ByteString.of(profileKey.serialize()))
-                                                            .provisioningCode(code)
-                                                            .provisioningVersion(ProvisioningVersion.CURRENT.getValue())
-                                                            .masterKey(ByteString.of(masterKey.serialize()));
-
-    byte[] ciphertext = cipher.encrypt(message.build());
-    this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
-  }
 
   public List<DeviceInfo> getDevices() throws IOException {
     return this.pushServiceSocket.getDevices();
