@@ -64,33 +64,12 @@ object SignalStorageModels {
 
   @JvmStatic
   fun localToRemoteStorageRecord(record: SignalStorageRecord, storageKey: StorageKey): StorageItem {
-    val builder = StorageRecord.Builder()
-
-    if (record.proto.contact != null) {
-      builder.contact(record.proto.contact)
-    } else if (record.proto.groupV1 != null) {
-      builder.groupV1(record.proto.groupV1)
-    } else if (record.proto.groupV2 != null) {
-      builder.groupV2(record.proto.groupV2)
-    } else if (record.proto.account != null) {
-      builder.account(record.proto.account)
-    } else if (record.proto.storyDistributionList != null) {
-      builder.storyDistributionList(record.proto.storyDistributionList)
-    } else if (record.proto.callLink != null) {
-      builder.callLink(record.proto.callLink)
-    } else {
-      throw InvalidStorageWriteError()
-    }
-
-    val remoteRecord = builder.build()
     val itemKey = storageKey.deriveItemKey(record.id.raw)
-    val encryptedRecord = SignalStorageCipher.encrypt(itemKey, remoteRecord.encode())
+    val encryptedRecord = SignalStorageCipher.encrypt(itemKey, record.proto.encode())
 
     return StorageItem.Builder()
       .key(record.id.raw.toByteString())
       .value_(encryptedRecord.toByteString())
       .build()
   }
-
-  private class InvalidStorageWriteError : Error()
 }

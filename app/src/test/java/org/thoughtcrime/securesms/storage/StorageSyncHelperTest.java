@@ -14,19 +14,18 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.IdDifferenceResult;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.storage.SignalAccountRecord;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
-import org.whispersystems.signalservice.api.storage.SignalGroupV1Record;
-import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import org.whispersystems.signalservice.api.storage.SignalRecord;
-import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import okio.ByteString;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -132,13 +131,16 @@ public final class StorageSyncHelperTest {
     byte[] profileKey     = new byte[32];
     byte[] profileKeyCopy = profileKey.clone();
 
-    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setProfileKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setProfileKey(profileKeyCopy).build();
+    ContactRecord contactA = contactBuilder(ACI_A, E164_A, "a").profileKey(ByteString.of(profileKey)).build();
+    ContactRecord contactB = contactBuilder(ACI_A, E164_A, "a").profileKey(ByteString.of(profileKeyCopy)).build();
 
-    assertEquals(a, b);
-    assertEquals(a.hashCode(), b.hashCode());
+    SignalContactRecord signalContactA = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactA);
+    SignalContactRecord signalContactB = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactB);
 
-    assertFalse(StorageSyncHelper.profileKeyChanged(update(a, b)));
+    assertEquals(signalContactA, signalContactB);
+    assertEquals(signalContactA.hashCode(), signalContactB.hashCode());
+
+    assertFalse(StorageSyncHelper.profileKeyChanged(update(signalContactA, signalContactB)));
   }
 
   @Test
@@ -147,23 +149,23 @@ public final class StorageSyncHelperTest {
     byte[] profileKeyCopy = profileKey.clone();
     profileKeyCopy[0] = 1;
 
-    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setProfileKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setProfileKey(profileKeyCopy).build();
+    ContactRecord contactA = contactBuilder(ACI_A, E164_A, "a").profileKey(ByteString.of(profileKey)).build();
+    ContactRecord contactB = contactBuilder(ACI_A, E164_A, "a").profileKey(ByteString.of(profileKeyCopy)).build();
 
-    assertNotEquals(a, b);
-    assertNotEquals(a.hashCode(), b.hashCode());
+    SignalContactRecord signalContactA = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactA);
+    SignalContactRecord signalContactB = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactB);
 
-    assertTrue(StorageSyncHelper.profileKeyChanged(update(a, b)));
+    assertNotEquals(signalContactA, signalContactB);
+    assertNotEquals(signalContactA.hashCode(), signalContactB.hashCode());
+
+    assertTrue(StorageSyncHelper.profileKeyChanged(update(signalContactA, signalContactB)));
   }
 
-  private static SignalContactRecord.Builder contactBuilder(int key,
-                                                            ACI aci,
-                                                            String e164,
-                                                            String profileName)
-  {
-    return new SignalContactRecord.Builder(byteArray(key), aci, null)
-                                  .setE164(e164)
-                                  .setProfileGivenName(profileName);
+  private static ContactRecord.Builder contactBuilder(ACI aci, String e164, String profileName) {
+    return new ContactRecord.Builder()
+        .aci(aci.toString())
+        .e164(e164)
+        .givenName(profileName);
   }
 
   private static <E extends SignalRecord<?>> StorageRecordUpdate<E> update(E oldRecord, E newRecord) {

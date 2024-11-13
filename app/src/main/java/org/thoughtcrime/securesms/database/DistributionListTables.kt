@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.storage.StorageRecordUpdate
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.storage.recipientServiceAddresses
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 
@@ -552,7 +553,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
   }
 
   fun getRecipientIdForSyncRecord(record: SignalStoryDistributionListRecord): RecipientId? {
-    val uuid: UUID = requireNotNull(UuidUtil.parseOrNull(record.identifier)) { "Incoming record did not have a valid identifier." }
+    val uuid: UUID = requireNotNull(UuidUtil.parseOrNull(record.proto.identifier)) { "Incoming record did not have a valid identifier." }
     val distributionId = DistributionId.from(uuid)
 
     return readableDatabase.query(
@@ -591,30 +592,30 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
   }
 
   fun applyStorageSyncStoryDistributionListInsert(insert: SignalStoryDistributionListRecord) {
-    val distributionId = DistributionId.from(UuidUtil.parseOrThrow(insert.identifier))
+    val distributionId = DistributionId.from(UuidUtil.parseOrThrow(insert.proto.identifier))
     if (distributionId == DistributionId.MY_STORY) {
       throw AssertionError("Should never try to insert My Story")
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      insert.isBlockList && insert.recipients.isEmpty() -> DistributionListPrivacyMode.ALL
-      insert.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
+      insert.proto.isBlockList && insert.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      insert.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }
 
     createList(
-      name = insert.name,
-      members = insert.recipients.map(RecipientId::from),
+      name = insert.proto.name,
+      members = insert.proto.recipientServiceAddresses.map(RecipientId::from),
       distributionId = distributionId,
-      allowsReplies = insert.allowsReplies(),
-      deletionTimestamp = insert.deletedAtTimestamp,
+      allowsReplies = insert.proto.allowsReplies,
+      deletionTimestamp = insert.proto.deletedAtTimestamp,
       privacyMode = privacyMode,
       storageId = insert.id.raw
     )
   }
 
   fun applyStorageSyncStoryDistributionListUpdate(update: StorageRecordUpdate<SignalStoryDistributionListRecord>) {
-    val distributionId = DistributionId.from(UuidUtil.parseOrThrow(update.new.identifier))
+    val distributionId = DistributionId.from(UuidUtil.parseOrThrow(update.new.proto.identifier))
 
     val distributionListId: DistributionListId? = readableDatabase.query(ListTable.TABLE_NAME, arrayOf(ListTable.ID), "${ListTable.DISTRIBUTION_ID} = ?", SqlUtil.buildArgs(distributionId.toString()), null, null, null).use { cursor ->
       if (cursor == null || !cursor.moveToFirst()) {
@@ -632,26 +633,26 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     val recipientId = getRecipientId(distributionListId)!!
     SignalDatabase.recipients.updateStorageId(recipientId, update.new.id.raw)
 
-    if (update.new.deletedAtTimestamp > 0L) {
+    if (update.new.proto.deletedAtTimestamp > 0L) {
       if (distributionId == DistributionId.MY_STORY) {
         Log.w(TAG, "Refusing to delete My Story.")
         return
       }
 
-      deleteList(distributionListId, update.new.deletedAtTimestamp)
+      deleteList(distributionListId, update.new.proto.deletedAtTimestamp)
       return
     }
 
     val privacyMode: DistributionListPrivacyMode = when {
-      update.new.isBlockList && update.new.recipients.isEmpty() -> DistributionListPrivacyMode.ALL
-      update.new.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
+      update.new.proto.isBlockList && update.new.proto.recipientServiceIds.isEmpty() -> DistributionListPrivacyMode.ALL
+      update.new.proto.isBlockList -> DistributionListPrivacyMode.ALL_EXCEPT
       else -> DistributionListPrivacyMode.ONLY_WITH
     }
 
     writableDatabase.withinTransaction {
       val listTableValues = contentValuesOf(
-        ListTable.ALLOWS_REPLIES to update.new.allowsReplies(),
-        ListTable.NAME to update.new.name,
+        ListTable.ALLOWS_REPLIES to update.new.proto.allowsReplies,
+        ListTable.NAME to update.new.proto.name,
         ListTable.IS_UNKNOWN to false,
         ListTable.PRIVACY_MODE to privacyMode.serialize()
       )
@@ -664,7 +665,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       )
 
       val currentlyInDistributionList = getRawMembers(distributionListId, privacyMode).toSet()
-      val shouldBeInDistributionList = update.new.recipients.map(RecipientId::from).toSet()
+      val shouldBeInDistributionList = update.new.proto.recipientServiceAddresses.map(RecipientId::from).toSet()
       val toRemove = currentlyInDistributionList - shouldBeInDistributionList
       val toAdd = shouldBeInDistributionList - currentlyInDistributionList
 

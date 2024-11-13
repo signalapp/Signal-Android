@@ -9,11 +9,13 @@ import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
+import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import java.util.Optional
 
 /**
- * Handles merging remote storage updates into local group v1 state.
+ * Record processor for [SignalGroupV1Record].
+ * Handles merging and updating our local store when processing remote gv1 storage records.
  */
 class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val recipientTable: RecipientTable) : DefaultStorageRecordProcessor<SignalGroupV1Record>() {
   companion object {
@@ -31,7 +33,7 @@ class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val 
    */
   override fun isInvalid(remote: SignalGroupV1Record): Boolean {
     try {
-      val id = GroupId.v1(remote.groupId)
+      val id = GroupId.v1(remote.proto.id.toByteArray())
       val v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId())
 
       if (v2Record.isPresent) {
@@ -47,7 +49,7 @@ class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val 
   }
 
   override fun getMatching(remote: SignalGroupV1Record, keyGenerator: StorageKeyGenerator): Optional<SignalGroupV1Record> {
-    val groupId = GroupId.v1orThrow(remote.groupId)
+    val groupId = GroupId.v1orThrow(remote.proto.id.toByteArray())
 
     val recipientId = recipientTable.getByGroupId(groupId)
 
@@ -58,28 +60,24 @@ class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val 
   }
 
   override fun merge(remote: SignalGroupV1Record, local: SignalGroupV1Record, keyGenerator: StorageKeyGenerator): SignalGroupV1Record {
-    val unknownFields = remote.serializeUnknownFields()
-    val blocked = remote.isBlocked
-    val profileSharing = remote.isProfileSharingEnabled
-    val archived = remote.isArchived
-    val forcedUnread = remote.isForcedUnread
-    val muteUntil = remote.muteUntil
+    val merged = SignalGroupV1Record.newBuilder(remote.serializedUnknowns).apply {
+      id = remote.proto.id
+      blocked = remote.proto.blocked
+      whitelisted = remote.proto.whitelisted
+      archived = remote.proto.archived
+      markedUnread = remote.proto.markedUnread
+      mutedUntilTimestamp = remote.proto.mutedUntilTimestamp
+    }.build().toSignalGroupV1Record(StorageId.forGroupV1(keyGenerator.generate()))
 
-    val matchesRemote = doParamsMatch(group = remote, unknownFields = unknownFields, blocked = blocked, profileSharing = profileSharing, archived = archived, forcedUnread = forcedUnread, muteUntil = muteUntil)
-    val matchesLocal = doParamsMatch(group = local, unknownFields = unknownFields, blocked = blocked, profileSharing = profileSharing, archived = archived, forcedUnread = forcedUnread, muteUntil = muteUntil)
+    val matchesRemote = doParamsMatch(remote, merged)
+    val matchesLocal = doParamsMatch(local, merged)
 
     return if (matchesRemote) {
       remote
     } else if (matchesLocal) {
       local
     } else {
-      SignalGroupV1Record.Builder(keyGenerator.generate(), remote.groupId, unknownFields)
-        .setBlocked(blocked)
-        .setProfileSharingEnabled(profileSharing)
-        .setArchived(archived)
-        .setForcedUnread(forcedUnread)
-        .setMuteUntil(muteUntil)
-        .build()
+      merged
     }
   }
 
@@ -92,27 +90,10 @@ class GroupV1RecordProcessor(private val groupDatabase: GroupTable, private val 
   }
 
   override fun compare(lhs: SignalGroupV1Record, rhs: SignalGroupV1Record): Int {
-    return if (lhs.groupId.contentEquals(rhs.groupId)) {
+    return if (lhs.proto.id == rhs.proto.id) {
       0
     } else {
       1
     }
-  }
-
-  private fun doParamsMatch(
-    group: SignalGroupV1Record,
-    unknownFields: ByteArray?,
-    blocked: Boolean,
-    profileSharing: Boolean,
-    archived: Boolean,
-    forcedUnread: Boolean,
-    muteUntil: Long
-  ): Boolean {
-    return unknownFields.contentEquals(group.serializeUnknownFields()) &&
-      blocked == group.isBlocked &&
-      profileSharing == group.isProfileSharingEnabled &&
-      archived == group.isArchived &&
-      forcedUnread == group.isForcedUnread &&
-      muteUntil == group.muteUntil
   }
 }

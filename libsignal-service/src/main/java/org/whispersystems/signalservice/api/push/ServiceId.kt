@@ -37,7 +37,7 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     @JvmOverloads
     @JvmStatic
     fun parseOrNull(raw: String?, logFailures: Boolean = true): ServiceId? {
-      if (raw == null) {
+      if (raw.isNullOrBlank()) {
         return null
       }
 

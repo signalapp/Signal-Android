@@ -18,17 +18,23 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.toSignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
+import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
+import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.util.Currency
@@ -150,33 +156,31 @@ object StorageSyncModels {
       throw AssertionError("Must have either a UUID or a phone number!")
     }
 
-    val hideStory = recipient.extras != null && recipient.extras.hideStory()
-
-    return SignalContactRecord.Builder(rawStorageId, recipient.aci, recipient.syncExtras.storageProto)
-      .setE164(recipient.e164)
-      .setPni(recipient.pni)
-      .setProfileKey(recipient.profileKey)
-      .setProfileGivenName(recipient.signalProfileName.givenName)
-      .setProfileFamilyName(recipient.signalProfileName.familyName)
-      .setSystemGivenName(recipient.systemProfileName.givenName)
-      .setSystemFamilyName(recipient.systemProfileName.familyName)
-      .setSystemNickname(recipient.syncExtras.systemNickname)
-      .setBlocked(recipient.isBlocked)
-      .setProfileSharingEnabled(recipient.profileSharing || recipient.systemContactUri != null)
-      .setIdentityKey(recipient.syncExtras.identityKey)
-      .setIdentityState(localToRemoteIdentityState(recipient.syncExtras.identityStatus))
-      .setArchived(recipient.syncExtras.isArchived)
-      .setForcedUnread(recipient.syncExtras.isForcedUnread)
-      .setMuteUntil(recipient.muteUntil)
-      .setHideStory(hideStory)
-      .setUnregisteredTimestamp(recipient.syncExtras.unregisteredTimestamp)
-      .setHidden(recipient.hiddenState != Recipient.HiddenState.NOT_HIDDEN)
-      .setUsername(recipient.username)
-      .setPniSignatureVerified(recipient.syncExtras.pniSignatureVerified)
-      .setNicknameGivenName(recipient.nickname.givenName)
-      .setNicknameFamilyName(recipient.nickname.familyName)
-      .setNote(recipient.note)
-      .build()
+    return SignalContactRecord.newBuilder(recipient.syncExtras.storageProto).apply {
+      aci = recipient.aci?.toString() ?: ""
+      e164 = recipient.e164 ?: ""
+      pni = recipient.pni?.toStringWithoutPrefix() ?: ""
+      profileKey = recipient.profileKey?.toByteString() ?: ByteString.EMPTY
+      givenName = recipient.signalProfileName.givenName
+      familyName = recipient.signalProfileName.familyName
+      systemGivenName = recipient.systemProfileName.givenName
+      systemFamilyName = recipient.systemProfileName.familyName
+      systemNickname = recipient.syncExtras.systemNickname ?: ""
+      blocked = recipient.isBlocked
+      whitelisted = recipient.profileSharing || recipient.systemContactUri != null
+      identityKey = recipient.syncExtras.identityKey?.toByteString() ?: ByteString.EMPTY
+      identityState = localToRemoteIdentityState(recipient.syncExtras.identityStatus)
+      archived = recipient.syncExtras.isArchived
+      markedUnread = recipient.syncExtras.isForcedUnread
+      mutedUntilTimestamp = recipient.muteUntil
+      hideStory = recipient.extras != null && recipient.extras.hideStory()
+      unregisteredAtTimestamp = recipient.syncExtras.unregisteredTimestamp
+      hidden = recipient.hiddenState != Recipient.HiddenState.NOT_HIDDEN
+      username = recipient.username ?: ""
+      pniSignatureVerified = recipient.syncExtras.pniSignatureVerified
+      nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
+      note = recipient.note ?: ""
+    }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
   private fun localToRemoteGroupV1(recipient: RecipientRecord, rawStorageId: ByteArray): SignalGroupV1Record {
@@ -186,13 +190,14 @@ object StorageSyncModels {
       throw AssertionError("Group is not V1")
     }
 
-    return SignalGroupV1Record.Builder(rawStorageId, groupId.decodedId, recipient.syncExtras.storageProto)
-      .setBlocked(recipient.isBlocked)
-      .setProfileSharingEnabled(recipient.profileSharing)
-      .setArchived(recipient.syncExtras.isArchived)
-      .setForcedUnread(recipient.syncExtras.isForcedUnread)
-      .setMuteUntil(recipient.muteUntil)
-      .build()
+    return SignalGroupV1Record.newBuilder(recipient.syncExtras.storageProto).apply {
+      id = recipient.groupId.requireV1().decodedId.toByteString()
+      blocked = recipient.isBlocked
+      whitelisted = recipient.profileSharing
+      archived = recipient.syncExtras.isArchived
+      markedUnread = recipient.syncExtras.isForcedUnread
+      mutedUntilTimestamp = recipient.muteUntil
+    }.build().toSignalGroupV1Record(StorageId.forGroupV1(rawStorageId))
   }
 
   private fun localToRemoteGroupV2(recipient: RecipientRecord, rawStorageId: ByteArray?, groupMasterKey: GroupMasterKey): SignalGroupV2Record {
@@ -202,29 +207,21 @@ object StorageSyncModels {
       throw AssertionError("Group is not V2")
     }
 
-    if (groupMasterKey == null) {
-      throw AssertionError("Group master key not on recipient record")
-    }
-
-    val hideStory = recipient.extras != null && recipient.extras.hideStory()
-    val showAsStoryState = groups.getShowAsStoryState(groupId)
-
-    val storySendMode = when (showAsStoryState) {
-      ShowAsStoryState.ALWAYS -> GroupV2Record.StorySendMode.ENABLED
-      ShowAsStoryState.NEVER -> GroupV2Record.StorySendMode.DISABLED
-      else -> GroupV2Record.StorySendMode.DEFAULT
-    }
-
-    return SignalGroupV2Record.Builder(rawStorageId, groupMasterKey, recipient.syncExtras.storageProto)
-      .setBlocked(recipient.isBlocked)
-      .setProfileSharingEnabled(recipient.profileSharing)
-      .setArchived(recipient.syncExtras.isArchived)
-      .setForcedUnread(recipient.syncExtras.isForcedUnread)
-      .setMuteUntil(recipient.muteUntil)
-      .setNotifyForMentionsWhenMuted(recipient.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY)
-      .setHideStory(hideStory)
-      .setStorySendMode(storySendMode)
-      .build()
+    return SignalGroupV2Record.newBuilder(recipient.syncExtras.storageProto).apply {
+      masterKey = groupMasterKey.serialize().toByteString()
+      blocked = recipient.isBlocked
+      whitelisted = recipient.profileSharing
+      archived = recipient.syncExtras.isArchived
+      markedUnread = recipient.syncExtras.isForcedUnread
+      mutedUntilTimestamp = recipient.muteUntil
+      dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY
+      hideStory = recipient.extras != null && recipient.extras.hideStory()
+      storySendMode = when (groups.getShowAsStoryState(groupId)) {
+        ShowAsStoryState.ALWAYS -> GroupV2Record.StorySendMode.ENABLED
+        ShowAsStoryState.NEVER -> GroupV2Record.StorySendMode.DISABLED
+        else -> GroupV2Record.StorySendMode.DEFAULT
+      }
+    }.build().toSignalGroupV2Record(StorageId.forGroupV2(rawStorageId))
   }
 
   private fun localToRemoteCallLink(recipient: RecipientRecord, rawStorageId: ByteArray): SignalCallLinkRecord {
@@ -239,11 +236,11 @@ object StorageSyncModels {
     val deletedTimestamp = max(0.0, callLinks.getDeletedTimestampByRoomId(callLinkRoomId).toDouble()).toLong()
     val adminPassword = if (deletedTimestamp > 0) byteArrayOf() else callLink.credentials.adminPassBytes!!
 
-    return SignalCallLinkRecord.Builder(rawStorageId, null)
-      .setRootKey(callLink.credentials.linkKeyBytes)
-      .setAdminPassKey(adminPassword)
-      .setDeletedTimestamp(deletedTimestamp)
-      .build()
+    return SignalCallLinkRecord.newBuilder(null).apply {
+      rootKey = callLink.credentials.linkKeyBytes.toByteString()
+      adminPasskey = adminPassword.toByteString()
+      deletedAtTimestampMs = deletedTimestamp
+    }.build().toSignalCallLinkRecord(StorageId.forCallLink(rawStorageId))
   }
 
   private fun localToRemoteStoryDistributionList(recipient: RecipientRecord, rawStorageId: ByteArray): SignalStoryDistributionListRecord {
@@ -252,25 +249,22 @@ object StorageSyncModels {
     val record = distributionLists.getListForStorageSync(distributionListId) ?: throw AssertionError("Must have a distribution list record!")
 
     if (record.deletedAtTimestamp > 0L) {
-      return SignalStoryDistributionListRecord.Builder(rawStorageId, recipient.syncExtras.storageProto)
-        .setIdentifier(UuidUtil.toByteArray(record.distributionId.asUuid()))
-        .setDeletedAtTimestamp(record.deletedAtTimestamp)
-        .build()
+      return SignalStoryDistributionListRecord.newBuilder(recipient.syncExtras.storageProto).apply {
+        identifier = UuidUtil.toByteArray(record.distributionId.asUuid()).toByteString()
+        deletedAtTimestamp = record.deletedAtTimestamp
+      }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(rawStorageId))
     }
 
-    return SignalStoryDistributionListRecord.Builder(rawStorageId, recipient.syncExtras.storageProto)
-      .setIdentifier(UuidUtil.toByteArray(record.distributionId.asUuid()))
-      .setName(record.name)
-      .setRecipients(
-        record.getMembersToSync()
-          .map { Recipient.resolved(it) }
-          .filter { it.hasServiceId }
-          .map { it.requireServiceId() }
-          .map { SignalServiceAddress(it) }
-      )
-      .setAllowsReplies(record.allowsReplies)
-      .setIsBlockList(record.privacyMode.isBlockList)
-      .build()
+    return SignalStoryDistributionListRecord.newBuilder(recipient.syncExtras.storageProto).apply {
+      identifier = UuidUtil.toByteArray(record.distributionId.asUuid()).toByteString()
+      name = record.name
+      recipientServiceIds = record.getMembersToSync()
+        .map { Recipient.resolved(it) }
+        .filter { it.hasServiceId }
+        .map { it.requireServiceId().toString() }
+      allowsReplies = record.allowsReplies
+      isBlockList = record.privacyMode.isBlockList
+    }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(rawStorageId))
   }
 
   fun remoteToLocalIdentityStatus(identityState: IdentityState): VerifiedStatus {

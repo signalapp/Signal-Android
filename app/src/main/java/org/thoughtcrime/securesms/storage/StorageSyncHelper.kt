@@ -34,7 +34,6 @@ import org.whispersystems.signalservice.api.storage.safeSetPayments
 import org.whispersystems.signalservice.api.storage.safeSetSubscriber
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
-import org.whispersystems.signalservice.api.util.OptionalUtil.byteArrayEquals
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
@@ -105,7 +104,7 @@ object StorageSyncHelper {
 
   @JvmStatic
   fun profileKeyChanged(update: StorageRecordUpdate<SignalContactRecord>): Boolean {
-    return !byteArrayEquals(update.old.profileKey, update.new.profileKey)
+    return update.old.proto.profileKey != update.new.proto.profileKey
   }
 
   @JvmStatic

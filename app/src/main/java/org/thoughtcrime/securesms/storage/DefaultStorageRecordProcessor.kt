@@ -70,6 +70,10 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord<*>> : StorageRecor
     }
   }
 
+  fun doParamsMatch(base: E, test: E): Boolean {
+    return base.serializedUnknowns.contentEquals(test.serializedUnknowns) && base.proto == test.proto
+  }
+
   private fun info(i: Int, record: E, message: String) {
     Log.i(TAG, "[$i][${record.javaClass.getSimpleName()}] $message")
   }

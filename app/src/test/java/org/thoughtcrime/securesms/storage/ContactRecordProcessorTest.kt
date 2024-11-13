@@ -307,9 +307,9 @@ class ContactRecordProcessorTest {
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(local.aci, result.aci)
-    assertEquals(local.number.get(), result.number.get())
-    assertEquals(local.pni.get(), result.pni.get())
+    assertEquals(local.proto.aci, result.proto.aci)
+    assertEquals(local.proto.e164, result.proto.e164)
+    assertEquals(local.proto.pni, result.proto.pni)
   }
 
   @Test
@@ -339,9 +339,9 @@ class ContactRecordProcessorTest {
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(local.aci, result.aci)
-    assertEquals(local.number.get(), result.number.get())
-    assertEquals(local.pni.get(), result.pni.get())
+    assertEquals(local.proto.aci, result.proto.aci)
+    assertEquals(local.proto.e164, result.proto.e164)
+    assertEquals(local.proto.pni, result.proto.pni)
   }
 
   @Test
@@ -371,9 +371,9 @@ class ContactRecordProcessorTest {
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals(remote.aci, result.aci)
-    assertEquals(remote.number.get(), result.number.get())
-    assertEquals(remote.pni.get(), result.pni.get())
+    assertEquals(remote.proto.aci, result.proto.aci)
+    assertEquals(remote.proto.e164, result.proto.e164)
+    assertEquals(remote.proto.pni, result.proto.pni)
   }
 
   @Test
@@ -403,9 +403,9 @@ class ContactRecordProcessorTest {
     val result = subject.merge(remote, local, TestKeyGenerator(STORAGE_ID_C))
 
     // THEN
-    assertEquals("Ghost", result.nicknameGivenName.get())
-    assertEquals("Spider", result.nicknameFamilyName.get())
-    assertEquals("Spidey Friend", result.note.get())
+    assertEquals("Ghost", result.proto.nickname?.given)
+    assertEquals("Spider", result.proto.nickname?.family)
+    assertEquals("Spidey Friend", result.proto.note)
   }
 
   private fun buildRecord(id: StorageId = STORAGE_ID_A, record: ContactRecord): SignalContactRecord {

@@ -1,11 +1,19 @@
 package org.whispersystems.signalservice.api.storage
 
+import com.squareup.wire.Message
+import org.signal.core.util.hasUnknownFields
 import kotlin.reflect.KVisibility
 import kotlin.reflect.full.memberProperties
 
+/**
+ * Pairs a storage record with its id. Also contains some useful common methods.
+ */
 interface SignalRecord<E> {
   val id: StorageId
   val proto: E
+
+  val serializedUnknowns: ByteArray?
+    get() = (proto as Message<*, *>).takeIf { it.hasUnknownFields() }?.encode()
 
   fun describeDiff(other: SignalRecord<*>): String {
     if (this::class != other::class) {

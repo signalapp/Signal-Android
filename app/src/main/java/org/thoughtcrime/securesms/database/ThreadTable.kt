@@ -1510,15 +1510,15 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalAccountRecord) {

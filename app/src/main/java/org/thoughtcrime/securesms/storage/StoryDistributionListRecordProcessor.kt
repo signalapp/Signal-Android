@@ -5,14 +5,18 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.push.DistributionId
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
+import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.IOException
 import java.util.Optional
 
+/**
+ * Record processor for [SignalStoryDistributionListRecord].
+ * Handles merging and updating our local store when processing remote dlist storage records.
+ */
 class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<SignalStoryDistributionListRecord>() {
 
   companion object {
@@ -28,7 +32,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
    *  - A non-visually-empty name field OR a deleted at timestamp
    */
   override fun isInvalid(remote: SignalStoryDistributionListRecord): Boolean {
-    val remoteUuid = UuidUtil.parseOrNull(remote.identifier)
+    val remoteUuid = UuidUtil.parseOrNull(remote.proto.identifier)
     if (remoteUuid == null) {
       Log.d(TAG, "Bad distribution list identifier -- marking as invalid")
       return true
@@ -42,7 +46,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
 
     haveSeenMyStory = haveSeenMyStory or isMyStory
 
-    if (remote.deletedAtTimestamp > 0L) {
+    if (remote.proto.deletedAtTimestamp > 0L) {
       if (isMyStory) {
         Log.w(TAG, "Refusing to delete My Story -- marking as invalid")
         return true
@@ -51,7 +55,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
       }
     }
 
-    if (StringUtil.isVisuallyEmpty(remote.name)) {
+    if (StringUtil.isVisuallyEmpty(remote.proto.name)) {
       Log.d(TAG, "Bad distribution list name (visually empty) -- marking as invalid")
       return true
     }
@@ -62,7 +66,7 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
   override fun getMatching(remote: SignalStoryDistributionListRecord, keyGenerator: StorageKeyGenerator): Optional<SignalStoryDistributionListRecord> {
     Log.d(TAG, "Attempting to get matching record...")
     val matching = SignalDatabase.distributionLists.getRecipientIdForSyncRecord(remote)
-    if (matching == null && UuidUtil.parseOrThrow(remote.identifier) == DistributionId.MY_STORY.asUuid()) {
+    if (matching == null && UuidUtil.parseOrThrow(remote.proto.identifier) == DistributionId.MY_STORY.asUuid()) {
       Log.e(TAG, "Cannot find matching database record for My Story.")
       throw MyStoryDoesNotExistException()
     }
@@ -88,48 +92,24 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
   }
 
   override fun merge(remote: SignalStoryDistributionListRecord, local: SignalStoryDistributionListRecord, keyGenerator: StorageKeyGenerator): SignalStoryDistributionListRecord {
-    val unknownFields = remote.serializeUnknownFields()
-    val identifier = remote.identifier
-    val name = remote.name
-    val recipients = remote.recipients
-    val deletedAtTimestamp = remote.deletedAtTimestamp
-    val allowsReplies = remote.allowsReplies()
-    val isBlockList = remote.isBlockList
+    val merged = SignalStoryDistributionListRecord.newBuilder(remote.serializedUnknowns).apply {
+      identifier = remote.proto.identifier
+      name = remote.proto.name
+      recipientServiceIds = remote.proto.recipientServiceIds
+      deletedAtTimestamp = remote.proto.deletedAtTimestamp
+      allowsReplies = remote.proto.allowsReplies
+      isBlockList = remote.proto.isBlockList
+    }.build().toSignalStoryDistributionListRecord(StorageId.forStoryDistributionList(keyGenerator.generate()))
 
-    val matchesRemote = doParamsMatch(
-      record = remote,
-      unknownFields = unknownFields,
-      identifier = identifier,
-      name = name,
-      recipients = recipients,
-      deletedAtTimestamp = deletedAtTimestamp,
-      allowsReplies = allowsReplies,
-      isBlockList = isBlockList
-    )
-    val matchesLocal = doParamsMatch(
-      record = local,
-      unknownFields = unknownFields,
-      identifier = identifier,
-      name = name,
-      recipients = recipients,
-      deletedAtTimestamp = deletedAtTimestamp,
-      allowsReplies = allowsReplies,
-      isBlockList = isBlockList
-    )
+    val matchesRemote = doParamsMatch(remote, merged)
+    val matchesLocal = doParamsMatch(local, merged)
 
     return if (matchesRemote) {
       remote
     } else if (matchesLocal) {
       local
     } else {
-      SignalStoryDistributionListRecord.Builder(keyGenerator.generate(), unknownFields)
-        .setIdentifier(identifier)
-        .setName(name)
-        .setRecipients(recipients)
-        .setDeletedAtTimestamp(deletedAtTimestamp)
-        .setAllowsReplies(allowsReplies)
-        .setIsBlockList(isBlockList)
-        .build()
+      merged
     }
   }
 
@@ -143,30 +123,11 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
   }
 
   override fun compare(o1: SignalStoryDistributionListRecord, o2: SignalStoryDistributionListRecord): Int {
-    return if (o1.identifier.contentEquals(o2.identifier)) {
+    return if (o1.proto.identifier == o2.proto.identifier) {
       0
     } else {
       1
     }
-  }
-
-  private fun doParamsMatch(
-    record: SignalStoryDistributionListRecord,
-    unknownFields: ByteArray?,
-    identifier: ByteArray?,
-    name: String?,
-    recipients: List<SignalServiceAddress>,
-    deletedAtTimestamp: Long,
-    allowsReplies: Boolean,
-    isBlockList: Boolean
-  ): Boolean {
-    return unknownFields.contentEquals(record.serializeUnknownFields()) &&
-      identifier.contentEquals(record.identifier) &&
-      name == record.name &&
-      recipients == record.recipients &&
-      deletedAtTimestamp == record.deletedAtTimestamp &&
-      allowsReplies == record.allowsReplies() &&
-      isBlockList == record.isBlockList
   }
 
   /**
@@ -174,12 +135,6 @@ class StoryDistributionListRecordProcessor : DefaultStorageRecordProcessor<Signa
    * correct group type (4).
    */
   private class InvalidGroupTypeException : RuntimeException()
-
-  /**
-   * Thrown when the distribution list object returned from the storage sync helper is
-   * absent, even though a RecipientSettings was found.
-   */
-  private class UnexpectedEmptyOptionalException : RuntimeException()
 
   /**
    * Thrown when we try to ge the matching record for the "My Story" distribution ID but

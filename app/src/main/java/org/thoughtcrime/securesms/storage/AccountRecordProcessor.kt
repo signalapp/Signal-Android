@@ -104,7 +104,7 @@ class AccountRecordProcessor(
       remote.proto.storyViewReceiptsEnabled
     }
 
-    val unknownFields = remote.serializeUnknownFields()
+    val unknownFields = remote.serializedUnknowns
 
     val merged = SignalAccountRecord.newBuilder(unknownFields).apply {
       givenName = mergedGivenName
@@ -161,9 +161,5 @@ class AccountRecordProcessor(
 
   override fun compare(lhs: SignalAccountRecord, rhs: SignalAccountRecord): Int {
     return 0
-  }
-
-  private fun doParamsMatch(base: SignalAccountRecord, test: SignalAccountRecord): Boolean {
-    return base.serializeUnknownFields().contentEquals(test.serializeUnknownFields()) && base.proto == test.proto
   }
 }

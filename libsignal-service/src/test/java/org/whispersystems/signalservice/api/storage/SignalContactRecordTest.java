@@ -1,8 +1,10 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.junit.Test;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
+
+import okio.ByteString;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -14,27 +16,33 @@ public class SignalContactRecordTest {
 
   @Test
   public void contacts_with_same_identity_key_contents_are_equal() {
-    byte[] profileKey     = new byte[32];
-    byte[] profileKeyCopy = profileKey.clone();
+    byte[] identityKey     = new byte[32];
+    byte[] identityKeyCopy = identityKey.clone();
 
-    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+    ContactRecord contactA = contactBuilder(ACI_A, E164_A, "a").identityKey(ByteString.of(identityKey)).build();
+    ContactRecord contactB = contactBuilder(ACI_A, E164_A, "a").identityKey(ByteString.of(identityKeyCopy)).build();
 
-    assertEquals(a, b);
-    assertEquals(a.hashCode(), b.hashCode());
+    SignalContactRecord signalContactA = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactA);
+    SignalContactRecord signalContactB = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactB);
+
+    assertEquals(signalContactA, signalContactB);
+    assertEquals(signalContactA.hashCode(), signalContactB.hashCode());
   }
 
   @Test
   public void contacts_with_different_identity_key_contents_are_not_equal() {
-    byte[] profileKey     = new byte[32];
-    byte[] profileKeyCopy = profileKey.clone();
-    profileKeyCopy[0] = 1;
+    byte[] identityKey     = new byte[32];
+    byte[] identityKeyCopy = identityKey.clone();
+    identityKeyCopy[0] = 1;
 
-    SignalContactRecord a = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKey).build();
-    SignalContactRecord b = contactBuilder(1, ACI_A, E164_A, "a").setIdentityKey(profileKeyCopy).build();
+    ContactRecord contactA = contactBuilder(ACI_A, E164_A, "a").identityKey(ByteString.of(identityKey)).build();
+    ContactRecord contactB = contactBuilder(ACI_A, E164_A, "a").identityKey(ByteString.of(identityKeyCopy)).build();
 
-    assertNotEquals(a, b);
-    assertNotEquals(a.hashCode(), b.hashCode());
+    SignalContactRecord signalContactA = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactA);
+    SignalContactRecord signalContactB = new SignalContactRecord(StorageId.forContact(byteArray(1)), contactB);
+
+    assertNotEquals(signalContactA, signalContactB);
+    assertNotEquals(signalContactA.hashCode(), signalContactB.hashCode());
   }
 
   private static byte[] byteArray(int a) {
@@ -46,13 +54,9 @@ public class SignalContactRecordTest {
     return bytes;
   }
 
-  private static SignalContactRecord.Builder contactBuilder(int key,
-                                                            ACI serviceId,
-                                                            String e164,
-                                                            String givenName)
-  {
-    return new SignalContactRecord.Builder(byteArray(key), serviceId, null)
-                                  .setE164(e164)
-                                  .setProfileGivenName(givenName);
+  private static ContactRecord.Builder contactBuilder(ACI serviceId, String e164, String givenName) {
+    return new ContactRecord.Builder()
+        .e164(e164)
+        .givenName(givenName);
   }
 }
