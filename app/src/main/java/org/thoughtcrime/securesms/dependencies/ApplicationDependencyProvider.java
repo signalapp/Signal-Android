@@ -90,6 +90,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.services.CallLinksService;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.services.ProfileService;
@@ -471,6 +472,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull LinkDeviceApi provideLinkDeviceApi(@NonNull PushServiceSocket pushServiceSocket) {
     return new LinkDeviceApi(pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull RegistrationApi provideRegistrationApi(@NonNull PushServiceSocket pushServiceSocket) {
+    return new RegistrationApi(pushServiceSocket);
   }
 
   @VisibleForTesting

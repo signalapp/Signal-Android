@@ -41,6 +41,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
@@ -52,8 +56,10 @@ import org.signal.core.ui.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -63,6 +69,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.whispersystems.signalservice.api.registration.RestoreMethod
 
 /**
  * Launched after scanning QR code from new device to start the transfer/reregistration process from
@@ -121,6 +128,29 @@ class TransferAccountActivity : PassphraseRequiredActivity() {
       promptInfo
     )
 
+    lifecycleScope.launch {
+      val restoreMethodSelected = viewModel
+        .state
+        .mapNotNull { it.restoreMethodSelected }
+        .firstOrNull()
+
+      when (restoreMethodSelected) {
+        RestoreMethod.DEVICE_TRANSFER -> {
+          startActivities(
+            arrayOf(
+              MainActivity.clearTop(this@TransferAccountActivity),
+              Intent(this@TransferAccountActivity, OldDeviceTransferActivity::class.java)
+            )
+          )
+        }
+
+        RestoreMethod.REMOTE_BACKUP,
+        RestoreMethod.LOCAL_BACKUP,
+        RestoreMethod.DECLINE,
+        null -> startActivity(MainActivity.clearTop(this@TransferAccountActivity))
+      }
+    }
+
     setContent {
       val state by viewModel.state.collectAsState()
 
@@ -128,7 +158,11 @@ class TransferAccountActivity : PassphraseRequiredActivity() {
         TransferToNewDevice(
           state = state,
           onTransferAccount = this::authenticate,
-          clearReRegisterResult = viewModel::clearReRegisterResult,
+          onContinueOnOtherDeviceDismiss = {
+            finish()
+            viewModel.clearReRegisterResult()
+          },
+          onErrorDismiss = viewModel::clearReRegisterResult,
           onBackClicked = { finish() }
         )
       }
@@ -184,7 +218,8 @@ class TransferAccountActivity : PassphraseRequiredActivity() {
 fun TransferToNewDevice(
   state: TransferAccountViewModel.TransferAccountState,
   onTransferAccount: () -> Unit = {},
-  clearReRegisterResult: () -> Unit = {},
+  onContinueOnOtherDeviceDismiss: () -> Unit = {},
+  onErrorDismiss: () -> Unit = {},
   onBackClicked: () -> Unit = {}
 ) {
   Scaffold(
@@ -248,7 +283,7 @@ fun TransferToNewDevice(
       QuickRegistrationRepository.TransferAccountResult.SUCCESS -> {
         ModalBottomSheet(
           dragHandle = null,
-          onDismissRequest = clearReRegisterResult,
+          onDismissRequest = onContinueOnOtherDeviceDismiss,
           sheetState = sheetState
         ) {
           ContinueOnOtherDevice()
@@ -256,12 +291,10 @@ fun TransferToNewDevice(
       }
 
       QuickRegistrationRepository.TransferAccountResult.FAILED -> {
-        Dialogs.SimpleAlertDialog(
-          title = Dialogs.NoTitle,
-          body = stringResource(R.string.RegistrationActivity_unable_to_connect_to_service),
-          confirm = stringResource(android.R.string.ok),
-          onConfirm = clearReRegisterResult,
-          onDismiss = clearReRegisterResult
+        Dialogs.SimpleMessageDialog(
+          message = stringResource(R.string.RegistrationActivity_unable_to_connect_to_service),
+          dismiss = stringResource(android.R.string.ok),
+          onDismiss = onErrorDismiss
         )
       }
 

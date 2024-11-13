@@ -7,14 +7,18 @@ package org.thoughtcrime.securesms.restore.selection
 
 import android.content.Intent
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registrationv3.ui.restore.SelectRestoreMethodScreen
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
 
 /**
  * Provide options to select restore/transfer operation and flow during quick registration.
@@ -27,6 +31,11 @@ class SelectRestoreMethodFragment : ComposeFragment() {
       onRestoreMethodClicked = this::startRestoreMethod,
       onSkip = {
         SignalStore.registration.markSkippedTransferOrRestore()
+
+        lifecycleScope.launch {
+          QuickRegistrationRepository.setRestoreMethodForOldDevice(ApiRestoreMethod.DECLINE)
+        }
+
         startActivity(MainActivity.clearTop(requireContext()))
         activity?.finish()
       }
@@ -34,6 +43,16 @@ class SelectRestoreMethodFragment : ComposeFragment() {
   }
 
   private fun startRestoreMethod(method: RestoreMethod) {
+    val apiRestoreMethod = when (method) {
+      RestoreMethod.FROM_SIGNAL_BACKUPS -> ApiRestoreMethod.REMOTE_BACKUP
+      RestoreMethod.FROM_LOCAL_BACKUP_V1, RestoreMethod.FROM_LOCAL_BACKUP_V2 -> ApiRestoreMethod.LOCAL_BACKUP
+      RestoreMethod.FROM_OLD_DEVICE -> ApiRestoreMethod.DEVICE_TRANSFER
+    }
+
+    lifecycleScope.launch {
+      QuickRegistrationRepository.setRestoreMethodForOldDevice(apiRestoreMethod)
+    }
+
     when (method) {
       RestoreMethod.FROM_SIGNAL_BACKUPS -> startActivity(Intent(requireContext(), RemoteRestoreActivity::class.java))
       RestoreMethod.FROM_OLD_DEVICE -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToDeviceTransfer())

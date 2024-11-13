@@ -115,6 +115,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssocia
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
+import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
@@ -255,6 +256,8 @@ public class PushServiceSocket {
   private static final String DEVICE_PATH               = "/v1/devices/%s";
   private static final String WAIT_FOR_DEVICES_PATH     = "/v1/devices/wait_for_linked_device/%s?timeout=%s";
   private static final String TRANSFER_ARCHIVE_PATH     = "/v1/devices/transfer_archive";
+  private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
+  private static final String WAIT_RESTORE_METHOD_PATH  = "/v1/devices/restore_account/%s?timeout=%s";
 
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
@@ -347,6 +350,7 @@ public class PushServiceSocket {
   private static final Map<String, String> NO_HEADERS            = Collections.emptyMap();
   private static final ResponseCodeHandler NO_HANDLER            = new EmptyResponseCodeHandler();
   private static final ResponseCodeHandler UNOPINIONATED_HANDLER = new UnopinionatedResponseCodeHandler();
+  private static final ResponseCodeHandler LONG_POLL_HANDLER     = new LongPollingResponseCodeHandler();
 
   public static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
@@ -687,29 +691,26 @@ public class PushServiceSocket {
    * This is a long-polling endpoint that relies on the fact that our normal connection timeout is already 30s.
    */
   public WaitForLinkedDeviceResponse waitForLinkedDevice(String token, int timeoutSeconds) throws IOException {
-    // Note: We consider 204 failure, since that means that we timed out before determining if a device was linked. Easier that way.
-
-    String response = makeServiceRequest(String.format(Locale.US, WAIT_FOR_DEVICES_PATH, token, timeoutSeconds), "GET", null, NO_HEADERS, (responseCode, body) -> {
-      if (responseCode == 204 || responseCode < 200 || responseCode > 299) {
-        String bodyString = null;
-        if (body != null) {
-          try {
-            bodyString = readBodyString(body);
-          } catch (MalformedResponseException e) {
-            Log.w(TAG, "Failed to read body string", e);
-          }
-        }
-
-        throw new NonSuccessfulResponseCodeException(responseCode, "Response: " + responseCode, bodyString);
-      }
-    }, SealedSenderAccess.NONE);
-
+    String response = makeServiceRequest(String.format(Locale.US, WAIT_FOR_DEVICES_PATH, token, timeoutSeconds), "GET", null, NO_HEADERS, LONG_POLL_HANDLER, SealedSenderAccess.NONE);
     return JsonUtil.fromJsonResponse(response, WaitForLinkedDeviceResponse.class);
   }
 
   public void setLinkedDeviceTransferArchive(SetLinkedDeviceTransferArchiveRequest request) throws IOException {
     String body = JsonUtil.toJson(request);
     makeServiceRequest(String.format(Locale.US, TRANSFER_ARCHIVE_PATH), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
+  }
+
+  public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
+    String body = JsonUtil.toJson(request);
+    makeServiceRequest(String.format(Locale.US, SET_RESTORE_METHOD_PATH, urlEncode(token)), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
+  }
+
+  /**
+   * This is a long-polling endpoint that relies on the fact that our normal connection timeout is already 30s.
+   */
+  public @Nonnull RestoreMethodBody waitForRestoreMethodChosen(@Nonnull String token, int timeoutSeconds) throws IOException {
+    String response = makeServiceRequest(String.format(Locale.US, WAIT_RESTORE_METHOD_PATH, urlEncode(token), timeoutSeconds), "GET", null, NO_HEADERS, LONG_POLL_HANDLER, SealedSenderAccess.NONE);
+    return JsonUtil.fromJsonResponse(response, RestoreMethodBody.class);
   }
 
   public void removeDevice(long deviceId) throws IOException {
@@ -2804,6 +2805,28 @@ public class PushServiceSocket {
     @Override
     public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 200 || responseCode > 299) {
+        String bodyString = null;
+        if (body != null) {
+          try {
+            bodyString = readBodyString(body);
+          } catch (MalformedResponseException e) {
+            Log.w(TAG, "Failed to read body string", e);
+          }
+        }
+
+        throw new NonSuccessfulResponseCodeException(responseCode, "Response: " + responseCode, bodyString);
+      }
+    }
+  }
+
+  /**
+   * Like {@link UnopinionatedResponseCodeHandler} but also treats a 204 as a failure, since that means that the server intentionally
+   * timed out before a valid result for the long poll was returned. Easier that way.
+   */
+  private static class LongPollingResponseCodeHandler implements ResponseCodeHandler {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      if (responseCode == 204 || responseCode < 200 || responseCode > 299) {
         String bodyString = null;
         if (body != null) {
           try {

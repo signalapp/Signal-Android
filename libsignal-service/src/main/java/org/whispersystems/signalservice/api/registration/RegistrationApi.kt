@@ -161,4 +161,22 @@ class RegistrationApi(
       pushServiceSocket.sendProvisioningMessage(deviceIdentifier, cipherText)
     }
   }
+
+  /**
+   * Set [RestoreMethod] enum on the server for use by the old device to update UX.
+   */
+  fun setRestoreMethod(token: String, method: RestoreMethod): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.setRestoreMethodChosen(token, RestoreMethodBody(method = method))
+    }
+  }
+
+  /**
+   * Wait for the [RestoreMethod] to be set on the server by the new device. This is a long polling operation.
+   */
+  fun waitForRestoreMethod(token: String, timeout: Int = 30): NetworkResult<RestoreMethod> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.waitForRestoreMethodChosen(token, timeout).method ?: RestoreMethod.DECLINE
+    }
+  }
 }

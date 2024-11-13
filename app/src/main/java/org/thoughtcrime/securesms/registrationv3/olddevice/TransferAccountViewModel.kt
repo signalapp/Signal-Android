@@ -12,7 +12,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
+import org.whispersystems.signalservice.api.registration.RestoreMethod
+import java.util.UUID
 
 class TransferAccountViewModel(reRegisterUri: String) : ViewModel() {
 
@@ -22,9 +25,18 @@ class TransferAccountViewModel(reRegisterUri: String) : ViewModel() {
 
   fun transferAccount() {
     viewModelScope.launch(Dispatchers.IO) {
+      val restoreMethodToken = UUID.randomUUID().toString()
       store.update { it.copy(inProgress = true) }
-      val result = QuickRegistrationRepository.transferAccount(store.value.reRegisterUri)
+      val result = QuickRegistrationRepository.transferAccount(store.value.reRegisterUri, restoreMethodToken)
       store.update { it.copy(reRegisterResult = result, inProgress = false) }
+
+      val restoreMethod = QuickRegistrationRepository.waitForRestoreMethodSelectionOnNewDevice(restoreMethodToken)
+
+      if (restoreMethod != RestoreMethod.DECLINE) {
+        SignalStore.registration.restoringOnNewDevice = true
+      }
+
+      store.update { it.copy(restoreMethodSelected = restoreMethod) }
     }
   }
 
@@ -35,6 +47,7 @@ class TransferAccountViewModel(reRegisterUri: String) : ViewModel() {
   data class TransferAccountState(
     val reRegisterUri: String,
     val inProgress: Boolean = false,
-    val reRegisterResult: QuickRegistrationRepository.TransferAccountResult? = null
+    val reRegisterResult: QuickRegistrationRepository.TransferAccountResult? = null,
+    val restoreMethodSelected: RestoreMethod? = null
   )
 }

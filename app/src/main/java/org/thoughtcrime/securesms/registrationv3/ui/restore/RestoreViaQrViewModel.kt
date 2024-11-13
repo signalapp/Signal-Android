@@ -10,15 +10,21 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import org.signal.core.util.logging.Log
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.registration.ProvisioningSocket
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import java.io.Closeable
 
 class RestoreViaQrViewModel : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(RestoreViaQrViewModel::class)
+  }
 
   private val store: MutableStateFlow<RestoreViaQrState> = MutableStateFlow(RestoreViaQrState())
 
@@ -58,6 +64,7 @@ class RestoreViaQrViewModel : ViewModel() {
   }
 
   private fun start(): Closeable {
+    SignalStore.registration.restoreMethodToken = null
     store.update { it.copy(qrState = QrState.Loading) }
 
     return ProvisioningSocket.start(
@@ -69,7 +76,10 @@ class RestoreViaQrViewModel : ViewModel() {
       store.update { it.copy(qrState = QrState.Loaded(qrData = QrCodeData.forData(data = url, supportIconOverlay = false))) }
 
       val result = socket.getRegistrationProvisioningMessage()
+
       if (result is SecondaryProvisioningCipher.RegistrationProvisionResult.Success) {
+        Log.i(TAG, "Saving restore method token: ***${result.message.restoreMethodToken.takeLast(4)}")
+        SignalStore.registration.restoreMethodToken = result.message.restoreMethodToken
         store.update { it.copy(isRegistering = true, provisioningMessage = result.message, qrState = QrState.Scanned) }
       } else {
         store.update { it.copy(showProvisioningError = true, qrState = QrState.Scanned) }

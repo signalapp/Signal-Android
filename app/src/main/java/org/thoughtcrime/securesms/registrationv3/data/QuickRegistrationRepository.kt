@@ -6,6 +6,10 @@
 package org.thoughtcrime.securesms.registrationv3.data
 
 import android.net.Uri
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.Hex
 import org.signal.core.util.isNotNullOrBlank
@@ -16,7 +20,11 @@ import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.registration.RestoreMethod
 import java.io.IOException
+import kotlin.coroutines.coroutineContext
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Helpers for quickly re-registering on a new device with the old device.
@@ -41,7 +49,7 @@ object QuickRegistrationRepository {
   /**
    * Send registration provisioning message to new device.
    */
-  fun transferAccount(reRegisterUri: String): TransferAccountResult {
+  fun transferAccount(reRegisterUri: String, restoreMethodToken: String): TransferAccountResult {
     if (!isValidReRegistrationQr(reRegisterUri)) {
       Log.w(TAG, "Invalid quick re-register qr data")
       return TransferAccountResult.FAILED
@@ -81,7 +89,8 @@ object QuickRegistrationRepository {
               MessageBackupTier.PAID -> RegistrationProvisionMessage.Tier.PAID
               MessageBackupTier.FREE,
               null -> RegistrationProvisionMessage.Tier.FREE
-            }
+            },
+            restoreMethodToken = restoreMethodToken
           )
         )
         .successOrThrow()
@@ -96,6 +105,60 @@ object QuickRegistrationRepository {
     }
 
     return TransferAccountResult.SUCCESS
+  }
+
+  /**
+   * Sets the restore method enum for the old device to retrieve and update their UI with.
+   */
+  suspend fun setRestoreMethodForOldDevice(restoreMethod: RestoreMethod) {
+    val restoreMethodToken = SignalStore.registration.restoreMethodToken
+
+    if (restoreMethodToken != null) {
+      withContext(Dispatchers.IO) {
+        Log.d(TAG, "Setting restore method ***${restoreMethodToken.takeLast(4)}: $restoreMethod")
+        var retries = 3
+        var result: NetworkResult<Unit>? = null
+        while (retries-- > 0 && result !is NetworkResult.Success) {
+          Log.d(TAG, "Setting method, retries remaining: $retries")
+          result = AppDependencies.registrationApi.setRestoreMethod(restoreMethodToken, restoreMethod)
+
+          if (result !is NetworkResult.Success) {
+            delay(1.seconds)
+          }
+        }
+
+        if (result is NetworkResult.Success) {
+          Log.i(TAG, "Restore method set successfully")
+          SignalStore.registration.restoreMethodToken = null
+        } else {
+          Log.w(TAG, "Restore method set failed", result?.getCause())
+        }
+      }
+    }
+  }
+
+  /**
+   * Gets the restore method used by the new device to update UI with. This is a long polling operation.
+   */
+  suspend fun waitForRestoreMethodSelectionOnNewDevice(restoreMethodToken: String): RestoreMethod {
+    var retries = 5
+    var result: NetworkResult<RestoreMethod>? = null
+
+    Log.d(TAG, "Waiting for restore method with token: ***${restoreMethodToken.takeLast(4)}")
+    while (retries-- > 0 && result !is NetworkResult.Success && coroutineContext.isActive) {
+      Log.d(TAG, "Remaining tries $retries...")
+      val api = AppDependencies.registrationApi
+      result = api.waitForRestoreMethod(restoreMethodToken)
+      Log.d(TAG, "Result: $result")
+    }
+
+    if (result is NetworkResult.Success) {
+      Log.i(TAG, "Restore method selected on new device ${result.result}")
+      return result.result
+    } else {
+      Log.w(TAG, "Failed to determine restore method, using default")
+      return RestoreMethod.DECLINE
+    }
   }
 
   enum class TransferAccountResult {

@@ -26,5 +26,6 @@ message RegistrationProvisionMessage {
   Platform platform = 5;
   uint64 backupTimestampMs = 6;
   Tier tier = 7;
-  reserved 8; // iOSDeviceTransferMessage
+  string restoreMethodToken = 8;
+  reserved 9; // iOSDeviceTransferMessage
 }
