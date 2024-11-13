@@ -172,7 +172,7 @@ object SvrRepository {
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
             SignalStore.pin.keyboardType = pinKeyboardType
-            SignalStore.storageService.setNeedsAccountRestore(false)
+            SignalStore.storageService.needsAccountRestore = false
 
             when (implementation.svrVersion) {
               SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
@@ -330,7 +330,7 @@ object SvrRepository {
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
         SignalStore.svr.clearRegistrationLockAndPin()
-        SignalStore.storageService.setNeedsAccountRestore(true)
+        SignalStore.storageService.needsAccountRestore = true
       } else {
         Log.i(TAG, "[onRegistrationComplete] No registration lock or PIN at all.", true)
         SignalStore.svr.clearRegistrationLockAndPin()
@@ -347,7 +347,7 @@ object SvrRepository {
   fun onPinRestoreForgottenOrSkipped() {
     operationLock.withLock {
       SignalStore.svr.clearRegistrationLockAndPin()
-      SignalStore.storageService.setNeedsAccountRestore(false)
+      SignalStore.storageService.needsAccountRestore = false
     }
   }
 

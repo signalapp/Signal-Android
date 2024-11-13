@@ -44,7 +44,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
   @Throws(Exception::class)
   override fun onRun() {
     val accountManager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService.getOrCreateStorageKey()
+    val storageServiceKey = SignalStore.storageService.storageKey
 
     Log.i(TAG, "Retrieving manifest...")
     val manifest = accountManager.getStorageManifest(storageServiceKey)

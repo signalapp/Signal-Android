@@ -54,7 +54,7 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
 
     val syncMessage = SignalServiceSyncMessage.forKeys(
       KeysMessage(
-        Optional.of(SignalStore.storageService.getOrCreateStorageKey()),
+        Optional.of(SignalStore.storageService.storageKey),
         Optional.of(SignalStore.svr.masterKey)
       )
     )

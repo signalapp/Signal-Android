@@ -68,7 +68,7 @@ class RegistrationActivity : BaseActivity() {
       SignalStore.misc.shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
     }
 
-    if (SignalStore.storageService.needsAccountRestore()) {
+    if (SignalStore.storageService.needsAccountRestore) {
       Log.i(TAG, "Performing pin restore.")
       startActivity(Intent(this, PinRestoreActivity::class.java))
       finish()

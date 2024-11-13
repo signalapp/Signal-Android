@@ -170,7 +170,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
         AppDependencies.jobManager.add(MultiDeviceStorageSyncRequestJob())
       }
 
-      SignalStore.storageService.onSyncCompleted()
+      SignalStore.storageService.lastSyncTime = System.currentTimeMillis()
     } catch (e: InvalidKeyException) {
       if (SignalStore.account.isPrimaryDevice) {
         Log.w(TAG, "Failed to decrypt remote storage! Force-pushing and syncing the storage key to linked devices.", e)
@@ -200,7 +200,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     val stopwatch = Stopwatch("StorageSync")
     val db = SignalDatabase.rawDatabase
     val accountManager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService.getOrCreateStorageKey()
+    val storageServiceKey = SignalStore.storageService.storageKey
 
     val localManifest = SignalStore.storageService.manifest
     val remoteManifest = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version).orElse(localManifest)

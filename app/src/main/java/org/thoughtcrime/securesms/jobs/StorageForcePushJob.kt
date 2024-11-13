@@ -61,7 +61,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
       return
     }
 
-    val storageServiceKey = SignalStore.storageService.getOrCreateStorageKey()
+    val storageServiceKey = SignalStore.storageService.storageKey
     val accountManager = AppDependencies.signalServiceAccountManager
 
     val currentVersion = accountManager.storageManifestVersion

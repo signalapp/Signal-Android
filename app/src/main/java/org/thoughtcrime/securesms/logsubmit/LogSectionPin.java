@@ -22,7 +22,7 @@ public class LogSectionPin implements LogSection {
                               .append("Restored via AEP: ").append(SignalStore.svr().getRestoredViaAccountEntropyPool()).append("\n")
                               .append("Opted Out: ").append(SignalStore.svr().hasOptedOut()).append("\n")
                               .append("Last Creation Failed: ").append(SignalStore.svr().lastPinCreateFailed()).append("\n")
-                              .append("Needs Account Restore: ").append(SignalStore.storageService().needsAccountRestore()).append("\n")
+                              .append("Needs Account Restore: ").append(SignalStore.storageService().getNeedsAccountRestore()).append("\n")
                               .append("PIN Required at Registration: ").append(SignalStore.registration().pinWasRequiredAtRegistration()).append("\n")
                               .append("Registration Complete: ").append(SignalStore.registration().isRegistrationComplete());
 
