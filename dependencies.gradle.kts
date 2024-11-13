@@ -146,7 +146,6 @@ dependencyResolutionManagement {
       library("mobilecoin", "com.mobilecoin:android-sdk:6.0.1")
       library("leolin-shortcutbadger", "me.leolin:ShortcutBadger:1.1.22")
       library("emilsjolander-stickylistheaders", "se.emilsjolander:stickylistheaders:2.7.0")
-      library("apache-httpclient-android", "org.apache.httpcomponents:httpclient-android:4.3.5")
       library("glide-glide", "com.github.bumptech.glide", "glide").versionRef("glide")
       library("glide-ksp", "com.github.bumptech.glide", "ksp").versionRef("glide")
       library("roundedimageview", "com.makeramen:roundedimageview:2.1.0")

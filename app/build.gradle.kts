@@ -84,7 +84,6 @@ android {
   ndkVersion = signalNdkVersion
 
   flavorDimensions += listOf("distribution", "environment")
-  useLibrary("org.apache.http.legacy")
   testBuildType = "instrumentation"
 
   android.bundle.language.enableSplit = false
@@ -542,7 +541,6 @@ dependencies {
   implementation(libs.signal.ringrtc)
   implementation(libs.leolin.shortcutbadger)
   implementation(libs.emilsjolander.stickylistheaders)
-  implementation(libs.apache.httpclient.android)
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
