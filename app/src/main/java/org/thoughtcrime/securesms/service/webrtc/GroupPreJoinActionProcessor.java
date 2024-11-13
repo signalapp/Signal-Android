@@ -126,7 +126,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder()
                                                                          .changeCallInfoState()
-                                                                         .remoteDevicesCount(peekInfo.getDeviceCount())
+                                                                         .remoteDevicesCount(peekInfo.getDeviceCountExcludingPendingDevices())
                                                                          .participantLimit(peekInfo.getMaxDevices())
                                                                          .clearParticipantMap();
 
