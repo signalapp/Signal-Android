@@ -36,7 +36,7 @@ public final class StorageSyncValidations {
     validateManifestAndInserts(result.manifest, result.inserts, self);
 
     if (result.deletes.size() > 0) {
-      Set<String> allSetEncoded = Stream.of(result.manifest.getStorageIds()).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
+      Set<String> allSetEncoded = Stream.of(result.manifest.storageIds).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
 
       for (byte[] delete : result.deletes) {
         String encoded = Base64.encodeWithPadding(delete);
@@ -46,12 +46,12 @@ public final class StorageSyncValidations {
       }
     }
 
-    if (previousManifest.getVersion() == 0) {
+    if (previousManifest.version == 0) {
       Log.i(TAG, "Previous manifest is empty, not bothering with additional validations around the diffs between the two manifests.");
       return;
     }
 
-    if (result.manifest.getVersion() != previousManifest.getVersion() + 1) {
+    if (result.manifest.version != previousManifest.version + 1) {
       throw new IncorrectManifestVersionError();
     }
 
@@ -60,8 +60,8 @@ public final class StorageSyncValidations {
       return;
     }
 
-    Set<ByteBuffer> previousIds = Stream.of(previousManifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> newIds      = Stream.of(result.manifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> previousIds = Stream.of(previousManifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> newIds      = Stream.of(result.manifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);
     Set<ByteBuffer> manifestDeletes = SetUtil.difference(previousIds, newIds);
@@ -105,7 +105,7 @@ public final class StorageSyncValidations {
 
   private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts, @NonNull Recipient self) {
     int accountCount = 0;
-    for (StorageId id : manifest.getStorageIds()) {
+    for (StorageId id : manifest.storageIds) {
       accountCount += id.getType() == ManifestRecord.Identifier.Type.ACCOUNT.getValue() ? 1 : 0;
     }
 
@@ -117,11 +117,11 @@ public final class StorageSyncValidations {
       throw new MissingAccountError();
     }
 
-    Set<StorageId>  allSet    = new HashSet<>(manifest.getStorageIds());
+    Set<StorageId>  allSet    = new HashSet<>(manifest.storageIds);
     Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
     Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
-    if (allSet.size() != manifest.getStorageIds().size()) {
+    if (allSet.size() != manifest.storageIds.size()) {
       throw new DuplicateStorageIdError();
     }
 

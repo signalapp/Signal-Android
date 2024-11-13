@@ -428,13 +428,13 @@ public class SignalServiceAccountManager {
       throws IOException, InvalidKeyException
   {
     ManifestRecord.Builder manifestRecordBuilder = new ManifestRecord.Builder()
-                                                                     .sourceDevice(manifest.getSourceDeviceId())
-                                                                     .version(manifest.getVersion());
+                                                                     .sourceDevice(manifest.sourceDeviceId)
+                                                                     .version(manifest.version);
 
 
     manifestRecordBuilder.identifiers(
-        manifest.getStorageIds().stream()
-                .map(id -> {
+        manifest.storageIds.stream()
+                           .map(id -> {
                   ManifestRecord.Identifier.Builder builder = new ManifestRecord.Identifier.Builder()
                       .raw(ByteString.of(id.getRaw()));
                   if (!id.isUnknown()) {
@@ -445,14 +445,14 @@ public class SignalServiceAccountManager {
                   }
                   return builder.build();
                 })
-                .collect(Collectors.toList())
+                           .collect(Collectors.toList())
     );
 
     String             authToken       = this.pushServiceSocket.getStorageAuth();
-    StorageManifestKey manifestKey     = storageKey.deriveManifestKey(manifest.getVersion());
+    StorageManifestKey manifestKey     = storageKey.deriveManifestKey(manifest.version);
     byte[]             encryptedRecord = SignalStorageCipher.encrypt(manifestKey, manifestRecordBuilder.build().encode());
     StorageManifest    storageManifest = new StorageManifest.Builder()
-                                                            .version(manifest.getVersion())
+                                                            .version(manifest.version)
                                                             .value_(ByteString.of(encryptedRecord))
                                                             .build();
 

@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage
 
 import okio.ByteString.Companion.toByteString
-import org.signal.core.util.getUnknownEnumValue
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.logging.Log
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -19,16 +18,8 @@ object SignalStorageModels {
   fun remoteToLocalStorageManifest(manifest: StorageManifest, storageKey: StorageKey): SignalStorageManifest {
     val rawRecord = SignalStorageCipher.decrypt(storageKey.deriveManifestKey(manifest.version), manifest.value_.toByteArray())
     val manifestRecord = ManifestRecord.ADAPTER.decode(rawRecord)
-    val ids: MutableList<StorageId> = ArrayList(manifestRecord.identifiers.size)
-
-    for (id in manifestRecord.identifiers) {
-      val typeValue = if ((id.type != ManifestRecord.Identifier.Type.UNKNOWN)) {
-        id.type.value
-      } else {
-        id.getUnknownEnumValue(StorageRecordProtoUtil.STORAGE_ID_TYPE_TAG)
-      }
-
-      ids.add(StorageId.forType(id.raw.toByteArray(), typeValue))
+    val ids: List<StorageId> = manifestRecord.identifiers.map { id ->
+      StorageId.forType(id.raw.toByteArray(), id.typeValue)
     }
 
     return SignalStorageManifest(manifestRecord.version, manifestRecord.sourceDevice, ids)
