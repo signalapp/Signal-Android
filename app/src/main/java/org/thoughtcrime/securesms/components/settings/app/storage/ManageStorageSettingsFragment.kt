@@ -242,10 +242,9 @@ class ManageStorageSettingsFragment : ComposeFragment() {
         dialog(
           route = "paid-tier-pending"
         ) {
-          // TODO [backups] Finalized copy
           Dialogs.SimpleAlertDialog(
-            title = "Paid tier pending",
-            body = "TODO",
+            title = "",
+            body = stringResource(R.string.ManageStorageSettingsFragment__storage_optimization_can_only_be_used),
             confirm = stringResource(android.R.string.ok),
             onConfirm = {},
             onDismiss = { navController.popBackStack() }
