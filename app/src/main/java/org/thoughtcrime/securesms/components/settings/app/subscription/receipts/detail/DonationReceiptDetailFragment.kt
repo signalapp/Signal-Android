@@ -87,7 +87,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
         title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__donation_type),
         summary = DSLSettingsText.from(
           when (record.type) {
-            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
+            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptListFragment__recurring)
             InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
             InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
             InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")

@@ -48,9 +48,10 @@ object ReceiptImageRenderer {
     val today: String = DateUtils.formatDateWithDayOfWeek(Locale.getDefault(), System.currentTimeMillis())
     val amount: String = FiatMoneyUtil.format(context.resources, record.amount)
     val type: String = when (record.type) {
-      InAppPaymentReceiptRecord.Type.RECURRING_DONATION, InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> context.getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, context.getString(R.string.DonationReceiptListFragment__recurring))
+      InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> context.getString(R.string.DonationReceiptListFragment__recurring)
       InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> context.getString(R.string.DonationReceiptListFragment__one_time)
       InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> context.getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
+      InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported.")
     }
     val datePaid: String = DateUtils.formatDate(Locale.getDefault(), record.timestamp)
 
