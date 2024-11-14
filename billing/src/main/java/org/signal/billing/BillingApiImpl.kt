@@ -16,6 +16,7 @@ import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetailsResult
+import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
@@ -41,6 +42,7 @@ import org.signal.core.util.billing.BillingDependencies
 import org.signal.core.util.billing.BillingError
 import org.signal.core.util.billing.BillingProduct
 import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import java.math.BigDecimal
@@ -80,6 +82,7 @@ internal class BillingApiImpl(
           } else {
             Log.d(TAG, "purchasesUpdatedListener: successful purchase at ${newestPurchase.purchaseTime}")
             BillingPurchaseResult.Success(
+              purchaseState = newestPurchase.purchaseState.toBillingPurchaseState(),
               purchaseToken = newestPurchase.purchaseToken,
               isAcknowledged = newestPurchase.isAcknowledged,
               purchaseTime = newestPurchase.purchaseTime,
@@ -202,6 +205,7 @@ internal class BillingApiImpl(
     val purchase = result.purchasesList.maxByOrNull { it.purchaseTime } ?: return BillingPurchaseResult.None
 
     return BillingPurchaseResult.Success(
+      purchaseState = purchase.purchaseState.toBillingPurchaseState(),
       purchaseTime = purchase.purchaseTime,
       purchaseToken = purchase.purchaseToken,
       isAcknowledged = purchase.isAcknowledged,
@@ -253,6 +257,14 @@ internal class BillingApiImpl(
   override suspend fun isApiAvailable(): Boolean {
     return doOnConnectionReady {
       billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+    }
+  }
+
+  private fun Int.toBillingPurchaseState(): BillingPurchaseState {
+    return when (this) {
+      Purchase.PurchaseState.PURCHASED -> BillingPurchaseState.PURCHASED
+      Purchase.PurchaseState.PENDING -> BillingPurchaseState.PENDING
+      else -> BillingPurchaseState.UNSPECIFIED
     }
   }
 

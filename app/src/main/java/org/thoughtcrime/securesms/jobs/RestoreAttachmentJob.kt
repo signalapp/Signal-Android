@@ -131,7 +131,15 @@ class RestoreAttachmentJob private constructor(
 
   @Throws(Exception::class)
   override fun onRun() {
-    doWork()
+    try {
+      doWork()
+    } catch (e: IOException) {
+      if (BackupRepository.checkForOutOfStorageError(TAG)) {
+        throw RetryLaterException(e)
+      } else {
+        throw e
+      }
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context, forConversation(0))

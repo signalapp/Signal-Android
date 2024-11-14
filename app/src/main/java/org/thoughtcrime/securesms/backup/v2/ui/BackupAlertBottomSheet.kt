@@ -172,7 +172,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
   private fun displaySkipRestoreDialog() {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle((R.string.BackupAlertBottomSheet__skip_restore_question))
-      .setMessage(R.string.BackupAlertBottomSheet__if_you_skip_restore)
+      .setMessage(R.string.BackupAlertBottomSheet__if_you_skip_restore_the)
       .setPositiveButton(R.string.BackupAlertBottomSheet__skip) { _, _ ->
         BackupRepository.skipMediaRestore()
       }

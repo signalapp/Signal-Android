@@ -79,6 +79,15 @@ class RestoreAttachmentThumbnailJob private constructor(
 
   @Throws(Exception::class, IOException::class, InvalidAttachmentException::class, InvalidMessageException::class, MissingConfigurationException::class)
   public override fun onRun() {
+    try {
+      doWork()
+    } catch (e: IOException) {
+      BackupRepository.checkForOutOfStorageError(TAG)
+      throw e
+    }
+  }
+
+  private fun doWork() {
     Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId")
 
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)

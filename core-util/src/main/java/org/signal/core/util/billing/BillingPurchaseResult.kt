@@ -14,6 +14,7 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 sealed interface BillingPurchaseResult {
   data class Success(
+    val purchaseState: BillingPurchaseState,
     val purchaseToken: String,
     val isAcknowledged: Boolean,
     val purchaseTime: Long,

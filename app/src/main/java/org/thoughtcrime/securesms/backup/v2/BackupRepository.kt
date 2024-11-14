@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -131,6 +132,9 @@ object BackupRepository {
     }
   }
 
+  /**
+   * Gets the free storage space in the device's data partition.
+   */
   fun getFreeStorageSpace(): ByteSize {
     val statFs = StatFs(Environment.getDataDirectory().absolutePath)
     val free = (statFs.availableBlocksLong) * statFs.blockSizeLong
@@ -138,9 +142,33 @@ object BackupRepository {
     return free.bytes
   }
 
+  /**
+   * Checks whether or not we do not have enough storage space for our remaining attachments to be downloaded.
+   * Called from the attachment / thumbnail download jobs.
+   */
+  fun checkForOutOfStorageError(tag: String): Boolean {
+    val availableSpace = getFreeStorageSpace()
+    val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes
+
+    return if (availableSpace < remainingAttachmentSize) {
+      Log.w(tag, "Possibly out of space. ${availableSpace.toUnitString()} available.", true)
+      SignalStore.backup.spaceAvailableOnDiskBytes = availableSpace.bytes
+      true
+    } else {
+      false
+    }
+  }
+
+  /**
+   * Cancels any relevant jobs for media restore
+   */
   @JvmStatic
   fun skipMediaRestore() {
-    // TODO [backups] -- Clear the error as necessary, cancel anything remaining in the restore
+    SignalStore.backup.userManuallySkippedMediaRestore = true
+
+    AppDependencies.jobManager.cancelAllInQueue(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.RESTORE_OFFLOADED))
+    AppDependencies.jobManager.cancelAllInQueue(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.INITIAL_RESTORE))
+    AppDependencies.jobManager.cancelAllInQueue(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.MANUAL))
   }
 
   /**

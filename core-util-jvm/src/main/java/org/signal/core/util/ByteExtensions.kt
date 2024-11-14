@@ -95,6 +95,10 @@ class ByteSize(val bytes: Long) {
     return "${formatter.format(size)}${if (spaced) " " else ""}${unit.label}"
   }
 
+  operator fun compareTo(other: ByteSize): Int {
+    return bytes.compareTo(other.bytes)
+  }
+
   enum class Size(val label: String) {
     BYTE("B"),
     KIBIBYTE("KB"),

@@ -78,7 +78,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
     )
   }
 
-  private fun getActiveRestoreFlow(): Flow<BackupStatusData.RestoringMedia> {
+  private fun getActiveRestoreFlow(): Flow<BackupStatusData> {
     val flow: Flow<Unit> = callbackFlow {
       val onChange = { trySend(Unit) }
 
@@ -115,8 +115,13 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
             val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
             val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
             val completedBytes = totalRestoreSize - remainingAttachmentSize
+            val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
 
-            BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
+            if (availableBytes > -1L && remainingAttachmentSize > availableBytes) {
+              BackupStatusData.NotEnoughFreeSpace(requiredSpace = remainingAttachmentSize.bytes)
+            } else {
+              BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
+            }
           }
         }
       }
