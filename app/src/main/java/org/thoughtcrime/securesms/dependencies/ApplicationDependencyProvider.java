@@ -435,8 +435,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
           return new LibSignalChatConnection(
               "libsignal-unauth",
               LibSignalNetworkExtensions.createChatService(network, null, Stories.isFeatureEnabled()),
-              healthMonitor,
-              false);
+              healthMonitor);
         } else {
           return new OkHttpWebSocketConnection("unidentified",
                                                signalServiceConfigurationSupplier.get(),

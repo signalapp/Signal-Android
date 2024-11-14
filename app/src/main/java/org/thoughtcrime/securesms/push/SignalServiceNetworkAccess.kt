@@ -189,7 +189,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     signalProxy = Optional.empty(),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
-    backupServerPublicParams = backupServerPublicParams
+    backupServerPublicParams = backupServerPublicParams,
+    censored = true
   )
 
   private val censorshipConfiguration: Map<Int, SignalServiceConfiguration> = mapOf(
@@ -247,7 +248,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     signalProxy = if (SignalStore.proxy.isProxyEnabled) Optional.ofNullable(SignalStore.proxy.proxy) else Optional.empty(),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
-    backupServerPublicParams = backupServerPublicParams
+    backupServerPublicParams = backupServerPublicParams,
+    censored = false
   )
 
   open fun getConfiguration(): SignalServiceConfiguration {
@@ -316,7 +318,8 @@ open class SignalServiceNetworkAccess(context: Context) {
       signalProxy = Optional.empty(),
       zkGroupServerPublicParams = zkGroupServerPublicParams,
       genericServerPublicParams = genericServerPublicParams,
-      backupServerPublicParams = backupServerPublicParams
+      backupServerPublicParams = backupServerPublicParams,
+      censored = true
     )
   }
 

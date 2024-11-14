@@ -25,7 +25,7 @@ class LibSignalChatConnectionTest {
   private val executor: ExecutorService = Executors.newSingleThreadExecutor()
   private val healthMonitor = mockk<HealthMonitor>()
   private val chatService = mockk<ChatService>()
-  private val connection = LibSignalChatConnection("test", chatService, healthMonitor, isAuthenticated = false)
+  private val connection = LibSignalChatConnection("test", chatService, healthMonitor)
 
   @Before
   fun before() {
@@ -38,7 +38,7 @@ class LibSignalChatConnectionTest {
   fun orderOfStatesOnSuccessfulConnect() {
     val latch = CountDownLatch(1)
 
-    every { chatService.connectUnauthenticated() } answers {
+    every { chatService.connect() } answers {
       delay {
         it.complete(DEBUG_INFO)
         latch.countDown()
@@ -65,7 +65,7 @@ class LibSignalChatConnectionTest {
     val connectionException = RuntimeException("connect failed")
     val latch = CountDownLatch(1)
 
-    every { chatService.connectUnauthenticated() } answers {
+    every { chatService.connect() } answers {
       delay {
         it.completeExceptionally(connectionException)
       }
@@ -91,7 +91,7 @@ class LibSignalChatConnectionTest {
     val connectLatch = CountDownLatch(1)
     val disconnectLatch = CountDownLatch(1)
 
-    every { chatService.connectUnauthenticated() } answers {
+    every { chatService.connect() } answers {
       delay {
         it.complete(DEBUG_INFO)
         connectLatch.countDown()
@@ -155,7 +155,7 @@ class LibSignalChatConnectionTest {
   fun keepAliveSuccess() {
     val latch = CountDownLatch(1)
 
-    every { chatService.unauthenticatedSendAndDebug(any()) } answers {
+    every { chatService.sendAndDebug(any()) } answers {
       delay {
         it.complete(make_debug_response(RESPONSE_SUCCESS))
         latch.countDown()
@@ -179,7 +179,7 @@ class LibSignalChatConnectionTest {
     for (response in listOf(RESPONSE_ERROR, RESPONSE_SERVER_ERROR)) {
       val latch = CountDownLatch(1)
 
-      every { chatService.unauthenticatedSendAndDebug(any()) } answers {
+      every { chatService.sendAndDebug(any()) } answers {
         delay {
           it.complete(make_debug_response(response))
         }
@@ -203,7 +203,7 @@ class LibSignalChatConnectionTest {
     val latch = CountDownLatch(1)
 
     every {
-      chatService.unauthenticatedSendAndDebug(any())
+      chatService.sendAndDebug(any())
     } answers {
       delay {
         it.completeExceptionally(connectionFailure)

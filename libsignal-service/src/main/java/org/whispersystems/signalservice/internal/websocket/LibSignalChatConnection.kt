@@ -11,7 +11,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.AuthenticatedChatService
 import org.signal.libsignal.net.ChatService
+import org.signal.libsignal.net.UnauthenticatedChatService
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.util.whenComplete
@@ -37,8 +39,7 @@ import org.signal.libsignal.net.ChatService.Response as LibSignalResponse
 class LibSignalChatConnection(
   name: String,
   private val chatService: ChatService,
-  private val healthMonitor: HealthMonitor,
-  val isAuthenticated: Boolean
+  private val healthMonitor: HealthMonitor
 ) : WebSocketConnection {
 
   companion object {
@@ -86,12 +87,7 @@ class LibSignalChatConnection(
   override fun connect(): Observable<WebSocketConnectionState> {
     Log.i(TAG, "$name Connecting...")
     state.onNext(WebSocketConnectionState.CONNECTING)
-    val connect = if (isAuthenticated) {
-      chatService::connectAuthenticated
-    } else {
-      chatService::connectUnauthenticated
-    }
-    connect()
+    chatService.connect()
       .whenComplete(
         onSuccess = { debugInfo ->
           Log.i(TAG, "$name Connected")
@@ -128,12 +124,7 @@ class LibSignalChatConnection(
   override fun sendRequest(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     val single = SingleSubject.create<WebsocketResponse>()
     val internalRequest = request.toLibSignalRequest()
-    val send = if (isAuthenticated) {
-      throw NotImplementedError("Authenticated socket is not yet supported")
-    } else {
-      chatService::unauthenticatedSend
-    }
-    send(internalRequest)
+    chatService.send(internalRequest)
       .whenComplete(
         onSuccess = { response ->
           when (response!!.status) {
@@ -143,7 +134,7 @@ class LibSignalChatConnection(
           }
           // Here success means "we received the response" even if it is reporting an error.
           // This is consistent with the behavior of the OkHttpWebSocketConnection.
-          single.onSuccess(response.toWebsocketResponse(isUnidentified = !isAuthenticated))
+          single.onSuccess(response.toWebsocketResponse(isUnidentified = (chatService is UnauthenticatedChatService)))
         },
         onFailure = { throwable ->
           Log.i(TAG, "$name sendRequest failed", throwable)
@@ -155,12 +146,7 @@ class LibSignalChatConnection(
 
   override fun sendKeepAlive() {
     Log.i(TAG, "$name Sending keep alive...")
-    val send = if (isAuthenticated) {
-      throw NotImplementedError("Authenticated socket is not yet supported")
-    } else {
-      chatService::unauthenticatedSendAndDebug
-    }
-    send(KEEP_ALIVE_REQUEST)
+    chatService.sendAndDebug(KEEP_ALIVE_REQUEST)
       .whenComplete(
         onSuccess = { debugResponse ->
           Log.i(TAG, "$name Keep alive - success")
@@ -174,7 +160,7 @@ class LibSignalChatConnection(
             }
 
             in 400..599 -> {
-              healthMonitor.onMessageError(debugResponse.response.status, isAuthenticated)
+              healthMonitor.onMessageError(debugResponse.response.status, (chatService is AuthenticatedChatService))
             }
 
             else -> {
