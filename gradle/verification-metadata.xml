@@ -6,6 +6,9 @@ Run the following command to update this file after adding or updating a depende
 
 (remove the backslashes before running)
 
+If you are updating a dependency, please also clean up the old version so this file does
+not grow unboundedly.
+
 For more information, see:
 https://docs.gradle.org/current/userguide/dependency_verification.html
 -->
