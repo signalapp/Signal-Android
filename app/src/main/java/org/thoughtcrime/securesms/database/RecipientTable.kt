@@ -709,8 +709,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun getBlocked(): Cursor {
-    return readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$BLOCKED = 1", null, null, null, null)
+  fun getBlocked(): List<RecipientRecord> {
+    return readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where("$BLOCKED = 1")
+      .run()
+      .readToList { RecipientTableCursorUtil.getRecord(context, it) }
   }
 
   fun readerForBlocked(cursor: Cursor): RecipientReader {

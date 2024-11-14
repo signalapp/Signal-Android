@@ -22,8 +22,6 @@ import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
-import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -89,7 +87,6 @@ import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.AttachmentPointer;
@@ -1486,9 +1483,9 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder         syncMessage    = createSyncMessageBuilder();
     SyncMessage.Blocked.Builder blockedMessage = new SyncMessage.Blocked.Builder();
 
-    blockedMessage.acis(blocked.getAddresses().stream().map(a -> a.getServiceId().toString()).collect(Collectors.toList()));
-    blockedMessage.numbers(blocked.getAddresses().stream().filter(a -> a.getNumber().isPresent()).map(a -> a.getNumber().get()).collect(Collectors.toList()));
-    blockedMessage.groupIds(blocked.getGroupIds().stream().map(ByteString::of).collect(Collectors.toList()));
+    blockedMessage.acis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toString()).collect(Collectors.toList()));
+    blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
 
     return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }
