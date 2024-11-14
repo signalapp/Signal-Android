@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobStatus
-import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
 import org.thoughtcrime.securesms.database.DatabaseObserver.InAppPaymentObserver
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -522,21 +521,13 @@ object InAppPaymentsRepository {
    */
   @WorkerThread
   fun hasPendingDonation(): Boolean {
-    return SignalDatabase.inAppPayments.hasPendingDonation() || DonationRedemptionJobWatcher.hasPendingRedemptionJob()
+    return SignalDatabase.inAppPayments.hasPendingDonation()
   }
 
   /**
    * Emits a stream of status updates for donations of the given type. Only One-time donations and recurring donations are currently supported.
    */
   fun observeInAppPaymentRedemption(type: InAppPaymentType): Observable<DonationRedemptionJobStatus> {
-    val jobStatusObservable: Observable<DonationRedemptionJobStatus> = when (type) {
-      InAppPaymentType.UNKNOWN -> Observable.empty()
-      InAppPaymentType.ONE_TIME_GIFT -> Observable.empty()
-      InAppPaymentType.ONE_TIME_DONATION -> DonationRedemptionJobWatcher.watchOneTimeRedemption()
-      InAppPaymentType.RECURRING_DONATION -> DonationRedemptionJobWatcher.watchSubscriptionRedemption()
-      InAppPaymentType.RECURRING_BACKUP -> Observable.empty()
-    }
-
     val fromDatabase: Observable<DonationRedemptionJobStatus> = Observable.create { emitter ->
       val observer = InAppPaymentObserver {
         val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
@@ -547,7 +538,7 @@ object InAppPaymentsRepository {
       AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       emitter.setCancellable { AppDependencies.databaseObserver.unregisterObserver(observer) }
     }.switchMap { inAppPaymentOptional ->
-      val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap jobStatusObservable
+      val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
@@ -576,15 +567,7 @@ object InAppPaymentsRepository {
       Observable.just(value)
     }
 
-    return fromDatabase
-      .switchMap {
-        if (it == DonationRedemptionJobStatus.None) {
-          jobStatusObservable
-        } else {
-          Observable.just(it)
-        }
-      }
-      .distinctUntilChanged()
+    return fromDatabase.distinctUntilChanged()
   }
 
   fun scheduleSyncForAccountRecordChange() {
