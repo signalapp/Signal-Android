@@ -4,34 +4,29 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!--  This scaling is applied manually to get the desired visual effect. It's not part of the asset.-->
-    <group
-        android:pivotX="54"
-        android:pivotY="54"
-        android:scaleX="0.68"
-        android:scaleY="0.68">
-        <group>
-            <path
-                android:pathData="M108 0H0v108h108V0Z">
-                <aapt:attr name="android:fillColor">
-                    <gradient
-                        android:type="linear"
-                        android:startX="54"
-                        android:startY="0"
-                        android:endX="54"
-                        android:endY="108">
-                        <item
-                            android:color="#FFF08C54"
-                            android:offset="0"/>
-                        <item
-                            android:color="#FFE7C52A"
-                            android:offset="0.5"/>
-                        <item
-                            android:color="#FF8CFB00"
-                            android:offset="1"/>
-                    </gradient>
-                </aapt:attr>
-            </path>
-        </group>
+    <group>
+        <path
+            android:pathData="M108,0H0V108H108V0Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:centerX="24"
+                    android:centerY="24"
+                    android:gradientRadius="88"
+                    android:type="radial">
+                    <item
+                        android:offset="0"
+                        android:color="#FFE582EA"/>
+                    <item
+                        android:offset="0.3"
+                        android:color="#FFE699A8"/>
+                    <item
+                        android:offset="0.65"
+                        android:color="#FFE7C52A"/>
+                    <item
+                        android:offset="1"
+                        android:color="#FFB4E14A"/>
+                </gradient>
+            </aapt:attr>
+        </path>
     </group>
 </vector>
