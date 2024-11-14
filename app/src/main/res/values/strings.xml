@@ -5816,6 +5816,10 @@
     <string name="DonationsErrors__your_payment">Your donation couldn\'t be processed and you have not been charged. Please try again.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Couldn\'t add badge</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
