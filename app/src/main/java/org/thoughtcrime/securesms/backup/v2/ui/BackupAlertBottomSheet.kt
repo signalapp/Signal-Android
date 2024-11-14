@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.R as CoreUiR
@@ -102,6 +103,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
     BackupAlertSheetContent(
       backupAlert = backupAlert,
       isSubscribeEnabled = isSubscribeEnabled,
+      mediaTtl = paidBackupType.mediaTtl,
       onPrimaryActionClick = performPrimaryAction,
       onSecondaryActionClick = this::performSecondaryAction
     )
@@ -195,6 +197,7 @@ private fun BackupAlertSheetContent(
   backupAlert: BackupAlert,
   pricePerMonth: String = "",
   isSubscribeEnabled: Boolean = true,
+  mediaTtl: Duration,
   onPrimaryActionClick: () -> Unit = {},
   onSecondaryActionClick: () -> Unit = {}
 ) {
@@ -254,7 +257,7 @@ private fun BackupAlertSheetContent(
       )
 
       BackupAlert.FailedToRenew -> PaymentProcessingBody()
-      is BackupAlert.MediaBackupsAreOff -> MediaBackupsAreOffBody(backupAlert.endOfPeriodSeconds)
+      is BackupAlert.MediaBackupsAreOff -> MediaBackupsAreOffBody(backupAlert.endOfPeriodSeconds, mediaTtl)
       BackupAlert.MediaWillBeDeletedToday -> MediaWillBeDeletedTodayBody()
       is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = backupAlert.requiredSpace)
     }
@@ -308,10 +311,10 @@ private fun PaymentProcessingBody() {
 
 @Composable
 private fun MediaBackupsAreOffBody(
-  endOfPeriodSeconds: Long
+  endOfPeriodSeconds: Long,
+  mediaTtl: Duration
 ) {
-  // TODO [backups] Get value from config to calculate days until deletion.
-  val daysUntilDeletion = remember { endOfPeriodSeconds.days + 60.days }.inWholeDays.toInt()
+  val daysUntilDeletion = remember { endOfPeriodSeconds.days + mediaTtl }.inWholeDays.toInt()
 
   Text(
     text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion, daysUntilDeletion),
@@ -416,7 +419,8 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7)
+      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7),
+      mediaTtl = 60.days
     )
   }
 }
@@ -426,7 +430,8 @@ private fun BackupAlertSheetContentPreviewGeneric() {
 private fun BackupAlertSheetContentPreviewPayment() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.FailedToRenew
+      backupAlert = BackupAlert.FailedToRenew,
+      mediaTtl = 60.days
     )
   }
 }
@@ -437,7 +442,8 @@ private fun BackupAlertSheetContentPreviewMedia() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
       backupAlert = BackupAlert.MediaBackupsAreOff(endOfPeriodSeconds = System.currentTimeMillis().milliseconds.inWholeSeconds),
-      pricePerMonth = "$2.99"
+      pricePerMonth = "$2.99",
+      mediaTtl = 60.days
     )
   }
 }
@@ -447,7 +453,8 @@ private fun BackupAlertSheetContentPreviewMedia() {
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.MediaWillBeDeletedToday
+      backupAlert = BackupAlert.MediaWillBeDeletedToday,
+      mediaTtl = 60.days
     )
   }
 }
@@ -457,7 +464,8 @@ private fun BackupAlertSheetContentPreviewDelete() {
 private fun BackupAlertSheetContentPreviewDiskFull() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB")
+      backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB"),
+      mediaTtl = 60.days
     )
   }
 }

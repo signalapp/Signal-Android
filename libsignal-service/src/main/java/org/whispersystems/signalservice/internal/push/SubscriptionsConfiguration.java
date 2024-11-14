@@ -108,12 +108,19 @@ public class SubscriptionsConfiguration {
     @JsonProperty("playProductId")
     private String playProductId;
 
+    @JsonProperty("mediaTtlDays")
+    private long mediaTtlDays;
+
     public long getStorageAllowanceBytes() {
       return storageAllowanceBytes;
     }
 
     public String getPlayProductId() {
       return playProductId;
+    }
+
+    public long getMediaTtlDays() {
+      return mediaTtlDays;
     }
   }
 

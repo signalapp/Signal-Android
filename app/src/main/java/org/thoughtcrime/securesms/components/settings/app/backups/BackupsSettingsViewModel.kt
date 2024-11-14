@@ -101,7 +101,8 @@ class BackupsSettingsViewModel : ViewModel() {
               activeSubscription.activeSubscription.amount,
               Currency.getInstance(activeSubscription.activeSubscription.currency)
             ),
-            storageAllowanceBytes = backupType.storageAllowanceBytes
+            storageAllowanceBytes = backupType.storageAllowanceBytes,
+            mediaTtl = backupType.mediaTtl
           )
         )
       } else {

@@ -99,6 +99,7 @@ import java.io.OutputStream
 import java.time.ZonedDateTime
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBackupKey
 
@@ -1147,10 +1148,12 @@ object BackupRepository {
   private suspend fun getPaidType(): MessageBackupsType? {
     val config = getSubscriptionsConfiguration()
     val product = AppDependencies.billingApi.queryProduct() ?: return null
+    val backupLevelConfiguration = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL] ?: return null
 
     return MessageBackupsType.Paid(
       pricePerMonth = product.price,
-      storageAllowanceBytes = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]!!.storageAllowanceBytes
+      storageAllowanceBytes = backupLevelConfiguration.storageAllowanceBytes,
+      mediaTtl = backupLevelConfiguration.mediaTtlDays.days
     )
   }
 

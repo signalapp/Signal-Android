@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
@@ -342,7 +343,8 @@ private fun BackupsSettingsContentPreview() {
         enabledState = BackupsSettingsState.EnabledState.Active(
           type = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 1_000_000
+            storageAllowanceBytes = 1_000_000,
+            mediaTtl = 30.days
           ),
           expiresAt = 0.seconds,
           lastBackupAt = 0.seconds
@@ -388,7 +390,8 @@ private fun ActivePaidBackupsRowPreview() {
       enabledState = BackupsSettingsState.EnabledState.Active(
         type = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
-          storageAllowanceBytes = 1_000_000
+          storageAllowanceBytes = 1_000_000,
+          mediaTtl = 30.days
         ),
         expiresAt = 0.seconds,
         lastBackupAt = 0.seconds
