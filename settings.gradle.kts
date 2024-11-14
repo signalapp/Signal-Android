@@ -21,11 +21,6 @@ dependencyResolutionManagement {
     maven {
       url = uri("https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/")
     }
-    jcenter {
-      content {
-        includeVersion("mobi.upod", "time-duration-picker", "1.1.3")
-      }
-    }
   }
 }
 
