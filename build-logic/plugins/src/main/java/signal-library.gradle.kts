@@ -27,7 +27,6 @@ android {
 
   defaultConfig {
     minSdk = signalMinSdkVersion
-    targetSdk = signalTargetSdkVersion
   }
 
   compileOptions {

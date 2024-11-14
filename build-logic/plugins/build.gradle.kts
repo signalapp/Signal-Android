@@ -14,8 +14,10 @@ java {
   targetCompatibility = signalJavaVersion
 }
 
-kotlinDslPluginOptions {
-  jvmTarget.set(signalKotlinJvmTarget)
+kotlin {
+  jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(signalKotlinJvmTarget))
+  }
 }
 
 dependencies {
