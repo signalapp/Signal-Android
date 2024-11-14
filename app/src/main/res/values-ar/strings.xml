@@ -1480,20 +1480,6 @@
     <string name="ManageGroupActivity_more">المزيد</string>
     <string name="ManageGroupActivity_add_group_description">إضافة وصف للمجموعة…</string>
 
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">نقل من جهاز أندرويد</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">انقل حسابك ورسائلك من جهاز أندرويد القديم.</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">تسجيل الدخول من دون نقل</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">اِستِمر من دُون نقلِ رسائلك والوسائط</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">استعادة نسخة احتياطية محلية</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">استعِد رسائلك من ملف نسخة احتياطية حفظته على جهازك.</string>
-
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
     <string name="RemoteRestoreActivity__downloading_backup">جارٍتنزيل النسخة الاحتياطية…</string>
@@ -1511,12 +1497,16 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">جميع الرسائل الخاصة بك</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is currently fixed at 30. -->
     <string name="RemoteRestoreActivity__only_media_sent_or_received">فقط الوسائط المُرسلة أو المُستلمة في الأيام %1$d الماضية هي المُضمّنة.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">تتضمن النسخة الاحتياطية:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">استعادة نسخة احتياطية</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخر نسخة احتياطية في %1$s على الساعة %2$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
@@ -3862,7 +3852,7 @@
         <item>أخرى</item>
         <item>عمليات الدفع (MobileCoin)</item>
         <item>تبرُّعات وشارات</item>
-        <item>Signal Android Backup</item>
+        <item>النسخة الاحتياطية على سيجنال أندرويد</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
@@ -4266,7 +4256,7 @@
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
     <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. انقر على \"الأذونات\"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s امنح الإذن بالوصول إلى \"الصور والفيديوهات\"</string>
+    <string name="PermissionDeniedBottomSheet__3_allow_permission">3. %1$s امنح الصلاحية للوصول إلى \"الصور والفيديوهات\"</string>
     <!-- Label for button at the bottom of the sheet which opens the system permission settings -->
     <string name="PermissionDeniedBottomSheet__settings">الإعدادات</string>
 
@@ -4544,7 +4534,7 @@
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
     <string name="DoubleTapEditEducationSheet__quickly_tap_twice">انقر مرّتين بسرعة على رسائلك لتعديلها. يُمكنك تعديل رسائلك لمدة تصل إلى 24 ساعة بعد إرسالها.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="DoubleTapEditEducationSheet__got_it">عُلم</string>
+    <string name="DoubleTapEditEducationSheet__got_it">تم</string>
 
     <!-- text_secure_normal -->
     <string name="text_secure_normal__menu_new_group">مجموعة جديدة</string>
@@ -4553,7 +4543,7 @@
     <string name="text_secure_normal__mark_all_as_read">اعتبار كل الرسائل مقروءة</string>
     <string name="text_secure_normal__invite_friends">اُدْعُ الأصدقاء</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">تصفية الدردشات غير المقروءة</string>
+    <string name="text_secure_normal__filter_unread_chats">فلترة الدردشات غير المقروءة</string>
     <!-- Overflow menu entry to disable unread chats filter -->
     <string name="text_secure_normal__clear_unread_filter">مسح فلتر المحادثات غير المقروءة</string>
 
@@ -4565,13 +4555,13 @@
     <string name="reminder_header_service_outage_text">يواجه سيجنال بعض المشاكل التقنيّة حاليًا. نعمل بجد لإعادة الخدمة بأسرع وقتٍ ممكن.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
-    <string name="reminder_cds_warning_body">لا يُمكن لاكتشاف جهات الاتصال الخاصة لتطبيق سيجنال مُعالجة جهات اتصال هاتفك مؤقتًا.</string>
+    <string name="reminder_cds_warning_body">لا يُمكن لميزة اكتشاف جهات الاتصال الخاصة في سيجنال مُعالجة جهات اتصال هاتفك مؤقتًا.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
-    <string name="reminder_cds_warning_learn_more">معرفة المزيد</string>
+    <string name="reminder_cds_warning_learn_more">اعرف المزيد</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">لا يُمكن لاكتشاف جهات الاتصال الخاصة لتطبيق سيجنال مُعالجة جهات اتصال هاتفك.</string>
+    <string name="reminder_cds_permanent_error_body">لا يُمكن لميزة اكتشاف جهات الاتصال الخاصة في سيجنال مُعالجة جهات اتصال هاتفك.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
-    <string name="reminder_cds_permanent_error_learn_more">معرفة المزيد</string>
+    <string name="reminder_cds_permanent_error_learn_more">اعرف المزيد</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">حفظ</string>
@@ -4630,98 +4620,98 @@
     <string name="ConfirmKbsPinFragment__creating_pin">جارٍإنشاء رقم التعريف الشخصي…</string>
 
     <!-- KbsSplashFragment -->
-    <string name="KbsSplashFragment__introducing_pins">نقدم لكم أرقام التعريف الشخصية (PINS)</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في سيجنال مُعمَّاة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع حسابك الشخصي و إعداداتك وجهات اتصالك عندما يُعاد تثبيت سيجنال. لن تكون لك الحاجة إلى الرقم التعريفي لفتح واستخدام التطبيق.</string>
-    <string name="KbsSplashFragment__learn_more">لمعرفة المزيد</string>
+    <string name="KbsSplashFragment__introducing_pins">نقدم لكم أرقام التعريف الشخصية (PINs)</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في سيجنال مُشفَّرة، ولا يمكن لأحد غيرك أن يصل إليها. سيتمُّ استرجاع حسابك الشخصي و إعداداتك وجهات اتصالك عندما يُعاد تثبيت سيجنال. لن تحتاج رقم التعريف الشخصي لفتح التطبيق.</string>
+    <string name="KbsSplashFragment__learn_more">اعرف المزيد</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
-    <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
-    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمَّى الآن الرقم التعريفي الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
-    <string name="KbsSplashFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
+    <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = رقم التعريف الشخصي (PIN)</string>
+    <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمَّى الآن رقم التعريف الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
+    <string name="KbsSplashFragment__update_pin">تحديث رقم التعريف الشخصي</string>
     <string name="KbsSplashFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
-    <string name="KbsSplashFragment__learn_more_about_pins">معرفة المزيد عن الأرقام التعريفية الشخصية</string>
-    <string name="KbsSplashFragment__disable_pin">إلغاء الرقم التعريفي الشخصي</string>
+    <string name="KbsSplashFragment__learn_more_about_pins">اعرف المزيد عن أرقام التعريف الشخصية</string>
+    <string name="KbsSplashFragment__disable_pin">تعطيل رقم التعريف الشخصي</string>
 
     <!-- KBS Reminder Dialog -->
-    <string name="KbsReminderDialog__enter_your_signal_pin">أدخل رقم سيجنال التعريفي الشخصي</string>
-    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">لمساعدتك على تذكر رقمك التعريفي الشخصي سنطلب منك إعادة إدخاله من حين لآخر. مع مرور الوقت سنطلبه منك مرات أقل.</string>
+    <string name="KbsReminderDialog__enter_your_signal_pin">أدخِل رقم التعريف الشخصي لديك على سيجنال</string>
+    <string name="KbsReminderDialog__to_help_you_memorize_your_pin">لمساعدتك على تذكر رقم التعريف الشخصي، سنطلب منك إعادة إدخاله من حين لآخر. مع مرور الوقت سنطلبه منك مرّات أقل.</string>
     <string name="KbsReminderDialog__skip">تخطّي</string>
     <string name="KbsReminderDialog__submit">تقديم</string>
-    <string name="KbsReminderDialog__forgot_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
-    <string name="KbsReminderDialog__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
+    <string name="KbsReminderDialog__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
+    <string name="KbsReminderDialog__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
 
     <!-- AccountLockedFragment -->
-    <string name="AccountLockedFragment__account_locked">تم إقفال الحساب</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">تم قفل حسابك لحماية خصوصيتك وأمانك. بعد %1$d يوم من خمول حسابك، سيكون بإمكانك إعادة التسجيل برقم هاتفك دون الحاجة إلى رقم التعريف الشخصي. سيُحذَف جميع محتويات حسابك.</string>
+    <string name="AccountLockedFragment__account_locked">تمَّ قفل الحساب</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">تمَّ قفل حسابك لحماية خصوصيتك وأمانك. بعد %1$d يوم من خمول حسابك، سيكون بإمكانك إعادة التسجيل برقم هاتفك دون الحاجة إلى رقم التعريف الشخصي (PIN). سيتم حذف جميع محتويات حسابك.</string>
     <string name="AccountLockedFragment__next">التالي</string>
-    <string name="AccountLockedFragment__learn_more">أعرف أكثر</string>
+    <string name="AccountLockedFragment__learn_more">اعرف أكثر</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
-    <string name="RegistrationLockFragment__enter_your_pin">أدخل الرقم التعريفي الشخصي</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">عليك بإدخال الرقم التعريفي الشخصي الذي قمت بإنشائه لحسابك. إنه مختلف عن رمز التحقق الذي وصلك عبر رسالة قصيرة.</string>
+    <string name="RegistrationLockFragment__enter_your_pin">أدخِل رقم التعريف الشخصي</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخِل رقم التعريف الشخصي الذي قمت بإنشائه لحسابك. هو مختلف عن رمز التحقُّق الذي وصلك عبر رسالة قصيرة.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
-    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخل رقم التعريف الشخصي الذي أنشأته لحسابك.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخل رقم التعريف الشخصي (PIN) الذي أنشأته لحسابك.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">تغيير لوحة المفاتيح</string>
-    <string name="RegistrationLockFragment__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
-    <string name="RegistrationLockFragment__forgot_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
-    <string name="RegistrationLockFragment__incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
-    <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
+    <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="RegistrationLockFragment__forgot_pin">هل نسيت رقم التعريف الشخصي؟</string>
+    <string name="RegistrationLockFragment__incorrect_pin">رقم التعريف الشخصي غير صحيح</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت رقم التعريف الشخصي؟</string>
     <string name="RegistrationLockFragment__not_many_tries_left">لم يتبق الكثير من المحاولات!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">تسجيل سيجنال - تحتاج مساعدة بالرقم التعريفي الشخصي في أندرويد (النسخة الثانية للرقم التعريفي الشخصي)</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">تسجيل سيجنال - تحتاج مساعدة لرقم التعريف الشخصي في أندرويد (النسخة الثانية لرقم التعريف الشخصي)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="zero">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
-        <item quantity="one">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
-        <item quantity="two">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
-        <item quantity="few">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
-        <item quantity="many">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوما من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
-        <item quantity="other">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="zero">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="one">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="two">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يومين من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="few">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="many">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يومًا من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
+        <item quantity="other">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقم التعريف الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-        <item quantity="zero">الرمز غير صحيح. %1$d محاولات متبقية.</item>
-        <item quantity="one">الرمز غير صحيح. %1$d محاولة متبقية.</item>
-        <item quantity="two">الرمز غير صحيح. %1$d محاولة متبقية.</item>
-        <item quantity="few">الرمز غير صحيح. %1$d محاولات متبقية.</item>
-        <item quantity="many">الرمز غير صحيح.%1$d محاولة متبقية.</item>
-        <item quantity="other">الرمز غير صحيح. %1$d محاولة متبقية.</item>
+        <item quantity="zero">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولات متبقية.</item>
+        <item quantity="one">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولة متبقية.</item>
+        <item quantity="two">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولة متبقية.</item>
+        <item quantity="few">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولات متبقية.</item>
+        <item quantity="many">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولة متبقية.</item>
+        <item quantity="other">رقم التعريف الشخصي (PIN) غير صحيح. %1$d محاولة متبقية.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-        <item quantity="zero">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="one">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="two">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يومين. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="few">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="many">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوما. وبعد %1$d يوما من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
-        <item quantity="other">إذا نفذت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون الرقم التعريفي الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="zero">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="one">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="two">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d يومين. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به. </item>
+        <item quantity="few">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d أيام. وبعد %1$d أيام من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="many">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d يومًا. وبعد %1$d يوما من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
+        <item quantity="other">إذا نفدت محاولاتك، سيتم قفل حسابك لمدة %1$d يوم. وبعد %1$d يوم من عدم الاستخدام، تستطيع إعادة التسجيل دون رقم التعريف الشخصي. سيتم حذف حسابك وجميع المحتوى الخاص به.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
         <item quantity="zero">لديك %1$d محاولة متبقية.</item>
         <item quantity="one">لديك %1$d محاولة متبقية.</item>
-        <item quantity="two">لديك %1$d محاولات متبقية.</item>
-        <item quantity="few">لديك %1$d محاولات متبقية.</item>
+        <item quantity="two">لديك %1$d محاولتين متبقيتين.</item>
+        <item quantity="few">لديك %1$d محاولاتٍ متبقية.</item>
         <item quantity="many">لديك %1$d محاولة متبقية.</item>
         <item quantity="other">لديك %1$d محاولة متبقية.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__d_attempts_remaining">
-        <item quantity="zero">%1$d محاولة متبقية.</item>
-        <item quantity="one">%1$d محاولة متبقية.</item>
-        <item quantity="two">%1$d محاولات متبقية.</item>
-        <item quantity="few">%1$d محاولات متبقية.</item>
+        <item quantity="zero">%1$d  محاولة متبقية.</item>
+        <item quantity="one">%1$d  محاولة متبقية.</item>
+        <item quantity="two">%1$d محاولتين متبقيتين.</item>
+        <item quantity="few">%1$d محاولاتٍ متبقية.</item>
         <item quantity="many">%1$d محاولة متبقية.</item>
         <item quantity="other">%1$d محاولة متبقية.</item>
     </plurals>
 
     <!-- CalleeMustAcceptMessageRequestDialogFragment -->
-    <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">سيتلقى منك %1$s طلبا للتراسل. يمكنك الاتصال به عندما يقبل طلب مراسلتك.</string>
+    <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">سيتلقى %1$s منك طلبًا للتراسل. يمكنك الاتصال به عندما يقبل طلب مراسلتك.</string>
 
     <!-- KBS Megaphone -->
-    <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
-    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المُخزَّنة مع سيجنال مُعمَّاة.</string>
-    <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
+    <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي (PIN)</string>
+    <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">أرقام التعريف الشخصية تجعل المعلومات المُخزَّنة في سيجنال مُشفَّرة.</string>
+    <string name="KbsMegaphone__create_pin">إنشاء رقم تعريف شخصي (PIN)</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
@@ -4729,7 +4719,7 @@
     <!-- Displayed in a notification when a Signal video call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_video_call">مكالمة فيديو واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_group_call">مكالمة سيجنال واردة من مجموعة</string>
+    <string name="CallNotificationBuilder__incoming_signal_group_call">مكالمة جماعية واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_voice_call">مكالمة صوتية جارية على سيجنال</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
@@ -4738,136 +4728,138 @@
     <string name="CallNotificationBuilder__ongoing_signal_group_call">مكالمة جماعية جارية على سيجنال</string>
 
     <!-- transport_selection_list_item -->
-    <string name="ConversationListFragment_loading">قيد التحميل…</string>
+    <string name="ConversationListFragment_loading">جارٍ التحميل…</string>
     <string name="CallNotificationBuilder_connecting">جار الرّبط…</string>
-    <string name="Permissions_permission_required">منح أحد الأذونات مطلوب</string>
+    <string name="Permissions_permission_required">منح الإذن مطلوب</string>
     <string name="Permissions_continue">استمرار</string>
     <string name="Permissions_not_now">ليس الآن</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات سيجنال</string>
-    <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرّية للنسخة الإحتياطية</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتم حفظ النسخ الاحتياطية في سعة التخزين الخارجية وستكون مُعمَّاة بالعبارة السرية أدناه. من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطية.</string>
-    <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك عبارة السر هذه لاستعادة نسخة احتياطية.</string>
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرية للنسخة الإحتياطية</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتمُّ حفظ النسخ الاحتياطية في مساحة التخزين الخارجية، وستكون مُشفَّرة بالعبارة السرية أدناه. من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطية.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك العبارة السرية هذه لاستعادة نسخة احتياطية.</string>
     <string name="backup_enable_dialog__folder">المجلد</string>
-    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمتُ بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
     <string name="registration_activity__restore_backup">استعادة نسخة احتياطية</string>
     <string name="registration_activity__transfer_or_restore_account">نقل أو استعادة الحساب</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
     <string name="registration_activity__transfer_account">نقل الحساب</string>
     <string name="registration_activity__skip">تخطّي</string>
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="preferences_chats__transfer_account">نقل الحساب</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب نحو جهاز أندرويد جديد</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب إلى جهاز أندرويد جديد</string>
     <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">أدخِل العبارة السرية للنسخة الاحتياطية</string>
     <string name="RegistrationActivity_restore">استعادة</string>
     <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من إصدارات أحدث من سيجنال</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">يحتوي النسخ الاحتياطي على بيانات مُشوهة</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">العبارة السرية غير صحيحة</string>
-    <string name="RegistrationActivity_checking">عملية التحقق جارية …</string>
-    <string name="RegistrationActivity_d_messages_so_far">%1$dرسالة حتى الآن…</string>
-    <string name="RegistrationActivity_restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استعادة الرسائل والوسائط من نسخة احتياطية محليّة. إن استعادتها الآن، لن يمكنك الاستعادة لاحقا.</string>
+    <string name="RegistrationActivity_backup_failure_foreign_key">تحتوي النسخة الاحتياطية على بيانات فيها خلل.</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">العبارة السرية للنسخة الاحتياطية غير صحيحة</string>
+    <string name="RegistrationActivity_checking">جارٍ التحقُّق…</string>
+    <string name="RegistrationActivity_d_messages_so_far">%1$d رسالة (رسائل) حتى الآن…</string>
+    <string name="RegistrationActivity_restore_from_backup">هل ترغب بالاستعادة مِن نسخة احتياطية؟</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استعِد الرسائل والوسائط من نسخة احتياطية محليّة. إذا لم تقم باستعادتها الآن، لن يمكنك الاستعادة لاحقًا.</string>
     <string name="RegistrationActivity_backup_size_s">حجم النسخة الإحتياطية: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">موعد النسخة الاحتياطية: %1$s</string>
-    <string name="BackupDialog_enable_local_backups">تفعيل النُّسخ الإحتياطية المحلية؟</string>
-    <string name="BackupDialog_enable_backups">تفعيل النُسخ الإحتياطية</string>
-    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">يرجى الإقرار بفهم الخاصية عبر وضع علامة تأكيد في الصندوق.</string>
-    <string name="BackupDialog_delete_backups">حذف النسخ الإحتياطية؟</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">تعطيل وحذف كافّة النُّسخ الإحتياطية المحلية؟</string>
-    <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
-    <string name="BackupDialog_to_enable_backups_choose_a_folder">لتفعيل النسخ اﻻحتياطية، يُرجى اختيار المجلد. سوف تُخزَّن النسخ اﻻحتياطية في هذا الموقع.</string>
-    <string name="BackupDialog_choose_folder">اختر مجلداً</string>
-    <string name="BackupDialog_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
-    <string name="BackupDialog_no_file_picker_available">إن متصفح الملفات غير متاح.</string>
-    <string name="BackupDialog_enter_backup_passphrase_to_verify">ادخل رمز أمان النسخة الاحتياطية للتحقق</string>
-    <string name="BackupDialog_verify">تحقق</string>
-    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">لقد أدخلت العبارة السرية للنسخة الاحتياطية بنجاح</string>
+    <string name="RegistrationActivity_backup_timestamp_s">السجل الزمني للنسخ الاحتياطي: %1$s</string>
+    <string name="BackupDialog_enable_local_backups">هل ترغب بتفعيل النسخ الإحتياطية المحلية؟</string>
+    <string name="BackupDialog_enable_backups">تفعيل النسخ الاحتياطية</string>
+    <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">يُرجى الإقرار بفهم الخاصية عبر وضع علامة تأكيد في الصندوق.</string>
+    <string name="BackupDialog_delete_backups">هل ترغبُ بحذف النسخ الإحتياطية؟</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">هل ترغبُ بتعطيل وحذف كل النسخ الإحتياطية المحلية؟</string>
+    <string name="BackupDialog_delete_backups_statement">حذف النسخ الاحتياطية</string>
+    <string name="BackupDialog_to_enable_backups_choose_a_folder">لتفعيل النسخ اﻻحتياطية، اختر مجلد. سوف تُخزَّن النسخ اﻻحتياطية في هذا الموقع.</string>
+    <string name="BackupDialog_choose_folder">اختر مجلدًا</string>
+    <string name="BackupDialog_copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
+    <string name="BackupDialog_no_file_picker_available">مُتصفِّح الملفات غير متاح.</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">أدخِل العبارة السرية للنسخة الاحتياطية للتحقُّق</string>
+    <string name="BackupDialog_verify">تحقُّق</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">أدخلتَ العبارة السرية للنسخة الاحتياطية بنجاح.</string>
     <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
-    <string name="LocalBackupJob_creating_signal_backup">‫يجري إنشاء نسخة سيجنال احتياطية…</string>
+    <string name="LocalBackupJob_creating_signal_backup">‫جارٍ إنشاء نسخة احتياطية على سيجنال…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
-    <string name="LocalBackupJob_verifying_signal_backup">‫جارٍ التحقّق من نسخة سيجنال الاحتياطية…</string>
+    <string name="LocalBackupJob_verifying_signal_backup">‫جارٍ التحقُّق من النسخة الاحتياطية على سيجنال…</string>
     <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نُسخِك الاحتياطية.</string>
-    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدا.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذِفَ أو نُقِل مجلد النسخ الاحتياطية لديك.</string>
+    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">لا يمكن حفظ ملف النسخة الاحتياطية في وحدة التخزين هذه لأنه كبير جدًا.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">لم يبق مكان كافٍ لحفظ نسختك الاحتياطية.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
-    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">تعذّر إنشاء نسختك الاحتياطية الأخيرة والتحقّق منها. يُرجى إنشاء واحدة أخرى.</string>
+    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">تعذَّر إنشاء نسختك الاحتياطية الأخيرة والتحقُّق منها. يُرجى إنشاء واحدة أخرى.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">تحتوي نسختك الاحتياطية على ملف كبير جدًا لا يُمكن نسخه احتياطيًا. يُرجى حذفه وإنشاء نسخة احتياطية جديدة.</string>
-    <string name="LocalBackupJobApi29_tap_to_manage_backups">يُرجى اللمس لإدارة النسخ الاحتياطية.</string>
-    <string name="RegistrationActivity_wrong_number">رقم غير صحيح؟</string>
+    <string name="LocalBackupJobApi29_tap_to_manage_backups">انقر لإدارة النسخ الاحتياطية.</string>
+    <string name="RegistrationActivity_wrong_number">هل هو رقم غير صحيح؟</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">إعادة إرسال الرمز (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">الاتصال بخدمة دعم سيجنال</string>
-    <string name="RegistrationActivity_code_support_subject">تسجيل سيجنال - رمز التّحقق لِ Android</string>
-    <string name="RegistrationActivity_incorrect_code">رمز غير صحيح</string>
-    <string name="BackupUtil_never">أبداً</string>
-    <string name="BackupUtil_unknown">مجهول</string>
+    <string name="RegistrationActivity_contact_signal_support">الاتصال بقسم الدعم في سيجنال</string>
+    <string name="RegistrationActivity_code_support_subject">تسجيل سيجنال - كود التحقُّق لـ Android</string>
+    <string name="RegistrationActivity_incorrect_code">كود غير صحيح</string>
+    <string name="BackupUtil_never">أبدًا</string>
+    <string name="BackupUtil_unknown">غير معروف</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">رقم الهاتف</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
-    <string name="preferences_app_protection__choose_who_can_see">اختر من يُمكنه رؤية رقم هاتفك ومن يمكنه الاتصال بك على سيجنال باستخدامه.</string>
+    <string name="preferences_app_protection__choose_who_can_see">اختر من يُمكنه رؤية رقم هاتفك ومن يمكنه التواصل معك على سيجنال باستخدامه.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">من يُمكنه رؤية رقمي</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">سَيكون رقم هاتفك مرئيًا للأشخاص والمجموعات التي تراسلها.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">لن يكون رقم هاتفك مرئيًا لأي أحد إلا إذا كان مسجلاً على هاتفه في جهات اتصاله.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">لن يكون رقم هاتفك مرئيًا لأي أحد إلّا إذا كان مُسجَّلًا على هاتفه ضمن جهات اتصاله.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">رقم هاتفك لن يكون مرئيًا لأي أحد.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">مَن يُمكنه العثور عليَّ باستخدام رقمي</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">أي شخص لديه رقم هاتفك سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشات معك.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">أي شخص لديه رقم هاتفك، سَيرى أنك متواجد على سيجنال وسَيتمكن من بدء دردشات معك.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">لن يتمكّن أي أحد من رؤيتك على سيجنال إلاّ إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
     <!-- Snackbar text when pressing invalid radio item -->
-    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"لتغيير هذا الإعداد، اختر لا أحد عن تحديد من يُمكنه رؤية رقمي."</string>
+    <string name="PhoneNumberPrivacySettingsFragment__to_change_this_setting">"لتغيير هذا الإعداد، اختر \"لا أحد\" عند تعيين \"من يُمكنه رؤية رقمي\"."</string>
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">هل أنت متأكد؟</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">يمكن أن يُصعّب اختيار \"لا أحد\" في إعداد \"من يمكنه العثور عليَّ باستخدام رقمي\" على الناس العثور عليك على سيجنال.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">يمكن أن يُصعِّب اختيار \"لا أحد\" في إعداد \"من يمكنه إيجادي باستخدام رقمي\" على الناس إيجادك على سيجنال.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">إلغاء</string>
-    <string name="PhoneNumberPrivacy_everyone">الكل</string>
+    <string name="PhoneNumberPrivacy_everyone">الجميع</string>
     <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
     <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
-    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى سيجنال عبر قفل الشاشة أو بصمة الإصبع</string>
-    <string name="preferences_app_protection__screen_lock_inactivity_timeout">نفاذ مهلة قفل الشاشة</string>
+    <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى سيجنال عبر قفل الشاشة للأندرويد أو بصمة الإصبع</string>
+    <string name="preferences_app_protection__screen_lock_inactivity_timeout">فترة عدم النشاط لقفل الشاشة</string>
     <!-- Snackbar text shown when trying to enable screen lock but the user does not have a password or biometrics enabled -->
-    <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة يُرجى تعيين رقم تعريف شخصي أو نمط أو كلمة مرور على هذا الجهاز.</string>
-    <string name="preferences_app_protection__signal_pin">رقم سيجنال التعريفي الشخصي</string>
-    <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
-    <string name="preferences_app_protection__change_your_pin">غيِّر رقمك التعريف الشخصي</string>
-    <string name="preferences_app_protection__pin_reminders">تذكيرات الرقم التعريفي الشخصي</string>
-    <string name="preferences_app_protection__turn_off">أطفىء</string>
-    <string name="preferences_app_protection__confirm_pin">تأكيد الرقم التعريفي الشخصي</string>
-    <string name="preferences_app_protection__confirm_your_signal_pin">عليك بتأكيد رقمك التعريف الشخصي</string>
-    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكد من حفظ رقمك التعريفي الشخصي أو تخزينه في مكان آمن بحيث لا يمكن استعادته. في حال نسيانك الرقم التعريفي الشخصي، قد تضيع البيانات عند إعادة تسجيل حساب سيجنال.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
-    <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذّر تفعيل قفل التسجيل.</string>
-    <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذّر تعطيل قفل التسجيل.</string>
+    <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة، قُم بتعيين رقم تعريف شخصي (PIN) أو نمط أو كلمة مرور على هذا الجهاز.</string>
+    <string name="preferences_app_protection__signal_pin">رقم التعريف الشخصي على سيجنال</string>
+    <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريف شخصي</string>
+    <string name="preferences_app_protection__change_your_pin">غيِّر رقم التعريف الشخصي</string>
+    <string name="preferences_app_protection__pin_reminders">تذكيرات رقم التعريف الشخصي</string>
+    <string name="preferences_app_protection__turn_off">إيقاف</string>
+    <string name="preferences_app_protection__confirm_pin">تأكيد رقم التعريف الشخصي</string>
+    <string name="preferences_app_protection__confirm_your_signal_pin">قُم بتأكيد رقم التعريف الشخصي</string>
+    <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكُّد من حفظ رقم التعريف الشخصي أو تخزينه في مكان آمن، لأنه لا يمكن استعادته في حال فقدانه. في حال نسيانك رقم التعريف الشخصي، قد تخسر البيانات عند إعادة تسجيل حسابك على سيجنال.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذَّر تفعيل قفل التسجيل.</string>
+    <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذَّر تعطيل قفل التسجيل.</string>
     <string name="AppProtectionPreferenceFragment_none">لا شيء</string>
-    <string name="preferences_app_protection__registration_lock">الرقم التعريفي الشخصي لحماية التسجيل</string>
-    <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال الرقم التعريفي الشخصي لحماية التسجيل</string>
-    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم تعريفك الشخصي على الأقل %1$d أرقام أو حروف</string>
+    <string name="preferences_app_protection__registration_lock">قفل التسجيل</string>
+    <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال رقم التعريف الشخصي لقفل التسجيل</string>
+    <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم التعريف الشخصي على %1$d أرقام أو حروف على الأقل.</string>
     <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
-    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">لقد قمت بمحاولات عديدة لإدخال الرقم التعريفي الشخصي. الرجاء المحاولة مرة أخرى بعد يوم.</string>
-    <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمت بمحاولات كثيرة. يُرجى المحاولة لاحقاً.</string>
-    <string name="RegistrationActivity_error_connecting_to_service">عطل في الاتصال بالخدمة</string>
-    <string name="preferences_chats__backups">النُسخ الإحتياطية</string>
+    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">قمتَ بمحاولاتٍ عديدة لإدخال رقم التعريف الشخصي لقفل الشاشة. يُرجى المحاولة مرّة أخرى بعد يوم.</string>
+    <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
+    <string name="RegistrationActivity_error_connecting_to_service">خطأ في الاتصال بالخدمة</string>
+    <string name="preferences_chats__backups">النُسخ الاحتياطية</string>
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
-    <string name="prompt_passphrase_activity__unlock_signal">فك قفل سيجنال</string>
+    <string name="prompt_passphrase_activity__unlock_signal">فتح قفل سيجنال</string>
     <!-- Description text explaining how to unlock Signal -->
-    <string name="prompt_passphrase_activity__use_your_android_device">استخدم إعدادات قفل جهاز الأندرويد لِفتح قفل سيجنال.</string>
+    <string name="prompt_passphrase_activity__use_your_android_device">استخدِم إعدادات قفل جهاز الأندرويد لِفتح قفل سيجنال.</string>
     <!-- Text shown in a dialog that further explains how to unlock Signal by using the same unlocking methods that are used to unlock their own device -->
-    <string name="prompt_passphrase_activity__screen_lock_is_on">قفل الشاشة مُفعل وسيجنال آمن باستخدام إعدادات قفل جهازك. افتح قفل سيجنال بالطريقة نفسها التي تفتح بها قفل جهازك. قد يكون هذا باستخدام فتح القفل بالوجه أو البصمة أو باستخدام رقم تعريف شخصي أو كلمة مرور أو نمط.</string>
+    <string name="prompt_passphrase_activity__screen_lock_is_on">قفل الشاشة مُفعَّل وسيجنال مؤمَّن باستخدام إعدادات قفل جهازك. افتح قفل سيجنال بالطريقة نفسها التي تفتح بها قفل جهازك. قد يكون هذا باستخدام فتح القفل بالوجه أو بالبصمة أو باستخدام رقم التعريف الشخصي أو كلمة المرور أو النمط.</string>
     <!-- Button in a dialog that will contact Signal support if pressed -->
     <string name="prompt_passphrase_activity__contact_support">الاتصال بالدعم</string>
     <!-- Button text to try again after unlocking has previously failed -->
-    <string name="prompt_passphrase_activity__try_again">حاول مجددًا</string>
+    <string name="prompt_passphrase_activity__try_again">حاوِل مُجدَّدًا</string>
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
@@ -4893,22 +4885,22 @@
     <!-- Title on biometrics prompt explaining that biometrics are needed to turn off screen lock -->
     <string name="ScreenLockSettingsFragment__turn_off_signal_lock">أوقف تشغيل قفل شاشة سيجنال</string>
 
-    <string name="Recipient_unknown">مجهول</string>
+    <string name="Recipient_unknown">غير معروف</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
     <string name="Recipient_deleted_account">حساب محذوف</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">إعادة-تسجيل الحساب</string>
+    <string name="preferences_account_reregister">إعادة تسجيل الحساب</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">تحديث سيجنال</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
     <string name="preferences_account_delete_all_data">حذف جميع البيانات</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">حذف جميع البيانات ؟</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">هل ترغبُ بحذف جميع البيانات؟</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">سَيُؤدِّي هَذَا إلى إعادة تَعيِين التَّطبيق وحَذف رَسائِلك. سيتم إغلاق التطبيق بعد اكتمال هذه العملية.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">سَيُؤدِّي هذا إلى إعادة تعيين التطبيق وحذف كل الرسائل. سيتمُّ إغلاق التطبيق بعد اكتمال هذه العملية.</string>
     <!-- Confirmation action to proceed with application data deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_proceed">واصل</string>
+    <string name="preferences_account_delete_all_data_confirmation_proceed">مواصلة</string>
     <!-- Confirmation action to cancel application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_cancel">إلغاء</string>
     <!-- Error message shown when we fail to delete the data for some unknown reason -->
@@ -4916,135 +4908,135 @@
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">نقل أو استعادة الحساب</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">إذا سبق لك التسجيل بحساب سيجنال، يمكنك نقل أو استعادة حسابك وكذا رسائلك</string>
-    <string name="TransferOrRestoreFragment__transfer_from_android_device">نقل انطلاقا من جهاز أندرويد</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">يمكنك نقل حسابك ورسائلك من جهاز أندرويد القديم. إنك بحاجة إلى الوصول إلى جهازك القديم.</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">إذا سبق لك التسجيل بحساب سيجنال، يمكنك نقل أو استعادة حسابك وكذلك رسائلك.</string>
+    <string name="TransferOrRestoreFragment__transfer_from_android_device">نقل من جهاز أندرويد</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">يمكنك نقل حسابك ورسائلك من جهاز أندرويد القديم. أنت بحاجة إلى الوصول إلى جهازك القديم.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">يلزمك الوصول إلى جهازك القديم.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">استعادة رسائلك من نسخة احتياطية محلية. إذا تجاهلت الاستعادة الآن، فسيتعذر عليك الاستعادة لاحقا.</string>
-    <string name="TransferOrRestoreFragment__restore_from_local_backup">استعادة نسخ احتياطية محلية</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">استعادة نسخة سيجنال الاحتياطية</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">اِستعد جميع رسائلك + والوسائط التي توصلت بها آخر 30 يومًا</string>
+    <string name="TransferOrRestoreFragment__restore_from_backup">استعادة مِن نسخة احتياطية</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">استعِد رسائلك من نسخة احتياطية محلية. إذا تجاهلت الاستعادة الآن، فسيتعذَّر عليك الاستعادة لاحقًا.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">استعادة نسخة احتياطية محلية</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">استعادة النسخة الاحتياطية على سيجنال</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">اِستعد جميع رسائلك النصية + والوسائط خلال آخر 30 يومًا</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">خيارات أكثر</string>
 
     <string name="TransferOrRestoreFragment__cancel">إلغاء</string>
     <string name="TransferOrRestoreFragment__skip_transfer">تسجيل الدخول بدون نقل</string>
-    <string name="TransferOrRestoreFragment__skip_transfer_description">اِستِمر دُون نقلِ رسائلك والوسائط</string>
+    <string name="TransferOrRestoreFragment__skip_transfer_description">اِستِمر دون نقل رسائلك والوسائط</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">يُرجى فتح سيجنال في هاتف أندرويد القديم</string>
-    <string name="NewDeviceTransferInstructions__continue">الاِستِمرار</string>
+    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">افتح سيجنال في هاتف أندرويد القديم الخاص بك</string>
+    <string name="NewDeviceTransferInstructions__continue">متابعة</string>
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">يجب لمس صورة حسابك في الأعلى على اليسار لفتح الإعدادات</string>
+    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">انقر على صورة حسابك الشخصي في أعلى الجزء الأيسر لفتح الإعدادات.</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"ثم لمس « الحِساب »"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"انقر على \"الحساب\""</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"يُرجى لمس « نقل الحِساب » ثم بعدها « الاستِمرار »"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"انقر على \"نقل الحساب\"، ثم \"متابعة\" على كلا الجهازين."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">يجري إعداد الاتصال بجهاز أندرويد الجديد…</string>
-    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">يحتاج لبعض الوقت، سيصبح جاهزا قريبا</string>
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">جارٍ إعداد الاتصال بجهاز أندرويد الجديد لديك…</string>
+    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">يحتاج لبعض الوقت… سيصبح جاهزًا قريبًا.</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">بانتظار اتصال جهاز أندرويد القديم…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى إذن الوصول إلى الموقع لاكتشاف ثم الاتصال بجهاز أندرويد القديم.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن تكون خدمات الموقع مُشغَّلة، لاكتشاف ثم الاتصال بجهاز أندرويد القديم.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن يكون Wi-Fi الجهاز مُشغَّلا، لاكتشاف ثم الاتصال بجهاز أندرويد القديم. يكفي أن يكون Wi-Fi الجهاز مُشغَّلا فقط، إذ لا داعي لأن يكون متصلا بشبكة Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">آسف، يبدو أن جهازك لا يدعم ‫« Wi-Fi المباشر ». يستخدم سيجنال ‫« Wi-Fi المباشر » لاكتشاف جهاز أندرويد القديم ثم الاتصال به. يمكنك دوما استعادة نسخة احتياطية، وذلك لاستعادة حسابك انطلاقا من جهاز أندرويد القديم.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى إذن الوصول إلى الموقع لاكتشاف جهاز أندرويد القديم الخاص بك والاتصال به.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن تكون خدمات الموقع مُفعَّلة لكي يكتشف جهاز أندرويد القديم الخاص بك ويتصل به.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">يحتاج سيجنال إلى أن يكون الواي فاي مُفعَّلًا لكي يكتشف جهاز أندرويد القديم ويتصل به. يكفي أن يكون الواي فاي مُفعَّلًا فقط، إذ لا داعي لأن يكون متصلًا بشبكة واي فاي.</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">عُذرًا، يبدو أن هذا الجهاز لا يدعم Wi-Fi Direct. يستخدم سيجنال ‫Wi-Fi Direct لاكتشاف جهاز أندرويد القديم الخاص بك والاتصال به. ما يزال بإمكانك استعادة نسخة احتياطية، وذلك لاستعادة حسابك من جهاز أندرويد القديم الخاص بك.</string>
     <string name="NewDeviceTransferSetup__restore_a_backup">استعادة نسخة احتياطية</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">حدث خطأ غير متوقع خلال محاولة الاتصال بجهازك أندرويد القديم.</string>
+    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">حدث خطأ غير متوقع خلال محاولة الاتصال بجهاز أندرويد القديم الخاص بك.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
-    <string name="OldDeviceTransferSetup__searching_for_new_android_device">يجري البحث عن جهاز أندرويد الجديد…</string>
-    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى إذن الوصول إلى الموقع للعثور على جهاز أندرويد الجديد لديك والاتصال به.</string>
-    <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى تفعيل خدمات الموقع للعثور على جهاز أندرويد الجديد لديك والاتصال به.</string>
-    <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى أن يكون Wi-Fi الجهاز مُشغَّلا، لاكتشاف ثم الاتصال بجهاز أندرويد القديم. يكفي أن يكون Wi-Fi الجهاز مُشغَّلا فقط، إذ لا داعي لأن يكون متصلا بشبكة Wi-Fi.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">آسف، يبدو أن جهازك لا يدعم ‫« Wi-Fi المباشر ». يستخدم سيجنال ‫« Wi-Fi المباشر » لاكتشاف جهاز أندرويد الجديد ثم الاتصال به. يمكنك دوما استعادة نسخة احتياطية، وذلك لاستعادة حسابك انطلاقا من جهاز أندرويد الجديد.</string>
+    <string name="OldDeviceTransferSetup__searching_for_new_android_device">جارٍ البحث عن جهاز أندرويد جديد…</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى إذن الوصول إلى الموقع لاكتشاف جهاز أندرويد الجديد الخاص بك والاتصال به.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى تفعيل خدمات الموقع لاكتشاف جهاز أندرويد الجديد الخاص بك والاتصال به.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">يحتاج سيجنال إلى أن يكون الواي فاي مُشغَّلًا لاكتشاف جهاز أندرويد الجديد الخاص بك والاتصال به. يكفي أن يكون واي فاي الجهاز مُشغَّلًا فقط، إذ لا داعي لأن يكون متصلًا بشبكة واي فاي.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">عُذرًا، يبدو أن هذا الجهاز لا يدعم Wi-Fi Direct. يستخدم سيجنال ‫Wi-Fi Direct لاكتشاف جهاز أندرويد الجديد الخاص بك والاتصال به. ما يزال بإمكانك إنشاء نسخة احتياطية، وذلك لاستعادة حسابك على جهاز أندرويد الجديد الخاص بك.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">إنشاء نسخة احتياطية</string>
-    <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">حدث خطأ غير متوقع خلال محاولة الاتصال بجهازك أندرويد الجديد.</string>
+    <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">حدث خطأ غير متوقع خلال محاولة الاتصال بجهاز أندرويد الجديد الخاص بك.</string>
 
     <!-- DeviceTransferSetupFragment -->
-    <string name="DeviceTransferSetup__unable_to_open_wifi_settings">تعذر فتح إعدادات Wi-Fi. يُرجى تشغيل Wi-Fi يدويا.</string>
+    <string name="DeviceTransferSetup__unable_to_open_wifi_settings">تعذَّر فتح إعدادات الواي فاي. يُرجى تشغيل الواي فاي يدويًا.</string>
     <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
-    <string name="DeviceTransferSetup__grant_location_permission">منح إذن الوصول للموقع</string>
+    <string name="DeviceTransferSetup__grant_location_permission">منح إذن الوصول إلى الموقع</string>
     <string name="DeviceTransferSetup__turn_on_location_services">تشغيل خدمات الموقع</string>
-    <string name="DeviceTransferSetup__turn_on_wifi">شغِّل Wi-Fi</string>
-    <string name="DeviceTransferSetup__error_connecting">حدث خطأ في الاتصال بالشبكة</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">تشغيل الواي فاي</string>
+    <string name="DeviceTransferSetup__error_connecting">خطأ في الاتصال</string>
     <string name="DeviceTransferSetup__retry">إعادة المُحاولة</string>
-    <string name="DeviceTransferSetup__submit_debug_logs">إرسال سِجل التصحيح</string>
-    <string name="DeviceTransferSetup__verify_code">التحقق من الرمز</string>
-    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">يُرجى التحقق من أن الرمز أسفله هو نفسه الذي يظهر في كلا جهازيك. بعدها يُرجى لمس الاستمرار.</string>
-    <string name="DeviceTransferSetup__the_numbers_do_not_match">الأعداد غير متوافقة</string>
-    <string name="DeviceTransferSetup__continue">الاِستِمرار</string>
-    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">إن لم يظهر لك نفس العددين في كلا جهازيك، فمن المحتمل أنك اتصلت بالجهاز الخطأ. لإصلاح ذلك، يُرجى إيقاف النقل والمحاولة مرة أخرى، مع إبقاء جهازيك قريبين من بعضهما.</string>
+    <string name="DeviceTransferSetup__submit_debug_logs">إرسال سجلات التصحيح</string>
+    <string name="DeviceTransferSetup__verify_code">التحقُّق من الكود</string>
+    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">يُرجى التحقُّق من أن الكود في الأسفل هو نفسه الذي يظهر في كلا جهازيك. بعدها انقر على \"متابعة\".</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">الأعداد غير متطابقة</string>
+    <string name="DeviceTransferSetup__continue">متابعة</string>
+    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">إن لم يظهر لك نفس العددين في كلا جهازيك، فمن المحتمل أنك اتصلت بالجهاز الخطأ. لإصلاح ذلك، يُرجى إيقاف النقل والمحاولة مرّة أخرى، مع إبقاء جهازيك قريبين من بعضهما.</string>
     <string name="DeviceTransferSetup__stop_transfer">إيقاف النقل</string>
-    <string name="DeviceTransferSetup__unable_to_discover_old_device">تعذر العثور على الجهاز القديم</string>
-    <string name="DeviceTransferSetup__unable_to_discover_new_device">تعذر العثور على الجهاز الجديد</string>
-    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">يُرجى التحقق من أن التصريحات والخدمات التالية مُفعَّلة :</string>
-    <string name="DeviceTransferSetup__location_permission">إذن الوصول للموقع</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">تعذَّر اكتشاف الجهاز القديم</string>
+    <string name="DeviceTransferSetup__unable_to_discover_new_device">تعذَّر اكتشاف الجهاز الجديد</string>
+    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">يُرجى التحقُّق من أن الأُذونات والخدمات التالية مُفعَّلة:</string>
+    <string name="DeviceTransferSetup__location_permission">إذن الوصول إلى الموقع</string>
     <string name="DeviceTransferSetup__location_services">خدمات الموقع</string>
-    <string name="DeviceTransferSetup__wifi">شبكة Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">في شاشة \"WiFi المباشر\"، يُرجى إزالة كل المجموعات المحفوظة ثم فك الارتباط مع أي جهاز سبق دعوته أو الاتصال به.</string>
-    <string name="DeviceTransferSetup__wifi_direct_screen">شاشة «‫ WiFi المباشر »</string>
-    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">يُرجى محاولة إطفاء ثم تشغيل Wi-Fi في كلا الجهازين.</string>
-    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">يُرجى التأكد من أن كلا الجهازين في وضع النقل.</string>
-    <string name="DeviceTransferSetup__go_to_support_page">زر صفحة الدعم</string>
-    <string name="DeviceTransferSetup__try_again">حاول مجدداً</string>
-    <string name="DeviceTransferSetup__waiting_for_other_device">في انتظار الجهاز آخر</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">يُرجى لمس الاستمرار في جهازك الآخر لبدء النقل.</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">يُرجى لمس الاستمرار في جهازك الآخر…</string>
+    <string name="DeviceTransferSetup__wifi">الواي فاي</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">على شاشة WiFi Direct، قُم بإزالة كل المجموعات المحفوظة، ثم أزِل الارتباط مع أي أجهزة سبق دعوتها أو اتصلتَ بها.</string>
+    <string name="DeviceTransferSetup__wifi_direct_screen">شاشة WiFi Direct</string>
+    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">حاوِل إيقاف الواي فاي ثم تشغيلها في كلا الجهازين.</string>
+    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">تأكَّد من أن كلا الجهازين في وضع النقل.</string>
+    <string name="DeviceTransferSetup__go_to_support_page">انتقل إلى صفحة الدعم</string>
+    <string name="DeviceTransferSetup__try_again">حاوِل مُجدَّدًا</string>
+    <string name="DeviceTransferSetup__waiting_for_other_device">في انتظار الجهاز الآخر</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">انقر على \"متابعة\" في جهازك الآخر لبدء النقل.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">انقر على \"متابعة\" في جهازك الآخر…</string>
 
     <!-- NewDeviceTransferFragment -->
-    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">لم يتمكن من النقل انطلاقا من إصدارات سيجنال الأحدث</string>
+    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">لم يتمكن من النقل من إصدار أحدث من سيجنال</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">تشوّهت البيانات المنقولة</string>
+    <string name="NewDeviceTransfer__failure_foreign_key">حصَل خلَل في البيانات المنقولة.</string>
 
     <!-- DeviceTransferFragment -->
-    <string name="DeviceTransfer__transferring_data">ينقل البيانات</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">يُرجى إبقاء الجهازين بالقرب من بعضهما البعض. يجب عدم إيقاف تشغيل أي منهما مع المحافظة على سيجنال مفتوحا. إن عمليات النقل مُعمَّاة من طرف لطرف.</string>
-    <string name="DeviceTransfer__d_messages_so_far">%1$d رسالة حتى الآن…</string>
+    <string name="DeviceTransfer__transferring_data">جارٍ نقل البيانات</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">أبقِ الجهازين بالقرب من بعضهما البعض. لا توقِف تشغيل أي منهما، وحافِظ على سيجنال مفتوحًا. عمليات النقل مُشفَّرة من طرفٍ لطرف.</string>
+    <string name="DeviceTransfer__d_messages_so_far">%1$d رسالة (رسائل) حتى الآن…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">‫%1$s%% من الرسائل لحد الآن…</string>
     <string name="DeviceTransfer__cancel">إلغاء</string>
-    <string name="DeviceTransfer__try_again">حاول مجدداً</string>
+    <string name="DeviceTransfer__try_again">حاوِل مُجدَّدًا</string>
     <string name="DeviceTransfer__stop_transfer">إيقاف النقل</string>
-    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">سوف تضيع جميع عمليات النقل.</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">سوف يضيع كل التقدُّم الذي تمَّ تحقيقه.</string>
     <string name="DeviceTransfer__transfer_failed">فشل النقل</string>
-    <string name="DeviceTransfer__unable_to_transfer">تعذر النقل</string>
+    <string name="DeviceTransfer__unable_to_transfer">تعذَّر النقل</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">نقل الحساب</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">يُرجى تنزيل سيجنال في جهاز أندرويد الجديد</string>
+    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">قُم بتنزيل سيجنال في جهاز أندرويد الجديد الخاص بك</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"بعدها، يكفي لمس « نقل أو استعادة الحساب »"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"انقر على \"نقل أو استعادة الحساب\""</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"يُرجى تحديد « نقل انطلاقا من جهاز أندرويد » عند ظهورها، ثم « الاستمرار ». يُرجى جعل الجهازين قريبين من بعضهما."</string>
-    <string name="OldDeviceTransferInstructions__continue">الاِستِمرار</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"قُم بتحديد \"نقل من جهاز أندرويد\" عند ظهورها، ثم انقر على \"متابعة\". يُرجى إبقاء الجهازين قريبين من بعضهما."</string>
+    <string name="OldDeviceTransferInstructions__continue">متابعة</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__go_to_your_new_device">يُرجى العودة إلى جهازك الجديد</string>
-    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">لقد نُقلَت ‫بياناتك بسيجنال إلى جهازك الجديد. لإتمام عملية النقل، يجب عليك القيام بالتسجيل في جهازك الجديد.</string>
+    <string name="OldDeviceTransferComplete__go_to_your_new_device">انتقل إلى جهازك الجديد</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">نُقِلَت ‫بياناتك بسيجنال إلى جهازك الجديد. لإتمام عملية النقل، يجب عليك متابعة التسجيل في جهازك الجديد.</string>
     <string name="OldDeviceTransferComplete__close">إغلاق</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">لقد نجح النقل</string>
-    <string name="NewDeviceTransferComplete__transfer_complete">انتهى النقل</string>
-    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">لإتمام عملية النقل، يجب عليك القيام بالتسجيل.</string>
-    <string name="NewDeviceTransferComplete__continue_registration">الاستمرار في التسجيل</string>
+    <string name="NewDeviceTransferComplete__transfer_successful">نجحَ النقل</string>
+    <string name="NewDeviceTransferComplete__transfer_complete">اكتمَلَ النقل</string>
+    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">لإتمام عملية النقل، يجب عليك متابعة التسجيل.</string>
+    <string name="NewDeviceTransferComplete__continue_registration">متابعة التسجيل</string>
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">نقل الحساب</string>
-    <string name="DeviceToDeviceTransferService_status_ready">يجري إعداد اتصالك بجهاز أندرويد الآخر…</string>
-    <string name="DeviceToDeviceTransferService_status_starting_up">يجري إعداد اتصالك بجهاز أندرويد الآخر…</string>
-    <string name="DeviceToDeviceTransferService_status_discovery">يبحث لك عن جهاز أندرويد الآخر…</string>
-    <string name="DeviceToDeviceTransferService_status_network_connected">يجري اتصالك بجهاز أندرويد الآخر…</string>
-    <string name="DeviceToDeviceTransferService_status_verification_required">التحقق ضروري</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">ينقل الحساب…</string>
+    <string name="DeviceToDeviceTransferService_status_ready">جارٍ إعداد الاتصال بجهاز أندرويد الآخر لديك…</string>
+    <string name="DeviceToDeviceTransferService_status_starting_up">جارٍ إعداد الاتصال بجهاز أندرويد الآخر لديك…</string>
+    <string name="DeviceToDeviceTransferService_status_discovery">جارٍ البحث عن جهاز أندرويد الآخر لديك…</string>
+    <string name="DeviceToDeviceTransferService_status_network_connected">جارٍ الاتصال بجهاز أندرويد الآخر لديك…</string>
+    <string name="DeviceToDeviceTransferService_status_verification_required">التحقُّق مطلوب</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">جارٍ نقل الحساب…</string>
 
     <!-- OldDeviceTransferLockedDialog -->
-    <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">إتمام التسجيل في جهازك الجديد</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">لقد نُقل حسابك بسيجنال إلى جهازك الجديد، لكن يجب عليك إتمام التسجيل فيه للاستمرار. سيصبح سيجنال غير نشط في هذا الجهاز.</string>
-    <string name="OldDeviceTransferLockedDialog__done">تمّ</string>
+    <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">أكمِل التسجيل على جهازك الجديد</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">نُقِلَ حسابك بسيجنال إلى جهازك الجديد، لكن يجب عليك إكمال التسجيل فيه للاستمرار. سيصبح سيجنال غير نشِط على هذا الجهاز.</string>
+    <string name="OldDeviceTransferLockedDialog__done">تم</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">إلغاء ثم تفعيل هذا الجهاز</string>
 
     <!-- AdvancedPreferenceFragment -->
@@ -5052,48 +5044,48 @@
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">حظر</string>
     <string name="RecipientBottomSheet_unblock">رفع الحظر</string>
-    <string name="RecipientBottomSheet_add_to_contacts">أضف إلى جهات الاتصال</string>
+    <string name="RecipientBottomSheet_add_to_contacts">إضافة إلى جهات الاتصال</string>
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
-    <string name="RecipientBottomSheet_unable_to_open_contacts">لقد تعذر إيجاد تطبيق يستطيع فتح جهات الاتصال.</string>
+    <string name="RecipientBottomSheet_unable_to_open_contacts">تعذَّر إيجاد تطبيق يستطيع فتح جهات الاتصال.</string>
     <string name="RecipientBottomSheet_add_to_a_group">إضافة إلى مجموعة</string>
     <string name="RecipientBottomSheet_add_to_another_group">إضافة إلى مجموعة أخرى</string>
     <string name="RecipientBottomSheet_view_safety_number">إظهار رقم الأمان</string>
-    <string name="RecipientBottomSheet_make_admin">اجعله مشرفا</string>
-    <string name="RecipientBottomSheet_remove_as_admin">أزل عنه ميزة الإشراف</string>
-    <string name="RecipientBottomSheet_remove_from_group">أزل من المجموعة</string>
+    <string name="RecipientBottomSheet_make_admin">اجعله مشرفًا</string>
+    <string name="RecipientBottomSheet_remove_as_admin">أزِل عنه ميزة الإشراف</string>
+    <string name="RecipientBottomSheet_remove_from_group">إزالة من المجموعة</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">إزالة ميزة الإشراف على المجموعة عن %1$s؟</string>
-    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"سيتمكن العضو \"%1$s\" من تحرير بيانات هذه المجموعة وأيضا تعديل المنخرطين فيها."</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">هل ترغب بإزالة ميزة الإشراف على المجموعة عن %1$s؟</string>
+    <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"سيتمكن العضو %1$s من تعديل هذه المجموعة وأيضًا تعديل صلاحيات الأعضاء فيها."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">إزالة %1$s من المجموعة؟</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">هل ترغبُ بإزالة %1$s من المجموعة؟</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل أزيل المستخدم %1$s من المجموعة؟ لن يتمكن من إعادة الانضمام عبر وصلة المجموعة.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">هل ترغبُ بإزالة المستخدم %1$s من المجموعة؟ لن يتمكن من إعادة الانضمام عبر رابط المجموعة.</string>
     <string name="RecipientBottomSheet_remove">إزالة</string>
-    <string name="RecipientBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
+    <string name="RecipientBottomSheet_copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
 
-    <string name="GroupRecipientListItem_admin">مشرف</string>
+    <string name="GroupRecipientListItem_admin">مُشرِف</string>
     <!-- Button text to approve a user that has requested to join a group -->
-    <string name="GroupRecipientListItem_approve_description">الموافقة</string>
+    <string name="GroupRecipientListItem_approve_description">موافقة</string>
     <string name="GroupRecipientListItem_deny_description">رفض</string>
 
 
     <!-- GroupsLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsLearnMore_legacy_vs_new_groups">المجموعات من الطراز القديم مقارنة بالمجموعات الجديدة</string>
-    <string name="GroupsLearnMore_what_are_legacy_groups">ماهي المجموعات من الطراز القديم؟</string>
-    <string name="GroupsLearnMore_paragraph_1">إن المجموعات من الطراز القديم هي المجموعات غير المتوائمة مع الميزات الجديدة الموجودة في الطراز الجديد مثل خاصية المشرفين وتحديثات وصف المجموعة.</string>
-    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">أيمكنني ترقية المجموعات من الطراز القديم ؟</string>
-    <string name="GroupsLearnMore_paragraph_2">المجموعات من الطراز القديم لا يمكن ترقيتها إلى مجموعة جديدة، ولكن يمكنك إنشاء مجموعة جديدة بنفس الأعضاء ولكن من الطراز الجديد، بشرط استخدام الجميع آخر إصدار لـ سيجنال.</string>
-    <string name="GroupsLearnMore_paragraph_3">سيوفر سيجنال طريقة لترقية المجموعات من الطراز القديم مستقبلا.</string>
+    <string name="GroupsLearnMore_legacy_vs_new_groups">المجموعات بنمط سابق مقارنةً بالمجموعات الجديدة</string>
+    <string name="GroupsLearnMore_what_are_legacy_groups">ماهي المجموعات ذات النمط السابق؟</string>
+    <string name="GroupsLearnMore_paragraph_1">المجموعات ذات النمط السابق هي المجموعات غير المتوافقة مع ميزات المجموعات الجديدة مثل خاصية المشرفين وتحديثات وصف المجموعة.</string>
+    <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">هل يمكنني ترقية المجموعات ذات النمط السابق؟</string>
+    <string name="GroupsLearnMore_paragraph_2">المجموعات ذات النمط السابق لا يمكن ترقيتها إلى مجموعة جديدة، ولكن يمكنك إنشاء مجموعة بنمط جديد بنفس الأعضاء، بشرط استخدام الجميع آخر إصدار لسيجنال.</string>
+    <string name="GroupsLearnMore_paragraph_3">سيوفر سيجنال طريقة لترقية المجموعات ذات النمط السابق مستقبلًا.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
-    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">يمكن لكل من لديه هذه الوصلة أن يعرض اسم المجموعة وصورتها وكذا طلب الانضمام إليها. يكفيك مشاركتها مع من لديك فيهم الثقة.</string>
-    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">يمكن لأي شخص لديه هذه الوصلة أن يعرض اسم المجموعة وصورتها وكذا طلب الانضمام إليها. يكفيك مشاركتها مع من لديك فيهم الثقة.</string>
-    <string name="GroupLinkBottomSheet_share_via_signal">المشاركة عبر سيجنال</string>
+    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">يمكن لكل من لديه هذا الرابط أن يرى اسم المجموعة وصورتها، وكذلك طلب الانضمام إليها. شارِكه فقط مع من تثق به.</string>
+    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">يمكن لأي شخص لديه هذا الرابط أن يرى اسم المجموعة وصورتها وكذلك الانضمام إليها. شارِكه فقط مع من تثق به.</string>
+    <string name="GroupLinkBottomSheet_share_via_signal">مشاركة عبر سيجنال</string>
     <string name="GroupLinkBottomSheet_copy">نسخ</string>
-    <string name="GroupLinkBottomSheet_qr_code">الرمز المربع</string>
-    <string name="GroupLinkBottomSheet_share">المشاركة</string>
-    <string name="GroupLinkBottomSheet_copied_to_clipboard">تم النسخ إلى الحافظة</string>
-    <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">هذه الوصلة غير مُفعَّلة حاليا</string>
+    <string name="GroupLinkBottomSheet_qr_code">كود الـ QR</string>
+    <string name="GroupLinkBottomSheet_share">مشاركة</string>
+    <string name="GroupLinkBottomSheet_copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
+    <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">هذا الرابط غير مُفعَّل حاليًا.</string>
 
     <!-- VoiceNotePlaybackPreparer -->
     <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">فشل تشغيل الرسالة الصوتية</string>
@@ -5105,15 +5097,15 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">تم حظر \"%1$s\".</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">تمَّ حظر \"%1$s\".</string>
     <string name="BlockedUsersActivity__failed_to_block_s">فشل حظر \"%1$s\"</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">تم إلغاء حظر \"%1$s\".</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">تمَّ إلغاء الحظر عن \"%1$s\".</string>
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
     <string name="ReviewCardDialogFragment__review_members">مراجعة الأعضاء</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">مُراجعة الطلب</string>
+    <string name="ReviewCardDialogFragment__review_request">مراجعة الطلب</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
         <item quantity="zero">%1$d عضو بالمجموعة يحمل نفس الاسم، يُرجى مراجعة الأعضاء أسفله أو اتخاذ إجراء.</item>
@@ -5136,28 +5128,28 @@
     <string name="ReviewCardDialogFragment__no_groups_in_common">لا وجود لمجموعات مشتركة.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
         <item quantity="zero">%1$d مجموعة مشتركة</item>
-        <item quantity="one">%1$dمجموعة مشتركة</item>
-        <item quantity="two">%1$d مجموعات مشتركة</item>
+        <item quantity="one">%1$d مجموعة مشتركة</item>
+        <item quantity="two">%1$d مجموعتان مشتركتان</item>
         <item quantity="few">%1$d مجموعات مشتركة</item>
-        <item quantity="many">%1$d مجموعة مشتركة</item>
+        <item quantity="many">%1$d مجموعةً مشتركة</item>
         <item quantity="other">%1$d مجموعة مشتركة</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="zero">%1$d مجموعة مشتركة</item>
         <item quantity="one">%1$d مجموعة مشتركة</item>
-        <item quantity="two">%1$d مجموعات مشتركة</item>
-        <item quantity="few">%1$dمجموعات مشتركة</item>
-        <item quantity="many">%1$d مجموعة مشتركة</item>
+        <item quantity="two">%1$d مجموعتان مشتركتان</item>
+        <item quantity="few">%1$d مجموعاتٍ مشتركة</item>
+        <item quantity="many">%1$d مجموعةً مشتركة</item>
         <item quantity="other">%1$d مجموعة مشتركة</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">إزالة %1$s من هذه المجموعة؟</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">هل ترغبُ بإزالة %1$s من هذه المجموعة؟</string>
     <string name="ReviewCardDialogFragment__remove">إزالة</string>
     <string name="ReviewCardDialogFragment__failed_to_remove_group_member">فشلت إزالة عضو من المجموعة.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__request">الطلب</string>
     <string name="ReviewCard__your_contact">جهة اتصالك</string>
-    <string name="ReviewCard__remove_from_group">أزل من المجموعة</string>
+    <string name="ReviewCard__remove_from_group">إزالة من المجموعة</string>
     <string name="ReviewCard__update_contact">تحديث جهة الاتصال</string>
     <string name="ReviewCard__block">حظر</string>
     <string name="ReviewCard__delete">حذف</string>
@@ -5168,8 +5160,8 @@
 
     <!-- CallParticipantsListUpdatePopupWindow -->
     <string name="CallParticipantsListUpdatePopupWindow__s_joined">انضم %1$s</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">انضم %1$s و %2$s</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">انضم %1$s، %2$s و%3$s</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">انضم %1$s و%2$s</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">انضم %1$s، و%2$s، و%3$s</string>
     <!-- Toast message shown in group call when 3 or more people join -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">
         <item quantity="zero">انضمّ %1$s و%2$s و%3$d شخص آخر</item>
@@ -5180,9 +5172,9 @@
         <item quantity="other">انضم %1$s، %2$s و%3$d شخص آخر</item>
     </plurals>
     <!-- Toast/popup text shown when someone leaves a group call -->
-    <string name="CallParticipantsListUpdatePopupWindow__s_left">غادر العضو %1$s</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">غادر %1$s و %2$s</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">غادر %1$s، %2$s و%3$s</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_left">غادرَ %1$s</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">غادرَ %1$s و%2$s</string>
+    <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">غادرَ %1$s، و%2$s، و%3$s</string>
     <!-- Toast message shown in group call when 3 or more people leave -->
     <plurals name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">
         <item quantity="zero">غادر %1$s و%2$s و%3$d آخر</item>
@@ -5194,41 +5186,41 @@
     </plurals>
 
     <string name="CallParticipant__you">أنت</string>
-    <string name="CallParticipant__you_on_another_device">أنت (في جهاز آخر)</string>
-    <string name="CallParticipant__s_on_another_device">%1$s (في جهاز آخر)</string>
+    <string name="CallParticipant__you_on_another_device">أنت (على جهاز آخر)</string>
+    <string name="CallParticipant__s_on_another_device">%1$s (على جهاز آخر)</string>
 
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
-    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">شبكة Wi-Fi ضعيفة. تم التبديل إلى شبكة خلوية.</string>
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">شبكة الواي فاي ضعيفة. تمَّ التبديل إلى شبكة الجوّال.</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">سيؤدي حذف حسابك إلى:</string>
-    <string name="DeleteAccountFragment__enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
+    <string name="DeleteAccountFragment__enter_your_phone_number">قُم بإدخال رقم هاتفك</string>
     <string name="DeleteAccountFragment__delete_account">حذف الحساب</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">حذف معلومات حسابك وصورة حسابك الشخصي</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">حذف كل رسائلك</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">حذف %1$s في حساب دفوعاتك.</string>
-    <string name="DeleteAccountFragment__no_country_code">لم يُحدَّد رمز البلد</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">حذف %1$s في حساب مدفوعاتك.</string>
+    <string name="DeleteAccountFragment__no_country_code">لم يُحدَّد رمز الدولة</string>
     <string name="DeleteAccountFragment__no_number">لم يُحدَّد أي رقم</string>
-    <string name="DeleteAccountFragment__the_phone_number">رقم الهاتف الذي أُدخِل لا يطابق رقم حسابك.</string>
+    <string name="DeleteAccountFragment__the_phone_number">رقم الهاتف الذي أدخلت لا يطابق رقم حسابك.</string>
     <string name="DeleteAccountFragment__are_you_sure">هل أنت متأكد من أنك تريد حذف حسابك؟</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">سَيؤدي هذا إلى حذف حساب سيجنال الخاص بك وإعادة تعيين التطبيق. سيتم إغلاق التطبيق بعد انتهاء العملية.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوه يدويًا في إعدادات تطبيق النظام.</string>
-    <string name="DeleteAccountFragment__launch_app_settings">إعدادات تشغيل التطبيق</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">سَيؤدي هذا إلى حذف حساب سيجنال الخاص بك وإعادة تعيين التطبيق. سيتمُّ إغلاق التطبيق بعد انتهاء العملية.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوها يدويًا في إعدادات تطبيق النظام.</string>
+    <string name="DeleteAccountFragment__launch_app_settings">فتح إعدادات التطبيق</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">يَجري مغادرة المجموعات…</string>
+    <string name="DeleteAccountFragment__leaving_groups">جارٍ مغادرة المجموعات…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">يَجري حَذفُ الحِساب…</string>
+    <string name="DeleteAccountFragment__deleting_account">جارٍ حذف الحساب…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
     <string name="DeleteAccountFragment__canceling_your_subscription">جارٍ إلغاء اشتراكك…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
-    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">قد يتطلب هذا بضع دقائق، بناءا على عدد المجموعات التي لديك عضوية فيها.</string>
+    <string name="DeleteAccountFragment__depending_on_the_number_of_groups">قد يتطلب هذا بضع دقائق، بناءًا على عدد المجموعات التي لديك عضوية فيها.</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">يجري حذف بيانات المستخدم ثم سيُعاد إعداد التطبيق.</string>
     <!-- Title of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__account_not_deleted">لم يتم حذف الحِساب</string>
+    <string name="DeleteAccountFragment__account_not_deleted">لم يتم حذف الحساب</string>
     <!-- Message of error dialog shown when a network error occurs during account deletion -->
-    <string name="DeleteAccountFragment__there_was_a_problem">لقد حدث خطأ أثناء إتمام عملية الحذف. يُرجى التحقق من اتصالك بالشبكة ثم إعادة المحاولة مرة أخرى.</string>
+    <string name="DeleteAccountFragment__there_was_a_problem">حدثت مشكلة أثناء إتمام عملية الحذف. يُرجى التحقُّق من اتصالك بالشبكة ثم إعادة المحاولة مرّة أخرى.</string>
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">البحث في البلدان</string>
@@ -5240,21 +5232,21 @@
         <item quantity="one">عضو واحد %1$d</item>
         <item quantity="two">عضوان %1$d</item>
         <item quantity="few">%1$d أعضاء</item>
-        <item quantity="many">%1$d عضوا</item>
+        <item quantity="many">%1$d عضوًا</item>
         <item quantity="other">%1$d عضو</item>
     </plurals>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">مشاركة</string>
     <!-- Label to describe circular spinner button -->
-    <string name="ShareActivity__send">أرسلْ</string>
+    <string name="ShareActivity__send">إرسال</string>
     <string name="ShareActivity__comma_s">، %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
-    <string name="ShareActivity__could_not_get_share_data_from_intent">تعذّر مشاركة البيانات.</string>
+    <string name="ShareActivity__could_not_get_share_data_from_intent">تعذَّر الحصول على بيانات المشاركة من وسيلة التواصل.</string>
 
     <!-- MultiShareDialogs -->
-    <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المستخدمين.</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">يُمكنك فقط مشاركة ما لا يزيد عن %1$d دردشات.</string>
+    <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المُستخدِمين.</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">يُمكنك فقط مشاركة ما لا يزيد عن %1$d دردشة (دردشات).</string>
 
     <!-- ChatWallpaperActivity -->
 
@@ -5262,33 +5254,33 @@
     <string name="ChatWallpaperFragment__chat_color">لون الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين ألوان الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين لون الدردشة</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">إعادة تعيين لون الدردشة؟</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">ضبط الخلفية</string>
-    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">إن الوضع الداكن يعتم الخلفية</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">أترغبُ بإعادة تعيين لون الدردشة؟</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">إعادة تعيين الخلفية</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">الوضع الداكن يعتم الخلفية</string>
     <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
     <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">معاينة الخلفية</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">هل لديك الرغبة في إلغاء جميع ألوان الدردشات؟</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">أ لديك الرغبة في إلغاء جميع ألوان المحادثات ؟</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">هل لديك الرغبة في تجاهل جميع ألوان الدردشات؟</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">هل لديك الرغبة في تجاهل جميع الخلفيات؟</string>
     <string name="ChatWallpaperFragment__reset_default_colors">إعادة تعيين الألوان الافتراضية</string>
     <string name="ChatWallpaperFragment__reset_all_colors">إعادة تعيين كل الألوان</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">إعادة تعيين الخلفية الافتراضية</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">إعادة التعيين كل الخلفيات</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">إعادة تعيين كل الخلفيات</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">إعادة تعيين الخلفيات</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">إعادة تعيين الخلفية</string>
-    <string name="ChatWallpaperFragment__reset_wallpaper_question">أأعيد تعيين الخلفية ؟</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper_question">هل ترغبُ بإعادة تعيين الخلفية؟</string>
 
     <!-- ChatWallpaperSelectionFragment -->
-    <string name="ChatWallpaperSelectionFragment__choose_from_photos">الاختيار من الصور</string>
+    <string name="ChatWallpaperSelectionFragment__choose_from_photos">اختر من الصور</string>
     <string name="ChatWallpaperSelectionFragment__presets">الإعدادات الأولية</string>
 
     <!-- ChatWallpaperPreviewActivity -->
-    <string name="ChatWallpaperPreviewActivity__preview">مُعاينة</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين خلفية</string>
-    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">يُرجى السحب لمعاينة بقية الخلفيات</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ضبط الخلفية لجميع الدردشات</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s</string>
-    <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">إن إظهار معرض صورك يتطلب إذن الوصول إلى سعة التخزين.</string>
+    <string name="ChatWallpaperPreviewActivity__preview">معاينة</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين الخلفية</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">اسحب لمعاينة المزيد من الخلفيات</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">تعيين الخلفية لجميع الدردشات</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">تعيين الخلفية لـ %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">مشاهدة معرض الصور لديك يتطلب إذن الوصول إلى مساحة التخزين.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
@@ -5296,26 +5288,26 @@
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">وسِّع للتكبير، اسحب للتعديل.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع الدردشات.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s.‏</string>
-    <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال ضبط الخلفية.</string>
-    <string name="WallpaperCropActivity__blur_photo">تضبيب الصورة</string>
+    <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال تعيين الخلفية.</string>
+    <string name="WallpaperCropActivity__blur_photo">تمويه الصورة</string>
 
     <!-- InfoCard -->
-    <string name="payment_info_card_about_mobilecoin">حَول MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">إن MobileCoin عُملة رقمية جديدة ترتكز على الخصوصية.</string>
+    <string name="payment_info_card_about_mobilecoin">حول MobileCoin</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin هي عملة رقمية جديدة ترتكز على الخصوصية.</string>
     <string name="payment_info_card_adding_funds">إضافة مبالغ</string>
-    <string name="payment_info_card_you_can_add_funds_for_use_in">يمكنك إضافة المبالغ لاستخدامها في سيجنال عبر إرسال MobileCoin إلى عنوان محفظتك.</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">يمكنك إضافة المبالغ لاستخدامها في سيجنال عبر إرسال عملات MobileCoin إلى عنوان محفظتك.</string>
     <string name="payment_info_card_cashing_out">صرف المبالغ</string>
-    <string name="payment_info_card_you_can_cash_out_mobilecoin">يمكنك صرف Mobilecoin في أي وقت في منصة التداول التي تدعم Mobilecoin. يكفي فقط إرسال مبالغ إلى حسابك في تلك المنصة.</string>
-    <string name="payment_info_card_hide_this_card">إخفاء هذه البطاقة ؟</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">يمكنك صرف عملات Mobilecoin في أي وقت على أي منصة تداول تدعم عملات Mobilecoin. يكفي فقط إرسال مبلغ إلى حسابك في تلك المنصة.</string>
+    <string name="payment_info_card_hide_this_card">هل ترغب بإخفاء هذه البطاقة؟</string>
     <string name="payment_info_card_hide">إخفاء</string>
     <!-- Title of save recovery phrase card -->
-    <string name="payment_info_card_save_recovery_phrase">حفظ جملة الاستعادة</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">توفر لك جملة الاستعادة وسيلة أخرى لاستعادة حساب دفوعاتك.</string>
+    <string name="payment_info_card_save_recovery_phrase">حفظ عبارة الاستعادة</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">توفر لك عبارة الاستعادة وسيلة أخرى لاستعادة حساب مدفوعاتك.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">حفظ جملتك</string>
-    <string name="payment_info_card_update_your_pin">تحديث رقمك التعريفي الشخصي</string>
-    <string name="payment_info_card_with_a_high_balance">قد تكون لديك الرغبة في زيادة حماية حسابك عبر تحديث رقمك التعريفي الشخصي ليكون أبجَدرَقميا، بالذات عند توفرك على رصيد كبير من العملة الرقمية.</string>
-    <string name="payment_info_card_update_pin">تحديث الرقم التعريفي الشخصي</string>
+    <string name="payment_info_card_update_your_pin">تحديث رقم التعريف الشخصي (PIN)</string>
+    <string name="payment_info_card_with_a_high_balance">عند توفُّر رصيد كبير لديك، قد تكون لديك الرغبة في زيادة حماية حسابك عبر تحديث رقم التعريف الشخصي إلى أرقام وحروف.</string>
+    <string name="payment_info_card_update_pin">تحديث رقم التعريف الشخصي (PIN)</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
@@ -5324,21 +5316,21 @@
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">تعطيل المحفظة</string>
     <string name="DeactivateWalletFragment__your_balance">رصيدك</string>
-    <string name="DeactivateWalletFragment__its_recommended_that_you">يُوصَى بإرسال رصيدك المالي إلى عنوان محفظة أخرى قبل تعطيل عمليات الدفع. إذا اخترت عدم إرسال رصيدك المالي الآن، ستبقى في محفظتك مرتبطة بـ سيجنال إذا أعدت تفعيل الدفوعات.</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">يُوصَى بإرسال رصيدك المالي إلى عنوان محفظة أخرى قبل تعطيل عمليات الدفع. إذا اخترت عدم إرسال رصيدك المالي الآن، سيبقى في محفظتك المرتبطة بسيجنال إذا أعدت تفعيل المدفوعات.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">إرسال الرصيد المتبقي</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring">تعطيل بدون أي إرسال</string>
     <string name="DeactivateWalletFragment__deactivate">تعطيل</string>
-    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">تعطيل بدون أي إرسال ؟</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">سيبقى رصيدك في محفظتك المرتبطة بـ سيجنال إذا اخترت إعادة تفعيل عمليات الدفع.</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">هل ترغب بالتعطيل بدون أي إرسال؟</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">سيبقى رصيدك في محفظتك المرتبطة بـسيجنال إذا اخترتَ إعادة تفعيل عمليات الدفع.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">حدث خطأ خلال تعطيل المحفظة.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
-    <string name="PaymentsRecoveryStartFragment__recovery_phrase">جملة الاستعادة</string>
-    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">عرض جملة الاستعادة</string>
+    <string name="PaymentsRecoveryStartFragment__recovery_phrase">عبارة الاستعادة</string>
+    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">عرض عبارة الاستعادة</string>
     <!-- Title in save recovery phrase screen -->
-    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">حفظ جملة الاستعادة</string>
-    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
+    <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">حفظ عبارة الاستعادة</string>
+    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">إدخال عبارة الاستعادة</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
         <item quantity="zero">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت سيجنال، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لسيجنال. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
         <item quantity="one">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت سيجنال، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لسيجنال. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
@@ -5348,68 +5340,68 @@
         <item quantity="other">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت سيجنال، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لسيجنال. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">لديك رصيد! حان وقت حفظ جملة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">لديك رصيد! حان وقت حفظ عبارة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">حان وقت حفظ جملة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك.</string>
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">إن جملة الاستعادة هي جملة مكونة من %1$d كلمة فريدة خاصة بك فقط. يُرجى استخدامها لاستعادة حساب دفوعاتك.</string>
-    <string name="PaymentsRecoveryStartFragment__start">البدأ</string>
-    <string name="PaymentsRecoveryStartFragment__enter_manually">إدخال يدويا</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">عبارة الاستعادة هي عبارة مُكوَّنة من %1$d كلمة فريدة خاصة بك فقط. يُرجى استخدامها لاستعادة رصيدك.</string>
+    <string name="PaymentsRecoveryStartFragment__start">ابدأ</string>
+    <string name="PaymentsRecoveryStartFragment__enter_manually">إدخال يدويًا</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">لصق من الحافظة</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__continue_without_saving">متابعة بدون حفظ؟</string>
+    <string name="PaymentsRecoveryStartFragment__continue_without_saving">هل ترغبُ بالمتابعة بدون حفظ؟</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">تُتيح لك جملة الاستعادة الخاصة بك اِسترجاع رصيدك في حالة حدوث أمر ما. نوصي بشدة بحفظها.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">تُتيح لك عبارة الاستعادة الخاصة بك استعادة رصيدك في حالة حدوث أمر ما. نوصي بشدة بحفظها.</string>
     <!-- Alert dialog option to skip recovery phrase -->
-    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">تَخَطَّ جملة الاستعادة</string>
+    <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">تَخَطَّ عبارة الاستعادة</string>
     <!-- Alert dialog option to cancel dialog-->
     <string name="PaymentsRecoveryStartFragment__cancel">إلغاء</string>
 
     <!-- PaymentsRecoveryPasteFragment -->
-    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">لصق جملة الاستعادة</string>
-    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">جملة الاستعادة</string>
+    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">لصق عبارة الاستعادة</string>
+    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">عبارة الاستعادة</string>
     <string name="PaymentsRecoveryPasteFragment__next">التالي</string>
-    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">جملة الاستعادة باطلة</string>
-    <string name="PaymentsRecoveryPasteFragment__make_sure">يُرجى التأكد من إدخالك الـ %1$d كلمات ثم المحاولة مرة أخرى.</string>
+    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">عبارة الاستعادة غير صحيحة</string>
+    <string name="PaymentsRecoveryPasteFragment__make_sure">تأكَّد من إدخالك الـ %1$d كلمات ثم حاوِل مرّة أخرى.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">التالي</string>
-    <string name="PaymentsRecoveryPhraseFragment__edit">تحرير</string>
-    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">جملة الاستعادة التي تخصك</string>
-    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">يٌرجى كتابة الكلمات الـ %1$d بالترتيب. كما يجب حفظ لائحتك في مكان آمن.</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">يٌرجى التأكد من إدخالك الجملة بشكل صحيح.</string>
-    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">عدم أخذ لقطة الشاشة ولا إرسالها بالبريد الإلكتروني.</string>
-    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">استُعيد حساب الدفوعات.</string>
-    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">جملة الاستعادة باطلة</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">يٌرجى التأكد من إدخالك الجملة بشكل صحيح ثم المحاولة مرة أخرى.</string>
-    <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">نسخ إلى الحافظة ؟</string>
-    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">إذا اخترت حفظ جملة الاستعادة رقميا، يٌرجى التأكد من حفظها في مكان آمن وموثوق به.</string>
+    <string name="PaymentsRecoveryPhraseFragment__edit">تعديل</string>
+    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">عبارة الاستعادة الخاصة بك</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">اكتب الكلمات الـ %1$d التالية بالترتيب. احفظ لائحتك في مكانٍ آمن.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">يُرجى التأكُّد من إدخال العبارة بشكلٍ صحيح.</string>
+    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">لا تأخذ لقطة الشاشة ولا ترسل بالبريد الإلكتروني.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">تمَّت استعادة حساب المدفوعات.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">عبارة الاستعادة غير صحيحة</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">تأكَّد من إدخالك العبارة بشكلٍ صحيح ثم حاوِل مرّة أخرى.</string>
+    <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">هل ترغبُ بالنسخ إلى الحافظة؟</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">إذا اخترتَ حفظ عبارة الاستعادة رقميًا، يُرجى التأكُّد من حفظها في مكانٍ آمن وموثوق به.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">نسخ</string>
 
     <!-- PaymentsRecoveryPhraseConfirmFragment -->
-    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">تأكيد جملة الاستعادة</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">يُرجى إدخال الكلمات التالية من جملة الاستعادة التي تخصك.</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">تأكيد عبارة الاستعادة</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">أدخِل الكلمات التالية من عبارة الاستعادة الخاصة بك.</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__word_d">الكلمة %1$d</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">الاطلاع مجددا على الجملة</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__done">تمّ</string>
-    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">تم تأكيد جملة الاستعادة</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">الاطِّلاع على العبارة مُجدَّدًا</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__done">تم</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">تمَّ تأكيد عبارة الاستعادة.</string>
 
     <!-- PaymentsRecoveryEntryFragment -->
-    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
-    <string name="PaymentsRecoveryEntryFragment__enter_word_d">يُرجى إدخال الكلمة %1$d</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">إدخال عبارة الاستعادة</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_word_d">أدخِل الكلمة %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__word_d">الكلمة %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">التالي</string>
-    <string name="PaymentsRecoveryEntryFragment__invalid_word">كلمة باطلة</string>
+    <string name="PaymentsRecoveryEntryFragment__invalid_word">كلمة غير صحيحة</string>
 
     <!-- UnreadPayments -->
-    <string name="UnreadPayments__s_sent_you_s">لقد أرسل لك %1$s مبلغا قدره %2$s</string>
-    <string name="UnreadPayments__d_new_payment_notifications">هناك %1$d إشعار دفع جديد</string>
+    <string name="UnreadPayments__s_sent_you_s">أرسلَ %1$s لك مبلغًا قدره %2$s</string>
+    <string name="UnreadPayments__d_new_payment_notifications">هناك %1$d إشعار (إشعارات) بدفع جديد</string>
 
     <!-- CanNotSendPaymentDialog -->
-    <string name="CanNotSendPaymentDialog__cant_send_payment">تعذَّر إرسال الدفوعات</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">على هذا المستخدم أن يوافق على طلب التراسل معك لأجل التمكن من إرسال المبلغ إليه. يٌرجى إرسال رسالة إليه لإنشاء طلب التراسل.</string>
+    <string name="CanNotSendPaymentDialog__cant_send_payment">تعذَّر إرسال المدفوعات</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">لإرسال مبلغ إلى هذا المستخدم، يحتاج للموافقة على طلب المراسلة منك. أرسِل رسالة إليه لإنشاء طلب مراسلة.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">إرسال رسالة</string>
 
     <!-- GroupsInCommonMessageRequest -->
@@ -5607,7 +5599,7 @@
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">المجموعات</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only messages from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">فقط الرسائل من الدردشات الجماعية</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">إضافة</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
@@ -7298,7 +7290,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">انقر على زر \"الانتقال إلى الإعدادات\" أدناه</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">شغِّل \"السماح بتنبيهات الإعدادات والتذكيرات\".</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">الانتقال إلى الإعدادات</string>
 
@@ -8073,11 +8065,11 @@
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">لقد تم إلغاء خطة النسخ الاحتياطي لوسائط سيجنال الخاصة بك لأننا لم نتمكّن من معالجة عملية الدفع الخاصة بك. هذه فرصتك الأخيرة لتنزيل الوسائط الموجودة في النسخة الاحتياطية قبل حذفها.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
-    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Free up %1$s on this device</string>
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">وفِّر مساحة %1$s على هذا الجهاز</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">To finish downloading your Signal Backup your device needs %1$s of storage space.</string>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">لإنهاء تحميل النسخة الاحتياطية الخاصة بك على سيجنال، يَحتاج جهازك إلى %1$s من مساحة التخزين.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
-    <string name="BackupAlertBottomSheet__to_free_up_space_offload">To free up space offload or delete unused apps or content large in file size.</string>
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">لتوفير المساحة، قُم بإفراغ الجهاز أو حذف التطبيقات غير المُستخدَمة أو الملفات كبيرة الحجم.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">تعذَّر تجديد اشتراك النسخ الاحتياطي الخاص بحسابك.</string>
     <!-- Sheet body when user payment failed to process -->
@@ -8089,9 +8081,9 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">معرفة المزيد</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip_restore">تخطى الاسترجاع</string>
+    <string name="BackupAlertBottomSheet__skip_restore">تخطّى الاسترجاع</string>
     <!-- Primary action button to start backup immediately -->
-    <string name="BackupAlertBottomSheet__back_up_now">قُم بالنسخ الاحتياطي الآن</string>
+    <string name="BackupAlertBottomSheet__back_up_now">إنشاء نسخة احتياطية الآن</string>
     <!-- Primary action button when user doesn\'t have enough space -->
     <string name="BackupAlertBottomSheet__got_it">تم</string>
     <!-- Primary action button to manage subscription in Google Play -->
@@ -8105,7 +8097,7 @@
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ليس الآن</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
-    <string name="BackupAlertBottomSheet__try_later">Try later</string>
+    <string name="BackupAlertBottomSheet__try_later">حاوِل مرّة أخرى</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">سيتم حذف الوسائط</string>
     <!-- Dialog message for last chance to download backup -->
@@ -8117,9 +8109,9 @@
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">تخطّي</string>
     <!-- Dialog title for skipping media restore -->
-    <string name="BackupAlertBottomSheet__skip_restore_question">Skip restore?</string>
+    <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطي الاستعادة؟</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">If you skip restore the remaining media and attachments in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore">إذا تخطّيت الاستعادة، فستُحذف الوسائط والمُرفقات في نسختك الاحتياطية في المرّة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8175,10 +8167,6 @@
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s شهرياً . يُجدد في %2$s</string>
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">تغيير أو إلغاء الاشتراك</string>
-
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخر نسخة احتياطية في %1$s على الساعة %2$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8521,5 +8509,101 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">أيقونة تذكير</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+
+    <!-- Screen title for selecting which restore method to use during registartion -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">Retry</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">Transfer account</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">Learn more</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">Transfer account</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+
+
     <!-- EOF -->
 </resources>

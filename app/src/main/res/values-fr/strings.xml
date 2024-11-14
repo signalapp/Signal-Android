@@ -477,10 +477,10 @@
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n\'en faites plus partie.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Seuls les %1$s peuvent envoyer des messages.</string>
     <string name="ConversationActivity_admins">admins</string>
-    <string name="ConversationActivity_message_an_admin">Envoyer un message à un administrateur</string>
-    <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l’appel de groupe</string>
+    <string name="ConversationActivity_message_an_admin">Écrire à un admin</string>
+    <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l\'appel de groupe</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les administrateurs de ce groupe peuvent démarrer un appel.</string>
-    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Aucune appli disponible pour ouvrir ce lien sur votre appareil.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande a bien été envoyée à l’admin. Un message vous signalera si vous êtes autorisé à rejoindre le groupe.</string>
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
 
@@ -494,18 +494,18 @@
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Pour enregistrer un message vocal, autorisez Signal à accéder au microphone de votre téléphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pour envoyer des messages audio, Signal doit accéder à l\'application Microphone, mais vous lui en avez interdit l’accès. Accédez à l’application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Microphone\".</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal a besoin des autorisations Microphone et Appareil photo pour appeler %1$s, mais elles ont été refusées définitivement. Veuillez accéder aux paramètres de l’appli, sélectionner Autorisations et activer Microphone et Appareil photo.</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez l’accès de Signal à l’appareil photo.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pour prendre des photos et des vidéos, Signal doit accéder à l\'appareil photo, mais vous lui en avez interdit l’accès. Accédez à l’application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Appareil photo\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal a besoin de l’autorisation Appareil photo pour prendre des photos ou des vidéos</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Autoriser l’accès au microphone afin de prendre des vidéos avec du son.</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Pour appeler %1$s, Signal doit accéder au microphone et à l\'appareil photo, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre téléphone, sélectionnez Applications &gt; Autorisations et activez \"Microphone\" et \"Appareil photo\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pour prendre des photos et des vidéos, autorisez Signal à accéder à l\'appareil photo.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pour prendre des photos et des vidéos, Signal doit accéder à l\'appareil photo, mais vous lui en avez interdit l’accès. Accédez à l\'application Paramètres de votre appareil &gt; Applications &gt; Autorisations et activez \"Appareil photo\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Pour prendre des photos ou enregistrer des vidéos, Signal a besoin de l\'autorisation \"Appareil photo\".</string>
+    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Pour enregistrer des vidéos avec du son, autorisez l\'accès au microphone.</string>
     <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Pour enregistrer des vidéos, Signal doit accéder à l\'application Microphone, mais vous lui en avez interdit l’accès. Dans les paramètres Android, touchez Applications &gt; Signal &gt; Autorisations, puis activez \"Microphone\" et \"Appareil photo\".</string>
     <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal doit accéder au Microphone pour enregistrer des vidéos.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_no">Non</string>
     <string name="ConversationActivity_search_position">%1$d sur %2$d</string>
-    <string name="ConversationActivity_no_results">Il n’y a aucun résultat</string>
+    <string name="ConversationActivity_no_results">Aucun résultat</string>
 
     <string name="ConversationActivity_sticker_pack_installed">Pack de stickers installé</string>
     <string name="ConversationActivity_new_say_it_with_stickers">Nouveauté : dites-le avec des stickers</string>
@@ -528,9 +528,9 @@
 
     <string name="ConversationActivity_join">Rejoindre</string>
     <!-- Button text for an active group call but the call is currently full and unjoinable -->
-    <string name="ConversationActivity_full">Complet</string>
+    <string name="ConversationActivity_full">Appel complet</string>
 
-    <string name="ConversationActivity_error_sending_media">Erreur d’envoi du média</string>
+    <string name="ConversationActivity_error_sending_media">Impossible d\'envoyer le média</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">La messagerie SMS n’est plus prise en charge dans Signal.</string>
@@ -554,27 +554,27 @@
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%1$d message non lu</item>
-        <item quantity="other">%1$d messages non lus</item>
+        <item quantity="one">%1$d message non lu</item>
+        <item quantity="other">%1$d messages non lus</item>
     </plurals>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
-    <string name="ConversationFragment__contacts_app_not_found">Impossible de retrouver l\'application Contacts.</string>
+    <string name="ConversationFragment__contacts_app_not_found">Application Contacts introuvable.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Supprimer le message sélectionné ?</item>
         <item quantity="other">Supprimer les messages sélectionnés ?</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire ?</string>
+    <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire  du téléphone ?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">L’enregistrement de ce contenu dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
-        <item quantity="other">L’enregistrement des %1$d médias dans l\'espace de stockage permettra à n’importe quelle autre appli de votre appareil d’y accéder.\n\nPoursuivre ?</item>
+        <item quantity="one">Si vous enregistrez ce média dans l\'espace de stockage, toutes les applis installées sur votre appareil pourront y accéder.\n\nContinuer ?</item>
+        <item quantity="other">Si vous enregistrez ces %1$d médias dans l\'espace de stockage, toutes les applis installées sur votre appareil pourront y accéder.\n\nContinuer  ?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Impossible d\'enregistrer la pièce jointe dans l\'espace de stockage.</item>
         <item quantity="other">Impossible d\'enregistrer les pièces jointes dans l\'espace de stockage.</item>
     </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Impossible d’écrire dans l\'espace de stockage</string>
+    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Enregistrement dans l\'espace de stockage impossible.</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Enregistrement de la pièce jointe</item>
         <item quantity="other">Enregistrement de %1$d pièces jointes</item>
@@ -583,12 +583,12 @@
         <item quantity="one">Enregistrement de la pièce jointe dans l\'espace de stockage…</item>
         <item quantity="other">Enregistrement de %1$d pièces jointes dans l\'espace de stockage…</item>
     </plurals>
-    <string name="ConversationFragment_pending">En attente…</string>
+    <string name="ConversationFragment_pending">Envoi en cours…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Données (Signal)</string>
-    <string name="ConversationFragment_mms">Message multimédia</string>
-    <string name="ConversationFragment_sms">Texto</string>
-    <string name="ConversationFragment_deleting">Suppression</string>
+    <string name="ConversationFragment_mms">MMS</string>
+    <string name="ConversationFragment_sms">SMS</string>
+    <string name="ConversationFragment_deleting">Suppression en cours</string>
     <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
     <string name="ConversationFragment_delete_for_me">Supprimer pour moi</string>
     <string name="ConversationFragment_delete_for_everyone">Supprimer pour tout le monde</string>
@@ -599,11 +599,11 @@
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé pour tous les membres participant à la conversation s’ils utilisent une version récente de Signal. Ils pourront voir que vous avez supprimé un message.</string>
-    <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
-    <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vous pouvez balayer un message vers la droite pour y répondre rapidement</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez balayer un message vers la gauche pour y répondre rapidement</string>
+    <string name="ConversationFragment_quoted_message_not_found">Message d\'origine introuvable</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">Le message d\'origine n\'est plus disponible</string>
+    <string name="ConversationFragment_failed_to_open_message">Impossible d\'ouvrir le message</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Balayez un message vers la droite pour y répondre rapidement</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Balayez un message vers la gauche pour y répondre rapidement</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Les contenus éphémères sont supprimés après être envoyés</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà vu ce message</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Cette conversation est dédiée à vos notes personnelles. Si des appareils sont associés à votre compte, les nouvelles notes que vous ajoutez ici sont synchronisées sur tous vos appareils.</string>
@@ -1326,21 +1326,7 @@
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité, invitez vos contacts sur Signal.</string>
     <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
     <string name="ManageGroupActivity_more">plus</string>
-    <string name="ManageGroupActivity_add_group_description">Ajouter une description du groupe…</string>
-
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Transférer depuis un appareil Android</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Transférer votre compte et vos messages depuis votre ancien appareil Android.</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Se connecter sans transfert</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Continuer sans transférer vos messages et médias</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Restaurer une sauvegarde locale</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Restaurer vos messages depuis un ficher de sauvegarde enregistré sur votre appareil.</string>
+    <string name="ManageGroupActivity_add_group_description">Présenter le groupe en quelques mots…</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
@@ -1359,12 +1345,16 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">tous vos messages</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">Restaurer depuis une sauvegarde</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
+    <!-- Notice about what media will be included in backups. Placeholder is days, and is currently fixed at 30. -->
     <string name="RemoteRestoreActivity__only_media_sent_or_received">Elle ne contient que les médias envoyés ou reçus %1$d jours avant cette date.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">Votre sauvegarde contient :</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Restaurer la sauvegarde</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Dernière sauvegarde effectuée le %1$s à %2$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
@@ -1777,9 +1767,9 @@
     <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été remplacé par \"%1$s\".</string>
 
     <!-- GV2 description change -->
-    <string name="MessageRecord_you_changed_the_group_description">Vous avez modifié la description du groupe.</string>
-    <string name="MessageRecord_s_changed_the_group_description">%1$s a modifié la description du groupe.</string>
-    <string name="MessageRecord_the_group_description_has_changed">La description du groupe a changé.</string>
+    <string name="MessageRecord_you_changed_the_group_description">Vous avez modifié la présentation du groupe.</string>
+    <string name="MessageRecord_s_changed_the_group_description">%1$s a modifié la présentation du groupe.</string>
+    <string name="MessageRecord_the_group_description_has_changed">La présentation du groupe a été modifiée.</string>
 
     <!-- GV2 avatar change -->
     <string name="MessageRecord_you_changed_the_group_avatar">Vous avez changé la photo du groupe.</string>
@@ -2458,8 +2448,8 @@
     <string name="RegistrationActivity_play_services_error">Erreur des Services Google Play</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Les services Google Play sont en cours de mise à jour ou temporairement indisponibles. Veuillez réessayer.</string>
     <string name="RegistrationActivity_terms_and_privacy">Conditions générales et règles de confidentialité</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis et d’envoyer des messages, Signal a besoin des autorisations Contacts et Médias. Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis, Signal a besoin de l’autorisation Contacts. Vos contacts sont importés grâce au service de découverte confidentielle de Signal•: autrement dit, ils sont chiffrés de bout en bout et nous n’y avons jamais accès.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis et d\'envoyer des messages, Signal a besoin des autorisations \"Contacts\" et \"Médias\". Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n\'y avons jamais accès.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis, Signal a besoin de l\'autorisation \"Contacts\". Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n\'y avons jamais accès.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Vous avez fait trop d’essais pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Vous avez atteint le nombre maximal de tentatives d’inscription de ce numéro. Veuillez réessayer dans %1$s.</string>
@@ -3340,7 +3330,7 @@
     <string name="CreateProfileActivity_last_name_optional">Nom de famille (facultatif)</string>
     <string name="CreateProfileActivity_next">Suivant</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vous seul pouvez afficher le nom personnalisé du groupe MMS et ses photos.</string>
-    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La description du groupe sera visible aux membres de ce groupe et aux personnes invitées.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La présentation du groupe sera accessible aux membres de ce groupe et aux invités.</string>
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">À propos</string>
@@ -3357,7 +3347,7 @@
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group">Modifier le groupe</string>
     <string name="EditProfileFragment__group_name">Nom du groupe</string>
-    <string name="EditProfileFragment__group_description">Description du groupe</string>
+    <string name="EditProfileFragment__group_description">Présentation du groupe</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Installez la dernière version de Signal</string>
@@ -3458,15 +3448,15 @@
     <string name="HelpFragment__could_not_upload_logs">Impossible d’importer les journaux.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Veuillez nous donner autant de détails que possible, afin de nous aider à comprendre la situation.</string>
     <string-array name="HelpFragment__categories_6">
-        <item>Veuillez sélectionner une option</item>
+        <item>Veuillez choisir une option</item>
         <item>Quelque chose ne fonctionne pas</item>
-        <item>Suggestion relative aux fonctionnalités</item>
+        <item>Suggestion de fonctionnalité</item>
         <item>Question</item>
         <item>Commentaires</item>
         <item>Autre</item>
         <item>Paiements (MobileCoin)</item>
         <item>Dons et macarons</item>
-        <item>Signal Android Backup</item>
+        <item>Sauvegarde Signal pour Android</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Journal de débogage de Signal pour Android</string>
@@ -4307,6 +4297,8 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">J’ai noté cette phrase de passe. Sans elle, je ne pourrai pas restaurer une sauvegarde.</string>
     <string name="registration_activity__restore_backup">Restaurer une sauvegarde</string>
     <string name="registration_activity__transfer_or_restore_account">Transférer ou restaurer le compte</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
     <string name="registration_activity__transfer_account">Transfert de compte</string>
     <string name="registration_activity__skip">Ignorer</string>
     <string name="preferences_chats__chat_backups">Sauvegarde des conversations</string>
@@ -4502,7 +4494,7 @@
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Préparation de la connexion à votre ancien appareil Android…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Cela prend un moment, mais ça devrait bientôt être prêt</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Attente de connexion de l’ancien appareil Android…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal a besoin de l’autorisation de localisation pour découvrir et se connecter à votre ancien appareil Android.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Pour détecter votre ancien appareil Android et s\'y connecter, Signal a besoin de l\'autorisation \"Localisation\".</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal nécessite l’activation des services de localisation pour découvrir et se connecter à votre ancien appareil Android.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Le Wi-Fi doit être activé pour que Signal découvre votre ancien appareil Android et s’y connecte. Le Wi-Fi doit être activé, mais il n’a pas à être connecté à un réseau Wi-Fi.</string>
     <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Il semblerait que cet appareil soit incompatible avec le Wi-Fi Direct. Signal utilise le Wi-Fi Direct pour détecter votre ancien appareil Android et s’y connecter. Pour récupérer votre compte depuis votre ancien appareil Android, vous avez toujours la possibilité de restaurer une sauvegarde.</string>
@@ -4511,7 +4503,7 @@
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Recherche d’un nouvel appareil Android…</string>
-    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal a besoin de l’autorisation Localisation pour découvrir votre ancien appareil Android et s’y connecter.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Pour détecter votre ancien appareil Android et s\'y connecter, Signal a besoin de l\'autorisation \"Localisation\".</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal a besoin que les services de localisation soient activés pour découvrir votre ancien appareil Android et s’y connecter.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Le Wi-Fi doit être activé pour que Signal découvre votre nouvel appareil Android et s’y connecte. Le Wi-Fi doit être activé, mais il n’a pas à être connecté à un réseau Wi-Fi.</string>
     <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Il semblerait que cet appareil soit incompatible avec le Wi-Fi•Direct. Signal utilise le Wi-Fi Direct pour détecter votre ancien appareil Android et s’y connecter. Pour récupérer votre compte sur votre nouvel appareil Android, vous avez toujours la possibilité d’effectuer une sauvegarde.</string>
@@ -4946,7 +4938,7 @@
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Vous seul pouvez voir cette couleur.</string>
 
     <!-- GroupDescriptionDialog -->
-    <string name="GroupDescriptionDialog__group_description">Description du groupe</string>
+    <string name="GroupDescriptionDialog__group_description">Présentation du groupe</string>
 
     <!-- QualitySelectorBottomSheetDialog -->
     <!-- Label for our standard quality media conversion. -->
@@ -5127,7 +5119,7 @@
     <!-- Name of a chat folder that contains all groups chats -->
     <string name="ChatFoldersFragment__groups">Groupes</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only messages from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">Messages des conversations de groupe uniquement</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
     <string name="ChatFoldersFragment__add">Créer</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
@@ -5660,7 +5652,7 @@
 
     <string name="ImageView__badge">Macaron</string>
 
-    <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
+    <string name="SubscribeFragment__cancel_subscription">Résilier les dons mensuels</string>
     <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Vous ne serez plus facturé. Votre macaron sera supprimé de votre profil à la fin de la période de facturation.</string>
     <string name="SubscribeFragment__not_now">Plus tard</string>
@@ -5705,8 +5697,8 @@
     <string name="ManageDonationsFragment__more">Plus</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_support">Mon soutien</string>
-    <string name="ManageDonationsFragment__manage_subscription">Gérer l’abonnement</string>
+    <string name="ManageDonationsFragment__my_support">Ma contribution</string>
+    <string name="ManageDonationsFragment__manage_subscription">Gérer les dons mensuels</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Reçus de don</string>
     <string name="ManageDonationsFragment__badges">Macarons</string>
@@ -5830,7 +5822,7 @@
     <string name="DonationsErrors__your_payment_was_processed_but">Votre don a été traité, mais Signal n\'a pas pu envoyer le message de confirmation. Veuillez contacter l’assistance.</string>
     <string name="DonationsErrors__your_badge_could_not">Nous n\'avons pas pu ajouter votre macaron à votre compte, mais vous avez peut-être été facturé. Merci de contacter l\'assistance.</string>
     <string name="DonationsErrors__your_payment_is_still">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil n\'est pas compatible avec Google Pay : vous ne pouvez donc pas vous abonner pour gagner un macaron, mais vous pouvez encore soutenir Signal et faire un don via notre site web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Vérifiez votre connexion et réessayez.</string>
@@ -6690,7 +6682,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Appuyez sur \"Accéder aux paramètres\" ci-dessous.</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activez \"Autoriser à définir des alarmes et des rappels\".</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Accéder aux paramètres</string>
 
@@ -7429,11 +7421,11 @@
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Votre forfait de sauvegarde de médias Signal a été résilié, car nous n’avons pas pu traiter votre paiement. Téléchargez les fichiers de votre sauvegarde avant qu’ils ne soient supprimés.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
-    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Free up %1$s on this device</string>
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Libérez %1$s sur cet appareil</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">To finish downloading your Signal Backup your device needs %1$s of storage space.</string>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Pour finir de télécharger votre sauvegarde Signal, vous devez disposer de %1$s d\'espace de stockage.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
-    <string name="BackupAlertBottomSheet__to_free_up_space_offload">To free up space offload or delete unused apps or content large in file size.</string>
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Pour libérer de l\'espace, désinstallez les applications inutilisées ou supprimez les fichiers média volumineux.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Impossible de renouveler votre abonnement de sauvegarde</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7449,7 +7441,7 @@
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Sauvegarder maintenant</string>
     <!-- Primary action button when user doesn\'t have enough space -->
-    <string name="BackupAlertBottomSheet__got_it">J’ai compris</string>
+    <string name="BackupAlertBottomSheet__got_it">J\'ai compris</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Gérer l\'abonnement</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7461,7 +7453,7 @@
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Plus tard</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
-    <string name="BackupAlertBottomSheet__try_later">Try later</string>
+    <string name="BackupAlertBottomSheet__try_later">Réessayer plus tard</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Vos médias vont être supprimés</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7473,9 +7465,9 @@
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">Ignorer</string>
     <!-- Dialog title for skipping media restore -->
-    <string name="BackupAlertBottomSheet__skip_restore_question">Skip restore?</string>
+    <string name="BackupAlertBottomSheet__skip_restore_question">Ignorer la restauration ?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">If you skip restore the remaining media and attachments in your backup will be deleted the next time your device completes a new backup.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore">Si vous choisissez d\'ignorer la restauration, les pièces jointes et médias stockés dans votre sauvegarde seront supprimés lors de la prochaine sauvegarde.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7531,10 +7523,6 @@
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/mois · Prochaine échéance le %2$s</string>
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Modifier ou résilier l\'abonnement</string>
-
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Dernière sauvegarde effectuée le %1$s à %2$s.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -7811,7 +7799,7 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Modifier le type de sauvegarde</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Annuler l’abonnement</string>
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Annuler l\'abonnement</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Gratuit</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
@@ -7853,5 +7841,101 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">Icône de rappel</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+
+    <!-- Screen title for selecting which restore method to use during registartion -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">Retry</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">Transfer account</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">Learn more</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">Transfer account</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+
+
     <!-- EOF -->
 </resources>
