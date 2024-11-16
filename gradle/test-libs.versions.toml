@@ -13,7 +13,6 @@ androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-te
 androidx-test-core-ktx = { module = "androidx.test:core-ktx", version.ref = "androidx-test" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
 androidx-test-ext-junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-ext-junit" }
-androidx-test-monitor = "androidx.test:monitor:1.6.1"
 androidx-test-orchestrator = "androidx.test:orchestrator:1.4.1"
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }

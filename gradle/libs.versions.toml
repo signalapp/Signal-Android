@@ -10,7 +10,6 @@ androidx-lifecycle = "2.8.5"
 androidx-media3 = "1.3.1"
 androidx-navigation = "2.8.0"
 androidx-window = "1.3.0"
-exoplayer = "2.19.0"
 glide = "4.15.1"
 kotlin = "1.9.20"
 libsignal-client = "0.60.1"
@@ -52,7 +51,6 @@ kotlinx-coroutines-play-services = "org.jetbrains.kotlinx:kotlinx-coroutines-pla
 kotlinx-coroutines-rx3 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3:1.3.9"
 
 # Android X
-androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-core-ktx = "androidx.core:core-ktx:1.12.0"
@@ -71,8 +69,6 @@ androidx-exifinterface = "androidx.exifinterface:exifinterface:1.3.3"
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "androidx-media3" }
 androidx-media3-session = { module = "androidx.media3:media3-session", version.ref = "androidx-media3" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "androidx-media3" }
-androidx-media3-decoder = { module = "androidx.media3:media3-decoder", version.ref = "androidx-media3" }
-androidx-media3-common = { module = "androidx.media3:media3-common", version.ref = "androidx-media3" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
@@ -94,7 +90,6 @@ androidx-autofill = "androidx.autofill:autofill:1.0.0"
 androidx-biometric = "androidx.biometric:biometric:1.1.0"
 androidx-sharetarget = "androidx.sharetarget:sharetarget:1.2.0-rc02"
 androidx-sqlite = "androidx.sqlite:sqlite:2.1.0"
-androidx-core-role = "androidx.core:core-role:1.0.0"
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.2.2"
 androidx-asynclayoutinflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
 androidx-asynclayoutinflater-appcompat = "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01"
@@ -106,7 +101,6 @@ android-billing = "com.android.billingclient:billing-ktx:7.0.0"
 material-material = "com.google.android.material:material:1.8.0"
 
 # Google
-google-protobuf-javalite = "com.google.protobuf:protobuf-javalite:3.11.4"
 google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.40"
 google-play-services-maps = "com.google.android.gms:play-services-maps:18.2.0"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.0.0"
