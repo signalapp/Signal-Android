@@ -1,3 +1,6 @@
+# IMPORTANT: After changing a dependency, please run:
+# ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
+
 [versions]
 lint = "31.4.0"
 
