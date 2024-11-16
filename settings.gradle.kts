@@ -22,6 +22,18 @@ dependencyResolutionManagement {
       url = uri("https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/")
     }
   }
+  versionCatalogs {
+    // libs.versions.toml is automatically registered.
+    create("benchmarkLibs") {
+      from(files("gradle/benchmark-libs.versions.toml"))
+    }
+    create("testLibs") {
+      from(files("gradle/test-libs.versions.toml"))
+    }
+    create("lintLibs") {
+      from(files("gradle/lint-libs.versions.toml"))
+    }
+  }
 }
 
 // To build libsignal from source, set the libsignalClientPath property in gradle.properties.
@@ -91,5 +103,3 @@ project(":video").projectDir = file("video/lib")
 project(":video-app").projectDir = file("video/app")
 
 rootProject.name = "Signal"
-
-apply(from = "dependencies.gradle.kts")
