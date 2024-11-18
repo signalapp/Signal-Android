@@ -21,5 +21,11 @@ sealed interface UpdateCallLinkResult {
     val status: Short
   ) : UpdateCallLinkResult
 
-  object NotAuthorized : UpdateCallLinkResult
+  /**
+   * Occurs when a user tries to delete a call link that
+   * the call server believes is currently being utilized.
+   */
+  data object CallLinkIsInUse : UpdateCallLinkResult
+
+  data object NotAuthorized : UpdateCallLinkResult
 }

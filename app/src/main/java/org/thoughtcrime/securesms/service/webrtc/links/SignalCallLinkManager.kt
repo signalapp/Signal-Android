@@ -226,7 +226,10 @@ class SignalCallLinkManager(
         if (result.isSuccess && result.value == true) {
           emitter.onSuccess(UpdateCallLinkResult.Delete(credentials.roomId))
         } else {
-          emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
+          when (result.status) {
+            409.toShort() -> emitter.onSuccess(UpdateCallLinkResult.CallLinkIsInUse)
+            else -> emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
+          }
         }
       }
     }

@@ -148,8 +148,12 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     lifecycleDisposable += viewModel.delete().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
       when (it) {
         is UpdateCallLinkResult.Delete -> ActivityCompat.finishAfterTransition(requireActivity())
+        is UpdateCallLinkResult.CallLinkIsInUse -> {
+          Log.w(TAG, "Failed to delete in-use call link.")
+          toastCouldNotDeleteCallLink()
+        }
         else -> {
-          Log.w(TAG, "Failed to revoke. $it")
+          Log.w(TAG, "Failed to delete call link. $it")
           toastFailure()
         }
       }
@@ -187,6 +191,10 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   private fun toastFailure() {
     Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+  }
+
+  private fun toastCouldNotDeleteCallLink() {
+    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Toast.LENGTH_LONG).show()
   }
 }
 
