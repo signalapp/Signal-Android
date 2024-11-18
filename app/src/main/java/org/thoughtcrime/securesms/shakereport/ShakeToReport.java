@@ -48,26 +48,26 @@ public final class ShakeToReport implements ShakeDetector.Listener {
   }
 
   public void enable() {
-    if (!SignalStore.internal().shakeToReport()) return;
+    if (!SignalStore.internal().getShakeToReport()) return;
 
     detector.start(ServiceUtil.getSensorManager(application));
   }
 
   public void disable() {
-    if (!SignalStore.internal().shakeToReport()) return;
+    if (!SignalStore.internal().getShakeToReport()) return;
 
     detector.stop();
   }
 
   public void registerActivity(@NonNull AppCompatActivity activity) {
-    if (!SignalStore.internal().shakeToReport()) return;
+    if (!SignalStore.internal().getShakeToReport()) return;
 
     this.weakActivity = new WeakReference<>(activity);
   }
 
   @Override
   public void onShakeDetected() {
-    if (!SignalStore.internal().shakeToReport()) return;
+    if (!SignalStore.internal().getShakeToReport()) return;
 
     AppCompatActivity activity = weakActivity.get();
     if (activity == null) {

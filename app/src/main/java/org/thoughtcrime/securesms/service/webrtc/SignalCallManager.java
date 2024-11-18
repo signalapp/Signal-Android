@@ -415,7 +415,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                                    CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
                                                                                                );
 
-        callManager.peekCallLinkCall(SignalStore.internal().groupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
+        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
           if (info == null) {
             Log.w(TAG, "Failed to get peek info: " + peekInfo.getStatus());
@@ -465,7 +465,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         List<GroupCall.GroupMemberInfo> members = Stream.of(GroupManager.getUuidCipherTexts(context, groupId))
                                                         .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
                                                         .toList();
-        callManager.peekGroupCall(SignalStore.internal().groupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
+        callManager.peekGroupCall(SignalStore.internal().getGroupCallingServer(), credential.token.getBytes(Charsets.UTF_8), members, peekInfo -> {
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
           if (threadId != null) {
@@ -508,7 +508,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                               .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
                                                               .collect(Collectors.toList());
 
-        callManager.peekGroupCall(SignalStore.internal().groupCallingServer(),
+        callManager.peekGroupCall(SignalStore.internal().getGroupCallingServer(),
                                   credential.token.getBytes(Charsets.UTF_8),
                                   members,
                                   peekInfo -> receivedGroupCallPeekForRingingCheck(info, peekInfo));

@@ -111,7 +111,7 @@ class SignalCallLinkManager(
 
       // Credential
       callManager.createCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         rootKey,
         adminPassKey,
@@ -139,7 +139,7 @@ class SignalCallLinkManager(
   ): Single<ReadCallLinkResult> {
     return Single.create { emitter ->
       callManager.readCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),
         CallLinkRootKey(credentials.linkKeyBytes)
       ) {
@@ -165,7 +165,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.updateCallLinkName(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes,
@@ -192,7 +192,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.updateCallLinkRestrictions(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes,
@@ -218,7 +218,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.deleteCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes

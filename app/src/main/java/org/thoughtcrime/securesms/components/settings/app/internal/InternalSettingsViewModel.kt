@@ -115,7 +115,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   }
 
   fun setUseConversationItemV2Media(enabled: Boolean) {
-    SignalStore.internal.setUseConversationItemV2Media(enabled)
+    SignalStore.internal.useConversationItemV2Media = enabled
     refresh()
   }
 
@@ -145,25 +145,25 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
   }
 
   private fun getState() = InternalSettingsState(
-    seeMoreUserDetails = SignalStore.internal.recipientDetails(),
-    shakeToReport = SignalStore.internal.shakeToReport(),
-    gv2forceInvites = SignalStore.internal.gv2ForceInvites(),
-    gv2ignoreP2PChanges = SignalStore.internal.gv2IgnoreP2PChanges(),
-    allowCensorshipSetting = SignalStore.internal.allowChangingCensorshipSetting(),
+    seeMoreUserDetails = SignalStore.internal.recipientDetails,
+    shakeToReport = SignalStore.internal.shakeToReport,
+    gv2forceInvites = SignalStore.internal.gv2ForceInvites,
+    gv2ignoreP2PChanges = SignalStore.internal.gv2IgnoreP2PChanges,
+    allowCensorshipSetting = SignalStore.internal.allowChangingCensorshipSetting,
     forceWebsocketMode = SignalStore.internal.isWebsocketModeForced,
-    callingServer = SignalStore.internal.groupCallingServer(),
-    callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod(),
-    callingDataMode = SignalStore.internal.callingDataMode(),
-    callingDisableTelecom = SignalStore.internal.callingDisableTelecom(),
-    callingEnableOboeAdm = SignalStore.internal.callingEnableOboeAdm(),
-    useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji(),
+    callingServer = SignalStore.internal.groupCallingServer,
+    callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod,
+    callingDataMode = SignalStore.internal.callingDataMode,
+    callingDisableTelecom = SignalStore.internal.callingDisableTelecom,
+    callingEnableOboeAdm = SignalStore.internal.callingEnableOboeAdm,
+    useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji,
     emojiVersion = null,
-    removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum(),
-    delayResends = SignalStore.internal.delayResends(),
-    disableStorageService = SignalStore.internal.storageServiceDisabled(),
+    removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum,
+    delayResends = SignalStore.internal.delayResends,
+    disableStorageService = SignalStore.internal.storageServiceDisabled,
     canClearOnboardingState = SignalStore.story.hasDownloadedOnboardingStory && Stories.isFeatureEnabled(),
     pnpInitialized = SignalStore.misc.hasPniInitializedDevices,
-    useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media(),
+    useConversationItemV2ForMedia = SignalStore.internal.useConversationItemV2Media,
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
     newCallingUi = SignalStore.internal.newCallingUi

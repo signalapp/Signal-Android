@@ -15,8 +15,8 @@ object RingRtcDynamicConfiguration {
 
   @JvmStatic
   fun getAudioProcessingMethod(): AudioProcessingMethod {
-    if (SignalStore.internal.callingAudioProcessingMethod() != AudioProcessingMethod.Default) {
-      return SignalStore.internal.callingAudioProcessingMethod()
+    if (SignalStore.internal.callingAudioProcessingMethod != AudioProcessingMethod.Default) {
+      return SignalStore.internal.callingAudioProcessingMethod
     }
 
     return if (shouldUseOboeAdm()) {
@@ -57,7 +57,7 @@ object RingRtcDynamicConfiguration {
   @JvmStatic
   fun shouldUseOboeAdm(): Boolean {
     if (RemoteConfig.internalUser) {
-      return SignalStore.internal.callingEnableOboeAdm()
+      return SignalStore.internal.callingEnableOboeAdm
     }
 
     // For now, only allow the Oboe ADM to be used for custom ROMS.

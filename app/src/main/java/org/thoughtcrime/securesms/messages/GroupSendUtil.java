@@ -347,7 +347,7 @@ public final class GroupSendUtil {
       senderKeyTargets.clear();
       senderKeyTargets.addAll(registeredTargets);
       legacyTargets.clear();
-    } else if (SignalStore.internal().removeSenderKeyMinimum()) {
+    } else if (SignalStore.internal().getRemoveSenderKeyMinimum()) {
       Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
     } else if (senderKeyTargets.size() < 2) {
       Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");

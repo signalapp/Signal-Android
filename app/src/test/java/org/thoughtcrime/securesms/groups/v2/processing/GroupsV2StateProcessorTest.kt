@@ -108,7 +108,7 @@ class GroupsV2StateProcessorTest {
     }
 
     mockkObject(SignalStore)
-    every { SignalStore.internal.gv2IgnoreP2PChanges() } returns false
+    every { SignalStore.internal.gv2IgnoreP2PChanges } returns false
 
     Log.initialize(SystemOutLogger())
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())

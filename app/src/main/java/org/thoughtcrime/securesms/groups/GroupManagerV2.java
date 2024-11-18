@@ -291,7 +291,7 @@ final class GroupManagerV2 {
 
       Set<GroupCandidate> groupCandidates = groupCandidateHelper.recipientIdsToCandidates(new HashSet<>(newMembers));
 
-      if (SignalStore.internal().gv2ForceInvites()) {
+      if (SignalStore.internal().getGv2ForceInvites()) {
         groupCandidates = GroupCandidate.withoutExpiringProfileKeyCredentials(groupCandidates);
       }
 
@@ -792,7 +792,7 @@ final class GroupManagerV2 {
     GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
     Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
 
-    if (SignalStore.internal().gv2ForceInvites()) {
+    if (SignalStore.internal().getGv2ForceInvites()) {
       Log.w(TAG, "Forcing GV2 invites due to internal setting");
       candidates = GroupCandidate.withoutExpiringProfileKeyCredentials(candidates);
     }
