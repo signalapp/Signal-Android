@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
+import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import java.util.function.Supplier
@@ -225,6 +226,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi {
+    return mockk()
+  }
+
+  override fun provideStorageServiceApi(pushServiceSocket: PushServiceSocket): StorageServiceApi {
     return mockk()
   }
 }

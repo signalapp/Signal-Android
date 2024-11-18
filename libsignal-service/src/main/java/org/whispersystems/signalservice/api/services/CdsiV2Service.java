@@ -89,7 +89,7 @@ public final class CdsiV2Service {
         .map(result -> ServiceResponse.forResult(result, 200, null))
         .onErrorReturn(error -> {
           if (error instanceof NonSuccessfulResponseCodeException) {
-            int status = ((NonSuccessfulResponseCodeException) error).getCode();
+            int status = ((NonSuccessfulResponseCodeException) error).code;
             return ServiceResponse.forApplicationError(error, status, null);
           } else {
             return ServiceResponse.forUnknownError(error);

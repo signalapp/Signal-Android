@@ -1,18 +1,23 @@
 package org.whispersystems.signalservice.api.storage
 
+import okio.ByteString
+import okio.ByteString.Companion.EMPTY
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.toOptional
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest
 import java.util.Optional
 
-class SignalStorageManifest(
+data class SignalStorageManifest(
   @JvmField val version: Long,
-  @JvmField val sourceDeviceId: Int,
+  val sourceDeviceId: Int,
+  val recordIkm: RecordIkm?,
   @JvmField val storageIds: List<StorageId>
 ) {
 
   companion object {
-    val EMPTY: SignalStorageManifest = SignalStorageManifest(0, 1, emptyList())
+    val EMPTY: SignalStorageManifest = SignalStorageManifest(0, 1, null, emptyList())
 
     fun deserialize(serialized: ByteArray): SignalStorageManifest {
       val manifest = StorageManifest.ADAPTER.decode(serialized)
@@ -21,7 +26,12 @@ class SignalStorageManifest(
         StorageId.forType(id.raw.toByteArray(), id.typeValue)
       }
 
-      return SignalStorageManifest(manifest.version, manifestRecord.sourceDevice, ids)
+      return SignalStorageManifest(
+        version = manifest.version,
+        sourceDeviceId = manifestRecord.sourceDevice,
+        recordIkm = manifestRecord.recordIkm.takeIf { it.isNotEmpty() }?.toByteArray()?.let { RecordIkm(it) },
+        storageIds = ids
+      )
     }
   }
 
@@ -40,7 +50,8 @@ class SignalStorageManifest(
 
     val manifestRecord = ManifestRecord(
       identifiers = ids,
-      sourceDevice = sourceDeviceId
+      sourceDevice = sourceDeviceId,
+      recordIkm = recordIkm?.value?.toByteString() ?: ByteString.EMPTY
     )
 
     return StorageManifest(

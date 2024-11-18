@@ -94,6 +94,7 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.services.CallLinksService;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.services.ProfileService;
+import org.whispersystems.signalservice.api.storage.StorageServiceApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
@@ -244,6 +245,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
     LibSignalNetworkExtensions.applyConfiguration(network, config);
+
     return network;
   }
 
@@ -478,6 +480,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull RegistrationApi provideRegistrationApi(@NonNull PushServiceSocket pushServiceSocket) {
     return new RegistrationApi(pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull StorageServiceApi provideStorageServiceApi(@NonNull PushServiceSocket pushServiceSocket) {
+    return new StorageServiceApi(pushServiceSocket);
   }
 
   @VisibleForTesting

@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
@@ -414,7 +415,7 @@ object RegistrationRepository {
         registrationLock = registrationLock,
         unidentifiedAccessKey = unidentifiedAccessKey,
         unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
-        capabilities = AppCapabilities.getCapabilities(true),
+        capabilities = AppCapabilities.getCapabilities(true, RemoteConfig.storageServiceEncryptionV2),
         discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
         name = null,
         pniRegistrationId = registrationData.pniRegistrationId,

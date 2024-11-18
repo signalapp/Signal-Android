@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigra
 import org.thoughtcrime.securesms.jobmanager.migrations.SenderKeyDistributionSendJobRecipientMigration;
 import org.thoughtcrime.securesms.migrations.AccountConsistencyMigrationJob;
 import org.thoughtcrime.securesms.migrations.AccountRecordMigrationJob;
+import org.thoughtcrime.securesms.migrations.AepMigrationJob;
 import org.thoughtcrime.securesms.migrations.ApplyUnknownFieldsToSelfMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentCleanupMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentHashBackfillMigrationJob;
@@ -136,7 +137,6 @@ public final class JobManagerFactories {
       put(CheckRestoreMediaLeftJob.KEY,              new CheckRestoreMediaLeftJob.Factory());
       put(CheckServiceReachabilityJob.KEY,           new CheckServiceReachabilityJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
-      put(ContactLinkRebuildMigrationJob.KEY,        new ContactLinkRebuildMigrationJob.Factory());
       put(ConversationShortcutRankingUpdateJob.KEY,  new ConversationShortcutRankingUpdateJob.Factory());
       put(ConversationShortcutUpdateJob.KEY,         new ConversationShortcutUpdateJob.Factory());
       put(CopyAttachmentToArchiveJob.KEY,            new CopyAttachmentToArchiveJob.Factory());
@@ -238,6 +238,7 @@ public final class JobManagerFactories {
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory(application));
       put(SendRetryReceiptJob.KEY,                   new SendRetryReceiptJob.Factory());
       put(SendViewedReceiptJob.KEY,                  new SendViewedReceiptJob.Factory(application));
+      put(StorageRotateManifestJob.KEY,              new StorageRotateManifestJob.Factory());
       put(SyncSystemContactLinksJob.KEY,             new SyncSystemContactLinksJob.Factory());
       put(MultiDeviceStorySendSyncJob.KEY,           new MultiDeviceStorySendSyncJob.Factory());
       put(ResetSvrGuessCountJob.KEY,                 new ResetSvrGuessCountJob.Factory());
@@ -247,7 +248,6 @@ public final class JobManagerFactories {
       put(StorageAccountRestoreJob.KEY,              new StorageAccountRestoreJob.Factory());
       put(StorageForcePushJob.KEY,                   new StorageForcePushJob.Factory());
       put(StorageSyncJob.KEY,                        new StorageSyncJob.Factory());
-      put(SubscriberIdMigrationJob.KEY,              new SubscriberIdMigrationJob.Factory());
       put(StoryOnboardingDownloadJob.KEY,            new StoryOnboardingDownloadJob.Factory());
       put(SubmitRateLimitPushChallengeJob.KEY,       new SubmitRateLimitPushChallengeJob.Factory());
       put(Svr2MirrorJob.KEY,                         new Svr2MirrorJob.Factory());
@@ -261,6 +261,7 @@ public final class JobManagerFactories {
       // Migrations
       put(AccountConsistencyMigrationJob.KEY,           new AccountConsistencyMigrationJob.Factory());
       put(AccountRecordMigrationJob.KEY,                new AccountRecordMigrationJob.Factory());
+      put(AepMigrationJob.KEY,                          new AepMigrationJob.Factory());
       put(ApplyUnknownFieldsToSelfMigrationJob.KEY,     new ApplyUnknownFieldsToSelfMigrationJob.Factory());
       put(AttachmentCleanupMigrationJob.KEY,            new AttachmentCleanupMigrationJob.Factory());
       put(AttachmentHashBackfillMigrationJob.KEY,       new AttachmentHashBackfillMigrationJob.Factory());
@@ -275,6 +276,7 @@ public final class JobManagerFactories {
       put(BlobStorageLocationMigrationJob.KEY,          new BlobStorageLocationMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,            new CachedAttachmentsMigrationJob.Factory());
       put(ClearGlideCacheMigrationJob.KEY,              new ClearGlideCacheMigrationJob.Factory());
+      put(ContactLinkRebuildMigrationJob.KEY,        new ContactLinkRebuildMigrationJob.Factory());
       put(CopyUsernameToSignalStoreMigrationJob.KEY,    new CopyUsernameToSignalStoreMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                     new DatabaseMigrationJob.Factory());
       put(DeleteDeprecatedLogsMigrationJob.KEY,         new DeleteDeprecatedLogsMigrationJob.Factory());
@@ -306,6 +308,7 @@ public final class JobManagerFactories {
       put(StorageServiceMigrationJob.KEY,               new StorageServiceMigrationJob.Factory());
       put(StorageServiceSystemNameMigrationJob.KEY,     new StorageServiceSystemNameMigrationJob.Factory());
       put(StoryViewedReceiptsStateMigrationJob.KEY,     new StoryViewedReceiptsStateMigrationJob.Factory());
+      put(SubscriberIdMigrationJob.KEY,              new SubscriberIdMigrationJob.Factory());
       put(Svr2MirrorMigrationJob.KEY,                   new Svr2MirrorMigrationJob.Factory());
       put(SyncCallLinksMigrationJob.KEY,                new SyncCallLinksMigrationJob.Factory());
       put(SyncDistributionListsMigrationJob.KEY,        new SyncDistributionListsMigrationJob.Factory());

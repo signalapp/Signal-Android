@@ -198,13 +198,17 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean versionedExpirationTimer;
 
+    @JsonProperty("ssre2")
+    private boolean storageServiceEncryptionV2;
+
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean deleteSync, boolean versionedExpirationTimer) {
-      this.storage                  = storage;
-      this.deleteSync               = deleteSync;
-      this.versionedExpirationTimer = versionedExpirationTimer;
+    public Capabilities(boolean storage, boolean deleteSync, boolean versionedExpirationTimer, boolean storageServiceEncryptionV2) {
+      this.storage                    = storage;
+      this.deleteSync                 = deleteSync;
+      this.versionedExpirationTimer   = versionedExpirationTimer;
+      this.storageServiceEncryptionV2 = storageServiceEncryptionV2;
     }
 
     public boolean isStorage() {
@@ -217,6 +221,10 @@ public class SignalServiceProfile {
 
     public boolean isVersionedExpirationTimer() {
       return versionedExpirationTimer;
+    }
+
+    public boolean isStorageServiceEncryptionV2() {
+      return storageServiceEncryptionV2;
     }
   }
 

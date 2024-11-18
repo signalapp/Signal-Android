@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.AccountRecordProcessor
 import org.thoughtcrime.securesms.storage.CallLinkRecordProcessor
@@ -37,6 +38,9 @@ import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.StorageKey
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository.ManifestIfDifferentVersionResult
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
@@ -163,8 +167,20 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       return
     }
 
+    val (storageServiceKey, usingTempKey) = SignalStore.storageService.storageKeyForInitialDataRestore?.let {
+      Log.i(TAG, "Using temporary storage key.")
+      it to true
+    } ?: run {
+      SignalStore.storageService.storageKey to false
+    }
+
     try {
-      val needsMultiDeviceSync = performSync()
+      val needsMultiDeviceSync = performSync(storageServiceKey)
+
+      if (usingTempKey) {
+        Log.i(TAG, "Used a temp key. Scheduling a job to rotate the manifest.")
+        AppDependencies.jobManager.add(StorageRotateManifestJob())
+      }
 
       if (SignalStore.account.hasLinkedDevices && needsMultiDeviceSync) {
         AppDependencies.jobManager.add(MultiDeviceStorageSyncRequestJob())
@@ -196,15 +212,19 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
   }
 
   @Throws(IOException::class, RetryLaterException::class, InvalidKeyException::class)
-  private fun performSync(): Boolean {
+  private fun performSync(storageServiceKey: StorageKey): Boolean {
     val stopwatch = Stopwatch("StorageSync")
     val db = SignalDatabase.rawDatabase
-    val accountManager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService.storageKey
+    val repository = StorageServiceRepository(SignalNetwork.storageService)
 
     val localManifest = SignalStore.storageService.manifest
-    val remoteManifest = accountManager.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version).orElse(localManifest)
-
+    val remoteManifest = when (val result = repository.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version)) {
+      is ManifestIfDifferentVersionResult.DifferentVersion -> result.manifest
+      ManifestIfDifferentVersionResult.SameVersion -> localManifest
+      is ManifestIfDifferentVersionResult.DecryptionError -> throw result.exception
+      is ManifestIfDifferentVersionResult.NetworkError -> throw result.exception
+      is ManifestIfDifferentVersionResult.StatusCodeError -> throw result.exception
+    }
     stopwatch.split("remote-manifest")
 
     var self = freshSelf()
@@ -248,7 +268,12 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       if (!idDifference.isEmpty) {
         Log.i(TAG, "[Remote Sync] Retrieving records for key difference.")
 
-        val remoteOnlyRecords = accountManager.readStorageRecords(storageServiceKey, idDifference.remoteOnlyIds)
+        val remoteOnlyRecords = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, idDifference.remoteOnlyIds)) {
+          is StorageServiceRepository.StorageRecordResult.Success -> result.records
+          is StorageServiceRepository.StorageRecordResult.DecryptionError -> throw result.exception
+          is StorageServiceRepository.StorageRecordResult.NetworkError -> throw result.exception
+          is StorageServiceRepository.StorageRecordResult.StatusCodeError -> throw result.exception
+        }
 
         stopwatch.split("remote-records")
 
@@ -292,6 +317,12 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
     Log.i(TAG, "We are up-to-date with the remote storage state.")
 
+    if (remoteManifest.recordIkm == null && Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
+      Log.w(TAG, "The SSRE2 capability is supported, but no recordIkm is set! Force pushing.")
+      AppDependencies.jobManager.add(StorageForcePushJob())
+      return false
+    }
+
     val remoteWriteOperation: WriteOperationResult = db.withinTransaction {
       self = freshSelf()
 
@@ -308,9 +339,14 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       Log.i(TAG, "ID Difference :: $idDifference")
 
       WriteOperationResult(
-        SignalStorageManifest(remoteManifest.version + 1, SignalStore.account.deviceId, localStorageIds),
-        remoteInserts,
-        remoteDeletes
+        manifest = SignalStorageManifest(
+          version = remoteManifest.version + 1,
+          sourceDeviceId = SignalStore.account.deviceId,
+          recordIkm = remoteManifest.recordIkm,
+          storageIds = localStorageIds
+        ),
+        inserts = remoteInserts,
+        deletes = remoteDeletes
       )
     }
     stopwatch.split("local-data-transaction")
@@ -321,15 +357,19 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
       StorageSyncValidations.validate(remoteWriteOperation, remoteManifest, needsForcePush, self)
 
-      val conflict = accountManager.writeStorageRecords(storageServiceKey, remoteWriteOperation.manifest, remoteWriteOperation.inserts, remoteWriteOperation.deletes)
-
-      if (conflict.isPresent) {
-        Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.")
-        throw RetryLaterException()
+      when (val result = repository.writeStorageRecords(storageServiceKey, remoteWriteOperation.manifest, remoteWriteOperation.inserts, remoteWriteOperation.deletes)) {
+        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
+          Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.")
+          throw RetryLaterException()
+        }
       }
 
       Log.i(TAG, "Saved new manifest. Now at version: ${remoteWriteOperation.manifest.versionString}")
       SignalStore.storageService.manifest = remoteWriteOperation.manifest
+      SignalStore.storageService.storageKeyForInitialDataRestore = null
 
       stopwatch.split("remote-write")
 
@@ -344,7 +384,12 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     if (knownUnknownIds.isNotEmpty()) {
       Log.i(TAG, "We have ${knownUnknownIds.size} unknown records that we can now process.")
 
-      val remote = accountManager.readStorageRecords(storageServiceKey, knownUnknownIds)
+      val remote = when (val result = repository.readStorageRecords(storageServiceKey, remoteManifest.recordIkm, knownUnknownIds)) {
+        is StorageServiceRepository.StorageRecordResult.Success -> result.records
+        is StorageServiceRepository.StorageRecordResult.DecryptionError -> throw result.exception
+        is StorageServiceRepository.StorageRecordResult.NetworkError -> throw result.exception
+        is StorageServiceRepository.StorageRecordResult.StatusCodeError -> throw result.exception
+      }
       val records = StorageRecordCollection(remote)
 
       Log.i(TAG, "Found ${remote.size} of the known-unknowns remotely.")

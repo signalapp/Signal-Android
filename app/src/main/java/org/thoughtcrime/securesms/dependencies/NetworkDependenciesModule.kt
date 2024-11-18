@@ -37,6 +37,7 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
+import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
@@ -146,6 +147,10 @@ class NetworkDependenciesModule(
 
   val registrationApi: RegistrationApi by lazy {
     provider.provideRegistrationApi(pushServiceSocket)
+  }
+
+  val storageServiceApi: StorageServiceApi by lazy {
+    provider.provideStorageServiceApi(pushServiceSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

@@ -46,7 +46,7 @@ public final class MasterKey {
     return derive("Logging Key");
   }
 
-  public MessageBackupKey derivateMessageBackupKey() {
+  public MessageBackupKey deriveMessageBackupKey() {
     // TODO [backup] Derive from AEP
     return new MessageBackupKey(HKDF.deriveSecrets(masterKey, "20231003_Signal_Backups_GenerateBackupKey".getBytes(), 32));
   }

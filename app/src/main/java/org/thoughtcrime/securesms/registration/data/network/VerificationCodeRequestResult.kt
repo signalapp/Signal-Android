@@ -81,13 +81,13 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     }
 
     private fun createChallengeRequiredProcessor(errorResult: NetworkResult.StatusCodeError<RegistrationSessionMetadataResponse>): VerificationCodeRequestResult {
-      if (errorResult.body == null) {
+      if (errorResult.stringBody == null) {
         Log.w(TAG, "Attempted to parse error body with response code ${errorResult.code} for list of requested information, but body was null.")
         return UnknownError(errorResult.exception)
       }
 
       try {
-        val response = JsonUtil.fromJson(errorResult.body, RegistrationSessionMetadataJson::class.java)
+        val response = JsonUtil.fromJson(errorResult.stringBody, RegistrationSessionMetadataJson::class.java)
         return ChallengeRequired(Challenge.parse(response.requestedInformation))
       } catch (parseException: IOException) {
         Log.w(TAG, "Attempted to parse error body for list of requested information, but encountered exception.", parseException)

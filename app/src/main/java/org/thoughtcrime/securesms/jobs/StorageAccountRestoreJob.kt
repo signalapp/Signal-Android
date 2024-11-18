@@ -6,12 +6,16 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.reclaimUsernameIfNecessary
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
+import org.whispersystems.signalservice.api.storage.SignalStorageRecord
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository.ManifestResult
 import java.util.concurrent.TimeUnit
 
 /**
@@ -43,13 +47,26 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
 
   @Throws(Exception::class)
   override fun onRun() {
-    val accountManager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService.storageKey
+    val storageServiceKey = SignalStore.storageService.storageKeyForInitialDataRestore?.let {
+      Log.i(TAG, "Using temporary storage key.")
+      it
+    } ?: run {
+      Log.i(TAG, "Using normal storage key.")
+      SignalStore.storageService.storageKey
+    }
+
+    val repository = StorageServiceRepository(SignalNetwork.storageService)
 
     Log.i(TAG, "Retrieving manifest...")
-    val manifest = accountManager.getStorageManifest(storageServiceKey)
+    val manifest: SignalStorageManifest? = when (val result = repository.getStorageManifest(storageServiceKey)) {
+      is ManifestResult.Success -> result.manifest
+      is ManifestResult.DecryptionError -> null
+      is ManifestResult.NotFoundError -> null
+      is ManifestResult.NetworkError -> throw result.exception
+      is ManifestResult.StatusCodeError -> throw result.exception
+    }
 
-    if (!manifest.isPresent) {
+    if (manifest == null) {
       Log.w(TAG, "Manifest did not exist or was undecryptable (bad key). Not restoring. Force-pushing.")
       AppDependencies.jobManager.add(StorageForcePushJob())
       return
@@ -58,7 +75,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     Log.i(TAG, "Resetting the local manifest to an empty state so that it will sync later.")
     SignalStore.storageService.manifest = SignalStorageManifest.EMPTY
 
-    val accountId = manifest.get().accountStorageId
+    val accountId = manifest.accountStorageId
 
     if (!accountId.isPresent) {
       Log.w(TAG, "Manifest had no account record! Not restoring.")
@@ -66,8 +83,18 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.i(TAG, "Retrieving account record...")
-    val records = accountManager.readStorageRecords(storageServiceKey, listOf(accountId.get()))
-    val record = if (records.size > 0) records[0] else null
+    val records: List<SignalStorageRecord> = when (val result = repository.readStorageRecords(storageServiceKey, manifest.recordIkm, listOf(accountId.get()))) {
+      is StorageServiceRepository.StorageRecordResult.Success -> result.records
+      is StorageServiceRepository.StorageRecordResult.DecryptionError -> {
+        Log.w(TAG, "Account record was undecryptable. Not restoring. Force-pushing.")
+        AppDependencies.jobManager.add(StorageForcePushJob())
+        return
+      }
+      is StorageServiceRepository.StorageRecordResult.NetworkError -> throw result.exception
+      is StorageServiceRepository.StorageRecordResult.StatusCodeError -> throw result.exception
+    }
+
+    val record = if (records.isNotEmpty()) records[0] else null
 
     if (record == null) {
       Log.w(TAG, "Could not find account record, even though we had an ID! Not restoring.")

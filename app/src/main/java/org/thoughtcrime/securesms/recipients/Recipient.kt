@@ -321,6 +321,9 @@ class Recipient(
   /** The user's capability to handle tracking an expire timer version. */
   val versionedExpirationTimerCapability: Capability = capabilities.versionedExpirationTimer
 
+  /** The user's capability to handle the new storage record encryption scheme. */
+  val storageServiceEncryptionV2Capability: Capability = capabilities.storageServiceEncryptionV2
+
   /** The state around whether we can send sealed sender to this user. */
   val sealedSenderAccessMode: SealedSenderAccessMode = if (pni.isPresent && pni == serviceId) {
     SealedSenderAccessMode.DISABLED

@@ -13,7 +13,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
 import java.io.IOException
-import java.util.Optional
 
 class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : BaseJob(parameters) {
 
@@ -54,8 +53,10 @@ class MultiDeviceKeysUpdateJob private constructor(parameters: Parameters) : Bas
 
     val syncMessage = SignalServiceSyncMessage.forKeys(
       KeysMessage(
-        Optional.of(SignalStore.storageService.storageKey),
-        Optional.of(SignalStore.svr.masterKey)
+        storageService = SignalStore.storageService.storageKey,
+        master = SignalStore.svr.masterKey,
+        accountEntropyPool = SignalStore.account.accountEntropyPool,
+        mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
       )
     )
 

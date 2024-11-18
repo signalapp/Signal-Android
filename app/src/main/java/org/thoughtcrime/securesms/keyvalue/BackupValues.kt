@@ -101,7 +101,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * Key used to backup messages.
    */
   val messageBackupKey: MessageBackupKey
-    get() = SignalStore.svr.masterKey.derivateMessageBackupKey()
+    get() = SignalStore.account.accountEntropyPool.deriveMessageBackupKey()
 
   /**
    * Key used to backup media. Purely random and separate from the message backup key.

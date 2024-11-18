@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
@@ -30,6 +31,9 @@ import org.whispersystems.signalservice.api.push.UsernameLinkComponents
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.security.SecureRandom
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
+import org.signal.libsignal.messagebackup.AccountEntropyPool as LibSignalAccountEntropyPool
 
 class AccountValues internal constructor(store: KeyValueStore, context: Context) : SignalStoreValues(store) {
 
@@ -79,6 +83,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_IS_REGISTERED = "account.is_registered"
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
+
+    private const val KEY_ACCOUNT_ENTROPY_POOL = "account.account_entropy_pool"
+
+    private val AEP_LOCK = ReentrantLock()
   }
 
   init {
@@ -111,8 +119,35 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       KEY_PNI_IDENTITY_PRIVATE_KEY,
       KEY_USERNAME,
       KEY_USERNAME_LINK_ENTROPY,
-      KEY_USERNAME_LINK_SERVER_ID
+      KEY_USERNAME_LINK_SERVER_ID,
+      KEY_ACCOUNT_ENTROPY_POOL
     )
+  }
+
+  val accountEntropyPool: AccountEntropyPool
+    get() {
+      AEP_LOCK.withLock {
+        getString(KEY_ACCOUNT_ENTROPY_POOL, null)?.let {
+          return AccountEntropyPool(it)
+        }
+
+        Log.i(TAG, "Generating Account Entropy Pool (AEP)...")
+        val newAep = LibSignalAccountEntropyPool.generate()
+        putString(KEY_ACCOUNT_ENTROPY_POOL, newAep)
+        return AccountEntropyPool(newAep)
+      }
+    }
+
+  fun restoreAccountEntropyPool(aep: AccountEntropyPool) {
+    AEP_LOCK.withLock {
+      store.beginWrite().putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value).commit()
+    }
+  }
+
+  fun resetAccountEntropyPool() {
+    AEP_LOCK.withLock {
+      store.beginWrite().putString(KEY_ACCOUNT_ENTROPY_POOL, null).commit()
+    }
   }
 
   /** The local user's [ACI]. */

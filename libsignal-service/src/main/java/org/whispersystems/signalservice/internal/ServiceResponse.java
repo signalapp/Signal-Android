@@ -120,7 +120,7 @@ public final class ServiceResponse<Result> {
     if (throwable instanceof ExecutionException) {
       return forUnknownError(throwable.getCause());
     } else if (throwable instanceof NonSuccessfulResponseCodeException) {
-      return forApplicationError(throwable, ((NonSuccessfulResponseCodeException) throwable).getCode(), null);
+      return forApplicationError(throwable, ((NonSuccessfulResponseCodeException) throwable).code, null);
     } else if (throwable instanceof PushNetworkException && throwable.getCause() != null) {
       return forUnknownError(throwable.getCause());
     } else {

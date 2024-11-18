@@ -1657,16 +1657,20 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
 
-    if (keysMessage.getStorageService().isPresent()) {
-      builder.storageService(ByteString.of(keysMessage.getStorageService().get().serialize()));
+    if (keysMessage.getStorageService() != null) {
+      builder.storageService(ByteString.of(keysMessage.getStorageService().serialize()));
     }
 
-    if (keysMessage.getMaster().isPresent()) {
-      builder.master(ByteString.of(keysMessage.getMaster().get().serialize()));
+    if (keysMessage.getMaster() != null) {
+      builder.master(ByteString.of(keysMessage.getMaster().serialize()));
     }
 
-    if (builder.storageService == null && builder.master == null) {
-      Log.w(TAG, "Invalid keys message!");
+    if (keysMessage.getAccountEntropyPool() != null) {
+      builder.accountEntropyPool(keysMessage.getAccountEntropyPool().getValue());
+    }
+
+    if (keysMessage.getMediaRootBackupKey() != null) {
+      builder.mediaRootBackupKey(ByteString.of(keysMessage.getMediaRootBackupKey().getValue()));
     }
 
     return container.syncMessage(syncMessage.keys(builder.build()).build()).build();
@@ -2689,7 +2693,7 @@ public class SignalServiceMessageSender {
 
       return socket.getPreKeys(recipient, sealedSenderAccess, deviceId);
     } catch (NonSuccessfulResponseCodeException e) {
-      if (e.getCode() == 401 && story) {
+      if (e.code == 401 && story) {
         Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
         return socket.getPreKeys(recipient, null, deviceId);
       } else {

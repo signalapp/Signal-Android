@@ -168,7 +168,8 @@ object SvrRepository {
               SignalStore.registration.localRegistrationMetadata = metadata.copy(masterKey = response.masterKey.serialize().toByteString(), pin = userPin)
             }
 
-            SignalStore.svr.setMasterKey(response.masterKey, userPin)
+            SignalStore.storageService.storageKeyForInitialDataRestore = response.masterKey.deriveStorageServiceKey()
+            SignalStore.svr.setPin(userPin)
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
             SignalStore.pin.keyboardType = pinKeyboardType
@@ -267,7 +268,7 @@ object SvrRepository {
       if (overallResponse is BackupResponse.Success) {
         Log.i(TAG, "[setPin] Success!", true)
 
-        SignalStore.svr.setMasterKey(masterKey, userPin)
+        SignalStore.svr.setPin(userPin)
         responses
           .filterIsInstance<BackupResponse.Success>()
           .forEach {
@@ -320,13 +321,14 @@ object SvrRepository {
           Log.i(TAG, "[onRegistrationComplete] ReRegistration Skip SMS", true)
         }
 
-        SignalStore.svr.setMasterKey(masterKey, userPin)
+        SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
+        SignalStore.svr.setPin(userPin)
         SignalStore.pin.resetPinReminders()
 
         AppDependencies.jobManager.add(ResetSvrGuessCountJob())
       } else if (masterKey != null) {
         Log.i(TAG, "[onRegistrationComplete] ReRegistered with key without pin")
-        SignalStore.svr.setMasterKey(masterKey, null)
+        SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
         SignalStore.svr.clearRegistrationLockAndPin()

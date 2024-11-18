@@ -31,7 +31,7 @@ class NetworkResultTest {
     check(result is NetworkResult.StatusCodeError)
     assertEquals(exception, result.exception)
     assertEquals(404, result.code)
-    assertEquals("body", result.body)
+    assertEquals("body", result.stringBody)
   }
 
   @Test

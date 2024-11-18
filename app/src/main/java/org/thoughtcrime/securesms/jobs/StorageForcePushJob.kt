@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.InvalidKeyException
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -13,10 +12,13 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncValidations
 import org.thoughtcrime.securesms.transport.RetryLaterException
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
+import org.whispersystems.signalservice.api.storage.RecordIkm
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 import java.io.IOException
 import java.util.Collections
 import java.util.concurrent.TimeUnit
@@ -62,9 +64,14 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     }
 
     val storageServiceKey = SignalStore.storageService.storageKey
-    val accountManager = AppDependencies.signalServiceAccountManager
+    val repository = StorageServiceRepository(AppDependencies.storageServiceApi)
 
-    val currentVersion = accountManager.storageManifestVersion
+    val currentVersion = when (val result = repository.getManifestVersion()) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.ApplicationError -> throw result.throwable
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.StatusCodeError -> throw result.exception
+    }
     val oldContactStorageIds: Map<RecipientId, StorageId> = SignalDatabase.recipients.getContactStorageSyncIdsMap()
 
     val newVersion = currentVersion + 1
@@ -80,30 +87,44 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.add(accountRecord)
     allNewStorageIds.add(accountRecord.id)
 
-    val manifest = SignalStorageManifest(newVersion, SignalStore.account.deviceId, allNewStorageIds)
+    val recordIkm: RecordIkm? = if (Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
+      Log.i(TAG, "Generating and including a new recordIkm.")
+      RecordIkm.generate()
+    } else {
+      Log.i(TAG, "SSRE2 not yet supported. Not including recordIkm.")
+      null
+    }
+
+    val manifest = SignalStorageManifest(newVersion, SignalStore.account.deviceId, recordIkm, allNewStorageIds)
     StorageSyncValidations.validateForcePush(manifest, inserts, Recipient.self().fresh())
 
-    try {
-      if (newVersion > 1) {
-        Log.i(TAG, "Force-pushing data. Inserting ${inserts.size} IDs.")
-        if (accountManager.resetStorageRecords(storageServiceKey, manifest, inserts).isPresent) {
-          Log.w(TAG, "Hit a conflict. Trying again.")
-          throw RetryLaterException()
-        }
-      } else {
-        Log.i(TAG, "First version, normal push. Inserting ${inserts.size} IDs.")
-        if (accountManager.writeStorageRecords(storageServiceKey, manifest, inserts, emptyList()).isPresent) {
+    if (newVersion > 1) {
+      Log.i(TAG, "Force-pushing data. Inserting ${inserts.size} IDs.")
+      when (val result = repository.resetAndWriteStorageRecords(storageServiceKey, manifest, inserts)) {
+        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
           Log.w(TAG, "Hit a conflict. Trying again.")
           throw RetryLaterException()
         }
       }
-    } catch (e: InvalidKeyException) {
-      Log.w(TAG, "Hit an invalid key exception, which likely indicates a conflict.")
-      throw RetryLaterException(e)
+    } else {
+      Log.i(TAG, "First version, normal push. Inserting ${inserts.size} IDs.")
+      when (val result = repository.writeStorageRecords(storageServiceKey, manifest, inserts, emptyList())) {
+        StorageServiceRepository.WriteStorageRecordsResult.Success -> Unit
+        is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> throw result.exception
+        is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
+        is StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
+          Log.w(TAG, "Hit a conflict. Trying again.")
+          throw RetryLaterException()
+        }
+      }
     }
 
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: $newVersion")
     SignalStore.storageService.manifest = manifest
+    SignalStore.storageService.storageKeyForInitialDataRestore = null
     SignalDatabase.recipients.applyStorageIdUpdates(newContactStorageIds)
     SignalDatabase.recipients.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().id, accountRecord.id))
     SignalDatabase.unknownStorageIds.deleteAll()

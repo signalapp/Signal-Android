@@ -6,4 +6,8 @@ sealed class PluginResult(val type: String) {
     val rows: List<List<String>>,
     val rowCount: Int = rows.size
   ) : PluginResult("table")
+
+  data class StringResult(
+    val text: String
+  ) : PluginResult("string")
 }

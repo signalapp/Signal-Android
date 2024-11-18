@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
@@ -274,7 +275,8 @@ object RegistrationRepository {
     withContext(Dispatchers.IO) {
       val credentialSet = SvrAuthCredentialSet(svr2Credentials = svr2Credentials, svr3Credentials = svr3Credentials)
       val masterKey = SvrRepository.restoreMasterKeyPreRegistration(credentialSet, pin)
-      SignalStore.svr.setMasterKey(masterKey, pin)
+      SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
+      SignalStore.svr.setPin(pin)
       return@withContext masterKey
     }
 
@@ -420,7 +422,7 @@ object RegistrationRepository {
         registrationLock = registrationLock,
         unidentifiedAccessKey = unidentifiedAccessKey,
         unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
-        capabilities = AppCapabilities.getCapabilities(true),
+        capabilities = AppCapabilities.getCapabilities(true, RemoteConfig.storageServiceEncryptionV2),
         discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
         name = null,
         pniRegistrationId = registrationData.pniRegistrationId,

@@ -20,8 +20,8 @@ class StorageKey(val key: ByteArray) {
     return StorageManifestKey(derive("Manifest_$version"))
   }
 
-  fun deriveItemKey(key: ByteArray): StorageItemKey {
-    return StorageItemKey(derive("Item_" + encodeWithPadding(key)))
+  fun deriveItemKey(rawId: ByteArray): StorageItemKey {
+    return StorageItemKey(derive("Item_" + encodeWithPadding(rawId)))
   }
 
   private fun derive(keyName: String): ByteArray {

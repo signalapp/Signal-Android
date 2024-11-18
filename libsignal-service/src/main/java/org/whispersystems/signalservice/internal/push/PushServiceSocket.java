@@ -347,10 +347,11 @@ public class PushServiceSocket {
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
-  private static final Map<String, String> NO_HEADERS            = Collections.emptyMap();
-  private static final ResponseCodeHandler NO_HANDLER            = new EmptyResponseCodeHandler();
-  private static final ResponseCodeHandler UNOPINIONATED_HANDLER = new UnopinionatedResponseCodeHandler();
-  private static final ResponseCodeHandler LONG_POLL_HANDLER     = new LongPollingResponseCodeHandler();
+  private static final Map<String, String> NO_HEADERS                         = Collections.emptyMap();
+  private static final ResponseCodeHandler NO_HANDLER                         = new EmptyResponseCodeHandler();
+  private static final ResponseCodeHandler LONG_POLL_HANDLER                  = new LongPollingResponseCodeHandler();
+  private static final ResponseCodeHandler UNOPINIONATED_HANDLER              = new UnopinionatedResponseCodeHandler();
+  private static final ResponseCodeHandler UNOPINIONATED_BINARY_ERROR_HANDLER = new UnopinionatedBinaryErrorResponseCodeHandler();
 
   public static final long CDN2_RESUMABLE_LINK_LIFETIME_MILLIS = TimeUnit.DAYS.toMillis(7);
 
@@ -1608,6 +1609,10 @@ public class PushServiceSocket {
     }
   }
 
+  public void writeStorageItems(String authToken, WriteOperation writeOperation) throws IOException {
+    makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation), UNOPINIONATED_BINARY_ERROR_HANDLER);
+  }
+
   public void pingStorageService() throws IOException {
     try (Response response = makeStorageRequest(null, "/ping", "GET", null, NO_HANDLER)) {
       return;
@@ -2863,6 +2868,24 @@ public class PushServiceSocket {
     }
   }
 
+  /**
+   * A {@link ResponseCodeHandler} that only throws {@link NonSuccessfulResponseCodeException} with the response body.
+   * Any further processing is left to the caller.
+   */
+  private static class UnopinionatedBinaryErrorResponseCodeHandler implements ResponseCodeHandler {
+    @Override
+    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+      if (responseCode < 200 || responseCode > 299) {
+        byte[] bodyBytes = null;
+        if (body != null) {
+          bodyBytes = readBodyBytes(body);
+        }
+
+        throw new NonSuccessfulResponseCodeException(responseCode, "Response: " + responseCode, bodyBytes);
+      }
+    }
+  }
+
   public enum ClientSet { KeyBackup }
 
   public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
@@ -2881,16 +2904,19 @@ public class PushServiceSocket {
 
   private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body) -> {
     if (responseCode == 409) throw new GroupExistsException();
-  };;
+  };
+
   private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body) -> {
     switch (responseCode) {
       case 403: throw new NotInGroupException();
       case 404: throw new GroupNotFoundException();
     }
   };
+
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body) -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
+
   private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = new ResponseCodeHandler() {
     @Override
     public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException {
