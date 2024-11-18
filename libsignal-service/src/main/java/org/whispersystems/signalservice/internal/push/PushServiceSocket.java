@@ -563,6 +563,15 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, ArchiveGetBackupInfoResponse.class);
   }
 
+  /**
+   * POST credential presentation to the server to keep backup alive.
+   */
+  public void refreshBackup(ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "POST", null, headers, NO_HANDLER);
+  }
+
   public List<ArchiveGetMediaItemsResponse.StoredMediaObject> debugGetAllArchiveMediaItems(ArchiveCredentialPresentation credentialPresentation) throws IOException {
     List<ArchiveGetMediaItemsResponse.StoredMediaObject> mediaObjects = new ArrayList<>();
 

@@ -258,6 +258,7 @@ class InAppPaymentRedemptionJob private constructor(
     if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
       Log.i(TAG, "Setting backup tier to PAID", true)
       SignalStore.backup.backupTier = MessageBackupTier.PAID
+      SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     }
   }
 

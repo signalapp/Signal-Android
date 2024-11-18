@@ -35,6 +35,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
+    private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -93,6 +94,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
 
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
+
+  var lastCheckInMillis: Long by longValue(KEY_LAST_CHECK_IN_MILLIS, 0L)
 
   /**
    * Key used to backup messages.

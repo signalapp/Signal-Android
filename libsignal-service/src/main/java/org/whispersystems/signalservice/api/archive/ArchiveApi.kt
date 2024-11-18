@@ -151,6 +151,18 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   }
 
   /**
+   * Backup keep-alive that informs the server that the backup is still in use. If a backup is not refreshed, it may be deleted
+   * after 30 days.
+   */
+  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
+      pushServiceSocket.refreshBackup(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
+  /**
    * Lists the media objects in the backup
    */
   fun listMediaObjects(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {

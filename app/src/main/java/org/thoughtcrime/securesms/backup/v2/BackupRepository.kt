@@ -133,6 +133,19 @@ object BackupRepository {
   }
 
   /**
+   * Refreshes backup via server
+   */
+  fun refreshBackup(): NetworkResult<Unit> {
+    return initBackupAndFetchAuth()
+      .then { accessPair ->
+        AppDependencies.archiveApi.refreshBackup(
+          aci = SignalStore.account.requireAci(),
+          archiveServiceAccess = accessPair.messageBackupAccess
+        )
+      }
+  }
+
+  /**
    * Gets the free storage space in the device's data partition.
    */
   fun getFreeStorageSpace(): ByteSize {
