@@ -157,7 +157,7 @@ object BackupRepository {
 
   /**
    * Checks whether or not we do not have enough storage space for our remaining attachments to be downloaded.
-   * Called from the attachment / thumbnail download jobs.
+   * Caller from the attachment / thumbnail download jobs.
    */
   fun checkForOutOfStorageError(tag: String): Boolean {
     val availableSpace = getFreeStorageSpace()

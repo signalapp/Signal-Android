@@ -178,6 +178,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Storage Service Playground"),
+        summary = DSLSettingsText.from("Test and view storage service stuff."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
+        }
+      )
+
       switchPref(
         title = DSLSettingsText.from("'Internal Details' button"),
         summary = DSLSettingsText.from("Show a button in conversation settings that lets you see more information about a user."),

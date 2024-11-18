@@ -151,6 +151,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   var webSocketShadowingStats by nullableBlobValue(WEB_SOCKET_SHADOWING_STATS, null).defaultForExternalUsers()
 
+  var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
+
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {
     return this.withPrecondition { RemoteConfig.internalUser }
   }

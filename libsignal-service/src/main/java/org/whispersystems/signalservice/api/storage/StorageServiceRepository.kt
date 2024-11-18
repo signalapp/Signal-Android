@@ -189,7 +189,8 @@ class StorageServiceRepository(private val storageServiceApi: StorageServiceApi)
     val manifestRecord = ManifestRecord(
       sourceDevice = signalManifest.sourceDeviceId,
       version = signalManifest.version,
-      identifiers = manifestIds
+      identifiers = manifestIds,
+      recordIkm = signalManifest.recordIkm?.value?.toByteString() ?: ByteString.EMPTY
     )
 
     val manifestKey = storageKey.deriveManifestKey(signalManifest.version)

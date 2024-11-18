@@ -8,7 +8,7 @@ import kotlin.reflect.full.memberProperties
 /**
  * Pairs a storage record with its id. Also contains some useful common methods.
  */
-interface SignalRecord<E> {
+sealed interface SignalRecord<E> {
   val id: StorageId
   val proto: E
 

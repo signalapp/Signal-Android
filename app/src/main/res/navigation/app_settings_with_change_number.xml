@@ -748,6 +748,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalBackupPlaygroundFragment"
             app:destination="@id/internalBackupPlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalStorageServicePlaygroundFragment"
+            app:destination="@id/internalStorageServicePlaygroundFragment" />
     </fragment>
 
     <fragment
@@ -799,6 +802,11 @@
         android:id="@+id/internalBackupPlaygroundFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundFragment"
         android:label="internal_backup_playground_fragment" />
+
+    <fragment
+        android:id="@+id/internalStorageServicePlaygroundFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundFragment"
+        android:label="internal_storage_service_playground_fragment" />
 
     <!-- endregion -->
 
