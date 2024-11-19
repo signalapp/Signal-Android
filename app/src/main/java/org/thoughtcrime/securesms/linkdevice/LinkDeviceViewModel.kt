@@ -116,7 +116,7 @@ class LinkDeviceViewModel : ViewModel() {
     if (LinkDeviceRepository.isValidQr(uri)) {
       _state.update {
         it.copy(
-          qrCodeState = QrCodeState.VALID,
+          qrCodeState = if (uri.supportsLinkAndSync() && RemoteConfig.linkAndSync) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
           linkUri = uri,
           showFrontCamera = null
         )
@@ -140,7 +140,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun addDevice() = viewModelScope.launch(Dispatchers.IO) {
+  fun addDevice(shouldSync: Boolean) = viewModelScope.launch(Dispatchers.IO) {
     val linkUri: Uri = _state.value.linkUri!!
 
     _state.update {
@@ -151,11 +151,11 @@ class LinkDeviceViewModel : ViewModel() {
       )
     }
 
-    if (linkUri.supportsLinkAndSync() && RemoteConfig.linkAndSync) {
-      Log.i(TAG, "Link+Sync supported.")
+    if (shouldSync) {
+      Log.i(TAG, "Adding device with sync.")
       addDeviceWithSync(linkUri)
     } else {
-      Log.i(TAG, "Link+Sync not supported. (uri: ${linkUri.supportsLinkAndSync()}, remoteConfig: ${RemoteConfig.linkAndSync})")
+      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()}, remoteConfig: ${RemoteConfig.linkAndSync})")
       addDeviceWithoutSync(linkUri)
     }
   }
@@ -210,6 +210,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     if (result !is LinkDeviceResult.Success) {
+      Log.w(TAG, "Unable to link device $result")
       return
     }
 
@@ -244,6 +245,7 @@ class LinkDeviceViewModel : ViewModel() {
             dialogState = DialogState.None
           )
         }
+        loadDevices()
       }
       is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure,
       is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
@@ -269,6 +271,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     if (result !is LinkDeviceResult.Success) {
+      Log.w(TAG, "Unable to link device $result")
       return
     }
 

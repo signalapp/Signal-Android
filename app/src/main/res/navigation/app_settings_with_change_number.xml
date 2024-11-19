@@ -271,10 +271,16 @@
         <action
             android:id="@+id/action_addLinkDeviceFragment_to_linkDeviceIntroBottomSheet"
             app:destination="@id/linkDeviceIntroBottomSheet" />
+        <action
+            android:id="@+id/action_addLinkDeviceFragment_to_linkDeviceSyncBottomSheet"
+            app:destination="@id/linkDeviceSyncBottomSheet" />
     </fragment>
     <dialog
         android:id="@+id/linkDeviceIntroBottomSheet"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceIntroBottomSheet" />
+    <dialog
+        android:id="@+id/linkDeviceSyncBottomSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceSyncBottomSheet" />
 
     <!-- Payments -->
     <activity

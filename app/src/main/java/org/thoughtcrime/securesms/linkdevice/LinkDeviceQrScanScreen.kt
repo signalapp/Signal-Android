@@ -12,12 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
 import org.signal.core.ui.Dialogs
 import org.signal.qr.QrScannerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist
 import org.thoughtcrime.securesms.qr.QrScanScreens
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.concurrent.TimeUnit
 
 /**
@@ -36,6 +38,7 @@ fun LinkDeviceQrScanScreen(
   linkDeviceResult: LinkDeviceResult,
   onLinkDeviceSuccess: () -> Unit,
   onLinkDeviceFailure: () -> Unit,
+  navController: NavController?,
   modifier: Modifier = Modifier
 ) {
   val lifecycleOwner = LocalLifecycleOwner.current
@@ -45,7 +48,10 @@ fun LinkDeviceQrScanScreen(
     LinkDeviceSettingsState.QrCodeState.NONE -> {
       Unit
     }
-    LinkDeviceSettingsState.QrCodeState.VALID -> {
+    LinkDeviceSettingsState.QrCodeState.VALID_WITH_SYNC -> {
+      navController?.safeNavigate(R.id.action_addLinkDeviceFragment_to_linkDeviceSyncBottomSheet)
+    }
+    LinkDeviceSettingsState.QrCodeState.VALID_WITHOUT_SYNC -> {
       Dialogs.SimpleAlertDialog(
         title = stringResource(id = R.string.DeviceProvisioningActivity_link_this_device),
         body = stringResource(id = R.string.AddLinkDeviceFragment__this_device_will_see_your_groups_contacts),

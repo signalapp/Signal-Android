@@ -62,7 +62,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
       onQrCodeApproved = {
         navController.popBackStack()
-        viewModel.addDevice()
+        viewModel.addDevice(shouldSync = false)
       },
       onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
       onQrCodeRetry = { viewModel.onQrCodeScanned(state.linkUri.toString()) },
@@ -125,6 +125,7 @@ private fun MainScreen(
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,
+      navController = navController,
       modifier = Modifier.padding(contentPadding)
     )
   }

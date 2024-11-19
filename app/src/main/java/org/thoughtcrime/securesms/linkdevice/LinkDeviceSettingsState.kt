@@ -40,6 +40,6 @@ data class LinkDeviceSettingsState(
   }
 
   enum class QrCodeState {
-    NONE, VALID, INVALID
+    NONE, VALID_WITH_SYNC, VALID_WITHOUT_SYNC, INVALID
   }
 }
