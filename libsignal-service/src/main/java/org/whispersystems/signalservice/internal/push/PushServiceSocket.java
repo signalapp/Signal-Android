@@ -569,7 +569,16 @@ public class PushServiceSocket {
   public void refreshBackup(ArchiveCredentialPresentation credentialPresentation) throws IOException {
     Map<String, String> headers = credentialPresentation.toHeaders();
 
-    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "POST", null, headers, NO_HANDLER);
+    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "POST", null, headers, UNOPINIONATED_HANDLER);
+  }
+
+  /**
+   * DELETE credential presentation to the server to delete backup.
+   */
+  public void deleteBackup(ArchiveCredentialPresentation credentialPresentation) throws IOException {
+    Map<String, String> headers = credentialPresentation.toHeaders();
+
+    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "DELETE", null, headers, UNOPINIONATED_HANDLER);
   }
 
   public List<ArchiveGetMediaItemsResponse.StoredMediaObject> debugGetAllArchiveMediaItems(ArchiveCredentialPresentation credentialPresentation) throws IOException {

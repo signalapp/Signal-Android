@@ -151,14 +151,44 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   }
 
   /**
-   * Backup keep-alive that informs the server that the backup is still in use. If a backup is not refreshed, it may be deleted
-   * after 30 days.
+   * Indicate that this backup is still active. Clients must periodically upload new backups or perform a refresh via a POST request. If a backup is not
+   * refreshed, after 30 days it may be deleted.
+   *
+   * POST /v1/archives
+   *
+   * - 204: The backup was successfully refreshed.
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or The public key signature was invalid or There is no backup associated with
+   *        the backup-id in the presentation or The credential was of the wrong type (messages/media)
+   * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
+   * - 429: Rate limited.
    */
   fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
       val zkCredential = getZkCredential(aci, archiveServiceAccess)
       val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
       pushServiceSocket.refreshBackup(presentationData.toArchiveCredentialPresentation())
+    }
+  }
+
+  /**
+   * Delete all backup metadata, objects, and stored public key. To use backups again, a public key must be resupplied.
+   *
+   * DELETE /v1/archives
+   *
+   * - 204: The backup has been successfully deleted
+   * - 400: Bad arguments. The request may have been made on an authenticated channel.
+   * - 401: The provided backup auth credential presentation could not be verified or The public key signature was invalid or There is no backup associated with
+   *        the backup-id in the presentation or The credential was of the wrong type (messages/media)
+   * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
+   * - 429: Rate limited.
+   *
+   */
+  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
+      pushServiceSocket.deleteBackup(presentationData.toArchiveCredentialPresentation())
     }
   }
 
