@@ -10,6 +10,7 @@ import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -62,6 +63,7 @@ class LinkDeviceApi(private val pushServiceSocket: PushServiceSocket) {
     pniIdentityKeyPair: IdentityKeyPair,
     profileKey: ProfileKey,
     masterKey: MasterKey,
+    mediaRootBackupKey: MediaRootBackupKey,
     code: String,
     ephemeralMessageBackupKey: MessageBackupKey?
   ): NetworkResult<Unit> {
@@ -79,6 +81,7 @@ class LinkDeviceApi(private val pushServiceSocket: PushServiceSocket) {
         provisioningCode = code,
         provisioningVersion = ProvisioningVersion.CURRENT.value,
         masterKey = masterKey.serialize().toByteString(),
+        mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
         ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString()
       )
       val ciphertext = cipher.encrypt(message)

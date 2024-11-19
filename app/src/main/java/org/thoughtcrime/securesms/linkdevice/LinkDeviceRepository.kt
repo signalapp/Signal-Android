@@ -156,7 +156,8 @@ object LinkDeviceRepository {
       profileKey = ProfileKeyUtil.getSelfProfileKey(),
       masterKey = SignalStore.svr.masterKey,
       code = verificationCodeResult.verificationCode,
-      ephemeralMessageBackupKey = ephemeralMessageBackupKey
+      ephemeralMessageBackupKey = ephemeralMessageBackupKey,
+      mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
     )
 
     return when (deviceLinkResult) {
