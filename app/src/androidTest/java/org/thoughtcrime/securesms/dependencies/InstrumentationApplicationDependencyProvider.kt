@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl
 import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import java.net.InetAddress
 import java.util.Optional
 
 /**
@@ -52,6 +53,8 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   init {
     runSync {
       webServer = MockWebServer()
+      webServer.start(InetAddress.getByAddress(byteArrayOf(0x7f, 0x0, 0x0, 0x1)), 8080)
+
       baseUrl = webServer.url("").toString()
 
       addMockWebRequestHandlers(
