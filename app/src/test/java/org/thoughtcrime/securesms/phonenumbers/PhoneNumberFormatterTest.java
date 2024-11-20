@@ -1,12 +1,11 @@
 package org.thoughtcrime.securesms.phonenumbers;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.testutil.EmptyLogger;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class PhoneNumberFormatterTest {
 
@@ -16,38 +15,38 @@ public class PhoneNumberFormatterTest {
   }
 
   @Test
-  public void testAddressString() throws Exception {
+  public void testAddressString() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
-    assertEquals(formatter.format("bonbon"), "bonbon");
+    assertEquals("bonbon", formatter.format("bonbon"));
   }
 
   @Test
-  public void testAddressShortCode() throws Exception {
+  public void testAddressShortCode() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
-    assertEquals(formatter.format("40404"), "40404");
+    assertEquals("40404", formatter.format("40404"));
   }
 
   @Test
-  public void testEmailAddress() throws Exception {
+  public void testEmailAddress() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
-    assertEquals(formatter.format("junk@junk.net"), "junk@junk.net");
+    assertEquals("junk@junk.net", formatter.format("junk@junk.net"));
   }
 
   @Test
-  public void testNumberArbitrary() throws Exception {
+  public void testNumberArbitrary() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
-    assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
-    assertEquals(formatter.format("(415) 111 1123"), "+14151111123");
-    assertEquals(formatter.format("415-111-1124"), "+14151111124");
-    assertEquals(formatter.format("415.111.1125"), "+14151111125");
-    assertEquals(formatter.format("+1 415.111.1126"), "+14151111126");
-    assertEquals(formatter.format("+1 415 111 1127"), "+14151111127");
-    assertEquals(formatter.format("+1 (415) 111 1128"), "+14151111128");
-    assertEquals(formatter.format("911"), "911");
-    assertEquals(formatter.format("+456-7890"), "+4567890");
+    assertEquals("+14151111122", formatter.format("(415) 111-1122"));
+    assertEquals("+14151111123", formatter.format("(415) 111 1123"));
+    assertEquals("+14151111124", formatter.format("415-111-1124"));
+    assertEquals("+14151111125", formatter.format("415.111.1125"));
+    assertEquals("+14151111126", formatter.format("+1 415.111.1126"));
+    assertEquals("+14151111127", formatter.format("+1 415 111 1127"));
+    assertEquals("+14151111128", formatter.format("+1 (415) 111 1128"));
+    assertEquals("911", formatter.format("911"));
+    assertEquals("+4567890", formatter.format("+456-7890"));
 
     formatter = new PhoneNumberFormatter("+442079460010");
-    assertEquals(formatter.format("(020) 7946 0018"), "+442079460018");
+    assertEquals("+442079460018", formatter.format("(020) 7946 0018"));
   }
 
   @Test
@@ -83,15 +82,15 @@ public class PhoneNumberFormatterTest {
   }
 
   @Test
-  public void testGroup() throws Exception {
+  public void testGroup() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
-    assertEquals(formatter.format("__textsecure_group__!foobar"), "__textsecure_group__!foobar");
+    assertEquals("__textsecure_group__!foobar", formatter.format("__textsecure_group__!foobar"));
   }
 
   @Test
-  public void testLostLocalNumber() throws Exception {
+  public void testLostLocalNumber() {
     PhoneNumberFormatter formatter = new PhoneNumberFormatter("US", true);
-    assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
+    assertEquals("+14151111122", formatter.format("(415) 111-1122"));
   }
 
   @Test
