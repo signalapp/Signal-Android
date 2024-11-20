@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.storage
 
-import junit.framework.TestCase.assertEquals
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord

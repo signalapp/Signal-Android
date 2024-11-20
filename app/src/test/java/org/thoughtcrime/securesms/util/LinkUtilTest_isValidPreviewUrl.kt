@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.util
 
-import junit.framework.TestCase
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
@@ -11,7 +11,7 @@ class LinkUtilTest_isValidPreviewUrl(private val input: String, private val outp
 
   @Test
   fun isLegal() {
-    TestCase.assertEquals(output, LinkUtil.isValidPreviewUrl(input))
+    assertEquals(output, LinkUtil.isValidPreviewUrl(input))
   }
 
   companion object {

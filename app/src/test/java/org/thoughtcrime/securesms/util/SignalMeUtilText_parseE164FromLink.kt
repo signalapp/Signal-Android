@@ -5,8 +5,8 @@ import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
-import junit.framework.TestCase
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -39,7 +39,7 @@ class SignalMeUtilText_parseE164FromLink(private val input: String?, private val
 
   @Test
   fun parse() {
-    TestCase.assertEquals(output, parseE164FromLink(application, input))
+    assertEquals(output, parseE164FromLink(application, input))
   }
 
   companion object {

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.Assert.assertFalse
-import junit.framework.Assert.assertTrue
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

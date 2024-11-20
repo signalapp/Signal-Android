@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.mediasend.OrderEnforcer;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class OrderEnforcerTest {
 
