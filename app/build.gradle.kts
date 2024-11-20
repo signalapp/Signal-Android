@@ -616,8 +616,6 @@ dependencies {
   androidTestImplementation(testLibs.androidx.test.core)
   androidTestImplementation(testLibs.androidx.test.core.ktx)
   androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)
-  androidTestImplementation(testLibs.mockito.android)
-  androidTestImplementation(testLibs.mockito.kotlin)
   androidTestImplementation(testLibs.mockk.android)
   androidTestImplementation(testLibs.square.okhttp.mockserver)
   androidTestImplementation(testLibs.diff.utils)

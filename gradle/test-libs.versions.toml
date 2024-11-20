@@ -19,7 +19,6 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0"
 mockito-core = "org.mockito:mockito-inline:4.6.1"
 mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
-mockito-android = "org.mockito:mockito-android:4.6.1"
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 bouncycastle-bcprov-jdk15on = "org.bouncycastle:bcprov-jdk15on:1.70"
 bouncycastle-bcpkix-jdk15on = "org.bouncycastle:bcpkix-jdk15on:1.70"

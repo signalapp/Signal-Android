@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.dependencies
 
 import android.app.Application
+import io.mockk.every
+import io.mockk.mockk
 import io.mockk.spyk
 import okhttp3.ConnectionSpec
 import okhttp3.Response
@@ -11,9 +13,6 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import okio.ByteString
-import org.mockito.kotlin.any
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
 import org.signal.core.util.Base64
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
@@ -94,11 +93,14 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
       censored = false
     )
 
-    serviceNetworkAccessMock = mock {
-      on { getConfiguration() } doReturn uncensoredConfiguration
-      on { getConfiguration(any()) } doReturn uncensoredConfiguration
-      on { uncensoredConfiguration } doReturn uncensoredConfiguration
-    }
+    serviceNetworkAccessMock = mockk()
+
+    every { serviceNetworkAccessMock.isCensored() } returns false
+    every { serviceNetworkAccessMock.isCensored(any()) } returns false
+    every { serviceNetworkAccessMock.isCountryCodeCensoredByDefault(any()) } returns false
+    every { serviceNetworkAccessMock.getConfiguration() } returns uncensoredConfiguration
+    every { serviceNetworkAccessMock.getConfiguration(any()) } returns uncensoredConfiguration
+    every { serviceNetworkAccessMock.uncensoredConfiguration } returns uncensoredConfiguration
 
     recipientCache = LiveRecipientCache(application) { r -> r.run() }
   }

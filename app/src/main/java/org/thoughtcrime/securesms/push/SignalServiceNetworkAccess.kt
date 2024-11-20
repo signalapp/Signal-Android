@@ -33,7 +33,7 @@ import java.util.Optional
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
  * If you're looking for a place to start, look at [getConfiguration].
  */
-open class SignalServiceNetworkAccess(context: Context) {
+class SignalServiceNetworkAccess(context: Context) {
   companion object {
     private val TAG = Log.tag(SignalServiceNetworkAccess::class.java)
 
@@ -233,7 +233,7 @@ open class SignalServiceNetworkAccess(context: Context) {
     COUNTRY_CODE_PAKISTAN
   )
 
-  open val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
+  val uncensoredConfiguration: SignalServiceConfiguration = SignalServiceConfiguration(
     signalServiceUrls = arrayOf(SignalServiceUrl(BuildConfig.SIGNAL_URL, serviceTrustStore)),
     signalCdnUrlMap = mapOf(
       0 to arrayOf(SignalCdnUrl(BuildConfig.SIGNAL_CDN_URL, serviceTrustStore)),
@@ -252,11 +252,11 @@ open class SignalServiceNetworkAccess(context: Context) {
     censored = false
   )
 
-  open fun getConfiguration(): SignalServiceConfiguration {
+  fun getConfiguration(): SignalServiceConfiguration {
     return getConfiguration(SignalStore.account.e164)
   }
 
-  open fun getConfiguration(e164: String?): SignalServiceConfiguration {
+  fun getConfiguration(e164: String?): SignalServiceConfiguration {
     if (e164 == null || SignalStore.proxy.isProxyEnabled) {
       return uncensoredConfiguration
     }
