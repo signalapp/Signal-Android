@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.database
 
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNotNull
-import junit.framework.TestCase.assertNull
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Test
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLongOrNull

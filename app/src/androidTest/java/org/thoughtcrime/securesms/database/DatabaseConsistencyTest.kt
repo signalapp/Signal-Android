@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.database
 
 import android.app.Application
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase.assertTrue
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
