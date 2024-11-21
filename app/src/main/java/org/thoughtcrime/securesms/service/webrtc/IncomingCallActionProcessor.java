@@ -94,7 +94,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       return currentState;
     }
 
-    boolean         hideIp          = !activePeer.getRecipient().isSystemContact() || callSetupState.isAlwaysTurnServers();
+    boolean         hideIp          = !activePeer.getRecipient().isProfileSharing() || callSetupState.isAlwaysTurnServers();
     VideoState      videoState      = currentState.getVideoState();
     CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
 
