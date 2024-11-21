@@ -46,6 +46,11 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
 
         val manifest = when (val result = repository.getStorageManifest(storageKey)) {
           is StorageServiceRepository.ManifestResult.Success -> result.manifest
+          is StorageServiceRepository.ManifestResult.NotFoundError -> {
+            Log.w(TAG, "Manifest not found!")
+            _oneOffEvents.value = OneOffEvent.ManifestNotFoundError
+            return@withContext
+          }
           else -> {
             Log.w(TAG, "Failed to fetch manifest!")
             _oneOffEvents.value = OneOffEvent.ManifestDecryptionError
@@ -69,6 +74,6 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
   }
 
   enum class OneOffEvent {
-    None, ManifestDecryptionError, StorageRecordDecryptionError
+    None, ManifestDecryptionError, StorageRecordDecryptionError, ManifestNotFoundError
   }
 }

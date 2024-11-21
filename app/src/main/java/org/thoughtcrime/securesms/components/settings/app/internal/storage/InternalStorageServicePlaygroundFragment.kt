@@ -204,6 +204,9 @@ fun ViewScreen(
       OneOffEvent.StorageRecordDecryptionError -> {
         Toast.makeText(context, "Failed to decrypt storage records!", Toast.LENGTH_SHORT).show()
       }
+      OneOffEvent.ManifestNotFoundError -> {
+        Toast.makeText(context, "Manifest not found!", Toast.LENGTH_SHORT).show()
+      }
     }
   }
 
