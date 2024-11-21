@@ -6,6 +6,7 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
+import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -28,7 +29,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
-import java.security.InvalidKeyException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
