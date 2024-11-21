@@ -1034,6 +1034,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Torna a provar-ho</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Voleu desenllaçar «%1$s»?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">En desenllaçar aquest dispositiu, no es podran rebre ni enviar missatges.</string>
@@ -5812,6 +5822,10 @@
     <string name="DonationsErrors__your_payment">No s\'ha pogut processar la teva donació i no se t\'ha cobrat. Si us plau, torna-ho a provar. Si us plau, torna-ho a provar.</string>
     <string name="DonationsErrors__still_processing">Encara en procés</string>
     <string name="DonationsErrors__couldnt_add_badge">No s\'ha pogut afegir la insígnia.</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">No s\'ha pogut validar la insígnia.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6091,8 +6105,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Quantitat</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Gràcies per donar suport al Signal. La vostra contribució ajuda a impulsar la missió de desenvolupar una tecnologia de privadesa de codi obert que protegeix la llibertat d\'expressió i permet una comunicació global segura per a milions de persones a tot el món. Si sou resident als Estats Units, conserveu aquest rebut per als registres fiscals. Signal Technology Foundation és una organització sense ànim de lucre exempta d\'impostos als Estats Units segons la secció 501c3 de l\'Internal Revenue Code. El nostre número d\'identificació fiscal federal és el 82–4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Sense rebuts</string>
 
@@ -7203,6 +7215,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enllaç de trucada</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">No s\'han pogut guardar els canvis. Comprova la teva connexió i torna-ho a intentar.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Eliminar enllaç?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7467,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Ometre la restauració?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Si omets la restauració, la resta d\'arxius multimèdia de la teva còpia de seguretat s\'eliminaran la pròxima vegada que el teu dispositiu realitzi una còpia de seguretat.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7543,6 +7557,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimitzar l\'emmagatzematge en el dispositiu</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Els arxius multimèdia no utilitzats es descarregaran, però es poden baixar de la còpia de seguretat en qualsevol moment.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7761,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">La teva clau de còpia de seguretat</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">La teva clau de còpia de seguretat és un codi de 64 dígits que et permetrà restaurar la còpia de seguretat quan tornis a instal·lar Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Si oblides la teva clau, no podràs restaurar la còpia de seguretat. Signal no et pot ajudar a recuperar la còpia de seguretat.</string>
     <!-- Action button label -->
@@ -7850,9 +7866,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">No conservo el meu telèfon antic</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">O estàs reinstal·lant Signal en el mateix dispositiu</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restaurar o transferir compte</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera el teu compte de Signal i l\'historial de missatges en aquest dispositiu.</string>
@@ -7879,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Introdueix la còpia de seguretat de la clau</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">La teva còpia de seguretat de la clau és un codi de 64 dígits i és necessària per recuperar el teu compte i les teves dades.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">¿No tens la teva clau?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Còpia de seguretat de la clau</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Les còpies de seguretat no es poden recuperar sense el seu codi de recuperació de 64 dígits. Si has perdut la teva clau, Signal no pot ajudar-te a restaurar la còpia de seguretat.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Si conserves el teu dispositiu antic, podràs veure la teva còpia de seguretat de la clau a Ajustos&gt; Xats &gt; Còpies de seguretat de Signal. Llavors, toca Veure la còpia de seguretat de la clau.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Més informació</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7911,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Transfereix el compte</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">El teu compte es transferirà al teu nou dispositiu. El nou dispositiu podrà veure els teus grups i contactes, accedir als xats i enviar missatges en nom teu. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Més informació</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

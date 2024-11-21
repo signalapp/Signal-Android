@@ -1034,6 +1034,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Újra</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Társítás megszüntetése ezzel: \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Az eszköz a társítás megszüntetését követően nem lesz képes üzenetek küldésére vagy fogadására.</string>
@@ -5812,6 +5822,10 @@
     <string name="DonationsErrors__your_payment">Az adományod feldolgozása sikertelen, nem került összeg levonásra. Próbáld újra!</string>
     <string name="DonationsErrors__still_processing">Még dolgozunk</string>
     <string name="DonationsErrors__couldnt_add_badge">Jelvény hozzáadása sikertelen.</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Nem sikerült ellenőrizni a jelvényhez való jogosultságodat.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6091,8 +6105,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Összeg</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Köszönjük, hogy támogatod a Signalt! Adományoddal hozzájárulsz a szabad véleménynyilvánítást és milliók számára biztonságos kommunikációt lehetővé tévő, nyílt forrású, magánéletet védő technológiák fejlesztéséhez. Ha az Egyesült Államokban adózol, kérünk, őrizd meg ezt a nyugtát adóbevallásodhoz. A Signal Technology Foundation egy adómentes, non-profit szervezet, amely az USA területén az 501c3 Internal Revenue Code hatálya alá tartozik. Szövetségi adóazonosító: 82-4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nincsenek nyugták</string>
 
@@ -7203,6 +7215,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Híváshivatkozás törlése</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nem sikerült elmenteni a változtatásokat. Ellenőrizd a hálózati kapcsolatot, és próbáld újra!</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Hivatkozás törlése?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7467,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Visszaállítás kihagyása?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Ha a visszaállítás kihagyása lehetőséget választod, a biztonsági másolatban lévő, fennmaradó médiafájlok és mellékletek törlődni fognak, amikor az eszköz legközelebb egy új biztonsági mentést végez.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7543,6 +7557,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Az eszköz tárhelyének optimalizálása</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">A fel nem használt médiafájlokat a rendszer eltávolítja, de bármikor letöltheted őket a biztonsági másolatból.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7761,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">A biztonsági kulcsod</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">A biztonsági kulcs egy 64 számjegyű kód, amely lehetővé teszi a biztonsági másolat visszaállítását a Signal újratelepítésekor.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ha elfelejted a kulcsod, nem tudod visszaállítani a biztonsági másolatot. A Signal nem tud segíteni a biztonsági másolat helyreállításában.</string>
     <!-- Action button label -->
@@ -7850,9 +7866,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nincs nálam a régi telefonom</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Vagy telepítsd újra a Signalt ugyanarra az eszközre</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Fiók visszaállítása vagy átvitele</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Helyezd át Signal-fiókodat és üzenetelőzményeidet erre az eszközre.</string>
@@ -7879,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Add meg a biztonsági kulcsot</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">A biztonsági kulcs egy 64 számjegyű kód, amely a fiók és az adatok helyreállításához szükséges.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Nincs biztonsági kulcsod?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Biztonsági kulcs</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">A biztonsági másolatokat nem lehet visszaállítani a 64 számjegyű helyreállítási kód nélkül. Ha elvesztetted a biztonsági kulcsod, a Signal nem tud segíteni a biztonsági másolat visszaállításában.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ha rendelkezel a régi eszközzel, megtekintheted a biztonsági kulcsot a Beállítások &gt; Csevegés &gt; Signal-biztonsági mentések menüpontban. Ezután koppints a Biztonsági kulcs megtekintése lehetőségre.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Tudj meg többet</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7911,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Fiók átvitele</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Fiókod átkerül egy új eszközre. Ez az eszköz láthatja a csoportjaidat és a névjegyeidet, hozzáférhet a csevegéseidhez, és üzeneteket küldhet a nevedben. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Tudj meg többet</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

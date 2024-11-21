@@ -1034,6 +1034,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">மீண்டும் முயற்சி செய்</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" ஐ இணைப்பு நீக்குவதா?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">இந்த சாதனத்தை துண்டிப்பதின் மூலம், இது இனி செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
@@ -5812,6 +5822,10 @@
     <string name="DonationsErrors__your_payment">உங்கள் நன்கொடையைச் செயல்படுத்த முடியவில்லை மற்றும் உங்களிடம் கட்டணம் வசூலிக்கப்படவில்லை. மீண்டும் முயலவும்.</string>
     <string name="DonationsErrors__still_processing">இன்னும் செயலாக்கப்படுகிறது</string>
     <string name="DonationsErrors__couldnt_add_badge">பேட்ஜை சேர்க்க முடியவில்லை</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">பேட்ஜை சரிபார்ப்பது தோல்வியடைந்தது</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6091,8 +6105,6 @@
     <string name="DonationReceiptDetailsFragment__amount">தொகை</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">சிக்னலை ஆதரித்ததற்கு நன்றி. உங்கள் பங்களிப்பு, சுதந்திரமான வெளிப்பாட்டைப் பாதுகாக்கும் மற்றும் உலகெங்கிலும் உள்ள லட்சக் கணக்கானவர்களுக்கு பாதுகாப்பான உலகளாவிய தகவல்தொடர்புகளை செயல்படுத்தும் திறந்த மூல தனியுரிமைத் தொழில்நுட்பத்தை உருவாக்கும் பணிக்கு ஊக்கமளிக்கிறது. நீங்கள் அமெரிக்காவில் வசிப்பவராக இருந்தால், உங்கள் வரிப் பதிவுகளுக்கு இந்த ரசீதைத் தக்கவைத்துக் கொள்ளவும். சிக்னல் தொழில்நுட்ப அறக்கட்டளை என்பது உள்நாட்டு வருவாய்க் குறியீட்டின் 501c3 பிரிவின் கீழ் அமெரிக்காவில் உள்ள வரிவிலக்கு பெற்ற லாப நோக்கமற்ற அமைப்பாகும். எங்களின் மத்திய வரி ஐ.டி 82–4506840 ஆகும்.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">ரசீதுகள் இல்லை</string>
 
@@ -7203,6 +7215,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">அழைப்பு இணைப்பை நீக்கு</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">மாற்றங்களைச் சேமிக்க முடியவில்லை. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">இணைப்பை நீக்க வேண்டுமா?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7467,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">மீதி மீடியாவை மீட்டெடுப்பதைத் தவிர்த்தால், அடுத்த முறை உங்கள் சாதனம் புதிய காப்புப்பிரதியை முடிக்கும்போது, உங்கள் காப்புப்பிரதியில் உள்ள இணைப்புகள் நீக்கப்படும்.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7543,6 +7557,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">டிவைஸ் சேமிப்பகத்தை உகந்ததாக்குக</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">பயன்படுத்தப்படாத மீடியா ஆஃப்லோட் செய்யப்படும், ஆனால் அவற்றை எப்போது வேண்டுமானாலும் உங்கள் காப்புப்பிரதியிலிருந்து பதிவிறக்கம் செய்யலாம்.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7761,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">உங்கள் காப்புப்பிரதி குறியீடு</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">உங்கள் காப்புப்பிரதி குறியீடானது 64 இலக்கக் குறியீடாகும், இது சிக்னலை மீண்டும் நிறுவும் போது உங்கள் காப்புப்பிரதியை மீட்டமைக்க உதவுகிறது.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">உங்கள் குறியீட்டை மறந்துவிட்டால், உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதியை மீட்டெடுக்க சிக்னல் உங்களுக்கு உதவாது.</string>
     <!-- Action button label -->
@@ -7850,9 +7866,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">என்னிடம் என் பழைய ஃபோன் இல்லை</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">அல்லது அதே சாதனத்தில் நீங்க சிக்னலை மீண்டும் நிறுவுகிறீர்கள்</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">கணக்கை மீட்டெடுக்கவும் அல்லது இடமாற்றவும்</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">இந்தச் சாதனத்தில் உங்கள் சிக்னல் கணக்கு மற்றும் மெசேஜ் வரலாற்றைப் பெறவும்.</string>
@@ -7879,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">உங்கக் காப்புப்பிரதி குறியீட்டை உள்ளிடவும்</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">உங்கள் காப்புப்பிரதி குறியீடு என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உதவும் 64 இலக்கக் குறியீடாகும்.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">காப்புப்பிரதி குறியீடு இல்லையா?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">காப்புப்பிரதி குறியீடு</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">64 இலக்க மீட்புக் குறியீடு இல்லாமல் காப்புப்பிரதிகளை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதி குறியீட்டை நீங்கள் இழந்திருந்தால், உங்கள் காப்புப்பிரதியை மீட்டெடுக்க சிக்னலால் உதவ முடியாது.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">உங்களிடம் பழைய சாதனம் இருந்தால், அமைப்புகள் &gt; சாட்ஸ் &gt; சிக்னல் காப்புப்பிரதிகளில் உங்கள் காப்புப்பிரதி குறியீட்டை பார்க்கலாம். காப்புப்பிரதி குறியீட்டைக் காண்க என்பதைத் தட்டவும்.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">மேலும் அறிக</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7911,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Signal கணக்கை நகர்த்தவும்</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">உங்கள் கணக்கு புதிய சாதனத்திற்கு இடமாற்றப்படும். இந்தச் சாதனத்தால் உங்கள் குழுக்களையும் தொடர்புகளையும் பார்க்கவும், உங்கள் சாட்ஸை அணுகவும், உங்கள் பெயரில் மெசேஜ்களை அனுப்பவும் முடியும். %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">மேலும் அறிக</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

@@ -1034,6 +1034,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">পুনরায় চেষ্টা করুন</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" বিযুক্ত করবেন?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">এই ডিভাইস বিচ্ছিন্ন করা হলে, এটি আর বার্তা প্রেরণ বা গ্রহণ করতে সক্ষম হবে না।</string>
@@ -5812,6 +5822,10 @@
     <string name="DonationsErrors__your_payment">আপনার ডোনেশন প্রক্রিয়া করা যায়নি এবং আপনার কাছ থেকে কোনো অর্থ কেটে নেওয়া হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।</string>
     <string name="DonationsErrors__still_processing">এখনও প্রক্রিয়া করা হচ্ছে</string>
     <string name="DonationsErrors__couldnt_add_badge">ব্যাজ যোগ করা যায়নি</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">ব্যাজ যাচাই সফল হয়নি</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6091,8 +6105,6 @@
     <string name="DonationReceiptDetailsFragment__amount">পরিমাণ</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signal-এর পাশে থাকার জন্য আপনাকে ধন্যবাদ। আপনার অবদান এমন একটি ওপেন সোর্স প্রাইভেসি টেকনোলজির ক্রমবিকাশের মিশনে ইন্ধন জোগাতে সাহায্য করে যা স্বাধীন মতপ্রকাশকে রক্ষা করে এবং সারা বিশ্বের লক্ষ লক্ষ মানুষের জন্য নিরাপদ বৈশ্বিক যোগাযোগ সক্ষম করে। আপনি যদি মার্কিন যুক্তরাষ্ট্রের বাসিন্দা হন, তাহলে আপনার ট্যাক্স রেকর্ডের জন্য এই রিসিপ্টটি রাখুন। Signal Technology Foundation অভ্যন্তরীণ রাজস্ব কোডের ধারা 501c3-এর অধীনে মার্কিন যুক্তরাষ্ট্রে অবস্থিত একটি কর-মুক্ত অলাভজনক সংস্থা। আমাদের Federal Tax ID হলো 82–4506840।</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">রিসিপ্ট নেই</string>
 
@@ -7203,6 +7215,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">কলের লিংক মুছুন</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">পরিবর্তনগুলো সেভ করা যায়নি। আপনার নেটওয়ার্ক সংযোগ ঠিক আছে কি না দেখুন এবং আবার চেষ্টা করুন।</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">লিংক মুছে ফেলবেন?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7467,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">পুনর্বহাল এড়িয়ে যাবেন?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">আপনি যদি অবশিষ্ট মিডিয়া ও সংযুক্তি পুনর্বহাল এড়িয়ে যান, তবে পরের বার আপনার ডিভাইসে কোনো নতুন ব্যাকআপ সম্পন্ন হলে ব্যাকআপ মুছে যাবে।</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7543,6 +7557,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">অন-ডিভাইস স্টোরেজ অপ্টিমাইজ করুন</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">অব্যবহৃত মিডিয়া অফলোড করা হবে, কিন্তু আপনার ব্যাকআপ থেকে যেকোনো সময় ডাউনলোড করা যাবে।</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7761,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">আপনার ব্যাকআপ \'কি\'</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">আপনার ব্যাকআপ \'কি\' একটি 64-সংখ্যার কোড যা আপনাকে Signal পুনরায় ইনস্টল করার সময় আপনার ব্যাকআপ পুনরুদ্ধার করতে সাহায্য করে।</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">\'কি\' ভুলে গেলে, আপনি আপনার ব্যাকআপ পুনরুদ্ধার করতে পারবেন না। Signal আপনাকে আপনার ব্যাকআপ পুনরুদ্ধার করতে সাহায্য করতে পারবে না।</string>
     <!-- Action button label -->
@@ -7850,9 +7866,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">আমার পুরানো ফোনটি নেই</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">অথবা আপনি একই ডিভাইসে Signal পুনরায় ইনস্টল করছেন</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">অ্যাকাউন্ট পুনর্বহাল বা ট্রান্সফার করুন</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">এই ডিভাইসে আপনার Signal অ্যাকাউন্ট এবং মেসেজের ইতিহাস নিন।</string>
@@ -7879,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">আপনার ব্যাকআপ \'কি\' লিখুন</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">আপনার ব্যাকআপ \'কি\' একটি 64-সংখ্যার কোড যা আপনার অ্যাকাউন্ট ও ডেটা পুনর্বহাল করার সময় প্রয়োজন হবে।</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">কোনো ব্যাকআপ \'কি\' নেই?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">ব্যাকআপ \'কি\'</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">ব্যাকআপ 64-ডিজিটের পুনর্বহাল কোড ছাড়া পুনর্বহাল করা যাবে না। আপনি যদি আপনার ব্যাকআপ \'কি\' হারিয়ে ফেলেন তবে Signal আপনার ব্যাকআপ পুনর্বহাল করতে সাহায্য করতে সক্ষম হবে না।</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">আপনার পুরানো ডিভাইস থাকলে আপনি সেটিংস &gt; চ্যাট &gt; Signal ব্যাকআপে আপনার ব্যাকআপ \'কি\' দেখতে পারবেন। তারপর আপনার \"ব্যাকআপ \'কি\' দেখান\" ট্যাপ করুন।</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">আরো জানুন</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7911,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">অ্যাকাউন্ট স্থানান্তর করুন</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">আপনার অ্যাকাউন্টটি একটি নতুন ডিভাইসে ট্রান্সফার হবে। এই ডিভাইসটি আপনার গ্ৰুপ ও কন্টাক্ট দেখতে পাবে, আপনার চ্যাট অ্যাক্সেস করতে পারবে এবং আপনার নামে মেসেজ পাঠাতে সক্ষম হবে। %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">আরো জানুন</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

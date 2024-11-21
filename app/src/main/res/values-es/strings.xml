@@ -346,9 +346,9 @@
     <string name="CommunicationActions_cant_join_call">No es posible unirse a la llamada</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Este enlace de llamada ya no es válido.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Enlace inválido</string>
+    <string name="CommunicationActions_invalid_link">Enlace no válido</string>
     <!-- Message on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_this_is_not_a_valid_call_link">Enlace de llamada inválido. Asegúrate que el enlace es correcto antes de intentar unirte.</string>
+    <string name="CommunicationActions_this_is_not_a_valid_call_link">El enlace a este grupo no es válido. Asegúrate de que el enlace es correcto antes de intentar unirte.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
     <string name="CommunicationActions__you_are_already_in_a_call">Ya estás en una llamada</string>
 
@@ -449,8 +449,8 @@
     <string name="ConversationActivity_group_members">Participantes del grupo</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Las ediciones solo se pueden aplicar hasta %1$d hora después del momento en que enviaste este mensaje.</item>
-        <item quantity="other">Las ediciones solo se pueden aplicar hasta %1$d horas después del momento en que enviaste este mensaje.</item>
+        <item quantity="one">Solo puedes hacer cambios hasta %1$d hora después del momento en que enviaste este mensaje.</item>
+        <item quantity="other">Solo puedes hacer cambios hasta %1$d horas después del momento en que enviaste este mensaje.</item>
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
@@ -1034,6 +1034,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Reintentar</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">¿Desvincular \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Si se desvincula este dispositivo, ya no podrás enviar ni recibir mensajes allí.</string>
@@ -1117,7 +1127,7 @@
         <item quantity="other">%1$d invitaciones enviadas</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">No se puede añadir automáticamente a %1$s al grupo.\n\nEsta persona ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
+    <string name="GroupManagement_invite_single_user">No puedes añadir automáticamente a %1$s al grupo.\n\nEsta persona ha recibido una invitación y no podrá ver ningún mensaje hasta que la acepte.</string>
     <string name="GroupManagement_invite_multiple_users">No se puede añadir automáticamente a estas personas al grupo.\n\nHan recibido una invitación y no podrán ver ningún mensaje hasta que la acepten.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -1432,12 +1442,12 @@
     <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer enlace</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Solicitar aprobación de admin</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Alguien que sea admin del grupo debe aprobar nuevas solicitudes para unirse mediante enlace.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Alguien que sea admin del grupo debe aprobar a los nuevos participantes que se unan mediante enlace.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Quieres restablecer el enlace al grupo? Si lo restableces, nadie podrá unirse al grupo usando el enlace actual.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escaneen este código podrán unirse al grupo. Aun así, los admins deben aceptar a nuevos participantes si esa opción está activa.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escaneen este código podrán unirse al grupo. Aun así, alguien que sea admin debe aceptar a nuevos participantes si está activada la opción de aprobación de admin.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">Compartir código</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
@@ -1603,9 +1613,9 @@
     <string name="Megaphones_verify_your_signal_pin">Verifica tu PIN de Signal</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">De vez en cuando te pediremos verificar tu PIN para que lo puedas recordar.</string>
     <string name="Megaphones_verify_pin">Verificar PIN</string>
-    <string name="Megaphones_get_started">Comenzar</string>
+    <string name="Megaphones_get_started">Primeros pasos</string>
     <string name="Megaphones_new_group">Nuevo grupo</string>
-    <string name="Megaphones_invite_friends">Invitar personas</string>
+    <string name="Megaphones_invite_friends">Invitar</string>
     <string name="Megaphones_chat_colors">Colores</string>
     <string name="Megaphones_add_a_profile_photo">Foto de perfil</string>
 
@@ -1795,21 +1805,21 @@
     <string name="MessageRecord_allow_only_admins_to_send">Se han cambiado los ajustes del grupo para que solo admins puedan enviar mensajes.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para unirse al grupo sin confirmación de admin.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Has activado el enlace para unirse al grupo tras confirmación de admin.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para unirse al grupo sin aprobación de admin.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Has activado el enlace para unirse al grupo tras aprobación de admin.</string>
     <string name="MessageRecord_you_turned_off_the_group_link">Has desactivado el enlace para unirse al grupo.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ha activado el enlace para unirse al grupo sin confirmación de admin.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ha activado el enlace para unirse al grupo tras confirmación de admin.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ha activado el enlace para unirse al grupo sin aprobación de admin.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ha activado el enlace para unirse al grupo tras aprobación de admin.</string>
     <string name="MessageRecord_s_turned_off_the_group_link">%1$s ha desactivado el enlace para unirse al grupo.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para unirse al grupo sin confirmación de admin.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para unirse al grupo tras confirmación de admin.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para unirse al grupo sin aprobación de admin.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para unirse al grupo tras aprobación de admin.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para unirse al grupo.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se ha desactivado la confirmación de admin para unirse al grupo mediante enlace.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para unirse al grupo mediante enlace.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para unirse al grupo mediante enlace.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la confirmación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la aprobación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la aprobación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se ha desactivado la aprobación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la aprobación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la aprobación de admin para unirse al grupo mediante enlace.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la aprobación de admin para unirse al grupo mediante enlace.</string>
 
     <!-- GV2 group link reset -->
     <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para unirse al grupo.</string>
@@ -2409,7 +2419,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás el audio ni el vídeo de esta persona y ella no recibirá los tuyos.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto se puede deber a que no han verificado el cambio de tu número de seguridad, hay un problema con su dispositivo o te han bloqueado.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto puede deberse a que no ha verificado el cambio de tu número de seguridad, hay un problema con su dispositivo o te ha bloqueado.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Desliza para ver la pantalla compartida</string>
@@ -3330,7 +3340,7 @@
     <string name="CreateProfileActivity_last_name_optional">Apellido (opcional)</string>
     <string name="CreateProfileActivity_next">Siguiente</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres y las imágenes de grupos MMS personalizados solo serán visibles para ti.</string>
-    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La descripción del grupo será visible para personas que formen parte de este grupo y que hayan sido invitadas.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La descripción del grupo será visible para quienes están en el grupo y para quienes han recibido una invitación.</string>
 
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">Sobre mí</string>
@@ -4636,7 +4646,7 @@
     <!-- GroupLinkBottomSheetDialogFragment -->
     <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Cualquiera que tenga este enlace puede ver el nombre y la imagen del grupo y solicitar unirse. Compártelo con personas de confianza.</string>
     <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Cualquiera que tenga este enlace puede ver el nombre y la imagen del grupo y unirse al grupo. Compártelo con personas de confianza.</string>
-    <string name="GroupLinkBottomSheet_share_via_signal">Compartir a través de Signal</string>
+    <string name="GroupLinkBottomSheet_share_via_signal">Compartir por Signal</string>
     <string name="GroupLinkBottomSheet_copy">Copiar</string>
     <string name="GroupLinkBottomSheet_qr_code">Código QR</string>
     <string name="GroupLinkBottomSheet_share">Compartir</string>
@@ -5529,12 +5539,12 @@
     <!-- Displayed when sharing content via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Compartir con</string>
     <string name="MultiselectForwardFragment__add_a_message">Añadir un mensaje</string>
-    <string name="MultiselectForwardFragment__faster_forwards">Reenvío de mensajes más rápido</string>
+    <string name="MultiselectForwardFragment__faster_forwards">Tus mensajes ya no esperan</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Los vídeos se recortarán en clips de 30 segundos y se subirán como múltiples Historias.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Los vídeos enviados como Historias no pueden durar más de 30 segundos.</string>
-    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Los mensajes que reenvías ahora se envían en el momento.</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Los mensajes que reenvías ahora se envían al instante.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Reenviar %1$d mensaje</item>
         <item quantity="other">Reenviar %1$d mensajes</item>
@@ -5708,7 +5718,7 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Donar en nombre de alguien</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">No se ha podido confirmar la donación</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">No se ha podido confirmar tu donación</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">No se ha podido procesar tu donación mensual de %1$s. Consulta la aplicación de tu banco para aprobar el pago a través de iDEAL.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -5812,6 +5822,10 @@
     <string name="DonationsErrors__your_payment">No se ha podido procesar tu donación y no se ha aplicado ningún cargo. Inténtalo de nuevo.</string>
     <string name="DonationsErrors__still_processing">Aún se está procesando</string>
     <string name="DonationsErrors__couldnt_add_badge">Fallo al añadir insignia</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Fallo al validar la insignia</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6091,8 +6105,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Importe</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Gracias por apoyar a Signal. Con tu contribución, impulsas nuestra misión de desarrollar tecnología de código abierto centrada en la privacidad, que protege la libertad de expresión y permite una comunicación segura para millones de personas en todo el mundo. Si resides en Estados Unidos, guarda este recibo para tus declaraciones fiscales. Signal Technology Foundation es una organización sin ánimo de lucro exenta de impuestos en Estados Unidos bajo la sección 501(c)(3) del código tributario de EE. UU (Internal Revenue Code). Nuestro número de identificación fiscal es 82–4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">No hay justificantes</string>
 
@@ -6680,7 +6692,7 @@
     <!-- Re-enable backup permission bottom sheet title -->
     <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">Para volver a habilitar las copias de seguridad:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
-    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Toca el botón \"Ir a Ajustes\" que aparece más abajo</string>
+    <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Toca el botón \"Ir a Ajustes\" de abajo</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
     <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activa \"Permitir la configuración de alarmas y recordatorios\".</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
@@ -7069,7 +7081,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__no_calls">No hay llamadas.</string>
     <!-- Shown during empty state -->
-    <string name="CallLogFragment__get_started_by_calling_a_friend">Empieza llamando a alguien.</string>
+    <string name="CallLogFragment__get_started_by_calling_a_friend">Llama a alguien para empezar.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
     <string name="CallLogFragment__call_links_youve_created">Los enlaces de llamada que hayas creado ya no funcionarán para las personas que los tengan.</string>
 
@@ -7203,6 +7215,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enlace de llamada</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">No se han podido guardar los cambios. Comprueba tu conexión de red e inténtalo de nuevo.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">¿Eliminar enlace?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7467,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">¿Omitir restauración?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Si omites la restauración, el resto de los archivos adjuntos y multimedia de tu copia de seguridad se eliminarán la próxima vez que tu dispositivo haga una nueva copia de seguridad.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7543,6 +7557,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizar almacenamiento en el dispositivo</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia no utilizados se inhabilitarán, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7761,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">La clave de tu copia de seguridad</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">La clave de tu copia de seguridad es un código de 64 dígitos que te permite restaurar tu copia de seguridad cuando vuelves a instalar Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Si olvidas tu clave, no podrás restaurar tu copia de seguridad. Signal no puede ayudarte a recuperar tu copia de seguridad.</string>
     <!-- Action button label -->
@@ -7850,9 +7866,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">No tengo mi teléfono anterior</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">O estás reinstalando Signal en el mismo dispositivo</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restaurar o transferir cuenta</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera tu cuenta e historial de mensajes de Signal en este dispositivo.</string>
@@ -7879,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Introduce la clave de tu copia de seguridad</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">La clave de tu copia de seguridad es un código de 64 dígitos que necesitarás para recuperar tu cuenta y tus datos.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">¿No tienes tu clave?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Clave de copia de seguridad</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Las copias de seguridad no se pueden recuperar sin su código de recuperación de 64 dígitos. Si has perdido tu clave, Signal no puede ayudarte a restaurar tu copia de seguridad.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Si tienes tu dispositivo anterior, puedes ver la clave de tu copia de seguridad en Ajustes &gt; Chats &gt; Copias de seguridad de Signal. Luego, toca Ver clave de copia de seguridad.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Más información</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7911,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Transferir cuenta</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Tu cuenta se transferirá a un nuevo dispositivo. En este dispositivo podrás acceder a tus grupos y contactos, acceder a todos tus chats y enviar mensajes desde tu perfil. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Más información</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

@@ -1074,6 +1074,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Zkusit znovu</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Zrušit propojení „%1$s“?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Po odpojení tohoto zařízení nebude dále moci posílat a přijímat zprávy.</string>
@@ -6078,6 +6088,10 @@
     <string name="DonationsErrors__your_payment">Váš příspěvek nebylo možné zpracovat a částka vám nebyla odečtena. Zkuste to prosím znovu.</string>
     <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
     <string name="DonationsErrors__couldnt_add_badge">Odznak se nepodařilo přidat</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Odznak se nepodařilo ověřit</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6357,8 +6371,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Částka</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Děkujeme vám za podporu společnosti Signal. Váš příspěvek pomáhá podporovat poslání vývoje open source technologie ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci milionům lidí na celém světě. Pokud jste obyvatelem Spojených států, uschovejte si prosím tuto stvrzenku pro své daňové záznamy. Nadace Signal Technology Foundation je ve Spojených státech amerických neziskovou organizací osvobozenou od daní podle § 501c3 daňového zákoníku. Naše federální daňové identifikační číslo je 82-4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Žádné doklady</string>
 
@@ -7517,6 +7529,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Odstranit odkaz na hovor</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Změny se nepodařilo uložit. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Smazat odkaz?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7789,7 +7803,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Přeskočit obnovení?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Pokud zvolíte možnost Přeskočit obnovení, budou média a přílohy v záloze odstraněny při příštím dokončení nové zálohy v zařízení.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7865,6 +7879,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimalizace úložiště v zařízení</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nevyužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8091,7 +8107,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Váš záložní klíč</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Váš záložní klíč je 64místný kód, který vám umožní obnovit zálohu při opětovné instalaci aplikace Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Pokud svůj klíč zapomenete, nebude možné zálohu obnovit. Signal vám nemůže pomoci obnovit vaši zálohu.</string>
     <!-- Action button label -->
@@ -8184,9 +8200,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nemám svůj starý telefon</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Nebo přeinstalováváte aplikaci Signal na stejném zařízení</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Obnovení nebo přenos účtu</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Přeneste svůj účet Signal a historii zpráv do tohoto zařízení.</string>
@@ -8213,15 +8229,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Zadejte svůj záložní klíč</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Záložní klíč je 64místný kód potřebný k obnovení účtu a dat.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Nemáte záložní klíč?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Záložní klíč</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Bez 64místného kódu pro obnovení nelze zálohy obnovit. Pokud jste záložní klíč ztratili, nemůže vám služba Signal s obnovením zálohy pomoci.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Pokud máte staré zařízení, můžete si záložní klíč zobrazit v Nastavení &gt; Chaty &gt; Zálohování služby Signal. Poté klepněte na Zobrazit záložní klíč.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Zjistit více</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8245,7 +8261,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Přenést účet</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Váš účet bude přenesen do nového zařízení. Toto zařízení bude moci vidět vaše skupiny a kontakty, mít přístup k chatům a posílat zprávy vaším jménem. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Zjistit více</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

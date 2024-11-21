@@ -1074,6 +1074,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Pokušajte ponovno</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Poništi vezu s \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ovaj uređaj više neće moći slati i primati poruke ako je odspojen.</string>
@@ -6078,6 +6088,10 @@
     <string name="DonationsErrors__your_payment">Vašu donaciju nije bilo moguće obraditi te vam račun nije terećen. Molimo, pokušajte ponovno.</string>
     <string name="DonationsErrors__still_processing">Obrada u tijeku</string>
     <string name="DonationsErrors__couldnt_add_badge">Nije moguće dodati značku</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Provjera značke nije uspjela</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6357,8 +6371,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Količina</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Hvala što podržavate Signal. Vaš doprinos pomaže u poticanju misije razvoja tehnologije privatnosti otvorenog koda koja štiti slobodu izražavanja i omogućuje sigurnu globalnu komunikaciju za milijune diljem svijeta. Ako ste stanovnik Sjedinjenih Američkih Država, molimo sačuvajte ovu potvrdu za poreznu evidenciju. Signal Technology Foundation je neprofitna organizacija oslobođena poreza u Sjedinjenim Američkim Državama prema odjeljku 501c3 Poreznog zakona. Naš federalni porezni broj je 82–4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nema računa</string>
 
@@ -7517,6 +7529,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Izbriši poveznicu na poziv</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Spremanje promjena nije uspjelo. Provjerite mrežnu vezu i pokušajte ponovno.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Izbrisati poveznicu?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7789,7 +7803,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Preskočiti vraćanje datoteka?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Ako preskočite ovaj korak, medijski zapisi i privitci spremljeni u sigurnosnoj kopiji bit će izbrisani sljedeći put kada vaš uređaj dovrši sigurnosno kopiranje.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7865,6 +7879,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizirajte pohranu na uređaju</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nekorišteni medijski zapisi bit će uklonjeni, ali moguće ih je vratiti iz sigurnosne kopije u bilo kojem trenutku.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8091,7 +8107,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Vaš ključ za sigurnosnu kopiju</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ključ za sigurnosnu kopiju je 64-znamenkasti kôd koji vam omogućuje vraćanje sigurnosne kopije kada ponovno instalirate Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ako zaboravite svoj ključ, neće biti moguće vratiti podatke iz sigurnosne kopije. Signal vam ne može pomoći vratiti sigurnosnu kopiju.</string>
     <!-- Action button label -->
@@ -8184,9 +8200,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nemam svoj stari telefon</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Ili ako želite ponovno instalirati Signal na isti uređaj</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Vratite ili prenesite račun</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Prenesite svoj Signal račun i povijest poruka na ovaj uređaj.</string>
@@ -8213,15 +8229,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Unesite svoj ključ za sigurnosnu kopiju</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Ključ za sigurnosnu kopiju je 64-znamenkasti kôd koji je potreban za oporavak vašeg računa i podataka.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Nemate ključ za sigurnosnu kopiju?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Ključ za sigurnosnu kopiju</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Sigurnosne kopije nije moguće vratiti bez 64-znamenkastog koda za oporavak. Ako ste zaboravili svoj ključ, nećete moći vratiti podatke iz sigurnosne kopije.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ako imate svoj stari uređaj, svoj ključ za sigurnosnu kopiju možete pregledati u Postavkama &gt; Razgovori &gt; Sigurnosne kopije Signala. Zatim dodirnite Prikaži ključ za sigurnosnu kopiju.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Saznajte više</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8245,7 +8261,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Prijenos računa</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Vaš će se račun prenijeti na novi uređaj. Taj će uređaj moći vidjeti vaše grupe i kontakte, pristupiti vašim razgovorima i slati poruke u vaše ime. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Saznajte više</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

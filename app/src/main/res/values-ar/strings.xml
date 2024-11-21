@@ -1114,6 +1114,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">إعادة المُحاولة</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">أترغبُ بفصل الربط بـ \"%1$s\"؟</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل مُمكِنًا بمُجرَّد إلغاء ربط الجهاز.</string>
@@ -6221,7 +6231,7 @@
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يُمكنك اختيار واحدة لإظهارها ليراها الآخرين في حسابك الشخصي.</string>
 
     <string name="BecomeASustainerFragment__get_badges">احصل على شارات لحسابك الشخصي عن طريق دعم سيجنال.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن سيجنال غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">سيجنال تطبيق غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">تبرَّع لسيجنال</string>
@@ -6232,11 +6242,11 @@
     <string name="ManageDonationsFragment__my_support">دعمي</string>
     <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرعات</string>
-    <string name="ManageDonationsFragment__badges">شارات</string>
+    <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرُّعات</string>
+    <string name="ManageDonationsFragment__badges">الشارات</string>
     <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
     <!-- Preference heading for other ways to donate -->
-    <string name="ManageDonationsFragment__other_ways_to_give">طرق أخرى للتبرّع</string>
+    <string name="ManageDonationsFragment__other_ways_to_give">طرُق أخرى للتبرُّع</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">تبرَّع لصديق</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
@@ -6246,7 +6256,7 @@
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s لمرة واحدة. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
 
-    <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
+    <string name="Boost__enter_custom_amount">أدخِل مبلغ مُخَصَّص</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">الحد الأدنى الذي يُمكنك التبرُّع به هو %1$s</string>
 
@@ -6344,12 +6354,16 @@
     <string name="DonationsErrors__your_payment">تعذرت معالجة تبرعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة.</string>
     <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
     <string name="DonationsErrors__couldnt_add_badge">تعذّر إضافة الشارة</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">تعذّر التحقّق من الشارة</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">تعذّر التحقّق من استجابة الخادم. يرجى الاتصال بالدعم.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">تعذّر التبرع</string>
+    <string name="DonationsErrors__donation_failed">تعذَّر التبرع</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">تمت مُعالجة عملية دفعك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرّع. يُرجى الاتصال بفريق الدعم.</string>
     <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
@@ -6360,18 +6374,18 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
     <string name="NetworkFailure__retry">إعادة المُحاولة</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">تعذّر إرسال التبرّع</string>
+    <string name="DonationsErrors__cannot_send_donation">تعذَّر إرسال التبرُّع</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">لا يُمكن لهذا المُستخدم تلقّي الهدايا حتى يقوم بترقية تطبيق سيجنال.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">لا يُمكن لهذا المُستخدم تلقّي التبرُّعات حتى يقوم بترقية تطبيق سيجنال.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">تعذّر إرسال هديتك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاول مجددًا.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">تعذَّر إرسال تبرُّعك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاوِل مُجدَّدًا.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
     <string name="DonationsErrors__your_ideal_couldnt_be_processed">تعذرت معالجة تبرع iDEAL الخاص بك. يُرجى محاولة طريقة أخرى للدفع أو الاتصال بمصرفك للمزيد من المعلومات.</string>
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">تبرّع نيابة عن %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">تبرّع %1$s لسيجنال نيابة عنك</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">تبرَّعَ %1$s لسيجنال نيابة عنك</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">قبول الهدية</string>
     <!-- Gift badge view action label -->
@@ -6623,8 +6637,6 @@
     <string name="DonationReceiptDetailsFragment__amount">المبلغ</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">نشكرك على دعم سيجنال. تمكننا مساهمتك من الالتزام بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالا عالميا آمنا للملايين عبر العالم. إذا كنت من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا التوصيل للإدلاء به عند مصلحة الضرائب. إن ‫مؤسسة تكنولوجيا سيجنال مؤسسة خيرية عمومية وغير ربحية، أُحدثَت بالولايات المتحدة اﻷمريكية، وهي معفية من الضرائب بموجب الفقرة 501c3 من قانون الإيرادات الداخلية. مُعرِّفنا الضريبي هو ‎.82-4506840‎</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">لا توجد إيصالات</string>
 
@@ -7831,6 +7843,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">حذف رابط المكالمة</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">تعذّر حفظ التغييرات. تحقّق من اتصالك بالإنترنت وحاول مرة أخرى.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">حذف الرابط؟</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -8111,7 +8125,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطي الاستعادة؟</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">إذا تخطّيت الاستعادة، فستُحذف الوسائط والمُرفقات في نسختك الاحتياطية في المرّة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8187,6 +8201,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">تحسين تخزين على الجهاز</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">سيتم تفريغ الوسائط غير المستخدمة، لكن يُمكن تنزيلها من النسخة الاحتياطية في أي وقت.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8421,7 +8437,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">مفتاح النسخة الاحتياطية الخاص بك</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا يَسمح لك باسترجاع نسختك الاحتياطية عندما تُعيد تثبيت سيجنال.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">إذا نسيتَ مفتاحك، لن تتمكَّن من استرجاع نسختك الاحتياطية. لا يُمكن لسيجنال مُساعدتك على استرجاع نسختك الاحتياطية.</string>
     <!-- Action button label -->
@@ -8518,9 +8534,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">هاتفي القديم ليس بحوزتي</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">أو تقوم بإعادة تثبيت سيجنال على الجهاز نفسه.</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">استعادة أو نقل الحساب</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">حوّل حساب سيجنال الخاص بك وسِجل رسائلك إلى جهازك الحالي.</string>
@@ -8547,15 +8563,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">أدخِل مفتاح النسخة الاحتياطية الخاص بك</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا، وهو مطلوب لاسترجاع حسابك وبياناتك.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">لا ترغبُ باستخدام مفتاح النسخة الاحتياطية؟</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">مفتاح النسخة الاحتياطية</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">لا يُمكن استرجاع النسخ الاحتياطية دون كود الاستعادة المُكوَّن من 64 رقمًا. إذا فقدت مفتاح النسخة الاحتياطية الخاص بك، فلا يُمكن لسيجنال مساعدتك في استعادة نسختك الاحتياطية.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">إذا كنت تستعمل جهازك القديم، يمكنك عرض مفتاح النسخة الاحتياطية الخاص بك في \"الإعدادات\" &gt; \"الدردشات\" &gt; \"النسخ الاحتياطية على سيجنال\". ثم انقر على عرض مفتاح النسخة الاحتياطية.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">اعرف المزيد</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8579,7 +8595,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">نقل الحساب</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">سيتمُّ نقل حسابك إلى جهاز جديد. سَيتمكن هذا الجهاز من رؤية مجموعاتك وجهات اتصالك، والوصول إلى دردشاتك، وإرسال رسائل باسمك. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">اعرف المزيد</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

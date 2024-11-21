@@ -1074,6 +1074,16 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Bandyti dar kartą</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Atsieti „%1$s“?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Atsiejus šį įrenginį, jis daugiau nebegalės siųsti ar gauti žinučių.</string>
@@ -6078,6 +6088,10 @@
     <string name="DonationsErrors__your_payment">Nepavyko apdoroti tavo paramos, pinigai nenuskaityti. Bandyk dar kartą.</string>
     <string name="DonationsErrors__still_processing">Vis dar apdorojama</string>
     <string name="DonationsErrors__couldnt_add_badge">Nepavyko pridėti ženklelio</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Nepavyko patikrinti ženklelio</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6357,8 +6371,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Suma</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dėkojame, kad remiate Signal. Jūsų įnašas padės skatinti misiją kurti atvirojo kodo privatumo technologiją, kuri apsaugo žodžio laisvę ir įgalina saugų bendravimą milijonams žmonių visame pasaulyje. Jei gyvenate Jungtinėse Valstijose, išsaugokite šį kvitą, kad turėtumėte jį savo mokestinių duomenų reikmėms. Signal technologijų fondas yra Jungtinėse Valstijose įsteigta, pagal vidaus mokesčių kodekso 501c3 sekciją neapmokestinama, pelno nesiekianti organizacija. Mūsų federalinis mokesčių ID yra 82–4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Nėra kvitų</string>
 
@@ -7517,6 +7529,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Ištrinti skambučio nuorodą</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nepavyko išsaugoti pakeitimų. Patikrink tinklo ryšį ir bandyk dar kartą.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Ištrinti nuorodą?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7789,7 +7803,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Praleisti atkūrimą?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore">Jei pasirinksite praleisti, likę įrašai ir priedai iš atsarginių kopijų bus ištrinti, kai įrenginys užbaigs naują atsarginę kopiją.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7865,6 +7879,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizuoti saugyklą įrenginyje</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nepanaudoti įrašai bus išimti, tačiau juos bet kada galėsite atsisiųsti iš atsarginės kopijos.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8091,7 +8107,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Jūsų atsarginės kopijos raktas</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Atsarginis raktas yra 64 skaitmenų kodas, leidžiantis atkurti atsarginę kopiją iš naujo įdiegus „Signal“.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Pamiršę savo raktą atsarginės kopijos atkurti negalėsite. „Signal“ negali padėti jums atkurti atsarginės kopijos.</string>
     <!-- Action button label -->
@@ -8184,9 +8200,9 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Neturiu savo senojo telefono</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Arba iš naujo įdiegiate „Signal“ tame pačiame įrenginyje</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
 
-    <!-- Screen title for selecting which restore method to use during registartion -->
+    <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Atkurti arba perkelti paskyrą</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Gaukite savo „Signal“ paskyrą ir žinučių istoriją į šį įrenginį.</string>
@@ -8213,15 +8229,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Įveskite savo atsarginės kopijos raktą</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Jūsų atsarginės kopijos raktas yra 64 skaitmenų kodas, reikalingas norint atkurti paskyrą ir duomenis.</string>
+    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Neturite atsarginės kopijos rakto?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Atsarginės kopijos raktas</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Atsarginių kopijų negalima atkurti be 64 skaitmenų atkūrimo kodo. Jei prarasite savo atsarginės kopijos raktą, „Signal“ negalės jums padėti atkurti atsarginės kopijos.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Jei turite senąjį įrenginį, atsarginės kopijos raktą rasite skiltyje Nustatymai &gt; Pokalbiai &gt; „Signal“ atsarginės kopijos. Tada bakstelėkite „Peržiūrėti atsarginės kopijos raktą“.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Sužinoti daugiau</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8245,7 +8261,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Perkelti paskyrą</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Jūsų paskyra bus perkelta į naują įrenginį. Šis įrenginys galės matyti jūsų grupes ir adresatus, gauti prieigą prie jūsų pokalbių bei siųsti žinutes jūsų vardu. %1$s</string>
+    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Sužinoti daugiau</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
