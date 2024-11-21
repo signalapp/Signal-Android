@@ -1316,7 +1316,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">Sandaran terakhir anda telah dibuat pada %1$s pada %2$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">Mengambil butiran sandaran…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
@@ -4187,7 +4187,7 @@
     <string name="registration_activity__restore_backup">Memulihkan sandaran</string>
     <string name="registration_activity__transfer_or_restore_account">Pindahkan atau pulihkan akaun</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Pulihkan atau pindahkan</string>
     <string name="registration_activity__transfer_account">Pindahkan akaun</string>
     <string name="registration_activity__skip">Langkau</string>
     <string name="preferences_chats__chat_backups">Sandaran sembang</string>
@@ -6530,7 +6530,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Ketik butang \"Pergi ke tetapan\" di bawah</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Hidupkan \"Benarkan tetapan penggera dan peringatan.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Pergi ke tetapan</string>
 
@@ -7676,98 +7676,98 @@
     <string name="ReminderView_icon_content_description">Ikon peringatan</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Saya mempunyai telefon lama saya</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">Imbas kod QR daripada akaun Signal semasa anda untuk bermula dengan cepat</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Saya tidak mempunyai telefon lama saya</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Atau anda memasang semula Signal pada peranti yang sama</string>
 
     <!-- Screen title for selecting which restore method to use during registartion -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Pulihkan atau pindahkan akaun</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">Dapatkan akaun Signal dan sejarah mesej anda ke peranti ini.</string>
     <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Daripada Sandaran Signal</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Pelan Sandaran Signal percuma atau berbayar anda</string>
     <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">Daripada folder sandaran</string>
     <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">Daripada fail sandaran</string>
     <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Pilih sandaran yang telah anda simpan</string>
     <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">Dari telefon lama anda</string>
     <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Pindahkan terus dari Android lama anda</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <string name="RestoreLocalBackup_title">Pulihkan sandaran setempat</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RestoreLocalBackup_subtitle">Pulihkan mesej anda daripada sandaran yang disimpan pada peranti anda. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkan kemudian.</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <string name="EnterBackupKey_title">Masukkan kunci sandaran anda</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Kunci sandaran anda ialah kod 64 digit yang diperlukan untuk memulihkan akaun dan data anda.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <string name="EnterBackupKey_no_backup_key">Tiada kunci sandaran?</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <string name="EnterBackupKey_backup_key">Kunci sandaran</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Sandaran tidak boleh dipulihkan tanpa kod pemulihan 64 digit mereka. Jika anda kehilangan kunci sandaran, Signal tidak dapat membantu memulihkan sandaran anda.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Jika mempunyai peranti lama anda, anda boleh melihat kunci sandaran dalam Tetapan &gt; Sembang &gt; Sandaran Signal. Kemudian ketik Lihat kunci sandaran.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <string name="EnterBackupKey_learn_more">Ketahui lebih lanjut</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+    <string name="EnterBackupKey_skip_and_dont_restore">Langkau dan jangan pulihkan</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <string name="RestoreViaQr_title">Imbas kod ini dengan telefon lama anda</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <string name="RestoreViaQr_instruction_1">Buka Signal pada peranti lama anda</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <string name="RestoreViaQr_instruction_2">Ketik ikon kamera </string>
     <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <string name="RestoreViaQr_instruction_3">Imbas kod ini dengan kamera</string>
     <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <string name="RestoreViaQr_qr_code_error">Tidak dapat menjana kod QR</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <string name="RestoreViaQr_qr_code_scanned">Diimbas pada peranti lama</string>
     <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Retry</string>
+    <string name="RestoreViaQr_retry">Cuba Semula</string>
 
     <!-- Old device Transfer account screen title -->
-    <string name="TransferAccount_title">Transfer account</string>
+    <string name="TransferAccount_title">Pindahkan akaun</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">Akaun anda akan dipindahkan ke peranti baharu. Peranti ini dapat melihat kumpulan dan kenalan anda, mengakses sembang dan menghantar mesej atas nama anda. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
-    <string name="TransferAccount_learn_more">Learn more</string>
+    <string name="TransferAccount_learn_more">Ketahui lebih lanjut</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
-    <string name="TransferAccount_button">Transfer account</string>
+    <string name="TransferAccount_button">Pindahkan akaun</string>
     <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
-    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="TransferAccount_messages_e2e">Mesej dan maklumat sembang dilindungi oleh penyulitan hujung ke hujung pada semua peranti</string>
     <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
-    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <string name="TransferAccount_unlock_to_transfer">Buka kunci untuk memindahkan akaun</string>
     <!-- Old device Transfer account bottom sheet dialog title -->
-    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <string name="TransferAccount_continue_on_your_other_device">Teruskan pada peranti anda yang lain</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
-    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+    <string name="TransferAccount_continue_on_your_other_device_details">Teruskan memindahkan akaun anda pada peranti anda yang lain.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Restore selesai</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Akaun Signal dan mesej anda telah mula dipindahkan ke peranti anda yang lain. Signal kini tidak aktif pada peranti ini.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete">Pemindahan selesai</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Akaun Signal dan mesej anda telah dipindahkan ke peranti anda yang lain. Signal kini tidak lagi aktif pada peranti ini.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
-    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+    <string name="RestoreCompleteBottomSheet_button">Okey</string>
 
 
     <!-- EOF -->

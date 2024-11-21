@@ -1354,7 +1354,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">आपका पिछला बैकअप %1$s को %2$s पर बनाया गया था।</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">बैकअप जानकारी फ़ेच की जा रही है…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंछन किए जाने पर मुझे सूचित करें</string>
@@ -4298,7 +4298,7 @@
     <string name="registration_activity__restore_backup">बैकअप पुनर्स्थापित करें</string>
     <string name="registration_activity__transfer_or_restore_account">खाता ट्रांसफ़र या रीस्टोर करें</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">रीस्टोर या ट्रांसफ़र करें</string>
     <string name="registration_activity__transfer_account">खाता ट्रांसफ़र करें</string>
     <string name="registration_activity__skip">छोड़ दे</string>
     <string name="preferences_chats__chat_backups">बैकअप चैट करें</string>
@@ -6682,7 +6682,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">नीचे दिए \"सेटिंग्स पर जाएँ\" बटन को टैप करें</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"सेटिंग्स अलार्म और रिमाइंडर की अनुमति दें\" को चालू करें।</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">सेटिंग्स पर जाएँ</string>
 
@@ -7843,98 +7843,98 @@
     <string name="ReminderView_icon_content_description">रिमाइंडर आइकन</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">मेरे पास मेरा पुराना फ़ोन है</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">जल्दी शुरुआत करने के लिए, अपने मौजूदा Signal अकाउंट से QR कोड स्कैन करें</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">मेरे पास मेरा पुराना फ़ोन नहीं है</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">या आप उसी डिवाइस पर Signal को फिर से इंस्टॉल कर रहे हैं</string>
 
     <!-- Screen title for selecting which restore method to use during registartion -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">अकाउंट ट्रांसफ़र या रीस्टोर करें</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">इस डिवाइस पर अपना Signal अकाउंट और संदेश इतिहास पाएँ।</string>
     <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal बैकअप से</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">आपका मुफ़्त या भुगतान वाला Signal बैकअप प्लान</string>
     <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">किसी बैकअप फ़ोल्डर से</string>
     <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">किसी बैकअप फ़ाइल से</string>
     <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">अपना सेव किया गया कोई बैकअप चुनें</string>
     <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">आपके पुराने फ़ोन से</string>
     <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">सीधे आपके पुराने Android से ट्रांसफ़र करें</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <string name="RestoreLocalBackup_title">स्थानीय बैकअप को रीस्टोर करें</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RestoreLocalBackup_subtitle">अपने डिवाइस पर सेव किए गए बैकअप से अपने संदेश रीस्टोर करें। अगर आप अभी रीस्टोर नहीं करते, तो आप बाद में रीस्टोर नहीं कर पाएँगे।</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <string name="EnterBackupKey_title">अपनी बैकअप की दर्ज करें</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">आपकी बैकअप की 64 अंकों वाला एक कोड होती है, जो आपके अकाउंट और डेटा को रिकवर करने के लिए ज़रूरी होती है।</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <string name="EnterBackupKey_no_backup_key">आपकी बैकअप की नहीं है?</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <string name="EnterBackupKey_backup_key">आपकी बैकअप की</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">बैकअप की को उनके 64 अंकों वाले रिकवरी कोड के बिना रिकवर नहीं किया जा सकता। अगर आपकी बैकअप की खो गई है, तो Signal आपका बैकअप रीस्टोर करने में मदद नहीं कर सकता।</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">अगर आपके पास अपना पुराना डिवाइस है, तो आप सेटिंग्स &gt; चैट &gt; Signal बैकअप में अपनी बैकअप की देख सकते हैं। फिर \'बैकअप की देखें\' पर टैप करें।</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <string name="EnterBackupKey_learn_more">अधिक जानें</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+    <string name="EnterBackupKey_skip_and_dont_restore">छोड़ें और रीस्टोर न करें</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <string name="RestoreViaQr_title">अपने पुराने फ़ोन से यह कोड स्कैन करें</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <string name="RestoreViaQr_instruction_1">अपने पुराने डिवाइस पर Signal खोलें</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <string name="RestoreViaQr_instruction_2">कैमरा आइकन पर टैप करें </string>
     <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <string name="RestoreViaQr_instruction_3">कैमरे से यह कोड स्कैन करें</string>
     <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <string name="RestoreViaQr_qr_code_error">QR कोड जनरेट नहीं कर पाए</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <string name="RestoreViaQr_qr_code_scanned">पुराने डिवाइस पर स्कैन किया गया</string>
     <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Retry</string>
+    <string name="RestoreViaQr_retry">दोबारा कोशिश करें</string>
 
     <!-- Old device Transfer account screen title -->
-    <string name="TransferAccount_title">Transfer account</string>
+    <string name="TransferAccount_title">खाता ट्रांसफ़र करें</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">आपका अकाउंट एक नए डिवाइस पर ट्रांसफ़र किया जाएगा। यह डिवाइस आपके ग्रुप और संपर्क देख पाएगा, आपकी चैट ऐक्सेस कर पाएगा और आपके नाम से संदेश भेज पाएगा। %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
-    <string name="TransferAccount_learn_more">Learn more</string>
+    <string name="TransferAccount_learn_more">अधिक जानें</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
-    <string name="TransferAccount_button">Transfer account</string>
+    <string name="TransferAccount_button">खाता ट्रांसफ़र करें</string>
     <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
-    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="TransferAccount_messages_e2e">सभी डिवाइस पर संदेश और चैट जानकारी शुरू से अंत तक एनक्रिप्शन से सुरक्षित हैं</string>
     <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
-    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <string name="TransferAccount_unlock_to_transfer">अकाउंट ट्रांसफ़र करने के लिए अनलॉक करें</string>
     <!-- Old device Transfer account bottom sheet dialog title -->
-    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <string name="TransferAccount_continue_on_your_other_device">अपने दूसरे डिवाइस पर जारी रखें</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
-    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+    <string name="TransferAccount_continue_on_your_other_device_details">अपने अकाउंट को अपने दूसरे डिवाइस पर ट्रांसफ़र करना जारी रखें।</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">पुनर्स्थापित पूर्ण</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">आपके Signal अकाउंट और संदेशों को आपके दूसरे डिवाइस पर ट्रांसफ़र करना शुरू हो गया है। Signal अब इस डिवाइस पर ऐक्टिव नहीं है।</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete">ट्रांसफ़र पूरा हुआ</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">आपके Signal अकाउंट और संदेशों को आपके दूसरे डिवाइस पर ट्रांसफ़र कर दिया गया है। Signal अब इस डिवाइस पर ऐक्टिव नहीं है।</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
-    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+    <string name="RestoreCompleteBottomSheet_button">ठीक है</string>
 
 
     <!-- EOF -->

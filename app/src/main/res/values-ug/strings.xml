@@ -1316,7 +1316,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">ئاخىرقى قېتىملىق زاپاسلاش %1$s %2$s دە ئېلىپ بېرىلغان.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">زاپاسلاش تەپسىلاتلىرىنى قوبۇللاش…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ئاتالسام ئەسكەرتسۇن</string>
@@ -4187,7 +4187,7 @@
     <string name="registration_activity__restore_backup">زاپاسنى ئەسلىگە كەلتۈرۈش</string>
     <string name="registration_activity__transfer_or_restore_account">ھېساباتنى يۆتكە ياكى ئەسلىگە كەلتۈر</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">ئەسلىگە كەلتۈرۈش ياكى يۆتكەش</string>
     <string name="registration_activity__transfer_account">ھېساباتنى يۆتكە</string>
     <string name="registration_activity__skip">ئاتلا</string>
     <string name="preferences_chats__chat_backups">پاراڭ زاپاسلانمىسى</string>
@@ -6530,7 +6530,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">تۆۋەندىكى «تەڭشەككە كىرىش» كۇنۇپكىسىنى چېكىڭ</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">«تەڭشەك ئاگاھلاندۇرۇشى ۋە ئەسكەرتىشكە رۇخسەت قىلىش.» نى ئېچىڭ</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">تەڭشەكلەرگە يۆتكەل</string>
 
@@ -7676,98 +7676,98 @@
     <string name="ReminderView_icon_content_description">ئەسكەرتىش سىنبەلگىسى</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">مېنىڭ كونا تېلېفونىم بار</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">تېز باشلاش ئۈچۈن نۆۋەتتىكى سىگنال ھېساباتىڭىزدىن QR كودىنى سىكانىرلاڭ</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">كونا تېلېفونۇم يېنىمدا يوق</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">ياكى ئوخشاش ئۈسكۈنىدە سىگنالنى قايتا قاچىلاۋاتىسىز</string>
 
     <!-- Screen title for selecting which restore method to use during registartion -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ھېساباتنى ئەسلىگە كەلتۈرۈش ياكى يۆتكەش</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">سىگنال ھېساباتىڭىز ۋە ئۇچۇر تارىخىڭىزنى بۇ ئۈسكۈنىگە قاچىلاڭ.</string>
     <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">سىگنال زاپاسلانمىسىدىن</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">ھەقسىز ياكى ھەقلىق سىگنال زاپاسلاش پىلانىڭىز</string>
     <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">بىر تال زاپاسلاش ھۆججەت قىسقۇچىدىن</string>
     <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">بىر تال زاپاس ھۆججەتتىن</string>
     <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">ساقلىۋالغان زاپاسلاشتىن بىرنى تاللاڭ</string>
     <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">كونا تېلېفونىڭىزدىن</string>
     <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">كونا ئاندىرويىد ئۈسكۈنىڭىزدىن بىۋاسىتە يۆتكەڭ</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <string name="RestoreLocalBackup_title">يەرلىك زاپاسلاشنى ئەسلىگە كەلتۈرۈش</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RestoreLocalBackup_subtitle">ئۈسكۈنىڭىزدە ساقلىغان زاپاسلاشتىن ئۇچۇرلىرىڭىزنى ئەسلىگە كەلتۈرۈڭ. ئەگەر ھازىر ئەسلىگە كەلتۈرمىسىڭىز ، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <string name="EnterBackupKey_title">زاپاسلاش ئاچقۇچىڭىزنى كىرگۈزۈڭ</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">زاپاسلاش ئاچقۇچىڭىز ھېساباتىڭىز ۋە سانلىق مەلۇماتلىرىڭىزنى ئەسلىگە كەلتۈرۈش ئۈچۈن تەلەپ قىلىنىدىغان 64 خانىلىق كود.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <string name="EnterBackupKey_no_backup_key">زاپاسلاش ئاچقۇچى يوقمۇ؟</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <string name="EnterBackupKey_backup_key">زاپاسلاش ئاچقۇچى</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">زاپاسلاشنى 64 خانىلىق ئەسلىگە كەلتۈرۈش كودى بولمىسا ئەسلىگە كەلتۈرگىلى بولمايدۇ. ئەگەر زاپاسلاش ئاچقۇچىڭىزنى يوقىتىپ قويغان بولسىڭىز ، سىگنال ياردەملىشىپ زاپاسلاشنى ئەسلىگە كەلتۈرەلمەيدۇ.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">ئەگەر كونا ئۈسكۈنىڭىز بولسا تەڭشەك&gt; پاراڭلار&gt; سىگنال زاپاسلىرى دىن زاپاسلاش ئاچقۇچىنى كۆرەلەيسىز. ئاندىن «زاپاسلاش ئاچقۇچىنى كۆرۈش» نى چېكىڭ.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <string name="EnterBackupKey_learn_more">تەپسىلاتى</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+    <string name="EnterBackupKey_skip_and_dont_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <string name="RestoreViaQr_title">كونا تېلېفونىڭىز بىلەن بۇ كودنى سىكانىرلاڭ</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <string name="RestoreViaQr_instruction_1">كونا ئۈسكۈنىڭىزدە سىگنالنى ئېچىڭ</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <string name="RestoreViaQr_instruction_2">كامېرا سىنبەلگىسىنى چېكىڭ </string>
     <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <string name="RestoreViaQr_instruction_3">بۇ كودنى كامېرا بىلەن سىكانىرلاڭ</string>
     <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <string name="RestoreViaQr_qr_code_error">QR كودنى ھاسىل قىلالمىدى</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <string name="RestoreViaQr_qr_code_scanned">كونا ئۈسكۈنىدە سىكانىرلاندى</string>
     <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Retry</string>
+    <string name="RestoreViaQr_retry">قايتا سىنا</string>
 
     <!-- Old device Transfer account screen title -->
-    <string name="TransferAccount_title">Transfer account</string>
+    <string name="TransferAccount_title">ھېساباتنى يۆتكە</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">ھېساباتىڭىز يېڭى ئۈسكۈنىگە يۆتكىلىدۇ. بۇ ئۈسكۈنە گۇرۇپپا ۋە ئالاقىداشلىرىڭىزنى كۆرەلەيدۇ ، پاراڭلىرىڭىزنى زىيارەت قىلالايدۇ ۋە نامىڭىزدا ئۇچۇر ئەۋەتەلەيدۇ. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
-    <string name="TransferAccount_learn_more">Learn more</string>
+    <string name="TransferAccount_learn_more">تەپسىلاتى</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
-    <string name="TransferAccount_button">Transfer account</string>
+    <string name="TransferAccount_button">ھېساباتنى يۆتكە</string>
     <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
-    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="TransferAccount_messages_e2e">ئۇچۇر ۋە پاراڭلار بارلىق ئۈسكۈنىلىرىڭىزدە ئاخىرىغىچە مەخپىيلەشتۈرۈلگەن</string>
     <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
-    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <string name="TransferAccount_unlock_to_transfer">ھېساباتنى يۆتكەش ئۈچۈن قۇلۇپنى ئېچىش</string>
     <!-- Old device Transfer account bottom sheet dialog title -->
-    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <string name="TransferAccount_continue_on_your_other_device">يەنە بىر ئۈسكىنىڭزدە داۋاملاشتۇرڭ</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
-    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+    <string name="TransferAccount_continue_on_your_other_device_details">ھېساباتىڭىزنى باشقا ئۈسكۈنىڭىزگە يۆتكەشنى داۋاملاشتۇرۇڭ.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">ئەسلىگە كەلتۈرۈش تاماملاندى</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">سىگنال ھېساباتىڭىز ۋە ئۇچۇرلىرىڭىز باشقا ئۈسكۈنىڭىزگە يۆتكىلىشكە باشلىدى. سىگنال ئەمدى بۇ ئۈسكۈنىدە ئىشلىمەيدۇ.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete">يۆتكەش تاماملاندى</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">سىگنال ھېساباتىڭىز ۋە ئۇچۇرلىرىڭىز باشقا ئۈسكۈنىڭىزگە يۆتكەلدى. سىگنال ئەمدى بۇ ئۈسكۈنىدە ئىشلىمەيدۇ.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
-    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+    <string name="RestoreCompleteBottomSheet_button">جەزملە</string>
 
 
     <!-- EOF -->

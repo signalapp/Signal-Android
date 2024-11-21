@@ -1354,7 +1354,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് %1$s, %2$s -ന് ചെയ്തു.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">ബാക്കപ്പ് വിശദാംശങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
@@ -4298,7 +4298,7 @@
     <string name="registration_activity__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
     <string name="registration_activity__transfer_or_restore_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുകയോ പുനസ്ഥാപിക്കുകയോ ചെയ്യുക</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">പുനഃസ്ഥാപിക്കുക അല്ലെങ്കിൽ കൈമാറ്റം ചെയ്യുക</string>
     <string name="registration_activity__transfer_account">അക്കൗണ്ട് മാറ്റിസ്ഥാപിക്കുക</string>
     <string name="registration_activity__skip">ഒഴിവാക്കുക</string>
     <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
@@ -6682,7 +6682,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">ചുവടെയുള്ള \"ക്രമീകരണങ്ങളിലേക്ക് പോകുക\" എന്ന ബട്ടണിൽ ടാപ്പ് ചെയ്യുക</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"അലാറങ്ങളും ഓർമ്മപ്പെടുത്തലുകളും ക്രമീകരിക്കുന്നത് അനുവദിക്കുക\" ഓണാക്കുക.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
 
@@ -7843,98 +7843,98 @@
     <string name="ReminderView_icon_content_description">ഓർമ്മപ്പെടുത്തൽ ഐക്കൺ</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">എൻ്റെ കയ്യിൽ പഴയ ഫോൺ ഉണ്ട്</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">വേഗത്തിൽ ആരംഭിക്കുന്നതിന് നിങ്ങളുടെ നിലവിലെ Signal അക്കൗണ്ടിൽ നിന്ന് ഒരു QR കോഡ് സ്കാൻ ചെയ്യുക</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">എൻ്റെ കയ്യിൽ പഴയ ഫോൺ ഇല്ല</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">അല്ലെങ്കിൽ നിങ്ങൾ അതേ ഉപകരണത്തിൽ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുകയാണ്</string>
 
     <!-- Screen title for selecting which restore method to use during registartion -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">അക്കൗണ്ട് പുനഃസ്ഥാപിക്കുക അല്ലെങ്കിൽ കൈമാറുക</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">ഈ ഉപകരണത്തിലേക്ക് നിങ്ങളുടെ Signal അക്കൗണ്ടും സന്ദേശ ചരിത്രവും നേടുക.</string>
     <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal ബാക്കപ്പുകളിൽ നിന്ന്</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">നിങ്ങളുടെ സൗജന്യ അല്ലെങ്കിൽ പണമടച്ചുള്ള Signal ബാക്കപ്പ് പ്ലാൻ</string>
     <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">ഒരു ബാക്കപ്പ് ഫോൾഡറിൽ നിന്ന്</string>
     <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">ഒരു ബാക്കപ്പ് ഫയലിൽ നിന്ന്</string>
     <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">നിങ്ങൾ സംരക്ഷിച്ചിരിക്കുന്ന ഒരു ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
     <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">നിങ്ങളുടെ പഴയ ഫോണിൽ നിന്ന്</string>
     <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">നിങ്ങളുടെ പഴയ Android-ൽ നിന്ന് നേരിട്ട് കൈമാറുക</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <string name="RestoreLocalBackup_title">ലോക്കൽ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുക</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RestoreLocalBackup_subtitle">നിങ്ങളുടെ ഉപകരണത്തിൽ സംരക്ഷിച്ചിരിക്കുന്ന ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുനഃസ്ഥാപിച്ചില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല.</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <string name="EnterBackupKey_title">നിങ്ങളുടെ ബാക്കപ്പ് കീ നൽകുക</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ആവശ്യമായ 64 അക്ക കോഡാണ് നിങ്ങളുടെ ബാക്കപ്പ് കീ.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <string name="EnterBackupKey_no_backup_key">ബാക്കപ്പ് കീ ഇല്ലേ?</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <string name="EnterBackupKey_backup_key">ബാക്കപ്പ് കീ</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">64 അക്ക വീണ്ടെടുക്കൽ കോഡ് ഇല്ലാതെ ബാക്കപ്പുകൾ വീണ്ടെടുക്കാനാവില്ല. നിങ്ങളുടെ ബാക്കപ്പ് കീ നഷ്‌ടപ്പെട്ടാൽ, നിങ്ങളുടെ ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ Signal-ന് സഹായിക്കാനാകില്ല.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">നിങ്ങളുടെ പക്കൽ പഴയ ഉപകരണം ഉണ്ടെങ്കിൽ, ക്രമീകരണങ്ങൾ &gt; ചാറ്റുകൾ &gt; Signal ബാക്കപ്പുകൾ എന്നതിൽ നിങ്ങളുടെ ബാക്കപ്പ് കീ കാണാനാകും. തുടർന്ന് ബാക്കപ്പ് കീ കാണുക എന്നതിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <string name="EnterBackupKey_learn_more">കൂടുതലറിയുക</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+    <string name="EnterBackupKey_skip_and_dont_restore">ഒഴിവാക്കുക, പുനഃസ്ഥാപിക്കരുത്</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <string name="RestoreViaQr_title">നിങ്ങളുടെ പഴയ ഫോൺ ഉപയോഗിച്ച് ഈ കോഡ് സ്കാൻ ചെയ്യുക</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <string name="RestoreViaQr_instruction_1">നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ Signal തുറക്കുക</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <string name="RestoreViaQr_instruction_2">ക്യാമറ ഐക്കൺ ടാപ്പ് ചെയ്യുക </string>
     <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <string name="RestoreViaQr_instruction_3">ക്യാമറ ഉപയോഗിച്ച് ഈ കോഡ് സ്കാൻ ചെയ്യുക</string>
     <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <string name="RestoreViaQr_qr_code_error">QR കോഡ് സൃഷ്‌ടിക്കാനായില്ല</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <string name="RestoreViaQr_qr_code_scanned">പഴയ ഉപകരണത്തിൽ സ്കാൻ ചെയ്തു</string>
     <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Retry</string>
+    <string name="RestoreViaQr_retry">വീണ്ടും ശ്രമിക്കുക</string>
 
     <!-- Old device Transfer account screen title -->
-    <string name="TransferAccount_title">Transfer account</string>
+    <string name="TransferAccount_title">അക്കൗണ്ട് കൈമാറുക</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">നിങ്ങളുടെ അക്കൗണ്ട് ഒരു പുതിയ ഉപകരണത്തിലേക്ക് കൈമാറ്റം ചെയ്യപ്പെടും. ഈ ഉപകരണത്തിന് നിങ്ങളുടെ ഗ്രൂപ്പുകളും കോൺടാക്റ്റുകളും കാണാനും നിങ്ങളുടെ ചാറ്റുകൾ ആക്‌സസ് ചെയ്യാനും നിങ്ങളുടെ പേരിൽ സന്ദേശങ്ങൾ അയയ്‌ക്കാനും കഴിയും. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
-    <string name="TransferAccount_learn_more">Learn more</string>
+    <string name="TransferAccount_learn_more">കൂടുതലറിയുക</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
-    <string name="TransferAccount_button">Transfer account</string>
+    <string name="TransferAccount_button">അക്കൗണ്ട് കൈമാറുക</string>
     <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
-    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="TransferAccount_messages_e2e">എല്ലാ ഉപകരണങ്ങളിലും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്ഷൻ മുഖേന സന്ദേശങ്ങളും ചാറ്റ് വിവരങ്ങളും പരിരക്ഷിച്ചിരിക്കുന്നു</string>
     <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
-    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <string name="TransferAccount_unlock_to_transfer">അക്കൗണ്ട് കൈമാറാൻ അൺലോക്ക് ചെയ്യുക</string>
     <!-- Old device Transfer account bottom sheet dialog title -->
-    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <string name="TransferAccount_continue_on_your_other_device">നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിൽ തുടരുക</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
-    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+    <string name="TransferAccount_continue_on_your_other_device_details">നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിൽ അക്കൗണ്ട് കൈമാറുന്നത് തുടരുക.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">നിങ്ങളുടെ Signal അക്കൗണ്ടും സന്ദേശങ്ങളും നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിലേക്ക് കൈമാറാൻ തുടങ്ങി. ഈ ഉപകരണത്തിൽ Signal ഇപ്പോൾ പ്രവർത്തനരഹിതമാണ്.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">നിങ്ങളുടെ Signal അക്കൗണ്ടും സന്ദേശങ്ങളും നിങ്ങളുടെ മറ്റേ ഉപകരണത്തിലേക്ക് കൈമാറ്റം ചെയ്‌തു. ഈ ഉപകരണത്തിൽ Signal ഇപ്പോൾ പ്രവർത്തനരഹിതമാണ്.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
-    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+    <string name="RestoreCompleteBottomSheet_button">ശരി</string>
 
 
     <!-- EOF -->

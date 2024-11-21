@@ -877,11 +877,11 @@
     <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Las copias de seguridad se cifran con una frase de contraseña y se guardan en tu dispositivo.</string>
     <string name="BackupsPreferenceFragment__create_backup">Crear copia de seguridad</string>
     <string name="BackupsPreferenceFragment__last_backup">Última copia: %1$s</string>
-    <string name="BackupsPreferenceFragment__backup_folder">Carpeta de copias de seguridad</string>
+    <string name="BackupsPreferenceFragment__backup_folder">Carpeta de copia de seguridad</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">Hora de la copia de seguridad</string>
-    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar contraseña de copia de seguridad</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prueba tu frase de contraseña de la copia de seguridad y comprueba que coincida</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar contraseña de la copia de seguridad</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Prueba la frase de contraseña de tu copia de seguridad y comprueba que coincida</string>
     <string name="BackupsPreferenceFragment__turn_on">Activar</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactivar</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Para restaurar una copia de seguridad, reinstala Signal. Abre la aplicación, toca \"Restaurar copia\" y busca el archivo de copia de seguridad. %1$s"</string>
@@ -967,7 +967,7 @@
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Vincular un nuevo dispositivo</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Los mensajes y la información del chat están protegidos por cifrado de extremo a extremo en todos los dispositivos</string>
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Los mensajes y los chats están protegidos con cifrado de extremo a extremo en todos los dispositivos</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
     <string name="LinkDeviceFragment__signal_on_desktop_ipad">Signal para escritorio o iPad</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
@@ -1354,7 +1354,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">Última copia de seguridad: %2$s del %1$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Fetching backup details…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">Obteniendo detalles de la copia de seguridad…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme cuando alguien me mencione</string>
@@ -4298,7 +4298,7 @@
     <string name="registration_activity__restore_backup">Restaurar copia</string>
     <string name="registration_activity__transfer_or_restore_account">Transferir o restaurar cuenta</string>
     <!-- Screen title for restoring or transfering account -->
-    <string name="registration_activity__restore_or_transfer">Restore or transfer</string>
+    <string name="registration_activity__restore_or_transfer">Restaurar o transferir</string>
     <string name="registration_activity__transfer_account">Transferir cuenta</string>
     <string name="registration_activity__skip">Omitir</string>
     <string name="preferences_chats__chat_backups">Copias de seguridad de los chats</string>
@@ -4310,7 +4310,7 @@
     <string name="RegistrationActivity_backup_failure_downgrade">No se pueden importar nuevas copias de seguridad</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">La copia de seguridad contiene datos mal formados</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Frase de contraseña la copia de seguridad incorrecta</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Contraseña de la copia de seguridad incorrecta</string>
     <string name="RegistrationActivity_checking">Comprobando…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d mensajes completados…</string>
     <string name="RegistrationActivity_restore_from_backup">¿Restaurar desde copia de seguridad?</string>
@@ -4327,7 +4327,7 @@
     <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
     <string name="BackupDialog_copied_to_clipboard">Se ha copiado al portapapeles</string>
     <string name="BackupDialog_no_file_picker_available">No hay selector de archivos disponible.</string>
-    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce tu frase de contraseña de la copia de seguridad para verificarla</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce la frase de contraseña de tu copia de seguridad para verificarla</string>
     <string name="BackupDialog_verify">Verificar</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">¡Frase de contraseña correcta!</string>
     <string name="BackupDialog_passphrase_was_not_correct">Frase de contraseña incorrecta</string>
@@ -4335,7 +4335,7 @@
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Verificando copia de seguridad de Signal…</string>
     <string name="LocalBackupJobApi29_backup_failed">Error en la copia de seguridad</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copias de seguridad se ha eliminado o movido.</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Parece que tu carpeta de copia de seguridad se ha eliminado o movido.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tu archivo de copia de seguridad es demasiado grande para guardarlo en este dispositivo.</string>
     <string name="LocalBackupJobApi29_there_is_not_enough_space">No hay suficiente espacio para guardar tu copia de seguridad.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
@@ -6260,7 +6260,7 @@
         <item quantity="other">%1$d personas</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Elige quién puede ver tu historia. Estos cambios no afectarán a las historias que ya hayas enviado.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Elige quién puede ver tus historias. Estos cambios no afectarán a las historias que ya hayas compartido.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Respuestas y reacciones</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -6270,15 +6270,15 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Contactos de Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Los contactos de Signal son personas en las que has decidido confiar, ya que:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Tus contactos de Signal son personas en las que has decidido confiar por alguno de los siguientes motivos:</string>
     <!-- Signal connections sheet bullet point 1 -->
-    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Iniciar un chat</string>
+    <string name="SignalConnectionsBottomSheet__starting_a_conversation">Has iniciado un chat con ellas.</string>
     <!-- Signal connections sheet bullet point 2 -->
-    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Has aceptado una solicitud de chat que te enviaron</string>
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Has aceptado una solicitud de mensaje que te enviaron.</string>
     <!-- Signal connections sheet bullet point 3 -->
-    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Están en tus contactos del teléfono</string>
+    <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Están en tus contactos del teléfono.</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tus contactos pueden ver tu nombre y foto, así como las historias que subas, a no ser que decidas ocultarlas para personas específicas."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Tus contactos pueden ver tu nombre y foto, así como las historias que subas, a menos que decidas ocultarlas para personas específicas."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Añadir personas</string>
     <!-- Clickable option to delete a custom story -->
@@ -6331,7 +6331,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">¿Eliminar historia personalizada?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">Se eliminará \"%1$s\" y todas las actualizaciones compartidas en esta historia.</string>
+    <string name="StoryDialogs__s_and_updates_shared">Se eliminará \"%1$s\" y todo el contenido que hayas compartido en esta historia.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Eliminar</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -6644,7 +6644,7 @@
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Confirmaciones de visualización</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">Mira y comparte cuándo se ven las historias. Si lo desactivas, no podrás saber cuándo otras personas ven tus historias.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">Mira y comparte cuándo se ven las historias. Si desactivas esta opción, no podrás saber cuándo otras personas ven tus historias.</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">Nueva historia</string>
@@ -6682,9 +6682,9 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Toca el botón \"Ir a Ajustes\" que aparece más abajo</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Turn on \"Allow setting alarms and reminders.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Activa \"Permitir la configuración de alarmas y recordatorios\".</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
-    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Ir a ajustes</string>
+    <string name="BackupSchedulePermissionMegaphone__go_to_settings">Ir a Ajustes</string>
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
@@ -7843,98 +7843,98 @@
     <string name="ReminderView_icon_content_description">Icono de recordatorio</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">I have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Tengo mi teléfono anterior</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Scan a QR code from your current Signal account to get started quickly</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">Para empezar, escanea el código QR con tu teléfono anterior.</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">I don\'t have my old phone</string>
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">No tengo mi teléfono anterior</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you’re reinstaling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">O estás reinstalando Signal en el mismo dispositivo</string>
 
     <!-- Screen title for selecting which restore method to use during registartion -->
-    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restore or transfer account</string>
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restaurar o transferir cuenta</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
-    <string name="SelectRestoreMethodFragment__get_your_signal_account">Get your Signal account and message history onto this device.</string>
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera tu cuenta e historial de mensajes de Signal en este dispositivo.</string>
     <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Desde una copia de seguridad de Signal</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Your free or paid Signal Backup plan</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Tu plan gratuito o de pago de copias de seguridad de Signal</string>
     <!-- Option title for restoring via a local backup folder -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_folder">From a backup folder</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">Desde una carpeta de copia de seguridad</string>
     <!-- Option title for restoring via a local backup file -->
-    <string name="SelectRestoreMethodFragment__from_a_backup_file">From a backup file</string>
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">Desde un archivo de copia de seguridad</string>
     <!-- Option subtitle for restoring via a local backup -->
-    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Choose a backup you’ve saved</string>
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Elige una copia de seguridad que hayas guardado</string>
     <!-- Option title for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__from_your_old_phone">From your old phone</string>
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">Desde tu teléfono anterior</string>
     <!-- Option subtitle for restoring via device transfer -->
-    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfer directly from your old Android</string>
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transfiere tu cuenta desde tu Android anterior</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Restore local backup</string>
+    <string name="RestoreLocalBackup_title">Restaurar copia de seguridad local</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Restore your messages from the backup you saved on your device. If you don\'t restore now, you won\'t be able to restore later.</string>
+    <string name="RestoreLocalBackup_subtitle">Restaura tus mensajes desde una copia de seguridad que hayas guardado en tu dispositivo. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Enter your backup key</string>
+    <string name="EnterBackupKey_title">Introduce la clave de tu copia de seguridad</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-digit code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">La clave de tu copia de seguridad es un código de 64 dígitos que necesitarás para recuperar tu cuenta y tus datos.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No backup key?</string>
+    <string name="EnterBackupKey_no_backup_key">¿No tienes tu clave?</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Backup key</string>
+    <string name="EnterBackupKey_backup_key">Clave de copia de seguridad</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-digit recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Las copias de seguridad no se pueden recuperar sin su código de recuperación de 64 dígitos. Si has perdido tu clave, Signal no puede ayudarte a restaurar tu copia de seguridad.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Chats &gt; Signal Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Si tienes tu dispositivo anterior, puedes ver la clave de tu copia de seguridad en Ajustes &gt; Chats &gt; Copias de seguridad de Signal. Luego, toca Ver clave de copia de seguridad.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
-    <string name="EnterBackupKey_learn_more">Learn more</string>
+    <string name="EnterBackupKey_learn_more">Más información</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
-    <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
+    <string name="EnterBackupKey_skip_and_dont_restore">Omitir y no restaurar</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Scan this code with your old phone</string>
+    <string name="RestoreViaQr_title">Escanea este código con tu teléfono anterior</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Open Signal on your old device</string>
+    <string name="RestoreViaQr_instruction_1">Abre Signal en tu dispositivo anterior</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tap the camera icon </string>
+    <string name="RestoreViaQr_instruction_2">Toca el icono de la cámara </string>
     <!-- Third instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_3">Scan this code with the camera</string>
+    <string name="RestoreViaQr_instruction_3">Escanea este código con la cámara</string>
     <!-- Error message shown when qr code could not be loaded -->
-    <string name="RestoreViaQr_qr_code_error">Unable to generate QR code</string>
+    <string name="RestoreViaQr_qr_code_error">No se puede generar el código QR</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Scanned on old device</string>
+    <string name="RestoreViaQr_qr_code_scanned">Escaneado en dispositivo anterior</string>
     <!-- Error button text to retry getting a qr code -->
-    <string name="RestoreViaQr_retry">Retry</string>
+    <string name="RestoreViaQr_retry">Reintentar</string>
 
     <!-- Old device Transfer account screen title -->
-    <string name="TransferAccount_title">Transfer account</string>
+    <string name="TransferAccount_title">Transferir cuenta</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device.This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">Tu cuenta se transferirá a un nuevo dispositivo. En este dispositivo podrás acceder a tus grupos y contactos, acceder a todos tus chats y enviar mensajes desde tu perfil. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
-    <string name="TransferAccount_learn_more">Learn more</string>
+    <string name="TransferAccount_learn_more">Más información</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
-    <string name="TransferAccount_button">Transfer account</string>
+    <string name="TransferAccount_button">Transferir cuenta</string>
     <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
-    <string name="TransferAccount_messages_e2e">Messages and chat info are protected by end-to-end encryption on all devices</string>
+    <string name="TransferAccount_messages_e2e">Los mensajes y los chats están protegidos con cifrado de extremo a extremo en todos los dispositivos</string>
     <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
-    <string name="TransferAccount_unlock_to_transfer">Unlock to transfer account</string>
+    <string name="TransferAccount_unlock_to_transfer">Desbloquea el acceso para transferir tu cuenta</string>
     <!-- Old device Transfer account bottom sheet dialog title -->
-    <string name="TransferAccount_continue_on_your_other_device">Continue on your other device</string>
+    <string name="TransferAccount_continue_on_your_other_device">Continúa en tu otro dispositivo</string>
     <!-- Old device Transfer account bottom sheet dialog body -->
-    <string name="TransferAccount_continue_on_your_other_device_details">Continue transferring your account on your other device.</string>
+    <string name="TransferAccount_continue_on_your_other_device_details">Debes continuar la transferencia de tu cuenta en tu otro dispositivo.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Restore complete</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Restauración completada</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages have started transferring to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Se ha comenzado a transferir tu cuenta y tus mensajes de Signal a tu otro dispositivo. Actualmente, Signal está inactivo en este dispositivo.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete">Transfer complete</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete">Transferencia completada</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
-    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Your Signal account and messages have been transferred to your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Se ha transferido tu cuenta y tus mensajes de Signal a tu otro dispositivo. Actualmente, Signal está inactivo en este dispositivo.</string>
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
-    <string name="RestoreCompleteBottomSheet_button">Okay</string>
+    <string name="RestoreCompleteBottomSheet_button">Aceptar</string>
 
 
     <!-- EOF -->
