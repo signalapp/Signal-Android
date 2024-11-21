@@ -23,6 +23,10 @@ object V175_FixFullTextSearchLink : SignalDatabaseMigration {
 
     db.execSQL("CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id)")
 
+    // The newly created search table is empty, while its content-table (message) is not. To get the search
+    // table in a consistent state, it needs to be rebuilt.
+    db.execSQL("INSERT INTO message_fts(message_fts) VALUES ('rebuild')")
+
     db.execSQL(
       """
       CREATE TRIGGER message_ai AFTER INSERT ON message BEGIN
