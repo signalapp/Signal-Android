@@ -43,6 +43,8 @@ object V239_MessageFullTextSearchEmojiSupport : SignalDatabaseMigration {
 
     db.execSQL("""CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id, tokenize = "unicode61 categories 'L* N* Co Sc So'")""")
 
+    db.execSQL("INSERT INTO message_fts(message_fts) VALUES ('rebuild')")
+
     db.execSQL(
       """
       CREATE TRIGGER message_ai AFTER INSERT ON message BEGIN
