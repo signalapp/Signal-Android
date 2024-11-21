@@ -89,6 +89,16 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemGroupChangeChatMultipleUpdate() {
+    runTests { it.startsWith("chat_item_group_change_chat_multiple_update_") }
+  }
+
+//  @Test
+  fun chatItemGroupChangeChatUpdate() {
+    runTests { it.startsWith("chat_item_group_change_chat_") }
+  }
+
+//  @Test
   fun chatItemIndividualCallUpdate() {
     runTests { it.startsWith("chat_item_individual_call_update_") }
   }

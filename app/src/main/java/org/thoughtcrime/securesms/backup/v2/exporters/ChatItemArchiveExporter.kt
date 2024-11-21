@@ -394,7 +394,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     expiresInMs = if (record.expiresIn > 0) record.expiresIn else 0
     revisions = emptyList()
     sms = record.type.isSmsType()
-    if (record.type.isDirectionlessType()) {
+    if (record.type.isDirectionlessType() || record.messageExtras?.gv2UpdateDescription != null) {
       directionless = ChatItem.DirectionlessMessageDetails()
     } else if (MessageTypes.isOutgoingMessageType(record.type) || record.fromRecipientId == selfRecipientId.toLong()) {
       outgoing = ChatItem.OutgoingMessageDetails(
