@@ -15,4 +15,11 @@ public class ActiveSubscriptionTest {
     assertTrue(activeSubscription.isActive());
     assertFalse(activeSubscription.isFailedPayment());
   }
+
+  @Test
+  public void givenNoActiveSubscription_whenIIsInProgress_thenIExpectFalse() throws Exception {
+    ActiveSubscription activeSubscription = new ActiveSubscription(null, null);
+
+    assertFalse(activeSubscription.isInProgress());
+  }
 }

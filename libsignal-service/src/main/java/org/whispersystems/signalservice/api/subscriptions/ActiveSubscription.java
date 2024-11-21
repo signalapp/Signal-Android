@@ -137,7 +137,7 @@ public final class ActiveSubscription {
   }
 
   public boolean isInProgress() {
-    return !isActive() && (!isFailedPayment() || isPastDue()) && !isCanceled();
+    return activeSubscription != null && !isActive() && (!isFailedPayment() || isPastDue()) && !isCanceled();
   }
 
   public boolean isPastDue() {
