@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.Hex
 import org.signal.core.util.Serializer
 import org.signal.ringrtc.CallLinkRootKey
 
@@ -34,8 +35,11 @@ class CallLinkRoomId private constructor(private val roomId: ByteArray) : Parcel
     return roomId.contentHashCode()
   }
 
+  /**
+   * Prints call link room id as a hex string, explicitly for logging.
+   */
   override fun toString(): String {
-    return DatabaseSerializer.serialize(this)
+    return Hex.toStringCondensed(roomId)
   }
 
   object DatabaseSerializer : Serializer<CallLinkRoomId, String> {
