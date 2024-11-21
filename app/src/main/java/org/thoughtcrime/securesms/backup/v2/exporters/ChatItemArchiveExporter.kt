@@ -78,7 +78,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
-import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -882,17 +881,15 @@ private fun PaymentTable.PaymentTransaction.toRemoteTransactionDetails(): Paymen
       timestamp = this.timestamp,
       blockIndex = this.blockIndex,
       blockTimestamp = this.blockTimestamp,
-      mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.toRemote(),
+      mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.let {
+        PaymentNotification.TransactionDetails.MobileCoinTxoIdentification(
+          publicKey = it.publicKey.takeIf { this.direction.isReceived } ?: emptyList(),
+          keyImages = it.keyImages.takeIf { this.direction.isSent } ?: emptyList()
+        )
+      },
       transaction = this.transaction?.toByteString(),
       receipt = this.receipt?.toByteString()
     )
-  )
-}
-
-private fun PaymentMetaData.MobileCoinTxoIdentification.toRemote(): PaymentNotification.TransactionDetails.MobileCoinTxoIdentification {
-  return PaymentNotification.TransactionDetails.MobileCoinTxoIdentification(
-    publicKey = this.publicKey,
-    keyImages = this.keyImages
   )
 }
 
