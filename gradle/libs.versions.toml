@@ -101,7 +101,7 @@ android-billing = "com.android.billingclient:billing-ktx:7.0.0"
 material-material = "com.google.android.material:material:1.8.0"
 
 # Google
-google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.40"
+google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.50"
 google-play-services-maps = "com.google.android.gms:play-services-maps:18.2.0"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.0.0"
 google-play-services-wallet = "com.google.android.gms:play-services-wallet:19.2.1"
