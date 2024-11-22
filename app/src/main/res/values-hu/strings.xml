@@ -1040,7 +1040,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ne utalja át</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
 
@@ -7927,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Fiók átvitele</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">Fiókod átkerül egy új eszközre. Ez az eszköz láthatja a csoportjaidat és a névjegyeidet, hozzáférhet a csevegéseidhez, és üzeneteket küldhet a nevedben. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Tudj meg többet</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

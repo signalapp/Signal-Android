@@ -1120,7 +1120,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">لا ترسلْ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
 
@@ -5446,9 +5446,9 @@
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">ادْعُ أصدقائك</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">تمّ نسخ مُعرِّف المُشترِك إلى الحافظة.</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">تمّ نسخ مُعرِّف المُشترِك المُتبرِّع إلى الحافظة.</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">تمّ نسخ النسخ الاحتياطية لمُعرِّف المُشترِك إلى الحافظة</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">تمَّ نسخ مُعرِّف المُشترِك للنسخ الاحتياطية إلى الحافظة.</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
     <string name="AppSettingsFragment__no_subscriber_id_set">لا يوجد أي مجموعة مُعرِّف للمُشترِك</string>
 
@@ -5992,9 +5992,9 @@
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">عرض جهة الاتصال</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">لم يعُد %1$s من مستخدمي سيجنال</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">ليس %1$s من مُستخدِمي سيجنال</string>
     <!-- Error message shown when we could not get a user from the username link -->
-    <string name="NewConversationActivity__">لم يعُد %1$s من مُستخدِمي سيجنال.</string>
+    <string name="NewConversationActivity__">ليس %1$s من مُستخدِمي سيجنال.</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
         <item quantity="zero">%1$s ليسوا من مُستخدِمي سيجنال</item>
@@ -6196,16 +6196,16 @@
 
     <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
     <string name="SubscribeFragment__confirm_cancellation">هل ترغب بتأكيد الإلغاء؟</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم خصم المبلغ مرة أخرى. سَتتم إزالة شارتِك من حسابك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم خصم المبلغ مرّة أخرى. سَتتم إزالة شارتِك من حسابك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
     <string name="SubscribeFragment__not_now">ليس الآن</string>
     <string name="SubscribeFragment__confirm">تأكيد</string>
     <string name="SubscribeFragment__update_subscription">تحديث الاشتراك</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">تمَّ إلغاء اشتراكك.</string>
-    <string name="SubscribeFragment__update_subscription_question">أترغبُ بتحديث الاشتراك؟</string>
+    <string name="SubscribeFragment__update_subscription_question">هل ترغبُ بتحديث الاشتراك؟</string>
     <string name="SubscribeFragment__update">تحديث</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">سَتدفع مبلغ (%1$s) بالكامل من سعر الاشتراك الجديد اليوم. وسَيتجدَّد اشتراكك الجديد شهريًا.</string>
 
-    <string name="Subscription__s_per_month">%1$s شهريًا</string>
+    <string name="Subscription__s_per_month">%1$s /شهريًا</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">تجديد %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
@@ -6264,7 +6264,7 @@
     <string name="MySupportPreference__renews_s">تجديد %1$s</string>
     <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">تعذّر إضافة الشارة. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">تعذَّر إضافة الشارة. %1$s</string>
     <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
     <string name="MySupportPreference__payment_pending">عملية الدفع مُعلقة</string>
@@ -6292,16 +6292,16 @@
     <string name="ReregisterSignalDialog__cancel_action">إلغاء</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">لقد نفذت صلاحية شارة الدعم</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">نفدت صلاحية شارة الدعم</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">تم إلغاء التبرعات الشهرية</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">تمَّ إلغاء التبرُّعات الشهرية</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">لقد نفذت صلاحية شارة الدعم الخاصة بك، لذلك لم تعد ظاهرة في حسابك.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يوماً أخرى بمساهمة لمرة واحدة.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">نفدت صلاحية شارة الدعم الخاصة بك، لذلك لم تعد ظاهرة في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يومًا أخرى بمساهمة لمرّة واحدة.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">يُمكنك الاستمرار في استخدام سيجنال، ولكن لدعم التكنولوجيا التي بُنيَت لأجلك، نطلب منك الانضمام لفئة الداعمين، وذلك عبر التبرّع لنا شهريًا.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضف دعماً</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">يُمكنك الاستمرار في استخدام سيجنال، ولكن لدعم التكنولوجيا التي بُنيَت لأجلك، نطلب منك الانضمام لفئة الداعمين، وذلك عبر التبرُّع لنا شهريًا.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كُن من الداعمين</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضِف دعمًا</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
     <!-- Copy displayed when badge expires after user inactivity -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">لقد تم إلغاء تبرعك الشهري الدوري تلقائيًا، بسبب غياب نشاطك لفترة طويلة. لم تعد تظهر شارة %1$s في حسابك.</string>
@@ -6363,7 +6363,7 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">تعذّر التحقّق من استجابة الخادم. يرجى الاتصال بالدعم.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">تعذَّر التبرع</string>
+    <string name="DonationsErrors__donation_failed">تعذَّر التبرُّع</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">تمت مُعالجة عملية دفعك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرّع. يُرجى الاتصال بفريق الدعم.</string>
     <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
@@ -6378,7 +6378,7 @@
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__this_user_cant_receive_donations_until">لا يُمكن لهذا المُستخدم تلقّي التبرُّعات حتى يقوم بترقية تطبيق سيجنال.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">تعذَّر إرسال تبرُّعك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاوِل مُجدَّدًا.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">تعذَّر إرسال تبرُّعك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
     <string name="DonationsErrors__your_ideal_couldnt_be_processed">تعذرت معالجة تبرع iDEAL الخاص بك. يُرجى محاولة طريقة أخرى للدفع أو الاتصال بمصرفك للمزيد من المعلومات.</string>
 
@@ -8595,7 +8595,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">نقل الحساب</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">سيتمُّ نقل حسابك إلى جهاز جديد. سَيتمكن هذا الجهاز من رؤية مجموعاتك وجهات اتصالك، والوصول إلى دردشاتك، وإرسال رسائل باسمك. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">اعرف المزيد</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->

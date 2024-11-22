@@ -1036,13 +1036,13 @@
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer">Dra boodskapgeskiedenis oor</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Dra jou teksboodskappe en onlangse media na jou rekenaar oor</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Don\'t transfer</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Moenie oordra nie</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">Geen ou boodskappe of media sal na jou rekenaar oorgedra word nie</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Ontkoppel \"%1$s\"?</string>
@@ -5823,9 +5823,9 @@
     <string name="DonationsErrors__still_processing">Steeds besig om te verwerk</string>
     <string name="DonationsErrors__couldnt_add_badge">Kon nie wapen byvoeg nie</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
-    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <string name="DonationsError__something_went_wrong">Iets het verkeerd geloop</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Jou rugsteun-intekening kon nie vertoon word nie. Kontak asb. ondersteuning.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Kon nie geldigheid van wapen bevestig nie</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -7216,7 +7216,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Kon nie veranderinge stoor nie. Gaan jou netwerkverbinding na en probeer weer.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
-    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Kon nie oproepskakel skrap nie, aangesien dit tans gebruik word.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Skrap skakel?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7481,7 +7481,7 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Slaan herstel oor?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">As jy herstel oorslaan, kan die oorblywende media en aanhegsels in jou rugsteun afgelaai word op \'n later tyd wanneer stoorspasie beskikbaar word.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7558,7 +7558,7 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Ongebruikte media sal afgelaai word, maar kan enige tyd van jou rugsteun af teruggelaai word.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Stoorruimte-optimalisering kan slegs met die betaalde vlak van Signal-rugsteun gebruik word. Jou rugsteun-intekening word nog verwerk en is nog nie aktief nie. Probeer asseblief later weer.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7777,7 +7777,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Jou rugsteunsleutel</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Jou rugsteunsleutel is \'n 64-karakter-kode wat jou toelaat om jou rugsteun te herstel wanneer jy Signal herinstalleer.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">As jy jou sleutel vergeet, sal jy nie jou rugsteun kan herstel nie. Signal kan jou nie help om jou rugsteun te herstel nie.</string>
     <!-- Action button label -->
@@ -7866,7 +7866,7 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Ek het nie my ou telefoon nie</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Of jy is besig om Signal op dieselfde toestel te herinstalleer</string>
 
     <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Herwin of dra rekening oor</string>
@@ -7895,15 +7895,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Voer jou rugsteunsleutel in</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Jou rugsteunsleutel is \'n 64-syfer-kode wat nodig is om jou rekening en data te herwin.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Geen rugsteunsleutel nie?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Rugsteunsleutel</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Rugsteun kan nie sonder die 64-karakter-herwinningskode herwin word nie. As jy jou rugsteunsleutel verloor het, kan Signal jou nie help om jou rugsteun te herstel nie.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Indien jy jou ou toestel het, kan jy jou rugsteunsleutel in Instellings &gt; Signal-rugsteun sien. Tik dan op Bekyk rugsteunsleutel.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Vind meer uit</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7927,7 +7927,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Dra rekening oor</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Your account will be transferred to a new device. This device will be able to see your groups and contacts, access your chats, and send messages in your name. %1$s</string>
+    <string name="TransferAccount_body">Jou rekening sal na \'n nuwe toestel oorgedra word. Hierdie toestel sal jou groepe en kontakte kan sien, toegang tot jou kletse kan kry en boodskappe in jou naam kan stuur. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Vind meer uit</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
