@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
@@ -11,14 +10,14 @@ import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.nullValue
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.DayOfWeek
 import java.time.LocalDateTime
@@ -28,6 +27,9 @@ import java.time.ZoneOffset
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class NotificationProfilesTest {
+
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
   private val sunday830am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 8, 30, 0)
   private val sunday9am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 0, 0)
@@ -55,10 +57,6 @@ class NotificationProfilesTest {
 
   @Before
   fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     notificationProfileValues = mockk()
     every { notificationProfileValues.manuallyEnabledUntil } returns 0
     every { notificationProfileValues.manuallyDisabledAt } returns 0

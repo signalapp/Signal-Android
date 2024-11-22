@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.storage
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
@@ -12,16 +11,16 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
@@ -33,14 +32,13 @@ import java.util.UUID
 @Config(application = Application::class)
 class ContactRecordProcessorTest {
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   lateinit var recipientTable: RecipientTable
 
   @Before
   fun setup() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     mockkObject(SignalStore)
     every { SignalStore.account.isPrimaryDevice } returns true
 

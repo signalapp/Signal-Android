@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.groups.v2.processing
 
 import android.annotation.SuppressLint
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
@@ -17,6 +16,7 @@ import org.hamcrest.Matchers.hasItem
 import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
 import org.thoughtcrime.securesms.database.setNewDescription
 import org.thoughtcrime.securesms.database.setNewTitle
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
@@ -57,6 +56,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupResponse
@@ -90,6 +90,9 @@ class GroupsV2StateProcessorTest {
     private val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   private lateinit var groupTable: GroupTable
   private lateinit var recipientTable: RecipientTable
   private lateinit var threadTable: ThreadTable
@@ -103,10 +106,6 @@ class GroupsV2StateProcessorTest {
 
   @Before
   fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     mockkObject(SignalStore)
     every { SignalStore.internal.gv2IgnoreP2PChanges } returns false
 

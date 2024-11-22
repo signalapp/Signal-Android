@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.notifications
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
@@ -9,6 +8,7 @@ import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -20,13 +20,13 @@ import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.LinkedList
 
@@ -34,17 +34,13 @@ import java.util.LinkedList
 @Config(manifest = Config.NONE, application = Application::class)
 class MarkReadReceiverTest {
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   private val jobs: MutableList<Job> = LinkedList()
 
   @Before
   fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(
-        ApplicationProvider.getApplicationContext(),
-        MockApplicationDependencyProvider()
-      )
-    }
-
     val jobManager: JobManager = AppDependencies.jobManager
     every { jobManager.add(capture(jobs)) } returns Unit
 

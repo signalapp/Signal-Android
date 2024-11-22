@@ -1,29 +1,27 @@
 package org.thoughtcrime.securesms.components.emoji
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import org.junit.Assert
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.emoji.EmojiSource
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class EmojiUtilTest_isEmoji(private val input: String?, private val output: Boolean) {
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   @Throws(Exception::class)
   @Test
   fun isEmoji() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     val source = EmojiSource.loadAssetBasedEmojis()
 
     mockkObject(EmojiSource) {

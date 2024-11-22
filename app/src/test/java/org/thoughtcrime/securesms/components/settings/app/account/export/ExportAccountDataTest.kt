@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.account.export
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import com.fasterxml.jackson.core.JsonParseException
 import io.mockk.every
 import io.mockk.mockk
@@ -12,14 +11,13 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import java.io.IOException
@@ -27,6 +25,9 @@ import java.io.IOException
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class ExportAccountDataTest {
+
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
   private val mockJson: String = """
 {
@@ -63,13 +64,6 @@ class ExportAccountDataTest {
     "text": "Report ID: 4c0ca2aa-151b-4e9e-8bf4-ea2c64345a22\nReport timestamp: 2023-03-22T20:21:24Z\n\n# Account\nPhone number: +16509246950\nAllow sealed sender from anyone: false\nFind account by phone number: true\nBadges:\n- ID: R_LOW\n  Expiration: 2023-04-27T00:00:00Z\n  Visible: true\n\n# Devices\n- ID: 1\n  Created: 2023-03-07T19:37:08Z\n  Last seen: 2023-03-22T00:00:00Z\n  User-agent: OWA\n- ID: 2\n  Created: 2023-03-07T19:40:56Z\n  Last seen: 2023-03-21T00:00:00Z\n  User-agent: null\n"
 }
   """
-
-  @Before
-  fun setup() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-  }
 
   @Test
   fun `Export json without text field`() {

@@ -1,33 +1,31 @@
 package org.thoughtcrime.securesms.util
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.dependencies.AppDependencies.application
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.SignalMeUtil.parseE164FromLink
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class SignalMeUtilText_parseE164FromLink(private val input: String?, private val output: String?) {
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   @Before
   fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     mockkObject(SignalStore)
     every { SignalStore.account.e164 } returns "+15555555555"
   }
