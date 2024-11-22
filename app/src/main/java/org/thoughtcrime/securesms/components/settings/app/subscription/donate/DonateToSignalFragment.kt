@@ -527,6 +527,6 @@ class DonateToSignalFragment :
   }
 
   override fun exitCheckoutFlow() {
-    requireActivity().finishAffinity()
+    requireActivity().finish()
   }
 }
