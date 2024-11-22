@@ -64,7 +64,7 @@ class RegistrationActivity : BaseActivity() {
   }
 
   private fun handleSuccessfulVerify() {
-    if (SignalStore.misc.hasLinkedDevices) {
+    if (SignalStore.account.hasLinkedDevices) {
       SignalStore.misc.shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
     }
 
