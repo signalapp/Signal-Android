@@ -75,7 +75,7 @@ class NetworkDependenciesModule(
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
-    provider.provideIncomingMessageObserver()
+    provider.provideIncomingMessageObserver(signalWebSocket)
   }
 
   val pushServiceSocket: PushServiceSocket by lazy {

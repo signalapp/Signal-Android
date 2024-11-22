@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.util.AlarmSleepTimer
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.asChain
+import org.whispersystems.signalservice.api.SignalWebSocket
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer
@@ -54,7 +55,7 @@ import kotlin.time.Duration.Companion.seconds
  *
  * This class is responsible for opening/closing the websocket based on the app's state and observing new inbound messages received on the websocket.
  */
-class IncomingMessageObserver(private val context: Application) {
+class IncomingMessageObserver(private val context: Application, private val signalWebSocket: SignalWebSocket) {
 
   companion object {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
@@ -238,7 +239,7 @@ class IncomingMessageObserver(private val context: Application) {
   }
 
   private fun disconnect() {
-    AppDependencies.signalWebSocket.disconnect()
+    signalWebSocket.disconnect()
   }
 
   @JvmOverloads
@@ -378,8 +379,7 @@ class IncomingMessageObserver(private val context: Application) {
         waitForConnectionNecessary()
         Log.i(TAG, "Making websocket connection....")
 
-        val signalWebSocket = AppDependencies.signalWebSocket
-        val webSocketDisposable = AppDependencies.webSocketObserver.subscribe { state: WebSocketConnectionState ->
+        val webSocketDisposable = signalWebSocket.webSocketState.subscribe { state: WebSocketConnectionState ->
           Log.d(TAG, "WebSocket State: $state")
 
           // Any change to a non-connected state means that we are not drained
@@ -394,7 +394,7 @@ class IncomingMessageObserver(private val context: Application) {
 
         signalWebSocket.connect()
         try {
-          while (isConnectionNecessary()) {
+          while (!terminated && isConnectionNecessary()) {
             try {
               Log.d(TAG, "Reading message...")
 

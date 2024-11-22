@@ -207,8 +207,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull IncomingMessageObserver provideIncomingMessageObserver() {
-    return new IncomingMessageObserver(context);
+  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket signalWebSocket) {
+    return new IncomingMessageObserver(context, signalWebSocket);
   }
 
   @Override
