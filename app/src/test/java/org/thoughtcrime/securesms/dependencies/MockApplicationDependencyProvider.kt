@@ -101,7 +101,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideIncomingMessageObserver(): IncomingMessageObserver {
+  override fun provideIncomingMessageObserver(signalWebSocket: SignalWebSocket): IncomingMessageObserver {
     return mockk(relaxed = true)
   }
 
