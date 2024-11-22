@@ -271,6 +271,7 @@ public final class JobManagerFactories {
       put(BackfillDigestsMigrationJob.KEY,              new BackfillDigestsMigrationJob.Factory());
       put(BackfillDigestsForDuplicatesMigrationJob.KEY, new BackfillDigestsForDuplicatesMigrationJob.Factory());
       put(BackupJitterMigrationJob.KEY,                 new BackupJitterMigrationJob.Factory());
+      put(BackupMediaSnapshotSyncJob.KEY,               new BackupMediaSnapshotSyncJob.Factory());
       put(BackupNotificationMigrationJob.KEY,           new BackupNotificationMigrationJob.Factory());
       put(BackupRefreshJob.KEY,                         new BackupRefreshJob.Factory());
       put(BlobStorageLocationMigrationJob.KEY,          new BlobStorageLocationMigrationJob.Factory());

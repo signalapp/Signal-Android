@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
 import androidx.annotation.WorkerThread
@@ -26,6 +27,8 @@ import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
+import org.signal.core.util.requireInt
+import org.signal.core.util.requireNonNullString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
@@ -420,7 +423,8 @@ object BackupRepository {
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
     mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
-    cancellationSignal: () -> Boolean = { false }
+    cancellationSignal: () -> Boolean = { false },
+    exportExtras: ((SignalDatabase) -> Unit)? = null
   ) {
     val writer: BackupExportWriter = if (plaintext) {
       PlainTextBackupWriter(outputStream)
@@ -433,7 +437,7 @@ object BackupRepository {
       )
     }
 
-    export(currentTime = currentTime, isLocal = false, writer = writer, mediaBackupEnabled = mediaBackupEnabled, cancellationSignal = cancellationSignal)
+    export(currentTime = currentTime, isLocal = false, writer = writer, mediaBackupEnabled = mediaBackupEnabled, cancellationSignal = cancellationSignal, exportExtras = exportExtras)
   }
 
   /**
@@ -1409,4 +1413,35 @@ class BackupMetadata(
 sealed class ImportResult {
   data class Success(val backupTime: Long) : ImportResult()
   data object Failure : ImportResult()
+}
+
+/**
+ * Iterator that reads values from the given cursor. Expects that ARCHIVE_MEDIA_ID and ARCHIVE_CDN are both
+ * present and non-null in the cursor.
+ *
+ * This class does not assume ownership of the cursor. Recommended usage is within a use statement:
+ *
+ *
+ * ```
+ * databaseCall().use { cursor ->
+ *   val iterator = ArchivedMediaObjectIterator(cursor)
+ *   // Use the iterator...
+ * }
+ * // Cursor is closed after use block.
+ * ```
+ */
+class ArchivedMediaObjectIterator(private val cursor: Cursor) : Iterator<ArchivedMediaObject> {
+
+  init {
+    cursor.moveToFirst()
+  }
+
+  override fun hasNext(): Boolean = !cursor.isAfterLast
+
+  override fun next(): ArchivedMediaObject {
+    val mediaId = cursor.requireNonNullString(AttachmentTable.ARCHIVE_MEDIA_ID)
+    val cdn = cursor.requireInt(AttachmentTable.ARCHIVE_CDN)
+    cursor.moveToNext()
+    return ArchivedMediaObject(mediaId, cdn)
+  }
 }

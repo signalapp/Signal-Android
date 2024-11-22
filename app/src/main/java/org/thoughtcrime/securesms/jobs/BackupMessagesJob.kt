@@ -9,6 +9,7 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
+import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObjectIterator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -84,7 +85,11 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
 
     val outputStream = FileOutputStream(tempBackupFile)
     val backupKey = SignalStore.backup.messageBackupKey
-    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled })
+    val currentTime = System.currentTimeMillis()
+    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
+      writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+    }
+
     stopwatch.split("export")
 
     when (val result = ArchiveValidator.validate(tempBackupFile, backupKey)) {
@@ -156,7 +161,20 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
     }
 
     SignalStore.backup.clearMessageBackupFailure()
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+    BackupMediaSnapshotSyncJob.enqueue(currentTime)
     return Result.success()
+  }
+
+  private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
+    if (mediaBackupEnabled) {
+      db.attachmentTable.getMediaIdCursor().use {
+        SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
+          mediaObjects = ArchivedMediaObjectIterator(it).asSequence(),
+          pendingSyncTime = currentTime
+        )
+      }
+    }
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {

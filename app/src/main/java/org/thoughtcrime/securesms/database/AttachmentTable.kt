@@ -407,6 +407,14 @@ class AttachmentTable(
     }
   }
 
+  fun getMediaIdCursor(): Cursor {
+    return readableDatabase
+      .select(ARCHIVE_MEDIA_ID, ARCHIVE_CDN)
+      .from(TABLE_NAME)
+      .where("$ARCHIVE_MEDIA_ID IS NOT NULL")
+      .run()
+  }
+
   fun getAttachment(attachmentId: AttachmentId): DatabaseAttachment? {
     return readableDatabase
       .select(*PROJECTION)
