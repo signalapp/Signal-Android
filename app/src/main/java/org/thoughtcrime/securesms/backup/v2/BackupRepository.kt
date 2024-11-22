@@ -101,6 +101,7 @@ import java.time.ZonedDateTime
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBackupKey
 
@@ -235,6 +236,49 @@ object BackupRepository {
     }
 
     return System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+  }
+
+  fun snoozeYourMediaWillBeDeletedTodaySheet() {
+    SignalStore.backup.lastCheckInSnoozeMillis = System.currentTimeMillis()
+  }
+
+  /**
+   * Whether or not the "Your media will be deleted today" sheet should be displayed.
+   */
+  suspend fun shouldDisplayYourMediaWillBeDeletedTodaySheet(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.optimizeStorage) {
+      return false
+    }
+
+    val paidType = try {
+      withContext(Dispatchers.IO) {
+        getPaidType()
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to retrieve paid type.", e)
+      return false
+    }
+
+    if (paidType == null) {
+      Log.w(TAG, "Paid type is not available on this device.")
+      return false
+    }
+
+    val lastCheckIn = SignalStore.backup.lastCheckInMillis.milliseconds
+    if (lastCheckIn == 0.milliseconds) {
+      Log.w(TAG, "LastCheckIn has not yet been set.")
+      return false
+    }
+
+    val lastSnoozeTime = SignalStore.backup.lastCheckInSnoozeMillis.milliseconds
+    val now = System.currentTimeMillis().milliseconds
+    val mediaTtl = paidType.mediaTtl
+    val mediaExpiration = lastCheckIn + mediaTtl
+
+    val isNowAfterSnooze = now < lastSnoozeTime || now >= lastSnoozeTime + 4.hours
+    val isNowWithin24HoursOfMediaExpiration = now < mediaExpiration && (mediaExpiration - now) <= 1.days
+
+    return isNowAfterSnooze && isNowWithin24HoursOfMediaExpiration
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
@@ -1178,7 +1222,7 @@ object BackupRepository {
     }
   }
 
-  private suspend fun getFreeType(): MessageBackupsType {
+  private suspend fun getFreeType(): MessageBackupsType.Free {
     val config = getSubscriptionsConfiguration()
 
     return MessageBackupsType.Free(
@@ -1186,7 +1230,7 @@ object BackupRepository {
     )
   }
 
-  private suspend fun getPaidType(): MessageBackupsType? {
+  private suspend fun getPaidType(): MessageBackupsType.Paid? {
     val config = getSubscriptionsConfiguration()
     val product = AppDependencies.billingApi.queryProduct() ?: return null
     val backupLevelConfiguration = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL] ?: return null

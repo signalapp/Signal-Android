@@ -82,6 +82,7 @@ class BackupRefreshJob private constructor(
     return when (result) {
       is NetworkResult.Success -> {
         SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
+        SignalStore.backup.lastCheckInSnoozeMillis = 0
         Result.success()
       }
       else -> {

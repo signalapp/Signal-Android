@@ -154,6 +154,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
 
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> BackupRepository.markBackupFailedSheetDismissed()
+      is BackupAlert.MediaWillBeDeletedToday -> BackupRepository.snoozeYourMediaWillBeDeletedTodaySheet()
       else -> Unit
     }
   }

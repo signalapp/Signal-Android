@@ -25,10 +25,9 @@ object BackupAlertDelegate {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
         }
 
-        // TODO [backups] Check if media will be deleted within 24hrs and display warning sheet.
-
-        // TODO [backups]
-        // Get unnotified backup download failures & display sheet
+        if (BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday)
+        }
       }
     }
   }

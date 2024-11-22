@@ -59,7 +59,6 @@ import java.util.concurrent.locks.Lock
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -387,32 +386,6 @@ object InAppPaymentsRepository {
       SignalStore.inAppPayments.getLastEndOfPeriod().seconds
     } else {
       0.seconds
-    }
-  }
-
-  /**
-   * Determines if we are in the timeout period to display the "your backup will be deleted today" message
-   */
-  @WorkerThread
-  fun getExpiredBackupDeletionState(): ExpiredBackupDeletionState {
-    val inAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(InAppPaymentType.RECURRING_BACKUP)
-    if (inAppPayment == null) {
-      Log.w(TAG, "InAppPayment for recurring backup not found for last day check. Clearing check.")
-      SignalStore.inAppPayments.showLastDayToDownloadMediaDialog = false
-      return ExpiredBackupDeletionState.NONE
-    }
-
-    val now = SignalStore.misc.estimatedServerTime.milliseconds
-    val lastEndOfPeriod = inAppPayment.endOfPeriod
-    val displayDialogStart = lastEndOfPeriod + backupExpirationTimeout
-    val displayDialogEnd = lastEndOfPeriod + backupExpirationDeletion
-
-    return if (now in displayDialogStart..displayDialogEnd) {
-      ExpiredBackupDeletionState.DELETE_TODAY
-    } else if (now > displayDialogEnd) {
-      ExpiredBackupDeletionState.EXPIRED
-    } else {
-      ExpiredBackupDeletionState.NONE
     }
   }
 

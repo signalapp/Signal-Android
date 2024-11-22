@@ -36,6 +36,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
+    private const val KEY_LAST_CHECK_IN_SNOOZE_MILLIS = "backup.lastCheckInSnoozeMilliseconds"
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
@@ -95,7 +96,18 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
 
+  /**
+   * The last time the device notified the server that the archive is still in use.
+   */
   var lastCheckInMillis: Long by longValue(KEY_LAST_CHECK_IN_MILLIS, 0L)
+
+  /**
+   * The time we last displayed the "Your media will be deleted today" sheet.
+   *
+   * Set when the user dismisses the "Your media will be deleted today" alert
+   * Cleared when the system performs a check-in or the user subscribes to backups.
+   */
+  var lastCheckInSnoozeMillis: Long by longValue(KEY_LAST_CHECK_IN_SNOOZE_MILLIS, 0)
 
   /**
    * Key used to backup messages.
