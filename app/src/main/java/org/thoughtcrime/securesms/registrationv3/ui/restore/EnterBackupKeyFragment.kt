@@ -29,7 +29,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -48,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
@@ -81,7 +81,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state
-    val sharedState by sharedViewModel.state.collectAsState()
+    val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
 
     EnterBackupKeyScreen(
       state = state,

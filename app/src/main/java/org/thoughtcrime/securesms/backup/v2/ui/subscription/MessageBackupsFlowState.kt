@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.backup.MessageBackupKey
+import org.whispersystems.signalservice.api.AccountEntropyPool
 
 data class MessageBackupsFlowState(
   val hasBackupSubscriberAvailable: Boolean = false,
@@ -18,6 +18,6 @@ data class MessageBackupsFlowState(
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsStage,
   val stage: MessageBackupsStage = startScreen,
-  val messageBackupKey: MessageBackupKey = SignalStore.backup.messageBackupKey,
+  val accountEntropyPool: AccountEntropyPool = SignalStore.account.accountEntropyPool,
   val failure: Throwable? = null
 )

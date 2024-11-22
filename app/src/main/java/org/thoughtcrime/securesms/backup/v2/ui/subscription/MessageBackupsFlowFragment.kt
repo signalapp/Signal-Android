@@ -103,7 +103,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         val context = LocalContext.current
 
         MessageBackupsKeyRecordScreen(
-          messageBackupKey = state.messageBackupKey,
+          backupKey = state.accountEntropyPool.value,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {

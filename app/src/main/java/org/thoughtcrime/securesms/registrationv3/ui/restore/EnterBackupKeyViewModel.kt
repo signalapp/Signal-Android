@@ -9,14 +9,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import org.signal.core.util.Hex
-import java.io.IOException
 
 class EnterBackupKeyViewModel : ViewModel() {
 
   companion object {
-    // TODO [backups] Set actual valid characters for key input
-    private val VALID_CHARACTERS = setOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f')
+    private val INVALID_CHARACTERS = Regex("[^0-9a-zA-Z]")
   }
 
   private val _state = mutableStateOf(
@@ -37,22 +34,11 @@ class EnterBackupKeyViewModel : ViewModel() {
   }
 
   private fun validate(length: Int, backupKey: String): Boolean {
-    if (backupKey.length != length) {
-      return false
-    }
-
-    try {
-      // TODO [backups] Actually validate key with requirements instead of just hex
-      Hex.fromStringCondensed(backupKey)
-    } catch (e: IOException) {
-      return false
-    }
-
-    return true
+    return backupKey.length == length
   }
 
   private fun String.removeIllegalCharacters(): String {
-    return filter { VALID_CHARACTERS.contains(it) }
+    return this.replace(INVALID_CHARACTERS, "")
   }
 
   private inline fun <T> MutableState<T>.update(update: T.() -> T) {

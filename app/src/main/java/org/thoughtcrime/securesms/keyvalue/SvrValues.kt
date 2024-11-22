@@ -45,26 +45,6 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
       .commit()
   }
 
-  @Deprecated("Switch to restoring AEP instead")
-  @Synchronized
-  fun setMasterKey(masterKey: MasterKey, pin: String?) {
-    store.beginWrite().apply {
-//      putBlob(MASTER_KEY, masterKey.serialize())
-      putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
-      putBoolean(OPTED_OUT, false)
-
-      if (pin != null) {
-        putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
-        putString(PIN, pin)
-        remove(RESTORED_VIA_ACCOUNT_ENTROPY_KEY)
-      } else {
-        putBoolean(RESTORED_VIA_ACCOUNT_ENTROPY_KEY, true)
-        remove(LOCK_LOCAL_PIN_HASH)
-        remove(PIN)
-      }
-    }.commit()
-  }
-
   @Synchronized
   fun setPin(pin: String) {
     store.beginWrite()

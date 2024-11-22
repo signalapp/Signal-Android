@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.util.Hex
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -69,6 +68,7 @@ import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
+import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
@@ -935,9 +935,10 @@ class RegistrationViewModel : ViewModel() {
         setPhoneNumber(PhoneNumberUtil.getInstance().parse(e164, null))
       }
 
-      // TODO [backups] use new data and not master key
-      val masterKey = MasterKey(Hex.fromStringCondensed(backupKey))
-      SignalStore.svr.setMasterKey(masterKey, pin)
+      val accountEntropyPool = AccountEntropyPool(backupKey)
+      SignalStore.account.restoreAccountEntropyPool(accountEntropyPool)
+
+      val masterKey = accountEntropyPool.deriveMasterKey()
       setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
       verifyReRegisterInternal(context = context, pin = pin, masterKey = masterKey)
 

@@ -11,7 +11,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64.decode
-import org.signal.core.util.Hex
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -81,7 +80,7 @@ object QuickRegistrationRepository {
           RegistrationProvisionMessage(
             e164 = SignalStore.account.requireE164(),
             aci = SignalStore.account.requireAci().toByteString(),
-            accountEntropyPool = Hex.toStringCondensed(SignalStore.svr.masterKey.serialize()),
+            accountEntropyPool = SignalStore.account.accountEntropyPool.value,
             pin = pin,
             platform = RegistrationProvisionMessage.Platform.ANDROID,
             backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L),
