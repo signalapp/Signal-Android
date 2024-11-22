@@ -23,7 +23,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_FOREGROUND_TIME = "misc.last_foreground_time"
     private const val PNI_INITIALIZED_DEVICES = "misc.pni_initialized_devices"
     private const val LINKED_DEVICES_REMINDER = "misc.linked_devices_reminder"
-    private const val HAS_LINKED_DEVICES = "misc.linked_devices_present"
     private const val USERNAME_QR_CODE_COLOR = "mis.username_qr_color_scheme"
     private const val KEYBOARD_LANDSCAPE_HEIGHT = "misc.keyboard.landscape_height"
     private const val KEYBOARD_PORTRAIT_HEIGHT = "misc.keyboard.protrait_height"
@@ -160,12 +159,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * Whether or not we've done the initial "PNP Hello World" dance.
    */
   var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, true)
-
-  /**
-   * Whether or not the user has linked devices.
-   */
-  @get:JvmName("hasLinkedDevices")
-  var hasLinkedDevices by booleanValue(HAS_LINKED_DEVICES, false)
 
   /**
    * Whether or not we should show a reminder for the user to relink their devices after re-registering.
