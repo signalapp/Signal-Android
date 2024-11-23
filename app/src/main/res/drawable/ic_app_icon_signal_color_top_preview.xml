@@ -10,20 +10,14 @@
                 android:pathData="M32 0A32 32 0 1 0 32 64 32 32 0 1 0 32 0z">
                 <aapt:attr name="android:fillColor">
                     <gradient
-                        android:type="linear"
-                        android:startX="32"
-                        android:startY="0"
-                        android:endX="32"
-                        android:endY="64">
-                        <item
-                            android:color="#FFF08C54"
-                            android:offset="0"/>
-                        <item
-                            android:color="#FFE7C52A"
-                            android:offset="0.5"/>
-                        <item
-                            android:color="#FF8CFB00"
-                            android:offset="1"/>
+                        android:centerX="6"
+                        android:centerY="6"
+                        android:gradientRadius="76"
+                        android:type="radial">
+                        <item android:offset="0" android:color="#FFE582EA"/>
+                        <item android:offset="0.3" android:color="#FFE699A8"/>
+                        <item android:offset="0.65" android:color="#FFE7C52A"/>
+                        <item android:offset="1" android:color="#FFB4E14A"/>
                     </gradient>
                 </aapt:attr>
             </path>
