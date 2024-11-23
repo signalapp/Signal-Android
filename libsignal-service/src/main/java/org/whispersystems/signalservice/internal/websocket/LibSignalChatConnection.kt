@@ -12,7 +12,9 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.AuthenticatedChatService
+import org.signal.libsignal.net.ChatListener
 import org.signal.libsignal.net.ChatService
+import org.signal.libsignal.net.ChatServiceException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.UnauthenticatedChatService
 import org.whispersystems.signalservice.api.util.CredentialsProvider
@@ -101,7 +103,7 @@ class LibSignalChatConnection(
       }
 
       Log.i(TAG, "$name Connecting...")
-      chatService = network.createChatService(credentialsProvider, receiveStories).apply {
+      chatService = network.createChatService(credentialsProvider, receiveStories, listener).apply {
         state.onNext(WebSocketConnectionState.CONNECTING)
         connect().whenComplete(
           onSuccess = { debugInfo ->
@@ -219,5 +221,19 @@ class LibSignalChatConnection(
 
   override fun sendResponse(response: WebSocketResponseMessage?) {
     throw NotImplementedError()
+  }
+
+  private val listener = object : ChatListener {
+    override fun onIncomingMessage(chat: ChatService?, envelope: ByteArray?, serverDeliveryTimestamp: Long, sendAck: ChatListener.ServerMessageAck?) {
+      throw NotImplementedError()
+    }
+
+    override fun onConnectionInterrupted(chat: ChatService?, disconnectReason: ChatServiceException?) {
+      CHAT_SERVICE_LOCK.withLock {
+        Log.i(TAG, "connection interrupted", disconnectReason)
+        state.onNext(WebSocketConnectionState.DISCONNECTED)
+        chatService = null
+      }
+    }
   }
 }
