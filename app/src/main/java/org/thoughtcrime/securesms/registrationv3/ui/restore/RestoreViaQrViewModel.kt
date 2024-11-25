@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import org.signal.core.util.logging.Log
 import org.signal.registration.proto.RegistrationProvisionMessage
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -80,6 +81,18 @@ class RestoreViaQrViewModel : ViewModel() {
       if (result is SecondaryProvisioningCipher.RegistrationProvisionResult.Success) {
         Log.i(TAG, "Saving restore method token: ***${result.message.restoreMethodToken.takeLast(4)}")
         SignalStore.registration.restoreMethodToken = result.message.restoreMethodToken
+        SignalStore.registration.isOtherDeviceAndroid = result.message.platform == RegistrationProvisionMessage.Platform.ANDROID
+        if (result.message.backupTimestampMs > 0) {
+          SignalStore.backup.backupTier = result.message.tier.let {
+            when (it) {
+              RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
+              RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID
+              null -> null
+            }
+          }
+          SignalStore.backup.lastBackupTime = result.message.backupTimestampMs
+          SignalStore.backup.usedBackupMediaSpace = result.message.backupSizeBytes
+        }
         store.update { it.copy(isRegistering = true, provisioningMessage = result.message, qrState = QrState.Scanned) }
       } else {
         store.update { it.copy(showProvisioningError = true, qrState = QrState.Scanned) }

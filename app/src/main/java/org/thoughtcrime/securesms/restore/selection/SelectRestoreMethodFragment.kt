@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.restore.selection
 
-import android.content.Intent
 import androidx.compose.runtime.Composable
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepositor
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registrationv3.ui.restore.SelectRestoreMethodScreen
+import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
 
@@ -24,10 +25,13 @@ import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRes
  * Provide options to select restore/transfer operation and flow during quick registration.
  */
 class SelectRestoreMethodFragment : ComposeFragment() {
+
+  private val viewModel: RestoreViewModel by activityViewModels()
+
   @Composable
   override fun FragmentContent() {
     SelectRestoreMethodScreen(
-      restoreMethods = listOf(RestoreMethod.FROM_SIGNAL_BACKUPS, RestoreMethod.FROM_OLD_DEVICE, RestoreMethod.FROM_LOCAL_BACKUP_V1), // TODO [backups] make dynamic
+      restoreMethods = viewModel.getAvailableRestoreMethods(),
       onRestoreMethodClicked = this::startRestoreMethod,
       onSkip = {
         SignalStore.registration.markSkippedTransferOrRestore()
@@ -54,7 +58,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
     }
 
     when (method) {
-      RestoreMethod.FROM_SIGNAL_BACKUPS -> startActivity(Intent(requireContext(), RemoteRestoreActivity::class.java))
+      RestoreMethod.FROM_SIGNAL_BACKUPS -> startActivity(RemoteRestoreActivity.getIntent(requireContext()))
       RestoreMethod.FROM_OLD_DEVICE -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToDeviceTransfer())
       RestoreMethod.FROM_LOCAL_BACKUP_V1 -> findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToLocalBackupRestore())
       RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")

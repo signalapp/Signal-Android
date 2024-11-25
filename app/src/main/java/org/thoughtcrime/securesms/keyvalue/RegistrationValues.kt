@@ -15,6 +15,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val LOCAL_REGISTRATION_DATA = "registration.local_registration_data"
     private const val RESTORE_COMPLETED = "registration.backup_restore_completed"
     private const val RESTORE_METHOD_TOKEN = "registration.restore_method_token"
+    private const val IS_OTHER_DEVICE_ANDROID = "registration.is_other_device_android"
     private const val RESTORING_ON_NEW_DEVICE = "registration.restoring_on_new_device"
   }
 
@@ -60,6 +61,8 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
   var hasUploadedProfile: Boolean by booleanValue(HAS_UPLOADED_PROFILE, true)
   var sessionId: String? by stringValue(SESSION_ID, null)
   var sessionE164: String? by stringValue(SESSION_E164, null)
+
+  var isOtherDeviceAndroid: Boolean by booleanValue(IS_OTHER_DEVICE_ANDROID, false)
   var restoreMethodToken: String? by stringValue(RESTORE_METHOD_TOKEN, null)
 
   @get:JvmName("isRestoringOnNewDevice")

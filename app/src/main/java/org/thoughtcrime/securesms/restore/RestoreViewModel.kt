@@ -11,6 +11,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 
 /**
@@ -51,4 +54,29 @@ class RestoreViewModel : ViewModel() {
   fun getBackupFileUri(): Uri? = store.value.backupFile
 
   fun getNextIntent(): Intent? = store.value.nextIntent
+
+  fun hasMultipleRestoreMethods(): Boolean {
+    return getAvailableRestoreMethods().size > 1
+  }
+
+  fun getAvailableRestoreMethods(): List<RestoreMethod> {
+    if (SignalStore.registration.isOtherDeviceAndroid) {
+      val methods = mutableListOf(RestoreMethod.FROM_OLD_DEVICE, RestoreMethod.FROM_LOCAL_BACKUP_V1)
+      when (SignalStore.backup.backupTier) {
+        MessageBackupTier.FREE -> methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
+        MessageBackupTier.PAID -> methods.add(0, RestoreMethod.FROM_SIGNAL_BACKUPS)
+        null -> if (!SignalStore.backup.isBackupTierRestored) {
+          methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
+        }
+      }
+
+      return methods
+    }
+
+    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTierRestored) {
+      return listOf(RestoreMethod.FROM_SIGNAL_BACKUPS)
+    }
+
+    return emptyList()
+  }
 }

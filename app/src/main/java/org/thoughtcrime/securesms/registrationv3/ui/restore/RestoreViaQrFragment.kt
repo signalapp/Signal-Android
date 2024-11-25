@@ -59,12 +59,14 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.horizontalGutters
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCode
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeData
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Show QR code on new device to allow registration and restore via old device.
@@ -84,7 +86,11 @@ class RestoreViaQrFragment : ComposeFragment() {
           .mapNotNull { it.provisioningMessage }
           .distinctUntilChanged()
           .collect { message ->
-            sharedViewModel.registerWithBackupKey(requireContext(), message.accountEntropyPool, message.e164, message.pin)
+            if (message.platform == RegistrationProvisionMessage.Platform.ANDROID || message.tier != null) {
+              sharedViewModel.registerWithBackupKey(requireContext(), message.accountEntropyPool, message.e164, message.pin)
+            } else {
+              findNavController().safeNavigate(RestoreViaQrFragmentDirections.goToNoBackupToRestore())
+            }
           }
       }
     }

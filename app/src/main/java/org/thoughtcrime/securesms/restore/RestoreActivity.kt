@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.RestoreDirections
+import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -62,7 +63,14 @@ class RestoreActivity : BaseActivity() {
     val navTarget = NavTarget.deserialize(intent.getIntExtra(EXTRA_NAV_TARGET, NavTarget.LEGACY_LANDING.value))
 
     when (navTarget) {
-      NavTarget.NEW_LANDING -> navController.safeNavigate(RestoreDirections.goDirectlyToNewLanding())
+      NavTarget.NEW_LANDING -> {
+        if (sharedViewModel.hasMultipleRestoreMethods()) {
+          navController.safeNavigate(RestoreDirections.goDirectlyToNewLanding())
+        } else {
+          startActivity(RemoteRestoreActivity.getIntent(this, isOnlyOption = true))
+          finish()
+        }
+      }
       NavTarget.LOCAL_RESTORE -> navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
       NavTarget.TRANSFER -> navController.safeNavigate(RestoreDirections.goDirectlyToDeviceTransfer())
       else -> Unit

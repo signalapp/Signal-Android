@@ -48,7 +48,8 @@
     <fragment
         android:id="@+id/grantPermissionsFragment"
         android:name="org.thoughtcrime.securesms.registrationv3.ui.permissions.GrantPermissionsFragment"
-        android:label="fragment_grant_permissions">
+        android:label="fragment_grant_permissions"
+        tools:ignore="NewApi">
 
         <argument
             android:name="welcomeUserSelection"
@@ -59,7 +60,33 @@
     <fragment
         android:id="@+id/restoreViaQr"
         android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreViaQrFragment">
+
+        <action
+            android:id="@+id/go_to_noBackupToRestore"
+            app:destination="@id/noBackupToRestore"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/signup"/>
+
     </fragment>
+
+    <fragment
+        android:id="@+id/noBackupToRestore"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.NoBackupToRestoreFragment">
+
+        <action
+            android:id="@+id/restart_registration_flow"
+            app:destination="@id/signup"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/signup"/>
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/selectRestoreMethod"

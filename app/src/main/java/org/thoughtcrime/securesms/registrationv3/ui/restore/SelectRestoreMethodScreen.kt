@@ -34,7 +34,7 @@ fun SelectRestoreMethodScreen(
         onClick = onSkip,
         modifier = Modifier.align(Alignment.Center)
       ) {
-        Text(text = stringResource(R.string.registration_activity__skip))
+        Text(text = stringResource(R.string.registration_activity__skip_restore))
       }
     }
   ) {

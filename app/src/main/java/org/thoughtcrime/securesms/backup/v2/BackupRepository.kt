@@ -1164,25 +1164,43 @@ object BackupRepository {
   }
 
   fun restoreBackupTier(aci: ACI): MessageBackupTier? {
-    // TODO: more complete error handling
-    try {
-      val lastModified = getBackupFileLastModified().successOrThrow()
-      if (lastModified != null) {
-        SignalStore.backup.lastBackupTime = lastModified.toMillis()
+    val tierResult = getBackupTier(aci)
+    when {
+      tierResult is NetworkResult.Success -> {
+        SignalStore.backup.backupTier = tierResult.result
+        Log.d(TAG, "Backup tier restored: ${SignalStore.backup.backupTier}")
       }
-    } catch (e: Exception) {
-      Log.i(TAG, "Could not check for backup file.", e)
-      SignalStore.backup.backupTier = null
-      return null
-    }
-    SignalStore.backup.backupTier = try {
-      getBackupTier(aci).successOrThrow()
-    } catch (e: Exception) {
-      Log.i(TAG, "Could not retrieve backup tier.", e)
-      null
+
+      tierResult is NetworkResult.StatusCodeError && tierResult.code == 404 -> {
+        Log.i(TAG, "Backups not enabled")
+        SignalStore.backup.backupTier = null
+      }
+
+      else -> {
+        Log.w(TAG, "Could not retrieve backup tier.", tierResult.getCause())
+        return SignalStore.backup.backupTier
+      }
     }
 
+    SignalStore.backup.isBackupTierRestored = true
+
     if (SignalStore.backup.backupTier != null) {
+      val timestampResult = getBackupFileLastModified()
+      when {
+        timestampResult is NetworkResult.Success -> {
+          timestampResult.result?.let { SignalStore.backup.lastBackupTime = it.toMillis() }
+        }
+
+        timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
+          Log.i(TAG, "No backup file exists")
+          SignalStore.backup.lastBackupTime = 0L
+        }
+
+        else -> {
+          Log.w(TAG, "Could not check for backup file.", timestampResult.getCause())
+        }
+      }
+
       SignalStore.uiHints.markHasEverEnabledRemoteBackups()
     }
 
