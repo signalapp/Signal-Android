@@ -149,24 +149,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           onUnregisterClicked()
         }
       )
-
       dividerPref()
 
-      sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
+      sectionHeaderPref(DSLSettingsText.from("Playgrounds"))
 
       clickPref(
-        title = DSLSettingsText.from("Search for a recipient"),
-        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
+        title = DSLSettingsText.from("SQLite Playground"),
+        summary = DSLSettingsText.from("Run raw SQLite queries."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
-        }
-      )
-
-      clickPref(
-        title = DSLSettingsText.from("SVR Playground"),
-        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
-        onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment())
         }
       )
 
@@ -183,6 +174,26 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from("Test and view storage service stuff."),
         onClick = {
           findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("SVR Playground"),
+        summary = DSLSettingsText.from("Quickly test various SVR options and error conditions."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSvrPlaygroundFragment())
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
+
+      clickPref(
+        title = DSLSettingsText.from("Search for a recipient"),
+        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
         }
       )
 
