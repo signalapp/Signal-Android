@@ -66,6 +66,7 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse;
+import org.whispersystems.signalservice.api.link.SetDeviceNameRequest;
 import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveRequest;
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
@@ -239,6 +240,7 @@ public class PushServiceSocket {
   private static final String USERNAME_LINK_PATH         = "/v1/accounts/username_link";
   private static final String USERNAME_FROM_LINK_PATH    = "/v1/accounts/username_link/%s";
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
+  private static final String SET_DEVICE_NAME_PATH       = "/v1/accounts/name?deviceId=%s";
   private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
   private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
   private static final String REQUEST_ACCOUNT_DATA_PATH  = "/v2/accounts/data_report";
@@ -1378,6 +1380,11 @@ public class PushServiceSocket {
 
   public void deleteAccount() throws IOException {
     makeServiceRequest(DELETE_ACCOUNT_PATH, "DELETE", null);
+  }
+
+  public void setDeviceName(int deviceId, @Nonnull SetDeviceNameRequest request) throws IOException {
+    String body = JsonUtil.toJson(request);
+    makeServiceRequest(String.format(Locale.US, SET_DEVICE_NAME_PATH, deviceId), "PUT", body);
   }
 
   public void requestRateLimitPushChallenge() throws IOException {

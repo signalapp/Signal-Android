@@ -5,6 +5,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
@@ -13,6 +14,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
+import org.thoughtcrime.securesms.jobs.DeviceNameChangeJob
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -29,6 +31,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.nio.charset.StandardCharsets
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -334,6 +337,28 @@ object LinkDeviceRepository {
     return NetworkResult.NetworkError(IOException("Hit max retries!"))
   }
 
+  /**
+   * Changes the name of a linked device and sends a sync message if successful
+   */
+  fun changeDeviceName(deviceName: String, deviceId: Int): DeviceNameChangeResult {
+    val encryptedDeviceName = Base64.encodeWithoutPadding(DeviceNameCipher.encryptDeviceName(deviceName.toByteArray(StandardCharsets.UTF_8), SignalStore.account.aciIdentityKey))
+    return when (val result = SignalNetwork.linkDevice.setDeviceName(encryptedDeviceName, deviceId)) {
+      is NetworkResult.Success -> {
+        AppDependencies.jobManager.add(DeviceNameChangeJob(deviceId))
+        DeviceNameChangeResult.Success.logI(TAG, "Successfully changed device name")
+      }
+      is NetworkResult.NetworkError -> {
+        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to network error.", result.exception)
+      }
+      is NetworkResult.StatusCodeError -> {
+        DeviceNameChangeResult.NetworkError(result.exception).logW(TAG, "Could not change name due to status code error ${result.code}")
+      }
+      is NetworkResult.ApplicationError -> {
+        throw result.throwable.logW(TAG, "Could not change name due to application error.")
+      }
+    }
+  }
+
   sealed interface LinkDeviceResult {
     data object None : LinkDeviceResult
     data class Success(val token: String) : LinkDeviceResult
@@ -349,5 +374,10 @@ object LinkDeviceRepository {
     data class BackupCreationFailure(val exception: Exception) : LinkUploadArchiveResult
     data class BadRequest(val exception: IOException) : LinkUploadArchiveResult
     data class NetworkError(val exception: IOException) : LinkUploadArchiveResult
+  }
+
+  sealed interface DeviceNameChangeResult {
+    data object Success : DeviceNameChangeResult
+    data class NetworkError(val exception: IOException) : DeviceNameChangeResult
   }
 }

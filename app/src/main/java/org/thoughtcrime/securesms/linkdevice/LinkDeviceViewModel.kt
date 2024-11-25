@@ -323,4 +323,29 @@ class LinkDeviceViewModel : ViewModel() {
       )
     }
   }
+
+  fun setDeviceToEdit(device: Device) {
+    _state.update {
+      it.copy(
+        deviceToEdit = device
+      )
+    }
+  }
+
+  fun saveName(name: String) {
+    viewModelScope.launch(Dispatchers.IO) {
+      val device = _state.value.deviceToEdit!!
+      val result = LinkDeviceRepository.changeDeviceName(name, device.id)
+      val event = when (result) {
+        LinkDeviceRepository.DeviceNameChangeResult.Success -> OneTimeEvent.SnackbarNameChangeSuccess
+        is LinkDeviceRepository.DeviceNameChangeResult.NetworkError -> OneTimeEvent.SnackbarNameChangeFailure
+      }
+
+      _state.update {
+        it.copy(
+          oneTimeEvent = event
+        )
+      }
+    }
+  }
 }

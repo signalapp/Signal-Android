@@ -141,3 +141,7 @@ message UploadAttachmentToArchiveJobData {
 message BackupMediaSnapshotSyncJobData {
   uint64 syncTime = 1;
 }
+
+message DeviceNameChangeJobData {
+  uint32 deviceId = 1;
+}

@@ -131,4 +131,19 @@ class LinkDeviceApi(private val pushServiceSocket: PushServiceSocket) {
       )
     }
   }
+
+  /**
+   * Sets the name for a linked device
+   *
+   * PUT /v1/accounts/name
+   *
+   * - 204: Success.
+   * - 403: Not authorized to change the name of the device with the given ID
+   * - 404: No device found with the given ID
+   */
+  fun setDeviceName(encryptedDeviceName: String, deviceId: Int): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.setDeviceName(deviceId, SetDeviceNameRequest(encryptedDeviceName))
+    }
+  }
 }

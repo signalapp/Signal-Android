@@ -707,6 +707,11 @@ message SyncMessage {
     repeated AttachmentDelete attachmentDeletes = 4;
   }
 
+  message DeviceNameChange {
+    reserved          /*name*/ 1;
+    optional uint32 deviceId = 2;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   reserved                      /*groups*/                 3;
@@ -729,6 +734,7 @@ message SyncMessage {
   optional CallLinkUpdate         callLinkUpdate         = 20;
   optional CallLogEvent           callLogEvent           = 21;
   optional DeleteForMe            deleteForMe            = 22;
+  optional DeviceNameChange       deviceNameChange       = 23;
 }
 
 message AttachmentPointer {

@@ -757,6 +757,8 @@ public class SignalServiceMessageSender {
       content = createCallLinkUpdateContent(message.getCallLinkUpdate().get());
     } else if (message.getCallLogEvent().isPresent()) {
       content = createCallLogEventContent(message.getCallLogEvent().get());
+    } else if (message.getDeviceNameChange().isPresent()) {
+      content = createDeviceNameChangeContent(message.getDeviceNameChange().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1725,6 +1727,13 @@ public class SignalServiceMessageSender {
   private Content createCallLogEventContent(SyncMessage.CallLogEvent proto) {
     Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().callLogEvent(proto);
+
+    return container.syncMessage(builder.build()).build();
+  }
+
+  private Content createDeviceNameChangeContent(SyncMessage.DeviceNameChange proto) {
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().deviceNameChange(proto);
 
     return container.syncMessage(builder.build()).build();
   }

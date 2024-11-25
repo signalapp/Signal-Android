@@ -9,6 +9,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -59,6 +60,7 @@ import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
+import org.signal.core.ui.DropdownMenus
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
@@ -146,6 +148,8 @@ class LinkDeviceFragment : ComposeFragment() {
             navController.popBackStack()
           }
         }
+        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> Unit
+        LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeSuccess -> Unit
       }
 
       if (state.oneTimeEvent != LinkDeviceSettingsState.OneTimeEvent.None) {
@@ -176,7 +180,11 @@ class LinkDeviceFragment : ComposeFragment() {
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { deviceId -> viewModel.onSyncErrorRetryRequested(deviceId) },
-        onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() }
+        onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
+        onEditDevice = { device ->
+          viewModel.setDeviceToEdit(device)
+          navController.safeNavigate(R.id.action_linkDeviceFragment_to_editDeviceNameFragment)
+        }
       )
     }
   }
@@ -221,7 +229,8 @@ fun DeviceListScreen(
   onDeviceSelectedForRemoval: (Device?) -> Unit = {},
   onDeviceRemovalConfirmed: (Device) -> Unit = {},
   onSyncFailureRetryRequested: (Int?) -> Unit = {},
-  onSyncFailureIgnored: () -> Unit = {}
+  onSyncFailureIgnored: () -> Unit = {},
+  onEditDevice: (Device) -> Unit = {}
 ) {
   // If a bottom sheet is showing, we don't want the spinner underneath
   if (!state.bottomSheetVisible) {
@@ -328,7 +337,7 @@ fun DeviceListScreen(
         )
       } else {
         state.devices.forEach { device ->
-          DeviceRow(device, onDeviceSelectedForRemoval)
+          DeviceRow(device, onDeviceSelectedForRemoval, onEditDevice)
         }
       }
     }
@@ -372,16 +381,14 @@ fun DeviceListScreen(
 }
 
 @Composable
-fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
+fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice: (Device) -> Unit) {
   val titleString = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
   val linkedDate = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis)
   val lastActive = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.lastSeenMillis)
-
+  val menuController = remember { DropdownMenus.MenuController() }
   Row(
     modifier = Modifier
       .fillMaxWidth()
-      .clickable { setDeviceToRemove(device) },
-    verticalAlignment = Alignment.CenterVertically
   ) {
     Image(
       painter = painterResource(id = R.drawable.symbol_devices_24),
@@ -395,12 +402,75 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit) {
           color = MaterialTheme.colorScheme.surfaceVariant,
           shape = CircleShape
         )
+        .align(Alignment.CenterVertically)
     )
-    Spacer(modifier = Modifier.size(16.dp))
-    Column {
+
+    Column(
+      modifier = Modifier.align(Alignment.CenterVertically).padding(start = 16.dp).weight(1f)
+    ) {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
       Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
       Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+
+    Box {
+      Icon(
+        painterResource(id = R.drawable.symbol_more_vertical),
+        contentDescription = null,
+        modifier = Modifier.padding(top = 16.dp, end = 16.dp).clickable { menuController.show() }
+      )
+
+      DropdownMenus.Menu(controller = menuController, offsetX = 16.dp, offsetY = 4.dp) { controller ->
+        DropdownMenus.Item(
+          contentPadding = PaddingValues(0.dp),
+          text = {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+            ) {
+              Icon(
+                painter = painterResource(id = R.drawable.symbol_link_slash_16),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp)
+              )
+              Text(
+                text = stringResource(R.string.LinkDeviceFragment__unlink),
+                modifier = Modifier.padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.bodyLarge
+              )
+            }
+          },
+          onClick = {
+            setDeviceToRemove(device)
+            controller.hide()
+          }
+        )
+
+        DropdownMenus.Item(
+          contentPadding = PaddingValues(0.dp),
+          text = {
+            Row(
+              verticalAlignment = Alignment.CenterVertically,
+              modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+            ) {
+              Icon(
+                painter = painterResource(id = R.drawable.symbol_edit_24),
+                contentDescription = null,
+                modifier = Modifier.size(24.dp)
+              )
+              Text(
+                text = stringResource(R.string.LinkDeviceFragment__edit_name),
+                modifier = Modifier.padding(horizontal = 16.dp),
+                style = MaterialTheme.typography.bodyLarge
+              )
+            }
+          },
+          onClick = {
+            onEditDevice(device)
+            controller.hide()
+          }
+        )
+      }
     }
   }
 }

@@ -18,7 +18,8 @@ data class LinkDeviceSettingsState(
   val linkDeviceResult: LinkDeviceResult = LinkDeviceResult.None,
   val seenIntroSheet: Boolean = false,
   val seenEducationSheet: Boolean = false,
-  val bottomSheetVisible: Boolean = false
+  val bottomSheetVisible: Boolean = false,
+  val deviceToEdit: Device? = null
 ) {
   sealed interface DialogState {
     data object None : DialogState
@@ -34,6 +35,8 @@ data class LinkDeviceSettingsState(
     data object ToastNetworkFailed : OneTimeEvent
     data class ToastUnlinked(val name: String) : OneTimeEvent
     data class ToastLinked(val name: String) : OneTimeEvent
+    data object SnackbarNameChangeSuccess : OneTimeEvent
+    data object SnackbarNameChangeFailure : OneTimeEvent
     data object ShowFinishedSheet : OneTimeEvent
     data object HideFinishedSheet : OneTimeEvent
     data object LaunchQrCodeScanner : OneTimeEvent
