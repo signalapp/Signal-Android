@@ -237,7 +237,12 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
-          builder.updateMessage = record.toRemoteGroupUpdate() ?: continue
+          val update = record.toRemoteGroupUpdate() ?: continue
+          if (update.groupChange!!.updates.isEmpty()) {
+            Log.w(TAG, "Group update record with ID ${record.id} missing updates. Skipping.")
+            continue
+          }
+          builder.updateMessage = update
         }
 
         MessageTypes.isGroupV1MigrationEvent(record.type) -> {
@@ -541,7 +546,10 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
             CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
             CallTable.Event.ONGOING -> IndividualCall.State.ACCEPTED
             CallTable.Event.DELETE -> return null
-            else -> IndividualCall.State.UNKNOWN_STATE
+            else -> {
+              Log.w(TAG, "Unable to map 1:1 call state from event: ${this.event.name}")
+              IndividualCall.State.UNKNOWN_STATE
+            }
           },
           startedCallTimestamp = this.timestamp,
           read = messageRecord.read
