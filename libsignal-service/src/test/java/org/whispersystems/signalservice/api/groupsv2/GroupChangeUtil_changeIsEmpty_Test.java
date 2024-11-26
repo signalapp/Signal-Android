@@ -22,7 +22,7 @@ public final class GroupChangeUtil_changeIsEmpty_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(GroupChange.Actions.class);
 
     assertEquals("GroupChangeUtil and its tests need updating to account for new fields on " + GroupChange.Actions.class.getName(),
-                 24, maxFieldFound);
+                 25, maxFieldFound);
   }
 
   @Test

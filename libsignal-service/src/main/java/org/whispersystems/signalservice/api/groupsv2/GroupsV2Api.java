@@ -124,7 +124,7 @@ public class GroupsV2Api {
 
     for (GroupChanges.GroupChangeState change : group.getGroupChanges().groupChanges) {
       DecryptedGroup       decryptedGroup  = change.groupState != null ? groupOperations.decryptGroup(change.groupState) : null;
-      DecryptedGroupChange decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, false).orElse(null) : null;
+      DecryptedGroupChange decryptedChange = change.groupChange != null ? groupOperations.decryptChange(change.groupChange, DecryptChangeVerificationMode.alreadyTrusted()).orElse(null) : null;
 
       result.add(new DecryptedGroupChangeLog(decryptedGroup, decryptedChange));
     }

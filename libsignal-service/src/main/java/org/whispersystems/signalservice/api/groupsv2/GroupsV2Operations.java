@@ -7,6 +7,7 @@ import org.signal.libsignal.zkgroup.ServerPublicParams;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.auth.ClientZkAuthOperations;
 import org.signal.libsignal.zkgroup.groups.ClientZkGroupCipher;
+import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groups.ProfileKeyCiphertext;
 import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
@@ -45,6 +46,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -486,14 +488,13 @@ public final class GroupsV2Operations {
     }
 
     /**
-     * @param verifySignature You might want to avoid verification if you already know it's correct, or you
-     *                        are not going to pass to other clients.
-     *                        <p>
-     *                        Also, if you know it's version 0, do not verify because changes for version 0
-     *                        are not signed, but should be empty.
+     * @param verification You might want to avoid verification if you already know it's correct, or you are not going to pass to other clients.
+     *                     <p>
+     *                     Also, if you know it's version 0, do not verify because changes for version 0 are not signed, but should be empty.
+     *
      * @return {@link Optional#empty()} if the epoch for the change is higher that this code can decrypt.
      */
-    public Optional<DecryptedGroupChange> decryptChange(GroupChange groupChange, boolean verifySignature)
+    public Optional<DecryptedGroupChange> decryptChange(GroupChange groupChange, @Nonnull DecryptChangeVerificationMode verification)
         throws IOException, VerificationFailedException, InvalidGroupStateException
     {
       if (groupChange.changeEpoch > HIGHEST_KNOWN_EPOCH) {
@@ -501,7 +502,14 @@ public final class GroupsV2Operations {
         return Optional.empty();
       }
 
-      GroupChange.Actions actions = verifySignature ? getVerifiedActions(groupChange) : getActions(groupChange);
+      GroupChange.Actions actions = verification.verify() ? getVerifiedActions(groupChange) : getActions(groupChange);
+
+      if (verification.verify()) {
+        GroupIdentifier groupId = verification.groupId();
+        if (groupId == null || !Arrays.equals(groupId.serialize(), actions.groupId.toByteArray())) {
+           throw new VerificationFailedException("Invalid group id");
+        }
+      }
 
       return Optional.of(decryptChange(actions));
     }

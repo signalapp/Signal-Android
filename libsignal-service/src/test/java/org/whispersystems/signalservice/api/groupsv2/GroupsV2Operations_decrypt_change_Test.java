@@ -82,7 +82,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
         .changeEpoch(GroupsV2Operations.HIGHEST_KNOWN_EPOCH + 1)
         .build();
 
-    Optional<DecryptedGroupChange> decryptedGroupChangeOptional = groupOperations.decryptChange(change, false);
+    Optional<DecryptedGroupChange> decryptedGroupChangeOptional = groupOperations.decryptChange(change, DecryptChangeVerificationMode.alreadyTrusted());
 
     assertFalse(decryptedGroupChangeOptional.isPresent());
   }
@@ -159,7 +159,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
     actions.addMembers(List.of(new GroupChange.Actions.AddMemberAction.Builder().added(new Member.Builder().role(Member.Role.DEFAULT)
                                                                                                            .presentation(ByteString.of(randomPresentation)).build()).build()));
 
-    groupOperations.decryptChange(new GroupChange.Builder().actions(actions.build().encodeByteString()).build(), false);
+    groupOperations.decryptChange(new GroupChange.Builder().actions(actions.build().encodeByteString()).build(), DecryptChangeVerificationMode.alreadyTrusted());
   }
 
   @Test
@@ -180,7 +180,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
     actions.deleteMembers(List.of(new GroupChange.Actions.DeleteMemberAction.Builder().deletedUserId(ByteString.of(randomPresentation)).build()));
 
-    groupOperations.decryptChange(new GroupChange.Builder().actions(actions.build().encodeByteString()).build(), false);
+    groupOperations.decryptChange(new GroupChange.Builder().actions(actions.build().encodeByteString()).build(), DecryptChangeVerificationMode.alreadyTrusted());
   }
 
   @Test
@@ -518,7 +518,7 @@ public final class GroupsV2Operations_decrypt_change_Test {
 
   private DecryptedGroupChange decrypt(GroupChange build) {
     try {
-      return groupOperations.decryptChange(build, false).get();
+      return groupOperations.decryptChange(build, DecryptChangeVerificationMode.alreadyTrusted()).get();
     } catch (IOException | VerificationFailedException | InvalidGroupStateException e) {
       throw new AssertionError(e);
     }

@@ -183,6 +183,7 @@ message GroupChange {
     }
 
              bytes                                      sourceServiceId                 = 1;
+             bytes                                      groupId                         = 25; // Only set when receiving from server
              uint32                                     revision                        = 2;
     repeated AddMemberAction                            addMembers                      = 3;
     repeated DeleteMemberAction                         deleteMembers                   = 4;
