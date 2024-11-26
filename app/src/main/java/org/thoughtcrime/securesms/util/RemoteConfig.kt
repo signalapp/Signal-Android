@@ -958,15 +958,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to use active call manager instead of WebRtcCallService.  */
-  @JvmStatic
-  @get:JvmName("useActiveCallManager")
-  val useActiveCallManager: Boolean by remoteBoolean(
-    key = "android.calling.useActiveCallManager.6",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
   /** Whether the in-app GIF search is available for use.  */
   @JvmStatic
   @get:JvmName("gifSearchAvailable")

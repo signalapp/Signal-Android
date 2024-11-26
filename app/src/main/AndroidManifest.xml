@@ -1146,12 +1146,6 @@
 
     <service
         android:enabled="true"
-        android:name=".service.webrtc.WebRtcCallService"
-        android:foregroundServiceType="dataSync"
-        android:exported="false"/>
-
-    <service
-        android:enabled="true"
         android:exported="false"
         android:name=".service.KeyCachingService"
         android:foregroundServiceType="remoteMessaging"/>
@@ -1417,7 +1411,7 @@
     <service
         android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallForegroundService"
         android:exported="false"
-        android:foregroundServiceType="dataSync|microphone" />
+        android:foregroundServiceType="dataSync|microphone|camera" />
 
     <receiver android:name="org.thoughtcrime.securesms.service.webrtc.ActiveCallManager$ActiveCallServiceReceiver" android:exported="false">
         <intent-filter>

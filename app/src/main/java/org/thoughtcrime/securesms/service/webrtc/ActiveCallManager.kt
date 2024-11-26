@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.service.webrtc
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -30,6 +31,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnableToStartException
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.SafeForegroundService
@@ -295,7 +297,19 @@ class ActiveCallManager(
 
     @get:RequiresApi(30)
     override val serviceType: Int
-      get() = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+      get() {
+        var type = ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+
+        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+        }
+
+        if (Permissions.hasAll(this, Manifest.permission.CAMERA)) {
+          type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA
+        }
+
+        return type
+      }
 
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
