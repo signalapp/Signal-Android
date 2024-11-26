@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.backup.v2.exporters.ContactArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.exporters.GroupArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -30,26 +31,36 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
   val cursor = readableDatabase
     .select(
-      RecipientTable.ID,
-      RecipientTable.ACI_COLUMN,
-      RecipientTable.PNI_COLUMN,
-      RecipientTable.USERNAME,
-      RecipientTable.E164,
-      RecipientTable.BLOCKED,
-      RecipientTable.HIDDEN,
-      RecipientTable.REGISTERED,
-      RecipientTable.UNREGISTERED_TIMESTAMP,
-      RecipientTable.PROFILE_KEY,
-      RecipientTable.PROFILE_SHARING,
-      RecipientTable.PROFILE_GIVEN_NAME,
-      RecipientTable.PROFILE_FAMILY_NAME,
-      RecipientTable.PROFILE_JOINED_NAME,
-      RecipientTable.MUTE_UNTIL,
-      RecipientTable.CHAT_COLORS,
-      RecipientTable.CUSTOM_CHAT_COLORS_ID,
-      RecipientTable.EXTRAS
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.ID}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.ACI_COLUMN}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PNI_COLUMN}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.USERNAME}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.E164}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.BLOCKED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.HIDDEN}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.REGISTERED}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.UNREGISTERED_TIMESTAMP}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_KEY}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_SHARING}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_GIVEN_NAME}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_FAMILY_NAME}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_JOINED_NAME}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.CHAT_COLORS}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.CUSTOM_CHAT_COLORS_ID}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
+      "${IdentityTable.TABLE_NAME}.${IdentityTable.IDENTITY_KEY}",
+      "${IdentityTable.TABLE_NAME}.${IdentityTable.VERIFIED}"
     )
-    .from(RecipientTable.TABLE_NAME)
+    .from(
+      """
+      ${RecipientTable.TABLE_NAME} LEFT OUTER JOIN ${IdentityTable.TABLE_NAME} ON (
+        ${RecipientTable.TABLE_NAME}.${RecipientTable.ACI_COLUMN} = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS} OR (
+          ${RecipientTable.TABLE_NAME}.${RecipientTable.ACI_COLUMN} IS NULL AND ${RecipientTable.TABLE_NAME}.${RecipientTable.PNI_COLUMN} = ${IdentityTable.TABLE_NAME}.${IdentityTable.ADDRESS}
+        ) 
+      )
+      """
+    )
     .where(
       """
       ${RecipientTable.TYPE} = ? AND (

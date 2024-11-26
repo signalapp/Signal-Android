@@ -73,7 +73,7 @@ class ArchiveImportExportTests {
 
 //  @Test
   fun chatItemExpirationTimerUpdate() {
-    runTests { it.startsWith("chat_item_expiration_timer_") }
+    runTests { it.startsWith("chat_item_expiration_timer_update_") }
   }
 
 //  @Test

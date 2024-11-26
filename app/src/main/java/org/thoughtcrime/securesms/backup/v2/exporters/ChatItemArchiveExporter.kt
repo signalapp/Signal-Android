@@ -220,8 +220,8 @@ class ChatItemArchiveExporter(
 
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
           builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
-          builder.expireStartDate = 0
-          builder.expiresInMs = 0
+          builder.expireStartDate = null
+          builder.expiresInMs = null
         }
 
         MessageTypes.isProfileChange(record.type) -> {
@@ -394,8 +394,8 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     chatId = record.threadId
     authorId = record.fromRecipientId
     dateSent = record.dateSent
-    expireStartDate = if (record.expireStarted > 0) record.expireStarted else 0
-    expiresInMs = if (record.expiresIn > 0) record.expiresIn else 0
+    expireStartDate = record.expireStarted.takeIf { it > 0 }
+    expiresInMs = record.expiresIn.takeIf { it > 0 }
     revisions = emptyList()
     sms = record.type.isSmsType()
     if (record.type.isDirectionlessType() || record.messageExtras?.gv2UpdateDescription != null) {
@@ -405,32 +405,32 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
         sendStatus = record.toRemoteSendStatus(isGroupThread, groupReceipts, exportState)
       )
 
-      if (expiresInMs > 0 && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
+      if (expiresInMs != null && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
         Log.w(TAG, "Outgoing expiring message was sent but the timer wasn't started! Fixing.")
         expireStartDate = record.dateReceived
       }
     } else {
       incoming = ChatItem.IncomingMessageDetails(
-        dateServerSent = max(record.dateServer, 0),
+        dateServerSent = record.dateServer.takeIf { it > 0 },
         dateReceived = record.dateReceived,
         read = record.read,
         sealedSender = record.sealedSender
       )
 
-      if (expiresInMs > 0 && incoming?.read == true && expireStartDate == 0L) {
+      if (expiresInMs != null && incoming?.read == true && expireStartDate == null) {
         Log.w(TAG, "Incoming expiring message was read but the timer wasn't started! Fixing.")
         expireStartDate = record.dateReceived
       }
     }
   }
 
-  if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs > 0 && builder.expireStartDate + builder.expiresInMs < backupStartTime + 1.days.inWholeMilliseconds) {
+  if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null && builder.expireStartDate!! + builder.expiresInMs!! < backupStartTime + 1.days.inWholeMilliseconds) {
     Log.w(TAG, "Message expires too soon! Must skip.")
     return null
   }
 
-  if (builder.expireStartDate > 0 && builder.expiresInMs == 0L) {
-    builder.expireStartDate = 0
+  if (builder.expireStartDate != null && builder.expiresInMs == null) {
+    builder.expireStartDate = null
   }
 
   return builder
@@ -801,7 +801,7 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
     attachments = attachments?.toRemoteQuoteAttachments(mediaArchiveEnabled) ?: emptyList(),
     type = when (type) {
       QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
-      QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFTBADGE
+      QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
     }
   )
 }

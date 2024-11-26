@@ -456,8 +456,8 @@ class ChatItemArchiveImporter(
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
     contentValues.put(MessageTable.REVISION_NUMBER, 0)
-    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs)
-    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate)
+    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs ?: 0)
+    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate ?: 0)
 
     when {
       this.outgoing != null -> {
@@ -669,7 +669,7 @@ class ChatItemArchiveImporter(
       }
       updateMessage.expirationTimerChange != null -> {
         typeFlags = getAsLong(MessageTable.TYPE) or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs.toLong())
+        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs)
       }
       updateMessage.profileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
@@ -895,7 +895,8 @@ class ChatItemArchiveImporter(
     return when (this) {
       Quote.Type.UNKNOWN -> QuoteModel.Type.NORMAL.code
       Quote.Type.NORMAL -> QuoteModel.Type.NORMAL.code
-      Quote.Type.GIFTBADGE -> QuoteModel.Type.GIFT_BADGE.code
+      Quote.Type.GIFT_BADGE -> QuoteModel.Type.GIFT_BADGE.code
+      Quote.Type.VIEW_ONCE -> QuoteModel.Type.NORMAL.code
     }
   }
 
