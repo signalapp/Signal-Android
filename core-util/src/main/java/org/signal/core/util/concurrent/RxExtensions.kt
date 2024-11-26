@@ -73,3 +73,20 @@ fun <S : Subject<T>, T : Any> Single<T>.subscribeWithSubject(
 
   return subject
 }
+
+/**
+ * Skips the first item emitted from the flowable, but only if it matches the provided [predicate].
+ */
+fun <T : Any> Flowable<T>.skipFirstIf(predicate: (T) -> Boolean): Flowable<T> {
+  return this
+    .scan(Pair<Boolean, T?>(false, null)) { acc, item ->
+      val firstItemInList = !acc.first
+      if (firstItemInList && predicate(item)) {
+        true to null
+      } else {
+        true to item
+      }
+    }
+    .filter { it.second != null }
+    .map { it.second!! }
+}

@@ -17,6 +17,10 @@ data class CallLinkPeekInfo(
   val isActive: Boolean,
   val isJoined: Boolean
 ) {
+
+  val isCompletelyInactive
+    get() = callId == null && !isActive && !isJoined
+
   companion object {
     @JvmStatic
     fun fromPeekInfo(peekInfo: PeekInfo): CallLinkPeekInfo {

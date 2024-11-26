@@ -82,6 +82,7 @@ class CallLogViewModel(
     disposables += AppDependencies
       .signalCallManager
       .peekInfoCache
+      .skipWhile { cache -> cache.isEmpty() || cache.values.all { it.isCompletelyInactive } }
       .observeOn(Schedulers.computation())
       .distinctUntilChanged()
       .subscribe {
