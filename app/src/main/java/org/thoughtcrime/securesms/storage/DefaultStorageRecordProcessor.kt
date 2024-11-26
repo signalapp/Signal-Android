@@ -58,12 +58,12 @@ abstract class DefaultStorageRecordProcessor<E : SignalRecord<*>> : StorageRecor
 
             if (merged != local.get()) {
               val update = StorageRecordUpdate(local.get(), merged)
-              info(i, remote, "[Local Update] $update")
+              info(i, remote, "[Local Update] " + local.get().describeDiff(merged))
               updateLocal(update)
             }
           }
         } else {
-          info(i, remote, "No matching local record. Inserting.")
+          info(i, remote, "[Local Insert] No matching local record. Inserting.")
           insertLocal(remote)
         }
       }
