@@ -67,7 +67,7 @@ object AccountDataArchiveProcessor {
           givenName = selfRecord.signalProfileName.givenName,
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
-          username = selfRecord.username,
+          username = selfRecord.username?.takeIf { it.isNotBlank() },
           usernameLink = if (signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
               entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
