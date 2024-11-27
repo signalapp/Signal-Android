@@ -1502,8 +1502,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       items.add(new ActionItem(R.drawable.symbol_archive_up_24, getResources().getString(R.string.ConversationListFragment_unarchive), () -> handleArchive(id, false)));
     } else {
       if (viewModel.getCurrentFolder().getFolderType() == ChatFolderRecord.FolderType.ALL &&
-          conversation.getThreadRecord().getRecipient().isIndividual() ||
-          conversation.getThreadRecord().getRecipient().isPushV2Group()) {
+          (conversation.getThreadRecord().getRecipient().isIndividual() ||
+          conversation.getThreadRecord().getRecipient().isPushV2Group())) {
         List<ChatFolderRecord> folders = viewModel.getFolders().stream().map(ChatFolderMappingModel::getChatFolder).collect(Collectors.toList());
         items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
           AddToFolderBottomSheet.showChatFolderSheet(folders, conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient().isIndividual()).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
