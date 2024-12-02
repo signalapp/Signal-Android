@@ -844,8 +844,8 @@ object BackupRepository {
   }
 
   fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
-    val masterKey = SignalStore.svr.masterKey
-    val key = LibSignalMessageBackupKey(masterKey.serialize(), Aci.parseFromBinary(selfData.aci.toByteArray()))
+    val accountEntropyPool = SignalStore.account.accountEntropyPool.value
+    val key = LibSignalMessageBackupKey(accountEntropyPool, Aci.parseFromBinary(selfData.aci.toByteArray()))
 
     return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
