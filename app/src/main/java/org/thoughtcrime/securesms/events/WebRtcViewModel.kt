@@ -105,6 +105,13 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
   val callLinkDisconnectReason: CallLinkDisconnectReason? = state.callInfoState.callLinkDisconnectReason
 
+  @get:JvmName("hasAtLeastOneRemote")
+  val hasAtLeastOneRemote = if (state.callInfoState.callRecipient.isIndividual) {
+    remoteParticipants.isNotEmpty()
+  } else {
+    remoteDevicesCount.orElse(0L) > 0L
+  }
+
   @get:JvmName("shouldRingGroup")
   val ringGroup: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringGroup
   val ringerRecipient: Recipient = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringerRecipient

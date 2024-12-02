@@ -320,7 +320,7 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.isRemoteVideoEnabled(),
                          webRtcViewModel.isRemoteVideoOffer(),
                          localParticipant.isMoreThanOneCameraAvailable(),
-                         webRtcViewModel.getRemoteDevicesCount().orElse(0L) > 0,
+                         webRtcViewModel.hasAtLeastOneRemote(),
                          webRtcViewModel.getActiveDevice(),
                          webRtcViewModel.getAvailableDevices(),
                          webRtcViewModel.getRemoteDevicesCount().orElse(0),
