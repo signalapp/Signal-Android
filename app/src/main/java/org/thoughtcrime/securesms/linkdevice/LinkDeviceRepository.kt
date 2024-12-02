@@ -5,6 +5,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.protocol.InvalidKeyException
@@ -201,6 +202,7 @@ object LinkDeviceRepository {
 
       when (result) {
         is NetworkResult.Success -> {
+          Log.d(TAG, "[waitForDeviceToBeLinked] Sucessfully found device after waiting ${System.currentTimeMillis() - startTime} ms.")
           return result.result
         }
         is NetworkResult.ApplicationError -> {
@@ -242,34 +244,35 @@ object LinkDeviceRepository {
     } catch (e: Exception) {
       return LinkUploadArchiveResult.BackupCreationFailure(e)
     }
+    Log.d(TAG, "[createAndUploadArchive] Successfully created backup.")
     stopwatch.split("create-backup")
 
     when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey)) {
       ArchiveValidator.ValidationResult.Success -> {
-        Log.d(TAG, "Successfully passed validation.")
+        Log.d(TAG, "[createAndUploadArchive] Successfully passed validation.")
       }
       is ArchiveValidator.ValidationResult.ReadError -> {
-        Log.w(TAG, "Failed to read the file during validation!", result.exception)
+        Log.w(TAG, "[createAndUploadArchive] Failed to read the file during validation!", result.exception)
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
       is ArchiveValidator.ValidationResult.ValidationError -> {
-        Log.w(TAG, "The backup file fails validation!", result.exception)
+        Log.w(TAG, "[createAndUploadArchive] The backup file fails validation!", result.exception)
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
     }
     stopwatch.split("validate-backup")
 
     val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm()) {
-      is NetworkResult.Success -> result.result
+      is NetworkResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
       is NetworkResult.ApplicationError -> throw result.throwable
-      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "Network error when fetching form.", result.exception)
-      is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "Status code error when fetching form.", result.exception)
+      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.exception)
+      is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when fetching form.", result.exception)
     }
 
     when (val result = uploadArchive(tempBackupFile, uploadForm)) {
-      is NetworkResult.Success -> Log.i(TAG, "Successfully uploaded backup.")
-      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "Network error when uploading archive.", result.exception)
-      is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "Status code error when uploading archive.", result.exception)
+      is NetworkResult.Success -> Log.i(TAG, "[createAndUploadArchive] Successfully uploaded backup.")
+      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when uploading archive.", result.exception)
+      is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when uploading archive.", result.exception)
       is NetworkResult.ApplicationError -> throw result.throwable
     }
     stopwatch.split("upload-backup")
@@ -282,13 +285,13 @@ object LinkDeviceRepository {
     )
 
     when (transferSetResult) {
-      is NetworkResult.Success -> Log.i(TAG, "Successfully set transfer archive.")
+      is NetworkResult.Success -> Log.i(TAG, "[createAndUploadArchive] Successfully set transfer archive.")
       is NetworkResult.ApplicationError -> throw transferSetResult.throwable
-      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(transferSetResult.exception).logW(TAG, "Network error when setting transfer archive.", transferSetResult.exception)
+      is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(transferSetResult.exception).logW(TAG, "[createAndUploadArchive] Network error when setting transfer archive.", transferSetResult.exception)
       is NetworkResult.StatusCodeError -> {
         return when (transferSetResult.code) {
-          422 -> LinkUploadArchiveResult.BadRequest(transferSetResult.exception).logW(TAG, "422 when setting transfer archive.", transferSetResult.exception)
-          else -> LinkUploadArchiveResult.NetworkError(transferSetResult.exception).logW(TAG, "Status code error when setting transfer archive.", transferSetResult.exception)
+          422 -> LinkUploadArchiveResult.BadRequest(transferSetResult.exception).logW(TAG, "[createAndUploadArchive] 422 when setting transfer archive.", transferSetResult.exception)
+          else -> LinkUploadArchiveResult.NetworkError(transferSetResult.exception).logW(TAG, "[createAndUploadArchive] Status code error when setting transfer archive.", transferSetResult.exception)
         }
       }
     }
