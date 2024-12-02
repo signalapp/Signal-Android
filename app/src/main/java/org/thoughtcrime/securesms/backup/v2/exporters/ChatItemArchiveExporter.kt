@@ -85,7 +85,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
 import java.io.IOException
-import java.util.HashMap
 import java.util.LinkedList
 import java.util.Queue
 import java.util.concurrent.Callable
