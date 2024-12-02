@@ -195,6 +195,12 @@ fun BackupStatusBannerPreview() {
       BackupStatusBanner(
         data = BackupStatusData.CouldNotCompleteBackup
       )
+
+      HorizontalDivider()
+
+      BackupStatusBanner(
+        data = BackupStatusData.BackupFailed
+      )
     }
   }
 }
@@ -226,6 +232,19 @@ sealed interface BackupStatusData {
    * Generic failure
    */
   data object CouldNotCompleteBackup : BackupStatusData {
+    override val iconRes: Int = R.drawable.symbol_backup_error_24
+
+    override val title: String
+      @Composable
+      get() = stringResource(androidx.biometric.R.string.default_error_msg)
+
+    override val iconColors: BackupsIconColors = BackupsIconColors.Warning
+  }
+
+  /**
+   * Initial backup creation failure
+   */
+  data object BackupFailed : BackupStatusData {
     override val iconRes: Int = R.drawable.symbol_backup_error_24
 
     override val title: String

@@ -204,14 +204,27 @@ object BackupRepository {
   }
 
   /**
-   * Whether the "Could not complete backup" row should be displayed in settings.
+   * Whether the "Backup Failed" row should be displayed in settings.
+   * Shown when the initial backup creation has failed
    */
   fun shouldDisplayBackupFailedSettingsRow(): Boolean {
     if (shouldNotDisplayBackupFailedMessaging()) {
       return false
     }
 
-    return SignalStore.backup.hasBackupFailure
+    return !SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
+  }
+
+  /**
+   * Whether the "Could not complete backup" row should be displayed in settings.
+   * Shown when a new backup could not be created but there is an existing one already
+   */
+  fun shouldDisplayCouldNotCompleteBackupSettingsRow(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
   }
 
   /**
@@ -230,7 +243,8 @@ object BackupRepository {
   }
 
   /**
-   * Whether or not the "Could not complete backup" sheet should be displayed.
+   * Whether or not the "Backup failed" sheet should be displayed.
+   * Should only be displayed if this is the failure of the initial backup creation.
    */
   @JvmStatic
   fun shouldDisplayBackupFailedSheet(): Boolean {
@@ -238,7 +252,19 @@ object BackupRepository {
       return false
     }
 
-    return System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+    return !SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+  }
+
+  /**
+   * Whether or not the "Could not complete backup" sheet should be displayed.
+   */
+  @JvmStatic
+  fun shouldDisplayCouldNotCompleteBackupSheet(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
   }
 
   fun snoozeYourMediaWillBeDeletedTodaySheet() {
@@ -249,7 +275,7 @@ object BackupRepository {
    * Whether or not the "Your media will be deleted today" sheet should be displayed.
    */
   suspend fun shouldDisplayYourMediaWillBeDeletedTodaySheet(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.optimizeStorage) {
+    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupBeenUploaded || !SignalStore.backup.optimizeStorage) {
       return false
     }
 
@@ -285,7 +311,7 @@ object BackupRepository {
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
-    return !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled || !SignalStore.backup.hasBackupBeenUploaded
+    return !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled
   }
 
   /**

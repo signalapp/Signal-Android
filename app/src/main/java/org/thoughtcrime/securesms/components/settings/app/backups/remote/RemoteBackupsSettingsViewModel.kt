@@ -92,6 +92,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         } else if (SignalStore.backup.totalRestorableAttachmentSize > 0L) {
           _restoreState.update { BackupRestoreState.Ready(SignalStore.backup.totalRestorableAttachmentSize.bytes.toUnitString()) }
         } else if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
+          _restoreState.update { BackupRestoreState.FromBackupStatusData(BackupStatusData.BackupFailed) }
+        } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSettingsRow()) {
           _restoreState.update { BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup) }
         } else {
           _restoreState.update { BackupRestoreState.None }

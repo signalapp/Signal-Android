@@ -101,8 +101,8 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
         return Result.retry(defaultBackoff())
       }
       is ArchiveValidator.ValidationResult.ValidationError -> {
-        // TODO [backup] UX
         Log.w(TAG, "The backup file fails validation! Message: " + result.exception.message)
+        ArchiveUploadProgress.onValidationFailure()
         return Result.failure()
       }
     }

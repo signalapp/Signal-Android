@@ -22,11 +22,11 @@ object BackupAlertDelegate {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
         if (BackupRepository.shouldDisplayBackupFailedSheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, null)
+        } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSheet()) {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
-        }
-
-        if (BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet()) {
-          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday)
+        } else if (BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
         }
       }
     }

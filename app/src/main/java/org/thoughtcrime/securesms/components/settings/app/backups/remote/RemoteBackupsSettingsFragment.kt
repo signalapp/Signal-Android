@@ -83,6 +83,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -233,6 +235,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.REMOTE_BACKUPS_INDEX))
     }
+
+    override fun onLearnMoreAboutBackupFailure() {
+      BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(parentFragmentManager, null)
+    }
   }
 
   private fun displayBackupKey() {
@@ -314,6 +320,7 @@ private interface ContentCallbacks {
   fun onRenewLostSubscription() = Unit
   fun onLearnMoreAboutLostSubscription() = Unit
   fun onContactSupport() = Unit
+  fun onLearnMoreAboutBackupFailure() = Unit
 }
 
 @Composable
@@ -392,7 +399,8 @@ private fun RemoteBackupsSettingsContent(
               BackupStatusRow(
                 backupStatusData = backupRestoreState.backupStatusData,
                 onCancelClick = contentCallbacks::onCancelMediaRestore,
-                onSkipClick = contentCallbacks::onSkipMediaRestore
+                onSkipClick = contentCallbacks::onSkipMediaRestore,
+                onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
               )
             }
           } else if (backupRestoreState is BackupRestoreState.Ready && backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
@@ -420,7 +428,8 @@ private fun RemoteBackupsSettingsContent(
             BackupStatusRow(
               backupStatusData = backupRestoreState.backupStatusData,
               onCancelClick = contentCallbacks::onCancelMediaRestore,
-              onSkipClick = contentCallbacks::onSkipMediaRestore
+              onSkipClick = contentCallbacks::onSkipMediaRestore,
+              onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
             )
           }
         }
@@ -920,8 +929,14 @@ private fun InProgressBackupRow(
         )
       }
 
+      val inProgressText = if (totalProgress == null || totalProgress == 0) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+      } else {
+        stringResource(R.string.RemoteBackupsSettingsFragment__d_slash_d, progress ?: 0, totalProgress)
+      }
+
       Text(
-        text = stringResource(R.string.RemoteBackupsSettingsFragment__d_slash_d, progress ?: 0, totalProgress ?: 0),
+        text = inProgressText,
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
