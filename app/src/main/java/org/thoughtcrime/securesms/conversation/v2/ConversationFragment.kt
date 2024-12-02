@@ -42,6 +42,7 @@ import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
+import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
@@ -893,13 +894,13 @@ class ConversationFragment :
       .conversationThreadState
       .subscribeOn(Schedulers.io())
       .doOnSuccess { state ->
-        updateMessageRequestAcceptedState(state.meta.messageRequestData.isMessageRequestAccepted)
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
         colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
       }
       .observeOn(AndroidSchedulers.mainThread())
       .doOnSuccess { state ->
+        updateMessageRequestAcceptedState(state.meta.messageRequestData.isMessageRequestAccepted)
         moveToStartPosition(state.meta)
       }
       .flatMapObservable { it.items.data }
@@ -1313,14 +1314,9 @@ class ConversationFragment :
     updateMessageRequestAcceptedState(!viewModel.hasMessageRequestState)
   }
 
+  @MainThread
   private fun updateMessageRequestAcceptedState(isMessageRequestAccepted: Boolean) {
-    if (binding.conversationItemRecycler.isInLayout) {
-      binding.conversationItemRecycler.doAfterNextLayout {
-        adapter.setMessageRequestIsAccepted(isMessageRequestAccepted)
-      }
-    } else {
-      adapter.setMessageRequestIsAccepted(isMessageRequestAccepted)
-    }
+    adapter.setMessageRequestIsAccepted(isMessageRequestAccepted)
   }
 
   private fun invalidateOptionsMenu() {
