@@ -219,7 +219,7 @@ private fun PendingParticipantsSheet(
         onClick = onDenyAll
       ) {
         Text(
-          text = "Deny all",
+          text = stringResource(id = R.string.PendingParticipantsBottomSheet__deny_all),
           color = MaterialTheme.colorScheme.onSurface
         )
       }
@@ -228,7 +228,7 @@ private fun PendingParticipantsSheet(
 
       Buttons.LargeTonal(onClick = onApproveAll) {
         Text(
-          text = "Approve all"
+          text = stringResource(id = R.string.PendingParticipantsBottomSheet__approve_all)
         )
       }
     }

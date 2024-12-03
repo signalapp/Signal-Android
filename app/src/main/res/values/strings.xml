@@ -7329,6 +7329,10 @@
     <string name="PendingParticipantsBottomSheet__reject">Reject</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Approve</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Turn on full screen notifications?</string>
