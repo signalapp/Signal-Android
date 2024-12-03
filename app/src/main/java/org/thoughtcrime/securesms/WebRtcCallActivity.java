@@ -456,7 +456,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
             case DENY_ALL:
               new MaterialAlertDialogBuilder(this)
                   .setTitle(getResources().getQuantityString(R.plurals.WebRtcCallActivity__deny_d_requests, recipientIds.size(), recipientIds.size()))
-                  .setMessage(getResources().getQuantityString(R.plurals.WebRtcCallActivity__d_people_will_be_added_to_the_call, recipientIds.size(), recipientIds.size()))
+                  .setMessage(getResources().getQuantityString(R.plurals.WebRtcCallActivity__d_people_will_not_be_added_to_the_call, recipientIds.size(), recipientIds.size()))
                   .setNegativeButton(android.R.string.cancel, null)
                   .setPositiveButton(R.string.WebRtcCallActivity__deny_all, (dialog, which) -> {
                     for (RecipientId id : recipientIds) {
