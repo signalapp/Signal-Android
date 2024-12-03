@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
@@ -787,7 +788,18 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
     return null
   }
 
-  val type = QuoteModel.Type.fromCode(this.quoteType)
+  val localType = QuoteModel.Type.fromCode(this.quoteType)
+  val remoteType = when (localType) {
+    QuoteModel.Type.NORMAL -> {
+      if (attachments?.any { it.contentType == MediaUtil.VIEW_ONCE } == true) {
+        Quote.Type.VIEW_ONCE
+      } else {
+        Quote.Type.NORMAL
+      }
+    }
+    QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
+  }
+
   return Quote(
     targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
     authorId = this.quoteAuthor,
@@ -797,11 +809,12 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
         bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges() ?: emptyList()
       )
     },
-    attachments = attachments?.toRemoteQuoteAttachments(mediaArchiveEnabled) ?: emptyList(),
-    type = when (type) {
-      QuoteModel.Type.NORMAL -> Quote.Type.NORMAL
-      QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
-    }
+    attachments = if (remoteType == Quote.Type.VIEW_ONCE) {
+      emptyList()
+    } else {
+      attachments?.toRemoteQuoteAttachments(mediaArchiveEnabled) ?: emptyList()
+    },
+    type = remoteType
   )
 }
 
@@ -847,7 +860,7 @@ private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(mediaArchiveEnable
         mediaArchiveEnabled = mediaArchiveEnabled,
         flagOverride = MessageAttachment.Flag.NONE,
         contentTypeOverride = "image/jpeg"
-      ).takeUnless { it.pointer?.invalidAttachmentLocator != null }
+      )
     )
   }
 }

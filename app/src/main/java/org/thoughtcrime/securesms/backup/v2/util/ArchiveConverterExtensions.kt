@@ -38,7 +38,8 @@ fun FilePointer?.toLocalAttachment(
   stickerLocator: StickerLocator? = null,
   contentType: String? = this?.contentType,
   fileName: String? = this?.fileName,
-  uuid: ByteString? = null
+  uuid: ByteString? = null,
+  quote: Boolean = false
 ): Attachment? {
   if (this == null) return null
 
@@ -82,7 +83,7 @@ fun FilePointer?.toLocalAttachment(
       voiceNote = voiceNote,
       borderless = borderless,
       gif = gif,
-      quote = false,
+      quote = quote,
       stickerLocator = stickerLocator,
       uuid = UuidUtil.fromByteStringOrNull(uuid)
     )
@@ -108,7 +109,7 @@ fun FilePointer?.toLocalAttachment(
       voiceNote = voiceNote,
       borderless = borderless,
       gif = gif,
-      quote = false,
+      quote = quote,
       stickerLocator = stickerLocator,
       uuid = UuidUtil.fromByteStringOrNull(uuid),
       fileName = fileName

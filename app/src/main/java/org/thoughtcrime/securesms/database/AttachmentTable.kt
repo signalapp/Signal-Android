@@ -1519,14 +1519,10 @@ class AttachmentTable(
 
     val insertedAttachments: MutableMap<Attachment, AttachmentId> = mutableMapOf()
     for (attachment in attachments) {
-      val attachmentId = if (attachment.uri != null) {
-        insertAttachmentWithData(mmsId, attachment, attachment.quote)
-      } else {
-        if (attachment is ArchivedAttachment) {
-          insertArchivedAttachment(mmsId, attachment, attachment.quote)
-        } else {
-          insertUndownloadedAttachment(mmsId, attachment, attachment.quote)
-        }
+      val attachmentId = when {
+        attachment.uri != null -> insertAttachmentWithData(mmsId, attachment, attachment.quote)
+        attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, attachment.quote)
+        else -> insertUndownloadedAttachment(mmsId, attachment, attachment.quote)
       }
 
       insertedAttachments[attachment] = attachmentId
@@ -1535,10 +1531,10 @@ class AttachmentTable(
 
     try {
       for (attachment in quoteAttachment) {
-        val attachmentId = if (attachment.uri != null) {
-          insertAttachmentWithData(mmsId, attachment, true)
-        } else {
-          insertUndownloadedAttachment(mmsId, attachment, true)
+        val attachmentId = when {
+          attachment.uri != null -> insertAttachmentWithData(mmsId, attachment, true)
+          attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, true)
+          else -> insertUndownloadedAttachment(mmsId, attachment, true)
         }
 
         insertedAttachments[attachment] = attachmentId
