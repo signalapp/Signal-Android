@@ -318,9 +318,6 @@ class Recipient(
   /** The user's capability to handle synchronizing deletes across linked devices. */
   val deleteSyncCapability: Capability = capabilities.deleteSync
 
-  /** The user's capability to handle tracking an expire timer version. */
-  val versionedExpirationTimerCapability: Capability = capabilities.versionedExpirationTimer
-
   /** The user's capability to handle the new storage record encryption scheme. */
   val storageServiceEncryptionV2Capability: Capability
     get() = if (SignalStore.internal.forceSsre2Capability) Capability.SUPPORTED else capabilities.storageServiceEncryptionV2

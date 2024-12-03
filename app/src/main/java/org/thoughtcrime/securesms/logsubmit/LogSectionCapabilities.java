@@ -43,7 +43,6 @@ public final class LogSectionCapabilities implements LogSection {
 
     if (globalCapabilities != null) {
       builder.append("DeleteSync: ").append(globalCapabilities.getDeleteSync()).append("\n");
-      builder.append("VersionedExpirationTimer: ").append(globalCapabilities.getVersionedExpirationTimer()).append("\n");
       builder.append("StorageServiceEncryptionV2: ").append(globalCapabilities.getStorageServiceEncryptionV2()).append("\n");
       builder.append("\n");
     } else {
