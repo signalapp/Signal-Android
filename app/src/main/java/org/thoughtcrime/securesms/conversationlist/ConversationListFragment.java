@@ -1241,7 +1241,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                             conversationsCount, conversationsCount));
 
-    if (SignalStore.account().hasLinkedDevices() && Recipient.self().getDeleteSyncCapability().isSupported()) {
+    if (SignalStore.account().hasLinkedDevices()) {
       alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device,
                                                                 conversationsCount, conversationsCount));
     } else {

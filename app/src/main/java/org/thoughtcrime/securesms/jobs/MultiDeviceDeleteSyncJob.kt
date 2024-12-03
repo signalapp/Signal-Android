@@ -61,11 +61,6 @@ class MultiDeviceDeleteSyncJob private constructor(
         return
       }
 
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
-        return
-      }
-
       messageRecords.chunked(CHUNK_SIZE).forEach { chunk ->
         val deletes = createMessageDeletes(chunk)
         if (deletes.isNotEmpty()) {
@@ -83,11 +78,6 @@ class MultiDeviceDeleteSyncJob private constructor(
         return
       }
 
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
-        return
-      }
-
       val delete = createAttachmentDelete(message, attachment)
       if (delete != null) {
         AppDependencies.jobManager.add(MultiDeviceDeleteSyncJob(attachments = listOf(delete)))
@@ -99,11 +89,6 @@ class MultiDeviceDeleteSyncJob private constructor(
     @WorkerThread
     fun enqueueThreadDeletes(threads: List<ThreadTable.ThreadDeleteSyncInfo>, isFullDelete: Boolean) {
       if (!SignalStore.account.hasLinkedDevices) {
-        return
-      }
-
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
         return
       }
 

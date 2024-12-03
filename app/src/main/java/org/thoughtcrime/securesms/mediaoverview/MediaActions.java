@@ -86,7 +86,7 @@ final class MediaActions {
             }
           }
 
-          if (Recipient.self().getDeleteSyncCapability().isSupported() && Util.hasItems(deletedMessageRecords)) {
+          if (Util.hasItems(deletedMessageRecords)) {
             MultiDeviceDeleteSyncJob.enqueueMessageDeletes(deletedMessageRecords);
           }
 

@@ -341,8 +341,6 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
 
     return if (capabilities != null) {
       TextUtils.concat(
-        colorize("DeleteSync", capabilities.deleteSync),
-        ", ",
         colorize("SSREv2", capabilities.storageServiceEncryptionV2)
       )
     } else {

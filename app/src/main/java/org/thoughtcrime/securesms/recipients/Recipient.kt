@@ -315,9 +315,6 @@ class Recipient(
   /** The notification channel, if both set and supported by the system. Otherwise null. */
   val notificationChannel: String? = if (!NotificationChannels.supported()) null else notificationChannelValue
 
-  /** The user's capability to handle synchronizing deletes across linked devices. */
-  val deleteSyncCapability: Capability = capabilities.deleteSync
-
   /** The user's capability to handle the new storage record encryption scheme. */
   val storageServiceEncryptionV2Capability: Capability
     get() = if (SignalStore.internal.forceSsre2Capability) Capability.SUPPORTED else capabilities.storageServiceEncryptionV2

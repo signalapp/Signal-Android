@@ -192,27 +192,19 @@ public class SignalServiceProfile {
     @JsonProperty
     private boolean storage;
 
-    @JsonProperty
-    private boolean deleteSync;
-
     @JsonProperty("ssre2")
     private boolean storageServiceEncryptionV2;
 
     @JsonCreator
     public Capabilities() {}
 
-    public Capabilities(boolean storage, boolean deleteSync, boolean storageServiceEncryptionV2) {
+    public Capabilities(boolean storage, boolean storageServiceEncryptionV2) {
       this.storage                    = storage;
-      this.deleteSync                 = deleteSync;
       this.storageServiceEncryptionV2 = storageServiceEncryptionV2;
     }
 
     public boolean isStorage() {
       return storage;
-    }
-
-    public boolean isDeleteSync() {
-      return deleteSync;
     }
 
     public boolean isStorageServiceEncryptionV2() {

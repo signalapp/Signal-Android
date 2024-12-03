@@ -418,7 +418,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     @JvmStatic
     fun maskCapabilitiesToLong(capabilities: SignalServiceProfile.Capabilities): Long {
       var value: Long = 0
-      value = Bitmask.update(value, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isDeleteSync).serialize().toLong())
       value = Bitmask.update(value, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStorageServiceEncryptionV2).serialize().toLong())
       return value
     }
@@ -4711,8 +4710,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 //    const val GIFT_BADGES = 6
 //    const val PNP = 7
 //    const val PAYMENT_ACTIVATION = 8
-    const val DELETE_SYNC = 9
-
+//    const val DELETE_SYNC = 9
 //    const val VERSIONED_EXPIRATION_TIMER = 10
     const val STORAGE_SERVICE_ENCRYPTION_V2 = 11
 

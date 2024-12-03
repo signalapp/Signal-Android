@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
 
@@ -46,10 +45,8 @@ object DeleteDialog {
     if (forceRemoteDelete) {
       builder.setPositiveButton(R.string.ConversationFragment_delete_for_everyone) { _, _ -> deleteForEveryone(messageRecords, emitter) }
     } else {
-      val deleteSyncEnabled = Recipient.self().deleteSyncCapability.isSupported
-
       val positiveButton = if (isNoteToSelfDelete) {
-        if (deleteSyncEnabled) R.string.ConversationFragment_delete else R.string.ConversationFragment_delete_on_this_device
+        R.string.ConversationFragment_delete
       } else {
         R.string.ConversationFragment_delete_for_me
       }
@@ -60,9 +57,7 @@ object DeleteDialog {
         }.executeOnExecutor(SignalExecutors.BOUNDED)
       }
 
-      val canDeleteForEveryoneInNoteToSelf = isNoteToSelfDelete && SignalStore.account.hasLinkedDevices && !deleteSyncEnabled
-
-      if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || canDeleteForEveryoneInNoteToSelf)) {
+      if (MessageConstraintsUtil.isValidRemoteDeleteSend(messageRecords, System.currentTimeMillis())) {
         builder.setNeutralButton(if (isNoteToSelfDelete) R.string.ConversationFragment_delete_everywhere else R.string.ConversationFragment_delete_for_everyone) { _, _ -> handleDeleteForEveryone(context, messageRecords, emitter) }
       }
     }
@@ -120,9 +115,7 @@ object DeleteDialog {
         }
       }
 
-      if (Recipient.self().deleteSyncCapability.isSupported) {
-        MultiDeviceDeleteSyncJob.enqueueMessageDeletes(messageRecords)
-      }
+      MultiDeviceDeleteSyncJob.enqueueMessageDeletes(messageRecords)
 
       return threadDeleted
     }

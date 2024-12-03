@@ -220,11 +220,6 @@ public class RefreshOwnProfileJob extends BaseJob {
 
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
 
-    if (!selfSnapshot.getDeleteSyncCapability().isSupported() && capabilities.isDeleteSync()) {
-      Log.d(TAG, "Transitioned to delete sync capable, notify linked devices in case we were the last one");
-      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-    }
-
     if (selfSnapshot.getStorageServiceEncryptionV2Capability() == Recipient.Capability.NOT_SUPPORTED && capabilities.isStorageServiceEncryptionV2()) {
       Log.i(TAG, "Transitioned to storageServiceEncryptionV2 capable. Notifying other devices and pushing to storage service with a recordIkm.");
       AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());

@@ -329,7 +329,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
+    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes()
     val threadTrimsToSync = mutableListOf<ThreadDeleteSyncInfo>()
 
     readableDatabase
@@ -1267,7 +1267,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
-      if (syncThreadDeletes && Recipient.self().deleteSyncCapability.isSupported) {
+      if (syncThreadDeletes) {
         for (threadId in selectedConversations) {
           val mostRecentMessages = messages.getMostRecentAddressableMessages(threadId, excludeExpiring = false)
           val mostRecentNonExpiring = if (mostRecentMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && mostRecentMessages.any { it.expiresIn > 0 }) {
