@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -353,7 +354,7 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
 
     while (iterator.hasNext()) {
       Map.Entry<Long, OutgoingRequest> entry = iterator.next();
-      entry.getValue().onError(new IOException("Closed unexpectedly"));
+      entry.getValue().onError(new SocketException("Closed unexpectedly"));
       iterator.remove();
     }
 

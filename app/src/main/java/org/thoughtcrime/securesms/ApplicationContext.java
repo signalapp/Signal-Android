@@ -362,6 +362,8 @@ public class ApplicationContext extends Application implements AppForegroundObse
         return;
       }
 
+      Log.e(TAG, "RxJava error handler invoked", e);
+
       Thread.UncaughtExceptionHandler uncaughtExceptionHandler = Thread.currentThread().getUncaughtExceptionHandler();
       if (uncaughtExceptionHandler == null) {
         uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
