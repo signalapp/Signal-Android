@@ -1091,6 +1091,20 @@
     <string name="LinkDeviceFragment__sync_failure_retry_button">حاول الربط مجدَّدًا</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">المواصلة دون النقل</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">Save</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1116,13 +1130,13 @@
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer">نقل سجلّ الرسائل</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">لا ترسلْ</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">لا تنقل</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">أترغبُ بفصل الربط بـ \"%1$s\"؟</string>
@@ -1507,16 +1521,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">جميع الرسائل الخاصة بك</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">الاستعادة مِن نسخة احتياطية</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">فقط الوسائط المُرسلة أو المُستلمة في الأيام %1$d الماضية هي المُضمّنة.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">تتضمن النسخة الاحتياطية:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">استعادة نسخة احتياطية</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخر نسخة احتياطية في %1$s على الساعة %2$s.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">جارٍ إعداد تفاصيل النسخة الاحتياطية…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
@@ -2800,6 +2816,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">قمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. يُرجى التأكُّد من الاتصال بالشبكة والمحاولة مرّة أخرى.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذَّر إرسال رمز التحقُّق عبر رسالة نصية. حاوِل الحصول على رمزك عبر مكالمة صوتية بدلًا من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -4755,6 +4773,8 @@
     <string name="registration_activity__restore_or_transfer">الاستعادة أو النقل</string>
     <string name="registration_activity__transfer_account">نقل الحساب</string>
     <string name="registration_activity__skip">تخطّي</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">Skip restore</string>
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="preferences_chats__transfer_account">نقل الحساب</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب إلى جهاز أندرويد جديد</string>
@@ -5440,9 +5460,9 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">جدّد اشتراكك في نسخ سيجنال الاحتياطية</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">جدِّد اشتراكك في النسخ الاحتياطية على سيجنال</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">تعذّر إكمال النسخ الاحتياطي</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">تعذَّر إكمال النسخ الاحتياطي</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">ادْعُ أصدقائك</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5560,7 +5580,7 @@
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
-    <string name="ChatsSettingsFragment__send_with_enter">أرسل بالضغط على إدخال</string>
+    <string name="ChatsSettingsFragment__send_with_enter">أرسِل بالضغط على إدخال</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">مجلدات الدردشة</string>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->
@@ -5589,7 +5609,7 @@
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">نظّم دردشاتك في مجلدات وقُم بالتبديل بينها بسرعة في قائمة الدردشة.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">نظّم دردشاتك في مجلدات وقُم بالتبديل بينها بسرعة في قائمة الدردشة لديك.</string>
     <!-- Header for section showing current chat folders -->
     <string name="ChatFoldersFragment__folders">المجلدات</string>
     <!-- Text next to button that allows users to create a new chat folder -->
@@ -5597,9 +5617,9 @@
     <!-- Name of a chat folder that represents the folder containing all chats -->
     <string name="ChatFoldersFragment__all_chats">جميع الدردشات</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">المجلدات المقترَحة</string>
+    <string name="ChatFoldersFragment__suggested_folders">المجلدات المُقترَحة</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unread">غير مقروءة</string>
+    <string name="ChatFoldersFragment__unread">الرسائل غير المقروءة</string>
     <!-- Description of the suggested unread chat folder -->
     <string name="ChatFoldersFragment__unread_messages">الرسائل غير المقروءة من جميع الدردشات</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
@@ -5619,7 +5639,7 @@
     <!-- Option in context menu to mute all chats in the folder -->
     <string name="ChatFoldersFragment__mute_all">كتم الجميع</string>
     <!-- Option in context menu to unmute all chats in the folder -->
-    <string name="ChatFoldersFragment__unmute_all">إلغاء كتم صوت للجميع</string>
+    <string name="ChatFoldersFragment__unmute_all">إلغاء كتم الصوت للجميع</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
     <string name="ChatFoldersFragment__mark_all_read">اعتبار كل الرسائل مقروءة</string>
     <!-- Text describing the number of chat types in a folder -->
@@ -5674,7 +5694,7 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">عند التفعيل، فقط الدردشات التي تتضمّن رسائل غير مقروءة هي التي ستظهر في هذا المجلد.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">تَضمين الدردشاتِ المَكتومة</string>
+    <string name="CreateFoldersFragment__include_muted_chats">تَضمين الدردشات المَكتومة</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">إنشاء</string>
     <!-- Section title shown when editing an existing folder   -->
@@ -5682,9 +5702,9 @@
     <!-- Button text to save the changes to a folder after it has been edited -->
     <string name="CreateFoldersFragment__save">حفظ</string>
     <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
-    <string name="CreateFoldersFragment__discard_changes_title">أترغبُ بتجاهل التغييرات؟</string>
+    <string name="CreateFoldersFragment__discard_changes_title">هل ترغبُ بتجاهل التغييرات؟</string>
     <!-- Alert dialog description explaining that any changes made will be discarded -->
-    <string name="CreateFoldersFragment__you_will_lose_changes">سَتفقد التغييرات التي قمت بها في هذا المجلد.</string>
+    <string name="CreateFoldersFragment__you_will_lose_changes">سَتفقد التغييرات التي قمتَ بها في هذا المجلد.</string>
     <!-- Alert dialog confirmation text to discard the changes -->
     <string name="CreateFoldersFragment__discard">تجاهل</string>
     <!-- Text that when pressed will delete the current folder -->
@@ -6088,50 +6108,50 @@
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">يُمكن فقط للمُشرِفين إرسال الرسائل في هذه المجموعة.</string>
     <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
-    <string name="MultiselectForwardFragment__you_cant_select_more_chats">لا يمكنك تحديد أكثر من 5 محادثات</string>
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">لا يمكنك تحديد أكثر من 5 دردشات.</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">الإضافة إلى قصة المجموعة \"%1$s\"</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">إضافة إلى قصة المجموعة \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">إضافة للقصة</string>
+    <string name="MediaReviewFragment__add_to_story">إضافة إلى القصة</string>
     <string name="MediaReviewFragment__add_a_message">إضافة رسالة</string>
     <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">إضافة رد</string>
     <string name="MediaReviewFragment__send_to">إرسال إلى</string>
-    <string name="MediaReviewFragment__view_once_message">وسائط للمُشاهدة مرة واحدة</string>
+    <string name="MediaReviewFragment__view_once_message">وسائط للمُشاهدة مرّة واحدة</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">عنصر واحد أو أكثر كان كبيرًا جدًا</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">عنصر واحد أو أكثر غير صالح</string>
     <string name="MediaReviewFragment__too_many_items_selected">تمَّ تحديد عدد كبير جدًا من العناصر</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
-    <string name="MediaReviewFragment__video_set_to_view_once">تم تحديد عرض الفيديو لمرة واحدة</string>
+    <string name="MediaReviewFragment__video_set_to_view_once">تمَّ تحديد عرض الفيديو لمرّة واحدة</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
-    <string name="MediaReviewFragment__photo_set_to_view_once">تم تحديد عرض الصورة لمرة واحدة</string>
+    <string name="MediaReviewFragment__photo_set_to_view_once">تمَّ تحديد عرض الصورة لمرّة واحدة</string>
     <!-- Small notification presented to the user when they set their video to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_high_quality">تم تحديد جودة الفيديو للجودة العالية</string>
+    <string name="MediaReviewFragment__video_set_to_high_quality">تمَّ تحديد جودة الفيديو للجودة العالية</string>
     <!-- Small notification presented to the user when they set their video to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__video_set_to_standard_quality">تم تحديد جودة الفيديو للجودة القياسية</string>
+    <string name="MediaReviewFragment__video_set_to_standard_quality">تمَّ تحديد جودة الفيديو للجودة القياسية</string>
     <!-- Small notification presented to the user when they set their still image to be sent in high visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_high_quality">تم تحديد جودة الصورة للجودة العالية</string>
+    <string name="MediaReviewFragment__photo_set_to_high_quality">تمَّ تحديد جودة الصورة للجودة العالية</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
-    <string name="MediaReviewFragment__photo_set_to_standard_quality">تم تحديد جودة الصورة للجودة القياسية</string>
+    <string name="MediaReviewFragment__photo_set_to_standard_quality">تمَّ تحديد جودة الصورة للجودة القياسية</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
-        <item quantity="zero">تم تحديد جودة %1$d عناصر للجودة العالية</item>
-        <item quantity="one">تم تحديد جودة %1$d عنصر للجودة العالية</item>
-        <item quantity="two">تم تحديد جودة %1$d عنصرين للجودة العالية</item>
-        <item quantity="few">تم تحديد جودة %1$d عناصر للجودة العالية</item>
-        <item quantity="many">تم تحديد جودة %1$d عنصرًا للجودة العالية</item>
-        <item quantity="other">تم تحديد جودة %1$d عنصر للجودة العالية</item>
+        <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
+        <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
+        <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة العالية</item>
+        <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة العالية</item>
+        <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة العالية</item>
+        <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة العالية</item>
     </plurals>
     <!-- Small notification presented to the user when they set multiple media items to be sent in standard (lower than high) visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_standard_quality">
-        <item quantity="zero">تم تحديد جودة %1$d عناصر للجودة القياسية</item>
-        <item quantity="one">تم تحديد جودة %1$d عنصر للجودة القياسية</item>
-        <item quantity="two">تم تحديد جودة %1$d عنصرين للجودة القياسية</item>
-        <item quantity="few">تم تحديد جودة %1$d عناصر للجودة القياسية</item>
-        <item quantity="many">تم تحديد جودة %1$d عنصرًا للجودة القياسية</item>
-        <item quantity="other">تم تحديد جودة %1$d عنصر للجودة القياسية</item>
+        <item quantity="zero">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
+        <item quantity="one">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
+        <item quantity="two">تمَّ تحديد جودة %1$d عنصرين للجودة القياسية</item>
+        <item quantity="few">تمَّ تحديد جودة %1$d عناصر للجودة القياسية</item>
+        <item quantity="many">تمَّ تحديد جودة %1$d عنصرًا للجودة القياسية</item>
+        <item quantity="other">تمَّ تحديد جودة %1$d عنصر للجودة القياسية</item>
     </plurals>
 
     <string name="ImageEditorHud__cancel">إلغاء</string>
@@ -6158,18 +6178,18 @@
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">سوف تفقد كل التغييرات التي قمتَ بها على هذه الصورة.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
-    <string name="MediaCaptureFragment_username_dialog_title">تم العثور على %1$s</string>
+    <string name="MediaCaptureFragment_username_dialog_title">تمَّ العثور على %1$s</string>
     <!-- The body of a dialog notifying that a user was found matching a scanned QR code, prompting the user to start a chat with them. The placeholder is a username. Usernames are always latin characters. -->
     <string name="MediaCaptureFragment_username_dialog_body">ابدأ دردشة مع \"%1$s\"</string>
     <!-- The label of a dialog asking the user if they would like to start a chat with a specific user. -->
-    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">توجّه للدردشة</string>
+    <string name="MediaCaptureFragment_username_dialog_go_to_chat_button">توجَّه للدردشة</string>
 
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_title">ربط الجهاز؟</string>
+    <string name="MediaCaptureFragment_device_link_dialog_title">هل ترغبُ بربط الجهاز؟</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">يبدو أنك تحاول ربط جهاز سيجنال. انقر على متابعة وامسح الرمز مرة أخرى لِربطه.</string>
+    <string name="MediaCaptureFragment_device_link_dialog_body">يبدو أنك تحاول ربط جهاز يستخدم سيجنال.انقر على \"متابعة\" وامسح الكود مرّة أخرى لِربطه.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
-    <string name="MediaCaptureFragment_device_link_dialog_continue">مواصلة</string>
+    <string name="MediaCaptureFragment_device_link_dialog_continue">متابعة</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">شاراتي</string>
@@ -6186,11 +6206,11 @@
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
     <string name="ViewBadgeBottomSheetDialogFragment__donate_now">تبرّع الآن</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">يدعم %1$s سيجنال</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s يدعم سيجنال</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">يدعم %1$s سيجنال بتبرّع شهري. يُعتبر سيجنال تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مُستثمرين، يدعمه فقط أشخاص مثلك.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s يدعم سيجنال بتبرُّع شهري. يُعتبر سيجنال تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مُستثمرين، يدعمه فقط أشخاص مثلك.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">يدعم %1$s سيجنال بتبرّع. يُعتبر سيجنال تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مستثمرين، يدعمه فقط أشخاص مثلك.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s يدعم سيجنال بتبرُّع. يُعتبر سيجنال تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مستثمرين، يدعمه فقط أشخاص مثلك.</string>
 
     <string name="ImageView__badge">شارة</string>
 
@@ -6207,27 +6227,27 @@
 
     <string name="Subscription__s_per_month">%1$s /شهريًا</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
-    <string name="Subscription__renews_s">تجديد %1$s</string>
+    <string name="Subscription__renews_s">يتجدَّد في %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">سَتنتهي الصلاحية في %1$s</string>
 
     <!-- Title of learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">سيجنال تطبيق مُختلف.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">التراسل الخاص. بدون إعلانات، بدون مُتعقبات، بدون رقابة.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">التراسل الخاص. بدون إعلانات، بدون مُتعقِّبات، بدون رقابة.</string>
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">يتم دعم سيجنال من خلال التبرعات، مِما يعني أن خصوصيتك هي محور كل ما نقوم به. أُنشِئ تطبيق سيجنال من أجلك؛ لا لأجل بياناتك ولا لأجل الربح.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">إذا استطعت، يُرجى التبرّع اليوم للحفاظ على تطبيق سيجنال مُمتعًا وموثوقًا به ومتاحًا للجميع.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">إذا استطعت، يُرجى التبرُّع اليوم للحفاظ على تطبيق سيجنال مُمتعًا وموثوقًا به ومتاحًا للجميع.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">لقد حصلت على شارة مُتبرع من سيجنال! اعرضها في حسابك الشخصي لإظهار دعمك.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">حصلتَ على شارة مُتبرِّع من سيجنال! اعرضها في حسابك الشخصي لإظهار دعمك.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">يُمكنك أيضًا</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعمًا شهريًا.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الحساب الشخصي</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مُميَّزة</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">واصل</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">متابعة</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يُمكنك اختيار واحدة لإظهارها ليراها الآخرين في حسابك الشخصي.</string>
 
     <string name="BecomeASustainerFragment__get_badges">احصل على شارات لحسابك الشخصي عن طريق دعم سيجنال.</string>
@@ -6239,7 +6259,7 @@
     <string name="ManageDonationsFragment__more">المزيد</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <!-- Heading for my subscription area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__my_support">دعمي</string>
+    <string name="ManageDonationsFragment__my_support">الدعم الخاص بي</string>
     <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرُّعات</string>
@@ -6250,44 +6270,44 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">تبرَّع لصديق</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
-    <string name="ManageDonationsFragment__couldnt_confirm_donation">تعذر تأكيد التبرع</string>
+    <string name="ManageDonationsFragment__couldnt_confirm_donation">تعذَّر تأكيد التبرُّع</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s/شهريًا. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
+    <string name="ManageDonationsFragment__your_monthly_s_donation_couldnt_be_confirmed">تعذَّر تأكيد تبرُّعك بـ %1$s/شهريًا. تفقَّد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
-    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s لمرة واحدة. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
+    <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">تعذر تأكيد تبرعك بـ %1$s لمرّة واحدة. تفقد تطبيق مصرفك لتأكيد عملية دفع iDEAL الخاصة بك.</string>
 
     <string name="Boost__enter_custom_amount">أدخِل مبلغ مُخَصَّص</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">الحد الأدنى الذي يُمكنك التبرُّع به هو %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
-    <string name="MySupportPreference__renews_s">تجديد %1$s</string>
+    <string name="MySupportPreference__renews_s">يتجدَّد في %1$s</string>
     <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">تعذَّر إضافة الشارة. %1$s</string>
     <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
     <!-- Displayed as a subtitle on a row in the Manage Donations screen when payment for a donation is pending -->
-    <string name="MySupportPreference__payment_pending">عملية الدفع مُعلقة</string>
+    <string name="MySupportPreference__payment_pending">عملية الدفع مُعلَّقة</string>
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
-    <string name="MySupportPreference__your_bank_transfer_of_s">تحويلك المصرفي بمبلغ %1$s مُعلق. عادة ما يستغرق إنجاز التحويلات المصرفية ما بين يوم واحد و14 يوم عمل.  </string>
+    <string name="MySupportPreference__your_bank_transfer_of_s">تحويلك المصرفي بمبلغ %1$s مُعلَّق. عادة ما يستغرق إكمال التحويلات المصرفية ما بين يوم واحد و14 يوم عمل.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
-    <string name="MySupportPreference__learn_more">معرفة المزيد</string>
+    <string name="MySupportPreference__learn_more">اعرف المزيد</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">تحديث سيجنال</string>
     <!-- Message of dialog telling user they need to update signal as it expired -->
-    <string name="UpdateSignalExpiredDialog__message">لقد انتهت صلاحية هذا الإصدار من سيجنال. حدِّث الآن للاستمرار في استخدام تطبيق سيجنال.</string>
+    <string name="UpdateSignalExpiredDialog__message">انتهت صلاحية هذا الإصدار من سيجنال. حدِّث الآن للاستمرار في استخدام تطبيق سيجنال.</string>
     <!-- Button text of expiration dialog, will take user to update the app -->
     <string name="UpdateSignalExpiredDialog__update_action">تحديث التطبيق</string>
     <!-- Button text of expiration dialog to cancel the dialog.  -->
     <string name="UpdateSignalExpiredDialog__cancel_action">إلغاء</string>
 
     <!-- Title of dialog telling user they need to re-register signal -->
-    <string name="ReregisterSignalDialog__title">الجهاز غير مُسجل</string>
+    <string name="ReregisterSignalDialog__title">الجهاز غير مُسجَّل</string>
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
     <string name="ReregisterSignalDialog__message">لم يعد جهازك مُسجلاً. يُرجى إعادة التسجيل للاستمرار في استخدام تطبيق سيجنال على هذا الجهاز.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">إعادة-التسجيل</string>
+    <string name="ReregisterSignalDialog__reregister_action">إعادة التسجيل</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
     <string name="ReregisterSignalDialog__cancel_action">إلغاء</string>
 
@@ -6304,19 +6324,19 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضِف دعمًا</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">لقد تم إلغاء تبرعك الشهري الدوري تلقائيًا، بسبب غياب نشاطك لفترة طويلة. لم تعد تظهر شارة %1$s في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">تمَّ إلغاء تبرُّعك الشهري الدوري تلقائيًا، بسبب غياب نشاطك لفترة طويلة. لم تعد تظهر شارة %1$s في حسابك.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">لقد تم إلغاء تبرعك الشهري الدوري تلقائيًا، لأنه تعذر علينا معالجة عمليات الدفع الخاصة بك. لم تعد تظهر شارتك في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">تمَّ إلغاء تبرُّعك الشهري الدوري تلقائيًا، لأنه تعذَّر علينا معالجة عمليات الدفع الخاصة بك. لم تعد تظهر شارتك في حسابك.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">تمّ إلغاء تبرعك الشهري الدوري. %1$s لم تعد %2$s شارتك تظهر على حسابك الشخصي.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">تمَّ إلغاء تبرُّعك الشهري الدوري. %1$s لم تعد شارتك %2$s تظهر على حسابك الشخصي.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام سيجنال، ولكن يُرجى التجديد الآن لدعم التطبيق وإعادة تفعيل شارتك.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
     <!-- Button label to send user to Google Pay website -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">انتقل الى Google Pay</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">انتقل إلى Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">لقد تعذرت معالجة عمليات دفع اشتراكك</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">‫إننا نواجه مشاكل في جمع دفوعات دعمك سيجنال. يُرجى التأكد من أن طريقة قيامك بالدفوعات حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سوف يحاول معالجة دفوعاتك لاحقا خلال بضع أيام.</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تظهر هذا مجدداً</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">تعذَّرت معالجة عملية الدفع لاشتراكك</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">نواجه مشاكل في جمع مدفوعات دعمك لسيجنال. يُرجى التأكُّد من أن طريقة الدفع الخاصة بك حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سوف يحاول سيجنال معالجة مدفوعاتك لاحقًا خلال بضع أيام.</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تُظهِر هذا مُجدَّدًا</string>
 
     <string name="Subscription__contact_support">الاتصال بالدعم</string>
     <string name="Subscription__get_a_s_badge">احصل على شارة %1$s</string>
@@ -6344,34 +6364,34 @@
     <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ أثناء معالجة عملية الدفع هذه، يُرجى إعادة المُحاولة لاحقًا.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
-    <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة التبرع</string>
+    <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة التبرُّع</string>
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
-    <string name="DonationsErrors__try_another_payment_method">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
+    <string name="DonationsErrors__try_another_payment_method">جرِّب بطاقة أخرى للدفع أو تواصَل بالمصرف الذي تتعامل معه للمزيد من المعلومات.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">معرفة المزيد</string>
+    <string name="DonationsErrors__learn_more">اعرف المزيد</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
-    <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة التبرع. %1$s</string>
-    <string name="DonationsErrors__your_payment">تعذرت معالجة تبرعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة.</string>
+    <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة التبرُّع. %1$s</string>
+    <string name="DonationsErrors__your_payment">تعذَّرت معالجة تبرّعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة.</string>
     <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
-    <string name="DonationsErrors__couldnt_add_badge">تعذّر إضافة الشارة</string>
+    <string name="DonationsErrors__couldnt_add_badge">تعذَّرت إضافة الشارة</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
-    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <string name="DonationsError__something_went_wrong">حدث خطأ ما</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">تعذَّر عرض اشتراك النسخ الاحتياطية الخاص بك. يُرجى الاتصال بفريق الدعم.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">تعذّر التحقّق من الشارة</string>
+    <string name="DonationsErrors__failed_to_validate_badge">تعذَّر التحقُّق من الشارة</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__could_not_validate">تعذّر التحقّق من استجابة الخادم. يرجى الاتصال بالدعم.</string>
+    <string name="DonationsErrors__could_not_validate">تعذَّر التحقُّق من استجابة الخادم. يُرجى الاتصال بفريق الدعم.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">تعذَّر التبرُّع</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">تمت مُعالجة عملية دفعك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرّع. يُرجى الاتصال بفريق الدعم.</string>
-    <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
-    <string name="DonationsErrors__your_payment_is_still">لا يزال تبرعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">تمَّت مُعالجة عملية التبرُّع الخاصة بك ولكن لم يتمكّن سيجنال من إرسال رسالة التبرُّع. يُرجى الاتصال بفريق الدعم.</string>
+    <string name="DonationsErrors__your_badge_could_not">تعذَّرت إضافة شارتك إلى حسابك، ولكن يُمكن أن يكون المبلغ خُصِمَ من حسابك. يُرجى التواصل مع قسم الدعم.</string>
+    <string name="DonationsErrors__your_payment_is_still">لا يزال تبرُّعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لِربح شارة. ما زال يُمكنك دعم سيجنال بالتبرع على موقعنا الإلكتروني.</string>
-    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالًا بالإنترنت.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لِربح شارة. ما زال يُمكنك دعم سيجنال بالتبرُّع على موقعنا الإلكتروني.</string>
+    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">حدث خطأ في الشبكة. يُرجى التحقُّق من اتصالك بالانترنت ثم المحاولة مرّة أخرى.</string>
     <string name="NetworkFailure__retry">إعادة المُحاولة</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">تعذَّر إرسال التبرُّع</string>
@@ -6380,87 +6400,87 @@
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">تعذَّر إرسال تبرُّعك بسبب خطأ في الشبكة. تحقّق من اتصالك بالشبكة ثم حاوِل مرّة أخرى.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
-    <string name="DonationsErrors__your_ideal_couldnt_be_processed">تعذرت معالجة تبرع iDEAL الخاص بك. يُرجى محاولة طريقة أخرى للدفع أو الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <string name="DonationsErrors__your_ideal_couldnt_be_processed">تعذَّرت معالجة تبرُّع iDEAL الخاص بك. جرِّب طريقة أخرى للدفع أو تواصَل بمصرفك للمزيد من المعلومات.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">تبرّع نيابة عن %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">التبرُّع نيابةً عن %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">تبرَّعَ %1$s لسيجنال نيابة عنك</string>
     <!-- Gift badge redeem action label -->
-    <string name="GiftMessageView__redeem">قبول الهدية</string>
+    <string name="GiftMessageView__redeem">استخدام</string>
     <!-- Gift badge view action label -->
-    <string name="GiftMessageView__view">إظهار</string>
+    <string name="GiftMessageView__view">عرض</string>
     <!-- Gift badge redeeming action label -->
-    <string name="GiftMessageView__redeeming">جارٍ قبول الهدية…</string>
+    <string name="GiftMessageView__redeeming">جارٍ استخدام الهدية…</string>
     <!-- Gift badge redeemed label -->
-    <string name="GiftMessageView__redeemed">تمّ قبول الهدية</string>
+    <string name="GiftMessageView__redeemed">تمَّ استخدام الهدية</string>
 
 
     <!-- Stripe decline code generic_failure -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">يُرجى محاولة القيام بطريقة أخرى للدفع أو الاتصال بالمصرف الذي لديك عنده حساب للمزيد من المعلومات.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">يُرجى استخدام طريقة دفع أخرى أوالتواصل مع المصرف الذي تتعامل معه للمزيد من المعلومات.</string>
     <!-- PayPal decline code for payment declined -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">يُرجى اللجوء إلى طريقة أخرى للدفع أو التواصل مع مصرفك للمزيد من المعلومات. وإذا كان الأمر يتعلق بمعاملة PayPal فيُرجى التواصل مع PayPal.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">جرِّب طريقة أخرى للدفع أو تواصَل مع مصرفك للمزيد من المعلومات. وإذا كان الأمر يتعلق بمعاملة PayPal فيُرجى التواصل مع PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">يُرجى التحقُّق من أن طريقة الدفع الخاصة بك في Google Pay حديثة ثم حاوِل  مرّة أخرى.</string>
     <!-- Stripe decline code learn more action label -->
-    <string name="DeclineCode__learn_more">لمعرفة المزيد</string>
+    <string name="DeclineCode__learn_more">اعرف المزيد</string>
     <!-- Stripe decline code contact issuer -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">يُرجى التحقق من أن طريقة دفعك في Google Pay حديثة ثم المحاولة مرة أخرى. إذا استمر المشكل، يُرجى الاتصال بالمصرف الذي لديك عنده حساب.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">تحقَّق من أن طريقة الدفع الخاصة بك في Google Pay حديثة ثم المحاولة مرّة أخرى. إذا استمرت المشكلة، يُرجى الاتصال بالمصرف الذي تتعامل معه.</string>
     <!-- Stripe decline code purchase not supported -->
-    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">لا تدعم بطاقتك هذا الصنف من المشتريات. يُرجى محاولة استخدام طريقة دفع أخرى.</string>
+    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">لا تدعم بطاقتك هذا الصنف من المشتريات. جرِّب استخدام طريقة دفع أخرى.</string>
     <!-- Stripe decline code your card has expired -->
-    <string name="DeclineCode__your_card_has_expired">لقد انتهت صلاحية بطاقتك. يُرجى تحديث طريقة دفعك في Google Pay ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_card_has_expired">انتهت صلاحية بطاقتك. قُم بتحديث طريقة دفعك في Google Pay ثم المحاولة مرّة أخرى.</string>
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">انتقل الى Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">حاول مجددا</string>
+    <string name="DeclineCode__try">حاوِل مُجدَّدًا</string>
     <!-- Stripe decline code incorrect card number -->
-    <string name="DeclineCode__your_card_number_is_incorrect">إن رقم بطاقتك غير صحيح. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect">رقم بطاقتك غير صحيح. قُم بتحديثها في Google Pay ثم حاوِل مرّة أخرى.</string>
     <!-- Stripe decline code incorrect cvc -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">إن أرقام رمز التحقق لبطاقتك (CVC) غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">رقم رمز التحقُّق لبطاقتك (CVC) غير صحيح. يُرجى تحديثه في Google Pay ثم المحاولة مرّة أخرى.</string>
     <!-- Stripe decline code insufficient funds -->
-    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">لا تتوفر بطاقتك على الرصيد الكافي لإتمام عملية الشراء هذه. يُرجى محاولة استخدام طريقة أخرى للدفع.</string>
+    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">لا يوجد رصيد كافي في بطاقتك لإتمام عملية الشراء هذه. جرِّب استخدام طريقة دفع أخرى.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">إن شهر انتهاء صلاحية طريقة دفعك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__the_expiration_month">شهر انتهاء الصلاحية على طريقة الدفع الخاصة بك غير صحيح. يُرجى تحديثه في Google Pay ثم المحاولة مرّة أخرى.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">إن سنة انتهاء صلاحية طريقة دفعك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__the_expiration_year">سنة انتهاء الصلاحية على طريقة الدفع الخاصة بك غير صحيحة. يُرجى تحديثها في Google Pay ثم المحاولة مرّة أخرى.</string>
     <!-- Stripe decline code issuer not available -->
-    <string name="DeclineCode__try_completing_the_payment_again">يُرجى محاولة إتمام الدفع مرة أخرى أو الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <string name="DeclineCode__try_completing_the_payment_again">حاوِل إتمام الدفع مرّة أخرى أو اتصل بمصرفك للمزيد من المعلومات.</string>
     <!-- Stripe decline code processing error -->
-    <string name="DeclineCode__try_again">يُرجى المحاولة مرة أخرى أو الاتصال بالمصرف الذي لديك حساب عنده للمزيد من المعلومات.</string>
+    <string name="DeclineCode__try_again">حاوِل مرة أخرى أو تواصَل مع المصرف الذي تتعامل معه لمزيد من المعلومات.</string>
 
     <!-- Credit Card decline code error strings -->
     <!-- Stripe decline code approve_with_id for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code call_issuer for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى. إذا استمر المُشكل، يُرجى الاتصال بالبنك الذي تتعامل معه.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى. إذا استمرت المشكلة، تواصَل مع البنك الذي تتعامل معه.</string>
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">انتهت صلاحية بطاقتك. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">انتهت صلاحية بطاقتك. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">أرقام رمز التحقق لبطاقتك (CVC) غير صحيحة. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">رقم رمز التحقُّق لبطاقتك (CVC) غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">شهر انتهاء الصلاحية الخاص ببطاقتك غير صحيح. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">شهر انتهاء الصلاحية الخاص ببطاقتك غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">سنة انتهاء الصلاحية الخاصة ببطاقتك غير صحيحة. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">سنة انتهاء الصلاحية الخاصة ببطاقتك غير صحيحة. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">أرقام بطاقتك غير صحيحة. تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">رقم بطاقتك غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_account_provided">لا يتوفر الحساب البنكي الذي أدخلته على مبالغ كافية لإتمام عملية الشراء هذه. يُرجى المحاولة مرة أخرى أو الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <string name="StripeFailureCode__the_bank_account_provided">لا يحوي الحساب البنكي الذي أدخلته على مبالغ كافية لإتمام عملية الشراء هذه. حاوِل مرّة أخرى أو تواصَل مع المصرف الذي تتعامل معه لمزيد من المعلومات.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">لقد أُلغي هذا التبرع من قِبل صاحب الحساب وتعذّر معالجتها. لم تُحصّل أي رسوم منك.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">أُلغي هذا التبرُّع من قِبل صاحب الحساب وتعذَّر معالجته. لم يتم تحصيل أي رسوم منك.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ ما أثناء معالجة هذا التبرع، يُرجى المحاولة مجددًا.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ ما أثناء معالجة هذا التبرُّع. يُرجى المحاولة مُجدَّدًا.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">تعذّر معالجة المعلومات المصرفية المُدلى بها، يُرجى الاتصال بمصرفك للمزيد من المعلومات.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">تعذَّر معالجة المعلومات المصرفية المُقدَّمة. يُرجى الاتصال بمصرفك للمزيد من المعلومات.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">تأكد من صحة تفاصيل بطاقتك وأعد المحاولة مرة أخرى. إذا استمر المُشكل، يُرجى الاتصال بالمصرف الذي تتعامل معه.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">تأكَّد من صحة تفاصيل بطاقتك وأعِد المحاولة مرّة أخرى. إذا استمرت المشكلة، تواصَل مع المصرف الذي تتعامل معه.</string>
 
     <!-- Title of create notification profile screen -->
-    <string name="EditNotificationProfileFragment__name_your_profile">تسمية هيئة إشعارك</string>
+    <string name="EditNotificationProfileFragment__name_your_profile">تسمية ملف الإشعارات لديك</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">اسم الحساب الشخصي</string>
+    <string name="EditNotificationProfileFragment__profile_name">اسم  ملف الإشعارات</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -6470,26 +6490,26 @@
     <!-- Call to action button once the profile name is edited -->
     <string name="EditNotificationProfileFragment__save">حفظ</string>
     <!-- Title of edit notification profile screen -->
-    <string name="EditNotificationProfileFragment__edit_this_profile">تحرير هيئة إشعارك هذه</string>
+    <string name="EditNotificationProfileFragment__edit_this_profile">تعديل ملف الإشعارات هذا</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
-    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">توجد هيئة للإشعار بهذا الاسم سلفا</string>
+    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">يوجد ملف إشعارات بهذا الاسم من قبل</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__work">العمل</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__sleep">فترة النوم</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__driving">فترة السياقة</string>
+    <string name="EditNotificationProfileFragment__driving">قيادة السيارة</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__downtime">فترة توقف</string>
+    <string name="EditNotificationProfileFragment__downtime">وقت الاستراحة</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__focus">فترة التركيز</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
-    <string name="EditNotificationProfileFragment__profile_must_have_a_name">إن الاسم ضروري</string>
+    <string name="EditNotificationProfileFragment__profile_must_have_a_name">الاسم مطلوب</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">الإشعارات المسموح بها</string>
     <!-- Description of what the user should be doing with this screen -->
-    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">يُرجى إضافة الأفراد والمجموعات المراد تلقي اﻹشعارات والمكالمات من عندها عندما تكون هيئة إشعارك مُشغَّلة</string>
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">قُم بإضافة الأفراد والمجموعات الذين ترغب بتلقي اﻹشعارات والمكالمات منهم عندما يكون ملف الإشعارات هذا لديك في حالة تشغيل.</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">إضافة اﻷفراد أو المجموعات</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
@@ -6503,26 +6523,26 @@
     <string name="SelectRecipientsFragment__add">إضافة</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">يُرجى إنشاء حساب لاستلام الإشعارات والمكالمات فقط من اﻷفراد والمجموعات المراد تلقي أخبار عنها.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">أنشِئ ملف لاستلام الإشعارات والمكالمات فقط من اﻷفراد والمجموعات المُراد تلقي الأخبار منها.</string>
     <!-- Header shown above list of all notification profiles -->
-    <string name="NotificationProfilesFragment__profiles">هيئات الإشعار</string>
+    <string name="NotificationProfilesFragment__profiles">ملفات الإشعارات</string>
     <!-- Button that starts the create new notification profile flow -->
-    <string name="NotificationProfilesFragment__new_profile">هيئة إشعار جديدة</string>
+    <string name="NotificationProfilesFragment__new_profile">ملف إشعارات جديد</string>
     <!-- Profile active status, indicating the current profile is on for an unknown amount of time -->
-    <string name="NotificationProfilesFragment__on">مُفعَّل</string>
+    <string name="NotificationProfilesFragment__on">في حالة تشغيل</string>
 
     <!-- Button use to permanently delete a notification profile -->
-    <string name="NotificationProfileDetails__delete_profile">حذف هيئة الإشعار</string>
+    <string name="NotificationProfileDetails__delete_profile">حذف ملف الإشعارات</string>
     <!-- Snakbar message shown when removing a recipient from a profile -->
-    <string name="NotificationProfileDetails__s_removed">‫لقد حُذف \"%1$s\".</string>
+    <string name="NotificationProfileDetails__s_removed">حُذِف \"%1$s\".</string>
     <!-- Snackbar button text that will undo the recipient remove -->
     <string name="NotificationProfileDetails__undo">تراجع</string>
     <!-- Dialog message shown to confirm deleting a profile -->
-    <string name="NotificationProfileDetails__permanently_delete_profile">حذف ملف التعريف نهائيًا؟</string>
+    <string name="NotificationProfileDetails__permanently_delete_profile">هل ترغب بحذف ملف الإشعارات نهائيًا؟</string>
     <!-- Dialog button to delete profile -->
     <string name="NotificationProfileDetails__delete">حذف</string>
     <!-- Title/accessibility text for edit icon to edit profile emoji/name -->
-    <string name="NotificationProfileDetails__edit_notification_profile">تحرير نمط الإشعار</string>
+    <string name="NotificationProfileDetails__edit_notification_profile">تحرير ملف الإشعارات</string>
     <!-- Schedule description if all days are selected -->
     <string name="NotificationProfileDetails__everyday">كل يوم</string>
     <!-- Profile status on if it is the active profile -->
@@ -6545,7 +6565,7 @@
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">إضافة جدولة</string>
     <!-- Descriptor text indicating what the user can do with this screen -->
-    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">يمكنك إضافة جدولة لتفعيل نمط الإشعار هذا تلقائيًا.</string>
+    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">يمكنك إضافة جدولة لتفعيل ملف الإشعارات هذا تلقائيًا.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">الجدولة</string>
     <!-- Label for showing the start time for the schedule -->
@@ -6580,18 +6600,18 @@
     <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">يجب أن تدوم الفترة المُجدوَلة ليوم واحد على اﻷقل.</string>
 
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">لقد أُنشئَت الهيئة</string>
+    <string name="NotificationProfileCreated__profile_created">أُنشِئ ملف الإشعارات</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">تمّ</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
-    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">يُمكنك تشغيل حسابك الشخصي أو تعطيله يدويًا من خلال القائمة الموجودة فوق لائحة الدردشات.</string>
+    <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">يُمكنك تشغيل ملف الإشعارات أو تعطيله يدويًا من خلال القائمة الموجودة فوق لائحة الدردشات.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">يمكنك إضافة جدولة في إعداداتك للاشتغال التلقائي لهيئة إشعارك.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">أضِف جدولة في الإعدادات للأتمتة التلقائية لملف الإشعارات.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">سوف تشتغل هيئة إشعارك وتتوقف تلقائيا بناءا على جدولتك.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">سوف يعمل ملف الإشعارات ويتوقف تلقائيًا بناءًا على جدولتك.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
-    <string name="NotificationProfileSelection__new_profile">هيئة إشعار جديدة</string>
+    <string name="NotificationProfileSelection__new_profile">ملف  إشعارات جديد</string>
     <!-- Manual enable option to manually enable a profile for 1 hour -->
     <string name="NotificationProfileSelection__for_1_hour">لساعة واحدة</string>
     <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
@@ -6602,41 +6622,41 @@
     <string name="NotificationProfileSelection__on_until_s">مُشغَّلة حتى %1$s</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">تعذّر فتح المنتقي.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">تعذّر فتح المُتصفِّح.</string>
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">لتفعيل الإشعارات، يحتاج سيجنال إلى الإذن لِعرضها.</string>
     <!-- Banner action when notification permission is disabled -->
-    <string name="NotificationSettingsFragment__turn_on">شغّل</string>
+    <string name="NotificationSettingsFragment__turn_on">تشغيل</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">ملاحظات إصدار سيجنال والمستجدات</string>
+    <string name="ReleaseNotes__signal_release_notes_and_news">ملاحظات ومستجدات خاصة بإصدار سيجنال</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">كل النشاطات</string>
     <!-- Donation receipts all tab label -->
     <string name="DonationReceiptListFragment__all">الجميع</string>
     <!-- Donation receipts recurring tab label -->
-    <string name="DonationReceiptListFragment__recurring">التكرار</string>
+    <string name="DonationReceiptListFragment__recurring">مُتكرِّرة</string>
     <!-- Donation receipts one-time tab label -->
-    <string name="DonationReceiptListFragment__one_time">مرة واحدة</string>
+    <string name="DonationReceiptListFragment__one_time">لمرّة واحدة</string>
     <!-- Donation receipts gift tab -->
     <string name="DonationReceiptListFragment__for_a_friend">نيابة عن صديق</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">تقديم تبرع لصديق</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">التبرُّع لصديق</string>
     <!-- Donation receipts donation type heading -->
-    <string name="DonationReceiptDetailsFragment__donation_type">صنف التبرّع</string>
+    <string name="DonationReceiptDetailsFragment__donation_type">نوع التبرُّع</string>
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">تاريخ الدفع</string>
     <!-- Donation receipts share PNG -->
-    <string name="DonationReceiptDetailsFragment__share_receipt">مشاركة الوصولات</string>
+    <string name="DonationReceiptDetailsFragment__share_receipt">مشاركة الوصل</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">إذا أعدت تثبيت سيجنال، فلن تصبح إيصالات التبرعات السابقة متاحة.</string>
+    <string name="DonationReceiptListFragment__if_you_have">إذا أعدت تثبيت سيجنال، فلن تصبح إيصالات التبرُّعات السابقة متاحة.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">إيصال تبرّع</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">إيصال التبرُّع</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">المبلغ</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">نشكرك على دعم سيجنال. تمكننا مساهمتك من الالتزام بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالا عالميا آمنا للملايين عبر العالم. إذا كنت من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا التوصيل للإدلاء به عند مصلحة الضرائب. إن ‫مؤسسة تكنولوجيا سيجنال مؤسسة خيرية عمومية وغير ربحية، أُحدثَت بالولايات المتحدة اﻷمريكية، وهي معفية من الضرائب بموجب الفقرة 501c3 من قانون الإيرادات الداخلية. مُعرِّفنا الضريبي هو ‎.82-4506840‎</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">نشكرك على دعم سيجنال. تُمكِّننا مساهمتك من الالتزام بمهمة تطوير تقنية خصوصية مفتوحة المصدر تحمي حرية التعبير وتتيح اتصالًا عالميًا آمنًا للملايين عبر العالم. إذا كُنتَ من المقيمين بالولايات المتحدة الأمريكية، يُرجى الاحتفاظ بهذا الوصل للإدلاء به عند مصلحة الضرائب. إن ‫مؤسسة تكنولوجيا سيجنال مؤسسة خيرية عمومية وغير ربحية، أُحدِثَت بالولايات المتحدة اﻷمريكية، وهي معفية من الضرائب بموجب الفقرة 501c3 من قانون الإيرادات الداخلية. مُعرِّفنا الضريبي هو ‎.82-4506840‎</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">لا توجد إيصالات</string>
 
@@ -6651,7 +6671,7 @@
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">إعدادات خصوصية القِصة</string>
+    <string name="StoriesLandingFragment__story_privacy">إعدادات خصوصية القصة</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">قصصي</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
@@ -6667,23 +6687,23 @@
     <!-- Context menu option to share a story -->
     <string name="StoriesLandingItem__share">المشاركة…</string>
     <!-- Context menu option to go to story chat -->
-    <string name="StoriesLandingItem__go_to_chat">توجّه للدردشة</string>
+    <string name="StoriesLandingItem__go_to_chat">توجَّه للدردشة</string>
     <!-- Context menu option to go to story info -->
-    <string name="StoriesLandingItem__info">معلومات</string>
+    <string name="StoriesLandingItem__info">المعلومات</string>
     <!-- Label when a story is pending sending -->
-    <string name="StoriesLandingItem__sending">يَجري الإرسال…</string>
+    <string name="StoriesLandingItem__sending">جاٍر الإرسال…</string>
     <!-- Label when multiple stories are pending sending -->
-    <string name="StoriesLandingItem__sending_d">يجري إرسال %1$d…</string>
+    <string name="StoriesLandingItem__sending_d">جاٍر الإرسال %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">فشل الإرسال</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">تم الإرسال جزئيًا</string>
+    <string name="StoriesLandingItem__partially_sent">تمَّ الإرسال جزئيًا</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
-    <string name="StoriesLandingItem__tap_to_retry">يُرجى اللمس لإعادة المحاولة</string>
+    <string name="StoriesLandingItem__tap_to_retry">انقر لإعادة المحاولة</string>
     <!-- Title of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__hide_story">إخفاء القصة؟</string>
+    <string name="StoriesLandingFragment__hide_story">هل ترغبُ بإخفاء القصة؟</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">لن تظهر مستجدات قِصص %1$s الجديدة في أعلى لائحة القصص بعد الآن.</string>
+    <string name="StoriesLandingFragment__new_story_updates">لن تظهر تحديثات القصص  الجديدة من %1$s في أعلى لائحة القصص بعد الآن.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">إخفاء</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -6704,17 +6724,17 @@
     <!-- Label for stories for a single user. Format is {given name}\'s Story -->
     <string name="MyStories__ss_story">قصص %1$s</string>
     <!-- Title of dialog to confirm deletion of story -->
-    <string name="MyStories__delete_story">حذف القصة؟</string>
+    <string name="MyStories__delete_story">هل ترغبُ بحذف القصة؟</string>
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">ستُحذَف هذه القصة من عند جميع من استلمها بما فيهم أنت.</string>
     <!-- Toast shown when story media cannot be saved -->
-    <string name="MyStories__unable_to_save">تعذّر الحفظ</string>
+    <string name="MyStories__unable_to_save">تعذَّر الحفظ</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
         <item quantity="zero">لا مشاهدة (%1$d)</item>
         <item quantity="one">مشاهدة واحدة (%1$d)</item>
         <item quantity="two">مشاهدتان (%1$d)</item>
-        <item quantity="few">%1$d مشاهدات</item>
+        <item quantity="few">%1$d مشاهداتٍ</item>
         <item quantity="many">%1$d مشاهدة</item>
         <item quantity="other">%1$d مشاهدة</item>
     </plurals>
@@ -6724,7 +6744,7 @@
         <item quantity="one">جواب واحد (%1$d)</item>
         <item quantity="two">جوابان (%1$d)</item>
         <item quantity="few">%1$d أجوبة</item>
-        <item quantity="many">%1$d جوابا</item>
+        <item quantity="many">%1$d جوابًا</item>
         <item quantity="other">%1$d جواب</item>
     </plurals>
     <!-- Toast / Snackbar label when unhiding a story during viewer -->
@@ -6732,37 +6752,37 @@
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">إضافة</string>
     <!-- Used when view receipts are disabled -->
-    <string name="StoryViewerPageFragment__views_off">مشاهدات غير مشغلة</string>
+    <string name="StoryViewerPageFragment__views_off">المشاهدات في حالة إيقاف</string>
     <!-- Used to join views and replies when both exist on a story item -->
-    <string name="StoryViewerFragment__s_s">‏%1$s‏%2$s‏</string>
+    <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">أنت</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
     <string name="StoryViewerPageFragment__s_to_s">%1$s إلى %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
-    <string name="StoryViewerPageFragment__reply">الرَّدّ</string>
+    <string name="StoryViewerPageFragment__reply">الرد</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">تم الإرسال جزئيًا. يُرجى النقر للتفاصيل</string>
+    <string name="StoryViewerPageFragment__partially_sent">تمَّ الإرسال جزئيًا. انقر للتفاصيل.</string>
     <!-- Displayed when viewing a post that has failed to send -->
     <string name="StoryViewerPageFragment__send_failed">فشل الإرسال. يُرجى النقر لإعادة المحاولة</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
-    <string name="StoryViewerPageFragment__reply_to_group">الردّ على المجموعة</string>
+    <string name="StoryViewerPageFragment__reply_to_group">الرد على المجموعة</string>
     <!-- Displayed when a story has no views -->
-    <string name="StoryViewsFragment__no_views_yet">لا مشاهدة حاليا</string>
+    <string name="StoryViewsFragment__no_views_yet">لا مشاهدات حاليًا</string>
     <!-- Displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">فعِّل إيصالات القراءة لِرؤية من شاهد قِصصك.</string>
     <!-- Button label displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__go_to_settings">الانتقال إلى الإعدادات</string>
+    <string name="StoryViewsFragment__go_to_settings">الانتقال إلى \"الإعدادات\"</string>
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">إزالة</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">إزالة المُشاهد؟</string>
+    <string name="StoryViewsFragment__remove_viewer">هل ترغبُ بإزالة المُشاهِد؟</string>
     <!-- Dialog message when removing a viewer from a story -->
-    <string name="StoryViewsFragment__s_will_still_be_able">%1$s سَيظل قادرًا على مشاهدة هذا المنشور، لكنه لن يتمكن من مشاهدة أية منشورات مُستقبلية تشاركها مع %2$s.</string>
+    <string name="StoryViewsFragment__s_will_still_be_able">سَيظل %1$s قادرًا على مشاهدة هذا المنشور، لكنه لن يتمكن من مشاهدة أية منشورات مُستقبلية تشاركها مع %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">إزالة المُشاهد؟</string>
+    <string name="StoryViewItem__remove_viewer">هل ترغبُ بإزالة المُشاهِد؟</string>
     <!-- Displayed when a story has no replies yet -->
-    <string name="StoryGroupReplyFragment__no_replies_yet">لا جواب حاليا</string>
+    <string name="StoryGroupReplyFragment__no_replies_yet">لا ردود حاليًا</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">لا تستطيع الردّ على هذه القصة لأنك لم تعد عضواً في هذه المجموعة.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
@@ -6772,11 +6792,11 @@
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">المشاهدات</string>
     <!-- Label for story replies tab -->
-    <string name="StoryViewsAndRepliesDialogFragment__replies">الإجابات</string>
+    <string name="StoryViewsAndRepliesDialogFragment__replies">الردود</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">تفاعل مع هذه القصة</string>
+    <string name="StoryReplyComposer__react_to_this_story">تفاعَل مع هذه القصة</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
-    <string name="StoryReplyComposer__reply_to_s">الردّ على %1$s</string>
+    <string name="StoryReplyComposer__reply_to_s">الرد على %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">نسخ</string>
@@ -6804,28 +6824,28 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك عن أناس مُحددين</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك عن أناس مُحدَّدين</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
-        <item quantity="zero">%1$d شخصا مستبعدا</item>
-        <item quantity="one">%1$d شخص واحد مستبعد</item>
-        <item quantity="two">%1$d شخصان مستبعدان</item>
-        <item quantity="few">%1$dأشخاص مستبعدين</item>
-        <item quantity="many">%1$d أشخاص مستبعدين</item>
-        <item quantity="other">%1$d أشخاص مستبعدين</item>
+        <item quantity="zero">%1$d شخصًا مُستبعَدًا</item>
+        <item quantity="one">%1$d شخص واحد مُستبعَد</item>
+        <item quantity="two">%1$d شخصان مُستبعدَان</item>
+        <item quantity="few">%1$d أشخاص مُستبعدَين</item>
+        <item quantity="many">%1$d أشخاص مُستبعدَين</item>
+        <item quantity="other">%1$d أشخاص مُستبعدَين</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with">مشاركة فقط مع…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with_selected_people">مشاركة مع الأشخاص المختارين فقط</string>
+    <string name="MyStorySettingsFragment__only_share_with_selected_people">مشاركة فقط مع أشخاص مُحدَّدين فقط</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
         <item quantity="zero">لا أحد (%1$d)</item>
         <item quantity="one">شخص واحد (%1$d)</item>
         <item quantity="two">شخصان (%1$d)</item>
-        <item quantity="few">%1$d أفراد</item>
-        <item quantity="many">%1$d فردا</item>
-        <item quantity="other">%1$d فرد</item>
+        <item quantity="few">%1$d أشخاص</item>
+        <item quantity="many">%1$d شخصًا</item>
+        <item quantity="other">%1$d شخصٍ</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اِختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
@@ -7844,7 +7864,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">تعذّر حفظ التغييرات. تحقّق من اتصالك بالإنترنت وحاول مرة أخرى.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
-    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">تعذّر حذف رابط المكالمة لأنه قيد الاستخدام حاليًا.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">حذف الرابط؟</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7943,6 +7963,10 @@
     <string name="PendingParticipantsBottomSheet__reject">رفض</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">الموافقة</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">تفعيل إشعارات ملء الشاشة؟</string>
@@ -8125,7 +8149,13 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطي الاستعادة؟</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق عند توفُّر مساحة التخزين.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -8158,7 +8188,11 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">تخطي التنزيل</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أن هاتفك مُتصل بشبكة الواي فاي وانقر على \"إنشاء نسخة احتياطية الآن\" للمحاولة من جديد."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">Learn more</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8202,7 +8236,7 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">سيتم تفريغ الوسائط غير المستخدمة، لكن يُمكن تنزيلها من النسخة الاحتياطية في أي وقت.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">لا يمكن استخدام ميزة تحسين التخزين إلا مع المُستوى المدفوع لنسخ سيجنال الاحتياطية. اشتراك النسخ الاحتياطية الخاص بك لا يزال قيد المعالجة ولم يتم تفعيله بعد. يُرجى المحاولة لاحقًا.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8370,6 +8404,8 @@
     <string name="RemoteBackupsSettingsFragment__renew">التجديد</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">اعرف المزيد</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="zero">لديك %1$s من البيانات الاحتياطية غير متوفرة على هذا الجهاز. سيتم حذف نسختك الاحتياطية عند انتهاء اشتراكك خلال %2$d أيام.</item>
@@ -8398,6 +8434,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">تعذَّر إيقاف التشغيل وحذف النسخ الاحتياطية</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">حدث خطأ بالشبكة. يُرجى التحقُّق من اتصالك بالإنترنت والمحاولة مرّة أخرى.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8437,7 +8475,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">مفتاح النسخة الاحتياطية الخاص بك</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا يَسمح لك باستعادة نسختك الاحتياطية عندما تُعيد تثبيت سيجنال.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">إذا نسيتَ مفتاحك، لن تتمكَّن من استرجاع نسختك الاحتياطية. لا يُمكن لسيجنال مُساعدتك على استرجاع نسختك الاحتياطية.</string>
     <!-- Action button label -->
@@ -8534,7 +8572,7 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">هاتفي القديم ليس بحوزتي</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">أو تقوم بإعادة تثبيت سيجنال على الجهاز نفسه.</string>
 
     <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">استعادة أو نقل الحساب</string>
@@ -8563,15 +8601,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">أدخِل مفتاح النسخة الاحتياطية الخاص بك</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">مفتاح النسخة الاحتياطية الخاص بك هو كود مُكوَّن من 64 رقمًا، وهو مطلوب لاستعادة حسابك وبياناتك.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">لا ترغبُ باستخدام مفتاح النسخة الاحتياطية؟</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">مفتاح النسخة الاحتياطية</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">لا يُمكن استعادة النسخ الاحتياطية دون كود الاستعادة المُكوَّن من 64 رقمًا. إذا فقدت مفتاح النسخة الاحتياطية الخاص بك، فلا يُمكن لسيجنال مُساعدتك في استعادة نسختك الاحتياطية.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">إذا كان لديك جهازك القديم، يُمكنك عرض مفتاح النسخة الاحتياطية الخاص بك في \"الإعدادات\" &gt; \"النسخ الاحتياطية\". ثم انقر على عرض مفتاح النسخة الاحتياطية.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">اعرف المزيد</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8620,6 +8658,18 @@
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">حسنًا</string>
 
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
 
     <!-- EOF -->
 </resources>

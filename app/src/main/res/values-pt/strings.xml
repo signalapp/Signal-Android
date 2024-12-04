@@ -1011,6 +1011,20 @@
     <string name="LinkDeviceFragment__sync_failure_retry_button">Experimente vincular outra vez</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continuar sem transferir</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">Save</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1036,13 +1050,13 @@
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer">Transferir histórico de mensagens</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Não transferir</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Desassociar \"%1$s\"?</string>
@@ -1355,16 +1369,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">Todas as suas mensagens</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">Restaurar a partir da cópia de segurança</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Só estão incluídos ficheiros multimédia enviados ou recebidos nos últimos %1$d.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">A sua cópia de segurança inclui:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Restaurar cópia de segurança</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">A sua última cópia de segurança foi feita a %1$s às %2$s.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">A obter detalhes da cópia de segurança…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
@@ -2464,6 +2480,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Fez demasiadas tentativas para registar este número. Tente mais tarde dentro de %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Não foi possível ligar ao serviço. Por favor, verifique a sua ligação à rede e tente novamente.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Não lhe conseguimos enviar um código de verificação via SMS. Experimente receber o código via chamada de voz.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -4311,6 +4329,8 @@
     <string name="registration_activity__restore_or_transfer">Restaurar ou transferir</string>
     <string name="registration_activity__transfer_account">Transferir conta</string>
     <string name="registration_activity__skip">Saltar</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">Skip restore</string>
     <string name="preferences_chats__chat_backups">Cópias de segurança dos chats</string>
     <string name="preferences_chats__transfer_account">Transferir conta</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir conta para um dispositivo Android novo</string>
@@ -5823,9 +5843,9 @@
     <string name="DonationsErrors__still_processing">Ainda a processar</string>
     <string name="DonationsErrors__couldnt_add_badge">Não foi possível adicionar o crachá</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
-    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <string name="DonationsError__something_went_wrong">Ocorreu algo de errado</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Não foi possível exibir a sua subscrição das cópias de segurança. Entre em contacto com a equipa de suporte.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Falha ao validar o crachá</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -7216,7 +7236,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Não foi possível guardar as alterações. Verifique a sua ligação à internet e tente novamente.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
-    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Não foi possível eliminar o link de chamada dado que este está a ser utilizado.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Eliminar link?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7307,6 +7327,10 @@
     <string name="PendingParticipantsBottomSheet__reject">Rejeitar</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Aprovar</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Ativar as notificações de ecrã inteiro?</string>
@@ -7481,7 +7505,13 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Ignorar restauro?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Se saltar o restauro, os restantes ficheiros multimédia e anexos da cópia de segurança podem ser transferidos mais tarde, quando o espaço de armazenamento estiver disponível.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7514,7 +7544,11 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Saltar transferência</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"A sua última cópia de segurança não pôde ser completada. Certifique-se de que o seu telemóvel está ligado a uma rede Wi-Fi e toca em \"Fazer cópia de segurança\" para tentar outra vez."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">Learn more</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7558,7 +7592,7 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Os ficheiros não utilizados serão movidos, mas podem ser descarregados a partir da sua cópia de segurança a qualquer altura.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">A otimização do armazenamento só pode ser usada com a categoria paga das Cópias de Segurança do Signal. A sua subscrição das cópias de segurança está a ser processada e ainda não está ativa. Tente novamente mais tarde.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7718,6 +7752,8 @@
     <string name="RemoteBackupsSettingsFragment__renew">Renovar</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Saber mais</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">Tem %1$s de dados de cópia de segurança que não estão neste dispositivo. A sua cópia de segurança será eliminada quando a sua subscrição terminar dentro de %2$d dia.</item>
@@ -7738,6 +7774,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Não foi possível desativar e eliminar as cópias de segurança</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Ocorreu um erro de rede. Verifique a sua ligação à internet e tente outra vez.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7777,7 +7815,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">A sua chave da cópia de segurança</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">A sua chave da cópia de segurança é um código de 64 caracteres que lhe permite restaurar a sua cópia de segurança ao reinstalar o Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Se esquecer a sua chave, não poderá restaurar a cópia de segurança. O Signal não o pode ajudar a restaurar a sua cópia de segurança.</string>
     <!-- Action button label -->
@@ -7866,7 +7904,7 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Não tenho o meu telemóvel antigo</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Ou está a reinstalar o Signal no mesmo dispositivo</string>
 
     <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Restaure ou transfira a sua conta</string>
@@ -7895,15 +7933,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Introduza a sua chave da cópia de segurança</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">A sua chave da cópia de segurança é um código de 64 caracteres necessário para recuperar a sua conta e os seus dados.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Não tem chave da cópia de segurança?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Chave da cópia de segurança</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">As cópias de segurança não podem ser recuperadas sem o seu código de recuperação de 64 caracteres. Se tiver perdido a sua chave da cópia de segurança, o Signal não pode ajudar a restaurar a sua cópia de segurança.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Se tiver acesso ao seu dispositivo antigo, pode ver a sua chave da cópia de segurança em Definições &gt; Cópias de segurança. Depois, toque em \"Ver chave da cópia de segurança\".</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Saber mais</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -7952,6 +7990,18 @@
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">Ok</string>
 
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
 
     <!-- EOF -->
 </resources>

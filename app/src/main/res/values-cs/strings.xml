@@ -1051,6 +1051,20 @@
     <string name="LinkDeviceFragment__sync_failure_retry_button">Zkuste znovu propojit</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Pokračovat bez přenosu</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">Save</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1076,13 +1090,13 @@
 
     <!-- LinkDeviceSyncBottomSheet -->
     <!-- Option in bottom sheet to transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_transfer">Transfer message history</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer">Přenést historii zpráv</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Nepřevádět</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Nepřenášet</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your desktop</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Zrušit propojení „%1$s“?</string>
@@ -1431,16 +1445,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">Všechny vaše zprávy</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">Obnovit ze zálohy</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is currently fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Zahrnuta jsou pouze média odeslaná nebo přijatá v posledních %1$d dnech.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">Vaše záloha obsahuje:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Obnovit zálohu</string>
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">Poslední záloha proběhla dne %1$s v %2$s.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Načítají se údaje o zálohování…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
@@ -2632,6 +2648,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Učinili jste příliš mnoho pokusů o registraci tohoto čísla. Zkuste to prosím znovu za %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Nelze se připojit k službě. Prosím zkontrolujte připojení k internetu a poté to zkuste znovu.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nepodařilo se vám zaslat ověřovací kód prostřednictvím SMS. Zkuste místo toho kód získat prostřednictvím hlasového hovoru.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -4533,6 +4551,8 @@
     <string name="registration_activity__restore_or_transfer">Obnovení nebo přenos</string>
     <string name="registration_activity__transfer_account">Přenést účet</string>
     <string name="registration_activity__skip">Přeskočit</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">Skip restore</string>
     <string name="preferences_chats__chat_backups">Zálohy chatů</string>
     <string name="preferences_chats__transfer_account">Přenést účet</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Přenést účet na nové Android zařízení</string>
@@ -6089,9 +6109,9 @@
     <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
     <string name="DonationsErrors__couldnt_add_badge">Odznak se nepodařilo přidat</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
-    <string name="DonationsError__something_went_wrong">Something went wrong</string>
+    <string name="DonationsError__something_went_wrong">Něco se pokazilo</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
-    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Your backups subscription couldn\'t be displayed. Please contact support.</string>
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Vaše předplatné pro zálohování nelze zobrazit. Kontaktujte prosím podporu.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Odznak se nepodařilo ověřit</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -7530,7 +7550,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Změny se nepodařilo uložit. Zkontrolujte připojení k internetu a zkuste to znovu.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
-    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Couldn\'t delete call link as it is currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Odkaz na hovor nelze odstranit, protože je právě používán.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Smazat odkaz?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7625,6 +7645,10 @@
     <string name="PendingParticipantsBottomSheet__reject">Odmítnout</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Schválit</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Zapnout oznámení na celou obrazovku?</string>
@@ -7803,7 +7827,13 @@
     <!-- Dialog title for skipping media restore -->
     <string name="BackupAlertBottomSheet__skip_restore_question">Přeskočit obnovení?</string>
     <!-- Dialog text for skipping media restore -->
-    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time when storage space becomes available.</string>
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Pokud obnovu přeskočíte, můžete zbývající média a přílohy v záloze stáhnout později, až bude k dispozici úložný prostor.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7836,7 +7866,11 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Přeskočit stahování</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Poslední zálohu se nepodařilo dokončit. Ujistěte se, že je telefon připojen k síti Wi-Fi, klepněte na Zpět a zkuste to znovu."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">Learn more</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7880,7 +7914,7 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nevyužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimalizaci úložiště lze použít pouze s placenou verzí zálohování služby Signal. Vaše předplatné zálohování se stále zpracovává a není ještě aktivní. Zkuste to prosím znovu později.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8044,6 +8078,8 @@
     <string name="RemoteBackupsSettingsFragment__renew">Obnovit</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Zjistit více</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">Máte %1$s záložních dat, která nejsou uložena v tomto zařízení. Vaše záloha bude smazána, až vaše předplatné skončí za %2$d den.</item>
@@ -8068,6 +8104,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Nepodařilo se vypnout a odstranit zálohy</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Vyskytla se chyba sítě. Zkontrolujte prosím své internetové připojení a zkuste to znovu.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8107,7 +8145,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Váš záložní klíč</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your backup key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Váš záložní klíč je 64místný kód, který vám umožní obnovit zálohu při opětovné instalaci aplikace Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Pokud svůj klíč zapomenete, nebude možné zálohu obnovit. Signal vám nemůže pomoci obnovit vaši zálohu.</string>
     <!-- Action button label -->
@@ -8200,7 +8238,7 @@
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Nemám svůj starý telefon</string>
     <!-- Row subtitle for restore/transfer without using a previous device -->
-    <string name="WelcomeFragment_restore_action_reinstalling">Or you\'re reinstalling Signal on the same device</string>
+    <string name="WelcomeFragment_restore_action_reinstalling">Nebo přeinstalováváte aplikaci Signal na stejném zařízení</string>
 
     <!-- Screen title for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Obnovení nebo přenos účtu</string>
@@ -8229,15 +8267,15 @@
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
     <string name="EnterBackupKey_title">Zadejte svůj záložní klíč</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Your backup key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Záložní klíč je 64místný kód potřebný k obnovení účtu a dat.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
     <string name="EnterBackupKey_no_backup_key">Nemáte záložní klíč?</string>
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Záložní klíč</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your backup key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Bez 64místného kódu pro obnovení nelze zálohy obnovit. Pokud jste záložní klíč ztratili, nemůže vám služba Signal s obnovením zálohy pomoci.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your backup key in Settings &gt; Backups. Then tap View backup key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Pokud máte staré zařízení, můžete si záložní klíč zobrazit v Nastavení &gt; Zálohy. Poté klepněte na Zobrazit záložní klíč.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Zjistit více</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8261,7 +8299,7 @@
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Přenést účet</string>
     <!-- Old device Transfer account screen body message with learn more placeholder -->
-    <string name="TransferAccount_body">Váš účet bude přenesen do nového zařízení. Toto zařízení bude moci vidět vaše skupiny a kontakty, mít přístup k chatům a posílat zprávy vaším jménem. %1$s</string>
+    <string name="TransferAccount_body">Váš účet bude přenesen do nového zařízení. Toto zařízení bude moci zobrazit vaše skupiny a kontakty, mít přístup k chatům a posílat zprávy vaším jménem. %1$s</string>
     <!-- Old device Transfer account learn more placed into TransferAccount_body -->
     <string name="TransferAccount_learn_more">Zjistit více</string>
     <!-- Old device Transfer account button text to confirm transfer account to new device -->
@@ -8286,6 +8324,18 @@
     <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
     <string name="RestoreCompleteBottomSheet_button">V pořádku</string>
 
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
 
     <!-- EOF -->
 </resources>
