@@ -559,7 +559,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   } else {
     item {
-      InProgressBackupRow(progress = backupProgress.completedAttachments.toInt(), totalProgress = backupProgress.totalAttachments.toInt())
+      InProgressBackupRow(archiveUploadProgressState = backupProgress)
     }
   }
 
@@ -909,9 +909,11 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 
 @Composable
 private fun InProgressBackupRow(
-  progress: Int?,
-  totalProgress: Int?
+  archiveUploadProgressState: ArchiveUploadProgressState
 ) {
+  val progress = archiveUploadProgressState.completedAttachments
+  val totalProgress = archiveUploadProgressState.totalAttachments
+
   Row(
     modifier = Modifier
       .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
@@ -920,7 +922,7 @@ private fun InProgressBackupRow(
     Column(
       modifier = Modifier.weight(1f)
     ) {
-      if (totalProgress == null || totalProgress == 0) {
+      if (totalProgress == 0L) {
         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
       } else {
         LinearProgressIndicator(
@@ -929,8 +931,8 @@ private fun InProgressBackupRow(
         )
       }
 
-      val inProgressText = if (totalProgress == null || totalProgress == 0) {
-        stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+      val inProgressText = if (totalProgress == 0L) {
+        getProgressStateMessage(archiveUploadProgressState.state)
       } else {
         stringResource(R.string.RemoteBackupsSettingsFragment__d_slash_d, progress ?: 0, totalProgress)
       }
@@ -942,6 +944,17 @@ private fun InProgressBackupRow(
       )
     }
   }
+}
+
+@Composable
+private fun getProgressStateMessage(state: ArchiveUploadProgressState.State): String {
+  val stringId = when (state) {
+    ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.BackingUpMessages -> R.string.RemoteBackupsSettingsFragment__processing_backup
+    ArchiveUploadProgressState.State.UploadingMessages -> R.string.RemoteBackupsSettingsFragment__uploading_messages
+    ArchiveUploadProgressState.State.UploadingAttachments -> R.string.RemoteBackupsSettingsFragment__processing_backup
+  }
+
+  return stringResource(stringId)
 }
 
 @Composable
@@ -1337,7 +1350,7 @@ private fun LastBackupRowPreview() {
 @Composable
 private fun InProgressRowPreview() {
   Previews.Preview {
-    InProgressBackupRow(50, 100)
+    InProgressBackupRow(archiveUploadProgressState = ArchiveUploadProgressState())
   }
 }
 
