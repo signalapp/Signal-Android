@@ -358,7 +358,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
       is VerificationCodeRequestResult.AttemptsExhausted -> presentRateLimitedDialog()
       is VerificationCodeRequestResult.ChallengeRequired -> handleChallenges(result.challenges)
-      is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+      is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_sms_provider_error))
       is VerificationCodeRequestResult.ImpossibleNumber -> {
         MaterialAlertDialogBuilder(requireContext()).apply {
           setMessage(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid, fragmentViewModel.phoneNumber?.toE164()))

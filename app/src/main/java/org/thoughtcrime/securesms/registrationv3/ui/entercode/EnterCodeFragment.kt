@@ -166,6 +166,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
       is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
+      is VerificationCodeRequestResult.ExternalServiceFailure -> presentSmsGenericError(result)
       else -> presentGenericError(result)
     }
   }
@@ -231,16 +232,28 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     })
   }
 
+  private fun presentSmsGenericError(requestResult: RegistrationResult) {
+    binding.keyboard.displayFailure().addListener(
+      object : AssertedSuccessListener<Boolean>() {
+        override fun onSuccess(result: Boolean?) {
+          Log.w(TAG, "Encountered sms provider error!", requestResult.getCause())
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            setMessage(R.string.RegistrationActivity_sms_provider_error)
+            setPositiveButton(android.R.string.ok) { _, _ -> fragmentViewModel.showKeyboard() }
+            show()
+          }
+        }
+      }
+    )
+  }
+
   private fun presentGenericError(requestResult: RegistrationResult) {
     binding.keyboard.displayFailure().addListener(
       object : AssertedSuccessListener<Boolean>() {
         override fun onSuccess(result: Boolean?) {
           Log.w(TAG, "Encountered unexpected error!", requestResult.getCause())
           MaterialAlertDialogBuilder(requireContext()).apply {
-            null?.let<String, MaterialAlertDialogBuilder> {
-              setTitle(it)
-            }
-            setMessage(getString(R.string.RegistrationActivity_error_connecting_to_service))
+            setMessage(R.string.RegistrationActivity_error_connecting_to_service)
             setPositiveButton(android.R.string.ok) { _, _ -> fragmentViewModel.showKeyboard() }
             show()
           }
