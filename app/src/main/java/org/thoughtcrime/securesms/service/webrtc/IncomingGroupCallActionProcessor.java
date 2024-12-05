@@ -189,6 +189,10 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                             RingRtcDynamicConfiguration.shouldUseOboeAdm(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
+    if (groupCall == null) {
+      return groupCallFailure(currentState, "RingRTC did not create a group call", null);
+    }
+
     try {
       groupCall.setOutgoingAudioMuted(true);
       groupCall.setOutgoingVideoMuted(true);

@@ -56,6 +56,10 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
                                                                             RingRtcDynamicConfiguration.shouldUseOboeAdm(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
+    if (groupCall == null) {
+      return groupCallFailure(currentState, "RingRTC did not create a group call", null);
+    }
+
     return currentState.builder()
                        .changeCallInfoState()
                        .callState(WebRtcViewModel.State.NETWORK_FAILURE)

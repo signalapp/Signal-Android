@@ -850,7 +850,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @NonNull Throwable error) {
+  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @Nullable Throwable error) {
     Log.w(tag, "groupCallFailure(): " + message, error);
 
     GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
