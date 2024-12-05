@@ -76,8 +76,9 @@ object Dialogs {
     body: String,
     confirm: String,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit,
+    onDismiss: () -> Unit = {},
     onDismissRequest: () -> Unit = onDismiss,
+    onDeny: () -> Unit = {},
     modifier: Modifier = Modifier,
     dismiss: String = NoDismiss,
     confirmColor: Color = Color.Unspecified,
@@ -104,7 +105,13 @@ object Dialogs {
       },
       dismissButton = if (dismiss.isNotEmpty()) {
         {
-          TextButton(onClick = onDismiss) {
+          TextButton(
+            onClick =
+            {
+              onDismiss()
+              onDeny()
+            }
+          ) {
             Text(text = dismiss, color = dismissColor)
           }
         }

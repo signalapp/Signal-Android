@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
+import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import kotlin.time.Duration.Companion.seconds
 
@@ -260,7 +261,7 @@ class LinkDeviceViewModel : ViewModel() {
         Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
         _state.update {
           it.copy(
-            dialogState = DialogState.SyncingFailed(waitResult.id)
+            dialogState = DialogState.SyncingFailed(waitResult.id, waitResult.created)
           )
         }
       }
@@ -309,16 +310,29 @@ class LinkDeviceViewModel : ViewModel() {
     return this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
   }
 
-  fun onSyncErrorIgnored() {
+  fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {
+    val dialogState = _state.value.dialogState
+    if (dialogState is DialogState.SyncingFailed) {
+      Log.i(TAG, "Alerting linked device of sync failure - will not retry")
+      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceCreatedAt, TransferArchiveError.CONTINUE_WITHOUT_UPLOAD)
+    }
+
     _state.update {
-      it.copy(dialogState = DialogState.None)
+      it.copy(
+        linkDeviceResult = LinkDeviceResult.None,
+        dialogState = DialogState.None
+      )
     }
   }
 
-  fun onSyncErrorRetryRequested(deviceId: Int?) = viewModelScope.launch(Dispatchers.IO) {
-    if (deviceId != null) {
+  fun onSyncErrorRetryRequested() = viewModelScope.launch(Dispatchers.IO) {
+    val dialogState = _state.value.dialogState
+    if (dialogState is DialogState.SyncingFailed) {
+      Log.i(TAG, "Alerting linked device of sync failure - will retry")
+      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+
       Log.i(TAG, "Need to unlink device first...")
-      val success = LinkDeviceRepository.removeDevice(deviceId)
+      val success = LinkDeviceRepository.removeDevice(dialogState.deviceId)
       if (!success) {
         Log.w(TAG, "Failed to remove device! We did our best. Continuing.")
       }
@@ -326,6 +340,7 @@ class LinkDeviceViewModel : ViewModel() {
 
     _state.update {
       it.copy(
+        linkDeviceResult = LinkDeviceResult.None,
         dialogState = DialogState.None,
         oneTimeEvent = OneTimeEvent.LaunchQrCodeScanner
       )

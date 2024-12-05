@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse
+import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
@@ -349,6 +350,24 @@ object LinkDeviceRepository {
 
     Log.w(TAG, "Hit the max retry count of $maxRetries. Failing.")
     return NetworkResult.NetworkError(IOException("Hit max retries!"))
+  }
+
+  /**
+   * If [createAndUploadArchive] fails to upload an archive, alert the linked device of the failure and if the user will try again
+   */
+  fun sendTransferArchiveError(deviceId: Int, deviceCreatedAt: Long, error: TransferArchiveError) {
+    val archiveErrorResult = SignalNetwork.linkDevice.setTransferArchiveError(
+      destinationDeviceId = deviceId,
+      destinationDeviceCreated = deviceCreatedAt,
+      error = error
+    )
+
+    when (archiveErrorResult) {
+      is NetworkResult.Success -> Log.i(TAG, "[sendTransferArchiveError] Successfully sent transfer archive error.")
+      is NetworkResult.ApplicationError -> throw archiveErrorResult.throwable
+      is NetworkResult.NetworkError -> Log.w(TAG, "[sendTransferArchiveError] Network error when sending transfer archive error.", archiveErrorResult.exception)
+      is NetworkResult.StatusCodeError -> Log.w(TAG, "[sendTransferArchiveError] Status code error when sending transfer archive error.", archiveErrorResult.exception)
+    }
   }
 
   /**

@@ -179,7 +179,7 @@ class LinkDeviceFragment : ComposeFragment() {
         onLinkNewDeviceClicked = { navController.navigateToQrScannerIfAuthed() },
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
-        onSyncFailureRetryRequested = { deviceId -> viewModel.onSyncErrorRetryRequested(deviceId) },
+        onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
         onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
         onEditDevice = { device ->
           viewModel.setDeviceToEdit(device)
@@ -228,7 +228,7 @@ fun DeviceListScreen(
   onLinkNewDeviceClicked: () -> Unit = {},
   onDeviceSelectedForRemoval: (Device?) -> Unit = {},
   onDeviceRemovalConfirmed: (Device) -> Unit = {},
-  onSyncFailureRetryRequested: (Int?) -> Unit = {},
+  onSyncFailureRetryRequested: () -> Unit = {},
   onSyncFailureIgnored: () -> Unit = {},
   onEditDevice: (Device) -> Unit = {}
 ) {
@@ -253,15 +253,10 @@ fun DeviceListScreen(
           title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
           body = stringResource(R.string.LinkDeviceFragment__sync_failure_body),
           confirm = stringResource(R.string.LinkDeviceFragment__sync_failure_retry_button),
-          onConfirm = {
-            if (state.dialogState is DialogState.SyncingFailed) {
-              onSyncFailureRetryRequested(state.dialogState.deviceId)
-            } else {
-              onSyncFailureRetryRequested(null)
-            }
-          },
+          onConfirm = onSyncFailureRetryRequested,
           dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
-          onDismiss = onSyncFailureIgnored
+          onDismissRequest = onSyncFailureIgnored,
+          onDeny = onSyncFailureIgnored
         )
       }
     }

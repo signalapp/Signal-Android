@@ -27,7 +27,7 @@ data class LinkDeviceSettingsState(
     data object Unlinking : DialogState
     data object SyncingMessages : DialogState
     data object SyncingTimedOut : DialogState
-    data class SyncingFailed(val deviceId: Int) : DialogState
+    data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
   }
 
   sealed interface OneTimeEvent {

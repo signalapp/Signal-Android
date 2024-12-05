@@ -123,9 +123,33 @@ class LinkDeviceApi(private val pushServiceSocket: PushServiceSocket) {
         SetLinkedDeviceTransferArchiveRequest(
           destinationDeviceId = destinationDeviceId,
           destinationDeviceCreated = destinationDeviceCreated,
-          transferArchive = SetLinkedDeviceTransferArchiveRequest.CdnInfo(
+          transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.CdnInfo(
             cdn = cdn,
             key = cdnKey
+          )
+        )
+      )
+    }
+  }
+
+  /**
+   * If creating an archive has failed after linking a device, notify the linked
+   * device of the failure and if you are going to try relinking or skip syncing
+   *
+   * PUT /v1/devices/transfer_archive
+   *
+   * - 204: Success.
+   * - 422: Bad inputs.
+   * - 429: Rate-limited.
+   */
+  fun setTransferArchiveError(destinationDeviceId: Int, destinationDeviceCreated: Long, error: TransferArchiveError): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.setLinkedDeviceTransferArchive(
+        SetLinkedDeviceTransferArchiveRequest(
+          destinationDeviceId = destinationDeviceId,
+          destinationDeviceCreated = destinationDeviceCreated,
+          transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.Error(
+            error
           )
         )
       )
