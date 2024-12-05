@@ -265,7 +265,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   public void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
-    EventBus.getDefault().register(this);
 
     initializeScreenshotSecurity();
 
@@ -311,7 +310,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     Log.i(TAG, "onPause");
     super.onPause();
 
-    EventBus.getDefault().unregister(this);
+    if (!isInPipMode() || isFinishing()) {
+      EventBus.getDefault().unregister(this);
+    }
 
     if (!callPermissionsDialogController.isAskingForPermission() && !viewModel.isCallStarting() && !isChangingConfigurations()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
