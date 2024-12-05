@@ -233,7 +233,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate()
+          builder.updateMessage = record.toRemoteThreadMergeUpdate() ?: continue
         }
 
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
@@ -488,19 +488,20 @@ private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(): ChatUpdateMes
   )
 }
 
-private fun BackupMessageRecord.toRemoteThreadMergeUpdate(): ChatUpdateMessage {
+private fun BackupMessageRecord.toRemoteThreadMergeUpdate(): ChatUpdateMessage? {
   if (this.body == null) {
-    return ChatUpdateMessage(threadMerge = ThreadMergeChatUpdate())
+    return null
   }
 
-  return ChatUpdateMessage(
-    threadMerge = try {
-      val event = ThreadMergeEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
-      ThreadMergeChatUpdate(event.previousE164.e164ToLong()!!)
-    } catch (e: IOException) {
-      ThreadMergeChatUpdate()
+  try {
+    val e164 = ThreadMergeEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body)).previousE164.e164ToLong()
+    if (e164 != null) {
+      return ChatUpdateMessage(threadMerge = ThreadMergeChatUpdate(e164))
     }
-  )
+  } catch (_: IOException) {
+  }
+
+  return null
 }
 
 private fun BackupMessageRecord.toRemoteGroupUpdate(): ChatUpdateMessage? {
