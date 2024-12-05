@@ -108,7 +108,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
       .throttleLatest(1.seconds)
       .map {
         when {
-          !WifiConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
+          !WifiConstraint.isMet(AppDependencies.application) && !SignalStore.backup.restoreWithCellular -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
           !NetworkConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET)
           !BatteryNotLowConstraint.isMet() -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.LOW_BATTERY)
           else -> {

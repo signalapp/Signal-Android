@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
@@ -48,6 +49,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_CDN_MEDIA_PATH = "backup.cdn.mediaPath"
 
     private const val KEY_BACKUP_OVER_CELLULAR = "backup.useCellular"
+    private const val KEY_RESTORE_OVER_CELLULAR = "backup.restore.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
@@ -81,6 +83,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
+
+  var restoreWithCellular: Boolean
+    get() = getBoolean(KEY_RESTORE_OVER_CELLULAR, false)
+    set(value) {
+      putBoolean(KEY_RESTORE_OVER_CELLULAR, value)
+      RestoreAttachmentConstraintObserver.onChange()
+    }
 
   var nextBackupTime: Long by longValue(KEY_NEXT_BACKUP_TIME, -1)
   var lastBackupTime: Long

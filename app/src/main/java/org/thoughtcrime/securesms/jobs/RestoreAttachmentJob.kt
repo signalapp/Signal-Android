@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
@@ -108,7 +108,7 @@ class RestoreAttachmentJob private constructor(
   private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
     Parameters.Builder()
       .setQueue(queue)
-      .addConstraint(WifiConstraint.KEY)
+      .addConstraint(RestoreAttachmentConstraint.KEY)
       .addConstraint(BatteryNotLowConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(30))
       .build(),

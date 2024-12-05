@@ -141,6 +141,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupsEnabled = state.backupsEnabled,
       lastBackupTimestamp = state.lastBackupTimestamp,
       canBackUpUsingCellular = state.canBackUpUsingCellular,
+      canRestoreUsingCellular = state.canRestoreUsingCellular,
       backupsFrequency = state.backupsFrequency,
       requestedDialog = state.dialog,
       requestedSnackbar = state.snackbar,
@@ -239,6 +240,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onLearnMoreAboutBackupFailure() {
       BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(parentFragmentManager, null)
     }
+
+    override fun onRestoreUsingCellularClick(canUseCellular: Boolean) {
+      viewModel.setCanRestoreUsingCellular(canUseCellular)
+    }
   }
 
   private fun displayBackupKey() {
@@ -321,6 +326,7 @@ private interface ContentCallbacks {
   fun onLearnMoreAboutLostSubscription() = Unit
   fun onContactSupport() = Unit
   fun onLearnMoreAboutBackupFailure() = Unit
+  fun onRestoreUsingCellularClick(canUseCellular: Boolean) = Unit
 }
 
 @Composable
@@ -330,6 +336,7 @@ private fun RemoteBackupsSettingsContent(
   backupRestoreState: BackupRestoreState,
   lastBackupTimestamp: Long,
   canBackUpUsingCellular: Boolean,
+  canRestoreUsingCellular: Boolean,
   backupsFrequency: BackupFrequency,
   requestedDialog: RemoteBackupsSettingsState.Dialog,
   requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
@@ -403,6 +410,14 @@ private fun RemoteBackupsSettingsContent(
                 onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
               )
             }
+
+            item {
+              Rows.ToggleRow(
+                checked = canRestoreUsingCellular,
+                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__restore_using_cellular),
+                onCheckChanged = contentCallbacks::onRestoreUsingCellularClick
+              )
+            }
           } else if (backupRestoreState is BackupRestoreState.Ready && backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
             item {
               BackupReadyToDownloadRow(
@@ -420,6 +435,7 @@ private fun RemoteBackupsSettingsContent(
           backupSize = backupSize,
           backupsFrequency = backupsFrequency,
           canBackUpUsingCellular = canBackUpUsingCellular,
+          canRestoreUsingCellular = canRestoreUsingCellular,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -540,6 +556,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   backupSize: Long,
   backupsFrequency: BackupFrequency,
   canBackUpUsingCellular: Boolean,
+  canRestoreUsingCellular: Boolean,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -1205,6 +1222,7 @@ private fun RemoteBackupsSettingsContentPreview() {
       backupsEnabled = true,
       lastBackupTimestamp = -1,
       canBackUpUsingCellular = false,
+      canRestoreUsingCellular = false,
       backupsFrequency = BackupFrequency.MANUAL,
       requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,

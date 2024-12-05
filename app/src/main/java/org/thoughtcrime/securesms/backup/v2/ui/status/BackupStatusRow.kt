@@ -82,6 +82,7 @@ fun BackupStatusRow(
       is BackupStatusData.RestoringMedia -> {
         Text(
           text = getRestoringMediaString(backupStatusData),
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
           modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
@@ -168,15 +169,15 @@ private fun getRestoringMediaString(backupStatusData: BackupStatusData.Restoring
   return when (backupStatusData.restoreStatus) {
     BackupStatusData.RestoreStatus.NORMAL -> {
       stringResource(
-        R.string.BackupStatusRow__downloading_s_of_s_s,
+        R.string.BackupStatusRow__restoring_s_of_s_s,
         backupStatusData.bytesDownloaded.toUnitString(2),
         backupStatusData.bytesTotal.toUnitString(2),
         "%d".format((backupStatusData.progress * 100).roundToInt())
       )
     }
-    BackupStatusData.RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatus__status_device_has_low_battery)
-    BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatus__status_no_internet)
-    BackupStatusData.RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatus__status_waiting_for_wifi)
+    BackupStatusData.RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatusRow__restore_device_has_low_battery)
+    BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET -> stringResource(R.string.BackupStatusRow__restore_no_internet)
+    BackupStatusData.RestoreStatus.WAITING_FOR_WIFI -> stringResource(R.string.BackupStatusRow__restore_waiting_for_wifi)
     BackupStatusData.RestoreStatus.FINISHED -> stringResource(R.string.BackupStatus__restore_complete)
   }
 }

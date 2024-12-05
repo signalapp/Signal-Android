@@ -61,7 +61,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       backupSize = SignalStore.backup.totalBackupSize,
       backupsFrequency = SignalStore.backup.backupFrequency,
-      canBackUpUsingCellular = SignalStore.backup.backupWithCellular
+      canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
+      canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
     )
   )
 
@@ -107,6 +108,11 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
     SignalStore.backup.backupWithCellular = canBackUpUsingCellular
     _state.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
+  }
+
+  fun setCanRestoreUsingCellular(canRestoreUsingCellular: Boolean) {
+    SignalStore.backup.restoreWithCellular = canRestoreUsingCellular
+    _state.update { it.copy(canRestoreUsingCellular = canRestoreUsingCellular) }
   }
 
   fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
