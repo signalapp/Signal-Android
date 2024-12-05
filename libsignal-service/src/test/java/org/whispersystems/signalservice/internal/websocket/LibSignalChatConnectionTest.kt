@@ -6,6 +6,9 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.verify
 import io.reactivex.rxjava3.observers.TestObserver
+import okio.ByteString.Companion.toByteString
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.signal.libsignal.internal.CompletableFuture
@@ -21,6 +24,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import org.signal.libsignal.net.ChatService.Response as LibSignalResponse
 import org.signal.libsignal.net.ChatService.ResponseAndDebugInfo as LibSignalDebugResponse
 
@@ -287,6 +291,39 @@ class LibSignalChatConnectionTest {
   }
 
   @Test
+  fun connectionInterruptedTest() {
+    val disconnectReason = ChatServiceException("simulated interrupt")
+    val connectLatch = CountDownLatch(1)
+
+    every { chatService.connect() } answers {
+      delay {
+        it.complete(DEBUG_INFO)
+        connectLatch.countDown()
+      }
+    }
+
+    connection.connect()
+    connectLatch.await(100, TimeUnit.MILLISECONDS)
+
+    val observer = TestObserver<WebSocketConnectionState>()
+    connection.state.subscribe(observer)
+
+    chatListener!!.onConnectionInterrupted(chatService, disconnectReason)
+
+    observer.assertNotComplete()
+    observer.assertValues(
+      // We start in the connected state
+      WebSocketConnectionState.CONNECTED,
+      // Disconnects as a result of the connection interrupted event
+      WebSocketConnectionState.DISCONNECTED
+    )
+    verify(exactly = 0) {
+      healthMonitor.onKeepAliveResponse(any(), any())
+      healthMonitor.onMessageError(any(), any())
+    }
+  }
+
+  @Test
   fun connectionInterrupted() {
     val disconnectReason = ChatServiceException("simulated interrupt")
     val connectLatch = CountDownLatch(1)
@@ -317,6 +354,80 @@ class LibSignalChatConnectionTest {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
     }
+  }
+
+  @Test
+  fun incomingRequests() {
+    val connectLatch = CountDownLatch(1)
+    val asyncMessageReadLatch = CountDownLatch(1)
+
+    every { chatService.connect() } answers {
+      delay {
+        it.complete(DEBUG_INFO)
+        connectLatch.countDown()
+      }
+    }
+
+    connection.connect()
+    connectLatch.await(100, TimeUnit.MILLISECONDS)
+
+    val observer = TestObserver<WebSocketConnectionState>()
+    connection.state.subscribe(observer)
+
+    var timedOut = false
+    try {
+      connection.readRequest(10)
+    } catch (e: TimeoutException) {
+      timedOut = true
+    }
+    assert(timedOut)
+
+    val envelopeA = "msgA".toByteArray()
+    val envelopeB = "msgB".toByteArray()
+    val envelopeC = "msgC".toByteArray()
+
+    fun assertRequestWithEnvelope(request: WebSocketRequestMessage, envelope: ByteArray) {
+      assertEquals("PUT", request.verb)
+      assertEquals("/api/v1/message", request.path)
+      assertEquals(envelope.toByteString(), request.body!!)
+      connection.sendResponse(
+        WebSocketResponseMessage(
+          request.id,
+          200,
+          "OK"
+        )
+      )
+    }
+
+    fun assertQueueEmptyRequest(request: WebSocketRequestMessage) {
+      assertEquals("PUT", request.verb)
+      assertEquals("/api/v1/queue/empty", request.path)
+      connection.sendResponse(
+        WebSocketResponseMessage(
+          request.id,
+          200,
+          "OK"
+        )
+      )
+    }
+
+    executor.submit {
+      assertRequestWithEnvelope(connection.readRequest(10), envelopeA)
+      asyncMessageReadLatch.countDown()
+    }
+    chatListener!!.onIncomingMessage(chatService, envelopeA, 0, null)
+    asyncMessageReadLatch.await(100, TimeUnit.MILLISECONDS)
+
+    chatListener!!.onIncomingMessage(chatService, envelopeB, 0, null)
+    assertRequestWithEnvelope(connection.readRequestIfAvailable().get(), envelopeB)
+
+    chatListener!!.onQueueEmpty(chatService)
+    assertQueueEmptyRequest(connection.readRequestIfAvailable().get())
+
+    chatListener!!.onIncomingMessage(chatService, envelopeC, 0, null)
+    assertRequestWithEnvelope(connection.readRequestIfAvailable().get(), envelopeC)
+
+    assertTrue(connection.readRequestIfAvailable().isEmpty)
   }
 
   private fun <T> delay(action: ((CompletableFuture<T>) -> Unit)): CompletableFuture<T> {

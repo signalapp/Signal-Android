@@ -408,12 +408,23 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
-        return new OkHttpWebSocketConnection("normal",
-                                             signalServiceConfigurationSupplier.get(),
-                                             Optional.of(new DynamicCredentialsProvider()),
-                                             BuildConfig.SIGNAL_AGENT,
-                                             healthMonitor,
-                                             Stories.isFeatureEnabled());
+        if (RemoteConfig.libSignalWebSocketEnabled()) {
+          Network network = libSignalNetworkSupplier.get();
+          return new LibSignalChatConnection(
+              "libsignal-auth",
+              network,
+              new DynamicCredentialsProvider(),
+              Stories.isFeatureEnabled(),
+              healthMonitor
+          );
+        } else {
+          return new OkHttpWebSocketConnection("normal",
+                                               signalServiceConfigurationSupplier.get(),
+                                               Optional.of(new DynamicCredentialsProvider()),
+                                               BuildConfig.SIGNAL_AGENT,
+                                               healthMonitor,
+                                               Stories.isFeatureEnabled());
+        }
       }
 
       @Override
