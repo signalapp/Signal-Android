@@ -196,7 +196,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(uploadState = BackupUploadState.UPLOAD_IN_PROGRESS)
 
     disposables += Single
-      .fromCallable { BackupRepository.uploadBackupFile(backupData!!.inputStream(), backupData!!.size.toLong()) is NetworkResult.Success }
+      .fromCallable { BackupRepository.debugUploadBackupFile(backupData!!.inputStream(), backupData!!.size.toLong()) is NetworkResult.Success }
       .subscribeOn(Schedulers.io())
       .subscribe { success ->
         _state.value = _state.value.copy(uploadState = if (success) BackupUploadState.UPLOAD_DONE else BackupUploadState.UPLOAD_FAILED)

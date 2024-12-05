@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2
 import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
+import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -918,12 +919,7 @@ object BackupRepository {
       }
   }
 
-  /**
-   * A simple test method that just hits various network endpoints. Only useful for the playground.
-   *
-   * @return True if successful, otherwise false.
-   */
-  fun uploadBackupFile(backupStream: InputStream, backupStreamLength: Long): NetworkResult<Unit> {
+  fun getResumableMessagesBackupUploadSpec(): NetworkResult<ResumableMessagesBackupUploadSpec> {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.getMessageBackupUploadForm(SignalStore.account.requireAci(), credential.messageBackupAccess)
@@ -932,8 +928,28 @@ object BackupRepository {
       .then { form ->
         SignalNetwork.archive.getBackupResumableUploadUrl(form)
           .also { Log.i(TAG, "ResumableUploadUrlResult: $it") }
-          .map { form to it }
+          .map { ResumableMessagesBackupUploadSpec(attachmentUploadForm = form, resumableUri = it) }
       }
+  }
+
+  fun uploadBackupFile(
+    resumableSpec: ResumableMessagesBackupUploadSpec,
+    backupStream: InputStream,
+    backupStreamLength: Long
+  ): NetworkResult<Unit> {
+    val (form, resumableUploadUrl) = resumableSpec
+    return SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
+      .also { Log.i(TAG, "UploadBackupFileResult: $it") }
+  }
+
+  /**
+   * A simple test method that just hits various network endpoints. Only useful for the playground.
+   *
+   * @return True if successful, otherwise false.
+   */
+  @Discouraged("This will upload the entire backup file on every execution.")
+  fun debugUploadBackupFile(backupStream: InputStream, backupStreamLength: Long): NetworkResult<Unit> {
+    return getResumableMessagesBackupUploadSpec()
       .then { formAndUploadUrl ->
         val (form, resumableUploadUrl) = formAndUploadUrl
         SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
@@ -1428,6 +1444,11 @@ object BackupRepository {
     MESSAGE, MEDIA
   }
 }
+
+data class ResumableMessagesBackupUploadSpec(
+  val attachmentUploadForm: AttachmentUploadForm,
+  val resumableUri: String
+)
 
 data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 

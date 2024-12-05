@@ -145,3 +145,10 @@ message BackupMediaSnapshotSyncJobData {
 message DeviceNameChangeJobData {
   uint32 deviceId = 1;
 }
+
+message BackupMessagesJobData {
+  uint64 syncTime = 1;
+  string dataFile = 2;
+  ResumableUpload uploadSpec = 3;
+  string resumableUri = 4;
+}
