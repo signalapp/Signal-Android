@@ -198,6 +198,8 @@ class LinkDeviceViewModel : ViewModel() {
   }
 
   private fun addDeviceWithSync(linkUri: Uri) {
+    Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
+
     val ephemeralMessageBackupKey = MessageBackupKey(Util.getSecretBytes(32))
     val result = LinkDeviceRepository.addDevice(linkUri, ephemeralMessageBackupKey)
 
@@ -209,15 +211,17 @@ class LinkDeviceViewModel : ViewModel() {
       )
     }
 
+    Log.d(TAG, "[addDeviceWithSync] Got result: $result")
+
     if (result !is LinkDeviceResult.Success) {
-      Log.w(TAG, "Unable to link device $result")
+      Log.w(TAG, "[addDeviceWithSync] Unable to link device $result")
       return
     }
 
-    Log.i(TAG, "Waiting for a new linked device...")
+    Log.i(TAG, "[addDeviceWithSync] Waiting for a new linked device...")
     val waitResult: WaitForLinkedDeviceResponse? = LinkDeviceRepository.waitForDeviceToBeLinked(result.token, maxWaitTime = 60.seconds)
     if (waitResult == null) {
-      Log.i(TAG, "No linked device found!")
+      Log.i(TAG, "[addDeviceWithSync] No linked device found!")
       _state.update {
         it.copy(
           dialogState = DialogState.SyncingTimedOut
@@ -226,7 +230,7 @@ class LinkDeviceViewModel : ViewModel() {
       return
     }
 
-    Log.i(TAG, "Found a linked device!")
+    Log.d(TAG, "[addDeviceWithSync] Found a linked device!")
 
     _state.update {
       it.copy(
@@ -235,10 +239,13 @@ class LinkDeviceViewModel : ViewModel() {
       )
     }
 
-    Log.i(TAG, "Beginning the archive generation process...")
+    Log.d(TAG, "[addDeviceWithSync] Beginning the archive generation process...")
     val uploadResult = LinkDeviceRepository.createAndUploadArchive(ephemeralMessageBackupKey, waitResult.id, waitResult.created)
+
+    Log.d(TAG, "[addDeviceWithSync] Archive finished with result: $uploadResult")
     when (uploadResult) {
       LinkDeviceRepository.LinkUploadArchiveResult.Success -> {
+        Log.i(TAG, "[addDeviceWithSync] Successfully uploaded archive.")
         _state.update {
           it.copy(
             oneTimeEvent = OneTimeEvent.ToastLinked(waitResult.getPlaintextDeviceName()),
@@ -250,6 +257,7 @@ class LinkDeviceViewModel : ViewModel() {
       is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure,
       is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
       is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
         _state.update {
           it.copy(
             dialogState = DialogState.SyncingFailed(waitResult.id)
