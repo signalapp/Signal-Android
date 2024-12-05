@@ -202,8 +202,6 @@ internal class BillingApiImpl(
       billingClient.queryPurchasesAsync(param)
     }
 
-    purchasesUpdatedListener.onPurchasesUpdated(result.billingResult, result.purchasesList)
-
     val purchase = result.purchasesList.maxByOrNull { it.purchaseTime } ?: return BillingPurchaseResult.None
 
     return BillingPurchaseResult.Success(

@@ -95,6 +95,18 @@ class MessageBackupsFlowViewModel(
             Log.d(TAG, "Got successful purchase result for purchase at ${result.purchaseTime}")
             val id = internalStateFlow.value.inAppPayment!!.id
 
+            if (result.isAcknowledged) {
+              Log.w(TAG, "Payment is already acknowledged. Ignoring.")
+
+              internalStateFlow.update {
+                it.copy(
+                  stage = MessageBackupsStage.COMPLETED
+                )
+              }
+
+              return@collect
+            }
+
             try {
               Log.d(TAG, "Attempting to handle successful purchase.")
 
