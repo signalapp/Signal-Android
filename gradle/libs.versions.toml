@@ -119,7 +119,7 @@ firebase-messaging = "com.google.firebase:firebase-messaging:23.1.2"
 libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libsignal-client" }
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.3"
-signal-ringrtc = "org.signal:ringrtc-android:2.48.4"
+signal-ringrtc = "org.signal:ringrtc-android:2.49.0"
 signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
 
 # Third Party

@@ -970,6 +970,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
+  public void onSpeakingNotification(@NonNull GroupCall groupCall, @NonNull GroupCall.SpeechEvent speechEvent) {
+
+  }
+
+  @Override
   public void onFullyInitialized() {
     process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees()));
   }
