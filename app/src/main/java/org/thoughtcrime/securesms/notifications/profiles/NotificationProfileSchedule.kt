@@ -39,9 +39,8 @@ data class NotificationProfileSchedule(
     val localStart: LocalDateTime = start.toLocalDateTime(localNow)
     val localEnd: LocalDateTime = end.toLocalDateTime(localNow)
 
-    return if (end < start) {
-      (daysEnabled.contains(localStart.dayOfWeek.minus(1)) && localNow.isBetween(localStart.minusDays(1), localEnd)) ||
-        (daysEnabled.contains(localStart.dayOfWeek) && localNow.isBetween(localStart, localEnd.plusDays(1)))
+    return if (end <= start) {
+      (daysEnabled.contains(localStart.dayOfWeek.minus(1)) && localNow.isBetween(localStart.minusDays(1), localEnd)) || (daysEnabled.contains(localStart.dayOfWeek) && localNow.isBetween(localStart, localEnd.plusDays(1)))
     } else {
       daysEnabled.contains(localStart.dayOfWeek) && localNow.isBetween(localStart, localEnd)
     }
@@ -55,7 +54,7 @@ data class NotificationProfileSchedule(
     val localStart: LocalDateTime = start.toLocalDateTime(localNow)
     val localEnd: LocalDateTime = end.toLocalDateTime(localNow)
 
-    return if (end < start && (daysEnabled.contains(localStart.dayOfWeek.minus(1)) && localNow.isBetween(localStart.minusDays(1), localEnd))) {
+    return if (end <= start && (daysEnabled.contains(localStart.dayOfWeek.minus(1)) && localNow.isBetween(localStart.minusDays(1), localEnd))) {
       localStart.minusDays(1)
     } else {
       localStart
@@ -63,15 +62,14 @@ data class NotificationProfileSchedule(
   }
 
   fun endTime(): LocalTime {
-    val adjustedEnd = if (end == 2400) 0 else end
-    return LocalTime.of(adjustedEnd / 100, adjustedEnd % 100)
+    return LocalTime.of(end / 100, end % 100)
   }
 
   fun endDateTime(localNow: LocalDateTime): LocalDateTime {
     val localStart: LocalDateTime = start.toLocalDateTime(localNow)
     val localEnd: LocalDateTime = end.toLocalDateTime(localNow)
 
-    return if (end < start && (daysEnabled.contains(localStart.dayOfWeek) && localNow.isBetween(localStart, localEnd.plusDays(1)))) {
+    return if (end <= start && (daysEnabled.contains(localStart.dayOfWeek) && localNow.isBetween(localStart, localEnd.plusDays(1)))) {
       localEnd.plusDays(1)
     } else {
       localEnd
@@ -80,9 +78,5 @@ data class NotificationProfileSchedule(
 }
 
 fun Int.toLocalDateTime(now: LocalDateTime): LocalDateTime {
-  if (this == 2400) {
-    return now.plusDays(1).withHour(0).withMinute(0).withSecond(0)
-  }
-
   return now.withHour(this / 100).withMinute(this % 100).withSecond(0)
 }
