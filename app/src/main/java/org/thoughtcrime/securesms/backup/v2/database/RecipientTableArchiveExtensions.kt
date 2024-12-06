@@ -65,8 +65,8 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       """
       ${RecipientTable.TYPE} = ? AND (
         ${RecipientTable.ACI_COLUMN} NOT NULL OR
-        (${RecipientTable.PNI_COLUMN} NOT NULL AND ${RecipientTable.E164} NOT NULL) OR
-        ${RecipientTable.E164} NOT NULL
+        (${RecipientTable.PNI_COLUMN} NOT NULL AND ${RecipientTable.E164} NOT NULL AND ${RecipientTable.E164} != 0) OR
+        (${RecipientTable.E164} NOT NULL AND ${RecipientTable.E164} != 0)
       )
       """,
       RecipientTable.RecipientType.INDIVIDUAL.id
