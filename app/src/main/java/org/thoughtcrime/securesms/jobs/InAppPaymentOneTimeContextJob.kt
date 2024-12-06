@@ -99,6 +99,7 @@ class InAppPaymentOneTimeContextJob private constructor(
 
   override fun onAdded() {
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    info("Added context job for payment with state ${inAppPayment?.state}")
     if (inAppPayment?.state == InAppPaymentTable.State.CREATED) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
@@ -184,7 +185,12 @@ class InAppPaymentOneTimeContextJob private constructor(
 
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Invalid state: ${inAppPayment.state} but expected PENDING")
-      throw IOException("InAppPayment is in an invalid state")
+
+      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+        warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
+      } else {
+        throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
+      }
     }
 
     if (inAppPayment.data.redemption == null) {
@@ -207,6 +213,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     } ?: InAppPaymentsRepository.generateRequestCredential()
 
     val updatedPayment = inAppPayment.copy(
+      state = InAppPaymentTable.State.PENDING,
       data = inAppPayment.data.copy(
         redemption = inAppPayment.data.redemption.copy(
           stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,

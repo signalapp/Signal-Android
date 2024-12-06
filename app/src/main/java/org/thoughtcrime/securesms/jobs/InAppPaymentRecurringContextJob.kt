@@ -185,7 +185,12 @@ class InAppPaymentRecurringContextJob private constructor(
 
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Unexpected state. Got ${inAppPayment.state} but expected PENDING")
-      throw IOException("InAppPayment in unexpected state.")
+
+      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+        warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
+      } else {
+        throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
+      }
     }
 
     if (!inAppPayment.type.recurring) {
@@ -211,6 +216,7 @@ class InAppPaymentRecurringContextJob private constructor(
     return if (inAppPayment.data.redemption.receiptCredentialRequestContext == null) {
       val requestContext = InAppPaymentsRepository.generateRequestCredential()
       val updatedPayment = inAppPayment.copy(
+        state = InAppPaymentTable.State.PENDING,
         data = inAppPayment.data.copy(
           redemption = inAppPayment.data.redemption.copy(
             stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
