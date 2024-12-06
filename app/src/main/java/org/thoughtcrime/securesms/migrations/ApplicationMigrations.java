@@ -162,9 +162,10 @@ public class ApplicationMigrations {
     static final int WALLPAPER_MIGRATION_CLEANUP   = 118;
     static final int AEP_INTRODUCTION              = 119;
     static final int GROUP_EXTRAS_DB_FIX           = 120;
+    static final int EMOJI_SEARCH_INDEX_CHECK_2    = 121;
   }
 
-  public static final int CURRENT_VERSION = 120;
+  public static final int CURRENT_VERSION = 121;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -741,6 +742,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GROUP_EXTRAS_DB_FIX) {
       jobs.put(Version.GROUP_EXTRAS_DB_FIX, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.EMOJI_SEARCH_INDEX_CHECK_2) {
+      jobs.put(Version.EMOJI_SEARCH_INDEX_CHECK_2, new EmojiSearchIndexCheckMigrationJob());
     }
 
     return jobs;
