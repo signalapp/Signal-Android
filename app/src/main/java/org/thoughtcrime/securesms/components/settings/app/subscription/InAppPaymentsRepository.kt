@@ -154,6 +154,7 @@ object InAppPaymentsRepository {
     return Completable.fromAction {
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       if (inAppPayment.data.error == null) {
+        Log.d(TAG, "Setting error on InAppPayment[$inAppPaymentId]")
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
             notified = false,

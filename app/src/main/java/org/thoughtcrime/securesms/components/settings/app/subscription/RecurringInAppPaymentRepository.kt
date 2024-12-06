@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -247,7 +247,7 @@ object RecurringInAppPaymentRepository {
               }.take(1).map {
                 if (it.data.error != null) {
                   Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
-                  throw DonationError.genericBadgeRedemptionFailure(errorSource)
+                  throw InAppPaymentError(it.data.error)
                 }
                 it
               }.firstOrError()

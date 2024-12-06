@@ -9,6 +9,7 @@ import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
@@ -137,8 +138,8 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
       }.take(1).firstOrError().timeout(10, TimeUnit.SECONDS, Single.error(timeoutError))
     }.map {
       if (it.data.error != null) {
-        Log.d(TAG, "Failure during redemption chain.", true)
-        throw DonationError.genericBadgeRedemptionFailure(DonationErrorSource.MONTHLY)
+        Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
+        throw InAppPaymentError(it.data.error)
       }
       it
     }.ignoreElement()
