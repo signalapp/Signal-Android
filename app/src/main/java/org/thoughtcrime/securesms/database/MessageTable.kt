@@ -1816,7 +1816,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val queries = SqlUtil.buildCollectionQuery(THREAD_ID, threadIds)
     return queries.sumOf {
       readableDatabase.count()
-        .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_COUNT")
+        .from(TABLE_NAME)
         .where(it.where, it.whereArgs)
         .run()
         .readToSingleLong(0L)
