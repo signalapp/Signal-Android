@@ -1012,15 +1012,15 @@
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Egin aurrera transferitu gabe</string>
     <!-- Option in context menu to edit the name of a linked device -->
-    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+    <string name="LinkDeviceFragment__edit_name">Editatu izena</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
     <string name="EditDeviceNameFragment__edit">Edit device name</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <string name="EditDeviceNameFragment__device_name">Gailuaren izena</string>
     <!-- Button to save name change -->
-    <string name="EditDeviceNameFragment__save">Save</string>
+    <string name="EditDeviceNameFragment__save">Gorde</string>
     <!-- Toast message shown when a device name was successfully changed -->
     <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
@@ -1380,7 +1380,7 @@
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Babeskopiaren xehetasunak lortzen…</string>
     <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
+    <string name="RemoteRestoreActivity__skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Nahi dut aipamenak jakinaraztea</string>
@@ -4330,7 +4330,7 @@
     <string name="registration_activity__transfer_account">Transferitu kontua</string>
     <string name="registration_activity__skip">Saltatu</string>
     <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Skip restore</string>
+    <string name="registration_activity__skip_restore">Saltatu leheneratzeko aukera</string>
     <string name="preferences_chats__chat_backups">Txaten babeskopiak</string>
     <string name="preferences_chats__transfer_account">Transferitu kontua</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferitu kontua Android gailu berri batera</string>
@@ -7328,9 +7328,9 @@
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Onartu</string>
     <!-- Button text to allow all participants to join the call -->
-    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <string name="PendingParticipantsBottomSheet__approve_all">Onartu guztiak</string>
     <!-- Button text to deny all participants from joining the call -->
-    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
+    <string name="PendingParticipantsBottomSheet__deny_all">Guztia ukatu</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Pantaila osoko jakinarazpenak aktibatu nahi dituzu?</string>
@@ -7507,7 +7507,7 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Leheneratze-prozesua saltatzen baduzu, babeskopiako multimedia-edukia eta eranskinak geroago deskarga ditzakezu, biltegian tokia egitean.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <string name="BackupAlertBottomSheet__backup_failed">Babeskopiak huts egin du</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
@@ -7548,7 +7548,7 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
-    <string name="BackupStatusRow__learn_more">Learn more</string>
+    <string name="BackupStatusRow__learn_more">Informazio gehiago</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7995,13 +7995,13 @@
     <!-- No Backup to Restore screen subtitle -->
     <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <string name="NoBackupToRestore_step1">Ireki Signal gailu zaharrean</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
     <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
     <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
     <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
+    <string name="NoBackupToRestore_skip_restore">Saltatu leheneratzeko aukera</string>
 
     <!-- EOF -->
 </resources>

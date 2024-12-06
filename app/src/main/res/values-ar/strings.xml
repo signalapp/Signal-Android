@@ -1092,15 +1092,15 @@
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">المواصلة دون النقل</string>
     <!-- Option in context menu to edit the name of a linked device -->
-    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+    <string name="LinkDeviceFragment__edit_name">تعديل الاسم</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
     <string name="EditDeviceNameFragment__edit">Edit device name</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <string name="EditDeviceNameFragment__device_name">‫اسم الجهاز</string>
     <!-- Button to save name change -->
-    <string name="EditDeviceNameFragment__save">Save</string>
+    <string name="EditDeviceNameFragment__save">حفظ</string>
     <!-- Toast message shown when a device name was successfully changed -->
     <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
@@ -1532,7 +1532,7 @@
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">جارٍ إعداد تفاصيل النسخة الاحتياطية…</string>
     <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
+    <string name="RemoteRestoreActivity__skip_restore">تخطّى الاسترجاع</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
@@ -4774,7 +4774,7 @@
     <string name="registration_activity__transfer_account">نقل الحساب</string>
     <string name="registration_activity__skip">تخطّي</string>
     <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Skip restore</string>
+    <string name="registration_activity__skip_restore">تخطّى الاسترجاع</string>
     <string name="preferences_chats__chat_backups">النسخ الاحتياطية للدردشات</string>
     <string name="preferences_chats__transfer_account">نقل الحساب</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">نقل الحساب إلى جهاز أندرويد جديد</string>
@@ -6640,7 +6640,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">لمرّة واحدة</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">نيابة عن صديق</string>
+    <string name="DonationReceiptListFragment__for_a_friend">نيابةً عن صديق</string>
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__donation_for_a_friend">التبرُّع لصديق</string>
     <!-- Donation receipts donation type heading -->
@@ -6764,7 +6764,7 @@
     <!-- Displayed when viewing a post that has failed to send to some users -->
     <string name="StoryViewerPageFragment__partially_sent">تمَّ الإرسال جزئيًا. انقر للتفاصيل.</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">فشل الإرسال. يُرجى النقر لإعادة المحاولة</string>
+    <string name="StoryViewerPageFragment__send_failed">فشل الإرسال. انقر لإعادة المحاولة.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">الرد على المجموعة</string>
     <!-- Displayed when a story has no views -->
@@ -6784,7 +6784,7 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">لا ردود حاليًا</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">لا تستطيع الردّ على هذه القصة لأنك لم تعد عضواً في هذه المجموعة.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">لا تستطيع الردّ على هذه القصة لأنك لم تعد عضوًا في هذه المجموعة.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__you_reacted_to_the_story">تفاعلتَ مع القصة</string>
     <!-- Displayed for other users that reacted to a story when viewing replies -->
@@ -6814,7 +6814,7 @@
         <item quantity="other">%1$d مشاهدة</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
-    <string name="MyStorySettingsFragment__view">إظهار</string>
+    <string name="MyStorySettingsFragment__view">عرض</string>
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">من يُمكنه مُشاهدة هذه القصة</string>
     <!-- Clickable option for selecting people to hide your story from -->
@@ -6822,7 +6822,7 @@
     <string name="MyStorySettingsFragment__all_signal_connections">جميع جهات اتصال سيجنال</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_except">الكل إلا…</string>
+    <string name="MyStorySettingsFragment__all_except">الكل إلّا…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">إخفاء قصتك عن أناس مُحدَّدين</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
@@ -6850,29 +6850,29 @@
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اِختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
     <!-- Section header for options related to replies and reactions -->
-    <string name="MyStorySettingsFragment__replies_amp_reactions">الإجابات وردود الفعل</string>
+    <string name="MyStorySettingsFragment__replies_amp_reactions">الردود والتفاعلات</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
-    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">السماح بالإجابات وردود الفعل</string>
+    <string name="MyStorySettingsFragment__allow_replies_amp_reactions">السماح بالردود والتفاعلات</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
     <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">تمكين الأفراد الذين يُمكنهم مشاهدة قصتك من التفاعل والرد عليها</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
-    <string name="SignalConnectionsBottomSheet___signal_connections">جهة اتصال سيجنال</string>
+    <string name="SignalConnectionsBottomSheet___signal_connections">جهات اتصال سيجنال</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
     <string name="SignalConnectionsBottomSheet__signal_connections_are_people">جهات اتصال سيجنال هم أشخاص اخترت أن تثق بهم سواءً عبر:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء دردشة</string>
     <!-- Signal connections sheet bullet point 2 -->
-    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">قبول طلب التراسل معهم</string>
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">قبول طلب التراسل</string>
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">وجودهم في جهات اتصال نظامك</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"يُمكن لِجهات اتصالك رؤية اسمك وصورتك، كما يمكنهم الاطلاع على منشوراتك في \"قصتي\" إلا إذا أخفيتها عنهم."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"يُمكن لِجهات اتصالك رؤية اسمك وصورتك، كما يمكنهم الاطِّلاع على منشوراتك في \"قصتي\" إلّا إذا أخفيتها عنهم."</string>
     <!-- Clickable option to add a viewer to a custom story -->
-    <string name="PrivateStorySettingsFragment__add_viewer">إضافة مُشاهد</string>
+    <string name="PrivateStorySettingsFragment__add_viewer">إضافة مُشاهِد</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">إزالة القصة المُخصصة</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">حذف القصة المُخصَّصة</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__remove_s">إزالة %1$s؟</string>
+    <string name="PrivateStorySettingsFragment__remove_s">هل ترغبُ بإزالة %1$s؟</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__this_person_will_no_longer">لن يتمكن هذا الشخص من رؤية قصتك بعد الآن.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
@@ -6880,15 +6880,15 @@
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">تحرير اسم القصة</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">تعديل اسم القصة</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">اسم القصة</string>
     <!-- Save button label when editing a custom story name -->
     <!-- Displayed in text post creator before user enters text -->
-    <string name="TextStoryPostCreationFragment__tap_to_add_text">يُرجى اللمس لإضافة نص ما</string>
+    <string name="TextStoryPostCreationFragment__tap_to_add_text">انقر لإضافة نص</string>
     <!-- Button label for changing font when creating a text post -->
     <!-- Displayed in text post creator when prompting user to enter text -->
-    <string name="TextStoryPostTextEntryFragment__add_text">أضف نصاً</string>
+    <string name="TextStoryPostTextEntryFragment__add_text">أضِف نصًا</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
     <string name="TextStoryPostTextEntryFragment__done_adding_text">انتهت إضافة النص</string>
     <!-- Text label for media selection toggle -->
@@ -6896,30 +6896,30 @@
     <!-- Camera label for media selection toggle -->
     <string name="MediaSelectionActivity__camera">الكاميرا</string>
     <!-- Hint for entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">يُرجى كتابة أو لصق عنوان الصفحة</string>
+    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">اكتب أو الصق عنوان URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">مشاركة رابط مع مشاهدي قصتك</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">مشاركة رابط مع مُشاهِدي قصتك</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">البحث</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">يُرجى إدخال رابط صحيح.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
-    <string name="ChangeMyStoryMembershipFragment__all_except">الكل إلا…</string>
+    <string name="ChangeMyStoryMembershipFragment__all_except">الكل إلّا…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
     <string name="ChangeMyStoryMembershipFragment__only_share_with">مشاركة فقط مع…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">تمّ</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">حذف قصة المجموعة؟</string>
+    <string name="StoryDialogs__remove_group_story">هل ترغبُ بإزالة قصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
-    <string name="StoryDialogs__s_will_be_removed">سيتم حذف \"%1$s\"</string>
+    <string name="StoryDialogs__s_will_be_removed">سيتمُّ حذف \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">إزالة</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">حذف القصة المخصصة؟</string>
+    <string name="StoryDialogs__delete_custom_story">هل ترغبُ بحذف القصة المُخصَّصة؟</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">سيتم حذف \"%1$s\" والتحديثات التي تمت مشاركتها في هذه القصة.</string>
+    <string name="StoryDialogs__s_and_updates_shared">سيتمُّ حذف \"%1$s\" والتحديثات التي تمَّت مشاركتها في هذه القصة.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">حذف</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -6929,9 +6929,9 @@
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
     <!-- Error message shown when a failure occurs during story send -->
-    <string name="StoryDialogs__story_could_not_be_sent">لقد تعذر إرسال القصة. يُرجى التحقق من اتصالك ثم المحاولة مرة أخرى.</string>
+    <string name="StoryDialogs__story_could_not_be_sent">تعذَّر إرسال القصة. يُرجى التحقُّق من اتصالك ثم المحاولة مرّة أخرى.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
-    <string name="StoryDialogs__send">أرسلْ</string>
+    <string name="StoryDialogs__send">إرسال</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">إيقاف وحذف</string>
     <!-- Privacy Settings toggle title for stories -->
@@ -6962,15 +6962,15 @@
     <!-- Name story screen error when save attempted with no label -->
     <string name="CreateStoryWithViewersFragment__this_field_is_required">هذا الحقل مطلوب.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
-    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">توجد قصة بهذا الاسم مسبقا.</string>
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">توجد قصة بهذا الاسم مسبقًا.</string>
     <!-- Text for select all action when editing recipients for a story -->
-    <string name="BaseStoryRecipientSelectionFragment__select_all">اختيار الجميع</string>
+    <string name="BaseStoryRecipientSelectionFragment__select_all">اختيار الكُل</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">يُرجى اختيار صنف قصتك</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">اختر نوع قصتك</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_custom_story">قصة مُخصصة جديدة</string>
     <!-- Choose story type bottom sheet new story row summary -->
-    <string name="ChooseStoryTypeBottomSheet__visible_only_to">ظاهرة فقط لأفراد معينين</string>
+    <string name="ChooseStoryTypeBottomSheet__visible_only_to">ظاهرة فقط لأفراد مُعيَّنين</string>
     <!-- Choose story type bottom sheet group story title -->
     <string name="ChooseStoryTypeBottomSheet__group_story">قصة المجموعة</string>
     <!-- Choose story type bottom sheet group story summary -->
@@ -6978,7 +6978,7 @@
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">اختيار المجموعات</string>
     <!-- Displayed when copying group story reply text to clipboard -->
-    <string name="StoryGroupReplyFragment__copied_to_clipboard">تم النسخ إلى الحافظة</string>
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
     <string name="StoryViewerPageFragment__see_more">الاطلاع على المزيد</string>
     <!-- Displayed in toast after sending a direct reply -->
@@ -6990,11 +6990,11 @@
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">لا يوجد اتصال بشبكة الإنترنت</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
-    <string name="StorySlateView__couldnt_load_content">لقد تعذر تحميل المحتوى</string>
+    <string name="StorySlateView__couldnt_load_content">تعذَّر تحميل المحتوى</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">قصة مُرسَلة</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">لقد فشل إرسال القصة</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">فشل إرسال القصة</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">عرض القصة</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
@@ -7006,7 +7006,7 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">لقد تفاعلت مع قصة %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">تفاعلتَ مع قصة %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
     <string name="ConversationItem__reacted_to_your_story">تفاعَلَ مع قصتك</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
@@ -7014,20 +7014,20 @@
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
-    <string name="ExpandModel__view_more">رؤية المزيد</string>
+    <string name="ExpandModel__view_more">عرض المزيد</string>
     <string name="StoriesLinkPopup__visit_link">زيارة الرابط</string>
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
         <item quantity="zero">%1$s · لمدة %2$d أيام</item>
-        <item quantity="one">%1$s · لمدة %2$d أيام</item>
-        <item quantity="two">%1$s · لمدة %2$d أيام</item>
+        <item quantity="one">%1$s · لمدة %2$d يوم</item>
+        <item quantity="two">%1$s · لمدة %2$d يومين</item>
         <item quantity="few">%1$s · لمدة %2$d أيام</item>
-        <item quantity="many">%1$s · لمدة %2$d يوم</item>
-        <item quantity="other">%1$s · لمدة %2$d أيام</item>
+        <item quantity="many">%1$s · لمدة %2$d يومًا</item>
+        <item quantity="other">%1$s · لمدة %2$d أيامٍ</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">تبرّع لصديق</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">تبرَّع نيابةً عن صديق</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="zero">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لِعرضها على حسابهم الشخصي لـ %1$d يوم</item>
@@ -7040,43 +7040,43 @@
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">التالي</string>
     <!-- Title text on choose recipient page for badge gifting -->
-    <string name="GiftFlowRecipientSelectionFragment__choose_recipient">اِختر مُستلم</string>
+    <string name="GiftFlowRecipientSelectionFragment__choose_recipient">اختر مُستلِم</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">تأكيد التبرّع</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">تأكيد التبرُّع</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">إرسال إلى</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">سيتم إخطار المُستلم بالتبرّع في رسالة مباشرة منك إليه. أضف رسالتك الخاصة أدناه.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">سيتمُّ إخطار المُستلم بالتبرُّع في رسالة مباشرة منك إليه. أضِف رسالتك الخاصة أدناه.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">التبرع لمرة واحدة</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">التبرُّع لمرّة واحدة</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">إضافة نص</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">جارٍ التحقّق من المستلم …</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">جارٍ التحقّق من المُستلِم …</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">قدّم %1$s تبرّعًا لك</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">قدَّم %1$s تبرُّعًا لك</string>
     <!-- Title for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">شكراً لدعمك!</string>
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">شكرًا لدعمك!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">قدّم %1$s تبرّعًا لسيجنال نيابة عنك! أظهر دعمك لسيجنال على حسابك الشخصي.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">قدَّم %1$s تبرّعًا لسيجنال نيابةً عنك! أظهِر دعمك لسيجنال على حسابك الشخصي.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">قدّمت تبرّعًا لسيجنال نيابة عن %1$s. سَيتم منحهم خيار إظهار دعمهم على حسابهم الشخصي.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">قدّمتَ تبرُّعًا لسيجنال نيابة عن %1$s. سَيتم منحهم خيار إظهار دعمهم على حسابهم الشخصي.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
-    <string name="ViewReceivedGiftSheet__redeem">قبول الهدية</string>
+    <string name="ViewReceivedGiftSheet__redeem">استخدام الشارة</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ليس الآن</string>
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">جارٍ استرداد شارة…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">قدّمت تبرّعًا لسيجنال نيابة عن %1$s. سَيتم منحهم خيار إظهار دعمهم على حسابهم الشخصي.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">قدّمتَ تبرُّعًا لسيجنال نيابةً عن %1$s. سَيتم منحهم خيار إظهار دعمهم على حسابهم الشخصي.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">انتهت صلاحية شارتك</string>
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">انتهت صلاحية شارتك، ولم تعد مرئية للآخرين على حسابك الشخصي.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">للاستمرار في استخدام تكنولوجيا تمّ إنشاؤها من أجلك، يُرجى النظر في أن تصبح داعماً بشكل شهري.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">للاستمرار في دعم التكنولوجيا التي تمَّ إنشاؤها من أجلك، يُرجى التفكير في أن تصبح داعمًا شهريًا.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">قدّم تبرعًا شهريًا</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">قدِّم تبرُّعًا شهريًا</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ليس الآن</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -7092,12 +7092,12 @@
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="zero">قصة جماعية · %1$d مشاهد</item>
-        <item quantity="one">قصة جماعية · مشاهد واحد</item>
-        <item quantity="two">قصة جماعية · %1$d مشاهدين </item>
-        <item quantity="few">قصة جماعية · %1$d مشاهدين</item>
-        <item quantity="many">قصة جماعية · %1$d مشاهدًا</item>
-        <item quantity="other">قصة جماعية · %1$d مشاهد</item>
+        <item quantity="zero">قصة المجموعة· %1$d مشاهد</item>
+        <item quantity="one">قصة المجموعة · مشاهد واحد</item>
+        <item quantity="two">قصة المجموعة· %1$d مشاهدين </item>
+        <item quantity="few">قصة المجموعة· %1$d مشاهدين</item>
+        <item quantity="many">قصة المجموعة· %1$d مشاهدًا</item>
+        <item quantity="other">قصة المجموعة· %1$d مشاهدٍ</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -7114,8 +7114,8 @@
         <item quantity="one">%1$s · %2$d مشاهد</item>
         <item quantity="two">%1$s · %2$d مشاهدين</item>
         <item quantity="few">%1$s · %2$d مشاهدين</item>
-        <item quantity="many">%1$s · %2$d مشاهدين</item>
-        <item quantity="other">%1$s · %2$d مشاهدين/مشاهد</item>
+        <item quantity="many">%1$s · %2$d مشاهدًا</item>
+        <item quantity="other">%1$s · %2$d مشاهدٍ</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
@@ -7127,21 +7127,21 @@
         <item quantity="other">%1$s · %2$d مُستبعد</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
-    <string name="ContactSearchItems__tap_to_choose_your_viewers">انقر لرؤية مشاهديك</string>
+    <string name="ContactSearchItems__tap_to_choose_your_viewers">انقر لاختيار مشاهديك</string>
     <!-- Label for context menu item to open story settings -->
-    <string name="ContactSearchItems__story_settings">إعدادات القصص</string>
+    <string name="ContactSearchItems__story_settings">إعدادات القصة</string>
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">إزالة القصة</string>
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">حذف القصة</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">حذف قصة المجموعة؟</string>
+    <string name="ContactSearchMediator__remove_group_story">هل ترغبُ بحذف قصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة القِصص من هذه المجموعة.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">إزالة</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_story">حذف القصة؟</string>
+    <string name="ContactSearchMediator__delete_story">هل ترغبُ بحذف القصة؟</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="ContactSearchMediator__delete_the_custom">احذف القصة المخصصة \"%1$s\"؟</string>
     <!-- Dialog action item for deleting a custom story -->
@@ -7159,47 +7159,47 @@
     <plurals name="Gifts__d_hours_remaining">
         <item quantity="zero">%1$d ساعات مُتبقيّة</item>
         <item quantity="one">%1$d ساعة مُتبقيّة</item>
-        <item quantity="two">%1$d ساعات مُتبقيّة</item>
-        <item quantity="few">%1$d ساعات مُتبقيّة</item>
-        <item quantity="many">%1$d ساعات مُتبقيّة</item>
-        <item quantity="other">%1$d ساعات مُتبقيّة</item>
+        <item quantity="two">%1$d ساعتان مُتبقيّتان</item>
+        <item quantity="few">%1$d ساعاتٍ مُتبقيّة</item>
+        <item quantity="many">%1$d ساعةً مُتبقيّة</item>
+        <item quantity="other">%1$d ساعةٍ مُتبقيّة</item>
     </plurals>
     <!-- Gift expiry minutes remaining -->
     <plurals name="Gifts__d_minutes_remaining">
         <item quantity="zero">%1$d دقائق مُتبقيّة</item>
         <item quantity="one">%1$d دقيقة مُتبقيّة</item>
-        <item quantity="two">%1$d دقائق مُتبقيّة</item>
+        <item quantity="two">%1$d دقيقتان مُتبقيّتان</item>
         <item quantity="few">%1$d دقائق مُتبقيّة</item>
-        <item quantity="many">%1$d دقائق مُتبقيّة</item>
-        <item quantity="other">%1$d دقائق مُتبقيّة</item>
+        <item quantity="many">%1$d دقيقةً مُتبقيّة</item>
+        <item quantity="other">%1$d دقيقةٍ مُتبقيّة</item>
     </plurals>
     <!-- Donation for a friend expiry expired -->
     <string name="Gifts__expired">انتهت الصلاحية</string>
 
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
-    <string name="StoryFirstTimeNavigationView__tap_to_advance">المس للتقدّم</string>
+    <string name="StoryFirstTimeNavigationView__tap_to_advance">انقر للتقدُّم</string>
     <!-- Label indicating swipe direction to skip current story -->
-    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">اسحب للأعلى للتجاهل</string>
+    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">اسحب للأعلى للتخطي</string>
     <!-- Label indicating swipe direction to exit story viewer -->
     <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">اسحب لليمين للمُغادرة</string>
     <!-- Button label to confirm understanding of story navigation -->
-    <string name="StoryFirstTimeNagivationView__got_it">عُلم</string>
+    <string name="StoryFirstTimeNagivationView__got_it">تم</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">فتح قائمة السياق</string>
     <!-- Sub-line when a user is verified. -->
-    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s . تم التحقق منه</string>
+    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s . تمَّ التحقُّق منه</string>
     <!-- Sub-line when a user is verified. -->
-    <string name="SafetyNumberRecipientRowItem__verified">متحقق منه</string>
+    <string name="SafetyNumberRecipientRowItem__verified">مُتحقَّق منه</string>
     <!-- Title of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">تغييرات رقم الأمان</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">التغييرات في رقم الأمان</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">قد يكون هؤلاء الأشخاص أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. انقر على مُستلم ما للتأكد من رقم الأمان الجديد. هذا الإجراء اختياري.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">قد يكون هؤلاء الأشخاص أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. انقر على مُستلِم ما لتأكيد رقم الأمان الجديد. هذا الإجراء اختياري.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">تحقق من رقم الأمان</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">التحقُّق من رقم الأمان</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">تم التحقق من رقم الأمان</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">تمَّ التحقُّق من رقم الأمان</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمت مراجعة كل جهات الاتصال، انقر إرسال للمواصلة.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">تمَّت مراجعة كل جهات الاتصال. انقر إرسال للمتابعة.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
         <item quantity="zero">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يُمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
@@ -7210,9 +7210,9 @@
         <item quantity="other">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
-    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقق من رقم اﻷمان</string>
+    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقَّق من رقم اﻷمان</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">الحذف من القصة</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">حذف من القصة</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">أرسل على كل حال</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -7964,9 +7964,9 @@
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">الموافقة</string>
     <!-- Button text to allow all participants to join the call -->
-    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <string name="PendingParticipantsBottomSheet__approve_all">موافقة على الكل</string>
     <!-- Button text to deny all participants from joining the call -->
-    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
+    <string name="PendingParticipantsBottomSheet__deny_all">رفض الكل</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">تفعيل إشعارات ملء الشاشة؟</string>
@@ -8151,7 +8151,7 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق عند توفُّر مساحة التخزين.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <string name="BackupAlertBottomSheet__backup_failed">فشل النسخ الاحتياطي</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
@@ -8192,7 +8192,7 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
-    <string name="BackupStatusRow__learn_more">Learn more</string>
+    <string name="BackupStatusRow__learn_more">اعرف المزيد</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8663,13 +8663,13 @@
     <!-- No Backup to Restore screen subtitle -->
     <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <string name="NoBackupToRestore_step1">افتح سيجنال على جهازك القديم</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
     <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
     <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
     <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
+    <string name="NoBackupToRestore_skip_restore">تخطّى الاسترجاع</string>
 
     <!-- EOF -->
 </resources>

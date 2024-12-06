@@ -1052,15 +1052,15 @@
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Продовжити без перенесення</string>
     <!-- Option in context menu to edit the name of a linked device -->
-    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+    <string name="LinkDeviceFragment__edit_name">Редагувати ім’я</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
     <string name="EditDeviceNameFragment__edit">Edit device name</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <string name="EditDeviceNameFragment__device_name">Назва пристрою</string>
     <!-- Button to save name change -->
-    <string name="EditDeviceNameFragment__save">Save</string>
+    <string name="EditDeviceNameFragment__save">Зберегти</string>
     <!-- Toast message shown when a device name was successfully changed -->
     <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
@@ -1456,7 +1456,7 @@
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Отримання інформації про резервну копію…</string>
     <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
+    <string name="RemoteRestoreActivity__skip_restore">Не відновлювати</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати про згадки</string>
@@ -3312,7 +3312,7 @@
     <string name="conversation_activity__compose_description">Написання повідомлення</string>
     <string name="conversation_activity__emoji_toggle_description">Відрити клавіатуру емоджі</string>
     <string name="conversation_activity__attachment_thumbnail">Мініатюра вкладення</string>
-    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Перемикач швидкого прикріплення з камери</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Відкрити камеру й прикріпити фото або відео</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати голосове повідомлення</string>
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
     <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Утримувати кнопку запису голосового повідомлення</string>
@@ -4552,7 +4552,7 @@
     <string name="registration_activity__transfer_account">Перенести акаунт</string>
     <string name="registration_activity__skip">Пропустити</string>
     <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Skip restore</string>
+    <string name="registration_activity__skip_restore">Не відновлювати</string>
     <string name="preferences_chats__chat_backups">Резервні копії чатів</string>
     <string name="preferences_chats__transfer_account">Перенести акаунт</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенесіть акаунт на новий пристрій з ОС Android</string>
@@ -5099,7 +5099,7 @@
     <string name="payment_info_card_your_recovery_phrase_gives_you">Кодова фраза — це ще один спосіб відновлення платіжного профілю.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Збережіть свою фразу</string>
-    <string name="payment_info_card_update_your_pin">Оновить PIN-код</string>
+    <string name="payment_info_card_update_your_pin">Оновіть PIN-код</string>
     <string name="payment_info_card_with_a_high_balance">Якщо у вас велика сума на рахунку, рекомендуємо створити буквено-цифровий PIN-код для надійнішого захисту акаунту.</string>
     <string name="payment_info_card_update_pin">Оновити PIN-код</string>
 
@@ -5138,7 +5138,7 @@
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша кодова фраза — це унікальна фраза з %1$d слів. Вона необхідна для відновлення балансу.</string>
     <string name="PaymentsRecoveryStartFragment__start">Почати</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Ввести вручну</string>
-    <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Вставити з буферу обміну</string>
+    <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Вставити з буфера обміну</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">Продовжити без збереження?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
@@ -5163,7 +5163,7 @@
     <string name="PaymentsRecoveryPhraseFragment__edit">Редагувати</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Ваша кодова фраза</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Запишіть ці %1$d слова в такому ж порядку. Збережіть цей список слів у надійному місці.</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Перевірте, чи ви правильно ввели кодову фразу.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Перевірте, чи правильно ви ввели кодову фразу.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Не робіть знімків екрана й не пересилайте електронною поштою.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Платіжний профіль відновлено.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Неправильна кодова фраза</string>
@@ -7646,9 +7646,9 @@
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Прийняти</string>
     <!-- Button text to allow all participants to join the call -->
-    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <string name="PendingParticipantsBottomSheet__approve_all">Прийняти всі</string>
     <!-- Button text to deny all participants from joining the call -->
-    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
+    <string name="PendingParticipantsBottomSheet__deny_all">Відхилити всі</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Увімкнути повноекранні сповіщення?</string>
@@ -7829,7 +7829,7 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Якщо не відновити дані з резервної копії зараз, решту медіафайлів і вкладень можна буде завантажити пізніше, коли на пристрої буде вільне місце.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <string name="BackupAlertBottomSheet__backup_failed">Не вдалося створити резервну копію</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
@@ -7870,7 +7870,7 @@
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
-    <string name="BackupStatusRow__learn_more">Learn more</string>
+    <string name="BackupStatusRow__learn_more">Докладніше</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8329,13 +8329,13 @@
     <!-- No Backup to Restore screen subtitle -->
     <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <string name="NoBackupToRestore_step1">Відкрийте Signal на старому телефоні</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
     <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
     <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
     <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
+    <string name="NoBackupToRestore_skip_restore">Не відновлювати</string>
 
     <!-- EOF -->
 </resources>

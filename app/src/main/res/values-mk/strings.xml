@@ -1012,19 +1012,19 @@
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Продолжете без пренос</string>
     <!-- Option in context menu to edit the name of a linked device -->
-    <string name="LinkDeviceFragment__edit_name">Edit name</string>
+    <string name="LinkDeviceFragment__edit_name">Сменете го името</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">Изменете го името на уредот</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">Device name</string>
+    <string name="EditDeviceNameFragment__device_name">Име на уредот</string>
     <!-- Button to save name change -->
-    <string name="EditDeviceNameFragment__save">Save</string>
+    <string name="EditDeviceNameFragment__save">Зачувај</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">Името на уредот е ажурирано</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">Не може да се смени името на уредот. Обидете се повторно подоцна.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1052,11 +1052,11 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Пренесете ја историјата на пораки</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Пренесете ги вашите текстуални пораки и неодамнешни медиумски датотеки на вашиот поврзан уред</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Не префрлајте</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">Старите пораки и медиумските датотеки нема да се пренесат на вашиот поврзан уред</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Да се прекине поврзувањето со „%1$s“?</string>
@@ -1376,11 +1376,11 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">Вашата последна резервна копија беше направена на %1$s во %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Вашата последна резервна копија беше направена на %1$s во %2$s. Големината на резервна копија е %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Се преземаат деталите за резервната копија…</string>
     <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
+    <string name="RemoteRestoreActivity__skip_restore">Прескокни враќање</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести кога некој ќе ме спомне</string>
@@ -2481,7 +2481,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Направивте премногу обиди за регистрација на овој број. Ве молиме обидете се повторно за %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Не може да се поврзе со услугата. Ве молиме проверете ја Вашата интернет конекција и обидете се повторно.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Signal не можеше да испрати SMS код поради проблеми со давателот на услуга. Обидете се повторно за неколку часа.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Не можевме да испратиме код за потврда преку SMS. Наместо тоа, обидете се да го добиете кодот преку гласовен повик.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -4330,7 +4330,7 @@
     <string name="registration_activity__transfer_account">Префрли сметка</string>
     <string name="registration_activity__skip">Прескокни</string>
     <!-- Text label button to skip restoring -->
-    <string name="registration_activity__skip_restore">Skip restore</string>
+    <string name="registration_activity__skip_restore">Прескокни враќање</string>
     <string name="preferences_chats__chat_backups">Резервни копии на разговори</string>
     <string name="preferences_chats__transfer_account">Префрли сметка</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Префрли сметка на друг Android уред</string>
@@ -7328,9 +7328,9 @@
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Дозволи</string>
     <!-- Button text to allow all participants to join the call -->
-    <string name="PendingParticipantsBottomSheet__approve_all">Approve all</string>
+    <string name="PendingParticipantsBottomSheet__approve_all">Одобри ги сите</string>
     <!-- Button text to deny all participants from joining the call -->
-    <string name="PendingParticipantsBottomSheet__deny_all">Deny all</string>
+    <string name="PendingParticipantsBottomSheet__deny_all">Одбиј ги сите</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Сакате да се вклучат известувања на цел екран?</string>
@@ -7507,11 +7507,11 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Ако го прескокнете враќањето, преостанатите медиумски датотеки и прилози во вашата резервна копија ќе може да се преземат подоцна кога ќе се ослободи простор за складирање.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
+    <string name="BackupAlertBottomSheet__backup_failed">Создавањето на резервна копија не успеа</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">Настана грешка и не можеше да се направи вашата резервна копија. Проверете дали ја користите последната верзија на Signal и обидете се повторно. Доколку проблемот продолжи, контактирајте со тимот за корисничка поддршка.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">Проверете дали има нова верзија</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7544,11 +7544,11 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Прескокнете го преземањето</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">Не можеше да се заврши вашата последна резервна копија. Проверете дали вашиот телефон e поврзан на Wi-Fi и допрете на „Направи резервна копија сега“ за да се обидете повторно.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">Не можеше да се заврши вашата последна резервна копија. Проверете дали ја користите последната верзија на Signal и обидете се повторно.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
-    <string name="BackupStatusRow__learn_more">Learn more</string>
+    <string name="BackupStatusRow__learn_more">Дознајте повеќе</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7753,7 +7753,7 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Дознајте повеќе</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Се обработува резервната копија…</string>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">Имате %1$s податоци од резервни копии кои не се на овој уред. Вашата резервна копија ќе биде избришана кога вашата претплата ќе заврши за %2$d ден.</item>
@@ -7775,7 +7775,7 @@
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Се јави мрежна грешка. Проверете ја интернет врската и обидете се повторно.</string>
     <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Пораките се поставуваат…</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7991,17 +7991,17 @@
     <string name="RestoreCompleteBottomSheet_button">Во ред</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">Нема податоци од резервна копија што може да се вратат</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">Бидејќи се префрлате од iPhone на Android, единствен начин да ги пренесете вашите пораки и медиумски датотеки е да овозможите Signal резервни копии на вашиот стар уред.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Open Signal on your old device</string>
+    <string name="NoBackupToRestore_step1">Отворете го Signal на вашиот стар уред</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">Допрете на Поставувања &gt; Резервни копии</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">Овозможете резервни копии и почекајте да се направи вашата резервна копија</string>
     <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">Skip restore</string>
+    <string name="NoBackupToRestore_skip_restore">Прескокни враќање</string>
 
     <!-- EOF -->
 </resources>
