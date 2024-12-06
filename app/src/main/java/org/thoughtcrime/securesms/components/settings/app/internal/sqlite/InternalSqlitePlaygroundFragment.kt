@@ -200,7 +200,15 @@ private fun QueryResult.toCopyString(): String {
 }
 
 private fun List<Any?>.toCsv(): String {
-  return this.joinToString(separator = ", ", transform = { it.toDisplayString() })
+  return this.joinToString(
+    separator = ",",
+    transform = { input ->
+      input
+        .toDisplayString()
+        .replace("\"", "\"\"")
+        .let { if (it.isNotEmpty()) "\"$it\"" else "" }
+    }
+  )
 }
 
 @SignalPreview
