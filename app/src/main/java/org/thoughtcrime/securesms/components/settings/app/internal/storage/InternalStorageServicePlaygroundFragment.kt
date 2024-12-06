@@ -54,11 +54,11 @@ import org.thoughtcrime.securesms.jobs.StorageForcePushJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.storage.RecordIkm
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
-import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 
@@ -171,12 +171,12 @@ fun ToolScreen(
       SignalStore.storageService.manifest = SignalStorageManifest.EMPTY
     }
 
-    ActionRow("Set initial storage key", "Initializes it to something random. Will cause a decryption failure.") {
-      SignalStore.storageService.storageKeyForInitialDataRestore = StorageKey(Util.getSecretBytes(32))
+    ActionRow("Set initial master key", "Initializes it to something random. Will cause a decryption failure.") {
+      SignalStore.svr.masterKeyForInitialDataRestore = MasterKey(Util.getSecretBytes(32))
     }
 
-    ActionRow("Clear initial storage key", "Sets it to null.") {
-      SignalStore.storageService.storageKeyForInitialDataRestore = null
+    ActionRow("Clear initial master key", "Sets it to null.") {
+      SignalStore.svr.masterKeyForInitialDataRestore = null
     }
 
     Rows.ToggleRow(

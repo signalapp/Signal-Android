@@ -168,7 +168,7 @@ object SvrRepository {
               SignalStore.registration.localRegistrationMetadata = metadata.copy(masterKey = response.masterKey.serialize().toByteString(), pin = userPin)
             }
 
-            SignalStore.storageService.storageKeyForInitialDataRestore = response.masterKey.deriveStorageServiceKey()
+            SignalStore.svr.masterKeyForInitialDataRestore = response.masterKey
             SignalStore.svr.setPin(userPin)
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
@@ -321,14 +321,14 @@ object SvrRepository {
           Log.i(TAG, "[onRegistrationComplete] ReRegistration Skip SMS", true)
         }
 
-        SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
+        SignalStore.svr.masterKeyForInitialDataRestore = masterKey
         SignalStore.svr.setPin(userPin)
         SignalStore.pin.resetPinReminders()
 
         AppDependencies.jobManager.add(ResetSvrGuessCountJob())
       } else if (masterKey != null) {
         Log.i(TAG, "[onRegistrationComplete] ReRegistered with key without pin")
-        SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
+        SignalStore.svr.masterKeyForInitialDataRestore = masterKey
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
         SignalStore.svr.clearRegistrationLockAndPin()

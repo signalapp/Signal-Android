@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -71,8 +72,11 @@ import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.minutes
@@ -621,6 +625,35 @@ class RegistrationViewModel : ViewModel() {
   fun verifyReRegisterWithPin(context: Context, pin: String, wrongPinHandler: () -> Unit) {
     setInProgress(true)
 
+    // remote recovery password
+    val svr2Credentials = store.value.svr2AuthCredentials ?: SignalStore.svr.svr2AuthTokens.toSvrCredentials()
+    val svr3Credentials = store.value.svr3AuthCredentials ?: SignalStore.svr.svr3AuthTokens.toSvrCredentials()?.let { Svr3Credentials(it.username(), it.password(), null) }
+
+    if (svr2Credentials != null || svr3Credentials != null) {
+      Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR (svr2: ${svr2Credentials != null}, svr3: ${svr3Credentials != null}).")
+      viewModelScope.launch(context = coroutineExceptionHandler) {
+        try {
+          val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, svr2Credentials, svr3Credentials)
+          SignalStore.svr.masterKeyForInitialDataRestore = masterKey
+          SignalStore.svr.setPin(pin)
+
+          setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
+          updateSvrTriesRemaining(10)
+          verifyReRegisterInternal(context, pin, masterKey)
+        } catch (rejectedPin: SvrWrongPinException) {
+          Log.w(TAG, "Submitted PIN was rejected by SVR.", rejectedPin)
+          updateSvrTriesRemaining(rejectedPin.triesRemaining)
+          wrongPinHandler()
+        } catch (noData: SvrNoDataException) {
+          Log.w(TAG, "SVR has no data for these credentials. Aborting skip SMS flow.", noData)
+          updateSvrTriesRemaining(0)
+          setUserSkippedReRegisterFlow(true)
+        }
+        setInProgress(false)
+      }
+      return
+    }
+
     // Local recovery password
     if (RegistrationRepository.canUseLocalRecoveryPassword()) {
       if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
@@ -634,32 +667,6 @@ class RegistrationViewModel : ViewModel() {
       } else {
         Log.d(TAG, "Entered PIN did not match local PIN hash.")
         wrongPinHandler()
-        setInProgress(false)
-      }
-      return
-    }
-
-    // remote recovery password
-    val svr2Credentials = store.value.svr2AuthCredentials
-    val svr3Credentials = store.value.svr3AuthCredentials
-
-    if (svr2Credentials != null || svr3Credentials != null) {
-      Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR (svr2: ${svr2Credentials != null}, svr3: ${svr3Credentials != null}).")
-      viewModelScope.launch(context = coroutineExceptionHandler) {
-        try {
-          val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, svr2Credentials, svr3Credentials)
-          setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
-          updateSvrTriesRemaining(10)
-          verifyReRegisterInternal(context, pin, masterKey)
-        } catch (rejectedPin: SvrWrongPinException) {
-          Log.w(TAG, "Submitted PIN was rejected by SVR.", rejectedPin)
-          updateSvrTriesRemaining(rejectedPin.triesRemaining)
-          wrongPinHandler()
-        } catch (noData: SvrNoDataException) {
-          Log.w(TAG, "SVR has no data for these credentials. Aborting skip SMS flow.", noData)
-          updateSvrTriesRemaining(0)
-          setUserSkippedReRegisterFlow(true)
-        }
         setInProgress(false)
       }
       return
@@ -944,6 +951,31 @@ class RegistrationViewModel : ViewModel() {
 
       setInProgress(false)
     }
+  }
+
+  /** Converts the basic-auth creds we have locally into username:password pairs that are suitable for handing off to the service. */
+  private fun List<String?>.toSvrCredentials(): AuthCredentials? {
+    return this
+      .asSequence()
+      .filterNotNull()
+      .map { it.replace("Basic ", "").trim() }
+      .mapNotNull {
+        try {
+          Base64.decode(it)
+        } catch (e: IOException) {
+          Log.w(TAG, "Encountered error trying to decode a token!", e)
+          null
+        }
+      }
+      .map { String(it, StandardCharsets.ISO_8859_1) }
+      .mapNotNull {
+        val colonIndex = it.indexOf(":")
+        if (colonIndex < 0) {
+          return@mapNotNull null
+        }
+        AuthCredentials.create(it.substring(0, colonIndex), it.substring(colonIndex + 1))
+      }
+      .firstOrNull()
   }
 
   companion object {

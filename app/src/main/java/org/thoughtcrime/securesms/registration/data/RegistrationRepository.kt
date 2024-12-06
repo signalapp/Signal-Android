@@ -275,8 +275,6 @@ object RegistrationRepository {
     withContext(Dispatchers.IO) {
       val credentialSet = SvrAuthCredentialSet(svr2Credentials = svr2Credentials, svr3Credentials = svr3Credentials)
       val masterKey = SvrRepository.restoreMasterKeyPreRegistration(credentialSet, pin)
-      SignalStore.storageService.storageKeyForInitialDataRestore = masterKey.deriveStorageServiceKey()
-      SignalStore.svr.setPin(pin)
       return@withContext masterKey
     }
 

@@ -20,6 +20,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     private const val SVR_LAST_AUTH_REFRESH_TIMESTAMP = "kbs.kbs_auth_tokens.last_refresh_timestamp"
     private const val SVR3_AUTH_TOKENS = "kbs.svr3_auth_tokens"
     private const val RESTORED_VIA_ACCOUNT_ENTROPY_KEY = "kbs.restore_via_account_entropy_pool"
+    private const val INITIAL_RESTORE_MASTER_KEY = "kbs.initialRestoreMasterKey"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -83,6 +84,32 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   val masterKey: MasterKey
     get() = SignalStore.account.accountEntropyPool.deriveMasterKey()
 
+  /**
+   * The [MasterKey] that should be used for our initial syncs with storage service + recovery password.
+   * The presence of this value indicates that it hasn't been used yet for storage service.
+   * Once there has been *any* write to storage service, this value needs to be cleared.
+   */
+  @get:Synchronized
+  @set:Synchronized
+  var masterKeyForInitialDataRestore: MasterKey?
+    get() {
+      return getBlob(INITIAL_RESTORE_MASTER_KEY, null)?.let { MasterKey(it) }
+    }
+    set(value) {
+      if (value != masterKeyForInitialDataRestore) {
+        if (value == masterKey) {
+          Log.w(TAG, "The master key already matches the one derived from the AEP! All good, no need to store it.")
+          store.beginWrite().putBlob(INITIAL_RESTORE_MASTER_KEY, null).commit()
+        } else if (value != null) {
+          Log.w(TAG, "Setting initial restore master key!", Throwable())
+          store.beginWrite().putBlob(INITIAL_RESTORE_MASTER_KEY, value.serialize()).commit()
+        } else {
+          Log.w(TAG, "Clearing initial restore master key!", Throwable())
+          store.beginWrite().putBlob(INITIAL_RESTORE_MASTER_KEY, null).commit()
+        }
+      }
+    }
+
   @get:Synchronized
   val pinBackedMasterKey: MasterKey?
     /** Returns null if master key is not backed up by a pin. */
@@ -102,7 +129,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
   val recoveryPassword: String?
     get() {
       return if (hasOptedInWithAccess()) {
-        masterKey.deriveRegistrationRecoveryPassword()
+        masterKeyForInitialDataRestore?.deriveRegistrationRecoveryPassword() ?: masterKey.deriveRegistrationRecoveryPassword()
       } else {
         null
       }
