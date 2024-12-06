@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.shareIn
 import org.signal.core.util.throttleLatest
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -114,6 +115,51 @@ object ArchiveUploadProgress {
 
     if (notify) {
       _progress.tryEmit(Unit)
+    }
+  }
+
+  object ArchiveBackupProgressListener : BackupRepository.ExportProgressListener {
+    override fun onAccount() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Account)
+    }
+
+    override fun onRecipient() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Recipient)
+    }
+
+    override fun onThread() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Thread)
+    }
+
+    override fun onCall() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Call)
+    }
+
+    override fun onSticker() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Sticker)
+    }
+
+    override fun onMessage(currentProgress: Long, approximateCount: Long) {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.Message, currentProgress, approximateCount)
+    }
+
+    override fun onAttachment(currentProgress: Long, totalCount: Long) {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.BackupPhaseNone)
+    }
+
+    private fun updatePhase(
+      phase: ArchiveUploadProgressState.BackupPhase,
+      completedObjects: Long = 0L,
+      totalObjects: Long = 0L
+    ) {
+      updateState(
+        state = ArchiveUploadProgressState(
+          state = ArchiveUploadProgressState.State.BackingUpMessages,
+          backupPhase = phase,
+          completedAttachments = completedObjects,
+          totalAttachments = totalObjects
+        )
+      )
     }
   }
 }

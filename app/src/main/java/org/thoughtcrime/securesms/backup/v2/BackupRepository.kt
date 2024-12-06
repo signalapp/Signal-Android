@@ -450,6 +450,7 @@ object BackupRepository {
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
     mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
     exportExtras: ((SignalDatabase) -> Unit)? = null
   ) {
@@ -464,7 +465,15 @@ object BackupRepository {
       )
     }
 
-    export(currentTime = currentTime, isLocal = false, writer = writer, mediaBackupEnabled = mediaBackupEnabled, cancellationSignal = cancellationSignal, exportExtras = exportExtras)
+    export(
+      currentTime = currentTime,
+      isLocal = false,
+      writer = writer,
+      progressEmitter = progressEmitter,
+      mediaBackupEnabled = mediaBackupEnabled,
+      cancellationSignal = cancellationSignal,
+      exportExtras = exportExtras
+    )
   }
 
   /**
@@ -567,7 +576,9 @@ object BackupRepository {
             return@export
           }
 
-          progressEmitter?.onMessage()
+          val approximateMessageCount = dbSnapshot.messageTable.getApproximateExportableMessageCount(exportState.threadIds)
+          val frameCountStart = frameCount
+          progressEmitter?.onMessage(0, approximateMessageCount)
           ChatItemArchiveProcessor.export(dbSnapshot, exportState, selfRecipientId, cancellationSignal) { frame ->
             writer.write(frame)
             eventTimer.emit("message")
@@ -575,6 +586,7 @@ object BackupRepository {
 
             if (frameCount % 1000 == 0L) {
               Log.d(TAG, "[export] Exported $frameCount frames so far.")
+              progressEmitter?.onMessage(frameCount - frameCountStart, approximateMessageCount)
               if (cancellationSignal()) {
                 Log.w(TAG, "[export] Cancelled! Stopping")
                 return@export
@@ -1436,7 +1448,7 @@ object BackupRepository {
     fun onThread()
     fun onCall()
     fun onSticker()
-    fun onMessage()
+    fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
   }
 

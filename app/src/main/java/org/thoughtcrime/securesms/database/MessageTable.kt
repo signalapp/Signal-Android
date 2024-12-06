@@ -1808,6 +1808,21 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleInt()
   }
 
+  /**
+   * Given a set of thread ids, return the count of all messages in the table that match that thread id. This will include *all* messages, and is
+   * explicitly for use as a "fuzzy total"
+   */
+  fun getApproximateExportableMessageCount(threadIds: Set<Long>): Long {
+    val queries = SqlUtil.buildCollectionQuery(THREAD_ID, threadIds)
+    return queries.sumOf {
+      readableDatabase.count()
+        .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_COUNT")
+        .where(it.where, it.whereArgs)
+        .run()
+        .readToSingleLong(0L)
+    }
+  }
+
   fun canSetUniversalTimer(threadId: Long): Boolean {
     if (threadId == -1L) {
       return true

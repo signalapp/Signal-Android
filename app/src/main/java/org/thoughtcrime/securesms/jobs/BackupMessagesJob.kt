@@ -209,7 +209,7 @@ class BackupMessagesJob private constructor(
     val outputStream = FileOutputStream(tempBackupFile)
     val backupKey = SignalStore.backup.messageBackupKey
     val currentTime = System.currentTimeMillis()
-    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
+    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, progressEmitter = ArchiveUploadProgress.ArchiveBackupProgressListener, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
       writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
     }
 
