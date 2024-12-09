@@ -34,6 +34,11 @@ object ChatFolderProcessor {
       .getChatFolders()
       .sortedBy { it.position }
 
+    if (folders.isEmpty()) {
+      Log.d(TAG, "No chat folders, nothing to export")
+      return
+    }
+
     if (folders.size == 1 && folders[0].folderType == ChatFolderRecord.FolderType.ALL) {
       Log.d(TAG, "Only ALL chat folder present, skipping chat folder export")
       return
@@ -47,14 +52,12 @@ object ChatFolderProcessor {
     folders.forEach { folder ->
       val includedRecipientIds = folder
         .includedChats
-        .mapNotNull {
-          db.threadTable.getRecipientIdForThreadId(it)?.toLong()
-        }
+        .map { db.threadTable.getRecipientIdForThreadId(it)!!.toLong() }
         .filter { exportState.recipientIds.contains(it) }
 
       val excludedRecipientIds = folder
         .excludedChats
-        .mapNotNull { db.threadTable.getRecipientIdForThreadId(it)?.toLong() }
+        .map { db.threadTable.getRecipientIdForThreadId(it)!!.toLong() }
         .filter { exportState.recipientIds.contains(it) }
 
       val frame = folder.toBackupFrame(includedRecipientIds, excludedRecipientIds)
