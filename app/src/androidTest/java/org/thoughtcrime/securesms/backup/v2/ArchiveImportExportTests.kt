@@ -300,20 +300,6 @@ class ArchiveImportExportTests {
     )
   }
 
-  private fun assertPassesValidator(testName: String, generatedBackupData: ByteArray): TestResult.Failure? {
-    try {
-      BackupRepository.validate(
-        length = generatedBackupData.size.toLong(),
-        inputStreamFactory = { ByteArrayInputStream(generatedBackupData) },
-        selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, ProfileKey(SELF_PROFILE_KEY))
-      )
-    } catch (e: Exception) {
-      return TestResult.Failure(testName, "Generated backup failed validation: ${e.message}")
-    }
-
-    return null
-  }
-
   private fun checkEquivalent(testName: String, import: ByteArray, export: ByteArray): TestResult.Failure? {
     val importComparable = try {
       ComparableBackup.readUnencrypted(MessageBackup.Purpose.REMOTE_BACKUP, import.inputStream(), import.size.toLong())
