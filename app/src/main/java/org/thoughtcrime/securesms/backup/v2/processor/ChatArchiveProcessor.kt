@@ -46,5 +46,6 @@ object ChatArchiveProcessor {
     importState.chatIdToLocalRecipientId[chat.id] = recipientId
     importState.chatIdToLocalThreadId[chat.id] = threadId
     importState.chatIdToBackupRecipientId[chat.id] = chat.recipientId
+    importState.recipientIdToLocalThreadId[recipientId] = threadId
   }
 }

@@ -156,6 +156,14 @@ object ArchiveUploadProgress {
       updatePhase(ArchiveUploadProgressState.BackupPhase.Sticker)
     }
 
+    override fun onNotificationProfile() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.NotificationProfile)
+    }
+
+    override fun onChatFolder() {
+      updatePhase(ArchiveUploadProgressState.BackupPhase.ChatFolder)
+    }
+
     override fun onMessage(currentProgress: Long, approximateCount: Long) {
       updatePhase(ArchiveUploadProgressState.BackupPhase.Message, currentProgress, approximateCount)
     }

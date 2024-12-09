@@ -4,9 +4,11 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * A serializable set of color constants that can be used for avatars.
@@ -27,8 +29,11 @@ public enum AvatarColor {
   UNKNOWN("UNKNOWN", 0x00000000),
   ON_SURFACE_VARIANT("ON_SURFACE_VARIANT", 0x00000000);
 
-  /** Fast map of name to enum, while also giving us a location to map old colors to new ones. */
+  /**
+   * Fast map of name to enum, while also giving us a location to map old colors to new ones.
+   */
   private static final Map<String, AvatarColor> NAME_MAP = new HashMap<>();
+
   static {
     for (AvatarColor color : AvatarColor.values()) {
       NAME_MAP.put(color.serialize(), color);
@@ -97,7 +102,9 @@ public enum AvatarColor {
     NAME_MAP.put("grey", A210);
   }
 
-  /** Colors that can be assigned via {@link #random()}. */
+  /**
+   * Colors that can be assigned via {@link #random()}.
+   */
   static final AvatarColor[] RANDOM_OPTIONS = new AvatarColor[] {
       A100,
       A110,
@@ -136,5 +143,12 @@ public enum AvatarColor {
 
   public static @NonNull AvatarColor deserialize(@Nullable String name) {
     return Objects.requireNonNull(NAME_MAP.getOrDefault(name, A210));
+  }
+
+  public static @Nullable AvatarColor fromColor(@ColorInt int color) {
+    return Arrays.stream(values())
+                 .filter(c -> c.color == color)
+                 .findFirst()
+                 .orElse(null);
   }
 }

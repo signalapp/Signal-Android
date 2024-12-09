@@ -49,4 +49,15 @@ data class ChatFolderRecord(
       }
     }
   }
+
+  companion object {
+    fun getAllChatsFolderForBackup(): ChatFolderRecord {
+      return ChatFolderRecord(
+        folderType = ChatFolderRecord.FolderType.ALL,
+        showIndividualChats = true,
+        showGroupChats = true,
+        showMutedChats = true
+      )
+    }
+  }
 }

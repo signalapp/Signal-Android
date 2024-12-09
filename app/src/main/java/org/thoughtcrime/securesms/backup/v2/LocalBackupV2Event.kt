@@ -12,6 +12,8 @@ class LocalBackupV2Event(val type: Type, val count: Long = 0, val estimatedTotal
     PROGRESS_THREAD,
     PROGRESS_CALL,
     PROGRESS_STICKER,
+    NOTIFICATION_PROFILE,
+    CHAT_FOLDER,
     PROGRESS_MESSAGE,
     PROGRESS_ATTACHMENT,
     PROGRESS_VERIFYING,

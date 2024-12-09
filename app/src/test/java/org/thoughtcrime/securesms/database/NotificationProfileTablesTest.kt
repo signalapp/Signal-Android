@@ -24,29 +24,29 @@ import java.time.DayOfWeek
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
-class NotificationProfileDatabaseTest {
+class NotificationProfileTablesTest {
 
   @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
   private lateinit var db: SQLiteDatabase
-  private lateinit var database: NotificationProfileDatabase
+  private lateinit var database: NotificationProfileTables
 
   @Before
   fun setup() {
     val sqlCipher = TestDatabaseUtil.inMemoryDatabase {
-      NotificationProfileDatabase.CREATE_TABLE.forEach {
+      NotificationProfileTables.CREATE_TABLE.forEach {
         println(it)
         this.execSQL(it)
       }
-      NotificationProfileDatabase.CREATE_INDEXES.forEach {
+      NotificationProfileTables.CREATE_INDEXES.forEach {
         println(it)
         this.execSQL(it)
       }
     }
 
     db = sqlCipher.writableDatabase
-    database = NotificationProfileDatabase(ApplicationProvider.getApplicationContext(), sqlCipher)
+    database = NotificationProfileTables(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 
   @After
@@ -168,5 +168,5 @@ class NotificationProfileDatabaseTest {
   }
 }
 
-private val NotificationProfileDatabase.NotificationProfileChangeResult.profile: NotificationProfile
-  get() = (this as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile
+private val NotificationProfileTables.NotificationProfileChangeResult.profile: NotificationProfile
+  get() = (this as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile

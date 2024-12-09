@@ -18,9 +18,13 @@ message BackupInfo {
 //    e.g. a Recipient must come before any Chat referencing it.
 // 3. All ChatItems must appear in global Chat rendering order.
 //    (The order in which they were received by the client.)
+// 4. ChatFolders must appear in render order (e.g., left to right for
+//    LTR locales), but can appear anywhere relative to other frames respecting
+//    rule 2 (after Recipients and Chats).
 //
-// Recipients, Chats, StickerPacks, and AdHocCalls can be in any order.
-// (But must respect rule 2.)
+// Recipients, Chats, StickerPacks, AdHocCalls, and NotificationProfiles
+// can be in any order. (But must respect rule 2.)
+//
 // For example, Chats may all be together at the beginning,
 // or may each immediately precede its first ChatItem.
 message Frame {
@@ -31,6 +35,8 @@ message Frame {
     ChatItem chatItem = 4;
     StickerPack stickerPack = 5;
     AdHocCall adHocCall = 6;
+    NotificationProfile notificationProfile = 7;
+    ChatFolder chatFolder = 8;
   }
 }
 
@@ -1182,4 +1188,49 @@ message ChatStyle {
   }
 
   bool dimWallpaperInDarkMode = 7;
+}
+
+message NotificationProfile {
+  enum DayOfWeek {
+    UNKNOWN = 0;
+    MONDAY = 1;
+    TUESDAY = 2;
+    WEDNESDAY = 3;
+    THURSDAY = 4;
+    FRIDAY = 5;
+    SATURDAY = 6;
+    SUNDAY = 7;
+  }
+
+  string name = 1;
+  optional string emoji = 2;
+  fixed32 color = 3; // 0xAARRGGBB
+  uint64 createdAtMs = 4;
+  bool allowAllCalls = 5;
+  bool allowAllMentions = 6;
+  repeated uint64 allowedMembers = 7; // generated recipient id for allowed groups and contacts
+  bool scheduleEnabled = 8;
+  uint32 scheduleStartTime = 9; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  uint32 scheduleEndTime = 10; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  repeated DayOfWeek scheduleDaysEnabled = 11;
+}
+
+message ChatFolder {
+  // Represents the default "All chats" folder record vs all other custom folders
+  enum FolderType {
+    UNKNOWN = 0;
+    ALL = 1;
+    CUSTOM = 2;
+  }
+
+  string name = 1;
+  bool showOnlyUnread = 2;
+  bool showMutedChats = 3;
+  // Folder includes all 1:1 chats, unless excluded
+  bool includeAllIndividualChats = 4;
+  // Folder includes all group chats, unless excluded
+  bool includeAllGroupChats = 5;
+  FolderType folderType = 6;
+  repeated uint64 includedRecipientIds = 7; // generated recipient id of groups, contacts, and/or note to self
+  repeated uint64 excludedRecipientIds = 8; // generated recipient id of groups, contacts, and/or note to self
 }

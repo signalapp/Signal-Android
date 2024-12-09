@@ -63,7 +63,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val messageSendLogTables: MessageSendLogTables = MessageSendLogTables(context, this)
   val avatarPickerDatabase: AvatarPickerDatabase = AvatarPickerDatabase(context, this)
   val reactionTable: ReactionTable = ReactionTable(context, this)
-  val notificationProfileDatabase: NotificationProfileDatabase = NotificationProfileDatabase(context, this)
+  val notificationProfileTables: NotificationProfileTables = NotificationProfileTables(context, this)
   val donationReceiptTable: DonationReceiptTable = DonationReceiptTable(context, this)
   val distributionListTables: DistributionListTables = DistributionListTables(context, this)
   val storySendTable: StorySendTable = StorySendTable(context, this)
@@ -120,7 +120,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
-    executeStatements(db, NotificationProfileDatabase.CREATE_TABLE)
+    executeStatements(db, NotificationProfileTables.CREATE_TABLE)
     executeStatements(db, DistributionListTables.CREATE_TABLE)
     executeStatements(db, ChatFolderTables.CREATE_TABLE)
     db.execSQL(BackupMediaSnapshotTable.CREATE_TABLE)
@@ -137,7 +137,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, MentionTable.CREATE_INDEXES)
     executeStatements(db, PaymentTable.CREATE_INDEXES)
     executeStatements(db, MessageSendLogTables.CREATE_INDEXES)
-    executeStatements(db, NotificationProfileDatabase.CREATE_INDEXES)
+    executeStatements(db, NotificationProfileTables.CREATE_INDEXES)
     executeStatements(db, DonationReceiptTable.CREATE_INDEXS)
     executeStatements(db, StorySendTable.CREATE_INDEXS)
     executeStatements(db, DistributionListTables.CREATE_INDEXES)
@@ -456,8 +456,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("notificationProfiles")
-    val notificationProfiles: NotificationProfileDatabase
-      get() = instance!!.notificationProfileDatabase
+    val notificationProfiles: NotificationProfileTables
+      get() = instance!!.notificationProfileTables
 
     @get:JvmStatic
     @get:JvmName("payments")

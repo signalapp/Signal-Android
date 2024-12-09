@@ -36,6 +36,8 @@ message ArchiveUploadProgressState {
         Call = 4;
         Sticker = 5;
         Message = 6;
+        NotificationProfile = 7;
+        ChatFolder = 8;
     }
 
     State state = 1;
