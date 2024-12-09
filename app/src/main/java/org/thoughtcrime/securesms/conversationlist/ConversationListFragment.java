@@ -1269,8 +1269,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
           @Override
           protected Void doInBackground(Void... params) {
+            Log.d(TAG, "[handleDelete] Deleting " + selectedConversations.size() + " chats");
             SignalDatabase.threads().deleteConversations(selectedConversations, true);
             AppDependencies.getMessageNotifier().updateNotification(requireActivity());
+            Log.d(TAG, "[handleDelete] Delete complete");
             return null;
           }
 

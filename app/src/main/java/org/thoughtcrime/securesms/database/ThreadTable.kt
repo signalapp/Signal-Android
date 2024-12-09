@@ -1261,11 +1261,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun deleteConversations(selectedConversations: Set<Long>, syncThreadDeletes: Boolean = true) {
+    Log.d(TAG, "[deleteConversations] Deleting ${selectedConversations.size} chats syncThreadDeletes: $syncThreadDeletes")
     val recipientIds = getRecipientIdsForThreadIds(selectedConversations)
 
     val addressableMessages = mutableListOf<ThreadDeleteSyncInfo>()
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
+    Log.d(TAG, "[deleteConversations] Enter transaction")
     writableDatabase.withinTransaction { db ->
       if (syncThreadDeletes) {
         for (threadId in selectedConversations) {
@@ -1278,17 +1280,27 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
           addressableMessages += ThreadDeleteSyncInfo(threadId, mostRecentMessages, mostRecentNonExpiring)
         }
+        Log.d(TAG, "[deleteConversations] Retrieved sync thread delete addressable messages (${addressableMessages.size})")
+      } else {
+        Log.d(TAG, "[deleteConversations] No addressable messages needed")
       }
 
+      Log.d(TAG, "[deleteConversations] Deactivating threads")
       for (query in queries) {
         db.deactivateThread(query)
       }
 
+      Log.d(TAG, "[deleteConversations] Deleting messages in thread")
       messages.deleteMessagesInThread(selectedConversations)
+      Log.d(TAG, "[deleteConversations] Trimming attachments")
       attachments.trimAllAbandonedAttachments()
+      Log.d(TAG, "[deleteConversations] Deleting abandoned group receipts")
       groupReceipts.deleteAbandonedRows()
+      Log.d(TAG, "[deleteConversations] Deleting abandoned mentions")
       mentions.deleteAbandonedMentions()
+      Log.d(TAG, "[deleteConversations] Clearing drafts")
       drafts.clearDrafts(selectedConversations)
+      Log.d(TAG, "[deleteConversations] Updating threadId cache")
       synchronized(threadIdCache) {
         for (recipientId in recipientIds) {
           threadIdCache.remove(recipientId)
@@ -1296,6 +1308,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
     }
 
+    Log.d(TAG, "[deleteConversations] Enqueue jobs and notify listeners")
     DeleteAbandonedAttachmentsJob.enqueue()
 
     if (syncThreadDeletes) {
