@@ -33,9 +33,6 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
-import org.signal.libsignal.messagebackup.MessageBackup
-import org.signal.libsignal.messagebackup.MessageBackup.ValidationResult
-import org.signal.libsignal.protocol.ServiceId.Aci
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -109,7 +106,6 @@ import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
-import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBackupKey
 
 object BackupRepository {
 
@@ -892,13 +888,6 @@ object BackupRepository {
     stopwatch.stop(TAG)
 
     return ImportResult.Success(backupTime = header.backupTimeMs)
-  }
-
-  fun validate(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData): ValidationResult {
-    val accountEntropyPool = SignalStore.account.accountEntropyPool.value
-    val key = LibSignalMessageBackupKey(accountEntropyPool, Aci.parseFromBinary(selfData.aci.toByteArray()))
-
-    return MessageBackup.validate(key, MessageBackup.Purpose.REMOTE_BACKUP, inputStreamFactory, length)
   }
 
   fun listRemoteMediaObjects(limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
