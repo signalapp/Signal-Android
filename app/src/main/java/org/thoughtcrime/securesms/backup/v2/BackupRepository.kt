@@ -46,7 +46,9 @@ import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.ChatFolderProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
@@ -576,6 +578,28 @@ object BackupRepository {
             return@export
           }
 
+          progressEmitter?.onNotificationProfile()
+          NotificationProfileProcessor.export(dbSnapshot, exportState) { frame ->
+            writer.write(frame)
+            eventTimer.emit("notification-profile")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
+          progressEmitter?.onChatFolder()
+          ChatFolderProcessor.export(dbSnapshot, exportState) { frame ->
+            writer.write(frame)
+            eventTimer.emit("chat-folder")
+            frameCount++
+          }
+          if (cancellationSignal()) {
+            Log.w(TAG, "[export] Cancelled! Stopping")
+            return@export
+          }
+
           val approximateMessageCount = dbSnapshot.messageTable.getApproximateExportableMessageCount(exportState.threadIds)
           val frameCountStart = frameCount
           progressEmitter?.onMessage(0, approximateMessageCount)
@@ -727,9 +751,6 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
-      // Add back default All Chats chat folder after clearing data
-      SignalDatabase.chatFolders.insertAllChatFolder()
-
       val importState = ImportState(messageBackupKey, mediaRootBackupKey)
       val chatItemInserter: ChatItemArchiveImporter = ChatItemArchiveProcessor.beginImport(importState)
 
@@ -768,6 +789,18 @@ object BackupRepository {
             frameCount++
           }
 
+          frame.notificationProfile != null -> {
+            NotificationProfileProcessor.import(frame.notificationProfile, importState)
+            eventTimer.emit("notification-profile")
+            frameCount++
+          }
+
+          frame.chatFolder != null -> {
+            ChatFolderProcessor.import(frame.chatFolder, importState)
+            eventTimer.emit("chat-folder")
+            frameCount++
+          }
+
           frame.chatItem != null -> {
             chatItemInserter.import(frame.chatItem)
             eventTimer.emit("chatItem")
@@ -789,6 +822,11 @@ object BackupRepository {
 
       if (chatItemInserter.flush()) {
         eventTimer.emit("chatItem")
+      }
+
+      if (!importState.importedChatFolders) {
+        // Add back default All Chats chat folder after clearing data if missing
+        SignalDatabase.chatFolders.insertAllChatFolder()
       }
 
       stopwatch.split("frames")
@@ -1449,6 +1487,8 @@ object BackupRepository {
     fun onThread()
     fun onCall()
     fun onSticker()
+    fun onNotificationProfile()
+    fun onChatFolder()
     fun onMessage(currentProgress: Long, approximateCount: Long)
     fun onAttachment(currentProgress: Long, totalCount: Long)
   }
@@ -1477,9 +1517,19 @@ class ImportState(val messageBackupKey: MessageBackupKey, val mediaRootBackupKey
   val chatIdToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
   val chatIdToBackupRecipientId: MutableMap<Long, Long> = hashMapOf()
   val remoteToLocalColorId: MutableMap<Long, Long> = hashMapOf()
+  val recipientIdToLocalThreadId: MutableMap<RecipientId, Long> = hashMapOf()
+  val recipientIdToIsGroup: MutableMap<RecipientId, Boolean> = hashMapOf()
+
+  private var chatFolderPosition: Int = 0
+  val importedChatFolders: Boolean
+    get() = chatFolderPosition > 0
 
   fun requireLocalRecipientId(remoteId: Long): RecipientId {
     return remoteToLocalRecipientId[remoteId] ?: throw IllegalArgumentException("There is no local recipientId for remote recipientId $remoteId!")
+  }
+
+  fun getNextChatFolderPosition(): Int {
+    return chatFolderPosition++
   }
 }
 

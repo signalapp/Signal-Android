@@ -22,7 +22,7 @@ import java.time.DayOfWeek
 /**
  * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed memebers.
  */
-class NotificationProfileDatabase(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
+class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
     @JvmField
@@ -32,7 +32,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_INDEX)
   }
 
-  private object NotificationProfileTable {
+  object NotificationProfileTable {
     const val TABLE_NAME = "notification_profile"
 
     const val ID = "_id"
@@ -56,7 +56,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     """
   }
 
-  private object NotificationProfileScheduleTable {
+  object NotificationProfileScheduleTable {
     const val TABLE_NAME = "notification_profile_schedule"
 
     const val ID = "_id"
@@ -82,7 +82,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     const val CREATE_INDEX = "CREATE INDEX notification_profile_schedule_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
   }
 
-  private object NotificationProfileAllowedMembersTable {
+  object NotificationProfileAllowedMembersTable {
     const val TABLE_NAME = "notification_profile_allowed_members"
 
     const val ID = "_id"
@@ -367,7 +367,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
   }
 }
 
-private fun Iterable<DayOfWeek>.serialize(): String {
+fun Iterable<DayOfWeek>.serialize(): String {
   return joinToString(separator = ",", transform = { it.serialize() })
 }
 

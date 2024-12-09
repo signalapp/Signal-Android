@@ -1026,7 +1026,7 @@ class RecipientTableTest_getAndPossiblyMerge {
   }
 
   private fun notificationProfile(name: String): NotificationProfile {
-    return (SignalDatabase.notificationProfiles.createProfile(name = name, emoji = "", color = AvatarColor.A210, System.currentTimeMillis()) as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile
+    return (SignalDatabase.notificationProfiles.createProfile(name = name, emoji = "", color = AvatarColor.A210, System.currentTimeMillis()) as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile
   }
 
   private fun getMention(messageId: Long): MentionModel {
