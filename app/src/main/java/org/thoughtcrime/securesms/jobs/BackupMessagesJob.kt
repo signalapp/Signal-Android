@@ -134,7 +134,7 @@ class BackupMessagesJob private constructor(
     }
 
     FileInputStream(tempBackupFile).use {
-      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length())) {
+      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), ArchiveUploadProgress.ArchiveUploadProgressListener { isCanceled })) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
           SignalStore.backup.hasBackupBeenUploaded = true

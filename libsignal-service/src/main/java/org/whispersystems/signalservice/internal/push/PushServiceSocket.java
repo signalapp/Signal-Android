@@ -2004,6 +2004,10 @@ public class PushServiceSocket {
   }
 
   public void uploadBackupFile(AttachmentUploadForm uploadForm, String resumableUploadUrl, InputStream data, long dataLength) throws IOException {
+    uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength, null);
+  }
+
+  public void uploadBackupFile(AttachmentUploadForm uploadForm, String resumableUploadUrl, InputStream data, long dataLength, ProgressListener progressListener) throws IOException {
     if (uploadForm.cdn == 2) {
       uploadToCdn2(resumableUploadUrl, data, "application/octet-stream", dataLength, false, new NoCipherOutputStreamFactory(), null, null);
     } else {

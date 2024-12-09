@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -116,6 +117,22 @@ object ArchiveUploadProgress {
     if (notify) {
       _progress.tryEmit(Unit)
     }
+  }
+
+  class ArchiveUploadProgressListener(
+    private val shouldCancel: () -> Boolean = { false }
+  ) : SignalServiceAttachment.ProgressListener {
+    override fun onAttachmentProgress(total: Long, progress: Long) {
+      updateState(
+        state = ArchiveUploadProgressState(
+          state = ArchiveUploadProgressState.State.UploadingMessages,
+          totalAttachments = total,
+          completedAttachments = progress
+        )
+      )
+    }
+
+    override fun shouldCancel(): Boolean = shouldCancel()
   }
 
   object ArchiveBackupProgressListener : BackupRepository.ExportProgressListener {

@@ -76,7 +76,10 @@ import org.signal.core.ui.Snackbars
 import org.signal.core.ui.Texts
 import org.signal.core.ui.horizontalGutters
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.bytes
+import org.signal.core.util.gibiBytes
 import org.signal.core.util.logging.Log
+import org.signal.core.util.mebiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.R
@@ -966,7 +969,7 @@ private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadPro
   return when (archiveUploadProgressState.state) {
     ArchiveUploadProgressState.State.None -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
     ArchiveUploadProgressState.State.BackingUpMessages -> getBackupPhaseMessage(archiveUploadProgressState)
-    ArchiveUploadProgressState.State.UploadingMessages -> stringResource(R.string.RemoteBackupsSettingsFragment__uploading_messages)
+    ArchiveUploadProgressState.State.UploadingMessages -> getUploadingMessages(archiveUploadProgressState)
     ArchiveUploadProgressState.State.UploadingAttachments -> getUploadingAttachmentsMessage(archiveUploadProgressState)
   }
 }
@@ -987,6 +990,19 @@ private fun getBackupPhaseMessage(state: ArchiveUploadProgressState): String {
     }
     else -> stringResource(R.string.RemoteBackupsSettingsFragment__preparing_backup)
   }
+}
+
+@Composable
+private fun getUploadingMessages(state: ArchiveUploadProgressState): String {
+  val formattedCompleted = state.completedAttachments.bytes.toUnitString()
+  val formattedTotal = state.totalAttachments.bytes.toUnitString()
+  val percent = if (state.totalAttachments == 0L) {
+    0
+  } else {
+    ((state.completedAttachments / state.totalAttachments.toFloat()) * 100).toInt()
+  }
+
+  return stringResource(R.string.RemoteBackupsSettingsFragment__uploading_s_of_s_d, formattedCompleted, formattedTotal, percent)
 }
 
 @Composable
@@ -1452,6 +1468,14 @@ private fun InProgressRowPreview() {
           backupPhase = ArchiveUploadProgressState.BackupPhase.Message,
           completedAttachments = 1_000_000,
           totalAttachments = 100_000
+        )
+      )
+      InProgressBackupRow(
+        archiveUploadProgressState = ArchiveUploadProgressState(
+          state = ArchiveUploadProgressState.State.UploadingMessages,
+          backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
+          completedAttachments = 1.gibiBytes.inWholeBytes + 100.mebiBytes.inWholeBytes,
+          totalAttachments = 12.gibiBytes.inWholeBytes
         )
       )
     }

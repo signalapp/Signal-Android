@@ -947,10 +947,11 @@ object BackupRepository {
   fun uploadBackupFile(
     resumableSpec: ResumableMessagesBackupUploadSpec,
     backupStream: InputStream,
-    backupStreamLength: Long
+    backupStreamLength: Long,
+    progressListener: ProgressListener? = null
   ): NetworkResult<Unit> {
     val (form, resumableUploadUrl) = resumableSpec
-    return SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
+    return SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength, progressListener)
       .also { Log.i(TAG, "UploadBackupFileResult: $it") }
   }
 
