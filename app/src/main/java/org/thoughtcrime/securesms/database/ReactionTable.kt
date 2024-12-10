@@ -7,6 +7,7 @@ import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.forEach
+import org.signal.core.util.logging.Log
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.model.MessageId
@@ -20,6 +21,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 class ReactionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
+    private val TAG = Log.tag(ReactionTable::class)
+
     const val TABLE_NAME = "reaction"
 
     private const val ID = "_id"
@@ -167,14 +170,14 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
     }
   }
 
-  override fun remapRecipient(oldAuthorId: RecipientId, newAuthorId: RecipientId) {
-    val query = "$AUTHOR_ID = ?"
-    val args = SqlUtil.buildArgs(oldAuthorId)
-    val values = ContentValues().apply {
-      put(AUTHOR_ID, newAuthorId.serialize())
-    }
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
+      .update(TABLE_NAME)
+      .values(AUTHOR_ID to toId.serialize())
+      .where("$AUTHOR_ID = ?", fromId)
+      .run()
 
-    readableDatabase.update(TABLE_NAME, values, query, args)
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   fun deleteAbandonedReactions() {

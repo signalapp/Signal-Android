@@ -478,7 +478,9 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, toId.serialize());
-    getWritableDatabase().update(TABLE_NAME, values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
+    int count = getWritableDatabase().update(TABLE_NAME, values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
+
+    Log.d(TAG, "Remapped " + fromId + " to " + toId + ". count: " + count);
   }
 
   public boolean markPaymentSubmitted(@NonNull UUID uuid,

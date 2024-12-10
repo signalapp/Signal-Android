@@ -6,6 +6,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.insertInto
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -18,6 +19,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference, ThreadIdDatabaseReference {
 
   companion object {
+    private val TAG = Log.tag(MentionTable::class)
+
     const val TABLE_NAME = "mention"
     const val ID = "_id"
     const val THREAD_ID = "thread_id"
@@ -165,11 +168,13 @@ class MentionTable(context: Context, databaseHelper: SignalDatabase) : DatabaseT
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase
+    val count = writableDatabase
       .update("$TABLE_NAME INDEXED BY $RECIPIENT_ID_INDEX")
       .values(RECIPIENT_ID to toId.serialize())
       .where("$RECIPIENT_ID = ?", fromId)
       .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   override fun remapThread(fromId: Long, toId: Long) {
