@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.Context
 import android.database.Cursor
+import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
@@ -12,7 +13,8 @@ import java.util.Currency
 
 class DonationReceiptTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
   companion object {
-    private const val TABLE_NAME = "donation_receipt"
+    @VisibleForTesting
+    const val TABLE_NAME = "donation_receipt"
 
     private const val ID = "_id"
     private const val TYPE = "receipt_type"

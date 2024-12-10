@@ -84,7 +84,7 @@ class StripeApi(
         parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
       }
 
-      val (nextActionUri, returnUri) = postForm("setup_intents/${setupIntent.intentId}/confirm", parameters).use { response ->
+      val (nextActionUri, returnUri) = postForm(StripePaths.getSetupIntentConfirmationPath(setupIntent.intentId), parameters).use { response ->
         getNextAction(response)
       }
 
@@ -132,7 +132,7 @@ class StripeApi(
         parameters["mandate_data[customer_acceptance][online][infer_from_client]"] = "true"
       }
 
-      val (nextActionUri, returnUri) = postForm("payment_intents/${paymentIntent.intentId}/confirm", parameters).use { response ->
+      val (nextActionUri, returnUri) = postForm(StripePaths.getPaymentIntentConfirmationPath(paymentIntent.intentId), parameters).use { response ->
         getNextAction(response)
       }
 
@@ -145,7 +145,7 @@ class StripeApi(
    */
   fun getSetupIntent(stripeIntentAccessor: StripeIntentAccessor): StripeSetupIntent {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get("setup_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}&expand[0]=latest_attempt").use {
+      StripeIntentAccessor.ObjectType.SETUP_INTENT -> get(StripePaths.getSetupIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)).use {
         val body = it.body?.string()
         try {
           objectMapper.readValue(body!!)
@@ -167,7 +167,7 @@ class StripeApi(
    */
   fun getPaymentIntent(stripeIntentAccessor: StripeIntentAccessor): StripePaymentIntent {
     return when (stripeIntentAccessor.objectType) {
-      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get("payment_intents/${stripeIntentAccessor.intentId}?client_secret=${stripeIntentAccessor.intentClientSecret}").use {
+      StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> get(StripePaths.getPaymentIntentPath(stripeIntentAccessor.intentId, stripeIntentAccessor.intentClientSecret)).use {
         val body = it.body?.string()
         try {
           Log.d(TAG, "Reading StripePaymentIntent from JSON")
@@ -229,7 +229,7 @@ class StripeApi(
       CARD_CVC_KEY to cardData.cvc
     )
 
-    postForm("tokens", parameters).use { response ->
+    postForm(StripePaths.getTokensPath(), parameters).use { response ->
       val body = response.body ?: throw StripeError.FailedToCreatePaymentSourceFromCardData
       return CreditCardPaymentSource(JSONObject(body.string()))
     }
@@ -257,7 +257,7 @@ class StripeApi(
       "billing_details[name]" to paymentSource.sepaDebitData.name
     )
 
-    return postForm("payment_methods", parameters)
+    return postForm(StripePaths.getPaymentMethodsPath(), parameters)
   }
 
   private fun createPaymentMethodForIDEAL(paymentSource: IDEALPaymentSource): Response {
@@ -268,7 +268,7 @@ class StripeApi(
       "billing_details[name]" to paymentSource.idealData.name
     )
 
-    return postForm("payment_methods", parameters)
+    return postForm(StripePaths.getPaymentMethodsPath(), parameters)
   }
 
   private fun createPaymentMethodForToken(paymentSource: PaymentSource): Response {
@@ -278,7 +278,7 @@ class StripeApi(
       "type" to "card"
     )
 
-    return postForm("payment_methods", parameters)
+    return postForm(StripePaths.getPaymentMethodsPath(), parameters)
   }
 
   private fun get(endpoint: String): Response {

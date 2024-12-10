@@ -29,6 +29,7 @@ object Environment {
     @JvmStatic
     @get:JvmName("getStripeConfiguration")
     val STRIPE_CONFIGURATION = StripeApi.Configuration(
+      baseUrl = BuildConfig.STRIPE_BASE_URL,
       publishableKey = BuildConfig.STRIPE_PUBLISHABLE_KEY
     )
   }

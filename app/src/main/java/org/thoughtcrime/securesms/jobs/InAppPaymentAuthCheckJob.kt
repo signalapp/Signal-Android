@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -40,7 +41,8 @@ import kotlin.time.Duration.Companion.days
  */
 class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : BaseJob(parameters), StripeApi.PaymentIntentFetcher, StripeApi.SetupIntentHelper {
 
-  private constructor() : this(
+  @VisibleForTesting
+  constructor() : this(
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)
@@ -138,7 +140,10 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       )
     )
 
-    checkIntentStatus(stripeIntentData.status)
+    val checkIntentStatusResult = checkIntentStatus(stripeIntentData.status)
+    if (checkIntentStatusResult !is CheckResult.Success) {
+      return checkIntentStatusResult
+    }
 
     Log.i(TAG, "Creating and inserting receipt.", true)
     val receipt = when (inAppPayment.type) {
