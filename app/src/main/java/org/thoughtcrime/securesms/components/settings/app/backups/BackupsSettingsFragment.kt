@@ -81,7 +81,7 @@ class BackupsSettingsFragment : ComposeFragment() {
 
     BackupsSettingsContent(
       backupsSettingsState = state,
-      onNavigationClick = { findNavController().popBackStack() },
+      onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
         when (state.enabledState) {
           is BackupsSettingsState.EnabledState.Active, BackupsSettingsState.EnabledState.Inactive -> {
