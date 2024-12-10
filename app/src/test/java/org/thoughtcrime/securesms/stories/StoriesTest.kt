@@ -36,8 +36,8 @@ class StoriesTest {
     RxJavaPlugins.setIoSchedulerHandler { testScheduler }
 
     SignalDatabase.setSignalDatabaseInstanceForTesting(mockSignalDatabase)
-    every { SignalDatabase.attachments } returns mockAttachmentTable 
-    every { AppDependencies.jobManager } returns mockJobManager 
+    every { SignalDatabase.attachments } returns mockAttachmentTable
+    every { AppDependencies.jobManager } returns mockJobManager
     every { mockAttachmentTable.getAttachmentsForMessage(any()) } returns emptyList()
   }
 

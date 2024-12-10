@@ -34,7 +34,7 @@ class StoryViewerPageViewModelTest {
 
     RxAndroidPlugins.setMainThreadSchedulerHandler { testScheduler }
 
-    every { repository.forceDownload(any()) } returns Completable.complete() 
+    every { repository.forceDownload(any()) } returns Completable.complete()
   }
 
   @After
@@ -46,7 +46,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and first post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -65,7 +65,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and second post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -86,7 +86,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -102,7 +102,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all not viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { false }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -118,7 +118,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 2nd is not viewed, when I initialize, then I expect storyIndex to be 1`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 != 0 }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -134,7 +134,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 1st and 3rd not viewed, when I goToNext, then I expect storyIndex to be 2`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 == 0 }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -152,7 +152,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no unread and jump to next unread enabled, when I goToNext, then I expect storyIndex to be size`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject(isJumpForwardToUnviewed = true)
@@ -170,7 +170,7 @@ class StoryViewerPageViewModelTest {
   fun `Given a single story, when I goToPrevious, then I expect storyIndex to be -1`() {
     // GIVEN
     val storyPosts = createStoryPosts(1)
-    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts) 
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -215,7 +215,7 @@ class StoryViewerPageViewModelTest {
         hasSelfViewed = isViewed(it)
       ).apply {
         val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord()
-        every { conversationMessage.messageRecord } returns messageRecord 
+        every { conversationMessage.messageRecord } returns messageRecord
       }
     }
   }
