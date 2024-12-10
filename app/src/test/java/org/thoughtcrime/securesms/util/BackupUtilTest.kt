@@ -1,18 +1,18 @@
 package org.thoughtcrime.securesms.util
 
 import androidx.documentfile.provider.DocumentFile
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Assert.fail
+import org.junit.Assert.assertThrows
 import org.junit.BeforeClass
 import org.junit.Test
-import org.mockito.Mockito.doReturn
-import org.mockito.Mockito.mock
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.testutil.EmptyLogger
+import org.thoughtcrime.securesms.util.BackupUtil.BackupFileException
 
 class BackupUtilTest {
-
   companion object {
     private const val TEST_NAME = "1920837192.backup"
 
@@ -23,28 +23,24 @@ class BackupUtilTest {
     }
   }
 
-  private val documentFile = mock(DocumentFile::class.java)
+  private val documentFile = mockk<DocumentFile>(relaxed = true)
 
   @Test
   fun `Given a non-existent uri, when I getBackupInfoFromSingleDocumentFile, then I expect NOT_FOUND`() {
-    try {
+    val error = assertThrows("Expected a BackupFileException", BackupFileException::class.java) {
       BackupUtil.getBackupInfoFromSingleDocumentFile(documentFile)
-      fail("Expected a BackupFileException")
-    } catch (e: BackupUtil.BackupFileException) {
-      assertEquals(BackupUtil.BackupFileState.NOT_FOUND, e.state)
     }
+    assertEquals(BackupUtil.BackupFileState.NOT_FOUND, error.state)
   }
 
   @Test
   fun `Given an existent but unreadable uri, when I getBackupInfoFromSingleDocumentFile, then I expect NOT_READABLE`() {
     givenFileExists()
 
-    try {
+    val error = assertThrows("Expected a BackupFileException", BackupFileException::class.java) {
       BackupUtil.getBackupInfoFromSingleDocumentFile(documentFile)
-      fail("Expected a BackupFileException")
-    } catch (e: BackupUtil.BackupFileException) {
-      assertEquals(BackupUtil.BackupFileState.NOT_READABLE, e.state)
     }
+    assertEquals(BackupUtil.BackupFileState.NOT_READABLE, error.state)
   }
 
   @Test
@@ -52,12 +48,10 @@ class BackupUtilTest {
     givenFileExists()
     givenFileIsReadable()
 
-    try {
+    val error = assertThrows("Expected a BackupFileException", BackupFileException::class.java) {
       BackupUtil.getBackupInfoFromSingleDocumentFile(documentFile)
-      fail("Expected a BackupFileException")
-    } catch (e: BackupUtil.BackupFileException) {
-      assertEquals(BackupUtil.BackupFileState.UNSUPPORTED_FILE_EXTENSION, e.state)
     }
+    assertEquals(BackupUtil.BackupFileState.UNSUPPORTED_FILE_EXTENSION, error.state)
   }
 
   @Test
@@ -71,14 +65,14 @@ class BackupUtilTest {
   }
 
   private fun givenFileExists() {
-    doReturn(true).`when`(documentFile).exists()
+    every { documentFile.exists() } returns true
   }
 
   private fun givenFileIsReadable() {
-    doReturn(true).`when`(documentFile).canRead()
+    every { documentFile.canRead() } returns true
   }
 
   private fun givenFileHasCorrectExtension() {
-    doReturn(TEST_NAME).`when`(documentFile).name
+    every { documentFile.name } returns TEST_NAME
   }
 }

@@ -1,20 +1,17 @@
 package org.thoughtcrime.securesms.stories
 
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.runs
+import io.mockk.slot
+import io.mockk.verify
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
-import org.mockito.kotlin.any
-import org.mockito.kotlin.isA
-import org.mockito.kotlin.never
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.FakeMessageRecords
@@ -24,37 +21,24 @@ import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 
 class StoriesTest {
-
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
-  @Mock
-  private lateinit var mockAttachmentTable: AttachmentTable
-
-  @Mock
-  private lateinit var mockJobManager: JobManager
-
-  @Mock
-  private lateinit var mockApplicationDependenciesStatic: MockedStatic<AppDependencies>
-
-  @Mock
-  private lateinit var mockSignalDatabaseStatic: MockedStatic<SignalDatabase>
-
-  @Mock
-  private lateinit var mockSignalDatabase: SignalDatabase
-
   private val testScheduler = TestScheduler()
+  private val mockJobManager = mockk<JobManager> {
+    every { add(any()) } just runs
+  }
+  private val mockAttachmentTable = mockk<AttachmentTable>()
+  private val mockSignalDatabase = mockk<SignalDatabase>()
 
   @Before
   fun setUp() {
+    mockkStatic(AppDependencies::class)
+
     RxJavaPlugins.setInitIoSchedulerHandler { testScheduler }
     RxJavaPlugins.setIoSchedulerHandler { testScheduler }
 
     SignalDatabase.setSignalDatabaseInstanceForTesting(mockSignalDatabase)
-    whenever(SignalDatabase.attachments).thenReturn(mockAttachmentTable)
-    whenever(AppDependencies.jobManager).thenReturn(mockJobManager)
-    whenever(mockAttachmentTable.getAttachmentsForMessage(any())).thenReturn(emptyList())
+    every { SignalDatabase.attachments } returns mockAttachmentTable
+    every { AppDependencies.jobManager } returns mockJobManager
+    every { mockAttachmentTable.getAttachmentsForMessage(any()) } returns emptyList()
   }
 
   @After
@@ -75,7 +59,7 @@ class StoriesTest {
 
     // THEN
     testObserver.assertComplete()
-    verify(mockJobManager, never()).add(any())
+    verify(exactly = 0) { mockJobManager.add(any()) }
   }
 
   @Test
@@ -95,7 +79,8 @@ class StoriesTest {
 
     // THEN
     testObserver.assertComplete()
-    verify(mockJobManager).add(isA<AttachmentDownloadJob>())
+    val slot = slot<AttachmentDownloadJob>()
+    verify { mockJobManager.add(capture(slot)) }
   }
 
   @Test
@@ -103,7 +88,7 @@ class StoriesTest {
     // GIVEN
     val attachment = FakeMessageRecords.buildDatabaseAttachment()
     val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord()
-    whenever(mockAttachmentTable.getAttachmentsForMessage(any())).thenReturn(listOf(attachment))
+    every { mockAttachmentTable.getAttachmentsForMessage(any()) } returns listOf(attachment)
 
     // WHEN
     val testObserver = Stories.enqueueAttachmentsFromStoryForDownload(messageRecord, true).test()
@@ -111,6 +96,7 @@ class StoriesTest {
 
     // THEN
     testObserver.assertComplete()
-    verify(mockJobManager).add(isA<AttachmentDownloadJob>())
+    val slot = slot<AttachmentDownloadJob>()
+    verify { mockJobManager.add(capture(slot)) }
   }
 }

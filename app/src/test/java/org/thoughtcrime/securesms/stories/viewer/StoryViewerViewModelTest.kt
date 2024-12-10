@@ -1,49 +1,34 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.app.Application
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
-import org.junit.Ignore
-import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
-import org.mockito.kotlin.any
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.never
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.StoryViewerArgs
 
-@Ignore
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
 class StoryViewerViewModelTest {
-
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
   private val testScheduler = TestScheduler()
-
-  @Mock
-  private lateinit var repository: StoryViewerRepository
-
-  @Mock
-  private lateinit var mockStoriesStatic: MockedStatic<Stories>
+  private val repository = mockk<StoryViewerRepository>()
 
   @Before
   fun setUp() {
     RxJavaPlugins.setInitComputationSchedulerHandler { testScheduler }
     RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
 
-    whenever(repository.getFirstStory(any(), any())).doReturn(Single.just(mock()))
+    every { repository.getFirstStory(any(), any()) } returns Single.just(mockk())
   }
 
   @After
@@ -69,7 +54,7 @@ class StoryViewerViewModelTest {
     testScheduler.triggerActions()
 
     // THEN
-    verify(repository, never()).getStories(any(), any())
+    verify(exactly = 0) { repository.getStories(any(), any()) }
     assertEquals(injectedStories, testSubject.stateSnapshot.pages)
   }
 
@@ -78,7 +63,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(2L)
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
 
     // WHEN
     val testSubject = StoryViewerViewModel(
@@ -102,7 +87,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = RecipientId.from(1L)
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -129,7 +114,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -156,7 +141,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.last()
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -183,7 +168,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
@@ -210,7 +195,7 @@ class StoryViewerViewModelTest {
     // GIVEN
     val stories: List<RecipientId> = (1L..5L).map(RecipientId::from)
     val startStory = stories.first()
-    whenever(repository.getStories(any(), any())).doReturn(Single.just(stories))
+    every { repository.getStories(any(), any()) } returns Single.just(stories)
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
