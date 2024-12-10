@@ -169,8 +169,12 @@ private fun RestoreViaQrScreen(
           ) {
             AnimatedContent(
               targetState = state.qrState,
+              contentKey = { it::class },
               contentAlignment = Alignment.Center,
-              label = "qr-code-progress"
+              label = "qr-code-progress",
+              modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
             ) { qrState ->
               when (qrState) {
                 is RestoreViaQrViewModel.QrState.Loaded -> {
@@ -184,7 +188,9 @@ private fun RestoreViaQrScreen(
                 }
 
                 RestoreViaQrViewModel.QrState.Loading -> {
-                  CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                  Box(contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                  }
                 }
 
                 is RestoreViaQrViewModel.QrState.Scanned,
