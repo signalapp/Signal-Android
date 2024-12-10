@@ -394,8 +394,8 @@ fun RestoreFailedDialog(
   onDismiss: () -> Unit = {}
 ) {
   Dialogs.SimpleAlertDialog(
-    title = "Restore Failed", // TODO [backups] Remote restore error placeholder copy
-    body = "Unable to restore from backup. Please try again.", // TODO [backups] Placeholder copy
+    title = stringResource(R.string.RemoteRestoreActivity__couldnt_transfer),
+    body = stringResource(R.string.RemoteRestoreActivity__error_occurred),
     confirm = stringResource(android.R.string.ok),
     onConfirm = onDismiss,
     onDismiss = onDismiss

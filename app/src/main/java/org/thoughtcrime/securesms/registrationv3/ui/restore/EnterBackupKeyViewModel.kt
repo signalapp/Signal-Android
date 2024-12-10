@@ -28,7 +28,7 @@ class EnterBackupKeyViewModel : ViewModel() {
 
   fun updateBackupKey(key: String) {
     _state.update {
-      val newKey = key.removeIllegalCharacters().take(length)
+      val newKey = key.removeIllegalCharacters().take(length).lowercase()
       copy(backupKey = newKey, backupKeyValid = validate(length, newKey))
     }
   }
