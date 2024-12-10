@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper
 import java.io.Closeable
 import kotlin.time.Duration.Companion.seconds
 
-class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalDatabase) : Iterator<Chat>, Closeable {
+class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalDatabase, private val includeImageWallpapers: Boolean) : Iterator<Chat>, Closeable {
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
   }
@@ -40,7 +40,14 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
     }
 
     val chatWallpaper: Wallpaper? = cursor.requireBlob(RecipientTable.WALLPAPER)?.let { serializedWallpaper ->
-      Wallpaper.ADAPTER.decodeOrNull(serializedWallpaper)
+      val wallpaper = Wallpaper.ADAPTER.decodeOrNull(serializedWallpaper)
+      val isImageWallpaper = wallpaper?.file_ != null
+
+      if (includeImageWallpapers || !isImageWallpaper) {
+        wallpaper
+      } else {
+        null
+      }
     }
 
     return Chat(
