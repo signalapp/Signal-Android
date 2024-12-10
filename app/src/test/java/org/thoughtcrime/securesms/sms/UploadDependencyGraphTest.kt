@@ -1,14 +1,12 @@
 package org.thoughtcrime.securesms.sms
 
 import android.app.Application
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -36,17 +34,14 @@ import java.util.concurrent.atomic.AtomicLong
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class UploadDependencyGraphTest {
-
-  private val jobManager: JobManager = mock()
-
-  private var uniqueLong = AtomicLong(0)
-
-  @Before
-  fun setUp() {
-    whenever(jobManager.startChain(any<Job>())).then {
-      JobManager.Chain(jobManager, listOf(it.getArgument(0)))
+  private val jobManager = mockk<JobManager> {
+    every { startChain(any<Job>()) } answers {
+      val job = args.first() as Job
+      JobManager.Chain(this@mockk, listOf(job))
     }
   }
+
+  private var uniqueLong = AtomicLong(0)
 
   @Test
   fun `Given a list of Uri attachments and a list of Messages, when I get the dependencyMap, then I expect a times m results`() {
