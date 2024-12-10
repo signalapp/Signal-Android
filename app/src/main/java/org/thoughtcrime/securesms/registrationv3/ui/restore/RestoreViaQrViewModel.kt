@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeDa
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.whispersystems.signalservice.api.registration.ProvisioningSocket
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import java.io.Closeable
@@ -62,13 +63,15 @@ class RestoreViaQrViewModel : ViewModel() {
     }
   }
 
-  fun handleRegistrationFailure() {
+  fun handleRegistrationFailure(registerAccountResult: RegisterAccountResult) {
     store.update {
       if (it.isRegistering) {
+        Log.w(TAG, "Unable to register [${registerAccountResult::class.simpleName}]", registerAccountResult.getCause())
         it.copy(
           isRegistering = false,
           provisioningMessage = null,
-          showRegistrationError = true
+          showRegistrationError = true,
+          registerAccountResult = registerAccountResult
         )
       } else {
         it
@@ -77,7 +80,14 @@ class RestoreViaQrViewModel : ViewModel() {
   }
 
   fun clearRegistrationError() {
-    store.update { it.copy(showRegistrationError = false) }
+    store.update {
+      it.copy(
+        showRegistrationError = false,
+        registerAccountResult = null
+      )
+    }
+
+    restart()
   }
 
   override fun onCleared() {
@@ -179,6 +189,7 @@ class RestoreViaQrViewModel : ViewModel() {
     val provisioningMessage: RegistrationProvisionMessage? = null,
     val showProvisioningError: Boolean = false,
     val showRegistrationError: Boolean = false,
+    val registerAccountResult: RegisterAccountResult? = null,
     val currentSocketId: Int? = null
   )
 
