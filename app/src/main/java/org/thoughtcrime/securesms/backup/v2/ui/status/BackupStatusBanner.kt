@@ -57,6 +57,7 @@ private const val NONE = -1
 @Composable
 fun BackupStatusBanner(
   data: BackupStatusData,
+  onBannerClick: () -> Unit = {},
   onActionClick: (BackupStatusData) -> Unit = {},
   onDismissClick: () -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
@@ -68,6 +69,7 @@ fun BackupStatusBanner(
       .border(1.dp, color = MaterialTheme.colorScheme.outline.copy(alpha = 0.38f), shape = RoundedCornerShape(12.dp))
       .fillMaxWidth()
       .defaultMinSize(minHeight = 48.dp)
+      .clickable(onClick = onBannerClick)
       .padding(12.dp)
   ) {
     Icon(
@@ -309,7 +311,7 @@ sealed interface BackupStatusData {
         RestoreStatus.FINISHED -> bytesTotal.toUnitString()
       }
 
-    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus == RestoreStatus.NORMAL) {
+    override val progress: Float = if (bytesTotal.bytes > 0) {
       min(1f, max(0f, bytesDownloaded.bytes.toFloat() / bytesTotal.bytes.toFloat()))
     } else {
       NONE.toFloat()

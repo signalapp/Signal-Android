@@ -74,6 +74,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
           CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).folderId,
           CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).threadId
         )
+        StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
       }
     }
 
@@ -216,6 +217,9 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
       return getIntentForStartLocation(context, StartLocation.CREATE_CHAT_FOLDER).putExtra(START_ARGUMENTS, arguments)
     }
 
+    @JvmStatic
+    fun backupsSettings(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BACKUPS_SETTINGS)
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
@@ -242,7 +246,8 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
     RECOVER_USERNAME(15),
     REMOTE_BACKUPS(16),
     CHAT_FOLDERS(17),
-    CREATE_CHAT_FOLDER(18);
+    CREATE_CHAT_FOLDER(18),
+    BACKUPS_SETTINGS(19);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

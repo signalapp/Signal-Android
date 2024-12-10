@@ -915,6 +915,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         }),
         new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
           @Override
+          public void onBannerClick() {
+            startActivity(AppSettingsActivity.backupsSettings(requireContext()));
+          }
+
+          @Override
           public void onActionClick(@NonNull BackupStatusData backupStatusData) {
             if (backupStatusData instanceof BackupStatusData.NotEnoughFreeSpace) {
               BackupAlertBottomSheet.create(new BackupAlert.DiskFull(((BackupStatusData.NotEnoughFreeSpace) backupStatusData).getRequiredSpace()))
