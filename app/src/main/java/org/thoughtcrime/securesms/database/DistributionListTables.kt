@@ -525,12 +525,14 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       .run()
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    writableDatabase
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
       .update(MembershipTable.TABLE_NAME)
-      .values(MembershipTable.RECIPIENT_ID to newId.serialize())
-      .where("${MembershipTable.RECIPIENT_ID} = ?", oldId)
+      .values(MembershipTable.RECIPIENT_ID to toId.serialize())
+      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
       .run(SQLiteDatabase.CONFLICT_REPLACE)
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {

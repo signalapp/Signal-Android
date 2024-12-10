@@ -526,7 +526,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase.update(TABLE_NAME)
+    val count = writableDatabase.update(TABLE_NAME)
       .values(
         contentValuesOf(
           RECIPIENT_ID to toId.toLong()
@@ -534,5 +534,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       )
       .where("$RECIPIENT_ID = ?", fromId.toLong())
       .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 }

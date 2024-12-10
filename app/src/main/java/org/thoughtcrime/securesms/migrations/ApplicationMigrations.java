@@ -163,9 +163,10 @@ public class ApplicationMigrations {
     static final int AEP_INTRODUCTION              = 119;
     static final int GROUP_EXTRAS_DB_FIX           = 120;
     static final int EMOJI_SEARCH_INDEX_CHECK_2    = 121;
+    static final int QUOTE_AUTHOR_FIX              = 122;
   }
 
-  public static final int CURRENT_VERSION = 121;
+  public static final int CURRENT_VERSION = 122;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -746,6 +747,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.EMOJI_SEARCH_INDEX_CHECK_2) {
       jobs.put(Version.EMOJI_SEARCH_INDEX_CHECK_2, new EmojiSearchIndexCheckMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.QUOTE_AUTHOR_FIX) {
+      jobs.put(Version.QUOTE_AUTHOR_FIX, new DatabaseMigrationJob());
     }
 
     return jobs;

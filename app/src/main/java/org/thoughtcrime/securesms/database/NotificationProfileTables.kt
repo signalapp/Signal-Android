@@ -7,11 +7,13 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.toInt
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
@@ -25,6 +27,8 @@ import java.time.DayOfWeek
 class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
+    private val TAG = Log.tag(NotificationProfileTable::class)
+
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(NotificationProfileTable.CREATE_TABLE, NotificationProfileScheduleTable.CREATE_TABLE, NotificationProfileAllowedMembersTable.CREATE_TABLE)
 
@@ -296,16 +300,15 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    val query = "${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?"
-    val args = SqlUtil.buildArgs(oldId)
-    val values = ContentValues().apply {
-      put(NotificationProfileAllowedMembersTable.RECIPIENT_ID, newId.serialize())
-    }
-
-    databaseHelper.signalWritableDatabase.update(NotificationProfileAllowedMembersTable.TABLE_NAME, values, query, args)
-
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
+      .update(NotificationProfileAllowedMembersTable.TABLE_NAME)
+      .values(NotificationProfileAllowedMembersTable.RECIPIENT_ID to toId.serialize())
+      .where("${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?", fromId)
+      .run()
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   private fun getProfile(cursor: Cursor): NotificationProfile {

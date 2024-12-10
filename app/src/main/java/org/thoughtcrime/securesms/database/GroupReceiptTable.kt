@@ -8,6 +8,7 @@ import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.deleteAll
 import org.signal.core.util.forEach
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -20,6 +21,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 
 class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
   companion object {
+    private val TAG = Log.tag(GroupReceiptTable::class)
+
     const val TABLE_NAME = "group_receipts"
     private const val ID = "_id"
     const val MMS_ID = "mms_id"
@@ -174,11 +177,13 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase
+    val count = writableDatabase
       .update(TABLE_NAME)
       .values(RECIPIENT_ID to toId.serialize())
       .where("$RECIPIENT_ID = ?", fromId)
       .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   private fun Cursor.toGroupReceiptInfo(): GroupReceiptInfo {

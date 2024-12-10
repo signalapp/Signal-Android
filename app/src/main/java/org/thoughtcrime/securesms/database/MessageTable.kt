@@ -4803,17 +4803,25 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase
+    val fromCount = writableDatabase
       .update(TABLE_NAME)
       .values(FROM_RECIPIENT_ID to toId.serialize())
       .where("$FROM_RECIPIENT_ID = ?", fromId)
       .run()
 
-    writableDatabase
+    val toCount = writableDatabase
       .update(TABLE_NAME)
       .values(TO_RECIPIENT_ID to toId.serialize())
       .where("$TO_RECIPIENT_ID = ?", fromId)
       .run()
+
+    val quoteAuthorCount = writableDatabase
+      .update(TABLE_NAME)
+      .values(QUOTE_AUTHOR to toId.serialize())
+      .where("$QUOTE_AUTHOR = ?", fromId)
+      .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. fromRecipient: $fromCount, toRecipient: $toCount, quoteAuthor: $quoteAuthorCount")
   }
 
   override fun remapThread(fromId: Long, toId: Long) {
