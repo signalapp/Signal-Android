@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
 import android.app.Application
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
@@ -10,9 +12,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.database.FakeMessageRecords
@@ -22,9 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class StoryViewerPageViewModelTest {
-
-  private val repository: StoryViewerPageRepository = mock()
-
+  private val repository = mockk<StoryViewerPageRepository>(relaxed = true)
   private val testScheduler = TestScheduler()
 
   @Before
@@ -37,7 +34,7 @@ class StoryViewerPageViewModelTest {
 
     RxAndroidPlugins.setMainThreadSchedulerHandler { testScheduler }
 
-    whenever(repository.forceDownload(any())).thenReturn(Completable.complete())
+    every { repository.forceDownload(any()) } returns Completable.complete()
   }
 
   @After
@@ -49,7 +46,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and first post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -68,7 +65,7 @@ class StoryViewerPageViewModelTest {
   fun `Given first page and second post, when I goToPreviousPost, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
     val testSubject = createTestSubject()
     testSubject.setIsFirstPage(true)
     testScheduler.triggerActions()
@@ -89,7 +86,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -105,7 +102,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records all not viewed, when I initialize, then I expect storyIndex to be 0`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { false }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -121,7 +118,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 2nd is not viewed, when I initialize, then I expect storyIndex to be 1`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 != 0 }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -137,7 +134,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no initial story and 3 records with 1st and 3rd not viewed, when I goToNext, then I expect storyIndex to be 2`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { it % 2 == 0 }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -155,7 +152,7 @@ class StoryViewerPageViewModelTest {
   fun `Given no unread and jump to next unread enabled, when I goToNext, then I expect storyIndex to be size`() {
     // GIVEN
     val storyPosts = createStoryPosts(3) { true }
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject(isJumpForwardToUnviewed = true)
@@ -173,7 +170,7 @@ class StoryViewerPageViewModelTest {
   fun `Given a single story, when I goToPrevious, then I expect storyIndex to be -1`() {
     // GIVEN
     val storyPosts = createStoryPosts(1)
-    whenever(repository.getStoryPostsFor(any(), any())).thenReturn(Observable.just(storyPosts))
+    every { repository.getStoryPostsFor(any(), any()) } returns Observable.just(storyPosts)
 
     // WHEN
     val testSubject = createTestSubject()
@@ -198,7 +195,7 @@ class StoryViewerPageViewModelTest {
         groupReplyStartPosition = -1
       ),
       repository,
-      mock()
+      mockk()
     )
   }
 
@@ -212,13 +209,13 @@ class StoryViewerPageViewModelTest {
         viewCount = 0,
         replyCount = 0,
         dateInMilliseconds = it.toLong(),
-        content = StoryPost.Content.TextContent(mock(), it.toLong(), false, 0),
-        conversationMessage = mock(),
+        content = StoryPost.Content.TextContent(mockk(), it.toLong(), false, 0),
+        conversationMessage = mockk(),
         allowsReplies = true,
         hasSelfViewed = isViewed(it)
       ).apply {
         val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord()
-        whenever(conversationMessage.messageRecord).thenReturn(messageRecord)
+        every { conversationMessage.messageRecord } returns messageRecord
       }
     }
   }
