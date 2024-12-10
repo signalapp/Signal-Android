@@ -300,7 +300,11 @@ class ChatItemArchiveExporter(
       if (record.latestRevisionId == null) {
         val previousEdits = revisionMap.remove(record.id)
         if (previousEdits != null) {
-          builder.revisions = previousEdits
+          if (builder.standardMessage != null) {
+            builder.revisions = previousEdits
+          } else {
+            Log.w(TAG, "[${record.dateSent}] Attempted to set revisions on a non-standard message! Ignoring.")
+          }
         }
         buffer += builder.build()
       } else {
