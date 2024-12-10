@@ -1040,7 +1040,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.add(
         viewModel.getSelectedState().subscribe(conversations -> {
           defaultAdapter.setSelectedConversations(conversations);
-          updateMultiSelectState();
+          if (conversations.isEmpty()) {
+            endActionModeIfActive();
+          } else {
+            updateMultiSelectState();
+          }
         })
     );
   }
@@ -1453,12 +1457,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
       viewModel.toggleConversationSelected(conversation);
-
-      if (viewModel.currentSelectedConversations().isEmpty()) {
-        endActionModeIfActive();
-      } else {
-        updateMultiSelectState();
-      }
     }
   }
 
