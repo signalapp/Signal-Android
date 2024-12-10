@@ -422,7 +422,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
     val count = writableDatabase
-      .update(MslRecipientTable.RECIPIENT_ID)
+      .update(MslRecipientTable.TABLE_NAME)
       .values(MslRecipientTable.RECIPIENT_ID to toId.serialize())
       .where("${MslRecipientTable.RECIPIENT_ID} = ?", fromId)
       .run()
