@@ -2,12 +2,13 @@ package org.thoughtcrime.securesms.conversation
 
 import android.app.Application
 import androidx.lifecycle.LifecycleOwner
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.runs
+import io.mockk.verify
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.never
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowLooper
@@ -16,9 +17,10 @@ import java.util.concurrent.TimeUnit
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class ConversationUpdateTickTest {
-
-  private val lifecycleOwner = mock(LifecycleOwner::class.java)
-  private val listener = mock(ConversationUpdateTick.OnTickListener::class.java)
+  private val lifecycleOwner = mockk<LifecycleOwner>()
+  private val listener = mockk<ConversationUpdateTick.OnTickListener> {
+    every { onTick() } just runs
+  }
   private val testSubject = ConversationUpdateTick(listener)
 
   private val timeoutMillis = ConversationUpdateTick.TIMEOUT
@@ -26,7 +28,7 @@ class ConversationUpdateTickTest {
   @Test
   fun `Given onResume not invoked, then I expect zero invocations of onTick`() {
     // THEN
-    verify(listener, never()).onTick()
+    verify(exactly = 0) { listener.onTick() }
   }
 
   @Test
@@ -36,7 +38,7 @@ class ConversationUpdateTickTest {
     testSubject.onResume(lifecycleOwner)
 
     // THEN
-    verify(listener, never()).onTick()
+    verify(exactly = 0) { listener.onTick() }
   }
 
   @Test
@@ -46,7 +48,7 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis / 2, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, never()).onTick()
+    verify(exactly = 0) { listener.onTick() }
   }
 
   @Test
@@ -58,7 +60,7 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(1)).onTick()
+    verify(exactly = 1) { listener.onTick() }
   }
 
   @Test
@@ -70,7 +72,7 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis * 5, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, times(5)).onTick()
+    verify(exactly = 5) { listener.onTick() }
   }
 
   @Test
@@ -83,6 +85,6 @@ class ConversationUpdateTickTest {
     ShadowLooper.idleMainLooper(timeoutMillis, TimeUnit.MILLISECONDS)
 
     // THEN
-    verify(listener, never()).onTick()
+    verify(exactly = 0) { listener.onTick() }
   }
 }
