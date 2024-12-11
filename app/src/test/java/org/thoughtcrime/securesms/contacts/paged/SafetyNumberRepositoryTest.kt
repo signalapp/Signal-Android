@@ -1,24 +1,17 @@
 package org.thoughtcrime.securesms.contacts.paged
 
 import android.app.Application
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.mockkStatic
+import io.mockk.verify
 import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.internal.configuration.plugins.Plugins
-import org.mockito.internal.junit.JUnitRule
-import org.mockito.junit.MockitoRule
-import org.mockito.kotlin.any
-import org.mockito.kotlin.argThat
-import org.mockito.kotlin.times
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
-import org.mockito.quality.Strictness
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
@@ -29,6 +22,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -39,26 +33,14 @@ import java.io.IOException
 import java.util.Optional
 import java.util.concurrent.TimeUnit
 
-@Ignore
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class SafetyNumberRepositoryTest {
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = JUnitRule(Plugins.getMockitoLogger(), Strictness.STRICT_STUBS)
-
-  @Mock
-  lateinit var profileService: ProfileService
-
-  @Mock(lenient = true)
-  lateinit var aciIdentityStore: SignalIdentityKeyStore
-
-  @Mock
-  lateinit var staticIdentityUtil: MockedStatic<IdentityUtil>
-
-  @Mock
-  lateinit var staticRecipient: MockedStatic<Recipient>
+  private val profileService = mockk<ProfileService>()
+  private val aciIdentityStore = mockk<SignalIdentityKeyStore>()
 
   private var now: Long = System.currentTimeMillis()
 
@@ -77,6 +59,11 @@ class SafetyNumberRepositoryTest {
 
   @Before
   fun setUp() {
+    mockkStatic(IdentityUtil::class)
+
+    mockkObject(Recipient)
+    mockkStatic(Recipient::class)
+
     now = System.currentTimeMillis()
     repository = SafetyNumberRepository(profileService, aciIdentityStore)
 
@@ -85,7 +72,7 @@ class SafetyNumberRepositoryTest {
 
     for (id in 1L until 12) {
       val recipient = RecipientDatabaseTestUtils.createRecipient(resolved = true, recipientId = RecipientId.from(id))
-      staticRecipient.`when`<Recipient> { Recipient.resolved(RecipientId.from(id)) }.thenReturn(recipient)
+      every { Recipient.resolved(RecipientId.from(id)) } returns recipient
       recipientPool.add(recipient)
 
       val record = IdentityRecord(
@@ -96,11 +83,11 @@ class SafetyNumberRepositoryTest {
         timestamp = 0,
         nonblockingApproval = false
       )
-      whenever(aciIdentityStore.getIdentityRecord(recipient.id)).thenReturn(Optional.of(record))
+      every { aciIdentityStore.getIdentityRecord(recipient.id) } returns Optional.of(record)
       identityPool[recipient] = record
     }
 
-    staticRecipient.`when`<Recipient> { Recipient.self() }.thenReturn(recipientPool[0])
+    every { Recipient.self() } returns recipientPool[0]
   }
 
   /**
@@ -111,13 +98,33 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf()), 200, "")))
+    every {
+      Recipient.resolvedList(
+        match { list ->
+          list.containsAll(
+            keys.map { key ->
+              key.recipientId
+            }
+          )
+        }
+      )
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)
+      )
+    } returns Single.just(
+      ServiceResponse.forResult(
+        IdentityCheckResponse(listOf()),
+        200,
+        ""
+      )
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verifyNoInteractions()
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 
   /**
@@ -130,14 +137,27 @@ class SafetyNumberRepositoryTest {
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)
+      )
+    } returns Single.just(
+      ServiceResponse.forResult(
+        IdentityCheckResponse(
+          listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))
+        ),
+        200,
+        ""
+      )
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verify { IdentityUtil.saveIdentity(otherAci.toString(), otherNewIdentityKey) }
-    staticIdentityUtil.verifyNoMoreInteractions()
+    verify { IdentityUtil.saveIdentity(otherAci.toString(), otherNewIdentityKey) }
   }
 
   /**
@@ -151,14 +171,30 @@ class SafetyNumberRepositoryTest {
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false), ContactSearchKey.RecipientSearchKey(secondOther.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other, secondOther))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey, secondOther.requireServiceId() to identityPool[secondOther]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))), 200, "")))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other, secondOther)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(
+          other.requireServiceId() to identityPool[other]!!.identityKey,
+          secondOther.requireServiceId() to identityPool[secondOther]!!.identityKey
+        )
+      )
+    } returns Single.just(
+      ServiceResponse.forResult(
+        IdentityCheckResponse(
+          listOf(IdentityCheckResponse.ServiceIdentityPair(otherAci, otherNewIdentityKey))
+        ),
+        200,
+        ""
+      )
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verify { IdentityUtil.saveIdentity(otherAci.toString(), otherNewIdentityKey) }
-    staticIdentityUtil.verifyNoMoreInteractions()
+    verify { IdentityUtil.saveIdentity(otherAci.toString(), otherNewIdentityKey) }
   }
 
   /**
@@ -169,18 +205,24 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf()), 200, "")))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey))
+    } returns Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf()), 200, ""))
 
     repository.batchSafetyNumberCheckSync(keys, now)
-    verify(profileService, times(1)).performIdentityCheck(any())
-    repository.batchSafetyNumberCheckSync(keys, now + TimeUnit.SECONDS.toMillis(10))
-    verify(profileService, times(1)).performIdentityCheck(any())
-    repository.batchSafetyNumberCheckSync(keys, now + TimeUnit.SECONDS.toMillis(31))
-    verify(profileService, times(2)).performIdentityCheck(any())
+    verify(exactly = 1) { profileService.performIdentityCheck(any()) }
 
-    staticIdentityUtil.verifyNoInteractions()
+    repository.batchSafetyNumberCheckSync(keys, now + TimeUnit.SECONDS.toMillis(10))
+    verify(exactly = 1) { profileService.performIdentityCheck(any()) }
+
+    repository.batchSafetyNumberCheckSync(keys, now + TimeUnit.SECONDS.toMillis(31))
+    verify(exactly = 2) { profileService.performIdentityCheck(any()) }
+
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 
   /**
@@ -188,19 +230,22 @@ class SafetyNumberRepositoryTest {
    */
   @Test
   fun batchSafetyNumberCheckSync_batchOf10WithSmallBatchSize_noChanges() {
-    val keys = recipientPool.map { ContactSearchKey.RecipientSearchKey(it.id, false) }
+    val keys = recipientPool.map { receipient -> ContactSearchKey.RecipientSearchKey(receipient.id, false) }
     val others = recipientPool.subList(1, recipientPool.lastIndex)
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(others.map { it.id }) }) }.thenReturn(others)
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(others.map { key -> key.id }) })
+    } returns others
 
-    for (chunk in others.chunked(2)) {
-      whenever(profileService.performIdentityCheck(chunk.associate { it.requireServiceId() to identityPool[it]!!.identityKey }))
-        .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf()), 200, "")))
+    every {
+      profileService.performIdentityCheck(any())
+    } answers {
+      Single.just(ServiceResponse.forResult(IdentityCheckResponse(listOf()), 200, ""))
     }
 
     repository.batchSafetyNumberCheckSync(keys, now, 2)
 
-    staticIdentityUtil.verifyNoInteractions()
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 
   @Test
@@ -208,13 +253,21 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forApplicationError(NonSuccessfulResponseCodeException(400), 400, "")))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)
+      )
+    } returns Single.just(
+      ServiceResponse.forApplicationError(NonSuccessfulResponseCodeException(400), 400, "")
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verifyNoInteractions()
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 
   @Test
@@ -222,13 +275,21 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forUnknownError(IOException())))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)
+      )
+    } returns Single.just(
+      ServiceResponse.forUnknownError(IOException())
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verifyNoInteractions()
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 
   @Test
@@ -236,12 +297,24 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
-    staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
-    whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
-      .thenReturn(Single.just(ServiceResponse.forResult(IdentityCheckResponse(), 200, "")))
+    every {
+      Recipient.resolvedList(match { list -> list.containsAll(keys.map { key -> key.recipientId }) })
+    } returns listOf(other)
+
+    every {
+      profileService.performIdentityCheck(
+        mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)
+      )
+    } returns Single.just(
+      ServiceResponse.forResult(
+        IdentityCheckResponse(),
+        200,
+        ""
+      )
+    )
 
     repository.batchSafetyNumberCheckSync(keys, now)
 
-    staticIdentityUtil.verifyNoInteractions()
+    verify(exactly = 0) { IdentityUtil.saveIdentity(any(), any()) }
   }
 }
