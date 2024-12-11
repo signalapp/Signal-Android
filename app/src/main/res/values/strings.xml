@@ -6302,8 +6302,8 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Only share with selected people</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="one">%1$d person</item>
-        <item quantity="other">%1$d people</item>
+        <item quantity="one">%1$d viewer</item>
+        <item quantity="other">%1$d viewers</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choose who can view your story. Changes won\'t affect stories you\'ve already sent.</string>

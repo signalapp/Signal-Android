@@ -22,7 +22,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/section_header_action"
-        style="@style/Signal.Widget.Button.Large.Tonal"
+        style="@style/Signal.Widget.Button.Small.Secondary"
+        android:textColor="@color/signal_colorOnSurface"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -31,6 +32,7 @@
         android:visibility="gone"
         app:icon="@drawable/ic_plus_12"
         app:iconSize="12dp"
+        app:iconGravity="textStart"
         app:materialThemeOverlay="@style/ThemeOverlay.Signal.Button.Surface2"
         tools:text="New Story"
         tools:visibility="visible" />
