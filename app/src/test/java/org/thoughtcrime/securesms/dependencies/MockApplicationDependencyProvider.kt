@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.dependencies
 
 import io.mockk.mockk
-import org.mockito.Mockito
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.libsignal.net.Network
@@ -134,7 +133,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideDatabaseObserver(): DatabaseObserver {
-    return Mockito.mock(DatabaseObserver::class.java)
+    return mockk(relaxed = true)
   }
 
   override fun providePayments(signalServiceAccountManager: SignalServiceAccountManager): Payments {

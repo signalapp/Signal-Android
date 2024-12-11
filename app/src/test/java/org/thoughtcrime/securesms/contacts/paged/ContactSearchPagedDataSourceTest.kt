@@ -2,20 +2,19 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.app.Application
 import androidx.core.os.bundleOf
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
 import org.junit.Assert
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.any
-import org.mockito.kotlin.anyOrNull
-import org.mockito.kotlin.isNull
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.MockCursor
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.recipients.LiveRecipientCache
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -23,26 +22,28 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class ContactSearchPagedDataSourceTest {
-
-  private val repository: ContactSearchPagedDataSourceRepository = mock()
-  private val cursor: MockCursor = mock()
+  private val repository = mockk<ContactSearchPagedDataSourceRepository>(relaxed = true)
+  private val cursor = mockk<MockCursor>(relaxed = true)
   private val groupStoryData = ContactSearchData.Story(Recipient.UNKNOWN, 0, DistributionListPrivacyMode.ALL)
 
   @Before
   fun setUp() {
-    whenever(repository.getRecipientFromGroupRecord(any())).thenReturn(Recipient.UNKNOWN)
-    whenever(repository.getRecipientFromSearchCursor(any())).thenReturn(Recipient.UNKNOWN)
-    whenever(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    whenever(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
-    whenever(repository.getPrivacyModeFromDistributionListCursor(cursor)).thenReturn(DistributionListPrivacyMode.ALL)
-    whenever(repository.getGroupStories()).thenReturn(emptySet())
-    whenever(repository.getLatestStorySends(any())).thenReturn(emptyList())
-    whenever(cursor.getString(any())).thenReturn("A")
-    whenever(cursor.moveToPosition(any())).thenCallRealMethod()
-    whenever(cursor.moveToNext()).thenCallRealMethod()
-    whenever(cursor.position).thenCallRealMethod()
-    whenever(cursor.isLast).thenCallRealMethod()
-    whenever(cursor.isAfterLast).thenCallRealMethod()
+    mockkStatic(AppDependencies::class)
+    every { AppDependencies.recipientCache } returns mockk<LiveRecipientCache>(relaxed = true)
+
+    every { repository.getRecipientFromGroupRecord(any()) } returns Recipient.UNKNOWN
+    every { repository.getRecipientFromSearchCursor(any()) } returns Recipient.UNKNOWN
+    every { repository.getRecipientFromThreadCursor(cursor) } returns Recipient.UNKNOWN
+    every { repository.getRecipientFromDistributionListCursor(cursor) } returns Recipient.UNKNOWN
+    every { repository.getPrivacyModeFromDistributionListCursor(cursor) } returns DistributionListPrivacyMode.ALL
+    every { repository.getGroupStories() } returns emptySet()
+    every { repository.getLatestStorySends(any()) } returns emptyList()
+    every { cursor.getString(any()) } returns "A"
+    every { cursor.moveToPosition(any()) } answers { callOriginal() }
+    every { cursor.moveToNext() } answers { callOriginal() }
+    every { cursor.position } answers { callOriginal() }
+    every { cursor.isLast } answers { callOriginal() }
+    every { cursor.isAfterLast } answers { callOriginal() }
   }
 
   @Test
@@ -99,7 +100,6 @@ class ContactSearchPagedDataSourceTest {
     Assert.assertEquals(expected, resultKeys)
   }
 
-  @Ignore
   @Test
   fun `Given storiesWithHeaderAndExtras, when I load 11, then I expect properly structured output`() {
     val testSubject = createStoriesSubject()
@@ -176,9 +176,9 @@ class ContactSearchPagedDataSourceTest {
       )
     }
 
-    whenever(repository.getStories(anyOrNull())).thenReturn(cursor)
-    whenever(repository.recipientNameContainsQuery(Recipient.UNKNOWN, null)).thenReturn(true)
-    whenever(cursor.count).thenReturn(10)
+    every { repository.getStories(any()) } returns cursor
+    every { repository.recipientNameContainsQuery(Recipient.UNKNOWN, null) } returns true
+    every { cursor.count } returns 10
 
     return ContactSearchPagedDataSource(configuration, repository)
   }
@@ -201,10 +201,10 @@ class ContactSearchPagedDataSourceTest {
       )
     }
 
-    whenever(repository.getRecents(recents)).thenReturn(cursor)
-    whenever(repository.queryNonGroupContacts(isNull(), any())).thenReturn(cursor)
-    whenever(repository.querySignalContacts(any())).thenReturn(cursor)
-    whenever(cursor.count).thenReturn(10)
+    every { repository.getRecents(recents) } returns cursor
+    every { repository.queryNonGroupContacts(isNull(), any()) } returns cursor
+    every { repository.querySignalContacts(any()) } returns cursor
+    every { cursor.count } returns 10
 
     return ContactSearchPagedDataSource(configuration, repository)
   }

@@ -1,25 +1,19 @@
 package org.thoughtcrime.securesms.backup.v2
 
-import org.junit.Before
+import io.mockk.every
+import io.mockk.mockk
 import org.junit.Test
-import org.mockito.kotlin.any
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 import org.thoughtcrime.securesms.MockCursor
 import org.thoughtcrime.securesms.assertIsSize
 
 class ArchivedMediaObjectIteratorTest {
-
-  private val cursor: MockCursor = mock()
-
-  @Before
-  fun setUp() {
-    whenever(cursor.getString(any())).thenReturn("A")
-    whenever(cursor.moveToPosition(any())).thenCallRealMethod()
-    whenever(cursor.moveToNext()).thenCallRealMethod()
-    whenever(cursor.position).thenCallRealMethod()
-    whenever(cursor.isLast).thenCallRealMethod()
-    whenever(cursor.isAfterLast).thenCallRealMethod()
+  private val cursor = mockk<MockCursor>(relaxed = true) {
+    every { getString(any()) } returns "A"
+    every { moveToPosition(any()) } answers { callOriginal() }
+    every { moveToNext() } answers { callOriginal() }
+    every { position } answers { callOriginal() }
+    every { isLast } answers { callOriginal() }
+    every { isAfterLast } answers { callOriginal() }
   }
 
   @Test
@@ -33,7 +27,7 @@ class ArchivedMediaObjectIteratorTest {
   }
 
   private fun runTest(size: Int) {
-    whenever(cursor.count).thenReturn(size)
+    every { cursor.count } returns size
     val iterator = ArchivedMediaObjectIterator(cursor)
 
     val list = iterator.asSequence().toList()
