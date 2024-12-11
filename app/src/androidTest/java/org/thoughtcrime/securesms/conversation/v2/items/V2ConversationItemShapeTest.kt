@@ -208,7 +208,7 @@ class V2ConversationItemShapeTest {
 
     private val colorizer = Colorizer()
 
-    override val lifecycleOwner: LifecycleOwner = object: LifecycleOwner {
+    override val lifecycleOwner: LifecycleOwner = object : LifecycleOwner {
       override val lifecycle: Lifecycle = LifecycleRegistry(this)
     }
     override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.Standard
