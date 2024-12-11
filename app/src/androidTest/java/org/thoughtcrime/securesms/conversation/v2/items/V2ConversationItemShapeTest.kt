@@ -5,12 +5,16 @@
 
 package org.thoughtcrime.securesms.conversation.v2.items
 
+import android.content.Context
 import android.net.Uri
 import android.view.View
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.Observer
+import androidx.test.core.app.ApplicationProvider
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
-import io.mockk.mockk
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -204,13 +208,15 @@ class V2ConversationItemShapeTest {
 
     private val colorizer = Colorizer()
 
-    override val lifecycleOwner: LifecycleOwner = mockk(relaxed = true)
+    override val lifecycleOwner: LifecycleOwner = object : LifecycleOwner {
+      override val lifecycle: Lifecycle = LifecycleRegistry(this)
+    }
     override val displayMode: ConversationItemDisplayMode = ConversationItemDisplayMode.Standard
     override val clickListener: ConversationAdapter.ItemClickListener = FakeConversationItemClickListener
     override val selectedItems: Set<MultiselectPart> = emptySet()
     override val isMessageRequestAccepted: Boolean = true
     override val searchQuery: String? = null
-    override val requestManager: RequestManager = mockk()
+    override val requestManager: RequestManager = Glide.with(ApplicationProvider.getApplicationContext() as Context)
     override val isParentInScroll: Boolean = false
     override fun getChatColorsData(): ChatColorsDrawable.ChatColorsData = ChatColorsDrawable.ChatColorsData(null, null)
 
