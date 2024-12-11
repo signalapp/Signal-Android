@@ -1,25 +1,34 @@
 package org.thoughtcrime.securesms.recipients
 
+import android.app.Application
 import android.graphics.Color
+import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils.createRecipient
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.ChatColorsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.WallpaperValues
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 
 @Suppress("ClassName")
-class Recipient_getChatColorsTest : BaseRecipientTest() {
-
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, application = Application::class)
+class Recipient_getChatColorsTest {
   private val defaultChatColors = ChatColorsPalette.Bubbles.default.withId(ChatColors.Id.Auto)
   private val globalWallpaperChatColor = ChatColors.forColor(ChatColors.Id.BuiltIn, Color.RED)
   private val globalChatColor = ChatColors.forColor(ChatColors.Id.BuiltIn, Color.GREEN)
@@ -29,6 +38,12 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
 
   @Before
   fun setUp() {
+    mockkStatic(AppDependencies::class)
+    every { AppDependencies.application } returns ApplicationProvider.getApplicationContext()
+
+    mockkStatic(AttachmentSecretProvider::class)
+    every { AttachmentSecretProvider.getInstance(any()) } throws RuntimeException("Whoa, nelly!")
+
     wallpaperValues = mockk()
     chatColorsValues = mockk()
 
@@ -225,7 +240,7 @@ class Recipient_getChatColorsTest : BaseRecipientTest() {
   private fun createWallpaper(
     chatColors: ChatColors
   ): ChatWallpaper {
-    return mockk<ChatWallpaper>().apply {
+    return mockk<ChatWallpaper> {
       every { autoChatColors } answers { chatColors }
     }
   }
