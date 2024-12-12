@@ -29,7 +29,7 @@ class BaseStoryRecipientSelectionViewModel(
       disposable += repository.getRecord(distributionListId)
         .subscribe { record ->
           val startingSelection = if (record.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) record.rawMembers else record.members
-          store.update { it.copy(privateStory = record, selection = it.selection + startingSelection) }
+          store.update { it.copy(privateStory = record, selection = it.selection + startingSelection, isStartingSelection = true) }
         }
     }
   }
@@ -59,6 +59,10 @@ class BaseStoryRecipientSelectionViewModel(
     } else {
       subject.onNext(Action.GoToNextScreen(store.state.selection))
     }
+  }
+
+  fun onStartingSelectionAdded() {
+    store.update { it.copy(isStartingSelection = false) }
   }
 
   sealed class Action {

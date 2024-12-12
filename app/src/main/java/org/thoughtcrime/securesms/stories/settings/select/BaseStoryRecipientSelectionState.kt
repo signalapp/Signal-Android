@@ -7,5 +7,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 data class BaseStoryRecipientSelectionState(
   val distributionListId: DistributionListId?,
   val privateStory: DistributionListRecord? = null,
-  val selection: Set<RecipientId> = emptySet()
+  val selection: Set<RecipientId> = emptySet(),
+  val isStartingSelection: Boolean = false
 )
