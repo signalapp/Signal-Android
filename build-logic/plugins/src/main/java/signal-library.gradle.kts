@@ -61,8 +61,6 @@ dependencies {
   ktlintRuleset(libs.ktlint.twitter.compose)
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.mockito.core)
-  testImplementation(testLibs.mockito.kotlin)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(testLibs.androidx.test.core)
   testImplementation(testLibs.androidx.test.core.ktx)
