@@ -869,6 +869,7 @@
     <string name="BackupsPreferenceFragment__in_progress">진행 중…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">백업을 확인하는 중…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">지금까지 %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% 진행중…</string>
@@ -996,15 +997,15 @@
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">장치 이름 수정</string>
     <!-- Text hint shown when entering in a new device name -->
-    <string name="EditDeviceNameFragment__device_name">기기 이름</string>
+    <string name="EditDeviceNameFragment__device_name">장치 이름</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">저장</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">장치 이름을 업데이트했습니다</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">장치 이름을 바꾸지 못했습니다. 나중에 다시 시도하세요.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1032,11 +1033,11 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">메시지 기록 전송</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">텍스트 메시지와 최근 미디어를 연결된 장치에 전송합니다</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">전송 안 함</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">이전 메시지 또는 미디어를 연결된 장치에 전송하지 않습니다</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" 기기의 연결을 해제하시겠습니까?</string>
@@ -1338,11 +1339,15 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">마지막 백업이 완료된 시간은 %1$s %2$s입니다.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">마지막 백업이 완료된 시간은 %1$s %2$s입니다. 백업 크기는 %3$s입니다.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">백업 세부 정보를 가져오는 중…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">복원 건너뛰기</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
@@ -1931,6 +1936,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s 님과 대화를 계속하고 이름과 사진을 공유하시겠어요?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">그룹에 가입하고 멤버들과 이름과 사진을 공유하시겠습니까? 귀하가 수락할 때까지 귀하가 자신의 메시지를 본 것을 알지 못합니다.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">이 그룹에 참가하여 그룹 멤버에게 내 이름과 사진을 공유하시겠어요? 수락하기 전까지는 멤버의 메시지가 표시되지 않습니다.</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">이 그룹에 참가하시겠습니까? 수락하기 전까지 상대는 내가 메시지를 보았는지 알 수 없습니다.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">이 그룹을 차단 해제하고 그룹 멤버에게 내 이름과 사진을 공유할까요? 차단을 해제할 때까지 모든 메시지를 차단합니다.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -2110,6 +2116,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">비디오를 사용하려면 탭하세요</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s 님에게 전화하려면 Signal에서 카메라 권한이 필요합니다.</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">시그널 %1$s</string>
     <string name="WebRtcCallActivity__calling">전화 진행 중…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2338,6 +2345,7 @@
     <plurals name="CallParticipantsListDialog__signal_will_ring">
         <item quantity="other">Signal에서 전화벨을 울립니다(%1$d).</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="other">Signal에서 알림을 보냅니다(%1$d).</item>
     </plurals>
@@ -2397,7 +2405,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">이 번호를 등록하려고 너무 많이 시도했습니다. %1$s 후에 다시 시도해 주세요.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">SMS 통신사 문제로 인해 Signal에서 SMS 코드를 전송하지 못했습니다. 몇 시간 정도 기다렸다가 다시 시도해 주세요.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMS를 통해 확인 코드를 보낼 수 없습니다. 음성 통화로 대신 받아 보세요.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2560,6 +2568,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
+    <!-- Text shown you have left a group -->
     <string name="ThreadRecord_left_the_group">그룹을 탈퇴함</string>
     <string name="ThreadRecord_secure_session_reset">보안 세션이 초기화되었습니다.</string>
     <string name="ThreadRecord_draft">초안:</string>
@@ -2761,6 +2770,7 @@
     <plurals name="MessageNotifier_d_chats">
         <item quantity="other">대화 %1$d개</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">%1$s 님에게서 온 최근 메시지</string>
     <string name="MessageNotifier_locked_message">잠긴 메시지</string>
     <string name="MessageNotifier_message_delivery_failed">메시지 전송에 실패했습니다.</string>
@@ -6150,7 +6160,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">선택한 사용자와만 공유</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="other">%1$d명</item>
+        <item quantity="other">%1$d viewers</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">스토리를 볼 수 있는 사람을 선택하세요. 이미 전송한 스토리에는 변경 내용이 적용되지 않습니다.</string>
@@ -7346,11 +7356,11 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">복원을 건너뛸 경우 나중에 저장 공간을 사용할 수 있을 때 백업의 남은 미디어와 첨부 파일을 다운로드할 수 있습니다.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">백업을 실패했습니다.</string>
+    <string name="BackupAlertBottomSheet__backup_failed">백업에 실패했습니다.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">오류가 발생하여 백업을 완료하지 못했습니다. 최신 버전 Signal을 사용 중인지 확인하고 다시 시도하세요. 문제가 계속되면 지원팀에 연락해 주세요.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">업데이트 확인</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7377,15 +7387,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">다운로드 취소</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">다운로드하는 중: %1$s/%2$s(%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">백업을 다운로드할 공간이 부족합니다. 계속하려면 %1$s의 공간을 확보하세요.</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">다운로드 건너뛰기</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">마지막 백업을 완료하지 못했습니다. 휴대폰이 Wi-Fi에 연결되어 있는지 확인하고 \'지금 백업\'을 탭하여 다시 시도하세요.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">마지막 백업을 완료하지 못했습니다. 최신 버전 Signal을 사용 중인지 확인하고 다시 시도하세요.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">자세히 알아보기</string>
 
@@ -7485,6 +7501,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">결제 기록</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">백업 세부 정보</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">백업 크기</string>
     <!-- Row label for backup frequency -->
@@ -7590,7 +7608,13 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">자세히 알아보기</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">백업을 처리하는 중…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="other">이 기기에 있지 않은 백업 데이터가 %1$s 있습니다. %2$d일 후 구독이 종료되면 백업이 삭제됩니다.</item>
@@ -7609,8 +7633,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">백업을 비활성화하고 삭제하지 못함</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">네트워크 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도하세요.</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7794,6 +7818,8 @@
     <string name="RestoreViaQr_qr_code_scanned">이전 기기에서 스캔했습니다</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">재시도</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">계정 전송</string>
@@ -7824,15 +7850,15 @@
     <string name="RestoreCompleteBottomSheet_button">확인</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">복원할 백업이 없음</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">iPhone에서 Android로 바꾸는 경우 메시지와 미디어를 전송하려면 이전 장치에서 Signal 백업을 활성화해야만 합니다.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">이전 기기에서 Signal을 엽니다</string>
+    <string name="NoBackupToRestore_step1">이전 장치에서 Signal을 엽니다</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">설정 &gt; 백업을 탭합니다</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">백업을 활성화하고 백업이 완료될까지 기다립니다</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">복원 건너뛰기</string>
 

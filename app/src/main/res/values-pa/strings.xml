@@ -889,6 +889,7 @@
     <string name="BackupsPreferenceFragment__in_progress">ਜਾਰੀ ਹੈ…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">ਬੈਕਅੱਪ ਦੀ ਤਸਦੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">%1$d ਹੁਣ ਤੱਕ…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">ਹੁਣ ਤੱਕ %1$s %%…</string>
@@ -1016,15 +1017,15 @@
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">ਡਿਵਾਈਸ ਦਾ ਨਾਂ ਸੋਧੋ</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">ਡਿਵਾਈਸ ਦਾ ਨਾਂ</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">ਸੇਵ ਕਰੋ</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">ਡਿਵਾਈਸ ਦਾ ਨਾਂ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">ਡਿਵਾਈਸ ਦਾ ਨਾਂ ਬਦਲਣ ਵਿੱਚ ਅਸਮਰੱਥ ਰਹੇ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1052,11 +1053,11 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">ਆਪਣੇ ਟੈਕਸਟ ਸੁਨੇਹਿਆਂ ਅਤੇ ਹਾਲੀਆ ਮੀਡੀਆ ਨੂੰ ਆਪਣੇ ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ \'ਤੇ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">ਟ੍ਰਾਂਸਫਰ ਨਾ ਕਰੋ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਜਾਂ ਮੀਡੀਆ ਨੂੰ ਤੁਹਾਡੇ ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ \'ਤੇ ਟ੍ਰਾਂਸਫਰ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">ਕੀ \"%1$s\" ਨੂੰ ਅਨਲਿੰਕ ਕਰਨਾ ਹੈ?</string>
@@ -1376,11 +1377,15 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">ਤੁਹਾਡਾ ਆਖਰੀ ਬੈਕਅੱਪ %1$s ਨੂੰ %2$s ਲਿਆ ਗਿਆ ਸੀ।</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">ਤੁਹਾਡਾ ਆਖਰੀ ਬੈਕਅੱਪ %1$s ਨੂੰ %2$s ਲਿਆ ਗਿਆ ਸੀ। ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਦਾ ਆਕਾਰ %3$s ਹੈ।</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">ਬੈਕਅੱਪ ਦੇ ਵੇਰਵੇ ਪ੍ਰਾਪਤ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ਹਵਾਲਿਆਂ ਲਈ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ</string>
@@ -1989,6 +1994,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ਕੀ ਤੁਸੀਂ %1$s ਨਾਲ ਆਪਣੀ ਚੈਟ ਨੂੰ ਜਾਰੀ ਰੱਖਣਾ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਆਪਣੇ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਨੂੰ ਸਾਂਝਾ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸ ਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਮ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦੇ, ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਨਹੀਂ ਦੇਖ ਸਕੋਗੇ।</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਉੱਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ ਅਤੇ ਇਸ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਉੱਤੋਂ ਪਾਬੰਦੀ ਨਹੀਂ ਹਟਾਉਂਦੇ, ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -2174,6 +2180,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ਆਪਣੀ ਵੀਡੀਓ ਨੂੰ ਚਾਲੂ ਕਰਨ ਲਈ ਇੱਥੇ ਟੈਪ ਕਰੋ</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ਕਾਲ ਕਰਨ ਲਈ, Signal ਨੂੰ ਤੁਹਾਡੇ ਕੈਮਰੇ ਲਈ ਪਹੁੰਚ ਚਾਹੀਦੀ ਹੈ</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">ਕਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2420,6 +2427,7 @@
         <item quantity="one">Signal (%1$d) ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
         <item quantity="other">Signal (%1$d) ਨੂੰ ਰਿੰਗ ਕਰੇਗਾ</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="one">Signal (%1$d) ਨੂੰ ਸੂਚਿਤ ਕਰੇਗਾ</item>
         <item quantity="other">Signal (%1$d) ਨੂੰ ਸੂਚਿਤ ਕਰੇਗਾ</item>
@@ -2481,7 +2489,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">ਤੁਸੀਂ ਇਸ ਨੰਬਰ ਨੂੰ ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਬਹੁਤ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਕਰ ਚੁੱਕੇ ਹੋ। ਕਿਰਪਾ ਕਰਕੇ %1$s ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ਸੇਵਾ ਨਾਲ ਜੁੜਨ ਵਿੱਚ ਅਸਮਰੱਥ। ਕਿਰਪਾ ਕਰਕੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">SMS ਪ੍ਰਦਾਤਾ ਨਾਲ ਕੋਈ ਸਮੱਸਿਆਵਾਂ ਹੋਣ ਦੇ ਕਾਰਨ Signal SMS ਕੋਡ ਨਹੀਂ ਭੇਜ ਸਕਿਆ। ਕੁਝ ਘੰਟਿਆਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">ਅਸੀਂ ਤੁਹਾਨੂੰ SMS ਰਾਹੀਂ ਤਸਦੀਕ ਕੋਡ ਨਹੀਂ ਭੇਜ ਸਕੇ। ਇਸਦੀ ਬਜਾਏ ਵੌਇਸ ਕਾਲ ਰਾਹੀਂ ਆਪਣਾ ਕੋਡ ਪ੍ਰਾਪਤ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2645,6 +2653,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">ਗਰੁੱਪ ਅੱਪਡੇਟ ਕੀਤਾ</string>
+    <!-- Text shown you have left a group -->
     <string name="ThreadRecord_left_the_group">ਗਰੁੱਪ ਛੱਡਿਆ</string>
     <string name="ThreadRecord_secure_session_reset">ਸੁਰੱਖਿਅਤ ਸ਼ੈਸਨ ਰੀਸੈੱਟ ਹੋਇਆ।</string>
     <string name="ThreadRecord_draft">ਡਰਾਫਟ:</string>
@@ -2849,6 +2858,7 @@
         <item quantity="one">%1$d ਚੈਟ</item>
         <item quantity="other">%1$d ਚੈਟਾਂ</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">ਇਹਨਾਂ ਤੋਂ ਸਭ ਤੋਂ ਹਾਲ ਦੇ: %1$s</string>
     <string name="MessageNotifier_locked_message">ਲਾਕ ਕੀਤਾ ਸੁਨੇਹਾ</string>
     <string name="MessageNotifier_message_delivery_failed">ਸੁਨੇਹਾ ਡਿਲਿਵਰੀ ਅਸਫ਼ਲ।</string>
@@ -6288,8 +6298,8 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">ਸਿਰਫ਼ ਚੁਣੇ ਹੋਏ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="one">%1$d ਵਿਅਕਤੀ</item>
-        <item quantity="other">%1$d ਲੋਕ</item>
+        <item quantity="one">%1$d viewer</item>
+        <item quantity="other">%1$d viewers</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ਚੁਣੋ ਕਿ ਤੁਹਾਡੀ ਸਟੋਰੀ ਕੌਣ ਦੇਖ ਸਕਦਾ ਹੈ। ਤਬਦੀਲੀਆਂ ਉਹਨਾਂ ਸਟੋਰੀਆਂ ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਕਰਨਗੀਆਂ ਜੋ ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਭੇਜ ਚੁੱਕੇ ਹੋ।</string>
@@ -7507,11 +7517,11 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">ਜੇਕਰ ਤੁਸੀਂ ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡ ਦਿੰਦੇ ਹੋ, ਤਾਂ ਅਗਲੀ ਵਾਰ ਜਦੋਂ ਸਟੋਰੇਜ ਦੀ ਥਾਂ ਉਪਲਬਧ ਹੋਣ \'ਤੇ ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਵਿੱਚ ਬਾਕੀ ਬਚਿਆ ਮੀਡੀਆ ਅਤੇ ਅਟੈਚਮੈਂਟਾਂ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਸਕਦਾ ਹੈ।</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">ਬੈਕਅੱਪ ਅਸਫ਼ਲ ਹੈ</string>
+    <string name="BackupAlertBottomSheet__backup_failed">ਬੈਕਅੱਪ ਅਸਫ਼ਲ ਰਿਹਾ</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">ਕੋਈ ਗੜਬੜ ਪੇਸ਼ ਆ ਗਈ ਹੈ, ਜਿਸ ਕਾਰਨ ਤੁਹਾਡਾ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਕੋਲ Signal ਦਾ ਸਭ ਤੋਂ ਨਵਾਂ ਵਰਜ਼ਨ ਹੈ ਅਤੇ ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ। ਜੇਕਰ ਇਹ ਸਮੱਸਿਆ ਬਣੀ ਰਹਿੰਦੀ ਹੈ, ਤਾਂ ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">ਅੱਪਡੇਟ ਲਈ ਜਾਂਚ ਕਰੋ</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7538,15 +7548,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">ਡਾਊਨਲੋਡ ਰੱਦ ਕਰੋ</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ: %2$s ਵਿੱਚੋਂ %1$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">ਤੁਹਾਡੇ ਬੈਕਅੱਪ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਲੋੜੀਂਦੀ ਥਾਂ ਨਹੀਂ ਹੈ। ਜਾਰੀ ਰੱਖਣ ਲਈ %1$s ਥਾਂ ਖਾਲੀ ਕਰੋ।</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">ਡਾਊਨਲੋਡ ਛੱਡੋ</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">ਤੁਹਾਡੇ ਪਿਛਲੇ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡਾ ਫ਼ੋਨ Wi-F ਨਾਲ ਕਨੈਕਟ ਹੈ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ \"ਹੁਣੇ ਬੈਕਅੱਪ ਲਓ\" \'ਤੇ ਟੈਪ ਕਰੋ।</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">ਤੁਹਾਡੇ ਪਿਛਲੇ ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਕੋਲ Signal ਦਾ ਸਭ ਤੋਂ ਨਵਾਂ ਵਰਜ਼ਨ ਹੈ ਅਤੇ ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">ਹੋਰ ਜਾਣੋ</string>
 
@@ -7647,6 +7663,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">ਭੁਗਤਾਨ ਦਾ ਇਤਿਹਾਸ</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ਬੈਕਅੱਪ ਦੇ ਵੇਰਵੇ</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ਬੈਕਅਪ ਦਾ ਆਕਾਰ</string>
     <!-- Row label for backup frequency -->
@@ -7753,7 +7771,14 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">ਬੈਕਅੱਪ ਉੱਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="one">Processing %1$d of %2$d (%3$d%%) message</item>
+        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">ਤੁਹਾਡੇ ਕੋਲ %1$s ਬੈਕਅੱਪ ਡਾਟਾ ਹੈ ਜੋ ਇਸ ਡਿਵਾਈਸ \'ਤੇ ਨਹੀਂ ਹੈ। %2$d ਦਿਨ ਵਿੱਚ ਤੁਹਾਡੀ ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਦੇ ਸਮਾਪਤ ਹੋਣ \'ਤੇ ਤੁਹਾਡਾ ਬੈਕਅੱਪ ਮਿਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।</item>
@@ -7774,8 +7799,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">ਬੈਕਅੱਪ ਨੂੰ ਬੰਦ ਕੀਤਾ ਅਤੇ ਮਿਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">ਨੈੱਟਵਰਕ ਵਿੱਚ ਕੋਈ ਗੜਬੜ ਆ ਗਈ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7961,6 +7986,8 @@
     <string name="RestoreViaQr_qr_code_scanned">ਪੁਰਾਣੇ ਡਿਵਾਈਸ \'ਤੇ ਸਕੈਨ ਕੀਤਾ ਗਿਆ</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
@@ -7991,15 +8018,15 @@
     <string name="RestoreCompleteBottomSheet_button">ਠੀਕ ਹੈ</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">ਰੀਸਟੋਰ ਕਰਨ ਲਈ ਕੋਈ ਬੈਕਅੱਪ ਨਹੀਂ ਹੈ</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">ਕਿਉਂਕਿ ਤੁਸੀਂ iPhone ਤੋਂ Android \'ਤੇ ਜਾ ਰਹੇ ਹੋ, ਇਸ ਲਈ ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਟ੍ਰਾਂਸਫਰ ਕਰਨ ਦਾ ਇੱਕੋ-ਇੱਕ ਤਰੀਕਾ ਇਹ ਹੈ ਕਿ ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ \'ਤੇ Signal ਬੈਕਅੱਪ ਨੂੰ ਸਮਰੱਥ ਕੀਤਾ ਜਾਵੇ।</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">ਆਪਣੇ ਪੁਰਾਣੇ ਡਿਵਾਈਸ \'ਤੇ Signal ਖੋਲ੍ਹੋ</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">ਸੈਟਿੰਗਾਂ &gt; ਬੈਕਅੱਪ \'ਤੇ ਟੈਪ ਕਰੋ</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">ਬੈਕਅੱਪ ਨੂੰ ਚਾਲੂ ਕਰੋ ਅਤੇ ਆਪਣਾ ਬੈਕਅੱਪ ਪੂਰਾ ਹੋਣ ਤੱਕ ਉਡੀਕ ਕਰੋ</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
 
