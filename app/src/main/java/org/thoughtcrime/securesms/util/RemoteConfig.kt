@@ -1129,7 +1129,7 @@ object RemoteConfig {
   /** Whether or not this device supports syncing data to newly-linked device. */
   @JvmStatic
   val linkAndSync: Boolean by remoteBoolean(
-    key = "android.linkAndSync.2",
+    key = "android.linkAndSync.3",
     defaultValue = false,
     hotSwappable = true
   )
