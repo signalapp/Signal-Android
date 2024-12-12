@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.migrations.BackfillDigestsForDuplicatesMigrati
 import org.thoughtcrime.securesms.migrations.BackfillDigestsMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupJitterMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupNotificationMigrationJob;
+import org.thoughtcrime.securesms.migrations.BadE164MigrationJob;
 import org.thoughtcrime.securesms.migrations.BlobStorageLocationMigrationJob;
 import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.ClearGlideCacheMigrationJob;
@@ -277,6 +278,7 @@ public final class JobManagerFactories {
       put(BackupMediaSnapshotSyncJob.KEY,               new BackupMediaSnapshotSyncJob.Factory());
       put(BackupNotificationMigrationJob.KEY,           new BackupNotificationMigrationJob.Factory());
       put(BackupRefreshJob.KEY,                         new BackupRefreshJob.Factory());
+      put(BadE164MigrationJob.KEY,                      new BadE164MigrationJob.Factory());
       put(BlobStorageLocationMigrationJob.KEY,          new BlobStorageLocationMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,            new CachedAttachmentsMigrationJob.Factory());
       put(ClearGlideCacheMigrationJob.KEY,              new ClearGlideCacheMigrationJob.Factory());

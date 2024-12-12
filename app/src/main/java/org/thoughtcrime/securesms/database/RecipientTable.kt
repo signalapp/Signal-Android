@@ -2134,67 +2134,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * @return True if setting the phone number resulted in changed recipientId, otherwise false.
-   */
-  fun setPhoneNumber(id: RecipientId, e164: String): Boolean {
-    val db = writableDatabase
-
-    db.beginTransaction()
-    return try {
-      setPhoneNumberOrThrow(id, e164)
-      db.setTransactionSuccessful()
-      false
-    } catch (e: SQLiteConstraintException) {
-      Log.w(TAG, "[setPhoneNumber] Hit a conflict when trying to update $id. Possibly merging.")
-
-      val existing: RecipientRecord = getRecord(id)
-      val newId = getAndPossiblyMerge(existing.aci, e164)
-      Log.w(TAG, "[setPhoneNumber] Resulting id: $newId")
-
-      db.setTransactionSuccessful()
-      newId != existing.id
-    } finally {
-      db.endTransaction()
-    }
-  }
-
-  private fun removePhoneNumber(recipientId: RecipientId) {
-    val values = ContentValues().apply {
-      putNull(E164)
-      putNull(PNI_COLUMN)
-    }
-
-    if (update(recipientId, values)) {
-      rotateStorageId(recipientId)
-    }
-  }
-
-  /**
-   * Should only use if you are confident that this will not result in any contact merging.
-   */
-  @Throws(SQLiteConstraintException::class)
-  fun setPhoneNumberOrThrow(id: RecipientId, e164: String) {
-    val contentValues = ContentValues(1).apply {
-      put(E164, e164)
-    }
-    if (update(id, contentValues)) {
-      rotateStorageId(id)
-      AppDependencies.databaseObserver.notifyRecipientChanged(id)
-      StorageSyncHelper.scheduleSyncForDataChange()
-    }
-  }
-
-  @Throws(SQLiteConstraintException::class)
-  fun setPhoneNumberOrThrowSilent(id: RecipientId, e164: String) {
-    val contentValues = ContentValues(1).apply {
-      put(E164, e164)
-    }
-    if (update(id, contentValues)) {
-      rotateStorageId(id)
-    }
-  }
-
-  /**
    * Associates the provided IDs together. The assumption here is that all of the IDs correspond to the local user and have been verified.
    */
   fun linkIdsForSelf(aci: ACI, pni: PNI, e164: String) {
@@ -4049,6 +3988,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         return GetOrInsertResult(RecipientId.from(id), true)
       }
     }
+  }
+
+  /**
+   * Exposes the merge functionality for the sake of an app migration.
+   */
+  fun mergeForMigration(primaryId: RecipientId, secondaryId: RecipientId) {
+    merge(primaryId, secondaryId, pniVerified = true)
   }
 
   /**
