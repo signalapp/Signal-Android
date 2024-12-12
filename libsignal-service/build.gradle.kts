@@ -103,7 +103,6 @@ dependencies {
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertj.core)
   testImplementation(testLibs.conscrypt.openjdk.uber)
-  testImplementation(testLibs.mockito.core)
   testImplementation(testLibs.mockk)
   testImplementation(testLibs.hamcrest.hamcrest)
 

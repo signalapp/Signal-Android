@@ -591,8 +591,6 @@ dependencies {
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertj.core)
-  testImplementation(testLibs.mockito.core)
-  testImplementation(testLibs.mockito.kotlin)
   testImplementation(testLibs.androidx.test.core)
   testImplementation(testLibs.robolectric.robolectric) {
     exclude(group = "com.google.protobuf", module = "protobuf-java")
