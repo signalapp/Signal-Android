@@ -869,6 +869,7 @@
     <string name="BackupsPreferenceFragment__in_progress">កំពុងដំណើរការ…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">កំពុងផ្ទៀងផ្ទាត់ការបម្រុងទុក…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">%1$d ឥឡូវនេះ …</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% ឥឡូវនេះ​…</string>
@@ -996,15 +997,15 @@
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">កែឈ្មោះឧបករណ៍</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">ឈ្មោះឧបករណ៍</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">រក្សាទុក</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">ឈ្មោះឧបករណ៍ត្រូវបានធ្វើបច្ចុប្បន្នភាព</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">មិនអាចប្តូរឈ្មោះឧបករណ៍បានទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1032,11 +1033,11 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">ប្រវត្តិផ្ទេរសារ</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">ផ្ទេរសារជាអក្សរ និងមេឌៀថ្មីៗរបស់អ្នកទៅកាន់ឧបករណ៍ដែលបានភ្ជាប់របស់អ្នក</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">កុំផ្ទេរ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">គ្មានសារ ឬមេឌៀចាស់ណាមួយនឹងត្រូវបានផ្ទេរទៅឧបករណ៍ដែលបានភ្ជាប់របស់អ្នកទេ</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">ផ្តាច់ \"%1$s\" ឬ?</string>
@@ -1338,11 +1339,15 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">ការបម្រុងទុកចុងក្រោយរបស់អ្នកត្រូវបានធ្វើឡើងនៅ %1$s ម៉ោង %2$s។</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">ការបម្រុងទុកចុងក្រោយរបស់អ្នកត្រូវបានធ្វើឡើងនៅ %1$s ម៉ោង %2$s។ ទំហំបម្រុងទុករបស់អ្នកគឺ %3$s។</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">កំពុងទាញយកព័ត៌មានលម្អិតនៃការបម្រុងទុក…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">រំលងការស្តារឡើងវិញ</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -1931,6 +1936,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">បន្តការជជែកជាមួយ %1$s ហើយចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយគេ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបថតអ្នក ជាមួយសមាជិកក្រុម? ពួកគេនឹងមិនដឹងថាអ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រមទទួល។</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ចូលរួមក្រុមនេះ ហើយចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយសមាជិកទាំងនោះឬ? អ្នកនឹងមិនឃើញសាររបស់ពួកគេ រហូតទាល់តែអ្នកយល់ព្រមទទួល។</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ចូលរួមក្រុមនេះ? ពួកគេនឹងមិនដឹងថា អ្នកបានឃើញសាររបស់ពួកគេ រហូតអ្នកយល់ព្រម។</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ឈប់ទប់ស្កាត់ក្រុមនេះ និងចែករំលែកឈ្មោះ និងរូបថតរបស់អ្នកជាមួយសមាជិកក្រុម? អ្នកនឹងមិនទទួលបានសារណាមួយឡើយ រហូតទាល់តែអ្នកឈប់ទប់ស្កាត់ពួកគេ។</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -2110,6 +2116,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ចុច​ នៅទីនេះ ដើម្បីបើកវីដេអូរបស់អ្នក</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">ដើម្បីហៅទៅ%1$s, Signal ត្រូវការចូលប្រើប្រាស់កាមេរ៉ារបស់អ្នក</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2338,6 +2345,7 @@
     <plurals name="CallParticipantsListDialog__signal_will_ring">
         <item quantity="other">Signal នឹងហៅទៅ (%1$d)</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="other">Signal នឹងជូនដំណឹងទៅ (%1$d)</item>
     </plurals>
@@ -2397,7 +2405,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">អ្នកបានព្យាយាមជាច្រើនដងពេកក្នុងការចុះឈ្មោះលេខនេះ។ សូមព្យាយាមម្តងទៀតក្នុងរយៈពេល %1$s។</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">មិនអាចតភ្ជាប់សេវាបាន។ សូមពិនិត្យការតភ្ជាប់បណ្តាញ ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Signal មិនអាចផ្ញើលេខកូដតាមសារ SMS បានទេ ដោយសារតែបញ្ហាជាមួយក្រុមហ៊ុនផ្តល់សេវាសារ SMS។ ព្យាយាមម្តងទៀតក្នុងរយៈពេលប៉ុន្មានម៉ោងទៀត។</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">យើងមិនអាចផ្ញើលេខកូដផ្ទៀងផ្ទាត់តាមរយៈសារជាអក្សរទេ។ សាកល្បងទទួលលេខកូដរបស់អ្នកតាមរយៈការហៅជាសំឡេងជំនួសវិញ។</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2560,6 +2568,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">បានធ្វើបច្ចុប្បន្នភាពក្រុម</string>
+    <!-- Text shown you have left a group -->
     <string name="ThreadRecord_left_the_group">បានចាកចេញពីក្រុម</string>
     <string name="ThreadRecord_secure_session_reset">កំណត់ការចូលប្រើប្រាស់សុវត្ថិភាពឡើងវិញ</string>
     <string name="ThreadRecord_draft">ព្រាង៖</string>
@@ -2761,6 +2770,7 @@
     <plurals name="MessageNotifier_d_chats">
         <item quantity="other">ការជជែក %1$d</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">ថ្មីៗភាគច្រើនមកពី៖ %1$s</string>
     <string name="MessageNotifier_locked_message">សារចាក់សោរ</string>
     <string name="MessageNotifier_message_delivery_failed">សារបញ្ជូនបរាជ័យ។</string>
@@ -6150,7 +6160,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">ចែករំលែកជាមួយមនុស្សដែលបានជ្រើសរើសប៉ុណ្ណោះ</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="other">មនុស្ស %1$d នាក់</item>
+        <item quantity="other">%1$d viewers</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ជ្រើសរើសអ្នកដែលអាចមើលរឿងរ៉ាវរបស់អ្នកបាន។ ការផ្លាស់ប្តូរនានានឹងមិនប៉ះពាល់ដល់រឿងរ៉ាវដែលអ្នកបានផ្ញើហើយនោះទេ។</string>
@@ -7159,7 +7169,7 @@
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">សំណើដើម្បីចូលរួមការហៅនេះ</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">សំណើសុំចូលរួមការហៅនេះ</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
         <item quantity="other">មនុស្ស %1$d នាក់កំពុងរង់ចាំ</item>
@@ -7348,9 +7358,9 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">ការបម្រុងទុកបរាជ័យ</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">បញ្ហាមួយបានកើតឡើង ហើយការបម្រុងទុករបស់អ្នកមិនអាចបញ្ចប់បានទេ។ ត្រូវប្រាកដថាអ្នកកំពុងតែប្រើកំណែចុងក្រោយបំផុតរបស់ Signal រួចព្យាយាមម្តងទៀត។ ប្រសិនបើបញ្ហានេះនៅតែបន្តកើតមាន សូមទាក់ទងផ្នែកជំនួយ។</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">រកមើលកំណែថ្មី</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7377,15 +7387,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">បោះបង់ការទាញយក</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">កំពុងទាញយក៖ %1$s នៃ %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">មិនមានទំហំផ្ទុកគ្រប់គ្រាន់ដើម្បីទាញយកការបម្រុងទុករបស់អ្នក។ ដើម្បីបន្ត សូមរក្សាទំហំផ្ទុករបស់អ្នកឱ្យទំនេរបាន %1$s។</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">រំលងការទាញយក</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">ការបម្រុងទុកចុងក្រោយរបស់អ្នកមិនអាចបញ្ចប់បានទេ។ ត្រូវប្រាកដថាទូរសព្ទរបស់អ្នកបានភ្ជាប់ Wi-Fi រួចចុច \"បម្រុងទុកឥឡូវនេះ\" ដើម្បីព្យាយាមម្តងទៀត។</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">ការបម្រុងទុកចុងក្រោយរបស់អ្នកមិនអាចបញ្ចប់បានទេ។ ត្រូវប្រាកដថាអ្នកកំពុងតែប្រើកំណែចុងក្រោយបំផុតរបស់ Signal រួចព្យាយាមម្តងទៀត។</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">ស្វែងយល់បន្ថែម</string>
 
@@ -7485,6 +7501,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">ប្រវត្តិការទូទាត់</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ព័ត៌មានលម្អិតអំពីការបម្រុងទុក</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ទំហំបម្រុងទុក</string>
     <!-- Row label for backup frequency -->
@@ -7590,7 +7608,13 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">កំពុងដំណើរការការបម្រុងទុក…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="other">អ្នកមានទិន្នន័យបម្រុងទុក %1$s ដែលមិនមាននៅលើឧបករណ៍នេះទេ។ ការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុប នៅពេលដែលការជាវរបស់អ្នកបញ្ចប់ក្នុងរយៈពេល %2$d ថ្ងៃទៀត។</item>
@@ -7609,8 +7633,8 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">មិនអាចបិទ និងលុបការបម្រុងទុកទេ</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">មានបញ្ហាបណ្ដាញកើតឡើង។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7794,6 +7818,8 @@
     <string name="RestoreViaQr_qr_code_scanned">បានស្គែននៅលើឧបករណ៍ចាស់</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">ព្យាយាមម្តងទៀត</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ផ្ទេរគណនី</string>
@@ -7824,15 +7850,15 @@
     <string name="RestoreCompleteBottomSheet_button">យល់ព្រម</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">គ្មានការបម្រុងទុកដើម្បីស្តារទេ</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">ដោយសារតែអ្នកកំពុងប្តូរពី iPhone ទៅ Android វិធីតែមួយគត់ដើម្បីផ្ទេរសារ និងមេឌៀរបស់អ្នកគឺតាមរយៈការបើកនូវការបម្រុងទុក Signal នៅលើឧបករណ៍ចាស់របស់អ្នក។</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">បើក Signal នៅលើឧបករណ៍ចាស់របស់អ្នក</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">ចុច ការកំណត់ &gt; ការបម្រុងទុក</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">បើកការបម្រុងទុក ហើយរង់ចាំរហូតដល់ការបម្រុងទុករបស់អ្នកបានបញ្ចប់</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">រំលងការស្តារឡើងវិញ</string>
 
