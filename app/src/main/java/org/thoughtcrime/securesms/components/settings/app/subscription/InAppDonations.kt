@@ -46,8 +46,9 @@ object InAppDonations {
   private fun isPayPalAvailableForDonateToSignalType(inAppPaymentType: InAppPaymentType): Boolean {
     return when (inAppPaymentType) {
       InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN")
-      InAppPaymentType.ONE_TIME_DONATION, InAppPaymentType.ONE_TIME_GIFT -> RemoteConfig.paypalOneTimeDonations
-      InAppPaymentType.RECURRING_DONATION -> RemoteConfig.paypalRecurringDonations
+      InAppPaymentType.ONE_TIME_DONATION -> true
+      InAppPaymentType.ONE_TIME_GIFT -> true
+      InAppPaymentType.RECURRING_DONATION -> true
       InAppPaymentType.RECURRING_BACKUP -> false
     } && !LocaleRemoteConfig.isPayPalDisabled()
   }
@@ -63,7 +64,7 @@ object InAppDonations {
    * Whether the user is in a region that supports PayPal, based off local phone number.
    */
   fun isPayPalAvailable(): Boolean {
-    return (RemoteConfig.paypalOneTimeDonations || RemoteConfig.paypalRecurringDonations) && !LocaleRemoteConfig.isPayPalDisabled()
+    return !LocaleRemoteConfig.isPayPalDisabled()
   }
 
   /**

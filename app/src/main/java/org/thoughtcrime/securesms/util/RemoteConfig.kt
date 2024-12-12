@@ -992,13 +992,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Make CDSI lookups via libsignal-net instead of native websocket.  */
-  val useLibsignalNetForCdsiLookup: Boolean by remoteBoolean(
-    key = "android.cds.libsignal.4",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** The lifespan of a linked device (i.e. the time it can be inactive for before it expires), in milliseconds.  */
   @JvmStatic
   val linkedDeviceLifespan: Long by remoteValue(
