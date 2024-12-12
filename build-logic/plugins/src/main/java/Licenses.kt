@@ -37,8 +37,7 @@ object Licenses {
       }
       "https://opensource.org/licenses/MIT",
       "http://opensource.org/licenses/MIT",
-      "http://www.opensource.org/licenses/mit-license.php",
-      "https://github.com/mockito/mockito/blob/main/LICENSE" -> {
+      "http://www.opensource.org/licenses/mit-license.php" -> {
         MIT
       }
       "http://www.eclipse.org/legal/epl-v10.html" -> {
