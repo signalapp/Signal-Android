@@ -164,9 +164,10 @@ public class ApplicationMigrations {
     static final int GROUP_EXTRAS_DB_FIX           = 120;
     static final int EMOJI_SEARCH_INDEX_CHECK_2    = 121;
     static final int QUOTE_AUTHOR_FIX              = 122;
+    static final int BAD_E164_FIX                  = 123;
   }
 
-  public static final int CURRENT_VERSION = 122;
+  public static final int CURRENT_VERSION = 123;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -751,6 +752,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.QUOTE_AUTHOR_FIX) {
       jobs.put(Version.QUOTE_AUTHOR_FIX, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.BAD_E164_FIX) {
+      jobs.put(Version.BAD_E164_FIX, new BadE164MigrationJob());
     }
 
     return jobs;
