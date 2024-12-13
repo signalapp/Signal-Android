@@ -590,7 +590,7 @@ dependencies {
   }
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.mockito.core)
   testImplementation(testLibs.mockito.kotlin)
   testImplementation(testLibs.androidx.test.core)
