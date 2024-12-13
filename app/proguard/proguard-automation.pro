@@ -5,7 +5,7 @@
 -dontwarn com.android.support.test.**
 -dontwarn sun.reflect.**
 -dontwarn sun.misc.**
--dontwarn org.assertj.**
+-dontwarn assertk.**
 -dontwarn org.hamcrest.**
 -dontwarn com.squareup.**
 

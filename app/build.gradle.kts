@@ -590,7 +590,7 @@ dependencies {
   }
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.androidx.test.core)
   testImplementation(testLibs.robolectric.robolectric) {
     exclude(group = "com.google.protobuf", module = "protobuf-java")
