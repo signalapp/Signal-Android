@@ -1345,9 +1345,9 @@
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">跳過還原</string>
     <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <string name="RemoteRestoreActivity__couldnt_transfer">完成唔到轉移</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
+    <string name="RemoteRestoreActivity__error_occurred">發生錯誤，轉移唔到你嘅帳戶。揀過個轉移方法再試過啦。</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
@@ -6160,7 +6160,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">只係同選定嘅人分享</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="other">%1$d 位瀏覽者</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">選擇邊個可以睇到你嘅限時動態。呢個選擇唔會影響你喺更改前發送嘅限時動態。</string>
@@ -7387,13 +7387,13 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">取消下載</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">還原緊： %1$s / %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__restore_waiting_for_wifi">還原暫停咗：等緊 Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <string name="BackupStatusRow__restore_no_internet">還原暫停咗：冇互聯網…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">還原暫停咗：裝置電量偏低</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">唔夠空間下載你嘅備份。要繼續，請你搵多 %1$s 空間。</string>
     <!-- Text row label to skip download -->
@@ -7502,7 +7502,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">備份詳情</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">用流動數據還原</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">備份大小</string>
     <!-- Row label for backup frequency -->
@@ -7610,10 +7610,10 @@
     <!-- Linear progress dialog text shown when creating a backup -->
     <string name="RemoteBackupsSettingsFragment__processing_backup">處理緊備份…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
-    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">準備緊備份…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+        <item quantity="other">處理緊 %1$d / %2$d (%3$d%%) 個訊息</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7634,7 +7634,7 @@
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">網絡有問題。請檢查你嘅互聯網連線，然後再試多次。</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">上載緊：%1$s / %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7819,7 +7819,7 @@
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">再試一次</string>
     <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
+    <string name="RestoreViaQr_registration_error">發生錯誤，轉移唔到你嘅帳戶。掃描多次個二維碼再試過啦。</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">轉移帳戶</string>

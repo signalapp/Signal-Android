@@ -1345,9 +1345,9 @@
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">រំលងការស្តារឡើងវិញ</string>
     <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <string name="RemoteRestoreActivity__couldnt_transfer">មិនអាចបញ្ចប់ការផ្ទេរបានទេ</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
+    <string name="RemoteRestoreActivity__error_occurred">បញ្ហាមួយបានកើតឡើង ហើយគណនីរបស់អ្នកមិនអាចផ្ទេរបានទេ។ ព្យាយាមម្តងទៀតដោយជ្រើសរើសវិធីផ្ទេររបស់អ្នក។</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -6160,7 +6160,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">ចែករំលែកជាមួយមនុស្សដែលបានជ្រើសរើសប៉ុណ្ណោះ</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="other">អ្នកមើល %1$d នាក់</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ជ្រើសរើសអ្នកដែលអាចមើលរឿងរ៉ាវរបស់អ្នកបាន។ ការផ្លាស់ប្តូរនានានឹងមិនប៉ះពាល់ដល់រឿងរ៉ាវដែលអ្នកបានផ្ញើហើយនោះទេ។</string>
@@ -7387,13 +7387,13 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">បោះបង់ការទាញយក</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">កំពុងស្ដារឡើងវិញ៖ %1$s លើ %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__restore_waiting_for_wifi">ការស្តារឡើងវិញត្រូវបានផ្អាក៖ កំពុងរង់ចាំ Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <string name="BackupStatusRow__restore_no_internet">ការស្តារឡើងវិញត្រូវបានផ្អាក៖ គ្មានអ៊ីនធឺណិត…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">ការស្តារឡើងវិញត្រូវបានផ្អាក៖ ឧបករណ៍ជិតអស់ថ្ម</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">មិនមានទំហំផ្ទុកគ្រប់គ្រាន់ដើម្បីទាញយកការបម្រុងទុករបស់អ្នក។ ដើម្បីបន្ត សូមរក្សាទំហំផ្ទុករបស់អ្នកឱ្យទំនេរបាន %1$s។</string>
     <!-- Text row label to skip download -->
@@ -7502,7 +7502,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ព័ត៌មានលម្អិតអំពីការបម្រុងទុក</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">ស្តារឡើងវិញដោយប្រើអ៊ីនធឺណិតទូរសព្ទ</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ទំហំបម្រុងទុក</string>
     <!-- Row label for backup frequency -->
@@ -7610,10 +7610,10 @@
     <!-- Linear progress dialog text shown when creating a backup -->
     <string name="RemoteBackupsSettingsFragment__processing_backup">កំពុងដំណើរការការបម្រុងទុក…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
-    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">កំពុងរៀបចំការបម្រុងទុក…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+        <item quantity="other">កំពុងដំណើរការ %1$d លើ %2$d សារ (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7634,7 +7634,7 @@
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">មានបញ្ហាបណ្ដាញកើតឡើង។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់អ្នក រួចព្យាយាមម្តងទៀត។</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">កំពុងបង្ហោះ៖ %1$s លើ %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7819,7 +7819,7 @@
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">ព្យាយាមម្តងទៀត</string>
     <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
+    <string name="RestoreViaQr_registration_error">បញ្ហាមួយបានកើតឡើង ហើយគណនីរបស់អ្នកមិនអាចផ្ទេរបានទេ។ ព្យាយាមម្តងទៀតដោយស្គែនកូដ QR ម្តងទៀត។</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">ផ្ទេរគណនី</string>

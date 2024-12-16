@@ -1421,9 +1421,9 @@
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">Izlaist atjaunošanu</string>
     <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <string name="RemoteRestoreActivity__couldnt_transfer">Neizdevās pabeigt pārsūtīšanu</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
+    <string name="RemoteRestoreActivity__error_occurred">Radās kļūda, un jūsu kontu nevarēja pārsūtīt. Mēģiniet vēlreiz, izvēloties pārsūtīšanas veidu.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Paziņot man par Pieminējumiem</string>
@@ -6436,9 +6436,9 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Kopīgot tikai ar noteiktām personām</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="zero">%1$d viewers</item>
-        <item quantity="one">%1$d viewer</item>
-        <item quantity="other">%1$d viewers</item>
+        <item quantity="zero">%1$d skatītāji</item>
+        <item quantity="one">%1$d skatītājs</item>
+        <item quantity="other">%1$d skatītāji</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Izvēlieties, kas var redzēt jūsu stāstu. Izmaiņas neietekmēs jau nosūtītos stāstus.</string>
@@ -7709,13 +7709,13 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">Atcelt lejupielādi</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">Notiek atjaunošana: %1$s no %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Atjaunošana apturēta: gaida Wi-Fi savienojumu…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <string name="BackupStatusRow__restore_no_internet">Atjaunošana apturēta: nav interneta savienojuma…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">Atjaunošana apturēta: zems ierīces uzlādes līmenis</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Nepietiek vietas, lai lejupielādētu rezerves kopiju. Lai turpinātu, atbrīvojiet %1$s vietas.</string>
     <!-- Text row label to skip download -->
@@ -7826,7 +7826,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Rezerves kopijas informācija</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Atjaunot, izmantojot mobilos datus</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Rezerves kopijas izmērs</string>
     <!-- Row label for backup frequency -->
@@ -7936,12 +7936,12 @@
     <!-- Linear progress dialog text shown when creating a backup -->
     <string name="RemoteBackupsSettingsFragment__processing_backup">Apstrādā rezerves kopiju…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
-    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Notiek rezerves kopijas sagatavošana…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="zero">Processing %1$d of %2$d (%3$d%%) messages</item>
-        <item quantity="one">Processing %1$d of %2$d (%3$d%%) message</item>
-        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+        <item quantity="zero">Notiek ziņu apstrāde: %1$d no %2$d (%3$d%%)</item>
+        <item quantity="one">Notiek ziņu apstrāde: %1$d no %2$d (%3$d%%)</item>
+        <item quantity="other">Notiek ziņu apstrāde: %1$d no %2$d (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7966,7 +7966,7 @@
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Radās tīkla kļūda. Pārbaudiet interneta savienojumu un mēģiniet vēlreiz.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Notiek augšupielāde: %1$s no %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8155,7 +8155,7 @@
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">Mēģināt vēlreiz</string>
     <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
+    <string name="RestoreViaQr_registration_error">Radās kļūda, un jūsu kontu nevarēja pārsūtīt. Mēģiniet vēlreiz, atkārtoti skenējot QR kodu.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Pārnest kontu</string>
