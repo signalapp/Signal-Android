@@ -1209,7 +1209,8 @@ private fun Long.isDirectionlessType(): Boolean {
     MessageTypes.isMessageRequestAccepted(this) ||
     MessageTypes.isBlocked(this) ||
     MessageTypes.isUnblocked(this) ||
-    MessageTypes.isGroupCall(this)
+    MessageTypes.isGroupCall(this) ||
+    MessageTypes.isGroupUpdate(this)
 }
 
 private fun String.e164ToLong(): Long? {
