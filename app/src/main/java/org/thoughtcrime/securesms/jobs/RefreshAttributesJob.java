@@ -93,7 +93,7 @@ public class RefreshAttributesJob extends BaseJob {
     String    registrationLockV2          = null;
     SvrValues svrValues                   = SignalStore.svr();
     int       pniRegistrationId           = RegistrationRepository.getPniRegistrationId();
-    String    recoveryPassword            = svrValues.getRecoveryPassword();
+    String    recoveryPassword            = svrValues.hasPin() ? svrValues.getMasterKey().deriveRegistrationRecoveryPassword() : null;
 
     if (svrValues.isRegistrationLockEnabled()) {
       registrationLockV2 = svrValues.getRegistrationLockToken();
