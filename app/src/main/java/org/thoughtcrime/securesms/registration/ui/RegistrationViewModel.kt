@@ -221,7 +221,7 @@ class RegistrationViewModel : ViewModel() {
   fun onBackupSuccessfullyRestored() {
     val recoveryPassword = SignalStore.svr.recoveryPassword
     store.update {
-      it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_RESTORED_OR_SKIPPED, recoveryPassword = SignalStore.svr.recoveryPassword, canSkipSms = recoveryPassword != null, isReRegister = true)
+      it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_RESTORED_OR_SKIPPED, canSkipSms = recoveryPassword != null, isReRegister = true)
     }
   }
 
@@ -232,7 +232,7 @@ class RegistrationViewModel : ViewModel() {
     val e164 = state.phoneNumber?.toE164() ?: return bail { Log.i(TAG, "Phone number was null after confirmation.") }
 
     if (!state.userSkippedReregistration) {
-      if (hasRecoveryPassword() && matchesSavedE164(e164)) {
+      if (SignalStore.svr.recoveryPassword != null && matchesSavedE164(e164)) {
         // Re-registration when the local database is intact.
         Log.d(TAG, "Has recovery password, and therefore can skip SMS verification.")
         store.update {
@@ -598,12 +598,6 @@ class RegistrationViewModel : ViewModel() {
     }
   }
 
-  private fun setRecoveryPassword(recoveryPassword: String?) {
-    store.update {
-      it.copy(recoveryPassword = recoveryPassword)
-    }
-  }
-
   private fun updateSvrTriesRemaining(remainingTries: Int) {
     store.update {
       it.copy(svrTriesRemaining = remainingTries)
@@ -631,7 +625,6 @@ class RegistrationViewModel : ViewModel() {
           SignalStore.svr.masterKeyForInitialDataRestore = masterKey
           SignalStore.svr.setPin(pin)
 
-          setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
           updateSvrTriesRemaining(10)
           verifyReRegisterInternal(context, pin, masterKey)
         } catch (rejectedPin: SvrWrongPinException) {
@@ -688,7 +681,7 @@ class RegistrationViewModel : ViewModel() {
    */
   private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<RegisterAccountResult, Boolean> {
     Log.v(TAG, "registerAccountInternal()")
-    var registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin)
+    var registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(), pin = pin)
 
     // Check if reg lock is enabled
     if (registrationResult !is RegisterAccountResult.RegistrationLocked) {
@@ -708,7 +701,7 @@ class RegistrationViewModel : ViewModel() {
       )
     }
 
-    return Pair(RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin) { masterKey }, true)
+    return Pair(RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = masterKey.deriveRegistrationRecoveryPassword(), pin = pin) { masterKey }, true)
   }
 
   fun verifyCodeWithoutRegistrationLock(context: Context, code: String) {
@@ -785,7 +778,7 @@ class RegistrationViewModel : ViewModel() {
 
     if (!reglock) {
       Log.d(TAG, "Registration lock not enabled, attempting to register account without master key producer.")
-      result = RegistrationRepository.registerAccount(context, sessionId, registrationData, pin)
+      result = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null, pin = pin)
     }
 
     if (result is RegisterAccountResult.RegistrationLocked) {
@@ -795,10 +788,13 @@ class RegistrationViewModel : ViewModel() {
         it.copy(lockedTimeRemaining = timeRemaining)
       }
       reglock = true
+
       if (pin == null && SignalStore.svr.registrationLockToken != null) {
         Log.d(TAG, "Retrying registration with stored credentials.")
-        result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr.pin) { SignalStore.svr.masterKey }
-      } else if (result.svr2Credentials != null || result.svr3Credentials != null) {
+        result = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null, pin = SignalStore.svr.pin) { SignalStore.svr.masterKey }
+      }
+
+      if (result is RegisterAccountResult.RegistrationLocked && (result.svr2Credentials != null || result.svr3Credentials != null)) {
         Log.d(TAG, "Retrying registration with received credentials (svr2: ${result.svr2Credentials != null}, svr3: ${result.svr3Credentials != null}).")
         val svr2Credentials = result.svr2Credentials
         val svr3Credentials = result.svr3Credentials
@@ -810,7 +806,7 @@ class RegistrationViewModel : ViewModel() {
 
     if (reglock && pin.isNotNullOrBlank()) {
       Log.d(TAG, "Registration lock enabled, attempting to register account restore master key from SVR (svr2: ${state.svr2AuthCredentials != null}, svr3: ${state.svr3AuthCredentials != null})")
-      result = RegistrationRepository.registerAccount(context, sessionId, registrationData, pin) {
+      result = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null, pin = pin) {
         SvrRepository.restoreMasterKeyPreRegistration(
           credentials = SvrAuthCredentialSet(
             svr2Credentials = state.svr2AuthCredentials,
@@ -831,7 +827,7 @@ class RegistrationViewModel : ViewModel() {
   private suspend fun registerVerifiedSession(context: Context, sessionId: String) {
     Log.v(TAG, "registerVerifiedSession()")
     val registrationData = getRegistrationData()
-    val registrationResponse: RegisterAccountResult = RegistrationRepository.registerAccount(context, sessionId, registrationData)
+    val registrationResponse: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null)
     handleRegistrationResult(context, registrationData, registrationResponse, false)
   }
 
@@ -888,10 +884,6 @@ class RegistrationViewModel : ViewModel() {
     } else {
       e164 == SignalStore.account.e164
     }
-  }
-
-  private fun hasRecoveryPassword(): Boolean {
-    return store.value.recoveryPassword != null
   }
 
   private fun getCurrentE164(): String? {

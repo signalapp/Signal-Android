@@ -26,7 +26,6 @@ data class RegistrationState(
   val phoneNumber: Phonenumber.PhoneNumber? = fetchExistingE164FromValues(),
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
-  val recoveryPassword: String? = SignalStore.svr.recoveryPassword,
   val canSkipSms: Boolean = false,
   val svr2AuthCredentials: AuthCredentials? = null,
   val svr3AuthCredentials: Svr3Credentials? = null,
