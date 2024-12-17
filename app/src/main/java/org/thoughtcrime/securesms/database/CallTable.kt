@@ -1489,13 +1489,18 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    val count = writableDatabase
+    val peerCount = writableDatabase
       .update(TABLE_NAME)
       .values(PEER to toId.serialize())
       .where("$PEER = ?", fromId)
       .run()
 
-    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+    val ringerCount = writableDatabase.update(CallLinkTable.TABLE_NAME)
+      .values(RINGER to toId.toLong())
+      .where("$RINGER = ?", fromId.toLong())
+      .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. peerCount: $peerCount, ringerCount: $ringerCount")
   }
 
   /**
