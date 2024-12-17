@@ -110,35 +110,37 @@ object RecurringInAppPaymentRepository {
   }
 
   fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false): Completable {
-    Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
-    val subscriberId: SubscriberId = if (isRotation) {
-      SubscriberId.generate()
-    } else {
-      InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
-    }
+    return Single.fromCallable {
+      Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
 
-    return Single
-      .fromCallable {
-        donationsService.putSubscription(subscriberId)
+      if (isRotation) {
+        SubscriberId.generate()
+      } else {
+        InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
       }
-      .subscribeOn(Schedulers.io())
-      .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
-      .doOnComplete {
-        Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
+    }.flatMap { subscriberId ->
+      Single
+        .fromCallable {
+          donationsService.putSubscription(subscriberId)
+        }
+        .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
+        .map { subscriberId }
+    }.doOnSuccess { subscriberId ->
+      Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
 
-        InAppPaymentsRepository.setSubscriber(
-          InAppPaymentSubscriberRecord(
-            subscriberId = subscriberId,
-            currency = SignalStore.inAppPayments.getSubscriptionCurrency(subscriberType),
-            type = subscriberType,
-            requiresCancel = false,
-            paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
-          )
+      InAppPaymentsRepository.setSubscriber(
+        InAppPaymentSubscriberRecord(
+          subscriberId = subscriberId,
+          currency = SignalStore.inAppPayments.getSubscriptionCurrency(subscriberType),
+          type = subscriberType,
+          requiresCancel = false,
+          paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
         )
+      )
 
-        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-        StorageSyncHelper.scheduleSyncForDataChange()
-      }
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }.ignoreElement().subscribeOn(Schedulers.io())
   }
 
   fun cancelActiveSubscriptionSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
