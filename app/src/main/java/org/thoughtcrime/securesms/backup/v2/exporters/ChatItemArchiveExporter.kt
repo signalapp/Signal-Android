@@ -31,8 +31,10 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GenericGroupUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
 import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate
+import org.thoughtcrime.securesms.backup.v2.proto.GroupExpirationTimerUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.IndividualCall
 import org.thoughtcrime.securesms.backup.v2.proto.LearnedProfileChatUpdate
@@ -219,7 +221,12 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isExpirationTimerUpdate(record.type) -> {
-          builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
+          if (db.threadTable.getThreadRecord(record.threadId)?.recipient?.isGroup == true) {
+            builder.updateMessage = record.toRemoteGroupExpireTimerUpdateFromGv1(db) ?: continue
+          } else {
+            builder.updateMessage = ChatUpdateMessage(expirationTimerChange = ExpirationTimerChatUpdate(record.expiresIn))
+          }
+
           builder.expireStartDate = null
           builder.expiresInMs = null
         }
@@ -243,6 +250,10 @@ class ChatItemArchiveExporter(
             continue
           }
           builder.updateMessage = update
+        }
+
+        MessageTypes.isGroupUpdate(record.type) || MessageTypes.isGroupQuit(record.type) -> {
+          builder.updateMessage = record.toRemoteGroupUpdateFromGv1(db) ?: continue
         }
 
         MessageTypes.isGroupV1MigrationEvent(record.type) -> {
@@ -275,7 +286,7 @@ class ChatItemArchiveExporter(
         }
 
         else -> {
-          if (record.body == null && !extraData.attachmentsById.containsKey(record.id)) {
+          if (record.body.isNullOrEmpty() && !extraData.attachmentsById.containsKey(record.id)) {
             Log.w(TAG, "Record with ID ${record.id} missing a body and doesn't have attachments. Skipping.")
             continue
           }
@@ -395,7 +406,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   val record = this
 
   val direction = when {
-    record.type.isDirectionlessType() || record.messageExtras?.gv2UpdateDescription != null -> {
+    record.type.isDirectionlessType() && !record.remoteDeleted -> {
       Direction.DIRECTIONLESS
     }
     MessageTypes.isOutgoingMessageType(record.type) || record.fromRecipientId == selfRecipientId.toLong() -> {
@@ -529,6 +540,37 @@ private fun BackupMessageRecord.toRemoteGroupUpdate(): ChatUpdateMessage? {
   }
 
   return null
+}
+
+private fun BackupMessageRecord.toRemoteGroupUpdateFromGv1(db: SignalDatabase): ChatUpdateMessage? {
+  val aci = db.recipientTable.getRecord(RecipientId.from(this.fromRecipientId)).aci?.toByteString() ?: return null
+  return ChatUpdateMessage(
+    groupChange = GroupChangeChatUpdate(
+      updates = listOf(
+        GroupChangeChatUpdate.Update(
+          genericGroupUpdate = GenericGroupUpdate(
+            updaterAci = aci
+          )
+        )
+      )
+    )
+  )
+}
+
+private fun BackupMessageRecord.toRemoteGroupExpireTimerUpdateFromGv1(db: SignalDatabase): ChatUpdateMessage? {
+  val updater = db.recipientTable.getRecord(RecipientId.from(this.fromRecipientId)).aci?.toByteString() ?: return null
+  return ChatUpdateMessage(
+    groupChange = GroupChangeChatUpdate(
+      updates = listOf(
+        GroupChangeChatUpdate.Update(
+          groupExpirationTimerUpdate = GroupExpirationTimerUpdate(
+            expiresInMs = this.expiresIn,
+            updaterAci = updater
+          )
+        )
+      )
+    )
+  )
 }
 
 private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord: BackupMessageRecord): ChatUpdateMessage? {
@@ -1210,7 +1252,9 @@ private fun Long.isDirectionlessType(): Boolean {
     MessageTypes.isBlocked(this) ||
     MessageTypes.isUnblocked(this) ||
     MessageTypes.isGroupCall(this) ||
-    MessageTypes.isGroupUpdate(this)
+    MessageTypes.isGroupUpdate(this) ||
+    MessageTypes.isGroupV1MigrationEvent(this) ||
+    MessageTypes.isGroupQuit(this)
 }
 
 private fun String.e164ToLong(): Long? {
