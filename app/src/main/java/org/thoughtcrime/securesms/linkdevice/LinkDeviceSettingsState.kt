@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.linkdevice
 
 import android.net.Uri
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 
 /**
@@ -16,8 +17,8 @@ data class LinkDeviceSettingsState(
   val qrCodeState: QrCodeState = QrCodeState.NONE,
   val linkUri: Uri? = null,
   val linkDeviceResult: LinkDeviceResult = LinkDeviceResult.None,
-  val seenIntroSheet: Boolean = false,
-  val seenEducationSheet: Boolean = false,
+  val seenQrEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceQrEducationSheet() || SignalStore.account.hasLinkedDevices,
+  val seenBioAuthEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceAuthSheet() || SignalStore.account.hasLinkedDevices,
   val bottomSheetVisible: Boolean = false,
   val deviceToEdit: Device? = null
 ) {

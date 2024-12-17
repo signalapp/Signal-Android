@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDeviceName
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
@@ -99,10 +100,11 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun markIntroSheetSeen() {
+  fun markQrEducationSheetSeen() {
+    SignalStore.uiHints.markHasSeenLinkDeviceQrEducationSheet()
     _state.update {
       it.copy(
-        seenIntroSheet = true,
+        seenQrEducationSheet = true,
         showFrontCamera = null
       )
     }
@@ -192,9 +194,10 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun markEducationSheetSeen(seen: Boolean) {
+  fun markBioAuthEducationSheetSeen(seen: Boolean) {
+    SignalStore.uiHints.markHasSeenLinkDeviceAuthSheet()
     _state.update {
-      it.copy(seenEducationSheet = seen)
+      it.copy(seenBioAuthEducationSheet = seen)
     }
   }
 

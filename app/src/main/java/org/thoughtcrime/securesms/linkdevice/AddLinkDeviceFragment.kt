@@ -44,9 +44,9 @@ class AddLinkDeviceFragment : ComposeFragment() {
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
 
-    if (!state.seenIntroSheet) {
+    if (!state.seenQrEducationSheet) {
       navController.safeNavigate(R.id.action_addLinkDeviceFragment_to_linkDeviceIntroBottomSheet)
-      viewModel.markIntroSheetSeen()
+      viewModel.markQrEducationSheetSeen()
     }
 
     if (state.qrCodeState != LinkDeviceSettingsState.QrCodeState.NONE && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {

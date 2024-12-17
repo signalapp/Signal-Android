@@ -138,7 +138,7 @@ class LinkDeviceFragment : ComposeFragment() {
           Toast.makeText(context, context.getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
         }
         LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> {
-          navController.navigateToQrScannerIfAuthed()
+          navController.navigateToQrScannerIfAuthed(state.seenBioAuthEducationSheet)
         }
         LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> {
           navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
@@ -157,15 +157,6 @@ class LinkDeviceFragment : ComposeFragment() {
       }
     }
 
-    LaunchedEffect(state.seenEducationSheet) {
-      if (state.seenEducationSheet) {
-        if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
-          navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-        }
-        viewModel.markEducationSheetSeen(false)
-      }
-    }
-
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
@@ -176,7 +167,7 @@ class LinkDeviceFragment : ComposeFragment() {
         state = state,
         modifier = Modifier.padding(contentPadding),
         onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
-        onLinkNewDeviceClicked = { navController.navigateToQrScannerIfAuthed() },
+        onLinkNewDeviceClicked = { navController.navigateToQrScannerIfAuthed(state.seenBioAuthEducationSheet) },
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
@@ -189,8 +180,10 @@ class LinkDeviceFragment : ComposeFragment() {
     }
   }
 
-  private fun NavController.navigateToQrScannerIfAuthed() {
-    if (biometricAuth.canAuthenticate(requireContext())) {
+  private fun NavController.navigateToQrScannerIfAuthed(seenEducation: Boolean) {
+    if (seenEducation) {
+      this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+    } else if (biometricAuth.canAuthenticate(requireContext())) {
       this.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceEducationSheet)
     } else {
       this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)

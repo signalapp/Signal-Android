@@ -39,12 +39,12 @@ class LinkDeviceEducationSheet : ComposeBottomSheetDialogFragment() {
   }
 
   override fun onCancel(dialog: DialogInterface) {
-    viewModel.markEducationSheetSeen(true)
+    viewModel.markBioAuthEducationSheetSeen(true)
     super.onCancel(dialog)
   }
 
   fun onDismiss() {
-    viewModel.markEducationSheetSeen(true)
+    viewModel.markBioAuthEducationSheetSeen(true)
     dismissAllowingStateLoss()
   }
 }
