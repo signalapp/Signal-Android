@@ -480,7 +480,11 @@ private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage
     ?: Base64.decodeOrNull(this.body)?.let { ProfileChangeDetails.ADAPTER.decode(it) }
 
   return if (profileChangeDetails?.profileNameChange != null) {
-    ChatUpdateMessage(profileChange = ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue))
+    if (profileChangeDetails.profileNameChange.previous.isNotEmpty() && profileChangeDetails.profileNameChange.newValue.isNotEmpty()) {
+      ChatUpdateMessage(profileChange = ProfileChangeChatUpdate(previousName = profileChangeDetails.profileNameChange.previous, newName = profileChangeDetails.profileNameChange.newValue))
+    } else {
+      null
+    }
   } else if (profileChangeDetails?.learnedProfileName != null) {
     ChatUpdateMessage(learnedProfileChange = LearnedProfileChatUpdate(e164 = profileChangeDetails.learnedProfileName.e164?.e164ToLong(), username = profileChangeDetails.learnedProfileName.username))
   } else {
