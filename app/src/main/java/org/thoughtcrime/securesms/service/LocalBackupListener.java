@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
+import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -45,10 +46,12 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
 
   public static long setNextBackupTimeToIntervalFromNow(@NonNull Context context) {
     LocalDateTime now    = LocalDateTime.now();
+    int           freq   = SignalStore.settings().getBackupFrequency();
     int           hour   = SignalStore.settings().getBackupHour();
     int           minute = SignalStore.settings().getBackupMinute();
     LocalDateTime next   = MessageBackupListener.getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS, new Random());
 
+    next = next.plusDays(freq);
     long nextTime = JavaTimeExtensionsKt.toMillis(next);
 
     TextSecurePreferences.setNextBackupTime(context, nextTime);
