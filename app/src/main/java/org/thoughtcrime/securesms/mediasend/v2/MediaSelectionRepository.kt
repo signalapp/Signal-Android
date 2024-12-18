@@ -169,7 +169,7 @@ class MediaSelectionRepository(context: Context) {
           )
         )
       } else {
-        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, sendType.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
+        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody)
         val splitBody = splitMessage.body
 
         if (splitMessage.textSlide.isPresent) {
@@ -325,7 +325,7 @@ class MediaSelectionRepository(context: Context) {
         Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.contentType + "'. Skipping.")
       }
     }
-    val splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize)
+    val splitMessage = MessageUtil.getSplitMessage(context, body)
     val splitBody = splitMessage.body
     if (splitMessage.textSlide.isPresent) {
       slideDeck.addSlide(splitMessage.textSlide.get())

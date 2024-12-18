@@ -1052,8 +1052,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
+        bodyText.setMaxLength(messageRecord.getBody().length() - 2);
       } else {
         bodyText.setOverflowText(null);
+        bodyText.setMaxLength(messageRecord.getBody().length());
       }
 
       if (messageRecord.isOutgoing()) {

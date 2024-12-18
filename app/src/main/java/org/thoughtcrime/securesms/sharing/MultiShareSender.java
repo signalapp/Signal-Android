@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -61,6 +62,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+import okio.Utf8;
 
 /**
  * MultiShareSender encapsulates send logic (stolen from {@link org.thoughtcrime.securesms.conversation.ConversationActivity}
@@ -113,8 +116,7 @@ public final class MultiShareSender {
       List<Contact>   contacts           = multiShareArgs.getSharedContacts();
       SlideDeck       slideDeck          = new SlideDeck(primarySlideDeck);
 
-      boolean needsSplit = message != null &&
-                           message.length() > sendType.calculateCharacters(message).maxPrimaryMessageSize;
+      boolean needsSplit = message != null && Utf8.size(message) > MessageUtil.MAX_MESSAGE_SIZE_BYTES;
       boolean hasMmsMedia = !multiShareArgs.getMedia().isEmpty() ||
                             (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                             multiShareArgs.getStickerLocator() != null ||
@@ -196,7 +198,7 @@ public final class MultiShareSender {
   {
     String body = multiShareArgs.getDraftText();
     if (sendType.usesSignalTransport() && body != null) {
-      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize);
+      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body);
       body = splitMessage.getBody();
 
       if (splitMessage.getTextSlide().isPresent()) {

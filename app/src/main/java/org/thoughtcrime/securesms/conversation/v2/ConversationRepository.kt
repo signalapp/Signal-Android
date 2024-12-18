@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.GroupReviewState
 import org.thoughtcrime.securesms.conversation.v2.RequestReviewState.IndividualReviewState
@@ -186,8 +185,7 @@ class ConversationRepository(
     val sendCompletable = Completable.create { emitter ->
       val splitMessage: MessageUtil.SplitResult = MessageUtil.getSplitMessage(
         applicationContext,
-        body,
-        MessageSendType.SignalMessageSendType.calculateCharacters(body).maxPrimaryMessageSize
+        body
       )
 
       val outgoingMessageSlideDeck: SlideDeck? = splitMessage.textSlide.map {

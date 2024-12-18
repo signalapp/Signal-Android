@@ -1281,25 +1281,6 @@ class ConversationFragment :
     }
   }
 
-  private fun calculateCharactersRemaining() {
-    val messageBody: String = binding.conversationInputPanel.embeddedTextEditor.textTrimmed.toString()
-    val charactersLeftView: TextView = binding.conversationInputSpaceLeft
-    val characterState = MessageSendType.SignalMessageSendType.calculateCharacters(messageBody)
-
-    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeftView.text = String.format(
-        Locale.getDefault(),
-        "%d/%d (%d)",
-        characterState.charactersRemaining,
-        characterState.maxTotalMessageSize,
-        characterState.messagesSpent
-      )
-      charactersLeftView.visibility = View.VISIBLE
-    } else {
-      charactersLeftView.visibility = View.GONE
-    }
-  }
-
   private fun registerForResults() {
     addToContactsLauncher = registerForActivityResult(AddToContactsContract()) {}
     conversationActivityResultContracts = ConversationActivityResultContracts(this, ActivityResultCallbacks())
@@ -4020,7 +4001,6 @@ class ConversationFragment :
     }
 
     override fun afterTextChanged(s: Editable) {
-      calculateCharactersRemaining()
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
         composeText.postDelayed({
           if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
