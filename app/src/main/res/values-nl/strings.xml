@@ -459,7 +459,7 @@
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
-    <string name="ConversationActivity_added_to_home_screen">Aan startscherm toegevoegd</string>
+    <string name="ConversationActivity_added_to_home_screen">Toegevoegd aan startscherm</string>
     <string name="ConversationActivity_calls_not_supported">Bellen wordt niet ondersteund</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
     <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
@@ -810,7 +810,7 @@
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
+    <string name="ChooseBackupFragment__icon_content_description">Icoon voor back-upgegevens terugzetten</string>
     <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
     <string name="ChooseBackupFragment__learn_more">Meer lezen</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Geen bestandsbrowser beschikbaar</string>
@@ -1383,9 +1383,9 @@
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">Herstel overslaan</string>
     <!-- Dialog title displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <string name="RemoteRestoreActivity__couldnt_transfer">Het overzetten kon niet worden voltooid</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
+    <string name="RemoteRestoreActivity__error_occurred">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens door je overzetmethode te kiezen.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij vermeldingen</string>
@@ -4123,7 +4123,7 @@
     <string name="conversation__menu_leave_group">Groep verlaten</string>
     <string name="conversation__menu_view_all_media">Alle media</string>
     <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
-    <string name="conversation__menu_add_shortcut">Aan startscherm toevoegen</string>
+    <string name="conversation__menu_add_shortcut">Toevoegen aan startscherm</string>
     <string name="conversation__menu_create_bubble">Ballon aanmaken</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Tekstopmaak</string>
@@ -4644,7 +4644,7 @@
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Geen app gevonden om de contactenlijst weer te geven.</string>
     <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
-    <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
+    <string name="RecipientBottomSheet_add_to_another_group">Aan een andere groep toevoegen</string>
     <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
     <string name="RecipientBottomSheet_make_admin">Beheerder maken</string>
     <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
@@ -5694,7 +5694,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie stopzetten</string>
     <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie stopzetten?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste donatieperiode is afgelopen.</string>
     <string name="SubscribeFragment__not_now">Niet nu</string>
     <string name="SubscribeFragment__confirm">Bevestigen</string>
     <string name="SubscribeFragment__update_subscription">Maandelijkse donatie aanpassen</string>
@@ -5705,7 +5705,7 @@
 
     <string name="Subscription__s_per_month">%1$s/maand</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Wordt %1$s vernieuwd</string>
+    <string name="Subscription__renews_s">Verlengt op %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Verloopt %1$s</string>
 
@@ -5759,7 +5759,7 @@
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Het minimumbedrag dat je kunt doneren is %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
-    <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
+    <string name="MySupportPreference__renews_s">Verlengt op %1$s</string>
     <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
@@ -7548,13 +7548,13 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">Download annuleren</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__restoring_s_of_s_s">Restoring: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">%1$s van %2$s (%3$s%%) aan het herstellen</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatusRow__restore_waiting_for_wifi">Restore paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Herstellen gepauzeerd: wachten op wifi…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">Restore paused: No internet…</string>
+    <string name="BackupStatusRow__restore_no_internet">Herstellen gepauzeerd: geen internet…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">Restore paused: Device has low battery</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">Herstellen gepauzeerd: batterij van apparaat is bijna leeg</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Niet genoeg opslagruimte om je back-up te downloaden. Maak %1$s ruimte vrij om door te gaan.</string>
     <!-- Text row label to skip download -->
@@ -7584,7 +7584,7 @@
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">Betalingsgeschiedenis</string>
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/maand · Verlengt op %2$s</string>
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Abonnement wijzigen of opzeggen</string>
 
@@ -7648,7 +7648,7 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/maand · Verlengt op %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Laatste back-up %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
@@ -7664,7 +7664,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Back-upgegevens</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restore using cellular</string>
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Herstellen via mobiel netwerk</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Back-upgrootte</string>
     <!-- Row label for backup frequency -->
@@ -7704,7 +7704,7 @@
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Je back-upabonnement is gratis</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Wordt %1$s vernieuwd</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">Verlengt op %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__expires_on_s">Verloopt op %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
@@ -7763,21 +7763,21 @@
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Afhankelijk van de grootte van je back-up kan dit even duren. Tijdens het downloaden kun je je telefoon gebruiken zoals je normaal doet.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Je abonnement op dit apparaat is nog %1$d dag geldig. Vernieuw om Signal back-ups te blijven gebruiken</item>
-        <item quantity="other">Je abonnement op dit apparaat is nog %1$d dagen geldig. Vernieuw om Signal back-ups te blijven gebruiken</item>
+        <item quantity="one">Je abonnement op dit apparaat is nog %1$d dag geldig. Verleng om Signal back-ups te blijven gebruiken</item>
+        <item quantity="other">Je abonnement op dit apparaat is nog %1$d dagen geldig. Verleng om Signal back-ups te blijven gebruiken</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
-    <string name="RemoteBackupsSettingsFragment__renew">Vernieuwen</string>
+    <string name="RemoteBackupsSettingsFragment__renew">Verlengen</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Meer lezen</string>
     <!-- Linear progress dialog text shown when creating a backup -->
     <string name="RemoteBackupsSettingsFragment__processing_backup">Back-up aan het maken…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
-    <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Back-up aan het voorbereiden…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">Processing %1$d of %2$d (%3$d%%) message</item>
-        <item quantity="other">Processing %1$d of %2$d (%3$d%%) messages</item>
+        <item quantity="one">%1$d bericht van %2$d (%3$d%%) aan het verwerken</item>
+        <item quantity="other">%1$d berichten van %2$d (%3$d%%) aan het verwerken</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7800,7 +7800,7 @@
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Er is een netwerkfout opgetreden. Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Uploading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">%1$s van %2$s (%3$d%%) aan het uploaden</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7816,7 +7816,7 @@
     <!-- Third item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Je abonnement onlangs is verlopen.</string>
     <!-- Note underneath bullet points -->
-    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Heb je een actief abonnement op je oude telefoon, overweeg dan om het op te zeggen voordat het wordt vernieuwd.</string>
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Heb je een actief abonnement op je oude telefoon, overweeg dan om het op te zeggen voordat het wordt verlengd.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
     <string name="SubscriptionNotFoundBottomSheet__got_it">Begrepen</string>
     <!-- Action button label to contact support -->
@@ -7919,7 +7919,7 @@
     <string name="ConfirmBackupCancellationDialog__keep_subscription">Abonnement behouden</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Herinneringspictogram</string>
+    <string name="ReminderView_icon_content_description">Herinneringsicoon</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Ik heb mijn oude telefoon</string>
@@ -7977,7 +7977,7 @@
     <!-- First instruction on what to do with restore via qr code -->
     <string name="RestoreViaQr_instruction_1">Open Signal op je oude apparaat</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tik op het camerapictogram </string>
+    <string name="RestoreViaQr_instruction_2">Tik op het camera-icoon </string>
     <!-- Third instruction on what to do with restore via qr code -->
     <string name="RestoreViaQr_instruction_3">Scan deze code met de camera</string>
     <!-- Error message shown when qr code could not be loaded -->
@@ -7987,7 +7987,7 @@
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">Opnieuw proberen</string>
     <!-- Error message shown when register after receiving the provisioning message failed -->
-    <string name="RestoreViaQr_registration_error">An error occurred and your account couldn’t be transferred. Try again by scanning the QR code again.</string>
+    <string name="RestoreViaQr_registration_error">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens door de QR-code opnieuw te scannen.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Account overzetten</string>
