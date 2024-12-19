@@ -101,7 +101,7 @@ dependencies {
   implementation(project(":core-util-jvm"))
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.conscrypt.openjdk.uber)
   testImplementation(testLibs.mockito.core)
   testImplementation(testLibs.mockk)
