@@ -72,6 +72,7 @@ import org.signal.core.ui.Rows
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
 import org.signal.core.ui.TextFields.TextField
+import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -81,6 +82,7 @@ import org.thoughtcrime.securesms.components.settings.app.internal.backup.Intern
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Util
 
 class InternalBackupPlaygroundFragment : ComposeFragment() {
 
@@ -200,9 +202,9 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onImportEncryptedBackupFromDiskDismissed = {
             viewModel.onDialogDismissed()
           },
-          onImportEncryptedBackupFromDiskConfirmed = { aci, aep ->
+          onImportEncryptedBackupFromDiskConfirmed = { aci, backupKey ->
             viewModel.onDialogDismissed()
-            val valid = viewModel.onImportConfirmed(aci, aep)
+            val valid = viewModel.onImportConfirmed(aci, backupKey)
             if (valid) {
               val intent = Intent().apply {
                 action = Intent.ACTION_GET_CONTENT
@@ -315,8 +317,9 @@ fun Screen(
   onSavePlaintextBackupToDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
-  onImportEncryptedBackupFromDiskConfirmed: (aesKey: String, macKey: String) -> Unit = { _, _ -> }
+  onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> }
 ) {
+  val context = LocalContext.current
   val scrollState = rememberScrollState()
   val options = remember {
     mapOf(
@@ -419,6 +422,24 @@ fun Screen(
         onClick = onExportNewStyleLocalBackupClicked
       )
 
+      Rows.TextRow(
+        text = "Copy Account Entropy Pool (AEP)",
+        label = "Copies the Account Entropy Pool (AEP) to the clipboard, which is labeled as the \"Backup Key\" in the designs.",
+        onClick = {
+          Util.copyToClipboard(context, SignalStore.account.accountEntropyPool.value)
+          Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Copy Cryptographic BackupKey",
+        label = "Copies the cryptographic BackupKey to the clipboard as a hex string. Important: this is the key that is derived from the AEP, and therefore *not* the same as the key labeled \"Backup Key\" in the designs. That's actually the AEP, listed above.",
+        onClick = {
+          Util.copyToClipboard(context, Hex.toStringCondensed(SignalStore.account.accountEntropyPool.deriveMessageBackupKey().value))
+          Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
+        }
+      )
+
       Dividers.Default()
 
       Text(
@@ -479,10 +500,10 @@ fun Screen(
 }
 
 @Composable
-private fun ImportCredentialsDialog(onSubmit: (String, String) -> Unit = { _, _ -> }, onDismissed: () -> Unit = {}) {
+private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -> Unit = { _, _ -> }, onDismissed: () -> Unit = {}) {
   val dialogScrollState = rememberScrollState()
-  var aesKey by remember { mutableStateOf("") }
-  var macKey by remember { mutableStateOf("") }
+  var aci by remember { mutableStateOf("") }
+  var backupKey by remember { mutableStateOf("") }
   val inputOptions = KeyboardOptions(
     capitalization = KeyboardCapitalization.None,
     autoCorrectEnabled = false,
@@ -499,27 +520,27 @@ private fun ImportCredentialsDialog(onSubmit: (String, String) -> Unit = { _, _ 
         }
         Row(modifier = Modifier.padding(vertical = 10.dp)) {
           TextField(
-            value = aesKey,
+            value = aci,
             keyboardOptions = inputOptions,
             label = { Text("ACI") },
             supportingText = { Text("(leave blank for the current user)") },
-            onValueChange = { aesKey = it }
+            onValueChange = { aci = it }
           )
         }
         Row(modifier = Modifier.padding(vertical = 10.dp)) {
           TextField(
-            value = macKey,
+            value = backupKey,
             keyboardOptions = inputOptions.copy(imeAction = ImeAction.Done),
-            label = { Text("\"Backup Key\" (AEP)") },
+            label = { Text("Cryptographic BackupKey (*not* AEP!)") },
             supportingText = { Text("(leave blank for the current user)") },
-            onValueChange = { macKey = it }
+            onValueChange = { backupKey = it }
           )
         }
       }
     },
     confirmButton = {
       TextButton(onClick = {
-        onSubmit(aesKey, macKey)
+        onSubmit(aci, backupKey)
       }) {
         Text(text = "Wipe and restore")
       }

@@ -296,7 +296,7 @@ class ArchiveImportExportTests {
       length = importData.size.toLong(),
       inputStreamFactory = { ByteArrayInputStream(importData) },
       selfData = BackupRepository.SelfData(SELF_ACI, SELF_PNI, SELF_E164, ProfileKey(SELF_PROFILE_KEY)),
-      plaintext = true
+      backupKey = null
     )
   }
 

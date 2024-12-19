@@ -18,10 +18,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Hex
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.copyTo
-import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.roundedString
@@ -56,9 +56,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.MediaName
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.FileOutputStream
 import java.io.IOException
@@ -178,7 +178,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val self = Recipient.self()
     val aci = customCredentials?.aci ?: self.aci.get()
     val selfData = BackupRepository.SelfData(aci, self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
-    val backupKey = customCredentials?.aep?.deriveMessageBackupKey() ?: SignalStore.backup.messageBackupKey
+    val backupKey = customCredentials?.messageBackupKey ?: SignalStore.backup.messageBackupKey
 
     disposables += Single.fromCallable { BackupRepository.import(length, inputStreamFactory, selfData, backupKey) }
       .subscribeOn(Schedulers.io())
@@ -302,22 +302,33 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   /** True if data is valid, else false */
-  fun onImportConfirmed(aci: String, aep: String): Boolean {
+  fun onImportConfirmed(aci: String, backupKey: String): Boolean {
     val parsedAci: ACI? = ACI.parseOrNull(aci)
+
     if (aci.isNotBlank() && parsedAci == null) {
       _state.value = _state.value.copy(statusMessage = "Invalid ACI! Cannot import.")
       return false
     }
 
-    val parsedAep = AccountEntropyPool.parseOrNull(aep)
-    if (aep.isNotBlank() && parsedAep == null) {
+    val parsedBackupKey: MessageBackupKey? = try {
+      val bytes = Hex.fromStringOrThrow(backupKey)
+      MessageBackupKey(bytes)
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to parse key!", e)
+      null
+    }
+
+    if (backupKey.isNotBlank() && parsedBackupKey == null) {
       _state.value = _state.value.copy(statusMessage = "Invalid AEP! Cannot import.")
       return false
     }
 
-    if (parsedAci != null && parsedAep != null) {
-      _state.value = state.value.copy(customBackupCredentials = ImportCredentials(aep = parsedAep, aci = parsedAci))
-    }
+    _state.value = state.value.copy(
+      customBackupCredentials = ImportCredentials(
+        messageBackupKey = parsedBackupKey ?: SignalStore.backup.messageBackupKey,
+        aci = parsedAci ?: SignalStore.account.aci!!
+      )
+    )
 
     return true
   }
@@ -602,7 +613,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   data class ImportCredentials(
-    val aep: AccountEntropyPool,
+    val messageBackupKey: MessageBackupKey,
     val aci: ACI
   )
 }
