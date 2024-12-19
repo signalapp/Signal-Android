@@ -15,8 +15,20 @@ import org.signal.libsignal.messagebackup.AccountEntropyPool as LibSignalAccount
 class AccountEntropyPool(val value: String) {
 
   companion object {
+    private val INVALID_CHARACTERS = Regex("[^0-9a-zA-Z]")
+    private const val LENGTH = 64
+
     fun generate(): AccountEntropyPool {
       return AccountEntropyPool(LibSignalAccountEntropyPool.generate())
+    }
+
+    fun parseOrNull(input: String): AccountEntropyPool? {
+      val stripped = input.replace(INVALID_CHARACTERS, "")
+      if (stripped.length != LENGTH) {
+        return null
+      }
+
+      return AccountEntropyPool(stripped)
     }
   }
 

@@ -103,7 +103,7 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
 
     val self = Recipient.self()
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
-    BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, plaintext = false, cancellationSignal = { isCanceled })
+    BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, backupKey = SignalStore.backup.messageBackupKey, cancellationSignal = { isCanceled })
 
     SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
   }

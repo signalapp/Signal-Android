@@ -12,7 +12,7 @@ import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBa
 
 /**
  * Safe typing around a backup key, which is a 32-byte array.
- * This key is derived from the master key.
+ * This key is derived from the AEP.
  */
 class MessageBackupKey(override val value: ByteArray) : BackupKey {
   init {

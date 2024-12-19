@@ -641,14 +641,21 @@ object BackupRepository {
     }
 
     return frameReader.use { reader ->
-      import(backupKey, reader, selfData, cancellationSignal = { false })
+      import(reader, selfData, cancellationSignal = { false })
     }
   }
 
-  fun import(length: Long, inputStreamFactory: () -> InputStream, selfData: SelfData, plaintext: Boolean = false, cancellationSignal: () -> Boolean = { false }): ImportResult {
-    val backupKey = SignalStore.backup.messageBackupKey
-
-    val frameReader = if (plaintext) {
+  /**
+   * @param backupKey  The key used to encrypt the backup. If `null`, we assume that the file is plaintext.
+   */
+  fun import(
+    length: Long,
+    inputStreamFactory: () -> InputStream,
+    selfData: SelfData,
+    backupKey: MessageBackupKey?,
+    cancellationSignal: () -> Boolean = { false }
+  ): ImportResult {
+    val frameReader = if (backupKey == null) {
       PlainTextBackupReader(inputStreamFactory(), length)
     } else {
       EncryptedBackupReader(
@@ -660,12 +667,11 @@ object BackupRepository {
     }
 
     return frameReader.use { reader ->
-      import(backupKey, reader, selfData, cancellationSignal)
+      import(reader, selfData, cancellationSignal)
     }
   }
 
   private fun import(
-    messageBackupKey: MessageBackupKey,
     frameReader: BackupImportReader,
     selfData: SelfData,
     cancellationSignal: () -> Boolean
@@ -747,7 +753,7 @@ object BackupRepository {
       SignalDatabase.recipients.setProfileKey(selfId, selfData.profileKey)
       SignalDatabase.recipients.setProfileSharing(selfId, true)
 
-      val importState = ImportState(messageBackupKey, mediaRootBackupKey)
+      val importState = ImportState(mediaRootBackupKey)
       val chatItemInserter: ChatItemArchiveImporter = ChatItemArchiveProcessor.beginImport(importState)
 
       Log.d(TAG, "[import] Beginning to read frames.")
@@ -1500,7 +1506,7 @@ class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
   val localToRemoteCustomChatColors: MutableMap<Long, Int> = hashMapOf()
 }
 
-class ImportState(val messageBackupKey: MessageBackupKey, val mediaRootBackupKey: MediaRootBackupKey) {
+class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {
   val remoteToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()
   val chatIdToLocalThreadId: MutableMap<Long, Long> = hashMapOf()
   val chatIdToLocalRecipientId: MutableMap<Long, RecipientId> = hashMapOf()

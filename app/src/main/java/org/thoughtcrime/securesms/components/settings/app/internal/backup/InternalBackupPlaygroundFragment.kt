@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
@@ -57,9 +58,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -68,10 +71,12 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Snackbars
+import org.signal.core.ui.TextFields.TextField
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
@@ -190,13 +195,24 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .show()
           },
           onImportEncryptedBackupFromDiskClicked = {
-            val intent = Intent().apply {
-              action = Intent.ACTION_GET_CONTENT
-              type = "application/octet-stream"
-              addCategory(Intent.CATEGORY_OPENABLE)
+            viewModel.onImportSelected()
+          },
+          onImportEncryptedBackupFromDiskDismissed = {
+            viewModel.onDialogDismissed()
+          },
+          onImportEncryptedBackupFromDiskConfirmed = { aci, aep ->
+            viewModel.onDialogDismissed()
+            val valid = viewModel.onImportConfirmed(aci, aep)
+            if (valid) {
+              val intent = Intent().apply {
+                action = Intent.ACTION_GET_CONTENT
+                type = "application/octet-stream"
+                addCategory(Intent.CATEGORY_OPENABLE)
+              }
+              importEncryptedBackupFromDiskLauncher.launch(intent)
+            } else {
+              Toast.makeText(context, "Invalid credentials!", Toast.LENGTH_SHORT).show()
             }
-
-            importEncryptedBackupFromDiskLauncher.launch(intent)
           },
           onImportNewStyleLocalBackupClicked = {
             MaterialAlertDialogBuilder(context)
@@ -297,7 +313,9 @@ fun Screen(
   onValidateBackupClicked: () -> Unit = {},
   onSaveEncryptedBackupToDiskClicked: () -> Unit = {},
   onSavePlaintextBackupToDiskClicked: () -> Unit = {},
-  onImportEncryptedBackupFromDiskClicked: () -> Unit = {}
+  onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
+  onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
+  onImportEncryptedBackupFromDiskConfirmed: (aesKey: String, macKey: String) -> Unit = { _, _ -> }
 ) {
   val scrollState = rememberScrollState()
   val options = remember {
@@ -306,6 +324,16 @@ fun Screen(
       "Free" to MessageBackupTier.FREE,
       "Paid" to MessageBackupTier.PAID
     )
+  }
+
+  when (state.dialog) {
+    DialogState.None -> Unit
+    DialogState.ImportCredentials -> {
+      ImportCredentialsDialog(
+        onSubmit = onImportEncryptedBackupFromDiskConfirmed,
+        onDismissed = onImportEncryptedBackupFromDiskDismissed
+      )
+    }
   }
 
   Surface {
@@ -451,11 +479,53 @@ fun Screen(
 }
 
 @Composable
-private fun StateLabel(text: String) {
-  Text(
-    text = text,
-    style = MaterialTheme.typography.labelSmall,
-    textAlign = TextAlign.Center
+private fun ImportCredentialsDialog(onSubmit: (String, String) -> Unit = { _, _ -> }, onDismissed: () -> Unit = {}) {
+  val dialogScrollState = rememberScrollState()
+  var aesKey by remember { mutableStateOf("") }
+  var macKey by remember { mutableStateOf("") }
+  val inputOptions = KeyboardOptions(
+    capitalization = KeyboardCapitalization.None,
+    autoCorrectEnabled = false,
+    keyboardType = KeyboardType.Ascii,
+    imeAction = ImeAction.Next
+  )
+  androidx.compose.material3.AlertDialog(
+    onDismissRequest = onDismissed,
+    title = { Text(text = "Are you sure?") },
+    text = {
+      Column(modifier = Modifier.verticalScroll(dialogScrollState)) {
+        Row(modifier = Modifier.padding(vertical = 10.dp)) {
+          Text(text = "This will delete all of your chats! It's also not entirely realistic, because normally restores only happen during registration. Only do this on a test device!")
+        }
+        Row(modifier = Modifier.padding(vertical = 10.dp)) {
+          TextField(
+            value = aesKey,
+            keyboardOptions = inputOptions,
+            label = { Text("ACI") },
+            supportingText = { Text("(leave blank for the current user)") },
+            onValueChange = { aesKey = it }
+          )
+        }
+        Row(modifier = Modifier.padding(vertical = 10.dp)) {
+          TextField(
+            value = macKey,
+            keyboardOptions = inputOptions.copy(imeAction = ImeAction.Done),
+            label = { Text("\"Backup Key\" (AEP)") },
+            supportingText = { Text("(leave blank for the current user)") },
+            onValueChange = { macKey = it }
+          )
+        }
+      }
+    },
+    confirmButton = {
+      TextButton(onClick = {
+        onSubmit(aesKey, macKey)
+      }) {
+        Text(text = "Wipe and restore")
+      }
+    },
+    modifier = Modifier,
+    properties = DialogProperties()
   )
 }
 
@@ -498,16 +568,13 @@ fun MediaList(
         val attachment = state.attachments[index]
         Row(
           modifier = Modifier
-            .combinedClickable(
-              onClick = {
-                if (selectionState.selecting) {
-                  selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
-                }
-              },
-              onLongClick = {
-                selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
+            .combinedClickable(onClick = {
+              if (selectionState.selecting) {
+                selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
               }
-            )
+            }, onLongClick = {
+              selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
+            })
             .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
           if (selectionState.selecting) {
@@ -648,5 +715,13 @@ fun PreviewScreen() {
 fun PreviewScreenExportInProgress() {
   Previews.Preview {
     Screen(state = ScreenState(statusMessage = "Some random status message."))
+  }
+}
+
+@SignalPreview
+@Composable
+fun PreviewImportCredentialDialog() {
+  Previews.Preview {
+    ImportCredentialsDialog()
   }
 }
