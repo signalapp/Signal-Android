@@ -1027,6 +1027,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings().getMessageFontSize());
     bodyText.setMovementMethod(LongClickMovementMethod.getInstance(getContext()));
 
+    bodyText.setOverflowText(null);
+    bodyText.setMaxLength(-1);
+
     if (messageRecord.isRemoteDelete()) {
       String          deletedMessage = context.getString(messageRecord.isOutgoing() ? R.string.ConversationItem_you_deleted_this_message : R.string.ConversationItem_this_message_was_deleted);
       SpannableString italics        = new SpannableString(deletedMessage);
@@ -1053,9 +1056,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
         bodyText.setMaxLength(messageRecord.getBody().length() - 2);
-      } else {
-        bodyText.setOverflowText(null);
-        bodyText.setMaxLength(messageRecord.getBody().length());
       }
 
       if (messageRecord.isOutgoing()) {
