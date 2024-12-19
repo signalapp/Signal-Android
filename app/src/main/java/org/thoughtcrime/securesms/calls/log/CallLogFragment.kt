@@ -220,6 +220,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSearchAction()
     AppDependencies.deletedCallEventManager.scheduleIfNecessary()
     viewModel.markAllCallEventsRead()
+
+    if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
+      (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+    }
   }
 
   private fun onTimestampTick() {
@@ -513,6 +517,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       requireListener<Callback>().onMultiSelectStarted()
       signalBottomActionBarController.setVisibility(true)
       binding.fab.visible = false
+      (requireActivity() as AppCompatActivity).supportActionBar?.hide()
       return actionMode
     }
 
@@ -520,6 +525,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       requireListener<Callback>().onMultiSelectFinished()
       signalBottomActionBarController.setVisibility(false)
       binding.fab.visible = true
+      (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun getResources(): Resources = resources
