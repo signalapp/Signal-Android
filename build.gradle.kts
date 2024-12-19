@@ -12,7 +12,7 @@ buildscript {
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:8.4.1")
+    classpath("com.android.tools.build:gradle:8.7.2")
     classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
     classpath("com.google.protobuf:protobuf-gradle-plugin:0.9.0")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.extra["kotlin_version"] as String}")

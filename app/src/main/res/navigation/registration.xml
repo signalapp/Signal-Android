@@ -40,7 +40,8 @@
     <fragment
         android:id="@+id/grantPermissionsFragment"
         android:name="org.thoughtcrime.securesms.registration.ui.grantpermissions.GrantPermissionsFragment"
-        android:label="fragment_grant_permissions">
+        android:label="fragment_grant_permissions"
+        tools:targetApi="23">
 
         <action
             android:id="@+id/action_enter_phone_number"
