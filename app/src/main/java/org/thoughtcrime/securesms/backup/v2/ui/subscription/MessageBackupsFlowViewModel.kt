@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.time.Duration.Companion.seconds
 
@@ -68,17 +70,6 @@ class MessageBackupsFlowViewModel(
     check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
 
     viewModelScope.launch {
-      try {
-        ensureSubscriberIdForBackups()
-        internalStateFlow.update {
-          it.copy(
-            hasBackupSubscriberAvailable = true
-          )
-        }
-      } catch (e: Exception) {
-        Log.w(TAG, "Failed to ensure a subscriber id exists.", e)
-      }
-
       internalStateFlow.update {
         it.copy(
           availableBackupTypes = BackupRepository.getAvailableBackupsTypes(
@@ -210,7 +201,6 @@ class MessageBackupsFlowViewModel(
       MessageBackupTier.PAID -> {
         check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
         check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
-        check(state.hasBackupSubscriberAvailable)
 
         viewModelScope.launch(Dispatchers.IO) {
           internalStateFlow.update { it.copy(inAppPayment = null) }
@@ -221,7 +211,7 @@ class MessageBackupsFlowViewModel(
           val id = SignalDatabase.inAppPayments.insert(
             type = InAppPaymentType.RECURRING_BACKUP,
             state = InAppPaymentTable.State.CREATED,
-            subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
+            subscriberId = null,
             endOfPeriod = null,
             inAppPaymentData = InAppPaymentData(
               badge = null,
@@ -251,10 +241,9 @@ class MessageBackupsFlowViewModel(
    * the screen this is called in is assumed to only be accessible if the user does not currently have
    * a subscription.
    */
-  private suspend fun ensureSubscriberIdForBackups() {
-    val product = AppDependencies.billingApi.queryProduct() ?: error("No product available.")
-    SignalStore.inAppPayments.setSubscriberCurrency(product.price.currency, InAppPaymentSubscriberRecord.Type.BACKUP)
-    RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP).blockingAwait()
+  @WorkerThread
+  private fun ensureSubscriberIdForBackups(purchaseToken: IAPSubscriptionId.GooglePlayBillingPurchaseToken) {
+    RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, iapSubscriptionId = purchaseToken).blockingAwait()
   }
 
   /**
@@ -264,11 +253,13 @@ class MessageBackupsFlowViewModel(
   @OptIn(FlowPreview::class)
   private suspend fun handleSuccess(result: BillingPurchaseResult.Success, inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     withContext(Dispatchers.IO) {
-      Log.d(TAG, "Setting purchase token data on InAppPayment.")
+      Log.d(TAG, "Setting purchase token data on InAppPayment and InAppPaymentSubscriber.")
+      ensureSubscriberIdForBackups(IAPSubscriptionId.GooglePlayBillingPurchaseToken(result.purchaseToken))
 
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
+          subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
           data = inAppPayment.data.copy(
             redemption = inAppPayment.data.redemption!!.copy(
               googlePlayBillingPurchaseToken = result.purchaseToken

@@ -104,7 +104,8 @@ class FixInAppCurrencyIfAbleTest {
       currency = Currency.getInstance(currencyCode),
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.PAYPAL
+      paymentMethodType = InAppPaymentData.PaymentMethodType.PAYPAL,
+      iapSubscriptionId = null
     )
 
     SignalDatabase.inAppPaymentSubscribers.insertOrReplace(record)

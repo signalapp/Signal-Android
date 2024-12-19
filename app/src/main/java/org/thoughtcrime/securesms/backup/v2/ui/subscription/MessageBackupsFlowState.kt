@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 data class MessageBackupsFlowState(
-  val hasBackupSubscriberAvailable: Boolean = false,
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val currentMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val availableBackupTypes: List<MessageBackupsType> = emptyList(),

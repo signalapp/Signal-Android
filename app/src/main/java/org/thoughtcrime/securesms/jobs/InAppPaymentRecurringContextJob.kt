@@ -309,15 +309,25 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   private fun handlePaymentFailure(inAppPayment: InAppPaymentTable.InAppPayment, subscription: Subscription, chargeFailure: ChargeFailure?) {
-    SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
-      InAppPaymentSubscriberRecord(
-        subscriberId = inAppPayment.subscriberId!!,
-        currency = Currency.getInstance(inAppPayment.data.amount!!.currencyCode),
-        type = inAppPayment.type.requireSubscriberType(),
-        requiresCancel = true,
-        paymentMethodType = inAppPayment.data.paymentMethodType
+    val record = SignalDatabase.inAppPaymentSubscribers.getBySubscriberId(subscriberId = inAppPayment.subscriberId!!)
+    if (record == null) {
+      warning("Could not find subscriber record in local database. Building from payment data.")
+      SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
+        InAppPaymentSubscriberRecord(
+          subscriberId = inAppPayment.subscriberId,
+          currency = if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) null else Currency.getInstance(inAppPayment.data.amount!!.currencyCode),
+          type = inAppPayment.type.requireSubscriberType(),
+          requiresCancel = true,
+          paymentMethodType = inAppPayment.data.paymentMethodType,
+          iapSubscriptionId = null
+        )
       )
-    )
+    } else {
+      info("Marking requiresCancel as true in subscriber record due to payment failure.")
+      SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
+        record.copy(requiresCancel = true)
+      )
+    }
 
     if (inAppPayment.data.redemption?.keepAlive == true) {
       info("Cancellation occurred during keep-alive. Setting cancellation state.")

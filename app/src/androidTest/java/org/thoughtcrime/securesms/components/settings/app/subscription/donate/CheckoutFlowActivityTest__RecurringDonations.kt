@@ -108,11 +108,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
       currency = currency,
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
     )
 
     InAppPaymentsRepository.setSubscriber(subscriber)
-    SignalStore.inAppPayments.setSubscriberCurrency(currency, subscriber.type)
+    SignalStore.inAppPayments.setRecurringDonationCurrency(currency)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/subscription/${subscriber.subscriberId.serialize()}") {
@@ -149,11 +150,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
       currency = currency,
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
     )
 
     InAppPaymentsRepository.setSubscriber(subscriber)
-    SignalStore.inAppPayments.setSubscriberCurrency(currency, subscriber.type)
+    SignalStore.inAppPayments.setRecurringDonationCurrency(currency)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/subscription/${subscriber.subscriberId.serialize()}") {

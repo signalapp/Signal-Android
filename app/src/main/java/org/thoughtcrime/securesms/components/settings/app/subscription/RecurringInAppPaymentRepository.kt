@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -109,7 +110,7 @@ object RecurringInAppPaymentRepository {
     return cancelCompletable.andThen(ensureSubscriberId(subscriberType, isRotation = true))
   }
 
-  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false): Completable {
+  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false, iapSubscriptionId: IAPSubscriptionId? = null): Completable {
     return Single.fromCallable {
       Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
 
@@ -131,10 +132,19 @@ object RecurringInAppPaymentRepository {
       InAppPaymentsRepository.setSubscriber(
         InAppPaymentSubscriberRecord(
           subscriberId = subscriberId,
-          currency = SignalStore.inAppPayments.getSubscriptionCurrency(subscriberType),
+          currency = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+            SignalStore.inAppPayments.getRecurringDonationCurrency()
+          } else {
+            null
+          },
           type = subscriberType,
           requiresCancel = false,
-          paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+          paymentMethodType = if (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP) {
+            InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+          } else {
+            InAppPaymentData.PaymentMethodType.UNKNOWN
+          },
+          iapSubscriptionId = iapSubscriptionId
         )
       )
 
@@ -214,7 +224,7 @@ object RecurringInAppPaymentRepository {
             AppDependencies.donationsService.updateSubscriptionLevel(
               subscriber.subscriberId,
               subscriptionLevel,
-              subscriber.currency.currencyCode,
+              subscriber.currency!!.currencyCode,
               levelUpdateOperation.idempotencyKey.serialize(),
               subscriberType.lock
             )

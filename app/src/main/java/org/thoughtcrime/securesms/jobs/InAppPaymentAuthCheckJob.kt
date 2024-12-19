@@ -248,7 +248,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       val updateLevelResponse = AppDependencies.donationsService.updateSubscriptionLevel(
         subscriber.subscriberId,
         level,
-        subscriber.currency.currencyCode,
+        subscriber.currency!!.currencyCode,
         updateOperation.idempotencyKey.serialize(),
         subscriber.type.lock
       )

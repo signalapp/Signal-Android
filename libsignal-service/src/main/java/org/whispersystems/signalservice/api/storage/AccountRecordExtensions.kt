@@ -8,9 +8,11 @@ package org.whispersystems.signalservice.api.storage
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
+import org.signal.core.util.isNotNullOrBlank
 import org.whispersystems.signalservice.api.payments.PaymentsConstants
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.Companion.isNotNullOrBlank
 import org.whispersystems.signalservice.api.storage.StorageRecordProtoUtil.defaultAccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.Payments
@@ -41,13 +43,15 @@ fun AccountRecord.Builder.safeSetSubscriber(subscriberId: ByteString, subscriber
   return this
 }
 
-fun AccountRecord.Builder.safeSetBackupsSubscriber(subscriberId: ByteString, subscriberCurrencyCode: String): AccountRecord.Builder {
-  if (subscriberId.isNotEmpty() && subscriberId.size == 32 && subscriberCurrencyCode.isNotBlank()) {
-    this.backupsSubscriberId = subscriberId
-    this.backupsSubscriberCurrencyCode = subscriberCurrencyCode
+fun AccountRecord.Builder.safeSetBackupsSubscriber(subscriberId: ByteString, iapSubscriptionId: IAPSubscriptionId?): AccountRecord.Builder {
+  if (subscriberId.isNotEmpty() && subscriberId.size == 32 && iapSubscriptionId.isNotNullOrBlank()) {
+    this.backupSubscriberData = AccountRecord.IAPSubscriberData(
+      subscriberId = subscriberId,
+      purchaseToken = iapSubscriptionId.purchaseToken,
+      originalTransactionId = iapSubscriptionId.originalTransactionId
+    )
   } else {
-    this.backupsSubscriberId = defaultAccountRecord.backupsSubscriberId
-    this.backupsSubscriberCurrencyCode = defaultAccountRecord.backupsSubscriberCurrencyCode
+    this.backupSubscriberData = defaultAccountRecord.backupSubscriberData
   }
 
   return this

@@ -450,14 +450,10 @@ object InAppPaymentsRepository {
   @Suppress("DEPRECATION")
   @SuppressLint("DiscouragedApi")
   @WorkerThread
-  fun getSubscriber(currency: Currency, type: InAppPaymentSubscriberRecord.Type): InAppPaymentSubscriberRecord? {
-    val subscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(currency.currencyCode, type)
+  fun getRecurringDonationSubscriber(currency: Currency): InAppPaymentSubscriberRecord? {
+    val subscriber = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode(currency.currencyCode)
 
-    return if (subscriber == null && type == InAppPaymentSubscriberRecord.Type.DONATION) {
-      SignalStore.inAppPayments.getSubscriber(currency)
-    } else {
-      subscriber
-    }
+    return subscriber ?: SignalStore.inAppPayments.getSubscriber(currency)
   }
 
   /**
@@ -466,10 +462,14 @@ object InAppPaymentsRepository {
   @JvmStatic
   @WorkerThread
   fun getSubscriber(type: InAppPaymentSubscriberRecord.Type): InAppPaymentSubscriberRecord? {
-    val currency = SignalStore.inAppPayments.getSubscriptionCurrency(type)
+    if (type == InAppPaymentSubscriberRecord.Type.BACKUP) {
+      return SignalDatabase.inAppPaymentSubscribers.getBackupsSubscriber()
+    }
+
+    val currency = SignalStore.inAppPayments.getRecurringDonationCurrency()
     Log.d(TAG, "Attempting to retrieve subscriber of type $type for ${currency.currencyCode}")
 
-    return getSubscriber(currency, type)
+    return getRecurringDonationSubscriber(currency)
   }
 
   /**

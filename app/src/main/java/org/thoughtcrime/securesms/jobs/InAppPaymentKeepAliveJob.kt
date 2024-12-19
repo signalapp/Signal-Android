@@ -244,7 +244,7 @@ class InAppPaymentKeepAliveJob private constructor(
           paymentMethodType = subscriber.paymentMethodType,
           badge = badge,
           amount = FiatValue(
-            currencyCode = subscriber.currency.currencyCode,
+            currencyCode = subscription.currency,
             amount = subscription.amount.toDecimalValue()
           ),
           error = null,

@@ -81,7 +81,7 @@ class RecurringInAppPaymentRepositoryTest {
 
     mockkObject(SignalStore.Companion)
     every { SignalStore.Companion.inAppPayments } returns mockk {
-      every { SignalStore.Companion.inAppPayments.getSubscriptionCurrency(any()) } returns Currency.getInstance("USD")
+      every { SignalStore.Companion.inAppPayments.getRecurringDonationCurrency() } returns Currency.getInstance("USD")
       every { SignalStore.Companion.inAppPayments.updateLocalStateForManualCancellation(any()) } returns Unit
       every { SignalStore.Companion.inAppPayments.updateLocalStateForLocalSubscribe(any()) } returns Unit
     }
@@ -285,7 +285,8 @@ class RecurringInAppPaymentRepositoryTest {
       currency = Currency.getInstance("USD"),
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
     )
   }
 

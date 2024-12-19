@@ -45,7 +45,6 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     private val TAG = Log.tag(InAppPaymentValues::class.java)
 
     private const val KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE = "donation.currency.code"
-    private const val KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE = "donation.backups.currency.code"
     private const val KEY_CURRENCY_CODE_ONE_TIME = "donation.currency.code.boost"
     private const val KEY_SUBSCRIBER_ID_PREFIX = "donation.subscriber.id."
     private const val KEY_LAST_KEEP_ALIVE_LAUNCH = "donation.last.successful.ping"
@@ -164,11 +163,8 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     SUBSCRIPTION_PAYMENT_SOURCE_TYPE
   )
 
-  private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)) }
+  private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getRecurringDonationCurrency()) }
   val observableRecurringDonationCurrency: Observable<Currency> by lazy { recurringDonationCurrencyPublisher }
-
-  private val recurringBackupCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.BACKUP)) }
-  val observableRecurringBackupsCurrency: Observable<Currency> by lazy { recurringBackupCurrencyPublisher }
 
   private val oneTimeCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getOneTimeCurrency()) }
   val observableOneTimeCurrency: Observable<Currency> by lazy { oneTimeCurrencyPublisher }
@@ -185,12 +181,8 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     }
   }
 
-  fun getSubscriptionCurrency(subscriberType: InAppPaymentSubscriberRecord.Type): Currency {
-    val currencyCode = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-      getString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, null)
-    } else {
-      getString(KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE, null)
-    }
+  fun getRecurringDonationCurrency(): Currency {
+    val currencyCode = getString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, null)
 
     val currency: Currency? = if (currencyCode == null) {
       val localeCurrency = CurrencyUtil.getCurrencyByLocale(Locale.getDefault())
@@ -218,7 +210,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
   fun getOneTimeCurrency(): Currency {
     val oneTimeCurrency = getString(KEY_CURRENCY_CODE_ONE_TIME, null)
     return if (oneTimeCurrency == null) {
-      val currency = getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+      val currency = getRecurringDonationCurrency()
       setOneTimeCurrency(currency)
       currency
     } else {
@@ -247,29 +239,22 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
       null
     } else {
       InAppPaymentSubscriberRecord(
-        SubscriberId.fromBytes(subscriberIdBytes),
-        currency,
-        InAppPaymentSubscriberRecord.Type.DONATION,
-        shouldCancelSubscriptionBeforeNextSubscribeAttempt,
-        getSubscriptionPaymentSourceType().toPaymentMethodType()
+        subscriberId = SubscriberId.fromBytes(subscriberIdBytes),
+        currency = currency,
+        type = InAppPaymentSubscriberRecord.Type.DONATION,
+        requiresCancel = shouldCancelSubscriptionBeforeNextSubscribeAttempt,
+        paymentMethodType = getSubscriptionPaymentSourceType().toPaymentMethodType(),
+        iapSubscriptionId = null
       )
     }
   }
 
-  fun setSubscriberCurrency(currency: Currency, type: InAppPaymentSubscriberRecord.Type) {
-    if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
-      store.beginWrite()
-        .putString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, currency.currencyCode)
-        .apply()
+  fun setRecurringDonationCurrency(currency: Currency) {
+    store.beginWrite()
+      .putString(KEY_DONATION_SUBSCRIPTION_CURRENCY_CODE, currency.currencyCode)
+      .apply()
 
-      recurringDonationCurrencyPublisher.onNext(currency)
-    } else {
-      store.beginWrite()
-        .putString(KEY_BACKUPS_SUBSCRIPTION_CURRENCY_CODE, currency.currencyCode)
-        .apply()
-
-      recurringBackupCurrencyPublisher.onNext(currency)
-    }
+    recurringDonationCurrencyPublisher.onNext(currency)
   }
 
   fun getLevelOperation(level: String): LevelUpdateOperation? {
