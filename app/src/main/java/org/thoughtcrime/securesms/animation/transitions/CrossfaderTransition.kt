@@ -28,7 +28,7 @@ class CrossfaderTransition(context: Context, attrs: AttributeSet?) : Transition(
     }
   }
 
-  override fun createAnimator(sceneRoot: ViewGroup?, startValues: TransitionValues?, endValues: TransitionValues?): Animator? {
+  override fun createAnimator(sceneRoot: ViewGroup, startValues: TransitionValues?, endValues: TransitionValues?): Animator? {
     if (startValues == null || endValues == null) {
       return null
     }

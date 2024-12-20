@@ -39,7 +39,7 @@ tasks.withType<Wrapper> {
   distributionType = Wrapper.DistributionType.ALL
 }
 
-apply(from = "${rootDir}/constants.gradle.kts")
+apply(from = "$rootDir/constants.gradle.kts")
 
 subprojects {
   if (JavaVersion.current().isJava8Compatible) {

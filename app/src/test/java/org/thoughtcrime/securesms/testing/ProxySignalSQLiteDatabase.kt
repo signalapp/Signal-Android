@@ -32,14 +32,14 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     database.setTransactionSuccessful()
   }
 
-  override fun query(distinct: Boolean, table: String?, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
+  override fun query(distinct: Boolean, table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
     return database.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
   }
 
   override fun queryWithFactory(
     cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?,
     distinct: Boolean,
-    table: String?,
+    table: String,
     columns: Array<out String>?,
     selection: String?,
     selectionArgs: Array<out String>?,
@@ -56,59 +56,59 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.rawQuery(converted.where, converted.whereArgs)
   }
 
-  override fun query(table: String?, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?): Cursor {
+  override fun query(table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?): Cursor {
     return database.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
   }
 
-  override fun query(table: String?, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
+  override fun query(table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
     return database.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
   }
 
-  override fun rawQuery(sql: String?, selectionArgs: Array<out String>?): Cursor {
+  override fun rawQuery(sql: String, selectionArgs: Array<out String>?): Cursor {
     return database.rawQuery(sql, selectionArgs)
   }
 
-  override fun rawQuery(sql: String?, args: Array<out Any>?): Cursor {
+  override fun rawQuery(sql: String, args: Array<out Any>?): Cursor {
     return database.rawQuery(sql, args?.map(Any::toString)?.toTypedArray())
   }
 
-  override fun rawQueryWithFactory(cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?, sql: String?, selectionArgs: Array<out String>?, editTable: String?): Cursor {
+  override fun rawQueryWithFactory(cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?, sql: String, selectionArgs: Array<out String>?, editTable: String): Cursor {
     return database.rawQueryWithFactory(null, sql, selectionArgs, editTable)
   }
 
-  override fun rawQuery(sql: String?, selectionArgs: Array<out String>?, initialRead: Int, maxRead: Int): Cursor {
+  override fun rawQuery(sql: String, selectionArgs: Array<out String>?, initialRead: Int, maxRead: Int): Cursor {
     throw UnsupportedOperationException()
   }
 
-  override fun insert(table: String?, nullColumnHack: String?, values: ContentValues?): Long {
+  override fun insert(table: String, nullColumnHack: String?, values: ContentValues?): Long {
     return database.insert(table, nullColumnHack, values)
   }
 
-  override fun insertOrThrow(table: String?, nullColumnHack: String?, values: ContentValues?): Long {
+  override fun insertOrThrow(table: String, nullColumnHack: String?, values: ContentValues?): Long {
     return database.insertOrThrow(table, nullColumnHack, values)
   }
 
-  override fun replace(table: String?, nullColumnHack: String?, initialValues: ContentValues?): Long {
+  override fun replace(table: String, nullColumnHack: String?, initialValues: ContentValues?): Long {
     return database.replace(table, nullColumnHack, initialValues)
   }
 
-  override fun replaceOrThrow(table: String?, nullColumnHack: String?, initialValues: ContentValues?): Long {
+  override fun replaceOrThrow(table: String, nullColumnHack: String?, initialValues: ContentValues?): Long {
     return database.replaceOrThrow(table, nullColumnHack, initialValues)
   }
 
-  override fun insertWithOnConflict(table: String?, nullColumnHack: String?, initialValues: ContentValues?, conflictAlgorithm: Int): Long {
+  override fun insertWithOnConflict(table: String, nullColumnHack: String?, initialValues: ContentValues?, conflictAlgorithm: Int): Long {
     return database.insertWithOnConflict(table, nullColumnHack, initialValues, conflictAlgorithm)
   }
 
-  override fun delete(table: String?, whereClause: String?, whereArgs: Array<out String>?): Int {
+  override fun delete(table: String, whereClause: String?, whereArgs: Array<out String>?): Int {
     return database.delete(table, whereClause, whereArgs)
   }
 
-  override fun update(table: String?, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?): Int {
+  override fun update(table: String, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?): Int {
     return database.update(table, values, whereClause, whereArgs)
   }
 
-  override fun updateWithOnConflict(table: String?, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?, conflictAlgorithm: Int): Int {
+  override fun updateWithOnConflict(table: String, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?, conflictAlgorithm: Int): Int {
     return database.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm)
   }
 
@@ -120,7 +120,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     database.execSQL(sql)
   }
 
-  override fun execSQL(sql: String?, bindArgs: Array<out Any>?) {
+  override fun execSQL(sql: String, bindArgs: Array<out Any>) {
     database.execSQL(sql, bindArgs)
   }
 
