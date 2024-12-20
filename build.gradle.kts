@@ -12,12 +12,12 @@ buildscript {
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:8.7.3")
-    classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
-    classpath("com.google.protobuf:protobuf-gradle-plugin:0.9.0")
+    classpath(libs.gradle)
+    classpath(libs.androidx.navigation.safe.args.gradle.plugin)
+    classpath(libs.protobuf.gradle.plugin)
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.extra["kotlin_version"] as String}")
     classpath(libs.ktlint)
-    classpath("app.cash.exhaustive:exhaustive-gradle:0.1.1")
+    classpath(libs.exhaustive.gradle)
     classpath("com.squareup.wire:wire-gradle-plugin:4.4.3") {
       exclude(group = "com.squareup.wire", module = "wire-swift-generator")
       exclude(group = "com.squareup.wire", module = "wire-grpc-client")
@@ -25,9 +25,9 @@ buildscript {
       exclude(group = "com.squareup.wire", module = "wire-grpc-server-generator")
       exclude(group = "io.outfoxx", module = "swiftpoet")
     }
-    classpath("androidx.benchmark:benchmark-gradle-plugin:1.1.0-beta04")
+    classpath(libs.androidx.benchmark.gradle.plugin)
     classpath(files("$rootDir/wire-handler/wire-handler-1.0.0.jar"))
-    classpath("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.9.20-1.0.14")
+    classpath(libs.com.google.devtools.ksp.gradle.plugin)
   }
 }
 
