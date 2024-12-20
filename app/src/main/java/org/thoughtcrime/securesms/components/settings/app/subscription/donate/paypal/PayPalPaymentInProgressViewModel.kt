@@ -16,6 +16,7 @@ import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.PayPalRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -35,8 +36,7 @@ import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMet
 import org.whispersystems.signalservice.api.util.Preconditions
 
 class PayPalPaymentInProgressViewModel(
-  private val payPalRepository: PayPalRepository,
-  private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
+  private val payPalRepository: PayPalRepository
 ) : ViewModel() {
 
   companion object {
@@ -122,6 +122,8 @@ class PayPalPaymentInProgressViewModel(
     inAppPayment: InAppPaymentTable.InAppPayment,
     routeToPaypalConfirmation: (PayPalCreatePaymentIntentResponse) -> Single<PayPalConfirmationResult>
   ) {
+    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == PaymentSourceType.PayPal)
+
     Log.d(TAG, "Proceeding with one-time payment pipeline...", true)
     store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
     val verifyUser = if (inAppPayment.type == InAppPaymentType.ONE_TIME_GIFT) {
@@ -148,10 +150,9 @@ class PayPalPaymentInProgressViewModel(
         )
       }
       .flatMapCompletable { response ->
-        oneTimeInAppPaymentRepository.waitForOneTimeRedemption(
+        OneTimeInAppPaymentRepository.waitForOneTimeRedemption(
           inAppPayment = inAppPayment,
-          paymentIntentId = response.paymentId,
-          paymentSourceType = PaymentSourceType.PayPal
+          paymentIntentId = response.paymentId
         )
       }
       .subscribeOn(Schedulers.io())
@@ -193,11 +194,10 @@ class PayPalPaymentInProgressViewModel(
   }
 
   class Factory(
-    private val payPalRepository: PayPalRepository = PayPalRepository(AppDependencies.donationsService),
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
+    private val payPalRepository: PayPalRepository = PayPalRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(PayPalPaymentInProgressViewModel(payPalRepository, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(PayPalPaymentInProgressViewModel(payPalRepository)) as T
     }
   }
 }

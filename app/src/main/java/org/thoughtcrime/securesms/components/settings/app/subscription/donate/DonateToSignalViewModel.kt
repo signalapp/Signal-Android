@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isExpired
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -51,8 +50,7 @@ import java.util.Optional
  * only in charge of rendering our "current view of the world."
  */
 class DonateToSignalViewModel(
-  startType: InAppPaymentType,
-  private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
+  startType: InAppPaymentType
 ) : ViewModel() {
 
   companion object {
@@ -73,7 +71,7 @@ class DonateToSignalViewModel(
   val inAppPaymentId: Flowable<InAppPaymentTable.InAppPaymentId> = _inAppPaymentId.onBackpressureLatest().distinctUntilChanged()
 
   init {
-    initializeOneTimeDonationState(oneTimeInAppPaymentRepository)
+    initializeOneTimeDonationState(OneTimeInAppPaymentRepository)
     initializeMonthlyDonationState(RecurringInAppPaymentRepository)
 
     networkDisposable += InternetConnectionObserver
@@ -97,7 +95,7 @@ class DonateToSignalViewModel(
   fun retryOneTimeDonationState() {
     if (!oneTimeDonationDisposables.isDisposed && store.state.oneTimeDonationState.donationStage == DonateToSignalState.DonationStage.FAILURE) {
       store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(donationStage = DonateToSignalState.DonationStage.INIT)) }
-      initializeOneTimeDonationState(oneTimeInAppPaymentRepository)
+      initializeOneTimeDonationState(OneTimeInAppPaymentRepository)
     }
   }
 
@@ -428,11 +426,10 @@ class DonateToSignalViewModel(
   }
 
   class Factory(
-    private val startType: InAppPaymentType,
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
+    private val startType: InAppPaymentType
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonateToSignalViewModel(startType, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(DonateToSignalViewModel(startType)) as T
     }
   }
 }

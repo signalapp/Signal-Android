@@ -3,11 +3,9 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import android.app.Application
 import androidx.lifecycle.AtomicReference
 import io.mockk.every
-import io.mockk.just
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
-import io.mockk.runs
 import io.mockk.unmockkAll
 import io.mockk.verify
 import io.reactivex.rxjava3.core.Flowable
@@ -21,7 +19,6 @@ import org.robolectric.annotation.Config
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.assertIsNot
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -35,27 +32,17 @@ import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.RxPluginsRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.util.Currency
 import java.util.concurrent.TimeUnit
-import kotlin.time.Duration.Companion.milliseconds
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class RecurringInAppPaymentRepositoryTest {
-
-  private val testConfigData: SubscriptionsConfiguration by lazy {
-    val testConfigJsonData = javaClass.classLoader!!.getResourceAsStream("donations_configuration_test_data.json").bufferedReader().readText()
-
-    JsonUtil.fromJson(testConfigJsonData, SubscriptionsConfiguration::class.java)
-  }
 
   @get:Rule
   val rxRule = RxPluginsRule()
@@ -63,22 +50,11 @@ class RecurringInAppPaymentRepositoryTest {
   @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
+  @get:Rule
+  val donationsTestRule = DonationsTestRule()
+
   @Before
   fun setUp() {
-    mockkStatic(RemoteConfig::class)
-    every { RemoteConfig.init() } just runs
-
-    mockkObject(InAppDonations)
-    every { InAppDonations.isPayPalAvailable() } returns true
-    every { InAppDonations.isGooglePayAvailable() } returns true
-    every { InAppDonations.isSEPADebitAvailable() } returns true
-    every { InAppDonations.isCreditCardAvailable() } returns true
-    every { InAppDonations.isIDEALAvailable() } returns true
-
-    mockkStatic(InAppPaymentsRepository::class)
-    mockkObject(InAppPaymentsRepository)
-    every { InAppPaymentsRepository.scheduleSyncForAccountRecordChange() } returns Unit
-
     mockkObject(SignalStore.Companion)
     every { SignalStore.Companion.inAppPayments } returns mockk {
       every { SignalStore.Companion.inAppPayments.getRecurringDonationCurrency() } returns Currency.getInstance("USD")
@@ -86,13 +62,8 @@ class RecurringInAppPaymentRepositoryTest {
       every { SignalStore.Companion.inAppPayments.updateLocalStateForLocalSubscribe(any()) } returns Unit
     }
 
-    mockkObject(SignalDatabase.Companion)
     every { SignalDatabase.Companion.recipients } returns mockk {
       every { SignalDatabase.Companion.recipients.markNeedsSync(any<RecipientId>()) } returns Unit
-    }
-
-    every { SignalDatabase.Companion.inAppPayments } returns mockk {
-      every { SignalDatabase.Companion.inAppPayments.update(any()) } returns Unit
     }
 
     mockkStatic(StorageSyncHelper::class)
@@ -109,7 +80,7 @@ class RecurringInAppPaymentRepositoryTest {
 
   @Test
   fun `when I getDonationsConfiguration then I expect a set of three Subscription objects`() {
-    every { AppDependencies.donationsService.getDonationsConfiguration(any()) } returns ServiceResponse(200, "", testConfigData, null, null)
+    donationsTestRule.initializeDonationsConfigurationMock()
 
     val testObserver = RecurringInAppPaymentRepository.getSubscriptions().test()
     rxRule.defaultScheduler.triggerActions()
@@ -190,7 +161,7 @@ class RecurringInAppPaymentRepositoryTest {
   @Test
   fun `given no delays, when I setSubscriptionLevel, then I expect happy path`() {
     val paymentSourceType = PaymentSourceType.Stripe.CreditCard
-    val inAppPayment = createInAppPayment(paymentSourceType)
+    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.RECURRING_DONATION, paymentSourceType)
     mockLocalSubscriberAccess(createSubscriber())
 
     every { SignalStore.inAppPayments.getLevelOperation("500") } returns LevelUpdateOperation(IdempotencyKey.generate(), "500")
@@ -210,7 +181,7 @@ class RecurringInAppPaymentRepositoryTest {
   @Test
   fun `given 10s delay, when I setSubscriptionLevel, then I expect timeout`() {
     val paymentSourceType = PaymentSourceType.Stripe.CreditCard
-    val inAppPayment = createInAppPayment(paymentSourceType)
+    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.RECURRING_DONATION, paymentSourceType)
     mockLocalSubscriberAccess(createSubscriber())
 
     every { SignalStore.inAppPayments.getLevelOperation("500") } returns LevelUpdateOperation(IdempotencyKey.generate(), "500")
@@ -234,7 +205,7 @@ class RecurringInAppPaymentRepositoryTest {
   @Test
   fun `given long running payment type with 10s delay, when I setSubscriptionLevel, then I expect pending`() {
     val paymentSourceType = PaymentSourceType.Stripe.SEPADebit
-    val inAppPayment = createInAppPayment(paymentSourceType)
+    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.RECURRING_DONATION, paymentSourceType)
     mockLocalSubscriberAccess(createSubscriber())
 
     every { SignalStore.inAppPayments.getLevelOperation("500") } returns LevelUpdateOperation(IdempotencyKey.generate(), "500")
@@ -259,7 +230,7 @@ class RecurringInAppPaymentRepositoryTest {
   fun `given an execution error, when I setSubscriptionLevel, then I expect the same error`() {
     val expected = NonSuccessfulResponseCodeException(404)
     val paymentSourceType = PaymentSourceType.Stripe.SEPADebit
-    val inAppPayment = createInAppPayment(paymentSourceType)
+    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.RECURRING_DONATION, paymentSourceType)
     mockLocalSubscriberAccess(createSubscriber())
 
     every { SignalStore.inAppPayments.getLevelOperation("500") } returns LevelUpdateOperation(IdempotencyKey.generate(), "500")
@@ -287,26 +258,6 @@ class RecurringInAppPaymentRepositoryTest {
       requiresCancel = false,
       paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
       iapSubscriptionId = null
-    )
-  }
-
-  private fun createInAppPayment(
-    paymentSourceType: PaymentSourceType
-  ): InAppPaymentTable.InAppPayment {
-    return InAppPaymentTable.InAppPayment(
-      id = InAppPaymentTable.InAppPaymentId(1),
-      state = InAppPaymentTable.State.CREATED,
-      insertedAt = System.currentTimeMillis().milliseconds,
-      updatedAt = System.currentTimeMillis().milliseconds,
-      notified = true,
-      subscriberId = null,
-      endOfPeriod = 0.milliseconds,
-      type = InAppPaymentType.RECURRING_DONATION,
-      data = InAppPaymentData(
-        badge = null,
-        level = 500,
-        paymentMethodType = paymentSourceType.toPaymentMethodType()
-      )
     )
   }
 

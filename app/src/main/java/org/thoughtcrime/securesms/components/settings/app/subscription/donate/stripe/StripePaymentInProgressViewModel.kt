@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.to
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -40,8 +39,7 @@ import org.whispersystems.signalservice.api.util.Preconditions
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 
 class StripePaymentInProgressViewModel(
-  private val stripeRepository: StripeRepository,
-  private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
+  private val stripeRepository: StripeRepository
 ) : ViewModel() {
 
   companion object {
@@ -200,6 +198,8 @@ class StripePaymentInProgressViewModel(
     paymentSourceProvider: PaymentSourceProvider,
     nextActionHandler: StripeNextActionHandler
   ) {
+    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == paymentSourceProvider.paymentSourceType)
+
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
     val amount = inAppPayment.data.amount!!.toFiatMoney()
@@ -233,10 +233,9 @@ class StripePaymentInProgressViewModel(
             .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, action.paymentMethodId) }
         }
         .flatMapCompletable {
-          oneTimeInAppPaymentRepository.waitForOneTimeRedemption(
+          OneTimeInAppPaymentRepository.waitForOneTimeRedemption(
             inAppPayment = inAppPayment,
-            paymentIntentId = paymentIntent.intentId,
-            paymentSourceType = paymentSource.type
+            paymentIntentId = paymentIntent.intentId
           )
         }
     }.subscribeBy(
@@ -304,11 +303,10 @@ class StripePaymentInProgressViewModel(
   }
 
   class Factory(
-    private val stripeRepository: StripeRepository,
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
+    private val stripeRepository: StripeRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository)) as T
     }
   }
 }

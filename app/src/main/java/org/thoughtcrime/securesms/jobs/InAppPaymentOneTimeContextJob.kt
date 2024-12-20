@@ -12,10 +12,12 @@ import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toDonationProcessor
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -138,7 +140,15 @@ class InAppPaymentOneTimeContextJob private constructor(
           throw InAppPaymentRetryException(e)
         }
 
-        info("Got presentation. Updating state and completing.")
+        info("Got presentation. Updating state, recording receipt, and completing.")
+        val inAppPaymentReceiptRecord = if (inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
+          InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
+        } else {
+          InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
+        }
+
+        SignalDatabase.donationReceipts.addReceipt(inAppPaymentReceiptRecord)
+
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
             data = inAppPayment.data.copy(

@@ -7,7 +7,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -16,52 +16,61 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentOneTimeContextJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.whispersystems.signalservice.api.services.DonationsService
 import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-class OneTimeInAppPaymentRepository(private val donationsService: DonationsService) {
+object OneTimeInAppPaymentRepository {
 
-  companion object {
-    private val TAG = Log.tag(OneTimeInAppPaymentRepository::class.java)
+  private val TAG = Log.tag(OneTimeInAppPaymentRepository::class.java)
 
-    fun <T : Any> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
-      return if (throwable is DonationError) {
-        Single.error(throwable)
-      } else {
-        val recipient = Recipient.resolved(badgeRecipient)
-        val errorSource = if (recipient.isSelf) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
-        Single.error(DonationError.getPaymentSetupError(errorSource, throwable, paymentSourceType))
-      }
-    }
-
-    fun verifyRecipientIsAllowedToReceiveAGift(badgeRecipient: RecipientId): Completable {
-      return Completable.fromAction {
-        Log.d(TAG, "Verifying badge recipient $badgeRecipient", true)
-        val recipient = Recipient.resolved(badgeRecipient)
-
-        if (recipient.isSelf) {
-          Log.d(TAG, "Cannot send a gift to self.", true)
-          throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
-        }
-
-        if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
-          Log.w(TAG, "Invalid badge recipient $badgeRecipient. Verification failed.", true)
-          throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
-        }
-      }.subscribeOn(Schedulers.io())
+  /**
+   * Translates the given Throwable into a DonationError
+   *
+   * If the throwable is already a DonationError, it's returned as is. Otherwise we will return an adequate payment setup error.
+   */
+  fun <T : Any> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
+    return if (throwable is DonationError) {
+      Single.error(throwable)
+    } else {
+      val recipient = Recipient.resolved(badgeRecipient)
+      val errorSource = if (recipient.isSelf) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
+      Single.error(DonationError.getPaymentSetupError(errorSource, throwable, paymentSourceType))
     }
   }
 
+  /**
+   * Checks whether the recipient for the given ID is allowed to receive a gift. Returns
+   * normally if they are and emits an error otherwise.
+   */
+  fun verifyRecipientIsAllowedToReceiveAGift(badgeRecipient: RecipientId): Completable {
+    return Completable.fromAction {
+      Log.d(TAG, "Verifying badge recipient $badgeRecipient", true)
+      val recipient = Recipient.resolved(badgeRecipient)
+
+      if (recipient.isSelf) {
+        Log.d(TAG, "Cannot send a gift to self.", true)
+        throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
+      }
+
+      if (!recipient.isIndividual || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
+        Log.w(TAG, "Invalid badge recipient $badgeRecipient. Verification failed.", true)
+        throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
+      }
+    }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Parses the donations configuration and returns any boost information from it. Also maps and filters out currencies
+   * based on platform and payment method availability.
+   */
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
-    return Single.fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
+    return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
       .flatMap { it.flattenResult() }
       .map { config ->
@@ -85,7 +94,7 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
   }
 
   fun getMinimumDonationAmounts(): Single<Map<Currency, FiatMoney>> {
-    return Single.fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
+    return Single.fromCallable { AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .flatMap { it.flattenResult() }
       .subscribeOn(Schedulers.io())
       .map { it.getMinimumDonationAmounts() }
@@ -93,10 +102,9 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
 
   fun waitForOneTimeRedemption(
     inAppPayment: InAppPaymentTable.InAppPayment,
-    paymentIntentId: String,
-    paymentSourceType: PaymentSourceType
+    paymentIntentId: String
   ): Completable {
-    val isLongRunning = paymentSourceType == PaymentSourceType.Stripe.SEPADebit
+    val isLongRunning = inAppPayment.data.paymentMethodType.toPaymentSourceType() == PaymentSourceType.Stripe.SEPADebit
     val isBoost = inAppPayment.data.recipientId?.let { RecipientId.from(it) } == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.ONE_TIME else DonationErrorSource.GIFT
 
@@ -107,17 +115,7 @@ class OneTimeInAppPaymentRepository(private val donationsService: DonationsServi
     }
 
     return Single.fromCallable {
-      val inAppPaymentReceiptRecord = if (isBoost) {
-        InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
-      } else {
-        InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
-      }
-
-      val donationTypeLabel = inAppPaymentReceiptRecord.type.code.replaceFirstChar { c -> if (c.isLowerCase()) c.titlecase(Locale.US) else c.toString() }
-
-      Log.d(TAG, "Confirmed payment intent. Recording $donationTypeLabel receipt and submitting badge reimbursement job chain.", true)
-      SignalDatabase.donationReceipts.addReceipt(inAppPaymentReceiptRecord)
-
+      Log.d(TAG, "Confirmed payment intent. Submitting badge reimbursement job chain.", true)
       SignalDatabase.inAppPayments.update(
         inAppPayment = inAppPayment.copy(
           data = inAppPayment.data.copy(
