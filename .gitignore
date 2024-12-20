@@ -31,3 +31,4 @@ dev.keystore
 maps.key
 /local/
 kls_database.db
+.kotlin
