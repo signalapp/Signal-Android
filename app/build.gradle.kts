@@ -7,11 +7,10 @@ import java.util.Date
 import java.util.Properties
 
 plugins {
-  id("com.android.application")
-  id("kotlin-android")
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.jetbrains.kotlin.android)
+  alias(libs.plugins.ktlint)
   id("androidx.navigation.safeargs")
-  id("org.jlleitschuh.gradle.ktlint")
-  id("org.jetbrains.kotlin.android")
   id("app.cash.exhaustive")
   id("kotlin-parcelize")
   id("com.squareup.wire")

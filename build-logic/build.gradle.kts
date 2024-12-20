@@ -1,16 +1,12 @@
-import org.gradle.kotlin.dsl.extra
+plugins {
+  alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+}
 
 buildscript {
-    val kotlinVersion by extra("1.9.20")
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
-    }
+  repositories {
+    google()
+    mavenCentral()
+  }
 }
 
 apply(from = "${rootDir}/../constants.gradle.kts")

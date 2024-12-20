@@ -18,6 +18,8 @@ val signalJavaVersion: JavaVersion by rootProject.extra
 val signalKotlinJvmTarget: String by rootProject.extra
 
 plugins {
+  // We cannot use the version catalog in the plugins block in convention plugins (it's not supported).
+  // Instead, plugin versions are controlled through the dependencies block in the build.gradle.kts.
   id("com.android.application")
   id("kotlin-android")
   id("ktlint")
