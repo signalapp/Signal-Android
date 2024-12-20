@@ -5,6 +5,7 @@
 
 plugins {
   id("signal-sample-app")
+  alias(libs.plugins.compose.compiler)
 }
 
 val signalBuildToolsVersion: String by rootProject.extra

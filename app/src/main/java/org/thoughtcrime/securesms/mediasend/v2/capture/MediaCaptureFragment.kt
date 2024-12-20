@@ -7,7 +7,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import app.cash.exhaustive.Exhaustive
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.core.Flowable
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -62,7 +61,6 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
       .commitNowAllowingStateLoss()
 
     lifecycleDisposable += viewModel.events.subscribe { event ->
-      @Exhaustive
       when (event) {
         MediaCaptureEvent.MediaCaptureRenderFailed -> {
           Log.w(TAG, "Failed to render captured media.")

@@ -24,7 +24,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import app.cash.exhaustive.Exhaustive
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -286,7 +285,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.events.subscribe { event ->
-      @Exhaustive
       when (event) {
         is ConversationSettingsEvent.AddToAGroup -> handleAddToAGroup(event)
         is ConversationSettingsEvent.AddMembersToGroup -> handleAddMembersToGroup(event)

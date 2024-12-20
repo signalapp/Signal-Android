@@ -2,6 +2,7 @@ plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.jetbrains.kotlin.android) apply false
   alias(libs.plugins.jetbrains.kotlin.jvm) apply false
+  alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.ktlint)
 }
 
@@ -21,7 +22,6 @@ buildscript {
     classpath(libs.gradle)
     classpath(libs.androidx.navigation.safe.args.gradle.plugin)
     classpath(libs.protobuf.gradle.plugin)
-    classpath(libs.exhaustive.gradle)
     classpath("com.squareup.wire:wire-gradle-plugin:4.4.3") {
       exclude(group = "com.squareup.wire", module = "wire-swift-generator")
       exclude(group = "com.squareup.wire", module = "wire-grpc-client")

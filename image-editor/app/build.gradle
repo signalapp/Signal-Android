@@ -1,6 +1,7 @@
 plugins {
     id("signal-sample-app")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.compose.compiler)
 }
 
 android {

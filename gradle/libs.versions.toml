@@ -10,10 +10,9 @@ androidx-lifecycle = "2.8.5"
 androidx-media3 = "1.3.1"
 androidx-navigation = "2.8.0"
 androidx-window = "1.3.0"
-exhaustive-gradle = "0.1.1"
 glide = "4.15.1"
 gradle = "8.7.3"
-kotlin = "1.9.20"
+kotlin = "2.1.0"
 libsignal-client = "0.64.0"
 mp4parser = "1.9.39"
 android-gradle-plugin = "8.4.0"
@@ -30,6 +29,7 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 androidx-navigation-safe-args = { id = "androidx.navigation.safeargs", version.ref = "navigation-safe-args-gradle-plugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [libraries]
 # Android Plugins
@@ -127,7 +127,7 @@ google-ez-vcard = "com.googlecode.ez-vcard:ez-vcard:0.9.11"
 google-jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
 google-guava-android = "com.google.guava:guava:30.0-android"
 google-flexbox = "com.google.android.flexbox:flexbox:3.0.0"
-com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.9.20-1.0.14"
+com-google-devtools-ksp-gradle-plugin = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.1.0-1.0.29"
 
 # Firebase
 firebase-messaging = "com.google.firebase:firebase-messaging:23.1.2"
@@ -168,7 +168,6 @@ dnsjava = "dnsjava:dnsjava:2.1.9"
 nanohttpd-webserver = { module = "org.nanohttpd:nanohttpd-webserver", version.ref = "nanohttpd" }
 nanohttpd-websocket = { module = "org.nanohttpd:nanohttpd-websocket", version.ref = "nanohttpd" }
 kotlinx-collections-immutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
-exhaustive-gradle = { module = "app.cash.exhaustive:exhaustive-gradle", version.ref = "exhaustive-gradle" }
 
 # Can't use the newest version because it hits some weird NoClassDefFoundException
 jknack-handlebars = "com.github.jknack:handlebars:4.0.7"

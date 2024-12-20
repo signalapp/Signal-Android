@@ -29,7 +29,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import app.cash.exhaustive.Exhaustive
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -443,7 +442,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun handleMediaValidatorFilterError(error: MediaValidator.FilterError) {
-    @Exhaustive
     when (error) {
       MediaValidator.FilterError.None -> return
       MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -31,9 +32,11 @@ java {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-  kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
-    freeCompilerArgs = listOf("-Xjvm-default=all")
+  kotlin {
+    compilerOptions {
+      jvmTarget = JvmTarget.fromTarget(signalKotlinJvmTarget)
+      freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
   }
 }
 
