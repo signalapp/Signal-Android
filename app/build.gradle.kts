@@ -21,8 +21,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1495
-val canonicalVersionName = "7.28.3"
+val canonicalVersionCode = 1496
+val canonicalVersionName = "7.28.4"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
