@@ -51,7 +51,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.queryWithFactory(null, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
   }
 
-  override fun query(query: SupportSQLiteQuery): Cursor? {
+  override fun query(query: SupportSQLiteQuery): Cursor {
     val converted = query.toAndroidQuery()
     return database.rawQuery(converted.where, converted.whereArgs)
   }
@@ -112,7 +112,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm)
   }
 
-  override fun execSQL(sql: String?) {
+  override fun execSQL(sql: String) {
     database.execSQL(sql)
   }
 
@@ -120,7 +120,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     database.execSQL(sql)
   }
 
-  override fun execSQL(sql: String, bindArgs: Array<out Any>) {
+  override fun execSQL(sql: String, bindArgs: Array<out Any?>) {
     database.execSQL(sql, bindArgs)
   }
 
@@ -132,9 +132,8 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     throw UnsupportedOperationException()
   }
 
-  override fun isWriteAheadLoggingEnabled(): Boolean {
-    throw UnsupportedOperationException()
-  }
+  override val isWriteAheadLoggingEnabled: Boolean
+    get() = throw UnsupportedOperationException()
 
   override fun setForeignKeyConstraintsEnabled(enable: Boolean) {
     database.setForeignKeyConstraintsEnabled(enable)
@@ -180,9 +179,8 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.inTransaction()
   }
 
-  override fun isDbLockedByCurrentThread(): Boolean {
-    return database.isDbLockedByCurrentThread
-  }
+  override val isDbLockedByCurrentThread: Boolean
+    get() = database.isDbLockedByCurrentThread
 
   @Suppress("DEPRECATION")
   override fun isDbLockedByOtherThreads(): Boolean {
@@ -197,47 +195,40 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     return database.yieldIfContendedSafely(sleepAfterYieldDelay)
   }
 
-  override fun getVersion(): Int {
-    return database.version
-  }
+  override var version: Int
+    get() = database.version
+    set(value) {
+      database.version = version
+    }
 
-  override fun setVersion(version: Int) {
-    database.version = version
-  }
-
-  override fun getMaximumSize(): Long {
-    return database.maximumSize
-  }
+  override val maximumSize: Long
+    get() = database.maximumSize
 
   override fun setMaximumSize(numBytes: Long): Long {
     return database.setMaximumSize(numBytes)
   }
 
-  override fun getPageSize(): Long {
-    return database.pageSize
-  }
+  override var pageSize: Long
+    get() = database.pageSize
+    set(value) {
+      database.pageSize = value
+    }
 
-  override fun setPageSize(numBytes: Long) {
-    database.pageSize = numBytes
-  }
-
-  override fun compileStatement(sql: String?): SQLCipherSQLiteStatement {
+  override fun compileStatement(sql: String): SQLCipherSQLiteStatement {
     throw UnsupportedOperationException()
   }
 
-  override fun isReadOnly(): Boolean {
-    return database.isReadOnly
-  }
+  override val isReadOnly: Boolean
+    get() = database.isReadOnly
 
-  override fun isOpen(): Boolean {
-    return database.isOpen
-  }
+  override val isOpen: Boolean
+    get() = database.isOpen
 
   override fun needUpgrade(newVersion: Int): Boolean {
     return database.needUpgrade(newVersion)
   }
 
-  override fun setLocale(locale: Locale?) {
+  override fun setLocale(locale: Locale) {
     database.setLocale(locale)
   }
 }

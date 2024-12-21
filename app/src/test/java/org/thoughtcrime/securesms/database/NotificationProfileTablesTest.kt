@@ -45,7 +45,7 @@ class NotificationProfileTablesTest {
       }
     }
 
-    db = sqlCipher.writableDatabase
+    db = sqlCipher.myWritableDatabase
     database = NotificationProfileTables(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 

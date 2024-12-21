@@ -28,7 +28,7 @@ object V163_RemoteMegaphoneSnoozeSupportMigration : SignalDatabaseMigration {
   }
 
   private fun columnMissing(db: SupportSQLiteDatabase, column: String): Boolean {
-    db.query("PRAGMA table_info(remote_megaphone)", null).use { cursor ->
+    db.query("PRAGMA table_info(remote_megaphone)", arrayOf()).use { cursor ->
       val nameColumnIndex = cursor.getColumnIndexOrThrow("name")
       while (cursor.moveToNext()) {
         val name = cursor.getString(nameColumnIndex)

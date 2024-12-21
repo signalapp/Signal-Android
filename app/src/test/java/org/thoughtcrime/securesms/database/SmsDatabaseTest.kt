@@ -31,7 +31,7 @@ class SmsDatabaseTest {
       }
     }
 
-    db = sqlCipher.writableDatabase
+    db = sqlCipher.myWritableDatabase
     messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 

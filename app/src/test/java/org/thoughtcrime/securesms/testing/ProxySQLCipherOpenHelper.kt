@@ -13,8 +13,8 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase as SQLCipherSQLiteDatabase
  */
 class ProxySQLCipherOpenHelper(
   context: Application,
-  val readableDatabase: AndroidSQLiteDatabase,
-  val writableDatabase: AndroidSQLiteDatabase
+  val myReadableDatabase: AndroidSQLiteDatabase,
+  val myWritableDatabase: AndroidSQLiteDatabase
 ) : SignalDatabase(context, DatabaseSecret(ByteArray(32).apply { SecureRandom().nextBytes(this) }), AttachmentSecret()) {
 
   constructor(context: Application, testOpenHelper: TestSQLiteOpenHelper) : this(context, testOpenHelper.readableDatabase, testOpenHelper.writableDatabase)
@@ -23,9 +23,8 @@ class ProxySQLCipherOpenHelper(
     throw UnsupportedOperationException()
   }
 
-  override fun getDatabaseName(): String {
-    throw UnsupportedOperationException()
-  }
+  override val databaseName: String
+    get() = throw UnsupportedOperationException()
 
   override fun setWriteAheadLoggingEnabled(enabled: Boolean) {
     throw UnsupportedOperationException()
@@ -55,13 +54,11 @@ class ProxySQLCipherOpenHelper(
     throw UnsupportedOperationException()
   }
 
-  override fun getReadableDatabase(): SQLCipherSQLiteDatabase {
-    throw UnsupportedOperationException()
-  }
+  override val readableDatabase: SQLCipherSQLiteDatabase
+    get() = throw UnsupportedOperationException()
 
-  override fun getWritableDatabase(): SQLCipherSQLiteDatabase {
-    throw UnsupportedOperationException()
-  }
+  override val writableDatabase: SQLCipherSQLiteDatabase
+    get() = throw UnsupportedOperationException()
 
   override val rawReadableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
     get() = throw UnsupportedOperationException()
@@ -70,10 +67,10 @@ class ProxySQLCipherOpenHelper(
     get() = throw UnsupportedOperationException()
 
   override val signalReadableDatabase: org.thoughtcrime.securesms.database.SQLiteDatabase
-    get() = ProxySignalSQLiteDatabase(readableDatabase)
+    get() = ProxySignalSQLiteDatabase(myReadableDatabase)
 
   override val signalWritableDatabase: org.thoughtcrime.securesms.database.SQLiteDatabase
-    get() = ProxySignalSQLiteDatabase(writableDatabase)
+    get() = ProxySignalSQLiteDatabase(myWritableDatabase)
 
   override fun getSqlCipherDatabase(): SQLCipherSQLiteDatabase {
     throw UnsupportedOperationException()

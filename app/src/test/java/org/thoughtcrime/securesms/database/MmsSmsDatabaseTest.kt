@@ -27,7 +27,7 @@ class MmsSmsDatabaseTest {
       MessageTable.CREATE_INDEXS.forEach { execSQL(it) }
     }
 
-    db = sqlCipher.writableDatabase
+    db = sqlCipher.myWritableDatabase
     messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 

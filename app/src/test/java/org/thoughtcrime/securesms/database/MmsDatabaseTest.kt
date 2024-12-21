@@ -28,7 +28,7 @@ class MmsDatabaseTest {
       execSQL(MessageTable.CREATE_TABLE)
     }
 
-    db = sqlCipher.writableDatabase
+    db = sqlCipher.myWritableDatabase
     messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 

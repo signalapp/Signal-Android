@@ -120,7 +120,7 @@ fun SupportSQLiteDatabase.getForeignKeys(): List<ForeignKeyConstraint> {
 }
 
 fun SupportSQLiteDatabase.areForeignKeyConstraintsEnabled(): Boolean {
-  return this.query("PRAGMA foreign_keys", null).use { cursor ->
+  return this.query("PRAGMA foreign_keys", arrayOf()).use { cursor ->
     cursor.moveToFirst() && cursor.getInt(0) != 0
   }
 }
@@ -508,7 +508,7 @@ class ExistsBuilderPart1(
   }
 
   fun run(): Boolean {
-    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName)", null).use { cursor ->
+    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName)", arrayOf()).use { cursor ->
       cursor.moveToFirst() && cursor.getInt(0) == 1
     }
   }

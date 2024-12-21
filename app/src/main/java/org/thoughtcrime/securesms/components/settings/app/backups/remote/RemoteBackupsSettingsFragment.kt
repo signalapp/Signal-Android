@@ -291,7 +291,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   private inner class AuthListener : BiometricPrompt.AuthenticationCallback() {
     override fun onAuthenticationFailed() {
       Log.w(TAG, "onAuthenticationFailed")
-      Toast.makeText(requireContext(), androidx.media3.session.R.string.authentication_required, Toast.LENGTH_SHORT).show()
+      Toast.makeText(requireContext(), R.string.RemoteBackupsSettingsFragment__authenticatino_required, Toast.LENGTH_SHORT).show()
     }
 
     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {

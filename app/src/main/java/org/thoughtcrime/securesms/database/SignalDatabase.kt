@@ -190,28 +190,26 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.")
   }
 
-  override fun getReadableDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
-    throw UnsupportedOperationException("Call getSignalReadableDatabase() instead!")
-  }
+  override val readableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = throw UnsupportedOperationException("Call getSignalReadableDatabase() instead!")
 
-  override fun getWritableDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
-    throw UnsupportedOperationException("Call getSignalWritableDatabase() instead!")
-  }
+  override val writableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
+    get() = throw UnsupportedOperationException("Call getSignalWritableDatabase() instead!")
 
   open val rawReadableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
-    get() = super.getReadableDatabase()
+    get() = super.readableDatabase
 
   open val rawWritableDatabase: net.zetetic.database.sqlcipher.SQLiteDatabase
-    get() = super.getWritableDatabase()
+    get() = super.writableDatabase
 
   open val signalReadableDatabase: SQLiteDatabase
-    get() = SQLiteDatabase(super.getReadableDatabase())
+    get() = SQLiteDatabase(super.readableDatabase)
 
   open val signalWritableDatabase: SQLiteDatabase
-    get() = SQLiteDatabase(super.getWritableDatabase())
+    get() = SQLiteDatabase(super.writableDatabase)
 
   override fun getSqlCipherDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
-    return super.getWritableDatabase()
+    return super.writableDatabase
   }
 
   open fun markCurrent(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
@@ -299,7 +297,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         database.setForeignKeyConstraintsEnabled(false)
         database.beginTransaction()
         try {
-          instance!!.onUpgrade(database, database.getVersion(), -1)
+          instance!!.onUpgrade(database, database.version, -1)
           instance!!.markCurrent(database)
           instance!!.messageTable.deleteAbandonedMessages()
           instance!!.messageTable.trimEntriesForExpiredMessages()

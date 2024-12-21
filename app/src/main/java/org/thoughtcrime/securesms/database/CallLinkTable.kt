@@ -455,7 +455,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       $limitOffset
     """.trimIndent()
 
-    return readableDatabase.query(statement, searchFilter?.whereArgs)
+    return readableDatabase.query(statement, searchFilter?.whereArgs ?: arrayOf())
   }
 
   private object CallLinkSerializer : Serializer<CallLink, ContentValues> {

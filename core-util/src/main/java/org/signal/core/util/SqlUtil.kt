@@ -43,7 +43,7 @@ object SqlUtil {
    * IMPORTANT: Due to how connection pooling is handled in the app, the only way to have this return useful numbers is to call it within a transaction.
    */
   fun getTotalChanges(db: SupportSQLiteDatabase): Long {
-    return db.query("SELECT total_changes()", null).readToSingleLong()
+    return db.query("SELECT total_changes()", arrayOf()).readToSingleLong()
   }
 
   @JvmStatic
@@ -120,7 +120,7 @@ object SqlUtil {
 
   @JvmStatic
   fun isEmpty(db: SupportSQLiteDatabase, table: String): Boolean {
-    db.query("SELECT COUNT(*) FROM $table", null).use { cursor ->
+    db.query("SELECT COUNT(*) FROM $table", arrayOf()).use { cursor ->
       return if (cursor.moveToFirst()) {
         cursor.getInt(0) == 0
       } else {
@@ -131,7 +131,7 @@ object SqlUtil {
 
   @JvmStatic
   fun columnExists(db: SupportSQLiteDatabase, table: String, column: String): Boolean {
-    db.query("PRAGMA table_info($table)", null).use { cursor ->
+    db.query("PRAGMA table_info($table)", arrayOf()).use { cursor ->
       val nameColumnIndex = cursor.getColumnIndexOrThrow("name")
       while (cursor.moveToNext()) {
         val name = cursor.getString(nameColumnIndex)

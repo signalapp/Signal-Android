@@ -63,7 +63,7 @@ object V186_ForeignKeyIndicesMigration : SignalDatabaseMigration {
   }
 
   private fun columnExists(db: SQLiteDatabase, table: String, column: String): Boolean {
-    return db.query("PRAGMA table_info($table)", null)
+    return db.query("PRAGMA table_info($table)", arrayOf())
       .readToList { it.requireNonNullString("name") }
       .any { it == column }
   }

@@ -8,5 +8,4 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
  */
 public interface SignalDatabaseOpenHelper {
   SQLiteDatabase getSqlCipherDatabase();
-  String getDatabaseName();
 }

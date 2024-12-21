@@ -31,11 +31,11 @@ private class CapturingSqliteProgram(count: Int) : SupportSQLiteProgram {
     args[index - 1] = value.toString()
   }
 
-  override fun bindString(index: Int, value: String?) {
+  override fun bindString(index: Int, value: String) {
     args[index - 1] = value
   }
 
-  override fun bindBlob(index: Int, value: ByteArray?) {
+  override fun bindBlob(index: Int, value: ByteArray) {
     throw UnsupportedOperationException()
   }
 
