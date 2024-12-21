@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.DistributionListTables;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Objects;
@@ -189,7 +190,15 @@ public final class LiveRecipient {
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
-    Recipient recipient = RecipientCreator.forRecord(context, recipientTable.getRecord(id));
+    RecipientRecord record;
+    try {
+      record = recipientTable.getRecord(id);
+    } catch (RecipientTable.MissingRecipientException e) {
+      Log.w(TAG, "Failed to find " + id + "! Returning UNKNOWN.");
+      return Recipient.UNKNOWN;
+    }
+
+    Recipient recipient = RecipientCreator.forRecord(context, record);
     RecipientIdCache.INSTANCE.put(recipient);
     return recipient;
   }

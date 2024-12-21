@@ -120,11 +120,6 @@ object RecipientCreator {
   }
 
   @JvmStatic
-  fun forUnknown(): Recipient {
-    return Recipient.UNKNOWN
-  }
-
-  @JvmStatic
   fun forUnknownGroup(id: RecipientId, groupId: GroupId?): Recipient {
     return Recipient(
       id = id,

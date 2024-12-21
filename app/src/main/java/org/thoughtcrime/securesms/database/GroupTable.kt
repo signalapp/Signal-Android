@@ -1112,7 +1112,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           recipientId = RecipientId.from(cursor.requireNonNullString(RECIPIENT_ID)),
           title = cursor.requireString(TITLE),
           serializedMembers = cursor.requireString(MEMBER_GROUP_CONCAT),
-          serializedUnmigratedV1Members = cursor.requireString(UNMIGRATED_V1_MEMBERS),
+          serializedUnmigratedV1Members = null,
           avatarId = cursor.requireLong(AVATAR_ID),
           avatarKey = cursor.requireBlob(AVATAR_KEY),
           avatarContentType = cursor.requireString(AVATAR_CONTENT_TYPE),
