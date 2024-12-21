@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,10 +14,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -62,6 +68,7 @@ import java.util.concurrent.TimeUnit;
 public class CommunicationActions {
 
   private static final String TAG = Log.tag(CommunicationActions.class);
+  private static AlertDialog alertDialog = null;
 
   /**
    * Start a voice call. Assumes that permission request results will be routed to a handler on the Fragment.
@@ -98,12 +105,19 @@ public class CommunicationActions {
               onUserAlreadyInAnotherCall.onUserAlreadyInAnotherCall();
             }
           } else {
-            new MaterialAlertDialogBuilder(callContext.getContext())
+            if (alertDialog != null) {
+              alertDialog.dismiss();
+              alertDialog = null;
+            }
+
+            alertDialog = new MaterialAlertDialogBuilder(callContext.getContext())
                 .setMessage(R.string.CommunicationActions_start_voice_call)
                 .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(callContext, recipient, false, false))
                 .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                .setCancelable(true)
-                .show();
+                .setCancelable(true).create();
+            adjustDialogSize(callContext, alertDialog);
+            alertDialog.show();
+
           }
         }
       });
@@ -484,6 +498,41 @@ public class CommunicationActions {
       }
     });
   }
+
+
+
+  /**
+   * Adjusts the size of the dialog window based on the device orientation.
+   */
+  public static void adjustDialogSize(@NonNull CallContext callContext, DialogInterface dialog) {
+    Window window = ((AlertDialog) dialog).getWindow();
+
+    if (window != null) {
+      DisplayMetrics displayMetrics = new DisplayMetrics();
+      window.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+      // Get current orientation
+      int orientation = callContext.getContext().getResources().getConfiguration().orientation;
+
+      // Set width and height based on orientation
+      if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        // Case when both dialog and it's page opened in Portrait orientation
+        if (displayMetrics.heightPixels > displayMetrics.widthPixels) {
+          window.setLayout((int) (displayMetrics.widthPixels * 0.8), WindowManager.LayoutParams.WRAP_CONTENT);
+        } else { // When page opened in Portrait orientation and dialog showing in Landscape orientation
+          window.setLayout((int) (displayMetrics.heightPixels * 0.8), WindowManager.LayoutParams.WRAP_CONTENT);
+        }
+      } else {
+        // Case when both dialog and it's page opened in Landscape orientation
+        if (displayMetrics.widthPixels > displayMetrics.heightPixels) {
+          window.setLayout((int) (displayMetrics.widthPixels * 0.6), WindowManager.LayoutParams.WRAP_CONTENT);
+        } else {// When page opened in Landscape orientation and dialog showing in Portrait orientation
+          window.setLayout((int) (displayMetrics.heightPixels * 0.6), WindowManager.LayoutParams.WRAP_CONTENT);
+        }
+      }
+    }
+  }
+
 
   private interface CallContext {
     @NonNull Permissions.PermissionsBuilder getPermissionsBuilder();
