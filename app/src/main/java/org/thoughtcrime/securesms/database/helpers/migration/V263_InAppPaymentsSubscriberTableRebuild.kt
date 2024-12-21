@@ -12,7 +12,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
  * Adds IAP fields and updates constraints.
  */
 @Suppress("ClassName")
-object V262_InAppPaymentsSubscriberTableRebuild : SignalDatabaseMigration {
+object V263_InAppPaymentsSubscriberTableRebuild : SignalDatabaseMigration {
 
   private const val DONOR_TYPE = 0
   private const val BACKUP_TYPE = 1

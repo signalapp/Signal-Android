@@ -146,7 +146,8 @@ class InAppPaymentSubscriberTable(
    * Retrieves a subscriber for the given type by the currency code.
    */
   fun getByCurrencyCode(currencyCode: String): InAppPaymentSubscriberRecord? {
-    return readableDatabase.select()
+    return readableDatabase
+      .select()
       .from(TABLE_NAME)
       .where("$CURRENCY_CODE = ?", currencyCode.uppercase())
       .run()
@@ -157,7 +158,8 @@ class InAppPaymentSubscriberTable(
    * Retrieves a subscriber by SubscriberId
    */
   fun getBySubscriberId(subscriberId: SubscriberId): InAppPaymentSubscriberRecord? {
-    return readableDatabase.select()
+    return readableDatabase
+      .select()
       .from(TABLE_NAME)
       .where("$SUBSCRIBER_ID = ?", subscriberId.serialize())
       .run()
