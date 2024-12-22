@@ -220,6 +220,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializeSearchAction()
     AppDependencies.deletedCallEventManager.scheduleIfNecessary()
     viewModel.markAllCallEventsRead()
+
+    if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
+      (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+    }
   }
 
   private fun onTimestampTick() {
