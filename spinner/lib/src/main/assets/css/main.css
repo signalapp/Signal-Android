@@ -50,12 +50,18 @@ select, input, button {
 }
 
 table, th, td {
-  font-family: 'JetBrains Mono', monospace;
+  border: 1px solid black;
   font-size: 1rem;
 }
 
-.handsontable td.htDimmed {
-  color: #000;
+th, td {
+  padding: 8px;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background: var(--background-color);
 }
 
 .handsontable th {
@@ -129,10 +135,6 @@ h2.collapse-header, h2.collapse-header+div {
 
 .hidden {
   display: none;
-}
-
-.invisible {
-  opacity: 0;
 }
 
 table.device-info {

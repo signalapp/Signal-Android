@@ -38,7 +38,7 @@
       </form>
 
       <!-- Data Rows -->
-      <table id="data-table" class="invisible">
+      <table>
         <tr>
           {{#each queryResult.columns}}
             <th>{{this}}</th>
@@ -55,7 +55,6 @@
     {{else}}
       <div>Select a table from above and click 'browse'.</div>
     {{/if}}
-    <div id="handson-table"></div>
 
     <br />
 
@@ -71,44 +70,6 @@
       <input type="submit" name="action" value="last" {{#if pagingData.lastPage}}disabled{{/if}} />
     </form>
 
-
-    <script src="/js/lib/handsontable.full.min.js"></script>
-
     {{> partials/suffix}}
-
-    <script>
-      function main() {
-        const table = document.getElementById('data-table')
-        if (!table) {
-          return;
-        }
-
-        const data = htmlToHandsonData(table)
-        table.remove()
-
-        const renderers = []
-        for (const header of data.headers) {
-          renderers.push({ renderer: 'nullRenderer' })
-        }
-
-        const hot = new Handsontable(document.getElementById('handson-table'), {
-          data: data.rows,
-          colHeaders: data.headers,
-          columns: renderers,
-          readOnly: true,
-          filters: true,
-          columnSorting: true,
-          manualColumnResize: true,
-          manualColumnMove: true,
-          manualRowResize: true,
-          dropdownMenu: ['filter_by_condition', 'filter_by_value', 'filter_action_bar'],
-          viewportColumnRenderingOffset: 1000,
-          licenseKey: 'non-commercial-and-evaluation'
-        })
-      }
-
-      main()
-    </script>
   </body>
-
 </html>
