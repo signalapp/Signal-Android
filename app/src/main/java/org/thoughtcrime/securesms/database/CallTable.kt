@@ -1495,7 +1495,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       .where("$PEER = ?", fromId)
       .run()
 
-    val ringerCount = writableDatabase.update(CallLinkTable.TABLE_NAME)
+    val ringerCount = writableDatabase.update(TABLE_NAME)
       .values(RINGER to toId.toLong())
       .where("$RINGER = ?", fromId.toLong())
       .run()
