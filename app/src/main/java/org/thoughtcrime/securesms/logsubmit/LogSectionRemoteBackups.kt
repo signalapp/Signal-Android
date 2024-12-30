@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 class LogSectionRemoteBackups : LogSection {
-  override fun getTitle(): String = "Remote Backups"
+  override fun getTitle(): String = "REMOTE BACKUPS"
 
   override fun getContent(context: Context): CharSequence {
     val output = StringBuilder()
