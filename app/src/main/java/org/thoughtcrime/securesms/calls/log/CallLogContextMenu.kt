@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
@@ -32,6 +33,7 @@ class CallLogContextMenu(
     anchor.isSelected = true
     SignalContextMenu.Builder(anchor, anchor.parent as ViewGroup)
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
+      .offsetY(12.dp)
       .onDismiss {
         anchor.isSelected = false
         recyclerView.suppressLayout(false)
@@ -53,6 +55,7 @@ class CallLogContextMenu(
     anchor.isSelected = true
     SignalContextMenu.Builder(anchor, anchor.parent as ViewGroup)
       .preferredVerticalPosition(SignalContextMenu.VerticalPosition.BELOW)
+      .offsetY(12.dp)
       .onDismiss {
         anchor.isSelected = false
         recyclerView.suppressLayout(false)
