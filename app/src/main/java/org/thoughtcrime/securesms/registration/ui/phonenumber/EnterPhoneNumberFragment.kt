@@ -592,12 +592,10 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun moveToEnterPinScreen() {
     findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionReRegisterWithPinFragment())
-    sharedViewModel.setInProgress(false)
   }
 
   private fun moveToVerificationEntryScreen() {
     findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode())
-    sharedViewModel.setInProgress(false)
   }
 
   private fun popBackStack() {

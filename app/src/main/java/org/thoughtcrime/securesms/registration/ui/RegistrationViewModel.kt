@@ -405,7 +405,6 @@ class RegistrationViewModel : ViewModel() {
             allowedToRequestCode = networkResult.body.allowedToRequestCode,
             challengesRequested = Challenge.parse(networkResult.body.requestedInformation),
             verified = networkResult.body.verified,
-            inProgress = false
           )
         }
       },
@@ -486,8 +485,7 @@ class RegistrationViewModel : ViewModel() {
             nextSmsTimestamp = sessionResult.nextSmsTimestamp,
             nextCallTimestamp = sessionResult.nextCallTimestamp,
             isAllowedToRequestCode = sessionResult.allowedToRequestCode,
-            challengesRequested = emptyList(),
-            inProgress = false
+            challengesRequested = emptyList()
           )
         }
         return true
@@ -499,7 +497,6 @@ class RegistrationViewModel : ViewModel() {
           it.copy(
             registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
             challengesRequested = sessionResult.challenges,
-            inProgress = false
           )
         }
         return false
@@ -857,8 +854,7 @@ class RegistrationViewModel : ViewModel() {
 
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE,
-        inProgress = false
+        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
       )
     }
   }

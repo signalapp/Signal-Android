@@ -71,6 +71,7 @@ class RegistrationActivity : BaseActivity() {
     if (SignalStore.storageService.needsAccountRestore) {
       Log.i(TAG, "Performing pin restore.")
       startActivity(Intent(this, PinRestoreActivity::class.java))
+      sharedViewModel.setInProgress(false)
       finish()
     } else {
       val isProfileNameEmpty = Recipient.self().profileName.isEmpty
@@ -83,7 +84,6 @@ class RegistrationActivity : BaseActivity() {
       if (!needsProfile && !needsPin) {
         sharedViewModel.completeRegistration()
       }
-      sharedViewModel.setInProgress(false)
 
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
@@ -97,6 +97,7 @@ class RegistrationActivity : BaseActivity() {
 
       Log.d(TAG, "Launching ${startIntent.component}")
       startActivity(startIntent)
+      sharedViewModel.setInProgress(false)
       finish()
       ActivityNavigator.applyPopAnimationsToPendingTransition(this)
     }

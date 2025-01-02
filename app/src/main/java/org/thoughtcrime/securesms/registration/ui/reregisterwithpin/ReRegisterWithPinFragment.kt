@@ -43,6 +43,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    registrationViewModel.setInProgress(false)
 
     RegistrationViewDelegate.setDebugLogSubmitMultiTapView(binding.pinRestorePinTitle)
     binding.pinRestorePinDescription.setText(R.string.RegistrationLockFragment__enter_the_pin_you_created_for_your_account)

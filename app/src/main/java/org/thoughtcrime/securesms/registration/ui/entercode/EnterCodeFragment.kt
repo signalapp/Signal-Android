@@ -61,6 +61,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     setDebugLogSubmitMultiTapView(binding.verifyHeader)
+    sharedViewModel.setInProgress(false)
 
     phoneStateListener = SignalStrengthPhoneStateListener(this, PhoneStateCallback())
 

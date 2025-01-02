@@ -21,6 +21,7 @@ class RegistrationCaptchaFragment : CaptchaFragment() {
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    sharedViewModel.setInProgress(false)
     sharedViewModel.addPresentedChallenge(Challenge.CAPTCHA)
   }
 
