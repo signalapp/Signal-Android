@@ -413,6 +413,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">to %s</string>
     <string name="ConversationItem_read_more">&#160; Read More</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
     <string name="ConversationItem_this_message_was_deleted">This message was deleted.</string>
@@ -1298,6 +1299,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Done</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>
@@ -1456,7 +1458,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Change sound and vibration</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Call settings</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Ringtone</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Default</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Unknown</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1637,6 +1641,7 @@
     <string name="Megaphones_verify_pin">Verify PIN</string>
     <string name="Megaphones_get_started">Get started</string>
     <string name="Megaphones_new_group">New group</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_chat_colors">Chat colors</string>
     <string name="Megaphones_add_a_profile_photo">Add a profile photo</string>
@@ -2459,6 +2464,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Failed to submit</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Complete verification</string>
 
     <!-- RegistrationActivity -->
@@ -2985,6 +2991,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Has a caption</string>
 
     <!-- TransferControlView -->
@@ -3495,10 +3502,10 @@
         <item>Feature Request</item>
         <item>Question</item>
         <item>Feedback</item>
-        <item>Other</item>
         <item>Payments (MobileCoin)</item>
         <item>Donations &amp; Badges</item>
         <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android Debug Log Submission</string>
@@ -3578,7 +3585,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
     <string name="preferences__screen_security">Screen security</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__led_color">LED color</string>
@@ -3589,6 +3598,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Default</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
@@ -3605,6 +3615,7 @@
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">White</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">None</string>
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
@@ -4195,6 +4206,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Media preview</string>
 
     <!-- new_conversation_activity -->
@@ -4368,6 +4380,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Disable and delete all local backups?</string>
     <string name="BackupDialog_delete_backups_statement">Delete backups</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">To enable backups, choose a folder. Backups will be saved to this location.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Choose folder</string>
     <string name="BackupDialog_copied_to_clipboard">Copied to clipboard</string>
     <string name="BackupDialog_no_file_picker_available">No file picker available.</string>
@@ -4812,6 +4825,7 @@
     <string name="ShareActivity__share">Share</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Send</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Could not get share data from intent.</string>
@@ -5480,6 +5494,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Not muted</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Always notify</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Do not notify</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom notifications</string>
 
@@ -5570,7 +5585,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
     <string name="MultiselectForwardFragment__forward_to">Forward to</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Share with</string>
     <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
     <string name="MultiselectForwardFragment__faster_forwards">Faster forwards</string>
@@ -6434,7 +6449,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Copied to clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">See More</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Sending reply…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
