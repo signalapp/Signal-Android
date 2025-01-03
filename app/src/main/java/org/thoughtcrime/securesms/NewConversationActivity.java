@@ -204,8 +204,10 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleManualRefresh() {
-    contactsFragment.setRefreshing(true);
-    onRefresh();
+    if (!contactsFragment.isRefreshing()) {
+      contactsFragment.setRefreshing(true);
+      onRefresh();
+    }
   }
 
   private void handleCreateGroup() {

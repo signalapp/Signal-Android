@@ -370,7 +370,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
               @Override
               public void onRefreshContactsClicked() {
-                if (onRefreshListener != null) {
+                if (onRefreshListener != null && !isRefreshing()) {
                   setRefreshing(true);
                   onRefreshListener.onRefresh();
                 }
@@ -568,6 +568,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public void setRefreshing(boolean refreshing) {
     swipeRefresh.setRefreshing(refreshing);
+  }
+
+  public boolean isRefreshing() {
+    return swipeRefresh.isRefreshing();
   }
 
   public void reset() {
