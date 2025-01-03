@@ -114,6 +114,13 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
     startActivity(Intent(this, InviteActivity::class.java))
   }
 
+  private fun handleManualRefresh() {
+    if (!contactsFragment.isRefreshing) {
+      contactsFragment.isRefreshing = true
+      onRefresh()
+    }
+  }
+
   private inner class NewCallMenuProvider : MenuProvider {
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
       menuInflater.inflate(R.menu.new_call_menu, menu)
@@ -122,7 +129,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
       when (menuItem.itemId) {
         android.R.id.home -> ActivityCompat.finishAfterTransition(this@NewCallActivity)
-        R.id.menu_refresh -> onRefresh()
+        R.id.menu_refresh -> handleManualRefresh()
         R.id.menu_invite -> startActivity(Intent(this@NewCallActivity, InviteActivity::class.java))
       }
 
