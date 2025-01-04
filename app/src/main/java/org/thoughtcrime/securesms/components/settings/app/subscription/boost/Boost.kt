@@ -257,6 +257,11 @@ data class Boost(
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = StringUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
 
+      // Enforce maximum length of 9 characters
+      if (resultWithoutCurrencyPrefix.length > 9) {
+        return "" // Reject the new input
+      }
+
       if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)
       }
@@ -278,6 +283,7 @@ data class Boost(
       if (s.isNullOrEmpty()) return
 
       val hasSymbol = s.startsWith(symbol) || s.endsWith(symbol)
+
       if (hasSymbol && symbolPattern.matchEntire(s.toString()) != null) {
         s.clear()
       } else if (!hasSymbol) {
@@ -312,6 +318,13 @@ data class Boost(
       }
 
       val withoutSymbol = s.removePrefix(symbol).removeSuffix(symbol).trim().toString()
+
+      // Check if the value exceeds 9 characters
+      if (withoutSymbol.length > 9) {
+        s.delete(9, s.length) // Trim to the first 9 characters
+        return
+      }
+
       val withoutLeadingZeroes: String = try {
         NumberFormat.getInstance().apply {
           isGroupingUsed = false
