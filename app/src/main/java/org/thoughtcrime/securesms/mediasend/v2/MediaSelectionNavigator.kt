@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend.v2
 
 import android.Manifest
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import org.thoughtcrime.securesms.R
@@ -27,6 +28,12 @@ class MediaSelectionNavigator(
     if (toGallery == -1) return
 
     navController.safeNavigate(toGallery)
+  }
+
+  fun goToGalleryWithDisabledCamera(navController: NavController) {
+    if (toGallery == -1) return
+
+    navController.safeNavigate(toGallery, bundleOf("isCameraEnabled" to false))
   }
 
   companion object {

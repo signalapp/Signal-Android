@@ -129,6 +129,10 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
     navigator.goToReview(findNavController())
   }
 
+  override fun isCameraEnabled(): Boolean {
+    return arguments?.getBoolean("isCameraEnabled") ?: super.isCameraEnabled()
+  }
+
   override fun onNavigateToCamera() {
     val controller = findNavController()
     requestPermissionsForCamera {

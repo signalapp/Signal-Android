@@ -169,7 +169,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
   override fun onGalleryClicked() {
     val controller = findNavController()
     captureChildFragment.fadeOutControls {
-      navigator.goToGallery(controller)
+      navigator.goToGalleryWithDisabledCamera(controller)
     }
   }
 
