@@ -331,4 +331,18 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
 
     return terminateGroupCall(currentState);
   }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleResendMediaKeys(@NonNull WebRtcServiceState currentState) {
+    GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
+    if (groupCall != null) {
+      try {
+        currentState.getCallInfoState().getGroupCall().resendMediaKeys();
+      } catch (CallException e) {
+        return groupCallFailure(currentState, "Unable to resend media keys", e);
+      }
+    }
+
+    return currentState;
+  }
 }

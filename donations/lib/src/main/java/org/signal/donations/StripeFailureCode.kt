@@ -36,7 +36,7 @@ sealed class StripeFailureCode(val rawCode: String) {
         return Unknown("null")
       }
 
-      val typedCode: Code? = Code.values().firstOrNull { it.code == code }
+      val typedCode: Code? = Code.entries.firstOrNull { it.code == code }
       return typedCode?.let { Known(typedCode) } ?: Unknown(code)
     }
   }

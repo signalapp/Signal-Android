@@ -105,7 +105,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    if (SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
+    if (SignalStore.svr().hasOptedInWithAccess() && !SignalStore.svr().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
       Log.i(TAG, "Registered with PIN but haven't completed storage sync yet.");
       return;
     }
@@ -216,17 +216,15 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    if (!Recipient.self().getDeleteSyncCapability().isSupported() && capabilities.isDeleteSync()) {
-      Log.d(TAG, "Transitioned to delete sync capable, notify linked devices in case we were the last one");
-      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-    }
-
-    if (!Recipient.self().getVersionedExpirationTimerCapability().isSupported() && capabilities.isVersionedExpirationTimer()) {
-      Log.d(TAG, "Transitioned to versioned expiration timer capable, notify linked devices in case we were the last one");
-      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-    }
+    Recipient selfSnapshot = Recipient.self();
 
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
+
+    if (selfSnapshot.getStorageServiceEncryptionV2Capability() == Recipient.Capability.NOT_SUPPORTED && capabilities.isStorageServiceEncryptionV2()) {
+      Log.i(TAG, "Transitioned to storageServiceEncryptionV2 capable. Notifying other devices and pushing to storage service with a recordIkm.");
+      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+      AppDependencies.getJobManager().add(new StorageForcePushJob());
+    }
   }
 
   private void ensureUnidentifiedAccessCorrect(@Nullable String unidentifiedAccessVerifier, boolean universalUnidentifiedAccess) {

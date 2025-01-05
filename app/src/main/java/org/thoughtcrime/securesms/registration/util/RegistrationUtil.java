@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 public final class RegistrationUtil {
 
@@ -29,11 +30,13 @@ public final class RegistrationUtil {
     if (!SignalStore.registration().isRegistrationComplete() &&
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
-        (SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut()))
+        (SignalStore.svr().hasOptedInWithAccess() || SignalStore.svr().hasOptedOut()) &&
+        (!RemoteConfig.restoreAfterRegistration() || (SignalStore.registration().hasSkippedTransferOrRestore() || SignalStore.registration().hasCompletedRestore())))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
-      SignalStore.registration().setRegistrationComplete();
-      SignalStore.registration().clearLocalRegistrationMetadata();
+      SignalStore.registration().markRegistrationComplete();
+      SignalStore.registration().setLocalRegistrationMetadata(null);
+      SignalStore.registration().setRestoreMethodToken(null);
 
       if (SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode() == PhoneNumberDiscoverabilityMode.UNDECIDED) {
         Log.w(TAG, "Phone number discoverability mode is still UNDECIDED. Setting to DISCOVERABLE.");

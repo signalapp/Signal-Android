@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.viewer.page
 
 import android.app.Application
+import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
@@ -28,8 +29,13 @@ class StoryViewerPageViewModelTest {
 
   @Before
   fun setUp() {
+    RxJavaPlugins.setInitIoSchedulerHandler { testScheduler }
+    RxJavaPlugins.setIoSchedulerHandler { testScheduler }
+
     RxJavaPlugins.setInitComputationSchedulerHandler { testScheduler }
     RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
+
+    RxAndroidPlugins.setMainThreadSchedulerHandler { testScheduler }
 
     whenever(repository.forceDownload(any())).thenReturn(Completable.complete())
   }

@@ -24,7 +24,7 @@ class ChatFoldersViewModel : ViewModel() {
 
   fun loadCurrentFolders(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadCount = false)
+      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = false)
       val suggestedFolders = getSuggestedFolders(context, folders)
 
       internalState.update {
@@ -79,7 +79,7 @@ class ChatFoldersViewModel : ViewModel() {
     if (showUnreadSuggestion) {
       suggestions.add(
         ChatFolderRecord(
-          name = context.getString(R.string.ChatFoldersFragment__unreads),
+          name = context.getString(R.string.ChatFoldersFragment__unread),
           showUnread = true,
           showIndividualChats = true,
           showGroupChats = true,
@@ -147,10 +147,11 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun deleteFolder() {
+  fun deleteFolder(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
       ChatFoldersRepository.deleteFolder(internalState.value.originalFolder)
 
+      loadCurrentFolders(context)
       internalState.update {
         it.copy(showDeleteDialog = false)
       }
@@ -220,6 +221,25 @@ class ChatFoldersViewModel : ViewModel() {
           pendingExcludedRecipients = excludedChats,
           pendingChatTypes = chatTypes
         )
+      }
+    }
+  }
+
+  fun addThreadToIncludedChat(threadId: Long?) {
+    if (threadId == null || threadId == -1L) {
+      return
+    }
+    viewModelScope.launch {
+      val updatedFolder = internalState.value.currentFolder
+      val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
+      if (recipient != null) {
+        internalState.update {
+          it.copy(
+            currentFolder = updatedFolder.copy(
+              includedRecipients = setOf(recipient)
+            )
+          )
+        }
       }
     }
   }
@@ -307,8 +327,7 @@ class ChatFoldersViewModel : ViewModel() {
     val originalFolder = state.value.originalFolder
 
     return if (currentFolder.id == -1L) {
-      currentFolder.name.isNotEmpty() &&
-        (currentFolder.includedRecipients.isNotEmpty() || currentFolder.showIndividualChats || currentFolder.showGroupChats)
+      currentFolder.includedRecipients.isNotEmpty() || currentFolder.showIndividualChats || currentFolder.showGroupChats
     } else {
       originalFolder != currentFolder ||
         originalFolder.includedRecipients != currentFolder.includedRecipients ||
@@ -323,5 +342,9 @@ class ChatFoldersViewModel : ViewModel() {
         setCurrentFolder(folder)
       }
     }
+  }
+
+  fun hasEmptyName(): Boolean {
+    return state.value.currentFolder.name.isEmpty()
   }
 }

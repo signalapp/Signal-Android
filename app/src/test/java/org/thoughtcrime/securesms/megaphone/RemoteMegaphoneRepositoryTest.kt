@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.megaphone
 
 import android.app.Application
 import android.net.Uri
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
@@ -14,8 +13,8 @@ import org.hamcrest.Matchers.nullValue
 import org.json.JSONObject
 import org.junit.After
 import org.junit.AfterClass
-import org.junit.Before
 import org.junit.BeforeClass
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -23,8 +22,7 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 import java.util.UUID
@@ -37,12 +35,8 @@ import java.util.UUID
 @Config(manifest = Config.NONE, application = Application::class)
 class RemoteMegaphoneRepositoryTest {
 
-  @Before
-  fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-  }
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
   @After
   fun tearDown() {

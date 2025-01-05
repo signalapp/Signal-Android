@@ -9,6 +9,6 @@ enum class FeatureSticker(val type: String) {
 
   companion object {
     @JvmStatic
-    fun fromType(type: String) = FeatureSticker.values().first { it.type == type }
+    fun fromType(type: String) = entries.first { it.type == type }
   }
 }

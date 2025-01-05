@@ -160,9 +160,11 @@ public class ApplicationMigrations {
     static final int BACKFILL_DIGESTS_V3           = 116;
     static final int SVR2_ENCLAVE_UPDATE_2         = 117;
     static final int WALLPAPER_MIGRATION_CLEANUP   = 118;
+    static final int AEP_INTRODUCTION              = 119;
+    static final int GROUP_EXTRAS_DB_FIX           = 120;
   }
 
-  public static final int CURRENT_VERSION = 118;
+  public static final int CURRENT_VERSION = 120;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -731,6 +733,14 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.WALLPAPER_MIGRATION_CLEANUP) {
       jobs.put(Version.WALLPAPER_MIGRATION_CLEANUP, new WallpaperCleanupMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.AEP_INTRODUCTION) {
+      jobs.put(Version.AEP_INTRODUCTION, new AepMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_EXTRAS_DB_FIX) {
+      jobs.put(Version.GROUP_EXTRAS_DB_FIX, new DatabaseMigrationJob());
     }
 
     return jobs;

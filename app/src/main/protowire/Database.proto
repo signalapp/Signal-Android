@@ -407,7 +407,7 @@ message InAppPaymentData {
     optional Error             error             = 3; // An error, if present.
              int64             level             = 4; // The transaction "level" given to us by the server
     optional Cancellation      cancellation      = 5; // The transaction was cancelled. This notes why.
-             string            label             = 6; // Descriptive text about the token
+             reserved                              6; // removed: Descriptive text about the token
     optional string            recipientId       = 7; // The target recipient the token is to be sent to (only used for gifts)
     optional string            additionalMessage = 8; // The additional message to send the target recipient (only used for gifts)
              PaymentMethodType paymentMethodType = 9; // The method through which this in app payment was made
@@ -484,7 +484,7 @@ message ExternalLaunchTransactionState {
 
         InAppPaymentType inAppPaymentType  = 1;
         BadgeList.Badge  badge             = 2;
-        string           label             = 3;
+        reserved                             3; // removed field label
         DecimalValue     price             = 4;
         string           currencyCode      = 5;
         int64            level             = 6;

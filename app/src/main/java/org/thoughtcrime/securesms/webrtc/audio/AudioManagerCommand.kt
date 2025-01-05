@@ -27,7 +27,7 @@ sealed class AudioManagerCommand : Parcelable {
     }
   }
 
-  class StartIncomingRinger(val ringtoneUri: Uri, val vibrate: Boolean) : AudioManagerCommand() {
+  class StartIncomingRinger(val ringtoneUri: Uri?, val vibrate: Boolean) : AudioManagerCommand() {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
       parcel.writeParcelable(ringtoneUri, flags)
       ParcelUtil.writeBoolean(parcel, vibrate)
@@ -37,7 +37,7 @@ sealed class AudioManagerCommand : Parcelable {
       @JvmField
       val CREATOR: Parcelable.Creator<StartIncomingRinger> = ParcelCheat { parcel ->
         StartIncomingRinger(
-          ringtoneUri = parcel.readParcelableCompat(Uri::class.java)!!,
+          ringtoneUri = parcel.readParcelableCompat(Uri::class.java),
           vibrate = ParcelUtil.readBoolean(parcel)
         )
       }

@@ -22,10 +22,10 @@ import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AddressableMessage
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.AttachmentDelete
 import org.thoughtcrime.securesms.jobs.protos.DeleteSyncJobData.ThreadDelete
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.pad
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.Content
@@ -57,12 +57,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     @WorkerThread
     @JvmStatic
     fun enqueueMessageDeletes(messageRecords: Set<MessageRecord>) {
-      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
-        return
-      }
-
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
+      if (!SignalStore.account.hasLinkedDevices) {
         return
       }
 
@@ -79,12 +74,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     @WorkerThread
     @JvmStatic
     fun enqueueAttachmentDelete(message: MessageRecord?, attachment: DatabaseAttachment) {
-      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
-        return
-      }
-
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
+      if (!SignalStore.account.hasLinkedDevices) {
         return
       }
 
@@ -98,12 +88,7 @@ class MultiDeviceDeleteSyncJob private constructor(
 
     @WorkerThread
     fun enqueueThreadDeletes(threads: List<ThreadTable.ThreadDeleteSyncInfo>, isFullDelete: Boolean) {
-      if (!TextSecurePreferences.isMultiDevice(AppDependencies.application)) {
-        return
-      }
-
-      if (!Recipient.self().deleteSyncCapability.isSupported) {
-        Log.i(TAG, "Delete sync support not enabled.")
+      if (!SignalStore.account.hasLinkedDevices) {
         return
       }
 
@@ -245,7 +230,7 @@ class MultiDeviceDeleteSyncJob private constructor(
       return Result.failure()
     }
 
-    if (!TextSecurePreferences.isMultiDevice(context)) {
+    if (!SignalStore.account.hasLinkedDevices) {
       Log.w(TAG, "Not multi-device")
       return Result.failure()
     }

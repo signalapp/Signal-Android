@@ -1,28 +1,27 @@
 package org.thoughtcrime.securesms.components.settings.app.chats.folders
 
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +30,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -39,10 +40,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
+import org.signal.core.ui.DropdownMenus
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
@@ -52,6 +56,8 @@ import org.signal.core.ui.copied.androidx.compose.rememberDragDropState
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -63,25 +69,36 @@ class ChatFoldersFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     viewModel.loadCurrentFolders(requireContext())
 
     Scaffolds.Settings(
       title = stringResource(id = R.string.ChatsSettingsFragment__chat_folders),
-      onNavigationClick = { navController.popBackStack() },
+      onNavigationClick = { requireActivity().onNavigateUp() },
       navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       FoldersScreen(
         state = state,
+        navController = navController,
         modifier = Modifier.padding(contentPadding),
         onFolderClicked = {
-          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id))
+          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, -1))
         },
         onAdd = { folder ->
           Toast.makeText(requireContext(), getString(R.string.ChatFoldersFragment__folder_added, folder.name), Toast.LENGTH_SHORT).show()
           viewModel.createFolder(requireContext(), folder)
+        },
+        onDeleteClicked = { folder ->
+          viewModel.setCurrentFolder(folder)
+          viewModel.showDeleteDialog(true)
+        },
+        onDeleteConfirmed = {
+          viewModel.deleteFolder(context = requireContext())
+        },
+        onDeleteDismissed = {
+          viewModel.showDeleteDialog(false)
         },
         onPositionUpdated = { fromIndex, toIndex -> viewModel.updatePosition(fromIndex, toIndex) }
       )
@@ -92,110 +109,136 @@ class ChatFoldersFragment : ComposeFragment() {
 @Composable
 fun FoldersScreen(
   state: ChatFoldersSettingsState,
+  navController: NavController? = null,
   modifier: Modifier = Modifier,
   onFolderClicked: (ChatFolderRecord) -> Unit = {},
   onAdd: (ChatFolderRecord) -> Unit = {},
+  onDeleteClicked: (ChatFolderRecord) -> Unit = {},
+  onDeleteConfirmed: () -> Unit = {},
+  onDeleteDismissed: () -> Unit = {},
   onPositionUpdated: (Int, Int) -> Unit = { _, _ -> }
 ) {
+  val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+  val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
   val dragDropState =
-    rememberDragDropState(listState) { fromIndex, toIndex ->
+    rememberDragDropState(listState, includeHeader = true, includeFooter = true) { fromIndex, toIndex ->
       onPositionUpdated(fromIndex, toIndex)
     }
 
-  Column(modifier = modifier.verticalScroll(rememberScrollState())) {
-    Column(modifier = Modifier.padding(start = 24.dp)) {
-      Text(
-        text = stringResource(id = R.string.ChatFoldersFragment__organize_your_chats),
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 12.dp)
-      )
-      Text(
-        text = stringResource(id = R.string.ChatFoldersFragment__folders),
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
-      )
-      FolderRow(
-        icon = R.drawable.symbol_plus_compact_16,
-        title = stringResource(R.string.ChatFoldersFragment__create_a_folder),
-        onClick = { onFolderClicked(ChatFolderRecord()) }
-      )
+  LaunchedEffect(Unit) {
+    if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
+      SignalStore.uiHints.hasSeenChatFoldersEducationSheet = true
+      navController?.safeNavigate(R.id.action_chatFoldersFragment_to_chatFoldersEducationSheet)
     }
+  }
 
-    val columnHeight = dimensionResource(id = R.dimen.chat_folder_row_height).value * state.folders.size
-    LazyColumn(
-      modifier = Modifier
-        .height(columnHeight.dp)
-        .dragContainer(dragDropState),
-      state = listState
-    ) {
-      itemsIndexed(state.folders) { index, folder ->
-        DraggableItem(dragDropState, index) { isDragging ->
-          val elevation = if (isDragging) 1.dp else 0.dp
-          val isAllChats = folder.folderType == ChatFolderRecord.FolderType.ALL
-          FolderRow(
-            icon = R.drawable.ic_chat_folder_24,
-            title = if (isAllChats) stringResource(R.string.ChatFoldersFragment__all_chats) else folder.name,
-            subtitle = getFolderDescription(folder),
-            onClick = if (!isAllChats) {
-              { onFolderClicked(folder) }
-            } else null,
-            elevation = elevation,
-            showDragHandle = true,
-            modifier = Modifier.padding(start = 12.dp)
-          )
-        }
+  if (state.showDeleteDialog) {
+    Dialogs.SimpleAlertDialog(
+      title = "",
+      body = stringResource(id = R.string.CreateFoldersFragment__delete_this_chat_folder),
+      confirm = stringResource(id = R.string.delete),
+      onConfirm = onDeleteConfirmed,
+      dismiss = stringResource(id = android.R.string.cancel),
+      onDismiss = onDeleteDismissed
+    )
+  }
+
+  LazyColumn(
+    modifier = Modifier.dragContainer(
+      dragDropState = dragDropState,
+      leftDpOffset = if (isRtl) 0.dp else screenWidth - 48.dp,
+      rightDpOffset = if (isRtl) 48.dp else screenWidth
+    ),
+    state = listState
+  ) {
+    item {
+      DraggableItem(dragDropState, 0) {
+        Text(
+          text = stringResource(id = R.string.ChatFoldersFragment__organize_your_chats),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = modifier.padding(top = 12.dp, bottom = 12.dp, end = 12.dp, start = 24.dp)
+        )
+        Text(
+          text = stringResource(id = R.string.ChatFoldersFragment__folders),
+          style = MaterialTheme.typography.titleMedium,
+          modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 24.dp)
+        )
+        FolderRow(
+          icon = R.drawable.symbol_plus_compact_16,
+          title = stringResource(R.string.ChatFoldersFragment__create_a_folder),
+          onClick = { onFolderClicked(ChatFolderRecord()) }
+        )
       }
     }
 
-    if (state.suggestedFolders.isNotEmpty()) {
-      Dividers.Default()
-
-      Text(
-        text = stringResource(id = R.string.ChatFoldersFragment__suggested_folders),
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 24.dp)
-      )
+    itemsIndexed(state.folders) { index, folder ->
+      DraggableItem(dragDropState, 1 + index) { isDragging ->
+        val elevation = if (isDragging) 1.dp else 0.dp
+        val isAllChats = folder.folderType == ChatFolderRecord.FolderType.ALL
+        FolderRow(
+          icon = R.drawable.symbol_folder_24,
+          title = if (isAllChats) stringResource(R.string.ChatFoldersFragment__all_chats) else folder.name,
+          subtitle = getFolderDescription(folder),
+          onClick = if (!isAllChats) {
+            { onFolderClicked(folder) }
+          } else null,
+          onDelete = { onDeleteClicked(folder) },
+          elevation = elevation,
+          showDragHandle = true
+        )
+      }
     }
 
-    state.suggestedFolders.forEach { chatFolder ->
-      when (chatFolder.folderType) {
-        ChatFolderRecord.FolderType.UNREAD -> {
-          val title: String = stringResource(R.string.ChatFoldersFragment__unreads)
-          FolderRow(
-            icon = R.drawable.symbol_chat_badge_24,
-            title = title,
-            subtitle = stringResource(R.string.ChatFoldersFragment__unread_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
+    item {
+      DraggableItem(dragDropState, 1 + state.folders.size) {
+        if (state.suggestedFolders.isNotEmpty()) {
+          Dividers.Default()
+
+          Text(
+            text = stringResource(id = R.string.ChatFoldersFragment__suggested_folders),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(top = 16.dp, bottom = 12.dp, start = 24.dp)
           )
         }
-        ChatFolderRecord.FolderType.INDIVIDUAL -> {
-          val title: String = stringResource(R.string.ChatFoldersFragment__one_on_one_chats)
-          FolderRow(
-            icon = R.drawable.symbol_person_light_24,
-            title = title,
-            subtitle = stringResource(R.string.ChatFoldersFragment__only_direct_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
-          )
-        }
-        ChatFolderRecord.FolderType.GROUP -> {
-          val title: String = stringResource(R.string.ChatFoldersFragment__groups)
-          FolderRow(
-            icon = R.drawable.symbol_group_light_20,
-            title = title,
-            subtitle = stringResource(R.string.ChatFoldersFragment__only_group_messages),
-            onAdd = { onAdd(chatFolder) },
-            modifier = Modifier.padding(start = 12.dp)
-          )
-        }
-        ChatFolderRecord.FolderType.ALL -> {
-          throw IllegalStateException("All chats should not be suggested")
-        }
-        ChatFolderRecord.FolderType.CUSTOM -> {
-          throw IllegalStateException("Custom folders should not be suggested")
+
+        state.suggestedFolders.forEach { chatFolder ->
+          when (chatFolder.folderType) {
+            ChatFolderRecord.FolderType.UNREAD -> {
+              val title: String = stringResource(R.string.ChatFoldersFragment__unread)
+              FolderRow(
+                icon = R.drawable.symbol_chat_badge_24,
+                title = title,
+                subtitle = stringResource(R.string.ChatFoldersFragment__unread_messages),
+                onAdd = { onAdd(chatFolder) }
+              )
+            }
+            ChatFolderRecord.FolderType.INDIVIDUAL -> {
+              val title: String = stringResource(R.string.ChatFoldersFragment__one_on_one_chats)
+              FolderRow(
+                icon = R.drawable.symbol_person_light_24,
+                title = title,
+                subtitle = stringResource(R.string.ChatFoldersFragment__only_direct_messages),
+                onAdd = { onAdd(chatFolder) }
+              )
+            }
+            ChatFolderRecord.FolderType.GROUP -> {
+              val title: String = stringResource(R.string.ChatFoldersFragment__groups)
+              FolderRow(
+                icon = R.drawable.symbol_group_light_20,
+                title = title,
+                subtitle = stringResource(R.string.ChatFoldersFragment__only_group_messages),
+                onAdd = { onAdd(chatFolder) }
+              )
+            }
+            ChatFolderRecord.FolderType.ALL -> {
+              error("All chats should not be suggested")
+            }
+            ChatFolderRecord.FolderType.CUSTOM -> {
+              error("Custom folders should not be suggested")
+            }
+          }
         }
       }
     }
@@ -224,6 +267,7 @@ private fun getFolderDescription(folder: ChatFolderRecord): String {
   }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun FolderRow(
   modifier: Modifier = Modifier,
@@ -232,24 +276,40 @@ fun FolderRow(
   subtitle: String = "",
   onClick: (() -> Unit)? = null,
   onAdd: (() -> Unit)? = null,
+  onDelete: (() -> Unit)? = null,
   elevation: Dp = 0.dp,
   showDragHandle: Boolean = false
 ) {
+  val menuController = remember { DropdownMenus.MenuController() }
+
   Row(
     verticalAlignment = Alignment.CenterVertically,
-    modifier = if (onClick != null) {
+    modifier = if (onClick != null && onDelete != null) {
       modifier
-        .padding(end = 12.dp)
+        .combinedClickable(
+          onClick = onClick,
+          onLongClick = { menuController.show() }
+        )
+        .fillMaxWidth()
+        .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))
+        .shadow(elevation = elevation)
+        .background(MaterialTheme.colorScheme.background)
+        .padding(start = 24.dp, end = 12.dp)
+    } else if (onClick != null) {
+      modifier
         .clickable(onClick = onClick)
         .fillMaxWidth()
         .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))
         .shadow(elevation = elevation)
+        .background(MaterialTheme.colorScheme.background)
+        .padding(start = 24.dp, end = 12.dp)
     } else {
       modifier
-        .padding(end = 12.dp)
         .fillMaxWidth()
         .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))
         .shadow(elevation = elevation)
+        .background(MaterialTheme.colorScheme.background)
+        .padding(start = 24.dp, end = 12.dp)
     }
   ) {
     Image(
@@ -287,6 +347,47 @@ fun FolderRow(
         modifier = modifier.padding(end = 12.dp),
         tint = MaterialTheme.colorScheme.onSurfaceVariant
       )
+    }
+
+    DropdownMenus.Menu(controller = menuController, offsetX = 0.dp, offsetY = 4.dp) { menuController ->
+      Column {
+        Row(
+          verticalAlignment = Alignment.CenterVertically,
+          modifier = Modifier
+            .clickable(onClick = {
+              onClick!!()
+              menuController.hide()
+            })
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+        ) {
+          Icon(
+            painter = painterResource(id = R.drawable.symbol_edit_24),
+            contentDescription = null
+          )
+          Text(
+            text = stringResource(R.string.ChatFoldersFragment__edit_folder),
+            modifier = Modifier.padding(horizontal = 16.dp)
+          )
+        }
+        Row(
+          verticalAlignment = Alignment.CenterVertically,
+          modifier = Modifier
+            .clickable(onClick = {
+              onDelete!!()
+              menuController.hide()
+            })
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+        ) {
+          Icon(
+            painter = painterResource(id = R.drawable.symbol_trash_24),
+            contentDescription = null
+          )
+          Text(
+            text = stringResource(R.string.CreateFoldersFragment__delete_folder),
+            modifier = Modifier.padding(horizontal = 16.dp)
+          )
+        }
+      }
     }
   }
 }

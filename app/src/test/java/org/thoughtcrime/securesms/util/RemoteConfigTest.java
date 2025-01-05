@@ -1,22 +1,20 @@
 package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
 import org.thoughtcrime.securesms.util.RemoteConfig.ConfigChange;
 import org.thoughtcrime.securesms.util.RemoteConfig.UpdateResult;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.mapOf;
+import static org.thoughtcrime.securesms.testutil.TestHelpers.setOf;
 
-public class RemoteConfigTest extends BaseUnitTest {
+public class RemoteConfigTest {
 
   private static final String A = "A";
   private static final String B = "B";
@@ -376,6 +374,7 @@ public class RemoteConfigTest extends BaseUnitTest {
     assertTrue(result.getMemoryChanges().isEmpty());
   }
 
+  /** @noinspection StringOperationCanBeSimplified*/
   @Test
   public void computeChanges_generic() {
     Map<String, Object> oldMap = new HashMap<>() {{
@@ -411,9 +410,5 @@ public class RemoteConfigTest extends BaseUnitTest {
     assertEquals(new ConfigChange(5, 7), changes.get("h"));
     assertFalse(changes.containsKey("i"));
     assertEquals(new ConfigChange("gwen", "stacy"), changes.get("j"));
-  }
-
-  private static <V> Set<V> setOf(V... values) {
-    return new HashSet<>(Arrays.asList(values));
   }
 }

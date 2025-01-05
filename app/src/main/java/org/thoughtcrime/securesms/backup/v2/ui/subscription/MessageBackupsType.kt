@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import androidx.compose.runtime.Stable
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import kotlin.time.Duration
 
 /**
  * Represents a type of backup a user can select.
@@ -19,7 +20,8 @@ sealed interface MessageBackupsType {
 
   data class Paid(
     val pricePerMonth: FiatMoney,
-    val storageAllowanceBytes: Long
+    val storageAllowanceBytes: Long,
+    val mediaTtl: Duration
   ) : MessageBackupsType {
     override val tier: MessageBackupTier = MessageBackupTier.PAID
   }

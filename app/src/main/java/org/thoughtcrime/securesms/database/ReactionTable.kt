@@ -6,6 +6,8 @@ import android.database.Cursor
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.forEach
+import org.signal.core.util.select
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
@@ -77,25 +79,25 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
 
     val messageIdToReactions: MutableMap<Long, MutableList<ReactionRecord>> = mutableMapOf()
 
-    val args: List<Array<String>> = messageIds.map { SqlUtil.buildArgs(it) }
+    val query = SqlUtil.buildFastCollectionQuery(MESSAGE_ID, messageIds)
+    readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .forEach { cursor ->
+        val reaction: ReactionRecord = readReaction(cursor)
+        val messageId = CursorUtil.requireLong(cursor, MESSAGE_ID)
 
-    for (query: SqlUtil.Query in SqlUtil.buildCustomCollectionQuery("$MESSAGE_ID = ?", args)) {
-      readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).use { cursor ->
-        while (cursor.moveToNext()) {
-          val reaction: ReactionRecord = readReaction(cursor)
-          val messageId = CursorUtil.requireLong(cursor, MESSAGE_ID)
+        var reactionsList: MutableList<ReactionRecord>? = messageIdToReactions[messageId]
 
-          var reactionsList: MutableList<ReactionRecord>? = messageIdToReactions[messageId]
-
-          if (reactionsList == null) {
-            reactionsList = mutableListOf()
-            messageIdToReactions[messageId] = reactionsList
-          }
-
-          reactionsList.add(reaction)
+        if (reactionsList == null) {
+          reactionsList = mutableListOf()
+          messageIdToReactions[messageId] = reactionsList
         }
+
+        reactionsList.add(reaction)
       }
-    }
 
     return messageIdToReactions
   }

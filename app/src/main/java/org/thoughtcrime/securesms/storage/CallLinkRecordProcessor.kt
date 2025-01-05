@@ -5,43 +5,52 @@
 
 package org.thoughtcrime.securesms.storage
 
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
+import org.signal.core.util.toOptional
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
 import java.util.Optional
 
-internal class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCallLinkRecord>() {
+/**
+ * Record processor for [SignalCallLinkRecord].
+ * Handles merging and updating our local store when processing remote call link storage records.
+ */
+class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCallLinkRecord>() {
 
   companion object {
     private val TAG = Log.tag(CallLinkRecordProcessor::class)
   }
 
   override fun compare(o1: SignalCallLinkRecord?, o2: SignalCallLinkRecord?): Int {
-    return if (o1?.rootKey.contentEquals(o2?.rootKey)) {
+    return if (o1?.proto?.rootKey == o2?.proto?.rootKey) {
       0
     } else {
       1
     }
   }
 
-  internal override fun isInvalid(remote: SignalCallLinkRecord): Boolean {
-    return remote.adminPassKey.isNotEmpty() && remote.deletionTimestamp > 0L
+  override fun isInvalid(remote: SignalCallLinkRecord): Boolean {
+    return remote.proto.adminPasskey.isNotEmpty() && remote.proto.deletedAtTimestampMs > 0L
   }
 
-  internal override fun getMatching(remote: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): Optional<SignalCallLinkRecord> {
+  override fun getMatching(remote: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): Optional<SignalCallLinkRecord> {
     Log.d(TAG, "Attempting to get matching record...")
-    val rootKey = CallLinkRootKey(remote.rootKey)
-    val roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey)
+    val callRootKey = CallLinkRootKey(remote.proto.rootKey.toByteArray())
+    val roomId = CallLinkRoomId.fromCallLinkRootKey(callRootKey)
     val callLink = SignalDatabase.callLinks.getCallLinkByRoomId(roomId)
+
     if (callLink != null && callLink.credentials?.adminPassBytes != null) {
-      val builder = SignalCallLinkRecord.Builder(keyGenerator.generate(), null).apply {
-        setRootKey(rootKey.keyBytes)
-        setAdminPassKey(callLink.credentials.adminPassBytes)
-        setDeletedTimestamp(callLink.deletionTimestamp)
-      }
-      return Optional.of(builder.build())
+      return SignalCallLinkRecord.newBuilder(null).apply {
+        rootKey = callRootKey.keyBytes.toByteString()
+        adminPasskey = callLink.credentials.adminPassBytes.toByteString()
+        deletedAtTimestampMs = callLink.deletionTimestamp
+      }.build().toSignalCallLinkRecord(StorageId.forCallLink(keyGenerator.generate())).toOptional()
     } else {
       return Optional.empty<SignalCallLinkRecord>()
     }
@@ -52,16 +61,16 @@ internal class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCal
    * An earlier deletion takes precedence over a later deletion
    * Other fields should not change, except for the clearing of the admin passkey on deletion
    */
-  internal override fun merge(remote: SignalCallLinkRecord, local: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): SignalCallLinkRecord {
-    return if (remote.isDeleted() && local.isDeleted()) {
-      if (remote.deletionTimestamp < local.deletionTimestamp) {
+  override fun merge(remote: SignalCallLinkRecord, local: SignalCallLinkRecord, keyGenerator: StorageKeyGenerator): SignalCallLinkRecord {
+    return if (remote.proto.deletedAtTimestampMs > 0 && local.proto.deletedAtTimestampMs > 0) {
+      if (remote.proto.deletedAtTimestampMs < local.proto.deletedAtTimestampMs) {
         remote
       } else {
         local
       }
-    } else if (remote.isDeleted()) {
+    } else if (remote.proto.deletedAtTimestampMs > 0) {
       remote
-    } else if (local.isDeleted()) {
+    } else if (local.proto.deletedAtTimestampMs > 0) {
       local
     } else {
       remote
@@ -77,12 +86,12 @@ internal class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCal
   }
 
   private fun insertOrUpdateRecord(record: SignalCallLinkRecord) {
-    val rootKey = CallLinkRootKey(record.rootKey)
+    val rootKey = CallLinkRootKey(record.proto.rootKey.toByteArray())
 
     SignalDatabase.callLinks.insertOrUpdateCallLinkByRootKey(
       callLinkRootKey = rootKey,
-      adminPassKey = record.adminPassKey,
-      deletionTimestamp = record.deletionTimestamp,
+      adminPassKey = record.proto.adminPasskey.toByteArray(),
+      deletionTimestamp = record.proto.deletedAtTimestampMs,
       storageId = record.id
     )
   }

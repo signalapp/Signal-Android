@@ -155,6 +155,17 @@ object SqlUtil {
   }
 
   @JvmStatic
+  fun buildArgs(objects: Collection<Any?>): Array<String> {
+    return objects.map {
+      when (it) {
+        null -> throw NullPointerException("Cannot have null arg!")
+        is DatabaseId -> it.serialize()
+        else -> it.toString()
+      }
+    }.toTypedArray()
+  }
+
+  @JvmStatic
   fun buildArgs(argument: Long): Array<String> {
     return arrayOf(argument.toString())
   }
@@ -288,6 +299,20 @@ object SqlUtil {
         .chunked(maxSize)
         .map { batch -> buildSingleCollectionQuery(column, batch, prefix, collectionOperator) }
     }
+  }
+
+  /**
+   * A convenient way of making queries that are _equivalent_ to `WHERE [column] IN (?, ?, ..., ?)`
+   * Under the hood, it uses JSON1 functions which can both be surprisingly faster than normal (?, ?, ?) lists, as well as removes the [MAX_QUERY_ARGS] limit.
+   * This means chunking isn't necessary for any practical collection length.
+   */
+  @JvmStatic
+  fun buildFastCollectionQuery(
+    column: String,
+    values: Collection<Any?>
+  ): Query {
+    require(!values.isEmpty()) { "Must have values!" }
+    return Query("$column IN (SELECT e.value FROM json_each(?) e)", arrayOf(jsonEncode(buildArgs(values))))
   }
 
   /**
@@ -451,6 +476,11 @@ object SqlUtil {
     }
 
     return null
+  }
+
+  /** Simple encoding of a string array as a json array */
+  private fun jsonEncode(strings: Array<String>): String {
+    return strings.joinToString(prefix = "[", postfix = "]", separator = ",") { "\"$it\"" }
   }
 
   class Query(val where: String, val whereArgs: Array<String>) {

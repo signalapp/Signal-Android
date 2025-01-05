@@ -26,9 +26,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.Previews
@@ -37,6 +41,7 @@ import org.signal.core.ui.SignalPreview
 import org.signal.core.util.ByteSize
 import org.thoughtcrime.securesms.R
 import kotlin.math.roundToInt
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Backup status displayable as a row on a settings page.
@@ -45,13 +50,16 @@ import kotlin.math.roundToInt
 fun BackupStatusRow(
   backupStatusData: BackupStatusData,
   onSkipClick: () -> Unit = {},
-  onCancelClick: () -> Unit = {}
+  onCancelClick: () -> Unit = {},
+  onLearnMoreClick: () -> Unit = {}
 ) {
   Column {
-    if (backupStatusData !is BackupStatusData.CouldNotCompleteBackup) {
+    if (backupStatusData !is BackupStatusData.CouldNotCompleteBackup &&
+      backupStatusData !is BackupStatusData.BackupFailed
+    ) {
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
       ) {
         LinearProgressIndicator(
           color = progressColor(backupStatusData),
@@ -74,7 +82,7 @@ fun BackupStatusRow(
       is BackupStatusData.RestoringMedia -> {
         Text(
           text = getRestoringMediaString(backupStatusData),
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
 
@@ -85,7 +93,7 @@ fun BackupStatusRow(
             backupStatusData.requiredSpace,
             "%d".format((backupStatusData.progress * 100).roundToInt())
           ),
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
 
         Rows.TextRow(
@@ -114,7 +122,41 @@ fun BackupStatusRow(
             append(stringResource(R.string.BackupStatusRow__your_last_backup))
           },
           inlineContent = inlineContentMap,
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
+        )
+      }
+      BackupStatusData.BackupFailed -> {
+        val inlineContentMap = mapOf(
+          "yellow_bullet" to InlineTextContent(
+            Placeholder(12.sp, 12.sp, PlaceholderVerticalAlign.TextCenter)
+          ) {
+            Box(
+              modifier = Modifier
+                .size(12.dp)
+                .background(color = backupStatusData.iconColors.foreground, shape = CircleShape)
+            )
+          }
+        )
+
+        Text(
+          text = buildAnnotatedString {
+            appendInlineContent("yellow_bullet")
+            append(" ")
+            append(stringResource(R.string.BackupStatusRow__your_last_backup_latest_version))
+            append(" ")
+            withLink(
+              LinkAnnotation.Clickable(
+                stringResource(R.string.BackupStatusRow__learn_more),
+                styles = TextLinkStyles(style = SpanStyle(color = MaterialTheme.colorScheme.primary))
+              ) {
+                onLearnMoreClick()
+              }
+            ) {
+              append(stringResource(R.string.BackupStatusRow__learn_more))
+            }
+          },
+          inlineContent = inlineContentMap,
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
     }
@@ -235,6 +277,16 @@ fun BackupStatusRowCouldNotCompleteBackupPreview() {
   Previews.Preview {
     BackupStatusRow(
       backupStatusData = BackupStatusData.CouldNotCompleteBackup
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+fun BackupStatusRowBackupFailedPreview() {
+  Previews.Preview {
+    BackupStatusRow(
+      backupStatusData = BackupStatusData.BackupFailed
     )
   }
 }

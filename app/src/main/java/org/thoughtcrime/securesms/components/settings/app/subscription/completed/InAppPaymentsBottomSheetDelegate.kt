@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPendingBottomSheetArgs
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragmentArgs
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -134,19 +133,9 @@ class InAppPaymentsBottomSheetDelegate(
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy { inAppPayments ->
       for (payment in inAppPayments) {
         if (isPaymentProcessingError(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.COULD_NOT_COMPLETE_BACKUP).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.FailedToRenew).show(fragmentManager, null)
         } else if (isUnexpectedCancellation(payment.state, payment.data)) {
-          BackupAlertBottomSheet.create(BackupAlert.MEDIA_BACKUPS_ARE_OFF).show(fragmentManager, null)
-        }
-      }
-    }
-
-    if (SignalStore.inAppPayments.showLastDayToDownloadMediaDialog) {
-      lifecycleDisposable += Single.fromCallable {
-        InAppPaymentsRepository.getExpiredBackupDeletionState()
-      }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeBy {
-        if (it == InAppPaymentsRepository.ExpiredBackupDeletionState.DELETE_TODAY) {
-          BackupAlertBottomSheet.create(BackupAlert.MEDIA_WILL_BE_DELETED_TODAY).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.MediaBackupsAreOff(payment.endOfPeriodSeconds)).show(fragmentManager, null)
         }
       }
     }

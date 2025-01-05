@@ -895,7 +895,8 @@ class AttachmentTableTest_deduping {
         incrementalDigest = Random.nextBytes(16),
         incrementalDigestChunkSize = 5,
         uploadTimestamp = uploadTimestamp,
-        dataSize = databaseAttachment.size
+        dataSize = databaseAttachment.size,
+        blurHash = databaseAttachment.blurHash?.hash
       )
     }
   }

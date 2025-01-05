@@ -38,7 +38,7 @@
             app:touch_target_height="55dp" />
 
         <TextView
-            android:id="@id/exo_duration"
+            android:id="@+id/exo_duration"
             style="@style/Signal.Text.BodyMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

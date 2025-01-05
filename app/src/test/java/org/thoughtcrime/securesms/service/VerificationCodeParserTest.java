@@ -5,9 +5,9 @@
 
 package org.thoughtcrime.securesms.service;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,15 +15,22 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.Mockito.when;
 
 /**
  * Tests {@link VerificationCodeParser}
  */
-public class VerificationCodeParserTest extends BaseUnitTest {
+@RunWith(Parameterized.class)
+public class VerificationCodeParserTest {
 
+  private final String input;
+  private final String expectedOutput;
+
+  public VerificationCodeParserTest(String input, String expectedOutput) {
+    this.input = input;
+    this.expectedOutput = expectedOutput;
+  }
+
+  @Parameterized.Parameters(name = "{index}: test with input={0} and expectedOutput={1}")
   public static Collection<String[]> challenges() {
     return Arrays.asList(new String[][]{
         {"Your TextSecure verification code: 337-337", "337337"},
@@ -95,19 +102,10 @@ public class VerificationCodeParserTest extends BaseUnitTest {
     });
   }
 
-  @Before
-  @Override
-  public void setUp() throws Exception {
-    super.setUp();
-    when(sharedPreferences.getBoolean(contains("pref_verifying"), anyBoolean())).thenReturn(true);
-  }
-
   @Test
   public void testChallenges() {
-    for (String[] challenge : challenges()) {
-      Optional<String> result = VerificationCodeParser.parse(challenge[0]);
-      assertTrue(result.isPresent());
-      assertEquals(challenge[1], result.get());
-    }
+    Optional<String> result = VerificationCodeParser.parse(input);
+    assertTrue(result.isPresent());
+    assertEquals(expectedOutput, result.get());
   }
 }

@@ -3,8 +3,9 @@ package org.thoughtcrime.securesms
 import org.signal.core.util.Base64
 import org.signal.spinner.Plugin
 import org.signal.spinner.PluginResult
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 
 class StorageServicePlugin : Plugin {
   override val name: String = "Storage"
@@ -14,33 +15,40 @@ class StorageServicePlugin : Plugin {
     val columns = listOf("Type", "Id", "Data")
     val rows = mutableListOf<List<String>>()
 
-    val manager = AppDependencies.signalServiceAccountManager
-    val storageServiceKey = SignalStore.storageService.orCreateStorageKey
-    val storageManifestVersion = manager.storageManifestVersion
-    val manifest = manager.getStorageManifestIfDifferentVersion(storageServiceKey, storageManifestVersion - 1).get()
-    val signalStorageRecords = manager.readStorageRecords(storageServiceKey, manifest.storageIds)
+    val repository = StorageServiceRepository(SignalNetwork.storageService)
+    val storageServiceKey = SignalStore.storageService.storageKey
+
+    val manifest = when (val result = repository.getStorageManifest(storageServiceKey)) {
+      is StorageServiceRepository.ManifestResult.Success -> result.manifest
+      else -> return PluginResult.StringResult("Failed to find manifest!")
+    }
+
+    val signalStorageRecords = when (val result = repository.readStorageRecords(storageServiceKey, manifest.recordIkm, manifest.storageIds)) {
+      is StorageServiceRepository.StorageRecordResult.Success -> result.records
+      else -> return PluginResult.StringResult("Failed to read records!")
+    }
 
     for (record in signalStorageRecords) {
       val row = mutableListOf<String>()
 
-      if (record.account.isPresent) {
+      if (record.proto.account != null) {
         row += "Account"
-        row += record.account.get().toProto().toString()
-      } else if (record.contact.isPresent) {
+        row += record.proto.account.toString()
+      } else if (record.proto.contact != null) {
         row += "Contact"
-        row += record.contact.get().toProto().toString()
-      } else if (record.groupV1.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.groupV1 != null) {
         row += "GV1"
-        row += record.groupV1.get().toProto().toString()
-      } else if (record.groupV2.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.groupV2 != null) {
         row += "GV2"
-        row += record.groupV2.get().toProto().toString()
-      } else if (record.storyDistributionList.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.storyDistributionList != null) {
         row += "Distribution List"
-        row += record.storyDistributionList.get().toProto().toString()
-      } else if (record.callLink.isPresent) {
+        row += record.proto.toString()
+      } else if (record.proto.callLink != null) {
         row += "Call Link"
-        row += record.callLink.get().toProto().toString()
+        row += record.proto.callLink.toString()
       } else {
         row += "Unknown"
         row += ""

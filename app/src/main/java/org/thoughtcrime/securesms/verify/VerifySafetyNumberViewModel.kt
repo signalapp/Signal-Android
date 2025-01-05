@@ -158,7 +158,7 @@ data class SafetyNumberFingerprint(
     result = 31 * result + (localIdentityKey?.hashCode() ?: 0)
     result = 31 * result + (remoteStableIdentifier?.contentHashCode() ?: 0)
     result = 31 * result + (remoteIdentityKey?.hashCode() ?: 0)
-    result = 31 * result + (fingerprint?.hashCode() ?: 0)
+    result = 31 * result + fingerprint.hashCode()
     return result
   }
 }

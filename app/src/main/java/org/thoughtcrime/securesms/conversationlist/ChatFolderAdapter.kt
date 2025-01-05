@@ -33,7 +33,7 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
       val folder = model.chatFolder
       name.text = getName(itemView.context, folder)
       unreadCount.visible = folder.unreadCount > 0
-      unreadCount.text = folder.unreadCount.toString()
+      unreadCount.text = if (folder.unreadCount > 99) itemView.context.getString(R.string.ChatFolderAdapter__99p) else folder.unreadCount.toString()
       itemView.setOnClickListener {
         callbacks.onChatFolderClicked(model.chatFolder)
       }
@@ -42,19 +42,26 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
           context = itemView.context,
           anchorView = view,
           folderType = model.chatFolder.folderType,
+          unreadCount = folder.unreadCount,
+          isMuted = folder.isMuted,
           onEdit = { callbacks.onEdit(model.chatFolder) },
-          onAdd = { callbacks.onAdd() },
           onMuteAll = { callbacks.onMuteAll(model.chatFolder) },
+          onUnmuteAll = { callbacks.onUnmuteAll(model.chatFolder) },
           onReadAll = { callbacks.onReadAll(model.chatFolder) },
-          onDelete = { callbacks.onDelete(model.chatFolder) },
-          onReorder = { callbacks.onReorder() }
+          onFolderSettings = { callbacks.onFolderSettings() }
         )
         true
       }
       if (model.isSelected) {
-        itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurfaceVariant))
+        itemView.backgroundTintList = if (callbacks.isScrolled()) {
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorBackground))
+        } else {
+          ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.signal_colorSurface2))
+        }
+        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurface))
       } else {
         itemView.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(itemView.context, R.color.transparent))
+        name.setTextColor(ContextCompat.getColor(itemView.context, R.color.signal_colorOnSurfaceVariant))
       }
     }
 
@@ -70,10 +77,10 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
   interface Callbacks {
     fun onChatFolderClicked(chatFolder: ChatFolderRecord)
     fun onEdit(chatFolder: ChatFolderRecord)
-    fun onAdd()
     fun onMuteAll(chatFolder: ChatFolderRecord)
+    fun onUnmuteAll(chatFolder: ChatFolderRecord)
     fun onReadAll(chatFolder: ChatFolderRecord)
-    fun onDelete(chatFolder: ChatFolderRecord)
-    fun onReorder()
+    fun onFolderSettings()
+    fun isScrolled(): Boolean
   }
 }

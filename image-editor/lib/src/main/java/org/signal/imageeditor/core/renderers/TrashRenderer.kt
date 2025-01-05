@@ -10,12 +10,12 @@ import android.view.animation.Interpolator
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.signal.core.util.DimensionUnit
-import org.signal.imageeditor.R
 import org.signal.imageeditor.core.Bounds
 import org.signal.imageeditor.core.Renderer
 import org.signal.imageeditor.core.RendererContext
+import org.signal.core.util.R as CoreUtilR
 
-internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
+internal class TrashRenderer : InvalidateableRenderer(), Renderer, Parcelable {
 
   private val outlinePaint = Paint().apply {
     isAntiAlias = true
@@ -44,14 +44,12 @@ internal class TrashRenderer : InvalidateableRenderer, Renderer, Parcelable {
 
   private val buttonCenter = FloatArray(2)
 
-  constructor()
-
   override fun render(rendererContext: RendererContext) {
     super.render(rendererContext)
 
     val frameRenderTime = System.currentTimeMillis()
 
-    val trash: Drawable = requireNotNull(AppCompatResources.getDrawable(rendererContext.context, R.drawable.ic_trash_white_24))
+    val trash: Drawable = requireNotNull(AppCompatResources.getDrawable(rendererContext.context, CoreUtilR.drawable.ic_trash_white_24))
     trash.setBounds(0, 0, trashSize, trashSize)
 
     val diameter = getInterpolatedDiameter(frameRenderTime - startTime)

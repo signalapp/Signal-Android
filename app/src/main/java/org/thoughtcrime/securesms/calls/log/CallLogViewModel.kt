@@ -42,7 +42,7 @@ class CallLogViewModel(
   val isEmpty: Boolean get() = _isEmpty.value ?: false
 
   val totalCount: Flowable<Int> = Flowable.combineLatest(distinctQueryFilterPairs, data) { a, _ -> a }
-    .map { (query, filter) -> callLogRepository.getCallsCount(query, filter) }
+    .map { (query, filter) -> callLogRepository.getCallsCount(query, filter) + callLogRepository.getCallLinksCount(query, filter) }
     .doOnNext { _isEmpty.onNext(it <= 0) }
 
   val selectionStateSnapshot: CallLogSelectionState
@@ -82,6 +82,7 @@ class CallLogViewModel(
     disposables += AppDependencies
       .signalCallManager
       .peekInfoCache
+      .skipWhile { cache -> cache.isEmpty() || cache.values.all { it.isCompletelyInactive } }
       .observeOn(Schedulers.computation())
       .distinctUntilChanged()
       .subscribe {

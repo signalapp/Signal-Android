@@ -240,7 +240,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     Activity activity = requireActivity();
 
     if (RemoteConfig.messageBackups() && !SignalStore.registration().hasCompletedRestore()) {
-      final Intent transferOrRestore = RestoreActivity.getIntentForTransferOrRestore(activity);
+      final Intent transferOrRestore = RestoreActivity.getRestoreIntent(activity);
       transferOrRestore.putExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, MainActivity.clearTop(requireContext()));
       startActivity(transferOrRestore);
     } else if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {

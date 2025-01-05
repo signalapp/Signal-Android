@@ -203,7 +203,7 @@ class UsernameLinkSettingsViewModel : ViewModel() {
 
   private fun generateQrCodeData(url: Optional<String>): Single<Optional<QrCodeData>> {
     return Single.fromCallable {
-      url.map { QrCodeData.forData(it, 64) }
+      url.map { QrCodeData.forData(it) }
     }
   }
 

@@ -30,8 +30,6 @@ android {
 
   defaultConfig {
     minSdk = signalMinSdkVersion
-    targetSdk = signalTargetSdkVersion
-
     testInstrumentationRunner = "androidx.benchmark.junit4.AndroidBenchmarkRunner"
   }
 

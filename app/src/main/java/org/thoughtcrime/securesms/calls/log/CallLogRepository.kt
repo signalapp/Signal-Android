@@ -66,7 +66,6 @@ class CallLogRepository(
         refresh()
       }
 
-      AppDependencies.databaseObserver.registerConversationListObserver(databaseObserver)
       AppDependencies.databaseObserver.registerCallUpdateObserver(databaseObserver)
 
       emitter.setCancellable {

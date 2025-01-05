@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.Base64
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
+import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
 import org.thoughtcrime.securesms.registration.data.LocalRegistrationMetadataUtil
 import org.thoughtcrime.securesms.registration.data.RegistrationData
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
@@ -65,8 +67,12 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.whispersystems.signalservice.api.svr.Svr3Credentials
+import org.whispersystems.signalservice.internal.push.AuthCredentials
+import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import java.io.IOException
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.minutes
@@ -613,31 +619,18 @@ class RegistrationViewModel : ViewModel() {
   fun verifyReRegisterWithPin(context: Context, pin: String, wrongPinHandler: () -> Unit) {
     setInProgress(true)
 
-    // Local recovery password
-    if (RegistrationRepository.canUseLocalRecoveryPassword()) {
-      if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
-        Log.d(TAG, "Found recovery password, attempting to re-register.")
-        viewModelScope.launch(context = coroutineExceptionHandler) {
-          verifyReRegisterInternal(context, pin, SignalStore.svr.getOrCreateMasterKey())
-          setInProgress(false)
-        }
-      } else {
-        Log.d(TAG, "Entered PIN did not match local PIN hash.")
-        wrongPinHandler()
-        setInProgress(false)
-      }
-      return
-    }
-
     // remote recovery password
-    val svr2Credentials = store.value.svr2AuthCredentials
-    val svr3Credentials = store.value.svr3AuthCredentials
+    val svr2Credentials = store.value.svr2AuthCredentials ?: SignalStore.svr.svr2AuthTokens.toSvrCredentials()
+    val svr3Credentials = store.value.svr3AuthCredentials ?: SignalStore.svr.svr3AuthTokens.toSvrCredentials()?.let { Svr3Credentials(it.username(), it.password(), null) }
 
     if (svr2Credentials != null || svr3Credentials != null) {
       Log.d(TAG, "Found SVR auth credentials, fetching recovery password from SVR (svr2: ${svr2Credentials != null}, svr3: ${svr3Credentials != null}).")
       viewModelScope.launch(context = coroutineExceptionHandler) {
         try {
           val masterKey = RegistrationRepository.fetchMasterKeyFromSvrRemote(pin, svr2Credentials, svr3Credentials)
+          SignalStore.svr.masterKeyForInitialDataRestore = masterKey
+          SignalStore.svr.setPin(pin)
+
           setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
           updateSvrTriesRemaining(10)
           verifyReRegisterInternal(context, pin, masterKey)
@@ -650,6 +643,22 @@ class RegistrationViewModel : ViewModel() {
           updateSvrTriesRemaining(0)
           setUserSkippedReRegisterFlow(true)
         }
+        setInProgress(false)
+      }
+      return
+    }
+
+    // Local recovery password
+    if (RegistrationRepository.canUseLocalRecoveryPassword()) {
+      if (RegistrationRepository.doesPinMatchLocalHash(pin)) {
+        Log.d(TAG, "Found recovery password, attempting to re-register.")
+        viewModelScope.launch(context = coroutineExceptionHandler) {
+          verifyReRegisterInternal(context, pin, SignalStore.svr.masterKey)
+          setInProgress(false)
+        }
+      } else {
+        Log.d(TAG, "Entered PIN did not match local PIN hash.")
+        wrongPinHandler()
         setInProgress(false)
       }
       return
@@ -679,10 +688,14 @@ class RegistrationViewModel : ViewModel() {
    */
   private suspend fun registerAccountInternal(context: Context, sessionId: String?, registrationData: RegistrationData, pin: String?, masterKey: MasterKey): Pair<RegisterAccountResult, Boolean> {
     Log.v(TAG, "registerAccountInternal()")
-    val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin)
+    var registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, pin = pin)
 
     // Check if reg lock is enabled
     if (registrationResult !is RegisterAccountResult.RegistrationLocked) {
+      if (registrationResult is RegisterAccountResult.Success) {
+        registrationResult = RegisterAccountResult.Success(registrationResult.accountRegistrationResult.copy(masterKey = masterKey))
+      }
+
       Log.i(TAG, "Received a non-registration lock response to registration. Assuming registration lock as DISABLED")
       return Pair(registrationResult, false)
     }
@@ -743,21 +756,26 @@ class RegistrationViewModel : ViewModel() {
 
     var reglock = registrationLocked
 
-    val sessionId = getOrCreateValidSession(context)?.body?.id ?: return
-    val registrationData = getRegistrationData()
+    val session: RegistrationSessionMetadataJson? = getOrCreateValidSession(context)?.body
+    val sessionId: String = session?.id ?: return
+    val registrationData: RegistrationData = getRegistrationData()
 
-    Log.d(TAG, "Submitting verification code…")
+    if (session.verified) {
+      Log.i(TAG, "Session is already verified, registering account.")
+    } else {
+      Log.d(TAG, "Submitting verification code…")
 
-    val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
+      val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
 
-    val submissionSuccessful = verificationResponse is Success
-    val alreadyVerified = verificationResponse is AlreadyVerified
+      val submissionSuccessful = verificationResponse is Success
+      val alreadyVerified = verificationResponse is AlreadyVerified
 
-    Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified")
+      Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified")
 
-    if (!submissionSuccessful && !alreadyVerified) {
-      handleSessionStateResult(context, verificationResponse)
-      return
+      if (!submissionSuccessful && !alreadyVerified) {
+        handleSessionStateResult(context, verificationResponse)
+        return
+      }
     }
 
     Log.d(TAG, "Submitting registration…")
@@ -779,7 +797,7 @@ class RegistrationViewModel : ViewModel() {
       reglock = true
       if (pin == null && SignalStore.svr.registrationLockToken != null) {
         Log.d(TAG, "Retrying registration with stored credentials.")
-        result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr.pin) { SignalStore.svr.getOrCreateMasterKey() }
+        result = RegistrationRepository.registerAccount(context, sessionId, registrationData, SignalStore.svr.pin) { SignalStore.svr.masterKey }
       } else if (result.svr2Credentials != null || result.svr3Credentials != null) {
         Log.d(TAG, "Retrying registration with received credentials (svr2: ${result.svr2Credentials != null}, svr3: ${result.svr3Credentials != null}).")
         val svr2Credentials = result.svr2Credentials
@@ -817,7 +835,7 @@ class RegistrationViewModel : ViewModel() {
     handleRegistrationResult(context, registrationData, registrationResponse, false)
   }
 
-  private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean) {
+  private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: AccountRegistrationResult, reglockEnabled: Boolean) {
     Log.v(TAG, "onSuccessfulRegistration()")
     val metadata = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(SignalStore.account.aciIdentityKey, SignalStore.account.pniIdentityKey, registrationData, remoteResult, reglockEnabled)
     RegistrationRepository.registerAccountLocally(context, metadata)
@@ -884,7 +902,7 @@ class RegistrationViewModel : ViewModel() {
     val currentState = store.value
     val code = currentState.enteredCode
     val e164: String = currentState.phoneNumber?.toE164() ?: throw IllegalStateException("Can't construct registration data without E164!")
-    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.getRecoveryPassword() else null
+    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.recoveryPassword else null
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), currentState.fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
   }
 
@@ -904,6 +922,31 @@ class RegistrationViewModel : ViewModel() {
   private fun bail(logMessage: () -> Unit) {
     logMessage()
     setInProgress(false)
+  }
+
+  /** Converts the basic-auth creds we have locally into username:password pairs that are suitable for handing off to the service. */
+  private fun List<String?>.toSvrCredentials(): AuthCredentials? {
+    return this
+      .asSequence()
+      .filterNotNull()
+      .map { it.replace("Basic ", "").trim() }
+      .mapNotNull {
+        try {
+          Base64.decode(it)
+        } catch (e: IOException) {
+          Log.w(TAG, "Encountered error trying to decode a token!", e)
+          null
+        }
+      }
+      .map { String(it, StandardCharsets.ISO_8859_1) }
+      .mapNotNull {
+        val colonIndex = it.indexOf(":")
+        if (colonIndex < 0) {
+          return@mapNotNull null
+        }
+        AuthCredentials.create(it.substring(0, colonIndex), it.substring(colonIndex + 1))
+      }
+      .firstOrNull()
   }
 
   companion object {

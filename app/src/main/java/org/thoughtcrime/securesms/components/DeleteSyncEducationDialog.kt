@@ -30,10 +30,7 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Show educational info about delete syncing to linked devices. This dialog uses a subject to convey when
@@ -46,9 +43,8 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
 
     @JvmStatic
     fun shouldShow(): Boolean {
-      return TextSecurePreferences.isMultiDevice(AppDependencies.application) &&
-        !SignalStore.uiHints.hasSeenDeleteSyncEducationSheet &&
-        Recipient.self().deleteSyncCapability.isSupported
+      return SignalStore.account.hasLinkedDevices &&
+        !SignalStore.uiHints.hasSeenDeleteSyncEducationSheet
     }
 
     @JvmStatic

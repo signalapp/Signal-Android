@@ -378,7 +378,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Teachtaireachtaí</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">Cineálacha comhráite</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Teachtaireacht %1$s</string>
@@ -799,6 +799,17 @@
         <item quantity="many">%1$d roghnaithe</item>
         <item quantity="other">%1$d roghnaithe</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">Cuir le fillteán</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">Bain den fhillteán</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">Roghnaigh fillteán</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">Curtha le \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">Tá an comhrá seo san fhillteán \"%1$s\" cheana</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Próifíl fógraí</string>
@@ -1030,14 +1041,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">Mo ghléasanna nasctha</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">Dínasc</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">Dínascadh %1$s</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" dínasctha</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">\"%1$s\" nasctha</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">Gléas á nascadh…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">Faomhadh an gléas</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">Á lódáil…</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">Teachtaireachtaí á sioncronú…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">Níl aon ghléasanna nasctha ann</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -1048,6 +1063,28 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tapáil Ar Aghaidh agus cuir isteach paschód do ghutháin chun deimhniú. Ná cuir isteach d\'UAP Signal.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Ar aghaidh</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">Theip ar shioncronú na dteachtaireachtaí</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">Níorbh fhéidir do theachtaireachtaí a aistriú chuig do ghléas nasctha. Is féidir leat athnascadh agus aistriú a thriail arís, nó leanúint leis gan do stair teachtaireachtaí a aistriú.</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Triail nascadh arís</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">Lean leis gan aistriú</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">Ainm a Chur in Eagar</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">Ainm an ghléis</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">Sábháil</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1071,8 +1108,18 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Bain triail eile as</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">Aistrigh stair na dteachtaireachtaí</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ná haistrigh</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">Dínasc \'%1$s\'?</string>
+    <string name="DeviceListActivity_unlink_s">Dínasc \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Tar éis dínascadh an gléas seo, ní féidir teachtaireachtaí a sheoladh nó a fháil a thuilleadh.</string>
     <string name="DeviceListActivity_network_connection_failed">Theip ar an nasc idirlín</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1419,20 +1466,6 @@
     <string name="ManageGroupActivity_more">more</string>
     <string name="ManageGroupActivity_add_group_description">Cuir cur síos ar an ngrúpa leis…</string>
 
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Aistrigh ó ghléas Android</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">Aistrigh do chuntas agus do theachtaireachtaí ó do sheanghléas Android.</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">Logáil isteach gan aistriú</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">Lean ort gan do theachtaireachtaí agus do mheáin a aistriú</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">Aischuir cúltaca logánta</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">Aischuir do theachtaireachtaí ó chomhad cúltaca a shábháil tú ar do ghléas.</string>
-
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
     <string name="RemoteRestoreActivity__downloading_backup">Cúltaca á íoslódáil…</string>
@@ -1450,12 +1483,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">Do theachtaireachtaí uile</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">Aischuir ó chúltaca</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">Ní áirítear ach meáin a seoladh nó a fuarthas le %1$d lá anuas.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">Áirítear i do chúltaca:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">Aischuir cúltaca</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">Rinneadh do chúltaca deiridh %1$s ag %2$s.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">Sonraí cúltaca á bhfáil…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">Scipeáil aischur</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Cuir Tráchtanna in iúl dom</string>
@@ -2693,6 +2732,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Tá an iomarca iarrachtaí déanta agat leis an uimhir sin a chlárú. Triail arís i gceann %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Ní féidir ceangal a bhunú leis an tseirbhís. Deimhnigh go bhfuil tú ceangailte leis an líonra agus bain triail eile as.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Níorbh fhéidir linn cód fíoraithe a sheoladh trí SMS. Triail do chód a fháil trí ghuthghlao ina ionad.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3731,15 +3772,16 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Níorbh fhéidir na logaí a uaslódáil</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Mínigh go mion cad atá cearr le do thoil ionas gur féidir linn an fhadhb a thuiscint.</string>
-    <string-array name="HelpFragment__categories_5">
+    <string-array name="HelpFragment__categories_6">
         <item>Déan rogha</item>
-        <item>Tá rud éigin as gléas</item>
+        <item>Níl Rud Éigin ag Obair</item>
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
         <item>Aiseolas</item>
         <item>Eile</item>
         <item>Íocaíochtaí (MobileCoin)</item>
         <item>Tabhartais &amp; Suaitheantais</item>
+        <item>Cúltaca Signal Android</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Cur Isteach Loga Dífhabhtaithe Android Signal</string>
@@ -4362,9 +4404,9 @@
     <string name="conversation_list_fragment__open_camera_description">Oscail an Grianghrafadán</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">No chats yet.\nGet started by messaging a friend.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">Níl aon chomhrá le taispeáint</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">Socruithe an fhillteáin</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4616,8 +4658,12 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Tá an pasfhrása seo scríofa síos agam. Ní bheidh mé in ann cúltaca a aischur gan é.</string>
     <string name="registration_activity__restore_backup">Athchóirigh an cúltaca</string>
     <string name="registration_activity__transfer_or_restore_account">Aistrigh cuntas nó cuir ar ais é</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">Aischuir nó aistrigh</string>
     <string name="registration_activity__transfer_account">Cuntas a Aistriú</string>
     <string name="registration_activity__skip">Léim thar seo</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">Scipeáil aischur</string>
     <string name="preferences_chats__chat_backups">Cúltacaí na gcomhráite</string>
     <string name="preferences_chats__transfer_account">Cuntas a Aistriú</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Aistrigh cuntas chuig gléas nua Android</string>
@@ -5294,6 +5340,11 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">Media Quality</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Athnuaigh do shíntiús Cúltacaí Signal</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">Níorbh fhéidir an cúltaca a chur i gcrích</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Tabhair Cuireadh do Chairde</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Aitheantas an tsíntiúsóra deontóra cóipeáilte chuig an ngearrthaisce</string>
@@ -5412,127 +5463,141 @@
     <string name="ChatsSettingsFragment__keyboard">An méarchlár</string>
     <string name="ChatsSettingsFragment__send_with_enter">Seol leis an eochair iontrála</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
-    <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__chat_folders">Fillteáin comhráite</string>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">Cuir fillteán comhráite leis</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">Cuir le fillteáin nó cuir in eagar iad</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d fhillteán</item>
+        <item quantity="two">%1$d fhillteán</item>
+        <item quantity="few">%1$d fhillteán</item>
+        <item quantity="many">%1$d bhfillteán</item>
+        <item quantity="other">%1$d fillteán</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">Cruthaigh fillteáin don teaghlach, do chairde, don obair agus go leor eile</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">Roghnaigh comhráite neamhléite amháin le taispeáint </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">Cuir fillteáin mholta leis go héasca</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">Ar aghaidh</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">Eagraigh do chomhráite i bhfillteáin agus aistrigh eatarthu go tapa ar do liosta comhráite.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">Fillteáin</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">Cruthaigh fillteán</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">Gach comhrá</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">Fillteáin mholta</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unread">Neamhléite</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">Teachtaireachtaí neamhléite ó gach comhrá</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">Comhráite 1:1</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">Teachtaireachtaí ó chomhráite díreacha amháin</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">Grúpaí</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">Teachtaireachtaí ó ghrúpchomhráite amháin</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">Cuir leis</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">Fillteán %1$s curtha leis.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__edit_folder">Cuir fillteán in eagar</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__mute_all">Balbhaigh gach comhrá</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">Díbhalbhaigh gach rud</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">Marcáil iad uile léite</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="two">%1$d chat types</item>
-        <item quantity="few">%1$d chat types</item>
-        <item quantity="many">%1$d chat types</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d chineál comhrá</item>
+        <item quantity="two">%1$d chineál comhráite</item>
+        <item quantity="few">%1$d chineál comhráite</item>
+        <item quantity="many">%1$d gcineál comhráite</item>
+        <item quantity="other">%1$d cineál comhráite</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="one">%1$d chat</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="few">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d chomhrá</item>
+        <item quantity="two">%1$d chomhrá</item>
+        <item quantity="few">%1$d chomhrá</item>
+        <item quantity="many">%1$d gcomhrá</item>
+        <item quantity="other">%1$d comhrá</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="two">%1$d chats excluded</item>
-        <item quantity="few">%1$d chats excluded</item>
-        <item quantity="many">%1$d chats excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d chomhrá as an áireamh</item>
+        <item quantity="two">%1$d chomhrá as an áireamh</item>
+        <item quantity="few">%1$d chomhrá as an áireamh</item>
+        <item quantity="many">%1$d gcomhrá as an áireamh</item>
+        <item quantity="other">%1$d comhrá as an áireamh</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">Cruthaigh fillteán</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">Ainm an fhillteáin (de dhíth)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">Comhráite atá san áireamh</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">Cuir comhráite leis</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">Roghnaigh comhráite is mian leat a thaispeáint san fhillteán seo.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">Eisceachtaí</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">Cuir comhráite as an áireamh</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Roghnaigh na comhráite nach mian leat a thaispeáint san fhillteán seo.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">Ná taispeáin ach comhráite neamhléite</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">Agus é cumasaithe, ní thaispeánfar san fhillteán seo ach comhráite le teachtaireachtaí neamhléite.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">Cuir comhráite balbhaithe san áireamh</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create">Cruthaigh</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">Cuir fillteán in eagar</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__save">Sábháil</string>
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">Cuileáil na hathruithe?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">Caillfidh tú aon athruithe a rinne tú ar an bhfillteán seo.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
+    <string name="CreateFoldersFragment__discard">Cuileáil</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">Scrios an fillteán</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">Scrios an fillteán comhráite seo?</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">Féach ar gach rud</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">Cuir isteach ainm fillteáin</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">Cineálacha comhráite</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">Déanta</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
@@ -6147,6 +6212,10 @@
     <string name="InAppPaymentInProgressFragment__processing_donation">Tabhartas á phróiseáil…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">Íocaíocht á próiseáil…</string>
 
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">%1$d athfhillteach</string>
+
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">Earráid le próiseáil na híocaíochta</string>
@@ -6172,6 +6241,10 @@
     <string name="DonationsErrors__your_payment">Níorbh fhéidir do thabhartas a phróiseáil agus níor gearradh aon táillí ort. Triail arís.</string>
     <string name="DonationsErrors__still_processing">Still Processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Níor fhéidir suaitheantas a chur leis</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">Chuaigh rud éigin amú</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">Níorbh fhéidir do shíntiús cúltacaí a thaispeáint. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Theip ar bhailíochtú an tsuaitheantais</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6361,13 +6434,13 @@
     <!-- Descriptor text indicating what the user can do with this screen -->
     <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Socraigh sceideal chun an phróifíl fógraí seo a chumasú go huathoibríoch.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
-    <string name="EditNotificationProfileSchedule__schedule">Sceideal</string>
+    <string name="EditNotificationProfileSchedule__schedule">Sceidealaigh</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">Tosaigh</string>
+    <string name="EditNotificationProfileSchedule__start">Tús</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">Deireadh</string>
     <!-- First letter of Sunday -->
-    <string name="EditNotificationProfileSchedule__sunday_first_letter">Do</string>
+    <string name="EditNotificationProfileSchedule__sunday_first_letter">D</string>
     <!-- First letter of Monday -->
     <string name="EditNotificationProfileSchedule__monday_first_letter">L</string>
     <!-- First letter of Tuesday -->
@@ -6375,7 +6448,7 @@
     <!-- First letter of Wednesday -->
     <string name="EditNotificationProfileSchedule__wednesday_first_letter">C</string>
     <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">Dé</string>
+    <string name="EditNotificationProfileSchedule__thursday_first_letter">D</string>
     <!-- First letter of Friday -->
     <string name="EditNotificationProfileSchedule__friday_first_letter">A</string>
     <!-- First letter of Saturday -->
@@ -6451,8 +6524,6 @@
     <string name="DonationReceiptDetailsFragment__amount">Méid</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Go raibh maith agat as tacú le Signal. Cabhraíonn do chion leis an misean a spreagadh chun teicneolaíocht príobháideachta foinse oscailte a fhorbairt, rud a chosnaíonn an tsaoirse cainte agus a chumasaíonn cumarsáid dhomhanda shlán do na milliúin ar fud an domhain. Más cónaitheoir sna Stáit Aontaithe thú, coinnigh an admháil seo do do thaifid chánach. Eagraíocht neamhbhrabúis díolmhaithe ó cháin sna Stáit Aontaithe faoi alt 501c3 den Internal Revenue Code is ea Signal Technology Foundation. Is é 82–4506840 ár nUimhir Aitheantas Cánach Feidearálaí.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">Níl aon admhálacha ann</string>
 
@@ -7099,7 +7170,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tapáil an cnaipe \"Téigh chuig Socruithe\" thíos</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Cas air \"Ceadaigh socruithe aláram agus meabhrúchán.\"</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">Cas air \"Ceadaigh socrú aláram agus meabhrúchán.\"</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">Socruithe</string>
 
@@ -7635,6 +7706,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Scrios nasc an ghlao</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Níorbh fhéidir athruithe a shábháil. Seiceáil do nasc líonra agus triail arís.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Níorbh fhéidir an nasc glao a scriosadh toisc go bhfuil sé in úsáid faoi láthair.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">Scrios an nasc?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7731,6 +7804,10 @@
     <string name="PendingParticipantsBottomSheet__reject">Diúltaigh</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Ceadaigh í</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">Faomh gach ceann</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">Diúltaigh do gach ceann</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Cas air fógraí lánscáileáin?</string>
@@ -7864,18 +7941,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Scriosfar do mheáin inniu</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Cuireadh do phlean Signal um chúltacú meán ar ceal toisc nárbh fhéidir linn d\'íocaíocht a phróiseáil. Seo do dheis dheiridh na meáin i do chúltaca a íoslódáil sula scriosfar é.</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">Ní féidir an íoslódáil a chur i gcrích</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Déan %1$s de spás ar an ngléas seo</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">Ní leor an spás saor ar do ghléas. Déan %1$s de spás chun na meáin atá stóráilte i do chúltaca a íoslódáil.</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">Má roghnaíonn tú \"Gabh thar\" scriosfar na meáin i do chúltaca i gceann %1$d lá.</item>
-        <item quantity="two">Má roghnaíonn tú \"Gabh thar\" scriosfar na meáin i do chúltaca i gceann %1$d lá.</item>
-        <item quantity="few">Má roghnaíonn tú \"Gabh thar\" scriosfar na meáin i do chúltaca i gceann %1$d lá.</item>
-        <item quantity="many">Má roghnaíonn tú \"Gabh thar\" scriosfar na meáin i do chúltaca i gceann %1$d lá.</item>
-        <item quantity="other">Má roghnaíonn tú \"Gabh thar\" scriosfar na meáin i do chúltaca i gceann %1$d lá..</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Chun íoslódáil Chúltaca Signal a chur i gcrích tá %1$s de spás stórála de dhíth ar do ghléas.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Chun spás a dhéanamh, scrios aipeanna neamhúsáidte nó inneachar de mhéid mhór nó faigh réidh leo.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Theip ar nuashonrú do shíntiúis le cúltacaí</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7887,7 +7958,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Tuilleadh faisnéise</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">Léim thar seo</string>
+    <string name="BackupAlertBottomSheet__skip_restore">Scipeáil aischur</string>
+    <!-- Primary action button to start backup immediately -->
+    <string name="BackupAlertBottomSheet__back_up_now">Déan cúltaca anois</string>
+    <!-- Primary action button when user doesn\'t have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">Tuigim</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Bainistigh síntiús</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7898,6 +7973,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">Ná híoslódáil meáin</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Ní anois</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">Triail níos déanaí</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Scriosfar meáin</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7906,6 +7983,18 @@
     <string name="BackupAlertBottomSheet__download">Íoslódáil</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">Ná híoslódáil</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">Léim thar seo</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">Scipeáil aischur?</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Má scipeálann tú aischur beidh tú in ann na meáin agus ceangaltáin i do chúltaca a íoslódáil níos déanaí nuair a chuirfear spás stórála ar fáil.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">Theip ar an gCúltaca</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7916,6 +8005,8 @@
     <string name="BackupStatus__restore_paused">Aischur curtha ar sos</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Tá an t-aischur críochnaithe</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">Mionsonraí</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Ag fanacht le Wi-Fi…</string>
@@ -7928,15 +8019,19 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">Cuir íoslódáil ar ceal</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">Íoslódáil: %1$s as %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">Níl go leor spáis ann chun do Chúltaca a íoslódáil. Déan %1$s de spás le leanúint leis.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">Scipeáil íoslódáil</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">Tuilleadh faisnéise</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7960,10 +8055,6 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Athraigh an síntiús nó cuir ar ceal é</string>
 
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Rinneadh do chúltaca deiridh %1$s ag %2$s.</string>
-
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Teorainneacha an chomhrá</string>
@@ -7983,6 +8074,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optamaigh stóras ar an ngléas</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Bainfear meáin nár úsáideadh, ach is féidir iad a íoslódáil ó do chúltaca am ar bith.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Ní féidir optamú stórais a úsáid ach leis an leibhéal íoctha de Chúltacaí Signal. Tá do shíntiús cúltacaí á phróiseáil, níl sé gníomhach fós. Triail arís níos déanaí.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -8005,6 +8098,16 @@
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Íoc síntiús %1$s/sa mhí</string>
+
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Níl an meán seo ar fáil a thuilleadh</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Chun tosú ar do mheáin uile a chúltacú, cumasaigh Cúltacaí Signal agus roghnaigh an leibhéal íoctha.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">Ar aghaidh</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">Ní anois</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">Tá scriosadh sioncronaithe trasna do ghléasanna uile anois</string>
@@ -8047,27 +8150,33 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Athraíodh an cineál cúltaca agus cuireadh an síntiús ar ceal</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Síntiús curtha ar ceal</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Íoslódáil críochnaithe</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Cruthófar cúltaca thar oíche.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Síntiús neamhghníomhach</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Chas tú as cúltacaí</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Plean cúltaca</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Cúltacaí díchumasaithe</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/mí</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">Íocaíocht ar feitheamh…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">Ag feitheamh le líonra…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Tá do phlean cúltaca saor in aisce</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">Athnuachan %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">Rachaidh in éag an %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">Chuaigh in éag an %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Cúltacaigh do stair teachtaireachtaí ionas nach gcaillfidh tú sonraí nuair a fhaigheann tú guthán nua nó nuair a athshuiteálann tú Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -8113,9 +8222,75 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Cuir isteach UAP, pasfhocal, nó patrún do ghléis.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Athchumasaigh cúltacaí</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Tá cúltacaí casta as agus tá do shonraí scriosta ó sheirbhís stórála shlán Signal.</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Do chúltaca á íoslódáil</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Ag brath ar mhéid do chúltaca, d\'fhéadfadh sé seo go leor ama a thógáil. Is féidir leat do ghuthán a úsáid mar is gnáth le linn an chúltacaithe.</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one">Tá do shíntiús ar an ngléas seo bailí ar feadh %1$d lae eile. Athnuaigh chun leanúint le Cúltacaí Signal a úsáid</item>
+        <item quantity="two">Tá do shíntiús ar an ngléas seo bailí ar feadh %1$d lá eile. Athnuaigh chun leanúint le Cúltacaí Signal a úsáid</item>
+        <item quantity="few">Tá do shíntiús ar an ngléas seo bailí ar feadh %1$d lá eile. Athnuaigh chun leanúint le Cúltacaí Signal a úsáid</item>
+        <item quantity="many">Tá do shíntiús ar an ngléas seo bailí ar feadh %1$d lá eile. Athnuaigh chun leanúint le Cúltacaí Signal a úsáid</item>
+        <item quantity="other">Tá do shíntiús ar an ngléas seo bailí ar feadh %1$d lá eile. Athnuaigh chun leanúint le Cúltacaí Signal a úsáid</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">Athnuaigh</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">Tuilleadh faisnéise</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">Tá %1$s de shonraí cúltaca agat nach bhfuil ar an ngléas seo. Scriosfar do chúltaca nuair a thiocfaidh deireadh le do shíntiús i gceann %2$d lae.</item>
+        <item quantity="two">Tá %1$s de shonraí cúltaca agat nach bhfuil ar an ngléas seo. Scriosfar do chúltaca nuair a thiocfaidh deireadh le do shíntiús i gceann %2$d lá.</item>
+        <item quantity="few">Tá %1$s de shonraí cúltaca agat nach bhfuil ar an ngléas seo. Scriosfar do chúltaca nuair a thiocfaidh deireadh le do shíntiús i gceann %2$d lá.</item>
+        <item quantity="many">Tá %1$s de shonraí cúltaca agat nach bhfuil ar an ngléas seo. Scriosfar do chúltaca nuair a thiocfaidh deireadh le do shíntiús i gceann %2$d lá.</item>
+        <item quantity="other">Tá %1$s de shonraí cúltaca agat nach bhfuil ar an ngléas seo. Scriosfar do chúltaca nuair a thiocfaidh deireadh le do shíntiús i gceann %2$d lá.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">Íoslódáil</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">Scipeáil íoslódáil?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">Má scipeálann tú íoslódáil scriosfar na meáin agus ceangaltáin atá fágtha i do chúltaca i gceann %1$d lae.</item>
+        <item quantity="two">Má scipeálann tú íoslódáil scriosfar na meáin agus ceangaltáin atá fágtha i do chúltaca i gceann %1$d lá.</item>
+        <item quantity="few">Má scipeálann tú íoslódáil scriosfar na meáin agus ceangaltáin atá fágtha i do chúltaca i gceann %1$d lá.</item>
+        <item quantity="many">Má scipeálann tú íoslódáil scriosfar na meáin agus ceangaltáin atá fágtha i do chúltaca i gceann %1$d lá.</item>
+        <item quantity="other">Má scipeálann tú íoslódáil scriosfar na meáin agus ceangaltáin atá fágtha i do chúltaca i gceann %1$d lá.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">Léim thar seo</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Níorbh fhéidir cúltacaí a chasadh as agus a scriosadh</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Tharla earráid leis an líonra. Seiceáil do nasc Idirlín agus triail arís.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Ní bhfuarthas an síntiús</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Níorbh fhéidir do shíntiús a aischur.</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">D’fhéadfadh sé seo tarlú sna cásanna seo a leanas:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">Tá tú sínithe isteach in Play Store le Cuntas Google difriúil.</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">D\'aistrigh tú cuntas ó iPhone.</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Chuaigh do shíntiús in éag le déanaí.</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Má tá síntiús gníomhach agat ar do sheanghuthán, smaoinigh ar an síntiús sin a chur ar ceal sula n-athnuaitear é.</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">Tuigim</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">Déan teagmháil leis an bhfoireann tacaíochta</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8135,7 +8310,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">D\'eochair chúltaca</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Cód 64 digit is ea é d\'eochair chúltaca a ligeann duit do chúltaca a aischur nuair a athshuiteálann tú Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Cód 64 carachtar is ea d\'eochair chúltaca a ligeann duit do chúltaca a aischur nuair a athshuiteálann tú Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Má dhéanann tú dearmad ar d\'eochair ní bheidh tú in ann do chúltaca a aischur. Ní féidir le Signal cabhrú leat do chúltaca a aischur.</string>
     <!-- Action button label -->
@@ -8204,6 +8379,8 @@
         <item quantity="many">Na %1$d lá dheireanacha de mheáin</item>
         <item quantity="other">Na %1$d lá dheireanacha de mheáin</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">Plean reatha</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8219,5 +8396,113 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">Deilbhín meabhrúchán</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Tá mo sheanghuthán agam</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">Scan cód QR ó do chuntas reatha Signal chun tosú air go tapa</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Níl mo sheanghuthán agam</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">Nó tá tú ag athshuiteáil Signal ar an ngléas céanna</string>
+
+    <!-- Screen title for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Cuntas a aischur nó a aistriú</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">Faigh do chuntas Signal agus stair teachtaireachtaí ar an ngléas seo.</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Ó Chúltacaí Signal</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Plean cúltacaí saor in aisce nó íoctha</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">Ó fhillteán cúltaca</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">Ó chomhad cúltaca</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">Roghnaigh cúltaca atá sábháilte agat</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">Ó do sheanghuthán</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Aistrigh go díreach ó do sheanghléas Android</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">Aischur cúltaca logánta</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">Aischuir do theachtaireachtaí ó chúltaca a shábháil tú ar do ghléas. Mura ndéanann tú an t-aischur anois, ní bheidh tú in ann iad a aischur níos déanaí.</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">Cuir isteach d\'eochair chúltaca</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">Cód 64 carachtar is ea d\'eochair chúltaca a éilítear chun do chuntas agus sonraí a athshlánú.</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Níl eochair chúltaca agat?</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">Eochair chúltaca</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Ní féidir cúltacaí a athshlánú gan a gcód athshlánaithe 64 carachtar. Má tá d\'eochair chúltaca caillte agat ní féidir le Signal cabhrú leat le haischur do chúltaca.</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Má tá do sheanghléas agat, is féidir leat féachaint ar d\'eochair chúltaca i Socruithe &gt; Cúltacaí. Ansin tapáil Féach ar eochair chúltaca.</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">Tuilleadh faisnéise</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">Scipeáil agus ná haischuir</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">Scan an cód seo le do sheanghuthán</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">Oscail Signal ar do sheanghléas</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">Tapáil deilbhín an cheamara </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">Scan an cód seo leis an gceamara</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">Ní féidir cód QR a ghiniúint</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">Scanta ar sheanghléas</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">Bain triail eile as</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">Aistriú cuntais</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">Déanfar do chuntas a aistriú chuig gléas nua. Beidh an gléas sin in ann do ghrúpaí agus teagmhálaithe a fheiceáil, do chomhráite a rochtain, agus teachtaireachtaí a sheoladh faoi d\'ainm féin. %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">Tuilleadh faisnéise</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">Aistrigh cuntas</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">Déantar teachtaireachtaí agus faisnéis comhráite a chosaint le criptiú ó cheann ceann ar gach gléas</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">Díghlasáil chun an cuntas a aistriú</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">Lean ar aghaidh ar do ghléas eile</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">Lean le haistriú do chuntais ar do ghléas eile.</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">Tá an t-aischur críochnaithe</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Tá tús curtha le haistriú do chuntais agus teachtaireachtaí Signal chuig do ghléas eile. Tá Signal neamhghníomhach ar an ngléas seo anois.</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">Tá an t-aistriú críochnaithe</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">Tá do chuntas agus teachtaireachtaí Signal aistrithe chuig do ghléas eile. Tá Signal neamhghníomhach ar an ngléas seo anois.</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">Cgl</string>
+
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">Oscail Signal ar do sheanghléas</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">Scipeáil aischur</string>
+
     <!-- EOF -->
 </resources>

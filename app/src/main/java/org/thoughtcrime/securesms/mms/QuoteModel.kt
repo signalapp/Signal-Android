@@ -31,7 +31,7 @@ class QuoteModel(
     companion object {
       @JvmStatic
       fun fromCode(code: Int): Type {
-        for (value in values()) {
+        for (value in entries) {
           if (value.code == code) {
             return value
           }
@@ -41,7 +41,7 @@ class QuoteModel(
 
       @JvmStatic
       fun fromDataMessageType(dataMessageType: SignalServiceDataMessage.Quote.Type): Type {
-        for (value in values()) {
+        for (value in entries) {
           if (value.dataMessageType === dataMessageType) {
             return value
           }

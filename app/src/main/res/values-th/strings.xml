@@ -366,7 +366,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">ข้อความ</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">ประเภทของแชท</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">ข้อความ %1$s</string>
@@ -719,6 +719,17 @@
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="other">เลือกไว้ %1$d</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">เพิ่มลงในโฟลเดอร์</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">ลบออกจากโฟลเดอร์</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">เลือกโฟลเดอร์</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">เพิ่มลงใน \"%1$s\" แล้ว</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">แชทนี้อยู่ในโฟลเดอร์ \"%1$s\" แล้ว</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">โปรไฟล์การแจ้งเตือน</string>
@@ -950,14 +961,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่ของฉัน</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">เลิกเชื่อมโยง</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">ยกเลิกการเชื่อมโยง %1$s แล้ว</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">เลิกเชื่อมโยง \"%1$s\" เรียบร้อยแล้ว</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">เชื่อมโยง \"%1$s\" เรียบร้อยแล้ว</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">กำลังเชื่อมโยงอุปกรณ์…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">อนุมัติอุปกรณ์แล้ว</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">กำลังโหลด…</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">กำลังซิงค์ข้อความ…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">ไม่มีอุปกรณ์ที่เชื่อมโยงอยู่</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -968,6 +983,28 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">แตะดำเนินการต่อ แล้วยืนยันโดยใช้วิธีเดียวกับที่คุณปลดล็อกโทรศัพท์ (ไม่ใช่ Signal PIN)</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">ดำเนินการต่อ</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">ซิงค์ข้อความไม่สำเร็จ</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">ไม่สามารถถ่ายโอนข้อความของคุณไปยังอุปกรณ์ที่เชื่อมโยงอยู่ คุณสามารถลองเชื่อมโยงอุปกรณ์แล้วถ่ายโอนอีกครั้ง หรือดำเนินการต่อโดยไม่ถ่ายโอนประวัติการส่งข้อความ</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">ลองเชื่อมโยงอีกครั้ง</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">ดำเนินการต่อโดยไม่ถ่ายโอน</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">แก้ไขชื่อ</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">ชื่ออุปกรณ์</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">บันทึก</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -991,8 +1028,18 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">ลองใหม่</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">ถ่ายโอนประวัติการส่งข้อความ</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">ไม่ถ่ายโอน</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">เลิกเชื่อมโยง \'%1$s\' หรือไม่?</string>
+    <string name="DeviceListActivity_unlink_s">เลิกเชื่อมโยง \"%1$s\" หรือไม่</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">อุปกรณ์นี้จะไม่สามารถส่งหรือรับข้อความได้อีกต่อไปเมื่อทำการเลิกเชื่อมโยง</string>
     <string name="DeviceListActivity_network_connection_failed">การเชื่อมต่อเครือข่ายล้มเหลว</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1267,20 +1314,6 @@
     <string name="ManageGroupActivity_more">มีอีก</string>
     <string name="ManageGroupActivity_add_group_description">เพิ่มคำอธิบายกลุ่ม…</string>
 
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">ถ่ายโอนจากอุปกรณ์ Android</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">ถ่ายโอนบัญชีและข้อความจากอุปกรณ์ Android เครื่องเก่าของคุณ</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">เข้าสู่ระบบโดยไม่ถ่ายโอนข้อมูล</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">ดำเนินการต่อโดยไม่ถ่ายโอนข้อความและไฟล์สื่อของคุณ</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">กู้คืนข้อมูลสำรองจากอุปกรณ์</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">กู้คืนข้อความของคุณจากไฟล์ข้อมูลสำรองที่บันทึกไว้ในอุปกรณ์</string>
-
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
     <string name="RemoteRestoreActivity__downloading_backup">กำลังดาวน์โหลดข้อมูลสำรอง…</string>
@@ -1298,12 +1331,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">ข้อความทั้งหมด</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">กู้คืนจากข้อมูลสำรอง</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">โดยข้อมูลสำรองจะรวมไฟล์สื่อที่ส่งหรือได้รับภายใน %1$d วันที่ผ่านมาเท่านั้น</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">ข้อมูลสำรองของคุณประกอบด้วย:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">คุณสำรองข้อมูลครั้งล่าสุดเมื่อวันที่ %1$s เวลา %2$s</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">กำลังเรียกดูข้อมูลสำรอง…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">ข้ามการกู้คืน</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">แจ้งให้ฉันรู้สำหรับการกล่าวถึง</string>
@@ -2357,6 +2396,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">คุณพยายามลงทะเบียนด้วยหมายเลขนี้หลายครั้งเกินไป โปรดลองอีกครั้งใน %1$s</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">เราไม่สามารถส่งรหัสยืนยันผ่านทาง SMS ให้คุณได้ ลองเปลี่ยนไปรับรหัสผ่านทางการโทรแทน</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3335,15 +3376,16 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">ไม่สามารถอัปโหลดปูม</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">กรุณาอธิบายละเอียดที่สุดเท่าที่จะทำได้ เพื่อช่วยให้เราเข้าใจปัญหา</string>
-    <string-array name="HelpFragment__categories_5">
+    <string-array name="HelpFragment__categories_6">
         <item>กรุณาเลือกหนึ่งรายการ</item>
         <item>มีบางอย่างไม่ทำงาน</item>
         <item>คำขอฟีเจอร์</item>
         <item>คำถาม</item>
         <item>ข้อเสนอแนะ</item>
-        <item>อื่น</item>
+        <item>อื่นๆ</item>
         <item>การชำระเงิน (MobileCoin)</item>
         <item>การบริจาคและโล่</item>
+        <item>การสำรองข้อมูลของ Signal Android</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">การส่งรายงานบันทึกดีบักสำหรับ Signal Android</string>
@@ -3950,9 +3992,9 @@
     <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีแชท\nเริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">ไม่มีแชทให้แสดง</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">การตั้งค่าของโฟลเดอร์</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4172,8 +4214,12 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถกู้คืนจากข้อมูลสำรองได้</string>
     <string name="registration_activity__restore_backup">กู้คืนจากข้อมูลสำรอง</string>
     <string name="registration_activity__transfer_or_restore_account">ถ่ายโอนหรือกู้คืนบัญชี</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">กู้คืนหรือถ่ายโอน</string>
     <string name="registration_activity__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="registration_activity__skip">ข้าม</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">ข้ามการกู้คืน</string>
     <string name="preferences_chats__chat_backups">ข้อมูลสำรองของแชท</string>
     <string name="preferences_chats__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">ถ่ายโอนบัญชีไปยังอุปกรณ์ Android เครื่องใหม่</string>
@@ -4818,6 +4864,11 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">คุณภาพของสื่อ</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">ต่ออายุแพ็กเกจสำรองข้อมูล Signal ของคุณ</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">การสำรองข้อมูลไม่เสร็จสมบูรณ์</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">คัดลอกรหัสสมาชิกผู้บริจาคไปยังคลิปบอร์ดแล้ว</string>
@@ -4936,115 +4987,125 @@
     <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
     <string name="ChatsSettingsFragment__send_with_enter">กด Enter เพื่อส่ง</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
-    <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__chat_folders">โฟลเดอร์แชท</string>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">เพิ่มโฟลเดอร์แชท</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">เพิ่มหรือแก้ไขโฟลเดอร์</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="other">%1$d โฟลเดอร์</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">สร้างโฟลเดอร์สำหรับครอบครัว เพื่อน ที่ทำงาน และอื่นๆ ได้ตามใจ</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">เลือกให้แสดงเฉพาะแชทที่ยังไม่ได้อ่าน </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">เพิ่มโฟลเดอร์ที่แนะนำอย่างง่ายดาย สะดวกรวดเร็ว</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">ดำเนินการต่อ</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">จัดแยกแชทเป็นโฟลเดอร์ ให้คุณเปิดสลับไปมาได้อย่างสะดวกรวดเร็วในหน้ารายการแชท</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">โฟลเดอร์</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">สร้างโฟลเดอร์</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">แชททั้งหมด</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">โฟลเดอร์ที่แนะนำ</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unread">ยังไม่ได้อ่าน</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">ข้อความที่ยังไม่ได้อ่านจากแชททั้งหมด</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">แชทส่วนตัว</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">ข้อความจากแชทส่วนตัวเท่านั้น</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">กลุ่ม</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">ข้อความจากแชทกลุ่มเท่านั้น</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">เพิ่ม</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">เพิ่มโฟลเดอร์ \"%1$s\" เรียบร้อยแล้ว</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__edit_folder">แก้ไขโฟลเดอร์</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__mute_all">ปิดการแจ้งเตือนทั้งหมด</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">เปิดการแจ้งเตือนทั้งหมด</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="other">แชท %1$d ประเภท</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="other">%1$d chats</item>
+        <item quantity="other">%1$d แชท</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="other">ไม่รวมแชท %1$d รายการ</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">สร้างโฟลเดอร์</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">ชื่อโฟลเดอร์ (ต้องระบุ)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">แชทในโฟลเดอร์</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">เพิ่มแชท</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">เลือกแชทที่คุณต้องการให้ปรากฏในโฟลเดอร์นี้</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">ข้อยกเว้น</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">แยกแชทออกจากโฟลเดอร์</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">เลือกแชทที่คุณไม่ต้องการให้ปรากฏในโฟลเดอร์นี้</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">แสดงเฉพาะแชทที่ยังไม่ได้อ่าน</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">เมื่อเปิดใช้งาน โฟลเดอร์นี้จะแสดงเฉพาะแชทที่มีข้อความที่ยังไม่ได้อ่าน</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">รวมแชทที่ถูกปิดการแจ้งเตือนเข้าไว้ด้วย</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create">สร้าง</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">แก้ไขโฟลเดอร์</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__save">บันทึก</string>
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">ยกเลิกการเปลี่ยนแปลงหรือไม่</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">คุณจะสูญเสียการเปลี่ยนแปลงที่ทำในโฟลเดอร์นี้</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
+    <string name="CreateFoldersFragment__discard">ยกเลิก</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">ลบโฟลเดอร์</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">ลบโฟลเดอร์แชทนี้ใช่หรือไม่</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">ดูทั้งหมด</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">โปรดกรอกชื่อโฟลเดอร์</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">ประเภทของแชท</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">เสร็จสิ้น</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">ข้อความ</string>
@@ -5619,6 +5680,10 @@
     <string name="InAppPaymentInProgressFragment__processing_donation">กำลังดำเนินการบริจาค…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
 
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">รายเดือน %1$d</string>
+
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">การดำเนินการชำระเงินมีข้อผิดพลาด</string>
@@ -5644,6 +5709,10 @@
     <string name="DonationsErrors__your_payment">ไม่สามารถดำเนินการบริจาคของคุณได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
     <string name="DonationsErrors__still_processing">ยังดำเนินการอยู่</string>
     <string name="DonationsErrors__couldnt_add_badge">เพิ่มโล่ไม่ได้</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">เกิดข้อผิดพลาดบางอย่าง</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">ไม่สามารถแสดงแพ็กเกจสำรองข้อมูลของคุณ กรุณาติดต่อฝ่ายสนับสนุน</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">การตรวจยืนยันโล่ล้มเหลว</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5923,8 +5992,6 @@
     <string name="DonationReceiptDetailsFragment__amount">ยอดเงิน</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">ขอบคุณสำหรับการสนับสนุน Signal การสนับสนุนของคุณจะช่วยเป็นพลังให้กับภารกิจในการพัฒนาเทคโนโลยีความเป็นส่วนตัวแบบโอเพนซอร์สที่ปกป้องการแสดงออกอย่างเสรีและเปิดใช้งานการสื่อสารทั่วโลกที่ปลอดภัยสำหรับผู้คนหลายล้านคนทั่วโลก ถ้าคุณเป็นผู้อาศัยในสหรัฐอเมริกา ให้เก็บใบเสร็จไว้เพื่อบันทึกภาษี Signal Technology Foundation เป็นองค์กรที่ได้รับการยกเว้นภาษีในสหรัฐอเมริกาภายใต้มาตรา 501c3 ของประมวลรัษฎากรภายใน หมายเลขประจำตัวผู้เสียภาษีของรัฐบาลกลางของเราคือ 82–4506840</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">ไม่มีใบเสร็จ</string>
 
@@ -7011,6 +7078,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">ลบลิงก์การโทร</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">ไม่สามารถบันทึกการเปลี่ยนแปลงได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายแล้วลองอีกครั้ง</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">ไม่สามารถลบลิงก์การโทรได้เนื่องจากมีการใช้งานลิงก์อยู่ในขณะนี้</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">ลบลิงก์ใช่หรือไม่</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7099,6 +7168,10 @@
     <string name="PendingParticipantsBottomSheet__reject">ปฏิเสธ</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">อนุมัติ</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">อนุมัติทั้งหมด</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">ปฏิเสธทั้งหมด</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">เปิดการแจ้งเตือนแบบเต็มหน้าจอหรือไม่</string>
@@ -7224,14 +7297,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">สื่อของคุณจะถูกลบวันนี้</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">แพ็กเกจสำรองข้อมูลสื่อของคุณถูกยกเลิกเนื่องจาก Signal ประมวลผลการชำระเงินของคุณไม่ได้ นี่เป็นโอกาสสุดท้ายที่คุณจะสามารถดาวน์โหลดไฟล์สื่อที่เก็บอยู่ในข้อมูลสำรองก่อนที่ข้อมูลจะถูกลบ</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">การดาวน์โหลดไม่เสร็จสมบูรณ์</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">เพิ่มพื้นที่ %1$s บนอุปกรณ์เครื่องนี้</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">อุปกรณ์ของคุณมีพื้นที่จัดเก็บไม่เพียงพอ เพิ่มพื้นที่จัดเก็บ %1$s เพื่อดาวน์โหลดไฟล์สื่อในข้อมูลสำรองของคุณ</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="other">หากคุณเลือก \"ข้าม\" ไฟล์สื่อในข้อมูลสำรองของคุณจะถูกลบใน %1$d วัน</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">อุปกรณ์ของคุณต้องมีพื้นที่จัดเก็บ %1$s จึงจะสามารถดาวน์โหลดข้อมูลสำรอง Signal ให้เสร็จสมบูรณ์ได้</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">โปรดเพิ่มพื้นที่จัดเก็บด้วยการออฟโหลดหรือลบแอปที่ไม่ได้ใช้งาน รวมถึงไฟล์ที่มีขนาดใหญ่</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">ไม่สามารถต่ออายุแพ็กเกจสำรองข้อมูลของคุณ</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7243,7 +7314,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">ข้าม</string>
+    <string name="BackupAlertBottomSheet__skip_restore">ข้ามการกู้คืน</string>
+    <!-- Primary action button to start backup immediately -->
+    <string name="BackupAlertBottomSheet__back_up_now">สำรองข้อมูลเดี๋ยวนี้</string>
+    <!-- Primary action button when user doesn\'t have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">เข้าใจแล้ว</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">จัดการการเป็นสมาชิก</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7254,6 +7329,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">ไม่ต้องดาวน์โหลดสื่อ</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ไว้ทีหลัง</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">ลองอีกครั้งในภายหลัง</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">สื่อจะถูกลบ</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7262,6 +7339,18 @@
     <string name="BackupAlertBottomSheet__download">ดาวน์โหลด</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">ไม่ต้องดาวน์โหลด</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">ข้าม</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">ข้ามการกู้คืนใช่หรือไม่</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">หากข้ามการกู้คืน คุณจะสามารถดาวน์โหลดไฟล์สื่อและไฟล์แนบที่หลงเหลืออยู่ในข้อมูลสำรองได้ในภายหลังเมื่ออุปกรณ์มีพื้นที่จัดเก็บเพียงพอ</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">สำรองข้อมูลไม่สำเร็จ</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7272,6 +7361,8 @@
     <string name="BackupStatus__restore_paused">การกู้คืนหยุดชั่วคราว</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">กู้คืนเสร็จสิ้น</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">รายละเอียด</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">กำลังรอสัญญาณ Wi-Fi…</string>
@@ -7284,15 +7375,19 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ยกเลิกการดาวน์โหลด</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">กำลังดาวน์โหลด: %1$s จาก %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">พื้นที่จัดเก็บของคุณไม่เพียงพอสำหรับการดาวน์โหลดข้อมูลสำรอง โปรดเพิ่มพื้นที่จัดเก็บ %1$s เพื่อดำเนินการต่อ</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">ข้ามการดาวน์โหลด</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7316,10 +7411,6 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">เปลี่ยนหรือยกเลิกการสมัคร</string>
 
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">คุณสำรองข้อมูลครั้งล่าสุดเมื่อวันที่ %1$s เวลา %2$s</string>
-
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">จำกัดข้อความในแชทสูงสุด</string>
@@ -7339,6 +7430,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">เพิ่มประสิทธิภาพพื้นที่จัดเก็บบนอุปกรณ์</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ไฟล์สื่อที่ไม่ได้ใช้งานจะถูกออฟโหลด แต่คุณสามารถดาวน์โหลดไฟล์กลับมาจากข้อมูลสำรองได้ทุกเมื่อ</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ฟีเจอร์การเพิ่มประสิทธิภาพพื้นที่จัดเก็บจะสามารถใช้งานได้ในกรณีที่มีการชำระค่าแพ็กเกจสำรองข้อมูลของ Signal การสมัครแพ็กเกจสำรองข้อมูลของคุณยังอยู่ระหว่างดำเนินการและยังไม่ได้เปิดใช้งาน โปรดลองอีกครั้งในภายหลัง</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7357,6 +7450,16 @@
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">สมัครใช้งาน %1$s/เดือน</string>
+
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">ไม่พบไฟล์สื่อนี้</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">เริ่มสำรองข้อมูลสื่อทั้งหมดของคุณ โดยเปิดใช้งานการสำรองข้อมูลของ Signal แล้วเลือกแพ็กเกจเพื่อชำระค่าบริการ</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">ดำเนินการต่อ</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">ไว้ทีหลัง</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">การลบซิงค์เข้ากับอุปกรณ์ทุกเครื่องของคุณแล้ว</string>
@@ -7399,27 +7502,33 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">เปลี่ยนประเภทของการสำรองข้อมูลและยกเลิกการสมัครแล้ว</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">ยกเลิกการสมัครแล้ว</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ดาวน์โหลดเสร็จสิ้น</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ระบบจะสำรองข้อมูลในช่วงกลางคืน</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">ไม่มีแพ็กเกจที่ใช้งานอยู่</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">คุณปิดใช้งานการสำรองข้อมูลแล้ว</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">แพ็กเกจสำรองข้อมูล</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">การสำรองข้อมูลถูกปิดใช้งาน</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/เดือน</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">กำลังรออนุมัติการชำระเงิน…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">กำลังรอการเชื่อมต่อเครือข่าย…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">แพ็กเกจสำรองข้อมูลที่คุณเลือกไม่มีค่าใช้จ่าย</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">ต่ออายุ %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">จะหมดอายุวันที่ %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">หมดอายุแล้ววันที่ %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">สำรองประวัติการส่งข้อความของคุณ ช่วยเก็บรักษาข้อมูลแม้ในกรณีที่คุณเปลี่ยนโทรศัพท์เครื่องใหม่หรือติดตั้ง Signal อีกครั้ง</string>
     <!-- Section header for other ways to back up -->
@@ -7465,9 +7574,63 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">โปรดใส่ PIN, รหัสผ่าน หรือรูปแบบการวาดเส้นของอุปกรณ์คุณ</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">เปิดใช้งานการสำรองข้อมูลอีกครั้ง</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">ปิดใช้งานการสำรองข้อมูลและข้อมูลของคุณถูกลบออกจากบริการจัดเก็บที่ปลอดภัยของ Signal แล้ว</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">กำลังดาวน์โหลดข้อมูลสำรองของคุณ</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">ขั้นตอนนี้อาจใช้เวลาค่อนข้างนาน ขึ้นอยู่กับขนาดของข้อมูลสำรอง โดยคุณสามารถใช้โทรศัพท์ได้ตามปกติในระหว่างที่ระบบกำลังดาวน์โหลด</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="other">แพ็กเกจสำรองข้อมูลของ Signal บนอุปกรณ์เครื่องนี้มีอายุการใช้งานอีก %1$d วัน โปรดต่ออายุเพื่อการใช้งานอย่างต่อเนื่อง</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">ต่ออายุ</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">เรียนรู้เพิ่มเติม</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="other">คุณมีข้อมูลสำรอง %1$s ที่ยังไม่ได้บันทึกไว้บนอุปกรณ์เครื่องนี้ โดยข้อมูลสำรองของคุณจะถูกลบเมื่อแพ็กเกจหมดอายุในอีก %2$d วัน</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">ดาวน์โหลด</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">ข้ามการดาวน์โหลดใช่หรือไม่</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="other">หากข้ามการดาวน์โหลด ไฟล์สื่อและไฟล์แนบที่หลงเหลืออยู่ในข้อมูลสำรองของคุณจะถูกลบใน %1$d วัน</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">ข้าม</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">ไม่สามารถปิดใช้งานและลบข้อมูลสำรอง</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">เกิดข้อผิดพลาดด้านเครือข่าย ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">ไม่พบการสมัครแพ็กเกจ</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">ไม่สามารถกู้คืนการสมัครแพ็กเกจของคุณ</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">โดยอาจเกิดขึ้นในกรณีที่:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">คุณลงชื่อเข้าใช้ Play Store ด้วยบัญชี Google คนละบัญชีกับที่เคยใช้</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">คุณถ่ายโอนการใช้งานมาจาก iPhone</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">แพ็กเกจของคุณเพิ่งหมดอายุ</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">หากโทรศัพท์เครื่องเดิมของคุณยังมีการใช้งานแพ็กเกจอยู่ เราขอแนะนำให้ยกเลิกแพ็กเกจนั้นก่อนที่จะมีการต่ออายุ</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">เข้าใจแล้ว</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">ติดต่อฝ่ายสนับสนุน</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7487,7 +7650,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">กุญแจสำรองของคุณ</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">กุญแจสำรองคือรหัส 64 หลักที่จะทำให้คุณสามารถกู้คืนข้อมูลสำรองในกรณีที่ติดตั้ง Signal ใหม่อีกครั้ง</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">กุญแจสำรองคือรหัส 64 ตัวที่จะทำให้คุณสามารถกู้คืนข้อมูลสำรองในกรณีที่ติดตั้ง Signal ใหม่อีกครั้ง</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">หากลืมกุญแจของตัวเอง คุณจะไม่สามารถกู้คืนข้อมูลสำรอง และ Signal จะไม่สามารถช่วยกู้ข้อมูลสำรองให้คุณได้</string>
     <!-- Action button label -->
@@ -7548,6 +7711,8 @@
     <plurals name="MessageBackupsTypeSelectionScreen__last_d_days_of_media">
         <item quantity="other">ไฟล์สื่อจาก %1$d วันที่ผ่านมา</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">แพ็กเกจที่ใช้อยู่</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -7563,5 +7728,113 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">ไอคอนการเตือนความจำ</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">ฉันมีโทรศัพท์เครื่องเก่า</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">เริ่มใช้งานได้เร็วทันใจด้วยการสแกนคิวอาร์โค้ดจากบัญชี Signal ที่คุณใช้อยู่</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">ฉันไม่มีโทรศัพท์เครื่องเก่า</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">หรือติดตั้ง Signal ใหม่บนอุปกรณ์เครื่องเดียวกันนั้น</string>
+
+    <!-- Screen title for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">กู้คืนหรือถ่ายโอนบัญชี</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">ส่งข้อมูลบัญชี Signal และประวัติการส่งข้อความของคุณมายังอุปกรณ์เครื่องนี้</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">จากการสำรองข้อมูลของ Signal</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">แพ็กเกจสำรองข้อมูลของ Signal แบบฟรีหรือแบบชำระค่าบริการ</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">จากโฟลเดอร์ข้อมูลสำรอง</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">จากไฟล์ข้อมูลสำรอง</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">เลือกข้อมูลสำรองที่คุณเคยบันทึกไว้</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">จากโทรศัพท์เครื่องเก่า</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">ถ่ายโอนโดยตรงจากโทรศัพท์ Android เครื่องเก่าของคุณ</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">กู้คืนข้อมูลสำรองจากอุปกรณ์</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">กู้คืนข้อความของคุณจากข้อมูลสำรองที่บันทึกไว้ในอุปกรณ์ หากไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">ใส่กุญแจสำรองของคุณ</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">กุญแจสำรองคือรหัส 64 ตัวที่คุณต้องใช้ในการกู้คืนบัญชีและข้อมูล</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">ไม่มีกุญแจสำรองใช่หรือไม่</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">กุญแจสำรอง</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">ไม่สามารถกู้คืนข้อมูลสำรองในกรณีที่ไม่มีรหัสกู้คืน 64 ตัว Signal จะไม่สามารถช่วยกู้คืนข้อมูลสำรองของคุณหากคุณทำกุญแจสำรองหาย</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">โดยหากคุณยังมีอุปกรณ์เครื่องเก่า สามารถเปิดดูกุญแจสำรองได้ในการตั้งค่า &gt; ข้อมูลสำรอง จากนั้นแตะที่ดูกุญแจสำรอง</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">เรียนรู้เพิ่มเติม</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">ข้ามและไม่กู้คืนข้อมูล</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">ใช้โทรศัพท์เครื่องเก่าของคุณสแกนโค้ดนี้</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">เปิดแอป Signal บนอุปกรณ์เครื่องเก่า</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">แตะที่ไอคอนกล้อง </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">ใช้กล้องสแกนโค้ดนี้</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">ไม่สามารถสร้างคิวอาร์โค้ดได้</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">ใช้อุปกรณ์เครื่องเก่าสแกนแล้ว</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">ลองใหม่</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">ถ่ายโอนบัญชี</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">บัญชีของคุณจะถูกถ่ายโอนไปยังอุปกรณ์เครื่องใหม่ ซึ่งอุปกรณ์เครื่องนี้จะสามารถเห็นกลุ่ม รายชื่อผู้ติดต่อ เข้าถึงแชทของคุณ และส่งข้อความด้วยชื่อของคุณ %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">เรียนรู้เพิ่มเติม</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">ถ่ายโอนบัญชี</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">ปกป้องข้อความและข้อมูลการแชทด้วยการเข้ารหัสตั้งแต่ต้นทางถึงปลายทางบนอุปกรณ์ทุกเครื่อง</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">ปลดล็อกเพื่อถ่ายโอนบัญชี</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">ดำเนินการต่อบนอุปกรณ์อีกเครื่อง</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">ดำเนินการถ่ายโอนบัญชีต่อบนอุปกรณ์อีกเครื่องของคุณ</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">กู้คืนเสร็จสิ้น</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">เริ่มการถ่ายโอนบัญชี Signal และข้อความของคุณไปยังอุปกรณ์อีกเครื่องแล้ว ขณะนี้ Signal บนอุปกรณ์เครื่องนี้จะหยุดทำงาน</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">การถ่ายโอนสำเร็จ</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">ถ่ายโอนบัญชี Signal และข้อความของคุณไปยังอุปกรณ์อีกเครื่องเรียบร้อยแล้ว ขณะนี้ Signal บนอุปกรณ์เครื่องนี้จะหยุดทำงาน</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">ตกลง</string>
+
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">เปิดแอป Signal บนอุปกรณ์เครื่องเก่า</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">ข้ามการกู้คืน</string>
+
     <!-- EOF -->
 </resources>

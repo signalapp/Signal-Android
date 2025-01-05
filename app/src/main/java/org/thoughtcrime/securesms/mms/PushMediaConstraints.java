@@ -95,7 +95,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
     if (sentMediaQuality == SentMediaQuality.HIGH) {
       if (DeviceCapabilities.canEncodeHevc() && (RemoteConfig.useHevcEncoder() || SignalStore.internal().getHevcEncoding())) {
-        return MediaConfig.LEVEL_4;
+        return MediaConfig.LEVEL_3_H265;
       } else {
         return MediaConfig.LEVEL_3;
       }
@@ -109,7 +109,8 @@ public class PushMediaConstraints extends MediaConstraints {
     LEVEL_1(false, 1, MB, new int[] { 1600, 1024, 768, 512 }, 70, TranscodingPreset.LEVEL_1),
     LEVEL_2(false, 2, (int) (1.5 * MB), new int[] { 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_2),
     LEVEL_3(false, 3, (int) (3 * MB), new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3),
-    LEVEL_4(false, 4, 3 * MB, new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_4);
+    /** Experimental H265 level */
+    LEVEL_3_H265(false, 4, 3 * MB, new int[] { 4096, 3072, 2048, 1600, 1024, 768, 512 }, 75, TranscodingPreset.LEVEL_3_H265);
 
     private final boolean           isLowMemory;
     private final int               level;

@@ -26,6 +26,26 @@ enum class BadgeImageSize(val sizeCode: Int) {
 }
 
 @Composable
+fun BadgeImageMedium(
+  badge: Badge?,
+  modifier: Modifier
+) {
+  if (LocalInspectionMode.current) {
+    Box(modifier = modifier.background(color = Color.Black, shape = CircleShape))
+  } else {
+    AndroidView(
+      factory = {
+        BadgeImageView(it, BadgeImageSize.MEDIUM)
+      },
+      update = {
+        it.setBadge(badge)
+      },
+      modifier = modifier
+    )
+  }
+}
+
+@Composable
 fun BadgeImage112(
   badge: Badge?,
   modifier: Modifier = Modifier

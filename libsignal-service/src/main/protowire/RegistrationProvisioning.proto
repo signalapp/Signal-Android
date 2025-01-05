@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.signal.registration.proto";
+
+message RegistrationProvisionEnvelope {
+  bytes publicKey = 1;
+  bytes body = 2; // Encrypted RegistrationProvisionMessage
+}
+
+message RegistrationProvisionMessage {
+  enum Platform {
+    ANDROID = 0;
+    IOS = 1;
+  }
+
+  enum Tier {
+    FREE = 0;
+    PAID = 1;
+  }
+
+  string e164 = 1;
+  bytes aci = 2;
+  string accountEntropyPool = 3;
+  string pin = 4;
+  Platform platform = 5;
+  uint64 backupTimestampMs = 6;
+  optional Tier tier = 7;
+  uint64 backupSizeBytes = 8;
+  string restoreMethodToken = 9;
+  reserved 10; // iOSDeviceTransferMessage
+}

@@ -54,7 +54,8 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
       Log.i(TAG, "Already created Release Channel recipient ${SignalStore.releaseChannel.releaseChannelRecipientId}")
 
       val recipient = Recipient.resolved(SignalStore.releaseChannel.releaseChannelRecipientId!!)
-      if (recipient.profileAvatar == null || recipient.profileAvatar?.isEmpty() == true) {
+      if (recipient.profileAvatar.isNullOrEmpty() || !SignalStore.releaseChannel.hasUpdatedAvatar) {
+        SignalStore.releaseChannel.hasUpdatedAvatar = true
         setAvatar(recipient.id)
       }
     } else {
@@ -62,6 +63,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
 
       val releaseChannelId: RecipientId = recipients.insertReleaseChannelRecipient()
       SignalStore.releaseChannel.setReleaseChannelRecipientId(releaseChannelId)
+      SignalStore.releaseChannel.hasUpdatedAvatar = true
 
       recipients.setProfileName(releaseChannelId, ProfileName.asGiven("Signal"))
       recipients.setMuted(releaseChannelId, Long.MAX_VALUE)
@@ -75,7 +77,7 @@ class CreateReleaseChannelJob private constructor(parameters: Parameters) : Base
       context,
       Avatar.Resource(
         R.drawable.ic_signal_logo_large,
-        Avatars.ColorPair(ContextCompat.getColor(context, R.color.core_ultramarine), ContextCompat.getColor(context, R.color.core_white), "")
+        Avatars.ColorPair(ContextCompat.getColor(context, R.color.notification_background_ultramarine), ContextCompat.getColor(context, R.color.core_white), "")
       ),
       onAvatarRendered = { media ->
         AvatarHelper.setAvatar(context, id, BlobProvider.getInstance().getStream(context, media.uri))

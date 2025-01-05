@@ -52,7 +52,7 @@ class InternalSvrPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         _state.value.selected.toImplementation()
-          .setPin(_state.value.userPin, SignalStore.svr.getOrCreateMasterKey())
+          .setPin(_state.value.userPin, SignalStore.svr.masterKey)
           .execute()
       }
       .subscribeOn(Schedulers.io())

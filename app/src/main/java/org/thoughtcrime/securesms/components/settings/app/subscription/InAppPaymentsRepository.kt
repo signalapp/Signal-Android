@@ -14,6 +14,12 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.processors.PublishProcessor
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.distinctUntilChanged
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
@@ -30,7 +36,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobStatus
-import org.thoughtcrime.securesms.components.settings.app.subscription.manage.DonationRedemptionJobWatcher
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
 import org.thoughtcrime.securesms.database.DatabaseObserver.InAppPaymentObserver
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -50,10 +55,10 @@ import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentPro
 import java.security.SecureRandom
 import java.util.Currency
 import java.util.Optional
+import java.util.concurrent.locks.Lock
 import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -76,6 +81,31 @@ object InAppPaymentsRepository {
     return Completable.fromAction {
       SignalDatabase.inAppPayments.update(inAppPayment)
     }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Returns a flow of InAppPayment objects for the latest RECURRING_BACKUP object.
+   */
+  fun observeLatestBackupPayment(): Flow<InAppPaymentTable.InAppPayment> {
+    return callbackFlow {
+      fun refresh() {
+        val latest = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+        if (latest != null) {
+          trySendBlocking(latest)
+        }
+      }
+
+      val observer = InAppPaymentObserver {
+        refresh()
+      }
+
+      refresh()
+
+      AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
+      awaitClose {
+        AppDependencies.databaseObserver.unregisterObserver(observer)
+      }
+    }.conflate().distinctUntilChanged()
   }
 
   /**
@@ -200,10 +230,11 @@ object InAppPaymentsRepository {
   /**
    * Returns the object to utilize as a mutex for recurring subscriptions.
    */
-  fun resolveMutex(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Any {
+  @WorkerThread
+  fun resolveLock(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Lock {
     val payment = SignalDatabase.inAppPayments.getById(inAppPaymentId) ?: error("Not found")
 
-    return payment.type.requireSubscriberType()
+    return payment.type.requireSubscriberType().lock
   }
 
   /**
@@ -358,32 +389,6 @@ object InAppPaymentsRepository {
     }
   }
 
-  /**
-   * Determines if we are in the timeout period to display the "your backup will be deleted today" message
-   */
-  @WorkerThread
-  fun getExpiredBackupDeletionState(): ExpiredBackupDeletionState {
-    val inAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(InAppPaymentType.RECURRING_BACKUP)
-    if (inAppPayment == null) {
-      Log.w(TAG, "InAppPayment for recurring backup not found for last day check. Clearing check.")
-      SignalStore.inAppPayments.showLastDayToDownloadMediaDialog = false
-      return ExpiredBackupDeletionState.NONE
-    }
-
-    val now = SignalStore.misc.estimatedServerTime.milliseconds
-    val lastEndOfPeriod = inAppPayment.endOfPeriod
-    val displayDialogStart = lastEndOfPeriod + backupExpirationTimeout
-    val displayDialogEnd = lastEndOfPeriod + backupExpirationDeletion
-
-    return if (now in displayDialogStart..displayDialogEnd) {
-      ExpiredBackupDeletionState.DELETE_TODAY
-    } else if (now > displayDialogEnd) {
-      ExpiredBackupDeletionState.EXPIRED
-    } else {
-      ExpiredBackupDeletionState.NONE
-    }
-  }
-
   @JvmStatic
   @WorkerThread
   fun setShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriber: InAppPaymentSubscriberRecord, shouldCancel: Boolean) {
@@ -489,21 +494,13 @@ object InAppPaymentsRepository {
    */
   @WorkerThread
   fun hasPendingDonation(): Boolean {
-    return SignalDatabase.inAppPayments.hasPendingDonation() || DonationRedemptionJobWatcher.hasPendingRedemptionJob()
+    return SignalDatabase.inAppPayments.hasPendingDonation()
   }
 
   /**
    * Emits a stream of status updates for donations of the given type. Only One-time donations and recurring donations are currently supported.
    */
   fun observeInAppPaymentRedemption(type: InAppPaymentType): Observable<DonationRedemptionJobStatus> {
-    val jobStatusObservable: Observable<DonationRedemptionJobStatus> = when (type) {
-      InAppPaymentType.UNKNOWN -> Observable.empty()
-      InAppPaymentType.ONE_TIME_GIFT -> Observable.empty()
-      InAppPaymentType.ONE_TIME_DONATION -> DonationRedemptionJobWatcher.watchOneTimeRedemption()
-      InAppPaymentType.RECURRING_DONATION -> DonationRedemptionJobWatcher.watchSubscriptionRedemption()
-      InAppPaymentType.RECURRING_BACKUP -> Observable.empty()
-    }
-
     val fromDatabase: Observable<DonationRedemptionJobStatus> = Observable.create { emitter ->
       val observer = InAppPaymentObserver {
         val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(type)
@@ -514,7 +511,7 @@ object InAppPaymentsRepository {
       AppDependencies.databaseObserver.registerInAppPaymentObserver(observer)
       emitter.setCancellable { AppDependencies.databaseObserver.unregisterObserver(observer) }
     }.switchMap { inAppPaymentOptional ->
-      val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap jobStatusObservable
+      val inAppPayment = inAppPaymentOptional.getOrNull() ?: return@switchMap Observable.just(DonationRedemptionJobStatus.None)
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
@@ -543,15 +540,7 @@ object InAppPaymentsRepository {
       Observable.just(value)
     }
 
-    return fromDatabase
-      .switchMap {
-        if (it == DonationRedemptionJobStatus.None) {
-          jobStatusObservable
-        } else {
-          Observable.just(it)
-        }
-      }
-      .distinctUntilChanged()
+    return fromDatabase.distinctUntilChanged()
   }
 
   fun scheduleSyncForAccountRecordChange() {

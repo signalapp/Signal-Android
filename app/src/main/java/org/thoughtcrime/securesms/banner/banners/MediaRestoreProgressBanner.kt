@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.util.safeUnregisterReceiver
 import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener) : Banner<BackupStatusData>() {
+class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener = EmptyListener) : Banner<BackupStatusData>() {
 
   private var totalRestoredSize: Long = 0
 
@@ -73,12 +73,12 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
     BackupStatusBanner(
       data = model,
-      onSkipClick = listener::onSkip,
+      onActionClick = listener::onActionClick,
       onDismissClick = listener::onDismissComplete
     )
   }
 
-  private fun getActiveRestoreFlow(): Flow<BackupStatusData.RestoringMedia> {
+  private fun getActiveRestoreFlow(): Flow<BackupStatusData> {
     val flow: Flow<Unit> = callbackFlow {
       val onChange = { trySend(Unit) }
 
@@ -115,8 +115,13 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
             val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
             val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
             val completedBytes = totalRestoreSize - remainingAttachmentSize
+            val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
 
-            BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
+            if (availableBytes > -1L && remainingAttachmentSize > availableBytes) {
+              BackupStatusData.NotEnoughFreeSpace(requiredSpace = remainingAttachmentSize.bytes)
+            } else {
+              BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
+            }
           }
         }
       }
@@ -124,7 +129,12 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   }
 
   interface RestoreProgressBannerListener {
-    fun onSkip()
+    fun onActionClick(data: BackupStatusData)
     fun onDismissComplete()
+  }
+
+  private object EmptyListener : RestoreProgressBannerListener {
+    override fun onActionClick(data: BackupStatusData) = Unit
+    override fun onDismissComplete() = Unit
   }
 }

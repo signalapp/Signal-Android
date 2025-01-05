@@ -55,8 +55,8 @@ object ChatArchiveImporter {
         RecipientTable.TABLE_NAME,
         contentValuesOf(
           RecipientTable.MENTION_SETTING to (if (chat.dontNotifyForMentionsIfMuted) RecipientTable.MentionSetting.DO_NOT_NOTIFY.id else RecipientTable.MentionSetting.ALWAYS_NOTIFY.id),
-          RecipientTable.MUTE_UNTIL to chat.muteUntilMs,
-          RecipientTable.MESSAGE_EXPIRATION_TIME to chat.expirationTimerMs.milliseconds.inWholeSeconds,
+          RecipientTable.MUTE_UNTIL to (chat.muteUntilMs ?: 0),
+          RecipientTable.MESSAGE_EXPIRATION_TIME to (chat.expirationTimerMs?.milliseconds?.inWholeSeconds ?: 0),
           RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION to chat.expireTimerVersion,
           RecipientTable.CHAT_COLORS to chatColor?.serialize()?.encode(),
           RecipientTable.CUSTOM_CHAT_COLORS_ID to (chatColor?.id ?: ChatColors.Id.NotSet).longValue,

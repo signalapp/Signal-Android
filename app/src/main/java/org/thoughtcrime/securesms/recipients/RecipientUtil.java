@@ -336,7 +336,7 @@ public class RecipientUtil {
     }
 
     if (threadId == -1 || SignalDatabase.messages().canSetUniversalTimer(threadId)) {
-      int expireTimerVersion = ExpirationTimerUtil.setExpirationTimer(recipient.getId(), defaultTimer);
+      int expireTimerVersion = SignalDatabase.recipients().setExpireMessagesAndIncrementVersion(recipient.getId(), defaultTimer);
       OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L, expireTimerVersion);
       MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), MessageSender.SendType.SIGNAL, null, null);
       return expireTimerVersion;

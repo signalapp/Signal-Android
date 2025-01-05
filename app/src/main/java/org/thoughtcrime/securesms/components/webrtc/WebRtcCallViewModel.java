@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModel;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsState;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallEvent;
 import org.thoughtcrime.securesms.database.GroupTable;
@@ -321,7 +320,7 @@ public class WebRtcCallViewModel extends ViewModel {
                          webRtcViewModel.isRemoteVideoEnabled(),
                          webRtcViewModel.isRemoteVideoOffer(),
                          localParticipant.isMoreThanOneCameraAvailable(),
-                         Util.hasItems(webRtcViewModel.getRemoteParticipants()),
+                         webRtcViewModel.hasAtLeastOneRemote(),
                          webRtcViewModel.getActiveDevice(),
                          webRtcViewModel.getAvailableDevices(),
                          webRtcViewModel.getRemoteDevicesCount().orElse(0),

@@ -64,7 +64,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
 
       SignalStore.account.setRegistered(false)
       SignalStore.registration.clearRegistrationComplete()
-      SignalStore.registration.clearHasUploadedProfile()
+      SignalStore.registration.hasUploadedProfile = false
 
       SignalStore.misc.lastConsistencyCheckTime = System.currentTimeMillis()
       return
@@ -78,7 +78,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
 
       SignalStore.account.setRegistered(false)
       SignalStore.registration.clearRegistrationComplete()
-      SignalStore.registration.clearHasUploadedProfile()
+      SignalStore.registration.hasUploadedProfile = false
       return
     }
 

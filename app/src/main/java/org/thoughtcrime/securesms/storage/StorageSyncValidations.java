@@ -9,10 +9,12 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.Base64;
 import org.signal.core.util.SetUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
+import org.whispersystems.signalservice.internal.storage.protos.ContactRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 
 import java.nio.ByteBuffer;
@@ -31,12 +33,12 @@ public final class StorageSyncValidations {
                               boolean forcePushPending,
                               @NonNull Recipient self)
   {
-    validateManifestAndInserts(result.getManifest(), result.getInserts(), self);
+    validateManifestAndInserts(result.manifest, result.inserts, self);
 
-    if (result.getDeletes().size() > 0) {
-      Set<String> allSetEncoded = Stream.of(result.getManifest().getStorageIds()).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
+    if (result.deletes.size() > 0) {
+      Set<String> allSetEncoded = Stream.of(result.manifest.storageIds).map(StorageId::getRaw).map(Base64::encodeWithPadding).collect(Collectors.toSet());
 
-      for (byte[] delete : result.getDeletes()) {
+      for (byte[] delete : result.deletes) {
         String encoded = Base64.encodeWithPadding(delete);
         if (allSetEncoded.contains(encoded)) {
           throw new DeletePresentInFullIdSetError();
@@ -44,12 +46,12 @@ public final class StorageSyncValidations {
       }
     }
 
-    if (previousManifest.getVersion() == 0) {
+    if (previousManifest.version == 0) {
       Log.i(TAG, "Previous manifest is empty, not bothering with additional validations around the diffs between the two manifests.");
       return;
     }
 
-    if (result.getManifest().getVersion() != previousManifest.getVersion() + 1) {
+    if (result.manifest.version != previousManifest.version + 1) {
       throw new IncorrectManifestVersionError();
     }
 
@@ -58,14 +60,14 @@ public final class StorageSyncValidations {
       return;
     }
 
-    Set<ByteBuffer> previousIds = Stream.of(previousManifest.getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> newIds      = Stream.of(result.getManifest().getStorageIds()).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> previousIds = Stream.of(previousManifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> newIds      = Stream.of(result.manifest.storageIds).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
     Set<ByteBuffer> manifestInserts = SetUtil.difference(newIds, previousIds);
     Set<ByteBuffer> manifestDeletes = SetUtil.difference(previousIds, newIds);
 
-    Set<ByteBuffer> declaredInserts = Stream.of(result.getInserts()).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
-    Set<ByteBuffer> declaredDeletes = Stream.of(result.getDeletes()).map(ByteBuffer::wrap).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredInserts = Stream.of(result.inserts).map(r -> ByteBuffer.wrap(r.getId().getRaw())).collect(Collectors.toSet());
+    Set<ByteBuffer> declaredDeletes = Stream.of(result.deletes).map(ByteBuffer::wrap).collect(Collectors.toSet());
 
     if (declaredInserts.size() > manifestInserts.size()) {
       Log.w(TAG, "DeclaredInserts: " + declaredInserts.size() + ", ManifestInserts: " + manifestInserts.size());
@@ -103,7 +105,7 @@ public final class StorageSyncValidations {
 
   private static void validateManifestAndInserts(@NonNull SignalStorageManifest manifest, @NonNull List<SignalStorageRecord> inserts, @NonNull Recipient self) {
     int accountCount = 0;
-    for (StorageId id : manifest.getStorageIds()) {
+    for (StorageId id : manifest.storageIds) {
       accountCount += id.getType() == ManifestRecord.Identifier.Type.ACCOUNT.getValue() ? 1 : 0;
     }
 
@@ -115,11 +117,11 @@ public final class StorageSyncValidations {
       throw new MissingAccountError();
     }
 
-    Set<StorageId>  allSet    = new HashSet<>(manifest.getStorageIds());
+    Set<StorageId>  allSet    = new HashSet<>(manifest.storageIds);
     Set<StorageId>  insertSet = new HashSet<>(Stream.of(inserts).map(SignalStorageRecord::getId).toList());
     Set<ByteBuffer> rawIdSet  = Stream.of(allSet).map(id -> ByteBuffer.wrap(id.getRaw())).collect(Collectors.toSet());
 
-    if (allSet.size() != manifest.getStorageIds().size()) {
+    if (allSet.size() != manifest.storageIds.size()) {
       throw new DuplicateStorageIdError();
     }
 
@@ -166,18 +168,18 @@ public final class StorageSyncValidations {
         throw new UnknownInsertError();
       }
 
-      if (insert.getContact().isPresent()) {
-        SignalContactRecord contact = insert.getContact().get();
+      if (insert.getProto().contact != null) {
+        ContactRecord contact = insert.getProto().contact;
 
-        if (self.requireAci().equals(contact.getAci().orElse(null)) ||
-            self.requirePni().equals(contact.getPni().orElse(null)) ||
-            self.requireE164().equals(contact.getNumber().orElse("")))
+        if (self.requireAci().equals(ServiceId.ACI.parseOrNull(contact.aci)) ||
+            self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni)) ||
+            self.requireE164().equals(contact.e164))
         {
           throw new SelfAddedAsContactError();
         }
       }
 
-      if (insert.getAccount().isPresent() && !insert.getAccount().get().getProfileKey().isPresent()) {
+      if (insert.getProto().account != null && insert.getProto().account.profileKey.size() == 0) {
         Log.w(TAG, "Uploading a null profile key in our AccountRecord!");
       }
     }

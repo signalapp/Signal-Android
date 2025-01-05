@@ -226,7 +226,7 @@ class GroupsV2StateProcessor private constructor(
     currentLocalState: DecryptedGroup?,
     groupRecord: Optional<GroupRecord>
   ): Boolean {
-    if (SignalStore.internal.gv2IgnoreP2PChanges()) {
+    if (SignalStore.internal.gv2IgnoreP2PChanges) {
       Log.w(TAG, "$logPrefix Ignoring P2P group change by setting")
       return false
     }

@@ -79,6 +79,15 @@ class RestoreAttachmentThumbnailJob private constructor(
 
   @Throws(Exception::class, IOException::class, InvalidAttachmentException::class, InvalidMessageException::class, MissingConfigurationException::class)
   public override fun onRun() {
+    try {
+      doWork()
+    } catch (e: IOException) {
+      BackupRepository.checkForOutOfStorageError(TAG)
+      throw e
+    }
+  }
+
+  private fun doWork() {
     Log.i(TAG, "onRun() messageId: $messageId  attachmentId: $attachmentId")
 
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
@@ -117,13 +126,13 @@ class RestoreAttachmentThumbnailJob private constructor(
       override fun shouldCancel(): Boolean = this@RestoreAttachmentThumbnailJob.isCanceled
     }
 
-    val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
+    val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn).successOrThrow().headers
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
     val downloadResult = AppDependencies.signalServiceMessageReceiver
       .retrieveArchivedAttachment(
-        SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(attachment.getThumbnailMediaName()),
+        SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.getThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,

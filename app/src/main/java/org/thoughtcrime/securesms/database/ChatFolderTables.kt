@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.count
 import org.signal.core.util.delete
 import org.signal.core.util.groupBy
 import org.signal.core.util.insertInto
@@ -99,12 +100,12 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $CHAT_FOLDER_ID INTEGER NOT NULL REFERENCES ${ChatFolderTable.TABLE_NAME} (${ChatFolderTable.ID}) ON DELETE CASCADE,
         $THREAD_ID INTEGER NOT NULL REFERENCES ${ThreadTable.TABLE_NAME} (${ThreadTable.ID}) ON DELETE CASCADE,
-        $MEMBERSHIP_TYPE INTEGER DEFAULT 1
+        $MEMBERSHIP_TYPE INTEGER DEFAULT 1,
+        UNIQUE(${CHAT_FOLDER_ID}, ${THREAD_ID}) ON CONFLICT REPLACE
       )
     """
 
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX chat_folder_membership_chat_folder_id_index ON $TABLE_NAME ($CHAT_FOLDER_ID)",
       "CREATE INDEX chat_folder_membership_thread_id_index ON $TABLE_NAME ($THREAD_ID)",
       "CREATE INDEX chat_folder_membership_membership_type_index ON $TABLE_NAME ($MEMBERSHIP_TYPE)"
     )
@@ -152,7 +153,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Maps the chat folder ids to its corresponding chat folder
    */
-  fun getChatFolders(includeUnreads: Boolean = false): List<ChatFolderRecord> {
+  fun getChatFolders(includeUnreadAndMutedCount: Boolean = false): List<ChatFolderRecord> {
     val includedChats: Map<Long, List<Long>> = getIncludedChats()
     val excludedChats: Map<Long, List<Long>> = getExcludedChats()
 
@@ -178,10 +179,11 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         )
       }
 
-    if (includeUnreads) {
+    if (includeUnreadAndMutedCount) {
       return folders.map { folder ->
         folder.copy(
-          unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+          unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder),
+          isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
         )
       }
     }
@@ -229,6 +231,17 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
       .groupBy { cursor ->
         cursor.requireLong(ChatFolderMembershipTable.CHAT_FOLDER_ID) to cursor.requireLong(ChatFolderMembershipTable.THREAD_ID)
       }
+  }
+
+  /**
+   * Returns the number of folders a user has, including the default 'All Chats'
+   */
+  fun getFolderCount(): Int {
+    return readableDatabase
+      .count()
+      .from(ChatFolderTable.TABLE_NAME)
+      .run()
+      .readToSingleInt()
   }
 
   /**
@@ -344,6 +357,49 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           .run(SQLiteDatabase.CONFLICT_IGNORE)
       }
       AppDependencies.databaseObserver.notifyChatFolderObservers()
+    }
+  }
+
+  /**
+   * Removes a thread from a chat folder
+   */
+  fun removeFromFolder(folderId: Long, threadId: Long) {
+    writableDatabase.withinTransaction { db ->
+      db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
+        .values(
+          ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
+          ChatFolderMembershipTable.THREAD_ID to threadId,
+          ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.EXCLUDED.value
+        )
+        .run(SQLiteDatabase.CONFLICT_REPLACE)
+
+      AppDependencies.databaseObserver.notifyChatFolderObservers()
+    }
+  }
+
+  /**
+   * Adds a thread to a chat folder
+   */
+  fun addToFolder(folderId: Long, threadId: Long) {
+    writableDatabase.withinTransaction { db ->
+      db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
+        .values(
+          ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
+          ChatFolderMembershipTable.THREAD_ID to threadId,
+          ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.INCLUDED.value
+        )
+        .run(SQLiteDatabase.CONFLICT_REPLACE)
+
+      AppDependencies.databaseObserver.notifyChatFolderObservers()
+    }
+  }
+
+  /**
+   * Inserts the default 'All chats' folder in cases where it could get deleted (eg backups)
+   */
+  fun insertAllChatFolder() {
+    writableDatabase.withinTransaction { db ->
+      db.insert(ChatFolderTable.TABLE_NAME, null, getAllChatsFolderContentValues())
     }
   }
 

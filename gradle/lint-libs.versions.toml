@@ -1,0 +1,10 @@
+# IMPORTANT: After changing a dependency, please run:
+# ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
+
+[versions]
+lint = "31.4.0"
+
+[libraries]
+lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lint" }
+lint-checks = { module = "com.android.tools.lint:lint-checks", version.ref = "lint" }
+lint-tests = { module = "com.android.tools.lint:lint-tests", version.ref = "lint" }

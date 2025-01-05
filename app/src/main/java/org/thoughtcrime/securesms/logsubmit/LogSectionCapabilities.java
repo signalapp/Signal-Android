@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 
 public final class LogSectionCapabilities implements LogSection {
@@ -30,17 +31,18 @@ public final class LogSectionCapabilities implements LogSection {
 
     Recipient self = Recipient.self();
 
-    AccountAttributes.Capabilities localCapabilities  = AppCapabilities.getCapabilities(false);
+    AccountAttributes.Capabilities localCapabilities  = AppCapabilities.getCapabilities(false, RemoteConfig.getStorageServiceEncryptionV2());
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
                                                .append("DeleteSync: ").append(localCapabilities.getDeleteSync()).append("\n")
                                                .append("VersionedExpirationTimer: ").append(localCapabilities.getVersionedExpirationTimer()).append("\n")
+                                               .append("StorageServiceEncryptionV2: ").append(localCapabilities.getStorageServiceEncryptionV2()).append("\n")
                                                .append("\n")
                                                .append("-- Global").append("\n");
 
     if (globalCapabilities != null) {
-      builder.append("DeleteSync: ").append(globalCapabilities.getDeleteSync()).append("\n");
+      builder.append("StorageServiceEncryptionV2: ").append(globalCapabilities.getStorageServiceEncryptionV2()).append("\n");
       builder.append("\n");
     } else {
       builder.append("Self not found!");

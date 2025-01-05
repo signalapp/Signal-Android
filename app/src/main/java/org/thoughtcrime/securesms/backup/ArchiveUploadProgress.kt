@@ -104,6 +104,10 @@ object ArchiveUploadProgress {
     updateState(PROGRESS_NONE)
   }
 
+  fun onValidationFailure() {
+    updateState(PROGRESS_NONE)
+  }
+
   private fun updateState(state: ArchiveUploadProgressState, notify: Boolean = true) {
     uploadProgress = state
     SignalStore.backup.archiveUploadState = state

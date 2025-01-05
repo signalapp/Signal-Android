@@ -7,9 +7,11 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -30,6 +32,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -45,10 +48,10 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.theme.SignalTheme
-import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
-import org.whispersystems.signalservice.api.backup.BackupKey
 import kotlin.random.Random
+import kotlin.random.nextInt
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Screen displaying the backup key allowing the user to write it down
@@ -57,7 +60,7 @@ import kotlin.random.Random
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MessageBackupsKeyRecordScreen(
-  backupKey: BackupKey,
+  backupKey: String,
   onNavigationClick: () -> Unit = {},
   onCopyToClipboardClick: (String) -> Unit = {},
   onNextClick: () -> Unit = {}
@@ -75,7 +78,7 @@ fun MessageBackupsKeyRecordScreen(
     Column(
       modifier = Modifier
         .padding(paddingValues)
-        .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+        .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -102,7 +105,7 @@ fun MessageBackupsKeyRecordScreen(
       )
 
       val backupKeyString = remember(backupKey) {
-        backupKey.value.toList().chunked(2).map { Hex.toStringCondensed(it.toByteArray()) }.joinToString("  ")
+        backupKey.chunked(4).joinToString("  ")
       }
 
       Box(
@@ -190,7 +193,7 @@ private fun BottomSheetContent(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     BottomSheets.Handle()
     Text(
@@ -210,7 +213,11 @@ private fun BottomSheetContent(
 
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(vertical = 24.dp)
+      modifier = Modifier
+        .padding(vertical = 24.dp)
+        .defaultMinSize(minWidth = 220.dp)
+        .clip(shape = RoundedCornerShape(percent = 50))
+        .clickable(onClick = { checked = !checked })
     ) {
       Checkbox(
         checked = checked,
@@ -226,14 +233,18 @@ private fun BottomSheetContent(
     Buttons.LargeTonal(
       enabled = checked,
       onClick = onContinueClick,
-      modifier = Modifier.padding(bottom = 16.dp)
+      modifier = Modifier
+        .padding(bottom = 16.dp)
+        .defaultMinSize(minWidth = 220.dp)
     ) {
       Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__continue))
     }
 
     TextButton(
       onClick = onSeeKeyAgainClick,
-      modifier = Modifier.padding(bottom = 24.dp)
+      modifier = Modifier
+        .padding(bottom = 24.dp)
+        .defaultMinSize(minWidth = 220.dp)
     ) {
       Text(
         text = stringResource(R.string.MessageBackupsKeyRecordScreen__see_key_again)
@@ -247,7 +258,15 @@ private fun BottomSheetContent(
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
-      backupKey = BackupKey(Random.nextBytes(32))
+      backupKey = (0 until 64).map { Random.nextInt(97..122).toChar() }.joinToString("")
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BottomSheetContentPreview() {
+  Previews.BottomSheetPreview {
+    BottomSheetContent({}, {})
   }
 }

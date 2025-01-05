@@ -13,7 +13,7 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.MacInputStream
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.EOFException
 import java.io.IOException
@@ -31,7 +31,7 @@ import javax.crypto.spec.SecretKeySpec
  * that decrypted data is gunzipped, then that data is read as frames.
  */
 class EncryptedBackupReader(
-  key: BackupKey,
+  key: MessageBackupKey,
   aci: ACI,
   val length: Long,
   dataStream: () -> InputStream
@@ -51,7 +51,7 @@ class EncryptedBackupReader(
     val iv = countingStream.readNBytesOrThrow(16)
 
     val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
-      init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+      init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.aesKey, "AES"), IvParameterSpec(iv))
     }
 
     stream = GZIPInputStream(

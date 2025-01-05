@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 /**
  * Remove local unknown storage ids not in local storage service manifest.
@@ -28,7 +27,7 @@ internal class StorageFixLocalUnknownMigrationJob(
 
   @Suppress("UsePropertyAccessSyntax")
   override fun performMigration() {
-    val localStorageIds = SignalStore.storageService.getManifest().storageIds.toSet()
+    val localStorageIds = SignalStore.storageService.manifest.storageIds.toSet()
     val unknownLocalIds = SignalDatabase.unknownStorageIds.getAllUnknownIds().toSet()
     val danglingLocalUnknownIds = unknownLocalIds - localStorageIds
 
@@ -44,7 +43,7 @@ internal class StorageFixLocalUnknownMigrationJob(
 
     val jobManager = AppDependencies.jobManager
 
-    if (TextSecurePreferences.isMultiDevice(context)) {
+    if (SignalStore.account.hasLinkedDevices) {
       Log.i(TAG, "Multi-device.")
       jobManager.startChain(StorageSyncJob())
         .then(MultiDeviceKeysUpdateJob())

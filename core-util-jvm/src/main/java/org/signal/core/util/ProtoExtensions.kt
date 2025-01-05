@@ -32,6 +32,14 @@ fun ByteString?.isNullOrEmpty(): Boolean {
   return this == null || this.size == 0
 }
 
+fun ByteString.nullIfEmpty(): ByteString? {
+  return if (this.isEmpty()) {
+    null
+  } else {
+    this
+  }
+}
+
 /**
  * Performs the common pattern of attempting to decode a serialized proto and returning null if it fails to decode.
  */

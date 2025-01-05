@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
+import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 
 @Suppress("ClassName")
@@ -34,10 +35,10 @@ class RecipientTableTest_applyStorageSyncContactUpdate {
     MmsHelper.insert(recipient = other)
     identities.setVerified(other.id, harness.othersKeys[0].publicKey, IdentityTable.VerifiedStatus.VERIFIED)
 
-    val oldRecord: SignalContactRecord = StorageSyncModels.localToRemoteRecord(SignalDatabase.recipients.getRecordForSync(harness.others[0])!!).contact.get()
+    val oldRecord: SignalContactRecord = StorageSyncModels.localToRemoteRecord(SignalDatabase.recipients.getRecordForSync(harness.others[0])!!).let { it.proto.contact!!.toSignalContactRecord(it.id) }
 
     val newProto = oldRecord
-      .toProto()
+      .proto
       .newBuilder()
       .identityState(ContactRecord.IdentityState.DEFAULT)
       .build()

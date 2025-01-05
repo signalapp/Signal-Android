@@ -1,20 +1,19 @@
 package org.thoughtcrime.securesms.crash
 
 import android.app.Application
-import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.assertIs
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
@@ -23,13 +22,12 @@ import java.util.UUID
 @Config(manifest = Config.NONE, application = Application::class)
 class CrashConfigTest {
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   @Before
   fun setup() {
     mockkObject(RemoteConfig)
-
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
 
     mockkObject(SignalStore)
     every { SignalStore.account.aci } returns ServiceId.ACI.from(UUID.randomUUID())

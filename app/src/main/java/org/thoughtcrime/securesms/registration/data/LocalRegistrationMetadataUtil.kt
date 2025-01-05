@@ -17,7 +17,7 @@ import org.whispersystems.signalservice.api.account.PreKeyCollection
  * and combines them into a proto-backed class [LocalRegistrationMetadata] so they can be serialized & stored.
  */
 object LocalRegistrationMetadataUtil {
-  fun createLocalRegistrationMetadata(localAciIdentityKeyPair: IdentityKeyPair, localPniIdentityKeyPair: IdentityKeyPair, registrationData: RegistrationData, remoteResult: RegistrationRepository.AccountRegistrationResult, reglockEnabled: Boolean): LocalRegistrationMetadata {
+  fun createLocalRegistrationMetadata(localAciIdentityKeyPair: IdentityKeyPair, localPniIdentityKeyPair: IdentityKeyPair, registrationData: RegistrationData, remoteResult: AccountRegistrationResult, reglockEnabled: Boolean): LocalRegistrationMetadata {
     return LocalRegistrationMetadata.Builder().apply {
       aciIdentityKeyPair = localAciIdentityKeyPair.serialize().toByteString()
       aciSignedPreKey = remoteResult.aciPreKeyCollection.signedPreKey.serialize().toByteString()

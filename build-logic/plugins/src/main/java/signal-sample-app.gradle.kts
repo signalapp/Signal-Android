@@ -46,6 +46,7 @@ android {
   }
 
   buildFeatures {
+    buildConfig = true
     compose = true
   }
 
@@ -79,7 +80,6 @@ dependencies {
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.mockito.core)
-  testImplementation(testLibs.mockito.android)
   testImplementation(testLibs.mockito.kotlin)
   testImplementation(testLibs.robolectric.robolectric)
   testImplementation(testLibs.androidx.test.core)

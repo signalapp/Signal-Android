@@ -101,7 +101,7 @@ class SignalCallLinkManager(
         )
       } catch (e: Exception) {
         Log.e(TAG, "Failed to create call link credential.", e)
-        emitter.onError(e)
+        emitter.onSuccess(CreateCallLinkResult.Failure(-1))
         return@create
       }
 
@@ -111,7 +111,7 @@ class SignalCallLinkManager(
 
       // Credential
       callManager.createCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         rootKey,
         adminPassKey,
@@ -139,7 +139,7 @@ class SignalCallLinkManager(
   ): Single<ReadCallLinkResult> {
     return Single.create { emitter ->
       callManager.readCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),
         CallLinkRootKey(credentials.linkKeyBytes)
       ) {
@@ -165,7 +165,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.updateCallLinkName(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes,
@@ -192,7 +192,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.updateCallLinkRestrictions(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes,
@@ -218,7 +218,7 @@ class SignalCallLinkManager(
       val credentialPresentation = requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes)
 
       callManager.deleteCallLink(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
         credentials.adminPassBytes
@@ -226,7 +226,10 @@ class SignalCallLinkManager(
         if (result.isSuccess && result.value == true) {
           emitter.onSuccess(UpdateCallLinkResult.Delete(credentials.roomId))
         } else {
-          emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
+          when (result.status) {
+            409.toShort() -> emitter.onSuccess(UpdateCallLinkResult.CallLinkIsInUse)
+            else -> emitter.onSuccess(UpdateCallLinkResult.Failure(result.status))
+          }
         }
       }
     }

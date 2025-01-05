@@ -50,8 +50,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.ProfileUtil;
+import org.whispersystems.signalservice.api.groupsv2.DecryptChangeVerificationMode;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupResponse;
-import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.groupsv2.GroupCandidate;
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct;
@@ -61,6 +61,7 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.groupsv2.InvalidGroupStateException;
 import org.whispersystems.signalservice.api.groupsv2.NotAbleToApplyGroupV2ChangeException;
+import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsements;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -291,7 +292,7 @@ final class GroupManagerV2 {
 
       Set<GroupCandidate> groupCandidates = groupCandidateHelper.recipientIdsToCandidates(new HashSet<>(newMembers));
 
-      if (SignalStore.internal().gv2ForceInvites()) {
+      if (SignalStore.internal().getGv2ForceInvites()) {
         groupCandidates = GroupCandidate.withoutExpiringProfileKeyCredentials(groupCandidates);
       }
 
@@ -678,8 +679,7 @@ final class GroupManagerV2 {
       GroupChangeResponse changeResponse    = commitToServer(changeActions);
       GroupChange         signedGroupChange = changeResponse.groupChange;
       try {
-        //noinspection OptionalGetWithoutIsPresent
-        decryptedChange     = groupOperations.decryptChange(signedGroupChange, false).get();
+        decryptedChange     = groupOperations.decryptChange(signedGroupChange, DecryptChangeVerificationMode.alreadyTrusted()).get();
         decryptedGroupState = DecryptedGroupUtil.apply(previousGroupState, decryptedChange);
       } catch (VerificationFailedException | InvalidGroupStateException | NotAbleToApplyGroupV2ChangeException e) {
         Log.w(TAG, e);
@@ -766,7 +766,7 @@ final class GroupManagerV2 {
         GroupsV2Operations.GroupOperations groupOperations = groupsV2Operations.forGroup(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
 
         try {
-          return groupOperations.decryptChange(GroupChange.ADAPTER.decode(signedGroupChange), true)
+          return groupOperations.decryptChange(GroupChange.ADAPTER.decode(signedGroupChange), DecryptChangeVerificationMode.verify(GroupId.getIdentifierForMasterKey(groupMasterKey)))
                                 .orElse(null);
         } catch (VerificationFailedException | InvalidGroupStateException | IOException e) {
           Log.w(TAG, "Unable to verify supplied group change", e);
@@ -792,7 +792,7 @@ final class GroupManagerV2 {
     GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
     Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
 
-    if (SignalStore.internal().gv2ForceInvites()) {
+    if (SignalStore.internal().getGv2ForceInvites()) {
       Log.w(TAG, "Forcing GV2 invites due to internal setting");
       candidates = GroupCandidate.withoutExpiringProfileKeyCredentials(candidates);
     }
@@ -989,7 +989,7 @@ final class GroupManagerV2 {
     {
       try {
         //noinspection OptionalGetWithoutIsPresent
-        return groupOperations.decryptChange(signedGroupChange, false).get();
+        return groupOperations.decryptChange(signedGroupChange, DecryptChangeVerificationMode.alreadyTrusted()).get();
       } catch (VerificationFailedException | InvalidGroupStateException | IOException e) {
         Log.w(TAG, e);
         throw new GroupChangeFailedException(e);
@@ -1159,7 +1159,7 @@ final class GroupManagerV2 {
 
       try {
         //noinspection OptionalGetWithoutIsPresent
-        DecryptedGroupChange decryptedChange = groupOperations.decryptChange(signedGroupChange, false).get();
+        DecryptedGroupChange decryptedChange = groupOperations.decryptChange(signedGroupChange, DecryptChangeVerificationMode.alreadyTrusted()).get();
         DecryptedGroup       newGroup        = DecryptedGroupUtil.applyWithoutRevisionCheck(decryptedGroup, decryptedChange);
 
         groupDatabase.update(groupId, resetRevision(newGroup, decryptedGroup.revision), null);

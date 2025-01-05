@@ -17,18 +17,16 @@
 
 package org.thoughtcrime.securesms.util;
 
-import junit.framework.AssertionFailedError;
-
 import org.junit.Test;
-import org.thoughtcrime.securesms.BaseUnitTest;
 
 import java.net.URISyntaxException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
-public class Rfc5724UriTest extends BaseUnitTest {
+public class Rfc5724UriTest {
 
-  @Test public void testInvalidPath() throws Exception {
+  @Test public void testInvalidPath() {
     final String[] invalidSchemaUris = {
         "",
         ":",
@@ -39,12 +37,11 @@ public class Rfc5724UriTest extends BaseUnitTest {
     };
 
     for (String uri : invalidSchemaUris) {
-      try {
-        new Rfc5724Uri(uri);
-        throw new AssertionFailedError("URISyntaxException should be thrown");
-      } catch (URISyntaxException e) {
-        // success
-      }
+      assertThrows(
+          "URISyntaxException should be thrown",
+          URISyntaxException.class,
+          () -> new Rfc5724Uri(uri)
+      );
     }
   }
 
@@ -59,7 +56,7 @@ public class Rfc5724UriTest extends BaseUnitTest {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
-      assertTrue(testUri.getSchema().equals(uriTestPair[1]));
+      assertEquals(uriTestPair[1], testUri.getSchema());
     }
   }
 
@@ -78,7 +75,7 @@ public class Rfc5724UriTest extends BaseUnitTest {
 
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri = new Rfc5724Uri(uriTestPair[0]);
-      assertTrue(testUri.getPath().equals(uriTestPair[1]));
+      assertEquals(uriTestPair[1], testUri.getPath());
     }
   }
 
@@ -97,9 +94,7 @@ public class Rfc5724UriTest extends BaseUnitTest {
     for (String[] uriTestPair : uriTestPairs) {
       final Rfc5724Uri testUri     = new Rfc5724Uri(uriTestPair[0]);
       final String     paramResult = testUri.getQueryParams().get(uriTestPair[1]);
-
-      if (paramResult == null) assertTrue(uriTestPair[2] == null);
-      else                     assertTrue(paramResult.equals(uriTestPair[2]));
+      assertEquals(uriTestPair[2], paramResult);
     }
   }
 }

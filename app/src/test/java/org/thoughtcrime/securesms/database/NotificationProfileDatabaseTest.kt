@@ -10,21 +10,24 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.TestDatabaseUtil
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import java.time.DayOfWeek
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class NotificationProfileDatabaseTest {
+
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
 
   private lateinit var db: SQLiteDatabase
   private lateinit var database: NotificationProfileDatabase
@@ -40,10 +43,6 @@ class NotificationProfileDatabaseTest {
         println(it)
         this.execSQL(it)
       }
-    }
-
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
     }
 
     db = sqlCipher.writableDatabase

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.migrations
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Migration to sync keys with linked devices.
@@ -21,7 +21,7 @@ internal class SyncKeysMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (TextSecurePreferences.isMultiDevice(context)) {
+    if (SignalStore.account.hasLinkedDevices) {
       AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
     }
   }

@@ -83,7 +83,7 @@ jobs:
         issue-number: ${{ github.event.pull_request.number }}
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: diffuse-output
         path: ${{ steps.diffuse.outputs.diff-file }}

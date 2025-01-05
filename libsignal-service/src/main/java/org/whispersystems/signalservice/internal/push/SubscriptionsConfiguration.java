@@ -76,15 +76,9 @@ public class SubscriptionsConfiguration {
   }
 
   public static class LevelConfiguration {
-    @JsonProperty("name")
-    private String name;
 
     @JsonProperty("badge")
     private SignalServiceProfile.Badge badge;
-
-    public String getName() {
-      return name;
-    }
 
     public SignalServiceProfile.Badge getBadge() {
       return badge;
@@ -111,8 +105,22 @@ public class SubscriptionsConfiguration {
     @JsonProperty("storageAllowanceBytes")
     private long storageAllowanceBytes;
 
+    @JsonProperty("playProductId")
+    private String playProductId;
+
+    @JsonProperty("mediaTtlDays")
+    private long mediaTtlDays;
+
     public long getStorageAllowanceBytes() {
       return storageAllowanceBytes;
+    }
+
+    public String getPlayProductId() {
+      return playProductId;
+    }
+
+    public long getMediaTtlDays() {
+      return mediaTtlDays;
     }
   }
 

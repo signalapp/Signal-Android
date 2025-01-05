@@ -41,7 +41,7 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
   )
 
   override fun run(): Result {
-    if (SignalStore.backup.optimizeStorage) {
+    if (SignalStore.backup.optimizeStorage && !SignalStore.backup.userManuallySkippedMediaRestore) {
       return Result.success()
     }
 

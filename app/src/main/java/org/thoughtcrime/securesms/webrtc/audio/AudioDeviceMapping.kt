@@ -21,7 +21,7 @@ object AudioDeviceMapping {
 
   @JvmStatic
   fun fromPlatformType(type: Int): SignalAudioManager.AudioDevice {
-    for (kind in SignalAudioManager.AudioDevice.values()) {
+    for (kind in SignalAudioManager.AudioDevice.entries) {
       if (getEquivalentPlatformTypes(kind).contains(type)) return kind
     }
     return SignalAudioManager.AudioDevice.NONE

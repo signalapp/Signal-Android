@@ -23,7 +23,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_FOREGROUND_TIME = "misc.last_foreground_time"
     private const val PNI_INITIALIZED_DEVICES = "misc.pni_initialized_devices"
     private const val LINKED_DEVICES_REMINDER = "misc.linked_devices_reminder"
-    private const val HAS_LINKED_DEVICES = "misc.linked_devices_present"
     private const val USERNAME_QR_CODE_COLOR = "mis.username_qr_color_scheme"
     private const val KEYBOARD_LANDSCAPE_HEIGHT = "misc.keyboard.landscape_height"
     private const val KEYBOARD_PORTRAIT_HEIGHT = "misc.keyboard.protrait_height"
@@ -36,7 +35,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LINKED_DEVICE_LAST_ACTIVE_CHECK_TIME = "misc.linked_device.last_active_check_time"
     private const val LEAST_ACTIVE_LINKED_DEVICE = "misc.linked_device.least_active"
     private const val NEXT_DATABASE_ANALYSIS_TIME = "misc.next_database_analysis_time"
-    private const val LOCK_SCREEN_ATTEMPT_COUNT = "misc.lock_screen_attempt_count"
     private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
     private const val LAST_WEBSOCKET_CONNECT_TIME = "misc.last_websocket_connect_time"
     private const val LAST_CONNECTIVITY_WARNING_TIME = "misc.last_connectivity_warning_time"
@@ -163,11 +161,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   var hasPniInitializedDevices by booleanValue(PNI_INITIALIZED_DEVICES, true)
 
   /**
-   * Whether or not the user has linked devices.
-   */
-  var hasLinkedDevices by booleanValue(HAS_LINKED_DEVICES, false)
-
-  /**
    * Whether or not we should show a reminder for the user to relink their devices after re-registering.
    */
   var shouldShowLinkedDevicesReminder by booleanValue(LINKED_DEVICES_REMINDER, false)
@@ -252,15 +245,6 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * When the next scheduled database analysis is.
    */
   var nextDatabaseAnalysisTime: Long by longValue(NEXT_DATABASE_ANALYSIS_TIME, 0)
-
-  /**
-   * How many times the lock screen has been seen and _not_ unlocked. Used to determine if the user is confused by how to bypass the lock screen.
-   */
-  var lockScreenAttemptCount: Int by integerValue(LOCK_SCREEN_ATTEMPT_COUNT, 0)
-
-  fun incrementLockScreenAttemptCount() {
-    lockScreenAttemptCount++
-  }
 
   var lastNetworkResetDueToStreamResets: Long by longValue(LAST_NETWORK_RESET_TIME, 0L)
 

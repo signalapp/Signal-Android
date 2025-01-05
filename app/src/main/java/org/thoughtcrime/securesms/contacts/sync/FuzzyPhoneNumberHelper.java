@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +20,7 @@ import java.util.Set;
  */
 class FuzzyPhoneNumberHelper {
 
-  private final static List<FuzzyMatcher> FUZZY_MATCHERS = Arrays.asList(new MexicoFuzzyMatcher(), new ArgentinaFuzzyMatcher());
+  private final static List<FuzzyMatcher> FUZZY_MATCHERS = Arrays.asList(new MexicoFuzzyMatcher(), new ArgentinaFuzzyMatcher(), new BeninFuzzyMatcher());
 
   /**
    * This should be run on the list of eligible numbers for contact intersection so that we can
@@ -148,6 +146,41 @@ class FuzzyPhoneNumberHelper {
     @Override
     public boolean isPreferredVariant(@NonNull String number) {
       return number.startsWith("+549") && number.length() == 14;
+    }
+  }
+
+  /**
+   * Benin has added an 01 after their +229 country code, e.g. both of these numbers are valid and map to the same logical number:
+   *
+   * +22912345678
+   * +2290112345678
+   *
+   * The format with the added 01 should be preferred.
+   */
+  @VisibleForTesting
+  static class BeninFuzzyMatcher implements FuzzyMatcher {
+
+    @Override
+    public boolean matches(@NonNull String number) {
+      return (number.startsWith("+229") && number.length() == 12) || (number.startsWith("+22901") && number.length() == 14);
+    }
+
+    @Override
+    public @Nullable String getVariant(String number) {
+      if(number.startsWith("+229") && number.length() == 12) {
+        return "+22901" + number.substring("+229".length());
+      }
+
+      if(number.startsWith("+22901") && number.length() == 14) {
+        return "+229" + number.substring("+22901".length());
+      }
+
+      return null;
+    }
+
+    @Override
+    public boolean isPreferredVariant(@NonNull String number) {
+      return number.startsWith("+22901") && number.length() == 14;
     }
   }
 

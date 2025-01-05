@@ -8,7 +8,6 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -88,6 +87,7 @@ class ConversationListViewModel(
     conversationListDataSource = store
       .stateFlowable
       .subscribeOn(Schedulers.io())
+      .filter { it.currentFolder.id != -1L }
       .map { it.filterRequest to it.currentFolder }
       .distinctUntilChanged()
       .map { (filterRequest, folder) ->
@@ -115,7 +115,7 @@ class ConversationListViewModel(
       .subscribe { controller.onDataInvalidated() }
       .addTo(disposables)
 
-    Flowables.combineLatest(
+    Flowable.merge(
       RxDatabaseObserver
         .conversationList
         .debounce(250, TimeUnit.MILLISECONDS),
@@ -143,7 +143,9 @@ class ConversationListViewModel(
         if (conversations.isNotEmpty()) {
           false
         } else {
-          SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter) == 0
+          val archivedCount = SignalDatabase.threads.getArchivedConversationListCount(filterRequest.filter)
+          val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount(filterRequest.filter)
+          (archivedCount + unarchivedCount) == 0
         }
       }
       .observeOn(AndroidSchedulers.mainThread())
@@ -219,7 +221,7 @@ class ConversationListViewModel(
 
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadCount = true)
+      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = true)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -262,7 +264,7 @@ class ConversationListViewModel(
     }
   }
 
-  fun onMuteChatFolder(chatFolder: ChatFolderRecord, until: Long) {
+  fun onUpdateMute(chatFolder: ChatFolderRecord, until: Long) {
     viewModelScope.launch(Dispatchers.IO) {
       val ids = SignalDatabase.threads.getRecipientIdsByChatFolder(chatFolder)
       val recipientIds: List<RecipientId> = ids.filter { id ->
@@ -274,26 +276,24 @@ class ConversationListViewModel(
     }
   }
 
-  fun deleteChatFolder(chatFolder: ChatFolderRecord) {
-    viewModelScope.launch(Dispatchers.IO) {
-      SignalDatabase.chatFolders.deleteChatFolder(chatFolder)
-      val updatedFolders = folders.filter { folder -> folder.chatFolder.id != chatFolder.id }
-
-      store.update {
-        it.copy(
-          currentFolder = updatedFolders.first().chatFolder,
-          chatFolders = updatedFolders
-        )
-      }
-    }
-  }
-
   fun markChatFolderRead(chatFolder: ChatFolderRecord) {
     viewModelScope.launch(Dispatchers.IO) {
       val ids = SignalDatabase.threads.getThreadIdsByChatFolder(chatFolder)
       val messageIds = SignalDatabase.threads.setRead(ids, false)
       AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
       MarkReadReceiver.process(messageIds)
+    }
+  }
+
+  fun removeChatFromFolder(threadId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.removeFromFolder(currentFolder.id, threadId)
+    }
+  }
+
+  fun addToFolder(folderId: Long, threadId: Long) {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalDatabase.chatFolders.addToFolder(folderId, threadId)
     }
   }
 

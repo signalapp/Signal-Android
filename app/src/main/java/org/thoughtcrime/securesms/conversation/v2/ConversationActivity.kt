@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRep
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.util.ConfigurationUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import java.util.concurrent.TimeUnit
@@ -99,6 +101,13 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+  }
+
+  override fun onConfigurationChanged(newConfiguration: Configuration) {
+    super.onConfigurationChanged(newConfiguration)
+    if (ConfigurationUtil.isUiModeChanged(resources.configuration, newConfiguration)) {
+      recreate()
+    }
   }
 
   private fun replaceFragment() {

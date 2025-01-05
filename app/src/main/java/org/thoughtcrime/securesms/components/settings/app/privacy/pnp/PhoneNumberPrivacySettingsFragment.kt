@@ -34,6 +34,7 @@ import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
+import org.signal.core.ui.R as CoreUiR
 
 class PhoneNumberPrivacySettingsFragment : ComposeFragment() {
 
@@ -149,7 +150,7 @@ private fun Screen(
             ),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter), vertical = 16.dp)
+            modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter), vertical = 16.dp)
           )
         }
 
@@ -189,7 +190,7 @@ private fun Screen(
             ),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter), vertical = 16.dp)
+            modifier = Modifier.padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter), vertical = 16.dp)
           )
         }
       }

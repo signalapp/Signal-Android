@@ -121,7 +121,7 @@ public final class LogDetectorTest {
     lint()
       .files(appLogStub,
         java("package foo;\n" +
-               "import org.signal.log.Log;\n" +
+               "import org.signal.core.util.logging.Log;\n" +
                "public class Example {\n" +
                "  private static final String TAG = Log.tag(Example.class);\n" +
                "  public void log() {\n" +
@@ -178,7 +178,7 @@ public final class LogDetectorTest {
     lint()
       .files(appLogStub,
         java("package foo;\n" +
-               "import org.signal.log.Log;\n" +
+               "import org.signal.core.util.logging.Log;\n" +
                "public class Example {\n" +
                "  public void log() {\n" +
                "    Log.d(\"TAG\", \"msg\");\n" +

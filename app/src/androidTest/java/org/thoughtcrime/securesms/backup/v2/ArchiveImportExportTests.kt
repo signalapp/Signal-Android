@@ -9,7 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.github.difflib.DiffUtils
 import com.github.difflib.UnifiedDiffUtils
-import junit.framework.Assert.assertTrue
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.ByteArrayInputStream
 import java.util.UUID
@@ -40,7 +39,6 @@ class ArchiveImportExportTests {
     val SELF_PNI = ServiceId.PNI.from(UUID.fromString("00000000-0000-4000-8000-000000000002"))
     val SELF_E164 = "+10000000000"
     val SELF_PROFILE_KEY: ByteArray = Base64.decode("YQKRq+3DQklInaOaMcmlzZnN0m/1hzLiaONX7gB12dg=")
-    val MASTER_KEY = Base64.decode("sHuBMP4ToZk4tcNU+S8eBUeCt8Am5EZnvuqTBJIR4Do")
   }
 
   @Before
@@ -75,7 +73,7 @@ class ArchiveImportExportTests {
 
 //  @Test
   fun chatItemExpirationTimerUpdate() {
-    runTests { it.startsWith("chat_item_expiration_timer_") }
+    runTests { it.startsWith("chat_item_expiration_timer_update_") }
   }
 
 //  @Test
@@ -86,6 +84,16 @@ class ArchiveImportExportTests {
 //  @Test
   fun chatItemGroupCallUpdate() {
     runTests { it.startsWith("chat_item_group_call_update_") }
+  }
+
+//  @Test
+  fun chatItemGroupChangeChatMultipleUpdate() {
+    runTests { it.startsWith("chat_item_group_change_chat_multiple_update_") }
+  }
+
+//  @Test
+  fun chatItemGroupChangeChatUpdate() {
+    runTests { it.startsWith("chat_item_group_change_chat_") }
   }
 
 //  @Test
@@ -264,7 +272,7 @@ class ArchiveImportExportTests {
     KeyValueDatabase.getInstance(AppDependencies.application).clear()
     SignalStore.resetCache()
 
-    SignalStore.svr.setMasterKey(MasterKey(MASTER_KEY), "1234")
+    SignalStore.account.resetAccountEntropyPool()
     SignalStore.account.setE164(SELF_E164)
     SignalStore.account.setAci(SELF_ACI)
     SignalStore.account.setPni(SELF_PNI)
@@ -310,11 +318,11 @@ class ArchiveImportExportTests {
     }
 
     if (importComparable.unknownFieldMessages.isNotEmpty()) {
-      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages}")
+      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages.contentToString()}")
     }
 
     if (exportComparable.unknownFieldMessages.isNotEmpty()) {
-      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages}")
+      return TestResult.Failure(testName, "Imported backup contains unknown fields: ${importComparable.unknownFieldMessages.contentToString()}")
     }
 
     val canonicalImport = importComparable.comparableString

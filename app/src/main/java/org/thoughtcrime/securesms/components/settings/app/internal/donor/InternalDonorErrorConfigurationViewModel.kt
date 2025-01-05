@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.util.Locale
+import kotlin.concurrent.withLock
 
 class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
@@ -77,8 +78,8 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun setSelectedUnexpectedSubscriptionCancellation(unexpectedSubscriptionCancellationIndex: Int) {
     store.update {
       it.copy(
-        selectedUnexpectedSubscriptionCancellation = if (unexpectedSubscriptionCancellationIndex in UnexpectedSubscriptionCancellation.values().indices) {
-          UnexpectedSubscriptionCancellation.values()[unexpectedSubscriptionCancellationIndex]
+        selectedUnexpectedSubscriptionCancellation = if (unexpectedSubscriptionCancellationIndex in UnexpectedSubscriptionCancellation.entries.toTypedArray().indices) {
+          UnexpectedSubscriptionCancellation.entries[unexpectedSubscriptionCancellationIndex]
         } else {
           null
         }
@@ -89,8 +90,8 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun setStripeDeclineCode(stripeDeclineCodeIndex: Int) {
     store.update {
       it.copy(
-        selectedStripeDeclineCode = if (stripeDeclineCodeIndex in StripeDeclineCode.Code.values().indices) {
-          StripeDeclineCode.Code.values()[stripeDeclineCodeIndex]
+        selectedStripeDeclineCode = if (stripeDeclineCodeIndex in StripeDeclineCode.Code.entries.toTypedArray().indices) {
+          StripeDeclineCode.Code.entries[stripeDeclineCodeIndex]
         } else {
           null
         }
@@ -101,7 +102,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
   fun save(): Completable {
     val snapshot = store.state
     val saveState = Completable.fromAction {
-      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
+      InAppPaymentSubscriberRecord.Type.DONATION.lock.withLock {
         when {
           snapshot.selectedBadge?.isGift() == true -> handleGiftExpiration(snapshot)
           snapshot.selectedBadge?.isBoost() == true -> handleBoostExpiration(snapshot)
@@ -116,7 +117,7 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
 
   fun clearErrorState(): Completable {
     return Completable.fromAction {
-      synchronized(InAppPaymentSubscriberRecord.Type.DONATION) {
+      InAppPaymentSubscriberRecord.Type.DONATION.lock.withLock {
         SignalStore.inAppPayments.setExpiredBadge(null)
         SignalStore.inAppPayments.setExpiredGiftBadge(null)
         SignalStore.inAppPayments.unexpectedSubscriptionCancelationReason = null

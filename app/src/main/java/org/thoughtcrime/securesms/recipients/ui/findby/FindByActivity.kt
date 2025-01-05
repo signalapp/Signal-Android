@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Allows the user to look up another Signal user by phone number or username and
@@ -391,7 +392,7 @@ private fun Content(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
-          .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+          .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
           .padding(top = 8.dp)
       )
 
@@ -577,7 +578,7 @@ private fun CountryPrefixRowItem(
     modifier = Modifier
       .fillMaxWidth()
       .clickable(onClick = onClick)
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Text(

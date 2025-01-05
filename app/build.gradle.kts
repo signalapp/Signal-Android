@@ -21,8 +21,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1471
-val canonicalVersionName = "7.21.0"
+val canonicalVersionCode = 1491
+val canonicalVersionName = "7.27.1"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -84,7 +84,6 @@ android {
   ndkVersion = signalNdkVersion
 
   flavorDimensions += listOf("distribution", "environment")
-  useLibrary("org.apache.http.legacy")
   testBuildType = "instrumentation"
 
   android.bundle.language.enableSplit = false
@@ -163,6 +162,7 @@ android {
   }
 
   buildFeatures {
+    buildConfig = true
     viewBinding = true
     compose = true
   }
@@ -209,7 +209,6 @@ android {
     buildConfigField("String[]", "SIGNAL_CDSI_IPS", rootProject.extra["cdsi_ips"] as String)
     buildConfigField("String[]", "SIGNAL_SVR2_IPS", rootProject.extra["svr2_ips"] as String)
     buildConfigField("String", "SIGNAL_AGENT", "\"OWA\"")
-    buildConfigField("String", "CDSI_MRENCLAVE", "\"0f6fd79cdfdaa5b2e6337f534d3baf999318b0c462a7ac1f41297a3e4b424a57\"")
     buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"a6622ad4656e1abcd0bc0ff17c229477747d2ded0495c4ebee7ed35c1789fa97\"")
     buildConfigField("String", "SVR2_MRENCLAVE", "\"9314436a9a144992bb3680770ea5fd7934a7ffd29257844a33763a238903d570\"")
     buildConfigField("String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\"")
@@ -271,7 +270,6 @@ android {
         "proguard/proguard-glide.pro",
         "proguard/proguard-shortcutbadger.pro",
         "proguard/proguard-retrofit.pro",
-        "proguard/proguard-webrtc.pro",
         "proguard/proguard-klinker.pro",
         "proguard/proguard-mobilecoin.pro",
         "proguard/proguard-retrolambda.pro",
@@ -543,7 +541,6 @@ dependencies {
   implementation(libs.signal.ringrtc)
   implementation(libs.leolin.shortcutbadger)
   implementation(libs.emilsjolander.stickylistheaders)
-  implementation(libs.apache.httpclient.android)
   implementation(libs.glide.glide)
   implementation(libs.roundedimageview)
   implementation(libs.materialish.progress)
@@ -569,6 +566,7 @@ dependencies {
   implementation(libs.dnsjava)
   implementation(libs.kotlinx.collections.immutable)
   implementation(libs.accompanist.permissions)
+  implementation(libs.accompanist.drawablepainter)
   implementation(libs.kotlin.stdlib.jdk8)
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.coroutines.play.services)
@@ -618,8 +616,6 @@ dependencies {
   androidTestImplementation(testLibs.androidx.test.core)
   androidTestImplementation(testLibs.androidx.test.core.ktx)
   androidTestImplementation(testLibs.androidx.test.ext.junit.ktx)
-  androidTestImplementation(testLibs.mockito.android)
-  androidTestImplementation(testLibs.mockito.kotlin)
   androidTestImplementation(testLibs.mockk.android)
   androidTestImplementation(testLibs.square.okhttp.mockserver)
   androidTestImplementation(testLibs.diff.utils)

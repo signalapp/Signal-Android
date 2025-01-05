@@ -414,7 +414,7 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
 
     companion object : Serializer<State, Int> {
       override fun serialize(data: State): Int = data.code
-      override fun deserialize(input: Int): State = State.values().first { it.code == input }
+      override fun deserialize(input: Int): State = entries.first { it.code == input }
     }
   }
 }

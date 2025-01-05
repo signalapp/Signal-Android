@@ -63,7 +63,7 @@ class DigestingRequestBody(
 
     outputStream.flush()
 
-    val incrementalDigest: ByteArray = if (isIncremental) {
+    val incrementalDigest: ByteArray? = if (isIncremental) {
       if (contentLength != outputStream.totalBytesWritten) {
         Log.w(TAG, "Content uploaded ${logMessage(outputStream.totalBytesWritten, contentLength)} bytes compared to expected!")
       } else {
@@ -73,10 +73,12 @@ class DigestingRequestBody(
       digestStream.close()
       digestStream.toByteArray()
     } else {
-      ByteArray(0)
+      null
     }
 
-    attachmentDigest = AttachmentDigest(outputStream.transmittedDigest, incrementalDigest, sizeChoice.sizeInBytes)
+    val incrementalDigestChunkSize: Int = if (incrementalDigest?.isNotEmpty() == true) sizeChoice.sizeInBytes else 0
+
+    attachmentDigest = AttachmentDigest(outputStream.transmittedDigest, incrementalDigest, incrementalDigestChunkSize)
   }
 
   override fun contentLength(): Long {

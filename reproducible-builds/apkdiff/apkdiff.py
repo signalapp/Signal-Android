@@ -10,8 +10,12 @@ class ApkDiff:
         "META-INF/MANIFEST.MF",
         "META-INF/CERTIFIC.SF",
         "META-INF/CERTIFIC.RSA",
+        "META-INF/TEXTSECU.SF",
         "META-INF/TEXTSECU.RSA",
-        "META-INF/TEXTSECU.SF"
+        "META-INF/BNDLTOOL.SF",
+        "META-INF/BNDLTOOL.RSA",
+        "META-INF/code_transparency_signed.jwt",
+        "stamp-cert-sha256"
     ]
 
     def compare(self, firstApk, secondApk):

@@ -191,6 +191,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       if (keys.isNotEmpty()) {
         Log.d(TAG, "Performing send from multi-select activity result.")
         performSend(keys)
+      } else {
+        readyToSend = true
       }
     }
 
@@ -198,6 +200,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       if (keys.isNotEmpty()) {
         Log.d(TAG, "Performing send from stories activity result.")
         performSend(keys)
+      } else {
+        readyToSend = true
       }
     }
 

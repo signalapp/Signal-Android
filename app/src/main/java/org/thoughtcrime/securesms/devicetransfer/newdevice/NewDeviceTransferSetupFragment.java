@@ -27,7 +27,7 @@ public final class NewDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateAwayFromTransfer() {
-    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_deviceTransferSetup_to_transferOrRestore);
+    requireActivity().onNavigateUp();
   }
 
   @Override
@@ -78,7 +78,7 @@ public final class NewDeviceTransferSetupFragment extends DeviceTransferSetupFra
 
   @Override
   protected void navigateWhenWifiDirectUnavailable() {
-    SafeNavigation.safeNavigate(NavHostFragment.findNavController(this), R.id.action_deviceTransferSetup_to_transferOrRestore);
+    requireActivity().onNavigateUp();
   }
 
   @Override

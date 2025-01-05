@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 /**
  * Generates a key for use with the storage service.
  */
-interface StorageKeyGenerator {
+public interface StorageKeyGenerator {
   @NonNull
   byte[] generate();
 }

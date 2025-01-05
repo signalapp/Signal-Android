@@ -10,7 +10,7 @@ import org.signal.core.util.writeVarInt32
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.IOException
 import java.io.OutputStream
@@ -27,7 +27,7 @@ import javax.crypto.spec.SecretKeySpec
  * to the end of the [outputStream].
  */
 class EncryptedBackupWriter(
-  key: BackupKey,
+  key: MessageBackupKey,
   aci: ACI,
   private val outputStream: OutputStream,
   private val append: (ByteArray) -> Unit
@@ -44,7 +44,7 @@ class EncryptedBackupWriter(
     outputStream.flush()
 
     val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
-      init(Cipher.ENCRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+      init(Cipher.ENCRYPT_MODE, SecretKeySpec(keyMaterial.aesKey, "AES"), IvParameterSpec(iv))
     }
 
     val mac = Mac.getInstance("HmacSHA256").apply {

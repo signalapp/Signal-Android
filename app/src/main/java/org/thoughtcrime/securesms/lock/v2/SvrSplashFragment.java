@@ -115,7 +115,7 @@ public final class SvrSplashFragment extends Fragment {
   private void onCreatePin() {
     SvrSplashFragmentDirections.ActionCreateKbsPin action = SvrSplashFragmentDirections.actionCreateKbsPin();
 
-    action.setIsPinChange(SignalStore.svr().hasPin());
+    action.setIsPinChange(SignalStore.svr().hasOptedInWithAccess());
 
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), action);
   }

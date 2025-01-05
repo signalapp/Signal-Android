@@ -137,3 +137,11 @@ message UploadAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
   ResumableUpload uploadSpec = 2;
 }
+
+message BackupMediaSnapshotSyncJobData {
+  uint64 syncTime = 1;
+}
+
+message DeviceNameChangeJobData {
+  uint32 deviceId = 1;
+}

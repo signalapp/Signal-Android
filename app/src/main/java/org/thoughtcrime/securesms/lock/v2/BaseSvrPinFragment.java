@@ -101,7 +101,7 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
     if (SignalStore.svr().isRegistrationLockEnabled() ||
-        SignalStore.svr().hasPin() ||
+        SignalStore.svr().hasOptedInWithAccess() ||
         SignalStore.svr().hasOptedOut())
     {
       menu.clear();

@@ -20,4 +20,10 @@ public final class ConfigurationUtil {
   public static float getFontScale(@NonNull Configuration configuration) {
     return configuration.fontScale;
   }
+
+  public static boolean isUiModeChanged(@NonNull Configuration configuration, @NonNull Configuration newConfiguration) {
+    int oldTheme = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+    int newTheme = newConfiguration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+    return oldTheme != newTheme;
+  }
 }

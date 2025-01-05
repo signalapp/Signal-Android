@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.restore
 
 import android.content.Intent
 import android.net.Uri
-import org.thoughtcrime.securesms.devicetransfer.newdevice.BackupRestorationType
+import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 
 /**
  * Shared state holder for the restore flow.

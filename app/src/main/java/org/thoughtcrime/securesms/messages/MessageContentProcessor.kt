@@ -441,11 +441,12 @@ open class MessageContentProcessor(private val context: Context) {
       }
 
       content.syncMessage != null -> {
-        TextSecurePreferences.setMultiDevice(context, true)
+        SignalStore.account.hasLinkedDevices = true
 
         SyncMessageProcessor.process(
           context,
           senderRecipient,
+          threadRecipient,
           envelope,
           content,
           metadata,

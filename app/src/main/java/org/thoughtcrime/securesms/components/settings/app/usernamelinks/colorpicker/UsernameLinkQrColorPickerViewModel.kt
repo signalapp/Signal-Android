@@ -25,7 +25,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
     UsernameLinkQrColorPickerState(
       username = SignalStore.account.username!!,
       qrCodeData = QrCodeState.Loading,
-      colorSchemes = UsernameQrCodeColorScheme.values().asList().toImmutableList(),
+      colorSchemes = UsernameQrCodeColorScheme.entries.toImmutableList(),
       selectedColorScheme = SignalStore.misc.usernameQrCodeColorScheme
     )
   )
@@ -39,7 +39,7 @@ class UsernameLinkQrColorPickerViewModel : ViewModel() {
 
     if (usernameLink != null) {
       disposable += Single
-        .fromCallable { QrCodeData.forData(usernameLink.toLink(), 64) }
+        .fromCallable { QrCodeData.forData(usernameLink.toLink()) }
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe { qrData ->

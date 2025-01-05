@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.BackupProgressService
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import java.io.IOException
 
@@ -74,16 +76,19 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
           progress = progress.toFloat() / total.toFloat(),
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress, total))
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.bytes, total.bytes))
       }
 
       override fun shouldCancel() = isCanceled
     }
 
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
-    if (!BackupRepository.downloadBackupFile(tempBackupFile, progressListener)) {
-      Log.e(TAG, "Failed to download backup file")
-      throw IOException()
+    when (val result = BackupRepository.downloadBackupFile(tempBackupFile, progressListener)) {
+      is NetworkResult.Success -> Log.i(TAG, "Download successful")
+      else -> {
+        Log.w(TAG, "Failed to download backup file", result.getCause())
+        throw IOException(result.getCause())
+      }
     }
 
     if (isCanceled) {

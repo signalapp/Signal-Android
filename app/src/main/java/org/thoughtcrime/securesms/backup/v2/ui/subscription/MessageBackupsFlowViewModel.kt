@@ -97,6 +97,13 @@ class MessageBackupsFlowViewModel(
 
             try {
               Log.d(TAG, "Attempting to handle successful purchase.")
+
+              internalStateFlow.update {
+                it.copy(
+                  stage = MessageBackupsStage.PROCESS_PAYMENT
+                )
+              }
+
               handleSuccess(result, id)
 
               internalStateFlow.update {
@@ -171,11 +178,10 @@ class MessageBackupsFlowViewModel(
     }
   }
 
-  fun onMessageBackupTierUpdated(messageBackupTier: MessageBackupTier, messageBackupTierLabel: String) {
+  fun onMessageBackupTierUpdated(messageBackupTier: MessageBackupTier) {
     internalStateFlow.update {
       it.copy(
-        selectedMessageBackupTier = messageBackupTier,
-        selectedMessageBackupTierLabel = messageBackupTierLabel
+        selectedMessageBackupTier = messageBackupTier
       )
     }
   }
@@ -207,7 +213,6 @@ class MessageBackupsFlowViewModel(
             endOfPeriod = null,
             inAppPaymentData = InAppPaymentData(
               badge = null,
-              label = state.selectedMessageBackupTierLabel!!,
               amount = paidFiat.toFiatValue(),
               level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
               recipientId = Recipient.self().id.serialize(),

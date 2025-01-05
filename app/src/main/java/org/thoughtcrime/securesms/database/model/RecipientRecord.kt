@@ -120,15 +120,13 @@ data class RecipientRecord(
 
   data class Capabilities(
     val rawBits: Long,
-    val deleteSync: Recipient.Capability,
-    val versionedExpirationTimer: Recipient.Capability
+    val storageServiceEncryptionV2: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
         rawBits = 0,
-        deleteSync = Recipient.Capability.UNKNOWN,
-        versionedExpirationTimer = Recipient.Capability.UNKNOWN
+        storageServiceEncryptionV2 = Recipient.Capability.UNKNOWN
       )
     }
   }

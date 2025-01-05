@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -38,7 +38,6 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
@@ -83,7 +82,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.state
-    val showAlreadyInACall by viewModel.showAlreadyInACall.collectAsState(false)
+    val showAlreadyInACall by viewModel.showAlreadyInACall.collectAsStateWithLifecycle(false)
 
     CallLinkDetails(
       state,
@@ -149,8 +148,12 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     lifecycleDisposable += viewModel.delete().observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
       when (it) {
         is UpdateCallLinkResult.Delete -> ActivityCompat.finishAfterTransition(requireActivity())
+        is UpdateCallLinkResult.CallLinkIsInUse -> {
+          Log.w(TAG, "Failed to delete in-use call link.")
+          toastCouldNotDeleteCallLink()
+        }
         else -> {
-          Log.w(TAG, "Failed to revoke. $it")
+          Log.w(TAG, "Failed to delete call link. $it")
           toastFailure()
         }
       }
@@ -188,6 +191,10 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   private fun toastFailure() {
     Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+  }
+
+  private fun toastCouldNotDeleteCallLink() {
+    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Toast.LENGTH_LONG).show()
   }
 }
 

@@ -5,18 +5,19 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
-class RestoreV2Event(val type: Type, val count: Long, val estimatedTotalCount: Long) {
+import org.signal.core.util.ByteSize
+
+class RestoreV2Event(val type: Type, val count: ByteSize, val estimatedTotalCount: ByteSize) {
   enum class Type {
     PROGRESS_DOWNLOAD,
     PROGRESS_RESTORE,
-    PROGRESS_MEDIA_RESTORE,
     FINISHED
   }
 
   fun getProgress(): Float {
-    if (estimatedTotalCount == 0L) {
+    if (estimatedTotalCount.inWholeBytes == 0L) {
       return 0f
     }
-    return count.toFloat() / estimatedTotalCount.toFloat()
+    return count.inWholeBytes.toFloat() / estimatedTotalCount.inWholeBytes.toFloat()
   }
 }

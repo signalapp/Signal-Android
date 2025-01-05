@@ -5,28 +5,30 @@
 
 package org.whispersystems.signalservice.api.push;
 
-import junit.framework.TestCase;
-
+import org.junit.Test;
 import org.whispersystems.signalservice.internal.push.PushTransportDetails;
 
-public class PushTransportDetailsTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-  private final PushTransportDetails transportV3 = new PushTransportDetails();
+public class PushTransportDetailsTest {
 
+  @Test
   public void testV3Padding() {
+    PushTransportDetails transportV3 = new PushTransportDetails();
+
     for (int i=0;i<159;i++) {
       byte[] message = new byte[i];
-      assertEquals(transportV3.getPaddedMessageBody(message).length, 159);
+      assertEquals(159, transportV3.getPaddedMessageBody(message).length);
     }
 
     for (int i=159;i<319;i++) {
       byte[] message = new byte[i];
-      assertEquals(transportV3.getPaddedMessageBody(message).length, 319);
+      assertEquals(319, transportV3.getPaddedMessageBody(message).length);
     }
 
     for (int i=319;i<479;i++) {
       byte[] message = new byte[i];
-      assertEquals(transportV3.getPaddedMessageBody(message).length, 479);
+      assertEquals(479, transportV3.getPaddedMessageBody(message).length);
     }
   }
 }

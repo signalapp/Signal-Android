@@ -14,6 +14,7 @@ import org.signal.libsignal.protocol.state.KyberPreKeyRecord;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -53,7 +54,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public boolean isMultiDevice() {
-    return TextSecurePreferences.isMultiDevice(context);
+    return SignalStore.account().hasLinkedDevices();
   }
 
   @Override

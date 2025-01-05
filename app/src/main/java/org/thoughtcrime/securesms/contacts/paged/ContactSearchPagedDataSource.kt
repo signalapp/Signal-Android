@@ -351,7 +351,6 @@ class ContactSearchPagedDataSource(
     }
   }
 
-  // TODO [michelle]: Replace hardcoding chat types after building db
   private fun getChatTypesData(section: ContactSearchConfiguration.Section.ChatTypes): List<ContactSearchData> {
     val data = mutableListOf<ContactSearchData>()
 

@@ -44,8 +44,8 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_appSettingsFragment_to_deviceActivity"
-            app:destination="@id/deviceActivity"
+            android:id="@+id/action_appSettingsFragment_to_remoteBackupsSettingsFragment"
+            app:destination="@id/remoteBackupsSettingsFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -232,13 +232,7 @@
 
     <!-- endregion -->
 
-    <!-- Linked Devices V1-->
-    <activity
-        android:id="@+id/deviceActivity"
-        android:name="org.thoughtcrime.securesms.DeviceActivity"
-        android:label="device_activity" />
-
-    <!-- Linked Devices V2 -->
+    <!-- Linked Devices -->
     <fragment
         android:id="@+id/linkDeviceFragment"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceFragment"
@@ -246,6 +240,13 @@
         <action
             android:id="@+id/action_linkDeviceFragment_to_addLinkDeviceFragment"
             app:destination="@id/addLinkDeviceFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_linkDeviceFragment_to_editDeviceNameFragment"
+            app:destination="@id/editDeviceNameFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -271,16 +272,26 @@
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceEducationSheet" />
 
     <fragment
+        android:id="@+id/editDeviceNameFragment"
+        android:name="org.thoughtcrime.securesms.linkdevice.EditDeviceNameFragment" />
+
+    <fragment
         android:id="@+id/addLinkDeviceFragment"
         android:name="org.thoughtcrime.securesms.linkdevice.AddLinkDeviceFragment"
         android:label="link_device_add_fragment">
         <action
             android:id="@+id/action_addLinkDeviceFragment_to_linkDeviceIntroBottomSheet"
             app:destination="@id/linkDeviceIntroBottomSheet" />
+        <action
+            android:id="@+id/action_addLinkDeviceFragment_to_linkDeviceSyncBottomSheet"
+            app:destination="@id/linkDeviceSyncBottomSheet" />
     </fragment>
     <dialog
         android:id="@+id/linkDeviceIntroBottomSheet"
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceIntroBottomSheet" />
+    <dialog
+        android:id="@+id/linkDeviceSyncBottomSheet"
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceSyncBottomSheet" />
 
     <!-- Payments -->
     <activity
@@ -397,7 +408,14 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatFoldersFragment_to_chatFoldersEducationSheet"
+            app:destination="@id/chatFoldersEducationSheet" />
     </fragment>
+
+    <dialog
+        android:id="@+id/chatFoldersEducationSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersEducationSheet"/>
 
     <fragment
         android:id="@+id/createFoldersFragment"
@@ -406,6 +424,10 @@
 
         <argument
             android:name="folder_id"
+            app:argType="long" />
+
+        <argument
+            android:name="thread_id"
             app:argType="long" />
 
         <action
@@ -419,6 +441,10 @@
                 android:name="include_chats"
                 app:argType="boolean" />
         </action>
+
+        <action
+            android:id="@+id/action_createFoldersFragment_to_chatFoldersEducationSheet"
+            app:destination="@id/chatFoldersEducationSheet" />
     </fragment>
 
     <fragment
@@ -687,7 +713,9 @@
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
-        app:popExitAnim="@anim/fragment_close_exit" />
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_direct_to_createFoldersFragment"
@@ -695,7 +723,9 @@
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
-        app:popExitAnim="@anim/fragment_close_exit" />
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
 
     <!-- endregion -->
 
@@ -729,6 +759,12 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalBackupPlaygroundFragment"
             app:destination="@id/internalBackupPlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalStorageServicePlaygroundFragment"
+            app:destination="@id/internalStorageServicePlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_internalSqlitePlaygroundFragment"
+            app:destination="@id/internalSqlitePlaygroundFragment" />
     </fragment>
 
     <fragment
@@ -780,6 +816,16 @@
         android:id="@+id/internalBackupPlaygroundFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundFragment"
         android:label="internal_backup_playground_fragment" />
+
+    <fragment
+        android:id="@+id/internalStorageServicePlaygroundFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundFragment"
+        android:label="internal_storage_service_playground_fragment" />
+
+    <fragment
+        android:id="@+id/internalSqlitePlaygroundFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundFragment"
+        android:label="internal_sqlite_playground_fragment" />
 
     <!-- endregion -->
 

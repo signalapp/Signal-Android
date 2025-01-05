@@ -33,16 +33,16 @@ class InternalDonorErrorConfigurationFragment : DSLSettingsFragment() {
 
       radioListPref(
         title = DSLSettingsText.from("Cancellation Reason"),
-        selected = UnexpectedSubscriptionCancellation.values().indexOf(state.selectedUnexpectedSubscriptionCancellation),
-        listItems = UnexpectedSubscriptionCancellation.values().map { it.status }.toTypedArray(),
+        selected = UnexpectedSubscriptionCancellation.entries.indexOf(state.selectedUnexpectedSubscriptionCancellation),
+        listItems = UnexpectedSubscriptionCancellation.entries.map { it.status }.toTypedArray(),
         onSelected = { viewModel.setSelectedUnexpectedSubscriptionCancellation(it) },
         isEnabled = state.selectedBadge == null || state.selectedBadge.isSubscription()
       )
 
       radioListPref(
         title = DSLSettingsText.from("Charge Failure"),
-        selected = StripeDeclineCode.Code.values().indexOf(state.selectedStripeDeclineCode),
-        listItems = StripeDeclineCode.Code.values().map { it.code }.toTypedArray(),
+        selected = StripeDeclineCode.Code.entries.indexOf(state.selectedStripeDeclineCode),
+        listItems = StripeDeclineCode.Code.entries.map { it.code }.toTypedArray(),
         onSelected = { viewModel.setStripeDeclineCode(it) },
         isEnabled = state.selectedBadge == null || state.selectedBadge.isSubscription()
       )

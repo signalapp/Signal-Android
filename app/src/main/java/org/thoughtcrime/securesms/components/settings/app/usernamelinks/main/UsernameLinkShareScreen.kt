@@ -334,7 +334,7 @@ private fun previewState(): UsernameLinkSettingsState {
     activeTab = ActiveTab.Code,
     username = "parker.42",
     usernameLinkState = UsernameLinkState.Present("https://signal.me/#eu/asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf"),
-    qrCodeState = QrCodeState.Present(QrCodeData.forData(link, 64)),
+    qrCodeState = QrCodeState.Present(QrCodeData.forData(link)),
     qrCodeColorScheme = UsernameQrCodeColorScheme.Blue
   )
 }

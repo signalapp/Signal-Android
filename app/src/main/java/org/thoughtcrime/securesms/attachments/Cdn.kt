@@ -37,7 +37,7 @@ enum class Cdn(private val value: Int) {
     }
 
     override fun deserialize(data: Int): Cdn {
-      return values().first { it.value == data }
+      return entries.first { it.value == data }
     }
 
     fun fromCdnNumber(cdnNumber: Int): Cdn {

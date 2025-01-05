@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
+import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObjectIterator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -65,7 +67,12 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
 
   override fun getFactoryKey(): String = KEY
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    if (!isCanceled) {
+      Log.w(TAG, "Failed to backup user messages. Marking failure state.")
+      SignalStore.backup.markMessageBackupFailure()
+    }
+  }
 
   override fun run(): Result {
     val stopwatch = Stopwatch("BackupMessagesJob")
@@ -77,8 +84,29 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
-    BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled })
+    val backupKey = SignalStore.backup.messageBackupKey
+    val currentTime = System.currentTimeMillis()
+    BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
+      writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+    }
+
     stopwatch.split("export")
+
+    when (val result = ArchiveValidator.validate(tempBackupFile, backupKey)) {
+      ArchiveValidator.ValidationResult.Success -> {
+        Log.d(TAG, "Successfully passed validation.")
+      }
+      is ArchiveValidator.ValidationResult.ReadError -> {
+        Log.w(TAG, "Failed to read the file during validation!", result.exception)
+        return Result.retry(defaultBackoff())
+      }
+      is ArchiveValidator.ValidationResult.ValidationError -> {
+        Log.w(TAG, "The backup file fails validation! Message: " + result.exception.message)
+        ArchiveUploadProgress.onValidationFailure()
+        return Result.failure()
+      }
+    }
+    stopwatch.split("validate")
 
     if (isCanceled) {
       return Result.failure()
@@ -86,14 +114,21 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
 
     ArchiveUploadProgress.onMessageBackupCreated()
 
+    // TODO [backup] Need to make this resumable
     FileInputStream(tempBackupFile).use {
       when (val result = BackupRepository.uploadBackupFile(it, tempBackupFile.length())) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
           SignalStore.backup.hasBackupBeenUploaded = true
         }
-        is NetworkResult.NetworkError -> return Result.retry(defaultBackoff())
-        is NetworkResult.StatusCodeError -> return Result.retry(defaultBackoff())
+        is NetworkResult.NetworkError -> {
+          Log.i(TAG, "Network failure", result.getCause())
+          return Result.retry(defaultBackoff())
+        }
+        is NetworkResult.StatusCodeError -> {
+          Log.i(TAG, "Status code failure", result.getCause())
+          return Result.retry(defaultBackoff())
+        }
         is NetworkResult.ApplicationError -> throw result.throwable
       }
     }
@@ -125,7 +160,21 @@ class BackupMessagesJob private constructor(parameters: Parameters) : Job(parame
       ArchiveUploadProgress.onMessageBackupFinishedEarly()
     }
 
+    SignalStore.backup.clearMessageBackupFailure()
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+    BackupMediaSnapshotSyncJob.enqueue(currentTime)
     return Result.success()
+  }
+
+  private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
+    if (mediaBackupEnabled) {
+      db.attachmentTable.getMediaIdCursor().use {
+        SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
+          mediaObjects = ArchivedMediaObjectIterator(it).asSequence(),
+          pendingSyncTime = currentTime
+        )
+      }
+    }
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.AccountData
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.backup.BackupKey
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.ByteArrayOutputStream
 import java.util.UUID
@@ -22,7 +22,7 @@ class EncryptedBackupReaderWriterTest {
 
   @Test
   fun `can read back all of the frames we write`() {
-    val key = BackupKey(Util.getSecretBytes(32))
+    val key = MessageBackupKey(Util.getSecretBytes(32))
     val aci = ACI.from(UUID.randomUUID())
 
     val outputStream = ByteArrayOutputStream()
@@ -54,7 +54,7 @@ class EncryptedBackupReaderWriterTest {
 
   @Test
   fun `padding limits number of sizes`() {
-    val key = BackupKey(Util.getSecretBytes(32))
+    val key = MessageBackupKey(Util.getSecretBytes(32))
     val aci = ACI.from(UUID.randomUUID())
 
     val uniqueSizes = (1..10)
@@ -78,7 +78,7 @@ class EncryptedBackupReaderWriterTest {
 
   @Test
   fun `using a different IV every time`() {
-    val key = BackupKey(Util.getSecretBytes(32))
+    val key = MessageBackupKey(Util.getSecretBytes(32))
     val aci = ACI.from(UUID.randomUUID())
     val count = 10
 

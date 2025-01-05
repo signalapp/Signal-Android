@@ -958,15 +958,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Whether or not to use active call manager instead of WebRtcCallService.  */
-  @JvmStatic
-  @get:JvmName("useActiveCallManager")
-  val useActiveCallManager: Boolean by remoteBoolean(
-    key = "android.calling.useActiveCallManager.6",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
   /** Whether the in-app GIF search is available for use.  */
   @JvmStatic
   @get:JvmName("gifSearchAvailable")
@@ -1103,6 +1094,22 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether or not to show chat folders. */
+  @JvmStatic
+  val showChatFolders: Boolean by remoteBoolean(
+    key = "android.showChatFolders.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /** Whether or not to use the new pinned chat UI. */
+  @JvmStatic
+  val inlinePinnedChats: Boolean by remoteBoolean(
+    key = "android.inlinePinnedChats.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   @JvmStatic
   @get:JvmName("newCallUi")
   val newCallUi: Boolean by remoteBoolean(
@@ -1117,6 +1124,22 @@ object RemoteConfig {
     key = "android.useHevcEncoder",
     defaultValue = false,
     hotSwappable = false
+  )
+
+  /** Whether or not this device supports syncing data to newly-linked device. */
+  @JvmStatic
+  val linkAndSync: Boolean by remoteBoolean(
+    key = "android.linkAndSync.2",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
+  /** Whether or not this device supports the new storage service recordIkm encryption. */
+  @JvmStatic
+  val storageServiceEncryptionV2: Boolean by remoteBoolean(
+    key = "android.ssre2",
+    defaultValue = false,
+    hotSwappable = true
   )
 
   // endregion

@@ -375,7 +375,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">הודעות</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">סוגי צ׳אטים</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s של הודעה</string>
@@ -779,6 +779,17 @@
         <item quantity="many">%1$d נבחרו</item>
         <item quantity="other">%1$d נבחרו</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">הוספה לתיקיה</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">הסרה מתיקיה</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">בחירת תיקיה</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">נוסף אל ״%1$s״</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">הצ׳אט הזה כבר נמצא בתיקייה ״%1$s״</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">פרופיל התראות</string>
@@ -1010,14 +1021,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">המכשירים המקושרים שלי</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">בטל קישור</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s לא מקושר</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">בוטל הקישור של ״%1$s״</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">התבצע קישור של ״%1$s״</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">מקשרים מכשיר…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">המכשיר אושר</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">טוען…</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">מסנכרנים הודעות…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">אין מכשירים מקושרים</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -1028,6 +1043,28 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">יש ללחוץ על ׳המשך׳ ולהזין את ביטול נעילת הטלפון שלך כדי לאשר. לא להזין את קוד ה‑PIN של Signal.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">המשך</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">סנכרון הודעות נכשל</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">לא ניתן היה להעביר את ההודעות שלך למכשיר המקושר שלך. אפשר לנסות לקשר מחדש ולהעביר שוב, או להמשיך בלי להעביר את היסטוריית ההודעות שלך.</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">לנסות לקשר שוב</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">להמשיך בלי להעביר</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">עריכת שם</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">שם מכשיר</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">שמירה</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1051,8 +1088,18 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">נסה שוב</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">העברת היסטוריית הודעות</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">לא להעביר</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">לבטל קישור \'%1$s\'?</string>
+    <string name="DeviceListActivity_unlink_s">לבטל קישור \"%1$s\"?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ע״י ביטול קישור של מכשיר זה, הוא לא יוכל יותר לשלוח או לקבל הודעות.</string>
     <string name="DeviceListActivity_network_connection_failed">חיבור רשת נכשל</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1381,20 +1428,6 @@
     <string name="ManageGroupActivity_more">עוד</string>
     <string name="ManageGroupActivity_add_group_description">הוסף תיאור קבוצה…</string>
 
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">העבר ממכשיר Android</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">העברת החשבון וההודעות שלך ממכשיר ה–Android הישן שלך.</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">להתחבר בלי להעביר</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">להמשיך בלי להעביר את ההודעות והמדיה שלך</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">שחזור גיבוי מקומי</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">שחזור ההודעות שלך מקובץ גיבוי ששמרת במכשיר שלך.</string>
-
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
     <string name="RemoteRestoreActivity__downloading_backup">מורידים גיבוי…</string>
@@ -1412,12 +1445,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">כל ההודעות שלך</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">שחזר מגיבוי</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">רק מדיה שנשלחה או התקבלה ב–%1$d הימים האחרונים כלולה.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">הגיבוי שלך כולל את:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">שחזר גיבוי</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">הגיבוי האחרון שלך התבצע ב–%1$s בשעה %2$s.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">טוענים פרטי גיבוי…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">דילוג על שחזור</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
@@ -2609,6 +2648,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">עשית יותר מדי ניסיונות להירשם עם המספר הזה. יש לנסות שוב עוד %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">לא היה ניתן להתחבר אל השירות. אנא בדוק את חיבור האינטרנט ונסה שוב.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">לא הצלחנו לשלוח לך קוד אימות דרך SMS. כדאי לנסות לקבל את הקוד שלך דרך שיחה קולית במקום.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3632,7 +3673,7 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">לא היה ניתן להעלות יומן</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">אנא הייה מפורט ככל האפשר כדי לעזור לנו להבין את הסוגייה.</string>
-    <string-array name="HelpFragment__categories_5">
+    <string-array name="HelpFragment__categories_6">
         <item>יש לבחור אפשרות</item>
         <item>משהו לא עובד</item>
         <item>בקשת פיצ׳ר</item>
@@ -3641,6 +3682,7 @@
         <item>אחר</item>
         <item>תשלומים (MobileCoin)</item>
         <item>תרומות ותגים</item>
+        <item>גיבוי Signal Android</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">הגשת יומן ניפוי באגים של Signal Android</string>
@@ -4259,9 +4301,9 @@
     <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">אין צ׳אטים עדיין.\nאפשר להתחיל באמצעות שליחת הודעה לחבר או חברה.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">אין צ׳אטים להצגה</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">הגדרות תיקיה</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4505,8 +4547,12 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">כתבתי משפט־סיסמה זה. בלעדיו, לא אוכל לשחזר גיבוי.</string>
     <string name="registration_activity__restore_backup">שחזר גיבוי</string>
     <string name="registration_activity__transfer_or_restore_account">העבר או שחזר חשבון</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">שחזור או העברה</string>
     <string name="registration_activity__transfer_account">העבר חשבון</string>
     <string name="registration_activity__skip">דלג</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">דילוג על שחזור</string>
     <string name="preferences_chats__chat_backups">גיבויי צ׳אטים</string>
     <string name="preferences_chats__transfer_account">העבר חשבון</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">העבר חשבון אל מכשיר Android חדש</string>
@@ -5175,6 +5221,11 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">איכות מדיה</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">חידוש מנוי הגיבויים שלך ב–Signal</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">לא היה ניתן להשלים את הגיבוי</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">הזמן את חבריך</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">מזהה המנוי של התורמ/ת הועתק ללוח</string>
@@ -5293,124 +5344,137 @@
     <string name="ChatsSettingsFragment__keyboard">מקלדת</string>
     <string name="ChatsSettingsFragment__send_with_enter">שליחה עם enter</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
-    <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__chat_folders">תיקיות צ׳אטים</string>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">הוספת תיקיית צ׳אטים</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">הוספת או עריכת תיקיות</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">תיקיה %1$d</item>
+        <item quantity="two">%1$d תיקיות</item>
+        <item quantity="many">%1$d תיקיות</item>
+        <item quantity="other">%1$d תיקיות</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">ליצור תיקיות למשפחה, חברים, עבודה ועוד</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">לבחור להציג רק צ׳אטים שלא נקראו </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">להוסיף בקלות תיקיות מוצעות</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">המשך</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">ארגון הצ׳אטים שלך בתיקיות והחלפה מהירה ביניהם ברשימת הצ׳אטים שלך.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">תיקיות</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">יצירת תיקיה</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">כל הצ׳אטים</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">תיקיות מוצעות</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unread">לא נקראו</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">הודעות שלא נקראו מכל הצ׳אטים</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">צ׳אטים 1:1</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">רק הודעות מצ׳אטים ישירים</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">קבוצות</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">רק הודעות מצ׳אטים קבוצתיים</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">הוסף</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">תיקיה נוספה: %1$s.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__edit_folder">עריכת תיקיה</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__mute_all">השתקת הכל</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">ביטול השתקת הכל</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">סמן הכול כנקרא</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="two">%1$d chat types</item>
-        <item quantity="many">%1$d chat types</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">סוג צ׳אט %1$d</item>
+        <item quantity="two">%1$d סוגי צ׳אטים</item>
+        <item quantity="many">%1$d סוגי צ׳אטים</item>
+        <item quantity="other">%1$d סוגי צ׳אטים</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="one">%1$d chat</item>
-        <item quantity="two">%1$d chats</item>
-        <item quantity="many">%1$d chats</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">צ׳אט %1$d</item>
+        <item quantity="two">%1$d צ׳אטים</item>
+        <item quantity="many">%1$d צ׳אטים</item>
+        <item quantity="other">%1$d צ׳אטים</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="two">%1$d chats excluded</item>
-        <item quantity="many">%1$d chats excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">צ׳אט %1$d לא כלול</item>
+        <item quantity="two">%1$d צ׳אטים לא כלולים</item>
+        <item quantity="many">%1$d צ׳אטים לא כלולים</item>
+        <item quantity="other">%1$d צ׳אטים לא כלולים</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">יצירת תיקיה</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">שם תיקיה (חובה)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">צ׳אטים כלולים</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">הוספת צ׳אטים</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">יש לבחור צ׳אטים שברצונך לכלול בתיקיה הזו.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">יוצאי דופן</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">החרגת צ׳אטים</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">אפשר לבחור צ׳אטים שלא יופיעו בתיקיה הזו.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">להציג רק צ׳אטים שלא נקראו</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">כשאפשרות זו מופעלת, רק צ׳אטים עם הודעות שלא נקראו יוצגו בתיקיה הזו.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">כלילת צ׳אטים מושתקים</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create">צור</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">עריכת תיקיה</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__save">שמירה</string>
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">להשמיט שינויים?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">השינויים שביצעת בתיקיה זו לא ישמרו.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
+    <string name="CreateFoldersFragment__discard">השמט</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">מחיקת תיקיה</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">למחוק את תיקיית הצ׳אטים הזו?</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">הצגת הכל</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">נא להזין שם תיקיה</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">סוגי צ׳אטים</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">סיום</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">הודעות</string>
@@ -6015,6 +6079,10 @@
     <string name="InAppPaymentInProgressFragment__processing_donation">תרומה בעיבוד…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">מעבד תשלום…</string>
 
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">חוזרת %1$d</string>
+
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">שגיאה בעיבוד תשלום</string>
@@ -6040,6 +6108,10 @@
     <string name="DonationsErrors__your_payment">לא היה ניתן לעבד את התרומה שלך ולא חויבת. יש לנסות שוב.</string>
     <string name="DonationsErrors__still_processing">עדין מעבד</string>
     <string name="DonationsErrors__couldnt_add_badge">לא הייתה אפשרות להוסיף תג</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">משהו השתבש</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">לא ניתן היה להציג את מנוי הגיבויים שלך. יש ליצור קשר עם התמיכה.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">אימות התג נכשל</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -6229,9 +6301,9 @@
     <!-- Descriptor text indicating what the user can do with this screen -->
     <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">הגדר תזמון כדי לאפשר את פרופיל ההתראות הזה באופן אוטומטי.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
-    <string name="EditNotificationProfileSchedule__schedule">תזמן</string>
+    <string name="EditNotificationProfileSchedule__schedule">תזמון</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">התחל</string>
+    <string name="EditNotificationProfileSchedule__start">התחלה</string>
     <!-- Label for showing the end time for the schedule -->
     <string name="EditNotificationProfileSchedule__end">סוף</string>
     <!-- First letter of Sunday -->
@@ -6249,9 +6321,9 @@
     <!-- First letter of Saturday -->
     <string name="EditNotificationProfileSchedule__saturday_first_letter">ש</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_start_time">הגדר זמן התחלה</string>
+    <string name="EditNotificationProfileSchedule__set_start_time">הגדרת זמן התחלה</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_end_time">הגדר זמן סיום</string>
+    <string name="EditNotificationProfileSchedule__set_end_time">הגדרת זמן סיום</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
     <string name="EditNotificationProfileSchedule__save">שמור</string>
     <!-- If in create mode, call to action button text to show to skip enabling a schedule -->
@@ -6319,8 +6391,6 @@
     <string name="DonationReceiptDetailsFragment__amount">סכום</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">תודה לך על תמיכה ב־Signal. התרומה שלך עוזרת לתדלק את המשימה של פיתוח טכנולוגית פרטיות בקוד פתוח שמגינה על חופשי ביטוי ומאפשרת תקשורת עולמית מאובטחת עבור מיליוני אנשים ברחבי העולם. אם אתה תושב ארצות הברית, אנא שמור את הקבלה הזאת עבור רישומי המס שלך. הקרן של טכנולוגית Signal היא ארגון ללא מטרות רווח פטור ממס בארצות הברית תחת קטע 501c3 של קוד ההכנסה הפנימית. מספר זהות המס שלנו הוא 82–4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">אין קבלות</string>
 
@@ -7479,6 +7549,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">מחיקת לינק לשיחה</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">לא הצלחנו לשמור את השינויים. כדאי לבדוק את חיבור הרשת שלך ולנסות שוב.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">לא ניתן היה למחוק את לינק השיחה כי הוא נמצא כעת בשימוש.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">למחוק לינק?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7573,6 +7645,10 @@
     <string name="PendingParticipantsBottomSheet__reject">דחה</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">אשר</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">אישור הכל</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">דחיית הכל</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">להפעיל התראות במסך מלא?</string>
@@ -7704,17 +7780,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">המדיה שלך תימחק היום</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">תכנית גיבוי המדיה שלך ב–Signal בוטלה כי לא הצלחנו לעבד את התשלום שלך. זו ההזדמנות האחרונה שלך להוריד את המדיה שבגיבוי שלך לפני שהיא נמחקת.</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">לא ניתן להשלים את ההורדה</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">יש לפנות %1$s במכשיר הזה</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">אין מספיק מקום פנוי במכשיר שלך. יש לפנות שטח של %1$s כדי להוריד את המדיה שמאוחסנת בגיבוי שלך.</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">בחירה ב״דילוג״ תגרום למחיקת המדיה בגיבוי שלך בעוד יום %1$d.</item>
-        <item quantity="two">בחירה ב״דילוג״ תגרום למחיקת המדיה בגיבוי שלך בעוד יומיים.</item>
-        <item quantity="many">בחירה ב״דילוג״ תגרום למחיקת המדיה בגיבוי שלך בעוד %1$d ימים.</item>
-        <item quantity="other">בחירה ב״דילוג״ תגרום למחיקת המדיה בגיבוי שלך בעוד %1$d ימים.</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">כדי להשלים את ההורדה של גיבוי Signal שלך, המכשיר שלך צריך %1$s של שטח אחסון.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">כדי לפנות מקום, יש להעביר או למחוק אפליקציות או תוכן שתופסים נפח רב ואינם בשימוש.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">לא ניתן היה לחדש את מנוי הגיבויים שלך</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7726,7 +7797,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">למידע נוסף</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">דלג</string>
+    <string name="BackupAlertBottomSheet__skip_restore">דילוג על שחזור</string>
+    <!-- Primary action button to start backup immediately -->
+    <string name="BackupAlertBottomSheet__back_up_now">לגבות כעת</string>
+    <!-- Primary action button when user doesn\'t have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">הבנתי</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">ניהול מנוי</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7737,6 +7812,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">לא להוריד מדיה</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">לא עכשיו</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">לנסות אחר כך</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">המדיה תימחק</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7745,6 +7822,18 @@
     <string name="BackupAlertBottomSheet__download">הורד</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">לא להוריד</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">דלג</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">לדלג על שחזור?</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">בחירה בדילוג על שחזור תגרום לכך שתהיה לך אפשרות להוריד את המדיה והקבצים המצורפים הנותרים בגיבוי שלך במועד מאוחר יותר, כשיתפנה שטח אחסון.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">גיבוי נכשל</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7755,6 +7844,8 @@
     <string name="BackupStatus__restore_paused">שחזור הושהה</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">שחזור הושלם</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">פרטים</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">בהמתנה ל–Wi-Fi…</string>
@@ -7767,15 +7858,19 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ביטול הורדה</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">מורידים: %1$s מתוך %2$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">אין מספיק מקום כדי להוריד את הגיבוי שלך. כדי להמשיך, יש לפנות שטח של %1$s.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">דילוג על הורדה</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">למידע נוסף</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7799,10 +7894,6 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">שינוי או ביטול מנוי</string>
 
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">הגיבוי האחרון שלך התבצע ב–%1$s בשעה %2$s.</string>
-
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">מגבלות אורך צ׳אט</string>
@@ -7822,6 +7913,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">אופטימיזציה של אחסון במכשיר</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">מדיה שאינה בשימוש תוסר, אך ניתן להוריד אותה מהגיבוי שלך בכל עת.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">ניתן להשתמש באופטימיזציה של אחסון רק עם אפשרות הגיבוי בתשלום של Signal. מנוי הגיבויים שלך נמצא בעיבוד ואינו פעיל עדיין. יש לנסות שוב מאוחר יותר.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7843,6 +7936,16 @@
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">רכישת מנוי עבור %1$s/חודש</string>
+
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">המדיה הזו לא זמינה יותר</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">כדי להתחיל לגבות את כל המדיה שלך, יש לאפשר את הגיבויים של Signal ולבחור את התכנית בתשלום.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">המשך</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">לא עכשיו</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">המחיקה מסונכרנת כעת בכל המכשירים שלך</string>
@@ -7885,27 +7988,33 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">סוג הגיבוי השתנה והמנוי בוטל</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">מנוי בוטל</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ההורדה הושלמה</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">הגיבוי ייווצר במהלך הלילה.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">מנוי לא פעיל</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">כיבית את הגיבויים</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">תכנית גיבוי</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">גיבויים הושבתו</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s לחודש</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">תשלום בהמתנה…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">בהמתנה לרשת…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">תכנית הגיבוי שלך היא חינמית</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">מתחדש ב–%1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">תאריך תפוגה: %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">תאריך התפוגה היה: %1$s</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">אפשר לגבות את היסטוריית ההודעות כך שאף פעם לא מאבדים נתונים כשמחליפים טלפון או מתקינים מחדש את Signal.</string>
     <!-- Section header for other ways to back up -->
@@ -7951,9 +8060,72 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">יש להכניס את קוד ה–PIN, הסיסמה, או התבנית של המכשיר שלך.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">הפעלת גיבויים מחדש</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">הגיבויים הושבתו והנתונים שלך נמחקו משירות האחסון המאובטח של Signal.</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">מורידים את הגיבוי שלך</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">בהתאם לגודל הגיבוי שלך, זה עשוי להימשך זמן רב. אפשר להשתמש בטלפון שלך כרגיל בזמן שההורדה מתבצעת.</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one">המנוי שלך במכשיר הזה תקף לעוד יום %1$d. יש לחדש אותו כדי להמשיך להשתמש בגיבויים של Signal</item>
+        <item quantity="two">המנוי שלך במכשיר הזה תקף לעוד יומיים. יש לחדש אותו כדי להמשיך להשתמש בגיבויים של Signal</item>
+        <item quantity="many">המנוי שלך במכשיר הזה תקף לעוד %1$d ימים. יש לחדש אותו כדי להמשיך להשתמש בגיבויים של Signal</item>
+        <item quantity="other">המנוי שלך במכשיר הזה תקף לעוד %1$d ימים. יש לחדש אותו כדי להמשיך להשתמש בגיבויים של Signal</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">חידוש</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">למידע נוסף</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">יש לך %1$s של גיבוי נתונים שאינם במכשיר הזה. הגיבוי שלך יימחק כשהמנוי של יסתיים בעוד יום %2$d.</item>
+        <item quantity="two">יש לך %1$s של גיבוי נתונים שאינם במכשיר הזה. הגיבוי שלך יימחק כשהמנוי של יסתיים בעוד יומיים.</item>
+        <item quantity="many">יש לך %1$s של גיבוי נתונים שאינם במכשיר הזה. הגיבוי שלך יימחק כשהמנוי של יסתיים בעוד %2$d ימים.</item>
+        <item quantity="other">יש לך %1$s של גיבוי נתונים שאינם במכשיר הזה. הגיבוי שלך יימחק כשהמנוי של יסתיים בעוד %2$d ימים.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">הורד</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">לדלג על הורדה?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">אם בחרת לדלג על ההורדה, המדיה והקבצים המצורפים שנותרו בגיבוי שלך יימחקו בעוד יום %1$d.</item>
+        <item quantity="two">אם בחרת לדלג על ההורדה, המדיה והקבצים המצורפים שנותרו בגיבוי שלך יימחקו בעוד יומיים.</item>
+        <item quantity="many">אם בחרת לדלג על ההורדה, המדיה והקבצים המצורפים שנותרו בגיבוי שלך יימחקו בעוד %1$d ימים.</item>
+        <item quantity="other">אם בחרת לדלג על ההורדה, המדיה והקבצים המצורפים שנותרו בגיבוי שלך יימחקו בעוד %1$d ימים.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">דלג</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">לא היה ניתן לכבות ולמחוק את הגיבויים</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">אירעה שגיאת רשת. יש לבדוק את חיבור האינטרנט שלך ולנסות שוב.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">מנוי לא נמצא</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">לא ניתן היה לשחזר את המנוי שלך.</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">זה יכול לקרות אם:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">התחברת לחנות Google Play עם חשבון Google אחר.</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">העברת ממכשיר iPhone.</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">תוקף המנוי שלך פג לאחרונה.</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">אם יש לך מנוי פעיל בטלפון הישן שלך, כדאי לשקול לבטל אותו לפני שהוא מתחדש.</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">הבנתי</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">יצירת קשר עם התמיכה</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8040,6 +8212,8 @@
         <item quantity="many">%1$d ימים אחרונים של מדיה</item>
         <item quantity="other">%1$d ימים אחרונים של מדיה</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">תכנית נוכחית</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8055,5 +8229,113 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">סמל תזכורת</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">יש לי את הטלפון הישן שלי</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">אפשר לסרוק קוד QR מחשבון Signal הנוכחי שלך כדי להתחיל במהירות</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">אין לי את הטלפון הישן שלי</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">או שמדובר בהתקנה חוזרת של Signal על אותו מכשיר</string>
+
+    <!-- Screen title for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">שחזור או העברת חשבון</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">להעביר את חשבון Signal והיסטוריית ההודעות שלך למכשיר הזה.</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">מגיבויי Signal</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">תכנית הגיבוי שלך ב–Signal (בחינם או בתשלום)</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">מתיקיית גיבוי</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">מקובץ גיבוי</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">לבחור גיבוי ששמרת</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">מהטלפון הישן שלך</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">להעביר ישירות ממכשיר ה–Android הישן שלך</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">שחזור גיבוי מקומי</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">שחזור ההודעות שלך מקובץ גיבוי ששמרת במכשיר שלך. אם לא תשחזר/י עכשיו, לא תהיה לך אפשרות לשחזר מאוחר יותר.</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">הזנת מפתח הגיבוי שלך</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">מפתח הגיבוי שלך הוא קוד בן 64 ספרות שמאפשר לך לשחזר את החשבון והנתונים שלך.</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">אין לך מפתח גיבוי?</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">מפתח גיבוי</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">לא ניתן לשחזר גיבויים ללא קוד השחזור בן 64 הספרות שלהם. אם איבדת את מפתח הגיבוי, Signal לא תוכל לעזור לשחזר את הגיבוי שלך.</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">אם יש לך את המכשיר הישן שלך, יש לך אפשרות לראות את מפתח הגיבוי באמצעות כניסה להגדרות &gt; גיבויים. לאחר מכן יש ללחוץ על ״הצגת מפתח גיבוי״.</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">למידע נוסף</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">דילוג בלי לשחזר</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">סריקת הקוד הזה עם הטלפון הישן שלך</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">יש לפתוח את Signal במכשיר הישן שלך</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">ללחוץ על סמל המצלמה </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">לסרוק את הקוד הזה עם המצלמה</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">לא ניתן ליצור קוד QR</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">נסרק במכשיר הישן</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">נסה שוב</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">העבר חשבון</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">החשבון שלך יועבר למכשיר חדש. המכשיר הזה יוכל לראות את הקבוצות ואנשי הקשר שלך, לקבל גישה לצ׳אטים שלך, ולשלוח הודעות בשמך. %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">למידע נוסף</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">העבר חשבון</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">הודעות ופרטי צ׳אט מוגנים באמצעות הצפנה מקצה לקצה בכל המכשירים</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">יש לבטל את הנעילה כדי להעביר את החשבון</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">המשך במכשיר האחר שלך</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">יש להמשיך את העברת החשבון שלך במכשיר האחר שלך.</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">שחזור הושלם</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">התחילה ההעברה של חשבון Signal וההודעות שלך למכשיר האחר שלך. Signal לא פעילה כעת במכשיר זה.</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">העברה הושלמה</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">חשבון Signal שלך וההודעות שלך הועברו למכשיר האחר שלך. Signal לא פעילה כעת במכשיר זה.</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">בסדר</string>
+
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">יש לפתוח את Signal במכשיר הישן שלך</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">דילוג על שחזור</string>
+
     <!-- EOF -->
 </resources>

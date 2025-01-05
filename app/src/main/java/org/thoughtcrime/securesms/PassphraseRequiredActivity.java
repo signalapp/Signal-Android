@@ -167,7 +167,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_UI_BLOCKING_UPGRADE;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_WELCOME_PUSH_SCREEN;
-    } else if (SignalStore.storageService().needsAccountRestore()) {
+    } else if (SignalStore.storageService().getNeedsAccountRestore()) {
       return STATE_ENTER_SIGNAL_PIN;
     } else if (userCanTransferOrRestore()) {
       return STATE_TRANSFER_OR_RESTORE;
@@ -191,11 +191,10 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private boolean userMustCreateSignalPin() {
-    return !SignalStore.registration().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().lastPinCreateFailed() && !SignalStore.svr().hasOptedOut();
-  }
-
-  private boolean userHasSkippedOrForgottenPin() {
-    return !SignalStore.registration().isRegistrationComplete() && !SignalStore.svr().hasPin() && !SignalStore.svr().hasOptedOut() && SignalStore.svr().isPinForgottenOrSkipped();
+    return !SignalStore.registration().isRegistrationComplete() &&
+           !SignalStore.svr().hasOptedInWithAccess() &&
+           !SignalStore.svr().lastPinCreateFailed() &&
+           !SignalStore.svr().hasOptedOut();
   }
 
   private boolean userMustSetProfileName() {
@@ -240,7 +239,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getTransferOrRestoreIntent() {
-    Intent intent = RestoreActivity.getIntentForTransferOrRestore(this);
+    Intent intent = RestoreActivity.getRestoreIntent(this);
     return getRoutedIntent(intent, MainActivity.clearTop(this));
   }
 

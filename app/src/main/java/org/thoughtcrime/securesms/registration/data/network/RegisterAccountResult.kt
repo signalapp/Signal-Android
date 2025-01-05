@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.registration.data.network
 
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
-import org.thoughtcrime.securesms.registration.data.RegistrationRepository
+import org.thoughtcrime.securesms.registration.data.AccountRegistrationResult
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException
@@ -23,7 +23,7 @@ import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
  */
 sealed class RegisterAccountResult(cause: Throwable?) : RegistrationResult(cause) {
   companion object {
-    fun from(networkResult: NetworkResult<RegistrationRepository.AccountRegistrationResult>): RegisterAccountResult {
+    fun from(networkResult: NetworkResult<AccountRegistrationResult>): RegisterAccountResult {
       return when (networkResult) {
         is NetworkResult.Success -> Success(networkResult.result)
         is NetworkResult.ApplicationError -> UnknownError(networkResult.throwable)
@@ -55,7 +55,7 @@ sealed class RegisterAccountResult(cause: Throwable?) : RegistrationResult(cause
       }
     }
   }
-  class Success(val accountRegistrationResult: RegistrationRepository.AccountRegistrationResult) : RegisterAccountResult(null)
+  class Success(val accountRegistrationResult: AccountRegistrationResult) : RegisterAccountResult(null)
   class IncorrectRecoveryPassword(cause: Throwable) : RegisterAccountResult(cause)
   class AuthorizationFailed(cause: Throwable) : RegisterAccountResult(cause)
   class MalformedRequest(cause: Throwable) : RegisterAccountResult(cause)

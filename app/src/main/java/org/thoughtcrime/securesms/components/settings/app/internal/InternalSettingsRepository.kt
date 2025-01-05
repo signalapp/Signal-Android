@@ -7,6 +7,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
+import org.thoughtcrime.securesms.database.model.addButton
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -50,6 +51,8 @@ class InternalSettingsRepository(context: Context) {
       val body = "$title\n\n$bodyText"
       val bodyRangeList = BodyRangeList.Builder()
         .addStyle(BodyRangeList.BodyRange.Style.BOLD, 0, title.length)
+
+      bodyRangeList.addButton("Call to Action Text", "action", body.lastIndex, 0)
 
       val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId!!
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))

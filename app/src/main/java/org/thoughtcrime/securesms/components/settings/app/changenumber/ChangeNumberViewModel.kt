@@ -392,7 +392,7 @@ class ChangeNumberViewModel : ViewModel() {
   private suspend fun changeNumberWithRecoveryPassword(): Boolean {
     Log.v(TAG, "changeNumberWithRecoveryPassword()")
     SignalStore.svr.recoveryPassword?.let { recoveryPassword ->
-      if (SignalStore.svr.hasPin()) {
+      if (SignalStore.svr.hasOptedInWithAccess()) {
         val result = repository.changeNumberWithRecoveryPassword(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
 
         if (result is ChangeNumberResult.Success) {
@@ -507,7 +507,7 @@ class ChangeNumberViewModel : ViewModel() {
     val currentState = store.value
     val code = currentState.enteredCode ?: throw IllegalStateException("Can't construct registration data without entered code!")
     val e164: String = number.e164Number ?: throw IllegalStateException("Can't construct registration data without E164!")
-    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.getRecoveryPassword() else null
+    val recoveryPassword = if (currentState.sessionId == null) SignalStore.svr.recoveryPassword else null
     val fcmToken = RegistrationRepository.getFcmToken(context)
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
   }

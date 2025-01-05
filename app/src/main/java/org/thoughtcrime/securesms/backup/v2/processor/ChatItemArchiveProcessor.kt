@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Handles importing/exporting [ChatItem] frames for an archive.
@@ -22,8 +23,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 object ChatItemArchiveProcessor {
   val TAG = Log.tag(ChatItemArchiveProcessor::class.java)
 
-  fun export(db: SignalDatabase, exportState: ExportState, cancellationSignal: () -> Boolean, emitter: BackupFrameEmitter) {
-    db.messageTable.getMessagesForBackup(db, exportState.backupTime, exportState.mediaBackupEnabled).use { chatItems ->
+  fun export(db: SignalDatabase, exportState: ExportState, selfRecipientId: RecipientId, cancellationSignal: () -> Boolean, emitter: BackupFrameEmitter) {
+    db.messageTable.getMessagesForBackup(db, exportState.backupTime, exportState.mediaBackupEnabled, selfRecipientId, exportState).use { chatItems ->
       var count = 0
       while (chatItems.hasNext()) {
         if (count % 1000 == 0 && cancellationSignal()) {

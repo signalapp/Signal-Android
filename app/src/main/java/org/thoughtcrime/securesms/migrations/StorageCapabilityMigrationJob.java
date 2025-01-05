@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -53,7 +54,7 @@ public class StorageCapabilityMigrationJob extends MigrationJob {
 
     jobManager.startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue();
 
-    if (TextSecurePreferences.isMultiDevice(context)) {
+    if (SignalStore.account().hasLinkedDevices()) {
       Log.i(TAG, "Multi-device.");
       jobManager.startChain(new StorageForcePushJob())
                 .then(new MultiDeviceKeysUpdateJob())

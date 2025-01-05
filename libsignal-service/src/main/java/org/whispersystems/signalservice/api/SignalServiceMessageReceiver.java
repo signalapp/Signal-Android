@@ -12,10 +12,9 @@ import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.core.util.stream.LimitedInputStream;
 import org.signal.libsignal.protocol.InvalidMessageException;
-import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.attachment.AttachmentDownloadResult;
-import org.whispersystems.signalservice.api.backup.BackupKey;
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
@@ -29,9 +28,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
-import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
 import org.whispersystems.signalservice.internal.push.IdentityCheckResponse;
@@ -187,7 +184,7 @@ public class SignalServiceMessageReceiver {
    *
    * @return An InputStream that streams the plaintext attachment contents.
    */
-  public AttachmentDownloadResult retrieveArchivedAttachment(@Nonnull BackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
+  public AttachmentDownloadResult retrieveArchivedAttachment(@Nonnull MediaRootBackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
                                                              @Nonnull Map<String, String> readCredentialHeaders,
                                                              @Nonnull File archiveDestination,
                                                              @Nonnull SignalServiceAttachmentPointer pointer,

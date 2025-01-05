@@ -131,7 +131,15 @@ class RestoreAttachmentJob private constructor(
 
   @Throws(Exception::class)
   override fun onRun() {
-    doWork()
+    try {
+      doWork()
+    } catch (e: IOException) {
+      if (BackupRepository.checkForOutOfStorageError(TAG)) {
+        throw RetryLaterException(e)
+      } else {
+        throw e
+      }
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
@@ -221,11 +229,11 @@ class RestoreAttachmentJob private constructor(
 
       val downloadResult = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
-        val cdnCredentials = BackupRepository.getCdnReadCredentials(attachment.archiveCdn).successOrThrow().headers
+        val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn).successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(
-            SignalStore.svr.getOrCreateMasterKey().deriveBackupKey().deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
+            SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(MediaName(attachment.archiveMediaName!!)),
             cdnCredentials,
             archiveFile,
             pointer,
@@ -264,7 +272,8 @@ class RestoreAttachmentJob private constructor(
           retrieveAttachment(messageId, attachmentId, attachment, true)
           return
         } else if (e.code == 401 && useArchiveCdn) {
-          SignalStore.backup.cdnReadCredentials = null
+          SignalStore.backup.mediaCredentials.cdnReadCredentials = null
+          SignalStore.backup.cachedMediaCdnPath = null
           throw RetryLaterException(e)
         }
       }

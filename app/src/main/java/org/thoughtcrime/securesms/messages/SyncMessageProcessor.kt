@@ -136,6 +136,7 @@ object SyncMessageProcessor {
   fun process(
     context: Context,
     senderRecipient: Recipient,
+    threadRecipient: Recipient,
     envelope: Envelope,
     content: Content,
     metadata: EnvelopeMetadata,
@@ -144,7 +145,7 @@ object SyncMessageProcessor {
     val syncMessage = content.syncMessage!!
 
     when {
-      syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, earlyMessageCacheEntry)
+      syncMessage.sent != null -> handleSynchronizeSentMessage(context, envelope, content, metadata, syncMessage.sent!!, senderRecipient, threadRecipient, earlyMessageCacheEntry)
       syncMessage.request != null -> handleSynchronizeRequestMessage(context, syncMessage.request!!, envelope.timestamp!!)
       syncMessage.read.isNotEmpty() -> handleSynchronizeReadMessage(context, syncMessage.read, envelope.timestamp!!, earlyMessageCacheEntry)
       syncMessage.viewed.isNotEmpty() -> handleSynchronizeViewedMessage(context, syncMessage.viewed, envelope.timestamp!!)
@@ -174,6 +175,7 @@ object SyncMessageProcessor {
     metadata: EnvelopeMetadata,
     sent: Sent,
     senderRecipient: Recipient,
+    threadRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ) {
     log(envelope.timestamp!!, "Processing sent transcript for message with ID ${sent.timestamp!!}")
@@ -227,7 +229,7 @@ object SyncMessageProcessor {
           threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
         }
         dataMessage.hasRemoteDelete -> DataMessageProcessor.handleRemoteDelete(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
-        dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.timestamp!!)
+        dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.timestamp!!, senderRecipient, threadRecipient)
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
       }
 
@@ -803,12 +805,12 @@ object SyncMessageProcessor {
   }
 
   @Throws(MmsException::class, BadGroupIdException::class)
-  private fun handleSynchronizeSentMediaMessage(context: Context, sent: Sent, envelopeTimestamp: Long): Long {
+  private fun handleSynchronizeSentMediaMessage(context: Context, sent: Sent, envelopeTimestamp: Long, senderRecipient: Recipient, threadRecipient: Recipient): Long {
     log(envelopeTimestamp, "Synchronize sent media message for " + sent.timestamp!!)
 
     val recipient: Recipient = getSyncMessageDestination(sent)
     val dataMessage: DataMessage = sent.message!!
-    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, dataMessage)
+    val quote: QuoteModel? = DataMessageProcessor.getValidatedQuote(context, envelopeTimestamp, dataMessage, senderRecipient, threadRecipient)
     val sticker: Attachment? = DataMessageProcessor.getStickerAttachment(envelopeTimestamp, dataMessage)
     val sharedContacts: List<Contact> = DataMessageProcessor.getContacts(dataMessage)
     val previews: List<LinkPreview> = DataMessageProcessor.getLinkPreviews(dataMessage.preview, dataMessage.body ?: "", false)

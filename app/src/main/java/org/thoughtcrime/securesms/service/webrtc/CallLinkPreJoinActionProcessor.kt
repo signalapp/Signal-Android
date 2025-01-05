@@ -60,7 +60,7 @@ class CallLinkPreJoinActionProcessor(
         .getCallLinkAuthorizationForToday(genericServerPublicParams, callLinkSecretParams)
 
       webRtcInteractor.callManager.createCallLinkCall(
-        SignalStore.internal.groupCallingServer(),
+        SignalStore.internal.groupCallingServer,
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
         callLink.credentials.adminPassBytes,

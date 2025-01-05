@@ -40,7 +40,7 @@ public final class ContactFilterView extends FrameLayout {
   }
 
   public ContactFilterView(Context context, AttributeSet attrs) {
-    this(context, attrs, R.attr.toolbarStyle);
+    this(context, attrs, androidx.appcompat.R.attr.toolbarStyle);
   }
 
   public ContactFilterView(Context context, AttributeSet attrs, int defStyleAttr) {

@@ -34,6 +34,7 @@ object V242_MessageFullTextSearchEmojiSupportV2 : SignalDatabaseMigration {
 
     db.execSQL("""CREATE VIRTUAL TABLE message_fts USING fts5(body, thread_id UNINDEXED, content=message, content_rowid=_id, tokenize = "unicode61 categories 'L* N* Co Sc So'")""")
     db.execSQL("INSERT INTO $FTS_TABLE_NAME ($FTS_TABLE_NAME, rank) VALUES('secure-delete', 1)")
+    db.execSQL("INSERT INTO $FTS_TABLE_NAME ($FTS_TABLE_NAME) VALUES('rebuild')")
 
     db.execSQL(
       """

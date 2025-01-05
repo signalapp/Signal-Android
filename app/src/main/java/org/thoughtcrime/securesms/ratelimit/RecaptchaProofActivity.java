@@ -10,8 +10,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -20,7 +23,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Util;
-import org.signal.core.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -35,10 +37,6 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
   private static final String RECAPTCHA_SCHEME = "signalcaptcha://";
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
-
-  public static @NonNull Intent getIntent(@NonNull Context context) {
-    return new Intent(context, RecaptchaProofActivity.class);
-  }
 
   @Override
   protected void onPreCreate() {
@@ -120,6 +118,7 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
       if (result.clearState) {
         Log.i(TAG, "Considering the response sufficient to clear the slate.");
         SignalStore.rateLimit().onProofAccepted();
+        setResult(RESULT_OK);
       }
 
       if (!result.success) {
@@ -138,6 +137,19 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
     private TokenResult(boolean clearState, boolean success) {
       this.clearState = clearState;
       this.success    = success;
+    }
+  }
+
+  public static class RecaptchaProofContract extends ActivityResultContract<Void, Boolean> {
+
+    @Override
+    public @NonNull Intent createIntent(@NonNull Context context, Void unused) {
+      return new Intent(context, RecaptchaProofActivity.class);
+    }
+
+    @Override
+    public Boolean parseResult(int resultCode, @Nullable Intent intent) {
+      return resultCode == RESULT_OK;
     }
   }
 }

@@ -369,7 +369,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">મેસેજ</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Chat types</string>
+    <string name="ContactsCursorLoader__chat_types">ચેટના પ્રકારો</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">મેસેજ %1$s</string>
@@ -739,6 +739,17 @@
         <item quantity="one">%1$d પસંદ કર્યો</item>
         <item quantity="other">%1$d પસંદ કર્યા</item>
     </plurals>
+    <!-- Context menu option to add a chat to a folder -->
+    <string name="ConversationListFragment_add_to_folder">ફોલ્ડરમાં ઉમેરો</string>
+    <!-- Context menu option to remove a chat from a folder -->
+    <string name="ConversationListFragment_remove_from_folder">ફોલ્ડરમાંથી દૂર કરો</string>
+
+    <!-- Bottom sheet title when choosing a folder to add a chat to -->
+    <string name="AddToFolderBottomSheet_choose_a_folder">ફોલ્ડર પસંદ કરો</string>
+    <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\"માં ઉમેર્યું</string>
+    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
+    <string name="AddToFolderBottomSheet_this_chat_is_already">આ ચેટ પહેલેથી જ \"%1$s\" ફોલ્ડરમાં છે</string>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">નોટિફિકેશન પ્રોફાઇલ</string>
@@ -970,14 +981,18 @@
     <string name="LinkDeviceFragment__my_linked_devices">મારા લિંક કરેલા ડિવાઇસ</string>
     <!-- Dialog confirmation to unlink a device -->
     <string name="LinkDeviceFragment__unlink">અનલિંક કરો</string>
-    <!-- Toast message indicating a device has been unlinked where %s is the name of the device -->
-    <string name="LinkDeviceFragment__s_unlinked">%1$s અનલિંક કર્યું</string>
+    <!-- Toast message indicating a device has been unlinked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_unlinked">\"%1$s\" અનલિંક કર્યું</string>
+    <!-- Toast message indicating a device has been successfully linked, where %s is the name of the device -->
+    <string name="LinkDeviceFragment__s_linked">\"%1$s\" લિંક કર્યું</string>
     <!-- Progress dialog message indicating that a device is currently being linked with an account -->
     <string name="LinkDeviceFragment__linking_device">ડિવાઇસ લિંક થઈ રહ્યું છે…</string>
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">ડિવાઇસ મંજૂર કર્યું</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
     <string name="LinkDeviceFragment__loading">લોડ કરી રહ્યું છે</string>
+    <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
+    <string name="LinkDeviceFragment__syncing_messages">મેસેજ સિંક થઈ રહ્યાં છે…</string>
     <!-- Text message shown when the user has no linked devices -->
     <string name="LinkDeviceFragment__no_linked_devices">કોઈ લિંક કરેલા ડિવાઇસ નથી</string>
     <!-- Title on biometrics prompt explaining what biometrics are being used for -->
@@ -988,6 +1003,28 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">ચાલુ રાખો પર ટૅપ કરો અને કન્ફર્મ કરવા માટે તમારા ફોનનું લૉક દાખલ કરો. તમારો Signal પિન દાખલ કરશો નહીં.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">ચાલુ રાખો</string>
+    <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_title">મેસેજ સિંક નિષ્ફળ થયું</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
+    <string name="LinkDeviceFragment__sync_failure_body">તમારા મેસેજ તમારા લિંક કરેલ ડિવાઇસ પર ટ્રાન્સફર કરી શકાયા નથી. તમે ફરીથી લિંક કરવાનો અને ફરીથી ટ્રાન્સફર કરવાનો પ્રયાસ કરી શકો છો અથવા તમારી મેસેજ હિસ્ટ્રીને ટ્રાન્સફર કર્યા વિના ચાલુ રાખી શકો છો.</string>
+    <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
+    <string name="LinkDeviceFragment__sync_failure_retry_button">ફરીથી લિંક કરવાનો પ્રયાસ કરો</string>
+    <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
+    <string name="LinkDeviceFragment__sync_failure_dismiss_button">ટ્રાન્સફર કર્યા વિના ચાલુ રાખો</string>
+    <!-- Option in context menu to edit the name of a linked device -->
+    <string name="LinkDeviceFragment__edit_name">નામમાં ફેરફાર કરો</string>
+
+    <!-- EditDeviceNameFragment -->
+    <!-- App bar title when editing the name of a device -->
+    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <!-- Text hint shown when entering in a new device name -->
+    <string name="EditDeviceNameFragment__device_name">ડિવાઇસનું નામ</string>
+    <!-- Button to save name change -->
+    <string name="EditDeviceNameFragment__save">સેવ કરો</string>
+    <!-- Toast message shown when a device name was successfully changed -->
+    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <!-- Toast message shown when a device name could not be changed and to try again later -->
+    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1011,8 +1048,18 @@
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">ફરી પ્રયાસ કરો</string>
 
+    <!-- LinkDeviceSyncBottomSheet -->
+    <!-- Option in bottom sheet to transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_transfer">મેસેજની હિસ્ટ્રી ટ્રાન્સફર કરો</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <!-- Option in bottom sheet to not transfer message history -->
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">ટ્રાન્સફર કરશો નહીં</string>
+    <!-- Description in bottom sheet of what not transferring history will do -->
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">અનલિંક કરો \'%1$s\'?</string>
+    <string name="DeviceListActivity_unlink_s">\"%1$s\"ને અનલિંક કરીએ?</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">આ ડિવાઇસ ને અનલિંક કરીને, તે હવે મેસેજ મોકલવા અથવા પ્રાપ્ત કરવામાં સમર્થ રહેશે નહીં.</string>
     <string name="DeviceListActivity_network_connection_failed">નેટવર્ક કનેક્શન નિષ્ફળ થયું</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1305,20 +1352,6 @@
     <string name="ManageGroupActivity_more">વધારે</string>
     <string name="ManageGroupActivity_add_group_description">ગ્રુપ ડિસ્ક્રિપ્શન ઉમેરો …</string>
 
-    <!-- MoreTransferOrRestoreOptionsSheet -->
-    <!-- Row title for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_from_android_device">Android ડિવાઇસથી ટ્રાન્સફર કરો</string>
-    <!-- Row description for transfer option -->
-    <string name="MoreTransferOrRestoreOptionsSheet__transfer_your_account_and_messages">તમારા જૂના Android ડિવાઇસ પરથી તમારું એકાઉન્ટ અને મેસેજ ટ્રાન્સફર કરો.</string>
-    <!-- Row title for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__log_in_without_transferring">ટ્રાન્સફર કર્યા વગર લૉગ ઇન કરો</string>
-    <!-- Row description for logging in without transfer -->
-    <string name="MoreTransferOrRestoreOptionsSheet__continue_without_transferring">તમારા મેસેજ અને મીડિયાને ટ્રાન્સફર કર્યા વિના ચાલુ રાખો</string>
-    <!-- Row title for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_local_backup">લોકલ બેકઅપ રિસ્ટોર કરો</string>
-    <!-- Row description for restoring from local backup -->
-    <string name="MoreTransferOrRestoreOptionsSheet__restore_your_messages">તમે તમારા ડિવાઇસ પર સેવ કરેલી બેકઅપ ફાઇલમાંથી તમારા મેસેજ રિસ્ટોર કરો.</string>
-
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
     <string name="RemoteRestoreActivity__downloading_backup">બેકઅપ ડાઉનલોડ કરી રહ્યાં છીએ…</string>
@@ -1336,12 +1369,18 @@
     <string name="RemoteRestoreActivity__all_of_your_messages">તમારા બધા મેસેજ</string>
     <!-- Screen title for restoring from backup -->
     <string name="RemoteRestoreActivity__restore_from_backup">બેકઅપમાંથી રિસ્ટોર કરો</string>
-    <!-- Notice about what media will be included in backups. Placeholder is days, and is curerntly fixed at 30. -->
-    <string name="RemoteRestoreActivity__only_media_sent_or_received">ફક્ત પાછલા %1$d દિવસમાં મોકલેલા કે મેળવેલા મીડિયા શામેલ છે.</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">તમારા બેકઅપમાં શામેલ છે:</string>
     <!-- Primary action button copy for starting restoration -->
     <string name="RemoteRestoreActivity__restore_backup">બેકઅપ રિસ્ટોર કરો</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
+    <string name="RemoteRestoreActivity__backup_created_at">તમારું છેલ્લું બેકઅપ %1$sના રોજ %2$s વાગ્યે લેવામાં આવ્યું હતું.</string>
+    <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
+    <string name="RemoteRestoreActivity__fetching_backup_details">બેકઅપ વિગતો મેળવી રહ્યાં છીએ…</string>
+    <!-- Text label button to skip restore from remote -->
+    <string name="RemoteRestoreActivity__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
@@ -2441,6 +2480,8 @@
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">આ નંબરને રજિસ્ટર કરવા માટે તમે ઘણા બધા પ્રયત્નો કરી લીધા છે. કૃપા કરીને %1$sમાં ફરી પ્રયાસ કરો.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">સેવાથી કનેક્ટ કરવામાં અસમર્થ. કૃપા કરીને નેટવર્ક કનેક્શન તપાસો અને ફરીથી પ્રયાસ કરો.</string>
+    <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
+    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">અમે તમને SMS દ્વારા ચકાસણી કોડ મોકલી શક્યાં નથી. તેના બદલે વૉઇસ કૉલ દ્વારા તમારો કોડ મેળવવાનો પ્રયાસ કરો.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3434,15 +3475,16 @@
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">લૉગ્સ અપલોડ કરી શક્યાં નથી.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">કૃપા કરીને સમસ્યાને સમજવામાં અમારી સહાય માટે શક્ય તેટલું વર્ણનાત્મક બનો.</string>
-    <string-array name="HelpFragment__categories_5">
+    <string-array name="HelpFragment__categories_6">
         <item>કૃપા કરીને એક વિકલ્પ પસંદ કરો</item>
-        <item>કશું કામ નથી આપી રહ્યું</item>
-        <item>સુવિધા વિનંતી</item>
+        <item>કંઈક કામ નથી કરી રહ્યું</item>
+        <item>સુવિધાની વિનંતી</item>
         <item>પ્રશ્ન</item>
         <item>પ્રતિસાદ</item>
         <item>અન્ય</item>
         <item>ચુકવણી (MobileCoin)</item>
         <item>યોગદાન અને બૅજ</item>
+        <item>Signal Android બેકઅપ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ડીબગ લૉગ સબમિશન</string>
@@ -4053,9 +4095,9 @@
     <string name="conversation_list_fragment__open_camera_description">કેમેરો ખોલો</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">હજી સુધી કોઈ ચેટ નથી.\nમિત્રને મેસેજ કરીને પ્રારંભ કરો.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
-    <string name="conversation_list_fragment__no_chats_to_display">No chats to display</string>
+    <string name="conversation_list_fragment__no_chats_to_display">બતાવવા માટે કોઈ ચેટ નથી</string>
     <!-- Button text that will open up chat folder settings -->
-    <string name="conversation_list_fragment__folder_settings">Folder settings</string>
+    <string name="conversation_list_fragment__folder_settings">ફોલ્ડરના સેટિંગ્સ</string>
 
 
     <!-- conversation_secure_verified -->
@@ -4283,8 +4325,12 @@
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">મેં આ પાસફ્રેઝ લખ્યો છે. તેના વિના, હું બૅકઅપ ને રિસ્ટોર કરવામાં અસમર્થ હોઈશ.</string>
     <string name="registration_activity__restore_backup">બૅકઅપ રિસ્ટોર કરો</string>
     <string name="registration_activity__transfer_or_restore_account">એકાઉન્ટ ટ્રાન્સફર અથવા રિસ્ટોર કરો</string>
+    <!-- Screen title for restoring or transfering account -->
+    <string name="registration_activity__restore_or_transfer">રિસ્ટોર અથવા ટ્રાન્સફર કરો</string>
     <string name="registration_activity__transfer_account">એકાઉન્ટ ટ્રાન્સફર કરો</string>
     <string name="registration_activity__skip">અવગણો</string>
+    <!-- Text label button to skip restoring -->
+    <string name="registration_activity__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <string name="preferences_chats__chat_backups">ચેટ બૅકઅપ</string>
     <string name="preferences_chats__transfer_account">એકાઉન્ટ ટ્રાન્સફર કરો</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">નવા Android ડિવાઇસમાં એકાઉન્ટ ટ્રાન્સફર કરો</string>
@@ -4937,6 +4983,11 @@
     <string name="QualitySelectorBottomSheetDialog__media_quality">મીડિયા ગુણવત્તા</string>
 
     <!-- AppSettingsFragment -->
+    <!-- String alerting user that something is wrong with their backups subscription -->
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">તમારું Signal બેકઅપ સબ્સ્ક્રિપ્શન રિન્યૂ કરો</string>
+    <!-- String alerting user that backup failed -->
+    <string name="AppSettingsFragment__couldnt_complete_backup">બેકઅપ પૂર્ણ કરી શકાયું નથી</string>
+    <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">તમારા મિત્રોને આમંત્રણ આપો</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">દાતાનું સબ્સ્ક્રાઇબર ID ક્લિપબોર્ડ પર કૉપિ કર્યું</string>
@@ -5055,118 +5106,129 @@
     <string name="ChatsSettingsFragment__keyboard">કીબોર્ડ</string>
     <string name="ChatsSettingsFragment__send_with_enter">એન્ટર દબાવીને મોકલો</string>
     <!-- Heading within chats settings for chat folders -->
-    <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
-    <!-- Option within settings to add a new chat folder -->
-    <string name="ChatsSettingsFragment__add_chat_folder">Add a chat folder</string>
+    <string name="ChatsSettingsFragment__chat_folders">ચેટના ફોલ્ડર</string>
+    <!-- Option within settings to add a new chat folder if you have never created a folder before -->
+    <string name="ChatsSettingsFragment__add_chat_folder">ચેટ ફોલ્ડર ઉમેરો</string>
+    <!-- Option within settings to add or edit chat folders that is shown when you have already created folders -->
+    <string name="ChatsSettingsFragment__add_edit_chat_folder">ફોલ્ડર ઉમેરો અથવા તેમાં ફેરફાર કરો</string>
+    <!-- Text describing the number of folders you have -->
+    <plurals name="ChatsSettingsFragment__d_folder">
+        <item quantity="one">%1$d ફોલ્ડર</item>
+        <item quantity="other">%1$d ફોલ્ડર</item>
+    </plurals>
+
+    <!-- ChatFoldersEducationSheet -->
+    <!-- Text in a bottom sheet describing chat folders and what they can be created for -->
+    <string name="ChatFoldersEducationSheet__create_folders_for_family">કુટુંબ, મિત્રો, કાર્ય વગેરે માટે ફોલ્ડર બનાવો</string>
+    <!-- Text in a bottom sheet explaining how chat folders can be configured to only show unread chats  -->
+    <string name="ChatFoldersEducationSheet__choose_to_show_unread">માત્ર ન વાંચેલી ચેટ બતાવવાનું પસંદ કરો </string>
+    <!-- Text in a bottom sheet stating that suggested folders can be easily created -->
+    <string name="ChatFoldersEducationSheet__easily_add_suggested">સરળતાથી સૂચવેલ ફોલ્ડર ઉમેરો</string>
+    <!-- Button text to dismiss bottom sheet -->
+    <string name="ChatFoldersEducationSheet__continue">ચાલુ રાખો</string>
 
     <!-- ChatFoldersFragment -->
     <!-- Description of what chat folders are -->
-    <string name="ChatFoldersFragment__organize_your_chats">Organize your chats into folders and quickly switch between them on your chat list.</string>
+    <string name="ChatFoldersFragment__organize_your_chats">તમારી ચેટને ફોલ્ડરમાં ગોઠવો અને તમારી ચેટ લિસ્ટ પર તેમની વચ્ચે ઝડપથી સ્વિચ કરો.</string>
     <!-- Header for section showing current chat folders -->
-    <string name="ChatFoldersFragment__folders">Folders</string>
+    <string name="ChatFoldersFragment__folders">ફોલ્ડર</string>
     <!-- Text next to button that allows users to create a new chat folder -->
-    <string name="ChatFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="ChatFoldersFragment__create_a_folder">ફોલ્ડર બનાવો</string>
     <!-- Name of a chat folder that represents the folder containing all chats -->
-    <string name="ChatFoldersFragment__all_chats">All chats</string>
+    <string name="ChatFoldersFragment__all_chats">બધી ચેટ</string>
     <!-- Header for section showing suggested chat folders for users to have -->
-    <string name="ChatFoldersFragment__suggested_folders">Suggested folders</string>
+    <string name="ChatFoldersFragment__suggested_folders">સૂચવેલા ફોલ્ડર</string>
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
-    <string name="ChatFoldersFragment__unreads">Unreads</string>
+    <string name="ChatFoldersFragment__unread">ન વાંચેલ</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Unread messages from all chats</string>
+    <string name="ChatFoldersFragment__unread_messages">બધી ચેટમાંથી વાંચ્યા વગરના મેસેજ</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
-    <string name="ChatFoldersFragment__one_on_one_chats">1:1 chats</string>
+    <string name="ChatFoldersFragment__one_on_one_chats">1:1 ચેટ</string>
     <!-- Description of the suggested 1:1 chat folder -->
-    <string name="ChatFoldersFragment__only_direct_messages">Only messages from direct chats</string>
+    <string name="ChatFoldersFragment__only_direct_messages">ફક્ત ડાયરેક્ટ ચેટના જ મેસેજ</string>
     <!-- Name of a chat folder that contains all groups chats -->
-    <string name="ChatFoldersFragment__groups">Groups</string>
+    <string name="ChatFoldersFragment__groups">ગ્રૂપ</string>
     <!-- Description of the suggested group chat folder -->
-    <string name="ChatFoldersFragment__only_group_messages">Only message from group chats</string>
+    <string name="ChatFoldersFragment__only_group_messages">ફક્ત ગ્રૂપ ચેટના જ મેસેજ</string>
     <!-- Button text to add a suggested folder to a user\'s chat folders -->
-    <string name="ChatFoldersFragment__add">Add</string>
+    <string name="ChatFoldersFragment__add">ઉમેરો</string>
     <!-- Toast shown when a folder gets added where %s is the name of the folder -->
-    <string name="ChatFoldersFragment__folder_added">%1$s folder added.</string>
+    <string name="ChatFoldersFragment__folder_added">%1$s ફોલ્ડર ઉમેર્યું.</string>
     <!-- Option in context menu to edit the folder -->
-    <string name="ChatFoldersFragment__edit_folder">Edit folder</string>
-    <!-- Option in context menu to delete the folder -->
-    <string name="ChatFoldersFragment__delete_folder">Delete folder</string>
-    <!-- Option in context menu to add a new folder -->
-    <string name="ChatFoldersFragment__add_new_folder">Add new folder</string>
+    <string name="ChatFoldersFragment__edit_folder">ફોલ્ડરમાં ફેરફાર કરો</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Mute all</string>
-    <!-- Option in context menu to reorder the positions of the folder -->
-    <string name="ChatFoldersFragment__reorder_folder">Reorder folders</string>
+    <string name="ChatFoldersFragment__mute_all">બધાને મ્યૂટ કરો</string>
+    <!-- Option in context menu to unmute all chats in the folder -->
+    <string name="ChatFoldersFragment__unmute_all">તમામ અનમ્યૂટ કરો</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Mark all read</string>
+    <string name="ChatFoldersFragment__mark_all_read">બધાને વાંચેલા તરીકે માર્ક કરો</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
-        <item quantity="one">%1$d chat type</item>
-        <item quantity="other">%1$d chat types</item>
+        <item quantity="one">%1$d ચેટના પ્રકાર</item>
+        <item quantity="other">%1$d ચેટના પ્રકારો</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
-        <item quantity="one">%1$d chat</item>
-        <item quantity="other">%1$d chats</item>
+        <item quantity="one">%1$d ચેટ</item>
+        <item quantity="other">%1$d ચેટ</item>
     </plurals>
     <!-- Text describing the number of chats that are excluded in a folder -->
     <plurals name="ChatFoldersFragment__d_chats_excluded">
-        <item quantity="one">%1$d chat excluded</item>
-        <item quantity="other">%1$d chats excluded</item>
+        <item quantity="one">%1$d ચેટ બાકાત કરી</item>
+        <item quantity="other">%1$d ચેટ બાકાત કરી</item>
     </plurals>
+    <!-- Badge shown in chat folder tab when unread count is greater than 99 -->
+    <string name="ChatFolderAdapter__99p">99+</string>
 
     <!-- CreateFoldersFragment -->
     <!-- Title of the screen when creating a folder, displayed in the toolbar -->
-    <string name="CreateFoldersFragment__create_a_folder">Create a folder</string>
+    <string name="CreateFoldersFragment__create_a_folder">ફોલ્ડર બનાવો</string>
     <!-- Hint text shown in text field to enter a name for the folder -->
-    <string name="CreateFoldersFragment__folder_name">Folder name (required)</string>
+    <string name="CreateFoldersFragment__folder_name">ફોલ્ડરનું નામ (આવશ્યક)</string>
     <!-- Section title representing what chats are included in the folder -->
-    <string name="CreateFoldersFragment__included_chats">Included chats</string>
+    <string name="CreateFoldersFragment__included_chats">સમાવિષ્ટ ચેટ</string>
     <!-- Text next to button that allows users to add chats to the folder    -->
-    <string name="CreateFoldersFragment__add_chats">Add chats</string>
+    <string name="CreateFoldersFragment__add_chats">ચેટ ઉમેરો</string>
     <!-- Description explaining the purpose of the included chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_want">Choose chats that you want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_want">તમે આ ફોલ્ડરમાં બતાવવા માંગતા હો તે ચેટ પસંદ કરો.</string>
     <!-- Section title representing what chats are excluded from the folder -->
-    <string name="CreateFoldersFragment__exceptions">Exceptions</string>
+    <string name="CreateFoldersFragment__exceptions">અપવાદો</string>
     <!-- Text next to button that allows users to exclude chats from the folder   -->
-    <string name="CreateFoldersFragment__exclude_chats">Exclude chats</string>
+    <string name="CreateFoldersFragment__exclude_chats">ચેટ બાકાત કરો</string>
     <!-- Description explaining the purpose of the excluded chats section -->
-    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">Choose chats that you do not want to appear in this folder.</string>
+    <string name="CreateFoldersFragment__choose_chats_you_do_not_want">તમે આ ફોલ્ડરમાં બતાવવા ન માંગતા હો તે ચેટ પસંદ કરો.</string>
     <!-- Toggle switch for folder to show unread chats -->
-    <string name="CreateFoldersFragment__only_show_unread_chats">Only show unread chats</string>
+    <string name="CreateFoldersFragment__only_show_unread_chats">ફક્ત ન વાંચેલી ચેટ જ બતાવો</string>
     <!-- Explanation of unread toggle option -->
-    <string name="CreateFoldersFragment__when_enabled_only_chats">When enabled, only chats with unread messages will be shown in this folder.</string>
+    <string name="CreateFoldersFragment__when_enabled_only_chats">જ્યારે સક્ષમ હોય, ત્યારે આ ફોલ્ડરમાં ફક્ત ન વાંચેલા મેસેજ સાથેની ચેટ જ બતાવવામાં આવશે.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Include muted chats</string>
+    <string name="CreateFoldersFragment__include_muted_chats">મ્યૂટ કરેલી ચેટ સામેલ કરો</string>
     <!-- Button text to create a folder -->
-    <string name="CreateFoldersFragment__create">Create</string>
-    <!-- Alert dialog title to create a chat folder -->
-    <string name="CreateFoldersFragment__create_folder_title">Create folder?</string>
-    <!-- Alert dialog description when creating a chat folder where %s is the name of the folder -->
-    <string name="CreateFoldersFragment__do_you_want_to_create">Do you want to create the chat folder \"%1$s\"?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__create_folder">Create folder</string>
+    <string name="CreateFoldersFragment__create">બનાવો</string>
     <!-- Section title shown when editing an existing folder   -->
-    <string name="CreateFoldersFragment__edit_folder">Edit folder</string>
+    <string name="CreateFoldersFragment__edit_folder">ફોલ્ડરમાં ફેરફાર કરો</string>
     <!-- Button text to save the changes to a folder after it has been edited -->
-    <string name="CreateFoldersFragment__save">Save</string>
-    <!-- Alert dialog title to save changes made to the current folder -->
-    <string name="CreateFoldersFragment__save_changes_title">Save changes?</string>
-    <!-- Alert dialog description when saving a folder that has had changes made to it -->
-    <string name="CreateFoldersFragment__do_you_want_to_save">Do you want to save the changes you\'ve made to this chat folder?</string>
-    <!-- Alert dialog confirmation button text to save the changes -->
-    <string name="CreateFoldersFragment__save_changes">Save changes</string>
-    <!-- Alert dialog button to dismiss the dialog and discard any changes -->
-    <string name="CreateFoldersFragment__discard">Discard</string>
+    <string name="CreateFoldersFragment__save">સેવ કરો</string>
+    <!-- Alert dialog title shown when users are going to discard any changes made to a folder without saving -->
+    <string name="CreateFoldersFragment__discard_changes_title">ફેરફારો જવા દેવા છે?</string>
+    <!-- Alert dialog description explaining that any changes made will be discarded -->
+    <string name="CreateFoldersFragment__you_will_lose_changes">તમે આ ફોલ્ડર પર કરેલા ફેરફારો ગુમાવશો.</string>
+    <!-- Alert dialog confirmation text to discard the changes -->
+    <string name="CreateFoldersFragment__discard">કાઢી નાખો</string>
     <!-- Text that when pressed will delete the current folder -->
-    <string name="CreateFoldersFragment__delete_folder">Delete folder</string>
+    <string name="CreateFoldersFragment__delete_folder">ફોલ્ડર ડિલીટ કરો</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">Delete this chat folder?</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">આ ચેટ ફોલ્ડર ડિલીટ કરવું છે?</string>
+    <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
+    <string name="CreateFoldersFragment__see_all">બધુ જુઓ</string>
+    <!-- Toast shown when trying to make a folder with no name -->
+    <string name="CreateFoldersFragment__please_enter_name">કૃપા કરીને ફોલ્ડરનું નામ દાખલ કરો</string>
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Chat types</string>
+    <string name="ChooseChatsFragment__chat_types">ચેટના પ્રકારો</string>
     <!-- Done button label to save selected chats to folder -->
-    <string name="ChooseChatsFragment__done">Done</string>
+    <string name="ChooseChatsFragment__done">થઈ ગયું</string>
 
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">મેસેજ</string>
@@ -5751,6 +5813,10 @@
     <string name="InAppPaymentInProgressFragment__processing_donation">દાનની પ્રક્રિયા થઈ રહી છે…</string>
     <string name="InAppPaymentInProgressFragment__processing_payment">પેમેન્ટ પ્રક્રિયા થઈ રહી છે…</string>
 
+    <!--InAppDonations -->
+    <!-- Label displayed in google play and on receipts for recurring subscriptions. Placeholder is level -->
+    <string name="InAppDonations__recurring_d">રિકરિંગ %1$d</string>
+
     <!-- InAppPaymentErrors -->
     <!-- Displayed as a title in a dialog or notification when a payment failure happens. -->
     <string name="InAppPaymentErrors__error_processing_payment">ચુકવણીની પ્રક્રિયા કરવામાં ભૂલ</string>
@@ -5776,6 +5842,10 @@
     <string name="DonationsErrors__your_payment">તમારી દાનની પ્રક્રિયા થઈ ન શકી અને તમારી પાસેથી ચાર્જ લેવામાં આવ્યો નથી. કૃપા કરીને ફરીથી પ્રયાસ કરો.</string>
     <string name="DonationsErrors__still_processing">હજી પ્રક્રિયા ચાલુ છે</string>
     <string name="DonationsErrors__couldnt_add_badge">બૅજ ઉમેરી ન શક્યા</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
+    <string name="DonationsError__something_went_wrong">કંઈક ખોટું થયું</string>
+    <!-- Displayed when backup credential could not be redeemed. Dialog or notification body -->
+    <string name="DonationsError__your_backups_subscription_couldnt_be_displayed">તમારું બેકઅપ સબ્સ્ક્રિપ્શન પ્રદર્શિત કરી શકાયું નથી. કૃપા કરીને સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">બૅજને માન્ય કરવાનું નિષ્ફળ</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5967,9 +6037,9 @@
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">સમયપત્રક</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">શરૂ કરો</string>
+    <string name="EditNotificationProfileSchedule__start">શરૂ થવાનો સમય</string>
     <!-- Label for showing the end time for the schedule -->
-    <string name="EditNotificationProfileSchedule__end">સમાપ્ત</string>
+    <string name="EditNotificationProfileSchedule__end">સમાપ્તિ સમય</string>
     <!-- First letter of Sunday -->
     <string name="EditNotificationProfileSchedule__sunday_first_letter">રવિ</string>
     <!-- First letter of Monday -->
@@ -5985,7 +6055,7 @@
     <!-- First letter of Saturday -->
     <string name="EditNotificationProfileSchedule__saturday_first_letter">શનિ</string>
     <!-- Title of select time dialog shown when setting start time for schedule -->
-    <string name="EditNotificationProfileSchedule__set_start_time">શરૂઆત સમય સેટ કરો</string>
+    <string name="EditNotificationProfileSchedule__set_start_time">શરૂ થવાનો સમય સેટ કરો</string>
     <!-- Title of select time dialog shown when setting end time for schedule -->
     <string name="EditNotificationProfileSchedule__set_end_time">સમાપ્તિ સમય સેટ કરો</string>
     <!-- If in edit mode, call to action button text show to save schedule to profile -->
@@ -6055,8 +6125,6 @@
     <string name="DonationReceiptDetailsFragment__amount">રકમ</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Signalને સમર્થન આપવા બદલ આપનો આભાર. તમારું યોગદાન ઓપન સોર્સ પ્રાઇવસી ટેક્નોલોજી વિકસિત કરવાના મિશનને વેગ આપવામાં મદદ કરે છે જે મુક્ત અભિવ્યક્તિનું રક્ષણ કરે છે અને વિશ્વના લાખો લોકો માટે સુરક્ષિત વૈશ્વિક સંચારને સક્રિય કરે છે. જો તમે યુનાઇટેડ સ્ટેટ્સના રહેવાસી હો, તો કૃપા કરીને તમારા ટેક્સ રેકોર્ડ માટે આ રસીદને સાચવી રાખો. Signal Technology Foundation એ યુનાઇટેડ સ્ટેટ્સમાં Internal Revenue Code (આંતરિક મહેસૂલ સંહિતા)ની કલમ 501c3 હેઠળ એક કરવેરા-મુક્ત બિનલાભકારી સંસ્થા છે. અમારું સંઘીય ટેક્સ ID છે 82-4506840.</string>
-    <!-- Donation receipt type -->
-    <string name="DonationReceiptDetailsFragment__s_dash_s">%1$s - %2$s</string>
     <!-- Donation reciepts screen empty state title -->
     <string name="DonationReceiptListFragment__no_receipts">કોઈ રસીદ નથી</string>
 
@@ -6646,7 +6714,7 @@
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">નીચેના \"સેટિંગ્સ પર જાઓ\" બટનને ટૅપ કરો</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
-    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"એલાર્મ અને રીમાઇન્ડર સેટિંગ્સને મંજૂરી આપો\" ચાલુ કરો.</string>
+    <string name="BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders">\"એલાર્મ અને રિમાઇન્ડર સેટિંગને મંજૂરી આપો\" ચાલુ કરો.</string>
     <!-- Re-enable backups permission bottom sheet call to action button to open settings -->
     <string name="BackupSchedulePermissionMegaphone__go_to_settings">સેટિંગ્સ પર જાઓ</string>
 
@@ -7167,6 +7235,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">કૉલ લિંક ડિલીટ કરો</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">ફેરફારો સેવ શક્યા નથી. તમારું નેટવર્ક કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Displayed when the call link is in use when the user tries to delete it -->
+    <string name="CallLinkDetailsFragment__couldnt_delete_call_link">કૉલ લિંક ડિલીટ કરી શકાઈ નથી કારણ કે તે હાલમાં ઉપયોગમાં છે.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
     <string name="CallLinkDetailsFragment__delete_link">લિંક ડિલીટ કરવી છે?</string>
     <!-- Displayed as body in dialog when user attempts to delete the link -->
@@ -7257,6 +7327,10 @@
     <string name="PendingParticipantsBottomSheet__reject">અસ્વીકાર</string>
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">મંજૂર</string>
+    <!-- Button text to allow all participants to join the call -->
+    <string name="PendingParticipantsBottomSheet__approve_all">બધી મંજૂર કરો</string>
+    <!-- Button text to deny all participants from joining the call -->
+    <string name="PendingParticipantsBottomSheet__deny_all">બધી નામંજૂર કરો</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">ફૂલ સ્ક્રીન નોટિફિકેશન ચાલુ કરવા છે?</string>
@@ -7384,15 +7458,12 @@
     <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">તમારા મીડિયા આજે ડિલીટ કરવામાં આવશે</string>
     <!-- Sheet body part 1 when user\'s media will be deleted today -->
     <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">તમારો Signal મીડિયા બેકઅપ પ્લાન રદ કરવામાં આવ્યો છે કારણ કે અમે તમારી ચુકવણી પર પ્રક્રિયા કરી શક્યા નથી. તમારા બેકઅપમાં મીડિયાને ડિલીટ કરવામાં આવે તે પહેલાં તેને ડાઉનલોડ કરવાની આ તમારી છેલ્લી તક છે.</string>
-    <!-- Sheet title when user does not have enough space to download their backup -->
-    <string name="BackupAlertBottomSheet__cant_complete_download">ડાઉનલોડ પૂર્ણ કરી શકાયું નથી</string>
+    <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
+    <string name="BackupAlertBottomSheet__free_up_s_on_this_device">આ ડિવાઇસ પર %1$s ખાલી કરો</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
-    <string name="BackupAlertBottomSheet__your_device_does_not_have_enough_free_space">તમારા ડિવાઇસમાં પૂરતી જગ્યા ખાલી નથી. તમારા બેકઅપમાં સ્ટોર કરેલા મીડિયાને ડાઉનલોડ કરવા માટે %1$s જેટલી જગ્યા ખાલી કરો.</string>
-    <!-- Sheet body part 2 when user does not have enough space to download their backup. Placeholder is the number of days until deletion -->
-    <plurals name="BackupAlertBottomSheet__if_you_choose_skip">
-        <item quantity="one">જો તમે \"છોડો\" પસંદ કરો છો, તો તમારા બેકઅપમાંના મીડિયા %1$d દિવસમાં ડિલીટ કરવામાં આવશે.</item>
-        <item quantity="other">જો તમે \"છોડો\" પસંદ કરો છો, તો તમારા બેકઅપમાંના મીડિયા %1$d દિવસમાં ડિલીટ કરવામાં આવશે.</item>
-    </plurals>
+    <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">તમારા Signal બેકઅપને ડાઉનલોડ કરવાનું સમાપ્ત કરવા માટે તમારા ડિવાઇસમાં %1$s સ્ટોરેજ જગ્યાની જરૂર છે.</string>
+    <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">જગ્યા ખાલી કરવા માટે ન વપરાયેલ ઍપ અથવા ફાઈલ સાઇઝ મોટી હોય તેવી કન્ટેન્ટ ઑફલોડ કરો અથવા ડિલીટ કરો.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">તમારા બેકઅપ સબ્સ્ક્રિપ્શનને રિન્યૂ કરવાનું નિષ્ફળ થયું</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7404,7 +7475,11 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">વધુ જાણો</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
-    <string name="BackupAlertBottomSheet__skip">અવગણો</string>
+    <string name="BackupAlertBottomSheet__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
+    <!-- Primary action button to start backup immediately -->
+    <string name="BackupAlertBottomSheet__back_up_now">હમણાં બેકઅપ લો</string>
+    <!-- Primary action button when user doesn\'t have enough space -->
+    <string name="BackupAlertBottomSheet__got_it">સમજાઈ ગયું</string>
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">સબ્સ્ક્રિપ્શન મેનેજ કરો</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
@@ -7415,6 +7490,8 @@
     <string name="BackupAlertBottomSheet__dont_download_media">મીડિયા ડાઉનલોડ કરશો નહીં</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">અત્યારે નહીં</string>
+    <!-- Secondary action button to dismiss could not complete backup sheet -->
+    <string name="BackupAlertBottomSheet__try_later">પછી પ્રયાસ કરો</string>
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">મીડિયા ડિલીટ કરવામાં આવશે</string>
     <!-- Dialog message for last chance to download backup -->
@@ -7423,6 +7500,18 @@
     <string name="BackupAlertBottomSheet__download">ડાઉનલોડ</string>
     <!-- Dialog action to not download now -->
     <string name="BackupAlertBottomSheet__dont_download">ડાઉનલોડ કરશો નહીં</string>
+    <!-- Dialog action to skip media download -->
+    <string name="BackupAlertBottomSheet__skip">અવગણો</string>
+    <!-- Dialog title for skipping media restore -->
+    <string name="BackupAlertBottomSheet__skip_restore_question">રિસ્ટોર કરવાનું સ્કિપ કરવું છે?</string>
+    <!-- Dialog text for skipping media restore -->
+    <string name="BackupAlertBottomSheet__if_you_skip_restore_the">જો તમે રિસ્ટોર કરવાનું છોડી દો છો તો તમારા બેકઅપમાંના બાકીના મીડિયા અને અટેચમેન્ટ જ્યારે સ્ટોરેજ સ્પેસ ઉપલબ્ધ થાય ત્યારે પછીના સમયે ડાઉનલોડ કરી શકાય છે.</string>
+    <!-- Dialog title when a backup fails to be created -->
+    <string name="BackupAlertBottomSheet__backup_failed">બૅકઅપ નિષ્ફળ</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it -->
+    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog action button that will allow you to check for any Signal version updates -->
+    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7433,6 +7522,8 @@
     <string name="BackupStatus__restore_paused">રિસ્ટોર થોભાવ્યું</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">રિસ્ટોર પૂર્ણ થયું</string>
+    <!-- Status action label for seeing more details about storage space -->
+    <string name="BackupStatus__details">વિગતો</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">વાઇ-ફાઇની રાહ જોઈ રહ્યાં છીએ…</string>
@@ -7445,15 +7536,19 @@
 
     <!-- BackupStatusRow -->
     <!-- Content description for x icon at the end of the linear progress indicator -->
-    <string name="BackupStatusRow__cancel_download">Cancel download</string>
+    <string name="BackupStatusRow__cancel_download">ડાઉનલોડ રદ કરો</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Downloading: %1$s of %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">ડાઉનલોડ થઈ રહ્યું છે: %2$s માંથી %1$s (%3$s%%)</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Not enough space to download your Backup. To continue free up %1$s of space.</string>
+    <string name="BackupStatusRow__not_enough_space">તમારા બેકઅપને ડાઉનલોડ કરવા માટે પૂરતી જગ્યા નથી. ચાલુ રાખવા માટે %1$s જગ્યા ખાલી કરો.</string>
     <!-- Text row label to skip download -->
-    <string name="BackupStatusRow__skip_download">Skip download</string>
+    <string name="BackupStatusRow__skip_download">ડાઉનલોડ કરવાનું છોડો</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">"Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-F and tap Back up now to try again."</string>
+    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
+    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <!-- Text displayed in a row to learn more about why a backup failed -->
+    <string name="BackupStatusRow__learn_more">વધુ જાણો</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7477,10 +7572,6 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">સબ્સ્ક્રિપ્શન બદલો અથવા રદ કરો</string>
 
-    <!-- RemoteRestoreActivity -->
-    <!-- Displayed at restore time to tell the user when their last backup was made. %$1s is replaced with the date (e.g. March 5, 2024) and %$2s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">તમારું છેલ્લું બેકઅપ %1$sના રોજ %2$s વાગ્યે લેવામાં આવ્યું હતું.</string>
-
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">ચેટની મર્યાદા</string>
@@ -7500,6 +7591,8 @@
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">ડિવાઇસ પરના સ્ટોરેજને ઑપ્ટિમાઈઝ કરો</string>
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ન વપરાયેલ મીડિયાને ઑફલોડ કરવામાં આવશે, પરંતુ તમારા બેકઅપમાંથી ગમે ત્યારે ડાઉનલોડ કરી શકાય છે.</string>
+    <!-- Dialog message for paid tier pending dialog -->
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">સ્ટોરેજ ઑપ્ટિમાઇઝેશનનો ઉપયોગ માત્ર Signal બેકઅપના પેઇડ ટીયર સાથે જ થઈ શકે છે. તમારું બેકઅપ સબ્સ્ક્રિપ્શન હજી પ્રક્રિયામાં છે અને હજી સક્રિય નથી. કૃપા કરીને પછી ફરી પ્રયાસ કરો.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
@@ -7519,6 +7612,16 @@
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">%1$s/મહિને સબ્સ્ક્રાઇબ કરો</string>
+
+    <!-- MediaNoLongerAvailableSheet -->
+    <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
+    <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">આ મીડિયા હવે ઉપલબ્ધ નથી</string>
+    <!-- Body on a bottom sheet explaining that the user can enable backups -->
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">તમારા બધા મીડિયાનું બેકઅપ લેવાનું શરૂ કરવા માટે, Signal બેકઅપ સક્ષમ કરો અને સશુલ્ક ટીયર પસંદ કરો.</string>
+    <!-- Primary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__continue">ચાલુ રાખો</string>
+    <!-- Secondary action button on bottom sheet -->
+    <string name="MediaNoLongerAvailableSheet__not_now">અત્યારે નહીં</string>
 
     <!-- Educational bottom sheet dialog title shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_title">ડિલીટ કરવાનું હવે તમારા બધા ડિવાઇસ પર સિંક કરવામાં આવ્યું છે</string>
@@ -7561,27 +7664,33 @@
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">બેકઅપ પ્રકાર બદલાયો અને સબ્સ્ક્રિપ્શન રદ કર્યું</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
-    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Subscription canceled</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_cancelled">સબ્સ્ક્રિપ્શન રદ કર્યું</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">ડાઉનલોડ પૂર્ણ</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">બેકઅપ રાત્રિ દરમિયાન લેવામાં આવશે.</string>
     <!-- Text displayed in card when subscription is inactive -->
-    <string name="RemoteBackupsSettingsFragment__subscription_inactive">Subscription inactive</string>
+    <string name="RemoteBackupsSettingsFragment__subscription_inactive">સબ્સ્ક્રિપ્શન નિષ્ક્રિય</string>
+    <!-- Text displayed in card when free tier is inactive -->
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">તમે બેકઅપ બંધ કર્યા છે</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">બેકઅપ પ્લાન</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">બેકઅપ અક્ષમ છે</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/માસ</string>
+    <!-- Displayed in card at top of screen while payment processing is pending -->
+    <string name="RemoteBackupsSettingsFragment__payment_pending">ચુકવણી બાકી છે…</string>
+    <!-- Displayed in card while waiting for network -->
+    <string name="RemoteBackupsSettingsFragment__waiting_for_network">નેટવર્કની રાહ જોઈ રહ્યાં છીએ…</string>
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">તમારો બેકઅપ પ્લાન મફત છે</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__renews_s">%1$sના રોજ રિન્યૂ થશે</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expires_on_s">Expires on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expires_on_s">%1$sના રોજ સમાપ્ત થશે</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__expired_on_s">Expired on %1$s</string>
+    <string name="RemoteBackupsSettingsFragment__expired_on_s">%1$sના રોજ સમાપ્ત થયું</string>
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">તમારી મેસેજ હિસ્ટ્રીનું બેકઅપ લો જેથી જ્યારે તમે નવો ફોન લો અથવા Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમે ક્યારેય ડેટા ગુમાવશો નહીં.</string>
     <!-- Section header for other ways to back up -->
@@ -7627,9 +7736,66 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">કૃપા કરીને તમારો ડિવાઇસ પિન, પાસવર્ડ અથવા પેટર્ન દાખલ કરો.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Re-enable backups</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">બેકઅપ ફરીથી સક્ષમ કરો</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups have been turned off and your data has been deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">બેકઅપ બંધ કરવામાં આવ્યા છે અને તમારો ડેટા Signalની સુરક્ષિત સ્ટોરેજ સેવામાંથી ડિલીટ કરવામાં આવ્યો છે.</string>
+    <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">તમારું બેકઅપ ડાઉનલોડ કરી રહ્યા છીએ</string>
+    <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">તમારા બેકઅપની સાઇઝના આધારે, આમાં વધુ સમય લાગી શકે છે. ડાઉનલોડ થતું હોય ત્યારે તમે તમારા ફોનનો ઉપયોગ સામાન્ય રીતે કરો છો તેમ કરી શકો છો.</string>
+    <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
+    <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
+        <item quantity="one">આ ડિવાઇસ પર તમારું સબ્સ્ક્રિપ્શન આગામી %1$d દિવસ માટે માન્ય છે. Signal બેકઅપનો ઉપયોગ ચાલુ રાખવા માટે રિન્યૂ કરો</item>
+        <item quantity="other">આ ડિવાઇસ પર તમારું સબ્સ્ક્રિપ્શન આગામી %1$d દિવસ માટે માન્ય છે. Signal બેકઅપનો ઉપયોગ ચાલુ રાખવા માટે રિન્યૂ કરો</item>
+    </plurals>
+    <!-- Button label to start subscription renewal -->
+    <string name="RemoteBackupsSettingsFragment__renew">રિન્યૂ કરો</string>
+    <!-- Button label to learn more about why subscription disappeared -->
+    <string name="RemoteBackupsSettingsFragment__learn_more">વધુ જાણો</string>
+    <!-- Linear progress dialog text shown when creating a backup -->
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
+    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
+        <item quantity="one">તમારી પાસે %1$s બેકઅપ ડેટા છે જે આ ડિવાઇસ પર નથી. જ્યારે તમારું સબ્સ્ક્રિપ્શન %2$d દિવસમાં સમાપ્ત થશે ત્યારે તમારું બેકઅપ ડિલીટ કરવામાં આવશે.</item>
+        <item quantity="other">તમારી પાસે %1$s બેકઅપ ડેટા છે જે આ ડિવાઇસ પર નથી. જ્યારે તમારું સબ્સ્ક્રિપ્શન %2$d દિવસમાં સમાપ્ત થશે ત્યારે તમારું બેકઅપ ડિલીટ કરવામાં આવશે.</item>
+    </plurals>
+    <!-- Displayed in row when backup is available for download to let user start download -->
+    <string name="RemoteBackupsSettingsFragment__download">ડાઉનલોડ</string>
+    <!-- Dialog title for skipping download of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">ડાઉનલોડ કરવાનું છોડીએ?</string>
+    <!-- Dialog body for skiping download of backed up media -->
+    <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
+        <item quantity="one">જો તમે ડાઉનલોડ કરવાનું છોડી દો છો, તો બાકીના મીડિયા અને તમારા બેકઅપમાંના જોડાણ %1$d દિવસમાં ડિલીટ કરવામાં આવશે.</item>
+        <item quantity="other">જો તમે ડાઉનલોડ કરવાનું છોડી દો છો, તો બાકીના મીડિયા અને તમારા બેકઅપમાંના જોડાણ %1$d દિવસમાં ડિલીટ કરવામાં આવશે.</item>
+    </plurals>
+    <!-- Positive dialog action to skip download -->
+    <string name="RemoteBackupsSettingsFragment__skip">અવગણો</string>
+    <!-- Dialog title for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">બેકઅપ બંધ અને ડિલીટ ન કરી શક્યા</string>
+    <!-- Dialog body for network error while trying to disable backups -->
+    <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">નેટવર્કમાં ભૂલ આવી. કૃપા કરીને તમારું ઇન્ટરનેટ કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Progress message when backup file is being uploaded -->
+    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+
+    <!-- SubscriptionNotFoundBottomSheet -->
+    <!-- Displayed as a bottom sheet title -->
+    <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">સબ્સ્ક્રિપ્શન મળ્યું નથી</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">તમારું સબ્સ્ક્રિપ્શન રિસ્ટોર કરી શકાયું નથી.</string>
+    <!-- Displayed below title on bottom sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">આ થઈ શકે છે જો:</string>
+    <!-- First item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__youre_signed_into_the_play_store_with_a_different_google_account">તમે એક અલગ Google અકાઉન્ટ વડે Play Storeમાં સાઇન ઇન કર્યું હોય.</string>
+    <!-- Second item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__you_transferred_from_an_iphone">તમે iPhoneથી ટ્રાન્સફર કર્યું હોય.</string>
+    <!-- Third item in a bulleted list of reasons -->
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">તમારું સબ્સ્ક્રિપ્શન તાજેતરમાં સમાપ્ત થયું હોય.</string>
+    <!-- Note underneath bullet points -->
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">જો તમારી પાસે તમારા જૂના ફોન પર સક્રિય સબ્સ્ક્રિપ્શન હોય, તો તે રિન્યૂ થાય તે પહેલાં તેને રદ કરવાનું વિચારતા હોય.</string>
+    <!-- Action button label to acknowledge and dismiss sheet -->
+    <string name="SubscriptionNotFoundBottomSheet__got_it">સમજાઈ ગયું</string>
+    <!-- Action button label to contact support -->
+    <string name="SubscriptionNotFoundBottomSheet__contact_support">સપોર્ટનો સંપર્ક કરો</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -7649,7 +7815,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">તમારી બેકઅપ કી</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">તમારી બેકઅપ કી એ 64-અંકનો કોડ છે જે તમને Signalને ફરીથી ઇન્સ્ટોલ કરવા પર તમારા બેકઅપને રિસ્ટોર કરવા દે છે.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">તમારી બેકઅપ કી એ 64-અક્ષરનો કોડ છે જે તમને Signalને ફરીથી ઇન્સ્ટોલ કરવા પર તમારા બેકઅપને રિસ્ટોર કરવા દે છે.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">જો તમે તમારી કી ભૂલી જાઓ, તો તમે તમારા બેકઅપને રિસ્ટોર કરી શકશો નહીં. Signal તમને તમારા બેકઅપને રિસ્ટોર કરવામાં મદદ કરી શકશે નહીં.</string>
     <!-- Action button label -->
@@ -7712,6 +7878,8 @@
         <item quantity="one">મીડિયાનો છેલ્લો %1$d દિવસ</item>
         <item quantity="other">મીડિયાના છેલ્લા %1$d દિવસ</item>
     </plurals>
+    <!-- Text designating that an option is your current plan -->
+    <string name="MessageBackupsTypeSelectionScreen__current_plan">વર્તમાન પ્લાન</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -7727,5 +7895,113 @@
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">રિમાઇન્ડર આઇકન</string>
+
+    <!-- Row title for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">મારી પાસે મારો જૂનો ફોન છે</string>
+    <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
+    <string name="WelcomeFragment_restore_action_scan_qr">ઝડપથી શરૂ કરવા માટે તમારા વર્તમાન Signal અકાઉન્ટમાંથી QR કોડ સ્કેન કરો</string>
+
+    <!-- Row title for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">મારી પાસે મારો જૂનો ફોન નથી</string>
+    <!-- Row subtitle for restore/transfer without using a previous device -->
+    <string name="WelcomeFragment_restore_action_reinstalling">અથવા તમે તે જ ડિવાઇસ પર Signal ફરીથી ઇન્સ્ટોલ કરી રહ્યાં છો</string>
+
+    <!-- Screen title for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__restore_or_transfer_account">એકાઉન્ટ રિસ્ટોર અથવા ટ્રાન્સફર કરો</string>
+    <!-- Screen subtitle for selecting which restore method to use during registration -->
+    <string name="SelectRestoreMethodFragment__get_your_signal_account">આ ડિવાઇસ પર તમારું Signal એકાઉન્ટ અને મેસેજ હિસ્ટ્રી મેળવો.</string>
+    <!-- Option title for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal બેકઅપમાંથી</string>
+    <!-- Option subtitle for restoring via signal backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">તમારો મફત અથવા ચુકવણી સાથેનો Signal બેકઅપ પ્લાન</string>
+    <!-- Option title for restoring via a local backup folder -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_folder">બેકઅપ ફોલ્ડરમાંથી</string>
+    <!-- Option title for restoring via a local backup file -->
+    <string name="SelectRestoreMethodFragment__from_a_backup_file">બેકઅપ ફાઈલમાંથી</string>
+    <!-- Option subtitle for restoring via a local backup -->
+    <string name="SelectRestoreMethodFragment__choose_a_backup_youve_saved">તમે સેવ કરેલ બેકઅપ પસંદ કરો</string>
+    <!-- Option title for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__from_your_old_phone">તમારા જૂના ફોનમાંથી</string>
+    <!-- Option subtitle for restoring via device transfer -->
+    <string name="SelectRestoreMethodFragment__transfer_directly_from_old">તમારા જૂના Android પરથી સીધા જ ટ્રાન્સફર કરો</string>
+
+    <!-- Screen title for restore via local backup -->
+    <string name="RestoreLocalBackup_title">લોકલ બેકઅપ રિસ્ટોર કરો</string>
+    <!-- Screen subtitle for restore via local backup -->
+    <string name="RestoreLocalBackup_subtitle">તમે તમારા ડિવાઇસ પર સેવ કરેલા બેકઅપમાંથી તમારા મેસેજ રિસ્ટોર કરો. જો તમે અત્યારે રિસ્ટોર ન કરો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
+
+    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_title">તમારી બેકઅપ કી દાખલ કરો</string>
+    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
+    <string name="EnterBackupKey_subtitle">તમારી બેકઅપ કી એ તમારા એકાઉન્ટ અને ડેટાને રિકવર કરવા માટેનો જરૂરી 64-અક્ષરનો કોડ છે.</string>
+    <!-- Button to skip entering backup key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">કોઈ બેકઅપ કી નથી?</string>
+    <!-- Backup key text field hint -->
+    <string name="EnterBackupKey_backup_key">બેકઅપ કી</string>
+    <!-- Backup key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">બેકઅપ તેમના 64-અક્ષરના રિકવરી કોડ વિના રિકવર કરી શકાતા નથી. જો તમે તમારી બેકઅપ કી ગુમાવી દીધી હોય તો Signal તમારા બેકઅપને રિસ્ટોર કરવામાં મદદ કરી શકશે નહીં.</string>
+    <!-- Backup key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">જો તમારી પાસે તમારું જૂનું ડિવાઇસ હોય તો તમે સેટિંગ્સ &gt; બેકઅપમાં તમારી બેકઅપ કી જોઈ શકો છો. પછી બેકઅપ કી જુઓ પર ટેપ કરો.</string>
+    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <string name="EnterBackupKey_learn_more">વધુ જાણો</string>
+    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <string name="EnterBackupKey_skip_and_dont_restore">છોડો અને રિસ્ટોર કરશો નહીં</string>
+
+    <!-- Title for restore via qr screen -->
+    <string name="RestoreViaQr_title">આ કોડને તમારા જૂના ફોનથી સ્કેન કરો</string>
+    <!-- First instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_1">તમારા જૂના ડિવાઇસ પર Signal ખોલો</string>
+    <!-- Second instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_2">કેમેરા આઇકન પર ટેપ કરો </string>
+    <!-- Third instruction on what to do with restore via qr code -->
+    <string name="RestoreViaQr_instruction_3">કેમેરા વડે આ કોડને સ્કેન કરો</string>
+    <!-- Error message shown when qr code could not be loaded -->
+    <string name="RestoreViaQr_qr_code_error">QR કોડ જનરેટ કરવામાં અસમર્થ</string>
+    <!-- Status message shown when qr code already scanned by other device -->
+    <string name="RestoreViaQr_qr_code_scanned">જૂના ડિવાઇસ પર સ્કેન કરેલ છે</string>
+    <!-- Error button text to retry getting a qr code -->
+    <string name="RestoreViaQr_retry">ફરી પ્રયાસ કરો</string>
+
+    <!-- Old device Transfer account screen title -->
+    <string name="TransferAccount_title">એકાઉન્ટ ટ્રાન્સફર કરો</string>
+    <!-- Old device Transfer account screen body message with learn more placeholder -->
+    <string name="TransferAccount_body">તમારું એકાઉન્ટ એક નવા ડિવાઇસ પર ટ્રાન્સફર થશે. આ ડિવાઇસ તમારા ગ્રૂપ અને સંપર્કો જોઈ શકશે, તમારી ચેટને ઍક્સેસ કરી શકશે અને તમારા નામે મેસેજ મોકલી શકશે. %1$s</string>
+    <!-- Old device Transfer account learn more placed into TransferAccount_body -->
+    <string name="TransferAccount_learn_more">વધુ જાણો</string>
+    <!-- Old device Transfer account button text to confirm transfer account to new device -->
+    <string name="TransferAccount_button">એકાઉન્ટ ટ્રાન્સફર કરો</string>
+    <!-- Old device Transfer account footnote text describing e2e encryption for all data -->
+    <string name="TransferAccount_messages_e2e">મેસેજ અને ચેટ માહિતી બધા ડિવાઇસ પર એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્શન દ્વારા સુરક્ષિત છે</string>
+    <!-- Old device Transfer account screen title for system dialog shown to confirm OS device authentication (fingerprint, pattern, pin, etc.) -->
+    <string name="TransferAccount_unlock_to_transfer">એકાઉન્ટ ટ્રાન્સફર કરવા માટે અનલૉક કરો</string>
+    <!-- Old device Transfer account bottom sheet dialog title -->
+    <string name="TransferAccount_continue_on_your_other_device">તમારા અન્ય ડિવાઇસ પર ચાલુ રાખો</string>
+    <!-- Old device Transfer account bottom sheet dialog body -->
+    <string name="TransferAccount_continue_on_your_other_device_details">તમારા અન્ય ડિવાઇસ પર તમારું એકાઉન્ટ ટ્રાન્સફર કરવાનું ચાલુ રાખો.</string>
+
+    <!-- Restore Complete bottom sheet dialog title -->
+    <string name="RestoreCompleteBottomSheet_restore_complete">રિસ્ટોર પૂર્ણ થયું</string>
+    <!-- Restore Complete bottom sheet dialog message -->
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">તમારું Signal એકાઉન્ટ અને મેસેજ તમારા અન્ય ડિવાઇસ પર ટ્રાન્સફર કરવાનું શરૂ થઈ ગયું છે. Signal હવે આ ડિવાઇસ પર નિષ્ક્રિય છે.</string>
+    <!-- Restore Complete bottom sheet dialog title after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete">ટ્રાન્સફર પૂર્ણ</string>
+    <!-- Restore Complete bottom sheet dialog message after device transfer -->
+    <string name="RestoreCompleteBottomSheet_transfer_complete_message">તમારું Signal એકાઉન્ટ અને મેસેજ તમારા અન્ય ડિવાઇસ પર ટ્રાન્સફર કરવામાં આવ્યા છે. Signal હવે આ ડિવાઇસ પર નિષ્ક્રિય છે.</string>
+    <!-- Restore Complete bottom sheet dialog button text to dismiss sheet -->
+    <string name="RestoreCompleteBottomSheet_button">બરાબર</string>
+
+    <!-- No Backup to Restore screen title -->
+    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <!-- No Backup to Restore screen subtitle -->
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <!-- No Backup to Restore step 1 to enable backups on old device -->
+    <string name="NoBackupToRestore_step1">તમારા જૂના ડિવાઇસ પર Signal ખોલો</string>
+    <!-- No Backup to Restore step 2 to enable backups on old device -->
+    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <!-- No Backup to Restore step 3 to enable backups on old device -->
+    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <!-- No backup to Restore tonal cta to skip restore -->
+    <string name="NoBackupToRestore_skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
+
     <!-- EOF -->
 </resources>

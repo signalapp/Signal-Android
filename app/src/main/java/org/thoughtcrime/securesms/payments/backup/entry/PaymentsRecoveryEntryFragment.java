@@ -60,7 +60,7 @@ public class PaymentsRecoveryEntryFragment extends Fragment {
       }
     });
 
-    ArrayAdapter<String> wordAdapter = new ArrayAdapter<>(requireContext(), R.layout.support_simple_spinner_dropdown_item, Mnemonic.BIP39_WORDS_ENGLISH);
+    ArrayAdapter<String> wordAdapter = new ArrayAdapter<>(requireContext(), com.google.android.material.R.layout.support_simple_spinner_dropdown_item, Mnemonic.BIP39_WORDS_ENGLISH);
 
     word.setAdapter(wordAdapter);
     word.addTextChangedListener(new AfterTextChanged(e -> viewModel.onWordChanged(e.toString())));

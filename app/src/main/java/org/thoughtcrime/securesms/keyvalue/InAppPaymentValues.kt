@@ -33,6 +33,7 @@ import java.util.Currency
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.withLock
 
 /**
  * Key-Value store for in app payment related values. Note that most of this file will be deprecated after the release of
@@ -70,7 +71,6 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     private const val SUBSCRIPTION_CANCELATION_TIMESTAMP = "donation.subscription.cancelation.timestamp"
     private const val SUBSCRIPTION_CANCELATION_WATERMARK = "donation.subscription.cancelation.watermark"
     private const val SHOW_CANT_PROCESS_DIALOG = "show.cant.process.dialog"
-    private const val SHOW_LAST_DAY_TO_DOWNLOAD_MEDIA_DIALOG = "inapppayment.show.last.day.to.download.media.dialog"
 
     /**
      * The current request context for subscription. This should be stored until either
@@ -161,8 +161,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     SUBSCRIPTION_EOP_STARTED_TO_CONVERT,
     SUBSCRIPTION_EOP_STARTED_TO_REDEEM,
     SUBSCRIPTION_EOP_REDEEMED,
-    SUBSCRIPTION_PAYMENT_SOURCE_TYPE,
-    SHOW_LAST_DAY_TO_DOWNLOAD_MEDIA_DIALOG
+    SUBSCRIPTION_PAYMENT_SOURCE_TYPE
   )
 
   private val recurringDonationCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)) }
@@ -419,9 +418,6 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
   @get:JvmName("showCantProcessDialog")
   var showMonthlyDonationCanceledDialog: Boolean by booleanValue(SHOW_CANT_PROCESS_DIALOG, true)
 
-  @get:JvmName("showLastDayToDownloadMediaDialog")
-  var showLastDayToDownloadMediaDialog: Boolean by booleanValue(SHOW_LAST_DAY_TO_DOWNLOAD_MEDIA_DIALOG, false)
-
   /**
    * Denotes that the previous attempt to subscribe failed in some way. Either an
    * automatic renewal failed resulting in an unexpected expiration, or payment failed
@@ -449,7 +445,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
    */
   @WorkerThread
   fun updateLocalStateForManualCancellation(subscriberType: InAppPaymentSubscriberRecord.Type) {
-    synchronized(subscriberType) {
+    subscriberType.lock.withLock {
       Log.d(TAG, "[updateLocalStateForManualCancellation] Clearing donation values.")
       clearLevelOperations()
 
@@ -469,6 +465,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
         }
         markDonationManuallyCancelled()
       } else {
+        SignalStore.backup.subscriptionStateMismatchDetected = false
         markBackupSubscriptionpManuallyCancelled()
 
         SignalStore.backup.disableBackups()
@@ -492,7 +489,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
    */
   @WorkerThread
   fun updateLocalStateForLocalSubscribe(subscriberType: InAppPaymentSubscriberRecord.Type) {
-    synchronized(subscriberType) {
+    subscriberType.lock.withLock {
       clearLevelOperations()
 
       if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
@@ -513,6 +510,7 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
       } else {
         clearBackupSubscriptionManuallyCancelled()
 
+        SignalStore.backup.subscriptionStateMismatchDetected = false
         SignalStore.backup.backupTier = MessageBackupTier.PAID
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
       }

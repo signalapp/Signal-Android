@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.util
 
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -20,8 +19,8 @@ object ExpirationTimerUtil {
 
   @JvmStatic
   fun setExpirationTimer(recipientId: RecipientId, expirationTimeSeconds: Int): Int {
-    val selfCapable = Recipient.self().versionedExpirationTimerCapability == Recipient.Capability.SUPPORTED
-    val recipientCapable = Recipient.resolved(recipientId).let { it.versionedExpirationTimerCapability == Recipient.Capability.SUPPORTED || it.expireTimerVersion > 2 }
+    val selfCapable = true
+    val recipientCapable = true
 
     return if (selfCapable && recipientCapable) {
       SignalDatabase.recipients.setExpireMessagesAndIncrementVersion(recipientId, expirationTimeSeconds)

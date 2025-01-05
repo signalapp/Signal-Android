@@ -5,11 +5,14 @@
 
 package org.whispersystems.signalservice.api.registration
 
+import org.signal.libsignal.protocol.ecc.ECPublicKey
+import org.signal.registration.proto.RegistrationProvisionMessage
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.account.PreKeyCollection
+import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse
 import org.whispersystems.signalservice.internal.push.BackupV3AuthCheckResponse
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
@@ -140,6 +143,40 @@ class RegistrationApi(
   fun distributePniKeys(requestBody: PniKeyDistributionRequest): NetworkResult<VerifyAccountResponse> {
     return NetworkResult.fromFetch {
       pushServiceSocket.distributePniKeys(requestBody)
+    }
+  }
+
+  /**
+   * Encrypts and sends the [RegistrationProvisionMessage] from the current primary (old device) to the new device over
+   * the provisioning web socket identified by [deviceIdentifier].
+   */
+  fun sendReRegisterDeviceProvisioningMessage(
+    deviceIdentifier: String,
+    deviceKey: ECPublicKey,
+    registrationProvisionMessage: RegistrationProvisionMessage
+  ): NetworkResult<Unit> {
+    val cipherText = PrimaryProvisioningCipher(deviceKey).encrypt(registrationProvisionMessage)
+
+    return NetworkResult.fromFetch {
+      pushServiceSocket.sendProvisioningMessage(deviceIdentifier, cipherText)
+    }
+  }
+
+  /**
+   * Set [RestoreMethod] enum on the server for use by the old device to update UX.
+   */
+  fun setRestoreMethod(token: String, method: RestoreMethod): NetworkResult<Unit> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.setRestoreMethodChosen(token, RestoreMethodBody(method = method))
+    }
+  }
+
+  /**
+   * Wait for the [RestoreMethod] to be set on the server by the new device. This is a long polling operation.
+   */
+  fun waitForRestoreMethod(token: String, timeout: Int = 30): NetworkResult<RestoreMethod> {
+    return NetworkResult.fromFetch {
+      pushServiceSocket.waitForRestoreMethodChosen(token, timeout).method ?: RestoreMethod.DECLINE
     }
   }
 }

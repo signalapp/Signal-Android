@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.receipts.ReceiptImageRenderer
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.models.SplashImage
@@ -38,10 +39,9 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       if (state.inAppPaymentReceiptRecord != null) {
-        adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, state.subscriptionName).toMappingModelList())
-      }
+        val subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord)
+        adapter.submitList(getConfiguration(state.inAppPaymentReceiptRecord, subscriptionName).toMappingModelList())
 
-      if (state.inAppPaymentReceiptRecord != null && state.subscriptionName != null) {
         sharePngButton.isEnabled = true
         sharePngButton.setOnClickListener {
           progressDialog = SignalProgressDialog.show(requireContext())
@@ -49,7 +49,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
             context = requireContext(),
             lifecycleOwner = viewLifecycleOwner,
             record = state.inAppPaymentReceiptRecord,
-            subscriptionName = state.subscriptionName,
+            subscriptionName = InAppDonations.resolveLabel(requireContext(), state.inAppPaymentReceiptRecord),
             callback = object : ReceiptImageRenderer.Callback {
               override fun onBitmapRendered() {
                 progressDialog.dismiss()
@@ -87,7 +87,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
         title = DSLSettingsText.from(R.string.DonationReceiptDetailsFragment__donation_type),
         summary = DSLSettingsText.from(
           when (record.type) {
-            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
+            InAppPaymentReceiptRecord.Type.RECURRING_DONATION -> getString(R.string.DonationReceiptListFragment__recurring)
             InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION -> getString(R.string.DonationReceiptListFragment__one_time)
             InAppPaymentReceiptRecord.Type.ONE_TIME_GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
             InAppPaymentReceiptRecord.Type.RECURRING_BACKUP -> error("Not supported in this fragment.")

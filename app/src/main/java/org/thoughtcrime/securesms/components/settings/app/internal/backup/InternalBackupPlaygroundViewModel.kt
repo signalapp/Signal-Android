@@ -223,6 +223,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           }
 
           else -> {
+            Log.w(TAG, "Error checking remote backup state", result.getCause())
             _state.value = _state.value.copy(remoteBackupState = RemoteBackupState.GeneralError)
           }
         }
@@ -475,14 +476,15 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       attachments: List<BackupAttachment> = this.attachments,
       inProgress: Set<AttachmentId> = this.inProgressMediaIds
     ): MediaState {
-      val backupKey = SignalStore.svr.getOrCreateMasterKey().deriveBackupKey()
+      val backupKey = SignalStore.backup.messageBackupKey
+      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
       val updatedAttachments = attachments.map {
         val state = if (inProgress.contains(it.dbAttachment.attachmentId)) {
           BackupAttachment.State.IN_PROGRESS
         } else if (it.dbAttachment.archiveMediaName != null) {
           if (it.dbAttachment.remoteDigest != null) {
-            val mediaId = backupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
+            val mediaId = mediaRootBackupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
             if (it.dbAttachment.archiveMediaId == mediaId) {
               BackupAttachment.State.UPLOADED_FINAL
             } else {
@@ -537,6 +539,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
     AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
     AppDependencies.jobManager.cancelAllInQueue("BackupRestoreJob")
+    AppDependencies.jobManager.cancelAllInQueue("__LOCAL_BACKUP__")
   }
 
   fun fetchRemoteBackupAndWritePlaintext(outputStream: OutputStream?) {
@@ -545,17 +548,21 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     SignalExecutors.BOUNDED_IO.execute {
       Log.d(TAG, "Downloading file...")
       val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
-      if (!BackupRepository.downloadBackupFile(tempBackupFile)) {
-        Log.e(TAG, "Failed to download backup file")
-        throw IOException()
+
+      when (val result = BackupRepository.downloadBackupFile(tempBackupFile)) {
+        is NetworkResult.Success -> Log.i(TAG, "Download successful")
+        else -> {
+          Log.w(TAG, "Failed to download backup file", result.getCause())
+          throw IOException(result.getCause())
+        }
       }
 
       val encryptedStream = tempBackupFile.inputStream()
       val iv = encryptedStream.readNBytesOrThrow(16)
-      val backupKey = SignalStore.svr.orCreateMasterKey.deriveBackupKey()
+      val backupKey = SignalStore.backup.messageBackupKey
       val keyMaterial = backupKey.deriveBackupSecrets(Recipient.self().aci.get())
       val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
-        init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.cipherKey, "AES"), IvParameterSpec(iv))
+        init(Cipher.DECRYPT_MODE, SecretKeySpec(keyMaterial.aesKey, "AES"), IvParameterSpec(iv))
       }
 
       val plaintextStream = GZIPInputStream(

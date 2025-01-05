@@ -7,6 +7,9 @@ import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * A copy of {@link ManifestRecord.Identifier} that allows us to more easily store unknown types with their integer constant.
+ */
 public class StorageId {
   private final int    type;
   private final byte[] raw;

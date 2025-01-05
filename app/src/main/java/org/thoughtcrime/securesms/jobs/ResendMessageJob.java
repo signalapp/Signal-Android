@@ -126,7 +126,7 @@ public class ResendMessageJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (SignalStore.internal().delayResends()) {
+    if (SignalStore.internal().getDelayResends()) {
       Log.w(TAG, "Delaying resend by 10 sec because of an internal preference.");
       ThreadUtil.sleep(10000);
     }

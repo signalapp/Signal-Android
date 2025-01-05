@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.storage
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertFalse
-import org.junit.Assert.assertThrows
 import org.junit.BeforeClass
 import org.junit.Test
 import org.signal.core.util.logging.Log
@@ -72,20 +71,6 @@ class CallLinkRecordProcessorTest {
 
     // THEN
     assertFalse(result)
-  }
-
-  @Test
-  fun `Given a proto with both an admin pass key and a deletion timestamp, assert invalid`() {
-    // GIVEN
-    val proto = CallLinkRecord.Builder().apply {
-      rootKey = mockCredentials.linkKeyBytes.toByteString()
-      adminPasskey = mockCredentials.adminPassBytes!!.toByteString()
-      deletedAtTimestampMs = System.currentTimeMillis()
-    }.build()
-
-    assertThrows(IllegalStateException::class.java) {
-      SignalCallLinkRecord(STORAGE_ID, proto)
-    }
   }
 
   @Test

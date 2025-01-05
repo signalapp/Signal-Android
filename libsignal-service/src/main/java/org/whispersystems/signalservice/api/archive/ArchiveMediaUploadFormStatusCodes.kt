@@ -19,7 +19,7 @@ enum class ArchiveMediaUploadFormStatusCodes(val code: Int) {
 
   companion object {
     fun from(code: Int): ArchiveMediaUploadFormStatusCodes {
-      return values().firstOrNull { it.code == code } ?: Unknown
+      return entries.firstOrNull { it.code == code } ?: Unknown
     }
   }
 }

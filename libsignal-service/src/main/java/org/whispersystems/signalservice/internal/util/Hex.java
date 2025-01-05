@@ -16,7 +16,7 @@ public class Hex {
   private final static int HEX_DIGITS_START = 10;
   private final static int ASCII_TEXT_START = HEX_DIGITS_START + (16*2 + (16/2));
 
-  final static String EOL = System.getProperty("line.separator");
+  final static String EOL = System.lineSeparator();
 
   private final static char[] HEX_DIGITS = {
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'

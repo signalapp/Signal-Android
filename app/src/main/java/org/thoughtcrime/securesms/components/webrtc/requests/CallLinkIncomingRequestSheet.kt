@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Displayed when the user presses the user avatar in the call link join request
@@ -153,7 +154,7 @@ private fun CallLinkIncomingRequestSheetContent(
           text = state.groupsInCommon,
           textAlign = TextAlign.Center,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(vertical = 6.dp, horizontal = dimensionResource(R.dimen.core_ui__gutter))
+          modifier = Modifier.padding(vertical = 6.dp, horizontal = dimensionResource(CoreUiR.dimen.gutter))
         )
       }
     }

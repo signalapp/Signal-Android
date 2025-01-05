@@ -1,7 +1,6 @@
 package org.signal.imageeditor.app;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -27,9 +26,7 @@ import androidx.core.content.ContextCompat;
 import org.signal.imageeditor.app.renderers.UriRenderer;
 import org.signal.imageeditor.app.renderers.UrlRenderer;
 import org.signal.imageeditor.core.ImageEditorView;
-import org.signal.imageeditor.core.Renderer;
 import org.signal.imageeditor.core.RendererContext;
-import org.signal.imageeditor.core.UndoRedoStackListener;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
 import org.signal.imageeditor.core.renderers.MultiLineTextRenderer;
@@ -176,72 +173,62 @@ public final class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.action_undo:
-        imageEditorView.getModel().undo();
-        Log.d(TAG, String.format("Model is %s", imageEditorView.getModel().isChanged() ? "changed" : "unchanged"));
-        return true;
+    int itemId = item.getItemId();
+    if (itemId == R.id.action_undo) {
+      imageEditorView.getModel().undo();
+      Log.d(TAG, String.format("Model is %s", imageEditorView.getModel().isChanged() ? "changed" : "unchanged"));
+      return true;
+    } else if (itemId == R.id.action_redo) {
+      imageEditorView.getModel().redo();
+      return true;
+    } else if (itemId == R.id.action_crop) {
+      imageEditorView.setMode(ImageEditorView.Mode.MoveAndResize);
+      imageEditorView.getModel().startCrop();
+      return true;
+    } else if (itemId == R.id.action_done) {
+      imageEditorView.setMode(ImageEditorView.Mode.MoveAndResize);
+      imageEditorView.getModel().doneCrop();
+      return true;
+    } else if (itemId == R.id.action_draw) {
+      imageEditorView.setDrawingBrushColor(0xffffff00);
+      imageEditorView.startDrawing(0.02f, Paint.Cap.ROUND, false);
+      return true;
+    } else if (itemId == R.id.action_rotate_left_90) {
+      imageEditorView.getModel().rotate90anticlockwise();
+      return true;
+    } else if (itemId == R.id.action_flip_horizontal) {
+      imageEditorView.getModel().flipHorizontal();
+      return true;
+    } else if (itemId == R.id.action_edit_text) {
+      editText();
+      return true;
+    } else if (itemId == R.id.action_lock_crop_aspect) {
+      imageEditorView.getModel().setCropAspectLock(!imageEditorView.getModel().isCropAspectLocked());
+      return true;
+    } else if (itemId == R.id.action_save) {
+      if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+          != PackageManager.PERMISSION_GRANTED)
+      {
+        ActivityCompat.requestPermissions(this,
+                                          new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                                          0);
+      } else {
+        Bitmap bitmap = imageEditorView.getModel().render(this, typefaceProvider);
+        try {
+          Uri uri = saveBmp(bitmap);
 
-      case R.id.action_redo:
-        imageEditorView.getModel().redo();
-        return true;
+          Intent intent = new Intent();
+          intent.setAction(Intent.ACTION_VIEW);
+          intent.setDataAndType(uri, "image/*");
+          startActivity(intent);
 
-      case R.id.action_crop:
-        imageEditorView.setMode(ImageEditorView.Mode.MoveAndResize);
-        imageEditorView.getModel().startCrop();
-        return true;
-
-      case R.id.action_done:
-        imageEditorView.setMode(ImageEditorView.Mode.MoveAndResize);
-        imageEditorView.getModel().doneCrop();
-        return true;
-
-      case R.id.action_draw:
-        imageEditorView.setDrawingBrushColor(0xffffff00);
-        imageEditorView.startDrawing(0.02f, Paint.Cap.ROUND, false);
-        return true;
-
-      case R.id.action_rotate_left_90:
-        imageEditorView.getModel().rotate90anticlockwise();
-        return true;
-
-      case R.id.action_flip_horizontal:
-        imageEditorView.getModel().flipHorizontal();
-        return true;
-
-      case R.id.action_edit_text:
-        editText();
-        return true;
-
-      case R.id.action_lock_crop_aspect:
-        imageEditorView.getModel().setCropAspectLock(!imageEditorView.getModel().isCropAspectLocked());
-        return true;
-
-      case R.id.action_save:
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED) {
-          ActivityCompat.requestPermissions(this,
-          new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE },
-          0);
-        } else {
-          Bitmap bitmap = imageEditorView.getModel().render(this, typefaceProvider);
-          try {
-            Uri uri = saveBmp(bitmap);
-
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "image/*");
-            startActivity(intent);
-
-          } finally {
-            bitmap.recycle();
-          }
+        } finally {
+          bitmap.recycle();
         }
-        return true;
-
-      default:
-        return super.onOptionsItemSelected(item);
+      }
+      return true;
     }
+    return super.onOptionsItemSelected(item);
   }
 
   private void editText() {

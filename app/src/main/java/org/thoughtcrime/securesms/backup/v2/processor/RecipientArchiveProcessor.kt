@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
  * Handles importing/exporting [ArchiveRecipient] frames for an archive.
@@ -32,8 +33,7 @@ object RecipientArchiveProcessor {
 
   val TAG = Log.tag(RecipientArchiveProcessor::class.java)
 
-  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, emitter: BackupFrameEmitter) {
-    val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get().toLong()
+  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfRecipientId: RecipientId, emitter: BackupFrameEmitter) {
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
@@ -49,7 +49,7 @@ object RecipientArchiveProcessor {
       Log.w(TAG, "Missing release channel id on export!")
     }
 
-    db.recipientTable.getContactsForBackup(selfId).use { reader ->
+    db.recipientTable.getContactsForBackup(selfRecipientId.toLong()).use { reader ->
       for (recipient in reader) {
         if (recipient != null) {
           exportState.recipientIds.add(recipient.id)

@@ -98,9 +98,16 @@ class DonationErrorParams<V> private constructor(
           negativeAction = null
         )
 
+        InAppPaymentType.RECURRING_BACKUP -> DonationErrorParams(
+          title = R.string.DonationsError__something_went_wrong,
+          message = R.string.DonationsError__your_backups_subscription_couldnt_be_displayed,
+          positiveAction = callback.onContactSupport(context),
+          negativeAction = null
+        )
+
         else -> DonationErrorParams(
-          title = R.string.DonationsErrors__couldnt_add_badge, // TODO [message-backups] -- This will need a backups-specific string
-          message = R.string.DonationsErrors__your_badge_could_not, // TODO [message-backups] -- This will need a backups-specific string
+          title = R.string.DonationsErrors__couldnt_add_badge,
+          message = R.string.DonationsErrors__your_badge_could_not,
           positiveAction = callback.onContactSupport(context),
           negativeAction = null
         )

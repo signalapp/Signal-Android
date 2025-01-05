@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Sub
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.util.Currency
+import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -128,7 +129,7 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   override fun onRun() {
-    synchronized(InAppPaymentsRepository.resolveMutex(inAppPaymentId)) {
+    InAppPaymentsRepository.resolveLock(inAppPaymentId).withLock {
       doRun()
     }
   }

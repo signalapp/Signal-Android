@@ -160,6 +160,8 @@ class StripePaymentInProgressViewModel(
         nextActionHandler.handle(
           action = secure3DSAction,
           inAppPayment = inAppPayment.copy(
+            subscriberId = InAppPaymentsRepository.requireSubscriber(inAppPayment.type.requireSubscriberType()).subscriberId,
+            state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
             data = inAppPayment.data.copy(
               redemption = null,
               waitForAuth = InAppPaymentData.WaitingForAuthorizationState(

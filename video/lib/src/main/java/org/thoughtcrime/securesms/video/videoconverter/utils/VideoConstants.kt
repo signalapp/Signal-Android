@@ -9,7 +9,7 @@ import android.media.MediaFormat
 object VideoConstants {
   const val AUDIO_BITRATE = 128_000
   const val VIDEO_BITRATE_L1 = 1_250_000
-  const val VIDEO_BITRATE_L2 = VIDEO_BITRATE_L1
+  const val VIDEO_BITRATE_L2 = 1_250_000
   const val VIDEO_BITRATE_L3 = 2_500_000
   const val VIDEO_SHORT_EDGE_SD = 480
   const val VIDEO_SHORT_EDGE_HD = 720

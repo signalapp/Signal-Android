@@ -16,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.activityViewModels
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Previews
@@ -27,9 +28,20 @@ import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
  * Bottom sheet dialog prompting users to name their newly linked device
  */
 class LinkDeviceFinishedSheet : ComposeBottomSheetDialogFragment() {
+
+  private val viewModel: LinkDeviceViewModel by activityViewModels()
+
+  override fun onStart() {
+    super.onStart()
+    viewModel.onBottomSheetVisible()
+  }
+
   @Composable
   override fun SheetContent() {
-    FinishedSheet(this::dismissAllowingStateLoss)
+    FinishedSheet {
+      viewModel.onBottomSheetDismissed()
+      this.dismissAllowingStateLoss()
+    }
   }
 }
 

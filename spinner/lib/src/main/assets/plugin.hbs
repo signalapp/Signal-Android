@@ -23,6 +23,9 @@
         {{/each}}
       </table>
     {{/if}}
+    {{#if (eq "string" pluginResult.type)}}
+      <p>{{pluginResult.text}}</p>
+    {{/if}}
     {{> partials/suffix }}
   </body>
 </html>

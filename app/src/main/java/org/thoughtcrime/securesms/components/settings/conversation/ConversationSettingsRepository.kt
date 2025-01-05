@@ -84,7 +84,7 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internal.recipientDetails()
+  fun isInternalRecipientDetailsEnabled(): Boolean = SignalStore.internal.recipientDetails
 
   fun hasGroups(consumer: (Boolean) -> Unit) {
     SignalExecutors.BOUNDED.execute { consumer(SignalDatabase.groups.getActiveGroupCount() > 0) }

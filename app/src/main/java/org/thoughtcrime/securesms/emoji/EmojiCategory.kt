@@ -25,7 +25,7 @@ enum class EmojiCategory(val priority: Int, val key: String, @AttrRes val icon: 
 
   companion object {
     @JvmStatic
-    fun forKey(key: String) = values().first { it.key == key }
+    fun forKey(key: String) = entries.first { it.key == key }
 
     @JvmStatic
     @StringRes

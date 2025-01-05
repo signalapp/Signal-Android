@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.platform.app.InstrumentationRegistry
+import io.mockk.every
+import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -15,6 +17,7 @@ import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFold
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
 
@@ -30,6 +33,10 @@ class ThreadTableTest_active {
 
   @Before
   fun setUp() {
+    mockkStatic(RemoteConfig::class)
+
+    every { RemoteConfig.showChatFolders } returns true
+
     recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromServiceId(ACI.from(UUID.randomUUID())))
   }
 

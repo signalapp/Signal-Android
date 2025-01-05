@@ -83,7 +83,7 @@ class ResetSvrGuessCountJob private constructor(
         return Result.success()
       }
 
-      val masterKey: MasterKey = SignalStore.svr.getOrCreateMasterKey()
+      val masterKey: MasterKey = SignalStore.svr.masterKey
 
       val svr3Result = if (svr3Complete) {
         Log.d(TAG, "Already reset guess count on SVR3. Skipping.")
@@ -138,7 +138,7 @@ class ResetSvrGuessCountJob private constructor(
     authTokenSaver: (AuthCredentials) -> Unit
   ): Result {
     val session: PinChangeSession = if (serializedChangeSession != null) {
-      svr.resumePinChangeSession(pin, SignalStore.svr.getOrCreateMasterKey(), serializedChangeSession)
+      svr.resumePinChangeSession(pin, SignalStore.svr.masterKey, serializedChangeSession)
     } else {
       svr.setPin(pin, masterKey)
     }

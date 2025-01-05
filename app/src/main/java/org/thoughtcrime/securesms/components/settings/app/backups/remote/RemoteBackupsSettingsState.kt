@@ -5,60 +5,115 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 data class RemoteBackupsSettingsState(
-  val backupsInitialized: Boolean,
-  val messageBackupsType: MessageBackupsType? = null,
+  val backupsEnabled: Boolean,
   val canBackUpUsingCellular: Boolean = false,
-  val backupState: BackupState = BackupState.LOADING,
+  val backupState: BackupState = BackupState.Loading,
   val backupSize: Long = 0,
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
-  val renewalTime: Duration = 0.seconds,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE
 ) {
+
   /**
    * Describes the state of the user's selected backup tier.
    */
-  enum class BackupState {
+  sealed interface BackupState {
+
+    /**
+     * User has no active backup tier, no tier history
+     */
+    data object None : BackupState
+
     /**
      * The exact backup state is being loaded from the network.
      */
-    LOADING,
+    data object Loading : BackupState
 
     /**
-     * User has an active backup
+     * User has a paid backup subscription pending redemption
      */
-    ACTIVE,
+    data class Pending(
+      val price: FiatMoney
+    ) : BackupState
 
     /**
-     * User has an inactive paid tier backup
+     * A backup state with a type and renewal time
      */
-    INACTIVE,
+    sealed interface WithTypeAndRenewalTime : BackupState {
+      val messageBackupsType: MessageBackupsType
+      val renewalTime: Duration
+
+      fun isActive(): Boolean = false
+    }
+
+    /**
+     * User has an active paid backup. Pricing comes from the subscription object.
+     */
+    data class ActivePaid(
+      override val messageBackupsType: MessageBackupsType.Paid,
+      val price: FiatMoney,
+      override val renewalTime: Duration
+    ) : WithTypeAndRenewalTime {
+      override fun isActive(): Boolean = true
+    }
+
+    /**
+     * User has an active free backup.
+     */
+    data class ActiveFree(
+      override val messageBackupsType: MessageBackupsType.Free,
+      override val renewalTime: Duration = 0.seconds
+    ) : WithTypeAndRenewalTime {
+      override fun isActive(): Boolean = true
+    }
+
+    /**
+     * User has an inactive backup
+     */
+    data class Inactive(
+      override val messageBackupsType: MessageBackupsType,
+      override val renewalTime: Duration = 0.seconds
+    ) : WithTypeAndRenewalTime
 
     /**
      * User has a canceled paid tier backup
      */
-    CANCELED,
+    data class Canceled(
+      override val messageBackupsType: MessageBackupsType,
+      override val renewalTime: Duration
+    ) : WithTypeAndRenewalTime
+
+    /**
+     * Subscription mismatch detected.
+     */
+    data class SubscriptionMismatchMissingGooglePlay(
+      override val messageBackupsType: MessageBackupsType,
+      override val renewalTime: Duration
+    ) : WithTypeAndRenewalTime
 
     /**
      * An error occurred retrieving the network state
      */
-    ERROR
+    data object Error : BackupState
   }
 
   enum class Dialog {
     NONE,
     TURN_OFF_AND_DELETE_BACKUPS,
     BACKUP_FREQUENCY,
-    DELETING_BACKUP,
-    BACKUP_DELETED,
-    TURN_OFF_FAILED
+    PROGRESS_SPINNER,
+    DOWNLOADING_YOUR_BACKUP,
+    TURN_OFF_FAILED,
+    SUBSCRIPTION_NOT_FOUND,
+    SKIP_MEDIA_RESTORE_PROTECTION
   }
 
   enum class Snackbar {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -104,9 +103,9 @@ class GiftFlowViewModel(
     )
   }
 
-  fun insertInAppPayment(context: Context): Single<InAppPaymentTable.InAppPayment> {
+  fun insertInAppPayment(): Single<InAppPaymentTable.InAppPayment> {
     val giftSnapshot = snapshot
-    return giftFlowRepository.insertInAppPayment(context, giftSnapshot)
+    return giftFlowRepository.insertInAppPayment(giftSnapshot)
       .doOnSuccess { inAppPayment ->
         store.update { it.copy(inAppPaymentId = inAppPayment.id) }
       }

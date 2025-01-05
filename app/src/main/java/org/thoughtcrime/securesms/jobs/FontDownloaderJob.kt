@@ -42,7 +42,7 @@ class FontDownloaderJob private constructor(parameters: Parameters) : BaseJob(pa
 
   override fun onRun() {
     val script = Fonts.getSupportedScript(LocaleUtil.getLocaleDefaults(), SupportedScript.UNKNOWN)
-    val asyncResults = TextFont.values()
+    val asyncResults = TextFont.entries
       .map { Fonts.resolveFont(context, it, script) }
       .filterIsInstance(Fonts.FontResult.Async::class.java)
 

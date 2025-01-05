@@ -149,16 +149,31 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           onUnregisterClicked()
         }
       )
-
       dividerPref()
 
-      sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
+      sectionHeaderPref(DSLSettingsText.from("Playgrounds"))
 
       clickPref(
-        title = DSLSettingsText.from("Search for a recipient"),
-        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
+        title = DSLSettingsText.from("SQLite Playground"),
+        summary = DSLSettingsText.from("Run raw SQLite queries."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSqlitePlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Backup Playground"),
+        summary = DSLSettingsText.from("Test backup import/export."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Storage Service Playground"),
+        summary = DSLSettingsText.from("Test and view storage service stuff."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalStorageServicePlaygroundFragment())
         }
       )
 
@@ -170,11 +185,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))
+
       clickPref(
-        title = DSLSettingsText.from("Backup Playground"),
-        summary = DSLSettingsText.from("Test backup import/export."),
+        title = DSLSettingsText.from("Search for a recipient"),
+        summary = DSLSettingsText.from("Search by ID, ACI, or PNI."),
         onClick = {
-          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalBackupPlaygroundFragment())
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToInternalSearchFragment())
         }
       )
 
@@ -427,7 +446,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       clickPref(
         title = DSLSettingsText.from("Force emoji download"),
-        summary = DSLSettingsText.from("Download the latest emoji set if it\\'s newer than what we have."),
+        summary = DSLSettingsText.from("Download the latest emoji set if it's newer than what we have."),
         onClick = {
           AppDependencies.jobManager.add(DownloadLatestEmojiDataJob(true))
         }
@@ -435,7 +454,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       clickPref(
         title = DSLSettingsText.from("Force search index download"),
-        summary = DSLSettingsText.from("Download the latest emoji search index if it\\'s newer than what we have."),
+        summary = DSLSettingsText.from("Download the latest emoji search index if it's newer than what we have."),
         onClick = {
           EmojiSearchIndexDownloadJob.scheduleImmediately()
         }
@@ -516,19 +535,19 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       radioListPref(
         title = DSLSettingsText.from("Audio processing method"),
-        listItems = CallManager.AudioProcessingMethod.values().map { it.name }.toTypedArray(),
-        selected = CallManager.AudioProcessingMethod.values().indexOf(state.callingAudioProcessingMethod),
+        listItems = CallManager.AudioProcessingMethod.entries.map { it.name }.toTypedArray(),
+        selected = CallManager.AudioProcessingMethod.entries.indexOf(state.callingAudioProcessingMethod),
         onSelected = {
-          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.values()[it])
+          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.entries[it])
         }
       )
 
       radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
-        listItems = CallManager.DataMode.values().map { it.name }.toTypedArray(),
-        selected = CallManager.DataMode.values().indexOf(state.callingDataMode),
+        listItems = CallManager.DataMode.entries.map { it.name }.toTypedArray(),
+        selected = CallManager.DataMode.entries.indexOf(state.callingDataMode),
         onSelected = {
-          viewModel.setInternalCallingDataMode(CallManager.DataMode.values()[it])
+          viewModel.setInternalCallingDataMode(CallManager.DataMode.entries[it])
         }
       )
 
@@ -836,8 +855,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
               AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
                 SignalStore.account.setRegistered(false)
                 SignalStore.registration.clearRegistrationComplete()
-                SignalStore.registration.clearHasUploadedProfile()
-                SignalStore.registration.clearSkippedTransferOrRestore()
+                SignalStore.registration.hasUploadedProfile = false
+                SignalStore.registration.debugClearSkippedTransferOrRestore()
                 Toast.makeText(context, "Unregistered!", Toast.LENGTH_SHORT).show()
               }
 

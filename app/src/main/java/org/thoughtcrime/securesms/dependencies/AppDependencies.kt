@@ -2,12 +2,11 @@ package org.thoughtcrime.securesms.dependencies
 
 import android.annotation.SuppressLint
 import android.app.Application
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.OkHttpClient
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
+import org.signal.core.util.concurrent.LatestValueObservable
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
@@ -48,9 +47,12 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
+import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
+import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
@@ -208,14 +210,14 @@ object AppDependencies {
     provider.provideBillingApi()
   }
 
-  private val _webSocketObserver: Subject<WebSocketConnectionState> = BehaviorSubject.create()
+  private val _webSocketObserver: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.create()
 
   /**
    * An observable that emits the current state of the WebSocket connection across the various lifecycles
    * of the [signalWebSocket].
    */
   @JvmStatic
-  val webSocketObserver: Observable<WebSocketConnectionState> = _webSocketObserver
+  val webSocketObserver: LatestValueObservable<WebSocketConnectionState> = LatestValueObservable(_webSocketObserver)
 
   private val _networkModule = resettableLazy {
     NetworkDependenciesModule(application, provider, _webSocketObserver)
@@ -295,6 +297,17 @@ object AppDependencies {
     get() = networkModule.attachmentApi
 
   @JvmStatic
+  val linkDeviceApi: LinkDeviceApi
+    get() = networkModule.linkDeviceApi
+
+  @JvmStatic
+  val registrationApi: RegistrationApi
+    get() = networkModule.registrationApi
+
+  val storageServiceApi: StorageServiceApi
+    get() = networkModule.storageServiceApi
+
+  @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
 
@@ -326,7 +339,7 @@ object AppDependencies {
     fun provideMegaphoneRepository(): MegaphoneRepository
     fun provideEarlyMessageCache(): EarlyMessageCache
     fun provideMessageNotifier(): MessageNotifier
-    fun provideIncomingMessageObserver(): IncomingMessageObserver
+    fun provideIncomingMessageObserver(signalWebSocket: SignalWebSocket): IncomingMessageObserver
     fun provideTrimThreadsByDateManager(): TrimThreadsByDateManager
     fun provideViewOnceMessageManager(): ViewOnceMessageManager
     fun provideExpiringStoriesManager(): ExpiringStoriesManager
@@ -356,5 +369,8 @@ object AppDependencies {
     fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi
     fun provideKeysApi(pushServiceSocket: PushServiceSocket): KeysApi
     fun provideAttachmentApi(signalWebSocket: SignalWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi
+    fun provideLinkDeviceApi(pushServiceSocket: PushServiceSocket): LinkDeviceApi
+    fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi
+    fun provideStorageServiceApi(pushServiceSocket: PushServiceSocket): StorageServiceApi
   }
 }

@@ -8,12 +8,16 @@ package org.thoughtcrime.securesms.components.settings.app.storage
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
@@ -36,6 +40,17 @@ class ManageStorageSettingsViewModel : ViewModel() {
     )
   )
   val state = store.asStateFlow()
+
+  init {
+    if (RemoteConfig.messageBackups) {
+      viewModelScope.launch(Dispatchers.IO) {
+        InAppPaymentsRepository.observeLatestBackupPayment()
+          .collectLatest { payment ->
+            store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
+          }
+      }
+    }
+  }
 
   fun refresh() {
     viewModelScope.launch {
@@ -158,7 +173,8 @@ class ManageStorageSettingsViewModel : ViewModel() {
     val syncTrimDeletes: Boolean,
     val breakdown: MediaTable.StorageBreakdown? = null,
     val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState,
-    val storageOptimizationStateChanged: Boolean = false
+    val storageOptimizationStateChanged: Boolean = false,
+    val isPaidTierPending: Boolean = false
   ) {
     companion object {
       const val NO_LIMIT = 0

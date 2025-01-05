@@ -42,6 +42,7 @@ import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
+import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.LogDatabase;
@@ -53,6 +54,7 @@ import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
+import org.thoughtcrime.securesms.jobs.BackupRefreshJob;
 import org.thoughtcrime.securesms.jobs.BackupSubscriptionCheckJob;
 import org.thoughtcrime.securesms.jobs.BuildExpirationConfirmationJob;
 import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
@@ -111,7 +113,6 @@ import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWra
 
 import java.io.InterruptedIOException;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.security.Security;
 import java.util.HashMap;
 import java.util.Map;
@@ -167,7 +168,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", this::initializeRx)
                             .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
-                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getOrCreateMasterKey().deriveLoggingKey()))
+                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getMasterKey().deriveLoggingKey()))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("lifecycle-observer", () -> AppForegroundObserver.addListener(this))
@@ -247,6 +248,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
     startAnrDetector();
 
     SignalExecutors.BOUNDED.execute(() -> {
+      BackupRefreshJob.enqueueIfNecessary();
       InAppPaymentAuthCheckJob.enqueueIfNeeded();
       RemoteConfig.refreshIfNecessary();
       RetrieveProfileJob.enqueueRoutineFetchIfNecessary();
@@ -254,6 +256,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       KeyCachingService.onAppForegrounded(this);
       AppDependencies.getShakeToReport().enable();
       checkBuildExpiration();
+      checkFreeDiskSpace();
       MemoryTracker.start();
       BackupSubscriptionCheckJob.enqueueIfAble();
 
@@ -287,6 +290,13 @@ public class ApplicationContext extends Application implements AppForegroundObse
     if (Util.getTimeUntilBuildExpiry(SignalStore.misc().getEstimatedServerTime()) <= 0 && !SignalStore.misc().isClientDeprecated()) {
       Log.w(TAG, "Build potentially expired! Enqueing job to check.", true);
       AppDependencies.getJobManager().add(new BuildExpirationConfirmationJob());
+    }
+  }
+
+  public void checkFreeDiskSpace() {
+    if (RemoteConfig.messageBackups()) {
+      long availableBytes = BackupRepository.INSTANCE.getFreeStorageSpace().getBytes();
+      SignalStore.backup().setSpaceAvailableOnDiskBytes(availableBytes);
     }
   }
 
@@ -351,6 +361,8 @@ public class ApplicationContext extends Application implements AppForegroundObse
       if (wasWrapped && (e instanceof SocketException || e instanceof InterruptedException || e instanceof InterruptedIOException)) {
         return;
       }
+
+      Log.e(TAG, "RxJava error handler invoked", e);
 
       Thread.UncaughtExceptionHandler uncaughtExceptionHandler = Thread.currentThread().getUncaughtExceptionHandler();
       if (uncaughtExceptionHandler == null) {

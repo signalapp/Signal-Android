@@ -7,9 +7,9 @@ package org.thoughtcrime.securesms.restore.devicetransfer
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
-import androidx.fragment.app.activityViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -20,14 +20,24 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentDeviceTransferBinding
-import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.visible
 
-sealed class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device_transfer) {
+/**
+ * Drives the UI for the actual device transfer progress. Shown after setup is complete
+ * and the two devices are transferring.
+ * <p>
+ * Handles show progress and error state.
+ */
+abstract class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device_transfer) {
+
+  companion object {
+    private const val TRANSFER_FINISHED_KEY = "transfer_finished"
+  }
+
   private val onBackPressed = OnBackPressed()
   private val transferModeListener = TransferModeListener()
-  protected val navigationViewModel: RestoreViewModel by activityViewModels()
   protected val binding: FragmentDeviceTransferBinding by ViewBinderDelegate(FragmentDeviceTransferBinding::bind)
+  protected val status: TextView by lazy { binding.deviceTransferFragmentStatus }
 
   protected var transferFinished: Boolean = false
 
@@ -35,6 +45,13 @@ sealed class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device_t
     super.onCreate(savedInstanceState)
     if (savedInstanceState != null) {
       transferFinished = savedInstanceState.getBoolean(TRANSFER_FINISHED_KEY)
+    }
+  }
+
+  override fun onStart() {
+    super.onStart()
+    if (transferFinished) {
+      navigateToTransferComplete()
     }
   }
 
@@ -131,9 +148,5 @@ sealed class DeviceTransferFragment : LoggingFragment(R.layout.fragment_device_t
         navigateAwayFromTransfer()
       }
     }
-  }
-
-  companion object {
-    private const val TRANSFER_FINISHED_KEY = "transfer_finished"
   }
 }

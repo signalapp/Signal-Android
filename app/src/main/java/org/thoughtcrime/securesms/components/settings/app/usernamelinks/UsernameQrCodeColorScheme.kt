@@ -74,7 +74,7 @@ enum class UsernameQrCodeColorScheme(
      */
     @JvmStatic
     fun deserialize(serialized: String?): UsernameQrCodeColorScheme {
-      return values().firstOrNull { it.key == serialized } ?: Blue
+      return entries.firstOrNull { it.key == serialized } ?: Blue
     }
   }
 }

@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
+import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -456,7 +457,12 @@ public final class PushGroupSendJob extends PushSendJob {
     SignalDatabase.groupReceipts().setUnidentified(successUnidentifiedStatus, messageId);
 
     if (proofRequired != null) {
-      handleProofRequiredException(context, proofRequired, groupRecipient, threadId, messageId, true);
+      ProofRequiredExceptionHandler.Result result = ProofRequiredExceptionHandler.handle(context, proofRequired, groupRecipient, threadId, messageId);
+      if (result.isRetry()) {
+        throw new RetryLaterException();
+      } else {
+        throw proofRequired;
+      }
     }
 
     if (existingNetworkFailures.isEmpty() && existingIdentityMismatches.isEmpty()) {

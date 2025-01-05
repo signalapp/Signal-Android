@@ -176,8 +176,7 @@ object RecipientTableCursorUtil {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
       rawBits = capabilities,
-      deleteSync = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.DELETE_SYNC, Capabilities.BIT_LENGTH).toInt()),
-      versionedExpirationTimer = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.VERSIONED_EXPIRATION_TIMER, Capabilities.BIT_LENGTH).toInt())
+      storageServiceEncryptionV2 = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH).toInt())
     )
   }
 

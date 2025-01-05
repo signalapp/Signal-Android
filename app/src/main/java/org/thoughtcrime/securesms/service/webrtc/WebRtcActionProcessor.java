@@ -793,6 +793,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleResendMediaKeys(@NonNull WebRtcServiceState currentState) {
+    Log.i(tag, "handleResendMediaKeys not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.OpaqueMessageMetadata opaqueMessageMetadata) {
     Log.i(tag, "handleReceivedOpaqueMessage():");
 

@@ -4,26 +4,27 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!--  This scaling is applied manually to get the desired visual effect. It's not part of the asset.-->
-    <group
-        android:pivotX="54"
-        android:pivotY="54"
-        android:scaleX="0.68"
-        android:scaleY="0.68">
-        <clip-path
-            android:pathData="M0,0h108v108h-108z"/>
+    <group>
         <path
             android:pathData="M108,0H0V108H108V0Z">
             <aapt:attr name="android:fillColor">
                 <gradient
-                    android:centerX="10"
-                    android:centerY="10"
-                    android:gradientRadius="129.4"
+                    android:centerX="24"
+                    android:centerY="24"
+                    android:gradientRadius="88"
                     android:type="radial">
-                    <item android:offset="0" android:color="#FFE582EA"/>
-                    <item android:offset="0.3" android:color="#FFE699A8"/>
-                    <item android:offset="0.65" android:color="#FFE7C52A"/>
-                    <item android:offset="1" android:color="#FFB4E14A"/>
+                    <item
+                        android:offset="0"
+                        android:color="#FFE582EA"/>
+                    <item
+                        android:offset="0.3"
+                        android:color="#FFE699A8"/>
+                    <item
+                        android:offset="0.65"
+                        android:color="#FFE7C52A"/>
+                    <item
+                        android:offset="1"
+                        android:color="#FFB4E14A"/>
                 </gradient>
             </aapt:attr>
         </path>

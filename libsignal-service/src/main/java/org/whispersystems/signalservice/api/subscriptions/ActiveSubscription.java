@@ -137,7 +137,7 @@ public final class ActiveSubscription {
   }
 
   public boolean isInProgress() {
-    return activeSubscription != null && !isActive() && (!activeSubscription.isFailedPayment() || activeSubscription.isPastDue());
+    return activeSubscription != null && !isActive() && (!isFailedPayment() || isPastDue()) && !isCanceled();
   }
 
   public boolean isPastDue() {
@@ -146,6 +146,10 @@ public final class ActiveSubscription {
 
   public boolean isFailedPayment() {
     return chargeFailure != null || (activeSubscription != null && !isActive() && activeSubscription.isFailedPayment());
+  }
+
+  public boolean isCanceled() {
+    return activeSubscription != null && activeSubscription.isCanceled();
   }
 
   public static final class Subscription {

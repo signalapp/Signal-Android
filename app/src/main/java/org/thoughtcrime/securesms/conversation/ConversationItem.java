@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
+import org.thoughtcrime.securesms.billing.upgrade.UpgradeToStartMediaBackupSheet;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -2606,6 +2607,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         } catch (ActivityNotFoundException anfe) {
           Log.w(TAG, "No activity existed to view the media.");
           Toast.makeText(context, R.string.ConversationItem_unable_to_open_media, Toast.LENGTH_LONG).show();
+        }
+      } else if (slide.asAttachment().isMediaNoLongerAvailableForDownload() && !SignalStore.backup().backsUpMedia()) {
+        Log.i(TAG, "Clicked unavailable media, attempting to display sheet.");
+        if (eventListener != null) {
+          eventListener.onDisplayMediaNoLongerAvailableSheet();
         }
       } else if (slide.asAttachment().isPermanentlyFailed()) {
         String failedMessage;

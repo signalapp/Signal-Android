@@ -57,7 +57,7 @@ private const val NONE = -1
 @Composable
 fun BackupStatusBanner(
   data: BackupStatusData,
-  onSkipClick: () -> Unit = {},
+  onActionClick: (BackupStatusData) -> Unit = {},
   onDismissClick: () -> Unit = {},
   contentPadding: PaddingValues = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
 ) {
@@ -119,7 +119,7 @@ fun BackupStatusBanner(
 
     if (data.actionRes != NONE) {
       Buttons.Small(
-        onClick = onSkipClick,
+        onClick = { onActionClick(data) },
         modifier = Modifier.padding(start = 8.dp)
       ) {
         Text(text = stringResource(id = data.actionRes))
@@ -195,6 +195,12 @@ fun BackupStatusBannerPreview() {
       BackupStatusBanner(
         data = BackupStatusData.CouldNotCompleteBackup
       )
+
+      HorizontalDivider()
+
+      BackupStatusBanner(
+        data = BackupStatusData.BackupFailed
+      )
     }
   }
 }
@@ -230,7 +236,20 @@ sealed interface BackupStatusData {
 
     override val title: String
       @Composable
-      get() = stringResource(R.string.default_error_msg)
+      get() = stringResource(androidx.biometric.R.string.default_error_msg)
+
+    override val iconColors: BackupsIconColors = BackupsIconColors.Warning
+  }
+
+  /**
+   * Initial backup creation failure
+   */
+  data object BackupFailed : BackupStatusData {
+    override val iconRes: Int = R.drawable.symbol_backup_error_24
+
+    override val title: String
+      @Composable
+      get() = stringResource(androidx.biometric.R.string.default_error_msg)
 
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
   }
@@ -250,7 +269,7 @@ sealed interface BackupStatusData {
       get() = stringResource(R.string.BackupStatus__free_up_s_of_space_to_download_your_media, requiredSpace)
 
     override val iconColors: BackupsIconColors = BackupsIconColors.Warning
-    override val actionRes: Int = R.string.registration_activity__skip
+    override val actionRes: Int = R.string.BackupStatus__details
   }
 
   /**

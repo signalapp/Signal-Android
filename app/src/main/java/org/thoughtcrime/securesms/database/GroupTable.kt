@@ -988,7 +988,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   fun getGroupSendFullToken(threadId: Long, recipientId: RecipientId): GroupSendFullToken? {
     val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
-    if (threadRecipient == null || !threadRecipient.isGroup) {
+    if (threadRecipient == null || !threadRecipient.isPushV2Group) {
       return null
     }
 

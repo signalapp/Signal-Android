@@ -19,7 +19,8 @@ data class SignalServiceConfiguration(
   val signalProxy: Optional<SignalProxy>,
   val zkGroupServerPublicParams: ByteArray,
   val genericServerPublicParams: ByteArray,
-  val backupServerPublicParams: ByteArray
+  val backupServerPublicParams: ByteArray,
+  val censored: Boolean
 ) {
 
   /** Convenience operator overload for combining the URL lists. Does not add the other fields together, as those wouldn't make sense.  */

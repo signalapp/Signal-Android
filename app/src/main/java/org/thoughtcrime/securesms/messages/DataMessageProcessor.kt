@@ -897,7 +897,7 @@ object DataMessageProcessor {
 
     SignalDatabase.messages.beginTransaction()
     try {
-      val quote: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message)
+      val quote: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message, senderRecipient, threadRecipient)
       val contacts: List<Contact> = getContacts(message)
       val linkPreviews: List<LinkPreview> = getLinkPreviews(message.preview, message.body ?: "", false)
       val mentions: List<Mention> = getMentions(message.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT))
@@ -1077,7 +1077,7 @@ object DataMessageProcessor {
     return SignalDatabase.messages.insertMessageInbox(textMessage).orNull()
   }
 
-  fun getValidatedQuote(context: Context, timestamp: Long, message: DataMessage): QuoteModel? {
+  fun getValidatedQuote(context: Context, timestamp: Long, message: DataMessage, senderRecipient: Recipient, threadRecipient: Recipient): QuoteModel? {
     val quote: DataMessage.Quote = message.quote ?: return null
 
     if (quote.id == null) {
@@ -1088,7 +1088,7 @@ object DataMessageProcessor {
     val authorId = Recipient.externalPush(ServiceId.parseOrThrow(quote.authorAci!!)).id
     var quotedMessage = SignalDatabase.messages.getMessageFor(quote.id!!, authorId) as? MmsMessageRecord
 
-    if (quotedMessage != null && !quotedMessage.isRemoteDelete) {
+    if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete) {
       log(timestamp, "Found matching message record...")
 
       val attachments: MutableList<Attachment> = mutableListOf()
@@ -1127,7 +1127,7 @@ object DataMessageProcessor {
         QuoteModel.Type.fromProto(quote.type),
         quotedMessage.messageRanges
       )
-    } else if (quotedMessage != null) {
+    } else if (quotedMessage != null && quotedMessage.isRemoteDelete) {
       warn(timestamp, "Found the target for the quote, but it's flagged as remotely deleted.")
     }
 
@@ -1142,6 +1142,21 @@ object DataMessageProcessor {
       QuoteModel.Type.fromProto(quote.type),
       quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
     )
+  }
+
+  private fun isSenderValid(quotedMessage: MmsMessageRecord, timestamp: Long, senderRecipient: Recipient, threadRecipient: Recipient): Boolean {
+    if (threadRecipient.isGroup) {
+      val groupRecord = SignalDatabase.groups.getGroup(threadRecipient.id).orNull()
+      if (groupRecord != null && !groupRecord.members.contains(senderRecipient.id)) {
+        warn(timestamp, "Sender is not in the group! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
+        return false
+      }
+    } else if (senderRecipient.id != threadRecipient.id) {
+      warn(timestamp, "Sender is not a part of the 1:1 thread! Thread: ${quotedMessage.threadId} Sender: ${senderRecipient.id}")
+      return false
+    }
+
+    return true
   }
 
   fun getContacts(message: DataMessage): List<Contact> {
@@ -1166,7 +1181,7 @@ object DataMessageProcessor {
         val validDomain = url.isPresent && LinkUtil.isValidPreviewUrl(url.get())
         val isForCallLink = url.isPresent && CallLinks.isCallLink(url.get())
 
-        if ((hasTitle || isForCallLink) && (presentInBody || isStoryEmbed) && validDomain) {
+        if ((hasTitle || isForCallLink || isStoryEmbed) && (presentInBody || isStoryEmbed) && validDomain) {
           val linkPreview = LinkPreview(url.get(), title.orElse(""), description.orElse(""), preview.date ?: 0, thumbnail.toOptional())
           linkPreview
         } else {

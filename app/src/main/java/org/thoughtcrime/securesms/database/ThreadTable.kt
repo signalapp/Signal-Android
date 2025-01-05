@@ -18,6 +18,7 @@ import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
@@ -70,10 +71,11 @@ import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
-import org.whispersystems.signalservice.api.storage.SignalAccountRecord.PinnedConversation
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalServiceAddress
+import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import java.io.Closeable
 import java.io.IOException
 import java.util.Collections
@@ -327,7 +329,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       return
     }
 
-    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes() && Recipient.self().deleteSyncCapability.isSupported
+    val syncThreadTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes()
     val threadTrimsToSync = mutableListOf<ThreadDeleteSyncInfo>()
 
     readableDatabase
@@ -629,6 +631,26 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
 
     return allCount + forcedUnreadCount
+  }
+
+  /**
+   * Returns whether or not there are any unmuted chats in a chat folder
+   */
+  fun hasUnmutedChatsInFolder(folder: ChatFolderRecord): Boolean {
+    val chatFolderQuery = folder.toQuery()
+
+    val unmutedChats =
+      """
+      SELECT COUNT(${RecipientTable.MUTE_UNTIL})
+      FROM $TABLE_NAME
+        LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+      WHERE 
+        $ARCHIVED = 0 AND
+        ${RecipientTable.MUTE_UNTIL} = 0
+        $chatFolderQuery 
+      """
+
+    return readableDatabase.rawQuery(unmutedChats, null).readToSingleBoolean()
   }
 
   /**
@@ -1049,7 +1071,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       FROM $TABLE_NAME
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE 
-        $ACTIVE = 1
+        $ACTIVE = 1 AND
+        $ARCHIVED = 0
         $folderQuery
       """
     return readableDatabase.rawQuery(query, null).readToList { cursor -> cursor.requireLong(ID) }
@@ -1060,7 +1083,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       readableDatabase
         .select(RECIPIENT_ID)
         .from(TABLE_NAME)
-        .where("$ACTIVE = 1")
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0")
         .run()
         .readToList { cursor ->
           RecipientId.from(cursor.requireLong(RECIPIENT_ID))
@@ -1073,7 +1096,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         FROM $TABLE_NAME
           LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
         WHERE 
-          $ACTIVE = 1
+          $ACTIVE = 1 AND
+          $ARCHIVED = 0
           $folderQuery
         """
       readableDatabase.rawQuery(query, null).readToList { cursor ->
@@ -1243,7 +1267,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(ID, selectedConversations)
     writableDatabase.withinTransaction { db ->
-      if (syncThreadDeletes && Recipient.self().deleteSyncCapability.isSupported) {
+      if (syncThreadDeletes) {
         for (threadId in selectedConversations) {
           val mostRecentMessages = messages.getMostRecentAddressableMessages(threadId, excludeExpiring = false)
           val mostRecentNonExpiring = if (mostRecentMessages.size == MessageTable.ADDRESSABLE_MESSAGE_LIMIT && mostRecentMessages.any { it.expiresIn > 0 }) {
@@ -1486,20 +1510,20 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
-    applyStorageSyncUpdate(recipientId, record.isArchived, record.isForcedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalAccountRecord) {
     writableDatabase.withinTransaction { db ->
-      applyStorageSyncUpdate(recipientId, record.isNoteToSelfArchived, record.isNoteToSelfForcedUnread)
+      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread)
 
       db.updateAll(TABLE_NAME)
         .values(PINNED to 0)
@@ -1507,19 +1531,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       var pinnedPosition = 1
 
-      for (pinned: PinnedConversation in record.pinnedConversations) {
-        val pinnedRecipient: Recipient? = if (pinned.contact.isPresent) {
-          Recipient.externalPush(pinned.contact.get())
-        } else if (pinned.groupV1Id.isPresent) {
+      for (pinned: AccountRecord.PinnedConversation in record.proto.pinnedConversations) {
+        val pinnedRecipient: Recipient? = if (pinned.contact != null) {
+          Recipient.externalPush(pinned.contact!!.toSignalServiceAddress())
+        } else if (pinned.legacyGroupId != null) {
           try {
-            Recipient.externalGroupExact(GroupId.v1(pinned.groupV1Id.get()))
+            Recipient.externalGroupExact(GroupId.v1(pinned.legacyGroupId!!.toByteArray()))
           } catch (e: BadGroupIdException) {
             Log.w(TAG, "Failed to parse pinned groupV1 ID!", e)
             null
           }
-        } else if (pinned.groupV2MasterKey.isPresent) {
+        } else if (pinned.groupMasterKey != null) {
           try {
-            Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(pinned.groupV2MasterKey.get())))
+            Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(pinned.groupMasterKey!!.toByteArray())))
           } catch (e: InvalidInputException) {
             Log.w(TAG, "Failed to parse pinned groupV2 master key!", e)
             null
@@ -2329,7 +2353,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     companion object {
       fun deserialize(value: Int): ReadStatus {
-        for (status in values()) {
+        for (status in entries) {
           if (status.value == value) {
             return status
           }

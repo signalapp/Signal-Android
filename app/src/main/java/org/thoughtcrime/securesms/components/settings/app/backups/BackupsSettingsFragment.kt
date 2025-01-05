@@ -21,7 +21,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dividers
@@ -51,7 +51,9 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
+import org.signal.core.ui.R as CoreUiR
 
 /**
  * Top-level backups settings screen.
@@ -75,7 +77,7 @@ class BackupsSettingsFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.stateFlow.collectAsState()
+    val state by viewModel.stateFlow.collectAsStateWithLifecycle()
 
     BackupsSettingsContent(
       backupsSettingsState = state,
@@ -118,7 +120,7 @@ private fun BackupsSettingsContent(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__back_up_your_message_history),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.core_ui__gutter), vertical = 16.dp)
+          modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter), vertical = 16.dp)
         )
       }
 
@@ -126,12 +128,16 @@ private fun BackupsSettingsContent(
         when (backupsSettingsState.enabledState) {
           BackupsSettingsState.EnabledState.Loading -> {
             LoadingBackupsRow()
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Inactive -> {
             InactiveBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           is BackupsSettingsState.EnabledState.Active -> {
@@ -139,29 +145,28 @@ private fun BackupsSettingsContent(
               enabledState = backupsSettingsState.enabledState,
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Never -> {
             NeverEnabledBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
+
+            OtherWaysToBackUpHeading()
           }
 
           BackupsSettingsState.EnabledState.Failed -> {
-            Text(text = "TODO")
+            WaitingForNetworkRow()
+            OtherWaysToBackUpHeading()
           }
+
+          BackupsSettingsState.EnabledState.NotAvailable -> Unit
         }
       }
 
       item {
-        Dividers.Default()
-      }
-
-      item {
-        Texts.SectionHeader(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__other_ways_to_backup)
-        )
-
         Rows.TextRow(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__on_device_backups),
           label = stringResource(R.string.RemoteBackupsSettingsFragment__save_your_backups_to),
@@ -170,6 +175,15 @@ private fun BackupsSettingsContent(
       }
     }
   }
+}
+
+@Composable
+private fun OtherWaysToBackUpHeading() {
+  Dividers.Default()
+
+  Texts.SectionHeader(
+    text = stringResource(R.string.RemoteBackupsSettingsFragment__other_ways_to_backup)
+  )
 }
 
 @Composable
@@ -211,6 +225,18 @@ private fun NeverEnabledBackupsRow(
           )
         }
       }
+    }
+  )
+}
+
+@Composable
+private fun WaitingForNetworkRow() {
+  Rows.TextRow(
+    text = {
+      Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__waiting_for_network))
+    },
+    icon = {
+      CircularProgressIndicator()
     }
   )
 }
@@ -302,7 +328,7 @@ private fun LoadingBackupsRow() {
     modifier = Modifier
       .fillMaxWidth()
       .height(56.dp)
-      .padding(horizontal = dimensionResource(R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
   ) {
     CircularProgressIndicator()
   }
@@ -317,13 +343,34 @@ private fun BackupsSettingsContentPreview() {
         enabledState = BackupsSettingsState.EnabledState.Active(
           type = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 1_000_000
+            storageAllowanceBytes = 1_000_000,
+            mediaTtl = 30.days
           ),
           expiresAt = 0.seconds,
           lastBackupAt = 0.seconds
         )
       )
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BackupsSettingsContentNotAvailablePreview() {
+  Previews.Preview {
+    BackupsSettingsContent(
+      backupsSettingsState = BackupsSettingsState(
+        enabledState = BackupsSettingsState.EnabledState.NotAvailable
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun WaitingForNetworkRowPreview() {
+  Previews.Preview {
+    WaitingForNetworkRow()
   }
 }
 
@@ -343,7 +390,8 @@ private fun ActivePaidBackupsRowPreview() {
       enabledState = BackupsSettingsState.EnabledState.Active(
         type = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
-          storageAllowanceBytes = 1_000_000
+          storageAllowanceBytes = 1_000_000,
+          mediaTtl = 30.days
         ),
         expiresAt = 0.seconds,
         lastBackupAt = 0.seconds

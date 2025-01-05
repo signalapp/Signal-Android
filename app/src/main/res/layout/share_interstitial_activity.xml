@@ -50,7 +50,8 @@
         android:layout_height="2dp"
         android:alpha="1"
         android:background="@drawable/compose_divider_background"
-        app:layout_constraintBottom_toTopOf="@id/selected_list" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/share_confirm" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/selected_list"
@@ -61,7 +62,8 @@
         android:orientation="horizontal"
         android:paddingStart="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/share_confirm"
+        app:layout_constraintBottom_toBottomOf="@id/share_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/share_contact_selection_item" />
@@ -72,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         app:circularProgressMaterialButton__label="@string/ShareActivity__send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

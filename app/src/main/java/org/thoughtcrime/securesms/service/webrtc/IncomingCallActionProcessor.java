@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 
 import android.net.Uri;
 import android.os.ResultReceiver;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -94,7 +95,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       return currentState;
     }
 
-    boolean         hideIp          = !activePeer.getRecipient().isSystemContact() || callSetupState.isAlwaysTurnServers();
+    boolean         hideIp          = !activePeer.getRecipient().isProfileSharing() || callSetupState.isAlwaysTurnServers();
     VideoState      videoState      = currentState.getVideoState();
     CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
 
@@ -202,6 +203,11 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
       if (ringtone == null) {
         ringtone = SignalStore.settings().getCallRingtone();
+      }
+
+      if (TextUtils.isEmpty(ringtone.toString())) {
+        Log.i(TAG, "Ringtone is likely set to silent");
+        ringtone = null;
       }
 
       webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));

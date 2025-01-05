@@ -50,13 +50,25 @@ internal class WallpaperStorageMigrationJob(parameters: Parameters = Parameters.
     val currentDefaultWallpaperUri = SignalStore.wallpaper.currentRawWallpaper?.file_?.uri
 
     for (filename in wallpaperFileNames) {
-      val inputStream = FileStorage.read(context, DIRECTORY, filename)
-      val wallpaperAttachmentId = SignalDatabase.attachments.insertWallpaper(inputStream)
-
+      val legacyUri = Uri.withAppendedPath(CONTENT_URI, filename)
       val directory = context.getDir(DIRECTORY, Context.MODE_PRIVATE)
       val file = File(directory, filename)
 
-      val legacyUri = Uri.withAppendedPath(CONTENT_URI, filename)
+      val inputStream = try {
+        FileStorage.read(context, DIRECTORY, filename)
+      } catch (e: IOException) {
+        Log.w(TAG, "Failed to read $filename! Clearing references.")
+        val updatedUserCount = SignalDatabase.recipients.migrateWallpaperUri(
+          legacyUri = legacyUri,
+          newUri = null
+        )
+        Log.d(TAG, "Wallpaper with name '$filename' was in use by $updatedUserCount recipients.")
+        file.delete()
+        continue
+      }
+
+      val wallpaperAttachmentId = SignalDatabase.attachments.insertWallpaper(inputStream)
+
       val newUri = PartAuthority.getAttachmentDataUri(wallpaperAttachmentId)
 
       val updatedUserCount = SignalDatabase.recipients.migrateWallpaperUri(

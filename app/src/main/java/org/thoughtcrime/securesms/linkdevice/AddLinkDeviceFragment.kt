@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -40,7 +40,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
   @OptIn(ExperimentalPermissionsApi::class)
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
 
@@ -49,7 +49,7 @@ class AddLinkDeviceFragment : ComposeFragment() {
       viewModel.markIntroSheetSeen()
     }
 
-    if ((state.qrCodeFound || state.qrCodeInvalid) && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {
+    if (state.qrCodeState != LinkDeviceSettingsState.QrCodeState.NONE && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {
       navController.popBackStack()
     }
 
@@ -60,14 +60,16 @@ class AddLinkDeviceFragment : ComposeFragment() {
       onRequestPermissions = { askPermissions() },
       onShowFrontCamera = { viewModel.showFrontCamera() },
       onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
-      onQrCodeApproved = { viewModel.addDevice() },
-      onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
-      onQrCodeRetry = { viewModel.onQrCodeScanned(state.url) },
-      onLinkDeviceSuccess = {
-        viewModel.onLinkDeviceResult(true)
+      onQrCodeApproved = {
         navController.popBackStack()
+        viewModel.addDevice(shouldSync = false)
       },
-      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(false) }
+      onQrCodeDismissed = { viewModel.onQrCodeDismissed() },
+      onQrCodeRetry = { viewModel.onQrCodeScanned(state.linkUri.toString()) },
+      onLinkDeviceSuccess = {
+        viewModel.onLinkDeviceResult(showSheet = true)
+      },
+      onLinkDeviceFailure = { viewModel.onLinkDeviceResult(showSheet = false) }
     )
   }
 
@@ -115,8 +117,7 @@ private fun MainScreen(
       hasPermission = hasPermissions,
       onRequestPermissions = onRequestPermissions,
       showFrontCamera = state.showFrontCamera,
-      qrCodeFound = state.qrCodeFound,
-      qrCodeInvalid = state.qrCodeInvalid,
+      qrCodeState = state.qrCodeState,
       onQrCodeScanned = onQrCodeScanned,
       onQrCodeAccepted = onQrCodeApproved,
       onQrCodeDismissed = onQrCodeDismissed,
@@ -124,6 +125,7 @@ private fun MainScreen(
       linkDeviceResult = state.linkDeviceResult,
       onLinkDeviceSuccess = onLinkDeviceSuccess,
       onLinkDeviceFailure = onLinkDeviceFailure,
+      navController = navController,
       modifier = Modifier.padding(contentPadding)
     )
   }

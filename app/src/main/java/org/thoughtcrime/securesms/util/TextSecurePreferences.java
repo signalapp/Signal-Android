@@ -45,20 +45,8 @@ public class TextSecurePreferences {
 
   private static final String TAG = Log.tag(TextSecurePreferences.class);
 
-  public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
-  public  static final String DISABLE_PASSPHRASE_PREF          = "pref_disable_passphrase";
   public  static final String THEME_PREF                       = "pref_theme";
   public  static final String LANGUAGE_PREF                    = "pref_language";
-  private static final String MMSC_CUSTOM_HOST_PREF            = "pref_apn_mmsc_custom_host";
-  public  static final String MMSC_HOST_PREF                   = "pref_apn_mmsc_host";
-  private static final String MMSC_CUSTOM_PROXY_PREF           = "pref_apn_mms_custom_proxy";
-  public  static final String MMSC_PROXY_HOST_PREF             = "pref_apn_mms_proxy";
-  private static final String MMSC_CUSTOM_PROXY_PORT_PREF      = "pref_apn_mms_custom_proxy_port";
-  public  static final String MMSC_PROXY_PORT_PREF             = "pref_apn_mms_proxy_port";
-  private static final String MMSC_CUSTOM_USERNAME_PREF        = "pref_apn_mmsc_custom_username";
-  public  static final String MMSC_USERNAME_PREF               = "pref_apn_mmsc_username";
-  private static final String MMSC_CUSTOM_PASSWORD_PREF        = "pref_apn_mmsc_custom_password";
-  public  static final String MMSC_PASSWORD_PREF               = "pref_apn_mmsc_password";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
@@ -68,17 +56,9 @@ public class TextSecurePreferences {
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
-  public  static final String ALL_MMS_PREF                     = "pref_all_mms";
-  public  static final String ALL_SMS_PREF                     = "pref_all_sms";
-  public  static final String PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval";
-  public  static final String PASSPHRASE_TIMEOUT_PREF          = "pref_timeout_passphrase";
   public  static final String SCREEN_SECURITY_PREF             = "pref_screen_security";
   private static final String ENTER_SENDS_PREF                 = "pref_enter_sends";
-  private static final String ENTER_PRESENT_PREF               = "pref_enter_key";
   private static final String SMS_DELIVERY_REPORT_PREF         = "pref_delivery_report_sms";
-  public  static final String MMS_USER_AGENT                   = "pref_mms_user_agent";
-  private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
-  private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
@@ -98,7 +78,6 @@ public class TextSecurePreferences {
   public  static final String NOTIFICATION_PRIVACY_PREF        = "pref_notification_privacy";
   public  static final String NOTIFICATION_PRIORITY_PREF       = "pref_notification_priority";
   public  static final String NEW_CONTACTS_NOTIFICATIONS       = "pref_enable_new_contacts_notifications";
-  public  static final String WEBRTC_CALLING_PREF              = "pref_webrtc_calling";
 
   public  static final String MEDIA_DOWNLOAD_MOBILE_PREF       = "pref_media_download_mobile";
   public  static final String MEDIA_DOWNLOAD_WIFI_PREF         = "pref_media_download_wifi";
@@ -129,22 +108,13 @@ public class TextSecurePreferences {
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time"; // milliseconds since 1970
 
-  public static final String TRANSFER = "pref_transfer";
-
-  public static final String SCREEN_LOCK         = "pref_android_screen_lock";
-  public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
-
   @Deprecated
   public static final  String REGISTRATION_LOCK_PREF_V1                = "pref_registration_lock";
   @Deprecated
   private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
 
-  public static final  String REGISTRATION_LOCK_PREF_V2                = "pref_registration_lock_v2";
-
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
-
-  public  static final String SIGNAL_PIN_CHANGE = "pref_kbs_change";
 
   public  static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
@@ -174,10 +144,6 @@ public class TextSecurePreferences {
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
   public  static final String RECENT_STORAGE_KEY  = "pref_recent_emoji2";
 
-  private static final String VIEW_ONCE_TOOLTIP_SEEN = "pref_revealable_message_tooltip_seen";
-
-  private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
-
   private static final String JOB_MANAGER_VERSION = "pref_job_manager_version";
 
   private static final String APP_MIGRATION_VERSION = "pref_app_migration_version";
@@ -187,10 +153,6 @@ public class TextSecurePreferences {
   private static final String HAS_SEEN_SWIPE_TO_REPLY = "pref_has_seen_swipe_to_reply";
 
   private static final String HAS_SEEN_VIDEO_RECORDING_TOOLTIP = "camerax.fragment.has.dismissed.video.recording.tooltip";
-
-  private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
-
-  private static final String ARGON2_TESTED = "argon2_tested";
 
   private static final String[] booleanPreferencesToBackup = {SCREEN_SECURITY_PREF,
                                                               INCOGNITO_KEYBORAD_PREF,
@@ -299,27 +261,6 @@ public class TextSecurePreferences {
 
   public static void unregisterListener(@NonNull Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
     getSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(listener);
-  }
-
-  public static boolean isScreenLockEnabled(@NonNull Context context) {
-    return getBooleanPreference(context, SCREEN_LOCK, false);
-  }
-
-  public static void setScreenLockEnabled(@NonNull Context context, boolean value) {
-    setBooleanPreference(context, SCREEN_LOCK, value);
-  }
-
-  public static long getScreenLockTimeout(@NonNull Context context) {
-    return getLongPreference(context, SCREEN_LOCK_TIMEOUT, 0);
-  }
-
-  public static void setScreenLockTimeout(@NonNull Context context, long value) {
-    setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
-  }
-
-  public static boolean isV1RegistrationLockEnabled(@NonNull Context context) {
-    //noinspection deprecation
-    return getBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, false);
   }
 
   /**
@@ -512,14 +453,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
   }
 
-  public static boolean isWebrtcCallingEnabled(Context context) {
-    return getBooleanPreference(context, WEBRTC_CALLING_PREF, false);
-  }
-
-  public static void setWebrtcCallingEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, WEBRTC_CALLING_PREF, enabled);
-  }
-
   public static void setDirectCaptureCameraId(Context context, int value) {
     setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value);
   }
@@ -527,14 +460,6 @@ public class TextSecurePreferences {
   @SuppressWarnings("deprecation")
   public static int getDirectCaptureCameraId(Context context) {
     return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, CameraInfo.CAMERA_FACING_FRONT);
-  }
-
-  public static void setMultiDevice(Context context, boolean value) {
-    setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value);
-  }
-
-  public static boolean isMultiDevice(Context context) {
-    return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false);
   }
 
   @Deprecated
@@ -630,113 +555,9 @@ public class TextSecurePreferences {
     setLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, value);
   }
 
-  public static boolean isEnterImeKeyEnabled(Context context) {
-    return getBooleanPreference(context, ENTER_PRESENT_PREF, false);
-  }
-
   @Deprecated
   public static boolean isEnterSendsEnabled(Context context) {
     return getBooleanPreference(context, ENTER_SENDS_PREF, false);
-  }
-
-  public static boolean isPasswordDisabled(Context context) {
-    return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, true);
-  }
-
-  public static void setPasswordDisabled(Context context, boolean disabled) {
-    setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled);
-  }
-
-  public static boolean getUseCustomMmsc(Context context) {
-    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
-    return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy);
-  }
-
-  public static void setUseCustomMmsc(Context context, boolean value) {
-    setBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, value);
-  }
-
-  public static String getMmscUrl(Context context) {
-    return getStringPreference(context, MMSC_HOST_PREF, "");
-  }
-
-  public static void setMmscUrl(Context context, String mmsc) {
-    setStringPreference(context, MMSC_HOST_PREF, mmsc);
-  }
-
-  public static boolean getUseCustomMmscProxy(Context context) {
-    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
-    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy);
-  }
-
-  public static void setUseCustomMmscProxy(Context context, boolean value) {
-    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, value);
-  }
-
-  public static String getMmscProxy(Context context) {
-    return getStringPreference(context, MMSC_PROXY_HOST_PREF, "");
-  }
-
-  public static void setMmscProxy(Context context, String value) {
-    setStringPreference(context, MMSC_PROXY_HOST_PREF, value);
-  }
-
-  public static boolean getUseCustomMmscProxyPort(Context context) {
-    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
-    return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy);
-  }
-
-  public static void setUseCustomMmscProxyPort(Context context, boolean value) {
-    setBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, value);
-  }
-
-  public static String getMmscProxyPort(Context context) {
-    return getStringPreference(context, MMSC_PROXY_PORT_PREF, "");
-  }
-
-  public static void setMmscProxyPort(Context context, String value) {
-    setStringPreference(context, MMSC_PROXY_PORT_PREF, value);
-  }
-
-  public static boolean getUseCustomMmscUsername(Context context) {
-    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
-    return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy);
-  }
-
-  public static void setUseCustomMmscUsername(Context context, boolean value) {
-    setBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, value);
-  }
-
-  public static String getMmscUsername(Context context) {
-    return getStringPreference(context, MMSC_USERNAME_PREF, "");
-  }
-
-  public static void setMmscUsername(Context context, String value) {
-    setStringPreference(context, MMSC_USERNAME_PREF, value);
-  }
-
-  public static boolean getUseCustomMmscPassword(Context context) {
-    boolean legacy = TextSecurePreferences.isLegacyUseLocalApnsEnabled(context);
-    return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy);
-  }
-
-  public static void setUseCustomMmscPassword(Context context, boolean value) {
-    setBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, value);
-  }
-
-  public static String getMmscPassword(Context context) {
-    return getStringPreference(context, MMSC_PASSWORD_PREF, "");
-  }
-
-  public static void setMmscPassword(Context context, String value) {
-    setStringPreference(context, MMSC_PASSWORD_PREF, value);
-  }
-
-  public static String getMmsUserAgent(Context context, String defaultUserAgent) {
-    boolean useCustom = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false);
-
-    if (useCustom) return getStringPreference(context, MMS_USER_AGENT, defaultUserAgent);
-    else           return defaultUserAgent;
   }
 
   public static void setScreenSecurityEnabled(Context context, boolean value) {
@@ -769,22 +590,6 @@ public class TextSecurePreferences {
     return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? "system" : "light");
   }
 
-  public static boolean isShowInviteReminders(Context context) {
-    return getBooleanPreference(context, SHOW_INVITE_REMINDER_PREF, true);
-  }
-
-  public static boolean isPassphraseTimeoutEnabled(Context context) {
-    return getBooleanPreference(context, PASSPHRASE_TIMEOUT_PREF, false);
-  }
-
-  public static int getPassphraseTimeoutInterval(Context context) {
-    return getIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, 5 * 60);
-  }
-
-  public static void setPassphraseTimeoutInterval(Context context, int interval) {
-    setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
-  }
-
   /**
    * @deprecated Use {@link SettingsValues#getLanguage()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
    */
@@ -806,14 +611,6 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
   }
 
-  public static boolean hasSeenWelcomeScreen(Context context) {
-    return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true);
-  }
-
-  public static void setHasSeenWelcomeScreen(Context context, boolean value) {
-    setBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, value);
-  }
-
   public static boolean hasPromptedPushRegistration(Context context) {
     return getBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, false);
   }
@@ -828,14 +625,6 @@ public class TextSecurePreferences {
 
   public static boolean hasPromptedOptimizeDoze(Context context) {
     return getBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, false);
-  }
-
-  public static boolean isInterceptAllMmsEnabled(Context context) {
-    return getBooleanPreference(context, ALL_MMS_PREF, true);
-  }
-
-  public static boolean isInterceptAllSmsEnabled(Context context) {
-    return getBooleanPreference(context, ALL_SMS_PREF, true);
   }
 
   @Deprecated
@@ -1016,22 +805,6 @@ public class TextSecurePreferences {
     return MediaKeyboardMode.valueOf(name);
   }
 
-  public static void setHasSeenViewOnceTooltip(Context context, boolean value) {
-    setBooleanPreference(context, VIEW_ONCE_TOOLTIP_SEEN, value);
-  }
-
-  public static boolean hasSeenViewOnceTooltip(Context context) {
-    return getBooleanPreference(context, VIEW_ONCE_TOOLTIP_SEEN, false);
-  }
-
-  public static void setHasSeenCameraFirstTooltip(Context context, boolean value) {
-    setBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, value);
-  }
-
-  public static boolean hasSeenCameraFirstTooltip(Context context) {
-    return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
-  }
-
   public static void setJobManagerVersion(Context context, int version) {
     setIntegerPrefrence(context, JOB_MANAGER_VERSION, version);
   }
@@ -1070,18 +843,6 @@ public class TextSecurePreferences {
 
   public static void setHasSeenVideoRecordingTooltip(Context context, boolean value) {
     setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
-  }
-
-  public static void setStorageManifestVersion(Context context, long version) {
-    setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
-  }
-
-  public static boolean isArgon2Tested(Context context) {
-    return getBooleanPreference(context, ARGON2_TESTED, false);
-  }
-
-  public static void setArgon2Tested(Context context, boolean tested) {
-    setBooleanPreference(context, ARGON2_TESTED, tested);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

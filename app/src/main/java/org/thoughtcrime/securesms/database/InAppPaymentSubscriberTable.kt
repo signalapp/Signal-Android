@@ -162,6 +162,6 @@ class InAppPaymentSubscriberTable(
 
   object TypeSerializer : Serializer<InAppPaymentSubscriberRecord.Type, Int> {
     override fun serialize(data: InAppPaymentSubscriberRecord.Type): Int = data.code
-    override fun deserialize(input: Int): InAppPaymentSubscriberRecord.Type = InAppPaymentSubscriberRecord.Type.values().first { it.code == input }
+    override fun deserialize(input: Int): InAppPaymentSubscriberRecord.Type = InAppPaymentSubscriberRecord.Type.entries.first { it.code == input }
   }
 }

@@ -8,6 +8,7 @@ option swift_prefix = "BackupProto_";
 message BackupInfo {
   uint64 version = 1;
   uint64 backupTimeMs = 2;
+  bytes mediaRootBackupKey = 3; // 32-byte random value generated when the backup is uploaded for the first time.
 }
 
 // Frames must follow in the following ordering rules:
@@ -85,6 +86,17 @@ message AccountData {
     bool manuallyCancelled = 3;
   }
 
+  message IAPSubscriberData {
+    bytes subscriberId = 1;
+
+    oneof iapSubscriptionId {
+      // Identifies an Android Play Store IAP subscription.
+      string purchaseToken = 2;
+      // Identifies an iOS App Store IAP subscription.
+      uint64 originalTransactionId = 3;
+    }
+  }
+
   bytes profileKey = 1;
   optional string username = 2;
   UsernameLink usernameLink = 3;
@@ -92,8 +104,9 @@ message AccountData {
   string familyName = 5;
   string avatarUrlPath = 6;
   SubscriberData donationSubscriberData = 7;
-  SubscriberData backupsSubscriberData = 8;
+  reserved /*backupsSubscriberData*/ 8; // A deprecated format
   AccountSettings accountSettings = 9;
+  IAPSubscriberData backupsSubscriberData = 10;
 }
 
 message Recipient {
@@ -109,6 +122,12 @@ message Recipient {
 }
 
 message Contact {
+  enum IdentityState {
+    DEFAULT = 0;
+    VERIFIED = 1;
+    UNVERIFIED = 2;
+  }
+
   message Registered { }
   message NotRegistered {
     uint64 unregisteredTimestamp = 1;
@@ -137,6 +156,8 @@ message Contact {
   optional string profileGivenName = 11;
   optional string profileFamilyName = 12;
   bool hideStory = 13;
+  optional bytes identityKey = 14;
+  IdentityState identityState = 15;
 }
 
 message Group {
@@ -237,9 +258,9 @@ message Chat {
   uint64 id = 1; // generated id for reference only within this file
   uint64 recipientId = 2;
   bool archived = 3;
-  uint32 pinnedOrder = 4; // 0 = unpinned, otherwise chat is considered pinned and will be displayed in ascending order
-  uint64 expirationTimerMs = 5; // 0 = no expire timer.
-  uint64 muteUntilMs = 6;
+  optional uint32 pinnedOrder = 4; // will be displayed in ascending order
+  optional uint64 expirationTimerMs = 5;
+  optional uint64 muteUntilMs = 6; // INT64_MAX (2^63 - 1) = "always muted".
   bool markedUnread = 7;
   bool dontNotifyForMentionsIfMuted = 8;
   ChatStyle style = 9;
@@ -282,6 +303,8 @@ message AdHocCall {
 }
 
 message DistributionListItem {
+  // distribution ids are UUIDv4s. "My Story" is represented
+  // by an all-0 UUID (00000000-0000-0000-0000-000000000000).
   bytes distributionId = 1; // distribution list ids are uuids
 
   oneof item {
@@ -307,7 +330,7 @@ message DistributionList {
 message ChatItem {
   message IncomingMessageDetails {
     uint64 dateReceived = 1;
-    uint64 dateServerSent = 2;
+    optional uint64 dateServerSent = 2;
     bool read = 3;
     bool sealedSender = 4;
   }
@@ -322,8 +345,8 @@ message ChatItem {
   uint64 chatId = 1;   // conversation id
   uint64 authorId = 2; // recipient id
   uint64 dateSent = 3;
-  uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
-  uint64 expiresInMs = 5; // how long timer of message is (ms)
+  optional uint64 expireStartDate = 4; // timestamp of when expiration timer started ticking down
+  optional uint64 expiresInMs = 5; // how long timer of message is (ms)
   repeated ChatItem revisions = 6; // ordered from oldest to newest
   bool sms = 7;
 
@@ -613,7 +636,7 @@ message FilePointer {
   message AttachmentLocator {
     string cdnKey = 1;
     uint32 cdnNumber = 2;
-    uint64 uploadTimestamp = 3;
+    optional uint64 uploadTimestamp = 3;
     bytes key = 4;
     bytes digest = 5;
     uint32 size = 6;
@@ -647,7 +670,8 @@ message Quote {
   enum Type {
     UNKNOWN = 0;
     NORMAL = 1;
-    GIFTBADGE = 2;
+    GIFT_BADGE = 2;
+    VIEW_ONCE = 3;
   }
 
   message QuotedAttachment {
@@ -765,8 +789,7 @@ message GroupCall {
   optional uint64 ringerRecipientId = 3;
   optional uint64 startedCallRecipientId = 4;
   uint64 startedCallTimestamp = 5;
-  // The time the call ended. 0 indicates an unknown time.
-  uint64 endedCallTimestamp = 6;
+  optional uint64 endedCallTimestamp = 6; // The time the call ended.
   bool read = 7;
 }
 
@@ -822,7 +845,6 @@ message SessionSwitchoverChatUpdate {
 
 message GroupChangeChatUpdate {
   message Update {
-    // Note: group expiration timer changes are represented as ExpirationTimerChatUpdate.
     oneof update {
       GenericGroupUpdate genericGroupUpdate = 1;
       GroupCreationUpdate groupCreationUpdate = 2;

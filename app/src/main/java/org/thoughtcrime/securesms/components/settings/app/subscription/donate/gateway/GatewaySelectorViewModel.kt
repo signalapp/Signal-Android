@@ -26,11 +26,11 @@ class GatewaySelectorViewModel(
     GatewaySelectorState(
       gatewayOrderStrategy = GatewayOrderStrategy.getStrategy(),
       inAppPayment = args.inAppPayment,
-      isCreditCardAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, args.inAppPayment.type),
-      isGooglePayAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, args.inAppPayment.type),
-      isPayPalAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.PayPal, args.inAppPayment.type),
-      isSEPADebitAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.SEPADebit, args.inAppPayment.type),
-      isIDEALAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.IDEAL, args.inAppPayment.type)
+      isCreditCardAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, args.inAppPayment.type),
+      isGooglePayAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, args.inAppPayment.type),
+      isPayPalAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.PayPal, args.inAppPayment.type),
+      isSEPADebitAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.SEPADebit, args.inAppPayment.type),
+      isIDEALAvailable = InAppDonations.isDonationsPaymentSourceAvailable(PaymentSourceType.Stripe.IDEAL, args.inAppPayment.type)
     )
   )
   private val disposables = CompositeDisposable()

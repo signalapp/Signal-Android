@@ -8,16 +8,21 @@ package org.thoughtcrime.securesms.restore
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import org.signal.core.util.getParcelableExtraCompat
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.RestoreDirections
+import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Activity to hold the restore from backup flow.
@@ -27,6 +32,8 @@ class RestoreActivity : BaseActivity() {
   private val dynamicTheme = DynamicNoActionBarTheme()
   private val sharedViewModel: RestoreViewModel by viewModels()
 
+  private lateinit var navController: NavController
+
   override fun onCreate(savedInstanceState: Bundle?) {
     dynamicTheme.onCreate(this)
     super.onCreate(savedInstanceState)
@@ -34,16 +41,49 @@ class RestoreActivity : BaseActivity() {
     setResult(RESULT_CANCELED)
 
     setContentView(R.layout.activity_restore)
+
+    if (savedInstanceState == null) {
+      val fragment: NavHostFragment = NavHostFragment.create(R.navigation.restore)
+
+      supportFragmentManager
+        .beginTransaction()
+        .replace(R.id.nav_host_fragment, fragment)
+        .commitNow()
+
+      navController = fragment.navController
+    } else {
+      val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+      navController = fragment.navController
+    }
+
     intent.getParcelableExtraCompat(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, Intent::class.java)?.let {
       sharedViewModel.setNextIntent(it)
     }
 
-    val navTarget = NavTarget.deserialize(intent.getIntExtra(EXTRA_NAV_TARGET, NavTarget.NONE.value))
+    val navTarget = NavTarget.deserialize(intent.getIntExtra(EXTRA_NAV_TARGET, NavTarget.LEGACY_LANDING.value))
+
     when (navTarget) {
-      NavTarget.LOCAL_RESTORE -> findNavController(R.id.nav_host_fragment).navigate(R.id.choose_local_backup_fragment)
-      NavTarget.TRANSFER -> findNavController(R.id.nav_host_fragment).navigate(R.id.newDeviceTransferInstructions)
+      NavTarget.NEW_LANDING -> {
+        if (sharedViewModel.hasMultipleRestoreMethods()) {
+          navController.safeNavigate(RestoreDirections.goDirectlyToNewLanding())
+        } else {
+          startActivity(RemoteRestoreActivity.getIntent(this, isOnlyOption = true))
+          finish()
+        }
+      }
+      NavTarget.LOCAL_RESTORE -> navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
+      NavTarget.TRANSFER -> navController.safeNavigate(RestoreDirections.goDirectlyToDeviceTransfer())
       else -> Unit
     }
+
+    onBackPressedDispatcher.addCallback(
+      this,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          onNavigateUp()
+        }
+      }
+    )
   }
 
   override fun onResume() {
@@ -51,21 +91,38 @@ class RestoreActivity : BaseActivity() {
     dynamicTheme.onResume(this)
   }
 
-  fun finishActivitySuccessfully() {
+  override fun onNavigateUp(): Boolean {
+    return if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
+      finish()
+      true
+    } else {
+      false
+    }
+  }
+
+  fun onBackupCompletedSuccessfully() {
+    sharedViewModel.getNextIntent()?.let {
+      Log.d(TAG, "Launching ${it.component}", Throwable())
+      startActivity(it)
+    }
+
     setResult(RESULT_OK)
     finish()
   }
 
   companion object {
 
+    private val TAG = Log.tag(RestoreActivity::class)
+
     enum class NavTarget(val value: Int) {
-      NONE(0),
-      TRANSFER(1),
-      LOCAL_RESTORE(2);
+      LEGACY_LANDING(0),
+      NEW_LANDING(1),
+      TRANSFER(2),
+      LOCAL_RESTORE(3);
 
       companion object {
         fun deserialize(value: Int): NavTarget {
-          return values().firstOrNull { it.value == value } ?: NONE
+          return entries.firstOrNull { it.value == value } ?: LEGACY_LANDING
         }
       }
     }
@@ -73,26 +130,26 @@ class RestoreActivity : BaseActivity() {
     private const val EXTRA_NAV_TARGET = "nav_target"
 
     @JvmStatic
-    fun getIntentForTransfer(context: Context): Intent {
+    fun getDeviceTransferIntent(context: Context): Intent {
       return Intent(context, RestoreActivity::class.java).apply {
         putExtra(EXTRA_NAV_TARGET, NavTarget.TRANSFER.value)
       }
     }
 
     @JvmStatic
-    fun getIntentForLocalRestore(context: Context): Intent {
+    fun getLocalRestoreIntent(context: Context): Intent {
       return Intent(context, RestoreActivity::class.java).apply {
         putExtra(EXTRA_NAV_TARGET, NavTarget.LOCAL_RESTORE.value)
       }
     }
 
     @JvmStatic
-    fun getIntentForTransferOrRestore(context: Context): Intent {
-      val tier = SignalStore.backup.backupTier
-      if (tier == MessageBackupTier.PAID) {
-        return Intent(context, RemoteRestoreActivity::class.java)
+    fun getRestoreIntent(context: Context): Intent {
+      return Intent(context, RestoreActivity::class.java).apply {
+        if (RemoteConfig.restoreAfterRegistration) {
+          putExtra(EXTRA_NAV_TARGET, NavTarget.NEW_LANDING.value)
+        }
       }
-      return Intent(context, RestoreActivity::class.java)
     }
   }
 }

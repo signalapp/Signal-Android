@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
@@ -70,37 +71,40 @@ class StoryViewerPageViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getStoryPostsFor(args.recipientId, args.isOutgoingOnly).subscribe { posts ->
-      store.update { state ->
-        val isDisplayingInitialState = state.posts.isEmpty() && posts.isNotEmpty()
-        val startIndex = if (state.posts.isEmpty() && args.initialStoryId > 0) {
-          val initialIndex = posts.indexOfFirst { it.id == args.initialStoryId }
-          initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
-        } else if (state.posts.isEmpty()) {
-          val initialPost = getNextUnreadPost(posts)
-          val initialIndex = initialPost?.let { posts.indexOf(it) } ?: -1
-          initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
-        } else {
-          state.selectedPostIndex
+    disposables += repository.getStoryPostsFor(args.recipientId, args.isOutgoingOnly)
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe { posts ->
+        store.update { state ->
+          val isDisplayingInitialState = state.posts.isEmpty() && posts.isNotEmpty()
+          val startIndex = if (state.posts.isEmpty() && args.initialStoryId > 0) {
+            val initialIndex = posts.indexOfFirst { it.id == args.initialStoryId }
+            initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
+          } else if (state.posts.isEmpty()) {
+            val initialPost = getNextUnreadPost(posts)
+            val initialIndex = initialPost?.let { posts.indexOf(it) } ?: -1
+            initialIndex.takeIf { it > -1 } ?: state.selectedPostIndex
+          } else {
+            state.selectedPostIndex
+          }
+
+          state.copy(
+            isReady = true,
+            posts = posts,
+            replyState = resolveSwipeToReplyState(state, startIndex),
+            selectedPostIndex = startIndex,
+            isDisplayingInitialState = isDisplayingInitialState
+          )
         }
 
-        state.copy(
-          isReady = true,
-          posts = posts,
-          replyState = resolveSwipeToReplyState(state, startIndex),
-          selectedPostIndex = startIndex,
-          isDisplayingInitialState = isDisplayingInitialState
-        )
-      }
+        val attachments: List<Attachment> = posts.map { it.content }
+          .filterIsInstance<StoryPost.Content.AttachmentContent>()
+          .map { it.attachment }
 
-      val attachments: List<Attachment> = posts.map { it.content }
-        .filterIsInstance<StoryPost.Content.AttachmentContent>()
-        .map { it.attachment }
-
-      if (attachments.isNotEmpty()) {
-        storyCache.prefetch(attachments)
+        if (attachments.isNotEmpty()) {
+          storyCache.prefetch(attachments)
+        }
       }
-    }
 
     disposables += storyLongPressSubject.debounce(150, TimeUnit.MILLISECONDS).subscribe { isLongPress ->
       storyViewerPlaybackStore.update { it.copy(isUserLongTouching = isLongPress) }

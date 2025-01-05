@@ -37,7 +37,7 @@ object LocalArchiver {
   /**
    * Export archive to the provided [snapshotFileSystem] and store new files in [filesFileSystem].
    */
-  fun export(snapshotFileSystem: SnapshotFileSystem, filesFileSystem: FilesFileSystem, stopwatch: Stopwatch): ArchiveResult {
+  fun export(snapshotFileSystem: SnapshotFileSystem, filesFileSystem: FilesFileSystem, stopwatch: Stopwatch, cancellationSignal: () -> Boolean = { false }): ArchiveResult {
     Log.i(TAG, "Starting export")
 
     var metadataStream: OutputStream? = null
@@ -58,7 +58,11 @@ object LocalArchiver {
       val mediaNames: MutableSet<MediaName> = Collections.synchronizedSet(HashSet())
 
       Log.i(TAG, "Starting frame export")
-      BackupRepository.localExport(mainStream, LocalExportProgressListener()) { attachment, source ->
+      BackupRepository.localExport(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
+        if (cancellationSignal()) {
+          return@localExport
+        }
+
         val mediaName = MediaName.fromDigest(attachment.remoteDigest)
 
         mediaNames.add(mediaName)
@@ -105,6 +109,10 @@ object LocalArchiver {
       filesStream?.close()
     }
 
+    if (cancellationSignal()) {
+      return ArchiveResult.failure(FailureCause.CANCELLED)
+    }
+
     return ArchiveResult.success(Unit)
   }
 
@@ -135,7 +143,7 @@ object LocalArchiver {
     get() = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(size))
 
   enum class FailureCause {
-    METADATA_STREAM, MAIN_STREAM, FILES_STREAM
+    METADATA_STREAM, MAIN_STREAM, FILES_STREAM, CANCELLED
   }
 
   private class LocalExportProgressListener : BackupRepository.ExportProgressListener {

@@ -37,7 +37,7 @@ public final class PinOptOutMigration extends MigrationJob {
 
   @Override
   void performMigration() {
-    if (SignalStore.svr().hasOptedOut() && SignalStore.svr().hasPin()) {
+    if (SignalStore.svr().hasOptedOut() && SignalStore.svr().hasOptedInWithAccess()) {
       Log.w(TAG, "Discovered a legacy opt-out user! Resetting the state.");
 
       SignalStore.svr().optOut();

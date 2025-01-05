@@ -23,7 +23,7 @@ class ArchiveMediaResponse(
 
     companion object {
       fun from(code: Int): StatusCodes {
-        return values().firstOrNull { it.code == code } ?: Unknown
+        return entries.firstOrNull { it.code == code } ?: Unknown
       }
     }
   }

@@ -110,6 +110,11 @@ import org.thoughtcrime.securesms.database.helpers.migration.V250_ClearUploadTim
 import org.thoughtcrime.securesms.database.helpers.migration.V251_ArchiveTransferStateIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V252_AttachmentOffloadRestoredAtColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V253_CreateChatFolderTables
+import org.thoughtcrime.securesms.database.helpers.migration.V254_AddChatFolderConstraint
+import org.thoughtcrime.securesms.database.helpers.migration.V255_AddCallTableLogIndex
+import org.thoughtcrime.securesms.database.helpers.migration.V256_FixIncrementalDigestColumns
+import org.thoughtcrime.securesms.database.helpers.migration.V257_CreateBackupMediaSyncTable
+import org.thoughtcrime.securesms.database.helpers.migration.V258_FixGroupRevokedInviteeUpdate
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -222,10 +227,15 @@ object SignalDatabaseMigrations {
     250 to V250_ClearUploadTimestampV2,
     251 to V251_ArchiveTransferStateIndex,
     252 to V252_AttachmentOffloadRestoredAtColumn,
-    253 to V253_CreateChatFolderTables
+    253 to V253_CreateChatFolderTables,
+    254 to V254_AddChatFolderConstraint,
+    255 to V255_AddCallTableLogIndex,
+    256 to V256_FixIncrementalDigestColumns,
+    257 to V257_CreateBackupMediaSyncTable,
+    258 to V258_FixGroupRevokedInviteeUpdate
   )
 
-  const val DATABASE_VERSION = 253
+  const val DATABASE_VERSION = 258
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

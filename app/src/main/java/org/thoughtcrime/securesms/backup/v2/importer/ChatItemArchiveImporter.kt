@@ -18,6 +18,7 @@ import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
+import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
@@ -70,6 +71,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.JsonUtils
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -396,9 +398,7 @@ class ChatItemArchiveImporter(
         )
       }?.let { listOf(it) } ?: emptyList()
 
-      val quoteAttachments: List<Attachment> = this.standardMessage.quote?.attachments?.mapNotNull {
-        it.toLocalAttachment()
-      } ?: emptyList()
+      val quoteAttachments: List<Attachment> = this.standardMessage.quote?.toLocalAttachments() ?: emptyList()
 
       val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()
 
@@ -456,8 +456,8 @@ class ChatItemArchiveImporter(
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
     contentValues.put(MessageTable.REVISION_NUMBER, 0)
-    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs)
-    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate)
+    contentValues.put(MessageTable.EXPIRES_IN, this.expiresInMs ?: 0)
+    contentValues.put(MessageTable.EXPIRE_STARTED, this.expireStartDate ?: 0)
 
     when {
       this.outgoing != null -> {
@@ -669,7 +669,7 @@ class ChatItemArchiveImporter(
       }
       updateMessage.expirationTimerChange != null -> {
         typeFlags = getAsLong(MessageTable.TYPE) or MessageTypes.EXPIRATION_TIMER_UPDATE_BIT
-        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs.toLong())
+        put(MessageTable.EXPIRES_IN, updateMessage.expirationTimerChange.expiresInMs)
       }
       updateMessage.profileChange != null -> {
         typeFlags = MessageTypes.PROFILE_CHANGE_TYPE
@@ -895,7 +895,8 @@ class ChatItemArchiveImporter(
     return when (this) {
       Quote.Type.UNKNOWN -> QuoteModel.Type.NORMAL.code
       Quote.Type.NORMAL -> QuoteModel.Type.NORMAL.code
-      Quote.Type.GIFTBADGE -> QuoteModel.Type.GIFT_BADGE.code
+      Quote.Type.GIFT_BADGE -> QuoteModel.Type.GIFT_BADGE.code
+      Quote.Type.VIEW_ONCE -> QuoteModel.Type.NORMAL.code
     }
   }
 
@@ -979,24 +980,30 @@ class ChatItemArchiveImporter(
         ?: false
     }
 
-  private fun Quote.QuotedAttachment.toLocalAttachment(): Attachment? {
-    val thumbnail = this.thumbnail?.toLocalAttachment()
-
-    if (thumbnail != null) {
-      return thumbnail
+  private fun Quote.toLocalAttachments(): List<Attachment> {
+    if (this.type == Quote.Type.VIEW_ONCE) {
+      return listOf(TombstoneAttachment(contentType = MediaUtil.VIEW_ONCE, quote = true))
     }
 
-    if (this.contentType == null) {
-      return null
-    }
+    return attachments.mapNotNull { attachment ->
+      val thumbnail = attachment.thumbnail?.toLocalAttachment(quote = true)
 
-    return PointerAttachment.forPointer(
-      quotedAttachment = DataMessage.Quote.QuotedAttachment(
-        contentType = this.contentType,
-        fileName = this.fileName,
-        thumbnail = null
-      )
-    ).orNull()
+      if (thumbnail != null) {
+        return@mapNotNull thumbnail
+      }
+
+      if (attachment.contentType == null) {
+        return@mapNotNull null
+      }
+
+      return@mapNotNull PointerAttachment.forPointer(
+        quotedAttachment = DataMessage.Quote.QuotedAttachment(
+          contentType = attachment.contentType,
+          fileName = attachment.fileName,
+          thumbnail = null
+        )
+      ).orNull()
+    }
   }
 
   private fun Sticker?.toLocalAttachment(): Attachment? {
@@ -1027,16 +1034,17 @@ class ChatItemArchiveImporter(
     )
   }
 
-  private fun MessageAttachment.toLocalAttachment(): Attachment? {
+  private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, contentType: String? = pointer?.contentType): Attachment? {
     return pointer?.toLocalAttachment(
       importState = importState,
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
       gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
       wasDownloaded = wasDownloaded,
-      contentType = pointer.contentType,
+      contentType = contentType,
       fileName = pointer.fileName,
-      uuid = clientUuid
+      uuid = clientUuid,
+      quote = quote
     )
   }
 

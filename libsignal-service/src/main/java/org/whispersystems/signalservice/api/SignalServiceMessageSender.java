@@ -22,8 +22,6 @@ import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
-import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -89,7 +87,6 @@ import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.AttachmentPointer;
@@ -250,12 +247,14 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
 
   {
-    Log.d(TAG, "[" + errorMessage.getTimestamp() + "] Sending a retry receipt.");
+    long timestamp = System.currentTimeMillis();
+
+    Log.d(TAG, "[" + timestamp + "] Sending a retry receipt for target message " + errorMessage.getTimestamp());
 
     PlaintextContent content         = new PlaintextContent(errorMessage);
     EnvelopeContent  envelopeContent = EnvelopeContent.plaintext(content, groupId);
 
-    sendMessage(recipient, sealedSenderAccess, System.currentTimeMillis(), envelopeContent, false, null, null, false, false);
+    sendMessage(recipient, sealedSenderAccess, timestamp, envelopeContent, false, null, null, false, false);
   }
 
   /**
@@ -758,6 +757,8 @@ public class SignalServiceMessageSender {
       content = createCallLinkUpdateContent(message.getCallLinkUpdate().get());
     } else if (message.getCallLogEvent().isPresent()) {
       content = createCallLogEventContent(message.getCallLogEvent().get());
+    } else if (message.getDeviceNameChange().isPresent()) {
+      content = createDeviceNameChangeContent(message.getDeviceNameChange().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1484,9 +1485,9 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder         syncMessage    = createSyncMessageBuilder();
     SyncMessage.Blocked.Builder blockedMessage = new SyncMessage.Blocked.Builder();
 
-    blockedMessage.acis(blocked.getAddresses().stream().map(a -> a.getServiceId().toString()).collect(Collectors.toList()));
-    blockedMessage.numbers(blocked.getAddresses().stream().filter(a -> a.getNumber().isPresent()).map(a -> a.getNumber().get()).collect(Collectors.toList()));
-    blockedMessage.groupIds(blocked.getGroupIds().stream().map(ByteString::of).collect(Collectors.toList()));
+    blockedMessage.acis(blocked.individuals.stream().filter(a -> a.getAci() != null).map(a -> a.getAci().toString()).collect(Collectors.toList()));
+    blockedMessage.numbers(blocked.individuals.stream().filter(a -> a.getE164() != null).map(a -> a.getE164()).collect(Collectors.toList()));
+    blockedMessage.groupIds(blocked.groupIds.stream().map(ByteString::of).collect(Collectors.toList()));
 
     return container.syncMessage(syncMessage.blocked(blockedMessage.build()).build()).build();
   }
@@ -1658,16 +1659,20 @@ public class SignalServiceMessageSender {
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
 
-    if (keysMessage.getStorageService().isPresent()) {
-      builder.storageService(ByteString.of(keysMessage.getStorageService().get().serialize()));
+    if (keysMessage.getStorageService() != null) {
+      builder.storageService(ByteString.of(keysMessage.getStorageService().serialize()));
     }
 
-    if (keysMessage.getMaster().isPresent()) {
-      builder.master(ByteString.of(keysMessage.getMaster().get().serialize()));
+    if (keysMessage.getMaster() != null) {
+      builder.master(ByteString.of(keysMessage.getMaster().serialize()));
     }
 
-    if (builder.storageService == null && builder.master == null) {
-      Log.w(TAG, "Invalid keys message!");
+    if (keysMessage.getAccountEntropyPool() != null) {
+      builder.accountEntropyPool(keysMessage.getAccountEntropyPool().getValue());
+    }
+
+    if (keysMessage.getMediaRootBackupKey() != null) {
+      builder.mediaRootBackupKey(ByteString.of(keysMessage.getMediaRootBackupKey().getValue()));
     }
 
     return container.syncMessage(syncMessage.keys(builder.build()).build()).build();
@@ -1722,6 +1727,13 @@ public class SignalServiceMessageSender {
   private Content createCallLogEventContent(SyncMessage.CallLogEvent proto) {
     Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().callLogEvent(proto);
+
+    return container.syncMessage(builder.build()).build();
+  }
+
+  private Content createDeviceNameChangeContent(SyncMessage.DeviceNameChange proto) {
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().deviceNameChange(proto);
 
     return container.syncMessage(builder.build()).build();
   }
@@ -2690,7 +2702,7 @@ public class SignalServiceMessageSender {
 
       return socket.getPreKeys(recipient, sealedSenderAccess, deviceId);
     } catch (NonSuccessfulResponseCodeException e) {
-      if (e.getCode() == 401 && story) {
+      if (e.code == 401 && story) {
         Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
         return socket.getPreKeys(recipient, null, deviceId);
       } else {

@@ -10,6 +10,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Delegate that controls whether and which backup alert sheet is displayed.
@@ -19,12 +21,13 @@ object BackupAlertDelegate {
   fun delegate(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        // TODO [message-backups]
-        // 1. Get unnotified backup upload failures
-        // 2. Get unnotified backup download failures
-        // 3. Get unnotified backup payment failures
-
-        // Decide which do display
+        if (BackupRepository.shouldDisplayBackupFailedSheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, null)
+        } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
+        } else if (BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
+        }
       }
     }
   }

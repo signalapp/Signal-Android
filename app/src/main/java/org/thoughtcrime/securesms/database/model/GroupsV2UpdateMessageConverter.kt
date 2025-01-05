@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.database.model
 
 import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.StringUtil
 import org.signal.core.util.isNullOrEmpty
 import org.signal.storageservice.protos.groups.AccessControl
@@ -50,7 +51,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpd
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
-import org.whispersystems.signalservice.api.push.ServiceId.Companion.parseOrNull
+import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIds
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.LinkedList
@@ -131,7 +132,7 @@ object GroupsV2UpdateMessageConverter {
     }
     val updates: MutableList<GroupChangeChatUpdate.Update> = LinkedList()
     var editorUnknown = change.editorServiceIdBytes.size == 0
-    val editorServiceId = if (editorUnknown) null else parseOrNull(change.editorServiceIdBytes)
+    val editorServiceId = if (editorUnknown) null else ServiceId.parseOrNull(change.editorServiceIdBytes)
     if (editorServiceId == null || editorServiceId.isUnknown) {
       editorUnknown = true
     }
@@ -253,10 +254,13 @@ object GroupsV2UpdateMessageConverter {
           )
         )
       } else {
+        val serviceId = ServiceId.parseOrNull(invitee.serviceIdBytes)
         revokedInvitees.add(
-          GroupInvitationRevokedUpdate.Invitee(
-            inviteeAci = invitee.serviceIdBytes
-          )
+          when (serviceId) {
+            is ServiceId.ACI -> GroupInvitationRevokedUpdate.Invitee(inviteeAci = serviceId.toByteString())
+            is ServiceId.PNI -> GroupInvitationRevokedUpdate.Invitee(inviteePni = serviceId.toByteStringWithoutPrefix())
+            else -> throw IllegalStateException()
+          }
         )
       }
     }
@@ -465,6 +469,7 @@ object GroupsV2UpdateMessageConverter {
           }
         )
       }
+
       AccessRequired.ADMINISTRATOR -> {
         groupLinkEnabled = true
         updates.add(
@@ -485,6 +490,7 @@ object GroupsV2UpdateMessageConverter {
           }
         )
       }
+
       AccessRequired.UNSATISFIABLE -> {
         updates.add(
           GroupChangeChatUpdate.Update(
@@ -494,6 +500,7 @@ object GroupsV2UpdateMessageConverter {
           )
         )
       }
+
       else -> {}
     }
     if (!groupLinkEnabled && change.newInviteLinkPassword.size > 0) {

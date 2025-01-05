@@ -70,7 +70,7 @@ class ShadowingWebSocketConnection(
 
   override fun connect(): Observable<WebSocketConnectionState> {
     executor.submit {
-      chatService.connectUnauthenticated().whenComplete(
+      chatService.connect().whenComplete(
         onSuccess = {
           canShadow.set(true)
           Log.i(TAG, "Shadow socket connected.")
@@ -140,7 +140,7 @@ class ShadowingWebSocketConnection(
       ByteArray(0),
       KEEP_ALIVE_TIMEOUT.inWholeMilliseconds.toInt()
     )
-    chatService.unauthenticatedSendAndDebug(request)
+    chatService.sendAndDebug(request)
       .whenComplete(
         onSuccess = {
           stats.requestsCompared.incrementAndGet()

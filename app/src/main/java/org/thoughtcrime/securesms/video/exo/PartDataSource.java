@@ -19,8 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.backup.BackupKey;
-import org.whispersystems.signalservice.api.backup.MediaId;
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -72,8 +71,8 @@ class PartDataSource implements DataSource {
       if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveMediaId != null) {
         final File archiveFile = attachmentDatabase.getOrCreateArchiveTransferFile(attachment.attachmentId);
         try {
-          BackupKey.MediaKeyMaterial mediaKeyMaterial = SignalStore.svr().getOrCreateMasterKey().deriveBackupKey().deriveMediaSecretsFromMediaId(attachment.archiveMediaId);
-          long originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
+          MediaRootBackupKey.MediaKeyMaterial mediaKeyMaterial     = SignalStore.backup().getMediaRootBackupKey().deriveMediaSecretsFromMediaId(attachment.archiveMediaId);
+          long                                originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
 
           this.inputStream = AttachmentCipherInputStream.createStreamingForArchivedAttachment(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, attachment.remoteDigest, decode, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {

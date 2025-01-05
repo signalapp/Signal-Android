@@ -15,6 +15,7 @@ import org.hamcrest.Matchers
 import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -34,12 +35,11 @@ import org.thoughtcrime.securesms.TestZkGroupServer
 import org.thoughtcrime.securesms.database.GroupStateTestData
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.dependencies.MockApplicationDependencyProvider
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations
@@ -68,6 +68,9 @@ class GroupManagerV2Test_edit {
     val others: List<DecryptedMember> = listOf(member(otherAci))
   }
 
+  @get:Rule
+  val appDependencies = MockAppDependenciesRule()
+
   private lateinit var groupTable: GroupTable
   private lateinit var groupsV2API: GroupsV2Api
   private lateinit var groupsV2Operations: GroupsV2Operations
@@ -81,10 +84,6 @@ class GroupManagerV2Test_edit {
   @Suppress("UsePropertyAccessSyntax")
   @Before
   fun setUp() {
-    if (!AppDependencies.isInitialized) {
-      AppDependencies.init(ApplicationProvider.getApplicationContext(), MockApplicationDependencyProvider())
-    }
-
     mockkObject(RemoteConfig)
     mockkObject(SignalStore)
     every { RemoteConfig.internalUser } returns false

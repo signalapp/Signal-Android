@@ -75,6 +75,8 @@ object Scrubber {
   private val CALL_LINK_PATTERN = Pattern.compile("([bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4})(-[bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4}){7}")
   private const val CALL_LINK_CENSOR_SUFFIX = "-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
 
+  private val CALL_LINK_ROOM_ID_PATTERN = Pattern.compile("[0-9a-f]{61}([0-9a-f]{3})")
+
   @JvmStatic
   @Volatile
   var identifierHmacKeyProvider: () -> ByteArray? = { null }
@@ -97,6 +99,7 @@ object Scrubber {
       .scrubIpv4()
       .scrubIpv6()
       .scrubCallLinkKeys()
+      .scrubCallLinkRoomIds()
   }
 
   private fun CharSequence.scrubE164(): CharSequence {
@@ -189,6 +192,15 @@ object Scrubber {
       output
         .append(match)
         .append(CALL_LINK_CENSOR_SUFFIX)
+    }
+  }
+
+  private fun CharSequence.scrubCallLinkRoomIds(): CharSequence {
+    return scrub(this, CALL_LINK_ROOM_ID_PATTERN) { matcher, output ->
+      val match = matcher.group(1)
+      output
+        .append("[REDACTED]")
+        .append(match)
     }
   }
 

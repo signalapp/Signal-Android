@@ -85,7 +85,7 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
   var segmentBackgroundColor: Int = Color.WHITE
     private set
   var segmentSelectedBackgroundColor: Int =
-    context.getThemeColor(R.attr.colorAccent)
+    context.getThemeColor(androidx.appcompat.R.attr.colorAccent)
     private set
   var segmentStrokeColor: Int = Color.BLACK
     private set
@@ -226,10 +226,10 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
           0, segments.lastIndex -> {
             path.reset()
             path.addRoundRect(rectangle, corners, Path.Direction.CW)
-            canvas?.drawPath(path, drawingComponents.second[drawingIndex])
+            canvas.drawPath(path, drawingComponents.second[drawingIndex])
           }
 
-          else -> canvas?.drawRect(
+          else -> canvas.drawRect(
             rectangle,
             drawingComponents.second[drawingIndex]
           )

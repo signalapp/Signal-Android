@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
-import android.content.Context
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
@@ -25,7 +23,7 @@ import java.util.Locale
  */
 class GiftFlowRepository {
 
-  fun insertInAppPayment(context: Context, giftSnapshot: GiftFlowState): Single<InAppPaymentTable.InAppPayment> {
+  fun insertInAppPayment(giftSnapshot: GiftFlowState): Single<InAppPaymentTable.InAppPayment> {
     return Single.fromCallable {
       SignalDatabase.inAppPayments.insert(
         type = InAppPaymentType.ONE_TIME_GIFT,
@@ -34,7 +32,6 @@ class GiftFlowRepository {
         endOfPeriod = null,
         inAppPaymentData = InAppPaymentData(
           badge = Badges.toDatabaseBadge(giftSnapshot.giftBadge!!),
-          label = context.getString(R.string.preferences__one_time),
           amount = giftSnapshot.giftPrices[giftSnapshot.currency]!!.toFiatValue(),
           level = giftSnapshot.giftLevel!!,
           recipientId = giftSnapshot.recipient!!.id.serialize(),

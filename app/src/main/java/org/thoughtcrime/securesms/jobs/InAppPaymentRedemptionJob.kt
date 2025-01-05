@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.requireGiftBadge
 import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
+import kotlin.concurrent.withLock
 
 /**
  * Takes a ReceiptCredentialResponse and submits it to the server for redemption.
@@ -181,7 +182,7 @@ class InAppPaymentRedemptionJob private constructor(
     }
 
     if (inAppPayment.type.recurring) {
-      synchronized(inAppPayment.type.requireSubscriberType()) {
+      inAppPayment.type.requireSubscriberType().lock.withLock {
         performInAppPaymentRedemption(inAppPayment)
       }
     } else {
@@ -257,6 +258,8 @@ class InAppPaymentRedemptionJob private constructor(
     if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
       Log.i(TAG, "Setting backup tier to PAID", true)
       SignalStore.backup.backupTier = MessageBackupTier.PAID
+      SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
+      SignalStore.backup.lastCheckInSnoozeMillis = 0
     }
   }
 

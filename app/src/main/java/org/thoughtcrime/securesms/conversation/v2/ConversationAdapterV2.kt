@@ -107,7 +107,7 @@ class ConversationAdapterV2(
       ConversationUpdateViewHolder(view)
     }
 
-    if (SignalStore.internal.useConversationItemV2Media()) {
+    if (SignalStore.internal.useConversationItemV2Media) {
       registerFactory(OutgoingMedia::class.java) { parent ->
         val view = CachedInflater.from(parent.context).inflate<View>(R.layout.v2_conversation_item_media_outgoing, parent, false)
         V2ConversationItemMediaViewHolder(V2ConversationItemMediaOutgoingBinding.bind(view).bridge(), this)

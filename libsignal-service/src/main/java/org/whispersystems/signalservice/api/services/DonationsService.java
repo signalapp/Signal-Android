@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.Lock;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
@@ -167,27 +168,35 @@ public class DonationsService {
    * @param level          The new level to subscribe to
    * @param currencyCode   The currencyCode the user is using for payment
    * @param idempotencyKey url-safe-base64-encoded random 16-byte value (see description)
-   * @param mutex          A mutex to lock on to avoid a situation where this subscription update happens *as* we are trying to get a credential receipt.
+   * @param lock           A lock to lock on to avoid a situation where this subscription update happens *as* we are trying to get a credential receipt.
    */
   public ServiceResponse<EmptyResponse> updateSubscriptionLevel(SubscriberId subscriberId,
                                                                 String level,
                                                                 String currencyCode,
                                                                 String idempotencyKey,
-                                                                Object mutex
+                                                                Lock lock
   )
   {
     return wrapInServiceResponse(() -> {
-      synchronized (mutex) {
+      lock.lock();
+
+      try {
         pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
+      } finally {
+        lock.unlock();
       }
+
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
-  public ServiceResponse<EmptyResponse> linkGooglePlayBillingPurchaseTokenToSubscriberId(SubscriberId subscriberId, String purchaseToken, Object mutex) {
+  public ServiceResponse<EmptyResponse> linkGooglePlayBillingPurchaseTokenToSubscriberId(SubscriberId subscriberId, String purchaseToken, Lock lock) {
     return wrapInServiceResponse(() -> {
-      synchronized (mutex) {
+      lock.lock();
+      try {
         pushServiceSocket.linkPlayBillingPurchaseToken(subscriberId.serialize(), purchaseToken);
+      } finally {
+        lock.unlock();
       }
 
       return new Pair<>(EmptyResponse.INSTANCE, 200);
@@ -379,7 +388,7 @@ public class DonationsService {
       return ServiceResponse.forResult(responseAndCode.first(), responseAndCode.second(), null);
     } catch (NonSuccessfulResponseCodeException e) {
       Log.w(TAG, "Bad response code from server.", e);
-      return ServiceResponse.forApplicationError(e, e.getCode(), e.getMessage());
+      return ServiceResponse.forApplicationError(e, e.code, e.getMessage());
     } catch (IOException e) {
       Log.w(TAG, "An unknown error occurred.", e);
       return ServiceResponse.forUnknownError(e);

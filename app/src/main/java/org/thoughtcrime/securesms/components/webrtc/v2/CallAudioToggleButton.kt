@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioPicker31
+import org.signal.core.ui.R as CoreUiR
 
 private const val SHOW_PICKER_THRESHOLD = 3
 
@@ -221,13 +222,13 @@ private fun LegacyAudioPickerContent(
     modifier = Modifier
       .padding(8.dp)
       .padding(
-        horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+        horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
       )
   )
 
   LazyColumn(
     modifier = Modifier.padding(
-      horizontal = dimensionResource(id = R.dimen.core_ui__gutter)
+      horizontal = dimensionResource(id = CoreUiR.dimen.gutter)
     )
   ) {
     items(

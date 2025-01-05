@@ -5,7 +5,10 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import kotlinx.coroutines.runBlocking
 import okio.IOException
+import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -18,6 +21,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.days
 
 /**
  * Submits a purchase token to the server to link it with a subscriber id.
@@ -25,7 +30,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 class InAppPaymentPurchaseTokenJob private constructor(
   private val inAppPaymentId: InAppPaymentTable.InAppPaymentId,
   parameters: Parameters
-) : BaseJob(parameters) {
+) : Job(parameters) {
 
   companion object {
     private val TAG = Log.tag(InAppPaymentPurchaseTokenJob::class)
@@ -38,7 +43,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
         parameters = Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
           .setQueue(InAppPaymentsRepository.resolveJobQueueKey(inAppPayment))
-          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespan(inAppPayment).inWholeMilliseconds)
+          .setLifespan(3.days.inWholeMilliseconds)
           .setMaxAttempts(Parameters.UNLIMITED)
           .build()
       )
@@ -75,28 +80,49 @@ class InAppPaymentPurchaseTokenJob private constructor(
     }
   }
 
-  override fun onRun() {
-    synchronized(InAppPaymentsRepository.resolveMutex(inAppPaymentId)) {
-      doRun()
+  override fun run(): Result {
+    return InAppPaymentsRepository.resolveLock(inAppPaymentId).withLock {
+      runBlocking { linkPurchaseToken() }
     }
   }
 
-  private fun doRun() {
-    val inAppPayment = getAndValidateInAppPayment()
+  private suspend fun linkPurchaseToken(): Result {
+    if (!AppDependencies.billingApi.isApiAvailable()) {
+      warning("Billing API is not available on this device. Exiting.")
+      return Result.failure()
+    }
+
+    val purchaseState: BillingPurchaseState = when (val purchase = AppDependencies.billingApi.queryPurchases()) {
+      is BillingPurchaseResult.Success -> purchase.purchaseState
+      else -> BillingPurchaseState.UNSPECIFIED
+    }
+
+    if (purchaseState != BillingPurchaseState.PURCHASED) {
+      warning("Billing purchase not in the PURCHASED state. Retrying later.")
+      return Result.retry(defaultBackoff())
+    }
+
+    val inAppPayment = try {
+      getAndValidateInAppPayment()
+    } catch (e: IOException) {
+      warning("Failed to validate in-app payment.", e)
+      return Result.failure()
+    }
 
     val response = AppDependencies.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
       inAppPayment.subscriberId!!,
       inAppPayment.data.redemption!!.googlePlayBillingPurchaseToken!!,
-      InAppPaymentSubscriberRecord.Type.BACKUP
+      InAppPaymentSubscriberRecord.Type.BACKUP.lock
     )
 
     if (response.applicationError.isPresent) {
-      handleApplicationError(response.applicationError.get(), response.status)
+      return handleApplicationError(response.applicationError.get(), response.status)
     } else if (response.result.isPresent) {
       info("Successfully linked purchase token to subscriber id.")
+      return Result.success()
     } else {
       warning("Encountered a retryable exception.", response.executionError.get())
-      throw InAppPaymentRetryException(response.executionError.get())
+      return Result.retry(defaultBackoff())
     }
   }
 
@@ -140,22 +166,21 @@ class InAppPaymentPurchaseTokenJob private constructor(
     return inAppPayment
   }
 
-  private fun handleApplicationError(applicationError: Throwable, status: Int) {
-    when (status) {
+  private fun handleApplicationError(applicationError: Throwable, status: Int): Result {
+    return when (status) {
       402 -> {
         warning("The purchaseToken payment is incomplete or invalid.", applicationError)
-        // TODO [message-backups] -- Is this a recoverable failure?
-        throw IOException("TODO -- recoverable?")
+        Result.retry(defaultBackoff())
       }
 
       403 -> {
         warning("subscriberId authentication failure OR account authentication is present", applicationError)
-        throw IOException("subscriberId authentication failure OR account authentication is present")
+        Result.failure()
       }
 
       404 -> {
         warning("No such subscriberId exists or subscriberId is malformed or the purchaseToken does not exist", applicationError)
-        throw IOException("No such subscriberId exists or subscriberId is malformed or the purchaseToken does not exist")
+        Result.failure()
       }
 
       409 -> {
@@ -164,28 +189,27 @@ class InAppPaymentPurchaseTokenJob private constructor(
         try {
           info("Generating a new subscriber id.")
           RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, true).blockingAwait()
+
+          info("Writing the new subscriber id to the InAppPayment.")
+          val latest = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+          SignalDatabase.inAppPayments.update(
+            latest.copy(subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId)
+          )
+
+          info("Scheduling retry.")
         } catch (e: Exception) {
-          throw InAppPaymentRetryException(e)
+          warning("Failed to generate and update subscriber id. Retrying later.", e)
         }
 
-        info("Writing the new subscriber id to the InAppPayment.")
-        val latest = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
-        SignalDatabase.inAppPayments.update(
-          latest.copy(subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId)
-        )
-
-        info("Scheduling retry.")
-        throw InAppPaymentRetryException()
+        Result.retry(defaultBackoff())
       }
 
       else -> {
         warning("An unknown error occurred.", applicationError)
-        throw IOException(applicationError)
+        Result.failure()
       }
     }
   }
-
-  override fun onShouldRetry(e: Exception): Boolean = e is InAppPaymentRetryException
 
   private fun info(message: String, throwable: Throwable? = null) {
     Log.i(TAG, "InAppPayment[$inAppPaymentId]: $message", throwable, true)

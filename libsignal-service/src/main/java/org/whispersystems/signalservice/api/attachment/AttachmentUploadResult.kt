@@ -19,5 +19,6 @@ class AttachmentUploadResult(
   val incrementalDigest: ByteArray?,
   val incrementalDigestChunkSize: Int,
   val dataSize: Long,
-  val uploadTimestamp: Long
+  val uploadTimestamp: Long,
+  val blurHash: String?
 )

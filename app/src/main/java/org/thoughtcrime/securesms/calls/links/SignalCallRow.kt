@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import java.time.Instant
+import org.signal.core.ui.R as CoreUiR
 
 @SignalPreview
 @Composable
@@ -103,7 +104,7 @@ fun SignalCallRow(
   Row(
     modifier = modifier
       .fillMaxWidth()
-      .padding(horizontal = dimensionResource(id = R.dimen.core_ui__gutter))
+      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .border(
         width = 1.25.dp,
         color = MaterialTheme.colorScheme.outline,

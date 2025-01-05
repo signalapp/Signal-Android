@@ -83,6 +83,8 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
       Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
     } catch (e: OperationApplicationException) {
       Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
+    } catch (e: IllegalArgumentException) {
+      Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
     }
   }
 
