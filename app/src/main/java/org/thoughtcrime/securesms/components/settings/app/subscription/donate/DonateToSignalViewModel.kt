@@ -180,7 +180,7 @@ class DonateToSignalViewModel(
   }
 
   fun refreshActiveSubscription() {
-    RecurringInAppPaymentRepository
+    monthlyDonationDisposables += RecurringInAppPaymentRepository
       .getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
       .subscribeBy(
         onSuccess = {
