@@ -100,6 +100,7 @@ object StoryContextMenu {
 
       ShareCompat.IntentBuilder(fragment.requireContext())
         .setText(shareText)
+        .setType("text/plain")
         .createChooserIntent()
     } else {
       val attachment: Attachment = messageRecord.slideDeck.firstSlide!!.asAttachment()
