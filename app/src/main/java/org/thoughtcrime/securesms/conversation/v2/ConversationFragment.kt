@@ -3336,7 +3336,8 @@ class ConversationFragment :
         distributionType = args.distributionType,
         threadId = args.threadId,
         messageRequestState = viewModel.messageRequestState,
-        isInBubble = args.conversationScreenType.isInBubble
+        isInBubble = args.conversationScreenType.isInBubble,
+        isSingleMember = viewModel.isSingleMember()
       )
     }
 

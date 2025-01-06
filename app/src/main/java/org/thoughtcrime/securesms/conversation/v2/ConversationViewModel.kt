@@ -540,6 +540,12 @@ class ConversationViewModel(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
+  fun isSingleMember() : Observable<Boolean> {
+    return groupMemberServiceIds
+      .map { it.isEmpty() }
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun copyToClipboard(context: Context, messageParts: Set<MultiselectPart>): Maybe<CharSequence> {
     return repository.copyToClipboard(context, messageParts)
   }
