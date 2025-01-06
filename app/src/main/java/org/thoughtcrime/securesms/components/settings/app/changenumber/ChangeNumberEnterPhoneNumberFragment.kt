@@ -142,6 +142,11 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
       return
     }
 
+    if (TextUtils.equals(binding.changeNumberEnterPhoneNumberOldNumberNumber.text, binding.changeNumberEnterPhoneNumberNewNumberNumber.text)) {
+      Toast.makeText(context, getString(R.string.ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number), Toast.LENGTH_LONG).show()
+      return
+    }
+
     when (viewModel.canContinue()) {
       ChangeNumberViewModel.ContinueStatus.CAN_CONTINUE -> findNavController().safeNavigate(ChangeNumberEnterPhoneNumberFragmentDirections.actionEnterPhoneNumberChangeFragmentToChangePhoneNumberConfirmFragment())
       ChangeNumberViewModel.ContinueStatus.INVALID_NUMBER -> {
