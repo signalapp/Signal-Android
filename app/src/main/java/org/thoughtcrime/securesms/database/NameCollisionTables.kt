@@ -177,7 +177,12 @@ class NameCollisionTables(
 
     val groupMembers: Optional<List<RecipientId>> = SignalDatabase.groups.getGroup(recipientId).map { it.members }
     val invalidCollisions: Set<ReviewRecipient> = collisions.filter {
-      groupMembers.isPresent && (it.recipient.id !in groupMembers.get())
+      if (groupMembers.isPresent) {
+        val notAMember = it.recipient.id !in groupMembers.get()
+        val unregistered = it.recipient.isUnregistered
+
+        notAMember || unregistered
+      } else false
     }.toSet()
 
     val groups = (collisions - invalidCollisions).groupBy { SqlUtil.buildCaseInsensitiveGlobPattern(it.recipient.getDisplayName(context)) }
