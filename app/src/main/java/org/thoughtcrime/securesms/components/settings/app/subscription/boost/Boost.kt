@@ -297,17 +297,15 @@ data class Boost(
         if (value != null) {
           val formatted = formatter.format(value)
 
-          text?.removeTextChangedListener(this)
-
-          s.replace(0, s.length, formatted)
-          if (formatted.endsWith(symbol)) {
-            val result: MatchResult? = symbolPattern.find(formatted)
-            if (result != null && result.range.first < s.length) {
-              text?.setSelection(result.range.first)
+          modifyEditable {
+            s.replace(0, s.length, formatted)
+            if (formatted.endsWith(symbol)) {
+              val result: MatchResult? = symbolPattern.find(formatted)
+              if (result != null && result.range.first < s.length) {
+                text?.setSelection(result.range.first)
+              }
             }
           }
-
-          text?.addTextChangedListener(this)
         }
       }
 
@@ -325,15 +323,23 @@ data class Boost(
       }
 
       if (withoutSymbol != withoutLeadingZeroes) {
-        text?.removeTextChangedListener(this)
-
-        val start = s.indexOf(withoutSymbol)
-        s.replace(start, start + withoutSymbol.length, withoutLeadingZeroes)
-
-        text?.addTextChangedListener(this)
+        modifyEditable {
+          val start = s.indexOf(withoutSymbol)
+          s.replace(start, start + withoutSymbol.length, withoutLeadingZeroes)
+        }
       }
 
       onCustomAmountChanged(s.removePrefix(symbol).removeSuffix(symbol).trim().toString())
+    }
+
+    private fun modifyEditable(modification: () -> Unit) {
+      text?.removeTextChangedListener(this)
+      text?.keyListener = null
+
+      modification()
+
+      text?.addTextChangedListener(this)
+      text?.keyListener = this
     }
   }
 
