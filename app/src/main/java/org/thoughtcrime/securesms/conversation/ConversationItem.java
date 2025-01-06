@@ -32,6 +32,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
@@ -1055,7 +1056,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
-        bodyText.setMaxLength(messageRecord.getBody().length() - 2);
+        int trimmedLength = TextUtils.getTrimmedLength(styledText);
+        bodyText.setMaxLength(trimmedLength - 2);
       }
 
       if (messageRecord.isOutgoing()) {
