@@ -992,7 +992,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean hasExtraText(MessageRecord messageRecord) {
-    return MessageRecordUtil.hasExtraText(messageRecord) || (!messageRecord.isDisplayBodyEmpty(context) && isContentCondensed());
+    return MessageRecordUtil.hasExtraText(messageRecord);
+  }
+
+  private boolean hasCondensedContent(MessageRecord messageRecord) {
+    return !messageRecord.isDisplayBodyEmpty(context) && isContentCondensed();
   }
 
   private boolean hasQuote(MessageRecord messageRecord) {
@@ -1067,6 +1071,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
 
       if (isContentCondensed()) {
+        bodyText.setOverflowText(getLongMessageSpan(messageRecord));
         bodyText.setMaxLines(CONDENSED_MODE_MAX_LINES);
       } else {
         bodyText.setMaxLines(Integer.MAX_VALUE);
@@ -1329,7 +1334,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.require().setPlayVideoClickListener(playVideoClickListener);
       mediaThumbnailStub.require().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.require().setOnClickListener(passthroughClickListener);
-      mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord));
+      mediaThumbnailStub.require().showShade(messageRecord.isDisplayBodyEmpty(getContext()) && !hasExtraText(messageRecord) && !hasCondensedContent(messageRecord));
       mediaThumbnailStub.require().setImageResource(requestManager,
                                                     thumbnailSlides,
                                                     showControls,
@@ -1521,7 +1526,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       topEnd   = 0;
     }
 
-    if (hasLinkPreview(messageRecord) || hasExtraText(messageRecord)) {
+    if (hasLinkPreview(messageRecord) || hasExtraText(messageRecord) || hasCondensedContent(messageRecord)) {
       bottomStart = 0;
       bottomEnd   = 0;
     }
