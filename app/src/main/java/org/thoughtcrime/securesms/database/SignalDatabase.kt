@@ -31,7 +31,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     null,
     SignalDatabaseMigrations.DATABASE_VERSION,
     0,
-    SqlCipherErrorHandler(name),
+    SqlCipherErrorHandler(context, name),
     SqlCipherDatabaseHook(),
     true
   ),
