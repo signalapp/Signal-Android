@@ -31,7 +31,7 @@ public final class LogSectionCapabilities implements LogSection {
 
     Recipient self = Recipient.self();
 
-    AccountAttributes.Capabilities localCapabilities  = AppCapabilities.getCapabilities(false, RemoteConfig.getStorageServiceEncryptionV2());
+    AccountAttributes.Capabilities localCapabilities  = AppCapabilities.getCapabilities(false);
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")

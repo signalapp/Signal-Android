@@ -104,7 +104,7 @@ public class RefreshAttributesJob extends BaseJob {
     String deviceName = SignalStore.account().getDeviceName();
     byte[] encryptedDeviceName = (deviceName == null) ? null : DeviceNameCipher.encryptDeviceName(deviceName.getBytes(StandardCharsets.UTF_8), SignalStore.account().getAciIdentityKey());
 
-    AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(svrValues.hasOptedInWithAccess() && !svrValues.hasOptedOut(), RemoteConfig.getStorageServiceEncryptionV2());
+    AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(svrValues.hasOptedInWithAccess() && !svrValues.hasOptedOut());
     Log.i(TAG, "Calling setAccountAttributes() reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + svrValues.hasPin() + ", access? " + svrValues.hasOptedInWithAccess() +
                "\n    Recovery password? " + !TextUtils.isEmpty(recoveryPassword) +
                "\n    Phone number discoverable : " + phoneNumberDiscoverable +
