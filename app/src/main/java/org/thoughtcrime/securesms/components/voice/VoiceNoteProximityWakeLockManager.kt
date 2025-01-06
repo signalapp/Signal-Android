@@ -100,6 +100,10 @@ class VoiceNoteProximityWakeLockManager(
           if (startTime == -1L) {
             Log.d(TAG, "[onPlaybackStateChanged] Player became active with start time $startTime, registering sensor listener.")
             startTime = System.currentTimeMillis()
+            if (wakeLock?.isHeld == false) {
+              Log.d(TAG, "[onPlaybackStateChanged] Acquiring wakelock")
+              wakeLock.acquire(TimeUnit.MINUTES.toMillis(30))
+            }
             sensorManager.registerListener(hardwareSensorEventListener, proximitySensor, SensorManager.SENSOR_DELAY_NORMAL)
           } else {
             Log.d(TAG, "[onPlaybackStateChanged] Player became active without start time, skipping sensor registration")
@@ -132,11 +136,6 @@ class VoiceNoteProximityWakeLockManager(
       sendNewStreamTypeToPlayer(newStreamType)
 
       if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
-        if (wakeLock?.isHeld == false) {
-          Log.d(TAG, "[onSensorChanged] Acquiring wakelock")
-          wakeLock.acquire(TimeUnit.MINUTES.toMillis(30))
-        }
-
         startTime = System.currentTimeMillis()
       } else {
         if (wakeLock?.isHeld == true) {
