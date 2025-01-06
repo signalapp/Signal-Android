@@ -90,6 +90,10 @@ class StorageRotateManifestJob private constructor(parameters: Parameters) : Job
       StorageServiceRepository.WriteStorageRecordsResult.Success -> {
         Log.i(TAG, "Successfully rotated the manifest as version ${manifestWithNewVersion.version}.${manifestWithNewVersion.sourceDeviceId}. Clearing restore key.")
         SignalStore.svr.masterKeyForInitialDataRestore = null
+
+        Log.i(TAG, "Saved new manifest. Now at version: ${manifestWithNewVersion.versionString}")
+        SignalStore.storageService.manifest = manifestWithNewVersion
+
         Result.success()
       }
       StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
