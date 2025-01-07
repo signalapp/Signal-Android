@@ -418,6 +418,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">для %1$s</string>
     <string name="ConversationItem_read_more">  Читать далее</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Скачать больше</string>
     <string name="ConversationItem_pending">  Ожидание</string>
     <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
@@ -1369,6 +1370,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Готово</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Добавить «%1$s» в «%2$s»?</item>
         <item quantity="few">Добавить %3$d участников в «%2$s»?</item>
@@ -1535,7 +1537,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Изменить звук и вибрацию</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Настройки звонков</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Мелодия</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Неизвестная</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1732,6 +1736,7 @@
     <string name="Megaphones_verify_pin">Подтвердить PIN-код</string>
     <string name="Megaphones_get_started">С чего начать</string>
     <string name="Megaphones_new_group">Новая группа</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Позвать друзей</string>
     <string name="Megaphones_chat_colors">Цвета чата</string>
     <string name="Megaphones_add_a_profile_photo">Фото профиля</string>
@@ -2625,6 +2630,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Не удалось отправить</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Пройдите проверку</string>
 
     <!-- RegistrationActivity -->
@@ -3157,6 +3163,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Воспроизвести видео</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Есть подпись</string>
 
     <!-- TransferControlView -->
@@ -3689,10 +3696,10 @@
         <item>Запросить новые функции</item>
         <item>Вопрос</item>
         <item>Обратная связь</item>
-        <item>Другие</item>
-        <item>Платежи (MobileCoin)</item>
-        <item>Пожертвования; Значки</item>
-        <item>Резервное копирование на Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Отправка журнала отладки Signal Android</string>
@@ -3774,7 +3781,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокировка экрана и уведомлений с помощью парольной фразы</string>
     <string name="preferences__screen_security">Защита экрана</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматически блокировать Signal после указанного времени бездействия</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Парольная фраза при бездействии</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Период бездействия</string>
     <string name="preferences__notifications">Уведомления</string>
     <string name="preferences__led_color">Цвет светодиода</string>
@@ -3785,6 +3794,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Мелодия</string>
     <string name="preferences__silent">Без звука</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">По умолчанию</string>
     <string name="preferences__repeat_alerts">Повторять оповещения</string>
     <string name="preferences__never">Никогда</string>
@@ -3801,6 +3811,7 @@
     <string name="preferences__cyan">Голубой</string>
     <string name="preferences__magenta">Пурпурный</string>
     <string name="preferences__white">Белый</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Нет</string>
     <string name="preferences__fast">Быстрое</string>
     <string name="preferences__normal">Среднее</string>
@@ -4399,6 +4410,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Предпросмотр медиа</string>
 
     <!-- new_conversation_activity -->
@@ -4586,6 +4598,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Отключить и удалить все локальные резервные копии?</string>
     <string name="BackupDialog_delete_backups_statement">Удалить резервные копии</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом расположении.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Выбрать папку</string>
     <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
     <string name="BackupDialog_no_file_picker_available">Нет приложения для выбора файлов.</string>
@@ -5044,6 +5057,7 @@
     <string name="ShareActivity__share">Поделиться</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Отправить</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Не удалось получить данные общего доступа из интента.</string>
@@ -5728,6 +5742,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звуки включены</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Упоминания</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Всегда уведомлять</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не уведомлять</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Пользовательские уведомления</string>
 
@@ -5820,7 +5835,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
     <string name="MultiselectForwardFragment__forward_to">Переслать</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Поделиться с</string>
     <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
     <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
@@ -6710,7 +6725,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопировано в буфер обмена</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Подробнее</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Отправляем ответ…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7983,6 +7998,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Резервное копирование Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">История платежей</string>
     <!-- Section header for backup information -->

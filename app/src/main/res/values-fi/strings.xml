@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">vastaanotettu SIM-kortille %1$s</string>
     <string name="ConversationItem_read_more">  Lue lisää</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Lataa lisää</string>
     <string name="ConversationItem_pending">  Käsiteltävänä</string>
     <string name="ConversationItem_this_message_was_deleted">Viesti poistettiin.</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Valmis</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyyppisiin ryhmiin.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Lisätäänkö %1$s ryhmään %2$s?</item>
         <item quantity="other">Lisätäänkö %3$d jäsentä ryhmään %2$s?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Muuta ääni- ja värinäasetuksia</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Puheluasetukset</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Soittoääni</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Oletus</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Tuntematon</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">Varmenna tunnusluku</string>
     <string name="Megaphones_get_started">Aloita</string>
     <string name="Megaphones_new_group">Uusi ryhmä</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Kutsu muita</string>
     <string name="Megaphones_chat_colors">Keskustelun väri</string>
     <string name="Megaphones_add_a_profile_photo">Profiilikuva</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Lähetys epäonnistui</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Tee vahvistus loppuun</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Toista video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Sisältää kuvatekstin</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>Ominaisuuspyyntö</item>
         <item>Kysymys</item>
         <item>Palaute</item>
-        <item>Muu</item>
-        <item>Maksut (MobileCoin)</item>
-        <item>Lahjoitukset ja merkit</item>
-        <item>Signal Android -varmuuskopiointi</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidin virheenkorjauslokin lähetys</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lukitse näyttö ja ilmoitukset salalauseella</string>
     <string name="preferences__screen_security">Näytön suojaus</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lukitse automaattisesti salalauseella, jos Signalia ei ole käytetty määriteltynä aikavälinä</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Ajasta lukitus</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Automaattisen lukituksen aikaväli</string>
     <string name="preferences__notifications">Ilmoitukset</string>
     <string name="preferences__led_color">LED:in väri</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Ääni</string>
     <string name="preferences__silent">Ei ääntä</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Oletus</string>
     <string name="preferences__repeat_alerts">Hälytysten toisto</string>
     <string name="preferences__never">Älä toista</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">Syaani</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Valkoinen</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Ei mitään</string>
     <string name="preferences__fast">Nopea</string>
     <string name="preferences__normal">Normaali</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Median esikatselu</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Otetaanko paikalliset varmuuskopiot pois käytöstä ja poistetaanko ne?</string>
     <string name="BackupDialog_delete_backups_statement">Poista varmuuskopiot</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Valitse kansio, jotta varmuuskopiot voidaan ottaa käyttöön. Varmuuskopiot tallennetaan tähän paikkaan.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Valitse kansio</string>
     <string name="BackupDialog_copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="BackupDialog_no_file_picker_available">Tiedostonvalitsinta ei ole saatavilla.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">Jaa</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Lähetä</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Tietoa ei voitu jakaa.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ei mykistetty</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Maininnat</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Ilmoita aina</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Älä ilmoita</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Mukautetut ilmoitukset</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Siirry ylös</string>
     <string name="MultiselectForwardFragment__forward_to">Välitä kontakteille</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Jaa</string>
     <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
     <string name="MultiselectForwardFragment__faster_forwards">Nopeammat etenemiset</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Näytä lisää</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Lähetetään vastaus…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-varmuuskopiot</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Maksuhistoria</string>
     <!-- Section header for backup information -->

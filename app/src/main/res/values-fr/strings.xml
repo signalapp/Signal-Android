@@ -306,8 +306,8 @@
     <string name="CameraContacts_signal_groups">Groupes Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Vous pouvez partager avec un maximum de %1$d conversation.</item>
-        <item quantity="other">Vous pouvez partager avec un maximum de %1$d conversations.</item>
+        <item quantity="one">Le partage est limité à %1$d conversation maximum.</item>
+        <item quantity="other">Le partage est limité à %1$d conversations maximum.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
     <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">à %1$s</string>
     <string name="ConversationItem_read_more">  Lire la suite</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more"> Télécharger plus</string>
     <string name="ConversationItem_pending">  En attente</string>
     <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
@@ -442,7 +443,7 @@
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">Envoyer les modifications</string>
     <string name="ConversationActivity_compose_message">Rédiger un message</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s’est produite lors de l’ajout de la pièce jointe.</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s\'est produite lors de l\'ajout de la pièce jointe.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinataire incorrect : saisissez un numéro ou une adresse e-mail valides.</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message vide</string>
@@ -633,7 +634,7 @@
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
     <string name="ConversationFragment__content_description_back_button">Retour</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
-    <string name="ConversationFragment__content_description_launch_signal_button">Ouvrez Signal</string>
+    <string name="ConversationFragment__content_description_launch_signal_button">Ouvrir Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
     <string name="ConversationFragment__no_longer_verified">N’est plus marqué comme vérifié</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
@@ -1267,7 +1268,7 @@
   <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
-    <string name="PendingMembersActivity_pending_group_invites">Demandes d’ajout et invitations</string>
+    <string name="PendingMembersActivity_pending_group_invites">Demandes d\'adhésion et invitations</string>
     <string name="PendingMembersActivity_requests">Demandes</string>
     <string name="PendingMembersActivity_invites">Invitations</string>
     <string name="PendingMembersActivity_people_you_invited">Personnes que vous avez invitées</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">OK</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Vous ne pouvez pas ajouter cet utilisateur à un groupe hérité.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Ajouter %1$s à \"%2$s\" ?</item>
         <item quantity="other">Ajouter %3$d membres à \"%2$s\" ?</item>
@@ -1427,7 +1429,7 @@
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Une erreur s’est produite et votre nom d’utilisateur n’est plus associé à votre compte. Vous pouvez tenter de le reconfigurer ou en choisir un autre.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Une erreur s\'est produite et vos code QR et nom d\'utilisateur ne sont plus valides. Créez un nouveau lien à partager.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Une erreur s\'est produite : le lien et le code QR associés à votre nom d\'utilisateur ne sont plus valides. Veuillez créer un nouveau lien pour le partager.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Résoudre</string>
 
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Modifier les paramètres de son et de vibreur</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Paramètres des appels</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Sonnerie</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Par défaut</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Inconnu</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">Confirmer le PIN</string>
     <string name="Megaphones_get_started">C’est parti !</string>
     <string name="Megaphones_new_group">Nouveau groupe</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Inviter</string>
     <string name="Megaphones_chat_colors">Couleur</string>
     <string name="Megaphones_add_a_profile_photo">Photo de profil</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Échec de l\'envoi</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Procéder à la confirmation</string>
 
     <!-- RegistrationActivity -->
@@ -2973,7 +2979,7 @@
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Codes QR et liens</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Les noms d’utilisateur sont associés à des codes QR uniques et des liens que vous pouvez envoyer à vos amis afin de démarrer rapidement une conversation.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Les noms d\'utilisateur sont associés à des liens et des codes QR uniques, que vous pouvez partager avec vos amis pour démarrer des conversations en un instant.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Plus tard</string>
     <!-- Button label for continue -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Lire la vidéo</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Comporte une légende</string>
 
     <!-- TransferControlView -->
@@ -3226,7 +3233,7 @@
     <string name="BubbleOptOutTooltip__turn_off">Désactiver</string>
 
     <!-- safety_number_change_dialog -->
-    <string name="safety_number_change_dialog__safety_number_changes">Changements de numéros de sécurité</string>
+    <string name="safety_number_change_dialog__safety_number_changes">Changements de numéro de sécurité</string>
     <string name="safety_number_change_dialog__accept">Accepter</string>
     <string name="safety_number_change_dialog__call_anyway">Appeler quand même</string>
     <string name="safety_number_change_dialog__join_call">Rejoindre l’appel</string>
@@ -3491,10 +3498,10 @@
         <item>Suggestion de fonctionnalité</item>
         <item>Question</item>
         <item>Commentaires</item>
-        <item>Autre</item>
-        <item>Paiements (MobileCoin)</item>
-        <item>Dons et macarons</item>
-        <item>Sauvegarde Signal pour Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Journal de débogage de Signal pour Android</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Utiliser une phrase secrète pour verrouiller l\'écran et les notifications</string>
     <string name="preferences__screen_security">Sécurité de l\'écran</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Activez le verrouillage automatique de Signal passé un certain délai d\'inactivité</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Déverrouillage par phrase secrète passé le délai d\'inactivité</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Délai d\'inactivité</string>
     <string name="preferences__notifications">Notifications</string>
     <string name="preferences__led_color">Couleur de la LED</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Son</string>
     <string name="preferences__silent">Silencieux</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Par défaut</string>
     <string name="preferences__repeat_alerts">Répéter les alertes</string>
     <string name="preferences__never">Jamais</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">Cyan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Blanche</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Aucun</string>
     <string name="preferences__fast">Rapide</string>
     <string name="preferences__normal">Normal</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Aperçu du média</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Désactiver et supprimer toutes les sauvegardes locales ?</string>
     <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Pour activer les sauvegardes, choisissez le dossier dans lequel elles seront enregistrées.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Sélectionner un dossier</string>
     <string name="BackupDialog_copied_to_clipboard">Copié dans le presse-papiers</string>
     <string name="BackupDialog_no_file_picker_available">Aucun sélecteur de fichiers n\'est disponible.</string>
@@ -4595,7 +4608,7 @@
     <string name="DeviceTransfer__cancel">Annuler</string>
     <string name="DeviceTransfer__try_again">Réessayer</string>
     <string name="DeviceTransfer__stop_transfer">Arrêter le transfert</string>
-    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">La totalité de la progression du transfert sera perdue.</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Vous devrez reprendre le transfert depuis le début.</string>
     <string name="DeviceTransfer__transfer_failed">Échec du transfert</string>
     <string name="DeviceTransfer__unable_to_transfer">Transfert impossible</string>
 
@@ -4808,13 +4821,14 @@
     <string name="ShareActivity__share">Partager</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Envoyer</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Impossible d\'obtenir les données de partage.</string>
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Échec de l\'envoi à certains utilisateurs</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vous ne pouvez partager qu’avec %1$d conversations, au plus</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Le partage est limité à %1$d conversations maximum</string>
 
     <!-- ChatWallpaperActivity -->
 
@@ -4828,12 +4842,12 @@
     <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
     <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d\'écran</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Remplacer la couleur des bulles dans toutes les conversations ?</string>
-    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Remplacer tous les fonds d\'écran ?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Revenir aux couleurs par défaut</string>
-    <string name="ChatWallpaperFragment__reset_all_colors">Réinitialiser toutes les couleurs</string>
-    <string name="ChatWallpaperFragment__reset_default_wallpaper">Revenir au fond d\'écran par défaut</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d\'écran</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Réinitialiser la couleur des bulles dans toutes les conversations ?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Réinitialiser tous les fonds d\'écran ?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Seulement la couleur que j\'ai choisie par défaut</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Toutes les couleurs de toutes les conversations</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Seulement celui que j\'ai choisi par défaut</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Tous les fonds d\'écran</string>
     <string name="ChatWallpaperFragment__reset_wallpapers">Réinitialiser les fonds d\'écran</string>
     <string name="ChatWallpaperFragment__reset_wallpaper">Réinitialiser le fond d\'écran</string>
     <string name="ChatWallpaperFragment__reset_wallpaper_question">Réinitialiser le fond d\'écran ?</string>
@@ -4886,7 +4900,7 @@
     <string name="DeactivateWalletFragment__your_balance">Votre solde</string>
     <string name="DeactivateWalletFragment__its_recommended_that_you">Il est recommandé de transférer vos fonds vers une autre adresse de portefeuille avant de désactiver les paiements. Si vous choisissez de ne pas transférer vos fonds maintenant, ils seront conservés dans le portefeuille associé à Signal si vous réactivez les paiements.</string>
     <string name="DeactivateWalletFragment__transfer_remaining_balance">Transférer le solde restant</string>
-    <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver dans transférer</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver sans transférer</string>
     <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Désactiver sans transférer ?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Votre solde sera conservé dans le portefeuille associé à Signal si vous réactivez les paiements..</string>
@@ -4895,10 +4909,10 @@
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
-    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Voir la phrase de récupération</string>
+    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Afficher la phrase de récupération</string>
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Enregistrer une phrase de récupération</string>
-    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
+    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisir la phrase de récupération</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
         <item quantity="one">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mot. Notez-la et conservez-la en lieu sûr.</item>
         <item quantity="other">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mots. Notez-la et conservez-la en lieu sûr.</item>
@@ -4907,9 +4921,9 @@
     <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">Il est temps d’enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase de %1$d mots qui vous est propre. Utilisez cette phrase pour restaurer votre solde.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase unique et personnelle de %1$d mots. Elle vous permet de restaurer votre solde.</string>
     <string name="PaymentsRecoveryStartFragment__start">Commencer</string>
-    <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
+    <string name="PaymentsRecoveryStartFragment__enter_manually">Saisir manuellement</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Coller depuis le presse-papiers</string>
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">Continuer sans enregistrer ?</string>
@@ -4924,8 +4938,8 @@
     <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Coller la phrase de récupération</string>
     <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Phrase de récupération</string>
     <string name="PaymentsRecoveryPasteFragment__next">Suivant</string>
-    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
-    <string name="PaymentsRecoveryPasteFragment__make_sure">Assurez vous d’avoir saisi %1$d mots puis réessayez.</string>
+    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Phrase de récupération incorrecte</string>
+    <string name="PaymentsRecoveryPasteFragment__make_sure">Vérifiez que vous avez bien saisi %1$d mots et réessayez.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
@@ -4934,18 +4948,18 @@
     <string name="PaymentsRecoveryPhraseFragment__next">Suivant</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Votre phrase de récupération</string>
-    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notez les %1$d mots suivants dans l’ordre. Conservez votre liste dans un endroit sûr.</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Assurez-vous d’avoir correctement saisi votre phrase.</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notez les %1$d mots suivants dans l\'ordre où ils sont affichés. Conservez votre liste en lieu sûr.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Vérifiez que vous avez correctement saisi votre phrase.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne pas enregistrer de capture d’écran, ni envoyer par e-mail.</string>
-    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Compte Paiements restauré.</string>
-    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Assurez-vous d’avoir correctement saisi votre phrase et réessayez.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Compte de paiement restauré.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Phrase de récupération incorrecte</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Vérifiez que vous avez correctement saisi votre phrase et réessayez.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copier dans le presse-papiers ?</string>
-    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Si vous choisissez de stocker numériquement votre phrase de récupération, assurez-vous qu’elle le soit en toute sécurité dans un endroit de confiance.</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Si vous choisissez de stocker votre phrase de récupération sur un support numérique, veillez à l\'enregistrer en lieu sûr.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">Copier</string>
 
     <!-- PaymentsRecoveryPhraseConfirmFragment -->
-    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmez votre phrase de récupération</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmer la phrase de récupération</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Saisissez les mots suivants de votre phrase de récupération.</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Mot %1$d</string>
     <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Revoir la phrase</string>
@@ -4957,16 +4971,16 @@
     <string name="PaymentsRecoveryEntryFragment__enter_word_d">Saisissez le mot %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__word_d">Mot %1$d</string>
     <string name="PaymentsRecoveryEntryFragment__next">Suivant</string>
-    <string name="PaymentsRecoveryEntryFragment__invalid_word">Mot invalide</string>
+    <string name="PaymentsRecoveryEntryFragment__invalid_word">Mot incorrect</string>
 
     <!-- UnreadPayments -->
     <string name="UnreadPayments__s_sent_you_s">%1$s vous a envoyé %2$s</string>
     <string name="UnreadPayments__d_new_payment_notifications">%1$d nouvelles notifications de paiement</string>
 
     <!-- CanNotSendPaymentDialog -->
-    <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d’envoyer le paiement</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour envoyer un paiement à cet utilisateur, celui-ci doit d’abord accepter une invitation par message de votre part. Envoyez-lui un message pour l’inviter à discuter avec vous sur Signal.</string>
-    <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
+    <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d\'envoyer le paiement</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour envoyer un paiement à cet utilisateur, vous devez d\'abord lui envoyer une invitation par message, qu\'il doit accepter. Commencez par lui envoyer un message pour l\'inviter à échanger avec vous sur Signal.</string>
+    <string name="CanNotSendPaymentDialog__send_a_message">Envoyer un message</string>
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vous n\'avez aucun groupe en commun avec cette personne. Pour éviter les messages indésirables, examinez attentivement les demandes avant de les accepter.</string>
@@ -4974,7 +4988,7 @@
     <string name="GroupsInCommonMessageRequest__about_message_requests">À propos des invitations par message</string>
     <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Voici un aperçu de la couleur de la conversation.</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Voici un aperçu de la couleur des bulles.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Vous seul pouvez voir cette couleur.</string>
 
     <!-- GroupDescriptionDialog -->
@@ -4984,11 +4998,11 @@
     <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
     <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Plus rapide, moins de données</string>
+    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Plus rapide, consomme moins de données</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
+    <string name="QualitySelectorBottomSheetDialog__high">Haute qualité</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lent, plus lourd</string>
+    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Moins rapide, consomme plus de données</string>
     <!-- Title heading for our media conversion quality selector. -->
     <string name="QualitySelectorBottomSheetDialog__media_quality">Qualité des médias</string>
 
@@ -5056,7 +5070,7 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Le rapport n’est généré qu’au moment de l’exportation et Signal ne le stocke pas sur votre appareil.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Utilisez cette fonction pour changer votre numéro de téléphone actuel pour un nouveau. Vous ne pouvez pas annuler ce changement.\nAvant de continuer, assurez-vous que votre nouveau numéro puisse recevoir des SMS ou des appels.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Cette fonctionnalité vous permet de remplacer votre numéro de téléphone actuel par un nouveau numéro. Attention : ce changement est définitif. Vous ne pourrez pas l\'annuler.\nAvant de continuer, vérifiez que votre nouveau numéro peut recevoir des SMS ou des appels.</string>
     <string name="ChangeNumberFragment__continue">Continuer</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Votre numéro de téléphone a bien été remplacé par ce nouveau numéro : %1$s</string>
@@ -5070,10 +5084,10 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Votre nouveau numéro</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nouveau numéro de téléphone</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Vous devez renseigner l’indicatif de pays de votre ancien numéro</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Vous devez renseigner votre ancien numéro de téléphone</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Vous devez renseigner l’indicatif de pays de votre nouveau numéro</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Vous devez renseigner votre nouveau numéro de téléphone</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Saisissez l\'indicatif de pays associé à votre ancien numéro</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Saisissez votre ancien numéro de téléphone</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Saisissez l\'indicatif de pays associé à votre nouveau numéro</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Saisissez votre nouveau numéro de téléphone</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Changer de numéro</string>
@@ -5082,7 +5096,7 @@
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Changer de numéro</string>
-    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vous êtes sur le point de changer votre numéro de téléphone de %1$s en %2$s.\n\nAvant de continuer, assurez-vous que le numéro ci-dessus soit le bon.</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Vous êtes sur le point de remplacer votre numéro de téléphone %1$s par le numéro suivant : %2$s.\n\nAvant de continuer, vérifiez que le numéro ci-dessous est correct.</string>
     <string name="ChangeNumberConfirmFragment__edit_number">Modifier le numéro</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
@@ -5097,7 +5111,7 @@
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
-    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Il semble que vous avez essayé de changer votre numéro mais nous n\'avons pas pu déterminer si l\'opération a réussi. Nouvelle tentative…</string>
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vous avez tenté de changer de numéro, mais nous ne savons pas encore si l\'opération a réussi.\n\n Nous vérifions de nouveau…</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__change_status_confirmed">Changement d’état confirmé</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
@@ -5250,13 +5264,13 @@
     <!-- Notification preference option header -->
     <string name="NotificationsSettingsFragment__profiles">Profils</string>
     <!-- Notification preference summary text -->
-    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Créez un profil pour recevoir des notifications uniquement de la part des personnes et des groupes de votre choix.</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Créez un ou plusieurs profils pour filtrer les notifications : vous ne recevez ainsi que celles des contacts de votre choix.</string>
 
     <!-- NotificationProfilesFragment -->
     <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Profils de notification</string>
     <!-- Button text to create a notification profile -->
-    <string name="NotificationProfilesFragment__create_profile">Créer le profil</string>
+    <string name="NotificationProfilesFragment__create_profile">Créer un profil</string>
 
     <!-- PrivacySettingsFragment -->
     <string name="PrivacySettingsFragment__blocked">Bloqué</string>
@@ -5280,7 +5294,7 @@
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
     <string name="PrivacySettingsFragment__cant_enable_description">Pour utiliser la fonctionnalité de verrouillage des paiements, vous devez d\'abord activer le verrouillage de l\'écran ou l\'ID d\'empreinte digitale dans les paramètres de votre téléphone.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Impossible de consulter les paramètres du système</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Impossible d\'accéder aux paramètres système</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
@@ -5293,25 +5307,25 @@
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Si vous activez cette option et démarrez de nouvelles conversations, les nouveaux messages que vous enverrez et recevrez dans ces conversations disparaîtront une fois lus.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si vous activez cette option, les nouveaux messages que vous enverrez et recevrez dans cette conversation disparaîtront une fois lus.</string>
     <string name="ExpireTimerSettingsFragment__off">Désactivés</string>
-    <string name="ExpireTimerSettingsFragment__4_weeks">4 semaines</string>
-    <string name="ExpireTimerSettingsFragment__1_week">1 semaine</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 semaines</string>
+    <string name="ExpireTimerSettingsFragment__1_week">1 semaine</string>
     <string name="ExpireTimerSettingsFragment__1_day">24 heures</string>
-    <string name="ExpireTimerSettingsFragment__8_hours">8 heures</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 heures</string>
     <string name="ExpireTimerSettingsFragment__1_hour">1 heure</string>
-    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
-    <string name="ExpireTimerSettingsFragment__30_seconds">30 secondes</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">30 secondes</string>
     <string name="ExpireTimerSettingsFragment__custom_time">Délai personnalisé</string>
     <string name="ExpireTimerSettingsFragment__set">Définir</string>
     <string name="ExpireTimerSettingsFragment__save">Enregistrer</string>
 
-    <string name="CustomExpireTimerSelectorView__seconds">seconde</string>
+    <string name="CustomExpireTimerSelectorView__seconds">secondes</string>
     <string name="CustomExpireTimerSelectorView__minutes">minutes</string>
     <string name="CustomExpireTimerSelectorView__hours">heures</string>
     <string name="CustomExpireTimerSelectorView__days">jours</string>
     <string name="CustomExpireTimerSelectorView__weeks">semaines</string>
 
     <!-- HelpSettingsFragment -->
-    <string name="HelpSettingsFragment__support_center">Centre d’assistance</string>
+    <string name="HelpSettingsFragment__support_center">Centre d\'assistance</string>
     <string name="HelpSettingsFragment__contact_us">Nous contacter</string>
     <string name="HelpSettingsFragment__version">Version</string>
     <string name="HelpSettingsFragment__debug_log">Journal de débogage</string>
@@ -5325,9 +5339,9 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Qualité des médias</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Qualité des médias envoyés</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Envoyer des médias de haute qualité demande plus de données.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">L\'envoi de médias de haute qualité consomme plus de données.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
-    <string name="DataAndStorageSettingsFragment__high">Élevée</string>
+    <string name="DataAndStorageSettingsFragment__high">Haute qualité</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
     <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Appels</string>
@@ -5336,7 +5350,7 @@
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Auto</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Utiliser des couleurs personnalisées</string>
-    <string name="ChatColorSelectionFragment__chat_color">Couleur de la conversation</string>
+    <string name="ChatColorSelectionFragment__chat_color">Couleur des bulles</string>
     <string name="ChatColorSelectionFragment__edit">Modifier</string>
     <string name="ChatColorSelectionFragment__duplicate">Dupliquer</string>
     <string name="ChatColorSelectionFragment__delete">Supprimer</string>
@@ -5345,7 +5359,7 @@
         <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
         <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">Supprimer la couleur de la conversation ?</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Supprimer la couleur des bulles ?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Unie</string>
@@ -5374,15 +5388,15 @@
 
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">Personnaliser les réactions</string>
-    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Appuyez pour remplacer un émoji</string>
+    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Appuyer pour remplacer un émoji</string>
     <string name="EditReactionsFragment__reset">Réinitialiser</string>
     <string name="EditReactionsFragment_save">Enregistrer</string>
-    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Adapter automatiquement la couleur au fond d’écran</string>
-    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour modifier la direction du dégradé</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Couleur automatiquement assortie au fond d\'écran</string>
+    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour choisir le sens du dégradé</string>
 
     <!-- AddAProfilePhotoMegaphone -->
     <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Ajouter une photo de profil</string>
-    <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Choisissez une apparence et une couleur ou personnalisez vos initiales.</string>
+    <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Choisissez un style et une couleur ou personnalisez vos initiales.</string>
     <string name="AddAProfilePhotoMegaphone__not_now">Plus tard</string>
     <string name="AddAProfilePhotoMegaphone__add_photo">Ajouter une photo</string>
 
@@ -5395,15 +5409,15 @@
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Émoji</string>
-    <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la recherche d’émojis</string>
+    <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la zone de recherche d\'émojis</string>
     <string name="KeyboardPagerFragment_open_sticker_search">Rechercher des stickers</string>
-    <string name="KeyboardPagerFragment_open_gif_search">Ouvrir la recherche de GIF</string>
+    <string name="KeyboardPagerFragment_open_gif_search">Ouvrir la zone de recherche de GIF</string>
     <string name="KeyboardPagerFragment_stickers">Stickers</string>
     <string name="KeyboardPagerFragment_backspace">Retour arrière</string>
     <string name="KeyboardPagerFragment_gifs">GIF</string>
     <string name="KeyboardPagerFragment_search_emoji">Rechercher un émoji</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Retour aux émojis</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">Effacer l’historique de recherche</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">Effacer la recherche saisie</string>
     <string name="KeyboardPagerFragment_search_giphy">Rechercher dans GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
@@ -5418,8 +5432,8 @@
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Seuls les administrateurs peuvent ajouter du contenu à la story du groupe</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
-    <string name="ConversationSettingsFragment__contacts_app_not_found">Application Contacts non trouvée</string>
-    <string name="ConversationSettingsFragment__start_video_call">Lancer un appel vidéo</string>
+    <string name="ConversationSettingsFragment__contacts_app_not_found">Application \"Contacts\" introuvable</string>
+    <string name="ConversationSettingsFragment__start_video_call">Passer un appel vidéo</string>
     <string name="ConversationSettingsFragment__start_audio_call">Passer un appel vocal</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
@@ -5450,33 +5464,34 @@
     <string name="ConversationSettingsFragment__see_all">Tout afficher</string>
     <string name="ConversationSettingsFragment__add_members">Ajouter des membres</string>
     <string name="ConversationSettingsFragment__permissions">Autorisations</string>
-    <string name="ConversationSettingsFragment__requests_and_invites">Demandes d’ajout et invitations</string>
+    <string name="ConversationSettingsFragment__requests_and_invites">Demandes d\'adhésion et invitations</string>
     <string name="ConversationSettingsFragment__group_link">Lien de groupe</string>
     <string name="ConversationSettingsFragment__add_as_a_contact">Ajouter comme contact</string>
     <string name="ConversationSettingsFragment__unmute">Réactiver le son</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation en sourdine jusqu\'à %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation définitivement mise en sourdine</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papiers.</string>
     <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
     <string name="ConversationSettingsFragment__get_badges">Soutenez Signal et gagnez des macarons à afficher sur votre profil. Appuyez sur un macaron pour en savoir plus.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Modifier les informations</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Modifier les infos du groupe</string>
     <string name="PermissionsSettingsFragment__send_messages">Envoyer des messages</string>
     <string name="PermissionsSettingsFragment__all_members">Tous les membres</string>
     <string name="PermissionsSettingsFragment__only_admins">Les administrateurs</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les informations de ce groupe ?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les infos de ce groupe ?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Qui peut envoyer des messages et passer des appels ?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Sourdine désactivée</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
-    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m’avertir</string>
-    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m’avertir</string>
+    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m\'avertir</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
+    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m\'avertir</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifications personnalisées</string>
 
     <!-- StickerKeyboard -->
@@ -5533,10 +5548,10 @@
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
     <string name="VoiceNotePlayerView__stop_voice_message">Arrêter le message vocal</string>
-    <string name="VoiceNotePlayerView__change_voice_message_speed">Changer la vitesse du message vocal</string>
+    <string name="VoiceNotePlayerView__change_voice_message_speed">Modifier la vitesse de lecture du message vocal</string>
     <string name="VoiceNotePlayerView__pause_voice_message">Mettre le message vocal en pause</string>
     <string name="VoiceNotePlayerView__play_voice_message">Lire le message vocal</string>
-    <string name="VoiceNotePlayerView__navigate_to_voice_message">Naviguer vers le message vocal</string>
+    <string name="VoiceNotePlayerView__navigate_to_voice_message">Accéder au message vocal</string>
 
 
     <!-- AvatarPickerFragment -->
@@ -5566,15 +5581,15 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Naviguer vers le haut</string>
     <string name="MultiselectForwardFragment__forward_to">Transférer à</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Partager avec</string>
     <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
-    <string name="MultiselectForwardFragment__faster_forwards">Transferts plus rapides</string>
+    <string name="MultiselectForwardFragment__faster_forwards">Des transferts plus rapides</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Les vidéos seront formatées en clips de 30 sec. et envoyées en plusieurs stories.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Les vidéos intégrées dans les stories ne peuvent pas dépasser 30 sec.</string>
-    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Lorsque vous transférez un message, son envoi est maintenant immédiat.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Envoyer %1$d message</item>
         <item quantity="other">Envoyer %1$d messages</item>
@@ -5588,8 +5603,8 @@
         <item quantity="other">Impossible d\'envoyer les messages</item>
     </plurals>
     <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
-        <item quantity="one">Impossible de transférer le message car il n\'est plus disponible.</item>
-        <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
+        <item quantity="one">Impossible de transférer le message, car il n\'est plus disponible.</item>
+        <item quantity="other">Impossible de transférer les messages, car ils ne sont plus disponibles.</item>
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Seuls les administrateurs peuvent envoyer des messages à ce groupe.</string>
@@ -5607,7 +5622,7 @@
     <string name="MediaReviewFragment__send_to">Envoyer à</string>
     <string name="MediaReviewFragment__view_once_message">Média à vue unique</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Un ou plusieurs fichiers sont trop volumineux.</string>
-    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un élément ou plus étaient invalides</string>
+    <string name="MediaReviewFragment__one_or_more_items_were_invalid">Un ou plusieurs éléments ne sont pas valides</string>
     <string name="MediaReviewFragment__too_many_items_selected">Vous avez sélectionné un trop grand nombre d\'éléments</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Vue unique activée pour cette vidéo</string>
@@ -5634,14 +5649,14 @@
 
     <string name="ImageEditorHud__cancel">Annuler</string>
     <string name="ImageEditorHud__draw">Dessiner</string>
-    <string name="ImageEditorHud__write_text">Écrire du texte</string>
+    <string name="ImageEditorHud__write_text">Saisir du texte</string>
     <string name="ImageEditorHud__add_a_sticker">Ajouter un sticker</string>
     <string name="ImageEditorHud__blur">Flouter</string>
     <string name="ImageEditorHud__done_editing">Modification terminée</string>
-    <string name="ImageEditorHud__clear_all">Tout enlever</string>
+    <string name="ImageEditorHud__clear_all">Tout effacer</string>
     <string name="ImageEditorHud__undo">Annuler</string>
-    <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Passer du marqueur au surligneur</string>
-    <string name="ImageEditorHud__toggle_between_text_styles">Basculer entre les styles de texte</string>
+    <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Sélectionner le marqueur ou le surligneur</string>
+    <string name="ImageEditorHud__toggle_between_text_styles">Sélectionner différents styles de texte</string>
 
     <!-- Header for section of featured stickers (location/time stickers) -->
     <string name="ScribbleStickersFragment__featured_stickers">À la une</string>
@@ -5649,7 +5664,7 @@
     <string name="MediaCountIndicatorButton__send">Envoyer</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Appuyez pour supprimer</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Appuyez pour sélectionner</string>
+    <string name="MediaReviewSelectedItem__tap_to_select">Toucher l\'écran pour sélectionner</string>
 
     <string name="MediaReviewImagePageFragment__discard">Supprimer</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Supprimer les modifications ?</string>
@@ -5721,9 +5736,9 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Merci pour votre soutien !</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Vous avez gagné un macaron de donateur Signal ! Affichez-le sur votre profil pour montrer que vous nous soutenez.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Vous pouvez aussi</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">devenir un donateur mensuel.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Envie d\'aller plus loin ?</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">N\'hésitez pas à rejoindre nos donateurs mensuels.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur mon profil</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Afficher ce macaron</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continuer</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plusieurs macarons, vous pouvez choisir celui que vous voulez afficher sur votre profil.</string>
@@ -5810,7 +5825,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez bien sûr continuer d\'utiliser l\'appli, mais pour soutenir Signal et réactiver votre macaron, n\'hésitez pas à renouveler votre don.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
     <!-- Button label to send user to Google Pay website -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Allez sur Google Pay</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Accéder à Google Pay</string>
 
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement de l’abonnement</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nous ne parvenons pas à encaisser le paiement de votre don mensuel à Signal. Votre mode de paiement est-il à jour ? Si tel n\'est pas le cas, nous vous invitons à le mettre à jour dans Google Pay. Signal réessaiera de traiter le paiement dans quelques jours. Merci !</string>
@@ -5850,7 +5865,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du don. %1$s</string>
     <string name="DonationsErrors__your_payment">Votre don n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
-    <string name="DonationsErrors__still_processing">En cours de traitement</string>
+    <string name="DonationsErrors__still_processing">Traitement en cours</string>
     <string name="DonationsErrors__couldnt_add_badge">Impossible d\'ajouter le macaron.</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
     <string name="DonationsError__something_went_wrong">Une erreur s\'est produite</string>
@@ -5859,7 +5874,7 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Validation du macaron impossible.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__could_not_validate">Impossible de valider la réponse du serveur. Contactez l\'assistance.</string>
+    <string name="DonationsErrors__could_not_validate">Impossible de valider la réponse du serveur. Veuillez contacter l\'assistance.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Échec de l\'envoi du don</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
@@ -5869,7 +5884,7 @@
     <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil n\'est pas compatible avec Google Pay : vous ne pouvez donc pas vous abonner pour gagner un macaron, mais vous pouvez encore soutenir Signal et faire un don via notre site web.</string>
-    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Vérifiez votre connexion et réessayez.</string>
+    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Veuillez vérifier votre connexion et réessayer.</string>
     <string name="NetworkFailure__retry">Réessayer</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">Impossible d\'envoyer un don</string>
@@ -5885,17 +5900,17 @@
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s a effectué un don de votre part</string>
     <!-- Gift badge redeem action label -->
-    <string name="GiftMessageView__redeem">Échanger</string>
+    <string name="GiftMessageView__redeem">Récupérer</string>
     <!-- Gift badge view action label -->
     <string name="GiftMessageView__view">Afficher</string>
     <!-- Gift badge redeeming action label -->
-    <string name="GiftMessageView__redeeming">Échange en cours…</string>
+    <string name="GiftMessageView__redeeming">Récupération en cours…</string>
     <!-- Gift badge redeemed label -->
-    <string name="GiftMessageView__redeemed">Échangé</string>
+    <string name="GiftMessageView__redeemed">Récupéré</string>
 
 
     <!-- Stripe decline code generic_failure -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Essayez un autre mode de paiement ou contactez votre banque pour plus d’informations.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Veuillez choisir un autre mode de paiement ou contacter votre banque pour en savoir plus.</string>
     <!-- PayPal decline code for payment declined -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Essayez un autre mode de paiement ou contactez votre banque pour plus d’informations. S’il s’agit d’une transaction PayPal, veuillez contacter PayPal directement.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
@@ -5905,27 +5920,27 @@
     <!-- Stripe decline code contact issuer -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Vérifiez que votre mode de paiement est à jour dans Google Pay puis réessayez. Si le problème persiste, contactez votre banque.</string>
     <!-- Stripe decline code purchase not supported -->
-    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Votre carte ne permet pas ce type d’achat. Essayez un autre mode de paiement.</string>
+    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Votre carte ne permet pas ce type d\'achat. Veuillez choisir un autre mode de paiement.</string>
     <!-- Stripe decline code your card has expired -->
     <string name="DeclineCode__your_card_has_expired">Votre carte est arrivée à expiration. Mettez à jour votre mode de paiement dans Google Pay, puis réessayez.</string>
     <!-- Stripe decline code go to google pay action label -->
-    <string name="DeclineCode__go_to_google_pay">Allez sur Google Pay</string>
+    <string name="DeclineCode__go_to_google_pay">Accéder à Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
     <string name="DeclineCode__try">Réessayer</string>
     <!-- Stripe decline code incorrect card number -->
-    <string name="DeclineCode__your_card_number_is_incorrect">Votre numéro de carte est erroné. Mettez-le à jour dans Google Pay puis réessayez.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect">Numéro de carte incorrect. Veuillez le mettre à jour dans Google Pay et réessayer.</string>
     <!-- Stripe decline code incorrect cvc -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Le numéro CVC de votre carte est erroné. Mettez-le à jour dans Google Pay puis réessayez.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Cryptogramme visuel incorrect. Veuillez le mettre à jour dans Google Pay et réessayer.</string>
     <!-- Stripe decline code insufficient funds -->
-    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Votre carte ne dispose pas de fonds suffisants pour effectuer cet achat. Essayez un autre mode de paiement.</string>
+    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Les fonds associés à cette carte sont insuffisants pour effectuer cet achat. Veuillez choisir un autre mode de paiement.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">Le mois d’expiration de votre mode de paiement est erroné. Mettez-le à jour dans Google Pay puis réessayez.</string>
+    <string name="DeclineCode__the_expiration_month">Erreur liée à la date d\'expiration de la carte : le mois indiqué est incorrect. Veuillez le mettre à jour dans Google Pay et réessayer.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">L’année d’expiration de votre mode de paiement est erronée. Mettez-la à jour dans Google Pay puis réessayez.</string>
+    <string name="DeclineCode__the_expiration_year">Erreur liée à la date d\'expiration de la carte : l\'année indiquée est incorrecte. Veuillez la mettre à jour dans Google Pay et réessayer.</string>
     <!-- Stripe decline code issuer not available -->
     <string name="DeclineCode__try_completing_the_payment_again">Essayez à nouveau d’effectuer le paiement ou contactez votre banque pour plus d’informations.</string>
     <!-- Stripe decline code processing error -->
-    <string name="DeclineCode__try_again">Essayez à nouveau ou contactez votre banque pour plus d’informations.</string>
+    <string name="DeclineCode__try_again">Veuillez réessayer ou contacter votre banque pour en savoir plus.</string>
 
     <!-- Credit Card decline code error strings -->
     <!-- Stripe decline code approve_with_id for credit cards displayed in a notification or dialog -->
@@ -5935,7 +5950,7 @@
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_has_expired_verify_your_card_details">Votre carte  est arrivée à expiration. Vérifiez que les informations de votre carte sont à jour, puis réessayez.</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">Le code CVV de votre carte est erroné. Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">Cryptogramme visuel incorrect. Veuillez vérifier le code figurant au dos de votre carte et réessayer.</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">Le mois d’expiration de votre carte est erroné. Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
@@ -5945,7 +5960,7 @@
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_account_provided">Les fonds disponibles sur le compte bancaire renseigné sont insuffisants pour effectuer cet achat. Veuillez réessayer ou contacter votre banque pour plus d’informations.</string>
+    <string name="StripeFailureCode__the_bank_account_provided">Les fonds disponibles sur ce compte bancaire sont insuffisants pour effectuer cet achat. Veuillez réessayer ou contacter votre banque pour en savoir plus.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
     <string name="StripeFailureCode__this_payment_was_revoked">Le paiement a été refusé par le titulaire du compte et n’a donc pas pu être traité. Vous n’avez pas été débité.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
@@ -5956,9 +5971,9 @@
     <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier que vos informations bancaires sont correctes puis réessayeréessayer. Si le problème persiste, veuillez contacter votre banque.</string>
 
     <!-- Title of create notification profile screen -->
-    <string name="EditNotificationProfileFragment__name_your_profile">Nommez votre profil</string>
+    <string name="EditNotificationProfileFragment__name_your_profile">Nommer ce profil</string>
     <!-- Hint text for create/edit notification profile name -->
-    <string name="EditNotificationProfileFragment__profile_name">Nom de profil</string>
+    <string name="EditNotificationProfileFragment__profile_name">Nom du profil</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
     <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
     <!-- Call to action button to continue to the next step -->
@@ -5970,24 +5985,24 @@
     <!-- Title of edit notification profile screen -->
     <string name="EditNotificationProfileFragment__edit_this_profile">Modifier ce profil</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
-    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Un profil existe déjà avec ce nom</string>
+    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Ce nom de profil existe déjà</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__work">Travail</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__sleep">Sommeil</string>
+    <string name="EditNotificationProfileFragment__sleep">Repos</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__driving">Conduite</string>
+    <string name="EditNotificationProfileFragment__driving">Au volant</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__downtime">Pause</string>
+    <string name="EditNotificationProfileFragment__downtime">En pause</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__focus">Concentration</string>
     <!-- Error message shown when attempting to next/save without a profile name -->
-    <string name="EditNotificationProfileFragment__profile_must_have_a_name">Doit avoir un nom</string>
+    <string name="EditNotificationProfileFragment__profile_must_have_a_name">Champ obligatoire</string>
 
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Notifications autorisées</string>
     <!-- Description of what the user should be doing with this screen -->
-    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Ajoutez les personnes et les groupes dont vous souhaitez recevoir des notifications et des appels quand ce profil est activé</string>
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Ajoutez les personnes et les groupes autorisés à vous envoyer des notifications et à vous appeler quand ce profil est activé</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Ajouter des personnes ou des groupes</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
@@ -6001,7 +6016,7 @@
     <string name="SelectRecipientsFragment__add">Ajouter</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Créez un profil pour recevoir des notifications et des appels uniquement de la part des personnes et des groupes dont vous souhaitez entendre parler.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Créez un ou plusieurs profils pour filtrer les notifications et les appels : vous ne recevez ainsi que ceux des contacts dont vous voulez entendre parler.</string>
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">Profils</string>
     <!-- Button that starts the create new notification profile flow -->
@@ -6028,13 +6043,13 @@
     <!-- Profile status on if it is not the active profile -->
     <string name="NotificationProfileDetails__off">Désactivé</string>
     <!-- Description of hours for schedule (start to end) times -->
-    <string name="NotificationProfileDetails__s_to_s">%1$s à %2$s</string>
+    <string name="NotificationProfileDetails__s_to_s">De %1$s à %2$s</string>
     <!-- Section header for exceptions to the notification profile -->
     <string name="NotificationProfileDetails__exceptions">Exceptions</string>
     <!-- Profile exception to allow all calls through the profile restrictions -->
     <string name="NotificationProfileDetails__allow_all_calls">Autoriser tous les appels</string>
     <!-- Profile exception to allow all @mentions through the profile restrictions -->
-    <string name="NotificationProfileDetails__notify_for_all_mentions">Notifier de toutes les mentions</string>
+    <string name="NotificationProfileDetails__notify_for_all_mentions">Me signaler toutes les mentions</string>
     <!-- Section header for showing schedule information -->
     <string name="NotificationProfileDetails__schedule">Programmer</string>
     <!-- If member list is long, will truncate the list and show an option to then see all when tapped -->
@@ -6043,7 +6058,7 @@
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">Programmer</string>
     <!-- Descriptor text indicating what the user can do with this screen -->
-    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Définissez des horaires pour activer automatiquement ce profil de notification.</string>
+    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Définissez les horaires pendant lesquels ce profil de notification s\'active automatiquement.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">Programmer</string>
     <!-- Label for showing the start time for the schedule -->
@@ -6075,7 +6090,7 @@
     <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->
     <string name="EditNotificationProfileSchedule__next">Suivant</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
-    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">La programmation doit comporter au moins un jour</string>
+    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Vous devez indiquer au moins un jour</string>
 
     <!-- Title for final screen shown after completing a profile creation -->
     <string name="NotificationProfileCreated__profile_created">Profil créé</string>
@@ -6084,23 +6099,23 @@
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
     <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Vous pouvez activer ou désactiver votre profil manuellement à partir du menu de la liste des conversations.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Ajoutez des horaires dans les paramètres pour automatiser votre profil.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Pour activer votre profil automatiquement à certaines heures, ajoutez des horaires via les paramètres.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Votre profil s’activera et se désactivera automatiquement en fonction de vos horaires</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Ce profil s\'activera et se désactivera automatiquement en fonction des horaires indiqués</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Nouveau profil</string>
     <!-- Manual enable option to manually enable a profile for 1 hour -->
-    <string name="NotificationProfileSelection__for_1_hour">Pendant 1 heure</string>
+    <string name="NotificationProfileSelection__for_1_hour">Pendant 1 heure</string>
     <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
-    <string name="NotificationProfileSelection__until_s">Jusqu’à %1$s</string>
+    <string name="NotificationProfileSelection__until_s">Jusqu\'à %1$s</string>
     <!-- Option to view profile details -->
     <string name="NotificationProfileSelection__view_settings">Afficher les paramètres</string>
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
-    <string name="NotificationProfileSelection__on_until_s">Activé jusqu’à %1$s</string>
+    <string name="NotificationProfileSelection__on_until_s">Activé jusqu\'à %1$s</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Échec d’ouverture du sélecteur.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Impossible d\'ouvrir le sélecteur.</string>
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">Pour activer les notifications, Signal doit être autorisé à les afficher.</string>
     <!-- Banner action when notification permission is disabled -->
@@ -6114,7 +6129,7 @@
     <!-- Donation receipts all tab label -->
     <string name="DonationReceiptListFragment__all">Tous</string>
     <!-- Donation receipts recurring tab label -->
-    <string name="DonationReceiptListFragment__recurring">Périodique</string>
+    <string name="DonationReceiptListFragment__recurring">Mensuel</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Ponctuel</string>
     <!-- Donation receipts gift tab -->
@@ -6147,7 +6162,7 @@
     <!-- Label for Stories tab in home app screen -->
     <string name="ConversationListTabs__stories">Stories</string>
     <!-- String for counts above 99 in conversation list tabs -->
-    <string name="ConversationListTabs__99p">+ de 99</string>
+    <string name="ConversationListTabs__99p">+ de 99</string>
     <!-- Menu item on stories landing page -->
     <string name="StoriesLandingFragment__story_privacy">Confidentialité de la story</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
@@ -6175,7 +6190,7 @@
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Non envoyé.</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">Partiellement envoyé</string>
+    <string name="StoriesLandingItem__partially_sent">Envoi partiel</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Appuyez pour réessayer</string>
     <!-- Title of dialog confirming decision to hide a story -->
@@ -6190,8 +6205,8 @@
     <string name="StoriesLandingFragment__hidden_stories">Stories masquées</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
-        <item quantity="one">%1$d vue</item>
-        <item quantity="other">%1$d vues</item>
+        <item quantity="one">%1$d vue</item>
+        <item quantity="other">%1$d vues</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Transférer</string>
@@ -6293,7 +6308,7 @@
         <item quantity="other">%1$d personnes exclues</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">Ne partager qu’avec…</string>
+    <string name="MyStorySettingsFragment__only_share_with">Ne partager qu\'avec…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Ne partager qu\'avec les contacts sélectionnés</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
@@ -6348,9 +6363,9 @@
     <!-- Text label for media selection toggle -->
     <string name="MediaSelectionActivity__text">Texte</string>
     <!-- Camera label for media selection toggle -->
-    <string name="MediaSelectionActivity__camera">Caméra</string>
+    <string name="MediaSelectionActivity__camera">Appareil photo</string>
     <!-- Hint for entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Tapez ou collez une URL</string>
+    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Saisir ou coller une URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Partager un lien avec les spectateurs de votre story</string>
     <!-- Hint text for searching for a story text post recipient. -->
@@ -6361,7 +6376,7 @@
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">Tous mes contacts Signal, sauf…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">Ne partager qu’avec…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">Ne partager qu\'avec…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">OK</string>
     <!-- Dialog title for removing a group story -->
@@ -6391,7 +6406,7 @@
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
-    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Choisir les spectateurs</string>
+    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Choisir des spectateurs</string>
     <!-- New story viewer selection action button label -->
     <string name="CreateStoryViewerSelectionFragment__next">Suivant</string>
     <!-- New story viewer selection screen title as recipients are selected -->
@@ -6416,21 +6431,21 @@
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Tout sélectionner</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choisir le type de story</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choisir un type de story</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_custom_story">Nouvelle story personnalisée</string>
     <!-- Choose story type bottom sheet new story row summary -->
-    <string name="ChooseStoryTypeBottomSheet__visible_only_to">Visible pour certaines personnes seulement</string>
+    <string name="ChooseStoryTypeBottomSheet__visible_only_to">À partager avec certains contacts</string>
     <!-- Choose story type bottom sheet group story title -->
     <string name="ChooseStoryTypeBottomSheet__group_story">Story de groupe</string>
     <!-- Choose story type bottom sheet group story summary -->
-    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Partager avec un groupe existant</string>
+    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">À partager avec un groupe existant</string>
     <!-- Choose groups bottom sheet title -->
-    <string name="ChooseGroupStoryBottomSheet__choose_groups">Choisir les groupes</string>
+    <string name="ChooseGroupStoryBottomSheet__choose_groups">Choisir des groupes</string>
     <!-- Displayed when copying group story reply text to clipboard -->
-    <string name="StoryGroupReplyFragment__copied_to_clipboard">A été copié dans le presse-papiers</string>
+    <string name="StoryGroupReplyFragment__copied_to_clipboard">Copié dans le presse-papiers</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Afficher plus</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Envoi de la réponse…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -6438,7 +6453,7 @@
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
     <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Impossible de télécharger la story. %1$s doit la partager de nouveau.</string>
     <!-- Displayed in the viewer when the network is not available -->
-    <string name="StorySlateView__no_internet_connection">Pas de connexion internet</string>
+    <string name="StorySlateView__no_internet_connection">Aucune connexion Internet</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
     <string name="StorySlateView__couldnt_load_content">Impossible de charger le contenu</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
@@ -6464,13 +6479,13 @@
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
-    <string name="ExpandModel__view_more">En afficher plus</string>
-    <string name="StoriesLinkPopup__visit_link">Visitez le lien</string>
+    <string name="ExpandModel__view_more">Plus</string>
+    <string name="StoriesLinkPopup__visit_link">Accéder au lien</string>
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
-        <item quantity="one">%1$s · %2$d jour</item>
-        <item quantity="other">%1$s · %2$d jours</item>
+        <item quantity="one">%1$s · pour %2$d jour</item>
+        <item quantity="other">%1$s · pour %2$d jours</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__donate_for_a_friend">Faire un don pour un ami</string>
@@ -6504,7 +6519,7 @@
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Vous avez fait un don à Signal pour %1$s. Cette personne aura la possibilité d\'afficher son soutien sur son profil.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
-    <string name="ViewReceivedGiftSheet__redeem">Échanger</string>
+    <string name="ViewReceivedGiftSheet__redeem">Récupérer</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Plus tard</string>
     <!-- Dialog text while redeeming a gift -->
@@ -6516,7 +6531,7 @@
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Votre macaron est arrivé à expiration et n\'est plus visible sur votre profil.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">Pour continuer à soutenir une technologie conçue pour vous, veuillez envisager de devenir donateur mensuel.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">Notre technologie est conçue pour vous. Envie de continuer à nous soutenir ? Rejoignez nos donateurs mensuels.</string>
     <!-- Expired gift sheet make a monthly donation button -->
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Faire un don mensuel</string>
     <!-- Expired gift sheet not now button -->
@@ -6575,23 +6590,23 @@
     </plurals>
     <!-- Donation for a friend expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
-        <item quantity="one">Encore %1$d heures</item>
+        <item quantity="one">Encore %1$d heure</item>
         <item quantity="other">%1$d heures restantes</item>
     </plurals>
     <!-- Gift expiry minutes remaining -->
     <plurals name="Gifts__d_minutes_remaining">
-        <item quantity="one">%1$d minute restantes</item>
+        <item quantity="one">Encore %1$d minute</item>
         <item quantity="other">%1$d minutes restantes</item>
     </plurals>
     <!-- Donation for a friend expiry expired -->
     <string name="Gifts__expired">Don arrivé à expiration</string>
 
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
-    <string name="StoryFirstTimeNavigationView__tap_to_advance">Appuyez pour avancer</string>
+    <string name="StoryFirstTimeNavigationView__tap_to_advance">Appuyer pour passer à la publication suivante</string>
     <!-- Label indicating swipe direction to skip current story -->
-    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Balayez vers le haut pour passer</string>
+    <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Balayer vers le haut pour passer</string>
     <!-- Label indicating swipe direction to exit story viewer -->
-    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Balayez vers la droite pour quitter</string>
+    <string name="StoryFirstTimeNavigationView__swipe_right_to_exit">Balayer vers la droite pour quitter</string>
     <!-- Button label to confirm understanding of story navigation -->
     <string name="StoryFirstTimeNagivationView__got_it">J’ai compris</string>
     <!-- Content description for vertical context menu button in safety number sheet rows -->
@@ -6601,7 +6616,7 @@
     <!-- Sub-line when a user is verified. -->
     <string name="SafetyNumberRecipientRowItem__verified">Confirmé</string>
     <!-- Title of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Modification du numéro de sécurité</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Changements de numéro de sécurité</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__the_following_people">Les contacts suivants ont peut-être réinstallé Signal ou changé d\'appareil. Sélectionnez un contact pour confirmer son nouveau numéro de sécurité. Cette étape est facultative.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
@@ -6609,7 +6624,7 @@
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Vérification du numéro de sécurité terminée</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Toutes les connexions ont été revues, appuyez sur envoyer pour continuer.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Vous avez examiné tous les contacts. Appuyez sur \"Envoyer\" pour continuer.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
         <item quantity="one">%1$d contact a peut-être réinstallé Signal ou changé d\'appareil. Vous pouvez vérifier son numéro de sécurité ou ignorer cette étape et envoyer directement votre message.</item>
@@ -6622,13 +6637,13 @@
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Envoyer quand même</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
-    <string name="SafetyNumberBottomSheetFragment__review_connections">Contrôler les relations</string>
+    <string name="SafetyNumberBottomSheetFragment__review_connections">Examiner les contacts</string>
     <!-- Empty state copy for SafetyNumberBottomSheetFragment -->
-    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Plus de destinataires à afficher</string>
+    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Aucun autre destinataire à afficher</string>
     <!-- Done button on safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__done">OK</string>
     <!-- Title of safety number review fragment -->
-    <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Modification du numéro de sécurité</string>
+    <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Changements de numéro de sécurité</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
         <item quantity="one">%1$d contact a peut-être réinstallé Signal ou changé d\'appareil. Sélectionnez ce contact pour confirmer son nouveau numéro de sécurité. Cette étape est facultative..</item>
@@ -6653,9 +6668,9 @@
     <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Ne partager qu’avec…</string>
 
     <!-- Story info header sent heading -->
-    <string name="StoryInfoHeader__sent">Envoyé</string>
+    <string name="StoryInfoHeader__sent">Envoyée</string>
     <!-- Story info header received heading -->
-    <string name="StoryInfoHeader__received">Reçu</string>
+    <string name="StoryInfoHeader__received">Reçue</string>
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Taille du fichier</string>
     <!-- Story info "Sent to" header -->
@@ -6700,7 +6715,7 @@
     <string name="GroupStorySettingsFragment__remove_group_story">Supprimer cette story de groupe</string>
 
     <!-- Generic title for overflow menus -->
-    <string name="OverflowMenu__overflow_menu">Menu de débordement</string>
+    <string name="OverflowMenu__overflow_menu">Menu à développer</string>
 
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>
@@ -7263,7 +7278,7 @@
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Nom d’utilisateur copié</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
-    <string name="UsernameLinkSettings_link_copied_toast">Le lien a été copié</string>
+    <string name="UsernameLinkSettings_link_copied_toast">Lien copié</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
     <string name="UsernameLinkSettings_link_not_set_label">Lien non configuré</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Sauvegardes Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Historique des paiements</string>
     <!-- Section header for backup information -->

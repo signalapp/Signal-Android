@@ -409,6 +409,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">ទៅ %1$s</string>
     <string name="ConversationItem_read_more">  អានបន្ថែម</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  ទាញយកបន្ថែម</string>
     <string name="ConversationItem_pending">  កំពុងរង់ចាំ</string>
     <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
@@ -1261,6 +1262,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">បញ្ចប់</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">បុគ្គលនេះ មិនអាចបន្ថែមចូលក្រុមមុនបានទេ។</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">បន្ថែមសមាជិក %3$d នាក់ទៅ \"%2$s\"?</item>
     </plurals>
@@ -1415,7 +1417,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ផ្លាស់ប្តូរសំឡេង និងរំញ័រ</string>
     <string name="CustomNotificationsDialogFragment__call_settings">កំណត់ការហៅ</string>
     <string name="CustomNotificationsDialogFragment__ringtone">សំឡេងរោទិ៍</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">លំនាំដើម</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">មិនស្គាល់</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1588,6 +1592,7 @@
     <string name="Megaphones_verify_pin">ផ្ទៀងផ្ទាត់លេខ PIN</string>
     <string name="Megaphones_get_started">ចាប់ផ្តើម</string>
     <string name="Megaphones_new_group">ក្រុមថ្មី</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">អញ្ជើញមិត្តភក្តិ</string>
     <string name="Megaphones_chat_colors">ពណ៌ការជជែក</string>
     <string name="Megaphones_add_a_profile_photo">រូបថតប្រូហ្វាល់</string>
@@ -2373,6 +2378,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">បរាជ័យក្នុងការបញ្ជូន</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">បញ្ចប់ ការផ្ទៀងផ្ទាត់</string>
 
     <!-- RegistrationActivity -->
@@ -2893,6 +2899,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">ចាក់ វីដេអូ</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">មានចំណងជើង</string>
 
     <!-- TransferControlView -->
@@ -3392,10 +3399,10 @@
         <item>ការស្នើសុំមុខងារ</item>
         <item>សំណួរ</item>
         <item>មតិកែលម្អ</item>
-        <item>ផ្សេងៗ</item>
-        <item>ការទូទាត់ (MobileCoin)</item>
-        <item>ការបរិច្ចាគ និងស្លាក</item>
-        <item>ការបម្រុងទុក Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">ការដាក់បញ្ជូនកំណត់ហេតុបញ្ហា Signal Android</string>
@@ -3474,7 +3481,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ចាក់សោរអេក្រង់ និងការជូនដំណឹងជាមួយឃ្លាសម្ងាត់</string>
     <string name="preferences__screen_security">អេក្រង់សុវត្ថិភាព</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ចាក់សោSignalដោយស្វ័យប្រវត្តិ បន្ទាប់ពីទុកចោលមួយរយៈ</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">ឃ្លាសម្ងាត់ពេលអសកម្ម</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">ចន្លោះពេលអសកម្ម</string>
     <string name="preferences__notifications">សារជូនដំណឹង</string>
     <string name="preferences__led_color">ពណ៌​LED</string>
@@ -3485,6 +3494,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">សំឡេង</string>
     <string name="preferences__silent">ស្ងាត់</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">លំនាំដើម</string>
     <string name="preferences__repeat_alerts">ជូនដំណឹងច្រើនដង</string>
     <string name="preferences__never">មិនដែល</string>
@@ -3501,6 +3511,7 @@
     <string name="preferences__cyan">ផ្ទៃមេឃ</string>
     <string name="preferences__magenta">ស្វាយ</string>
     <string name="preferences__white">ពណ៌ស</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">គ្មាន</string>
     <string name="preferences__fast">លឿន</string>
     <string name="preferences__normal">ធម្មតា</string>
@@ -4087,6 +4098,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
 
     <!-- new_conversation_activity -->
@@ -4253,6 +4265,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">បិទ និងលុបចោលការបម្រុងទុកក្នុងឧបករណ៍ទាំងអស់?</string>
     <string name="BackupDialog_delete_backups_statement">លុបការបម្រុងទុក</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">ដើម្បីបើកការបម្រុងទុក​ ជ្រើសរើសថតឯកសារ។ ការបម្រុងទុក នឹងត្រូវរក្សាទុកនៅទីតាំងនេះ។</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">ជ្រើសរើសទីតាំងផ្ទុក</string>
     <string name="BackupDialog_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
     <string name="BackupDialog_no_file_picker_available">មិនមានអ្នករើសឯកសារទេ។</string>
@@ -4690,6 +4703,7 @@
     <string name="ShareActivity__share">ចែករំលែក</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">ផ្ញើ</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">មិនអាចទទួលបានទិន្នន័យចែករំលែកទេ។</string>
@@ -5350,6 +5364,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">មិនបានបិទសំឡេង</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">ហៅ</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">តែងតែជូនដំណឹង</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">កុំជូនដំណឹង</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">សារជូនដំណឹងផ្សេង</string>
 
@@ -5439,7 +5454,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">រុករក</string>
     <string name="MultiselectForwardFragment__forward_to">បញ្ជូនបន្តទៅកាន់</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">ចែកទៅកាន់</string>
     <string name="MultiselectForwardFragment__add_a_message">បន្ថែមសារ</string>
     <string name="MultiselectForwardFragment__faster_forwards">ការបញ្ជូនសារបន្តលឿនជាងមុន</string>
@@ -6290,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">បានចម្លងទៅ clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">មើលបន្ថែម</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">កំពុងផ្ញើការឆ្លើយតប…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7497,6 +7512,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">ការបម្រុងទុក Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">ប្រវត្តិការទូទាត់</string>
     <!-- Section header for backup information -->

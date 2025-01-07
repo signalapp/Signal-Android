@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">aan %1$s</string>
     <string name="ConversationItem_read_more">  Lees Meer</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Laai Meer Af</string>
     <string name="ConversationItem_pending">  Hangend</string>
     <string name="ConversationItem_this_message_was_deleted">Hierdie boodskap is geskrap.</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Klaar</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Hierdie persoon kan nie by legaatgroepe gevoeg word nie.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Voeg \"%1$s\" by “%2$s” by?</item>
         <item quantity="other">Voeg %3$d lede by “%2$s” by?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Verander klank en vibrasie</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Oproepinstellings</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Luitoon</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Verstek</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">Verifieer PIN</string>
     <string name="Megaphones_get_started">Begin</string>
     <string name="Megaphones_new_group">Nuwe groep</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Nooi vriende</string>
     <string name="Megaphones_chat_colors">Kletskleure</string>
     <string name="Megaphones_add_a_profile_photo">Profielfoto</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Kon nie indien nie</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Voltooi verifikasie</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Speel video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Het \'n byskrif</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>Funksieversoek</item>
         <item>Vraag</item>
         <item>Terugvoer</item>
-        <item>Ander</item>
-        <item>Betalings (MobileCoin)</item>
-        <item>Skenkings &amp; Wapens</item>
-        <item>Signal Android-rugsteun</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Indiening van Signal Android-ontfoutlog</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Sluit skerm en kennisgewings met \'n wagwoordfrase</string>
     <string name="preferences__screen_security">Skermsekuriteit</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Outosluit Signal ná \'n gespesifiseerde tydperk van onaktiwiteit</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Wagwoordfrase vir sluiting a.g.v. onaktiwiteit</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Tydperk voor sluiting a.g.v. onaktiwiteit</string>
     <string name="preferences__notifications">Kennisgewings</string>
     <string name="preferences__led_color">LED-kleur</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Klank</string>
     <string name="preferences__silent">Stilte</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Verstek</string>
     <string name="preferences__repeat_alerts">Herhaal waarskuwings</string>
     <string name="preferences__never">Nooit</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">Siaan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Wit</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Geen</string>
     <string name="preferences__fast">Vinnig</string>
     <string name="preferences__normal">Normaal</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Media-voorskou</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktiveer en skrap alle plaaslike rugsteunkopieë?</string>
     <string name="BackupDialog_delete_backups_statement">Skrap rugsteunkopieë</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies \'n vouer om rugsteun te aktiveer. Rugsteunkopieë sal in hierdie ligging gestoor word.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Kies gids</string>
     <string name="BackupDialog_copied_to_clipboard">Na knipbord gekopieer</string>
     <string name="BackupDialog_no_file_picker_available">Geen lêerkieser beskikbaar nie.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">Deel</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Stuur</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Kon nie deelbare data uit die versamelpunt vir hierdie data kry nie.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nie gedemp nie</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Meldings</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Laat altyd weet</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Moenie laat weet nie</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Pasgemaakte kennisgewings</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Navigeer op</string>
     <string name="MultiselectForwardFragment__forward_to">Stuur aan na</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Deel met</string>
     <string name="MultiselectForwardFragment__add_a_message">Voeg ’n boodskap by</string>
     <string name="MultiselectForwardFragment__faster_forwards">Stuur vinniger aan</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Na knipbord gekopieer</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Sien Meer</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Besig om antwoord te stuur…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-rugsteun</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingsgeskiedenis</string>
     <!-- Section header for backup information -->

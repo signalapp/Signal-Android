@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">பெறுனர் %1$s</string>
     <string name="ConversationItem_read_more">மேலும் படிக்க</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">மேலும் பதிவிறக்க</string>
     <string name="ConversationItem_pending">நிலுவையில்</string>
     <string name="ConversationItem_this_message_was_deleted">இந்த மெசேஜ் நீக்கப்பட்டது.</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">முடிந்தது</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%2$s\" -இல் \"%1$s\" உறுப்பினரைச் சேர்க்கலாமா?</item>
         <item quantity="other">\"%2$s\" -இல் %3$d உறுப்பினர்களை சேர்க்கலாமா?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ஒலி மற்றும் அதிர்வை மாற்றவும்</string>
     <string name="CustomNotificationsDialogFragment__call_settings">அழைப்பு அமைப்புகள்</string>
     <string name="CustomNotificationsDialogFragment__ringtone">ரிங்டோன்</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">இயல்புநிலை</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">தெரியாத</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">பின் சரிபார்க்கவும்</string>
     <string name="Megaphones_get_started">தொடங்கவும்</string>
     <string name="Megaphones_new_group">புதிய குழு</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
     <string name="Megaphones_chat_colors">சாட்டுக்கான கலர்</string>
     <string name="Megaphones_add_a_profile_photo">படத்தைச் சேர்</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">சமர்ப்பிக்க முடியவில்லை</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">முழுமை சரிபார்ப்பு</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">காணொளியை ஓட்டு</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>சிறப்பு விண்ணப்பம்</item>
         <item>கேள்வி</item>
         <item>பின்னூட்டம்</item>
-        <item>மற்றவை</item>
-        <item>கட்டணங்கள் (MobileCoin)</item>
-        <item>நன்கொடைகள் மற்றும் பேட்ஜ்கள்</item>
-        <item>சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android பிழைத்திருத்த பதிவு சமர்ப்பிப்பு</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">கடவுச்சொல் மூலம் திரை மற்றும் அறிவிப்புகளைப் பூட்டு</string>
     <string name="preferences__screen_security">திரை பாதுகாப்பு</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">செயலற்ற ஒரு குறிப்பிட்ட நேர இடைவெளிக்குப் பிறகு தானாக Signal ஐ பூட்டு</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">செயலற்ற நேரம் முடிந்தது கடவுச்சொல்</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">செயலற்ற காலக்கெடு இடைவெளி</string>
     <string name="preferences__notifications">அறிவிப்புகள்</string>
     <string name="preferences__led_color">LED நிறம்</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">ஒலி</string>
     <string name="preferences__silent">அமைதி</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">இயல்புநிலை</string>
     <string name="preferences__repeat_alerts">பலமுறை எச்சரிக்கைகள்</string>
     <string name="preferences__never">ஒருபோதுமில்லை</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">சியான்</string>
     <string name="preferences__magenta">கருநீலம்</string>
     <string name="preferences__white">வெள்ளை</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">எதுவும் இல்லை</string>
     <string name="preferences__fast">வேகமாக</string>
     <string name="preferences__normal">சாதாரணமாக</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">மீடியா முன்னோட்டம்</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">உள்ளே சேமிக்கப்பட்ட அனைத்து பேக்அப்களையும் முடக்கி நீக்க வேண்டுமா?</string>
     <string name="BackupDialog_delete_backups_statement">பேக்அப்களை நீக்கு</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
     <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <string name="BackupDialog_no_file_picker_available">கிடைப்பில்கோப்பு தேர்வாளர் கிடைக்கவில்லை.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">பகிர்</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">அனுப்புக</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">நோக்கத்திலிருந்து பகிர்ந்த தரவைப் பெற முடியவில்லை.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">ஒலியடக்கப்படவில்லை</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">பெயர் குறிப்பிடுவது</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">எப்போதும் அறிவிக்கவும்</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">அறிவிக்க வேண்டாம்</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">மேலே செல்லவும்</string>
     <string name="MultiselectForwardFragment__forward_to">முன்னோக்கி</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">பகிர்</string>
     <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
     <string name="MultiselectForwardFragment__faster_forwards">வேகமான முன்னோக்கிகள்</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">மேலும் காட்டு</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">பதில் அனுப்பப்படுகிறது…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">சிக்னல் காப்புப்பிரதிகள்</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">கட்டண வரலாறு</string>
     <!-- Section header for backup information -->

@@ -415,6 +415,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">către %1$s</string>
     <string name="ConversationItem_read_more">  Află mai Multe</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Descarcă mai Multe</string>
     <string name="ConversationItem_pending">  În curs</string>
     <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
@@ -1333,6 +1334,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Gata</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Această persoană nu poate fi adăugată la grupurile vechi.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Adaugi „%1$s“ la „%2$s“?</item>
         <item quantity="few">Adaugi %3$d membri la \"%2$s\"?</item>
@@ -1495,7 +1497,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Modifică sunetul și vibrațiile</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Setări apel</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Ton de apel</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Implicit</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Necunoscut</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1684,6 +1688,7 @@
     <string name="Megaphones_verify_pin">Verifică PIN</string>
     <string name="Megaphones_get_started">Începe</string>
     <string name="Megaphones_new_group">Grup nou</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Invită prieteni</string>
     <string name="Megaphones_chat_colors">Culoare chat</string>
     <string name="Megaphones_add_a_profile_photo">Poză profil</string>
@@ -2541,6 +2546,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Eroare la trimitere</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Finalizează verificarea</string>
 
     <!-- RegistrationActivity -->
@@ -3069,6 +3075,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Redă video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Are un titlu</string>
 
     <!-- TransferControlView -->
@@ -3590,10 +3597,10 @@
         <item>Cerere privind funcția</item>
         <item>Întrebare</item>
         <item>Feedback</item>
-        <item>Altul</item>
-        <item>Plăți (MobileCoin)</item>
-        <item>Donații și Insigne</item>
-        <item>Backup Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Trimiterea jurnalului de depanare Signal Android</string>
@@ -3674,7 +3681,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blochează ecranul și notificările cu o parolă</string>
     <string name="preferences__screen_security">Securitate ecran</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blochează automat Signal după o perioadă specificată de timp de inactivitate</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Parolă pentru inactivitate</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Interval de timp pentru inactivitate</string>
     <string name="preferences__notifications">Notificări</string>
     <string name="preferences__led_color">Culoare LED</string>
@@ -3685,6 +3694,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Sunet</string>
     <string name="preferences__silent">Silențios</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Implicit</string>
     <string name="preferences__repeat_alerts">Repetă alerte</string>
     <string name="preferences__never">Niciodată</string>
@@ -3701,6 +3711,7 @@
     <string name="preferences__cyan">Turcoaz</string>
     <string name="preferences__magenta">Purpuriu</string>
     <string name="preferences__white">Alb</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Niciuna</string>
     <string name="preferences__fast">Rapid</string>
     <string name="preferences__normal">Normal</string>
@@ -4295,6 +4306,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Previzualizare media</string>
 
     <!-- new_conversation_activity -->
@@ -4475,6 +4487,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
     <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Pentru a activa backup-urile, alege un folder. Backup-urile vor fi salvate în această locație.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Alege directorul</string>
     <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
     <string name="BackupDialog_no_file_picker_available">Nu este disponibil niciun selector de fișiere.</string>
@@ -4926,6 +4939,7 @@
     <string name="ShareActivity__share">Distribuie</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Trimite</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Nu am putut să distribuim date din intenție.</string>
@@ -5602,6 +5616,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Mențiuni</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifică întotdeauna</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu notifica</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
 
@@ -5693,7 +5708,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Navighează în sus</string>
     <string name="MultiselectForwardFragment__forward_to">Redirecționează către</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Distribuie cu</string>
     <string name="MultiselectForwardFragment__add_a_message">Adaugă un mesaj</string>
     <string name="MultiselectForwardFragment__faster_forwards">Redirecționări mai rapide</string>
@@ -6570,7 +6585,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">S-a copiat în clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Vezi mai Multe</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Se trimite răspunsul…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7821,6 +7836,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Backup-uri Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Istoricul plăților</string>
     <!-- Section header for backup information -->

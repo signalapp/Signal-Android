@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s को</string>
     <string name="ConversationItem_read_more">और पढो</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">और डाउनलोड करें</string>
     <string name="ConversationItem_pending">बचा हुआ</string>
     <string name="ConversationItem_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">पूर्ण</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को लेगेसी ग्रुप्स में नहीं शामिल किया जा सकता।</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%1$s\" को \"%2$s\" में जोड़ना है?</item>
         <item quantity="other">%3$d सदस्यों को \"%2$s\" में जोड़ना है?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ध्वनि व कंपन बदलें</string>
     <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
     <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">डिफ़ॉल्ट</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">अनजान</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">पिन सत्यापित करें</string>
     <string name="Megaphones_get_started">शुरू हो जाओ</string>
     <string name="Megaphones_new_group">नया ग्रुप</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">आमंत्रित करें</string>
     <string name="Megaphones_chat_colors">चैट का रंग</string>
     <string name="Megaphones_add_a_profile_photo">प्रोफ़ाइल फ़ोटो</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">सबमिट करने में विफल</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूरा करें</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">वीडियो चलाएं</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">कैप्शन है</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>फ़ीचर अनुरोध</item>
         <item>सवाल</item>
         <item>फ़ीडबैक</item>
-        <item>अन्य</item>
-        <item>भुगतान (मोबाइल कॉयन)</item>
-        <item>दान और बैज</item>
-        <item>Signal Android का बैकअप</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">सिग्नल एंड्रॉयड डीबग लॉग सबमिशन</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">एक पासफ्रेज के साथ स्क्रीन और अधिसूचना लॉक करें</string>
     <string name="preferences__screen_security">स्क्रीन सुरक्षा</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">निष्क्रियता के निर्दिष्ट समय अंतराल के बाद Signal को ऑटो-लॉक करें</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">निष्क्रियता टाइमआउट पासफ्रेज</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">निष्क्रियता टाइमआउट अंतराल</string>
     <string name="preferences__notifications">सूचनाएं</string>
     <string name="preferences__led_color">LED रंग</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">आवाज़</string>
     <string name="preferences__silent">म्युट</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">डिफ़ॉल्ट</string>
     <string name="preferences__repeat_alerts">अलर्ट दोहराएं</string>
     <string name="preferences__never">कभी नहीं</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">साइऐन</string>
     <string name="preferences__magenta">मैजंटा</string>
     <string name="preferences__white">सफ़ेद</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">कुछ नहीं</string>
     <string name="preferences__fast">तेज</string>
     <string name="preferences__normal">साधारण</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">मीडिया प्रिव्यु</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">सभी स्थानीय बैकअप अक्षम करें और डिलीट करें?</string>
     <string name="BackupDialog_delete_backups_statement">बैकअप डिलीट करें</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">बैकअप सक्षम करने के लिए, फोल्डर का चुनाव करें। बैकअप इस जगह पर संगृहीत किया जाएगा।</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">फोल्डर को चुनो</string>
     <string name="BackupDialog_copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
     <string name="BackupDialog_no_file_picker_available">कोई फाइल पिकर उपल्बध नहीं है।</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">साझा करें</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">भेजें</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">मंशा से शेयर डेटा नहीं मिल सका।</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्युट नहीं है</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">मेंछन</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">हमेशा सूचित करें</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">सूचित न करें</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">कस्टम अधिसूचनाएं</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">ऊपर जाएँ</string>
     <string name="MultiselectForwardFragment__forward_to">को फ़ॉरवर्ड करें</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">साझा करें</string>
     <string name="MultiselectForwardFragment__add_a_message">एक मेसेज शामिल करें</string>
     <string name="MultiselectForwardFragment__faster_forwards">तेज़ी से फ़ॉरवर्ड करें</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">और देखें</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">जवाब भेज रहा है…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal बैकअप</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">भुगतान का इतिहास</string>
     <!-- Section header for backup information -->

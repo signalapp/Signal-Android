@@ -409,6 +409,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">tới %1$s</string>
     <string name="ConversationItem_read_more">Xem thêm</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">Tải thêm</string>
     <string name="ConversationItem_pending">Đang chờ</string>
     <string name="ConversationItem_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
@@ -1261,6 +1262,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Xong</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Người này không thể được thêm vào nhóm cũ.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">Thêm %3$d thành viên vào \"%2$s\"?</item>
     </plurals>
@@ -1415,7 +1417,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Thay đổi âm thanh và rung</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Cài đặt cuộc gọi</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Nhạc chuông</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Mặc định</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Vô danh</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1588,6 +1592,7 @@
     <string name="Megaphones_verify_pin">Xác minh mã PIN</string>
     <string name="Megaphones_get_started">Bắt đầu</string>
     <string name="Megaphones_new_group">Tạo nhóm mới</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Mời bạn bè</string>
     <string name="Megaphones_chat_colors">Màu trò chuyện</string>
     <string name="Megaphones_add_a_profile_photo">Ảnh đại diện</string>
@@ -2373,6 +2378,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Không thể gửi</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Hoàn thành xác minh</string>
 
     <!-- RegistrationActivity -->
@@ -2893,6 +2899,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Phát video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Có tiêu đề</string>
 
     <!-- TransferControlView -->
@@ -3392,10 +3399,10 @@
         <item>Yêu cầu Tính năng</item>
         <item>Câu hỏi</item>
         <item>Góp ý</item>
-        <item>Khác</item>
-        <item>Lựa chọn Thanh toán (MobileCoin)</item>
-        <item>Khoản ủng hộ &amp; Huy hiệu</item>
-        <item>Bản sao lưu Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Gửi Nhật Ký Gỡ Lỗi Signal Android</string>
@@ -3474,7 +3481,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Khoá màn hình và thông báo bằng mật khẩu</string>
     <string name="preferences__screen_security">An ninh màn hình</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Mật khẩu khoá ứng dụng khi không hoạt động</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá ứng dụng khi không hoạt động</string>
     <string name="preferences__notifications">Thông báo</string>
     <string name="preferences__led_color">Màu LED</string>
@@ -3485,6 +3494,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Âm thanh</string>
     <string name="preferences__silent">Im lặng</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Mặc định</string>
     <string name="preferences__repeat_alerts">Lặp lại cảnh báo</string>
     <string name="preferences__never">Không bao giờ</string>
@@ -3501,6 +3511,7 @@
     <string name="preferences__cyan">Xanh lơ</string>
     <string name="preferences__magenta">Hồng đậm</string>
     <string name="preferences__white">Trắng</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Không</string>
     <string name="preferences__fast">Nhanh</string>
     <string name="preferences__normal">Bình thường</string>
@@ -4087,6 +4098,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
 
     <!-- new_conversation_activity -->
@@ -4253,6 +4265,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Tắt và Xóa tất cả sao lưu trên thiết bị?</string>
     <string name="BackupDialog_delete_backups_statement">Xóa bản sao lưu</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Để bật sao lưu, chọn một thư mục. Các bản sao lưu sẽ được lưu vào địa điểm này.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Chọn thư mục</string>
     <string name="BackupDialog_copied_to_clipboard">Đã chép vào bảng ghi tạm</string>
     <string name="BackupDialog_no_file_picker_available">Không có sẵn bộ chọn tập tin.</string>
@@ -4690,6 +4703,7 @@
     <string name="ShareActivity__share">Chia sẻ</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Gửi</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Không thể thu được dữ liệu chia sẻ từ ý định.</string>
@@ -5350,6 +5364,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Bỏ tắt tiếng thông báo</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Nhắc tên</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Luôn luôn thông báo</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Không thông báo</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Thông báo tuỳ chỉnh</string>
 
@@ -5439,7 +5454,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Hướng lên trên</string>
     <string name="MultiselectForwardFragment__forward_to">Chuyển tiếp đến</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Chia sẻ với</string>
     <string name="MultiselectForwardFragment__add_a_message">Thêm vào một tin nhắn</string>
     <string name="MultiselectForwardFragment__faster_forwards">Chuyển tiếp nhanh</string>
@@ -6290,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Đã sao chép vào clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Xem thêm</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Đang gửi câu trả lời…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7497,6 +7512,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Bản sao lưu Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Lịch sử thanh toán</string>
     <!-- Section header for backup information -->

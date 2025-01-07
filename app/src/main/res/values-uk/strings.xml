@@ -418,6 +418,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">у %1$s</string>
     <string name="ConversationItem_read_more">  Читати далі</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Завантажити ще</string>
     <string name="ConversationItem_pending">  Очікується</string>
     <string name="ConversationItem_this_message_was_deleted">Це повідомлення видалено.</string>
@@ -1369,6 +1370,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Готово</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Цю людину неможливо додати до застарілих груп.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Додати %1$s учасника до «%2$s»?</item>
         <item quantity="few">Додати %3$d учасників до «%2$s»?</item>
@@ -1427,7 +1429,7 @@
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Це незахищена MMS Група. Щоб спілкуватися конфіденційно, запросіть своїх контактів в Signal.</string>
     <string name="ManageGroupActivity_invite_now">Запросити</string>
     <string name="ManageGroupActivity_more">більше</string>
-    <string name="ManageGroupActivity_add_group_description">Додати опис групи…</string>
+    <string name="ManageGroupActivity_add_group_description">Додайте опис групи…</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
@@ -1535,7 +1537,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Змінити звук і вібрацію</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Налаштування викликів</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Мелодія дзвінка</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Типово</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Невідомо</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1732,6 +1736,7 @@
     <string name="Megaphones_verify_pin">Підтвердити PIN-код</string>
     <string name="Megaphones_get_started">Для початку</string>
     <string name="Megaphones_new_group">Нова група</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Запросити друзів</string>
     <string name="Megaphones_chat_colors">Колір чатів</string>
     <string name="Megaphones_add_a_profile_photo">Фото профілю</string>
@@ -2625,6 +2630,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Не вдалося надіслати</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Завершіть перевірку</string>
 
     <!-- RegistrationActivity -->
@@ -2824,7 +2830,7 @@
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групу оновлено</string>
     <!-- Text shown you have left a group -->
-    <string name="ThreadRecord_left_the_group">Покинути групу</string>
+    <string name="ThreadRecord_left_the_group">Ви покинули групу</string>
     <string name="ThreadRecord_secure_session_reset">Безпечний сеанс скинуто.</string>
     <string name="ThreadRecord_draft">Чернетка:</string>
     <string name="ThreadRecord_media_message">Медіафайл</string>
@@ -3157,6 +3163,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Відтворити відео</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Має назву</string>
 
     <!-- TransferControlView -->
@@ -3338,7 +3345,7 @@
 
     <!-- conversation_item_sent -->
     <string name="conversation_item_sent__send_failed_indicator_description">Не вдалося надіслати</string>
-    <string name="conversation_item_sent__pending_approval_description">Очікує підтвердження</string>
+    <string name="conversation_item_sent__pending_approval_description">Ще не підтверджено</string>
     <string name="conversation_item_sent__delivered_description">Доставлено</string>
     <string name="conversation_item_sent__message_read">Повідомлення прочитано</string>
 
@@ -3581,7 +3588,7 @@
     <string name="EditAboutFragment_working_on_something_new">Працюю над чимось новим</string>
 
     <!-- EditProfileFragment -->
-    <string name="EditProfileFragment__edit_group">Редагувати інформацію</string>
+    <string name="EditProfileFragment__edit_group">Редагування інформації</string>
     <string name="EditProfileFragment__group_name">Назва групи</string>
     <string name="EditProfileFragment__group_description">Опис групи</string>
   <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -3689,10 +3696,10 @@
         <item>Бракує функції</item>
         <item>Питання</item>
         <item>Відгук</item>
-        <item>Інше</item>
-        <item>Платежі (MobileCoin)</item>
-        <item>Донати і значки</item>
-        <item>Резервне копіювання від Signal</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Подання журналу налагодження Signal Android</string>
@@ -3716,8 +3723,8 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Нічого не знайдено</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__use_default">Використовувати типово</string>
-    <string name="arrays__use_custom">Використовувати власні</string>
+    <string name="arrays__use_default">Використовувати типове налаштування</string>
+    <string name="arrays__use_custom">Використовувати власне налаштування</string>
 
     <string name="arrays__mute_for_one_hour">Не сповіщати 1 годину</string>
     <string name="arrays__mute_for_eight_hours">Не сповіщати 8 годин</string>
@@ -3744,7 +3751,7 @@
     <string name="arrays__extra_large">Дуже великий</string>
 
     <string name="arrays__default">Типово</string>
-    <string name="arrays__high">Великий</string>
+    <string name="arrays__high">Високий</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Максимум</string>
 
@@ -3774,7 +3781,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Блокувати екран і сповіщення паролем</string>
     <string name="preferences__screen_security">Безпека екрана</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Автоматично блокувати Signal після певного періоду бездіяльності</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Пароль у разі бездіяльності</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Мінімальна тривалість періоду бездіяльності</string>
     <string name="preferences__notifications">Сповіщення</string>
     <string name="preferences__led_color">Колір LED</string>
@@ -3785,6 +3794,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Мелодія</string>
     <string name="preferences__silent">Без звуку</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Системна</string>
     <string name="preferences__repeat_alerts">Повторювати звуковий сигнал</string>
     <string name="preferences__never">Ніколи</string>
@@ -3801,10 +3811,11 @@
     <string name="preferences__cyan">Бірюзовий</string>
     <string name="preferences__magenta">Малиновий</string>
     <string name="preferences__white">Білий</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Без обмежень</string>
-    <string name="preferences__fast">Швидко</string>
+    <string name="preferences__fast">Швидка</string>
     <string name="preferences__normal">Звичайна</string>
-    <string name="preferences__slow">Повільно</string>
+    <string name="preferences__slow">Повільна</string>
     <string name="preferences__help">Допомога</string>
     <string name="preferences__advanced">Розширені</string>
     <string name="preferences__donate_to_signal">Підтримати Signal</string>
@@ -4399,6 +4410,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Попередній вигляд медіафайлів</string>
 
     <!-- new_conversation_activity -->
@@ -4586,6 +4598,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Вимкнути та видалити всі локальні резервні копії?</string>
     <string name="BackupDialog_delete_backups_statement">Видалити резервні копії</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Щоб увімкнути резервне копіювання, оберіть папку. У ній будуть зберігатися нові резервні копії.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Обрати папку</string>
     <string name="BackupDialog_copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="BackupDialog_no_file_picker_available">Файловий менеджер не знайдено.</string>
@@ -5044,6 +5057,7 @@
     <string name="ShareActivity__share">Поділитися</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Надсилання</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Не вдалося виконати запит і поділитися даними.</string>
@@ -5721,13 +5735,14 @@
     <string name="PermissionsSettingsFragment__only_admins">Тільки адміністратори</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Хто може додавати нових учасників?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Хто може редагувати інформацію про цю групу?</string>
-    <string name="PermissionsSettingsFragment__who_can_send_messages">Хто може надсилати повідомлення та починати виклики?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Хто може писати в чаті й починати виклики?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Вимкнути сповіщення</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Сповіщення ввімкнено</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Згадки</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Завжди сповіщати</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не сповіщати</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Власні сповіщення</string>
 
@@ -5820,7 +5835,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Перейти вгору</string>
     <string name="MultiselectForwardFragment__forward_to">Куди переслати</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Поділитися з</string>
     <string name="MultiselectForwardFragment__add_a_message">Додати повідомлення</string>
     <string name="MultiselectForwardFragment__faster_forwards">Швидше пересилання</string>
@@ -6710,7 +6725,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Скопійовано в буфер обміну</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Читати далі</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Надсилання відповіді…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7983,6 +7998,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Резервне копіювання від Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Історія платежів</string>
     <!-- Section header for backup information -->

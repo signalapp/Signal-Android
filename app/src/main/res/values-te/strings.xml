@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s వరకు</string>
     <string name="ConversationItem_read_more">  ఇంకా చదవండి</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more"> మరిన్ని డౌన్‌లోడ్ చేయండి</string>
     <string name="ConversationItem_pending">  పెండింగ్</string>
     <string name="ConversationItem_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">పూర్తి</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ఈ వ్యక్తిని లెగసీ సమూహాలకు చేర్చలేరు.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%1$s\" సభ్యుడిని \"%2$s\" కు జోడించేదా?</item>
         <item quantity="other">%3$d సభ్యులను \"%2$s\" కు జోడించేదా?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">సౌండ్ మరియు వైబ్రేషన్ మార్చడం</string>
     <string name="CustomNotificationsDialogFragment__call_settings">కాల్ సెట్టింగ్లు</string>
     <string name="CustomNotificationsDialogFragment__ringtone">రింగ్టోన్</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">అప్రమేయం</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">గుర్తు తెలియని</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">పిన్ ను నిర్ధారించండి</string>
     <string name="Megaphones_get_started">ప్రారంభించడానికి</string>
     <string name="Megaphones_new_group">కొత్త గ్రూప్</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">ఇన్వైట్ ఫ్రెండ్</string>
     <string name="Megaphones_chat_colors">చాట్ రంగులు</string>
     <string name="Megaphones_add_a_profile_photo">ఫోటోను జోడించండి</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">సబ్మిట్ చేయడం విఫలమైంది</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">పూర్తి ధృవీకరణ</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">వీడియో ప్లే చేయండి</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">శీర్షిక ఉంది</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>ఫీచర్ అభ్యర్ధన</item>
         <item>ప్రశ్న</item>
         <item>ఫీడ్‌బ్యాక్</item>
-        <item>ఇతర</item>
-        <item>చెల్లింపులు (MobileCoin)</item>
-        <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
-        <item>Signal ఆండ్రాయిడ్ బ్యాకప్</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">పాస్ఫ్రేజ్తో లాక్ స్క్రీన్ మరియు నోటిఫికేషన్లు</string>
     <string name="preferences__screen_security">స్క్రీన్ భద్రత</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">తనంతట తానే తాళంవేసుకొను Signal తరువాత ఒక పేర్కొన్నసమయం విరామం ఆఫ్ సోమరితనము</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">క్రియాశూన్యత సంకేతపదముకు విరామసమయము</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">క్రియాశూన్యత మధ్యకాలము విరామసమయము</string>
     <string name="preferences__notifications">ప్రకటనలు</string>
     <string name="preferences__led_color">ఎల్ఈడి రంగు</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">శబ్దము</string>
     <string name="preferences__silent">మౌనం</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">అప్రమేయం</string>
     <string name="preferences__repeat_alerts">రిపీట్ హెచ్చరికలు</string>
     <string name="preferences__never">ఎప్పుడూ</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">సియన్</string>
     <string name="preferences__magenta">మజెంటా</string>
     <string name="preferences__white">తెలుపు</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">ఏదీ కాదు</string>
     <string name="preferences__fast">త్వరగా</string>
     <string name="preferences__normal">సాధారణంగా</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">మీడియా పూర్వప్రదర్శన</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">అన్ని స్థానిక బ్యాకప్‌లను నిలిపివేసి మరియు తొలగించేదా?</string>
     <string name="BackupDialog_delete_backups_statement">బ్యాకప్‌లను తొలిగించండి</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">ప్రత్యామ్నాయము‌లను ప్రారంభించడానికి, ఫోల్డర్‌ను ఎంచుకోండి. బ్యాకప్‌లు ఈ స్థానానికి సేవ్ చేయబడతాయి.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">ఫోల్డర్ ఎంచుకోండి</string>
     <string name="BackupDialog_copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <string name="BackupDialog_no_file_picker_available">పంక్తి ఎన్నుకొనేడి అందుబాటులో లేదు.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">పంచుకోండి</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">పంపు</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">ఇంటెంట్ నుంచి డేటాను పంచుకోవడం సాధ్యపడలేదు.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">మ్యూట్ చేయబడలేదు</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">ప్రస్తావనలు</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">ఎల్లప్పుడూ నోటిఫై చేయండి</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">నోటిఫై చేయవద్దు</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">అనుకూల ప్రకటనలను</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">పైకి నావిగేట్ చేయండి</string>
     <string name="MultiselectForwardFragment__forward_to">వీరికి ఫార్వర్డ్ చేయి</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">తో పంచు</string>
     <string name="MultiselectForwardFragment__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
     <string name="MultiselectForwardFragment__faster_forwards">వేగవంతమైన ఫార్వర్డ్‌లు</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">మరింత చూడండి</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">ప్రత్యుత్తరము పంపుతోంది…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal బ్యాకప్‌లు</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">చెల్లింపుల చరిత్ర</string>
     <!-- Section header for backup information -->

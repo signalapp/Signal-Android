@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">para %1$s</string>
     <string name="ConversationItem_read_more">  Leia mais</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Baixe mais</string>
     <string name="ConversationItem_pending">  Pendente</string>
     <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi apagada.</string>
@@ -1296,7 +1297,8 @@
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Pronto</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Essa pessoa não pode ser adicionada aos grupos de versões anteriores.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Adicionar \"%1$s\" a \"%2$s\"?</item>
         <item quantity="other">Adicionar %3$d membros em \"%2$s\"?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Mudar som e vibração</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamadas</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Toque</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Padrão</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Desconhecida/o</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">Verifique o PIN</string>
     <string name="Megaphones_get_started">Começar</string>
     <string name="Megaphones_new_group">Novo grupo</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Convidar amigos</string>
     <string name="Megaphones_chat_colors">Cores do chat</string>
     <string name="Megaphones_add_a_profile_photo">Foto de perfil</string>
@@ -1651,7 +1656,7 @@
     <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
 
     <!-- NotificationsMegaphone -->
-    <string name="NotificationsMegaphone_turn_on_notifications">Habilitar notificações?</string>
+    <string name="NotificationsMegaphone_turn_on_notifications">Ativar notificações?</string>
     <string name="NotificationsMegaphone_never_miss_a_message">Nunca perca mensagens de seus contatos e grupos.</string>
     <string name="NotificationsMegaphone_turn_on">Ativar</string>
     <string name="NotificationsMegaphone_not_now">Agora não</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Falha ao verificar</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Concluir verificação</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Reproduzir vídeo</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Tem uma legenda</string>
 
     <!-- TransferControlView -->
@@ -3138,10 +3145,10 @@
     <string name="conversation_activity__compose_description">Composição de mensagem</string>
     <string name="conversation_activity__emoji_toggle_description">Alternar teclado emoji</string>
     <string name="conversation_activity__attachment_thumbnail">Miniatura do anexo</string>
-    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Alternar gaveta rápida de anexos de câmera</string>
+    <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Ativar-desativar a gaveta de anexos rápidos da câmera.</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar anexo de áudio</string>
     <!-- Accessibility content description describing how a user can lock voice note recording. -->
-    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Trancar gravação de anexo de áudio</string>
+    <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloquear gravação do anexo de áudio</string>
     <string name="conversation_activity__message_could_not_be_sent">A mensagem não pôde ser enviada. Verifique sua conexão e tente novamente.</string>
 
     <!-- conversation_input_panel -->
@@ -3484,17 +3491,17 @@
     <string name="HelpFragment__signal_android_support_request">Solicitação de suporte Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Não foi possível enviar o registro</string>
-    <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais detalhista possível para nos ajudar a entender o problema.</string>
+    <string name="HelpFragment__please_be_as_descriptive_as_possible">Por favor, seja o mais descritivo possível para nos ajudar a entender o problema.</string>
     <string-array name="HelpFragment__categories_6">
         <item>Selecione uma opção</item>
         <item>Algo não está funcionando</item>
         <item>Solicitação de recurso</item>
         <item>Pergunta</item>
         <item>Feedback</item>
-        <item>Outro</item>
-        <item>Pagamentos (MobileCoin)</item>
-        <item>Doações e selos</item>
-        <item>Backup do Signal para Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envio de log de depuração do Signal para Android</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear tela e notificações com frase de recuperação</string>
     <string name="preferences__screen_security">Segurança da tela</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Trancar automaticamente o Signal após um determinado período de inatividade</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Frase de recuperação após período de inatividade</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Período de expiração por inatividade</string>
     <string name="preferences__notifications">Notificações</string>
     <string name="preferences__led_color">Cor do LED</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Som</string>
     <string name="preferences__silent">Silencioso</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Padrão</string>
     <string name="preferences__repeat_alerts">Repetir alertas</string>
     <string name="preferences__never">Nunca</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">Ciano</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Branco</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Nenhuma</string>
     <string name="preferences__fast">Rápido</string>
     <string name="preferences__normal">Normal</string>
@@ -3832,7 +3843,7 @@
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Você pode usar o Signal para enviar e receber MobileCoins. Todos os pagamentos estão sujeitos aos Termos de Uso para MobileCoins e MobileCoin Wallet. Você poderá encontrar alguns problemas. Se perder pagamentos ou saldos, talvez não seja possível recuperá-los. </string>
     <string name="PaymentsHomeFragment__activate">Ativar</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
-    <string name="PaymentsHomeFragment__payments_not_available">A função Pagamentos no Signal não está mais disponível. Você ainda pode transferir fundos para uma exchange, porém não é mais possível enviar ou receber pagamentos, nem adicionar fundos.</string>
+    <string name="PaymentsHomeFragment__payments_not_available">A função Pagamentos no Signal não está mais disponível. Você ainda pode transferir fundos para uma exchange, mas não é mais possível enviar, receber pagamentos ou adicionar fundos.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Pré-visualização de mídia</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Desabilitar e apagar todos os backups locais?</string>
     <string name="BackupDialog_delete_backups_statement">Apagar backups</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar os backups, escolha uma pasta. Os backups serão salvos neste local.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Escolher pasta</string>
     <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="BackupDialog_no_file_picker_available">Nenhum seletor de arquivos disponível.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">Compartilhar</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Enviar</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Não foi possível obter dados de compartilhamento desejados.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Não silenciadas</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Menções</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Sempre me notifique</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Não me notifique</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificações</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
     <string name="MultiselectForwardFragment__forward_to">Encaminhar para</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Encaminhar para</string>
     <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
     <string name="MultiselectForwardFragment__faster_forwards">Encaminhar mais rapidamente</string>
@@ -5956,7 +5971,7 @@
     <string name="StripeFailureCode__verify_your_bank_details_are_correct">Confira se os detalhes do seu cartão estão corretos e tente novamente. Se o problema continuar, entre em contato com seu banco.</string>
 
     <!-- Title of create notification profile screen -->
-    <string name="EditNotificationProfileFragment__name_your_profile">Nomeie este perfil de notificações</string>
+    <string name="EditNotificationProfileFragment__name_your_profile">Dê um nome a este perfil</string>
     <!-- Hint text for create/edit notification profile name -->
     <string name="EditNotificationProfileFragment__profile_name">Nome de perfil</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Ver mais</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Enviando resposta…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Backups do Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Histórico de pagamentos</string>
     <!-- Section header for backup information -->

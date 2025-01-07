@@ -412,6 +412,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s വരെ</string>
     <string name="ConversationItem_read_more">  കൂടുതൽ വായിക്കുക</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more"> കൂടുതൽ ഡൗൺലോഡു ചെയ്യുക</string>
     <string name="ConversationItem_pending"> ശേഷിക്കുന്നു</string>
     <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
@@ -1297,6 +1298,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">ചെയ്‌തു</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%2$s\" എന്നതിലേക്ക് \"%1$s\" എന്നയാളെ ചേർക്കണോ?</item>
         <item quantity="other">\"%2$s\" എന്നതിലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കണോ?</item>
@@ -1455,7 +1457,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ശബ്ദവും വൈബ്രേഷനും മാറ്റുക</string>
     <string name="CustomNotificationsDialogFragment__call_settings">കോൾ ക്രമീകരണങ്ങൾ</string>
     <string name="CustomNotificationsDialogFragment__ringtone">റിംഗ്‌ടോൺ</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">സ്ഥിരസ്ഥിതി</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">അജ്ഞാതം</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1636,6 +1640,7 @@
     <string name="Megaphones_verify_pin">PIN പരിശോധിക്കുക</string>
     <string name="Megaphones_get_started">ആരംഭിക്കുക</string>
     <string name="Megaphones_new_group">പുതിയ ഗ്രൂപ്പ്</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">ക്ഷണിക്കൂ</string>
     <string name="Megaphones_chat_colors">ചാറ്റ് നിറങ്ങൾ</string>
     <string name="Megaphones_add_a_profile_photo">ഫോട്ടോ ചേർക്കുക</string>
@@ -2457,6 +2462,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">സമർപ്പിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">പരിശോധന പൂർത്തിയാക്കുക</string>
 
     <!-- RegistrationActivity -->
@@ -2981,6 +2987,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">ഒരു അടിക്കുറിപ്പ് ഉണ്ട്</string>
 
     <!-- TransferControlView -->
@@ -3491,10 +3498,10 @@
         <item>ഫീച്ചര്‍ അഭ്യർത്ഥന</item>
         <item>ചോദ്യം</item>
         <item>ഫീഡ്‌ബാക്ക്</item>
-        <item>മറ്റുള്ളവ</item>
-        <item>പേയ്‌മെന്റുകൾ (MobileCoin)</item>
-        <item>സംഭാവനകളും ബാഡ്‌ജുകളും</item>
-        <item>Signal Android ബാക്കപ്പ്</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ഡീബഗ് ലോഗ് സമർപ്പിക്കൽ</string>
@@ -3574,7 +3581,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ഒരു പാസ്‌ഫ്രെയ്‌സ് ഉപയോഗിച്ച് സ്‌ക്രീനും അറിയിപ്പുകളും ലോക്കുചെയ്യുക</string>
     <string name="preferences__screen_security">സ്‌ക്രീൻ സുരക്ഷ</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">നിഷ്‌ക്രിയത്വത്തിന്റെ നിർദ്ദിഷ്ട സമയ ഇടവേളയ്‌ക്ക് ശേഷം Signal സ്വപ്രേരിതമായി ലോക്ക് ചെയ്യുക</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">നിഷ്‌ക്രിയത്വ കാലഹരണപ്പെടൽ പാസ്‌ഫ്രെയ്‌സ്</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">നിഷ്‌ക്രിയത്വ കാലഹരണപ്പെടൽ ഇടവേള</string>
     <string name="preferences__notifications">അറിയിപ്പുകൾ</string>
     <string name="preferences__led_color">LED നിറം</string>
@@ -3585,6 +3594,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">ശബ്ദം</string>
     <string name="preferences__silent">നിശബ്ദത</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">സ്ഥിരസ്ഥിതി</string>
     <string name="preferences__repeat_alerts">അലേർട്ടുകൾ ആവർത്തിക്കുക</string>
     <string name="preferences__never">ഒരിക്കലും വേണ്ട</string>
@@ -3601,6 +3611,7 @@
     <string name="preferences__cyan">സിയാൻ</string>
     <string name="preferences__magenta">മജന്ത</string>
     <string name="preferences__white">വെള്ള</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">ഒന്നുമില്ല</string>
     <string name="preferences__fast">വേഗത്തിൽ</string>
     <string name="preferences__normal">സാധാരണ</string>
@@ -4191,6 +4202,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">മീഡിയ പ്രിവ്യൂ</string>
 
     <!-- new_conversation_activity -->
@@ -4364,6 +4376,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">എല്ലാ പ്രാദേശിക ബാക്കപ്പുകളും പ്രവർത്തനരഹിതമാക്കിയ ശേഷം ഇല്ലാതാക്കണോ?</string>
     <string name="BackupDialog_delete_backups_statement">ബാക്കപ്പുകൾ ഇല്ലാതാക്കുക</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കാൻ, ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കപ്പെടും.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക</string>
     <string name="BackupDialog_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="BackupDialog_no_file_picker_available">ഫയൽ പിക്കറൊന്നും ലഭ്യമല്ല.</string>
@@ -4808,6 +4821,7 @@
     <string name="ShareActivity__share">പങ്കിടുക</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">ഇന്റന്റിൽ നിന്നുള്ള ഡാറ്റ പങ്കിടാനായില്ല.</string>
@@ -5476,6 +5490,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">മ്യൂട്ട് ചെയ്തിട്ടില്ല</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">സൂചനകൾ</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">എപ്പോഴും അറിയിക്കുക</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">അറിയിക്കരുത്</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
 
@@ -5566,7 +5581,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
     <string name="MultiselectForwardFragment__forward_to">ഫോർവേഡ് ചെയ്യുക</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">പങ്കിടുക</string>
     <string name="MultiselectForwardFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
     <string name="MultiselectForwardFragment__faster_forwards">അതിവേഗ ഫോര്‍വേഡുകള്‍</string>
@@ -6430,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">കൂടുതൽ കാണുക</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">മറുപടി അയയ്ക്കുന്നു…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7659,6 +7674,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ബാക്കപ്പുകൾ</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">പേയ്മെൻ്റ് ചരിത്രം</string>
     <!-- Section header for backup information -->

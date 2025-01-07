@@ -418,6 +418,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">iki %1$s</string>
     <string name="ConversationItem_read_more">  Skaityti daugiau</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Atsisiųsti daugiau</string>
     <string name="ConversationItem_pending">  Laukiama</string>
     <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
@@ -1369,6 +1370,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Atlikta</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Pridėti „%1$s“ į „%2$s“?</item>
         <item quantity="few">Pridėti %3$d narius į „%2$s“?</item>
@@ -1535,7 +1537,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Keisti garsą ir vibraciją</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Skambučių nustatymai</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Skambučio melodija</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Numatytoji</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Nežinoma</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1732,6 +1736,7 @@
     <string name="Megaphones_verify_pin">Patvirtinti PIN kodą</string>
     <string name="Megaphones_get_started">Pradėti</string>
     <string name="Megaphones_new_group">Nauja grupė</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Pakviesti draugų</string>
     <string name="Megaphones_chat_colors">Pokalbio spalvos</string>
     <string name="Megaphones_add_a_profile_photo">Profilio nuotr.</string>
@@ -2625,6 +2630,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Nepavyko pateikti</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Užbaigti patvirtinimą</string>
 
     <!-- RegistrationActivity -->
@@ -3157,6 +3163,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Turi paaiškinimą</string>
 
     <!-- TransferControlView -->
@@ -3689,10 +3696,10 @@
         <item>Prašymas pridėti naują funkciją</item>
         <item>Klausimas</item>
         <item>Atsiliepimas</item>
-        <item>Kitas</item>
-        <item>Mokėjimai („MobileCoin“)</item>
-        <item>Parama ir ženkleliai</item>
-        <item>„Signal Android“ atsarginė kopija</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">„Signal“ „Android“ derinimo žurnalo pateikimas</string>
@@ -3774,7 +3781,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Užrakinti ekraną ir pranešimus, naudojant slaptafrazę</string>
     <string name="preferences__screen_security">Ekrano saugumas</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatiškai užrakinti Signal po nurodyto neveiklumo laiko intervalo</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Slaptafrazė po neveiklumui skirto laiko</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Neveiklumui skirtas laiko intervalas</string>
     <string name="preferences__notifications">Pranešimai</string>
     <string name="preferences__led_color">Šviesos diodo spalva</string>
@@ -3785,6 +3794,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Garsas</string>
     <string name="preferences__silent">Tyliai</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Numatytoji</string>
     <string name="preferences__repeat_alerts">Kartoti įspėjimus</string>
     <string name="preferences__never">Niekada</string>
@@ -3801,6 +3811,7 @@
     <string name="preferences__cyan">Žydra</string>
     <string name="preferences__magenta">Purpurinė</string>
     <string name="preferences__white">Balta</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Nėra</string>
     <string name="preferences__fast">Greitas</string>
     <string name="preferences__normal">Normalus</string>
@@ -4399,6 +4410,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Medijos peržiūra</string>
 
     <!-- new_conversation_activity -->
@@ -4586,6 +4598,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Išjungti ir ištrinti visas vietines atsargines kopijas?</string>
     <string name="BackupDialog_delete_backups_statement">Ištrinti atsargines kopijas</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Norėdami įjungti atsargines kopijas, pasirinkite aplanką. Atsarginės kopijos bus įrašomos šioje vietoje.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Pasirinkti aplanką</string>
     <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
     <string name="BackupDialog_no_file_picker_available">Neprieinamas joks failų parinkiklis.</string>
@@ -5044,6 +5057,7 @@
     <string name="ShareActivity__share">Bendrinti</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Siųsti</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Nepavyko gauti bendrinimo duomenų pagal užklausą.</string>
@@ -5728,6 +5742,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nenutildyta</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Paminėjimai</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Visada pranešti</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nepranešti</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Tinkinti pranešimai</string>
 
@@ -5820,7 +5835,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
     <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Bendrinti su</string>
     <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
     <string name="MultiselectForwardFragment__faster_forwards">Greitesni persiuntimai</string>
@@ -6710,7 +6725,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Nukopijuota į iškarpinę</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Rodyti daugiau</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Siunčiamas atsakymas…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7983,6 +7998,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">„Signal“ atsarginės kopijos</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Mokėjimų istorija</string>
     <!-- Section header for backup information -->

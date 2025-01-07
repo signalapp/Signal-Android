@@ -421,6 +421,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">chuig %1$s</string>
     <string name="ConversationItem_read_more">  Léigh a thuilleadh</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Íoslódáil tuilleadh</string>
     <string name="ConversationItem_pending"> Ag feitheamh</string>
     <string name="ConversationItem_this_message_was_deleted">Scriosadh an teachtaireacht seo.</string>
@@ -1405,6 +1406,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Déanta</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ní féidir an duine seo a chur le grúpaí ar cuireadh grúpaí eile ina n-ionad.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Cuir \"%1$s\" le \"%2$s\"?</item>
         <item quantity="two">Cuir %3$d bhall le \"%2$s\"?</item>
@@ -1575,7 +1577,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Athraigh fuaim agus creathadh</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Glao-shocruithe</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Glaofhuaim</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">An réamhshocrú</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Anaithnid</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1780,6 +1784,7 @@
     <string name="Megaphones_verify_pin">Deimhnigh an UAP</string>
     <string name="Megaphones_get_started">Tosaigh air</string>
     <string name="Megaphones_new_group">Grúpa nua</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Cuirí cairde</string>
     <string name="Megaphones_chat_colors">Dath comhráite</string>
     <string name="Megaphones_add_a_profile_photo">G.ghraf próifíle</string>
@@ -2709,6 +2714,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Theip ar chur isteach</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Complete verification</string>
 
     <!-- RegistrationActivity -->
@@ -3245,6 +3251,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Seinn an físeán</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Tá fotheideal leis</string>
 
     <!-- TransferControlView -->
@@ -3788,10 +3795,10 @@
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
         <item>Aiseolas</item>
-        <item>Eile</item>
-        <item>Íocaíochtaí (MobileCoin)</item>
-        <item>Tabhartais &amp; Suaitheantais</item>
-        <item>Cúltaca Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Cur Isteach Loga Dífhabhtaithe Android Signal</string>
@@ -3874,7 +3881,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Cuir glas ar an scáileán agus ar fhógraí le nath</string>
     <string name="preferences__screen_security">Slándáil an scáileáin</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Uathghlasáil Signal tar éis eatramh ama sonraithe neamhghníomhaíochta</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Nath faire teorainn ama neamhghníomhaíochta</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Am teorainn ama neamhghníomhaíochta</string>
     <string name="preferences__notifications">Fógraí</string>
     <string name="preferences__led_color">Dath LED</string>
@@ -3885,6 +3894,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Fuaim</string>
     <string name="preferences__silent">Tostach</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">An réamhshocrú</string>
     <string name="preferences__repeat_alerts">Athdhéan na foláirimh</string>
     <string name="preferences__never">Choíche</string>
@@ -3901,6 +3911,7 @@
     <string name="preferences__cyan">Cian</string>
     <string name="preferences__magenta">Maigeanta</string>
     <string name="preferences__white">Bán</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Dada</string>
     <string name="preferences__fast">Tapa</string>
     <string name="preferences__normal">Gnáthluas</string>
@@ -4503,6 +4514,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Réamhamharc ar na meáin</string>
 
     <!-- new_conversation_activity -->
@@ -4697,6 +4709,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Díchumasaigh agus scrios gach cúltaca logánta?</string>
     <string name="BackupDialog_delete_backups_statement">Scrios cúltacaithe</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Chun cúltacaí a chumasú, roghnaigh fillteán. Sábhálfar cúltacaí sa suíomh seo.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Roghnaigh fillteán</string>
     <string name="BackupDialog_copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <string name="BackupDialog_no_file_picker_available">Níl roghnóir comhaid le fáil.</string>
@@ -5162,6 +5175,7 @@
     <string name="ShareActivity__share">Comhroinn</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Seol</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Níorbh fhéidir sonraí comhroinnte a fháil ón gcuspóir.</string>
@@ -5854,6 +5868,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Gan bhalbhú</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Nuair a luaitear mé</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Cuir scéal chugam i gcónaí</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ná cuir ar an eolas</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Fógraí saincheaptha</string>
 
@@ -5947,7 +5962,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Téigh suas</string>
     <string name="MultiselectForwardFragment__forward_to">Forward To</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Comhroinn le</string>
     <string name="MultiselectForwardFragment__add_a_message">Cuir teachtaireacht leis</string>
     <string name="MultiselectForwardFragment__faster_forwards">Faster Forwards</string>
@@ -6850,7 +6865,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Féach Tuilleadh</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Freagra á sheoladh…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -8145,6 +8160,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Cúltacaí Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Stair íocaíochtaí</string>
     <!-- Section header for backup information -->

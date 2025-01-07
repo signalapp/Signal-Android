@@ -418,6 +418,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">pre %1$s</string>
     <string name="ConversationItem_read_more">  Čítať ďalej</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Stiahnuť viac</string>
     <string name="ConversationItem_pending">  Čaká sa</string>
     <string name="ConversationItem_this_message_was_deleted">Táto správa bola vymazaná.</string>
@@ -1369,6 +1370,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Hotovo</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Táto osoba nemôže byť pridaná do zastaraných skupín.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Pridať %1$s člena do „%2$s“?</item>
         <item quantity="few">Pridať %3$d členov do „%2$s“?</item>
@@ -1535,7 +1537,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Zmeniť zvuk a vibrovanie</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Nastavenia hovoru</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Zvonenie</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Predvolená</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Neznámy</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1732,6 +1736,7 @@
     <string name="Megaphones_verify_pin">Overiť PIN</string>
     <string name="Megaphones_get_started">Poďme na to!</string>
     <string name="Megaphones_new_group">Nová skupina</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Pozvať priateľov</string>
     <string name="Megaphones_chat_colors">Farby četu</string>
     <string name="Megaphones_add_a_profile_photo">Profilová fotka</string>
@@ -2625,6 +2630,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Odoslanie zlyhalo</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Kompletné overenie</string>
 
     <!-- RegistrationActivity -->
@@ -3157,6 +3163,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Prehrať video</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Má popis</string>
 
     <!-- TransferControlView -->
@@ -3689,10 +3696,10 @@
         <item>Požiadavka na funkciu</item>
         <item>Otázka</item>
         <item>Spätná väzba</item>
-        <item>Iné</item>
-        <item>Platby (MobileCoin)</item>
-        <item>Príspevky a Odznaky</item>
-        <item>Záloha Signal Android</item>
+        <item>Payments (MobileCoin)</item>
+        <item>Donations &amp; Badges</item>
+        <item>Signal Android Backup</item>
+        <item>Other</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Odoslanie denníka ladenia Signal Android</string>
@@ -3774,7 +3781,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Uzamknúť obrazovku a upozornenia pomocou hesla</string>
     <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknúť Signal po určenej dobe bez aktivity</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Heslo po neaktivite</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Interval doby bez aktivity</string>
     <string name="preferences__notifications">Upozornenia</string>
     <string name="preferences__led_color">LED farba</string>
@@ -3785,6 +3794,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Zvuk</string>
     <string name="preferences__silent">Ticho</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">Predvolená</string>
     <string name="preferences__repeat_alerts">Opakovať oznámenia</string>
     <string name="preferences__never">Nikdy</string>
@@ -3801,6 +3811,7 @@
     <string name="preferences__cyan">Azúrová</string>
     <string name="preferences__magenta">Purpurová</string>
     <string name="preferences__white">Biela</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Žiadna</string>
     <string name="preferences__fast">Rýchlo</string>
     <string name="preferences__normal">Normálne</string>
@@ -4399,6 +4410,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Náhľad média</string>
 
     <!-- new_conversation_activity -->
@@ -4586,6 +4598,7 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Vypnúť a vymazať všetky lokálne zálohy?</string>
     <string name="BackupDialog_delete_backups_statement">Vymazať zálohy</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Ak chcete povoliť zálohy, vyberte priečinok. Zálohy budú ukladané do tejto lokácie.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Zvoľte priečinok</string>
     <string name="BackupDialog_copied_to_clipboard">Skopírované do schránky</string>
     <string name="BackupDialog_no_file_picker_available">Nie je dostupný žiaden vyberač súborov.</string>
@@ -5044,6 +5057,7 @@
     <string name="ShareActivity__share">Zdieľať</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Poslať</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Údaje nie je možné zdieľať.</string>
@@ -5728,6 +5742,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nestlmené</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Spomenutia</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vždy upozorniť</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neinformovať</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastné upozornenia</string>
 
@@ -5820,7 +5835,7 @@
     <!-- DSLSettingsToolbar -->
     <string name="DSLSettingsToolbar__navigate_up">Prejdite nahor</string>
     <string name="MultiselectForwardFragment__forward_to">Preposlať</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Zdieľať s</string>
     <string name="MultiselectForwardFragment__add_a_message">Pridajte správu</string>
     <string name="MultiselectForwardFragment__faster_forwards">Rýchlejšie preposlania</string>
@@ -6710,7 +6725,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Skopírované do schránky</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Zobraziť viac</string>
+    <string name="StoryViewerPageFragment__read_more">Read more</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Odosiela sa odpoveď…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7983,6 +7998,8 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Zálohy Signal</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">História platieb</string>
     <!-- Section header for backup information -->
