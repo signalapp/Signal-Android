@@ -5,9 +5,6 @@
 
 package org.thoughtcrime.securesms.calls.links.details
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -35,8 +32,8 @@ class CallLinkDetailsViewModel(
 ) : ViewModel() {
   private val disposables = CompositeDisposable()
 
-  private val _state: MutableState<CallLinkDetailsState> = mutableStateOf(CallLinkDetailsState())
-  val state: State<CallLinkDetailsState> = _state
+  private val _state: MutableStateFlow<CallLinkDetailsState> = MutableStateFlow(CallLinkDetailsState())
+  val state: StateFlow<CallLinkDetailsState> = _state
   val nameSnapshot: String
     get() = state.value.callLink?.state?.name ?: error("Call link not loaded yet.")
 
@@ -55,8 +52,8 @@ class CallLinkDetailsViewModel(
     disposables += CallLinks.watchCallLink(callLinkRoomId)
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy {
-        _state.value = _state.value.copy(callLink = it)
+      .subscribeBy { callLink ->
+        _state.update { it.copy(callLink = callLink) }
       }
 
     disposables += repository
@@ -77,7 +74,7 @@ class CallLinkDetailsViewModel(
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { callLinkPeekInfo ->
-        _state.value = _state.value.copy(peekInfo = callLinkPeekInfo)
+        _state.update { it.copy(peekInfo = callLinkPeekInfo) }
       }
   }
 
@@ -91,12 +88,19 @@ class CallLinkDetailsViewModel(
   }
 
   fun setDisplayRevocationDialog(displayRevocationDialog: Boolean) {
-    _state.value = _state.value.copy(displayRevocationDialog = displayRevocationDialog)
+    _state.update { it.copy(displayRevocationDialog = displayRevocationDialog) }
   }
 
   fun setApproveAllMembers(approveAllMembers: Boolean): Single<UpdateCallLinkResult> {
     val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository.setCallRestrictions(credentials, if (approveAllMembers) CallLinkState.Restrictions.ADMIN_APPROVAL else CallLinkState.Restrictions.NONE)
+    return mutationRepository
+      .setCallRestrictions(credentials, if (approveAllMembers) CallLinkState.Restrictions.ADMIN_APPROVAL else CallLinkState.Restrictions.NONE)
+      .doOnSubscribe {
+        _state.update { it.copy(isLoadingAdminApprovalChange = true) }
+      }
+      .doFinally {
+        _state.update { it.copy(isLoadingAdminApprovalChange = false) }
+      }
   }
 
   fun setName(name: String): Single<UpdateCallLinkResult> {

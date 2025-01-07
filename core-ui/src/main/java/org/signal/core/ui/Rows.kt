@@ -1,5 +1,10 @@
 package org.signal.core.ui
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -11,11 +16,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -88,6 +95,9 @@ object Rows {
 
   /**
    * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
+   *
+   * Can display a circular loading indicator by setting isLoaded to true. Setting isLoading to true
+   * will disable the control by default.
    */
   @Composable
   fun ToggleRow(
@@ -97,7 +107,8 @@ object Rows {
     modifier: Modifier = Modifier,
     label: String? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
-    enabled: Boolean = true
+    isLoading: Boolean = false,
+    enabled: Boolean = !isLoading
   ) {
     Row(
       modifier = modifier
@@ -114,11 +125,32 @@ object Rows {
         modifier = Modifier.padding(end = 16.dp)
       )
 
-      Switch(
-        checked = checked,
-        enabled = enabled,
-        onCheckedChange = onCheckChanged
-      )
+      val loadingContent by rememberDelayedState(isLoading)
+      val toggleState = remember(checked, loadingContent, enabled, onCheckChanged) {
+        ToggleState(checked, loadingContent, enabled, onCheckChanged)
+      }
+
+      AnimatedContent(
+        toggleState,
+        label = "toggle-loading-state",
+        contentKey = { it.isLoading },
+        transitionSpec = {
+          fadeIn(animationSpec = tween(220, delayMillis = 90))
+            .togetherWith(fadeOut(animationSpec = tween(90)))
+        }
+      ) { state ->
+        if (state.isLoading) {
+          CircularProgressIndicator(
+            modifier = Modifier.minimumInteractiveComponentSize()
+          )
+        } else {
+          Switch(
+            checked = state.checked,
+            enabled = state.enabled,
+            onCheckedChange = state.onCheckChanged
+          )
+        }
+      }
     }
   }
 
@@ -239,6 +271,13 @@ object Rows {
   }
 }
 
+private data class ToggleState(
+  val checked: Boolean,
+  val isLoading: Boolean,
+  val enabled: Boolean,
+  val onCheckChanged: (Boolean) -> Unit
+)
+
 @SignalPreview
 @Composable
 private fun RadioRowPreview() {
@@ -266,6 +305,24 @@ private fun ToggleRowPreview() {
       checked = checked,
       text = "ToggleRow",
       label = "ToggleRow label",
+      onCheckChanged = {
+        checked = it
+      }
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun ToggleLoadingRowPreview() {
+  Previews.Preview {
+    var checked by remember { mutableStateOf(false) }
+
+    Rows.ToggleRow(
+      checked = checked,
+      text = "ToggleRow",
+      label = "ToggleRow label",
+      isLoading = true,
       onCheckChanged = {
         checked = it
       }

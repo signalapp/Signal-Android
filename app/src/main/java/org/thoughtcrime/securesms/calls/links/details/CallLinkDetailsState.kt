@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 @Immutable
 data class CallLinkDetailsState(
   val displayRevocationDialog: Boolean = false,
+  val isLoadingAdminApprovalChange: Boolean = false,
   val callLink: CallLinkTable.CallLink? = null,
   val peekInfo: CallLinkPeekInfo? = null
 )

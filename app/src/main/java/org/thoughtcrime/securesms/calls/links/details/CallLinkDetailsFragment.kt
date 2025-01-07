@@ -81,7 +81,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val showAlreadyInACall by viewModel.showAlreadyInACall.collectAsStateWithLifecycle(false)
 
     CallLinkDetails(
@@ -237,6 +237,7 @@ private fun CallLinkDetailsPreview() {
     CallLinkDetails(
       CallLinkDetailsState(
         false,
+        false,
         callLink
       ),
       true,
@@ -297,7 +298,8 @@ private fun CallLinkDetails(
         Rows.ToggleRow(
           checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
           text = stringResource(id = R.string.CallLinkDetailsFragment__require_admin_approval),
-          onCheckChanged = callback::onApproveAllMembersChanged
+          onCheckChanged = callback::onApproveAllMembersChanged,
+          isLoading = state.isLoadingAdminApprovalChange
         )
 
         Dividers.Default()

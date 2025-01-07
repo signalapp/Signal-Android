@@ -89,6 +89,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
   override fun SheetContent() {
     val callLink: CallLinkTable.CallLink by viewModel.callLink
     val displayAlreadyInACallSnackbar: Boolean by viewModel.showAlreadyInACall.collectAsStateWithLifecycle(false)
+    val isLoadingAdminApprovalChange: Boolean by viewModel.isLoadingAdminApprovalChange.collectAsStateWithLifecycle(false)
 
     CreateCallLinkBottomSheetContent(
       callLink = callLink,
@@ -100,7 +101,8 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       onCopyLinkClicked = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked,
       onShareLinkClicked = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked,
       onDoneClicked = this@CreateCallLinkBottomSheetDialogFragment::onDoneClicked,
-      displayAlreadyInACallSnackbar = displayAlreadyInACallSnackbar
+      displayAlreadyInACallSnackbar = displayAlreadyInACallSnackbar,
+      isLoadingAdminApprovalChange = isLoadingAdminApprovalChange
     )
   }
 
@@ -236,6 +238,7 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 private fun CreateCallLinkBottomSheetContent(
   callLink: CallLinkTable.CallLink,
   displayAlreadyInACallSnackbar: Boolean,
+  isLoadingAdminApprovalChange: Boolean,
   onJoinClicked: () -> Unit = {},
   onAddACallNameClicked: () -> Unit = {},
   onApproveAllMembersChanged: (Boolean) -> Unit = {},
@@ -288,7 +291,8 @@ private fun CreateCallLinkBottomSheetContent(
         checked = callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__require_admin_approval),
         onCheckChanged = onApproveAllMembersChanged,
-        modifier = Modifier.clickable(onClick = onToggleApproveAllMembersClicked)
+        modifier = Modifier.clickable(onClick = onToggleApproveAllMembersClicked),
+        isLoading = isLoadingAdminApprovalChange
       )
 
       Dividers.Default()
@@ -347,7 +351,8 @@ private fun CreateCallLinkBottomSheetContentPreview() {
         ),
         deletionTimestamp = 0L
       ),
-      displayAlreadyInACallSnackbar = true
+      displayAlreadyInACallSnackbar = true,
+      isLoadingAdminApprovalChange = false
     )
   }
 }
