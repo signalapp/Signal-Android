@@ -66,7 +66,7 @@ public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<C
     }
 
     void bind(@NonNull RequestManager requestManager, @NonNull EventListener eventListener, @NonNull StickerRecord sticker) {
-      requestManager.load(new DecryptableUri(sticker.getUri()))
+      requestManager.load(new DecryptableUri(sticker.uri))
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .fitCenter()
                    .into(image);

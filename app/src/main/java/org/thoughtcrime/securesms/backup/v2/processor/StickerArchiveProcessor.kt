@@ -24,14 +24,14 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
  */
 object StickerArchiveProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
-    StickerPackRecordReader(db.stickerTable.allStickerPacks).use { reader ->
-      var record: StickerPackRecord? = reader.next
+    StickerPackRecordReader(db.stickerTable.getAllStickerPacks()).use { reader ->
+      var record: StickerPackRecord? = reader.getNext()
       while (record != null) {
         if (record.isInstalled) {
           val frame = record.toBackupFrame()
           emitter.emit(frame)
         }
-        record = reader.next
+        record = reader.getNext()
       }
     }
   }

@@ -58,18 +58,18 @@ public final class StickerPackPreviewRepository {
   private Optional<StickerManifestResult> getManifestFromDatabase(@NonNull String packId) {
     StickerPackRecord record = stickerDatabase.getStickerPack(packId);
 
-    if (record != null && record.isInstalled()) {
-      StickerManifest.Sticker       cover    = toSticker(record.getCover());
+    if (record != null && record.isInstalled) {
+      StickerManifest.Sticker       cover    = toSticker(record.cover);
       List<StickerManifest.Sticker> stickers = getStickersFromDatabase(packId);
 
-      StickerManifest manifest = new StickerManifest(record.getPackId(),
-                                                     record.getPackKey(),
-                                                     record.getTitle(),
-                                                     record.getAuthor(),
+      StickerManifest manifest = new StickerManifest(record.packId,
+                                                     record.packKey,
+                                                     record.titleOptional,
+                                                     record.authorOptional,
                                                      Optional.of(cover),
                                                      stickers);
 
-      return Optional.of(new StickerManifestResult(manifest, record.isInstalled()));
+      return Optional.of(new StickerManifestResult(manifest, record.isInstalled));
     }
 
     return Optional.empty();
@@ -131,7 +131,7 @@ public final class StickerPackPreviewRepository {
   }
 
   private StickerManifest.Sticker toSticker(@NonNull StickerRecord record) {
-    return new StickerManifest.Sticker(record.getPackId(), record.getPackKey(), record.getStickerId(), record.getEmoji(), record.getContentType(), record.getUri());
+    return new StickerManifest.Sticker(record.packId, record.packKey, record.stickerId, record.emoji, record.contentType, record.uri);
   }
 
   static class StickerManifestResult {
