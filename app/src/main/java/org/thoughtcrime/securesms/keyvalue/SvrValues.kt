@@ -51,6 +51,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     store.beginWrite()
       .putString(PIN, pin)
       .putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
+      .putBoolean(OPTED_OUT, false)
       .commit()
   }
 
@@ -60,6 +61,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
       store.beginWrite()
         .putString(PIN, pin)
         .putString(LOCK_LOCAL_PIN_HASH, localPinHash(pin))
+        .putBoolean(OPTED_OUT, false)
         .commit()
     }
   }
