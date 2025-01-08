@@ -6,21 +6,21 @@ package org.thoughtcrime.securesms.registration.fcm
 
 import android.app.Application
 import android.os.AsyncTask
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThanOrEqualTo
+import assertk.assertions.isLessThan
+import assertk.assertions.isPresent
 import io.mockk.called
 import io.mockk.confirmVerified
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.greaterThanOrEqualTo
-import org.hamcrest.Matchers.lessThan
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.isAbsent
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import java.io.IOException
 import java.util.Optional
@@ -34,7 +34,7 @@ class PushChallengeRequestTest {
 
     val challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 50L)
 
-    assertFalse(challenge.isPresent)
+    assertThat(challenge).isAbsent()
   }
 
   @Test
@@ -45,7 +45,7 @@ class PushChallengeRequestTest {
     PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 250L)
     val duration = System.currentTimeMillis() - startTime
 
-    assertThat(duration, greaterThanOrEqualTo(250L))
+    assertThat(duration).isGreaterThanOrEqualTo(250L)
   }
 
   @Test
@@ -62,12 +62,11 @@ class PushChallengeRequestTest {
     val challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 500L)
     val duration = System.currentTimeMillis() - startTime
 
-    assertThat(duration, lessThan(500L))
+    assertThat(duration).isLessThan(500L)
     verify { signal.requestRegistrationPushChallenge("session ID", "token") }
     confirmVerified(signal)
 
-    assertTrue(challenge.isPresent)
-    assertEquals("CHALLENGE", challenge.get())
+    assertThat(challenge).isPresent().isEqualTo("CHALLENGE")
   }
 
   @Test
@@ -78,7 +77,7 @@ class PushChallengeRequestTest {
     PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.empty(), 500L)
     val duration = System.currentTimeMillis() - startTime
 
-    assertThat(duration, lessThan(500L))
+    assertThat(duration).isLessThan(500L)
   }
 
   @Test
@@ -88,7 +87,7 @@ class PushChallengeRequestTest {
     val challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.empty(), 500L)
 
     verify { signal wasNot called }
-    assertFalse(challenge.isPresent)
+    assertThat(challenge).isAbsent()
   }
 
   @Test
@@ -99,6 +98,6 @@ class PushChallengeRequestTest {
 
     val challenge = PushChallengeRequest.getPushChallengeBlocking(signal, "session ID", Optional.of("token"), 500L)
 
-    assertFalse(challenge.isPresent)
+    assertThat(challenge).isAbsent()
   }
 }

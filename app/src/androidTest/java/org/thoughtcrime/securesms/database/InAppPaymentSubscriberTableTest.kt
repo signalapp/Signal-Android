@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.sqlite.SQLiteConstraintException
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
 import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
@@ -12,7 +15,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
@@ -191,11 +193,11 @@ class InAppPaymentSubscriberTableTest {
       .run()
       .readToSingleInt()
 
-    subscriberCount assertIs 1
+    assertThat(subscriberCount).isEqualTo(1)
 
     val subscriber = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-    subscriber.iapSubscriptionId?.originalTransactionId assertIs null
-    subscriber.iapSubscriptionId?.purchaseToken assertIs "testToken"
-    subscriber.subscriberId assertIs googleSubscriber.subscriberId
+    assertThat(subscriber.iapSubscriptionId?.originalTransactionId).isNull()
+    assertThat(subscriber.iapSubscriptionId?.purchaseToken).isEqualTo("testToken")
+    assertThat(subscriber.subscriberId).isEqualTo(googleSubscriber.subscriberId)
   }
 }

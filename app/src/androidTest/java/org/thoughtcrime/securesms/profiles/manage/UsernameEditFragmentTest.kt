@@ -18,6 +18,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
@@ -30,8 +33,6 @@ import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDepende
 import org.thoughtcrime.securesms.testing.Put
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIsNotNull
-import org.thoughtcrime.securesms.testing.assertIsNull
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
@@ -65,10 +66,9 @@ class UsernameEditFragmentTest {
     scenario.moveToState(Lifecycle.State.RESUMED)
 
     onView(withId(R.id.toolbar)).check { view, noViewFoundException ->
-      noViewFoundException.assertIsNull()
+      assertThat(noViewFoundException).isNull()
       val toolbar = view as Toolbar
-
-      toolbar.navigationIcon.assertIsNotNull()
+      assertThat(toolbar.navigationIcon).isNotNull()
     }
 
     onView(withText(R.string.UsernameEditFragment_username)).check(matches(isDisplayed()))

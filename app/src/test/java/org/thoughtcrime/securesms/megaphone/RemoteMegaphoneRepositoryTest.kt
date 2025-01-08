@@ -2,14 +2,14 @@ package org.thoughtcrime.securesms.megaphone
 
 import android.app.Application
 import android.net.Uri
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import io.mockk.clearMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.notNullValue
-import org.hamcrest.Matchers.nullValue
 import org.json.JSONObject
 import org.junit.After
 import org.junit.AfterClass
@@ -53,7 +53,7 @@ class RemoteMegaphoneRepositoryTest {
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(0)
 
     // THEN
-    assertThat(record, nullValue())
+    assertThat(record).isNull()
   }
 
   @Test
@@ -65,7 +65,7 @@ class RemoteMegaphoneRepositoryTest {
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(0)
 
     // THEN
-    assertThat(record, notNullValue())
+    assertThat(record).isNotNull()
   }
 
   @Test
@@ -85,7 +85,7 @@ class RemoteMegaphoneRepositoryTest {
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
 
     // THEN
-    assertThat(record, nullValue())
+    assertThat(record).isNull()
   }
 
   @Test
@@ -105,7 +105,7 @@ class RemoteMegaphoneRepositoryTest {
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
 
     // THEN
-    assertThat(record, notNullValue())
+    assertThat(record).isNotNull()
   }
 
   @Test
@@ -125,7 +125,7 @@ class RemoteMegaphoneRepositoryTest {
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
 
     // THEN
-    assertThat(record, notNullValue())
+    assertThat(record).isNotNull()
   }
 
   companion object {

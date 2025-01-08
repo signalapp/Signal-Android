@@ -1,83 +1,85 @@
 package org.thoughtcrime.securesms.util
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
 import org.junit.Test
-import org.thoughtcrime.securesms.assertIs
-import org.thoughtcrime.securesms.assertIsNull
 import org.thoughtcrime.securesms.util.UsernameUtil.checkDiscriminator
 import org.thoughtcrime.securesms.util.UsernameUtil.checkNickname
 
 class UsernameUtilTest {
   @Test
   fun checkUsername_tooShort() {
-    checkNickname(null) assertIs UsernameUtil.InvalidReason.TOO_SHORT
-    checkNickname("") assertIs UsernameUtil.InvalidReason.TOO_SHORT
-    checkNickname("ab") assertIs UsernameUtil.InvalidReason.TOO_SHORT
+    assertThat(checkNickname(null)).isEqualTo(UsernameUtil.InvalidReason.TOO_SHORT)
+    assertThat(checkNickname("")).isEqualTo(UsernameUtil.InvalidReason.TOO_SHORT)
+    assertThat(checkNickname("ab")).isEqualTo(UsernameUtil.InvalidReason.TOO_SHORT)
   }
 
   @Test
   fun checkUsername_tooLong() {
-    checkNickname("abcdefghijklmnopqrstuvwxyz1234567") assertIs UsernameUtil.InvalidReason.TOO_LONG
+    assertThat(checkNickname("abcdefghijklmnopqrstuvwxyz1234567")).isEqualTo(UsernameUtil.InvalidReason.TOO_LONG)
   }
 
   @Test
   fun checkUsername_startsWithNumber() {
-    checkNickname("0abcdefg") assertIs UsernameUtil.InvalidReason.STARTS_WITH_NUMBER
-    checkNickname("9abcdefg") assertIs UsernameUtil.InvalidReason.STARTS_WITH_NUMBER
-    checkNickname("8675309") assertIs UsernameUtil.InvalidReason.STARTS_WITH_NUMBER
+    assertThat(checkNickname("0abcdefg")).isEqualTo(UsernameUtil.InvalidReason.STARTS_WITH_NUMBER)
+    assertThat(checkNickname("9abcdefg")).isEqualTo(UsernameUtil.InvalidReason.STARTS_WITH_NUMBER)
+    assertThat(checkNickname("8675309")).isEqualTo(UsernameUtil.InvalidReason.STARTS_WITH_NUMBER)
   }
 
   @Test
   fun checkUsername_invalidCharacters() {
-    checkNickname("\$abcd") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname(" abcd") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname("ab cde") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname("%%%%%") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname("-----") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname("asĸ_me") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkNickname("+18675309") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
+    assertThat(checkNickname("\$abcd")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname(" abcd")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname("ab cde")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname("%%%%%")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname("-----")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname("asĸ_me")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkNickname("+18675309")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
   }
 
   @Test
   fun checkUsername_validUsernames() {
-    checkNickname("abcd").assertIsNull()
-    checkNickname("abcdefghijklmnopqrstuvwxyz").assertIsNull()
-    checkNickname("ABCDEFGHIJKLMNOPQRSTUVWXYZ").assertIsNull()
-    checkNickname("web_head").assertIsNull()
-    checkNickname("Spider_Fan_1991").assertIsNull()
+    assertThat(checkNickname("abcd")).isNull()
+    assertThat(checkNickname("abcdefghijklmnopqrstuvwxyz")).isNull()
+    assertThat(checkNickname("ABCDEFGHIJKLMNOPQRSTUVWXYZ")).isNull()
+    assertThat(checkNickname("web_head")).isNull()
+    assertThat(checkNickname("Spider_Fan_1991")).isNull()
   }
 
   @Test
   fun checkDiscriminator_valid() {
-    checkDiscriminator(null).assertIsNull()
-    checkDiscriminator("01").assertIsNull()
-    checkDiscriminator("111111111").assertIsNull()
+    assertThat(checkDiscriminator(null)).isNull()
+    assertThat(checkDiscriminator("01")).isNull()
+    assertThat(checkDiscriminator("111111111")).isNull()
   }
 
   @Test
   fun checkDiscriminator_tooShort() {
-    checkDiscriminator("0") assertIs UsernameUtil.InvalidReason.TOO_SHORT
-    checkDiscriminator("") assertIs UsernameUtil.InvalidReason.TOO_SHORT
+    assertThat(checkDiscriminator("0")).isEqualTo(UsernameUtil.InvalidReason.TOO_SHORT)
+    assertThat(checkDiscriminator("")).isEqualTo(UsernameUtil.InvalidReason.TOO_SHORT)
   }
 
   @Test
   fun checkDiscriminator_tooLong() {
-    checkDiscriminator("1111111111") assertIs UsernameUtil.InvalidReason.TOO_LONG
+    assertThat(checkDiscriminator("1111111111")).isEqualTo(UsernameUtil.InvalidReason.TOO_LONG)
   }
 
   @Test
   fun checkDiscriminator_00() {
-    checkDiscriminator("00") assertIs UsernameUtil.InvalidReason.INVALID_NUMBER_00
+    assertThat(checkDiscriminator("00")).isEqualTo(UsernameUtil.InvalidReason.INVALID_NUMBER_00)
   }
 
   @Test
   fun checkDiscriminator_prefixZero() {
-    checkDiscriminator("001") assertIs UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0
-    checkDiscriminator("0001") assertIs UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0
-    checkDiscriminator("011") assertIs UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0
+    assertThat(checkDiscriminator("001")).isEqualTo(UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0)
+    assertThat(checkDiscriminator("0001")).isEqualTo(UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0)
+    assertThat(checkDiscriminator("011")).isEqualTo(UsernameUtil.InvalidReason.INVALID_NUMBER_PREFIX_0)
   }
 
+  @Test
   fun checkDiscriminator_invalidChars() {
-    checkDiscriminator("a1") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
-    checkDiscriminator("1x") assertIs UsernameUtil.InvalidReason.INVALID_CHARACTERS
+    assertThat(checkDiscriminator("a1")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
+    assertThat(checkDiscriminator("1x")).isEqualTo(UsernameUtil.InvalidReason.INVALID_CHARACTERS)
   }
 }

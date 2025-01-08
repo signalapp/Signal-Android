@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import android.app.Application
 import androidx.lifecycle.AtomicReference
+import assertk.assertThat
+import assertk.assertions.isNotEqualTo
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
@@ -18,7 +20,6 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.assertIsNot
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -106,7 +107,7 @@ class RecurringInAppPaymentRepositoryTest {
 
     val newSubscriber = ref.get()
 
-    newSubscriber assertIsNot initialSubscriber
+    assertThat(newSubscriber).isNotEqualTo(initialSubscriber)
   }
 
   @Test
@@ -124,7 +125,7 @@ class RecurringInAppPaymentRepositoryTest {
 
     val newSubscriber = ref.get()
 
-    newSubscriber assertIsNot initialSubscriber
+    assertThat(newSubscriber).isNotEqualTo(initialSubscriber)
   }
 
   @Test
@@ -136,7 +137,7 @@ class RecurringInAppPaymentRepositoryTest {
     rxRule.defaultScheduler.triggerActions()
     testObserver.assertComplete()
 
-    ref.get() assertIsNot null
+    assertThat(ref.get()).isNotEqualTo(null)
     verify(inverse = true) {
       AppDependencies.donationsService.cancelSubscription(any())
     }
@@ -152,7 +153,7 @@ class RecurringInAppPaymentRepositoryTest {
     rxRule.defaultScheduler.triggerActions()
     testObserver.assertComplete()
 
-    ref.get() assertIsNot null
+    assertThat(ref.get()).isNotEqualTo(null)
     verify {
       AppDependencies.donationsService.cancelSubscription(any())
     }

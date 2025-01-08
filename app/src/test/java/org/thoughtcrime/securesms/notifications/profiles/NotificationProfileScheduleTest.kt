@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.BeforeClass
 import org.junit.Test
 import org.thoughtcrime.securesms.util.toMillis
@@ -13,7 +13,6 @@ import java.time.ZoneOffset
 import java.util.TimeZone
 
 class NotificationProfileScheduleTest {
-
   private val sunday0am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 0, 0, 0)
   private val sunday1am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 1, 0, 0)
   private val sunday9am: LocalDateTime = LocalDateTime.of(2021, 7, 4, 9, 0, 0)
@@ -41,111 +40,111 @@ class NotificationProfileScheduleTest {
   fun `when time is within enabled schedule 9am to 5pm then return true`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 900, end = 1700, daysEnabled = setOf(DayOfWeek.SUNDAY))
 
-    assertTrue(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday9am.plusHours(1).toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday9am.plusHours(1).toMillis(ZoneOffset.UTC))).isTrue()
   }
 
   @Test
   fun `when time is outside enabled schedule 9am to 5pm then return false`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 900, end = 1700, daysEnabled = setOf(DayOfWeek.SUNDAY))
 
-    assertFalse(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC))).isFalse()
   }
 
   @Test
   fun `when time is inside enabled with day wrapping schedule 10pm to 2am then return true`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 2100, end = 200, daysEnabled = setOf(DayOfWeek.MONDAY))
 
-    assertTrue(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC))).isTrue()
   }
 
   @Test
   fun `when time is outside enabled with day wrapping schedule 10pm to 2am then return false`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 2100, end = 200, daysEnabled = setOf(DayOfWeek.MONDAY))
 
-    assertFalse(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC))).isFalse()
   }
 
   @Test
   fun `when time is inside enabled schedule 12am to 10am then return true`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 1000, daysEnabled = setOf(DayOfWeek.SUNDAY))
 
-    assertTrue(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC))).isTrue()
   }
 
   @Test
   fun `when time is inside enabled schedule 12am to 12am then return true`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 0, daysEnabled = setOf(DayOfWeek.SUNDAY))
 
-    assertTrue(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC))).isTrue()
   }
 
   @Test
   fun `when time is outside enabled schedule 12am to 12am then return false`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 0, daysEnabled = setOf(DayOfWeek.SUNDAY))
 
-    assertFalse(schedule.isCurrentlyActive(monday0am.plusMinutes(1).toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(monday0am.plusMinutes(1).toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC))).isFalse()
   }
 
   @Test
   fun `when enabled schedule 12am to 12am for all days then return true`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = true, start = 0, end = 0, daysEnabled = DayOfWeek.entries.toSet())
 
-    assertTrue(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(monday0am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
-    assertTrue(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(monday0am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC))).isTrue()
+    assertThat(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC))).isTrue()
   }
 
   @Test
   fun `when disabled schedule 12am to 12am for all days then return false`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 0, daysEnabled = DayOfWeek.entries.toSet())
 
-    assertFalse(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday0am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC)))
-    assertFalse(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC)))
+    assertThat(schedule.isCurrentlyActive(sunday0am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(sunday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(sunday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(sunday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday0am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(monday10pm.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday1am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday9am.toMillis(ZoneOffset.UTC))).isFalse()
+    assertThat(schedule.isCurrentlyActive(tuesday10pm.toMillis(ZoneOffset.UTC))).isFalse()
   }
 
   @Test
   fun `when end time is midnight return midnight of next day from now`() {
     val schedule = NotificationProfileSchedule(id = 1L, enabled = false, start = 0, end = 0, daysEnabled = DayOfWeek.entries.toSet())
-    assertThat(schedule.endDateTime(sunday930am), `is`(monday0am))
+    assertThat(schedule.endDateTime(sunday930am)).isEqualTo(monday0am)
   }
 }

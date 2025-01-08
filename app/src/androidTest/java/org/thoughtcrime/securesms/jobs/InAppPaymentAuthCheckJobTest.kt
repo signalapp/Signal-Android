@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
 import okhttp3.mockwebserver.MockResponse
-import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +23,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
 import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assert
 import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.util.TestStripePaths
 import java.math.BigDecimal
@@ -65,7 +66,7 @@ class InAppPaymentAuthCheckJobTest {
     InAppPaymentAuthCheckJob().run()
 
     val receipts = SignalDatabase.donationReceipts.getReceipts(InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION)
-    receipts assert Matchers.empty()
+    assertThat(receipts).isEmpty()
   }
 
   @Test
@@ -89,7 +90,7 @@ class InAppPaymentAuthCheckJobTest {
     InAppPaymentAuthCheckJob().run()
 
     val receipts = SignalDatabase.donationReceipts.getReceipts(InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION)
-    receipts assert Matchers.hasSize(1)
+    assertThat(receipts).hasSize(1)
   }
 
   private fun initializeMockGetPaymentIntent(status: StripeIntentStatus) {

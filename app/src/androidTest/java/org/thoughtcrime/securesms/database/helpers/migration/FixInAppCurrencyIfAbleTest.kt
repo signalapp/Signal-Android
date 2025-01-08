@@ -8,6 +8,9 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import assertk.assertThat
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,7 +27,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.math.BigDecimal
 import java.util.Currency
@@ -46,7 +48,7 @@ class FixInAppCurrencyIfAbleTest {
     clearCurrencyCode(subscriber)
     migrate()
 
-    getCurrencyCode(subscriber) assertIs ""
+    assertThat(getCurrencyCode(subscriber)).isEmpty()
   }
 
   @Test
@@ -57,7 +59,7 @@ class FixInAppCurrencyIfAbleTest {
     clearCurrencyCode(subscriber)
     migrate()
 
-    getCurrencyCode(subscriber) assertIs ""
+    assertThat(getCurrencyCode(subscriber)).isEmpty()
   }
 
   @Test
@@ -67,7 +69,7 @@ class FixInAppCurrencyIfAbleTest {
     clearCurrencyCode(subscriber)
     migrate()
 
-    getCurrencyCode(subscriber) assertIs ""
+    assertThat(getCurrencyCode(subscriber)).isEmpty()
   }
 
   @Test
@@ -77,7 +79,7 @@ class FixInAppCurrencyIfAbleTest {
     clearCurrencyCode(subscriber)
     migrate()
 
-    getCurrencyCode(subscriber) assertIs "USD"
+    assertThat(getCurrencyCode(subscriber)).isEqualTo("USD")
   }
 
   @Test

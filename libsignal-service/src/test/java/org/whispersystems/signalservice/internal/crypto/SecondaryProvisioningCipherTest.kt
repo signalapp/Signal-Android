@@ -5,10 +5,10 @@
 
 package org.whispersystems.signalservice.internal.crypto
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isInstanceOf
 import okio.ByteString
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.instanceOf
-import org.hamcrest.Matchers.`is`
 import org.junit.Test
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
@@ -21,7 +21,6 @@ import java.util.UUID
 import kotlin.random.Random
 
 class SecondaryProvisioningCipherTest {
-
   @Test
   fun decrypt() {
     val provisioningCipher = SecondaryProvisioningCipher.generate(generateIdentityKeyPair())
@@ -44,18 +43,18 @@ class SecondaryProvisioningCipherTest {
     val provisionMessage = ProvisionEnvelope.ADAPTER.decode(primaryProvisioningCipher.encrypt(message))
 
     val result = provisioningCipher.decrypt(provisionMessage)
-    assertThat(result, instanceOf(SecondaryProvisioningCipher.ProvisionDecryptResult.Success::class.java))
+    assertThat(result).isInstanceOf<SecondaryProvisioningCipher.ProvisionDecryptResult.Success>()
 
     val success = result as SecondaryProvisioningCipher.ProvisionDecryptResult.Success
 
-    assertThat(success.uuid.toString(), `is`(message.aci))
-    assertThat(success.e164, `is`(message.number))
-    assertThat(success.identityKeyPair.serialize(), `is`(primaryIdentityKeyPair.serialize()))
-    assertThat(success.profileKey.serialize(), `is`(primaryProfileKey.serialize()))
-    assertThat(success.areReadReceiptsEnabled, `is`(message.readReceipts))
-    assertThat(success.primaryUserAgent, `is`(message.userAgent))
-    assertThat(success.provisioningCode, `is`(message.provisioningCode))
-    assertThat(success.provisioningVersion, `is`(message.provisioningVersion))
+    assertThat(message.aci).isEqualTo(success.uuid.toString())
+    assertThat(message.number).isEqualTo(success.e164)
+    assertThat(primaryIdentityKeyPair.serialize()).isEqualTo(success.identityKeyPair.serialize())
+    assertThat(primaryProfileKey.serialize()).isEqualTo(success.profileKey.serialize())
+    assertThat(message.readReceipts).isEqualTo(success.areReadReceiptsEnabled)
+    assertThat(message.userAgent).isEqualTo(success.primaryUserAgent)
+    assertThat(message.provisioningCode).isEqualTo(success.provisioningCode)
+    assertThat(message.provisioningVersion).isEqualTo(success.provisioningVersion)
   }
 
   companion object {

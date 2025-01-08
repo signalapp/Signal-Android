@@ -5,18 +5,19 @@
 
 package org.thoughtcrime.securesms.util
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import org.thoughtcrime.securesms.assertIs
 
+@Suppress("ClassName")
 @RunWith(Parameterized::class)
 class LocaleRemoteConfig_isEnabled(private val serializedList: String, private val e164: List<String>, private val output: Boolean) {
-
   @Test
   fun isLegal() {
     e164.forEach {
-      LocaleRemoteConfig.isEnabledE164Start(serializedList, it) assertIs output
+      assertThat(LocaleRemoteConfig.isEnabledE164Start(serializedList, it)).isEqualTo(output)
     }
   }
 

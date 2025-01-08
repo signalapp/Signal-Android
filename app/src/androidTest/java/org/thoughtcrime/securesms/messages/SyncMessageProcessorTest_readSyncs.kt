@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -13,7 +15,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -41,12 +42,12 @@ class SyncMessageProcessorTest_readSyncs {
 
     val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
     var threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 2
+    assertThat(threadRecord.unreadCount).isEqualTo(2)
 
     messageHelper.syncReadMessage(messageHelper.alice to message1Timestamp, messageHelper.alice to message2Timestamp)
 
     threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 0
+    assertThat(threadRecord.unreadCount).isEqualTo(0)
   }
 
   @Test
@@ -56,12 +57,12 @@ class SyncMessageProcessorTest_readSyncs {
 
     val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
     var threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 2
+    assertThat(threadRecord.unreadCount).isEqualTo(2)
 
     messageHelper.syncReadMessage(messageHelper.alice to message2Timestamp)
 
     threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 0
+    assertThat(threadRecord.unreadCount).isEqualTo(0)
   }
 
   @Test
@@ -76,12 +77,12 @@ class SyncMessageProcessorTest_readSyncs {
 
     val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.alice)!!
     var threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 2
+    assertThat(threadRecord.unreadCount).isEqualTo(2)
 
     messageHelper.syncReadMessage(messageHelper.alice to message2Timestamp, messageHelper.alice to editMessage1Timestamp1, messageHelper.alice to editMessage1Timestamp2)
 
     threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 0
+    assertThat(threadRecord.unreadCount).isEqualTo(0)
   }
 
   @Test
@@ -97,11 +98,11 @@ class SyncMessageProcessorTest_readSyncs {
 
     val threadId = SignalDatabase.threads.getThreadIdFor(messageHelper.group.recipientId)!!
     var threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 2
+    assertThat(threadRecord.unreadCount).isEqualTo(2)
 
     messageHelper.syncReadMessage(messageHelper.bob to message2Timestamp, messageHelper.alice to editMessage1Timestamp1, messageHelper.alice to editMessage1Timestamp2)
 
     threadRecord = SignalDatabase.threads.getThreadRecord(threadId)!!
-    threadRecord.unreadCount assertIs 0
+    assertThat(threadRecord.unreadCount).isEqualTo(0)
   }
 }

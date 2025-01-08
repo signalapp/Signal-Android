@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.database
 import android.app.Application
 import android.database.sqlite.SQLiteDatabase
 import androidx.test.core.app.ApplicationProvider
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.containsInAnyOrder
+import assertk.assertThat
+import assertk.assertions.containsExactlyInAnyOrder
+import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
+import assertk.assertions.single
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,7 +26,6 @@ import java.time.DayOfWeek
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class NotificationProfileTablesTest {
-
   @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
@@ -63,20 +63,23 @@ class NotificationProfileTablesTest {
       createdAt = 1000L
     ).profile
 
-    assertEquals(1, profile.id)
-    assertEquals("Profile", profile.name)
-    assertEquals("avatar", profile.emoji)
-    assertEquals(1000L, profile.createdAt)
-    assertEquals(1, profile.schedule.id)
+    assertThat(profile.id).isEqualTo(1)
+    assertThat(profile.name).isEqualTo("Profile")
+    assertThat(profile.emoji).isEqualTo("avatar")
+    assertThat(profile.createdAt).isEqualTo(1000L)
+    assertThat(profile.schedule.id).isEqualTo(1)
 
     val profiles = database.getProfiles()
 
-    assertEquals(1, profiles.size)
-    assertEquals(1, profiles[0].id)
-    assertEquals("Profile", profiles[0].name)
-    assertEquals("avatar", profiles[0].emoji)
-    assertEquals(1000L, profiles[0].createdAt)
-    assertEquals(1, profiles[0].schedule.id)
+    assertThat(profiles)
+      .single()
+      .transform {
+        assertThat(it.id).isEqualTo(1)
+        assertThat(it.name).isEqualTo("Profile")
+        assertThat(it.emoji).isEqualTo("avatar")
+        assertThat(it.createdAt).isEqualTo(1000L)
+        assertThat(it.schedule.id).isEqualTo(1)
+      }
   }
 
   @Test
@@ -97,11 +100,11 @@ class NotificationProfileTablesTest {
       )
     ).profile
 
-    assertEquals("Profile 2", updatedProfile.name)
-    assertEquals("avatar 2", updatedProfile.emoji)
-    assertEquals(1000L, updatedProfile.createdAt)
-    assertTrue(updatedProfile.allowAllCalls)
-    assertTrue(updatedProfile.allowAllMentions)
+    assertThat(updatedProfile.name).isEqualTo("Profile 2")
+    assertThat(updatedProfile.emoji).isEqualTo("avatar 2")
+    assertThat(updatedProfile.createdAt).isEqualTo(1000L)
+    assertThat(updatedProfile.allowAllCalls).isTrue()
+    assertThat(updatedProfile.allowAllMentions).isTrue()
   }
 
   @Test
@@ -112,19 +115,19 @@ class NotificationProfileTablesTest {
       color = AvatarColor.A210,
       createdAt = 1000L
     ).profile
-    assertFalse(profile.isRecipientAllowed(RecipientId.from(1)))
+    assertThat(profile.isRecipientAllowed(RecipientId.from(1))).isFalse()
 
     var updated = database.addAllowedRecipient(profile.id, RecipientId.from(1))
-    assertTrue(updated.isRecipientAllowed(RecipientId.from(1)))
+    assertThat(updated.isRecipientAllowed(RecipientId.from(1))).isTrue()
 
     updated = database.removeAllowedRecipient(profile.id, RecipientId.from(1))
-    assertFalse(updated.isRecipientAllowed(RecipientId.from(1)))
+    assertThat(updated.isRecipientAllowed(RecipientId.from(1))).isFalse()
 
     updated = database.updateProfile(updated.copy(allowedMembers = setOf(RecipientId.from(1)))).profile
-    assertTrue(updated.isRecipientAllowed(RecipientId.from(1)))
+    assertThat(updated.isRecipientAllowed(RecipientId.from(1))).isTrue()
 
     updated = database.updateProfile(updated.copy(allowedMembers = emptySet())).profile
-    assertFalse(updated.isRecipientAllowed(RecipientId.from(1)))
+    assertThat(updated.isRecipientAllowed(RecipientId.from(1))).isFalse()
   }
 
   @Test
@@ -135,36 +138,57 @@ class NotificationProfileTablesTest {
       color = AvatarColor.A210,
       createdAt = 1000L
     ).profile
-    assertFalse(profile.schedule.enabled)
-    assertEquals(900, profile.schedule.start)
-    assertEquals(1700, profile.schedule.end)
-    assertThat("Contains correct default days", profile.schedule.daysEnabled, containsInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+    assertThat(profile.schedule.enabled).isFalse()
+    assertThat(profile.schedule.start).isEqualTo(900)
+    assertThat(profile.schedule.end).isEqualTo(1700)
+    assertThat(profile.schedule.daysEnabled, "Contains correct default days")
+      .containsExactlyInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
-    database.updateSchedule(profile.schedule.copy(enabled = true, start = 800, end = 1800, daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)))
+    database.updateSchedule(
+      profile.schedule.copy(
+        enabled = true,
+        start = 800,
+        end = 1800,
+        daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
+      )
+    )
     var updated = database.getProfile(profile.id)!!
-    assertTrue(updated.schedule.enabled)
-    assertEquals(800, updated.schedule.start)
-    assertEquals(1800, updated.schedule.end)
-    assertThat("Contains updated days days", updated.schedule.daysEnabled, containsInAnyOrder(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY))
+    assertThat(updated.schedule.enabled).isTrue()
+    assertThat(updated.schedule.start).isEqualTo(800)
+    assertThat(updated.schedule.end).isEqualTo(1800)
+    assertThat(updated.schedule.daysEnabled, "Contains updated days days")
+      .containsExactlyInAnyOrder(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
 
     database.updateSchedule(profile.schedule)
     updated = database.getProfile(profile.id)!!
-    assertFalse(updated.schedule.enabled)
-    assertEquals(900, updated.schedule.start)
-    assertEquals(1700, updated.schedule.end)
-    assertThat("Contains correct default days", updated.schedule.daysEnabled, containsInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+    assertThat(updated.schedule.enabled).isFalse()
+    assertThat(updated.schedule.start).isEqualTo(900)
+    assertThat(updated.schedule.end).isEqualTo(1700)
+    assertThat(updated.schedule.daysEnabled, "Contains correct default days")
+      .containsExactlyInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
 
-    updated = database.updateProfile(profile.copy(schedule = profile.schedule.copy(enabled = true, start = 800, end = 1800, daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)))).profile
-    assertTrue(updated.schedule.enabled)
-    assertEquals(800, updated.schedule.start)
-    assertEquals(1800, updated.schedule.end)
-    assertThat("Contains updated days days", updated.schedule.daysEnabled, containsInAnyOrder(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY))
+    updated = database.updateProfile(
+      profile.copy(
+        schedule = profile.schedule.copy(
+          enabled = true,
+          start = 800,
+          end = 1800,
+          daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
+        )
+      )
+    ).profile
+    assertThat(updated.schedule.enabled).isTrue()
+    assertThat(updated.schedule.start).isEqualTo(800)
+    assertThat(updated.schedule.end).isEqualTo(1800)
+    assertThat(updated.schedule.daysEnabled, "Contains updated days days")
+      .containsExactlyInAnyOrder(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
 
     updated = database.updateProfile(profile).profile
-    assertFalse(updated.schedule.enabled)
-    assertEquals(900, updated.schedule.start)
-    assertEquals(1700, updated.schedule.end)
-    assertThat("Contains correct default days", updated.schedule.daysEnabled, containsInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+    assertThat(updated.schedule.enabled).isFalse()
+    assertThat(updated.schedule.start).isEqualTo(900)
+    assertThat(updated.schedule.end).isEqualTo(1700)
+    assertThat(updated.schedule.daysEnabled, "Contains correct default days")
+      .containsExactlyInAnyOrder(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY)
   }
 }
 

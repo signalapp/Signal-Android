@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.containsInAnyOrder
-import org.hamcrest.Matchers.hasSize
-import org.hamcrest.Matchers.`is`
+import assertk.assertThat
+import assertk.assertions.containsExactlyInAnyOrder
+import assertk.assertions.hasSize
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -96,11 +97,11 @@ class StorySendTableTest {
     val recipientIdsForMessage1 = storySends.getRecipientsToSendTo(messageId1, 100, false)
     val recipientIdsForMessage2 = storySends.getRecipientsToSendTo(messageId2, 200, true)
 
-    assertThat(recipientIdsForMessage1, hasSize(10))
-    assertThat(recipientIdsForMessage1, containsInAnyOrder(*recipients1to10.toTypedArray()))
+    assertThat(recipientIdsForMessage1).hasSize(10)
+    assertThat(recipientIdsForMessage1).containsExactlyInAnyOrder(*recipients1to10.toTypedArray())
 
-    assertThat(recipientIdsForMessage2, hasSize(10))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients11to20.toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(10)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients11to20.toTypedArray())
   }
 
   @Test
@@ -111,11 +112,11 @@ class StorySendTableTest {
     val recipientIdsForMessage1 = storySends.getRecipientsToSendTo(messageId1, 100, false)
     val recipientIdsForMessage2 = storySends.getRecipientsToSendTo(messageId2, 100, true)
 
-    assertThat(recipientIdsForMessage1, hasSize(5))
-    assertThat(recipientIdsForMessage1, containsInAnyOrder(*recipients1to10.take(5).toTypedArray()))
+    assertThat(recipientIdsForMessage1).hasSize(5)
+    assertThat(recipientIdsForMessage1).containsExactlyInAnyOrder(*recipients1to10.take(5).toTypedArray())
 
-    assertThat(recipientIdsForMessage2, hasSize(10))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients6to15.toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(10)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients6to15.toTypedArray())
   }
 
   @Test
@@ -131,13 +132,13 @@ class StorySendTableTest {
     val recipientIdsForMessage2 = storySends.getRecipientsToSendTo(messageId2, 100, true)
     val recipientIdsForMessage3 = storySends.getRecipientsToSendTo(messageId3, 100, true)
 
-    assertThat(recipientIdsForMessage1, hasSize(0))
+    assertThat(recipientIdsForMessage1).hasSize(0)
 
-    assertThat(recipientIdsForMessage2, hasSize(1))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(recipient1))
+    assertThat(recipientIdsForMessage2).hasSize(1)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(recipient1)
 
-    assertThat(recipientIdsForMessage3, hasSize(1))
-    assertThat(recipientIdsForMessage3, containsInAnyOrder(recipient2))
+    assertThat(recipientIdsForMessage3).hasSize(1)
+    assertThat(recipientIdsForMessage3).containsExactlyInAnyOrder(recipient2)
   }
 
   @Test
@@ -148,11 +149,11 @@ class StorySendTableTest {
     val recipientIdsForMessage1 = storySends.getRecipientsToSendTo(messageId1, 100, true)
     val recipientIdsForMessage2 = storySends.getRecipientsToSendTo(messageId2, 100, false)
 
-    assertThat(recipientIdsForMessage1, hasSize(10))
-    assertThat(recipientIdsForMessage1, containsInAnyOrder(*recipients6to15.toTypedArray()))
+    assertThat(recipientIdsForMessage1).hasSize(10)
+    assertThat(recipientIdsForMessage1).containsExactlyInAnyOrder(*recipients6to15.toTypedArray())
 
-    assertThat(recipientIdsForMessage2, hasSize(5))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients1to10.take(5).toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(5)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients1to10.take(5).toTypedArray())
   }
 
   @Test
@@ -164,11 +165,11 @@ class StorySendTableTest {
     val recipientIdsForMessage1 = storySends.getRemoteDeleteRecipients(messageId1, 100)
     val recipientIdsForMessage2 = storySends.getRemoteDeleteRecipients(messageId2, 200)
 
-    assertThat(recipientIdsForMessage1, hasSize(10))
-    assertThat(recipientIdsForMessage1, containsInAnyOrder(*recipients1to10.toTypedArray()))
+    assertThat(recipientIdsForMessage1).hasSize(10)
+    assertThat(recipientIdsForMessage1).containsExactlyInAnyOrder(*recipients1to10.toTypedArray())
 
-    assertThat(recipientIdsForMessage2, hasSize(10))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients11to20.toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(10)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients11to20.toTypedArray())
   }
 
   @Test
@@ -179,11 +180,11 @@ class StorySendTableTest {
     val recipientIdsForMessage1 = storySends.getRemoteDeleteRecipients(messageId1, 200)
     val recipientIdsForMessage2 = storySends.getRemoteDeleteRecipients(messageId2, 200)
 
-    assertThat(recipientIdsForMessage1, hasSize(5))
-    assertThat(recipientIdsForMessage1, containsInAnyOrder(*recipients1to10.take(5).toTypedArray()))
+    assertThat(recipientIdsForMessage1).hasSize(5)
+    assertThat(recipientIdsForMessage1).containsExactlyInAnyOrder(*recipients1to10.take(5).toTypedArray())
 
-    assertThat(recipientIdsForMessage2, hasSize(5))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients6to15.takeLast(5).toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(5)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients6to15.takeLast(5).toTypedArray())
   }
 
   @Test
@@ -195,8 +196,8 @@ class StorySendTableTest {
 
     val recipientIdsForMessage2 = storySends.getRemoteDeleteRecipients(messageId2, 200)
 
-    assertThat(recipientIdsForMessage2, hasSize(10))
-    assertThat(recipientIdsForMessage2, containsInAnyOrder(*recipients6to15.toTypedArray()))
+    assertThat(recipientIdsForMessage2).hasSize(10)
+    assertThat(recipientIdsForMessage2).containsExactlyInAnyOrder(*recipients6to15.toTypedArray())
   }
 
   @Test
@@ -205,7 +206,7 @@ class StorySendTableTest {
 
     val canReply = storySends.canReply(recipients1to10[0], 200)
 
-    assertThat(canReply, `is`(true))
+    assertThat(canReply).isTrue()
   }
 
   @Test
@@ -214,7 +215,7 @@ class StorySendTableTest {
 
     val canReply = storySends.canReply(recipients1to10[0], 200)
 
-    assertThat(canReply, `is`(false))
+    assertThat(canReply).isFalse()
   }
 
   @Test
@@ -225,8 +226,8 @@ class StorySendTableTest {
     val message1OnlyRecipientCanReply = storySends.canReply(recipients1to10[0], 200)
     val message2RecipientCanReply = storySends.canReply(recipients6to10[0], 200)
 
-    assertThat(message1OnlyRecipientCanReply, `is`(false))
-    assertThat(message2RecipientCanReply, `is`(true))
+    assertThat(message1OnlyRecipientCanReply).isFalse()
+    assertThat(message2RecipientCanReply).isTrue()
   }
 
   @Test

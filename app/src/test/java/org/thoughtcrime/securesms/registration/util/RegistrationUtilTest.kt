@@ -6,6 +6,12 @@
 package org.thoughtcrime.securesms.registration.util
 
 import android.app.Application
+import assertk.assertThat
+import assertk.assertions.each
+import assertk.assertions.extracting
+import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import io.mockk.Runs
 import io.mockk.every
 import io.mockk.just
@@ -20,7 +26,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log.initialize
-import org.thoughtcrime.securesms.assertIs
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -32,7 +37,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class, manifest = Config.NONE)
 class RegistrationUtilTest {
-
   @get:Rule
   val signalStore = MockSignalStoreRule(relaxed = setOf(PhoneNumberPrivacyValues::class))
 
@@ -125,8 +129,10 @@ class RegistrationUtilTest {
     verify(exactly = 0) { signalStore.registration.markRegistrationComplete() }
 
     val regUtilLogs = logRecorder.information.filter { it.tag == "RegistrationUtil" }
-    regUtilLogs.size assertIs 4
-    regUtilLogs.all { it.message == "Registration is not yet complete." } assertIs true
+    assertThat(regUtilLogs).hasSize(4)
+    assertThat(regUtilLogs)
+      .extracting { it.message }
+      .each { it.isEqualTo("Registration is not yet complete.") }
   }
 
   @Test
@@ -138,6 +144,6 @@ class RegistrationUtilTest {
     verify(exactly = 0) { signalStore.registration.markRegistrationComplete() }
 
     val regUtilLogs = logRecorder.information.filter { it.tag == "RegistrationUtil" }
-    regUtilLogs.size assertIs 0
+    assertThat(regUtilLogs).isEmpty()
   }
 }

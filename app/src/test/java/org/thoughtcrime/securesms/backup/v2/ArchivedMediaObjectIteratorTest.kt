@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.backup.v2
 
+import assertk.assertThat
+import assertk.assertions.hasSize
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Test
 import org.thoughtcrime.securesms.MockCursor
-import org.thoughtcrime.securesms.assertIsSize
 
 class ArchivedMediaObjectIteratorTest {
   private val cursor = mockk<MockCursor>(relaxed = true) {
@@ -32,6 +33,6 @@ class ArchivedMediaObjectIteratorTest {
 
     val list = iterator.asSequence().toList()
 
-    list.assertIsSize(size)
+    assertThat(list).hasSize(size)
   }
 }
