@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.Matchers.greaterThan
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -38,6 +37,8 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.util.UUID
+import assertk.assertThat
+import assertk.assertions.isGreaterThan
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -454,7 +455,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
 
     // Cleanup and confirm setup
     SignalDatabase.messages.deleteMessage(messageId = oneToOnePlaceHolderMessage, threadId = aliceThreadId, notify = false, updateThread = false)
-    SignalDatabase.messages.getMessageCountForThread(aliceThreadId) assert greaterThan(0)
+    assertThat(SignalDatabase.messages.getMessageCountForThread(aliceThreadId)).isGreaterThan(0)
 
     // WHEN
     messageHelper.syncDeleteForMeLocalOnlyConversation(messageHelper.alice)
