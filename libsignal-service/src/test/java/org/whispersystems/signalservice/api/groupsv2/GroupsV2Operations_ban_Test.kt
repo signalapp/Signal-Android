@@ -34,9 +34,12 @@ class GroupsV2Operations_ban_Test {
     val ban = randomACI()
 
     val banUuidsChange = groupOperations.createBanServiceIdsChange(
-      /* banServiceIds = */ setOf(ban),
-      /* rejectJoinRequest = */ false,
-      /* bannedMembersList = */ emptyList()
+      /* banServiceIds = */
+      setOf(ban),
+      /* rejectJoinRequest = */
+      false,
+      /* bannedMembersList = */
+      emptyList()
     )
 
     assertThat(banUuidsChange.addBannedMembers)
@@ -51,9 +54,12 @@ class GroupsV2Operations_ban_Test {
     val alreadyBanned = (0 until 5).map { ProtoTestUtils.bannedMember(UUID.randomUUID()) }
 
     val banUuidsChange = groupOperations.createBanServiceIdsChange(
-      /* banServiceIds = */ setOf(toBan),
-      /* rejectJoinRequest = */ false,
-      /* bannedMembersList = */ alreadyBanned
+      /* banServiceIds = */
+      setOf(toBan),
+      /* rejectJoinRequest = */
+      false,
+      /* bannedMembersList = */
+      alreadyBanned
     )
 
     assertThat(banUuidsChange.addBannedMembers)
@@ -74,9 +80,12 @@ class GroupsV2Operations_ban_Test {
     }.shuffled()
 
     val banUuidsChange = groupOperations.createBanServiceIdsChange(
-      /* banServiceIds = */ setOf(toBan),
-      /* rejectJoinRequest = */ false,
-      /* bannedMembersList = */ alreadyBanned
+      /* banServiceIds = */
+      setOf(toBan),
+      /* rejectJoinRequest = */
+      false,
+      /* bannedMembersList = */
+      alreadyBanned
     )
 
     val oldest = alreadyBanned.minBy { it.timestamp }
@@ -103,9 +112,12 @@ class GroupsV2Operations_ban_Test {
     }.shuffled()
 
     val banUuidsChange = groupOperations.createBanServiceIdsChange(
-      /* banServiceIds = */ toBan.toMutableSet(),
-      /* rejectJoinRequest = */ false,
-      /* bannedMembersList = */ alreadyBanned
+      /* banServiceIds = */
+      toBan.toMutableSet(),
+      /* rejectJoinRequest = */
+      false,
+      /* bannedMembersList = */
+      alreadyBanned
     )
 
     val oldestTwo = alreadyBanned

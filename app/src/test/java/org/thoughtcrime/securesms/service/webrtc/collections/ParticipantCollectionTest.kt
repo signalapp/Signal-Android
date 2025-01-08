@@ -38,7 +38,7 @@ class ParticipantCollectionTest {
     val input = listOf(
       participant(1, 1, 4),
       participant(2, 1, 2),
-      participant(3, 1, 3),
+      participant(3, 1, 3)
     )
 
     // WHEN
@@ -71,7 +71,7 @@ class ParticipantCollectionTest {
     val initial = listOf(
       participant(1, 1, 2),
       participant(2, 1, 3),
-      participant(3, 1, 4),
+      participant(3, 1, 4)
     )
     val initialCollection = testSubject.getNext(initial)
     val next = emptyList<CallParticipant>()
@@ -89,13 +89,13 @@ class ParticipantCollectionTest {
     val initial = listOf(
       participant(1, 1, 2),
       participant(2, 1, 3),
-      participant(3, 1, 4),
+      participant(3, 1, 4)
     )
     val initialCollection = testSubject.getNext(initial)
     val next = listOf(
       participant(1, 1, 2),
       participant(2, 2, 3),
-      participant(3, 1, 4),
+      participant(3, 1, 4)
     )
 
     // WHEN
@@ -111,12 +111,12 @@ class ParticipantCollectionTest {
     val initial = listOf(
       participant(1, 1, 2),
       participant(2, 1, 3),
-      participant(3, 1, 4),
+      participant(3, 1, 4)
     )
     val initialCollection = testSubject.getNext(initial)
     val next = listOf(
       participant(2, 2, 3),
-      participant(3, 1, 4),
+      participant(3, 1, 4)
     )
 
     // WHEN
@@ -134,12 +134,12 @@ class ParticipantCollectionTest {
       participant(1, 1, 2),
       participant(2, 1, 3),
       participant(3, 1, 4),
-      participant(4, 1, 5),
+      participant(4, 1, 5)
     )
     val initialCollection = testSubject.getNext(initial)
     val next = listOf(
       participant(3, 1, 4),
-      participant(2, 1, 3),
+      participant(2, 1, 3)
     )
 
     // WHEN
@@ -149,23 +149,22 @@ class ParticipantCollectionTest {
     assertThat(result.gridParticipants).containsParticipantIds(2, 3)
   }
 
-
   @Test
   fun bigTest() {
     // Welcome to the Thunder dome. 10 people enter...
 
     val testSubject = ParticipantCollection(6)
     val init = listOf(
-      participant(1, 1, 1),  // Alice
-      participant(2, 1, 1),  // Bob
-      participant(3, 1, 1),  // Charlie
-      participant(4, 1, 1),  // Diane
-      participant(5, 1, 1),  // Ethel
-      participant(6, 1, 1),  // Francis
-      participant(7, 1, 1),  // Georgina
-      participant(8, 1, 1),  // Henry
-      participant(9, 1, 1),  // Ignace
-      participant(10, 1, 1), // Jericho
+      participant(1, 1, 1), // Alice
+      participant(2, 1, 1), // Bob
+      participant(3, 1, 1), // Charlie
+      participant(4, 1, 1), // Diane
+      participant(5, 1, 1), // Ethel
+      participant(6, 1, 1), // Francis
+      participant(7, 1, 1), // Georgina
+      participant(8, 1, 1), // Henry
+      participant(9, 1, 1), // Ignace
+      participant(10, 1, 1) // Jericho
     )
 
     val initialCollection = testSubject.getNext(init)
@@ -184,7 +183,7 @@ class ParticipantCollectionTest {
       participant(7, 1, 1),
       participant(8, 1, 1),
       participant(9, 1, 1),
-      participant(10, 1, 1),
+      participant(10, 1, 1)
     )
 
     val afterBobSpoke = initialCollection.getNext(bobSpoke)
@@ -203,7 +202,7 @@ class ParticipantCollectionTest {
       participant(7, 1, 1),
       participant(8, 3, 1),
       participant(9, 1, 1),
-      participant(10, 1, 1),
+      participant(10, 1, 1)
     )
 
     val afterHenrySpoke = afterBobSpoke.getNext(henrySpoke)
@@ -222,7 +221,7 @@ class ParticipantCollectionTest {
       participant(7, 1, 1),
       participant(8, 3, 1),
       participant(9, 4, 1),
-      participant(10, 1, 1),
+      participant(10, 1, 1)
     )
 
     val afterIgnaceSpoke = afterHenrySpoke.getNext(ignaceSpoke)
@@ -240,7 +239,7 @@ class ParticipantCollectionTest {
       participant(7, 1, 1),
       participant(8, 3, 1),
       participant(9, 4, 1),
-      participant(10, 1, 1),
+      participant(10, 1, 1)
     )
 
     val afterAliceLeft = afterIgnaceSpoke.getNext(aliceLeft)
@@ -259,7 +258,7 @@ class ParticipantCollectionTest {
       participant(7, 5, 1),
       participant(8, 3, 1),
       participant(9, 4, 1),
-      participant(10, 1, 1),
+      participant(10, 1, 1)
     )
 
     val afterMixUp = afterAliceLeft.getNext(mixUp)
@@ -267,7 +266,7 @@ class ParticipantCollectionTest {
     assertThat(afterMixUp.gridParticipants).containsParticipantIds(7, 2, 3, 4, 9, 8)
     assertThat(afterMixUp.listParticipants).containsParticipantIds(5, 6, 10, 1)
   }
-  
+
   companion object {
     private fun Assert<List<CallParticipant>>.containsParticipantIds(vararg expectedParticipantIds: Long) {
       transform("Same sizes") { it.size }.isEqualTo(expectedParticipantIds.size)

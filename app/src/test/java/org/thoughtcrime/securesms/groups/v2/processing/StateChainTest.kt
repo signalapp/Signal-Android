@@ -81,7 +81,7 @@ class StateChainTest {
     assertThat(stateChain.list).containsExactly(
       stateChainPair('D', 0),
       stateChainPair('F', 2),
-      stateChainPair('E', -1),
+      stateChainPair('E', -1)
     )
   }
 

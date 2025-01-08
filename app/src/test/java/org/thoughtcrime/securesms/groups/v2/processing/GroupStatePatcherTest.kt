@@ -29,12 +29,14 @@ class GroupStatePatcherTest {
   @Test
   fun unknown_group_with_no_states_to_update() {
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = null,
         serverHistory = emptyList(),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 10,
+      /* maximumRevisionToApply = */
+      10
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).isEmpty()
@@ -47,12 +49,14 @@ class GroupStatePatcherTest {
     val currentState = state(0)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = emptyList(),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 10,
+      /* maximumRevisionToApply = */
+      10
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).isEmpty()
@@ -65,12 +69,14 @@ class GroupStatePatcherTest {
     val log0 = serverLogEntry(0)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = null,
         serverHistory = listOf(log0),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 10,
+      /* maximumRevisionToApply = */
+      10
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log0))
@@ -84,12 +90,14 @@ class GroupStatePatcherTest {
     val log1 = serverLogEntry(1)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 1,
+      /* maximumRevisionToApply = */
+      1
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1))
@@ -104,12 +112,14 @@ class GroupStatePatcherTest {
     val log2 = serverLogEntry(2)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 2
+      /* maximumRevisionToApply = */
+      2
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1), asLocal(log2))
@@ -124,12 +134,14 @@ class GroupStatePatcherTest {
     val log2 = serverLogEntry(2)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 2
+      /* maximumRevisionToApply = */
+      2
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log2))
@@ -145,12 +157,14 @@ class GroupStatePatcherTest {
     val log3 = serverLogEntry(3)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2, log3),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 2
+      /* maximumRevisionToApply = */
+      2
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1), asLocal(log2))
@@ -171,12 +185,14 @@ class GroupStatePatcherTest {
     val log3 = serverLogEntry(3)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2, log3),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST,
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
@@ -200,12 +216,14 @@ class GroupStatePatcherTest {
     val log2 = serverLogEntry(Int.MAX_VALUE)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1), asLocal(log2))
@@ -223,12 +241,14 @@ class GroupStatePatcherTest {
     val log0 = serverLogEntryWholeStateOnly(0)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = null,
         serverHistory = listOf(log0),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 10
+      /* maximumRevisionToApply = */
+      10
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log0))
@@ -242,12 +262,14 @@ class GroupStatePatcherTest {
     val log1 = serverLogEntryWholeStateOnly(1)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 1
+      /* maximumRevisionToApply = */
+      1
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(localLogEntryNoEditor(1))
@@ -263,12 +285,14 @@ class GroupStatePatcherTest {
     val log3 = serverLogEntry(3)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2, log3),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
@@ -292,12 +316,14 @@ class GroupStatePatcherTest {
     val log3 = serverLogEntry(3)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log3),
         groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log1), asLocal(log3))
@@ -332,24 +358,27 @@ class GroupStatePatcherTest {
     val log4 = DecryptedGroupChangeLog(state4, change(4))
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log3, log4),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
       asLocal(log1),
       AppliedGroupChangeLog(state3a, log3.change),
       AppliedGroupChangeLog(
-        state3, DecryptedGroupChange.Builder()
+        state3,
+        DecryptedGroupChange.Builder()
           .revision(3)
           .newAvatar(DecryptedString.Builder().value_("Lost Avatar Update").build())
           .build()
       ),
-      asLocal(log4),
+      asLocal(log4)
     )
     assertNewState(
       expectedUpdatedGroupState = log4.group,
@@ -368,12 +397,14 @@ class GroupStatePatcherTest {
     val log8 = serverLogEntryWholeStateOnly(8)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log6, log7, log8),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
@@ -398,12 +429,14 @@ class GroupStatePatcherTest {
     val log9 = logEntryMissingState(9)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log7, log8, log9),
         groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
@@ -450,19 +483,22 @@ class GroupStatePatcherTest {
     )
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log7, log8, log9),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
       asLocal(log7),
       AppliedGroupChangeLog(state7b, log8.change),
       AppliedGroupChangeLog(
-        state8, DecryptedGroupChange.Builder()
+        state8,
+        DecryptedGroupChange.Builder()
           .revision(8)
           .newMembers(listOf(newMember))
           .build()
@@ -484,12 +520,14 @@ class GroupStatePatcherTest {
     val log6 = serverLogEntryWholeStateOnly(6)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log6),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).isEmpty()
@@ -511,12 +549,14 @@ class GroupStatePatcherTest {
     val log6 = serverLogEntry(6)
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log6),
         groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(asLocal(log6))
@@ -552,12 +592,14 @@ class GroupStatePatcherTest {
     )
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log8),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(log8.group).isNotNull()
@@ -606,18 +648,21 @@ class GroupStatePatcherTest {
       .build()
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log8),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(log8.group).isNotNull()
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
       AppliedGroupChangeLog(
-        log8.group!!, expectedChange
+        log8.group!!,
+        expectedChange
       )
     )
     assertNewState(
@@ -665,18 +710,21 @@ class GroupStatePatcherTest {
       .build()
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log8),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ GroupStatePatcher.LATEST
+      /* maximumRevisionToApply = */
+      GroupStatePatcher.LATEST
     )
 
     assertThat(log8.group).isNotNull()
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
       AppliedGroupChangeLog(
-        log8.group!!, expectedChange
+        log8.group!!,
+        expectedChange
       )
     )
     assertNewState(log8.group, emptyList(), advanceGroupStateResult.updatedGroupState, advanceGroupStateResult.remainingRemoteGroupChanges)
@@ -699,18 +747,21 @@ class GroupStatePatcherTest {
     )
 
     val advanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(
-      /* inputState = */ GroupStateDiff(
+      /* inputState = */
+      GroupStateDiff(
         previousGroupState = currentState,
         serverHistory = listOf(log1, log2),
-        groupSendEndorsementsResponse = null,
+        groupSendEndorsementsResponse = null
       ),
-      /* maximumRevisionToApply = */ 2
+      /* maximumRevisionToApply = */
+      2
     )
 
     assertThat(advanceGroupStateResult.processedLogEntries).containsOnly(
       asLocal(log1),
       AppliedGroupChangeLog(
-        log2.group!!, DecryptedGroupChange.Builder()
+        log2.group!!,
+        DecryptedGroupChange.Builder()
           .revision(2)
           .editorServiceIdBytes(UuidUtil.toByteString(KNOWN_EDITOR))
           .build()
