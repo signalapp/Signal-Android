@@ -2,6 +2,10 @@ package org.thoughtcrime.securesms.groups.v2.processing
 
 import android.annotation.SuppressLint
 import android.app.Application
+import assertk.assertThat
+import assertk.assertions.any
+import assertk.assertions.contains
+import assertk.assertions.isEqualTo
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
@@ -11,9 +15,6 @@ import io.mockk.spyk
 import io.mockk.unmockkAll
 import io.mockk.unmockkStatic
 import io.mockk.verify
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.hasItem
-import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -207,7 +208,7 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local and server match revisions", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD))
+    assertThat(result.updateStatus, "local and server match revisions").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
   }
 
   @Test
@@ -224,7 +225,7 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local and server match revisions", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD))
+    assertThat(result.updateStatus, "local and server match revisions").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
   }
 
   @Test
@@ -252,8 +253,8 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("title changed to match server", result.latestServer!!.title, `is`("Asdf"))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.title, "title changed to match server").isEqualTo("Asdf")
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -289,9 +290,9 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(7))
-    assertThat("title changed on server to final result", result.latestServer!!.title, `is`("Asdf!"))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(7)
+    assertThat(result.latestServer!!.title, "title changed on server to final result").isEqualTo("Asdf!")
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -332,10 +333,10 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(111))
-    assertThat("title changed on server to final result", result.latestServer!!.title, `is`("And beyond"))
-    assertThat("Description updated in change after full snapshot", result.latestServer!!.description, `is`("Description"))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(111)
+    assertThat(result.latestServer!!.title, "title changed on server to final result").isEqualTo("And beyond")
+    assertThat(result.latestServer!!.description, "Description updated in change after full snapshot").isEqualTo("Description")
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -362,8 +363,8 @@ class GroupsV2StateProcessorTest {
       serverGuid = UUID.randomUUID().toString()
     )
 
-    assertThat("revision matches peer change", result.latestServer!!.revision, `is`(6))
-    assertThat("timer changed by peer change", result.latestServer!!.disappearingMessagesTimer!!.duration, `is`(5000))
+    assertThat(result.latestServer!!.revision, "revision matches peer change").isEqualTo(6)
+    assertThat(result.latestServer!!.disappearingMessagesTimer!!.duration, "timer changed by peer change").isEqualTo(5000)
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -393,8 +394,8 @@ class GroupsV2StateProcessorTest {
       serverGuid = UUID.randomUUID().toString()
     )
 
-    assertThat("revision matches peer change", result.latestServer!!.revision, `is`(6))
-    assertThat("member promoted by peer change", result.latestServer!!.members.map { it.aciBytes }, hasItem(selfAci.toByteString()))
+    assertThat(result.latestServer!!.revision, "revision matches peer change").isEqualTo(6)
+    assertThat(result.latestServer!!.members.map { it.aciBytes }, "member promoted by peer change").contains(selfAci.toByteString())
 
     verify { jobManager.add(ofType(DirectoryRefreshJob::class)) }
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
@@ -437,8 +438,8 @@ class GroupsV2StateProcessorTest {
       serverGuid = UUID.randomUUID().toString()
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(2))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(2)
 
     verify { groupsV2API.getGroupHistoryPage(secretParams, 1, any(), false, 0) }
 
@@ -501,8 +502,8 @@ class GroupsV2StateProcessorTest {
       serverGuid = UUID.randomUUID().toString()
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(3))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(3)
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -529,8 +530,8 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(2))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(2)
 
     verify { groupTable.create(masterKey, result.latestServer!!, null) }
   }
@@ -565,9 +566,9 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to revision added", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches peer revision added", result.latestServer!!.revision, `is`(2))
-    assertThat("title matches that as it was in revision added", result.latestServer!!.title, `is`("Baking Signal for Science"))
+    assertThat(result.updateStatus, "local should update to revision added").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches peer revision added").isEqualTo(2)
+    assertThat(result.latestServer!!.title, "title matches that as it was in revision added").isEqualTo("Baking Signal for Science")
 
     verify { jobManager.add(ofType(RequestGroupV2InfoJob::class)) }
     verify { groupTable.create(masterKey, result.latestServer!!, null) }
@@ -593,8 +594,8 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches latest server", result.latestServer!!.revision, `is`(10))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches latest server").isEqualTo(10)
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -629,8 +630,8 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(3))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(3)
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -676,9 +677,9 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches revision approved at", result.latestServer!!.revision, `is`(3))
-    assertThat("title matches revision approved at", result.latestServer!!.title, `is`("Beam me up"))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches revision approved at").isEqualTo(3)
+    assertThat(result.latestServer!!.title, "title matches revision approved at").isEqualTo("Beam me up")
 
     verify { jobManager.add(ofType(RequestGroupV2InfoJob::class)) }
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
@@ -721,8 +722,8 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches latest revision on server", result.latestServer!!.revision, `is`(101))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches latest revision on server").isEqualTo(101)
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -770,10 +771,10 @@ class GroupsV2StateProcessorTest {
       timestamp = 0
     )
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("members contains second other", result.latestServer!!.members, hasItem(secondOther))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.members, "members contains second other").contains(secondOther)
 
-    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change!!.newMembers }, hasItem(hasItem(secondOther)))
+    assertThat(updateMessageContextArgs.map { it.change!!.newMembers }, "group update messages contains new member add").any { it.contains(secondOther) }
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -805,11 +806,11 @@ class GroupsV2StateProcessorTest {
     every { profileAndMessageHelper.storeMessage(capture(updateMessageContextArgs), any(), any()) } returns Unit
 
     val result = processor.forceSanityUpdateFromServer(0)
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("members contains second other", result.latestServer!!.members, hasItem(secondOther))
-    assertThat("title should be updated", result.latestServer!!.title, `is`("Changed"))
-    assertThat("group update messages contains new member add", updateMessageContextArgs.map { it.change!!.newMembers }, hasItem(hasItem(secondOther)))
-    assertThat("group update messages contains title change", updateMessageContextArgs.mapNotNull { it.change!!.newTitle }.any { it.value_ == "Changed" })
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.members, "members contains second other").contains(secondOther)
+    assertThat(result.latestServer!!.title, "title should be updated").isEqualTo("Changed")
+    assertThat(updateMessageContextArgs.map { it.change!!.newMembers }, "group update messages contains new member add").any { it.contains(secondOther) }
+    assertThat(updateMessageContextArgs.map { it.change!!.newTitle!!.value_ }, "group update messages contains title change").contains("Changed")
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
@@ -833,7 +834,7 @@ class GroupsV2StateProcessorTest {
     }
 
     val result = processor.forceSanityUpdateFromServer(0)
-    assertThat("local should be unchanged", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD))
+    assertThat(result.updateStatus, "local should be unchanged").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
   }
 
   /** No local group state fails gracefully during force update */
@@ -842,7 +843,7 @@ class GroupsV2StateProcessorTest {
     given { }
 
     val result = processor.forceSanityUpdateFromServer(0)
-    assertThat("local should be unchanged", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD))
+    assertThat(result.updateStatus, "local should be unchanged").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_CONSISTENT_OR_AHEAD)
   }
 
   @Test(expected = GroupNotAMemberException::class)
@@ -889,9 +890,9 @@ class GroupsV2StateProcessorTest {
 
     val result = processor.forceSanityUpdateFromServer(0)
 
-    assertThat("local should update to server", result.updateStatus, `is`(GroupUpdateResult.UpdateStatus.GROUP_UPDATED))
-    assertThat("revision matches server", result.latestServer!!.revision, `is`(10))
-    assertThat("title changed on server to final result", result.latestServer!!.title, `is`("Asdf!"))
+    assertThat(result.updateStatus, "local should update to server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+    assertThat(result.latestServer!!.revision, "revision matches server").isEqualTo(10)
+    assertThat(result.latestServer!!.title, "title changed on server to final result").isEqualTo("Asdf!")
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
