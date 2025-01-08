@@ -198,7 +198,6 @@
 
     <style name="Signal.MaterialAlertDialog" parent="MaterialAlertDialog.Material3">
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
-        <item name="backgroundTint">@color/transparent</item>
     </style>
 
     <style name="Signal.MaterialAlertDialog.Wide">
