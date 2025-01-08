@@ -7417,6 +7417,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Șterge linkul de apel</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nu s-au putut salva schimbările. Verifică-ți conexiunea la rețea și încearcă din nou.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Nu s-a putut elimina linkul apelului deoarece este în uz momentan.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

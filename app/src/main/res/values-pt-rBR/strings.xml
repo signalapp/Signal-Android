@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Excluir link de chamada</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Não foi possível salvar as alterações. Verifique sua conexão de rede e tente novamente.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Não foi possível apagar o link da chamada, pois está em uso no momento.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

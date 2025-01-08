@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">कॉल लिंक हटाएं</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">बदलाव सहेजे नहीं जा सके। अपने नेटवर्क कनेक्शन की जांच करके पुनः प्रयास करें।</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">कॉल लिंक को डिलीट नहीं किया जा सका, क्योंकि यह अभी इस्तेमाल हो रहा है।</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">அழைப்பு இணைப்பை நீக்கு</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">மாற்றங்களைச் சேமிக்க முடியவில்லை. உங்கள் நெட்வொர்க் இணைப்பைச் சரிபார்த்து, மீண்டும் முயலவும்.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">அழைப்பு இணைப்பு தற்போது பயன்பாட்டில் உள்ளதால் அதை அழிக்க முடியவில்லை.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

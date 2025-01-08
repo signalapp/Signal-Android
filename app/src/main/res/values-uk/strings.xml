@@ -7574,6 +7574,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Видалити посилання на виклик</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Не вдалося зберегти зміни. Перевірте підключення до мережі і спробуйте знову.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Посилання зараз використовується, тому його не вдалося видалити.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

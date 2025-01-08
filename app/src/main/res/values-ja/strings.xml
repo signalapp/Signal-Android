@@ -7103,6 +7103,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">通話リンクの消去</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">変更内容を保存できませんでした。ネットワーク接続を確認して再度試してください。</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">通話リンクは現在使用中のため消去できませんでした。</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

@@ -224,11 +224,11 @@
     <!-- Dialog button to report as spam only -->
     <string name="BlockUnblockDialog_report_spam">Denunciar spam</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Se notificará a Signal que esta persona puede estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
+    <string name="BlockUnblockDialog_report_spam_description">Se notificará a Signal que esta persona podría estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Se notificará a Signal que %1$s, la persona que te invitó a este grupo, puede estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Se notificará a Signal que %1$s, la persona que te ha invitado a este grupo, podría estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Se notificará a Signal que la persona que te invitó a este grupo puede estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Se notificará a Signal que la persona que te ha invitado a este grupo podría estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Hoy</string>
@@ -399,8 +399,8 @@
 
     <!-- ConversationItem -->
     <string name="ConversationItem_error_not_sent_tap_for_details">No enviado. Toca para ver más.</string>
-    <string name="ConversationItem_error_partially_not_delivered">No enviado a todas las personas. Toca para ver más.</string>
-    <string name="ConversationItem_error_network_not_delivered">No se ha podido enviar</string>
+    <string name="ConversationItem_error_partially_not_delivered">Enviado parcialmente. Toca para ver más.</string>
+    <string name="ConversationItem_error_network_not_delivered">No enviado</string>
     <string name="ConversationItem_group_action_left">%1$s ha abandonado el grupo.</string>
     <string name="ConversationItem_send_paused">Envío pausado</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">¿Enviar como SMS no cifrado?</string>
@@ -652,7 +652,7 @@
     <!-- Dialog title shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_spam">Denunciado como spam</string>
     <!-- Dialog message shown after reporting spam and tapping the conversation item -->
-    <string name="ConversationFragment_reported_spam_message">Se ha notificado a Signal que esta persona puede estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
+    <string name="ConversationFragment_reported_spam_message">Se ha notificado a Signal que esta persona podría estar enviando spam. Signal no puede ver el contenido de ningún chat.</string>
     <!-- Toast shown after reporting spam and tapping the conversation item -->
     <string name="ConversationFragment_reported_as_spam">Denunciado como spam</string>
     <!-- Toast shown after reporting and blocking a conversation -->
@@ -667,9 +667,9 @@
     <!-- Dialog subtitle when showing tips for a group conversation -->
     <string name="SafetyTips_subtitle_group">Revisa detenidamente esta solicitud. Ninguno de tus contactos o personas con las que chateas están en este grupo. Aquí hay algunas cosas a tener en cuenta:</string>
     <!-- Button text to move to the previous tip-->
-    <string name="SafetyTips_previous_tip">Consejo anterior</string>
+    <string name="SafetyTips_previous_tip">Anterior</string>
     <!-- Button text to move to the next tip -->
-    <string name="SafetyTips_next_tip">Consejo siguiente</string>
+    <string name="SafetyTips_next_tip">Siguiente</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Estafas de criptomonedas o dinero</string>
     <!-- Message of tip 1 -->
@@ -677,7 +677,7 @@
     <!-- Title of tip 2 -->
     <string name="SafetyTips_tip2_title">Mensajes confusos o irrelevantes</string>
     <!-- Message of tip 2 -->
-    <string name="SafetyTips_tip2_message">Los spammers a menudo comienzan con un mensaje simple como \"Hola\" para captar tu atención. Si respondes, es posible que interactúen más.</string>
+    <string name="SafetyTips_tip2_message">Los spammers a menudo te envían un mensaje simple, como \"Hola\", para captar tu atención. Si respondes, es posible que interactúen más.</string>
     <!-- Title of tip 3 -->
     <string name="SafetyTips_tip3_title">Mensajes con enlaces</string>
     <!-- Message of tip 3 -->
@@ -1583,7 +1583,7 @@
     <string name="MessageRetrievalService_background_connection_enabled">Conexión en segundo plano activada</string>
 
     <!-- MediaOverviewActivity -->
-    <string name="MediaOverviewActivity_Media">Archivos multimedia</string>
+    <string name="MediaOverviewActivity_Media">Multimedia</string>
     <string name="MediaOverviewActivity_Files">Archivos</string>
     <string name="MediaOverviewActivity_Audio">Audios</string>
     <string name="MediaOverviewActivity_All">Todos</string>
@@ -2139,7 +2139,7 @@
     <string name="ReactionsRecipientAdapter_you">Tú</string>
 
     <!-- RecaptchaRequiredBottomSheetFragment -->
-    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificar para continuar chateando</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificar para seguir chateando</string>
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ayudarnos a prevenir spam en Signal, completa la verificación.</string>
     <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Después de completar la verificación, podrás seguir chateando y se enviarán todos los mensajes pausados.</string>
 
@@ -2279,7 +2279,7 @@
     <!-- Warning displayed when entering a call via a link and you have Phone Number Privacy enabled-->
     <string name="WebRtcCallView__anyone_who_joins_pnp_enabled">Cualquier persona que se una a esta llamada usando el enlace podrá ver tu nombre y foto.</string>
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
-    <string name="WebRtcCallView__waiting_to_be_let_in">Esperando para entrar…</string>
+    <string name="WebRtcCallView__waiting_to_be_let_in">Esperando aprobación para entrar…</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Signal llamará a %1$s</string>
     <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal llamará a %1$s y %2$s</string>
@@ -2875,7 +2875,7 @@
     <string name="MessageNotifier_failed_to_deliver_message">No se ha podido entregar el mensaje.</string>
     <string name="MessageNotifier_error_delivering_message">No se ha podido entregar el mensaje.</string>
     <string name="MessageNotifier_message_delivery_paused">Entrega de mensaje pausada.</string>
-    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verificar para continuar chateando en Signal.</string>
+    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verificar para seguir chateando en Signal.</string>
     <string name="MessageNotifier_mark_all_as_read">Marcar todos como leídos</string>
     <string name="MessageNotifier_mark_read">Marcar como leído</string>
     <string name="MessageNotifier_turn_off_these_notifications">Desactivar estas notificaciones</string>
@@ -3160,7 +3160,7 @@
     <string name="conversation_item__secure_message_description">Mensaje seguro</string>
 
     <!-- conversation_item_sent -->
-    <string name="conversation_item_sent__send_failed_indicator_description">No se ha podido enviar</string>
+    <string name="conversation_item_sent__send_failed_indicator_description">No enviado</string>
     <string name="conversation_item_sent__pending_approval_description">Pendiente de aprobación</string>
     <string name="conversation_item_sent__delivered_description">Entregado</string>
     <string name="conversation_item_sent__message_read">Mensaje leído</string>
@@ -3577,7 +3577,7 @@
     <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
     <string name="preferences__change_your_passphrase">Cambia tu frase de contraseña</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
-    <string name="preferences__enable_passphrase">Activar bloqueo de pantalla con frase de contraseña</string>
+    <string name="preferences__enable_passphrase">Activar bloqueo con contraseña</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquea la pantalla y las notificaciones con una frase de contraseña.</string>
     <string name="preferences__screen_security">Seguridad de la pantalla</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquea automáticamente Signal tras el intervalo de inactividad que especifiques</string>
@@ -3740,7 +3740,7 @@
     <string name="preferences_data_and_storage__never">Nunca</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi y datos móviles</string>
     <string name="preferences_data_and_storage__mobile_data_only">Solo datos móviles</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ahorrar datos puede mejorar la calidad de las llamadas en redes con mala cobertura</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ahorrar datos puede mejorar la calidad de las llamadas en redes con mala cobertura.</string>
     <string name="preferences_notifications__in_chat_sounds">Sonidos en el chat</string>
     <string name="preferences_notifications__show">Mostrar</string>
     <string name="preferences_notifications__ringtone">Tono de llamada</string>
@@ -4030,7 +4030,7 @@
 
 
     <!-- CurrencyAmountFormatter_s_at_s -->
-    <string name="CurrencyAmountFormatter_s_at_s">%1$s a %2$s</string>
+    <string name="CurrencyAmountFormatter_s_at_s">%1$s - %2$s</string>
 
     <!-- SetCurrencyFragment -->
     <string name="SetCurrencyFragment__set_currency">Establecer moneda</string>
@@ -4355,7 +4355,7 @@
     <string name="registration_activity__skip_restore">Omitir restauración</string>
     <string name="preferences_chats__chat_backups">Copias de seguridad de los chats</string>
     <string name="preferences_chats__transfer_account">Transferir cuenta</string>
-    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir cuenta a un dispositivo Android nuevo</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfiere tu cuenta a un dispositivo Android nuevo.</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">Introduce la contraseña de tu copia de seguridad</string>
     <string name="RegistrationActivity_restore">Restaurar</string>
@@ -4615,9 +4615,9 @@
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Transferir cuenta</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Descarga Signal en tu dispositivo Android nuevo</string>
+    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Descarga Signal en tu nuevo dispositivo Android.</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Toca \"Transferir o restaurar cuenta\""</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Toca \"Transferir o restaurar cuenta\"."</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecciona \"Transferir desde dispositivo Android\" y luego \"Continuar\". Mantén ambos dispositivos cerca."</string>
     <string name="OldDeviceTransferInstructions__continue">Continuar</string>
@@ -5022,8 +5022,8 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Cuenta</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Con el tiempo, te lo pediremos con menos frecuencia</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Solicitar tu PIN de Signal para volver a registrar tu número de teléfono en Signal</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Con el tiempo, te lo pediremos con menos frecuencia.</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Usa tu PIN de Signal para volver a registrar tu número de teléfono en Signal.</string>
     <string name="AccountSettingsFragment__change_phone_number">Cambiar número de teléfono</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Datos de tu cuenta</string>
@@ -6188,9 +6188,9 @@
     <!-- Label when multiple stories are pending sending -->
     <string name="StoriesLandingItem__sending_d">Enviando %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
-    <string name="StoriesLandingItem__send_failed">No se ha podido enviar</string>
+    <string name="StoriesLandingItem__send_failed">No enviado</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">No se ha enviado a todas las personas</string>
+    <string name="StoriesLandingItem__partially_sent">Enviado parcialmente</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Toca para reintentar</string>
     <!-- Title of dialog confirming decision to hide a story -->
@@ -6243,9 +6243,9 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Responder</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">No enviado a todas las personas. Toca para ver más.</string>
+    <string name="StoryViewerPageFragment__partially_sent">Enviado parcialmente. Toca para ver más.</string>
     <!-- Displayed when viewing a post that has failed to send -->
-    <string name="StoryViewerPageFragment__send_failed">No se ha podido enviar. Toca para reintentar</string>
+    <string name="StoryViewerPageFragment__send_failed">No enviado. Toca para reintentar.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Responder en el grupo</string>
     <!-- Displayed when a story has no views -->
@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Eliminar enlace de llamada</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">No se han podido guardar los cambios. Comprueba tu conexión de red e inténtalo de nuevo.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">No se ha podido eliminar el enlace de llamada porque se está usando en este momento.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

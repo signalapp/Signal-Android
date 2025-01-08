@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Oproeplink verwijderen</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Kan wijzigingen niet opslaan. Controleer je internetverbinding en probeer het opnieuw.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Oproeplink kon niet worden verwijderd, omdat deze op dit moment in gebruik is.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

@@ -7260,6 +7260,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Supprimer le lien de l’appel</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Impossible d’enregistrer les modifications. Veuillez vérifier votre connexion réseau puis réessayez.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Impossible de supprimer le lien d\'appel, car il est en cours d\'utilisation.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
