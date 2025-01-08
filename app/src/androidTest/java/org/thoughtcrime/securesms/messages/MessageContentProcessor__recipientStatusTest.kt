@@ -13,10 +13,12 @@ import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.GroupTestingUtils.asMember
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.GroupContextV2
+import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEqualTo
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -71,14 +73,14 @@ class MessageContentProcessor__recipientStatusTest {
     val secondSyncMessages = MessageTableTestUtils.getMessages(threadId)
     val secondReceiptInfo = SignalDatabase.groupReceipts.getGroupReceiptInfo(firstMessageId)
 
-    firstSyncMessages.size assertIs 1
-    firstSyncMessages[0].body assertIs initialTextMessage.body
-    firstReceiptInfo.first { it.recipientId == harness.others[0] }.status assertIs GroupReceiptTable.STATUS_UNDELIVERED
-    firstReceiptInfo.first { it.recipientId == harness.others[1] }.status assertIs GroupReceiptTable.STATUS_UNKNOWN
+    assertThat(firstSyncMessages).hasSize(1)
+    assertThat(firstSyncMessages[0].body).isEqualTo(initialTextMessage.body)
+    assertThat(firstReceiptInfo.first { it.recipientId == harness.others[0] }.status).isEqualTo(GroupReceiptTable.STATUS_UNDELIVERED)
+    assertThat(firstReceiptInfo.first { it.recipientId == harness.others[1] }.status).isEqualTo(GroupReceiptTable.STATUS_UNKNOWN)
 
-    secondSyncMessages.size assertIs 1
-    secondSyncMessages[0].body assertIs initialTextMessage.body
-    secondReceiptInfo.first { it.recipientId == harness.others[0] }.status assertIs GroupReceiptTable.STATUS_UNDELIVERED
-    secondReceiptInfo.first { it.recipientId == harness.others[1] }.status assertIs GroupReceiptTable.STATUS_UNDELIVERED
+    assertThat(secondSyncMessages).hasSize(1)
+    assertThat(secondSyncMessages[0].body).isEqualTo(initialTextMessage.body)
+    assertThat(secondReceiptInfo.first { it.recipientId == harness.others[0] }.status).isEqualTo(GroupReceiptTable.STATUS_UNDELIVERED)
+    assertThat(secondReceiptInfo.first { it.recipientId == harness.others[1] }.status).isEqualTo(GroupReceiptTable.STATUS_UNDELIVERED)
   }
 }

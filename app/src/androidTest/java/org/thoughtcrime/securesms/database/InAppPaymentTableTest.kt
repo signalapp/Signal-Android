@@ -14,7 +14,8 @@ import org.signal.core.util.deleteAll
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class InAppPaymentTableTest {
@@ -37,13 +38,13 @@ class InAppPaymentTableTest {
     )
 
     val paymentBeforeUpdate = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    paymentBeforeUpdate?.state assertIs InAppPaymentTable.State.CREATED
+    assertThat(paymentBeforeUpdate?.state).isEqualTo(InAppPaymentTable.State.CREATED)
 
     SignalDatabase.inAppPayments.update(
       inAppPayment = paymentBeforeUpdate!!.copy(state = InAppPaymentTable.State.PENDING)
     )
 
     val paymentAfterUpdate = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    paymentAfterUpdate?.state assertIs InAppPaymentTable.State.PENDING
+    assertThat(paymentAfterUpdate?.state).isEqualTo(InAppPaymentTable.State.PENDING)
   }
 }

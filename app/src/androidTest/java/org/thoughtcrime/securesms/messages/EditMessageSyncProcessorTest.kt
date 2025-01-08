@@ -20,12 +20,13 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.MessageContentFuzzer
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import kotlin.time.Duration.Companion.seconds
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class EditMessageSyncProcessorTest {
@@ -201,12 +202,12 @@ class EditMessageSyncProcessorTest {
     fun assert() {
       syncMessages.zip(localMessages)
         .forEach { (v2, v1) ->
-          v2.assertIs(v1)
+          assertThat(v2).isEqualTo(v1)
         }
 
       syncAttachments.zip(localAttachments)
         .forEach { (v2, v1) ->
-          v2.assertIs(v1)
+          assertThat(v2).isEqualTo(v1)
         }
     }
 

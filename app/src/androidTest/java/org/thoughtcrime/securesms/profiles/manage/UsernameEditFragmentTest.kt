@@ -30,12 +30,13 @@ import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDepende
 import org.thoughtcrime.securesms.testing.Put
 import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIsNotNull
-import org.thoughtcrime.securesms.testing.assertIsNull
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
 import java.util.concurrent.TimeUnit
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 
 @RunWith(AndroidJUnit4::class)
 class UsernameEditFragmentTest {
@@ -65,10 +66,9 @@ class UsernameEditFragmentTest {
     scenario.moveToState(Lifecycle.State.RESUMED)
 
     onView(withId(R.id.toolbar)).check { view, noViewFoundException ->
-      noViewFoundException.assertIsNull()
+      assertThat(noViewFoundException).isNull()
       val toolbar = view as Toolbar
-
-      toolbar.navigationIcon.assertIsNotNull()
+      assertThat(toolbar.navigationIcon).isNotNull()
     }
 
     onView(withText(R.string.UsernameEditFragment_username)).check(matches(isDisplayed()))

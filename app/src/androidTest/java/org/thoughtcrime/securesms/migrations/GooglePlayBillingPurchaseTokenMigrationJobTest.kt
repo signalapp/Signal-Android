@@ -17,9 +17,10 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class GooglePlayBillingPurchaseTokenMigrationJobTest {
@@ -101,7 +102,7 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
 
     val sub = SignalDatabase.inAppPaymentSubscribers.getBackupsSubscriber()
 
-    sub?.iapSubscriptionId?.purchaseToken assertIs "-"
+    assertThat(sub?.iapSubscriptionId?.purchaseToken).isEqualTo("-")
   }
 
   @Test
@@ -126,7 +127,7 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
 
     val sub = SignalDatabase.inAppPaymentSubscribers.getBackupsSubscriber()
 
-    sub?.iapSubscriptionId?.purchaseToken assertIs "-"
+    assertThat(sub?.iapSubscriptionId?.purchaseToken).isEqualTo("-")
   }
 
   @Test
@@ -157,6 +158,6 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
 
     val sub = SignalDatabase.inAppPaymentSubscribers.getBackupsSubscriber()
 
-    sub?.iapSubscriptionId?.purchaseToken assertIs "purchaseToken"
+    assertThat(sub?.iapSubscriptionId?.purchaseToken).isEqualTo("purchaseToken")
   }
 }

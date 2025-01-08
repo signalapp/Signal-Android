@@ -22,8 +22,6 @@ import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
-import org.thoughtcrime.securesms.testing.assertIs
-import org.thoughtcrime.securesms.testing.assertIsNot
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
@@ -35,6 +33,9 @@ import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.Optional
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNotEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class AttachmentTableTest {
@@ -142,8 +143,8 @@ class AttachmentTableTest {
     val highInfo = SignalDatabase.attachments.getDataFileInfo(highDatabaseAttachment.attachmentId)!!
 
     assertNotEquals(standardInfo, highInfo)
-    highInfo.file assertIsNot standardInfo.file
-    highInfo.file.exists() assertIs true
+    assertThat(highInfo.file).isNotEqualTo(standardInfo.file)
+    assertThat(highInfo.file.exists()).isEqualTo(true)
   }
 
   /**
@@ -174,10 +175,10 @@ class AttachmentTableTest {
     val highInfo = SignalDatabase.attachments.getDataFileInfo(highDatabaseAttachment.attachmentId)!!
     val secondHighInfo = SignalDatabase.attachments.getDataFileInfo(secondHighDatabaseAttachment.attachmentId)!!
 
-    highInfo.file assertIsNot standardInfo.file
-    secondHighInfo.file assertIs highInfo.file
-    standardInfo.file.exists() assertIs true
-    highInfo.file.exists() assertIs true
+    assertThat(highInfo.file).isNotEqualTo(standardInfo.file)
+    assertThat(secondHighInfo.file).isEqualTo(highInfo.file)
+    assertThat(standardInfo.file.exists()).isEqualTo(true)
+    assertThat(highInfo.file.exists()).isEqualTo(true)
   }
 
   @Test
