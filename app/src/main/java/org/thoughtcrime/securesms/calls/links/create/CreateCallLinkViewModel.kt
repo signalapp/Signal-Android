@@ -99,11 +99,6 @@ class CreateCallLinkViewModel(
       }
   }
 
-  fun toggleApproveAllMembers(): Single<UpdateCallLinkResult> {
-    return setApproveAllMembers(_callLink.value.state.restrictions != Restrictions.ADMIN_APPROVAL)
-      .observeOn(AndroidSchedulers.mainThread())
-  }
-
   fun setCallName(callName: String): Single<UpdateCallLinkResult> {
     return commitCallLink()
       .flatMap {
