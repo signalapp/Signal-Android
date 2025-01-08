@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.stories.settings.select
 
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doAfterTextChanged
@@ -77,6 +79,11 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     }
 
     viewModel.state.observe(viewLifecycleOwner) {
+      actionButton.visibility = if(it.selection.isEmpty()) {
+        GONE
+      } else {
+        VISIBLE
+      }
       if (it.distributionListId == null || it.privateStory != null) {
         if (it.isStartingSelection) {
           getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
@@ -141,7 +148,9 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     return HeaderAction(
       R.string.BaseStoryRecipientSelectionFragment__select_all
     ) {
-      viewModel.toggleSelectAll()
+      viewModel.toggleSelectAll {
+        getAttachedContactSelectionFragment().markSelected(it)
+      }
     }
   }
 

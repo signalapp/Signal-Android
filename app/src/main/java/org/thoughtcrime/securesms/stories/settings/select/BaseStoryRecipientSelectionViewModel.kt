@@ -38,9 +38,10 @@ class BaseStoryRecipientSelectionViewModel(
     disposable.clear()
   }
 
-  fun toggleSelectAll() {
+  fun toggleSelectAll(onUpdate: (Set<RecipientId>) -> Unit) {
     disposable += repository.getAllSignalContacts().subscribeBy { allSignalRecipients ->
       store.update { it.copy(selection = allSignalRecipients) }
+      onUpdate(allSignalRecipients)
     }
   }
 
