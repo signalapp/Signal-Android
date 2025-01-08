@@ -161,14 +161,17 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isIdentityUpdate(record.type) -> {
+          if (record.fromRecipientId == selfRecipientId.toLong()) continue
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_UPDATE)
         }
 
         MessageTypes.isIdentityVerified(record.type) -> {
+          if (record.fromRecipientId == selfRecipientId.toLong()) continue
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_VERIFIED)
         }
 
         MessageTypes.isIdentityDefault(record.type) -> {
+          if (record.fromRecipientId == selfRecipientId.toLong()) continue
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_DEFAULT)
         }
 
