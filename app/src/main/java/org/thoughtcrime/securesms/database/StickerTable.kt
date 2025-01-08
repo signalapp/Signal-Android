@@ -166,13 +166,16 @@ class StickerTable(
   }
 
   fun getAllStickerPacks(limit: String?): Cursor {
-    return readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$COVER = 1")
-      .orderBy("$PACK_ORDER ASC")
-      .limit(limit ?: "")
-      .run()
+    return readableDatabase.query(
+      TABLE_NAME,
+      null,
+      "$COVER = 1",
+      null,
+      PACK_ID,
+      null,
+      "$PACK_ORDER ASC",
+      limit
+    )
   }
 
   fun getStickersForPack(packId: String): Cursor {
