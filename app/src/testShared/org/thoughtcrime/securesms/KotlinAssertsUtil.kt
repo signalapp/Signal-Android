@@ -5,8 +5,12 @@
 
 package org.thoughtcrime.securesms
 
+import assertk.Assert
+import assertk.assertions.isTrue
 import org.hamcrest.MatcherAssert
 import org.hamcrest.Matchers
+import org.signal.core.util.isAbsent
+import java.util.Optional
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
@@ -36,4 +40,8 @@ infix fun <T : Any?> T.assertIsNot(expected: T) {
 
 infix fun <E, T : Collection<E>> T.assertIsSize(expected: Int) {
   MatcherAssert.assertThat(this, Matchers.hasSize(expected))
+}
+
+fun <T> Assert<Optional<T>>.isAbsent() {
+  transform { it.isAbsent() }.isTrue()
 }
