@@ -144,7 +144,7 @@
         <!-- Allows for Overrides -->
     </style>
 
-    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
+    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.Material3.Light">
         <item name="theme_type">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
@@ -233,7 +233,7 @@
         <!-- leave empty to allow overriding -->
     </style>
 
-    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
+    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.Material3.Dark">
         <item name="theme_type">dark</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
