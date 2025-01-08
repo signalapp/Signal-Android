@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,8 +20,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import assertk.assertions.hasSize
-import assertk.assertThat
 
 @RunWith(AndroidJUnit4::class)
 class NameCollisionTablesTest {

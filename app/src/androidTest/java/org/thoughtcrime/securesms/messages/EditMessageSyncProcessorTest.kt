@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.messages
 import android.database.Cursor
 import android.util.Base64
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,8 +27,6 @@ import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import kotlin.time.Duration.Companion.seconds
-import assertk.assertThat
-import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class EditMessageSyncProcessorTest {

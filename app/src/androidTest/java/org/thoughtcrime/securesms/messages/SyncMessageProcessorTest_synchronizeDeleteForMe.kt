@@ -6,6 +6,14 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
+import assertk.assertions.isGreaterThan
+import assertk.assertions.isNotEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import org.junit.After
 import org.junit.Before
 import org.junit.Ignore
@@ -32,14 +40,6 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.util.UUID
-import assertk.assertThat
-import assertk.assertions.isGreaterThan
-import assertk.assertions.isEqualTo
-import assertk.assertions.isNotEqualTo
-import assertk.assertions.isNotNull
-import assertk.assertions.isNull
-import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
@@ -426,7 +426,7 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
     val threadIds = allMessages.keys.map { SignalDatabase.threads.getThreadIdFor(it)!! }
     threadIds.forEach { assertThat(SignalDatabase.messages.getMessageCountForThread(it)).isEqualTo(20) }
 
-      // WHEN
+    // WHEN
     messageHelper.syncDeleteForMeConversation(
       DeleteForMeSync(conversationId = messageHelper.alice, allMessages[messageHelper.alice]!!.takeLast(5).map { it.recipientId to it.timetamp }, isFullDelete = true),
       DeleteForMeSync(conversationId = messageHelper.bob, allMessages[messageHelper.bob]!!.takeLast(5).map { it.recipientId to it.timetamp }, isFullDelete = true)

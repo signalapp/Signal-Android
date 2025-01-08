@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -8,8 +10,6 @@ import org.signal.core.util.count
 import org.signal.core.util.readToSingleInt
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import assertk.assertThat
-import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class BackupMediaSnapshotTableTest {

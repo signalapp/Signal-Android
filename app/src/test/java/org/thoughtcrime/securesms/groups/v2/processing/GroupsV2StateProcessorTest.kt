@@ -392,7 +392,6 @@ class GroupsV2StateProcessorTest {
           }
       }
 
-
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
 

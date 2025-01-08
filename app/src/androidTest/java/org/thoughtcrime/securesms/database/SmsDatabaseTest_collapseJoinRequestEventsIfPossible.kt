@@ -1,11 +1,16 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
+import assertk.assertions.isPresent
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Hex
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 import org.thoughtcrime.securesms.database.model.GroupsV2UpdateMessageConverter
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
@@ -15,18 +20,13 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.deleteRequesting
 import org.thoughtcrime.securesms.database.model.databaseprotos.groupChange
 import org.thoughtcrime.securesms.database.model.databaseprotos.groupContext
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.isAbsent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.UUID
-import org.thoughtcrime.securesms.isAbsent
-import assertk.assertThat
-import assertk.assertions.isPresent
-import assertk.assertions.isNull
-import assertk.assertions.isEqualTo
-import org.thoughtcrime.securesms.database.MessageTable.InsertResult
 
 @Suppress("ClassName", "TestFunctionName")
 @RunWith(AndroidJUnit4::class)

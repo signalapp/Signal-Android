@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEqualTo
 import okio.ByteString.Companion.toByteString
 import org.junit.Before
 import org.junit.Rule
@@ -16,9 +19,6 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.GroupContextV2
-import assertk.assertThat
-import assertk.assertions.hasSize
-import assertk.assertions.isEqualTo
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)

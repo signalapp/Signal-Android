@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.containsExactlyInAnyOrder
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -44,8 +46,6 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import java.util.Optional
 import java.util.UUID
-import assertk.assertions.containsExactlyInAnyOrder
-import assertk.assertThat
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)

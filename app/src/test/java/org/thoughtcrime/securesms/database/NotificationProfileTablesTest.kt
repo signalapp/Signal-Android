@@ -149,13 +149,14 @@ class NotificationProfileTablesTest {
         enabled = true,
         start = 800,
         end = 1800,
-        daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)),
+        daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
+      )
     )
     var updated = database.getProfile(profile.id)!!
     assertThat(updated.schedule.enabled).isTrue()
     assertThat(updated.schedule.start).isEqualTo(800)
     assertThat(updated.schedule.end).isEqualTo(1800)
-    assertThat( updated.schedule.daysEnabled, "Contains updated days days")
+    assertThat(updated.schedule.daysEnabled, "Contains updated days days")
       .containsExactlyInAnyOrder(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
 
     database.updateSchedule(profile.schedule)
@@ -172,7 +173,7 @@ class NotificationProfileTablesTest {
           enabled = true,
           start = 800,
           end = 1800,
-          daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY),
+          daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.FRIDAY)
         )
       )
     ).profile

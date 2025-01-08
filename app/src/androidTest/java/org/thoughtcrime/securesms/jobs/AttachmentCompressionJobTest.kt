@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.jobs
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import assertk.assertThat
+import assertk.assertions.isTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,8 +26,6 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Optional
 import java.util.concurrent.CountDownLatch
-import assertk.assertions.isTrue
-import assertk.assertThat
 
 @RunWith(AndroidJUnit4::class)
 class AttachmentCompressionJobTest {

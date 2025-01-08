@@ -5,6 +5,10 @@
 
 package org.thoughtcrime.securesms.database
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.Test
 import org.signal.core.util.forEach
 import org.signal.core.util.requireLong
@@ -13,10 +17,6 @@ import org.signal.core.util.select
 import org.signal.core.util.updateAll
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isFalse
-import assertk.assertions.isTrue
 
 class LogDatabaseTest {
 

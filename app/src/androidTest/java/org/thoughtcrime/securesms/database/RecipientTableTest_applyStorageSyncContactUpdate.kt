@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,9 +21,6 @@ import org.thoughtcrime.securesms.util.MessageTableTestUtils
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)

@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
+import assertk.assertions.isEmpty
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
 import org.junit.Rule
@@ -24,9 +27,6 @@ import org.thoughtcrime.securesms.testing.success
 import org.thoughtcrime.securesms.util.TestStripePaths
 import java.math.BigDecimal
 import java.util.Currency
-import assertk.assertions.hasSize
-import assertk.assertions.isEmpty
-import assertk.assertThat
 
 @RunWith(AndroidJUnit4::class)
 class InAppPaymentAuthCheckJobTest {

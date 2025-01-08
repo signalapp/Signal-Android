@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.migrations
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import io.mockk.Called
 import io.mockk.coEvery
 import io.mockk.verify
@@ -19,8 +21,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import assertk.assertThat
-import assertk.assertions.isEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class GooglePlayBillingPurchaseTokenMigrationJobTest {

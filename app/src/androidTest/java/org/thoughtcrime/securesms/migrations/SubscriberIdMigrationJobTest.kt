@@ -1,6 +1,10 @@
 package org.thoughtcrime.securesms.migrations
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.count
@@ -13,10 +17,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
-import assertk.assertions.isNotNull
 
 @RunWith(AndroidJUnit4::class)
 class SubscriberIdMigrationJobTest {

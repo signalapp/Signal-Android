@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.database
 
 import android.database.sqlite.SQLiteConstraintException
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
 import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
@@ -15,9 +18,6 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isNull
 
 class InAppPaymentSubscriberTableTest {
   @get:Rule

@@ -18,6 +18,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
@@ -34,9 +37,6 @@ import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.util.Usernames
 import org.whispersystems.signalservice.internal.push.ReserveUsernameResponse
 import java.util.concurrent.TimeUnit
-import assertk.assertThat
-import assertk.assertions.isNotNull
-import assertk.assertions.isNull
 
 @RunWith(AndroidJUnit4::class)
 class UsernameEditFragmentTest {

@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.messages
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -13,8 +15,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import assertk.assertThat
-import assertk.assertions.isEqualTo
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)

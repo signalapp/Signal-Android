@@ -8,6 +8,9 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import assertk.assertThat
+import assertk.assertions.isEmpty
+import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,9 +30,6 @@ import org.thoughtcrime.securesms.testing.SignalDatabaseRule
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.math.BigDecimal
 import java.util.Currency
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isEmpty
 
 @RunWith(AndroidJUnit4::class)
 class FixInAppCurrencyIfAbleTest {

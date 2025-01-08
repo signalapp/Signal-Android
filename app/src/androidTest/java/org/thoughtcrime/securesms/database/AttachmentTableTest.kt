@@ -5,6 +5,9 @@ import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.FlakyTest
 import androidx.test.platform.app.InstrumentationRegistry
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNotEqualTo
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
@@ -33,9 +36,6 @@ import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.Optional
-import assertk.assertThat
-import assertk.assertions.isEqualTo
-import assertk.assertions.isNotEqualTo
 
 @RunWith(AndroidJUnit4::class)
 class AttachmentTableTest {

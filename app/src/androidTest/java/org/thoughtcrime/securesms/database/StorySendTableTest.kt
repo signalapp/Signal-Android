@@ -1,6 +1,11 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.containsExactlyInAnyOrder
+import assertk.assertions.hasSize
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -19,11 +24,6 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.util.UUID
-import assertk.assertThat
-import assertk.assertions.containsExactlyInAnyOrder
-import assertk.assertions.hasSize
-import assertk.assertions.isTrue
-import assertk.assertions.isFalse
 
 @RunWith(AndroidJUnit4::class)
 class StorySendTableTest {
