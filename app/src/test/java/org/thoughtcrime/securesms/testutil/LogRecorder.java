@@ -1,8 +1,5 @@
 package org.thoughtcrime.securesms.testutil;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.signal.core.util.logging.Log;
 
 import java.util.ArrayList;
@@ -92,47 +89,5 @@ public final class LogRecorder extends Log.Logger {
     public Throwable getThrowable() {
       return throwable;
     }
-  }
-
-  @SafeVarargs
-  public static <T> Matcher<T> hasMessages(T... messages) {
-    return new BaseMatcher<T>() {
-
-      @Override
-      public void describeTo(Description description) {
-        description.appendValueList("[", ", ", "]", messages);
-      }
-
-      @Override
-      public void describeMismatch(Object item, Description description) {
-        @SuppressWarnings("unchecked")
-        List<Entry>       list     = (List<Entry>) item;
-        ArrayList<String> messages = new ArrayList<>(list.size());
-
-        for (Entry e : list) {
-          messages.add(e.message);
-        }
-
-        description.appendText("was ").appendValueList("[", ", ", "]", messages);
-      }
-
-      @Override
-      public boolean matches(Object item) {
-        @SuppressWarnings("unchecked")
-        List<Entry> list = (List<Entry>) item;
-
-        if (list.size() != messages.length) {
-          return false;
-        }
-
-        for (int i = 0; i < messages.length; i++) {
-          if (!list.get(i).message.equals(messages[i])) {
-            return false;
-          }
-        }
-
-        return true;
-      }
-    };
   }
 }
