@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -108,12 +109,16 @@ object Rows {
     label: String? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
     isLoading: Boolean = false,
-    enabled: Boolean = !isLoading
+    enabled: Boolean = true
   ) {
+    val enabledAndNotLoading by rememberSaveable(isLoading,enabled) {
+      mutableStateOf(!isLoading && enabled)
+    }
+
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = enabled) { onCheckChanged(!checked) }
+        .clickable(enabled = enabledAndNotLoading) { onCheckChanged(!checked) }
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {
@@ -121,13 +126,13 @@ object Rows {
         text = text,
         label = label,
         textColor = textColor,
-        enabled = enabled,
+        enabled = enabledAndNotLoading,
         modifier = Modifier.padding(end = 16.dp)
       )
 
       val loadingContent by rememberDelayedState(isLoading)
-      val toggleState = remember(checked, loadingContent, enabled, onCheckChanged) {
-        ToggleState(checked, loadingContent, enabled, onCheckChanged)
+      val toggleState = remember(checked, loadingContent, enabledAndNotLoading, onCheckChanged) {
+        ToggleState(checked, loadingContent, enabledAndNotLoading, onCheckChanged)
       }
 
       AnimatedContent(
