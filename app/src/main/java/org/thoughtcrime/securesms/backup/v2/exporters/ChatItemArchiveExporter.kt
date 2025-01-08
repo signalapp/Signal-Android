@@ -624,9 +624,14 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
             CallTable.Event.NOT_ACCEPTED -> IndividualCall.State.NOT_ACCEPTED
             CallTable.Event.ONGOING -> IndividualCall.State.ACCEPTED
             CallTable.Event.DELETE -> return null
-            else -> {
-              Log.w(TAG, "Unable to map 1:1 call state from event: ${this.event.name}")
-              IndividualCall.State.UNKNOWN_STATE
+            // Past bugs have caused some calls to have group event state (all below), map to 1:1 as best effort
+            CallTable.Event.JOINED -> IndividualCall.State.ACCEPTED
+            CallTable.Event.DECLINED -> IndividualCall.State.NOT_ACCEPTED
+            CallTable.Event.GENERIC_GROUP_CALL,
+            CallTable.Event.RINGING,
+            CallTable.Event.OUTGOING_RING -> {
+              Log.w(TAG, "Unable to map group only status to 1:1 call state, skipping. event: ${this.event.name}")
+              return null
             }
           },
           startedCallTimestamp = this.timestamp,
