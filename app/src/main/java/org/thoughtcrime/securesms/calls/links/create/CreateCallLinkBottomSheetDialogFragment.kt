@@ -96,7 +96,6 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
       onJoinClicked = this@CreateCallLinkBottomSheetDialogFragment::onJoinClicked,
       onAddACallNameClicked = this@CreateCallLinkBottomSheetDialogFragment::onAddACallNameClicked,
       onApproveAllMembersChanged = this@CreateCallLinkBottomSheetDialogFragment::setApproveAllMembers,
-      onToggleApproveAllMembersClicked = this@CreateCallLinkBottomSheetDialogFragment::toggleApproveAllMembers,
       onShareViaSignalClicked = this@CreateCallLinkBottomSheetDialogFragment::onShareViaSignalClicked,
       onCopyLinkClicked = this@CreateCallLinkBottomSheetDialogFragment::onCopyLinkClicked,
       onShareLinkClicked = this@CreateCallLinkBottomSheetDialogFragment::onShareLinkClicked,
@@ -117,15 +116,6 @@ class CreateCallLinkBottomSheetDialogFragment : ComposeBottomSheetDialogFragment
 
   private fun setApproveAllMembers(approveAllMembers: Boolean) {
     lifecycleDisposable += viewModel.setApproveAllMembers(approveAllMembers).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Update) {
-        Log.w(TAG, "Failed to update call link restrictions")
-        toastFailure()
-      }
-    }, onError = this::handleError)
-  }
-
-  private fun toggleApproveAllMembers() {
-    lifecycleDisposable += viewModel.toggleApproveAllMembers().subscribeBy(onSuccess = {
       if (it !is UpdateCallLinkResult.Update) {
         Log.w(TAG, "Failed to update call link restrictions")
         toastFailure()
@@ -242,7 +232,6 @@ private fun CreateCallLinkBottomSheetContent(
   onJoinClicked: () -> Unit = {},
   onAddACallNameClicked: () -> Unit = {},
   onApproveAllMembersChanged: (Boolean) -> Unit = {},
-  onToggleApproveAllMembersClicked: () -> Unit = {},
   onShareViaSignalClicked: () -> Unit = {},
   onCopyLinkClicked: () -> Unit = {},
   onShareLinkClicked: () -> Unit = {},
@@ -291,7 +280,6 @@ private fun CreateCallLinkBottomSheetContent(
         checked = callLink.state.restrictions == CallLinkState.Restrictions.ADMIN_APPROVAL,
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__require_admin_approval),
         onCheckChanged = onApproveAllMembersChanged,
-        modifier = Modifier.clickable(onClick = onToggleApproveAllMembersClicked),
         isLoading = isLoadingAdminApprovalChange
       )
 
