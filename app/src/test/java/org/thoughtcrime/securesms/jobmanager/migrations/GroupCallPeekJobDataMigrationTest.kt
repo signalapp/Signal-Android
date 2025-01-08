@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms.jobmanager.migrations
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Test
-import org.thoughtcrime.securesms.assertIs
 import org.thoughtcrime.securesms.jobmanager.JobMigration
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
@@ -19,9 +20,9 @@ class GroupCallPeekJobDataMigrationTest {
 
     val data = GroupCallPeekJobData.ADAPTER.decode(result.data!!)
 
-    data.groupRecipientId assertIs groupRecipientId
-    data.senderRecipientId assertIs Recipient.UNKNOWN.id.toLong()
-    data.serverTimestamp assertIs 0L
+    assertThat(data.groupRecipientId).isEqualTo(groupRecipientId)
+    assertThat(data.senderRecipientId).isEqualTo(Recipient.UNKNOWN.id.toLong())
+    assertThat(data.serverTimestamp).isEqualTo(0L)
   }
 
   @Test
@@ -32,9 +33,9 @@ class GroupCallPeekJobDataMigrationTest {
 
     val data = GroupCallPeekJobData.ADAPTER.decode(result.data!!)
 
-    data.groupRecipientId assertIs groupRecipientId
-    data.senderRecipientId assertIs Recipient.UNKNOWN.id.toLong()
-    data.serverTimestamp assertIs 0L
+    assertThat(data.groupRecipientId).isEqualTo(groupRecipientId)
+    assertThat(data.senderRecipientId).isEqualTo(Recipient.UNKNOWN.id.toLong())
+    assertThat(data.serverTimestamp).isEqualTo(0L)
   }
 
   @Test
@@ -43,7 +44,7 @@ class GroupCallPeekJobDataMigrationTest {
     val jobData = createJobData(factoryKey = "ASDF", groupRecipientId = groupRecipientId)
     val result = testSubject.migrate(jobData)
 
-    result assertIs jobData
+    assertThat(result).isEqualTo(jobData)
   }
 
   @Test
@@ -52,7 +53,7 @@ class GroupCallPeekJobDataMigrationTest {
     val jobData = createJobData(groupRecipientId = groupRecipientId, data = null)
     val result = testSubject.migrate(jobData)
 
-    result assertIs jobData
+    assertThat(result).isEqualTo(jobData)
   }
 
   @Test
@@ -61,7 +62,7 @@ class GroupCallPeekJobDataMigrationTest {
     val jobData = createJobData(groupRecipientId = groupRecipientId, data = JsonJobData.Builder().putString("asdf", groupRecipientId.toString()).serialize())
     val result = testSubject.migrate(jobData)
 
-    result assertIs jobData
+    assertThat(result).isEqualTo(jobData)
   }
 
   @Test
@@ -70,7 +71,7 @@ class GroupCallPeekJobDataMigrationTest {
     val jobData = createJobData(groupRecipientId = groupRecipientId, data = GroupCallPeekJobData().encode())
     val result = testSubject.migrate(jobData)
 
-    result assertIs jobData
+    assertThat(result).isEqualTo(jobData)
   }
 
   private fun createJobData(
