@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.components.webrtc
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.containsInAnyOrder
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import assertk.assertThat
+import assertk.assertions.containsExactlyInAnyOrder
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.Test
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipant.Companion.createRemote
@@ -21,8 +21,8 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate(added, removed)
 
     // THEN
-    assertTrue(update.hasNoChanges())
-    assertFalse(update.hasSingleChange())
+    assertThat(update.hasNoChanges()).isTrue()
+    assertThat(update.hasSingleChange()).isFalse()
   }
 
   @Test
@@ -33,8 +33,8 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate(added, removed)
 
     // THEN
-    assertFalse(update.hasNoChanges())
-    assertFalse(update.hasSingleChange())
+    assertThat(update.hasNoChanges()).isFalse()
+    assertThat(update.hasSingleChange()).isFalse()
   }
 
   @Test
@@ -45,8 +45,8 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate(added, removed)
 
     // THEN
-    assertFalse(update.hasNoChanges())
-    assertFalse(update.hasSingleChange())
+    assertThat(update.hasNoChanges()).isFalse()
+    assertThat(update.hasSingleChange()).isFalse()
   }
 
   @Test
@@ -57,8 +57,8 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate(added, removed)
 
     // THEN
-    assertFalse(update.hasNoChanges())
-    assertTrue(update.hasSingleChange())
+    assertThat(update.hasNoChanges()).isFalse()
+    assertThat(update.hasSingleChange()).isTrue()
   }
 
   @Test
@@ -70,9 +70,9 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate.computeDeltaUpdate(emptyList(), newList)
 
     // THEN
-    assertFalse(update.hasNoChanges())
-    assertTrue(update.removed.isEmpty())
-    assertThat(update.added, containsInAnyOrder(*createWrappers(1, 2, 3, 4, 5)))
+    assertThat(update.hasNoChanges()).isFalse()
+    assertThat(update.removed.isEmpty()).isTrue()
+    assertThat(update.added).containsExactlyInAnyOrder(*createWrappers(1, 2, 3, 4, 5))
   }
 
   @Test
@@ -84,7 +84,7 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate.computeDeltaUpdate(newList, newList)
 
     // THEN
-    assertTrue(update.hasNoChanges())
+    assertThat(update.hasNoChanges()).isTrue()
   }
 
   @Test
@@ -96,7 +96,7 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate.computeDeltaUpdate(emptyList(), newList)
 
     // THEN
-    assertTrue(update.hasNoChanges())
+    assertThat(update.hasNoChanges()).isTrue()
   }
 
   @Test
@@ -109,9 +109,9 @@ class CallParticipantListUpdateTest {
     val update = CallParticipantListUpdate.computeDeltaUpdate(list1, list2)
 
     // THEN
-    assertFalse(update.hasNoChanges())
-    assertThat(update.added, containsInAnyOrder(*createWrappers(6)))
-    assertThat(update.removed, containsInAnyOrder(*createWrappers(1)))
+    assertThat(update.hasNoChanges()).isFalse()
+    assertThat(update.added).containsExactlyInAnyOrder(*createWrappers(6))
+    assertThat(update.removed).containsExactlyInAnyOrder(*createWrappers(1))
   }
 
   @Test
@@ -124,7 +124,7 @@ class CallParticipantListUpdateTest {
 
     // THEN
     val isPrimaryList = update.added.map { it.callParticipant.isPrimary }.toList()
-    assertThat(isPrimaryList, containsInAnyOrder(true, false, false))
+    assertThat(isPrimaryList).containsExactlyInAnyOrder(true, false, false)
   }
 
   companion object {
