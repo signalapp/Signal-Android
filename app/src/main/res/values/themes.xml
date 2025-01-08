@@ -155,6 +155,7 @@
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
         <item name="colorSurface">@color/signal_colorSurface</item>
         <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorSurfaceContainer">@color/signal_colorSurface</item>
         <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
         <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
         <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
@@ -227,6 +228,8 @@
 
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
+
+        <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -244,6 +247,7 @@
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
         <item name="colorSurface">@color/signal_colorSurface</item>
         <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorSurfaceContainer">@color/signal_colorSurface</item>
         <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
         <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
         <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
@@ -317,6 +321,8 @@
 
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
+
+        <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="MaterialAlertDialog.Material3">
