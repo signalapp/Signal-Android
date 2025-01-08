@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -38,9 +39,12 @@ class BaseStoryRecipientSelectionViewModel(
     disposable.clear()
   }
 
-  fun toggleSelectAll() {
-    disposable += repository.getAllSignalContacts().subscribeBy { allSignalRecipients ->
-      store.update { it.copy(selection = allSignalRecipients) }
+  fun toggleSelectAll(): Single<Set<RecipientId>> {
+    return Single.create { emitter ->
+      disposable += repository.getAllSignalContacts().subscribeBy { allSignalRecipients ->
+        store.update { it.copy(selection = allSignalRecipients) }
+        emitter.onSuccess(allSignalRecipients)
+      }
     }
   }
 
