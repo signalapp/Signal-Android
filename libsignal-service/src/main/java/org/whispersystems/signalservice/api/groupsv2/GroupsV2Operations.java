@@ -524,13 +524,15 @@ public final class GroupsV2Operations {
         throws VerificationFailedException, InvalidGroupStateException
     {
       DecryptedGroupChange.Builder builder = new DecryptedGroupChange.Builder();
+      ServiceId                    editorServiceId;
 
       // Field 1
       if (source != null) {
-        builder.editorServiceIdBytes(source.toByteString());
+        editorServiceId = source;
       } else {
-        builder.editorServiceIdBytes(decryptServiceIdToBinary(actions.sourceServiceId));
+        editorServiceId = decryptServiceId(actions.sourceServiceId);
       }
+      builder.editorServiceIdBytes(editorServiceId.toByteString());
 
       // Field 2
       builder.revision(actions.revision);
@@ -751,6 +753,24 @@ public final class GroupsV2Operations {
                                                            .build());
       }
       builder.promotePendingPniAciMembers(promotePendingPniAciMembers);
+
+      if (editorServiceId instanceof ServiceId.PNI) {
+        if (actions.addMembers.size() == 1 && builder.newMembers.size() == 1) {
+          GroupChange.Actions.AddMemberAction addMemberAction = actions.addMembers.get(0);
+          DecryptedMember                     decryptedMember = builder.newMembers.get(0);
+
+          if (addMemberAction.joinFromInviteLink) {
+            Log.d(TAG, "Replacing PNI editor with ACI for buggy join from invite link");
+            builder.editorServiceIdBytes(decryptedMember.aciBytes);
+          } else {
+            Log.w(TAG, "Unable to replace PNI editor with ACI for add member update");
+            builder.editorServiceIdBytes(ByteString.EMPTY);
+          }
+        } else if (actions.deletePendingMembers.isEmpty() && actions.promotePendingPniAciMembers.isEmpty()) {
+          Log.w(TAG, "Received group change with PNI editor for a non-PNI editor eligible update, clearing editor");
+          builder.editorServiceIdBytes(ByteString.EMPTY);
+        }
+      }
 
       return builder.build();
     }

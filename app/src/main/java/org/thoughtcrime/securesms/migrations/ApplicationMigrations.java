@@ -166,9 +166,10 @@ public class ApplicationMigrations {
     static final int QUOTE_AUTHOR_FIX              = 122;
     static final int BAD_E164_FIX                  = 123;
     static final int GPB_TOKEN_MIGRATION           = 124;
+    static final int GROUP_ADD_MIGRATION           = 125;
   }
 
-  public static final int CURRENT_VERSION = 124;
+  public static final int CURRENT_VERSION = 125;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -761,6 +762,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GPB_TOKEN_MIGRATION) {
       jobs.put(Version.GPB_TOKEN_MIGRATION, new GooglePlayBillingPurchaseTokenMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_ADD_MIGRATION) {
+      jobs.put(Version.GROUP_ADD_MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;

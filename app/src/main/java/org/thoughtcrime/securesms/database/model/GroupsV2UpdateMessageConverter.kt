@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.database.model
 
 import okio.ByteString
-import okio.ByteString.Companion.toByteString
 import org.signal.core.util.StringUtil
 import org.signal.core.util.isNullOrEmpty
 import org.signal.storageservice.protos.groups.AccessControl
@@ -136,7 +135,7 @@ object GroupsV2UpdateMessageConverter {
     if (editorServiceId == null || editorServiceId.isUnknown) {
       editorUnknown = true
     }
-    translateMemberAdditions(change, editorUnknown, updates)
+    translateMemberAdditions(change, editorUnknown, editorServiceId, updates)
     translateModifyMemberRoles(change, editorUnknown, updates)
     translateInvitations(selfIds, change, editorUnknown, updates)
     translateRevokedInvitations(selfIds, change, editorUnknown, updates)
@@ -161,7 +160,7 @@ object GroupsV2UpdateMessageConverter {
   }
 
   @JvmStatic
-  fun translateMemberAdditions(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
+  fun translateMemberAdditions(change: DecryptedGroupChange, editorUnknown: Boolean, editorServiceId: ServiceId?, updates: MutableList<GroupChangeChatUpdate.Update>) {
     for (member in change.newMembers) {
       if (!editorUnknown && member.aciBytes == change.editorServiceIdBytes) {
         updates.add(
@@ -173,7 +172,7 @@ object GroupsV2UpdateMessageConverter {
         updates.add(
           GroupChangeChatUpdate.Update(
             groupMemberAddedUpdate = GroupMemberAddedUpdate(
-              updaterAci = if (editorUnknown) null else change.editorServiceIdBytes,
+              updaterAci = if (editorUnknown || editorServiceId is ServiceId.PNI) null else change.editorServiceIdBytes,
               newMemberAci = member.aciBytes,
               hadOpenInvitation = false
             )
