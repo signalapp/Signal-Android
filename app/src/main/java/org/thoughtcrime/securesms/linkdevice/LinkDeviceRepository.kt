@@ -273,7 +273,7 @@ object LinkDeviceRepository {
     stopwatch.split("validate-backup")
 
     Log.d(TAG, "[createAndUploadArchive] Fetching an upload form...")
-    val uploadForm = when (val result = SignalNetwork.attachments.getAttachmentV4UploadForm()) {
+    val uploadForm = when (val result = NetworkResult.withRetry { SignalNetwork.attachments.getAttachmentV4UploadForm() }) {
       is NetworkResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.exception)
@@ -289,12 +289,14 @@ object LinkDeviceRepository {
     stopwatch.split("upload-backup")
 
     Log.d(TAG, "[createAndUploadArchive] Setting the transfer archive...")
-    val transferSetResult = SignalNetwork.linkDevice.setTransferArchive(
-      destinationDeviceId = deviceId,
-      destinationDeviceCreated = deviceCreatedAt,
-      cdn = uploadForm.cdn,
-      cdnKey = uploadForm.key
-    )
+    val transferSetResult = NetworkResult.withRetry {
+      SignalNetwork.linkDevice.setTransferArchive(
+        destinationDeviceId = deviceId,
+        destinationDeviceCreated = deviceCreatedAt,
+        cdn = uploadForm.cdn,
+        cdnKey = uploadForm.key
+      )
+    }
 
     when (transferSetResult) {
       is NetworkResult.Success -> Log.i(TAG, "[createAndUploadArchive] Successfully set transfer archive.")
@@ -317,39 +319,32 @@ object LinkDeviceRepository {
    * Handles uploading the archive for [createAndUploadArchive]. Handles resumable uploads and making multiple upload attempts.
    */
   private fun uploadArchive(backupFile: File, uploadForm: AttachmentUploadForm): NetworkResult<Unit> {
-    val resumableUploadUrl = when (val result = SignalNetwork.attachments.getResumableUploadUrl(uploadForm)) {
+    val resumableUploadUrl = when (val result = NetworkResult.withRetry { SignalNetwork.attachments.getResumableUploadUrl(uploadForm) }) {
       is NetworkResult.Success -> result.result
       is NetworkResult.NetworkError -> return result.map { Unit }.logW(TAG, "Network error when fetching upload URL.", result.exception)
       is NetworkResult.StatusCodeError -> return result.map { Unit }.logW(TAG, "Status code error when fetching upload URL.", result.exception)
       is NetworkResult.ApplicationError -> throw result.throwable
     }
 
-    val maxRetries = 5
-    var attemptCount = 0
-
-    while (attemptCount < maxRetries) {
-      Log.i(TAG, "Starting upload attempt ${attemptCount + 1}/$maxRetries")
-      val uploadResult = FileInputStream(backupFile).use {
+    val uploadResult = NetworkResult.withRetry(
+      logAttempt = { attempt, maxAttempts -> Log.i(TAG, "Starting upload attempt ${attempt + 1}/$maxAttempts") }
+    ) {
+      FileInputStream(backupFile).use {
         SignalNetwork.attachments.uploadPreEncryptedFileToAttachmentV4(
           uploadForm = uploadForm,
           resumableUploadUrl = resumableUploadUrl,
-          inputStream = backupFile.inputStream(),
+          inputStream = it,
           inputStreamLength = backupFile.length()
         )
       }
-
-      when (uploadResult) {
-        is NetworkResult.Success -> return uploadResult
-        is NetworkResult.NetworkError -> Log.w(TAG, "Hit network error while uploading. May retry.", uploadResult.exception)
-        is NetworkResult.StatusCodeError -> return uploadResult.logW(TAG, "Status code error when uploading archive.", uploadResult.exception)
-        is NetworkResult.ApplicationError -> throw uploadResult.throwable
-      }
-
-      attemptCount++
     }
 
-    Log.w(TAG, "Hit the max retry count of $maxRetries. Failing.")
-    return NetworkResult.NetworkError(IOException("Hit max retries!"))
+    return when (uploadResult) {
+      is NetworkResult.Success -> uploadResult
+      is NetworkResult.NetworkError -> uploadResult.logW(TAG, "Network error while uploading.", uploadResult.exception)
+      is NetworkResult.StatusCodeError -> uploadResult.logW(TAG, "Status code error when uploading archive.", uploadResult.exception)
+      is NetworkResult.ApplicationError -> throw uploadResult.throwable
+    }
   }
 
   /**
