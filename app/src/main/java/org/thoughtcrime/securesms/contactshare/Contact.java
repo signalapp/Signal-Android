@@ -356,7 +356,7 @@ public class Contact implements Parcelable {
       return type;
     }
 
-    public @NonNull String getLabel() {
+    public @Nullable String getLabel() {
       return label;
     }
 

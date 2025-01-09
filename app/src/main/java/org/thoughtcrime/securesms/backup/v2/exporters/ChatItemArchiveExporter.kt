@@ -605,7 +605,7 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
           ringerRecipientId = this.ringerRecipient?.toLong(),
           startedCallRecipientId = ACI.parseOrNull(groupCallUpdateDetails.startedCallUuid)?.let { db.recipientTable.getByAci(it).getOrNull()?.toLong() },
           startedCallTimestamp = this.timestamp.clampToValidBackupRange(),
-          endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp.clampToValidBackupRange(),
+          endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp.clampToValidBackupRange().takeIf { it > 0 },
           read = messageRecord.read
         )
       )
@@ -766,32 +766,32 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
     ContactAttachment(
       name = it.name.toRemote(),
       avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
-      organization = it.organization,
+      organization = it.organization ?: "",
       number = it.phoneNumbers.map { phone ->
         ContactAttachment.Phone(
           value_ = phone.number,
           type = phone.type.toRemote(),
-          label = phone.label
+          label = phone.label ?: ""
         )
       },
       email = it.emails.map { email ->
         ContactAttachment.Email(
           value_ = email.email,
-          label = email.label,
+          label = email.label ?: "",
           type = email.type.toRemote()
         )
       },
       address = it.postalAddresses.map { address ->
         ContactAttachment.PostalAddress(
           type = address.type.toRemote(),
-          label = address.label,
-          street = address.street,
-          pobox = address.poBox,
-          neighborhood = address.neighborhood,
-          city = address.city,
-          region = address.region,
-          postcode = address.postalCode,
-          country = address.country
+          label = address.label ?: "",
+          street = address.street ?: "",
+          pobox = address.poBox ?: "",
+          neighborhood = address.neighborhood ?: "",
+          city = address.city ?: "",
+          region = address.region ?: "",
+          postcode = address.postalCode ?: "",
+          country = address.country ?: ""
         )
       }
     )
@@ -802,14 +802,24 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
   )
 }
 
-private fun Contact.Name.toRemote(): ContactAttachment.Name {
+private fun Contact.Name.toRemote(): ContactAttachment.Name? {
+  if (givenName.isNullOrEmpty() &&
+    familyName.isNullOrEmpty() &&
+    prefix.isNullOrEmpty() &&
+    suffix.isNullOrEmpty() &&
+    middleName.isNullOrEmpty() &&
+    nickname.isNullOrEmpty()
+  ) {
+    return null
+  }
+
   return ContactAttachment.Name(
-    givenName = givenName,
-    familyName = familyName,
-    prefix = prefix,
-    suffix = suffix,
-    middleName = middleName,
-    nickname = nickname
+    givenName = givenName ?: "",
+    familyName = familyName ?: "",
+    prefix = prefix ?: "",
+    suffix = suffix ?: "",
+    middleName = middleName ?: "",
+    nickname = nickname ?: ""
   )
 }
 
