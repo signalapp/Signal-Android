@@ -448,17 +448,27 @@ class LogDatabase private constructor(
           $THREAD_DUMP TEXT NOT NULL
         )
       """
+
+      val MAX_DUMP_SIZE = 1.mebiBytes.inWholeBytes.toInt()
+      const val TRIMMED_FOOTER = "...\n\nTruncated because the dump exceeded 1MiB in size!"
     }
 
     private val readableDatabase: SQLiteDatabase get() = openHelper.readableDatabase
     private val writableDatabase: SQLiteDatabase get() = openHelper.writableDatabase
 
     fun save(currentTime: Long, threadDumps: String) {
+      val trimmedDump = if (threadDumps.length > MAX_DUMP_SIZE) {
+        Log.w(TAG, "Large ANR thread dump! Size: ${threadDumps.length}")
+        threadDumps.substring(0, MAX_DUMP_SIZE - TRIMMED_FOOTER.length) + TRIMMED_FOOTER
+      } else {
+        threadDumps
+      }
+
       writableDatabase
         .insertInto(TABLE_NAME)
         .values(
           CREATED_AT to currentTime,
-          THREAD_DUMP to threadDumps
+          THREAD_DUMP to trimmedDump
         )
         .run()
 
