@@ -4,7 +4,7 @@
 [versions]
 androidx-appcompat = "1.7.0"
 androidx-activity = "1.9.3"
-androidx-camera = "1.4.1"
+androidx-camera = "1.3.4"
 androidx-fragment = "1.8.5"
 androidx-lifecycle = "2.8.7"
 androidx-media3 = "1.5.1"
