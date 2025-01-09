@@ -2615,8 +2615,8 @@
     <string name="StickerManagementAdapter_installed_stickers">Stickers instalados</string>
     <string name="StickerManagementAdapter_stickers_you_received">Stickers recibidos</string>
     <string name="StickerManagementAdapter_signal_artist_series">Stickers de artistas de Signal</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún sticker instalado</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los stickers que recibas en mensajes aparecerán aquí</string>
+    <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún paquete de stickers instalado</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los stickers de tus mensajes recibidos aparecerán aquí</string>
     <string name="StickerManagementAdapter_untitled">Sin nombre</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagementAdapter_unknown">Desconocido</string>
@@ -2897,7 +2897,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu sticker: %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">Se ha eliminado este mensaje.</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando alguien comience a usar Signal? Puedes volver a activarlas en Signal &gt; Ajustes &gt; Notificaciones.</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones de cuando alguien comience a usar Signal? Puedes volver a activarlas en Signal &gt; Ajustes &gt; Notificaciones.</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -2918,7 +2918,7 @@
     <string name="NotificationChannel_failures">Fallos</string>
     <string name="NotificationChannel_backups">Copias de seguridad</string>
     <string name="NotificationChannel_locked_status">Estado de bloqueo</string>
-    <string name="NotificationChannel_app_updates">Actualizaciones de la aplicación</string>
+    <string name="NotificationChannel_app_updates">Actualizaciones de la app</string>
     <string name="NotificationChannel_other">Otro</string>
     <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Desconocido</string>
@@ -3097,7 +3097,7 @@
     <string name="ContactSelectionListFragment_username_not_found">Alias no encontrado</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no usa Signal. Comprueba que el alias sea correcto e inténtalo de nuevo."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No necesitas añadirte al grupo como participante</string>
-    <string name="ContactSelectionListFragment_maximum_group_size_reached">El grupo ha alcanzado el número máximo de participantes</string>
+    <string name="ContactSelectionListFragment_maximum_group_size_reached">Se ha alcanzado el número máximo de participantes</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Los grupos de Signal permiten un máximo de %1$d participantes.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Se ha alcanzado el límite recomendado de participantes</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Los grupos de Signal funcionan mejor con %1$d o menos participantes. Añadir más participantes causará retrasos para enviar y recibir mensajes.</string>
@@ -3239,7 +3239,7 @@
     <string name="safety_number_change_dialog__join_call">Unirse a la llamada</string>
     <string name="safety_number_change_dialog__continue_call">Continuar llamada</string>
     <string name="safety_number_change_dialog__leave_call">Abandonar llamada</string>
-    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Es posible que las siguientes personas hayan reinstalado Signal o cambiado su dispositivo. Verifica tu número de seguridad con ellas para asegurar la privacidad de todos los mensajes.</string>
+    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Es posible que las siguientes personas hayan reinstalado Signal o cambiado su dispositivo. Verifica tu número de seguridad con ellas para asegurar la privacidad de tus conversaciones.</string>
     <string name="safety_number_change_dialog__view">Ver</string>
     <!-- Subtitle shown for a single contact and that their safety number was previously verified and is now no longer verified. -->
     <string name="safety_number_change_dialog__previous_verified">Identidad verificada anteriormente</string>
@@ -3254,7 +3254,7 @@
     <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Para recibir notificaciones de llamadas, toca aquí y habilita la actividad en segundo plano en los ajustes de la batería de tu teléfono. </string>
     <string name="EnableCallNotificationSettingsDialog__settings">Ajustes</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Para recibir notificaciones de llamadas, toca \"Ajustes\" y activa \"Mostrar notificaciones\".</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Para recibir notificaciones de llamadas, toca Ajustes y activa \"Mostrar notificaciones\".</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">Para recibir notificaciones de llamadas, toca \"Ajustes\" para activarlas y asegúrate de que el sonido y las notificaciones emergentes estén habilitados.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para recibir notificaciones de llamadas, toca \"Ajustes\" y habilita la actividad en segundo plano en los ajustes de la batería de tu teléfono.</string>
 
@@ -3734,7 +3734,7 @@
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pagos</string>
     <string name="preferences_chats__chats">Chats</string>
-    <string name="preferences_app_updates__title">Actualizaciones de la aplicación</string>
+    <string name="preferences_app_updates__title">Actualizaciones de la app</string>
     <string name="preferences_data_and_storage__manage_storage">Gestionar almacenamiento</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos en llamadas</string>
     <string name="preferences_data_and_storage__never">Nunca</string>
@@ -7415,7 +7415,7 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s no es un número de teléfono válido. Inténtalo de nuevo con un número de teléfono válido.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">%1$s no usa Signal. Asegúrate de introducir el alias correcto e inténtalo de nuevo.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">%1$s no usa Signal. Comprueba que el alias sea correcto e inténtalo de nuevo.</string>
     <!-- Dialog body for not found phone number -->
     <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s no usa Signal. ¿Quieres enviar una invitación a este número?</string>
     <!-- Dialog action to invite the phone number to Signal -->

@@ -798,9 +798,9 @@
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Pemulihan selesai</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Untuk lanjut menggunakan cadangan; mohon pilih sebuah folder. Cadangan baru akan tersimpan di lokasi ini.</string>
+    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Silakan pilih folder untuk lanjut menggunakan cadangan. Cadangan baru akan disimpan di lokasi ini.</string>
     <string name="RestoreBackupFragment__choose_folder">Pilih folder</string>
-    <string name="RestoreBackupFragment__not_now">Nanti saja</string>
+    <string name="RestoreBackupFragment__not_now">Nanti</string>
     <!-- Couldn\'t find the selected backup -->
     <string name="RestoreBackupFragment__backup_not_found">Cadangan tidak ditemukan.</string>
     <!-- Couldn\'t read the selected backup -->
@@ -855,7 +855,7 @@
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">Cadangan obrolan</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Cadangan dienkripsi dengan frasa sandi dan disimpan pada perangkat Anda.</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Cadangan dienkripsi dengan frasa sandi dan disimpan di perangkat Anda.</string>
     <string name="BackupsPreferenceFragment__create_backup">Buat cadangan</string>
     <string name="BackupsPreferenceFragment__last_backup">Pencadangan terakhir: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Folder cadangan</string>
@@ -863,30 +863,30 @@
     <string name="BackupsPreferenceFragment__backup_time">Waktu pencadangan</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Uji frasa sandi cadangan Anda dan verifikasi kecocokannya</string>
-    <string name="BackupsPreferenceFragment__turn_on">Nyalakan</string>
-    <string name="BackupsPreferenceFragment__turn_off">Matikan</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Untuk memulihkan sebuah cadangan, pasang ulang Signal. Buka aplikasinya dan ketuk \"Pulihkan cadangan\", lalu arahkan ke berkas cadangan. %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">Pelajari lebih lanjut</string>
+    <string name="BackupsPreferenceFragment__turn_on">Aktifkan</string>
+    <string name="BackupsPreferenceFragment__turn_off">Nonaktifkan</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Silakan instal ulang Signal untuk memulihkan cadangan. Buka aplikasinya dan ketuk \"Pulihkan cadangan\", lalu temukan berkas cadangannya. %1$s"</string>
+    <string name="BackupsPreferenceFragment__learn_more">Selengkapnya</string>
     <string name="BackupsPreferenceFragment__in_progress">Sedang berjalan…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Memverifikasi pencadangan…</string>
     <!-- Progress of backup where %d is the number of files completed so far -->
-    <string name="BackupsPreferenceFragment__d_so_far">%1$d sejauh ini…</string>
+    <string name="BackupsPreferenceFragment__d_so_far">Masih %1$d…</string>
     <!-- Show percentage of completion of backup -->
-    <string name="BackupsPreferenceFragment__s_so_far">%1$s%% sejauh ini…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan izin penyimpanan eksternal untuk membuat cadangan, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
+    <string name="BackupsPreferenceFragment__s_so_far">Masih %1$s%%…</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Anda harus mengizinkan Signal untuk mengakses penyimpanan telepon Anda untuk dapat membuat cadangan. Harap buka pengaturan aplikasi, pilih \"Perizinan\", lalu izinkan Signal mengakses \"Penyimpanan\".</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Atur waktu pencadangan</string>
 
 
     <!-- CustomDefaultPreference -->
-    <string name="CustomDefaultPreference_using_custom">Gunakan pilihan khusus: %1$s</string>
-    <string name="CustomDefaultPreference_using_default">Gunakan pilihan standar: %1$s</string>
+    <string name="CustomDefaultPreference_using_custom">Menggunakan kustom: %1$s</string>
+    <string name="CustomDefaultPreference_using_default">Menggunakan default: %1$s</string>
     <string name="CustomDefaultPreference_none">Kosong</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Mengambil foto memerlukan izin akses kamera.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Melihat galeri Anda memerlukan izin akses ke penyimpanan.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Mengambil foto perlu izin akses ke kamera.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Melihat galeri perlu izin akses ke penyimpanan.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Sekarang</string>
@@ -1042,29 +1042,29 @@
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Putus penautan \"%1$s\"?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan membuang kaitan perangkat ini, perangkat tidak akan bisa lagi mengirim atau menerima pesan.</string>
-    <string name="DeviceListActivity_network_connection_failed">Sambungan jaringan gagal</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Dengan memutus koneksi, perangkat ini tidak akan bisa mengirim atau menerima pesan.</string>
+    <string name="DeviceListActivity_network_connection_failed">Koneksi jaringan gagal</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
     <string name="DeviceListActivity_try_again">Coba lagi</string>
-    <string name="DeviceListActivity_unlinking_device">Membatalkan tautan perangkat</string>
-    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Membatalkan tautan perangkat</string>
-    <string name="DeviceListActivity_network_failed">Jaringan gagal!</string>
+    <string name="DeviceListActivity_unlinking_device">Memutus koneksi perangkat…</string>
+    <string name="DeviceListActivity_unlinking_device_no_ellipsis">Memutus koneksi perangkat</string>
+    <string name="DeviceListActivity_network_failed">Kesalahan jaringan!</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Perangkat tidak bernama</string>
-    <string name="DeviceListItem_linked_s">Terkait %1$s</string>
+    <string name="DeviceListItem_linked_s">Terhubung %1$s</string>
     <string name="DeviceListItem_last_active_s">Terakhir aktif %1$s</string>
     <string name="DeviceListItem_today">Hari ini</string>
 
     <!-- DocumentView -->
-    <string name="DocumentView_unnamed_file">Berkas tanpa nama</string>
+    <string name="DocumentView_unnamed_file">File tanpa nama</string>
 
     <!-- DozeReminder -->
-    <string name="DozeReminder_optimize_for_missing_play_services">Optimalkan untuk mengabaikan Play Services</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Perangkat ini tidak mendukung Play Services. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Signal untuk mengambil pesan saat tidak aktif.</string>
+    <string name="DozeReminder_optimize_for_missing_play_services">Optimalkan untuk Play Services yang tidak ada</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Play Services tidak dapat digunakan di perangkat ini. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Signal untuk mengambil pesan saat tidak aktif.</string>
 
     <!-- ExpiredBuildReminder -->
-    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Versi Signal ini telah kedaluwarsa. Perbarui sekarang untuk mengirim dan menerima pesan.</string>
+    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Versi Signal ini sudah kedaluwarsa. Perbarui sekarang untuk mengirim dan menerima pesan.</string>
     <string name="ExpiredBuildReminder_update_now">Perbarui sekarang</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
@@ -1075,11 +1075,11 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan komunikasi Signal permanen!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi melalui Google Play Services. Fitur Signal seperti pesan dan panggilan dinonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat registrasi melalui Google Play Services. Fitur seperti pesan dan panggilan telah dinonaktifkan dan harap registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
 
 
     <!-- GiphyActivity -->
-    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan saat mengambil berkas GIF dengan resolusi penuh</string>
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Terjadi kesalahan saat mengambil file GIF dengan resolusi penuh</string>
 
     <!-- GiphyFragmentPageAdapter -->
 
@@ -1104,7 +1104,7 @@
     <!-- GV2 access levels -->
     <string name="GroupManagement_access_level_anyone">Siapapun</string>
     <string name="GroupManagement_access_level_all_members">Semua anggota</string>
-    <string name="GroupManagement_access_level_only_admins">Khusus para admin</string>
+    <string name="GroupManagement_access_level_only_admins">Khusus admin</string>
     <string name="GroupManagement_access_level_no_one">Tidak ada</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
@@ -1118,33 +1118,33 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="other">%1$d undangan dikirimkan</item>
+        <item quantity="other">%1$d undangan terkirim</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">\"%1$s\" tidak dapat secara otomatis ditambahkan ke grup oleh Anda.\n\nMereka telah diundang untuk bergabung, dan tidak akan melihat pesan grup sampai mereka menerimanya.</string>
-    <string name="GroupManagement_invite_multiple_users">Pengguna ini tidak dapat secara otomatis Anda tambahkan ke dalam grup.\n\nMereka telah mendapatkan undangan, dan tidak dapat melihat pesan di dalam grup sampai mereka menerimanya.</string>
+    <string name="GroupManagement_invite_single_user">\"%1$s\" tidak dapat secara otomatis Anda tambahkan ke grup.\n\nMereka telah diundang untuk bergabung dan tidak akan melihat pesan grup sampai mereka menerima undangannya.</string>
+    <string name="GroupManagement_invite_multiple_users">Pengguna ini tidak dapat secara otomatis Anda tambahkan ke dalam grup.\n\nMereka telah mendapatkan undangan dan tidak dapat melihat pesan di dalam grup sampai mereka menerima undangannya.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apakah Grup Baru?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Grup yang baru akan memiliki fitur seperti @penyebutan dan ketua grup, juga akan mendapat dukungan lebih di masa mendatang.</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apa itu New Groups?</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">New Groups menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Semua riwayat pesan dan media telah disimpan sebelum pemutakhiran.</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Anda perlu menerima undangan untuk bergabung ke grup ini lagi, dan tidak akan menerima pesan grup sampai Anda menerimanya.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Anda perlu menerima undangan untuk bergabung ke grup ini lagi. Anda tidak akan menerima pesan grup sampai Anda menerima undangannya.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
+        <item quantity="other">Anggota ini harus menerima undangan ke grup ini lagi. Mereka tidak akan menerima pesan grup sampai mereka menerima undangannya:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="other">Anggota-anggota ini telah dikeluarkan dari grup dan tidak bisa bergabung kembali sampai mereka melakukan pembaruan:</item>
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Perbarui ke Grup Baru</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">Perbarui grup ini</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Grup yang baru akan memiliki fitur seperti @penyebutan dan ketua grup, juga akan mendapat dukungan lebih di masa mendatang.</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Upgrade ke New Group</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_this_group">Upgrade grup ini</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">New Groups menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Semua riwayat pesan dan media akan disimpan sebelum pemutakhiran.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Terjadi galat jaringan. Coba lagi nanti.</string>
-    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Gagal memperbarui.</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Terjadi kesalahan jaringan. Coba lagi nanti.</string>
+    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Gagal upgrade.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
+        <item quantity="other">Anggota ini harus menerima undangan ke grup ini lagi. Mereka tidak akan menerima pesan grup sampai mereka menerima undangannya:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
         <item quantity="other">Anggota-anggota ini tidak dapat bergabung ke Grup Baru, dan akan dikeluarkan dari grup:</item>
