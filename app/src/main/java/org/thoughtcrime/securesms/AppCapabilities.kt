@@ -13,7 +13,7 @@ object AppCapabilities {
       storage = storageCapable,
       deleteSync = true,
       versionedExpirationTimer = true,
-      storageServiceEncryptionV2 = false
+      storageServiceEncryptionV2 = true
     )
   }
 }
