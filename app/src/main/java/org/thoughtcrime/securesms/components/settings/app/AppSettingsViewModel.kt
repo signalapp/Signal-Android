@@ -77,6 +77,8 @@ class AppSettingsViewModel : ViewModel() {
       BackupFailureState.COULD_NOT_COMPLETE_BACKUP
     } else if (SignalStore.backup.subscriptionStateMismatchDetected) {
       BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
+    } else if (SignalStore.backup.hasBackupAlreadyRedeemedError) {
+      BackupFailureState.ALREADY_REDEEMED
     } else {
       BackupFailureState.NONE
     }

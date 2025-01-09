@@ -231,6 +231,22 @@ private fun AppSettingsContent(
             }
           }
 
+          BackupFailureState.ALREADY_REDEEMED -> {
+            item {
+              Dividers.Default()
+
+              BackupsWarningRow(
+                text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
+                onClick = {
+                  BackupRepository.markBackupAlreadyRedeemedIndicatorClicked()
+                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                }
+              )
+
+              Dividers.Default()
+            }
+          }
+
           BackupFailureState.NONE -> Unit
         }
 

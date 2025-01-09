@@ -173,7 +173,47 @@ class InAppPaymentRecurringContextJob private constructor(
       inAppPayment
     }
 
-    submitAndValidateCredentials(updatedInAppPayment, subscription, requestContext)
+    if (hasEntitlementAlready(inAppPayment, subscription.endOfCurrentPeriod)) {
+      info("Already have entitlement for this badge. Marking complete.")
+      markInAppPaymentCompleted(inAppPayment)
+    } else {
+      submitAndValidateCredentials(updatedInAppPayment, subscription, requestContext)
+    }
+  }
+
+  private fun hasEntitlementAlready(
+    inAppPayment: InAppPaymentTable.InAppPayment,
+    endOfCurrentSubscriptionPeriod: Long
+  ): Boolean {
+    @Suppress("UsePropertyAccessSyntax")
+    val whoAmIResponse = AppDependencies.signalServiceAccountManager.getWhoAmI()
+
+    return when (inAppPayment.type) {
+      InAppPaymentType.RECURRING_BACKUP -> {
+        val backupExpirationSeconds = whoAmIResponse.entitlements?.backup?.expirationSeconds ?: return false
+
+        backupExpirationSeconds >= endOfCurrentSubscriptionPeriod
+      }
+
+      InAppPaymentType.RECURRING_DONATION -> {
+        val donationExpirationSeconds = whoAmIResponse.entitlements?.badges?.firstOrNull { it.id == inAppPayment.data.badge?.id }?.expirationSeconds ?: return false
+
+        donationExpirationSeconds >= endOfCurrentSubscriptionPeriod
+      }
+
+      else -> error("Unsupported IAP type ${inAppPayment.type}")
+    }
+  }
+
+  private fun markInAppPaymentCompleted(inAppPayment: InAppPaymentTable.InAppPayment) {
+    SignalDatabase.inAppPayments.update(
+      inAppPayment = inAppPayment.copy(
+        state = InAppPaymentTable.State.END,
+        data = inAppPayment.data.copy(
+          redemption = InAppPaymentData.RedemptionState(stage = InAppPaymentData.RedemptionState.Stage.REDEEMED)
+        )
+      )
+    )
   }
 
   private fun getAndValidateInAppPayment(): Pair<InAppPaymentTable.InAppPayment, ReceiptCredentialRequestContext> {
@@ -435,18 +475,13 @@ class InAppPaymentRecurringContextJob private constructor(
       }
 
       409 -> {
-        if (isForKeepAlive) {
-          warning("Already redeemed this token during keep-alive, ignoring.", applicationError)
-          SignalDatabase.inAppPayments.update(
-            inAppPayment.copy(
-              state = InAppPaymentTable.State.END,
-              data = inAppPayment.data.copy(redemption = inAppPayment.data.redemption.copy(stage = InAppPaymentData.RedemptionState.Stage.REDEEMED))
-            )
-          )
-        } else {
-          warning("Already redeemed this token during new subscription. Failing.", applicationError)
-          updateInAppPaymentWithGenericRedemptionError(inAppPayment)
+        warning("Already redeemed this token during new subscription. Failing.", applicationError)
+
+        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+          SignalStore.backup.hasBackupAlreadyRedeemedError = true
         }
+
+        updateInAppPaymentWithTokenAlreadyRedeemedError(inAppPayment)
       }
 
       else -> {
@@ -518,6 +553,20 @@ class InAppPaymentRecurringContextJob private constructor(
     )
 
     return isSameLevel && isExpirationAfterSub && isExpiration86400 && isExpirationInTheFuture && isExpirationWithinMax
+  }
+
+  private fun updateInAppPaymentWithTokenAlreadyRedeemedError(inAppPayment: InAppPaymentTable.InAppPayment) {
+    SignalDatabase.inAppPayments.update(
+      inAppPayment = inAppPayment.copy(
+        state = InAppPaymentTable.State.END,
+        data = inAppPayment.data.copy(
+          error = InAppPaymentData.Error(
+            type = InAppPaymentData.Error.Type.REDEMPTION,
+            data_ = "409"
+          )
+        )
+      )
+    )
   }
 
   private fun updateInAppPaymentWithGenericRedemptionError(inAppPayment: InAppPaymentTable.InAppPayment) {

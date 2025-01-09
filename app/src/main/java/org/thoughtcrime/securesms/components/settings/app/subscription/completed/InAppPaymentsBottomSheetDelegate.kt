@@ -23,18 +23,17 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.Th
 import org.thoughtcrime.securesms.components.settings.app.subscription.thanks.ThanksForYourSupportBottomSheetDialogFragmentArgs
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Handles displaying bottom sheets for in-app payments. The current policy is to "fire and forget".
  */
 class InAppPaymentsBottomSheetDelegate(
   private val fragmentManager: FragmentManager,
-  private val lifecycleOwner: LifecycleOwner,
-  private vararg val supportedTypes: InAppPaymentSubscriberRecord.Type = arrayOf(InAppPaymentSubscriberRecord.Type.DONATION)
+  private val lifecycleOwner: LifecycleOwner
 ) : DefaultLifecycleObserver {
 
   companion object {
@@ -56,13 +55,11 @@ class InAppPaymentsBottomSheetDelegate(
   private val badgeRepository = TerminalDonationRepository()
 
   override fun onResume(owner: LifecycleOwner) {
-    if (InAppPaymentSubscriberRecord.Type.DONATION in supportedTypes) {
-      handleLegacyTerminalDonationSheets()
-      handleLegacyVerifiedMonthlyDonationSheets()
-      handleInAppPaymentDonationSheets()
-    }
+    handleLegacyTerminalDonationSheets()
+    handleLegacyVerifiedMonthlyDonationSheets()
+    handleInAppPaymentDonationSheets()
 
-    if (InAppPaymentSubscriberRecord.Type.BACKUP in supportedTypes) {
+    if (RemoteConfig.messageBackups) {
       handleInAppPaymentBackupsSheets()
     }
   }

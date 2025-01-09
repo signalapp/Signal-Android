@@ -202,6 +202,11 @@ object BackupRepository {
     return alertAfter <= now
   }
 
+  @JvmStatic
+  fun shouldDisplayBackupAlreadyRedeemedIndicator(): Boolean {
+    return !(shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupAlreadyRedeemedError)
+  }
+
   /**
    * Whether the "Backup Failed" row should be displayed in settings.
    * Shown when the initial backup creation has failed
@@ -224,6 +229,10 @@ object BackupRepository {
     }
 
     return SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
+  }
+
+  fun markBackupAlreadyRedeemedIndicatorClicked() {
+    SignalStore.backup.hasBackupAlreadyRedeemedError = false
   }
 
   /**

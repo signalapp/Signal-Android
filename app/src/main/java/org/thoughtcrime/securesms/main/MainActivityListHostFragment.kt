@@ -166,7 +166,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     super.onResume()
     SimpleTask.run(viewLifecycleOwner.lifecycle, { Recipient.self() }, ::initializeProfileIcon)
 
-    _backupsFailedDot.alpha = if (BackupRepository.shouldDisplayBackupFailedIndicator()) {
+    _backupsFailedDot.alpha = if (BackupRepository.shouldDisplayBackupFailedIndicator() || BackupRepository.shouldDisplayBackupAlreadyRedeemedIndicator()) {
       1f
     } else {
       0f

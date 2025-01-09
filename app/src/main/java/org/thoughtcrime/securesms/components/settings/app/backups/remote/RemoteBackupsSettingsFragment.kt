@@ -36,6 +36,7 @@ import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
@@ -153,7 +154,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupProgress = backupProgress,
       backupSize = state.backupSize,
       backupState = state.backupState,
-      backupRestoreState = restoreState
+      backupRestoreState = restoreState,
+      hasRedemptionError = state.hasRedemptionError
     )
   }
 
@@ -248,6 +250,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onRestoreUsingCellularClick(canUseCellular: Boolean) {
       viewModel.setCanRestoreUsingCellular(canUseCellular)
     }
+
+    override fun onRedemptionErrorDetailsClick() {
+      BackupAlertBottomSheet.create(BackupAlert.CouldNotRedeemBackup).show(parentFragmentManager, null)
+    }
   }
 
   private fun displayBackupKey() {
@@ -331,6 +337,7 @@ private interface ContentCallbacks {
   fun onContactSupport() = Unit
   fun onLearnMoreAboutBackupFailure() = Unit
   fun onRestoreUsingCellularClick(canUseCellular: Boolean) = Unit
+  fun onRedemptionErrorDetailsClick() = Unit
 }
 
 @Composable
@@ -346,7 +353,8 @@ private fun RemoteBackupsSettingsContent(
   requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
   contentCallbacks: ContentCallbacks,
   backupProgress: ArchiveUploadProgressState?,
-  backupSize: Long
+  backupSize: Long,
+  hasRedemptionError: Boolean
 ) {
   val snackbarHostState = remember {
     SnackbarHostState()
@@ -364,6 +372,12 @@ private fun RemoteBackupsSettingsContent(
       modifier = Modifier
         .padding(it)
     ) {
+      if (hasRedemptionError) {
+        item {
+          RedemptionErrorAlert(onDetailsClick = contentCallbacks::onRedemptionErrorDetailsClick)
+        }
+      }
+
       item {
         AnimatedContent(backupState, label = "backup-state-block") { state ->
           when (state) {
@@ -772,6 +786,42 @@ private fun BackupCard(
 }
 
 @Composable
+private fun RedemptionErrorAlert(
+  onDetailsClick: () -> Unit
+) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically,
+    modifier = Modifier
+      .padding(horizontal = 16.dp)
+      .padding(top = 8.dp, bottom = 4.dp)
+      .border(
+        width = 1.dp,
+        color = colorResource(R.color.signal_colorOutline_38),
+        shape = RoundedCornerShape(12.dp)
+      )
+      .padding(vertical = 16.dp)
+      .padding(start = 16.dp, end = 12.dp)
+  ) {
+    Icon(
+      painter = painterResource(R.drawable.symbol_backup_error_24),
+      tint = Color(0xFFFF9500),
+      contentDescription = null
+    )
+
+    Text(
+      text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
+      modifier = Modifier.padding(start = 16.dp, end = 4.dp).weight(1f)
+    )
+
+    Buttons.Small(onClick = onDetailsClick) {
+      Text(
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__details)
+      )
+    }
+  }
+}
+
+@Composable
 private fun BoxCard(content: @Composable () -> Unit) {
   Box(
     contentAlignment = Alignment.Center,
@@ -988,6 +1038,7 @@ private fun getBackupPhaseMessage(state: ArchiveUploadProgressState): String {
         (progress.progress * 100).toInt()
       )
     }
+
     else -> stringResource(R.string.RemoteBackupsSettingsFragment__preparing_backup)
   }
 }
@@ -1272,8 +1323,17 @@ private fun RemoteBackupsSettingsContentPreview() {
       backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
         messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
       ),
-      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup)
+      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
+      hasRedemptionError = true
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RedemptionErrorAlertPreview() {
+  Previews.Preview {
+    RedemptionErrorAlert { }
   }
 }
 
