@@ -17,6 +17,7 @@ import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Self
+import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
@@ -80,7 +81,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {
       contactBuilder.registered = Contact.Registered()
     } else {
-      contactBuilder.notRegistered = Contact.NotRegistered(unregisteredTimestamp = cursor.requireLong(RecipientTable.UNREGISTERED_TIMESTAMP))
+      contactBuilder.notRegistered = Contact.NotRegistered(unregisteredTimestamp = cursor.requireLong(RecipientTable.UNREGISTERED_TIMESTAMP).clampToValidBackupRange())
     }
 
     return ArchiveRecipient(

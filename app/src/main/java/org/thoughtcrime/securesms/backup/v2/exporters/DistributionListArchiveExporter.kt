@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.database.getMembersForBackup
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
+import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
@@ -49,7 +50,7 @@ class DistributionListArchiveExporter(
       allowsReplies = cursor.requireBoolean(DistributionListTables.ListTable.ALLOWS_REPLIES),
       rawMembers = distributionListTables.getRawMembers(id, privacyMode),
       members = distributionListTables.getMembersForBackup(id),
-      deletedAtTimestamp = cursor.requireLong(DistributionListTables.ListTable.DELETION_TIMESTAMP),
+      deletedAtTimestamp = cursor.requireLong(DistributionListTables.ListTable.DELETION_TIMESTAMP).clampToValidBackupRange(),
       isUnknown = cursor.requireBoolean(DistributionListTables.ListTable.IS_UNKNOWN),
       privacyMode = privacyMode
     )

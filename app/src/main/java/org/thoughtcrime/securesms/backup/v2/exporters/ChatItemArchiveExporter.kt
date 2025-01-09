@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.StickerMessage
 import org.thoughtcrime.securesms.backup.v2.proto.Text
 import org.thoughtcrime.securesms.backup.v2.proto.ThreadMergeChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.ViewOnceMessage
+import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.backup.v2.util.toRemoteFilePointer
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -431,7 +432,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   val builder = ChatItem.Builder().apply {
     chatId = record.threadId
     authorId = fromRecipientId
-    dateSent = record.dateSent
+    dateSent = record.dateSent.clampToValidBackupRange()
     expireStartDate = record.expireStarted.takeIf { it > 0 }
     expiresInMs = record.expiresIn.takeIf { it > 0 }
     revisions = emptyList()
@@ -603,8 +604,8 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
           },
           ringerRecipientId = this.ringerRecipient?.toLong(),
           startedCallRecipientId = ACI.parseOrNull(groupCallUpdateDetails.startedCallUuid)?.let { db.recipientTable.getByAci(it).getOrNull()?.toLong() },
-          startedCallTimestamp = this.timestamp,
-          endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp,
+          startedCallTimestamp = this.timestamp.clampToValidBackupRange(),
+          endedCallTimestamp = groupCallUpdateDetails.endedCallTimestamp.clampToValidBackupRange(),
           read = messageRecord.read
         )
       )
@@ -634,7 +635,7 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
               return null
             }
           },
-          startedCallTimestamp = this.timestamp,
+          startedCallTimestamp = this.timestamp.clampToValidBackupRange(),
           read = messageRecord.read
         )
       )
@@ -720,7 +721,7 @@ private fun BackupMessageRecord.toRemoteLinkPreviews(attachments: List<DatabaseA
         val attachment = attachmentIdMap[preview.attachmentId]
 
         if (attachment != null) {
-          previews += LinkPreview(preview.url, preview.title, preview.description, preview.date, attachment)
+          previews += LinkPreview(preview.url, preview.title, preview.description, preview.date.clampToValidBackupRange(), attachment)
         } else {
           previews += preview
         }
@@ -745,7 +746,7 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
     title = title.nullIfEmpty(),
     image = (thumbnail.orNull() as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
     description = description.nullIfEmpty(),
-    date = date
+    date = date.clampToValidBackupRange()
   )
 }
 
@@ -884,7 +885,7 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
   }
 
   return Quote(
-    targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID },
+    targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID }?.clampToValidBackupRange(),
     authorId = this.quoteAuthor,
     text = this.quoteBody?.let { body ->
       Text(
@@ -981,9 +982,9 @@ private fun PaymentTable.PaymentTransaction.toRemoteTransactionDetails(): Paymen
   return PaymentNotification.TransactionDetails(
     transaction = PaymentNotification.TransactionDetails.Transaction(
       status = this.state.toRemote(),
-      timestamp = this.timestamp,
+      timestamp = this.timestamp.clampToValidBackupRange(),
       blockIndex = this.blockIndex,
-      blockTimestamp = this.blockTimestamp,
+      blockTimestamp = this.blockTimestamp.clampToValidBackupRange(),
       mobileCoinIdentification = this.paymentMetaData.mobileCoinTxoIdentification?.let {
         PaymentNotification.TransactionDetails.MobileCoinTxoIdentification(
           publicKey = it.publicKey.takeIf { this.direction.isReceived } ?: emptyList(),
@@ -1065,7 +1066,7 @@ private fun List<ReactionRecord>?.toRemote(): List<Reaction> {
       Reaction(
         emoji = it.emoji,
         authorId = it.author.toLong(),
-        sentTimestamp = it.dateSent,
+        sentTimestamp = it.dateSent.clampToValidBackupRange(),
         sortOrder = it.dateReceived
       )
     } ?: emptyList()
@@ -1298,9 +1299,9 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
 
   return BackupMessageRecord(
     id = id,
-    dateSent = this.requireLong(MessageTable.DATE_SENT),
-    dateReceived = this.requireLong(MessageTable.DATE_RECEIVED),
-    dateServer = this.requireLong(MessageTable.DATE_SERVER),
+    dateSent = this.requireLong(MessageTable.DATE_SENT).clampToValidBackupRange(),
+    dateReceived = this.requireLong(MessageTable.DATE_RECEIVED).clampToValidBackupRange(),
+    dateServer = this.requireLong(MessageTable.DATE_SERVER).clampToValidBackupRange(),
     type = this.requireLong(MessageTable.TYPE),
     threadId = this.requireLong(MessageTable.THREAD_ID),
     body = this.requireString(MessageTable.BODY),
@@ -1313,7 +1314,7 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
     sealedSender = this.requireBoolean(MessageTable.UNIDENTIFIED),
     linkPreview = this.requireString(MessageTable.LINK_PREVIEWS),
     sharedContacts = this.requireString(MessageTable.SHARED_CONTACTS),
-    quoteTargetSentTimestamp = this.requireLong(MessageTable.QUOTE_ID),
+    quoteTargetSentTimestamp = this.requireLong(MessageTable.QUOTE_ID).clampToValidBackupRange(),
     quoteAuthor = this.requireLong(MessageTable.QUOTE_AUTHOR),
     quoteBody = this.requireString(MessageTable.QUOTE_BODY),
     quoteMissing = this.requireBoolean(MessageTable.QUOTE_MISSING),
