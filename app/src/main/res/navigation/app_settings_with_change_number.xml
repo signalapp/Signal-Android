@@ -269,7 +269,7 @@
         android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceLearnMoreBottomSheetFragment" />
     <dialog
         android:id="@+id/linkDeviceEducationSheet"
-        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceEducationSheet" />
+        android:name="org.thoughtcrime.securesms.linkdevice.LinkDeviceAuthEducationSheet" />
 
     <fragment
         android:id="@+id/editDeviceNameFragment"

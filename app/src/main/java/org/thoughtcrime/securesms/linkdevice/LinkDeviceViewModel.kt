@@ -197,7 +197,10 @@ class LinkDeviceViewModel : ViewModel() {
   fun markBioAuthEducationSheetSeen(seen: Boolean) {
     SignalStore.uiHints.markHasSeenLinkDeviceAuthSheet()
     _state.update {
-      it.copy(seenBioAuthEducationSheet = seen)
+      it.copy(
+        seenBioAuthEducationSheet = seen,
+        needsBioAuthEducationSheet = false
+      )
     }
   }
 

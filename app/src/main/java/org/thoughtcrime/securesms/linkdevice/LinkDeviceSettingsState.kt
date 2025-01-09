@@ -18,7 +18,8 @@ data class LinkDeviceSettingsState(
   val linkUri: Uri? = null,
   val linkDeviceResult: LinkDeviceResult = LinkDeviceResult.None,
   val seenQrEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceQrEducationSheet() || SignalStore.account.hasLinkedDevices,
-  val seenBioAuthEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceAuthSheet() || SignalStore.account.hasLinkedDevices,
+  val seenBioAuthEducationSheet: Boolean = false,
+  val needsBioAuthEducationSheet: Boolean = !seenBioAuthEducationSheet && !SignalStore.uiHints.hasSeenLinkDeviceAuthSheet() && !SignalStore.account.hasLinkedDevices,
   val bottomSheetVisible: Boolean = false,
   val deviceToEdit: Device? = null
 ) {
