@@ -570,6 +570,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     swipeRefresh.setRefreshing(refreshing);
   }
 
+  public boolean isRefreshing() {
+    return swipeRefresh.isRefreshing();
+  }
+
   public void reset() {
     contactSearchMediator.clearSelection();
     fastScroller.setVisibility(View.GONE);
