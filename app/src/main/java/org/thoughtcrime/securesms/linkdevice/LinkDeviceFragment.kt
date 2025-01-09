@@ -88,6 +88,7 @@ class LinkDeviceFragment : ComposeFragment() {
   private val viewModel: LinkDeviceViewModel by activityViewModels()
   private lateinit var biometricAuth: BiometricDeviceAuthentication
   private lateinit var biometricDeviceLockLauncher: ActivityResultLauncher<String>
+  private lateinit var linkDeviceWakeLock: LinkDeviceWakeLock
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -110,6 +111,8 @@ class LinkDeviceFragment : ComposeFragment() {
       BiometricPrompt(requireActivity(), BiometricAuthenticationListener()),
       promptInfo
     )
+
+    linkDeviceWakeLock = LinkDeviceWakeLock(requireActivity())
   }
 
   override fun onPause() {
@@ -122,6 +125,20 @@ class LinkDeviceFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val context = LocalContext.current
+
+    LaunchedEffect(state.dialogState) {
+      when (state.dialogState) {
+        DialogState.None, is DialogState.SyncingFailed, DialogState.SyncingTimedOut -> {
+          Log.i(TAG, "Releasing wake lock for linked device")
+          linkDeviceWakeLock.release()
+        }
+        DialogState.SyncingMessages, DialogState.Linking -> {
+          Log.i(TAG, "Acquiring wake lock for linked device")
+          linkDeviceWakeLock.acquire()
+        }
+        DialogState.Unlinking -> Unit
+      }
+    }
 
     LaunchedEffect(state.oneTimeEvent) {
       when (val event = state.oneTimeEvent) {

@@ -222,6 +222,11 @@ class LinkDeviceViewModel : ViewModel() {
 
     if (result !is LinkDeviceResult.Success) {
       Log.w(TAG, "[addDeviceWithSync] Unable to link device $result")
+      _state.update {
+        it.copy(
+          dialogState = DialogState.None
+        )
+      }
       return
     }
 
@@ -287,6 +292,11 @@ class LinkDeviceViewModel : ViewModel() {
 
     if (result !is LinkDeviceResult.Success) {
       Log.w(TAG, "Unable to link device $result")
+      _state.update {
+        it.copy(
+          dialogState = DialogState.None
+        )
+      }
       return
     }
 
