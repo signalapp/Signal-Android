@@ -57,6 +57,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Dividers
@@ -132,7 +133,7 @@ class LinkDeviceFragment : ComposeFragment() {
           Log.i(TAG, "Releasing wake lock for linked device")
           linkDeviceWakeLock.release()
         }
-        DialogState.SyncingMessages, DialogState.Linking -> {
+        is DialogState.SyncingMessages, DialogState.Linking -> {
           Log.i(TAG, "Acquiring wake lock for linked device")
           linkDeviceWakeLock.acquire()
         }
@@ -150,6 +151,9 @@ class LinkDeviceFragment : ComposeFragment() {
         }
         is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked -> {
           Toast.makeText(context, context.getString(R.string.LinkDeviceFragment__s_unlinked, event.name), Toast.LENGTH_LONG).show()
+        }
+        LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> {
+          Snackbar.make(requireView(), context.getString(R.string.LinkDeviceFragment__linking_cancelled), Snackbar.LENGTH_LONG).show()
         }
         LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> {
           Toast.makeText(context, context.getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
@@ -198,6 +202,7 @@ class LinkDeviceFragment : ComposeFragment() {
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
         onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
+        onSyncCancelled = { viewModel.onSyncCancelled() },
         onEditDevice = { device ->
           viewModel.setDeviceToEdit(device)
           navController.safeNavigate(R.id.action_linkDeviceFragment_to_editDeviceNameFragment)
@@ -251,6 +256,7 @@ fun DeviceListScreen(
   onDeviceRemovalConfirmed: (Device) -> Unit = {},
   onSyncFailureRetryRequested: () -> Unit = {},
   onSyncFailureIgnored: () -> Unit = {},
+  onSyncCancelled: () -> Unit = {},
   onEditDevice: (Device) -> Unit = {}
 ) {
   // If a bottom sheet is showing, we don't want the spinner underneath
@@ -265,8 +271,13 @@ fun DeviceListScreen(
       DialogState.Unlinking -> {
         Dialogs.IndeterminateProgressDialog(stringResource(id = R.string.DeviceListActivity_unlinking_device))
       }
-      DialogState.SyncingMessages -> {
-        Dialogs.IndeterminateProgressDialog(stringResource(id = R.string.LinkDeviceFragment__syncing_messages))
+      is DialogState.SyncingMessages -> {
+        Dialogs.IndeterminateProgressDialog(
+          message = stringResource(id = R.string.LinkDeviceFragment__syncing_messages),
+          caption = stringResource(id = R.string.LinkDeviceFragment__do_not_close),
+          dismiss = stringResource(id = android.R.string.cancel),
+          onDismiss = onSyncCancelled
+        )
       }
       is DialogState.SyncingFailed,
       DialogState.SyncingTimedOut -> {
@@ -507,7 +518,9 @@ private fun DeviceListScreenPreview() {
         devices = listOf(
           Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000),
           Device(1, "Sam's iPad", 1715793182000, 1716053122000)
-        )
+        ),
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }
@@ -519,7 +532,9 @@ private fun DeviceListScreenLoadingPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        deviceListLoading = true
+        deviceListLoading = true,
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }
@@ -531,7 +546,9 @@ private fun DeviceListScreenLinkingPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.Linking
+        dialogState = DialogState.Linking,
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }
@@ -543,7 +560,9 @@ private fun DeviceListScreenUnlinkingPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.Unlinking
+        dialogState = DialogState.Unlinking,
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }
@@ -555,7 +574,9 @@ private fun DeviceListScreenSyncingMessagesPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.SyncingMessages
+        dialogState = DialogState.SyncingMessages(1, 1),
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }
@@ -567,7 +588,9 @@ private fun DeviceListScreenSyncingFailedPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.SyncingTimedOut
+        dialogState = DialogState.SyncingTimedOut,
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }

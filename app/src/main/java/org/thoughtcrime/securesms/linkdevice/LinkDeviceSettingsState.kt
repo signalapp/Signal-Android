@@ -21,13 +21,14 @@ data class LinkDeviceSettingsState(
   val seenBioAuthEducationSheet: Boolean = false,
   val needsBioAuthEducationSheet: Boolean = !seenBioAuthEducationSheet && !SignalStore.uiHints.hasSeenLinkDeviceAuthSheet() && !SignalStore.account.hasLinkedDevices,
   val bottomSheetVisible: Boolean = false,
-  val deviceToEdit: Device? = null
+  val deviceToEdit: Device? = null,
+  val shouldCancelArchiveUpload: Boolean = false
 ) {
   sealed interface DialogState {
     data object None : DialogState
     data object Linking : DialogState
     data object Unlinking : DialogState
-    data object SyncingMessages : DialogState
+    data class SyncingMessages(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
     data object SyncingTimedOut : DialogState
     data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
   }
@@ -37,6 +38,7 @@ data class LinkDeviceSettingsState(
     data object ToastNetworkFailed : OneTimeEvent
     data class ToastUnlinked(val name: String) : OneTimeEvent
     data class ToastLinked(val name: String) : OneTimeEvent
+    data object SnackbarLinkCancelled : OneTimeEvent
     data object SnackbarNameChangeSuccess : OneTimeEvent
     data object SnackbarNameChangeFailure : OneTimeEvent
     data object ShowFinishedSheet : OneTimeEvent

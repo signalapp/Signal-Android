@@ -150,7 +150,8 @@ class LinkDeviceViewModel : ViewModel() {
       it.copy(
         qrCodeState = QrCodeState.NONE,
         linkUri = null,
-        dialogState = DialogState.Linking
+        dialogState = DialogState.Linking,
+        shouldCancelArchiveUpload = false
       )
     }
 
@@ -247,12 +248,17 @@ class LinkDeviceViewModel : ViewModel() {
     _state.update {
       it.copy(
         linkDeviceResult = result,
-        dialogState = DialogState.SyncingMessages
+        dialogState = DialogState.SyncingMessages(waitResult.id, waitResult.created)
       )
     }
 
     Log.d(TAG, "[addDeviceWithSync] Beginning the archive generation process...")
-    val uploadResult = LinkDeviceRepository.createAndUploadArchive(ephemeralMessageBackupKey, waitResult.id, waitResult.created)
+    val uploadResult = LinkDeviceRepository.createAndUploadArchive(
+      ephemeralMessageBackupKey = ephemeralMessageBackupKey,
+      deviceId = waitResult.id,
+      deviceCreatedAt = waitResult.created,
+      cancellationSignal = { _state.value.shouldCancelArchiveUpload }
+    )
 
     Log.d(TAG, "[addDeviceWithSync] Archive finished with result: $uploadResult")
     when (uploadResult) {
@@ -273,6 +279,14 @@ class LinkDeviceViewModel : ViewModel() {
         _state.update {
           it.copy(
             dialogState = DialogState.SyncingFailed(waitResult.id, waitResult.created)
+          )
+        }
+      }
+      LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationCancelled -> {
+        Log.i(TAG, "[addDeviceWithoutSync] Cancelling archive upload")
+        _state.update {
+          it.copy(
+            dialogState = DialogState.None
           )
         }
       }
@@ -360,6 +374,26 @@ class LinkDeviceViewModel : ViewModel() {
         dialogState = DialogState.None,
         oneTimeEvent = OneTimeEvent.LaunchQrCodeScanner
       )
+    }
+  }
+
+  fun onSyncCancelled() = viewModelScope.launch(Dispatchers.IO) {
+    Log.i(TAG, "Cancelling sync and removing linked device")
+    val dialogState = _state.value.dialogState
+    if (dialogState is DialogState.SyncingMessages) {
+      val success = LinkDeviceRepository.removeDevice(dialogState.deviceId)
+      if (success) {
+        Log.i(TAG, "Removing device after cancelling sync")
+        _state.update {
+          it.copy(
+            oneTimeEvent = OneTimeEvent.SnackbarLinkCancelled,
+            dialogState = DialogState.None,
+            shouldCancelArchiveUpload = true
+          )
+        }
+      } else {
+        Log.w(TAG, "Unable to remove device after cancelling sync")
+      }
     }
   }
 

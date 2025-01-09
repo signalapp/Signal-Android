@@ -241,7 +241,7 @@ object LinkDeviceRepository {
   /**
    * Performs the entire process of creating and uploading an archive for a newly-linked device.
    */
-  fun createAndUploadArchive(ephemeralMessageBackupKey: MessageBackupKey, deviceId: Int, deviceCreatedAt: Long): LinkUploadArchiveResult {
+  fun createAndUploadArchive(ephemeralMessageBackupKey: MessageBackupKey, deviceId: Int, deviceCreatedAt: Long, cancellationSignal: () -> Boolean): LinkUploadArchiveResult {
     Log.d(TAG, "[createAndUploadArchive] Beginning process.")
     val stopwatch = Stopwatch("link-archive")
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
@@ -249,13 +249,24 @@ object LinkDeviceRepository {
 
     try {
       Log.d(TAG, "[createAndUploadArchive] Starting the export.")
-      BackupRepository.export(outputStream = outputStream, append = { tempBackupFile.appendBytes(it) }, messageBackupKey = ephemeralMessageBackupKey, mediaBackupEnabled = false)
+      BackupRepository.export(
+        outputStream = outputStream,
+        append = { tempBackupFile.appendBytes(it) },
+        messageBackupKey = ephemeralMessageBackupKey,
+        mediaBackupEnabled = false,
+        cancellationSignal = cancellationSignal
+      )
     } catch (e: Exception) {
       Log.w(TAG, "[createAndUploadArchive] Failed to export a backup!", e)
       return LinkUploadArchiveResult.BackupCreationFailure(e)
     }
     Log.d(TAG, "[createAndUploadArchive] Successfully created backup.")
     stopwatch.split("create-backup")
+
+    if (cancellationSignal()) {
+      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      return LinkUploadArchiveResult.BackupCreationCancelled
+    }
 
     when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey)) {
       ArchiveValidator.ValidationResult.Success -> {
@@ -272,12 +283,22 @@ object LinkDeviceRepository {
     }
     stopwatch.split("validate-backup")
 
+    if (cancellationSignal()) {
+      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      return LinkUploadArchiveResult.BackupCreationCancelled
+    }
+
     Log.d(TAG, "[createAndUploadArchive] Fetching an upload form...")
     val uploadForm = when (val result = NetworkResult.withRetry { SignalNetwork.attachments.getAttachmentV4UploadForm() }) {
       is NetworkResult.Success -> result.result.logD(TAG, "[createAndUploadArchive] Successfully retrieved upload form.")
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.NetworkError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Network error when fetching form.", result.exception)
       is NetworkResult.StatusCodeError -> return LinkUploadArchiveResult.NetworkError(result.exception).logW(TAG, "[createAndUploadArchive] Status code error when fetching form.", result.exception)
+    }
+
+    if (cancellationSignal()) {
+      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
     when (val result = uploadArchive(tempBackupFile, uploadForm)) {
@@ -287,6 +308,11 @@ object LinkDeviceRepository {
       is NetworkResult.ApplicationError -> throw result.throwable
     }
     stopwatch.split("upload-backup")
+
+    if (cancellationSignal()) {
+      Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      return LinkUploadArchiveResult.BackupCreationCancelled
+    }
 
     Log.d(TAG, "[createAndUploadArchive] Setting the transfer archive...")
     val transferSetResult = NetworkResult.withRetry {
@@ -399,6 +425,7 @@ object LinkDeviceRepository {
 
   sealed interface LinkUploadArchiveResult {
     data object Success : LinkUploadArchiveResult
+    data object BackupCreationCancelled : LinkUploadArchiveResult
     data class BackupCreationFailure(val exception: Exception) : LinkUploadArchiveResult
     data class BadRequest(val exception: IOException) : LinkUploadArchiveResult
     data class NetworkError(val exception: IOException) : LinkUploadArchiveResult
