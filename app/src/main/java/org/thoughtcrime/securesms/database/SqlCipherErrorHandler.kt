@@ -165,16 +165,16 @@ class SqlCipherErrorHandler(private val application: Application, private val da
   }
 
   private fun attemptToClearFullTextSearchIndex(db: SQLiteDatabase) {
-//    try {
-//      try {
-//        db.reopenReadWrite()
-//      } catch (e: Exception) {
-//        Log.w(TAG, "Failed to re-open as read-write!", e)
-//      }
-//      SignalDatabase.messageSearch.fullyResetTables(db, useTransaction = false)
-//    } catch (e: Throwable) {
-//      Log.w(TAG, "Failed to clear full text search index.", e)
-//    }
+    try {
+      try {
+        db.reopenReadWrite()
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to re-open as read-write!", e)
+      }
+      SignalDatabase.messageSearch.rebuildIndex(db)
+    } catch (e: Throwable) {
+      Log.w(TAG, "Failed to rebuild the full text search index.", e)
+    }
   }
 
   private sealed class DiagnosticResults(val logs: String) {
