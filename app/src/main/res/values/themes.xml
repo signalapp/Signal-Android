@@ -74,7 +74,6 @@
 
         <item name="theme_type">dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="colorPrimary">@color/core_grey_95</item>
         <item name="colorAccent">@color/core_ultramarine_light</item>
     </style>
 
@@ -227,10 +226,8 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
-
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
-
         <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
     </style>
 
@@ -323,10 +320,8 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
-
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
-
         <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
     </style>
 
