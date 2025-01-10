@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts
 import java.io.IOException
+import java.net.ProtocolException
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.Throws
 import kotlin.time.Duration.Companion.days
@@ -315,6 +316,9 @@ class PreKeysSyncJob private constructor(
           PreKeysSyncJob(parameters, data.forceRefreshRequested)
         } ?: PreKeysSyncJob(parameters, forceRotationRequested = false)
       } catch (e: IOException) {
+        Log.w(TAG, "Error deserializing PreKeysSyncJob", e)
+        PreKeysSyncJob(parameters, forceRotationRequested = false)
+      } catch (e: ProtocolException) {
         Log.w(TAG, "Error deserializing PreKeysSyncJob", e)
         PreKeysSyncJob(parameters, forceRotationRequested = false)
       }
