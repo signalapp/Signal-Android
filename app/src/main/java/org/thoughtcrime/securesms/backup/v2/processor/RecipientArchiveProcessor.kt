@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Handles importing/exporting [ArchiveRecipient] frames for an archive.
@@ -33,7 +34,7 @@ object RecipientArchiveProcessor {
 
   val TAG = Log.tag(RecipientArchiveProcessor::class.java)
 
-  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfRecipientId: RecipientId, emitter: BackupFrameEmitter) {
+  fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfRecipientId: RecipientId, selfAci: ServiceId.ACI, emitter: BackupFrameEmitter) {
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
@@ -58,7 +59,7 @@ object RecipientArchiveProcessor {
       }
     }
 
-    db.recipientTable.getGroupsForBackup().use { reader ->
+    db.recipientTable.getGroupsForBackup(selfAci).use { reader ->
       for (recipient in reader) {
         exportState.recipientIds.add(recipient.id)
         emitter.emit(Frame(recipient = recipient))

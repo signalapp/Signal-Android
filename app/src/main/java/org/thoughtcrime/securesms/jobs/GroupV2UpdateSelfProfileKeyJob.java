@@ -119,13 +119,14 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
         }
 
         ByteString      selfUuidBytes = Recipient.self().requireAci().toByteString();
+        boolean         isActive      = group.get().isActive();
         DecryptedMember selfMember    = group.get().requireV2GroupProperties().getDecryptedGroup().members
                                                                                                   .stream()
                                                                                                   .filter(m -> m.aciBytes.equals(selfUuidBytes))
                                                                                                   .findFirst()
                                                                                                   .orElse(null);
 
-        if (selfMember != null && !selfMember.profileKey.equals(selfProfileKey)) {
+        if (isActive && selfMember != null && !selfMember.profileKey.equals(selfProfileKey)) {
           Log.w(TAG, "Profile key mismatch for group " + id + " -- enqueueing job");
           foundMismatch = true;
           AppDependencies.getJobManager().add(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(id));

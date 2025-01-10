@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Fetches all individual contacts for backups and returns the result as an iterator.
@@ -76,7 +77,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
   return ContactArchiveExporter(cursor, selfId)
 }
 
-fun RecipientTable.getGroupsForBackup(): GroupArchiveExporter {
+fun RecipientTable.getGroupsForBackup(selfAci: ServiceId.ACI): GroupArchiveExporter {
   val cursor = readableDatabase
     .select(
       "${RecipientTable.TABLE_NAME}.${RecipientTable.ID}",
@@ -87,6 +88,7 @@ fun RecipientTable.getGroupsForBackup(): GroupArchiveExporter {
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}",
       "${GroupTable.TABLE_NAME}.${GroupTable.SHOW_AS_STORY_STATE}",
       "${GroupTable.TABLE_NAME}.${GroupTable.TITLE}",
+      "${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE}",
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_DECRYPTED_GROUP}"
     )
     .from(
@@ -103,7 +105,7 @@ fun RecipientTable.getGroupsForBackup(): GroupArchiveExporter {
     )
     .run()
 
-  return GroupArchiveExporter(cursor)
+  return GroupArchiveExporter(selfAci, cursor)
 }
 
 /**

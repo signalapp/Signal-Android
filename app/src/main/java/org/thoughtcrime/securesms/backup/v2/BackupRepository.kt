@@ -513,7 +513,8 @@ object BackupRepository {
       eventTimer.emit("store-db-snapshot")
 
       val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled)
-      val selfRecipientId = dbSnapshot.recipientTable.getByAci(signalStoreSnapshot.accountValues.aci!!).get().toLong().let { RecipientId.from(it) }
+      val selfAci = signalStoreSnapshot.accountValues.aci!!
+      val selfRecipientId = dbSnapshot.recipientTable.getByAci(selfAci).get().toLong().let { RecipientId.from(it) }
 
       var frameCount = 0L
 
@@ -542,7 +543,7 @@ object BackupRepository {
           }
 
           progressEmitter?.onRecipient()
-          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState, selfRecipientId) {
+          RecipientArchiveProcessor.export(dbSnapshot, signalStoreSnapshot, exportState, selfRecipientId, selfAci) {
             writer.write(it)
             eventTimer.emit("recipient")
             frameCount++
