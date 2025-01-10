@@ -215,8 +215,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
       }
 
-      // TODO [backups] - handle other cases.
-
       return
     }
 
