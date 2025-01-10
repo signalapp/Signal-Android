@@ -269,11 +269,13 @@
         <item name="colorPrimary">@color/signal_colorPrimary</item>
         <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
         <item name="colorAccent">@color/signal_accent_primary</item>
+        <item name="colorSurfaceContainer">@color/signal_colorSurface</item>
+        <item name="colorSurfaceContainerHigh">@color/signal_colorSurface</item>
         <item name="materialCalendarHeaderTitle">@style/MaterialCalendar.Signal.HeaderTitle</item>
         <item name="materialCalendarHeaderSelection">@style/MaterialCalendar.Signal.HeaderSelection</item>
-
         <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
         <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="elevationOverlayEnabled">false</item>
     </style>
 
     <style name="MaterialCalendar.Signal.HeaderTitle" parent="Widget.Material3.MaterialCalendar.HeaderTitle">
