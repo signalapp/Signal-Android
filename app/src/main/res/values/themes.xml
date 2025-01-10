@@ -229,6 +229,7 @@
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
         <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
+        <item name="collapsingToolbarLayoutStyle">@style/Signal.Widget.CollapsingToolbar</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -323,6 +324,7 @@
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
         <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
+        <item name="collapsingToolbarLayoutStyle">@style/Signal.Widget.CollapsingToolbar</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="MaterialAlertDialog.Material3">

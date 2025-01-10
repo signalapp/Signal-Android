@@ -259,6 +259,10 @@
         <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
+    <style name="Signal.Widget.CollapsingToolbar" parent="Widget.Material3.CollapsingToolbar">
+        <item name="scrimVisibleHeightTrigger">0dp</item>
+    </style>
+
     <style name="Signal.Widget.Calendar" parent="Widget.Material3.MaterialCalendar">
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>
