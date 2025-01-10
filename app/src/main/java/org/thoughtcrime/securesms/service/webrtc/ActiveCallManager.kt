@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.SafeForegroundService
+import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.TelephonyUtil
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager
@@ -147,6 +148,8 @@ class ActiveCallManager(
   private var previousNotificationDisposable = Disposable.disposed()
 
   init {
+    Log.i(TAG, "init(bkgRestricted: ${DeviceProperties.isBackgroundRestricted()})")
+
     registerUncaughtExceptionHandler()
     registerNetworkReceiver()
 
@@ -266,6 +269,8 @@ class ActiveCallManager(
   /** Foreground service started only after a call is established */
   class ActiveCallForegroundService : SafeForegroundService() {
     companion object {
+      private const val TAG = "ActiveCallService"
+
       private const val EXTRA_RECIPIENT_ID = "RECIPIENT_ID"
       private const val EXTRA_IS_VIDEO_CALL = "IS_VIDEO_CALL"
       private const val EXTRA_TYPE = "TYPE"

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.webrtc.ActiveCallManager;
 import org.thoughtcrime.securesms.util.ConversationUtil;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 
 /**
  * Manages the state of the WebRtc items in the Android notification bar.
@@ -232,6 +233,6 @@ public class CallNotificationBuilder {
   }
 
   private static boolean deviceVersionSupportsIncomingCallStyle() {
-    return Build.VERSION.SDK_INT >= API_LEVEL_CALL_STYLE;
+    return Build.VERSION.SDK_INT >= API_LEVEL_CALL_STYLE && !DeviceProperties.isBackgroundRestricted();
   }
 }
