@@ -168,6 +168,7 @@
         <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="colorControlActivated">@color/signal_colorPrimary</item>
         <item name="colorControlHighlight">@color/transparent_black_10</item>
+        <item name="android:textColorHighlight">@color/signal_colorPrimaryContainer</item>
 
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
         <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
@@ -261,6 +262,7 @@
         <item name="colorAccent">@color/signal_colorPrimary</item>
         <item name="colorControlActivated">@color/signal_colorPrimary</item>
         <item name="colorControlHighlight">@color/transparent_white_10</item>
+        <item name="android:textColorHighlight">@color/signal_colorPrimaryContainer</item>
 
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
         <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
