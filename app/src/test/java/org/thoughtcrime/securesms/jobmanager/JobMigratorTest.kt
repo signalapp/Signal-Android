@@ -115,7 +115,8 @@ class JobMigratorTest {
         isRunning = false,
         isMemoryOnly = false,
         globalPriority = 0,
-        queuePriority = 0
+        queuePriority = 0,
+        initialDelay = 0
       )
       return mockk<JobStorage> {
         every { debugGetJobSpecs(any()) } returns listOf(job)

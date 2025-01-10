@@ -65,6 +65,7 @@ class JobDatabase(
     const val IS_RUNNING = "is_running"
     const val GLOBAL_PRIORITY = "global_priority"
     const val QUEUE_PRIORITY = "queue_priority"
+    const val INITIAL_DELAY = "initial_delay"
 
     val CREATE_TABLE =
       """
@@ -83,7 +84,8 @@ class JobDatabase(
           $IS_RUNNING INTEGER,
           $NEXT_BACKOFF_INTERVAL INTEGER,
           $GLOBAL_PRIORITY INTEGER DEFAULT 0,
-          $QUEUE_PRIORITY INTEGER DEFAULT 0
+          $QUEUE_PRIORITY INTEGER DEFAULT 0,
+          $INITIAL_DELAY INTEGER DEFAULT 0
         )
       """.trimIndent()
   }
@@ -146,6 +148,10 @@ class JobDatabase(
     if (oldVersion < 4) {
       db.execSQL("ALTER TABLE job_spec RENAME COLUMN priority TO global_priority")
       db.execSQL("ALTER TABLE job_spec ADD COLUMN queue_priority INTEGER DEFAULT 0")
+    }
+
+    if (oldVersion < 5) {
+      db.execSQL("ALTER TABLE job_spec ADD COLUMN initial_delay INTEGER DEFAULT 0")
     }
   }
 
@@ -232,7 +238,8 @@ class JobDatabase(
       Jobs.NEXT_BACKOFF_INTERVAL,
       Jobs.IS_RUNNING,
       Jobs.GLOBAL_PRIORITY,
-      Jobs.QUEUE_PRIORITY
+      Jobs.QUEUE_PRIORITY,
+      Jobs.INITIAL_DELAY
     )
     return readableDatabase
       .query(Jobs.TABLE_NAME, columns, null, null, null, null, "${Jobs.CREATE_TIME}, ${Jobs.ID} ASC")
@@ -247,7 +254,8 @@ class JobDatabase(
           globalPriority = cursor.requireInt(Jobs.GLOBAL_PRIORITY),
           queuePriority = cursor.requireInt(Jobs.QUEUE_PRIORITY),
           isRunning = cursor.requireBoolean(Jobs.IS_RUNNING),
-          isMemoryOnly = false
+          isMemoryOnly = false,
+          initialDelay = cursor.requireLong(Jobs.INITIAL_DELAY)
         )
       }
   }
@@ -450,7 +458,8 @@ class JobDatabase(
       isRunning = this.requireBoolean(Jobs.IS_RUNNING),
       isMemoryOnly = false,
       globalPriority = this.requireInt(Jobs.GLOBAL_PRIORITY),
-      queuePriority = this.requireInt(Jobs.QUEUE_PRIORITY)
+      queuePriority = this.requireInt(Jobs.QUEUE_PRIORITY),
+      initialDelay = this.requireLong(Jobs.INITIAL_DELAY)
     )
   }
 
@@ -494,13 +503,14 @@ class JobDatabase(
       Jobs.SERIALIZED_INPUT_DATA to this.serializedInputData,
       Jobs.IS_RUNNING to if (this.isRunning) 1 else 0,
       Jobs.GLOBAL_PRIORITY to this.globalPriority,
-      Jobs.QUEUE_PRIORITY to this.queuePriority
+      Jobs.QUEUE_PRIORITY to this.queuePriority,
+      Jobs.INITIAL_DELAY to this.initialDelay
     )
   }
 
   companion object {
     private val TAG = Log.tag(JobDatabase::class.java)
-    private const val DATABASE_VERSION = 4
+    private const val DATABASE_VERSION = 5
     private const val DATABASE_NAME = "signal-jobmanager.db"
 
     @SuppressLint("StaticFieldLeak")

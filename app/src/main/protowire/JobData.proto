@@ -152,3 +152,8 @@ message BackupMessagesJobData {
   ResumableUpload uploadSpec = 3;
   string resumableUri = 4;
 }
+
+message NewLinkedDeviceNotificationJobData {
+  uint32 deviceId = 1;
+  uint64 deviceCreatedAt = 2;
+}

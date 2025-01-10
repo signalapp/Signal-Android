@@ -38,6 +38,8 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
     private const val LAST_NETWORK_RESET_TIME = "misc.last_network_reset_time"
     private const val LAST_WEBSOCKET_CONNECT_TIME = "misc.last_websocket_connect_time"
     private const val LAST_CONNECTIVITY_WARNING_TIME = "misc.last_connectivity_warning_time"
+    private const val NEW_LINKED_DEVICE_ID = "misc.new_linked_device_id"
+    private const val NEW_LINKED_DEVICE_CREATED_TIME = "misc.new_linked_device_created_time"
   }
 
   public override fun onFirstEverAppLaunch() {
@@ -257,4 +259,14 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
    * The last time we prompted the user regarding a [org.thoughtcrime.securesms.util.ConnectivityWarning].
    */
   var lastConnectivityWarningTime: Long by longValue(LAST_CONNECTIVITY_WARNING_TIME, 0)
+
+  /**
+   * The device id of the device that was recently linked
+   */
+  var newLinkedDeviceId: Int by integerValue(NEW_LINKED_DEVICE_ID, 0)
+
+  /**
+   * The time, in milliseconds, that the device was created at
+   */
+  var newLinkedDeviceCreatedTime: Long by longValue(NEW_LINKED_DEVICE_CREATED_TIME, 0)
 }

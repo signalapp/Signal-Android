@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -110,6 +111,7 @@ public final class Megaphones {
     return new LinkedHashMap<>() {{
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
+      put(Event.NEW_LINKED_DEVICE, shouldShowNewLinkedDeviceMegaphone() ? ALWAYS: NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.GRANT_FULL_SCREEN_INTENT, shouldShowGrantFullScreenIntentPermission(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
       put(Event.BACKUP_SCHEDULE_PERMISSION, shouldShowBackupSchedulePermissionMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
@@ -166,6 +168,8 @@ public final class Megaphones {
         return buildGrantFullScreenIntentPermission(context);
       case PNP_LAUNCH:
         return buildPnpLaunchMegaphone();
+      case NEW_LINKED_DEVICE:
+        return buildNewLinkedDeviceMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -184,7 +188,7 @@ public final class Megaphones {
     return new Megaphone.Builder(Event.LINKED_DEVICE_INACTIVE, Megaphone.Style.BASIC)
         .setTitle(R.string.LinkedDeviceInactiveMegaphone_title)
         .setBody(context.getResources().getQuantityString(R.plurals.LinkedDeviceInactiveMegaphone_body, expiringDays, device.name, expiringDays))
-        .setImage(R.drawable.ic_inactive_linked_device)
+        .setImage(R.drawable.symbol_linked_device)
         .setActionButton(R.string.LinkedDeviceInactiveMegaphone_got_it_button_label, (megaphone, listener) -> {
           listener.onMegaphoneSnooze(Event.LINKED_DEVICE_INACTIVE);
         })
@@ -290,6 +294,23 @@ public final class Megaphones {
         })
         .setSecondaryButton(R.string.AddAProfilePhotoMegaphone__not_now, (megaphone, listener) -> {
           listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
+        })
+        .build();
+  }
+
+  private static @NonNull Megaphone buildNewLinkedDeviceMegaphone(@NonNull Context context) {
+    String createdAt = DateUtils.getOnlyTimeString(context, SignalStore.misc().getNewLinkedDeviceCreatedTime());
+    return new Megaphone.Builder(Event.NEW_LINKED_DEVICE, Megaphone.Style.BASIC)
+        .setTitle(R.string.NewLinkedDeviceNotification__you_linked_new_device)
+        .setBody(context.getString(R.string.NewLinkedDeviceMegaphone__a_new_device_was_linked, createdAt))
+        .setImage(R.drawable.symbol_linked_device)
+        .setActionButton(R.string.NewLinkedDeviceMegaphone__ok, (megaphone, listener) -> {
+          SignalStore.misc().setNewLinkedDeviceId(0);
+          SignalStore.misc().setNewLinkedDeviceCreatedTime(0);
+          listener.onMegaphoneSnooze(Event.NEW_LINKED_DEVICE);
+        })
+        .setSecondaryButton(R.string.NewLinkedDeviceMegaphone__view_device, (megaphone, listener) -> {
+          listener.onMegaphoneNavigationRequested(AppSettingsActivity.linkedDevices(context));
         })
         .build();
   }
@@ -419,6 +440,10 @@ public final class Megaphones {
     return SignalStore.onboarding().hasOnboarding(context);
   }
 
+  private static boolean shouldShowNewLinkedDeviceMegaphone() {
+    return SignalStore.misc().getNewLinkedDeviceId() > 0 && !NotificationChannels.getInstance().areNotificationsEnabled();
+  }
+
   private static boolean shouldShowTurnOffCircumventionMegaphone() {
     return AppDependencies.getSignalServiceNetworkAccess().isCensored() &&
            SignalStore.misc().isServiceReachableWithoutCircumvention();
@@ -525,7 +550,8 @@ public final class Megaphones {
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
     SET_UP_YOUR_USERNAME("set_up_your_username"),
     PNP_LAUNCH("pnp_launch"),
-    GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent");
+    GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent"),
+    NEW_LINKED_DEVICE("new_linked_device");
 
     private final String key;
 

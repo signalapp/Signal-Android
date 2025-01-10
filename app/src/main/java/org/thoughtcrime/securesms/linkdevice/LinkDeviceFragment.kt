@@ -137,7 +137,7 @@ class LinkDeviceFragment : ComposeFragment() {
           Log.i(TAG, "Acquiring wake lock for linked device")
           linkDeviceWakeLock.acquire()
         }
-        DialogState.Unlinking -> Unit
+        DialogState.Unlinking, is DialogState.DeviceUnlinked -> Unit
       }
     }
 
@@ -206,7 +206,8 @@ class LinkDeviceFragment : ComposeFragment() {
         onEditDevice = { device ->
           viewModel.setDeviceToEdit(device)
           navController.safeNavigate(R.id.action_linkDeviceFragment_to_editDeviceNameFragment)
-        }
+        },
+        onDialogDismissed = { viewModel.onDialogDismissed() }
       )
     }
   }
@@ -257,7 +258,8 @@ fun DeviceListScreen(
   onSyncFailureRetryRequested: () -> Unit = {},
   onSyncFailureIgnored: () -> Unit = {},
   onSyncCancelled: () -> Unit = {},
-  onEditDevice: (Device) -> Unit = {}
+  onEditDevice: (Device) -> Unit = {},
+  onDialogDismissed: () -> Unit = {}
 ) {
   // If a bottom sheet is showing, we don't want the spinner underneath
   if (!state.bottomSheetVisible) {
@@ -289,6 +291,15 @@ fun DeviceListScreen(
           dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
           onDismissRequest = onSyncFailureIgnored,
           onDeny = onSyncFailureIgnored
+        )
+      }
+      is DialogState.DeviceUnlinked -> {
+        val createdAt = DateUtils.getOnlyTimeString(LocalContext.current, state.dialogState.deviceCreatedAt)
+        Dialogs.SimpleMessageDialog(
+          title = stringResource(id = R.string.LinkDeviceFragment__device_unlinked),
+          message = stringResource(id = R.string.LinkDeviceFragment__the_device_that_was, createdAt),
+          dismiss = stringResource(id = R.string.LinkDeviceFragment__ok),
+          onDismiss = onDialogDismissed
         )
       }
     }
@@ -591,6 +602,20 @@ private fun DeviceListScreenSyncingFailedPreview() {
         dialogState = DialogState.SyncingTimedOut,
         seenQrEducationSheet = true,
         seenBioAuthEducationSheet = true
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenDeviceUnlinkedPreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.DeviceUnlinked(1736454440342),
+        seenBioAuthEducationSheet = true,
+        seenQrEducationSheet = true
       )
     )
   }

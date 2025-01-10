@@ -9,14 +9,18 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
+import org.thoughtcrime.securesms.jobs.NewLinkedDeviceNotificationJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDeviceName
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEvent
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.link.TransferArchiveError
@@ -36,7 +40,32 @@ class LinkDeviceViewModel : ViewModel() {
   val state = _state.asStateFlow()
 
   fun initialize() {
-    loadDevices()
+    loadDevices(initialLoad = true)
+  }
+
+  /**
+   * Checks for the existence of a newly linked device and shows a dialog if it has since been unlinked
+   */
+  private fun checkForNewDevice(devices: List<Device>) {
+    val newLinkedDeviceId = SignalStore.misc.newLinkedDeviceId
+    val newLinkedDeviceCreatedAt = SignalStore.misc.newLinkedDeviceCreatedTime
+
+    val hasNewLinkedDevice = newLinkedDeviceId > 0
+    if (hasNewLinkedDevice) {
+      ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.NEW_LINKED_DEVICE)
+      SignalStore.misc.newLinkedDeviceId = 0
+      SignalStore.misc.newLinkedDeviceCreatedTime = 0
+    }
+
+    val isMissingNewLinkedDevice = devices.none { device -> device.id == newLinkedDeviceId && device.createdMillis == newLinkedDeviceCreatedAt }
+
+    val dialogState = if (hasNewLinkedDevice && isMissingNewLinkedDevice) {
+      DialogState.DeviceUnlinked(newLinkedDeviceCreatedAt)
+    } else {
+      DialogState.None
+    }
+
+    _state.update { it.copy(dialogState = dialogState) }
   }
 
   fun setDeviceToRemove(device: Device?) {
@@ -66,7 +95,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  private fun loadDevices() {
+  private fun loadDevices(initialLoad: Boolean = false) {
     _state.value = _state.value.copy(
       deviceListLoading = true,
       showFrontCamera = null
@@ -80,6 +109,9 @@ class LinkDeviceViewModel : ViewModel() {
           deviceListLoading = false
         )
       } else {
+        if (initialLoad) {
+          checkForNewDevice(devices)
+        }
         _state.update {
           it.copy(
             oneTimeEvent = OneTimeEvent.None,
@@ -141,6 +173,10 @@ class LinkDeviceViewModel : ViewModel() {
         qrCodeState = QrCodeState.NONE
       )
     }
+  }
+
+  fun onDialogDismissed() {
+    _state.update { it.copy(dialogState = DialogState.None) }
   }
 
   fun addDevice(shouldSync: Boolean) = viewModelScope.launch(Dispatchers.IO) {
@@ -243,7 +279,8 @@ class LinkDeviceViewModel : ViewModel() {
       return
     }
 
-    Log.d(TAG, "[addDeviceWithSync] Found a linked device!")
+    Log.d(TAG, "[addDeviceWithSync] Found a linked device! Creating notification job.")
+    NewLinkedDeviceNotificationJob.enqueue(waitResult.id, waitResult.created)
 
     _state.update {
       it.copy(
@@ -319,6 +356,8 @@ class LinkDeviceViewModel : ViewModel() {
     if (waitResult == null) {
       Log.i(TAG, "No linked device found!")
     } else {
+      Log.i(TAG, "Found a linked device! Creating notification job.")
+      NewLinkedDeviceNotificationJob.enqueue(waitResult.id, waitResult.created)
       _state.update {
         it.copy(oneTimeEvent = OneTimeEvent.ToastLinked(waitResult.getPlaintextDeviceName()))
       }

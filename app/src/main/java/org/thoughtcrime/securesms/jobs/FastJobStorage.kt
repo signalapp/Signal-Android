@@ -499,9 +499,18 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * Whether or not the job's eligible to be run based off of it's [Job.nextBackoffInterval] and other properties.
+   * Jobs that were created in the future with respect to the current time are automatically eligible
    */
   private fun MinimalJobSpec.hasEligibleRunTime(currentTime: Long): Boolean {
-    return this.lastRunAttemptTime > currentTime || (this.lastRunAttemptTime + this.nextBackoffInterval) < currentTime
+    val isTimeTravel = this.createTime > currentTime || this.lastRunAttemptTime > currentTime
+    if (isTimeTravel) {
+      return true
+    }
+
+    val initialDelaySatisfied = this.createTime + this.initialDelay < currentTime
+    val backoffSatisfied = this.lastRunAttemptTime + this.nextBackoffInterval < currentTime
+
+    return initialDelaySatisfied && backoffSatisfied
   }
 
   private fun getSingleLayerOfDependencySpecsThatDependOnJob(jobSpecId: String): List<DependencySpec> {
@@ -574,6 +583,7 @@ fun JobSpec.toMinimalJobSpec(): MinimalJobSpec {
     globalPriority = this.globalPriority,
     queuePriority = this.queuePriority,
     isRunning = this.isRunning,
-    isMemoryOnly = this.isMemoryOnly
+    isMemoryOnly = this.isMemoryOnly,
+    initialDelay = this.initialDelay
   )
 }
