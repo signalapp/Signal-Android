@@ -3696,10 +3696,10 @@
         <item>Prašymas pridėti naują funkciją</item>
         <item>Klausimas</item>
         <item>Atsiliepimas</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Mokėjimai („MobileCoin“)</item>
+        <item>Parama ir ženkleliai</item>
+        <item>„Signal Android“ atsarginė kopija</item>
+        <item>Kitas</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">„Signal“ „Android“ derinimo žurnalo pateikimas</string>
@@ -6725,7 +6725,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Nukopijuota į iškarpinę</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Skaityti daugiau</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Siunčiamas atsakymas…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7575,7 +7575,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nepavyko išsaugoti pakeitimų. Patikrink tinklo ryšį ir bandyk dar kartą.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Nepavyko atnaujinti administratoriaus patvirtinimo nustatymų. Patikrinkite, ar skambučio nuoroda šiuo metu nenaudojama.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Nepavyko ištrinti skambučio nuorodos, nes ji šiuo metu naudojama.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -8001,7 +8001,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">„Signal“ atsarginės kopijos</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Reikalingas autentifikavimas</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Mokėjimų istorija</string>
     <!-- Section header for backup information -->

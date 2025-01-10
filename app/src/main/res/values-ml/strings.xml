@@ -3498,10 +3498,10 @@
         <item>ഫീച്ചര്‍ അഭ്യർത്ഥന</item>
         <item>ചോദ്യം</item>
         <item>ഫീഡ്‌ബാക്ക്</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>പേയ്‌മെന്റുകൾ (MobileCoin)</item>
+        <item>സംഭാവനകളും ബാഡ്‌ജുകളും</item>
+        <item>Signal Android ബാക്കപ്പ്</item>
+        <item>മറ്റുള്ളവ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android ഡീബഗ് ലോഗ് സമർപ്പിക്കൽ</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">കൂടുതൽ വായിക്കുക</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">മറുപടി അയയ്ക്കുന്നു…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

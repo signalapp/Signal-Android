@@ -1152,8 +1152,8 @@
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Se han conservado todos los mensajes y archivos multimedia que tenías antes de la actualización.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Deberás aceptar una invitación para volver a unirte a este grupo y no recibirás ningún mensaje del grupo hasta que aceptes.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Esta persona tiene que aceptar la invitación para volver a unirse al grupo y no recibirá ningún mensaje del grupo hasta que acepte:</item>
-        <item quantity="other">Estas personas tienen que aceptar la invitación para volver a unirse al grupo y no recibirán ningún mensaje del grupo hasta que acepten:</item>
+        <item quantity="one">Esta persona tiene que aceptar la invitación para volver a unirse al grupo y no recibirá ningún mensaje del grupo hasta que la acepte:</item>
+        <item quantity="other">Estas personas tienen que aceptar la invitación para volver a unirse al grupo y no recibirán ningún mensaje del grupo hasta que la acepten:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="one">Se ha eliminado a esta persona del grupo, pero podrá volver a unirse después de actualizar Signal:</item>
@@ -1168,8 +1168,8 @@
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Se ha producido un error de red. Inténtalo de nuevo más tarde.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">No se ha podido actualizar.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Esta persona tiene que aceptar la invitación para volver a unirse al grupo y no recibirá ningún mensaje del grupo hasta que acepte:</item>
-        <item quantity="other">Estas personas tienen que aceptar la invitación para volver a unirse al grupo y no recibirán ningún mensaje del grupo hasta que acepten:</item>
+        <item quantity="one">Esta persona tiene que aceptar la invitación para volver a unirse al grupo y no recibirá ningún mensaje del grupo hasta que la acepte:</item>
+        <item quantity="other">Estas personas tienen que aceptar la invitación para volver a unirse al grupo y no recibirán ningún mensaje del grupo hasta que la acepten:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
         <item quantity="one">Esta persona no puede unirse a los grupos nuevos y se la eliminará del grupo:</item>
@@ -1711,8 +1711,8 @@
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">No te han podido añadir al nuevo grupo, pero te han invitado a unirte.</string>
     <string name="MessageRecord_chat_session_refreshed">Sesión de chat reiniciada</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">No se ha podido añadir automáticamente a %1$s persona al nuevo grupo. Se le ha enviado una invitación para unirse.</item>
-        <item quantity="other">No se ha podido añadir automáticamente a %1$s personas al nuevo grupo. Se les ha enviado una invitación para unirse.</item>
+        <item quantity="one">No se ha podido añadir automáticamente a %1$s persona al nuevo grupo, pero le hemos enviado una invitación para unirse.</item>
+        <item quantity="other">No se ha podido añadir automáticamente a %1$s personas al nuevo grupo, pero les hemos enviado una invitación para unirse.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
@@ -3498,10 +3498,10 @@
         <item>Solicitud de función</item>
         <item>Pregunta</item>
         <item>Comentarios</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Pagos (MobileCoin)</item>
+        <item>Donaciones e insignias</item>
+        <item>Copia de seguridad de Signal Android</item>
+        <item>Otra</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envío de registro de depuración de Signal Android</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Copiado al portapapeles</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Más información</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Enviando respuesta…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

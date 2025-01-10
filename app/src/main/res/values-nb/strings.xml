@@ -3498,10 +3498,10 @@
         <item>Forespørsel om funksjon</item>
         <item>Spørsmål</item>
         <item>Tilbakemelding</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Betalinger (MobileCoin)</item>
+        <item>Pengebeløp og merker</item>
+        <item>Sikkerhetskopiering i Signal for Android</item>
+        <item>Annet</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Innsending av feilsøkingslogg for Signal på Android</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Kopiert til utklippstavle</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Les mer</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Sender svaret …</string>
     <!-- Displayed in the viewer when a story is no longer available -->

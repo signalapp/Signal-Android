@@ -3498,10 +3498,10 @@
         <item>Pedido de funcoinalidade</item>
         <item>Pergunta</item>
         <item>Feedback</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Pagamentos (MobileCoin)</item>
+        <item>Doações e crachás</item>
+        <item>Cópia de segurança do Signal Android</item>
+        <item>Outro</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Envio do relatório de depuração Signal Android</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Ler mais</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">A enviar resposta…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

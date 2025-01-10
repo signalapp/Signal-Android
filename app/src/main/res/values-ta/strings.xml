@@ -3498,10 +3498,10 @@
         <item>சிறப்பு விண்ணப்பம்</item>
         <item>கேள்வி</item>
         <item>பின்னூட்டம்</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>கட்டணங்கள் (MobileCoin)</item>
+        <item>நன்கொடைகள் மற்றும் பேட்ஜ்கள்</item>
+        <item>சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி</item>
+        <item>மற்றவை</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android பிழைத்திருத்த பதிவு சமர்ப்பிப்பு</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">மேலும் படிக்க</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">பதில் அனுப்பப்படுகிறது…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

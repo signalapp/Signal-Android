@@ -3498,10 +3498,10 @@
         <item>ఫీచర్ అభ్యర్ధన</item>
         <item>ప్రశ్న</item>
         <item>ఫీడ్‌బ్యాక్</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>చెల్లింపులు (MobileCoin)</item>
+        <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
+        <item>Signal ఆండ్రాయిడ్ బ్యాకప్</item>
+        <item>ఇతర</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android డీబగ్ లాగ్ సమర్పణ</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">మరింత చదవండి</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">ప్రత్యుత్తరము పంపుతోంది…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

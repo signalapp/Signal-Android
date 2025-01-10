@@ -3498,10 +3498,10 @@
         <item>Verzoek nieuwe functie</item>
         <item>Vraag</item>
         <item>Feedback</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Betalingen (MobileCoin)</item>
+        <item>Donaties &amp; badges</item>
+        <item>Signal Android back-up</item>
+        <item>Anders</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android-foutopsporingslog ingediend</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Meer lezen</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Privéreactie aan het verzenden…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

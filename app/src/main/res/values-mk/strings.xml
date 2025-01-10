@@ -3498,10 +3498,10 @@
         <item>Барање за функција</item>
         <item>Прашање</item>
         <item>Повратна информација</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Плаќања (MobileCoin)</item>
+        <item>Донации и беџови</item>
+        <item>Резервна копија на Signal Android</item>
+        <item>Друго</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Поднесување запис за отстранување грешки на Signal за Android</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Копирано на таблата со исечоци</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Прочитај повеќе</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Се испраќа одговор…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7261,7 +7261,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Промените не можеа да се зачуваат. Проверете ја вашата мрежна поврзаност и обидете се повторно.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Не можеа да се ажурираат поставувањата за дозвола на администратор. Проверете дали моментално се користи линкот за повикот.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Не може да се избрише линкот за повик бидејќи моментално се користи.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7677,7 +7677,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal резервни копии</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Потребна е автентикација</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Историја на плаќања</string>
     <!-- Section header for backup information -->

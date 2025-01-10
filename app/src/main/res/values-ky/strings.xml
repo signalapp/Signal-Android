@@ -3399,10 +3399,10 @@
         <item>Жаңы функциялар талап кылынат</item>
         <item>Суроо берүү</item>
         <item>Пикир билдирүү</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Төлөмдөр (MobileCoin)</item>
+        <item>Салым кошуу жана төшбелгилер</item>
+        <item>Signal Android камдык көчүрмөсү</item>
+        <item>Башка</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android мүчүлүштүктөрдү аныктоо журналын жөнөтүү</string>
@@ -6305,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Буферге көчүрүлдү</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Дагы</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Жооп жөнөтүлүүдө…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

@@ -3399,10 +3399,10 @@
         <item>功能請求</item>
         <item>問題</item>
         <item>回饋</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>付款 (MobileCoin)</item>
+        <item>捐款及徽章</item>
+        <item>Signal Android 備份</item>
+        <item>其他</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android 除錯日誌提交</string>
@@ -6305,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">已複製至剪貼簿</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">閱讀全文</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">正在傳送回覆…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

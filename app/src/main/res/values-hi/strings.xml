@@ -3498,10 +3498,10 @@
         <item>फ़ीचर अनुरोध</item>
         <item>सवाल</item>
         <item>फ़ीडबैक</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>भुगतान (मोबाइल कॉयन)</item>
+        <item>दान और बैज</item>
+        <item>Signal Android का बैकअप</item>
+        <item>अन्य</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">सिग्नल एंड्रॉयड डीबग लॉग सबमिशन</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">ज़्यादा पढ़ें</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">जवाब भेज रहा है…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

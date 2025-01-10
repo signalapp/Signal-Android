@@ -3399,10 +3399,10 @@
         <item>ការស្នើសុំមុខងារ</item>
         <item>សំណួរ</item>
         <item>មតិកែលម្អ</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>ការទូទាត់ (MobileCoin)</item>
+        <item>ការបរិច្ចាគ និងស្លាក</item>
+        <item>ការបម្រុងទុក Signal Android</item>
+        <item>ផ្សេងៗ</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">ការដាក់បញ្ជូនកំណត់ហេតុបញ្ហា Signal Android</string>
@@ -6305,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">បានចម្លងទៅ clipboard</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">អានបន្ថែម</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">កំពុងផ្ញើការឆ្លើយតប…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

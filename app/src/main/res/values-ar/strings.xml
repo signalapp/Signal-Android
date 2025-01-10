@@ -3894,10 +3894,10 @@
         <item>طلب الميزات</item>
         <item>سؤال</item>
         <item>الملاحظات</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>عمليات الدفع (MobileCoin)</item>
+        <item>تبرُّعات وشارات</item>
+        <item>النسخة الاحتياطية على سيجنال أندرويد</item>
+        <item>أخرى</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
@@ -7005,7 +7005,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">اقرأ المزيد</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">جارٍ إرسال رد…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

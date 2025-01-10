@@ -3399,10 +3399,10 @@
         <item>機能のリクエスト</item>
         <item>質問</item>
         <item>フィードバック</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>決済機能 (MobileCoin)</item>
+        <item>寄付 &amp; バッジ</item>
+        <item>Signal Androidバックアップ</item>
+        <item>その他</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidデバッグログの提供</string>
@@ -6305,7 +6305,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">クリップボードにコピーしました</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">続きを読む</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">返信を送信しています…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

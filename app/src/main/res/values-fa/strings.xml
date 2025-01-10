@@ -3498,10 +3498,10 @@
         <item>درخواست قابلیت</item>
         <item>سؤال</item>
         <item>بازخورد</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>پرداخت‌ها (MobileCoin)</item>
+        <item>کمک‌های مالی و نشان‌ها</item>
+        <item>پشتیبان‌گیری سیگنال اندروید</item>
+        <item>سایر</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">گزارش ارسالی رفع عیب سیگنال اندروید</string>
@@ -6445,7 +6445,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">بیشتر بخوانید</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">ارسال پاسخ…</string>
     <!-- Displayed in the viewer when a story is no longer available -->

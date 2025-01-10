@@ -3795,10 +3795,10 @@
         <item>Iarratas ar Ghné Nua</item>
         <item>Ceist</item>
         <item>Aiseolas</item>
-        <item>Payments (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
-        <item>Signal Android Backup</item>
-        <item>Other</item>
+        <item>Íocaíochtaí (MobileCoin)</item>
+        <item>Tabhartais &amp; Suaitheantais</item>
+        <item>Cúltaca Signal Android</item>
+        <item>Eile</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Cur Isteach Loga Dífhabhtaithe Android Signal</string>
@@ -6865,7 +6865,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__read_more">Read more</string>
+    <string name="StoryViewerPageFragment__read_more">Léigh a thuilleadh</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Freagra á sheoladh…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
