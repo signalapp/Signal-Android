@@ -74,6 +74,10 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
     performStoreUpdate { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = true)) }
   }
 
+  fun isMultiSelectOpen(): Boolean {
+    return store.state.visibilityState.isMultiSelectOpen
+  }
+
   fun onMultiSelectFinished() {
     performStoreUpdate { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = false)) }
   }
