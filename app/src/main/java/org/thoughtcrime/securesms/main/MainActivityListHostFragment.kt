@@ -176,6 +176,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       .findViewById<View>(R.id.fragment_container)
       .findNavController()
       .addOnDestinationChangedListener(destinationChangedListener)
+
+    if(conversationListTabsViewModel.isMultiSelectOpen()) {
+      presentToolbarForMultiselect()
+    }
   }
 
   override fun onPause() {
