@@ -3234,7 +3234,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun getSystemContacts(): List<RecipientId> {
     val results: MutableList<RecipientId> = LinkedList()
 
-    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \"\"", null, null, null, null).use { cursor ->
+    readableDatabase.query(TABLE_NAME, ID_PROJECTION, "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \'\'", null, null, null, null).use { cursor ->
       while (cursor != null && cursor.moveToNext()) {
         results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))))
       }
@@ -3276,7 +3276,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     db.beginTransaction()
     try {
-      db.query(TABLE_NAME, arrayOf(ID, "color", CHAT_COLORS, CUSTOM_CHAT_COLORS_ID, SYSTEM_JOINED_NAME), "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \"\"", null, null, null, null).use { cursor ->
+      db.query(TABLE_NAME, arrayOf(ID, "color", CHAT_COLORS, CUSTOM_CHAT_COLORS_ID, SYSTEM_JOINED_NAME), "$SYSTEM_JOINED_NAME IS NOT NULL AND $SYSTEM_JOINED_NAME != \'\'", null, null, null, null).use { cursor ->
         while (cursor != null && cursor.moveToNext()) {
           val id = cursor.requireLong(ID)
           val serializedColor = cursor.requireString("color")

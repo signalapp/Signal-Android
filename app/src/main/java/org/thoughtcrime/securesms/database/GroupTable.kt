@@ -1395,7 +1395,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       ""
     } else {
       val glob = buildCaseInsensitiveGlobPattern(titleSearchQuery)
-      ", ($TITLE GLOB \"$glob\") as $TITLE_SEARCH_RANK"
+      ", ($TITLE GLOB '$glob') as $TITLE_SEARCH_RANK"
     }
 
     return """
