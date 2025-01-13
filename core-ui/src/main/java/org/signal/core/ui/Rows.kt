@@ -107,9 +107,10 @@ object Rows {
     modifier: Modifier = Modifier,
     label: String? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
-    isLoading: Boolean = false,
-    enabled: Boolean = !isLoading
+    isLoading: Boolean = false
   ) {
+    val enabled = !isLoading
+
     Row(
       modifier = modifier
         .fillMaxWidth()
