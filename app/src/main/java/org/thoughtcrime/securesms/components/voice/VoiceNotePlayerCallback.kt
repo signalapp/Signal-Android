@@ -155,6 +155,17 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
             }
           }
         })
+        player.addListener(
+          object : Player.Listener {
+            override fun onPlaybackStateChanged(playbackState: Int) {
+              super.onPlaybackStateChanged(playbackState)
+              if(playbackState == Player.STATE_READY) {
+                player.seekTo(window, (player.duration * progress).toLong())
+                player.removeListener(this)
+              }
+            }
+          }
+        )
         player.prepare()
         canLoadMore = !singlePlayback
       } else if (latestUri == uri) {
