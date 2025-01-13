@@ -97,7 +97,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private static final int DRAW_HUD_PROTECTION = ViewUtil.dpToPx(72);
   private static final int CROP_HUD_PROTECTION = ViewUtil.dpToPx(144);
-
+  private static final int CONTROLS_PROTECTION = ViewUtil.dpToPx(74);
   private EditorModel restoredModel;
 
   private Pair<Uri, FaceDetectionResult> cachedFaceDetection;
@@ -245,7 +245,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
 
     int width = getResources().getDisplayMetrics().widthPixels;
-    int height = (int) ((16 / 9f) * width);
+    int height = (int) ((16 / 9f) * width) - CONTROLS_PROTECTION;
     imageEditorView.setMinimumHeight(height);
     imageEditorView.requestLayout();
     imageEditorHud.setBottomOfImageEditorView(getResources().getDisplayMetrics().heightPixels - height);
@@ -756,7 +756,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     int   maxHeight     = getHeightForOrientation(orientation);
     float aspectRatio   = getAspectRatioForOrientation(orientation);
     int   targetWidth   = getWidthForOrientation(orientation);
-    int   targetHeight  = (int) ((1 / aspectRatio) * targetWidth);
+    int   targetHeight  = (int) ((1 / aspectRatio) * targetWidth) - CONTROLS_PROTECTION;
 
     if (targetHeight > maxHeight) {
       targetHeight = maxHeight;
