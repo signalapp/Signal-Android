@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.reactions;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 
 public class ReactionsViewModel extends ViewModel {
@@ -68,6 +71,10 @@ public class ReactionsViewModel extends ViewModel {
     }
 
     return reactions.get(reactions.size() - 1).getDisplayEmoji();
+  }
+
+  Maybe<Void> removeReactionEmoji(Context context) {
+    return repository.sendReactionRemoval(context, messageId).toMaybe();
   }
 
   static final class Factory implements ViewModelProvider.Factory {
