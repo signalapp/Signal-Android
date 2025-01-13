@@ -228,7 +228,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
 
   private fun indexOfPlayerMediaItemByUri(uri: Uri): Int {
     for (i in 0 until player.mediaItemCount) {
-      val playbackProperties: LocalConfiguration? = player.getMediaItemAt(i).playbackProperties
+      val playbackProperties: LocalConfiguration? = player.getMediaItemAt(i).localConfiguration
       if (playbackProperties?.uri == uri) {
         return i
       }
