@@ -13,7 +13,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest-8-cores
+    runs-on: bp-ubuntu-latest-x64-4x
 
     steps:
     - uses: actions/checkout@v3
