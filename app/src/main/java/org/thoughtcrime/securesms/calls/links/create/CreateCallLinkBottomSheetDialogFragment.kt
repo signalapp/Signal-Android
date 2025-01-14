@@ -25,9 +25,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
@@ -299,19 +301,19 @@ private fun CreateCallLinkBottomSheetContent(
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
-        icon = painterResource(id = R.drawable.symbol_forward_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
         onClick = onShareViaSignalClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
-        icon = painterResource(id = R.drawable.symbol_copy_android_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
         onClick = onCopyLinkClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link),
-        icon = painterResource(id = R.drawable.symbol_share_android_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_share_android_24),
         onClick = onShareLinkClicked
       )
 
