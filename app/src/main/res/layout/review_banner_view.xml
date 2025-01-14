@@ -15,6 +15,7 @@
         android:background="@color/signal_background_primary"
         android:minHeight="66dp"
         app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/signal_colorSurface"
         app:cardElevation="0dp"
         app:strokeColor="@color/signal_colorOutline_38"
         app:strokeWidth="1dp">
