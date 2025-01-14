@@ -30,7 +30,7 @@ data class LinkDeviceSettingsState(
     data object Unlinking : DialogState
     data class SyncingMessages(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
     data object SyncingTimedOut : DialogState
-    data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
+    data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long, val canRetry: Boolean) : DialogState
     data class DeviceUnlinked(val deviceCreatedAt: Long) : DialogState
   }
 

@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.util.Locale
@@ -202,6 +203,10 @@ class LinkDeviceFragment : ComposeFragment() {
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
         onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
+        onSyncFailureLearnMore = {
+          viewModel.onSyncErrorIgnored()
+          CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.LinkDeviceFragment__learn_more_url))
+        },
         onSyncCancelled = { viewModel.onSyncCancelled() },
         onEditDevice = { device ->
           viewModel.setDeviceToEdit(device)
@@ -257,6 +262,7 @@ fun DeviceListScreen(
   onDeviceRemovalConfirmed: (Device) -> Unit = {},
   onSyncFailureRetryRequested: () -> Unit = {},
   onSyncFailureIgnored: () -> Unit = {},
+  onSyncFailureLearnMore: () -> Unit = {},
   onSyncCancelled: () -> Unit = {},
   onEditDevice: (Device) -> Unit = {},
   onDialogDismissed: () -> Unit = {}
@@ -281,7 +287,29 @@ fun DeviceListScreen(
           onDismiss = onSyncCancelled
         )
       }
-      is DialogState.SyncingFailed,
+      is DialogState.SyncingFailed -> {
+        if (state.dialogState.canRetry) {
+          Dialogs.SimpleAlertDialog(
+            title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
+            body = stringResource(R.string.LinkDeviceFragment__sync_failure_body),
+            confirm = stringResource(R.string.LinkDeviceFragment__sync_failure_retry_button),
+            onConfirm = onSyncFailureRetryRequested,
+            dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
+            onDismissRequest = onSyncFailureIgnored,
+            onDeny = onSyncFailureIgnored
+          )
+        } else {
+          Dialogs.SimpleAlertDialog(
+            title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
+            body = stringResource(R.string.LinkDeviceFragment__sync_failure_body_unretryable),
+            confirm = stringResource(R.string.LinkDeviceFragment__continue),
+            onConfirm = onSyncFailureIgnored,
+            dismiss = stringResource(R.string.LinkDeviceFragment__learn_more),
+            onDismissRequest = onSyncFailureIgnored,
+            onDeny = onSyncFailureLearnMore
+          )
+        }
+      }
       DialogState.SyncingTimedOut -> {
         Dialogs.SimpleAlertDialog(
           title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),

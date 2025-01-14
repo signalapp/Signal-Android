@@ -313,9 +313,14 @@ class LinkDeviceViewModel : ViewModel() {
       is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
       is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
         Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
+        val canRetry = uploadResult !is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure
         _state.update {
           it.copy(
-            dialogState = DialogState.SyncingFailed(waitResult.id, waitResult.created)
+            dialogState = DialogState.SyncingFailed(
+              deviceId = waitResult.id,
+              deviceCreatedAt = waitResult.created,
+              canRetry = canRetry
+            )
           )
         }
       }
@@ -385,6 +390,7 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "Alerting linked device of sync failure - will not retry")
       LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceCreatedAt, TransferArchiveError.CONTINUE_WITHOUT_UPLOAD)
     }
+    loadDevices()
 
     _state.update {
       it.copy(
