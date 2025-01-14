@@ -58,7 +58,7 @@
 
     <fragment
         android:id="@+id/countryPickerFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberCountryPickerFragment"
         tools:layout="@layout/fragment_registration_country_picker">
 
         <argument
@@ -169,14 +169,5 @@
         android:id="@+id/changeNumberPinDiffers"
         android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberPinDiffersFragment"
         tools:layout="@layout/fragment_change_number_pin_differs" />
-
-    <action
-        android:id="@+id/action_pop_app_settings_change_number"
-        app:enterAnim="@anim/fragment_open_enter"
-        app:exitAnim="@anim/fragment_open_exit"
-        app:popEnterAnim="@anim/fragment_close_enter"
-        app:popExitAnim="@anim/fragment_close_exit"
-        app:popUpTo="@id/changePhoneNumberFragment"
-        app:popUpToInclusive="true" />
 
 </navigation>

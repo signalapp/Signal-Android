@@ -203,12 +203,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/countryPickerFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment"
-        android:label="fragment_country_picker"
-        tools:layout="@layout/fragment_registration_country_picker" />
-
-    <fragment
         android:id="@+id/enterCodeFragment"
         android:name="org.thoughtcrime.securesms.registrationv3.ui.entercode.EnterCodeFragment"
         android:label="fragment_enter_code"

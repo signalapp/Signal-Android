@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.registration.fragments;
+package org.thoughtcrime.securesms.components.settings.app.changenumber;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,13 +25,12 @@ import androidx.loader.content.Loader;
 import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberViewModel;
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public final class CountryPickerFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
+public final class ChangeNumberCountryPickerFragment extends ListFragment implements LoaderManager.LoaderCallbacks<ArrayList<Map<String, String>>> {
 
   public static final String KEY_COUNTRY      = "country";
   public static final String KEY_COUNTRY_CODE = "country_code";
@@ -50,7 +49,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
     super.onViewCreated(view, savedInstanceState);
 
     if (getArguments() != null) {
-      CountryPickerFragmentArgs arguments = CountryPickerFragmentArgs.fromBundle(requireArguments());
+      ChangeNumberCountryPickerFragmentArgs arguments = ChangeNumberCountryPickerFragmentArgs.fromBundle(requireArguments());
       resultKey = arguments.getResultKey();
     }
 

@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentChangeNumberEnterPhoneNumberBinding
-import org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment
 import org.thoughtcrime.securesms.registration.util.ChangeNumberInputController
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -110,11 +109,11 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
     )
 
     parentFragmentManager.setFragmentResultListener(OLD_NUMBER_COUNTRY_SELECT, this) { _: String, bundle: Bundle ->
-      viewModel.setOldCountry(bundle.getInt(CountryPickerFragment.KEY_COUNTRY_CODE), bundle.getString(CountryPickerFragment.KEY_COUNTRY))
+      viewModel.setOldCountry(bundle.getInt(ChangeNumberCountryPickerFragment.KEY_COUNTRY_CODE), bundle.getString(ChangeNumberCountryPickerFragment.KEY_COUNTRY))
     }
 
     parentFragmentManager.setFragmentResultListener(NEW_NUMBER_COUNTRY_SELECT, this) { _: String, bundle: Bundle ->
-      viewModel.setNewCountry(bundle.getInt(CountryPickerFragment.KEY_COUNTRY_CODE), bundle.getString(CountryPickerFragment.KEY_COUNTRY))
+      viewModel.setNewCountry(bundle.getInt(ChangeNumberCountryPickerFragment.KEY_COUNTRY_CODE), bundle.getString(ChangeNumberCountryPickerFragment.KEY_COUNTRY))
     }
 
     viewModel.liveOldNumberState.observe(viewLifecycleOwner, oldController::updateNumber)
