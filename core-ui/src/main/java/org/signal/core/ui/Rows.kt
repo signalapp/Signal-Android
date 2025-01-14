@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -183,6 +184,49 @@ object Rows {
         {
           Icon(
             painter = icon,
+            contentDescription = null,
+            tint = foregroundTint,
+            modifier = iconModifier
+          )
+        }
+      } else {
+        null
+      },
+      modifier = modifier,
+      onClick = onClick,
+      onLongClick = onLongClick,
+      enabled = enabled
+    )
+  }
+
+  /**
+   * Text row that positions [text] and optional [label] in a [TextAndLabel] to the side of an [icon] using ImageVector.
+   */
+  @Composable
+  fun TextRow(
+    text: String,
+    icon: ImageVector?,
+    modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
+    label: String? = null,
+    foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
+    enabled: Boolean = true
+  ) {
+    TextRow(
+      text = {
+        TextAndLabel(
+          text = text,
+          label = label,
+          textColor = foregroundTint,
+          enabled = enabled
+        )
+      },
+      icon = if (icon != null) {
+        {
+          Icon(
+            imageVector = icon,
             contentDescription = null,
             tint = foregroundTint,
             modifier = iconModifier
