@@ -1152,7 +1152,7 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke dalam Grup Baru. Apa Anda ingin menambahkan mereka sekarang?</item>
+        <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke New Group. Ingin menambahkan mereka sekarang?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="other">Tambahkan anggota</item>
@@ -1164,7 +1164,7 @@
         <item quantity="other">Tambahkan anggota?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke dalam Grup Baru saat grup diperbarui:</item>
+        <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke New Group saat grup di-upgrade:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
         <item quantity="other">Tambahkan anggota</item>
@@ -1177,11 +1177,11 @@
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">Tinggalkan grup?</string>
+    <string name="LeaveGroupDialog_leave_group">Keluar grup?</string>
     <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Anda tidak dapat lagi mengirim atau menerima pesan dari grup ini.</string>
-    <string name="LeaveGroupDialog_leave">Tinggalkan</string>
+    <string name="LeaveGroupDialog_leave">Keluar</string>
     <string name="LeaveGroupDialog_choose_new_admin">Pilih admin baru</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Sebelum Anda keluar, pilih admin baru untuk grup ini.</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Pilih admin baru untuk grup ini sebelum Anda keluar.</string>
     <string name="LeaveGroupDialog_choose_admin">Pilih admin</string>
 
     <!-- LinkPreviewView -->
@@ -1239,9 +1239,9 @@
     <string name="PendingMembersActivity_invites">Undangan</string>
     <string name="PendingMembersActivity_people_you_invited">Orang yang Anda undang</string>
     <string name="PendingMembersActivity_you_have_no_pending_invites">Anda tidak memiliki undangan tertunda.</string>
-    <string name="PendingMembersActivity_invites_by_other_group_members">Undangan dari anggota grup yang lain</string>
-    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tidak ada undangan tertunda dari anggota grup lain.</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">Detail dari orang yang diundang oleh anggota grup lain tidak terlihat. Jika mereka memilih bergabung, informasi mereka akan dibagikan ke dalam grup pada saat itu. Mereka tidak akan melihat pesan apapun di dalam grup sampai mereka bergabung.</string>
+    <string name="PendingMembersActivity_invites_by_other_group_members">Undangan dari anggota lain di grup</string>
+    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tidak ada undangan tertunda dari anggota lain di grup.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">Detail orang yang diundang oleh anggota lain tidak akan ditampilkan. Informasi mereka akan dibagikan ke grup ini pada saat mereka bergabung. Mereka tidak akan melihat pesan di grup sebelum mereka bergabung.</string>
 
     <string name="PendingMembersActivity_revoke_invite">Batalkan undangan</string>
     <string name="PendingMembersActivity_revoke_invites">Batalkan undangan</string>
@@ -1254,8 +1254,8 @@
 
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Permintaan anggota tertunda</string>
-    <string name="RequestingMembersFragment_no_member_requests_to_show">Tidak ada permintaan anggota untuk ditampilkan.</string>
-    <string name="RequestingMembersFragment_explanation">Orang dalam daftar ini telah mencoba bergabung dengan grup ini melalui tautan grup.</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">Tidak ada permintaan anggota.</string>
+    <string name="RequestingMembersFragment_explanation">Orang dalam daftar ini mencoba bergabung melalui tautan grup.</string>
     <string name="RequestingMembersFragment_added_s">"Ditambahkan \"%1$s\""</string>
     <string name="RequestingMembersFragment_denied_s">"Ditolak \"%1$s\""</string>
 
@@ -1273,13 +1273,13 @@
     <string name="AddGroupDetailsFragment__name_this_group">Beri nama grup ini</string>
     <string name="AddGroupDetailsFragment__create_group">Buat grup</string>
     <string name="AddGroupDetailsFragment__create">Buat</string>
-    <string name="AddGroupDetailsFragment__members">Anggota-anggota</string>
+    <string name="AddGroupDetailsFragment__members">Anggota</string>
     <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Anda dapat menambahkan atau mengundang teman setelah membuat grup ini.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Nama grup (diperlukan)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Nama grup (opsional)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">Kolom ini diperlukan</string>
+    <string name="AddGroupDetailsFragment__this_field_is_required">Bagian ini wajib diisi.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Pembuatan grup gagal</string>
-    <string name="AddGroupDetailsFragment__try_again_later">Coba lagi lain waktu.</string>
+    <string name="AddGroupDetailsFragment__try_again_later">Coba lagi nanti.</string>
     <string name="AddGroupDetailsFragment__remove">Hapus</string>
     <string name="AddGroupDetailsFragment__sms_contact">Kontak SMS</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">Keluarkan %1$s dari grup ini?</string>
@@ -1290,31 +1290,31 @@
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Siapa yang dapat menyunting informasi grup?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Siapa yang dapat mengedit informasi grup?</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d anggota ditambahkan.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan hal ini</string>
-    <string name="ManageGroupActivity_not_capable">Seseorang yang Anda tambahkan belum menunjang fitur grup baru dan perlu memperbarui Signal</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Seseorang yang Anda tambahkan tidak dapat membuka grup pemberitahuan dan perlu memperbarui Signal.</string>
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan tindakan ini</string>
+    <string name="ManageGroupActivity_not_capable">Seseorang yang Anda tambahkan belum dapat mengakses fitur grup baru dan perlu memperbarui aplikasinya ke versi Signal terbaru</string>
+    <string name="ManageGroupActivity_not_announcement_capable">Seseorang yang Anda tambahkan tidak dapat mengakses grup notifikasi dan perlu memperbarui aplikasinya ke versi Signal terbaru.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Gagal memperbarui grup</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal memperbarui grup mohon coba lagi nanti</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena galat jaringan, mohon coba lagi nanti</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal memperbarui grup. Mohon coba lagi nanti</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena kesalahan jaringan. Mohon coba lagi nanti</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
-    <string name="ManageGroupActivity_legacy_group">Grup Lama</string>
+    <string name="ManageGroupActivity_legacy_group">Grup lama</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">Ini adalah Grup Lama. Fitur-fitur seperti admin grup hanya tersedia untuk Grup Baru.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">Ini adalah grup lama. Fitur seperti admin grup hanya tersedia untuk grup baru.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">Ini adalah Grup Lama. Untuk mengakses fitur-fitur baru seperti @mention dan admin,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">Grup lama ini tidak bisa ditingkatkan menjadi grup yang baru karena terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
-    <string name="ManageGroupActivity_upgrade_this_group">perbarui grup ini.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">Ini adalah grup lama. Untuk mengakses fitur baru seperti @mention dan admin,</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">Grup lama ini tidak bisa di-upgrade menjadi grup yang baru karena ukurannya terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
+    <string name="ManageGroupActivity_upgrade_this_group">upgrade grup ini.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ini adalah Grup MMS yang tidak aman. Untuk mengobrol secara privat, undang kontak Anda ke Signal.</string>
     <string name="ManageGroupActivity_invite_now">Undang sekarang</string>
-    <string name="ManageGroupActivity_more">selanjutnya</string>
+    <string name="ManageGroupActivity_more">selengkapnya</string>
     <string name="ManageGroupActivity_add_group_description">Tambahkan deskripsi grup…</string>
 
     <!-- RemoteRestoreActivity -->
@@ -1352,10 +1352,10 @@
     <string name="RemoteRestoreActivity__error_occurred">Terjadi kesalahan dan akun Anda tidak dapat ditransfer. Coba lagi dengan memilih metode transfer lain.</string>
 
     <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Beritahu saya ketika ada penyebutan</string>
+    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Beri tahu saya ketika ada yang menyebut saya</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Terima notifikasi saat Anda disebut dalam obrolan yang dibisukan?</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">Selalu beritahu saya</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">Jangan beritahu saya</string>
+    <string name="GroupMentionSettingDialog_always_notify_me">Selalu beri tahu saya</string>
+    <string name="GroupMentionSettingDialog_dont_notify_me">Jangan beri tahu saya</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
@@ -1363,21 +1363,21 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
     <string name="ManageProfileFragment__username_footer_no_username">Orang lain kini bisa mengirimi Anda pesan lewat nama pengguna opsional, sehingga tidak perlu memberikan nomor telepon. </string>
     <string name="ManageProfileFragment_profile_name">Nama profil</string>
-    <string name="ManageProfileFragment_username">Nama Pengguna</string>
+    <string name="ManageProfileFragment_username">Nama pengguna</string>
     <string name="ManageProfileFragment_about">Tentang</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Gagal mengatur avatar</string>
     <string name="ManageProfileFragment_badges">Lencana</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">Kode QR atau Tautan</string>
-    <string name="ManageProfileFragment__edit_photo">Sunting foto</string>
+    <string name="ManageProfileFragment__edit_photo">Edit foto</string>
     <!-- Title of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_title">Bagikan Nama Pengguna Anda</string>
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Izinkan orang lain memulai obrolan dengan membagikan tautan atau kode QR unik Anda.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Nama pengguna dibuat</string>
+    <string name="ManageProfileFragment__username_created">Nama pengguna berhasil dibuat</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Nama pengguna disalin</string>
+    <string name="ManageProfileFragment__username_copied">Nama pengguna berhasil disalin</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">Tidak dapat menghapus nama pengguna. Coba lagi nanti.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1407,10 +1407,10 @@
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
-    <string name="CustomNotificationsDialogFragment__custom_notifications">Notifikasi khusus</string>
+    <string name="CustomNotificationsDialogFragment__custom_notifications">Notifikasi kustom</string>
     <string name="CustomNotificationsDialogFragment__messages">Pesan</string>
-    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Gunakan notifikasi khusus</string>
-    <string name="CustomNotificationsDialogFragment__notification_sound">Suara pemberitahuan</string>
+    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Gunakan notifikasi kustom</string>
+    <string name="CustomNotificationsDialogFragment__notification_sound">Suara notifikasi</string>
     <string name="CustomNotificationsDialogFragment__vibrate">Bergetar</string>
     <!-- Button text for customizing notification options -->
     <string name="CustomNotificationsDialogFragment__customize">Kustomisasi</string>
@@ -1418,35 +1418,35 @@
     <string name="CustomNotificationsDialogFragment__call_settings">Pengaturan panggilan</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Nada dering</string>
     <!-- Subtitle when the ringtone used for calls is the default system -->
-    <string name="CustomNotificationsDialogFragment__default">Standar</string>
+    <string name="CustomNotificationsDialogFragment__default">Default</string>
     <!-- Subtitle when the ringtone used for calls is unknown -->
-    <string name="CustomNotificationsDialogFragment__unknown">Tidak Dikenal</string>
+    <string name="CustomNotificationsDialogFragment__unknown">Tidak dikenal</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__group_link">Tautan grup</string>
     <string name="ShareableGroupLinkDialogFragment__share">Bagikan</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">Atur ulang tautan</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">Reset tautan</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Perlu persetujuan admin</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Dibutuhkan persetujuan admin untuk menerima anggota baru yang bergabung melalui tautan grup.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Apakah Anda yakin untuk mengatur ulang tautan grup? Orang-orang tidak akan bisa bergabung ke dalam grup menggunakan tautan saat ini.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Admin harus menyetujui anggota baru yang bergabung melalui tautan grup.</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Yakin ingin mereset tautan grup? Orang tidak akan bisa bergabung ke grup menggunakan tautan saat ini.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Kode QR</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Orang yang memindai kode ini akan dapat bergabung dengan grup Anda. Persetujuan admin akan dibutuhkan untuk menerima anggota baru jika Anda telah menyalakan pengaturannya.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Orang yang memindai kode ini akan dapat bergabung dengan grup Anda. Admin harus menyutujui anggota baru jika Anda telah mengaktifkan pengaturan tersebut.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">Bagikan kode</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
-    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Apakah Anda ingin membatalkan undangan yang Anda kirim ke %1$s?</string>
+    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Ingin membatalkan undangan yang Anda kirim ke %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="other">Apakah Anda ingin membatalkan %2$d undangan yang dikirim oleh %1$s?</item>
+        <item quantity="other">Ingin membatalkan %2$d undangan yang dikirim oleh %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Anda telah menjadi anggota</string>
-    <string name="GroupJoinBottomSheetDialogFragment_join">Bergabung</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Anda sudah menjadi anggota</string>
+    <string name="GroupJoinBottomSheetDialogFragment_join">Gabung</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Minta untuk bergabung</string>
     <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Tidak dapat bergabung ke grup. Mohon coba lagi nanti</string>
-    <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Terjadi kesalahan jaringan.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Tautan grup ini tidak aktif</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak dapat bergabung dengan grup</string>
@@ -1457,29 +1457,29 @@
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_link_error">Kesalahan tautan</string>
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
-    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Bergabung melalui tautan gagal. Coba lagi nanti.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Gagal bergabung melalui tautan. Coba lagi nanti.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Apakah Anda ingin bergabung dengan grup ini dan membagikan nama dan foto Anda dengan anggota grup?</string>
-    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Seorang admin dari grup ini harus menerima permintaan Anda sebelum dapat bergabung ke grup ini. Saat Anda meminta untuk bergabung, nama dan foto Anda akan diibagikan dengan anggota grup.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Ingin bergabung dengan grup ini dan membagikan nama dan foto Anda dengan anggota grup?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Admin grup ini harus menerima permintaan Anda. Saat meminta bergabung, nama dan foto Anda akan dibagikan dengan anggota grup.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="other">Grup · %1$d anggota</item>
     </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Perbarui Signal untuk menggunakan tautan grup</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versi Signal yang Anda gunakan tidak mendukung tautan grup ini. Perbarui ke versi terbaru untuk bergabung dengan grup ini melalui tautan.</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versi Signal Anda tidak mendukung tautan grup ini. Perbarui ke versi terbaru untuk bergabung dengan grup ini.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Perbarui Signal</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Tautan grup tidak valid</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Undang teman</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Bagikan tautan dengan teman agar dapat segera bergabung grup ini.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Bagikan tautan dengan teman agar dapat segera bergabung ke grup ini.</string>
 
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktifkan dan bagi tautan</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktifkan dan bagikan tautan</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Bagikan tautan</string>
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Tidak dapat mengaktifkan tautan grup. Silakan coba lagi</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Terjadi kesalahan jaringan.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Anda tidak memiliki hak untuk mengaktifkan tautan grup. Silakan hubungi admin.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Anda bukan anggota grup ini.</string>
 
@@ -1487,14 +1487,14 @@
     <string name="RequestConfirmationDialog_add_s_to_the_group">Tambah \"%1$s\" ke dalam grup?</string>
     <string name="RequestConfirmationDialog_deny_request_from_s">Tolak permintaan dari \"%1$s\"?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Tolak permintaan dari \"%1$s\"? Mereka tidak akan bisa meminta bergabung dengan grup melewati tautan grup lagi.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">Tolak permintaan dari \"%1$s\"? Ke depannya mereka tidak akan bisa meminta bergabung ke grup ini melalui tautan grup.</string>
     <string name="RequestConfirmationDialog_add">Tambahkan</string>
     <string name="RequestConfirmationDialog_deny">Tolak</string>
 
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Kaburkan wajah</string>
-    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Baru: Kaburkan wajah atau gambar di manapun untuk mengaburkan</string>
-    <string name="ImageEditorHud_draw_anywhere_to_blur">Gambar di manapun untuk mengaburkan</string>
+    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Baru: Kaburkan wajah atau gambar di mana saja</string>
+    <string name="ImageEditorHud_draw_anywhere_to_blur">Gambar di mana pun untuk mengaburkan</string>
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Gambar untuk mengaburkan tambahan wajah atau area</string>
 
     <!-- InputPanel -->
@@ -1526,9 +1526,9 @@
     <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
+    <string name="LearnMoreTextView_learn_more">Selengkapnya</string>
 
-    <string name="SpanUtil__read_more">Baca lebih lanjut</string>
+    <string name="SpanUtil__read_more">Selengkapnya</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">Tidak dapat menemukan pesan</string>
@@ -1537,11 +1537,11 @@
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
-    <string name="MessageRetrievalService_background_connection_enabled">Koneksi belakang layar diaktifkan</string>
+    <string name="MessageRetrievalService_background_connection_enabled">Koneksi background diaktifkan</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
-    <string name="MediaOverviewActivity_Files">Berkas</string>
+    <string name="MediaOverviewActivity_Files">File</string>
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">Semua</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
@@ -1551,7 +1551,7 @@
         <item quantity="other">Ini akan menghapus secara permanen %1$d file terpilih. Semua pesan yang berkaitan dengan item ini juga akan dihapus.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan …</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan…</string>
     <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran…</string>
     <string name="MediaOverviewActivity_Sort_by">Urutkan berdasarkan</string>
     <string name="MediaOverviewActivity_Newest">Terbaru</string>
@@ -1573,7 +1573,7 @@
     <plurals name="MediaOverviewActivity_d_selected_s">
         <item quantity="other">%1$d dipilih (%2$s)</item>
     </plurals>
-    <string name="MediaOverviewActivity_file">Berkas</string>
+    <string name="MediaOverviewActivity_file">File</string>
     <string name="MediaOverviewActivity_audio">Audio</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Gambar</string>
@@ -1608,15 +1608,15 @@
     <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>
 
     <!-- NotificationsMegaphone -->
-    <string name="NotificationsMegaphone_turn_on_notifications">Nyalakan Pemberitahuan?</string>
+    <string name="NotificationsMegaphone_turn_on_notifications">Aktifkan notifikasi?</string>
     <string name="NotificationsMegaphone_never_miss_a_message">Jangan lewatkan pesan dari kontak dan grup Anda.</string>
-    <string name="NotificationsMegaphone_turn_on">Nyalakan</string>
-    <string name="NotificationsMegaphone_not_now">Nanti saja</string>
+    <string name="NotificationsMegaphone_turn_on">Aktifkan</string>
+    <string name="NotificationsMegaphone_not_now">Nanti</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Pesan multimedia</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">Mengunduh pesan MMS.</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gagal saat mengunduh pesan MMS, ketuk untuk mencoba lagi</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Gagal saat mengunduh pesan MMS. Ketuk untuk mencoba lagi</string>
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">Buka kamera</string>
@@ -1629,11 +1629,11 @@
     <string name="MediaRepository__camera">Kamera</string>
 
     <!-- MessageRecord -->
-    <string name="MessageRecord_unknown">Tidak Diketahui</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi yang menggunakan Signal versi lama tidak lagi didukung, Mohon meminta pengirim untuk memperbarui ke versi terkini dan mengirim ulang pesannya.</string>
+    <string name="MessageRecord_unknown">Tidak diketahui</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Anda tidak dapat menerima pesan terenkripsi menggunakan Signal versi lama. Harap minta pengirim untuk memperbarui aplikasinya ke versi terbaru dan mengirim ulang pesannya.</string>
     <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
     <string name="MessageRecord_you_updated_group">Anda memperbarui grup.</string>
-    <string name="MessageRecord_the_group_was_updated">Grup telah diiperbarui.</string>
+    <string name="MessageRecord_the_group_was_updated">Grup telah diperbarui.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">Panggilan suara keluar</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
@@ -1659,11 +1659,11 @@
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur waktu penghilangan pesan menjadi %1$s</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s mengatur waktu penghilangan pesan menjadi %2$s</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">Waktu penghilangan pesan diatur menjadi %1$s.</string>
-    <string name="MessageRecord_this_group_was_updated_to_a_new_group">Grup ini telah diperbarui ke Grup Baru.</string>
-    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Anda tidak dapat ditambahkan ke Grup Baru dan telah diundang untuk bergabung.</string>
+    <string name="MessageRecord_this_group_was_updated_to_a_new_group">Grup ini telah diperbarui ke grup baru.</string>
+    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Anda tidak dapat ditambahkan ke grup baru dan sudah diundang untuk bergabung.</string>
     <string name="MessageRecord_chat_session_refreshed">Sesi obrolan disegarkan</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="other">%1$s anggota tidak dapat ditambahkan ke Grup Baru dan telah diundang untuk bergabung.</item>
+        <item quantity="other">%1$s anggota tidak dapat ditambahkan ke grup baru dan sudah diundang untuk bergabung.</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">

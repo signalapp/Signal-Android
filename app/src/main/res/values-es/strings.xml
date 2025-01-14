@@ -3143,7 +3143,7 @@
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Enviar</string>
     <string name="conversation_activity__compose_description">Escribir mensaje</string>
-    <string name="conversation_activity__emoji_toggle_description">Activar teclado de emojis</string>
+    <string name="conversation_activity__emoji_toggle_description">Activar o desactivar teclado de emojis</string>
     <string name="conversation_activity__attachment_thumbnail">Miniatura del archivo adjunto</string>
     <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Activar panel de archivos adjuntos de la cámara</string>
     <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Grabar y enviar archivo de audio</string>
@@ -3508,7 +3508,7 @@
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">Solicitar</string>
     <!-- Action to decline to submit logs -->
-    <string name="DebugLogsPromptDialogFragment__no_thanks">No gracias</string>
+    <string name="DebugLogsPromptDialogFragment__no_thanks">No, gracias</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
@@ -3567,13 +3567,13 @@
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS y MMS</string>
     <string name="preferences__pref_use_address_book_photos">Usar fotos de contactos</string>
-    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostrar fotos de la libreta de contactos si están disponibles.</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Muestra las fotos de la libreta de contactos si están disponibles.</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__pref_keep_muted_chats_archived">Dejar archivados chats silenciados</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Los chats silenciados que hayas archivado permanecerán archivados aunque recibas un nuevo mensaje.</string>
     <string name="preferences__generate_link_previews">Generar vista previa de enlaces</string>
-    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mostrar las vistas previas de los enlaces directamente de los sitios web para los mensajes que envías.</string>
+    <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obtén las vistas previas de los enlaces directamente de los sitios web para los mensajes que envías.</string>
     <string name="preferences__change_passphrase">Cambiar frase de contraseña</string>
     <string name="preferences__change_your_passphrase">Cambia tu frase de contraseña</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
@@ -3978,7 +3978,7 @@
     <string name="CreatePaymentFragment__request">Solicitar</string>
     <string name="CreatePaymentFragment__pay">Pagar</string>
     <string name="CreatePaymentFragment__available_balance_s">Saldo disponible: %1$s</string>
-    <string name="CreatePaymentFragment__toggle_content_description">Alternar</string>
+    <string name="CreatePaymentFragment__toggle_content_description">Activar o desactivar</string>
     <string name="CreatePaymentFragment__1">1</string>
     <string name="CreatePaymentFragment__2">2</string>
     <string name="CreatePaymentFragment__3">3</string>
@@ -7173,7 +7173,7 @@
     <!-- Call link creation item description on calls tab -->
     <string name="CreateCallLink__share_a_link_for">Compartir enlace para llamada de Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
-    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Usa este enlace para unirte a llamada de Signal: %1$s</string>
+    <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Usa este enlace para unirte a una llamada de Signal: %1$s</string>
 
     <!-- CallLinkInfoSheet -->
     <!-- Sheet title -->

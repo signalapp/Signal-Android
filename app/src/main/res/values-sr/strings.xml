@@ -7261,7 +7261,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Нисмо успели да сачувамо промене. Проверите да ли сте повезани на мрежу и пробајте поново.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Нисмо успели да ажурирамо подешавања одобрења администратора. Проверите да се линк за позив тренутно не користи.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Нисмо успели да избришемо линк за позив јер се тренутно користи.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7677,7 +7677,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Резервне поруке Signal-а</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Потребна је потврда идентитета</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Историја плаћања</string>
     <!-- Section header for backup information -->

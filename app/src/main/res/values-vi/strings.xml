@@ -7104,7 +7104,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Không thể lưu các thay đổi. Kiểm tra kết nối mạng của bạn và thử lại.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Không thể cập nhật cài đặt quản trị viên chấp thuận. Kiểm tra xem đường dẫn cuộc gọi có đang được sử dụng không.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Không thể xóa đường dẫn cuộc gọi vì đường dẫn đang được sử dụng.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7515,7 +7515,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Bản sao lưu Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Yêu cầu xác thực</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Lịch sử thanh toán</string>
     <!-- Section header for backup information -->

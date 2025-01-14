@@ -7104,7 +7104,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">ئۆزگەرتىش ساقلانمىدى. تور ئۇلىنىشىنى تەكشۈرۈپ قايتا سىناڭ.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">باشقۇرغۇچى تەستىق تەڭشەكلىرىنى يېڭىلىيالمىدى. چاقىرىش ئۇلانمىسىنىڭ ھازىر ئىشلىتىلمىگەنلىكىنى تەكشۈرۈڭ.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">چاقىرىق ئۇلانمىسىنى ھازىر ئىشلىتىلىۋاتقانلىقى ئۈچۈن ئۆچۈرۈگىلى بولمىدى.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7515,7 +7515,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal زاپاسلانمىسى</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">دەلىللەش تەلەپ قىلىنىدى</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">پۇل تۆلەش تارىخى</string>
     <!-- Section header for backup information -->

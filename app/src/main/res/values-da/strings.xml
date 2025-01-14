@@ -4287,8 +4287,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med pinkode til Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
-        <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din pinkode. Hvis du ikke kan huske din pinkode, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive ryddet og alt indhold slettet.</item>
+        <item quantity="one">For dit privatliv og din sikkerheds skyld er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
+        <item quantity="other">For dit privatliv og din sikkerheds skyld er det ikke muligt at gendanne din pinkode. Hvis du ikke kan huske din pinkode, kan du verificere med sms på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive ryddet og alt indhold slettet.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -7261,7 +7261,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Kunne ikke gemme ændringer. Tjek din netværksforbindelse, og prøv igen.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Kunne ikke opdatere indstillinger for administratorgodkendelse. Tjek at opkaldslinket ikke er i brug.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Kunne ikke slette opkaldslink, da det er i brug.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7677,7 +7677,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-sikkerhedskopier</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Autentificering påkrævet</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingshistorik</string>
     <!-- Section header for backup information -->

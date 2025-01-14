@@ -7261,7 +7261,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">മാറ്റങ്ങൾ സംരക്ഷിക്കാനായില്ല. നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">അഡ്‌മിൻ അംഗീകാര ക്രമീകരണങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്യാനായില്ല. കോൾ ലിങ്ക് നിലവിൽ ഉപയോഗത്തിലുണ്ടോയെന്ന് പരിശോധിക്കുക.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">കോൾ ലിങ്ക് നിലവിൽ ഉപയോഗത്തിലുള്ളതിനാൽ അത് ഇല്ലാതാക്കാൻ കഴിഞ്ഞില്ല.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7677,7 +7677,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ബാക്കപ്പുകൾ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">പരിശോധിച്ചുറപ്പിക്കേണ്ടതുണ്ട്</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">പേയ്മെൻ്റ് ചരിത്രം</string>
     <!-- Section header for backup information -->

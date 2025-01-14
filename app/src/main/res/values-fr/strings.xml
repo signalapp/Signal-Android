@@ -1107,7 +1107,7 @@
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Ajouter un membre ?</string>
     <string name="AddToGroupActivity_add_s_to_s">Ajouter %1$s à \"%2$s\" ?</string>
-    <string name="AddToGroupActivity_s_added_to_s">%1$s a été ajouté à \"%2$s\".</string>
+    <string name="AddToGroupActivity_s_added_to_s">Vous avez ajouté %1$s à \"%2$s\".</string>
     <string name="AddToGroupActivity_add_to_group">Ajouter au groupe</string>
     <string name="AddToGroupActivity_add_to_groups">Ajouter aux groupes</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Vous ne pouvez pas ajouter cet utilisateur à un groupe hérité.</string>
