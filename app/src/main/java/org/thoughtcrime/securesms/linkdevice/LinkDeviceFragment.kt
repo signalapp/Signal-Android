@@ -198,7 +198,10 @@ class LinkDeviceFragment : ComposeFragment() {
         state = state,
         modifier = Modifier.padding(contentPadding),
         onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
-        onLinkNewDeviceClicked = { navController.navigateToQrScannerIfAuthed(!state.needsBioAuthEducationSheet) },
+        onLinkNewDeviceClicked = {
+          viewModel.stopExistingPolling()
+          navController.navigateToQrScannerIfAuthed(!state.needsBioAuthEducationSheet)
+        },
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },

@@ -4,6 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -39,8 +41,11 @@ class LinkDeviceViewModel : ViewModel() {
   private val _state = MutableStateFlow(LinkDeviceSettingsState())
   val state = _state.asStateFlow()
 
+  private var pollJob: Job? = null
+
   fun initialize() {
     loadDevices(initialLoad = true)
+    pollForDevices()
   }
 
   /**
@@ -121,6 +126,28 @@ class LinkDeviceViewModel : ViewModel() {
         }
       }
     }
+  }
+
+  /**
+   * Poll the server for devices every 5 seconds for 60 seconds
+   */
+  private fun pollForDevices() {
+    stopExistingPolling()
+    pollJob = viewModelScope.launch(Dispatchers.IO) {
+      for (i in 1..12) {
+        delay(5.seconds)
+        val devices = LinkDeviceRepository.loadDevices()
+        if (devices != null) {
+          _state.value = _state.value.copy(
+            devices = devices
+          )
+        }
+      }
+    }
+  }
+
+  fun stopExistingPolling() {
+    pollJob?.cancel()
   }
 
   fun showFrontCamera() {
@@ -380,9 +407,7 @@ class LinkDeviceViewModel : ViewModel() {
     LinkedDeviceInactiveCheckJob.enqueue()
   }
 
-  private fun Uri.supportsLinkAndSync(): Boolean {
-    return this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
-  }
+  private fun Uri.supportsLinkAndSync(): Boolean = this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {
     val dialogState = _state.value.dialogState
@@ -443,6 +468,7 @@ class LinkDeviceViewModel : ViewModel() {
   }
 
   fun setDeviceToEdit(device: Device) {
+    stopExistingPolling()
     _state.update {
       it.copy(
         deviceToEdit = device
