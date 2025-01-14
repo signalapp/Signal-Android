@@ -5,19 +5,17 @@
 
 package org.thoughtcrime.securesms.registration.data.network
 
-import okio.IOException
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException
-import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException
+import org.whispersystems.signalservice.api.push.exceptions.ChallengeRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.ExternalServiceFailureException
 import org.whispersystems.signalservice.api.push.exceptions.ImpossiblePhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.InvalidTransportModeException
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException
-import org.whispersystems.signalservice.api.push.exceptions.PushChallengeRequiredException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
@@ -26,7 +24,6 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
-import org.whispersystems.signalservice.internal.util.JsonUtil
 
 /**
  * This is a processor to map a [RegistrationSessionMetadataResponse] to all the known outcomes.
@@ -61,8 +58,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
         is NetworkResult.NetworkError -> UnknownError(networkResult.exception)
         is NetworkResult.StatusCodeError -> {
           when (val cause = networkResult.exception) {
-            is PushChallengeRequiredException -> createChallengeRequiredProcessor(networkResult)
-            is CaptchaRequiredException -> createChallengeRequiredProcessor(networkResult)
+            is ChallengeRequiredException -> createChallengeRequiredProcessor(cause.response)
             is RateLimitException -> createRateLimitProcessor(cause)
             is ImpossiblePhoneNumberException -> ImpossibleNumber(cause)
             is NonNormalizedPhoneNumberException -> NonNormalizedNumber(cause = cause, originalNumber = cause.originalNumber, normalizedNumber = cause.normalizedNumber)
@@ -80,19 +76,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
       }
     }
 
-    private fun createChallengeRequiredProcessor(errorResult: NetworkResult.StatusCodeError<RegistrationSessionMetadataResponse>): VerificationCodeRequestResult {
-      if (errorResult.stringBody == null) {
-        Log.w(TAG, "Attempted to parse error body with response code ${errorResult.code} for list of requested information, but body was null.")
-        return UnknownError(errorResult.exception)
-      }
-
-      try {
-        val response = JsonUtil.fromJson(errorResult.stringBody, RegistrationSessionMetadataJson::class.java)
-        return ChallengeRequired(Challenge.parse(response.requestedInformation))
-      } catch (parseException: IOException) {
-        Log.w(TAG, "Attempted to parse error body for list of requested information, but encountered exception.", parseException)
-        return UnknownError(parseException)
-      }
+    private fun createChallengeRequiredProcessor(response: RegistrationSessionMetadataJson): VerificationCodeRequestResult {
+      return ChallengeRequired(Challenge.parse(response.requestedInformation))
     }
 
     private fun createRateLimitProcessor(exception: RateLimitException): VerificationCodeRequestResult {

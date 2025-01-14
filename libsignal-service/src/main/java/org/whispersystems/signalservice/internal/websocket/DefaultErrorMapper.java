@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.internal.websocket;
 
 
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
-import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
@@ -12,7 +11,6 @@ import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
-import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.DeviceLimit;
 import org.whispersystems.signalservice.internal.push.DeviceLimitExceededException;
 import org.whispersystems.signalservice.internal.push.LockedException;
@@ -81,8 +79,6 @@ public final class DefaultErrorMapper implements ErrorMapper {
       case 401:
       case 403:
         return new AuthorizationFailedException(status, "Authorization failed!");
-      case 402:
-        return new CaptchaRequiredException();
       case 404:
         return new NotFoundException("Not found");
       case 409:
