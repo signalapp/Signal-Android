@@ -812,14 +812,18 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     peekJoinedUuids: Collection<UUID>,
     isCallFull: Boolean
   ) {
+    Log.d(TAG, "Updating group call from peek.")
     val callId = peekGroupCallEraId?.let { CallId.fromEra(it) }
     val recipientId = SignalDatabase.threads.getRecipientIdForThreadId(threadId)
     val call = if (callId != null && recipientId != null) {
+      Log.d(TAG, "Found local call event.")
       getCallById(callId.longValue(), recipientId)
     } else {
+      Log.d(TAG, "Did not find local call event.")
       null
     }
 
+    Log.d(TAG, "Updating message database record.")
     SignalDatabase.messages.updatePreviousGroupCall(
       threadId = threadId,
       peekGroupCallEraId = peekGroupCallEraId,
@@ -829,8 +833,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     )
 
     if (call != null) {
+      Log.d(TAG, "Updating call database record.")
       updateGroupCallState(call, peekJoinedUuids)
       AppDependencies.databaseObserver.notifyCallUpdateObservers()
+    } else {
+      Log.d(TAG, "No call database record to update!")
     }
   }
 
@@ -885,6 +892,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     isGroupCallActive: Boolean
   ): Boolean {
     val localJoined = call.didLocalUserJoin || hasLocalUserJoined
+
+    Log.d(TAG, "Updating group call state: localJoined: $localJoined, isGroupCallActive: $isGroupCallActive")
 
     return writableDatabase.update(TABLE_NAME)
       .values(
