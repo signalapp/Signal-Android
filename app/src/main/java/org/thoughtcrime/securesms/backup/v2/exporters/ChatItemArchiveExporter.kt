@@ -296,6 +296,11 @@ class ChatItemArchiveExporter(
           }
 
           val attachments = extraData.attachmentsById[record.id]
+          if (attachments?.isNotEmpty() == true && attachments.all { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrEmpty()) {
+            Log.w(TAG, "Record with ID ${record.id} has long text attachments, but no body. Skipping.")
+            continue
+          }
+
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
 
           if (sticker?.stickerLocator != null) {
