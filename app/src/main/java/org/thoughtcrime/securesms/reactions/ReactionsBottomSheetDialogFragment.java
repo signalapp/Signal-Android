@@ -166,7 +166,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private void setUpViewModel(@NonNull MessageId messageId) {
-    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(messageId);
+    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(new ReactionsRepository(requireContext()), messageId);
 
     viewModel = new ViewModelProvider(this, factory).get(ReactionsViewModel.class);
 
@@ -178,7 +178,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
 
     recipientsAdapter.addListener(
         () -> disposables.add(
-            viewModel.removeReactionEmoji(getContext())
+            viewModel.removeReactionEmoji()
                      .observeOn(AndroidSchedulers.mainThread())
                      .subscribe(
                          it -> recipientsAdapter.notifyItemRemoved(0)

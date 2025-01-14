@@ -15,7 +15,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import java.util.NoSuchElementException
 
-class ReactionsRepository {
+class ReactionsRepository(
+  localContext: Context
+) {
+
+  private val applicationContext = localContext.applicationContext
 
   fun getReactions(messageId: MessageId): Observable<List<ReactionDetails>> {
     return Observable.create { emitter: ObservableEmitter<List<ReactionDetails>> ->
@@ -50,11 +54,11 @@ class ReactionsRepository {
     }
   }
 
-  fun sendReactionRemoval(context: Context, messageId: MessageId): Completable {
+  fun sendReactionRemoval(messageId: MessageId): Completable {
     val oldReactionRecord = oldReactionRecord(messageId) ?: return Completable.error(NoSuchElementException("Removing invalid emoji!"))
     return Completable.fromAction {
       MessageSender.sendReactionRemoval(
-        context.applicationContext,
+        applicationContext,
         MessageId(messageId.id),
         oldReactionRecord
       )
