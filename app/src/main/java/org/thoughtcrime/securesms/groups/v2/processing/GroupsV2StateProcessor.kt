@@ -112,14 +112,15 @@ class GroupsV2StateProcessor private constructor(
   @WorkerThread
   @Throws(IOException::class, GroupNotAMemberException::class)
   fun forceSanityUpdateFromServer(timestamp: Long): GroupUpdateResult {
-    val currentLocalState: DecryptedGroup? = SignalDatabase.groups.getGroup(groupId).map { it.requireV2GroupProperties().decryptedGroup }.orNull()
+    val groupRecord = SignalDatabase.groups.getGroup(groupId).orNull()
+    val currentLocalState: DecryptedGroup? = groupRecord?.requireV2GroupProperties()?.decryptedGroup
 
     if (currentLocalState == null) {
       Log.i(TAG, "$logPrefix No local state to force update")
       return GroupUpdateResult.CONSISTENT_OR_AHEAD
     }
 
-    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true)) {
+    return when (val result = updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = true, forceUpdate = !groupRecord.isActive)) {
       InternalUpdateResult.NoUpdateNeeded -> GroupUpdateResult.CONSISTENT_OR_AHEAD
       is InternalUpdateResult.Updated -> GroupUpdateResult(GroupUpdateResult.UpdateStatus.GROUP_UPDATED, result.updatedLocalState)
       is InternalUpdateResult.NotAMember -> throw result.exception
@@ -267,7 +268,8 @@ class GroupsV2StateProcessor private constructor(
       timestamp = timestamp,
       serverGuid = serverGuid,
       groupStateDiff = groupStateDiff,
-      groupSendEndorsements = null
+      groupSendEndorsements = null,
+      forceSave = forceApply
     )
   }
 
@@ -281,7 +283,7 @@ class GroupsV2StateProcessor private constructor(
 
     if (targetRevision == LATEST && (currentLocalState == null || currentLocalState.revision == RESTORE_PLACEHOLDER_REVISION)) {
       Log.i(TAG, "$logPrefix Latest revision only, update to latest directly")
-      return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = false)
+      return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = false, forceUpdate = false)
     }
 
     Log.i(TAG, "$logPrefix Paging from server targetRevision: ${if (targetRevision == LATEST) "latest" else targetRevision}")
@@ -292,7 +294,7 @@ class GroupsV2StateProcessor private constructor(
       val joinedAtFailure = InternalUpdateResult.from(joinedAtResult.getCause()!!)
       if (joinedAtFailure is InternalUpdateResult.NotAMember) {
         Log.i(TAG, "$logPrefix Not a member, try to update to latest directly")
-        return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = currentLocalState != null)
+        return updateToLatestViaServer(timestamp, currentLocalState, reconstructChange = currentLocalState != null, forceUpdate = true)
       } else {
         return joinedAtFailure
       }
@@ -322,7 +324,9 @@ class GroupsV2StateProcessor private constructor(
       val applyGroupStateDiffResult: AdvanceGroupStateResult = GroupStatePatcher.applyGroupStateDiff(remoteGroupStateDiff, targetRevision)
       val updatedGroupState: DecryptedGroup? = applyGroupStateDiffResult.updatedGroupState
 
-      if (updatedGroupState == null || updatedGroupState == remoteGroupStateDiff.previousGroupState) {
+      if (groupRecord.map { it.isActive }.orNull() == false && updatedGroupState != null && updatedGroupState == remoteGroupStateDiff.previousGroupState) {
+        Log.w(TAG, "$logPrefix Local state is not active, but server is returning state for us, apply regardless of revision")
+      } else if (updatedGroupState == null || updatedGroupState == remoteGroupStateDiff.previousGroupState) {
         Log.i(TAG, "$logPrefix Local state is at or later than server revision: ${currentLocalState?.revision ?: "null"}")
 
         if (currentLocalState != null && applyGroupStateDiffResult.remainingRemoteGroupChanges.isEmpty()) {
@@ -391,7 +395,7 @@ class GroupsV2StateProcessor private constructor(
     return InternalUpdateResult.Updated(currentLocalState!!)
   }
 
-  private fun updateToLatestViaServer(timestamp: Long, currentLocalState: DecryptedGroup?, reconstructChange: Boolean): InternalUpdateResult {
+  private fun updateToLatestViaServer(timestamp: Long, currentLocalState: DecryptedGroup?, reconstructChange: Boolean, forceUpdate: Boolean): InternalUpdateResult {
     val result = groupsApi.getGroupAsResult(groupSecretParams, groupsV2Authorization.getAuthorizationForToday(serviceIds, groupSecretParams))
 
     val groupResponse = if (result is NetworkResult.Success) {
@@ -407,7 +411,8 @@ class GroupsV2StateProcessor private constructor(
       timestamp = timestamp,
       serverGuid = null,
       groupStateDiff = remoteGroupStateDiff,
-      groupSendEndorsements = groupOperations.receiveGroupSendEndorsements(serviceIds.aci, groupResponse.group, groupResponse.groupSendEndorsementsResponse)
+      groupSendEndorsements = groupOperations.receiveGroupSendEndorsements(serviceIds.aci, groupResponse.group, groupResponse.groupSendEndorsementsResponse),
+      forceSave = forceUpdate && groupResponse.group.members.asSequence().mapNotNull { ACI.parseOrNull(it.aciBytes) }.any { serviceIds.matches(it) }
     )
   }
 
@@ -480,13 +485,16 @@ class GroupsV2StateProcessor private constructor(
     timestamp: Long,
     serverGuid: String?,
     groupStateDiff: GroupStateDiff,
-    groupSendEndorsements: ReceivedGroupSendEndorsements?
+    groupSendEndorsements: ReceivedGroupSendEndorsements?,
+    forceSave: Boolean
   ): InternalUpdateResult {
     val currentLocalState: DecryptedGroup? = groupStateDiff.previousGroupState
     val applyGroupStateDiffResult = GroupStatePatcher.applyGroupStateDiff(groupStateDiff, GroupStatePatcher.LATEST)
     val updatedGroupState = applyGroupStateDiffResult.updatedGroupState
 
-    if (updatedGroupState == null || updatedGroupState == groupStateDiff.previousGroupState) {
+    if (forceSave && updatedGroupState != null) {
+      Log.w(TAG, "$logPrefix Forcing local state update regardless of revision")
+    } else if (updatedGroupState == null || updatedGroupState == groupStateDiff.previousGroupState) {
       Log.i(TAG, "$logPrefix Local state and server state are equal")
 
       if (groupSendEndorsements != null) {

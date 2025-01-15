@@ -168,9 +168,10 @@ public class ApplicationMigrations {
     static final int GPB_TOKEN_MIGRATION           = 124;
     static final int GROUP_ADD_MIGRATION           = 125;
     static final int SSRE2_CAPABILITY              = 126;
+    static final int FIX_INACTIVE_GROUPS           = 127;
   }
 
-  public static final int CURRENT_VERSION = 126;
+  public static final int CURRENT_VERSION = 127;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -773,6 +774,10 @@ public class ApplicationMigrations {
       jobs.put(Version.SSRE2_CAPABILITY, new AttributesMigrationJob());
     }
 
+    if (lastSeenVersion < Version.FIX_INACTIVE_GROUPS) {
+      jobs.put(Version.FIX_INACTIVE_GROUPS, new InactiveGroupCheckMigrationJob());
+    }
+    
     return jobs;
   }
 

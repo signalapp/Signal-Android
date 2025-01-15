@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.migrations.EmojiDownloadMigrationJob;
 import org.thoughtcrime.securesms.migrations.EmojiSearchIndexCheckMigrationJob;
 import org.thoughtcrime.securesms.migrations.GooglePlayBillingPurchaseTokenMigrationJob;
 import org.thoughtcrime.securesms.migrations.IdentityTableCleanupMigrationJob;
+import org.thoughtcrime.securesms.migrations.InactiveGroupCheckMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.OptimizeMessageSearchIndexMigrationJob;
@@ -293,6 +294,7 @@ public final class JobManagerFactories {
       put(EmojiSearchIndexCheckMigrationJob.KEY,          new EmojiSearchIndexCheckMigrationJob.Factory());
       put(GooglePlayBillingPurchaseTokenMigrationJob.KEY, new GooglePlayBillingPurchaseTokenMigrationJob.Factory());
       put(IdentityTableCleanupMigrationJob.KEY,           new IdentityTableCleanupMigrationJob.Factory());
+      put(InactiveGroupCheckMigrationJob.KEY,             new InactiveGroupCheckMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                         new LegacyMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                       new MigrationCompleteJob.Factory());
       put(OptimizeMessageSearchIndexMigrationJob.KEY,     new OptimizeMessageSearchIndexMigrationJob.Factory());

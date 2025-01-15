@@ -990,4 +990,59 @@ class GroupsV2StateProcessorTest {
 
     verify { groupTable.update(masterKey, result.latestServer!!, null) }
   }
+
+  /**
+   * If we think a group is not active locally, but the server returns state for us indicating it thinks we are active,
+   * apply the state regardless of revision.
+   */
+  @Test
+  fun localInactiveButActiveOnServer() {
+    given {
+      localState(
+        active = false,
+        revision = 5,
+        members = selfAndOthers
+      )
+      changeSet {
+      }
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      joinedAtRevision = 0
+      expectTableUpdate = true
+    }
+
+    val result = processor.updateLocalGroupToRevision(
+      targetRevision = GroupsV2StateProcessor.LATEST,
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus, "inactive local is still updated with same revision").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+  }
+
+  /**
+   * If we think a group is not active locally, but the server returns state for us indicating it thinks we are active,
+   * apply the state regardless of revision.
+   */
+  @Test
+  fun forceUpdateLocalInactiveButActiveOnServer() {
+    given {
+      localState(
+        active = false,
+        revision = 5,
+        members = selfAndOthers
+      )
+      serverState(
+        revision = 5,
+        members = selfAndOthers
+      )
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      joinedAtRevision = 0
+      expectTableUpdate = true
+    }
+
+    val result = processor.forceSanityUpdateFromServer(
+      timestamp = 0
+    )
+
+    assertThat(result.updateStatus, "inactive local is still updated given same revision from server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+  }
 }
