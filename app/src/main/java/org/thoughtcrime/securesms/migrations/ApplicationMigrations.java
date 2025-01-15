@@ -774,9 +774,9 @@ public class ApplicationMigrations {
       jobs.put(Version.SSRE2_CAPABILITY, new AttributesMigrationJob());
     }
 
-    if (lastSeenVersion < Version.FIX_INACTIVE_GROUPS) {
-      jobs.put(Version.FIX_INACTIVE_GROUPS, new InactiveGroupCheckMigrationJob());
-    }
+//    if (lastSeenVersion < Version.FIX_INACTIVE_GROUPS) {
+//      jobs.put(Version.FIX_INACTIVE_GROUPS, new InactiveGroupCheckMigrationJob());
+//    }
     
     return jobs;
   }
