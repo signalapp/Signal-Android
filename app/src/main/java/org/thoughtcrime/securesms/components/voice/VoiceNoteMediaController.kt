@@ -314,7 +314,7 @@ class VoiceNoteMediaController(val activity: FragmentActivity, private var postp
   inner class PlaybackStateListener : Player.Listener {
     override fun onEvents(player: Player, events: Player.Events) {
       super.onEvents(player, events)
-      if (events.contains(Player.EVENT_PLAYBACK_STATE_CHANGED)) {
+      if (events.contains(Player.EVENT_PLAYBACK_STATE_CHANGED) || events.contains(Player.EVENT_IS_PLAYING_CHANGED)) {
         if (!isActivityResumed()) {
           return
         }
