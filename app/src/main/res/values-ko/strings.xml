@@ -4061,7 +4061,7 @@
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="DoubleTapEditEducationSheet__double_tap_edit_title">두 번 탭하여 수정</string>
     <!-- Text on the sheet explaining how double tapping on a message will let them edit it -->
-    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">메시지를 수정하려면 메지시를 빠르게 두 번 탭하세요. 메시지는 전송 후 24시간 내에 수정할 수 있습니다.</string>
+    <string name="DoubleTapEditEducationSheet__quickly_tap_twice">메시지를 수정하려면 메시지를 빠르게 두 번 탭하세요. 메시지는 전송 후 24시간 내에 수정할 수 있습니다.</string>
     <!-- Button label to dismiss sheet -->
     <string name="DoubleTapEditEducationSheet__got_it">확인</string>
 
