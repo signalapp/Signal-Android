@@ -17,7 +17,7 @@ public interface Muxer {
 
     void start() throws IOException;
 
-    void stop() throws IOException;
+    long stop() throws IOException;
 
     int addTrack(@NonNull MediaFormat format) throws IOException;
 

@@ -43,6 +43,23 @@ class Mp4FaststartPostProcessor(private val inputStreamFactory: InputStreamFacto
     }
   }
 
+  /**
+   * It is the responsibility of the caller to close the resulting [InputStream].
+   */
+  fun processWithMdatLength(inputLength: Long, mdatLength: Int): SequenceInputStream {
+    val metadata = inputStreamFactory.create().use { inputStream ->
+      inputStream.use {
+        Mp4Sanitizer.sanitizeFileWithCompoundedMdatBoxes(it, inputLength, mdatLength)
+      }
+    }
+    if (metadata.sanitizedMetadata == null) {
+      throw VideoPostProcessingException("Sanitized metadata was null!")
+    }
+    val inputStream = inputStreamFactory.create()
+    inputStream.skip(metadata.dataOffset)
+    return SequenceInputStream(ByteArrayInputStream(metadata.sanitizedMetadata), LimitedInputStream(inputStream, metadata.dataLength))
+  }
+
   fun interface InputStreamFactory {
     fun create(): InputStream
   }

@@ -52,6 +52,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -80,6 +81,7 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
   private final List<StreamingTrack> source;
   private final Date                 creationTime = new Date();
 
+  private boolean hasWrittenMdat = false;
 
   /**
    * Contains the start time of the next segment in line that will be created.
@@ -106,6 +108,8 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
   private final Map<StreamingTrack, Long>                  sampleNumbers            = new HashMap<>();
   private       long                                       bytesWritten             = 0;
 
+  private long mMDatTotalContentLength = 0;
+  
   Mp4Writer(final @NonNull List<StreamingTrack> source, final @NonNull WritableByteChannel sink) throws IOException {
     this.source = new ArrayList<>(source);
     this.sink   = sink;
@@ -152,6 +156,11 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
       streamingTrack.close();
     }
     write(sink, createMoov());
+    hasWrittenMdat = false;
+  }
+
+  public long getTotalMdatContentLength() {
+    return mMDatTotalContentLength;
   }
 
   private Box createMoov() {
@@ -252,8 +261,16 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
   private void writeChunkContainer(ChunkContainer chunkContainer) throws IOException {
     final TrackBox       tb   = trackBoxes.get(chunkContainer.streamingTrack);
     final ChunkOffsetBox stco = Objects.requireNonNull(Path.getPath(tb, "mdia[0]/minf[0]/stbl[0]/stco[0]"));
-    stco.setChunkOffsets(Mp4Arrays.copyOfAndAppend(stco.getChunkOffsets(), bytesWritten + 8));
+    final int extraChunkOffset = hasWrittenMdat ? 0 : 8;
+    stco.setChunkOffsets(Mp4Arrays.copyOfAndAppend(stco.getChunkOffsets(), bytesWritten + extraChunkOffset));
+    chunkContainer.mdat.includeHeader = !hasWrittenMdat;
     write(sink, chunkContainer.mdat);
+
+    mMDatTotalContentLength += chunkContainer.mdat.getSize();
+
+    if (!hasWrittenMdat) {
+      hasWrittenMdat = true;
+    }
   }
 
   public void acceptSample(
@@ -401,9 +418,12 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
     final ArrayList<StreamingSample> samples;
     long size;
 
+    boolean includeHeader;
+
     Mdat(final @NonNull List<StreamingSample> samples) {
       this.samples = new ArrayList<>(samples);
       size         = 8;
+
       for (StreamingSample sample : samples) {
         size += sample.getContent().limit();
       }
@@ -416,19 +436,23 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
 
     @Override
     public long getSize() {
-      return size;
+      if (includeHeader) {
+        return size;
+      } else {
+        return size - 8;
+      }
     }
 
     @Override
     public void getBox(WritableByteChannel writableByteChannel) throws IOException {
-      writableByteChannel.write(ByteBuffer.wrap(new byte[]{
-              (byte) ((size & 0xff000000) >> 24),
-              (byte) ((size & 0xff0000) >> 16),
-              (byte) ((size & 0xff00) >> 8),
-              (byte) ((size & 0xff)),
-              109, 100, 97, 116, // mdat
+      if (includeHeader) {
+        // When we include the header, we specify the declared size as 1, indicating the size is from here until the end of the file
+        writableByteChannel.write(ByteBuffer.wrap(new byte[] {
+            0, 0, 0, 0, // size (4 bytes)
+            109, 100, 97, 116, // 'm' 'd' 'a' 't'
+        }));
+      }
 
-      }));
       for (StreamingSample sample : samples) {
         writableByteChannel.write((ByteBuffer) sample.getContent().rewind());
       }

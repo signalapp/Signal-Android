@@ -267,8 +267,9 @@ public final class AttachmentCompressionJob extends BaseJob {
 
           boolean faststart = false;
           try {
+            int mdatLength;
             try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
-              transcoder.transcode(percent -> {
+              mdatLength = (int) transcoder.transcode(percent -> {
                 if (notification != null) {
                   notification.setProgress(percent / 100f);
                 }
@@ -299,7 +300,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             });
 
             final long plaintextLength = ModernEncryptingPartOutputStream.getPlaintextLength(file.length());
-            try (MediaStream mediaStream = new MediaStream(postProcessor.process(plaintextLength), MimeTypes.VIDEO_MP4, 0, 0, true)) {
+            try (MediaStream mediaStream = new MediaStream(postProcessor.processWithMdatLength(plaintextLength, mdatLength), MimeTypes.VIDEO_MP4, 0, 0, true)) {
               attachmentDatabase.updateAttachmentData(attachment, mediaStream);
               faststart = true;
             } catch (VideoPostProcessingException e) {
