@@ -24,6 +24,8 @@ import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireString
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.ExportOddities
+import org.thoughtcrime.securesms.backup.v2.ExportSkips
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.database.getThreadGroupStatus
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
@@ -250,7 +252,7 @@ class ChatItemArchiveExporter(
         MessageTypes.isGroupV2(record.type) && MessageTypes.isGroupUpdate(record.type) -> {
           val update = record.toRemoteGroupUpdate() ?: continue
           if (update.groupChange!!.updates.isEmpty()) {
-            Log.w(TAG, "Group update record with ID ${record.id} missing updates. Skipping.")
+            Log.w(TAG, ExportSkips.groupUpdateHasNoUpdates(record.dateSent))
             continue
           }
           builder.updateMessage = update
@@ -278,11 +280,11 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isGiftBadge(record.type) -> {
-          builder.giftBadge = record.toRemoteGiftBadgeUpdate()
+          builder.giftBadge = record.toRemoteGiftBadgeUpdate() ?: continue
         }
 
         !record.sharedContacts.isNullOrEmpty() -> {
-          builder.contactMessage = record.toRemoteContactMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
+          builder.contactMessage = record.toRemoteContactMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id]) ?: continue
         }
 
         record.viewOnce -> {
@@ -291,13 +293,13 @@ class ChatItemArchiveExporter(
 
         else -> {
           if (record.body.isNullOrEmpty() && !extraData.attachmentsById.containsKey(record.id)) {
-            Log.w(TAG, "Record with ID ${record.id} missing a body and doesn't have attachments. Skipping.")
+            Log.w(TAG, ExportSkips.emptyChatItem(record.dateSent))
             continue
           }
 
           val attachments = extraData.attachmentsById[record.id]
           if (attachments?.isNotEmpty() == true && attachments.all { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrEmpty()) {
-            Log.w(TAG, "Record with ID ${record.id} has long text attachments, but no body. Skipping.")
+            Log.w(TAG, ExportSkips.invalidLongTextChatItem(record.dateSent))
             continue
           }
 
@@ -323,7 +325,7 @@ class ChatItemArchiveExporter(
           if (builder.standardMessage != null) {
             builder.revisions = previousEdits
           } else {
-            Log.w(TAG, "[${record.dateSent}] Attempted to set revisions on a non-standard message! Ignoring.")
+            Log.w(TAG, ExportOddities.revisionsOnNonStandardMessage(record.dateSent))
           }
         }
         buffer += builder.build()
@@ -452,7 +454,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
         )
 
         if (expiresInMs != null && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
-          Log.w(TAG, "Outgoing expiring message was sent but the timer wasn't started! Fixing.")
+          Log.w(TAG, ExportOddities.outgoingMessageWasSentButTimerNotStarted(record.dateSent))
           expireStartDate = record.dateReceived
         }
       }
@@ -465,7 +467,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
         )
 
         if (expiresInMs != null && incoming?.read == true && expireStartDate == null) {
-          Log.w(TAG, "Incoming expiring message was read but the timer wasn't started! Fixing.")
+          Log.w(TAG, ExportOddities.incomingMessageWasReadButTimerNotStarted(record.dateSent))
           expireStartDate = record.dateReceived
         }
       }
@@ -473,7 +475,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   }
 
   if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null && builder.expireStartDate!! + builder.expiresInMs!! < backupStartTime + 1.days.inWholeMilliseconds) {
-    Log.w(TAG, "Message expires too soon! Must skip.")
+    Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
     return null
   }
 
@@ -548,6 +550,7 @@ private fun BackupMessageRecord.toRemoteGroupUpdate(): ChatUpdateMessage? {
         groupChange = GroupsV2UpdateMessageConverter.translateDecryptedChange(selfIds = SignalStore.account.getServiceIds(), context)
       )
     } catch (e: IOException) {
+      Log.w(TAG, ExportSkips.failedToParseGroupUpdate(this.dateSent), e)
       null
     }
   }
@@ -636,7 +639,7 @@ private fun CallTable.Call.toRemoteCallUpdate(db: SignalDatabase, messageRecord:
             CallTable.Event.GENERIC_GROUP_CALL,
             CallTable.Event.RINGING,
             CallTable.Event.OUTGOING_RING -> {
-              Log.w(TAG, "Unable to map group only status to 1:1 call state, skipping. event: ${this.event.name}")
+              Log.w(TAG, ExportSkips.individualCallStateNotMappable(messageRecord.dateSent, this.event))
               return null
             }
           },
@@ -670,14 +673,14 @@ private fun BackupMessageRecord.toRemotePaymentNotificationUpdate(db: SignalData
   }
 }
 
-private fun BackupMessageRecord.toRemoteSharedContacts(attachments: List<DatabaseAttachment>?): List<Contact> {
+private fun BackupMessageRecord.toRemoteSharedContacts(attachments: List<DatabaseAttachment>?): List<Contact>? {
   if (this.sharedContacts.isNullOrEmpty()) {
     return emptyList()
   }
 
   val attachmentIdMap: Map<AttachmentId, DatabaseAttachment> = attachments?.associateBy { it.attachmentId } ?: emptyMap()
 
-  try {
+  return try {
     val contacts: MutableList<Contact> = LinkedList()
     val jsonContacts = JSONArray(sharedContacts)
 
@@ -699,14 +702,14 @@ private fun BackupMessageRecord.toRemoteSharedContacts(attachments: List<Databas
       }
     }
 
-    return contacts
+    contacts
   } catch (e: JSONException) {
-    Log.w(TAG, "Failed to parse shared contacts.", e)
+    Log.w(TAG, ExportSkips.failedToParseSharedContact(this.dateSent), e)
+    null
   } catch (e: IOException) {
-    Log.w(TAG, "Failed to parse shared contacts.", e)
+    Log.w(TAG, ExportSkips.failedToParseSharedContact(this.dateSent), e)
+    null
   }
-
-  return emptyList()
 }
 
 private fun BackupMessageRecord.toRemoteLinkPreviews(attachments: List<DatabaseAttachment>?): List<LinkPreview> {
@@ -737,9 +740,9 @@ private fun BackupMessageRecord.toRemoteLinkPreviews(attachments: List<DatabaseA
 
     return previews
   } catch (e: JSONException) {
-    Log.w(TAG, "Failed to parse link preview", e)
+    Log.w(TAG, ExportOddities.failedToParseLinkPreview(this.dateSent), e)
   } catch (e: IOException) {
-    Log.w(TAG, "Failed to parse shared contacts.", e)
+    Log.w(TAG, ExportOddities.failedToParseLinkPreview(this.dateSent), e)
   }
 
   return emptyList()
@@ -764,8 +767,8 @@ private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boo
   )
 }
 
-private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ContactMessage {
-  val sharedContacts = toRemoteSharedContacts(attachments)
+private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ContactMessage? {
+  val sharedContacts = toRemoteSharedContacts(attachments) ?: return null
 
   val contacts = sharedContacts.map {
     ContactAttachment(
@@ -858,7 +861,7 @@ private fun BackupMessageRecord.toRemoteStandardMessage(db: SignalDatabase, medi
   val text = body?.let {
     Text(
       body = it,
-      bodyRanges = (this.bodyRanges?.toRemoteBodyRanges() ?: emptyList()) + (mentions?.toRemoteBodyRanges(db) ?: emptyList())
+      bodyRanges = (this.bodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()) + (mentions?.toRemoteBodyRanges(db) ?: emptyList())
     )
   }
 
@@ -905,7 +908,7 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
     text = this.quoteBody?.let { body ->
       Text(
         body = body,
-        bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges() ?: emptyList()
+        bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()
       )
     },
     attachments = if (remoteType == Quote.Type.VIEW_ONCE) {
@@ -917,12 +920,12 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
   )
 }
 
-private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge {
+private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
   val giftBadge = try {
     GiftBadge.ADAPTER.decode(Base64.decode(this.body ?: ""))
   } catch (e: IOException) {
-    Log.w(TAG, "Failed to decode GiftBadge!")
-    return BackupGiftBadge()
+    Log.w(TAG, ExportSkips.failedToParseGiftBadge(this.dateSent), e)
+    return null
   }
 
   return BackupGiftBadge(
@@ -1040,11 +1043,11 @@ private fun List<Mention>.toRemoteBodyRanges(db: SignalDatabase): List<BackupBod
   }
 }
 
-private fun ByteArray.toRemoteBodyRanges(): List<BackupBodyRange> {
+private fun ByteArray.toRemoteBodyRanges(dateSent: Long): List<BackupBodyRange> {
   val decoded: BodyRangeList = try {
     BodyRangeList.ADAPTER.decode(this)
   } catch (e: IOException) {
-    Log.w(TAG, "Failed to decode BodyRangeList!")
+    Log.w(TAG, ExportOddities.failedToParseBodyRangeList(dateSent), e)
     return emptyList()
   }
 
