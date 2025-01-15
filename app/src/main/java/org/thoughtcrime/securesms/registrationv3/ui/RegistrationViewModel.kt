@@ -90,13 +90,8 @@ class RegistrationViewModel : ViewModel() {
   private val password = Util.getSecret(18)
 
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-    Log.w(TAG, "CoroutineExceptionHandler invoked.", exception)
-    store.update {
-      it.copy(
-        networkError = exception,
-        inProgress = false
-      )
-    }
+    Log.w(TAG, "CoroutineExceptionHandler invoked!")
+    handleGenericError(exception)
   }
 
   val state: StateFlow<RegistrationState> = store
@@ -244,8 +239,7 @@ class RegistrationViewModel : ViewModel() {
         store.update {
           it.copy(
             canSkipSms = true,
-            isReRegister = true,
-            inProgress = false
+            isReRegister = true
           )
         }
         return
@@ -269,8 +263,7 @@ class RegistrationViewModel : ViewModel() {
                 isReRegister = true,
                 canSkipSms = true,
                 svr2AuthCredentials = svrCredentialsResult.svr2Credentials,
-                svr3AuthCredentials = svrCredentialsResult.svr3Credentials,
-                inProgress = false
+                svr3AuthCredentials = svrCredentialsResult.svr3Credentials
               )
             }
             return@launch
@@ -321,7 +314,7 @@ class RegistrationViewModel : ViewModel() {
 
     if (e164 == null) {
       Log.w(TAG, "Phone number was null after confirmation.")
-      onErrorOccurred()
+      setInProgress(false)
       return
     }
 
@@ -410,8 +403,7 @@ class RegistrationViewModel : ViewModel() {
             nextVerificationAttempt = RegistrationRepository.deriveTimestamp(networkResult.headers, networkResult.body.nextVerificationAttempt),
             allowedToRequestCode = networkResult.body.allowedToRequestCode,
             challengesRequested = Challenge.parse(networkResult.body.requestedInformation),
-            verified = networkResult.body.verified,
-            inProgress = false
+            verified = networkResult.body.verified
           )
         }
       },
@@ -457,12 +449,6 @@ class RegistrationViewModel : ViewModel() {
       val session = getOrCreateValidSession(context) ?: return@launch bail { Log.i(TAG, "Could not create valid session for submitting a push challenge token.") }
 
       if (!Challenge.parse(session.body.requestedInformation).contains(Challenge.PUSH)) {
-        Log.d(TAG, "Push submission no longer necessary, bailing.")
-        store.update {
-          it.copy(
-            inProgress = false
-          )
-        }
         return@launch bail { Log.i(TAG, "Push challenge token no longer needed, bailing.") }
       }
 
@@ -492,8 +478,7 @@ class RegistrationViewModel : ViewModel() {
             nextSmsTimestamp = sessionResult.nextSmsTimestamp,
             nextCallTimestamp = sessionResult.nextCallTimestamp,
             isAllowedToRequestCode = sessionResult.allowedToRequestCode,
-            challengesRequested = emptyList(),
-            inProgress = false
+            challengesRequested = emptyList()
           )
         }
         return true
@@ -504,8 +489,7 @@ class RegistrationViewModel : ViewModel() {
         store.update {
           it.copy(
             registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
-            challengesRequested = sessionResult.challenges,
-            inProgress = false
+            challengesRequested = sessionResult.challenges
           )
         }
         return false
@@ -540,10 +524,11 @@ class RegistrationViewModel : ViewModel() {
 
       is AlreadyVerified -> Log.i(TAG, "Received AlreadyVerified", sessionResult.getCause())
     }
-    setInProgress(false)
+
     store.update {
       it.copy(
-        sessionStateError = sessionResult
+        sessionStateError = sessionResult,
+        inProgress = false
       )
     }
     return false
@@ -554,6 +539,7 @@ class RegistrationViewModel : ViewModel() {
    */
   private suspend fun handleRegistrationResult(context: Context, registrationData: RegistrationData, registrationResult: RegisterAccountResult, reglockEnabled: Boolean): Boolean {
     Log.v(TAG, "handleRegistrationResult()")
+    var stayInProgress = false
     when (registrationResult) {
       is RegisterAccountResult.Success -> {
         Log.i(TAG, "Register account result: Success! Registration lock: $reglockEnabled")
@@ -573,6 +559,7 @@ class RegistrationViewModel : ViewModel() {
 
       is RegisterAccountResult.RegistrationLocked -> {
         Log.i(TAG, "Account is registration locked!", registrationResult.getCause())
+        stayInProgress = true
       }
 
       is RegisterAccountResult.SvrWrongPin -> {
@@ -588,10 +575,10 @@ class RegistrationViewModel : ViewModel() {
       is RegisterAccountResult.ValidationError,
       is RegisterAccountResult.UnknownError -> Log.i(TAG, "Received error when trying to register!", registrationResult.getCause())
     }
-    setInProgress(false)
     store.update {
       it.copy(
-        registerAccountError = registrationResult
+        registerAccountError = registrationResult,
+        inProgress = stayInProgress
       )
     }
     return false
@@ -649,7 +636,6 @@ class RegistrationViewModel : ViewModel() {
           updateSvrTriesRemaining(0)
           setUserSkippedReRegisterFlow(true)
         }
-        setInProgress(false)
       }
       return
     }
@@ -662,19 +648,17 @@ class RegistrationViewModel : ViewModel() {
           val masterKey = SignalStore.svr.masterKey
           setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())
           verifyReRegisterInternal(context, pin, masterKey)
-          setInProgress(false)
         }
       } else {
         Log.d(TAG, "Entered PIN did not match local PIN hash.")
         wrongPinHandler()
-        setInProgress(false)
       }
       return
     }
 
     Log.w(TAG, "Could not get credentials to skip SMS registration, aborting!")
     store.update {
-      it.copy(canSkipSms = false, inProgress = false)
+      it.copy(canSkipSms = false)
     }
   }
 
@@ -875,8 +859,7 @@ class RegistrationViewModel : ViewModel() {
 
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE,
-        inProgress = false
+        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
       )
     }
   }
@@ -914,14 +897,6 @@ class RegistrationViewModel : ViewModel() {
     val e164: String = currentState.phoneNumber?.toE164() ?: throw IllegalStateException("Can't construct registration data without E164!")
     val recoveryPassword = if (currentState.sessionId == null && hasRecoveryPassword()) store.value.recoveryPassword!! else null
     return RegistrationData(code, e164, password, RegistrationRepository.getRegistrationId(), RegistrationRepository.getProfileKey(e164), currentState.fcmToken, RegistrationRepository.getPniRegistrationId(), recoveryPassword)
-  }
-
-  /**
-   * This is a generic error UI handler that re-enables the UI so that the user can recover from errors.
-   * Do not forget to log any errors when calling this method!
-   */
-  private fun onErrorOccurred() {
-    setInProgress(false)
   }
 
   /**

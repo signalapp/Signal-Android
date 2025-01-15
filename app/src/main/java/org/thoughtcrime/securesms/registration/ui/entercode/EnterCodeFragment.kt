@@ -198,6 +198,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       object : AssertedSuccessListener<Boolean>() {
         override fun onSuccess(result: Boolean?) {
           findNavController().safeNavigate(EnterCodeFragmentDirections.actionRequireKbsLockPin(timeRemaining))
+          sharedViewModel.setInProgress(false)
         }
       }
     )
@@ -265,6 +266,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
   private fun popBackStack() {
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PUSH_NETWORK_AUDITED)
     NavHostFragment.findNavController(this).popBackStack()
+    sharedViewModel.setInProgress(false)
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)

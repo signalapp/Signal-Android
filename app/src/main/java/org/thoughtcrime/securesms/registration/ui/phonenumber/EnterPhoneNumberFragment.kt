@@ -35,6 +35,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
@@ -114,7 +115,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
     sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
       presentRegisterButton(sharedState)
-      presentProgressBar(sharedState.inProgress, sharedState.isReRegister)
+      updateEnabledControls(sharedState.inProgress, sharedState.isReRegister)
 
       sharedState.networkError?.let {
         presentNetworkError(it)
@@ -400,6 +401,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun presentRegistrationLocked(timeRemaining: Long) {
     findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberRegistrationLock(timeRemaining))
+    sharedViewModel.setInProgress(false)
   }
 
   private fun presentRateLimitedDialog() {
@@ -408,10 +410,12 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun presentAccountLocked() {
     findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionPhoneNumberAccountLocked())
+    ThreadUtil.postToMain { sharedViewModel.setInProgress(false) }
   }
 
   private fun moveToCaptcha() {
     findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha())
+    ThreadUtil.postToMain { sharedViewModel.setInProgress(false) }
   }
 
   private fun presentRemoteErrorDialog(message: String, positiveButtonListener: DialogInterface.OnClickListener? = null) {
@@ -491,12 +495,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
   }
 
-  private fun presentProgressBar(showProgress: Boolean, isReRegister: Boolean) {
-    if (showProgress) {
-      binding.registerButton.setSpinning()
-    } else {
-      binding.registerButton.cancelSpinning()
-    }
+  private fun updateEnabledControls(showProgress: Boolean, isReRegister: Boolean) {
     binding.countryCode.isEnabled = !showProgress
     binding.number.isEnabled = !showProgress
     binding.cancelButton.visible = !showProgress && isReRegister

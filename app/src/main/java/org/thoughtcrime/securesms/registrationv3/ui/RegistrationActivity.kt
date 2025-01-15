@@ -83,7 +83,6 @@ class RegistrationActivity : BaseActivity() {
       if (!needsProfile && !needsPin) {
         sharedViewModel.completeRegistration()
       }
-      sharedViewModel.setInProgress(false)
 
       val startIntent = MainActivity.clearTop(this)
 
