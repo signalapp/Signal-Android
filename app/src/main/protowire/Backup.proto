@@ -147,6 +147,11 @@ message Contact {
     HIDDEN_MESSAGE_REQUEST = 2;
   }
 
+  message Name {
+    string given = 1;
+    string family = 2;
+  }
+
   optional bytes aci = 1; // should be 16 bytes
   optional bytes pni = 2; // should be 16 bytes
   optional string username = 3;
@@ -166,6 +171,8 @@ message Contact {
   bool hideStory = 13;
   optional bytes identityKey = 14;
   IdentityState identityState = 15;
+  Name nickname = 16; // absent iff both `given` and `family` are empty
+  string note = 17;
 }
 
 message Group {
@@ -373,6 +380,7 @@ message ChatItem {
     PaymentNotification paymentNotification = 16;
     GiftBadge giftBadge = 17;
     ViewOnceMessage viewOnceMessage = 18;
+    DirectStoryReplyMessage directStoryReplyMessage = 19; // group story reply messages are not backed up
   }
 }
 
@@ -437,8 +445,23 @@ message StandardMessage {
 }
 
 message ContactMessage {
-  repeated ContactAttachment contact = 1;
+  ContactAttachment contact = 1;
   repeated Reaction reactions = 2;
+}
+
+message DirectStoryReplyMessage {
+  message TextReply {
+    Text text = 1;
+    FilePointer longText = 2;
+  }
+
+  oneof reply {
+    TextReply textReply = 1;
+    string emoji = 2;
+  }
+
+  repeated Reaction reactions = 3;
+  optional uint64 storySentTimestamp = 4;
 }
 
 message PaymentNotification {

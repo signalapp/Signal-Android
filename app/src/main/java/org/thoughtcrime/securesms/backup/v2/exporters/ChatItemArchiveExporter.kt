@@ -673,36 +673,34 @@ private fun BackupMessageRecord.toRemotePaymentNotificationUpdate(db: SignalData
   }
 }
 
-private fun BackupMessageRecord.toRemoteSharedContacts(attachments: List<DatabaseAttachment>?): List<Contact>? {
+private fun BackupMessageRecord.toRemoteSharedContact(attachments: List<DatabaseAttachment>?): Contact? {
   if (this.sharedContacts.isNullOrEmpty()) {
-    return emptyList()
+    return null
   }
 
   val attachmentIdMap: Map<AttachmentId, DatabaseAttachment> = attachments?.associateBy { it.attachmentId } ?: emptyMap()
 
   return try {
-    val contacts: MutableList<Contact> = LinkedList()
     val jsonContacts = JSONArray(sharedContacts)
-
-    for (i in 0 until jsonContacts.length()) {
-      val contact: Contact = Contact.deserialize(jsonContacts.getJSONObject(i).toString())
-
-      if (contact.avatar != null && contact.avatar!!.attachmentId != null) {
-        val attachment = attachmentIdMap[contact.avatar!!.attachmentId]
-
-        val updatedAvatar = Contact.Avatar(
-          contact.avatar!!.attachmentId,
-          attachment,
-          contact.avatar!!.isProfile
-        )
-
-        contacts += Contact(contact, updatedAvatar)
-      } else {
-        contacts += contact
-      }
+    if (jsonContacts.length() == 0) {
+      return null
     }
 
-    contacts
+    val contact: Contact = Contact.deserialize(jsonContacts.getJSONObject(0).toString())
+
+    return if (contact.avatar != null && contact.avatar!!.attachmentId != null) {
+      val attachment = attachmentIdMap[contact.avatar!!.attachmentId]
+
+      val updatedAvatar = Contact.Avatar(
+        contact.avatar!!.attachmentId,
+        attachment,
+        contact.avatar!!.isProfile
+      )
+
+      Contact(contact, updatedAvatar)
+    } else {
+      contact
+    }
   } catch (e: JSONException) {
     Log.w(TAG, ExportSkips.failedToParseSharedContact(this.dateSent), e)
     null
@@ -768,28 +766,28 @@ private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boo
 }
 
 private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ContactMessage? {
-  val sharedContacts = toRemoteSharedContacts(attachments) ?: return null
+  val sharedContact = toRemoteSharedContact(attachments) ?: return null
 
-  val contacts = sharedContacts.map {
-    ContactAttachment(
-      name = it.name.toRemote(),
-      avatar = (it.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
-      organization = it.organization ?: "",
-      number = it.phoneNumbers.map { phone ->
+  return ContactMessage(
+    contact = ContactAttachment(
+      name = sharedContact.name.toRemote(),
+      avatar = (sharedContact.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
+      organization = sharedContact.organization ?: "",
+      number = sharedContact.phoneNumbers.map { phone ->
         ContactAttachment.Phone(
           value_ = phone.number,
           type = phone.type.toRemote(),
           label = phone.label ?: ""
         )
       },
-      email = it.emails.map { email ->
+      email = sharedContact.emails.map { email ->
         ContactAttachment.Email(
           value_ = email.email,
           label = email.label ?: "",
           type = email.type.toRemote()
         )
       },
-      address = it.postalAddresses.map { address ->
+      address = sharedContact.postalAddresses.map { address ->
         ContactAttachment.PostalAddress(
           type = address.type.toRemote(),
           label = address.label ?: "",
@@ -802,10 +800,7 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
           country = address.country ?: ""
         )
       }
-    )
-  }
-  return ContactMessage(
-    contact = contacts,
+    ),
     reactions = reactionRecords.toRemote()
   )
 }

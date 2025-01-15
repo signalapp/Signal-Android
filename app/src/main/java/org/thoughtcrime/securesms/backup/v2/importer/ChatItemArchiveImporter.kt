@@ -310,7 +310,7 @@ class ChatItemArchiveImporter(
     }
 
     if (this.contactMessage != null) {
-      val contacts = this.contactMessage.contact.map { backupContact ->
+      val contact = this.contactMessage.contact?.let { backupContact ->
         Contact(
           backupContact.name.toLocal(),
           backupContact.organization,
@@ -345,18 +345,18 @@ class ChatItemArchiveImporter(
         )
       }
 
-      val contactAttachments = contacts.mapNotNull { it.avatarAttachment }
-      if (contacts.isNotEmpty()) {
+      if (contact != null) {
+        val contactAttachment: Attachment? = contact.avatarAttachment
         followUp = { messageRowId ->
-          val attachmentMap = if (contactAttachments.isNotEmpty()) {
-            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, contactAttachments, emptyList())
+          val attachmentMap = if (contactAttachment != null) {
+            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(contactAttachment), emptyList())
           } else {
             emptyMap()
           }
           db.update(
             MessageTable.TABLE_NAME,
             contentValuesOf(
-              MessageTable.SHARED_CONTACTS to SignalDatabase.messages.getSerializedSharedContacts(attachmentMap, contacts)
+              MessageTable.SHARED_CONTACTS to SignalDatabase.messages.getSerializedSharedContacts(attachmentMap, listOf(contact))
             ),
             "${MessageTable.ID} = ?",
             SqlUtil.buildArgs(messageRowId)

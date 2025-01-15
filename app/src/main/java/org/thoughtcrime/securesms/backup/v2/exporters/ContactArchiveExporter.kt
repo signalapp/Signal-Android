@@ -76,6 +76,8 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .hideStory(RecipientTableCursorUtil.getExtras(cursor)?.hideStory() ?: false)
       .identityKey(cursor.requireString(IdentityTable.IDENTITY_KEY)?.let { Base64.decode(it).toByteString() })
       .identityState(cursor.optionalInt(IdentityTable.VERIFIED).map { IdentityTable.VerifiedStatus.forState(it) }.orElse(IdentityTable.VerifiedStatus.DEFAULT).toRemote())
+      .note(cursor.requireString(RecipientTable.NOTE) ?: "")
+      .nickname(cursor.readNickname())
 
     val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {
@@ -93,6 +95,20 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
   override fun close() {
     cursor.close()
   }
+}
+
+private fun Cursor.readNickname(): Contact.Name? {
+  val given = this.requireString(RecipientTable.NICKNAME_GIVEN_NAME)
+  val family = this.requireString(RecipientTable.NICKNAME_FAMILY_NAME)
+
+  if (given.isNullOrEmpty()) {
+    return null
+  }
+
+  return Contact.Name(
+    given = given,
+    family = family ?: ""
+  )
 }
 
 private fun Recipient.HiddenState.toRemote(): Contact.Visibility {

@@ -49,7 +49,10 @@ object ContactArchiveImporter {
       RecipientTable.PROFILE_KEY to if (profileKey == null) null else Base64.encodeWithPadding(profileKey),
       RecipientTable.PROFILE_SHARING to contact.profileSharing.toInt(),
       RecipientTable.USERNAME to contact.username,
-      RecipientTable.EXTRAS to contact.toLocalExtras().encode()
+      RecipientTable.EXTRAS to contact.toLocalExtras().encode(),
+      RecipientTable.NOTE to contact.note,
+      RecipientTable.NICKNAME_GIVEN_NAME to contact.nickname?.given,
+      RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family
     )
 
     if (contact.registered != null) {
