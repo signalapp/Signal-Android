@@ -70,7 +70,7 @@ public final class ContactUtil {
       return contact.getName().getNickname();
     }
 
-    if (!TextUtils.isEmpty(contact.getName().getGivenName())) {
+    if (!TextUtils.isEmpty(contact.getName().getGivenName()) || !TextUtils.isEmpty(contact.getName().getFamilyName())) {
       return ProfileName.fromParts(contact.getName().getGivenName(), contact.getName().getFamilyName()).toString();
     }
 

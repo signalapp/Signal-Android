@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.signal.contacts.SystemContactsRepository;
 import org.signal.contacts.SystemContactsRepository.NameDetails;
 import org.signal.contacts.SystemContactsRepository.PhoneDetails;
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
@@ -72,17 +72,19 @@ public class SharedContactRepository {
 
   @WorkerThread
   private @Nullable Contact getContactFromSystemContacts(long contactId) {
-    Name name = getName(contactId);
-    if (name == null) {
-      Log.w(TAG, "Couldn't find a name associated with the provided contact ID.");
+    List<Phone> phoneNumbers = getPhoneNumbers(contactId);
+    List<Email> emails       = getEmails(contactId);
+
+    if (phoneNumbers.isEmpty() && emails.isEmpty()) {
+      Log.w(TAG, "Couldn't find a phone number or email address associated with the provided contact ID.");
       return null;
     }
 
-    List<Phone> phoneNumbers = getPhoneNumbers(contactId);
-    AvatarInfo  avatarInfo   = getAvatarInfo(contactId, phoneNumbers);
-    Avatar      avatar       = avatarInfo != null ? new Avatar(avatarInfo.uri, avatarInfo.isProfile) : null;
+    Name       name       = getName(contactId);
+    AvatarInfo avatarInfo = getAvatarInfo(contactId, phoneNumbers);
+    Avatar     avatar     = avatarInfo != null ? new Avatar(avatarInfo.uri, avatarInfo.isProfile) : null;
 
-    return new Contact(name, null, phoneNumbers, getEmails(contactId), getPostalAddresses(contactId), avatar);
+    return new Contact(name, null, phoneNumbers, emails, getPostalAddresses(contactId), avatar);
   }
 
   @WorkerThread
@@ -223,7 +225,7 @@ public class SharedContactRepository {
     private final boolean isProfile;
 
     private AvatarInfo(Uri uri, boolean isProfile) {
-      this.uri = uri;
+      this.uri       = uri;
       this.isProfile = isProfile;
     }
 
