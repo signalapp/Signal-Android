@@ -325,7 +325,7 @@ fun DeviceListScreen(
         )
       }
       is DialogState.DeviceUnlinked -> {
-        val createdAt = DateUtils.getOnlyTimeString(LocalContext.current, state.dialogState.deviceCreatedAt)
+        val createdAt = DateUtils.getDateTimeString(LocalContext.current, Locale.getDefault(), state.dialogState.deviceCreatedAt)
         Dialogs.SimpleMessageDialog(
           title = stringResource(id = R.string.LinkDeviceFragment__device_unlinked),
           message = stringResource(id = R.string.LinkDeviceFragment__the_device_that_was, createdAt),

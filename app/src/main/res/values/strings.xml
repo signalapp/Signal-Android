@@ -920,6 +920,8 @@
     <string name="DateUtils_tomorrow">Tomorrow</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Tonight</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
+    <string name="DateUtils_date_at">%1$s at %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1027,8 +1029,8 @@
     <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
-    <!-- Dialog body shown when a device is unlinked where %1$s is when the device was originally linked -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was recently linked at %1$s is no longer linked.</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
 

@@ -182,6 +182,17 @@ object DateUtils : android.text.format.DateUtils() {
   }
 
   /**
+   * Formats the timestamp as a date, without the year, followed by the time
+   * eg. Jan 15 at 9:00pm
+   */
+  @JvmStatic
+  fun getDateTimeString(context: Context, locale: Locale, timestamp: Long): String {
+    val date = timestamp.toDateString("MMM d", locale)
+    val time = timestamp.toLocalTime().formatHours(context)
+    return context.getString(R.string.DateUtils_date_at, date, time)
+  }
+
+  /**
    * Formats the passed timestamp based on the current time at a day precision.
    *
    * For example:
