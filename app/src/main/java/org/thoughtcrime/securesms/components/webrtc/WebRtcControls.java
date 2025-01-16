@@ -248,7 +248,7 @@ public final class WebRtcControls {
   }
 
   public boolean showSmallHeader() {
-    return isAtLeastOutgoing();
+    return isAtLeastOutgoing() || callState == CallState.RECONNECTING;
   }
 
   public boolean showFullScreenShade() {
