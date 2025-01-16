@@ -345,6 +345,16 @@ class MediaSelectionViewModel(
     store.update { it.copy(viewOnceToggleState = it.viewOnceToggleState.next()) }
   }
 
+  fun changeIsMuteState() {
+    store.update {
+      val uri = it.focusedMedia?.uri ?: return@update it
+      val isMuted = it.mutedVideosMap[uri] ?: false
+      it.copy(
+        mutedVideosMap = it.mutedVideosMap + (uri to !isMuted)
+      )
+    }
+  }
+
   fun onEditVideoDuration(totalDurationUs: Long, startTimeUs: Long, endTimeUs: Long, touchEnabled: Boolean) {
     store.update {
       val uri = it.focusedMedia?.uri ?: return@update it
@@ -404,6 +414,7 @@ class MediaSelectionViewModel(
     return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet(), identityChangesSince).andThen(
       repository.send(
         selectedMedia = store.state.selectedMedia,
+        mutedVideosMap = store.state.mutedVideosMap,
         stateMap = store.state.editorStateMap,
         quality = store.state.quality,
         message = store.state.message,

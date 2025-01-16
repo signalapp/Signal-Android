@@ -356,6 +356,9 @@ public class MediaUtil {
   }
 
   public static boolean isNonGifVideo(Media media) {
+    if(media == null) {
+      return false;
+    }
     return isVideo(media.getContentType()) && !media.isVideoGif();
   }
 

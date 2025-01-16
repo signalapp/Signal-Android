@@ -87,6 +87,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private lateinit var drawToolButton: View
   private lateinit var cropAndRotateButton: View
   private lateinit var qualityButton: ImageView
+  private lateinit var muteButton: ImageView
   private lateinit var saveButton: View
   private lateinit var sendButton: ImageView
   private lateinit var addMediaButton: View
@@ -128,6 +129,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     drawToolButton = view.findViewById(R.id.draw_tool)
     cropAndRotateButton = view.findViewById(R.id.crop_and_rotate_tool)
     qualityButton = view.findViewById(R.id.quality_selector)
+    muteButton = view.findViewById(R.id.mute_selector)
     saveButton = view.findViewById(R.id.save_to_media)
     sendButton = view.findViewById(R.id.send)
     addMediaButton = view.findViewById(R.id.add_media)
@@ -177,6 +179,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
 
     qualityButton.setOnClickListener {
       QualitySelectorBottomSheet().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+
+    muteButton.setOnClickListener {
+      sharedViewModel.changeIsMuteState()
     }
 
     saveButton.setOnClickListener {
@@ -313,6 +319,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
         qualityButton.alpha = 0f
+        muteButton.alpha = 0f
         saveButton.alpha = 0f
         sharedViewModel.onPageChanged(position)
       }
@@ -347,6 +354,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       presentPager(state)
       presentAddMessageEntry(state.viewOnceToggleState, state.message)
       presentImageQualityToggle(state)
+      presentVideoMuteToggle(state)
       if (state.quality != sentMediaQuality) {
         presentQualityToggleToast(state)
       }
@@ -502,6 +510,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         )
         addMessageButton.isClickable = true
       }
+
       MediaSelectionState.ViewOnceToggleState.ONCE -> {
         addMessageButton.gravity = Gravity.CENTER
         addMessageButton.setText(R.string.MediaReviewFragment__view_once_message)
@@ -524,6 +533,25 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       when (state.quality) {
         SentMediaQuality.STANDARD -> R.drawable.symbol_quality_high_slash_24
         SentMediaQuality.HIGH -> R.drawable.symbol_quality_high_24
+      }
+    )
+  }
+
+  private fun presentVideoMuteToggle(state: MediaSelectionState) {
+    muteButton.updateLayoutParams<ConstraintLayout.LayoutParams> {
+      if (MediaUtil.isNonGifVideo(state.focusedMedia)) {
+        startToStart = ConstraintLayout.LayoutParams.UNSET
+        startToEnd = qualityButton.id
+      } else {
+        startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+        startToEnd = ConstraintLayout.LayoutParams.UNSET
+      }
+    }
+    muteButton.setImageResource(
+      if (state.mutedVideosMap[state.focusedMedia?.uri] == true) {
+        R.drawable.symbol_speaker_slash_24
+      } else {
+        R.drawable.symbol_speaker_24
       }
     )
   }
@@ -618,6 +646,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     animators.addAll(computeSendButtonAnimators(state))
     animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
+    animators.addAll(computeMuteButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
     animators.addAll(computeDrawToolButtonAnimators(state))
     animators.addAll(computeRecipientDisplayAnimators(state))
@@ -712,12 +741,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
           MediaReviewAnimatorController.getFadeOutAnimator(selectionRecycler)
         )
       }
+
       state.selectedMedia.size > 1 -> {
         listOf(
           MediaReviewAnimatorController.getFadeOutAnimator(addMediaButton),
           MediaReviewAnimatorController.getFadeInAnimator(selectionRecycler)
         )
       }
+
       else -> {
         listOf(
           MediaReviewAnimatorController.getFadeInAnimator(addMediaButton),
@@ -756,6 +787,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       listOf(MediaReviewAnimatorController.getFadeInAnimator(qualityButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(qualityButton))
+    }
+  }
+
+  private fun computeMuteButtonAnimators(state: MediaSelectionState): List<Animator> {
+    return if (state.isTouchEnabled && MediaUtil.isNonGifVideo(state.focusedMedia)) {
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(muteButton))
+    } else {
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(muteButton))
     }
   }
 

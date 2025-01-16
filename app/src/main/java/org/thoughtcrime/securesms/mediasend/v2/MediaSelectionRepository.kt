@@ -77,6 +77,7 @@ class MediaSelectionRepository(context: Context) {
    */
   fun send(
     selectedMedia: List<Media>,
+    mutedVideosMap: Map<Uri, Boolean>,
     stateMap: Map<Uri, Any>,
     quality: SentMediaQuality,
     message: CharSequence?,
@@ -99,7 +100,12 @@ class MediaSelectionRepository(context: Context) {
       val trimmedBody: String = if (isViewOnce) "" else getTruncatedBody(message?.toString()?.trim()) ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
       val trimmedBodyRanges: BodyRangeList? = if (isViewOnce) null else bodyRanges
-      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, sentMediaQuality)
+      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(
+        selectedMedia = selectedMedia,
+        stateMap = stateMap,
+        mutedVideosMap = mutedVideosMap,
+        quality = sentMediaQuality
+      )
       val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, selectedMedia, modelsToTransform)
       val updatedMedia = oldToNewMediaMap.values.toList()
 
@@ -269,12 +275,14 @@ class MediaSelectionRepository(context: Context) {
   private fun buildModelsToTransform(
     selectedMedia: List<Media>,
     stateMap: Map<Uri, Any>,
+    mutedVideosMap: Map<Uri, Boolean>,
     quality: SentMediaQuality
   ): Map<Media, MediaTransform> {
     val modelsToRender: MutableMap<Media, MediaTransform> = mutableMapOf()
 
     selectedMedia.forEach {
       val state = stateMap[it.uri]
+      val isMuted = mutedVideosMap[it.uri] ?: false
       if (state is ImageEditorFragment.Data) {
         val model: EditorModel? = state.readModel()
         if (model != null && model.isChanged) {
@@ -284,6 +292,16 @@ class MediaSelectionRepository(context: Context) {
 
       if (state is VideoTrimData && state.isDurationEdited) {
         modelsToRender[it] = VideoTrimTransform(state)
+      }
+
+      if(isMuted) {
+        val existingTransform: MediaTransform? = modelsToRender[it]
+
+        modelsToRender[it] = if(existingTransform==null) {
+          VideoMuteTransform()
+        } else {
+          CompositeMediaTransform(existingTransform, VideoMuteTransform())
+        }
       }
 
       if (quality == SentMediaQuality.HIGH) {
@@ -320,7 +338,20 @@ class MediaSelectionRepository(context: Context) {
       } else if (MediaUtil.isGif(mediaItem.contentType)) {
         slideDeck.addSlide(GifSlide(context, mediaItem.uri, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null)))
       } else if (MediaUtil.isImageType(mediaItem.contentType)) {
-        slideDeck.addSlide(ImageSlide(context, mediaItem.uri, mediaItem.contentType, mediaItem.size, mediaItem.width, mediaItem.height, mediaItem.isBorderless, mediaItem.caption.orElse(null), null, mediaItem.transformProperties.orElse(null)))
+        slideDeck.addSlide(
+          ImageSlide(
+            context,
+            mediaItem.uri,
+            mediaItem.contentType,
+            mediaItem.size,
+            mediaItem.width,
+            mediaItem.height,
+            mediaItem.isBorderless,
+            mediaItem.caption.orElse(null),
+            null,
+            mediaItem.transformProperties.orElse(null)
+          )
+        )
       } else {
         Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.contentType + "'. Skipping.")
       }

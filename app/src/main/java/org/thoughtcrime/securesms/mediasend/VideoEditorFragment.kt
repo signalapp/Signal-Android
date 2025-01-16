@@ -89,6 +89,14 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
     hud.visible = !slide.isVideoGif
 
+    sharedViewModel.state.observe(viewLifecycleOwner) { state->
+      if(state.mutedVideosMap[state.focusedMedia?.uri] == true) {
+        player.mute()
+      } else {
+        player.unmute()
+      }
+    }
+
     if (slide.isVideoGif) {
       player.setPlayerCallback(object : PlayerCallback {
         override fun onPlaying() {
