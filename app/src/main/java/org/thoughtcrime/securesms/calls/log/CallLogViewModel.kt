@@ -9,12 +9,10 @@ import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.paging.ObservablePagedData
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 /**
@@ -22,7 +20,7 @@ import org.thoughtcrime.securesms.util.rx.RxStore
  */
 class CallLogViewModel(
   val callLogPeekHelper: CallLogPeekHelper = CallLogPeekHelper(),
-  private val callLogRepository: CallLogRepository = CallLogRepository(callLogPeekHelper = callLogPeekHelper)
+  private val callLogRepository: CallLogRepository = CallLogRepository(callLogPeekHelper = callLogPeekHelper, callEventCache = CallEventCache())
 ) : ViewModel() {
   private val callLogStore = RxStore(CallLogState())
 
@@ -78,17 +76,6 @@ class CallLogViewModel(
       callLogPeekHelper.onDataSetInvalidated()
       controller.onDataInvalidated()
     }
-
-    disposables += AppDependencies
-      .signalCallManager
-      .peekInfoCache
-      .skipWhile { cache -> cache.isEmpty() || cache.values.all { it.isCompletelyInactive } }
-      .observeOn(Schedulers.computation())
-      .distinctUntilChanged()
-      .subscribe {
-        callLogPeekHelper.onDataSetInvalidated()
-        controller.onDataInvalidated()
-      }
   }
 
   override fun onCleared() {

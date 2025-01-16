@@ -87,7 +87,7 @@ object MessageDataFetcher {
     }
 
     val callsFuture = executor.submitTimed {
-      SignalDatabase.calls.getCalls(messageIds)
+      SignalDatabase.calls.getCallsForCache(messageIds)
     }
 
     val recipientsFuture = executor.submitTimed {

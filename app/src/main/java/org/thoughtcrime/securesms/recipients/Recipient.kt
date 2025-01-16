@@ -499,6 +499,27 @@ class Recipient(
       profileName.toString().isNotNullOrBlank()
   }
 
+  fun isMatch(query: String): Boolean {
+    if (query.isEmpty()) {
+      return true
+    }
+
+    val lowercaseQuery = query.lowercase()
+    val sortName = listOf(
+      nickname.toString(),
+      nickname.givenName,
+      systemProfileName.toString(),
+      systemProfileName.givenName,
+      profileName.toString(),
+      profileName.givenName,
+      username.orElse("")
+    ).firstOrNull { it.isNotNullOrBlank() }?.lowercase()
+
+    return sortName?.contains(lowercaseQuery) == true ||
+      e164.map { it.contains(query) }.orElse(false) ||
+      email.map { it.contains(query) }.orElse(false)
+  }
+
   /** A full-length display name to render for this recipient. */
   fun getDisplayName(context: Context): String {
     var name = getNameFromLocalData(context)
