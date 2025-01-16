@@ -919,6 +919,8 @@
     <string name="DateUtils_tomorrow">Demain</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Ce soir</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
+    <string name="DateUtils_date_at">%1$s at %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1009,12 +1011,27 @@
     <string name="LinkDeviceFragment__sync_failure_title">Impossible de synchroniser les messages</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">Vos messages n\'ont pas été transférés vers l\'appareil associé. Tentez de réassocier votre appareil et de retransférer vos messages. Vous pouvez aussi choisir de continuer sans transférer l\'historique des messages.</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
+    <string name="LinkDeviceFragment__learn_more">Learn more</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Réessayer</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Retry</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Continuer sans transférer</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Renommer</string>
+    <!-- Toast shown when the process of linking a device has been cancelled -->
+    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
+    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <!-- Dialog title shown when a device is unlinked -->
+    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <!-- Button to dismiss dialog -->
+    <string name="LinkDeviceFragment__ok">OK</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1059,6 +1076,11 @@
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ne pas les transférer</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Aucun de vos messages et médias existants ne sera transféré vers votre appareil associé.</string>
+
+    <!-- Title of notification telling users that a device was linked to their account -->
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Dissocier \"%1$s\" ?</string>
@@ -1644,6 +1666,13 @@
     <string name="Megaphones_invite_friends">Inviter</string>
     <string name="Megaphones_chat_colors">Couleur</string>
     <string name="Megaphones_add_a_profile_photo">Photo de profil</string>
+
+    <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <!-- Button shown on megaphone that will redirect to the linked devices screen -->
+    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
+    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Réponses</string>
@@ -2467,7 +2496,7 @@
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Sélectionnez votre pays</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">Indiquez l\'indicatif de votre pays
+    <string name="RegistrationActivity_you_must_specify_your_country_code">Saisissez l\'indicatif de votre pays
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Veuillez saisir un numéro de téléphone valide pour vous inscrire.</string>
     <string name="RegistrationActivity_invalid_number">Numéro incorrect</string>
@@ -2934,6 +2963,8 @@
     <string name="NotificationChannel_critical_app_alerts">Alertes d’applications critiques</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Autres notifications de messages</string>
+    <!-- Notification channel name for notifications sent when a device has been linked -->
+    <string name="NotificationChannel_new_linked_device">New linked device</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -3495,9 +3526,9 @@
     <string-array name="HelpFragment__categories_6">
         <item>Choisissez une option</item>
         <item>Quelque chose ne fonctionne pas</item>
-        <item>Suggestion de fonctionnalité</item>
-        <item>Question</item>
-        <item>Commentaires</item>
+        <item>J\'ai une fonctionnalité à suggérer</item>
+        <item>J\'ai une question</item>
+        <item>J\'ai des commentaires sur l\'appli</item>
         <item>Paiements (MobileCoin)</item>
         <item>Dons et macarons</item>
         <item>Sauvegarde Signal pour Android</item>
@@ -3665,7 +3696,7 @@
     <!--Call to action to get more information about the limitations of the change app icon functionality. -->
     <string name="preferences__app_icon_learn_more">En savoir plus</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
-    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphique illustrant l’endroit où l’icône de l’application de remplacement sera visible.</string>
+    <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Graphique illustrant l\'endroit où l\'icône Signal de remplacement s\'affichera.</string>
     <string name="preferences__disable_pin">Désactiver le code PIN</string>
     <string name="preferences__enable_pin">Activer le code PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">La désactivation du code PIN entraînera la perte de toutes vos données lors de votre réinscription sur Signal, à moins de procéder à une sauvegarde et une restauration manuelles. Vous ne pouvez pas activer le blocage d’inscription si le code PIN est désactivé.</string>
@@ -4601,7 +4632,7 @@
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Transfert des données en cours</string>
-    <string name="DeviceTransfer__keep_both_devices_near_each_other">Gardez les deux appareils à proximité. Ne les éteignez pas et ne fermez pas Signal. Comme tout ce que nous faisons, les transferts sont chiffrés de bout en bout.</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">Gardez les deux appareils côte à côte. Ne les éteignez pas et ne fermez pas Signal. Comme tout ce que nous faisons, les transferts sont chiffrés de bout en bout.</string>
     <string name="DeviceTransfer__d_messages_so_far">%1$d messages jusqu\'ici…</string>
     <!-- Filled in with total percentage of messages transferred -->
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s %% des messages jusqu\'ici…</string>
@@ -5011,6 +5042,8 @@
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renouvelez votre abonnement de sauvegarde Signal</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Impossible de terminer la sauvegarde</string>
+    <!-- String alerting user that backup redemption -->
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5088,6 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Saisissez votre ancien numéro de téléphone</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Saisissez l\'indicatif de pays associé à votre nouveau numéro</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Saisissez votre nouveau numéro de téléphone</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Changer de numéro</string>
@@ -6861,7 +6895,7 @@
     <!-- Error label for IBAN field when number is too long -->
     <string name="BankTransferDetailsFragment__iban_is_too_long">Votre numéro IBAN est trop long</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Code pays de l’IBAN non pris en charge</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Code pays de l\'IBAN non pris en charge</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN invalide</string>
     <!-- Error label for name field when name is not at least two characters long -->
@@ -7261,7 +7295,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Impossible d’enregistrer les modifications. Veuillez vérifier votre connexion réseau puis réessayez.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Couldn\'t update admin approval settings. Check the call link is not currently in use.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Impossible de mettre à jour les paramètres d\'approbation de l\'admin. Vérifiez que le lien d\'appel n\'est pas en cours d\'utilisation.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Impossible de supprimer le lien d\'appel, car il est en cours d\'utilisation.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7391,7 +7425,7 @@
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">Rechercher par numéro de téléphone</string>
     <!-- Title of screen to select a country code -->
-    <string name="FindByActivity__select_country_code">Sélectionner l’indicatif du pays</string>
+    <string name="FindByActivity__select_country_code">Sélectionner l\'indicatif du pays</string>
     <!-- Entry placeholder for find by username -->
     <string name="FindByActivity__username">Nom d’utilisateur</string>
     <!-- Entry placeholder for find by phone number -->
@@ -7535,10 +7569,18 @@
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Si vous choisissez d\'ignorer la restauration, vous pourrez télécharger ultérieurement les pièces jointes et médias stockés dans votre sauvegarde, lorsque l\'espace de stockage sera suffisant.</string>
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Échec de la sauvegarde</string>
+    <!-- Dialog title when a backup redemption fails -->
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Une erreur nous empêche de terminer la sauvegarde. Avant de réessayer, vérifiez que vous avez bien installé la dernière version de Signal. Si le problème persiste, contactez l\'assistance.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Rechercher des mises à jour</string>
+    <!-- Backup redemption error sheet text line 1 -->
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <!-- Backup redemption error sheet bullet point 1 -->
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <!-- Backup redemption error sheet bullet point 2 -->
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7677,7 +7719,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Sauvegardes Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
-    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentication required</string>
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentification requise</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Historique des paiements</string>
     <!-- Section header for backup information -->
@@ -7820,6 +7862,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Une erreur réseau s\'est produite. Vérifiez votre connexion Internet et réessayez.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Importation : %1$s sur %2$s (%3$d %%)</string>
+    <!-- Button label to see more details about redemption error -->
+    <string name="RemoteBackupsSettingsFragment__details">Details</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

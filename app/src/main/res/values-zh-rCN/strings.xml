@@ -899,6 +899,8 @@
     <string name="DateUtils_tomorrow">明天</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">今晚</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
+    <string name="DateUtils_date_at">%1$s at %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -989,12 +991,27 @@
     <string name="LinkDeviceFragment__sync_failure_title">消息同步失败</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">您的消息无法传输到您的已链接设备中。您可以尝试重新链接然后再次传输，或者继续操作但不传输您的消息记录。</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
+    <string name="LinkDeviceFragment__learn_more">Learn more</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">尝试重新链接</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Retry</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">继续但不传输</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">编辑名称</string>
+    <!-- Toast shown when the process of linking a device has been cancelled -->
+    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
+    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <!-- Dialog title shown when a device is unlinked -->
+    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <!-- Button to dismiss dialog -->
+    <string name="LinkDeviceFragment__ok">OK</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1039,6 +1056,11 @@
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">不转移</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">旧消息或媒体不会转移到您的已链接设备</string>
+
+    <!-- Title of notification telling users that a device was linked to their account -->
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">确定解绑 \"%1$s\"?</string>
@@ -1596,6 +1618,13 @@
     <string name="Megaphones_invite_friends">邀请好友</string>
     <string name="Megaphones_chat_colors">聊天颜色</string>
     <string name="Megaphones_add_a_profile_photo">添加个人资料照片</string>
+
+    <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <!-- Button shown on megaphone that will redirect to the linked devices screen -->
+    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
+    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">回复</string>
@@ -2846,6 +2875,8 @@
     <string name="NotificationChannel_critical_app_alerts">重要应用警报</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">其他消息通知</string>
+    <!-- Notification channel name for notifications sent when a device has been linked -->
+    <string name="NotificationChannel_new_linked_device">New linked device</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -4892,6 +4923,8 @@
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">更新您的 Signal 备份套餐</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">无法完成备份</string>
+    <!-- String alerting user that backup redemption -->
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">邀请好友</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -4969,6 +5002,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">您必须明确列出您的旧手机号码</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">您必须明确列出新号码的国家代码</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">您必须明确列出您的新手机号码</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">更换号码</string>
@@ -7374,10 +7408,18 @@
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">如果跳过恢复备份中剩余的媒体和附件，您后续可以在存储空间可用时下载它们。</string>
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">备份失败</string>
+    <!-- Dialog title when a backup redemption fails -->
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">发生了错误，您的备份无法完成。请确保您使用的是最新版本的 Signal，然后重试。如果问题仍然存在，请联系支持人员。</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">查看更新</string>
+    <!-- Backup redemption error sheet text line 1 -->
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <!-- Backup redemption error sheet bullet point 1 -->
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <!-- Backup redemption error sheet bullet point 2 -->
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7654,6 +7696,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">出现了一个网络错误。请检查您的互联网连接并重试。</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">正在上传：%1$s/%2$s（%3$d%%）</string>
+    <!-- Button label to see more details about redemption error -->
+    <string name="RemoteBackupsSettingsFragment__details">Details</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
