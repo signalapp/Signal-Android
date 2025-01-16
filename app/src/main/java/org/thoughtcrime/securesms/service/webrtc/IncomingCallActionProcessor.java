@@ -174,8 +174,9 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
   protected @NonNull WebRtcServiceState handleLocalRinging(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handleLocalRinging(): call_id: " + remotePeer.getCallId());
 
-    RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
-    Recipient  recipient  = remotePeer.getRecipient();
+    RemotePeer activePeer                = currentState.getCallInfoState().requireActivePeer();
+    Recipient  recipient                 = remotePeer.getRecipient();
+    boolean    shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
 
     activePeer.localRinging();
 
@@ -187,7 +188,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                               CallTable.Event.ONGOING);
 
 
-    boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
     if (shouldDisturbUserWithCall) {
       webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
       boolean started = webRtcInteractor.startWebRtcCallActivityIfPossible();
