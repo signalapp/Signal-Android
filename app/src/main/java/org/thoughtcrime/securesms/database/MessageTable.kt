@@ -210,6 +210,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val QUOTE_TARGET_MISSING_ID = -1L
 
     const val ADDRESSABLE_MESSAGE_LIMIT = 5
+    const val PARENT_STORY_MISSING_ID = -1L
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (

@@ -43,6 +43,10 @@ object ExportSkips {
     return log(sentTimestamp, "Group update record is parseable, but has no updates.")
   }
 
+  fun directStoryReplyHasNoBody(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Direct story reply has no body.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

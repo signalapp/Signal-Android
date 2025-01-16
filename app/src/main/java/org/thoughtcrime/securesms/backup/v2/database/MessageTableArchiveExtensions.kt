@@ -59,7 +59,8 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       ${MessageTable.MISMATCHED_IDENTITIES},
       ${MessageTable.TYPE},
       ${MessageTable.MESSAGE_EXTRAS},
-      ${MessageTable.VIEW_ONCE}
+      ${MessageTable.VIEW_ONCE},
+      ${MessageTable.PARENT_STORY_ID}
     )
     """.trimMargin()
   )
@@ -123,7 +124,8 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
           MessageTable.MISMATCHED_IDENTITIES,
           MessageTable.TYPE,
           MessageTable.MESSAGE_EXTRAS,
-          MessageTable.VIEW_ONCE
+          MessageTable.VIEW_ONCE,
+          MessageTable.PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
         .where("${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.DATE_RECEIVED} >= $lastSeenReceivedTime")

@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
 import org.thoughtcrime.securesms.backup.v2.proto.ChatUpdateMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ContactAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.ContactMessage
+import org.thoughtcrime.securesms.backup.v2.proto.DirectStoryReplyMessage
 import org.thoughtcrime.securesms.backup.v2.proto.ExpirationTimerChatUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GenericGroupUpdate
 import org.thoughtcrime.securesms.backup.v2.proto.GroupCall
@@ -289,6 +290,10 @@ class ChatItemArchiveExporter(
 
         record.viewOnce -> {
           builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
+        }
+
+        record.parentStoryId != 0L -> {
+          builder.directStoryReplyMessage = record.toRemoteDirectStoryReplyMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[record.id]) ?: continue
         }
 
         else -> {
@@ -852,6 +857,36 @@ private fun Contact.PostalAddress.Type.toRemote(): ContactAttachment.PostalAddre
   }
 }
 
+private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): DirectStoryReplyMessage? {
+  if (this.body.isNullOrBlank()) {
+    Log.w(TAG, ExportSkips.directStoryReplyHasNoBody(this.dateSent))
+    return null
+  }
+
+  val isReaction = MessageTypes.isStoryReaction(this.type)
+
+  return DirectStoryReplyMessage(
+    storySentTimestamp = this.parentStoryId.takeUnless { it == MessageTable.PARENT_STORY_MISSING_ID },
+    emoji = if (isReaction) {
+      this.body
+    } else {
+      null
+    },
+    textReply = if (!isReaction) {
+      DirectStoryReplyMessage.TextReply(
+        text = Text(
+          body = this.body,
+          bodyRanges = this.bodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()
+        ),
+        longText = attachments?.firstOrNull { it.contentType == MediaUtil.LONG_TEXT }?.toRemoteFilePointer(mediaArchiveEnabled)
+      )
+    } else {
+      null
+    },
+    reactions = reactionRecords.toRemote()
+  )
+}
+
 private fun BackupMessageRecord.toRemoteStandardMessage(db: SignalDatabase, mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
   val text = body?.let {
     Text(
@@ -1344,7 +1379,8 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
     identityMismatchRecipientIds = this.requireString(MessageTable.MISMATCHED_IDENTITIES).parseIdentityMismatches(),
     baseType = this.requireLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK,
     messageExtras = this.requireBlob(MessageTable.MESSAGE_EXTRAS).parseMessageExtras(),
-    viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE)
+    viewOnce = this.requireBoolean(MessageTable.VIEW_ONCE),
+    parentStoryId = this.requireLong(MessageTable.PARENT_STORY_ID)
   )
 }
 
@@ -1372,6 +1408,7 @@ private class BackupMessageRecord(
   val quoteBodyRanges: ByteArray?,
   val quoteType: Int,
   val originalMessageId: Long?,
+  val parentStoryId: Long,
   val latestRevisionId: Long?,
   val hasDeliveryReceipt: Boolean,
   val hasReadReceipt: Boolean,
