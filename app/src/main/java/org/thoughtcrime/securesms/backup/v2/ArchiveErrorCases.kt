@@ -12,7 +12,11 @@ import org.thoughtcrime.securesms.database.CallTable
  */
 object ExportSkips {
   fun emptyChatItem(sentTimestamp: Long): String {
-    return log(sentTimestamp, "Completely empty ChatItem (no body or attachments).")
+    return log(sentTimestamp, "Completely empty ChatItem (no inner item is set).")
+  }
+
+  fun emptyStandardMessage(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Completely empty StandardMessage (no body or attachments).")
   }
 
   fun invalidLongTextChatItem(sentTimestamp: Long): String {

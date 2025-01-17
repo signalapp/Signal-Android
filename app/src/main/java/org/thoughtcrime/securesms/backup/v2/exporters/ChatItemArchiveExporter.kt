@@ -297,11 +297,6 @@ class ChatItemArchiveExporter(
         }
 
         else -> {
-          if (record.body.isNullOrEmpty() && !extraData.attachmentsById.containsKey(record.id)) {
-            Log.w(TAG, ExportSkips.emptyChatItem(record.dateSent))
-            continue
-          }
-
           val attachments = extraData.attachmentsById[record.id]
           if (attachments?.isNotEmpty() == true && attachments.all { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrEmpty()) {
             Log.w(TAG, ExportSkips.invalidLongTextChatItem(record.dateSent))
@@ -313,20 +308,28 @@ class ChatItemArchiveExporter(
           if (sticker?.stickerLocator != null) {
             builder.stickerMessage = sticker.toRemoteStickerMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactions = extraData.reactionsById[id])
           } else {
-            builder.standardMessage = record.toRemoteStandardMessage(
+            val standardMessage = record.toRemoteStandardMessage(
               db = db,
               mediaArchiveEnabled = mediaArchiveEnabled,
               reactionRecords = extraData.reactionsById[id],
               mentions = extraData.mentionsById[id],
               attachments = extraData.attachmentsById[record.id]
             )
+
+            if (standardMessage.text == null && standardMessage.attachments.isEmpty()) {
+              Log.w(TAG, ExportSkips.emptyStandardMessage(record.dateSent))
+              continue
+            }
+
+            builder.standardMessage = standardMessage
           }
         }
       }
 
       if (record.latestRevisionId == null) {
         builder.revisions = revisionMap.remove(record.id)?.repairRevisions(builder) ?: emptyList()
-        buffer += builder.build()
+        val chatItem = builder.build().validateChatItem() ?: continue
+        buffer += chatItem
       } else {
         var previousEdits = revisionMap[record.latestRevisionId]
         if (previousEdits == null) {
@@ -1322,6 +1325,23 @@ private fun String.e164ToLong(): Long? {
 
 private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
   return this.submit(callable)
+}
+
+fun ChatItem.validateChatItem(): ChatItem? {
+  if (this.standardMessage == null &&
+    this.contactMessage == null &&
+    this.stickerMessage == null &&
+    this.remoteDeletedMessage == null &&
+    this.updateMessage == null &&
+    this.paymentNotification == null &&
+    this.giftBadge == null &&
+    this.viewOnceMessage == null &&
+    this.directStoryReplyMessage == null
+  ) {
+    Log.w(TAG, ExportSkips.emptyChatItem(this.dateSent))
+    return null
+  }
+  return this
 }
 
 fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
