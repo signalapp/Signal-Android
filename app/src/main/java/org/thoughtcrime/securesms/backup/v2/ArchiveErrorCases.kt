@@ -58,8 +58,12 @@ object ExportSkips {
  */
 object ExportOddities {
 
-  fun revisionsOnNonStandardMessage(sentTimestamp: Long): String {
-    return log(sentTimestamp, "Attempted to set revisions on a non-standard message. Ignoring revisions.")
+  fun revisionsOnUnexpectedMessageType(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Attempted to set revisions on message that doesn't support it. Ignoring revisions.")
+  }
+
+  fun mismatchedRevisionHistory(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Revisions for this message contained items of a different type than the parent item. Ignoring mismatched revisions.")
   }
 
   fun outgoingMessageWasSentButTimerNotStarted(sentTimestamp: Long): String {

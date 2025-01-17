@@ -325,14 +325,7 @@ class ChatItemArchiveExporter(
       }
 
       if (record.latestRevisionId == null) {
-        val previousEdits = revisionMap.remove(record.id)
-        if (previousEdits != null) {
-          if (builder.standardMessage != null) {
-            builder.revisions = previousEdits
-          } else {
-            Log.w(TAG, ExportOddities.revisionsOnNonStandardMessage(record.dateSent))
-          }
-        }
+        builder.revisions = revisionMap.remove(record.id)?.repairRevisions(builder) ?: emptyList()
         buffer += builder.build()
       } else {
         var previousEdits = revisionMap[record.latestRevisionId]
@@ -1329,6 +1322,25 @@ private fun String.e164ToLong(): Long? {
 
 private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
   return this.submit(callable)
+}
+
+fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
+  return if (current.standardMessage != null) {
+    val filtered = this.filter { it.standardMessage != null }
+    if (this.size != filtered.size) {
+      Log.w(TAG, ExportOddities.mismatchedRevisionHistory(current.dateSent))
+    }
+    filtered
+  } else if (current.directStoryReplyMessage != null) {
+    val filtered = this.filter { it.directStoryReplyMessage != null }
+    if (this.size != filtered.size) {
+      Log.w(TAG, ExportOddities.mismatchedRevisionHistory(current.dateSent))
+    }
+    filtered
+  } else {
+    Log.w(TAG, ExportOddities.revisionsOnUnexpectedMessageType(current.dateSent))
+    emptyList()
+  }
 }
 
 private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {

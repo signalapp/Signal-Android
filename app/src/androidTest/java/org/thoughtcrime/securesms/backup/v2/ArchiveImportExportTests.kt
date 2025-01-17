@@ -82,6 +82,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemDirectStoryReplyMessageWithEdits() {
+    runTests { it.startsWith("chat_item_direct_story_reply_with_edits_") }
+  }
+
+//  @Test
   fun chatItemExpirationTimerUpdate() {
     runTests { it.startsWith("chat_item_expiration_timer_update_") }
   }
