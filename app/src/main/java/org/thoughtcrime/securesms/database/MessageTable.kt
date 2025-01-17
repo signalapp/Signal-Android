@@ -627,6 +627,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return rawQueryWithAttachments(where, null)
   }
 
+  fun getMessagesBySentTimestamp(sentTimestamp: Long): List<MessageRecord> {
+    return readableDatabase
+      .select(*MMS_PROJECTION)
+      .from(TABLE_NAME)
+      .where("$DATE_SENT = $sentTimestamp")
+      .run()
+      .readToList { MmsReader(it).getCurrent() }
+  }
+
   fun getMessageCursor(messageId: Long): Cursor {
     return internalGetMessage(messageId)
   }
