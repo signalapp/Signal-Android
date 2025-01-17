@@ -519,6 +519,7 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.QUOTE_TYPE, 0)
     contentValues.put(MessageTable.VIEW_ONCE, 0)
     contentValues.put(MessageTable.REMOTE_DELETED, 0)
+    contentValues.put(MessageTable.PARENT_STORY_ID, 0)
 
     when {
       this.standardMessage != null -> contentValues.addStandardMessage(this.standardMessage)
