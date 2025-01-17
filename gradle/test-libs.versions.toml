@@ -20,7 +20,6 @@ kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0"
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 bouncycastle-bcprov-jdk15on = "org.bouncycastle:bcprov-jdk15on:1.70"
 bouncycastle-bcpkix-jdk15on = "org.bouncycastle:bcpkix-jdk15on:1.70"
-hamcrest-hamcrest = "org.hamcrest:hamcrest:2.2"
 assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
 square-okhttp-mockserver = "com.squareup.okhttp3:mockwebserver:4.12.0"
 mockk = "io.mockk:mockk:1.13.2"

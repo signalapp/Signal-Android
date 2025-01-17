@@ -6,7 +6,6 @@
 -dontwarn sun.reflect.**
 -dontwarn sun.misc.**
 -dontwarn assertk.**
--dontwarn org.hamcrest.**
 -dontwarn com.squareup.**
 
 -dontobfuscate
