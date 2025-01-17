@@ -14,7 +14,5 @@ dependencies {
   testImplementation(testLibs.robolectric.robolectric) {
     exclude(group = "com.google.protobuf", module = "protobuf-java")
   }
-  testImplementation(testLibs.hamcrest.hamcrest)
-
   testImplementation(testFixtures(project(":libsignal-service")))
 }
