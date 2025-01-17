@@ -920,7 +920,7 @@
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Vanaand</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s at %2$s</string>
+    <string name="DateUtils_date_at">%1$s om %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1012,26 +1012,26 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">Jou boodskappe kon nie na jou gekoppelde toestel oorgedra word nie. Jy kan probeer om dit weer te koppel en jou boodskappe oor te dra, of jy kan voortgaan sonder om jou boodskapgeskiedenis oor te dra.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Jou toestel is suksesvol gekoppel, maar jou boodskappe kon nie oorgedra word nie.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
-    <string name="LinkDeviceFragment__learn_more">Learn more</string>
+    <string name="LinkDeviceFragment__learn_more">Vind meer uit</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Retry</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Probeer weer</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Gaan voort sonder om oor te dra</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Wysig naam</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Koppeling gekanselleer</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Moenie toepassing toemaak nie</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Toestel ontkoppel</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Die toestel wat op %1$s gekoppel is, is nie meer gekoppel nie.</string>
     <!-- Button to dismiss dialog -->
-    <string name="LinkDeviceFragment__ok">OK</string>
+    <string name="LinkDeviceFragment__ok">Goed</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1078,9 +1078,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Geen ou boodskappe of media sal na jou gekoppelde toestel oorgedra word nie</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Jy het \'n nuwe toestel gekoppel</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">\'n Nuwe toestel is om %1$s aan jou rekening gekoppel. Tik om te bekyk.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Ontkoppel \"%1$s\"?</string>
@@ -1668,11 +1668,11 @@
     <string name="Megaphones_add_a_profile_photo">Profielfoto</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">\'n Nuwe toestel is om %1$s aan jou rekening gekoppel.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Bekyk toestel</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
-    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
+    <string name="NewLinkedDeviceMegaphone__ok">Goed</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Antwoorde</string>
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Bykomende boodskapkennisgewings</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Nuwe gekoppelde toestel</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Kon nie rugsteun voltooi nie</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Kon nie jou rugsteunintekening aflos nie</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Nooi jou vriende uit</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Jy moet jou ou telefoonnommer spesifiseer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Jy moet jou nuwe nommer se landkode spesifiseer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Jy moet jou nuwe telefoonnommer spesifiseer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Jou nuwe telefoonnommer kan nie dieselfde as jou ou telefoonnommer wees nie</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Verander nommer</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Rugsteun het misluk</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Kon nie jou rugsteunintekening aflos nie</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">\'n Fout het voorgekom en jou rugsteun kon nie voltooi word nie. Maak seker dat jy die jongste weergawe van Signal gebruik en probeer weer. Indien die probleem voortduur, kontak die steundiens.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Kyk vir opdatering</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Te veel toestelle het vandeesmaand probeer om jou intekening af te los. Jy het dalk:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Jou Signal rekening te veel maal herregistreer.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Te veel toestelle wat dieselfde intekening gebruik.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7863,7 +7863,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Besig om op te laai: %1$s van %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
-    <string name="RemoteBackupsSettingsFragment__details">Details</string>
+    <string name="RemoteBackupsSettingsFragment__details">Besonderhede</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

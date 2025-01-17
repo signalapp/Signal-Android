@@ -900,7 +900,7 @@
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">យប់នេះ</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s at %2$s</string>
+    <string name="DateUtils_date_at">%1$s ម៉ោង %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -994,10 +994,10 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
-    <string name="LinkDeviceFragment__learn_more">Learn more</string>
+    <string name="LinkDeviceFragment__learn_more">ស្វែងយល់បន្ថែម</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Retry</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">ព្យាយាមម្តងទៀត</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">បន្តដោយមិនចាំបាច់ផ្ទេរ</string>
     <!-- Option in context menu to edit the name of a linked device -->
@@ -1011,7 +1011,7 @@
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
     <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
-    <string name="LinkDeviceFragment__ok">OK</string>
+    <string name="LinkDeviceFragment__ok">យល់ព្រម</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1624,7 +1624,7 @@
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
-    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
+    <string name="NewLinkedDeviceMegaphone__ok">យល់ព្រម</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">ការឆ្លើយតប</string>
@@ -7697,7 +7697,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">កំពុងបង្ហោះ៖ %1$s លើ %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
-    <string name="RemoteBackupsSettingsFragment__details">Details</string>
+    <string name="RemoteBackupsSettingsFragment__details">ព័ត៌មានលម្អិត</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

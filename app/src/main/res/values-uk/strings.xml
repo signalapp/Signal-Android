@@ -960,7 +960,7 @@
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Сьогодні</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s at %2$s</string>
+    <string name="DateUtils_date_at">%1$s, %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1052,12 +1052,12 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">Ваші повідомлення не вдалося перенести на зв\'язаний пристрій. Ви можете ще раз спробувати зв\'язати пристрій і перенести дані або продовжити без перенесення історії повідомлень.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Новий пристрій зв\'язано, але нам не вдалося перенести ваші повідомлення.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
-    <string name="LinkDeviceFragment__learn_more">Learn more</string>
+    <string name="LinkDeviceFragment__learn_more">Докладніше</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Retry</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Повторити спробу</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Продовжити без перенесення</string>
     <!-- Option in context menu to edit the name of a linked device -->
@@ -1071,7 +1071,7 @@
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
     <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
-    <string name="LinkDeviceFragment__ok">OK</string>
+    <string name="LinkDeviceFragment__ok">Зрозуміло</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1118,9 +1118,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Старі повідомлення й медіафайли не буде перенесено на зв\'язаний пристрій</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Ви зв\'язали новий пристрій</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">О %1$s з вашим акаунтом було зв\'язано новий пристрій. Торкніться, щоб переглянути.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Відв\'язати «%1$s»?</string>
@@ -1764,11 +1764,11 @@
     <string name="Megaphones_add_a_profile_photo">Фото профілю</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">О %1$s з вашим акаунтом було зв\'язано новий пристрій.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
-    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
+    <string name="NewLinkedDeviceMegaphone__ok">Зрозуміло</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Відповіді</string>
@@ -8195,7 +8195,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Вивантаження: %1$s з %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
-    <string name="RemoteBackupsSettingsFragment__details">Details</string>
+    <string name="RemoteBackupsSettingsFragment__details">Докладніше</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
