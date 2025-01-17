@@ -866,7 +866,6 @@ private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnab
   val isReaction = MessageTypes.isStoryReaction(this.type)
 
   return DirectStoryReplyMessage(
-    storySentTimestamp = this.parentStoryId.takeUnless { it == MessageTable.PARENT_STORY_MISSING_ID },
     emoji = if (isReaction) {
       this.body
     } else {

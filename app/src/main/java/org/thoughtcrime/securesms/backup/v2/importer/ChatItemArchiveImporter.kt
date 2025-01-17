@@ -877,7 +877,7 @@ class ChatItemArchiveImporter(
   }
 
   private fun ContentValues.addDirectStoryReply(directStoryReply: DirectStoryReplyMessage) {
-    put(MessageTable.PARENT_STORY_ID, directStoryReply.storySentTimestamp?.takeUnless { it == 0L } ?: MessageTable.PARENT_STORY_MISSING_ID)
+    put(MessageTable.PARENT_STORY_ID, MessageTable.PARENT_STORY_MISSING_ID)
 
     if (directStoryReply.emoji != null) {
       put(MessageTable.BODY, directStoryReply.emoji)

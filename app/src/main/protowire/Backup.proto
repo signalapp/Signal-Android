@@ -461,7 +461,7 @@ message DirectStoryReplyMessage {
   }
 
   repeated Reaction reactions = 3;
-  optional uint64 storySentTimestamp = 4;
+  reserved /*storySentTimestamp*/ 4;
 }
 
 message PaymentNotification {
