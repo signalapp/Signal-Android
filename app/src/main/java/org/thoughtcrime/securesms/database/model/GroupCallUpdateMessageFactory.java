@@ -32,7 +32,7 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
   private final ACI                    selfAci;
 
   public GroupCallUpdateMessageFactory(@NonNull Context context,
-                                       @NonNull List<ACI> joinedMembers,
+                                       @NonNull List<ServiceId> joinedMembers,
                                        boolean withTime,
                                        @NonNull GroupCallUpdateDetails groupCallUpdateDetails)
   {
