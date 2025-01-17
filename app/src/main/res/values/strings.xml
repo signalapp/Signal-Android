@@ -7533,7 +7533,10 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Couldn\'t complete backup</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\" </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one">Your device hasn\'t completed a backup for %1$d day. Make sure your device is connected to wi-fi and tap \"Back up now.\" </item>
+        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Learn more</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->

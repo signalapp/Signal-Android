@@ -365,7 +365,7 @@ private fun CouldNotCompleteBackup(
   daysSinceLastBackup: Int
 ) {
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__your_device_hasnt, daysSinceLastBackup),
+    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_device_hasnt, daysSinceLastBackup, daysSinceLastBackup),
     textAlign = TextAlign.Center,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 60.dp)
