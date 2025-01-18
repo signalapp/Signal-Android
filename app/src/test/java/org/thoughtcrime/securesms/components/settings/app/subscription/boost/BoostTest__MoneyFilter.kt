@@ -109,7 +109,7 @@ class BoostTest__MoneyFilter {
 
     view.setText("1000", TextView.BufferType.EDITABLE)
 
-    assertEquals("$1,000", view.text.toString())
+    assertEquals("$1000", view.text.toString())
   }
 
   @Test

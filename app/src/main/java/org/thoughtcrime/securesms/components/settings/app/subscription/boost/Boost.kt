@@ -291,6 +291,7 @@ data class Boost(
         }
 
         formatter.maximumFractionDigits = currency.defaultFractionDigits
+        formatter.isGroupingUsed = false
 
         val value = s.toString().toDoubleOrNull()
 
