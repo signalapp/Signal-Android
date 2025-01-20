@@ -3238,6 +3238,11 @@
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
     <string name="audio_view__download_accessibility_description">Download</string>
 
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Download</string>
+    <string name="document_view__upload_accessibility_description">Upload</string>
+    <string name="document_view__cancel_accessibility_description">Cancel</string>
+
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>

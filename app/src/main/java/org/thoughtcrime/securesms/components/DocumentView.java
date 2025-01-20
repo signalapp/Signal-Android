@@ -26,8 +26,11 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
+import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+
+import java.util.Collections;
 
 public class DocumentView extends FrameLayout {
 
@@ -35,16 +38,21 @@ public class DocumentView extends FrameLayout {
 
   private final @NonNull AnimatingToggle controlToggle;
   private final @NonNull ImageView       downloadButton;
+  private final @NonNull ImageView       uploadButton;
+  private final @NonNull ImageView       stopUploadButton;
   private final @NonNull ProgressWheel   downloadProgress;
   private final @NonNull View            container;
   private final @NonNull ViewGroup       iconContainer;
+  private final @NonNull ViewGroup       progressContainer;
   private final @NonNull TextView        fileName;
   private final @NonNull TextView        fileSize;
   private final @NonNull TextView        document;
 
-  private @Nullable SlideClickListener downloadListener;
-  private @Nullable SlideClickListener viewListener;
-  private @Nullable Slide              documentSlide;
+  private @Nullable SlideClickListener    downloadListener;
+  private @Nullable SlideClickListener    viewListener;
+  private @Nullable SlidesClickedListener cancelTransferClickListener;
+  private @Nullable SlidesClickedListener resendTransferClickListener;
+  private @Nullable Slide                 documentSlide;
 
   public DocumentView(@NonNull Context context) {
     this(context, null);
@@ -60,8 +68,11 @@ public class DocumentView extends FrameLayout {
 
     this.container        = findViewById(R.id.document_container);
     this.iconContainer    = findViewById(R.id.icon_container);
+    this.progressContainer    = findViewById(R.id.progress_container);
     this.controlToggle    = findViewById(R.id.control_toggle);
     this.downloadButton   = findViewById(R.id.download);
+    this.uploadButton     = findViewById(R.id.upload);
+    this.stopUploadButton     = findViewById(R.id.stop_upload);
     this.downloadProgress = findViewById(R.id.download_progress);
     this.fileName         = findViewById(R.id.file_name);
     this.fileSize         = findViewById(R.id.file_size);
@@ -89,17 +100,31 @@ public class DocumentView extends FrameLayout {
     this.viewListener = listener;
   }
 
+  public void setCancelTransferClickListener(@Nullable SlidesClickedListener listener) {
+    this.cancelTransferClickListener = listener;
+  }
+
+  public void setResendTransferClickListener(@Nullable SlidesClickedListener listener) {
+    this.resendTransferClickListener = listener;
+  }
+
   public void setDocument(final @NonNull Slide documentSlide,
                           final boolean showControls,
-                          final boolean showSingleLineFilename)
+                          final boolean showSingleLineFilename,
+                          final boolean isSender)
   {
-    if (showControls && documentSlide.isPendingDownload()) {
+    if (showControls && documentSlide.isPendingDownload() && !isSender) {
       controlToggle.displayQuick(downloadButton);
       downloadButton.setOnClickListener(new DownloadClickedListener(documentSlide));
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
+      } else if (showControls && documentSlide.isPendingDownload() && isSender) {
+      controlToggle.displayQuick(uploadButton);
+      uploadButton.setOnClickListener(new ResendTransferClickListener(documentSlide));
+      if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
     } else if (showControls && documentSlide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-      controlToggle.displayQuick(downloadProgress);
+      controlToggle.displayQuick(progressContainer);
       downloadProgress.spin();
+      stopUploadButton.setOnClickListener(new CancelTransferListener(documentSlide));
     } else {
       controlToggle.displayQuick(iconContainer);
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
@@ -118,12 +143,6 @@ public class DocumentView extends FrameLayout {
     this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
     this.document.setText(documentSlide.getFileType(getContext()).orElse("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
-  }
-
-  public void setDocument(final @NonNull Slide documentSlide,
-                          final boolean showControls)
-  {
-    setDocument(documentSlide, showControls, true);
   }
 
   @Override
@@ -175,6 +194,40 @@ public class DocumentView extends FrameLayout {
     public void onClick(View v) {
       if (!slide.isPendingDownload() && !slide.isInProgress() && viewListener != null) {
         viewListener.onClick(v, slide);
+      }
+    }
+  }
+
+  private class CancelTransferListener implements View.OnClickListener {
+    private final @NonNull Slide slide;
+
+    private CancelTransferListener(@NonNull Slide slide) {
+      this.slide = slide;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (cancelTransferClickListener != null) {
+        cancelTransferClickListener.onClick(v, Collections.singletonList(slide));
+      } else {
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide);
+      }
+    }
+  }
+
+  private class ResendTransferClickListener implements View.OnClickListener {
+    private final @NonNull Slide slide;
+
+    private ResendTransferClickListener(@NonNull Slide slide) {
+      this.slide = slide;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (resendTransferClickListener != null) {
+        resendTransferClickListener.onClick(v, Collections.singletonList(slide));
+      } else {
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide);
       }
     }
   }
