@@ -320,7 +320,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     if (!callPermissionsDialogController.isAskingForPermission() && !viewModel.isCallStarting() && !isChangingConfigurations()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
-      if (state != null && state.getCallState().isPreJoinOrNetworkUnavailable()) {
+      if (state != null && (state.getCallState().isPreJoinOrNetworkUnavailable() || state.getCallState().isIncomingOrHandledElsewhere())) {
         finish();
       }
     }
@@ -343,7 +343,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     if (!viewModel.isCallStarting() && !isChangingConfigurations()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null) {
-        if (state.getCallState().isPreJoinOrNetworkUnavailable()) {
+        if (state.getCallState().isPreJoinOrNetworkUnavailable() || state.getCallState().isIncomingOrHandledElsewhere()) {
           AppDependencies.getSignalCallManager().cancelPreJoin();
         } else if (state.getCallState().getInOngoingCall() && isInPipMode()) {
           AppDependencies.getSignalCallManager().relaunchPipOnForeground();
