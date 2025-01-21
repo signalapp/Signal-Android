@@ -86,6 +86,10 @@ object ExportOddities {
     return log(sentTimestamp, "Failed to parse link preview. Ignoring it.")
   }
 
+  fun distributionListAllExceptWithNoMembers(): String {
+    return log(0, "Distribution list had a privacy mode of ALL_EXCEPT with no members. Exporting at ALL.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[ODDITY][$sentTimestamp] $message"
   }

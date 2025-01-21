@@ -7,11 +7,13 @@ package org.thoughtcrime.securesms.backup.v2.exporters
 
 import android.database.Cursor
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireObject
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
+import org.thoughtcrime.securesms.backup.v2.ExportOddities
 import org.thoughtcrime.securesms.backup.v2.database.getMembersForBackup
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionList
 import org.thoughtcrime.securesms.backup.v2.proto.DistributionListItem
@@ -24,6 +26,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.io.Closeable
+
+private val TAG = Log.tag(DistributionListArchiveExporter::class)
 
 class DistributionListArchiveExporter(
   private val cursor: Cursor,
@@ -66,7 +70,7 @@ class DistributionListArchiveExporter(
         distributionList = DistributionList(
           name = record.name,
           allowReplies = record.allowsReplies,
-          privacyMode = record.privacyMode.toBackupPrivacyMode(),
+          privacyMode = record.privacyMode.toBackupPrivacyMode(record.members.size),
           memberRecipientIds = record.members.map { it.toLong() }
         )
       )
@@ -83,10 +87,17 @@ class DistributionListArchiveExporter(
   }
 }
 
-private fun DistributionListPrivacyMode.toBackupPrivacyMode(): DistributionList.PrivacyMode {
+private fun DistributionListPrivacyMode.toBackupPrivacyMode(memberCount: Int): DistributionList.PrivacyMode {
   return when (this) {
     DistributionListPrivacyMode.ONLY_WITH -> DistributionList.PrivacyMode.ONLY_WITH
     DistributionListPrivacyMode.ALL -> DistributionList.PrivacyMode.ALL
-    DistributionListPrivacyMode.ALL_EXCEPT -> DistributionList.PrivacyMode.ALL_EXCEPT
+    DistributionListPrivacyMode.ALL_EXCEPT -> {
+      if (memberCount > 0) {
+        DistributionList.PrivacyMode.ALL_EXCEPT
+      } else {
+        Log.w(TAG, ExportOddities.distributionListAllExceptWithNoMembers())
+        DistributionList.PrivacyMode.ALL
+      }
+    }
   }
 }
