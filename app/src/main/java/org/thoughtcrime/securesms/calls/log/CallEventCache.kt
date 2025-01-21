@@ -188,7 +188,7 @@ class CallEventCache(
         } else {
           CallLogRow.GroupCallState.NONE
         },
-        children = children,
+        children = setOf(parent.rowId) + children,
         searchQuery = filterState.query,
         callLinkPeekInfo = AppDependencies.signalCallManager.peekInfoSnapshot[peer.id],
         canUserBeginCall = if (peer.isGroup) {
