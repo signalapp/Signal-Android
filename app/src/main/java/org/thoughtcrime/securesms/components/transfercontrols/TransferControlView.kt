@@ -708,9 +708,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
         } else {
           val progressMiB = currentState.networkProgress.sumCompleted().toUnitString()
           val totalMiB = currentState.networkProgress.sumTotal().toUnitString()
-          val completedLabel = context.resources.getString(R.string.TransferControlView__download_progress, totalMiB, totalMiB)
+          val completedLabel = context.resources.getString(R.string.TransferControlView__download_progress_s_s, totalMiB, totalMiB)
           val desiredWidth = StaticLayout.getDesiredWidth(completedLabel, binding.secondaryDetailsText.paint)
-          binding.secondaryDetailsText.text = context.resources.getString(R.string.TransferControlView__download_progress, progressMiB, totalMiB)
+          binding.secondaryDetailsText.text = context.resources.getString(R.string.TransferControlView__download_progress_s_s, progressMiB, totalMiB)
           val roundedWidth = ceil(desiredWidth.toDouble()).roundToInt() + binding.secondaryDetailsText.compoundPaddingLeft + binding.secondaryDetailsText.compoundPaddingRight
           binding.secondaryDetailsText.updateLayoutParams {
             width = roundedWidth
