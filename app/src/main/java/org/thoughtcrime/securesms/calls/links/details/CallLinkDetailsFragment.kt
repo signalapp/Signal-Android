@@ -29,6 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.Dialogs
@@ -197,15 +198,15 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   private fun toastCallLinkInUse() {
-    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_update_admin_approval, Toast.LENGTH_LONG).show()
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_update_admin_approval, Snackbar.LENGTH_LONG).show()
   }
 
   private fun toastFailure() {
-    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Snackbar.LENGTH_LONG).show()
   }
 
   private fun toastCouldNotDeleteCallLink() {
-    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Toast.LENGTH_LONG).show()
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Snackbar.LENGTH_LONG).show()
   }
 }
 

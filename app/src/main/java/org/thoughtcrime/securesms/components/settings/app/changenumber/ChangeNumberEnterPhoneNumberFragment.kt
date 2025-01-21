@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
@@ -142,7 +143,7 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
     }
 
     if (TextUtils.equals(binding.changeNumberEnterPhoneNumberOldNumberNumber.text, binding.changeNumberEnterPhoneNumberNewNumberNumber.text)) {
-      Toast.makeText(context, getString(R.string.ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number), Toast.LENGTH_LONG).show()
+      Snackbar.make(requireView(), getString(R.string.ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number), Snackbar.LENGTH_LONG).show()
       return
     }
 
