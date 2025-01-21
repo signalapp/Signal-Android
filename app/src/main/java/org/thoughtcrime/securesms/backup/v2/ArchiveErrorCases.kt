@@ -51,6 +51,22 @@ object ExportSkips {
     return log(sentTimestamp, "Direct story reply has no body.")
   }
 
+  fun invalidChatItemStickerPackId(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Sticker message had an invalid packId.")
+  }
+
+  fun invalidChatItemStickerPackKey(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Sticker message had an invalid packKey.")
+  }
+
+  fun invalidStickerPackId(): String {
+    return log(0, "Sticker pack had an invalid packId.")
+  }
+
+  fun invalidStickerPackKey(): String {
+    return log(0, "Sticker pack  had an invalid packKey.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

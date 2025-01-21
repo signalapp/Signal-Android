@@ -306,7 +306,7 @@ class ChatItemArchiveExporter(
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
 
           if (sticker?.stickerLocator != null) {
-            builder.stickerMessage = sticker.toRemoteStickerMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactions = extraData.reactionsById[id])
+            builder.stickerMessage = sticker.toRemoteStickerMessage(sentTimestamp = record.dateSent, mediaArchiveEnabled = mediaArchiveEnabled, reactions = extraData.reactionsById[id])
           } else {
             val standardMessage = record.toRemoteStandardMessage(
               db = db,
@@ -964,12 +964,27 @@ private fun BackupMessageRecord.toRemoteGiftBadgeUpdate(): BackupGiftBadge? {
   )
 }
 
-private fun DatabaseAttachment.toRemoteStickerMessage(mediaArchiveEnabled: Boolean, reactions: List<ReactionRecord>?): StickerMessage {
+private fun DatabaseAttachment.toRemoteStickerMessage(sentTimestamp: Long, mediaArchiveEnabled: Boolean, reactions: List<ReactionRecord>?): StickerMessage? {
   val stickerLocator = this.stickerLocator!!
+
+  val packId = try {
+    Hex.fromStringCondensed(stickerLocator.packId)
+  } catch (e: IOException) {
+    Log.w(TAG, ExportSkips.invalidChatItemStickerPackId(sentTimestamp))
+    return null
+  }
+
+  val packKey = try {
+    Hex.fromStringCondensed(stickerLocator.packKey)
+  } catch (e: IOException) {
+    Log.w(TAG, ExportSkips.invalidChatItemStickerPackKey(sentTimestamp))
+    return null
+  }
+
   return StickerMessage(
     sticker = Sticker(
-      packId = Hex.fromStringCondensed(stickerLocator.packId).toByteString(),
-      packKey = Hex.fromStringCondensed(stickerLocator.packKey).toByteString(),
+      packId = packId.toByteString(),
+      packKey = packKey.toByteString(),
       stickerId = stickerLocator.stickerId,
       emoji = stickerLocator.emoji,
       data_ = this.toRemoteMessageAttachment(mediaArchiveEnabled).pointer
