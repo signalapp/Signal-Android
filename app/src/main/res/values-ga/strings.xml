@@ -1083,13 +1083,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Cuir ainm an ghléis in eagar</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Nascadh curtha ar ceal</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Ná dún an aip</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Gléas dínasctha</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">An gléas a nascadh an %1$s, níl sé nasctha a thuilleadh.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">CGL</string>
 
@@ -1138,7 +1138,7 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Ní aistreofar seanteachtaireachtaí ná seanmheáin chuig do ghléas nasctha</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">Nasc Tú Gléas Nua</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Nasc tú gléas nua</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Nascadh gléas nua le do chuntas ag %1$s. Tapáil chun féachaint air.</string>
 
@@ -1814,7 +1814,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Nascadh gléas nua le do chuntas ag %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Féach ar an ngléas</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">CGL</string>
 
@@ -3228,7 +3228,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Fógraí teachtaireachta breise</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Gléas nua nasctha</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5400,7 +5400,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Níorbh fhéidir an cúltaca a chur i gcrích</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Níorbh fhéidir do shíntiús cúltacaí a fhuascailt</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Tabhair Cuireadh do Chairde</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5478,7 +5478,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Ní mór duit do sheanuimhir ghutháin a shonrú</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Ní mór duit cód tíre d\'uimhreach nua a shonrú</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Ní mór duit d\'uimhir ghutháin nua a shonrú</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Ní féidir gur ionann uimhir do ghutháin nua agus uimhir do sheanghutháin</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Athraigh Uimhir</string>
@@ -8053,17 +8053,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Theip ar an gcúltaca</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Níorbh fhéidir do shíntiús cúltacaí a fhuascailt</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Tharla earráid agus níorbh fhéidir do chúltacú a chur i gcrích. Cinntigh go bhfuil an leagan Signal is déanaí agat agus triail arís. Má leanann an fhadhb sin, déan teagmháil leis an bhfoireann tacaíochta.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Seiceáil le haghaidh nuashonraithe</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Rinne an iomarca gléasanna iarracht do shíntiús a fhuascailt an mhí seo. Is féidir:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Go ndearna tú do chuntas Signal a athchlárú an iomarca ama.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Go bhfuil an iomarca gléasanna ag baint úsáid as an síntiús céanna.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

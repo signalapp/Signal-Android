@@ -1003,13 +1003,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Edit nama</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Penautan dibatalkan</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Jangan tutup aplikasi</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Penautan perangkat diputus</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Perangkat yang ditautkan pada %1$s kini sudah tidak lagi terhubung.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OKE</string>
 
@@ -1147,8 +1147,8 @@
     <string name="GroupManagement_invite_multiple_users">Pengguna ini tidak dapat secara otomatis Anda tambahkan ke dalam grup.\n\nMereka telah mendapatkan undangan dan tidak dapat melihat pesan di dalam grup sampai mereka menerima undangannya.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apa itu New Groups?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">New Groups menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Apa itu grup baru?</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Grup baru menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Semua riwayat pesan dan media telah disimpan sebelum pemutakhiran.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Anda perlu menerima undangan untuk bergabung ke grup ini lagi. Anda tidak akan menerima pesan grup sampai Anda menerima undangannya.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -1159,9 +1159,9 @@
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Upgrade ke New Group</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Upgrade ke grup baru</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Upgrade grup ini</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">New Groups menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Grup baru menawarkan fitur seperti @penyebutan/mention dan admin grup. Fitur menarik lainnya akan tersedia di masa mendatang.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Semua riwayat pesan dan media akan disimpan sebelum pemutakhiran.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Terjadi kesalahan jaringan. Coba lagi nanti.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Gagal upgrade.</string>
@@ -1174,7 +1174,7 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke New Group. Ingin menambahkan mereka sekarang?</item>
+        <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke grup baru. Ingin menambahkan mereka sekarang?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="other">Tambahkan anggota</item>
@@ -1186,7 +1186,7 @@
         <item quantity="other">Tambahkan anggota?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke New Group saat grup di-upgrade:</item>
+        <item quantity="other">Anggota ini tidak dapat secara otomatis ditambahkan ke grup baru saat grup di-upgrade:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
         <item quantity="other">Tambahkan anggota</item>
@@ -1622,7 +1622,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Ada perangkat baru yang dihubungkan ke akun Anda pada %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Lihat perangkat</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">OKE</string>
 
@@ -1708,7 +1708,7 @@
 
     <!-- GV2 specific -->
     <string name="MessageRecord_you_created_the_group">Anda telah membuat grup.</string>
-    <string name="MessageRecord_group_updated">Group diperbarui.</string>
+    <string name="MessageRecord_group_updated">Grup diperbarui.</string>
     <string name="MessageRecord_invite_friends_to_this_group">Undang teman ke grup ini melalui tautan grup</string>
 
     <!-- GV2 member additions -->
@@ -1724,7 +1724,7 @@
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s mengeluarkan Anda dari grup.</string>
     <string name="MessageRecord_you_left_the_group">Anda telah meninggalkan grup.</string>
     <string name="MessageRecord_s_left_the_group">%1$s telah meninggalkan grup.</string>
-    <string name="MessageRecord_you_are_no_longer_in_the_group">Anda sudah tidak berada di dalam grup.</string>
+    <string name="MessageRecord_you_are_no_longer_in_the_group">Anda sudah tidak tergabung di grup.</string>
     <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s tidak lagi berada di grup.</string>
 
     <!-- GV2 role change -->
@@ -1768,8 +1768,8 @@
     <!-- GV2 invitation acceptance -->
     <string name="MessageRecord_you_accepted_invite">Anda menerima undangan masuk ke grup.</string>
     <string name="MessageRecord_s_accepted_invite">%1$s menerima undangan masuk ke grup.</string>
-    <string name="MessageRecord_you_added_invited_member_s">Anda menambahkan anggota undangan %1$s.</string>
-    <string name="MessageRecord_s_added_invited_member_s">%1$s menambahkan anggota undangan %2$s.</string>
+    <string name="MessageRecord_you_added_invited_member_s">Anda menambahkan anggota yang diundang %1$s.</string>
+    <string name="MessageRecord_s_added_invited_member_s">%1$s menambahkan anggota yang diundang %2$s.</string>
 
     <!-- GV2 title change -->
     <string name="MessageRecord_you_changed_the_group_name_to_s">Anda mengubah nama grup menjadi \"%1$s\".</string>
@@ -1787,44 +1787,44 @@
     <string name="MessageRecord_the_group_group_avatar_has_been_changed">Avatar grup telah diubah.</string>
 
     <!-- GV2 attribute access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Anda memberikan akses untuk menyunting info grup ke \"%1$s\".</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s memberikan akses untuk dapat menyunting informasi grup ke \"%2$s\".</string>
-    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Anggota yang dapat menyunting informasi grup telah diganti menjadi \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Anda memberikan akses untuk mengedit info grup ke \"%1$s\".</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s memberikan akses untuk dapat mengedit informasi grup ke \"%2$s\".</string>
+    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Anggota yang dapat mengedit informasi grup telah diganti menjadi \"%1$s\".</string>
 
     <!-- GV2 membership access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Anda mengganti siapa yang dapat mengubah keanggotaan grup menjadi \"%1$s\".</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses untuk menyunting keanggotaan grup kepada \"%2$s\".</string>
-    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Anggota yang dapat menyunting keanggotaan grup berubah menjadi \"%1$s\".</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Anda memberikan akses kepada \"%1$s\" untuk dapat mengubah keanggotaan grup.</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses kepada \"%2$s\" untuk mengedit keanggotaan grup.</string>
+    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Anggota yang dapat mengedit keanggotaan grup berubah menjadi \"%1$s\".</string>
 
     <!-- GV2 announcement group change -->
-    <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup mengizinkan semua anggota untuk mengirimkan pesan.</string>
-    <string name="MessageRecord_you_allow_only_admins_to_send">Anda mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
-    <string name="MessageRecord_s_allow_all_members_to_send">%1$s mengubah pengaturan grup untuk mengizinkan semua anggota untuk mengirimkan pesan.</string>
-    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
-    <string name="MessageRecord_allow_all_members_to_send">Pengaturan grup telah diubah mengizinkan semua anggota untuk mengirimkan pesan.</string>
-    <string name="MessageRecord_allow_only_admins_to_send">Pengaturan grup telah diubah hanya mengizinkan admin untuk mengirimkan pesan.</string>
+    <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup. Semua anggota kini dapat mengirimkan pesan.</string>
+    <string name="MessageRecord_you_allow_only_admins_to_send">Anda mengubah pengaturan grup. Hanya admin yang kini dapat mengirimkan pesan.</string>
+    <string name="MessageRecord_s_allow_all_members_to_send">%1$s mengubah pengaturan grup. Semua anggota kini dapat mengirimkan pesan.</string>
+    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s mengubah pengaturan grup. Hanya admin yang kini dapat mengirimkan pesan.</string>
+    <string name="MessageRecord_allow_all_members_to_send">Pengaturan grup telah diubah. Semua anggota kini dapat mengirimkan pesan.</string>
+    <string name="MessageRecord_allow_only_admins_to_send">Pengaturan grup telah diubah. Hanya admin yang kini dapat mengirimkan pesan.</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Anda menyalakan tautan grup tanpa persetujuan admin.</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Anda menyalakan tautan grup dengan persetujuan admin.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Anda mengaktifkan tautan grup tanpa persetujuan admin.</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Anda mengaktifkan tautan grup dengan persetujuan admin.</string>
     <string name="MessageRecord_you_turned_off_the_group_link">Anda menonaktifkan tautan grup.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s menyalakan tautan grup tanpa persetujuan admin.</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s menyalakan tautan grup dengan persetujuan admin.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s mengaktifkan tautan grup tanpa persetujuan admin.</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s menonaktifkan tautan grup dengan persetujuan admin.</string>
     <string name="MessageRecord_s_turned_off_the_group_link">%1$s menonaktifkan tautan grup.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Tautan grup telah diaktifkan tanpa persetujuan admin.</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Tautan grup dinyalakan dengan persetujuan admin.</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Tautan grup telah diaktifkan dengan persetujuan admin.</string>
     <string name="MessageRecord_the_group_link_has_been_turned_off">Tautan grup dinonaktifkan.</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Anda mematikan persetujuan admin untuk tautan grup.</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s mematikan persetujuan admin untuk tautan grup.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Persetujuan admin untuk tautan grup telah dimatikan.</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Anda menyalakan persetujuan admin untuk tautan grup.</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s menyalakan persetujuan admin untuk tautan grup.</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Persetujuan admin untuk tautan grup telah dinyalakan.</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Anda menonaktifkan persetujuan admin untuk tautan grup.</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s menonaktifkan persetujuan admin untuk tautan grup.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Persetujuan admin untuk tautan grup telah dinonaktifkan.</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Anda menonaktifkan persetujuan admin untuk tautan grup.</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s menonaktifkan persetujuan admin untuk tautan grup.</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Persetujuan admin untuk tautan grup telah diaktifkan.</string>
 
     <!-- GV2 group link reset -->
-    <string name="MessageRecord_you_reset_the_group_link">Anda mengatur ulang tautan grup.</string>
-    <string name="MessageRecord_s_reset_the_group_link">%1$s mengatur ulang tautan grup.</string>
-    <string name="MessageRecord_the_group_link_has_been_reset">Tautan grup telah diatur ulang.</string>
+    <string name="MessageRecord_you_reset_the_group_link">Anda mereset tautan grup.</string>
+    <string name="MessageRecord_s_reset_the_group_link">%1$s mereset tautan grup.</string>
+    <string name="MessageRecord_the_group_link_has_been_reset">Tautan grup telah direset.</string>
 
     <!-- GV2 group link joins -->
     <string name="MessageRecord_you_joined_the_group_via_the_group_link">Anda bergabung ke dalam grup melalui tautan grup.</string>
@@ -1839,7 +1839,7 @@
     </plurals>
 
     <!-- GV2 group link approvals -->
-    <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s menerima permintaan Anda untuk bergabung kedalam grup.</string>
+    <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s menerima permintaan Anda untuk bergabung ke dalam grup.</string>
     <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s menerima permintaan bergabung ke grup dari %2$s.</string>
     <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Anda menerima permintaan bergabung ke grup dari %1$s.</string>
     <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Permintaan Anda bergabung ke grup diterima.</string>
@@ -1847,7 +1847,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Permintaan Anda bergabung grup ditolak oleh admin.</string>
-    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s menolak permintaan bergabung ke grup dari %2$s.</string>
+    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s menolak permintaan dari %2$s untuk bergabung ke grup.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Permintaan bergabung ke grup dari %1$s ditolak.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Anda membatalkan permintaan bergabung ke grup.</string>
     <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s membatalkan permintaannya bergabung ke grup.</string>
@@ -1855,10 +1855,10 @@
     <!-- End of GV2 specific update messages -->
 
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %1$s telah berubah.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan anda dengan %1$s terverifikasi</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan anda dengan %1$s terverifikasi dari perangkat lain</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda menandai nomor keamanan anda dengan %1$s tidak terverifikasi</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda menandai nomor keamanan anda dengan %1$s tidak terverifikasi dari perangkat lain</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Anda menandai nomor keamanan Anda dengan %1$s terverifikasi</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Anda menandai nomor keamanan Anda dengan %1$s terverifikasi dari perangkat lain</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Anda menandai nomor keamanan Anda dengan %1$s tidak terverifikasi</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Anda menandai nomor keamanan Anda dengan %1$s tidak terverifikasi dari perangkat lain</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sebuah pesan dari %1$s tidak dapat diterima</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s mengubah nomor teleponnya.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
@@ -1957,7 +1957,7 @@
     <string name="MessageRequestBottomView_unblock">Buka blokir</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Izinkan %1$s mengirimi Anda pesan dan bagikan nama serta foto Anda dengannya? Anda telah menghapus orang ini sebelumnya.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Izinkan %1$s mengirim pesan dan berbagi nama dan foto Anda dengannya? Dia tidak akan tahu Anda telah melihat pesannya hingga Anda menerimanya.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Izinkan %1$s mengirim pesan dan bagikan nama dan foto Anda dengannya? Dia tidak akan tahu Anda telah melihat pesannya hingga Anda menerimanya.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Izinkan %1$s mengirimi Anda pesan dan bagikan nama dan foto Anda dengan mereka? Anda tidak akan menerima pesan apa pun sampai Anda membuka blokir mereka.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -1966,9 +1966,9 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Dapatkan pembaruan dan berita dari %1$s? Anda tidak akan menerima pembaruan apa pun sampai Anda membuka blokir mereka.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Lanjutkan obrolan Anda dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Grup Lama ini sudah tidak dapat digunakan. Buat grup baru untuk mengaktifkan fitur baru seperti @mention dan admin.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Grup Lama tidak lagi dapat digunakan karena berukuran terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Grup lama ini tidak lagi dapat digunakan karena ukurannya terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Lanjutkan obrolan Anda dengan %1$s dan bagikan nama dan foto Anda dengannya?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya? Mereka tidak akan mengetahuinya sampai Anda menerimanya.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gabung ke grup ini dan bagikan nama dan foto Anda dengan anggotanya? Mereka tidak akan tahu Anda telah melihat pesan mereka sampai Anda menerimanya.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Bergabung dengan grup ini dan bagikan nama dan foto Anda dengan anggotanya? Anda tidak akan bisa melihat pesan mereka sampai Anda menerimanya.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bergabung ke dalam grup? Mereka tidak akan tahu jika Anda telah membaca pesan mereka, sampai Anda menerimanya.</string>
@@ -2876,7 +2876,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Notifikasi pesan tambahan</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Perangkat terhubung baru</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -4924,7 +4924,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Tidak dapat menyelesaikan pencadangan</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Tidak bisa me-redeem langganan pencadangan</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Undang teman Anda</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5002,7 +5002,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Anda harus menentukan nomor telepon lama Anda</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Anda harus memasukkan kode negara nomor Anda yang baru</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Anda harus memasukkan nomor telepon Anda yang baru</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Nomor telepon baru tidak boleh sama dengan nomor telepon lama</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Ubah Nomor</string>
@@ -7409,17 +7409,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Pencadangan gagal</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Tidak bisa me-redeem langganan pencadangan</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Terjadi kesalahan dan pencadangan Anda tidak dapat diselesaikan. Pastikan Anda menggunakan Signal versi terbaru dan coba lagi. Jika masalah ini berlanjut, hubungi tim dukungan.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Periksa pembaruan</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Terlalu banyak perangkat telah mencoba me-redeem langganan Anda bulan ini. Anda mungkin pernah:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Mendaftarkan ulang akun Signal terlalu sering.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Menggunakan langganan yang sama di banyak perangkat.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

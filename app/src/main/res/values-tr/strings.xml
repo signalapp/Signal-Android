@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">İsmi düzenle</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Bağlantı iptal edildi</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Uygulamayı kapatma</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Cihazın bağlantısı kaldırıldı</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s tarihinde bağlı olan cihaz artık bağlı değil.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">TAMAM</string>
 
@@ -1670,7 +1670,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s saatinde hesabına yeni bir cihaz bağlandı.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Cihazı görüntüle</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">TAMAM</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Ek mesaj bildirimleri</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Yeni bağlı cihaz</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Yedekleme tamamlanamadı</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Yedekleme aboneliğini kullanamadın</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Arkadaşlarınızı davet edin</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Eski telefon numaranı belirtmen gerekir</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Yeni numaranızın ülke kodunu belirtmeniz gerekir</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Yeni telefon numaranı belirtmen gerekir</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Yeni telefon numaran eski telefon numaranla aynı olamaz</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Numarayı Değiştir</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Yedekleme başarısız oldu</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Yedekleme aboneliğini kullanamadın</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Bir hata oluştu ve yedeklemen tamamlanamadı. Signal\'in en son sürümünde olduğundan emin ol ve tekrar dene. Sorun devam ederse, destekle iletişime geç.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Güncelleme ara</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Bu ay çok fazla cihaz aboneliğini kullanmaya çalıştı. Şunların olabilir:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Signal hesabını çok fazla kez yeniden kaydettin.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Aynı aboneliği kullanan çok fazla cihazın var.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

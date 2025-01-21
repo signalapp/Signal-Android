@@ -1023,19 +1023,19 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Editar nombre</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Vinculación cancelada</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">No cierres Signal</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Dispositivo desvinculado</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">El dispositivo vinculado el %1$s ya no está vinculado.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Aceptar</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Editar nombre del dispositivo</string>
+    <string name="EditDeviceNameFragment__edit">Editar el nombre del dispositivo</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">Nombre del dispositivo</string>
     <!-- Button to save name change -->
@@ -1670,7 +1670,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Se ha vinculado un nuevo dispositivo a tu cuenta. Hora: %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Ver dispositivo</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">Aceptar</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Notificaciones de mensaje adicionales</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Nuevo dispositivo vinculado</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No se ha podido activar tu suscripción a las copias de seguridad</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">¡Invita a otras personas!</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Debes especificar tu número de teléfono anterior</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Debes especificar el código de país de tu número nuevo</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Debes especificar tu número de teléfono nuevo</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Tu nuevo número de teléfono no puede ser el mismo que tu número anterior</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
@@ -6291,11 +6291,11 @@
     <!-- Dialog action to remove viewer from a story -->
     <string name="StoryViewsFragment__remove">Eliminar</string>
     <!-- Dialog title when removing a viewer from a story -->
-    <string name="StoryViewsFragment__remove_viewer">¿Quitar espectador?</string>
+    <string name="StoryViewsFragment__remove_viewer">¿Quitar persona?</string>
     <!-- Dialog message when removing a viewer from a story -->
     <string name="StoryViewsFragment__s_will_still_be_able">%1$s aún podrá ver esta publicación, pero no las futuras publicaciones que compartas en %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
-    <string name="StoryViewItem__remove_viewer">Quitar espectador</string>
+    <string name="StoryViewItem__remove_viewer">Quitar persona</string>
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Aún no hay respuestas</string>
     <!-- Displayed when no longer a group member -->
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Error en la copia de seguridad</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido activar tu suscripción a las copias de seguridad</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualizaciones</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Se ha intentado activar tu suscripción desde demasiados dispositivos este mes. Es posible que:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Hayas vuelto a registrar tu cuenta de Signal demasiadas veces.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Tengas demasiados dispositivos asociados a una misma suscripción.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

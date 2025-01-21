@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">नाव संपादित करा</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">लिंक करणे रद्द केले</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">ॲप बंद करू नका</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">डिव्हाईस अनलिंक करा</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s रोजी लिंक केलेला डिव्हाईस आता लिंक्ड राहिलेला नाही.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ठीक</string>
 
@@ -1670,7 +1670,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">नवा डिव्हाइस आपल्या अकाऊंटवर %1$s येथे लिंक झाला.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">डिव्हाईस पहा</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">ठीक</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">अतिरिक्त संदेश अधिसूचना</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">नव्याने लिंक केलेला डिव्हाइस</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">बॅकअप पूर्ण करू शकत नाही</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">तुमचे बॅकअप सदस्यत्व रिडीम करता आले नाही</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">आपल्या मित्रांना आमंत्रित करा</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">तुम्ही तुमचा जुना फोन नंबर नमूद करणे आवश्यक आहे</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">तुम्ही तुमच्या नवीन नंबरचा देश कोड नमूद करणे आवश्यक आहे</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">आपण आपला नवीन फोन नंबर निर्दिष्ट करणे आवश्यक आहे</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">तुमचा नवा फोन नंबर आणि तुमचा जुना फोन नंबर एकच असू शकत नाही</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">फोन नंबर बदला</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">बॅकअप अयशस्वी</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">तुमचे बॅकअप सदस्यत्व रिडीम करता आले नाही</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">एक त्रुटी उद्भवली आणि आपला बॅकअप पूर्ण होऊ शकला नाही. आपल्याकडे Signal ची सर्वांत नवी आवृत्ती असल्याची खात्री करा आणि पुन्हा प्रयत्न करा. जर ही समस्या उद्भवत राहिली, तर सपोर्ट शी संंपर्क साधा.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">अद्यतन शोधा</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">या महिन्यात अनेक डिव्हायसेस वरून तुमचे सदस्यत्व रिडीम करण्याचा प्रयत्न झाला आहे. तुम्ही कदाचितः</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">तुमचा Signal अकाऊंट अनेक वेळा पुन्हा नोंदवला असेल.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">एकच सदस्यत्व अनेक डिव्हायसेस वर वापरले असेल.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

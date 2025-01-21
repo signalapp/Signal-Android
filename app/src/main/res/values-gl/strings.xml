@@ -1012,7 +1012,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">As mensaxes non poden transferirse ao teu dispositivo vinculado. Podes tentar vinculalo e transferir as mensaxes de novo, ou continuar sen rematar a transferencia.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">O teu dispositivo vinculouse correctamente, mais non se puideron transferir as mensaxes.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Máis información</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Editar nome</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Vinculación cancelada</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Non peches a aplicación</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Dispositivo desvinculado</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Desvinculouse o dispositivo que vinculaches o %1$s.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Aceptar</string>
 
@@ -1078,9 +1078,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Non se transferirán mensaxes nin contido multimedia antigos ao teu dispositivo vinculado</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Vinculaches un novo dispositivo</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Vinculouse un novo dispositivo á túa conta ás %1$s. Preme para ver máis.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Desvincular «%1$s»?</string>
@@ -1668,9 +1668,9 @@
     <string name="Megaphones_add_a_profile_photo">Foto de perfil</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Vinculouse un novo dispositivo á túa conta ás %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Ver dispositivo</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">Aceptar</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Notificacións de mensaxes adicionais</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Novo dispositivo vinculado</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Non se realizou a copia de seguranza</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Non se puido trocar a túa subscrición de copias de seguranza</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Convida ás túas amizades</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Debes especificar o teu número de teléfono antigo</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Debes especificar o teu novo prefixo do país</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Debes especificar o teu número de teléfono novo</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">O teu novo número de teléfono non pode ser o antigo</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Cambiar número</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Erro na copia de seguranza</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Non se puido trocar a túa subscrición de copias de seguranza</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Produciuse un erro e non se completou a túa copia de seguranza. Asegúrate de ter a última versión de Signal e inténtao de novo. Se o problema persiste, contacta co servizo de asistencia.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualización</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Demasiados dispositivos tentaron trocar a túa subscrición este mes. Pode ser polo seguinte:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Rexistraches a túa conta de Signal demasiadas veces.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Demasiados dispositivos empregan a mesma subscrición.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

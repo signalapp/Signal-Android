@@ -920,7 +920,7 @@
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">આજે રાત્રે</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s %2$s વાગ્યે</string>
+    <string name="DateUtils_date_at">%1$sના રોજ %2$s વાગ્યે</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">નામમાં ફેરફાર કરો</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">લિંક કરવાનું રદ કર્યું</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">ઍપ બંધ કરશો નહીં</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">ડિવાઇસ અનલિંક કર્યું</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s વાગ્યે લિંક કરવામાં આવેલું ડિવાઇસ હાલમાં લિંક થયેલું નથી.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ઓકે</string>
 
@@ -1670,7 +1670,7 @@
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
     <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s વાગ્યે એક નવું ડિવાઇસ તમારા એકાઉન્ટ સાથે લિંક કરવામાં આવ્યું હતું.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">ડિવાઇસ જુઓ</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">ઓકે</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">વધારાના મેસેજ નોટિફિકેશન</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">નવું લિંક કરેલું ડિવાઇસ</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">બેકઅપ પૂર્ણ કરી શકાયું નથી</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">તમારું બેકઅપ સબ્સ્ક્રિપ્શન રિડીમ કરી શકાયું નથી</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">તમારા મિત્રોને આમંત્રણ આપો</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">તમારે તમારો જૂનો ફોન નંબર દર્શાવવો આવશ્યક છે</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">તમારે તમારા નવા નંબરના દેશનો કોડ દર્શાવવો આવશ્યક છે</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">તમારે તમારો નવો ફોન નંબર દર્શાવવો આવશ્યક છે</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">તમારો નવો ફોન નંબર અને જૂનો ફોન નંબર એકસરખો ન હોઈ શકે</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">નંબર બદલો</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">બૅકઅપ નિષ્ફળ</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">તમારું બેકઅપ સબ્સ્ક્રિપ્શન રિડીમ કરી શકાયું નથી</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમે Signalનું લેટેસ્ટ વર્ઝન વાપરો છો અને ફરી પ્રયાસ કરો. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">અપડેટ માટે તપાસો</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">આ મહિને ઘણા બધા ડિવાઇસ દ્વારા તમારું સબ્સ્ક્રિપ્શન રિડીમ કરવાનો પ્રયાસ કરવામાં આવ્યો છે. તમે આ કર્યું હોઈ શકે છે:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">તમારા Signal એકાઉન્ટને ઘણી વખત ફરીથી રજીસ્ટર કર્યું હોય.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">ઘણા બધા ડિવાઇસ હોય જે સમાન સબ્સ્ક્રિપ્શનનો ઉપયોગ કરતાં હોય.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

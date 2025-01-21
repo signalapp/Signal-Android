@@ -1012,7 +1012,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">இணைக்கப்பட்ட சாதனத்திற்கு உங்கள் மெசேஜ்களை இடமாற்ற முடியவில்லை. நீங்கள் மீண்டும் இணைத்து மீண்டும் இடமாற்ற முயற்சி செய்யலாம் அல்லது உங்கள் செய்தி வரலாற்றை மாற்றாமல் தொடரலாம்.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">உங்கள் சாதனம் இணைக்கப்பட்டது, ஆனால் உங்கள் மெசேஜ்களை இடமாற்ற முடியாது.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">மேலும் அறிக</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">பெயரைத் திருத்தவும்</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">இணைப்பது ரத்து செய்யப்பட்டது</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">பயன்பாட்டை மூடாதீர்கள்</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">சாதனம் இணைப்பு நீக்கப்பட்டது</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s மணிக்கு இணைக்கப்பட்டிருந்த சாதனம் இனி கிடைக்காது.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">சரி</string>
 
@@ -1078,9 +1078,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">இணைக்கப்பட்ட சாதனத்திற்கு பழைய மெசேஜ்கள் அல்லது ஊடகம் எதுவும் இடமாற்றப்படாது</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">நீங்கள் புதிய சாதனம் ஒன்றை இணைத்துள்ளீர்கள்</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">%1$s மணிக்கு உங்கள் கணக்குடன் புதிய சாதனம் இணைக்கப்பட்டது. காண்பதற்குத் தட்டவும்.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" ஐ இணைப்பு நீக்குவதா?</string>
@@ -1668,9 +1668,9 @@
     <string name="Megaphones_add_a_profile_photo">படத்தைச் சேர்</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s இல் உங்கள் கணக்குடன் புதிய சாதனம் இணைக்கப்பட்டது.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">சாதனத்தைக் காண்க</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">சரி</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">கூடுதல் மெசேஜ் அறிவிப்புகள்</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">புதிதாக இணைக்கப்பட்ட சாதனம்</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">உங்களின் காப்புப்பிரதிகளின் சந்தாவை மீட்டெடுக்க முடியவில்லை</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">நண்பர்களை அழைக்கவும்</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">உங்கள் பழைய தொலைபேசி எண்ணைக் குறிப்பிட வேண்டும்</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">உங்கள் புதிய எண்ணுடைய நாட்டின் குறியீட்டைக் குறிப்பிட வேண்டும்</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">உங்கள் புதிய தொலைபேசி எண்ணைக் குறிப்பிட வேண்டும்</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">உங்களின் புதிய தொலைபேசி எண்ணும், பழைய தொலைபேசி எண்ணும் ஒன்றாக இருக்கக்கூடாது</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">எண்ணை மாற்றவும்</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">மறுபிரதி தோல்வியுற்றது</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">உங்களின் காப்புப்பிரதிகளின் சந்தாவை மீட்டெடுக்க முடியவில்லை</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">பிழை ஏற்பட்டது மற்றும் உங்கள் காப்புப்பிரதியை முடிக்க முடியவில்லை. சிக்னலின் அண்மைய பதிப்பில் இருப்பதை உறுதிசெய்து, மீண்டும் முயலுங்கள். இந்தச் சிக்கல் தொடர்ந்தால், ஆதரவைத் தொடர்புகொள்ளுங்கள்.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">புதுப்பிப்பைச் சரிபார்த்திடுங்கள்</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">இந்த மாதம் உங்கள் சந்தாவை மீட்டெடுக்க பல சாதனங்கள் முயற்சித்துள்ளன. நீங்கள் இவ்வாறு செய்திருக்கலாம்:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">உங்கள் சிக்னல் கணக்கை பல முறை மறு பதிவு செய்திருக்கலாம்.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">பல சாதனங்களில் ஒரே சந்தாவைப் பயன்படுத்தியிருக்கலாம்.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

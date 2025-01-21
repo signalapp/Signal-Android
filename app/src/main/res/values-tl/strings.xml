@@ -1012,7 +1012,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">Hindi nailipat ang iyong messages sa linked device mo. Pwede mo ulit subukan ang pag-link at paglipat, o magpatuloy nang hindi nililipat ang message history mo.</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Successful ang pag-link ng device mo, pero hindi mailipat ang iyong messages.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Matuto pa</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">I-edit ang pangalan</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Cancelled ang pag-link</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Huwag isara ang app</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Naka-unlink ang device</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Ang device na naka-link noong %1$s ay hindi na naka-link.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
 
@@ -1078,9 +1078,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">Walang lumang messages o media na maililipat sa naka-link mong device</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Nag-link ka ng bagong device</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Isang bagong device ang na-link sa account mo noong %1$s. I-tap para tignan.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Gusto mo bang i-unlink ang \"%1$s\"?</string>
@@ -1668,9 +1668,9 @@
     <string name="Megaphones_add_a_profile_photo">Profile photo</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Isang bagong device ang na-link sa account mo nong %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Tignan ang device</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Karagdagang message notifications</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Bagong linked device</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Hindi makumpleto ang backup</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Hindi ma-redeem ang backups subscription mo</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Kailangan mong i-specify ang iyong old phone number</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Kailangan mong i-specify ang country code ng iyong new number</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Kailangan mong i-specify ang iyong new phone number</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Hindi maaaring magkapareho ang iyong luma at bagong phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Change Number</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Backup failed</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Hindi ma-redeem ang backups subscription mo</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Nagkaroon ng error at hindi natapos ang pag-backup. Siguraduhing gamit mo ang latest version ng Signal at subukan ulit. Kung magpatuloy ang problema, kontakin ang support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Tingnan kung may update</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Maraming devices na ang sumubok na i-redeem ang subscription mo ngayong buwan. Maaaring:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Ini-register mo ang iyong Signal account nang maraming beses.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Maraming devices ang gumagamit ng parehong subscription.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->

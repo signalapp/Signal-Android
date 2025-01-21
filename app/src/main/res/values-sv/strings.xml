@@ -920,7 +920,7 @@
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Ikväll</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s %2$s</string>
+    <string name="DateUtils_date_at">%1$s kl. %2$s</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->

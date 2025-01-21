@@ -1023,13 +1023,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Renommer</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">Association annulée</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">Ne fermez pas l\'appli.</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">Appareil dissocié</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">L\'appareil associé le %1$s est maintenant dissocié.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
 
@@ -1080,7 +1080,7 @@
     <!-- Title of notification telling users that a device was linked to their account -->
     <string name="NewLinkedDeviceNotification__you_linked_new_device">Vous avez associé un nouvel appareil</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Vous avez associé un nouvel appareil à votre compte à %1$s. Touchez l\'écran pour l\'afficher.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Un nouvel appareil a été associé à votre compte à %1$s. Touchez l\'écran pour l\'afficher.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Dissocier \"%1$s\" ?</string>
@@ -1668,9 +1668,9 @@
     <string name="Megaphones_add_a_profile_photo">Photo de profil</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Vous avez associé un nouvel appareil à votre compte à %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Un nouvel appareil a été associé à votre compte à %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">Afficher l\'appareil</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
@@ -2964,7 +2964,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Autres notifications de messages</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">Nouvel appareil associé</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -5043,7 +5043,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Impossible de terminer la sauvegarde</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement de sauvegarde</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5121,7 +5121,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Saisissez votre ancien numéro de téléphone</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Saisissez l\'indicatif de pays associé à votre nouveau numéro</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Saisissez votre nouveau numéro de téléphone</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Votre nouveau numéro de téléphone doit être différent de votre ancien numéro.</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Changer de numéro</string>
@@ -7570,17 +7570,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Échec de la sauvegarde</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement de sauvegarde</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Une erreur nous empêche de terminer la sauvegarde. Avant de réessayer, vérifiez que vous avez bien installé la dernière version de Signal. Si le problème persiste, contactez l\'assistance.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Rechercher des mises à jour</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Vous avez tenté de récupérer votre abonnement sur un trop grand nombre d\'appareils ce mois-ci. Il se peut que :</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">vous ayez réenregistré votre compte Signal trop souvent ;</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">vous utilisiez le même abonnement sur un trop grand nombre d\'appareils.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7863,7 +7863,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Importation : %1$s sur %2$s (%3$d %%)</string>
     <!-- Button label to see more details about redemption error -->
-    <string name="RemoteBackupsSettingsFragment__details">Détails</string>
+    <string name="RemoteBackupsSettingsFragment__details">Informations</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

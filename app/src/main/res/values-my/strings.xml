@@ -992,7 +992,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">သင့်မက်ဆေ့ချ်များကို ချိတ်ထားသည့် စက်သို့ လွှဲပြောင်း၍မရပါ။ လင့်ခ်ပြန်ချိတ်ပြီး ထပ်မံလွှဲပြောင်းရန် ကြိုးစားနိုင်သည် သို့မဟုတ် မက်ဆေ့ချ်မှတ်တမ်းကို မလွှဲပြောင်းဘဲ ဆက်လက်လုပ်ဆောင်နိုင်သည်။</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
-    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Your device was successfully linked, but your messages could not be transferred.</string>
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">သင့်စက်ကို အောင်မြင်စွာ ချိတ်ဆက်ထားသော်လည်း သင့်မက်ဆေ့ချ်များကို လွှဲပြောင်း၍မရပါ။</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">ပိုမိုလေ့လာရန်</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
@@ -1003,13 +1003,13 @@
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">အမည်ပြင်ရန်</string>
     <!-- Toast shown when the process of linking a device has been cancelled -->
-    <string name="LinkDeviceFragment__linking_cancelled">Linking cancelled</string>
+    <string name="LinkDeviceFragment__linking_cancelled">ချိတ်ဆက်ခြင်းကို ပယ်ဖျက်လိုက်ပါပြီ</string>
     <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
-    <string name="LinkDeviceFragment__do_not_close">Do not close app</string>
+    <string name="LinkDeviceFragment__do_not_close">အက်ပ်ကို မပိတ်ပါနှင့်</string>
     <!-- Dialog title shown when a device is unlinked -->
-    <string name="LinkDeviceFragment__device_unlinked">Device unlinked</string>
+    <string name="LinkDeviceFragment__device_unlinked">စက်ကို ချိတ်ဆက်မှု ဖြုတ်ပါပြီ</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked on %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s တွင် လင့်ခ်ချိတ်ထားသည့် စက်ကို လင့်ခ်မချိတ်တော့ပါ။</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">အိုကေ</string>
 
@@ -1058,9 +1058,9 @@
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">မက်ဆေ့ချ်ဟောင်း သို့မဟုတ် မီဒီယာဟောင်းကို သင် ချိတ်ထားသည့် စက်များသို့ လွှဲပြောင်းမည်မဟုတ်ပါ</string>
 
     <!-- Title of notification telling users that a device was linked to their account -->
-    <string name="NewLinkedDeviceNotification__you_linked_new_device">You linked a new device</string>
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">သင် စက်အသစ်တစ်ခုကို လင့်ခ်ချိတ်ထားသည်</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account at %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">စက်အသစ်တစ်ခုကို %1$s တွင် သင့်အကောင့်နှင့် ချိတ်ဆက်ထားသည်။ ကြည့်ရှုရန် နှိပ်ပါ။</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" ချိတ်ဆက်မှုကို ဖြုတ်မည်လား။</string>
@@ -1620,9 +1620,9 @@
     <string name="Megaphones_add_a_profile_photo">ပရိုဖိုင်ပုံထည့်</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account at %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">စက်အသစ်တစ်ခုကို %1$s တွင် သင့်အကောင့်နှင့် ချိတ်ဆက်ထားသည်။</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
-    <string name="NewLinkedDeviceMegaphone__view_device">View device</string>
+    <string name="NewLinkedDeviceMegaphone__view_device">စက်ကိုကြည့်ရန်</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
     <string name="NewLinkedDeviceMegaphone__ok">အိုကေ</string>
 
@@ -2876,7 +2876,7 @@
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">ထပ်ဆောင်း မက်ဆေ့ချ် အသိပေးချက်များ</string>
     <!-- Notification channel name for notifications sent when a device has been linked -->
-    <string name="NotificationChannel_new_linked_device">New linked device</string>
+    <string name="NotificationChannel_new_linked_device">ချိတ်ထားသည့် စက်အသစ်</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -4924,7 +4924,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">သင့် ဘက်ခ်အပ် ပုံမှန်လှူဒါန်းငွေကို ထုတ်ယူ၍မရပါ</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5002,7 +5002,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">သင့်နံပါတ်အဟောင်းကို သတ်မှတ်ပေးရပါမည်</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">သင့်နံပါတ်အသစ်၏ နိုင်ငံကုဒ်ကို သတ်မှတ်ပေးရပါမည်</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">သင့်နံပါတ်အသစ်ကို သတ်မှတ်ပေးရပါမည်</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number can not be same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">သင့်ဖုန်းနံပါတ်အသစ်သည် သင့်ဖုန်းနံပါတ်ဟောင်းနှင့် မတူနိုင်ပါ</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">နံပါတ် ပြောင်းရန်</string>
@@ -7409,17 +7409,17 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">အရန်သိမ်းဆည်းမှုများ မအောင်မြင်ပါ</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">သင့် ဘက်ခ်အပ် ပုံမှန်လှူဒါန်းငွေကို ထုတ်ယူ၍မရပါ</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ Signal ၏ နောက်ဆုံးဗားရှင်းကို သင်အသုံးပြုနေကြောင်း သေချာစေပြီး ထပ်ကြိုးစားကြည့်ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးမှုသို့ ဆက်သွယ်ပါ။</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">အပ်ဒိတ်အတွက် စစ်ဆေးရန်</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Too many devices have tried to redeem your subscription this month. You may have:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">ဤလတွင် သင့် ပုံမှန်လှူဒါန်းငွေကို ထုတ်ယူရန် စက်ပစ္စည်းအများအပြားမှ ကြိုးပမ်းထားသည်။ သင်သည်-</string>
     <!-- Backup redemption error sheet bullet point 1 -->
-    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Re-registered your Signal account too many times.</string>
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">သင်၏ Signal အကောင့်ကို အကြိမ်များစွာ ပြန်လည် စာရင်းသွင်းခဲ့နိုင်သည်။</string>
     <!-- Backup redemption error sheet bullet point 2 -->
-    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Have too many devices using the same subscription.</string>
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">ပုံမှန်လှူဒါန်းမှုတစ်ခုတည်းကို အသုံးပြုထားသော စက်များစွာရှိနိုင်သည်။</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
