@@ -114,3 +114,28 @@ object ExportOddities {
     return "[ODDITY][$sentTimestamp] $message"
   }
 }
+
+/**
+ * These represent situations where we will skip importing a data frame due to the data being invalid.
+ */
+object ImportSkips {
+  fun fromRecipientNotFound(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Failed to find the fromRecipient for the message.")
+  }
+
+  fun chatIdLocalRecipientNotFound(sentTimestamp: Long, chatId: Long): String {
+    return log(sentTimestamp, "Failed to find a local recipientId for the provided chatId. ChatId in backup: $chatId")
+  }
+
+  fun chatIdRemoteRecipientNotFound(sentTimestamp: Long, chatId: Long): String {
+    return log(sentTimestamp, "Failed to find a remote recipientId for the provided chatId. ChatId in backup: $chatId")
+  }
+
+  fun chatIdThreadNotFound(sentTimestamp: Long, chatId: Long): String {
+    return log(sentTimestamp, "Failed to find a threadId for the provided chatId. ChatId in backup: $chatId")
+  }
+
+  private fun log(sentTimestamp: Long, message: String): String {
+    return "[SKIP][$sentTimestamp] $message"
+  }
+}

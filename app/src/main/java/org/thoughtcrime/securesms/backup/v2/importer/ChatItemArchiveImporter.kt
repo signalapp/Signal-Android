@@ -19,6 +19,7 @@ import org.signal.core.util.update
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
+import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.BodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.ChatItem
@@ -158,25 +159,25 @@ class ChatItemArchiveImporter(
   fun import(chatItem: ChatItem) {
     val fromLocalRecipientId: RecipientId? = importState.remoteToLocalRecipientId[chatItem.authorId]
     if (fromLocalRecipientId == null) {
-      Log.w(TAG, "[insert] Could not find a local recipient for backup recipient ID ${chatItem.authorId}! Skipping.")
+      Log.w(TAG, ImportSkips.fromRecipientNotFound(chatItem.dateSent))
       return
     }
 
     val chatLocalRecipientId: RecipientId? = importState.chatIdToLocalRecipientId[chatItem.chatId]
     if (chatLocalRecipientId == null) {
-      Log.w(TAG, "[insert] Could not find a local recipient for chatId ${chatItem.chatId}! Skipping.")
+      Log.w(TAG, ImportSkips.chatIdLocalRecipientNotFound(chatItem.dateSent, chatItem.chatId))
       return
     }
 
     val localThreadId: Long? = importState.chatIdToLocalThreadId[chatItem.chatId]
     if (localThreadId == null) {
-      Log.w(TAG, "[insert] Could not find a local threadId for backup chatId ${chatItem.chatId}! Skipping.")
+      Log.w(TAG, ImportSkips.chatIdThreadNotFound(chatItem.dateSent, chatItem.chatId))
       return
     }
 
     val chatBackupRecipientId: Long? = importState.chatIdToBackupRecipientId[chatItem.chatId]
     if (chatBackupRecipientId == null) {
-      Log.w(TAG, "[insert] Could not find a backup recipientId for backup chatId ${chatItem.chatId}! Skipping.")
+      Log.w(TAG, ImportSkips.chatIdRemoteRecipientNotFound(chatItem.dateSent, chatItem.chatId))
       return
     }
     val messageInsert = chatItem.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId)
