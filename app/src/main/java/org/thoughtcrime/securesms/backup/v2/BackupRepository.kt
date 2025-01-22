@@ -693,11 +693,14 @@ object BackupRepository {
     val header = frameReader.getHeader()
     if (header == null) {
       Log.e(TAG, "[import] Backup is missing header!")
+      SignalStore.backup.hasInvalidBackupVersion = false
       return ImportResult.Failure
     } else if (header.version > VERSION) {
       Log.e(TAG, "[import] Backup version is newer than we understand: ${header.version}")
+      SignalStore.backup.hasInvalidBackupVersion = true
       return ImportResult.Failure
     }
+    SignalStore.backup.hasInvalidBackupVersion = false
 
     try {
       // Removing all the data from the various tables is *very* expensive (i.e. can take *several* minutes) if we don't do some pre-work.

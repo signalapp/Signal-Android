@@ -55,9 +55,11 @@ import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeature
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeatureRow
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
 
@@ -111,7 +113,10 @@ class RemoteRestoreActivity : BaseActivity() {
 
               finish()
             },
-            onErrorDialogDismiss = { viewModel.clearError() }
+            onErrorDialogDismiss = { viewModel.clearError() },
+            onUpdateSignal = {
+              PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(this)
+            }
           )
         }
       }
@@ -145,7 +150,8 @@ private fun RestoreFromBackupContent(
   state: RemoteRestoreViewModel.ScreenState,
   onRestoreBackupClick: () -> Unit = {},
   onCancelClick: () -> Unit = {},
-  onErrorDialogDismiss: () -> Unit = {}
+  onErrorDialogDismiss: () -> Unit = {},
+  onUpdateSignal: () -> Unit = {}
 ) {
   when (state.loadState) {
     RemoteRestoreViewModel.ScreenState.LoadState.LOADING -> {
@@ -159,7 +165,8 @@ private fun RestoreFromBackupContent(
         state = state,
         onRestoreBackupClick = onRestoreBackupClick,
         onCancelClick = onCancelClick,
-        onErrorDialogDismiss = onErrorDialogDismiss
+        onErrorDialogDismiss = onErrorDialogDismiss,
+        onUpdateSignal = onUpdateSignal
       )
     }
 
@@ -178,7 +185,8 @@ private fun BackupAvailableContent(
   state: RemoteRestoreViewModel.ScreenState,
   onRestoreBackupClick: () -> Unit,
   onCancelClick: () -> Unit,
-  onErrorDialogDismiss: () -> Unit
+  onErrorDialogDismiss: () -> Unit,
+  onUpdateSignal: () -> Unit
 ) {
   val subtitle = if (state.backupSize.bytes > 0) {
     stringResource(
@@ -244,7 +252,13 @@ private fun BackupAvailableContent(
       RemoteRestoreViewModel.ImportState.None -> Unit
       RemoteRestoreViewModel.ImportState.InProgress -> RestoreProgressDialog(state.restoreProgress)
       is RemoteRestoreViewModel.ImportState.Restored -> Unit
-      RemoteRestoreViewModel.ImportState.Failed -> RestoreFailedDialog(onDismiss = onErrorDialogDismiss)
+      RemoteRestoreViewModel.ImportState.Failed -> {
+        if (SignalStore.backup.hasInvalidBackupVersion) {
+          InvalidBackupVersionDialog(onUpdateSignal = onUpdateSignal, onDismiss = onErrorDialogDismiss)
+        } else {
+          RestoreFailedDialog(onDismiss = onErrorDialogDismiss)
+        }
+      }
     }
   }
 }
@@ -407,5 +421,28 @@ fun RestoreFailedDialog(
 private fun RestoreFailedDialogPreview() {
   Previews.Preview {
     RestoreFailedDialog()
+  }
+}
+
+@Composable
+fun InvalidBackupVersionDialog(
+  onUpdateSignal: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteRestoreActivity__couldnt_restore),
+    body = stringResource(R.string.RemoteRestoreActivity__update_latest),
+    confirm = stringResource(R.string.RemoteRestoreActivity__update_signal),
+    onConfirm = onUpdateSignal,
+    dismiss = stringResource(R.string.RemoteRestoreActivity__not_now),
+    onDismiss = onDismiss
+  )
+}
+
+@SignalPreview
+@Composable
+private fun InvalidBackupVersionDialogPreview() {
+  Previews.Preview {
+    InvalidBackupVersionDialog()
   }
 }

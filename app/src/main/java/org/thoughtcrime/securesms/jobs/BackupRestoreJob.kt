@@ -12,6 +12,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.ImportResult
 import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -103,7 +104,10 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
 
     val self = Recipient.self()
     val selfData = BackupRepository.SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
-    BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, backupKey = SignalStore.backup.messageBackupKey, cancellationSignal = { isCanceled })
+    val result = BackupRepository.import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, backupKey = SignalStore.backup.messageBackupKey, cancellationSignal = { isCanceled })
+    if (result == ImportResult.Failure) {
+      throw IOException("Failed to import backup")
+    }
 
     SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
   }
