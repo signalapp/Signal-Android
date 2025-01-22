@@ -936,12 +936,23 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventMainThread(@NonNull WebRtcViewModel event) {
     Log.i(TAG, "Got message from service: " + event.describeDifference(previousEvent));
+
+    WebRtcViewModel.State previousCallState = previousEvent != null ? previousEvent.getState() : null;
+
     previousEvent = event;
 
     viewModel.setRecipient(event.getRecipient());
     controlsAndInfoViewModel.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
+      case CALL_INCOMING:
+        if (previousCallState == WebRtcViewModel.State.NETWORK_FAILURE) {
+          Log.d(TAG, "Incoming call directly from network failure state. Recreating activity.");
+          recreate();
+          return;
+        }
+
+        break;
       case CALL_PRE_JOIN:
         handleCallPreJoin(event); break;
       case CALL_CONNECTED:
