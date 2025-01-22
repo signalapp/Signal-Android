@@ -240,7 +240,7 @@ class ChangeNumberViewModel : ViewModel() {
   }
 
   private suspend fun verifyCodeInternal(context: Context, pin: String?, verificationErrorHandler: (VerificationCodeRequestResult) -> Unit, numberChangeErrorHandler: (ChangeNumberResult) -> Unit) {
-    val sessionId = getOrCreateValidSession(context)?.body?.id ?: return bail { Log.i(TAG, "Bailing from code verification due to invalid session.") }
+    val sessionId = getOrCreateValidSession(context)?.metadata?.id ?: return bail { Log.i(TAG, "Bailing from code verification due to invalid session.") }
     val registrationData = getRegistrationData(context)
 
     val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
@@ -286,7 +286,7 @@ class ChangeNumberViewModel : ViewModel() {
     viewModelScope.launch {
       Log.d(TAG, "Getting session in order to submit captcha token…")
       val session = getOrCreateValidSession(context) ?: return@launch bail { Log.i(TAG, "Bailing captcha token submission due to invalid session.") }
-      if (!Challenge.parse(session.body.requestedInformation).contains(Challenge.CAPTCHA)) {
+      if (!Challenge.parse(session.metadata.requestedInformation).contains(Challenge.CAPTCHA)) {
         Log.d(TAG, "Captcha submission no longer necessary, bailing.")
         store.update {
           it.copy(
@@ -297,7 +297,7 @@ class ChangeNumberViewModel : ViewModel() {
         return@launch
       }
       Log.d(TAG, "Submitting captcha token…")
-      val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.body.id, captchaToken)
+      val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.metadata.id, captchaToken)
       Log.d(TAG, "Captcha token submitted.")
       store.update {
         it.copy(inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(captchaSubmissionResult))
@@ -316,7 +316,7 @@ class ChangeNumberViewModel : ViewModel() {
       Log.d(TAG, "Getting session in order to perform push token verification…")
       val session = getOrCreateValidSession(context) ?: return@launch bail { Log.i(TAG, "Bailing from push token verification due to invalid session.") }
 
-      if (!Challenge.parse(session.body.requestedInformation).contains(Challenge.PUSH)) {
+      if (!Challenge.parse(session.metadata.requestedInformation).contains(Challenge.PUSH)) {
         Log.d(TAG, "Push submission no longer necessary, bailing.")
         store.update {
           it.copy(
@@ -328,7 +328,7 @@ class ChangeNumberViewModel : ViewModel() {
       }
 
       Log.d(TAG, "Requesting push challenge token…")
-      val pushSubmissionResult = RegistrationRepository.requestAndVerifyPushToken(context, session.body.id, e164, password)
+      val pushSubmissionResult = RegistrationRepository.requestAndVerifyPushToken(context, session.metadata.id, e164, password)
       Log.d(TAG, "Push challenge token submitted.")
       store.update {
         it.copy(inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(pushSubmissionResult))
@@ -364,7 +364,7 @@ class ChangeNumberViewModel : ViewModel() {
   private fun updateLocalStateFromSession(response: RegistrationSessionMetadataResponse) {
     Log.v(TAG, "updateLocalStateFromSession()")
     store.update {
-      it.copy(sessionId = response.body.id, challengesRequested = Challenge.parse(response.body.requestedInformation), allowedToRequestCode = response.body.allowedToRequestCode)
+      it.copy(sessionId = response.metadata.id, challengesRequested = Challenge.parse(response.metadata.requestedInformation), allowedToRequestCode = response.metadata.allowedToRequestCode)
     }
   }
 
@@ -477,15 +477,15 @@ class ChangeNumberViewModel : ViewModel() {
       return
     }
 
-    val result = if (!validSession.body.allowedToRequestCode) {
-      val challenges = validSession.body.requestedInformation.joinToString()
+    val result = if (!validSession.metadata.allowedToRequestCode) {
+      val challenges = validSession.metadata.requestedInformation.joinToString()
       Log.i(TAG, "Not allowed to request code! Remaining challenges: $challenges")
-      VerificationCodeRequestResult.ChallengeRequired(Challenge.parse(validSession.body.requestedInformation))
+      VerificationCodeRequestResult.ChallengeRequired(Challenge.parse(validSession.metadata.requestedInformation))
     } else {
       store.update {
         it.copy(changeNumberOutcome = null, challengesRequested = emptyList())
       }
-      val response = RegistrationRepository.requestSmsCode(context = context, sessionId = validSession.body.id, e164 = e164, password = password, mode = mode)
+      val response = RegistrationRepository.requestSmsCode(context = context, sessionId = validSession.metadata.id, e164 = e164, password = password, mode = mode)
       Log.d(TAG, "SMS code request submitted")
       response
     }

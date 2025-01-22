@@ -329,8 +329,13 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       is RegistrationSessionCreationResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
 
       is RegistrationSessionCreationResult.RateLimited -> {
-        Log.i(TAG, "Session creation rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
-        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+        val timeRemaining = result.timeRemaining?.milliseconds
+        Log.i(TAG, "Session creation rate limited! Next attempt: $timeRemaining")
+        if (timeRemaining != null) {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, timeRemaining.toString()))
+        } else {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later))
+        }
       }
 
       is RegistrationSessionCreationResult.ServerUnableToParse -> presentGenericError(result)
@@ -346,7 +351,6 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
     when (result) {
       is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentRateLimitedDialog()
       is VerificationCodeRequestResult.ChallengeRequired -> handleChallenges(result.challenges)
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_sms_provider_error))
       is VerificationCodeRequestResult.ImpossibleNumber -> {
@@ -369,11 +373,20 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       }
 
       is VerificationCodeRequestResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
-      is VerificationCodeRequestResult.MustRetry -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service), skipToNextScreen)
+      is VerificationCodeRequestResult.RequestVerificationCodeRateLimited -> {
+        Log.i(TAG, result.log())
+        handleRequestVerificationCodeRateLimited(result)
+      }
+      is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentGenericError(result)
       is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
       is VerificationCodeRequestResult.RateLimited -> {
-        Log.i(TAG, "Code request rate limited! Next attempt: ${result.timeRemaining.milliseconds}")
-        presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, result.timeRemaining.milliseconds.toString()))
+        val timeRemaining = result.timeRemaining?.milliseconds
+        Log.i(TAG, "Session patch rate limited! Next attempt: $timeRemaining")
+        if (timeRemaining != null) {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, timeRemaining.toString()))
+        } else {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later))
+        }
       }
       is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
@@ -423,6 +436,23 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       setMessage(message)
       setPositiveButton(android.R.string.ok, positiveButtonListener)
       show()
+    }
+  }
+
+  private fun handleRequestVerificationCodeRateLimited(result: VerificationCodeRequestResult.RequestVerificationCodeRateLimited) {
+    if (result.willBeAbleToRequestAgain) {
+      Log.i(TAG, "New verification code cannot be requested yet but can soon, moving to enter code to show timers")
+      moveToVerificationEntryScreen()
+    } else {
+      Log.w(TAG, "Unable to request new verification code, prompting to start new session")
+      MaterialAlertDialogBuilder(requireContext()).apply {
+        setMessage(R.string.RegistrationActivity_unable_to_connect_to_service)
+        setPositiveButton(R.string.NetworkFailure__retry) { _, _ ->
+          onRegistrationButtonClicked()
+        }
+        setNegativeButton(android.R.string.cancel, null)
+        show()
+      }
     }
   }
 

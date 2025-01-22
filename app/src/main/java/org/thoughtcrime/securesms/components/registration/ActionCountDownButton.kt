@@ -20,13 +20,22 @@ class ActionCountDownButton @JvmOverloads constructor(
   private var countDownToTime: Long = 0
   private var listener: Listener? = null
 
+  private var updateRunnable = Runnable {
+    updateCountDown()
+  }
+
   /**
    * Starts a count down to the specified {@param time}.
    */
   fun startCountDownTo(time: Long) {
     if (time > 0) {
       countDownToTime = time
+      removeCallbacks(updateRunnable)
       updateCountDown()
+    } else {
+      setText(enabledText)
+      isEnabled = false
+      alpha = 0.5f
     }
   }
 
@@ -38,15 +47,16 @@ class ActionCountDownButton @JvmOverloads constructor(
 
   private fun updateCountDown() {
     val remainingMillis = countDownToTime - System.currentTimeMillis()
-    if (remainingMillis > 0) {
+    if (remainingMillis > 1000) {
       isEnabled = false
       alpha = 0.5f
       val totalRemainingSeconds = TimeUnit.MILLISECONDS.toSeconds(remainingMillis).toInt()
       val minutesRemaining = totalRemainingSeconds / 60
       val secondsRemaining = totalRemainingSeconds % 60
+
       text = resources.getString(disabledText, minutesRemaining, secondsRemaining)
       listener?.onRemaining(this, totalRemainingSeconds)
-      postDelayed({ updateCountDown() }, 250)
+      postDelayed(updateRunnable, 250)
     } else {
       setActionEnabled()
     }

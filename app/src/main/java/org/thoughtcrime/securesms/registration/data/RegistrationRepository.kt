@@ -307,7 +307,7 @@ object RegistrationRepository {
       val result = RegistrationSessionCreationResult.from(registrationSessionResult)
       if (result is RegistrationSessionCreationResult.Success) {
         Log.d(TAG, "Updating registration session and E164 in value store.")
-        SignalStore.registration.sessionId = result.getMetadata().body.id
+        SignalStore.registration.sessionId = result.getMetadata().metadata.id
         SignalStore.registration.sessionE164 = e164
       }
 
@@ -472,8 +472,8 @@ object RegistrationRepository {
         if (receivedPush) {
           val challenge = subscriber.challenge
           if (challenge != null) {
-            Log.w(TAG, "Push challenge token received.")
-            return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.result.body.id, challenge)
+            Log.i(TAG, "Push challenge token received.")
+            return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.result.metadata.id, challenge)
           } else {
             Log.w(TAG, "Push received but challenge token was null.")
           }
@@ -494,7 +494,7 @@ object RegistrationRepository {
       return 0L
     }
 
-    val timestamp: Long = headers.timestamp
+    val timestamp: Long = headers.serverDeliveredTimestamp
     return timestamp + deltaSeconds.seconds.inWholeMilliseconds
   }
 

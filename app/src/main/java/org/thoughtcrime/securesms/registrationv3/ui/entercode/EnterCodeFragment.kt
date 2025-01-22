@@ -27,6 +27,9 @@ import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeBinding
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
+import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCheckResult
+import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCreationResult
+import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.ContactSupportBottomSheetFragment
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
@@ -37,6 +40,7 @@ import org.thoughtcrime.securesms.registrationv3.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * The final screen of account registration, where the user enters their verification code.
@@ -44,10 +48,10 @@ import org.thoughtcrime.securesms.util.visible
 class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_code) {
 
   companion object {
+    private val TAG = Log.tag(EnterCodeFragment::class.java)
+
     private const val BOTTOM_SHEET_TAG = "support_bottom_sheet"
   }
-
-  private val TAG = Log.tag(EnterCodeFragment::class.java)
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val fragmentViewModel by viewModels<EnterCodeViewModel>()
@@ -116,6 +120,11 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
 
     sharedViewModel.uiState.observe(viewLifecycleOwner) {
+      it.sessionCreationError?.let { error ->
+        handleSessionCreationError(error)
+        sharedViewModel.sessionCreationErrorShown()
+      }
+
       it.sessionStateError?.let { error ->
         handleSessionErrorResponse(error)
         sharedViewModel.sessionStateErrorShown()
@@ -160,18 +169,65 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     }
   }
 
+  private fun handleSessionCreationError(result: RegistrationSessionResult) {
+    if (!result.isSuccess()) {
+      Log.i(TAG, "[sessionCreateError] Handling error response of ${result.javaClass.name}", result.getCause())
+    }
+    when (result) {
+      is RegistrationSessionCheckResult.Success,
+      is RegistrationSessionCreationResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
+      is RegistrationSessionCreationResult.AttemptsExhausted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_service))
+      is RegistrationSessionCreationResult.MalformedRequest -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_unable_to_connect_to_service))
+
+      is RegistrationSessionCreationResult.RateLimited -> {
+        val timeRemaining = result.timeRemaining?.milliseconds
+        Log.i(TAG, "Session creation rate limited! Next attempt: $timeRemaining")
+        if (timeRemaining != null) {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, timeRemaining.toString()))
+        } else {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later))
+        }
+      }
+
+      is RegistrationSessionCreationResult.ServerUnableToParse -> presentGenericError(result)
+      is RegistrationSessionCheckResult.SessionNotFound -> presentGenericError(result)
+      is RegistrationSessionCheckResult.UnknownError,
+      is RegistrationSessionCreationResult.UnknownError -> presentGenericError(result)
+    }
+  }
+
   private fun handleSessionErrorResponse(result: VerificationCodeRequestResult) {
+    if (!result.isSuccess()) {
+      Log.i(TAG, "[sessionError] Handling error response of ${result.javaClass.name}", result.getCause())
+    }
+
     when (result) {
       is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
-      is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
+      is VerificationCodeRequestResult.RateLimited -> {
+        val timeRemaining = result.timeRemaining?.milliseconds
+        Log.i(TAG, "Session patch rate limited! Next attempt: $timeRemaining")
+        if (timeRemaining != null) {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_rate_limited_to_try_again, timeRemaining.toString()))
+        } else {
+          presentRemoteErrorDialog(getString(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later))
+        }
+      }
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       is VerificationCodeRequestResult.ExternalServiceFailure -> presentSmsGenericError(result)
+      is VerificationCodeRequestResult.RequestVerificationCodeRateLimited -> {
+        Log.i(TAG, result.log())
+        handleRequestVerificationCodeRateLimited(result)
+      }
+      is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentSubmitVerificationCodeRateLimited()
       else -> presentGenericError(result)
     }
   }
 
   private fun handleRegistrationErrorResponse(result: RegisterAccountResult) {
+    if (!result.isSuccess()) {
+      Log.i(TAG, "[registrationError] Handling error response of ${result.javaClass.name}", result.getCause())
+    }
+
     when (result) {
       is RegisterAccountResult.Success -> throw IllegalStateException("Register account error handler called on successful response!")
       is RegisterAccountResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
@@ -248,6 +304,14 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     )
   }
 
+  private fun presentRemoteErrorDialog(message: String, positiveButtonListener: DialogInterface.OnClickListener? = null) {
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setMessage(message)
+      setPositiveButton(android.R.string.ok, positiveButtonListener)
+      show()
+    }
+  }
+
   private fun presentGenericError(requestResult: RegistrationResult) {
     binding.keyboard.displayFailure().addListener(
       object : AssertedSuccessListener<Boolean>() {
@@ -256,6 +320,36 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
           MaterialAlertDialogBuilder(requireContext()).apply {
             setMessage(R.string.RegistrationActivity_error_connecting_to_service)
             setPositiveButton(android.R.string.ok) { _, _ -> fragmentViewModel.showKeyboard() }
+            show()
+          }
+        }
+      }
+    )
+  }
+
+  private fun handleRequestVerificationCodeRateLimited(result: VerificationCodeRequestResult.RequestVerificationCodeRateLimited) {
+    if (result.willBeAbleToRequestAgain) {
+      Log.i(TAG, "Attempted to request new code too soon, timers should be updated")
+    } else {
+      Log.w(TAG, "Request for new verification code impossible, need to restart registration")
+      MaterialAlertDialogBuilder(requireContext()).apply {
+        setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
+        setPositiveButton(android.R.string.ok) { _, _ -> popBackStack() }
+        setCancelable(false)
+        show()
+      }
+    }
+  }
+
+  private fun presentSubmitVerificationCodeRateLimited() {
+    binding.keyboard.displayFailure().addListener(
+      object : AssertedSuccessListener<Boolean>() {
+        override fun onSuccess(result: Boolean?) {
+          Log.w(TAG, "Submit verification code impossible, need to request a new code and restart registration")
+          MaterialAlertDialogBuilder(requireContext()).apply {
+            setMessage(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
+            setPositiveButton(android.R.string.ok) { _, _ -> popBackStack() }
+            setCancelable(false)
             show()
           }
         }

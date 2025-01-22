@@ -8,12 +8,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class RegistrationSessionMetadataResponse(
   val headers: RegistrationSessionMetadataHeaders,
-  val body: RegistrationSessionMetadataJson,
+  val metadata: RegistrationSessionMetadataJson,
   val state: RegistrationSessionState?
 )
 
 data class RegistrationSessionMetadataHeaders(
-  val timestamp: Long
+  val serverDeliveredTimestamp: Long,
+  val retryAfterTimestamp: Long? = null
 )
 
 data class RegistrationSessionMetadataJson(

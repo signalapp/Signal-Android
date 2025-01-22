@@ -106,9 +106,10 @@ import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredExcepti
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
-import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException;
+import org.whispersystems.signalservice.api.push.exceptions.RequestVerificationCodeRateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCodeRateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException;
@@ -437,7 +438,7 @@ public class PushServiceSocket {
 
     body.put("client", androidSmsRetriever ? "android-2021-03" : "android");
 
-    try (Response response = makeServiceRequest(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, new RegistrationCodeRequestResponseHandler(), SealedSenderAccess.NONE, false)) {
+    try (Response response = makeServiceRequest(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, new RequestVerificationCodeResponseHandler(), SealedSenderAccess.NONE, false)) {
       return parseSessionMetadataResponse(response);
     }
   }
@@ -446,7 +447,7 @@ public class PushServiceSocket {
     String path = String.format(VERIFICATION_CODE_PATH, sessionId);
     Map<String, String> body =  new HashMap<>();
     body.put("code", verificationCode);
-    try (Response response = makeServiceRequest(path, "PUT", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, new RegistrationCodeSubmissionResponseHandler(), SealedSenderAccess.NONE, false)) {
+    try (Response response = makeServiceRequest(path, "PUT", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, new SubmitVerificationCodeResponseHandler(), SealedSenderAccess.NONE, false)) {
       return parseSessionMetadataResponse(response);
     }
   }
@@ -1040,7 +1041,7 @@ public class PushServiceSocket {
   public void checkRepeatedUsePreKeys(ServiceIdType serviceIdType, byte[] digest) throws IOException {
     String body = JsonUtil.toJson(new CheckRepeatedUsedPreKeysRequest(serviceIdType.toString(), digest));
 
-    makeServiceRequest(PREKEY_CHECK_PATH, "POST", body, NO_HEADERS, (responseCode, body1) -> {
+    makeServiceRequest(PREKEY_CHECK_PATH, "POST", body, NO_HEADERS, (responseCode, errorBody, getHeader) -> {
       // Must override this handling because otherwise code assumes a device mismatch error
       if  (responseCode == 409) {
         throw new NonSuccessfulResponseCodeException(409);
@@ -1278,7 +1279,7 @@ public class PushServiceSocket {
         "GET",
         null,
         NO_HEADERS,
-        (responseCode, body) -> {
+        (responseCode, body, getHeader) -> {
           if (responseCode == 404) {
             throw new UsernameIsNotAssociatedWithAnAccountException();
           }
@@ -1301,7 +1302,7 @@ public class PushServiceSocket {
   public @NonNull ReserveUsernameResponse reserveUsername(@NonNull List<String> usernameHashes) throws IOException {
     ReserveUsernameRequest reserveUsernameRequest = new ReserveUsernameRequest(usernameHashes);
 
-    String responseString = makeServiceRequest(RESERVE_USERNAME_PATH, "PUT", JsonUtil.toJson(reserveUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+    String responseString = makeServiceRequest(RESERVE_USERNAME_PATH, "PUT", JsonUtil.toJson(reserveUsernameRequest), NO_HEADERS, (responseCode, body, getHeader) -> {
       switch (responseCode) {
         case 422: throw new UsernameMalformedException();
         case 409: throw new UsernameTakenException();
@@ -1330,7 +1331,7 @@ public class PushServiceSocket {
                                                         Base64.encodeUrlSafeWithoutPadding(link.getEncryptedUsername())
                                                       );
 
-      String response = makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body) -> {
+      String response = makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body, getHeader) -> {
         switch (responseCode) {
           case 409:
             throw new UsernameIsNotReservedException();
@@ -1392,7 +1393,7 @@ public class PushServiceSocket {
 
   public void submitRateLimitPushChallenge(String challenge) throws IOException {
     String payload = JsonUtil.toJson(new SubmitPushChallengePayload(challenge));
-    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload, NO_HEADERS, (responseCode, body) -> {
+    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload, NO_HEADERS, (responseCode, body, getHeader) -> {
       if (responseCode == 428) {
         throw new CaptchaRejectedException();
       }
@@ -1449,7 +1450,7 @@ public class PushServiceSocket {
         "POST",
         payload,
         NO_HEADERS,
-        (code, body) -> {
+        (code, body, getHeader) -> {
           if (code == 204) throw new NonSuccessfulResponseCodeException(204);
           if (code == 402) {
             InAppPaymentReceiptCredentialError inAppPaymentReceiptCredentialError;
@@ -1540,7 +1541,7 @@ public class PushServiceSocket {
         "POST",
         payload,
         NO_HEADERS,
-        (code, body) -> {
+        (code, body, getHeader) -> {
           if (code == 204) throw new NonSuccessfulResponseCodeException(204);
         });
 
@@ -2293,7 +2294,7 @@ public class PushServiceSocket {
     Response response = null;
     try {
       response = getServiceConnection(urlFragment, method, body, headers, sealedSenderAccess, doNotAddAuthenticationOrUnidentifiedAccessKey);
-      responseCodeHandler.handle(response.code(), response.body());
+      responseCodeHandler.handle(response.code(), response.body(), response::header);
       return validateServiceResponse(response);
     } catch (Exception e) {
       if (response != null && response.body() != null) {
@@ -2822,16 +2823,12 @@ public class PushServiceSocket {
   }
 
   private interface ResponseCodeHandler {
-    void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException;
-
-    default void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
-      handle(responseCode, body);
-    }
+    void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException;
   }
 
   private static class EmptyResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) { }
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) { }
   }
 
   /**
@@ -2840,7 +2837,7 @@ public class PushServiceSocket {
    */
   private static class UnopinionatedResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 200 || responseCode > 299) {
         String bodyString = null;
         if (body != null) {
@@ -2862,7 +2859,7 @@ public class PushServiceSocket {
    */
   private static class LongPollingResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode == 204 || responseCode < 200 || responseCode > 299) {
         String bodyString = null;
         if (body != null) {
@@ -2884,7 +2881,7 @@ public class PushServiceSocket {
    */
   private static class UnopinionatedBinaryErrorResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 200 || responseCode > 299) {
         byte[] bodyBytes = null;
         if (body != null) {
@@ -2912,27 +2909,22 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, CredentialResponse.class);
   }
 
-  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body) -> {
+  private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body, getHeader) -> {
     if (responseCode == 409) throw new GroupExistsException();
   };
 
-  private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body) -> {
+  private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body, getHeader) -> {
     switch (responseCode) {
       case 403: throw new NotInGroupException();
       case 404: throw new GroupNotFoundException();
     }
   };
 
-  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body) -> {
+  private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body, getHeader) -> {
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
 
   private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = new ResponseCodeHandler() {
-    @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException {
-      if (responseCode == 403) throw new ForbiddenException();
-    }
-
     @Override
     public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException {
       if (responseCode == 403) {
@@ -3054,7 +3046,7 @@ public class PushServiceSocket {
   public GroupJoinInfo getGroupJoinInfo(Optional<byte[]> groupLinkPassword, GroupsV2AuthorizationString authorization)
       throws NonSuccessfulResponseCodeException, PushNetworkException, IOException, MalformedResponseException
   {
-    String passwordParam = groupLinkPassword.map(org.signal.core.util.Base64::encodeUrlSafeWithoutPadding).orElse("");
+    String passwordParam = groupLinkPassword.map(Base64::encodeUrlSafeWithoutPadding).orElse("");
     try (Response response = makeStorageRequest(authorization.toString(),
                                                 String.format(GROUPSV2_GROUP_JOIN, passwordParam),
                                                 "GET",
@@ -3101,7 +3093,7 @@ public class PushServiceSocket {
    */
   private static class LinkGooglePlayBillingPurchaseTokenResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 400) {
         return;
       }
@@ -3115,7 +3107,7 @@ public class PushServiceSocket {
    */
   private static class InAppPaymentResponseCodeHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       if (responseCode < 400) {
         return;
       }
@@ -3138,26 +3130,27 @@ public class PushServiceSocket {
   private static class RegistrationSessionResponseHandler implements ResponseCodeHandler {
 
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
 
       if (responseCode == 403) {
         throw new IncorrectRegistrationRecoveryPasswordException();
       } else if (responseCode == 404) {
         throw new NoSuchSessionException();
       } else if (responseCode == 409) {
-        RegistrationSessionMetadataJson response;
+        RegistrationSessionMetadataResponse response;
         try {
-          response = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+          response = parseSessionMetadataResponse(body, getHeader);
         } catch (IOException e) {
-          Log.e(TAG, "Unable to read response body.", e);
+          Log.w(TAG, "Unable to read response body.", e);
           throw new NonSuccessfulResponseCodeException(409);
         }
-        if (response.getVerified()) {
+
+        if (response.getMetadata().getVerified()) {
           throw new AlreadyVerifiedException();
-        } else if (response.pushChallengedRequired() || response.captchaRequired()) {
+        } else if (response.getMetadata().pushChallengedRequired() || response.getMetadata().captchaRequired()) {
           throw new ChallengeRequiredException(response);
         } else {
-          Log.i(TAG, "Received 409 in reg session handler that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
+          Log.i(TAG, "Received 409 in reg session handler that is not verified, with required information: " + String.join(", ", response.getMetadata().getRequestedInformation()));
           throw new HttpConflictException();
         }
       } else if (responseCode == 502) {
@@ -3173,12 +3166,13 @@ public class PushServiceSocket {
     }
   }
 
-
-  private static class RegistrationCodeRequestResponseHandler implements ResponseCodeHandler {
+  /**
+   * Error handler used exclusively for dealing with request verification code during registration flow.
+   */
+  private static class RequestVerificationCodeResponseHandler implements ResponseCodeHandler {
 
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
-
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException {
       if (responseCode == 400) {
         throw new MalformedRequestException();
       } else if (responseCode == 403) {
@@ -3186,25 +3180,34 @@ public class PushServiceSocket {
       } else if (responseCode == 404) {
         throw new NoSuchSessionException();
       } else if (responseCode == 409) {
-        RegistrationSessionMetadataJson response;
+        RegistrationSessionMetadataResponse response;
         try {
-          response = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+          response = parseSessionMetadataResponse(body, getHeader);
         } catch (IOException e) {
           Log.e(TAG, "Unable to read response body.", e);
           throw new NonSuccessfulResponseCodeException(409);
         }
-        if (response.getVerified()) {
+
+        if (response.getMetadata().getVerified()) {
           throw new AlreadyVerifiedException();
-        } else if (response.pushChallengedRequired() || response.captchaRequired()) {
+        } else if (response.getMetadata().pushChallengedRequired() || response.getMetadata().captchaRequired()) {
           throw new ChallengeRequiredException(response);
         } else {
-          Log.i(TAG, "Received 409 in for reg code request that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
+          Log.i(TAG, "Received 409 in for reg code request that is not verified, with required information: " + String.join(", ", response.getMetadata().getRequestedInformation()));
           throw new HttpConflictException();
         }
       } else if (responseCode == 418) {
         throw new InvalidTransportModeException();
       } else if (responseCode == 429) {
-        throw new RegistrationRetryException();
+        RegistrationSessionMetadataResponse response;
+        try {
+          response = parseSessionMetadataResponse(body, getHeader);
+        } catch (IOException e) {
+          Log.w(TAG, "Unable to read response body.", e);
+          throw new NonSuccessfulResponseCodeException(429);
+        }
+
+        throw new RequestVerificationCodeRateLimitException(response);
       } else if (responseCode == 440) {
         VerificationCodeFailureResponseBody response;
         try {
@@ -3222,35 +3225,38 @@ public class PushServiceSocket {
   private static class PatchRegistrationSessionResponseHandler implements ResponseCodeHandler {
 
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
       switch (responseCode) {
         case 403:
           throw new TokenNotAcceptedException();
         case 404:
           throw new NoSuchSessionException();
         case 409:
-          RegistrationSessionMetadataJson response;
+          RegistrationSessionMetadataResponse response;
           try {
-            response = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
+            response = parseSessionMetadataResponse(body, getHeader);
           } catch (IOException e) {
             Log.e(TAG, "Unable to read response body.", e);
             throw new NonSuccessfulResponseCodeException(409);
           }
-          if (response.getVerified()) {
+          if (response.getMetadata().getVerified()) {
             throw new AlreadyVerifiedException();
-          } else if (response.pushChallengedRequired() || response.captchaRequired()) {
+          } else if (response.getMetadata().pushChallengedRequired() || response.getMetadata().captchaRequired()) {
             throw new ChallengeRequiredException(response);
           } else {
-            Log.i(TAG, "Received 409 for patching reg session that is not verified, with required information: " + String.join(", ", response.getRequestedInformation()));
+            Log.i(TAG, "Received 409 for patching reg session that is not verified, with required information: " + String.join(", ", response.getMetadata().getRequestedInformation()));
             throw new HttpConflictException();
           }
       }
     }
   }
 
-  private static class RegistrationCodeSubmissionResponseHandler implements ResponseCodeHandler {
+  /**
+   * Error response handler used exclusively for submitting a verification code during a registration session.
+   */
+  private static class SubmitVerificationCodeResponseHandler implements ResponseCodeHandler {
     @Override
-    public void handle(int responseCode, ResponseBody body) throws NonSuccessfulResponseCodeException, PushNetworkException {
+    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
 
       switch (responseCode) {
         case 400:
@@ -3274,6 +3280,16 @@ public class PushServiceSocket {
             Log.i(TAG, "Received 409 for reg code submission that is not verified, with required information: " + String.join(", ", sessionMetadata.getRequestedInformation()));
             throw new HttpConflictException();
           }
+        case 429:
+          RegistrationSessionMetadataResponse response;
+          try {
+            response = parseSessionMetadataResponse(body, getHeader);
+          } catch (IOException e) {
+            Log.w(TAG, "Unable to read response body.", e);
+            throw new NonSuccessfulResponseCodeException(429);
+          }
+
+          throw new SubmitVerificationCodeRateLimitException(response);
         case 440:
           VerificationCodeFailureResponseBody codeFailureResponse;
           try {
@@ -3289,9 +3305,13 @@ public class PushServiceSocket {
   }
 
   private static RegistrationSessionMetadataResponse parseSessionMetadataResponse(Response response) throws IOException {
+    return parseSessionMetadataResponse(response.body(), response::header);
+  }
+
+  private static RegistrationSessionMetadataResponse parseSessionMetadataResponse(ResponseBody body, Function<String, String> getHeader) throws IOException {
     long serverDeliveredTimestamp = 0;
     try {
-      String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
+      String stringValue = getHeader.apply(SERVER_DELIVERED_TIMESTAMP_HEADER);
       stringValue = stringValue != null ? stringValue : "0";
 
       serverDeliveredTimestamp = Long.parseLong(stringValue);
@@ -3299,8 +3319,11 @@ public class PushServiceSocket {
       Log.w(TAG, e);
     }
 
-    RegistrationSessionMetadataHeaders responseHeaders = new RegistrationSessionMetadataHeaders(serverDeliveredTimestamp);
-    RegistrationSessionMetadataJson responseBody = JsonUtil.fromJson(readBodyString(response), RegistrationSessionMetadataJson.class);
+    long retryAfterLong = Util.parseLong(getHeader.apply("Retry-After"), -1);
+    Long retryAfter     = retryAfterLong != -1 ? TimeUnit.SECONDS.toMillis(retryAfterLong) : null;
+
+    RegistrationSessionMetadataHeaders responseHeaders = new RegistrationSessionMetadataHeaders(serverDeliveredTimestamp, retryAfter);
+    RegistrationSessionMetadataJson    responseBody    = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
 
     return new RegistrationSessionMetadataResponse(responseHeaders, responseBody, null);
   }

@@ -165,7 +165,6 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     when (result) {
       is VerificationCodeRequestResult.Success -> binding.codeEntryLayout.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       else -> presentGenericError(result)
     }

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.data.network
 
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException
@@ -17,13 +18,15 @@ import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestExce
 import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionException
 import org.whispersystems.signalservice.api.push.exceptions.NonNormalizedPhoneNumberException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
-import org.whispersystems.signalservice.api.push.exceptions.RegistrationRetryException
+import org.whispersystems.signalservice.api.push.exceptions.RequestVerificationCodeRateLimitException
+import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCodeRateLimitException
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.LockedException
-import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataJson
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * This is a processor to map a [RegistrationSessionMetadataResponse] to all the known outcomes.
@@ -37,19 +40,19 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     fun from(networkResult: NetworkResult<RegistrationSessionMetadataResponse>): VerificationCodeRequestResult {
       return when (networkResult) {
         is NetworkResult.Success -> {
-          val challenges = Challenge.parse(networkResult.result.body.requestedInformation)
+          val challenges = Challenge.parse(networkResult.result.metadata.requestedInformation)
           if (challenges.isNotEmpty()) {
             Log.d(TAG, "Received \"successful\" response that contains challenges: ${challenges.joinToString { it.key }}")
             ChallengeRequired(challenges)
           } else {
             Success(
-              sessionId = networkResult.result.body.id,
-              nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextSms),
-              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextCall),
-              nextVerificationAttempt = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.body.nextVerificationAttempt),
-              allowedToRequestCode = networkResult.result.body.allowedToRequestCode,
-              challengesRequested = Challenge.parse(networkResult.result.body.requestedInformation),
-              verified = networkResult.result.body.verified
+              sessionId = networkResult.result.metadata.id,
+              nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextSms),
+              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextCall),
+              nextVerificationAttempt = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextVerificationAttempt),
+              allowedToRequestCode = networkResult.result.metadata.allowedToRequestCode,
+              challengesRequested = Challenge.parse(networkResult.result.metadata.requestedInformation),
+              verified = networkResult.result.metadata.verified
             )
           }
         }
@@ -59,14 +62,23 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
         is NetworkResult.StatusCodeError -> {
           when (val cause = networkResult.exception) {
             is ChallengeRequiredException -> createChallengeRequiredProcessor(cause.response)
-            is RateLimitException -> createRateLimitProcessor(cause)
+            is RateLimitException -> RateLimited(cause, cause.retryAfterMilliseconds.orNull())
             is ImpossiblePhoneNumberException -> ImpossibleNumber(cause)
             is NonNormalizedPhoneNumberException -> NonNormalizedNumber(cause = cause, originalNumber = cause.originalNumber, normalizedNumber = cause.normalizedNumber)
             is TokenNotAcceptedException -> TokenNotAccepted(cause)
             is ExternalServiceFailureException -> ExternalServiceFailure(cause)
             is InvalidTransportModeException -> InvalidTransportModeFailure(cause)
             is MalformedRequestException -> MalformedRequest(cause)
-            is RegistrationRetryException -> MustRetry(cause)
+            is SubmitVerificationCodeRateLimitException -> {
+              SubmitVerificationCodeRateLimited(cause)
+            }
+            is RequestVerificationCodeRateLimitException -> {
+              RequestVerificationCodeRateLimited(
+                cause = cause,
+                nextSmsTimestamp = RegistrationRepository.deriveTimestamp(cause.sessionMetadata.headers, cause.sessionMetadata.metadata.nextSms),
+                nextCallTimestamp = RegistrationRepository.deriveTimestamp(cause.sessionMetadata.headers, cause.sessionMetadata.metadata.nextCall)
+              )
+            }
             is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials, svr3Credentials = cause.svr3Credentials)
             is NoSuchSessionException -> NoSuchSession(cause)
             is AlreadyVerifiedException -> AlreadyVerified(cause)
@@ -76,16 +88,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
       }
     }
 
-    private fun createChallengeRequiredProcessor(response: RegistrationSessionMetadataJson): VerificationCodeRequestResult {
-      return ChallengeRequired(Challenge.parse(response.requestedInformation))
-    }
-
-    private fun createRateLimitProcessor(exception: RateLimitException): VerificationCodeRequestResult {
-      return if (exception.retryAfterMilliseconds.isPresent) {
-        RateLimited(exception, exception.retryAfterMilliseconds.get())
-      } else {
-        AttemptsExhausted(exception)
-      }
+    private fun createChallengeRequiredProcessor(response: RegistrationSessionMetadataResponse): VerificationCodeRequestResult {
+      return ChallengeRequired(Challenge.parse(response.metadata.requestedInformation))
     }
   }
 
@@ -93,9 +97,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class ChallengeRequired(val challenges: List<Challenge>) : VerificationCodeRequestResult(null)
 
-  class RateLimited(cause: Throwable, val timeRemaining: Long) : VerificationCodeRequestResult(cause)
-
-  class AttemptsExhausted(cause: Throwable) : VerificationCodeRequestResult(cause)
+  class RateLimited(cause: Throwable, val timeRemaining: Long?) : VerificationCodeRequestResult(cause)
 
   class ImpossibleNumber(cause: Throwable) : VerificationCodeRequestResult(cause)
 
@@ -109,7 +111,26 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class MalformedRequest(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class MustRetry(cause: Throwable) : VerificationCodeRequestResult(cause)
+  class RequestVerificationCodeRateLimited(cause: Throwable, val nextSmsTimestamp: Long, val nextCallTimestamp: Long) : VerificationCodeRequestResult(cause) {
+    val willBeAbleToRequestAgain: Boolean = nextSmsTimestamp > 0 || nextCallTimestamp > 0
+    fun log(now: Duration = System.currentTimeMillis().milliseconds): String {
+      val sms = if (nextSmsTimestamp > 0) {
+        "${(nextSmsTimestamp.milliseconds - now).inWholeSeconds}s"
+      } else {
+        "Never"
+      }
+
+      val call = if (nextCallTimestamp > 0) {
+        "${(nextCallTimestamp.milliseconds - now).inWholeSeconds}s"
+      } else {
+        "Never"
+      }
+
+      return "Request verification code rate limited! nextSms: $sms nextCall: $call"
+    }
+  }
+
+  class SubmitVerificationCodeRateLimited(cause: Throwable) : VerificationCodeRequestResult(cause)
 
   class RegistrationLocked(cause: Throwable, val timeRemaining: Long, val svr2Credentials: AuthCredentials, val svr3Credentials: Svr3Credentials) : VerificationCodeRequestResult(cause)
 
