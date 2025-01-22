@@ -145,6 +145,7 @@ class ManageDonationsViewModel : ViewModel() {
     return when (status) {
       DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
       DonationRedemptionJobStatus.None -> ManageDonationsState.RedemptionState.NONE
+      DonationRedemptionJobStatus.PendingKeepAlive -> ManageDonationsState.RedemptionState.SUBSCRIPTION_REFRESH
 
       is DonationRedemptionJobStatus.PendingExternalVerification,
       DonationRedemptionJobStatus.PendingReceiptRedemption,

@@ -523,7 +523,9 @@ object InAppPaymentsRepository {
           )
         }
         InAppPaymentTable.State.PENDING -> {
-          if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
+          if (inAppPayment.data.redemption?.keepAlive == true) {
+            DonationRedemptionJobStatus.PendingKeepAlive
+          } else if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
             DonationRedemptionJobStatus.PendingReceiptRedemption
           } else {
             DonationRedemptionJobStatus.PendingReceiptRequest

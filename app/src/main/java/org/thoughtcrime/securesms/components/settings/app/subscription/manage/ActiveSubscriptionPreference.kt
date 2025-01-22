@@ -82,6 +82,7 @@ object ActiveSubscriptionPreference {
         ManageDonationsState.RedemptionState.IS_PENDING_BANK_TRANSFER -> presentPendingBankTransferState(model)
         ManageDonationsState.RedemptionState.IN_PROGRESS -> presentInProgressState()
         ManageDonationsState.RedemptionState.FAILED -> presentFailureState(model)
+        ManageDonationsState.RedemptionState.SUBSCRIPTION_REFRESH -> presentRefreshState()
       }
     }
 
@@ -94,6 +95,11 @@ object ActiveSubscriptionPreference {
         )
       )
       progress.visible = false
+    }
+
+    private fun presentRefreshState() {
+      expiry.text = context.getString(R.string.MySupportPreference__checking_subscription)
+      progress.visible = true
     }
 
     private fun presentPendingBankTransferState(model: Model) {
