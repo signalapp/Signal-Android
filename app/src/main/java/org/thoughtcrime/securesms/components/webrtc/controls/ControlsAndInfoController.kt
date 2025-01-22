@@ -284,7 +284,7 @@ class ControlsAndInfoController private constructor(
 
   private fun hide(delay: Long = 0L) {
     if (delay == 0L) {
-      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
+      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP || controlState.displayErrorControls() || controlState.displayIncomingCallButtons()) {
         behavior.isHideable = true
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
 
@@ -343,7 +343,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private fun showOrHideControlsOnUpdate(previousState: WebRtcControls) {
-    if (controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
+    if (controlState == WebRtcControls.PIP || controlState.displayErrorControls() || controlState.displayIncomingCallButtons()) {
       hide()
       return
     }
