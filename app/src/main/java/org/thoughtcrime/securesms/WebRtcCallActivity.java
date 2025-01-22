@@ -61,6 +61,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
+import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.CallLinkProfileKeySender;
@@ -780,6 +781,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
   }
 
+  private void handleGroupCallHasMaxDevices(@NonNull Recipient recipient) {
+    new MaterialAlertDialogBuilder(this)
+        .setMessage(R.string.WebRtcCallView__call_is_full)
+        .setPositiveButton(android.R.string.ok, (d, w) -> handleTerminate(recipient, HangupMessage.Type.NORMAL))
+        .show();
+  }
+
   private void handleTerminate(@NonNull Recipient recipient, @NonNull HangupMessage.Type hangupType) {
     Log.i(TAG, "handleTerminate called: " + hangupType.name());
 
@@ -964,7 +972,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       case CALL_RINGING:
         handleCallRinging(); break;
       case CALL_DISCONNECTED:
-        handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL); break;
+        if (event.getGroupCallEndReason() == GroupCall.GroupCallEndReason.HAS_MAX_DEVICES) {
+          handleGroupCallHasMaxDevices(event.getRecipient());
+        } else {
+          handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);
+        }
+
+        break;
       case CALL_DISCONNECTED_GLARE:
         handleGlare(event.getRecipient()); break;
       case CALL_ACCEPTED_ELSEWHERE:

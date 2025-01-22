@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service.webrtc.state
 import com.annimon.stream.OptionalLong
 import org.signal.ringrtc.CallId
 import org.signal.ringrtc.GroupCall
+import org.signal.ringrtc.GroupCall.GroupCallEndReason
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -30,7 +31,8 @@ data class CallInfoState(
   var remoteDevicesCount: OptionalLong = OptionalLong.empty(),
   var participantLimit: Long? = null,
   var pendingParticipants: PendingParticipantCollection = PendingParticipantCollection(),
-  var callLinkDisconnectReason: CallLinkDisconnectReason? = null
+  var callLinkDisconnectReason: CallLinkDisconnectReason? = null,
+  var groupCallEndReason: GroupCallEndReason? = null
 ) {
 
   val remoteCallParticipants: List<CallParticipant>
