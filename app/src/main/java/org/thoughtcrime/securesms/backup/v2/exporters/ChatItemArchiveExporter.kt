@@ -432,10 +432,10 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
 
   // If a user restores a backup with a different number, then they'll have outgoing messages from a non-self contact.
   // We want to ensure all outgoing messages are from ourselves.
-  val fromRecipientId = if (direction == Direction.OUTGOING) {
-    selfRecipientId.toLong()
-  } else {
-    record.fromRecipientId
+  val fromRecipientId = when {
+    direction == Direction.OUTGOING -> selfRecipientId.toLong()
+    direction == Direction.DIRECTIONLESS && MessageTypes.isOutgoingMessageType(record.type) -> selfRecipientId.toLong()
+    else -> record.fromRecipientId
   }
 
   val builder = ChatItem.Builder().apply {
