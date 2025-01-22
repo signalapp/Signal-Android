@@ -31,7 +31,8 @@ private val TAG = Log.tag(DistributionListArchiveExporter::class)
 
 class DistributionListArchiveExporter(
   private val cursor: Cursor,
-  private val distributionListTables: DistributionListTables
+  private val distributionListTables: DistributionListTables,
+  private val selfRecipientId: RecipientId
 ) : Iterator<ArchiveRecipient>, Closeable {
 
   override fun hasNext(): Boolean {
@@ -65,13 +66,14 @@ class DistributionListArchiveExporter(
         deletionTimestamp = record.deletedAtTimestamp
       )
     } else {
+      val members = record.members.toRemoteMemberList(selfRecipientId)
       DistributionListItem(
         distributionId = record.distributionId.asUuid().toByteArray().toByteString(),
         distributionList = DistributionList(
           name = record.name,
           allowReplies = record.allowsReplies,
-          privacyMode = record.privacyMode.toBackupPrivacyMode(record.members.size),
-          memberRecipientIds = record.members.map { it.toLong() }
+          privacyMode = record.privacyMode.toBackupPrivacyMode(members.size),
+          memberRecipientIds = members
         )
       )
     }
@@ -100,4 +102,12 @@ private fun DistributionListPrivacyMode.toBackupPrivacyMode(memberCount: Int): D
       }
     }
   }
+}
+
+private fun List<RecipientId>.toRemoteMemberList(selfRecipientId: RecipientId): List<Long> {
+  val filtered = this.filter { it != selfRecipientId }.map { it.toLong() }
+  if (filtered.size != this.size) {
+    Log.w(TAG, ExportOddities.distributionListHadSelfAsMember())
+  }
+  return filtered
 }

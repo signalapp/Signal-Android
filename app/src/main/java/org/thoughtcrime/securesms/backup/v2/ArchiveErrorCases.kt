@@ -106,6 +106,10 @@ object ExportOddities {
     return log(0, "Distribution list had a privacy mode of ALL_EXCEPT with no members. Exporting at ALL.")
   }
 
+  fun distributionListHadSelfAsMember(): String {
+    return log(0, "Distribution list had self as a member. Removing it.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[ODDITY][$sentTimestamp] $message"
   }

@@ -13,13 +13,13 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.recipients.RecipientId
 
-fun DistributionListTables.getAllForBackup(): DistributionListArchiveExporter {
+fun DistributionListTables.getAllForBackup(selfRecipientId: RecipientId): DistributionListArchiveExporter {
   val cursor = readableDatabase
     .select()
     .from(DistributionListTables.ListTable.TABLE_NAME)
     .run()
 
-  return DistributionListArchiveExporter(cursor, this)
+  return DistributionListArchiveExporter(cursor, this, selfRecipientId)
 }
 
 fun DistributionListTables.getMembersForBackup(id: DistributionListId): List<RecipientId> {
