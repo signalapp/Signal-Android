@@ -335,6 +335,14 @@ class MediaSelectionViewModel(
 
     store.update { it.copy(quality = sentMediaQuality, isPreUploadEnabled = false) }
     repository.uploadRepository.cancelAllUploads()
+
+    store.state.selectedMedia.forEach { mediaItem ->
+      if (MediaUtil.isVideoType(mediaItem.contentType) && MediaConstraints.isVideoTranscodeAvailable()) {
+        val uri = mediaItem.uri
+        val data = store.state.getOrCreateVideoTrimData(uri)
+        onEditVideoDuration(totalDurationUs = data.totalInputDurationUs, startTimeUs = data.startTimeUs, endTimeUs = data.endTimeUs, touchEnabled = true, uri = uri)
+      }
+    }
   }
 
   fun setMessage(text: CharSequence?) {
@@ -345,9 +353,9 @@ class MediaSelectionViewModel(
     store.update { it.copy(viewOnceToggleState = it.viewOnceToggleState.next()) }
   }
 
-  fun onEditVideoDuration(totalDurationUs: Long, startTimeUs: Long, endTimeUs: Long, touchEnabled: Boolean) {
+  fun onEditVideoDuration(totalDurationUs: Long, startTimeUs: Long, endTimeUs: Long, touchEnabled: Boolean, uri: Uri? = store.state.focusedMedia?.uri) {
+    if (uri == null) return
     store.update {
-      val uri = it.focusedMedia?.uri ?: return@update it
       val data = it.getOrCreateVideoTrimData(uri)
       val clampedStartTime = max(startTimeUs, 0)
 
