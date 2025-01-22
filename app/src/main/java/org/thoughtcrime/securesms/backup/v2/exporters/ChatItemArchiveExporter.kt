@@ -14,6 +14,7 @@ import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfBlank
 import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.orNull
 import org.signal.core.util.requireBlob
@@ -316,7 +317,7 @@ class ChatItemArchiveExporter(
               attachments = extraData.attachmentsById[record.id]
             )
 
-            if (standardMessage.text == null && standardMessage.attachments.isEmpty()) {
+            if (standardMessage.text.isNullOrBlank() && standardMessage.attachments.isEmpty()) {
               Log.w(TAG, ExportSkips.emptyStandardMessage(record.dateSent))
               continue
             }
@@ -883,7 +884,7 @@ private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnab
 }
 
 private fun BackupMessageRecord.toRemoteStandardMessage(db: SignalDatabase, mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
-  val text = body?.let {
+  val text = body.nullIfBlank()?.let {
     Text(
       body = it,
       bodyRanges = (this.bodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()) + (mentions?.toRemoteBodyRanges(db) ?: emptyList())
@@ -1376,6 +1377,10 @@ fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
     Log.w(TAG, ExportOddities.revisionsOnUnexpectedMessageType(current.dateSent))
     emptyList()
   }
+}
+
+private fun Text?.isNullOrBlank(): Boolean {
+  return this == null || this.body.isBlank()
 }
 
 private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {
