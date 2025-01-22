@@ -66,6 +66,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
@@ -890,16 +892,18 @@ object BackupRepository {
     AppDependencies.recipientCache.warmUp()
 
     val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
+      val jobs = mutableListOf<Job>()
       groups
         .asSequence()
-        .mapNotNull { group ->
-          if (group.id.isV2) {
-            RequestGroupV2InfoJob(group.id as GroupId.V2)
-          } else {
-            null
+        .filter { it.id.isV2 }
+        .forEach { group ->
+          jobs.add(RequestGroupV2InfoJob(group.id as GroupId.V2))
+          val avatarKey = group.requireV2GroupProperties().avatarKey
+          if (avatarKey.isNotEmpty()) {
+            jobs.add(AvatarGroupsV2DownloadJob(group.id.requireV2(), avatarKey))
           }
         }
-        .toList()
+      jobs
     }
     AppDependencies.jobManager.addAll(groupJobs)
     stopwatch.split("group-jobs")

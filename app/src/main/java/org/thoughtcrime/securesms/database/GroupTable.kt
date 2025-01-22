@@ -78,7 +78,9 @@ import java.util.stream.Collectors
 import javax.annotation.CheckReturnValue
 import kotlin.math.abs
 
-class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
+class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
+  DatabaseTable(context, databaseHelper),
+  RecipientIdDatabaseReference {
 
   companion object {
     private val TAG = Log.tag(GroupTable::class.java)
@@ -1097,7 +1099,9 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
   }
 
-  class Reader(val cursor: Cursor?) : Closeable, ContactSearchIterator<GroupRecord> {
+  class Reader(val cursor: Cursor?) :
+    Closeable,
+    ContactSearchIterator<GroupRecord> {
 
     fun getNext(): GroupRecord? {
       return if (cursor == null || !cursor.moveToNext()) {
@@ -1161,6 +1165,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     val bannedMembers: Set<ServiceId> by lazy {
       DecryptedGroupUtil.bannedMembersToServiceIdSet(decryptedGroup.bannedMembers)
+    }
+
+    val avatarKey: String by lazy {
+      decryptedGroup.avatar
     }
 
     fun isAdmin(recipient: Recipient): Boolean {
