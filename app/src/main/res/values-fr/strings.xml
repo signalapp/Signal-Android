@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -166,7 +167,7 @@
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/AA</string>
     <!-- Displayed as a hint in the card cvv text field -->
-    <string name="CreditCardFragment__cvv">CVC</string>
+    <string name="CreditCardFragment__cvv">Cryptogramme visuel</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
     <string name="CreditCardFragment__invalid_card_number">Numéro de carte non valide</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
@@ -346,7 +347,7 @@
     <string name="CommunicationActions_cant_join_call">Impossible de rejoindre l’appel</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Le lien de cet appel n’est plus valide.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
-    <string name="CommunicationActions_invalid_link">Le lien est invalide</string>
+    <string name="CommunicationActions_invalid_link">Lien non valide</string>
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Ce lien d’appel n’est pas valide. Vérifiez qu’il n’est pas tronqué et qu’il s’agit du bon lien.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
@@ -389,7 +390,7 @@
     <string name="ContactShareEditActivity__send_contact">Partager le contact</string>
     <string name="ContactShareEditActivity_type_home">Domicile</string>
     <string name="ContactShareEditActivity_type_mobile">Mobile</string>
-    <string name="ContactShareEditActivity_type_work">Bureau</string>
+    <string name="ContactShareEditActivity_type_work">Professionnel</string>
     <string name="ContactShareEditActivity_type_missing">Autre</string>
     <string name="ContactShareEditActivity_invalid_contact">Le contact sélectionné est incorrect</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
@@ -547,7 +548,7 @@
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">Envoi d\'un message au texte formaté</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Certaines personnes utilisent peut-être une version de Signal qui ne prend pas en charge le texte formaté. Elles ne pourront pas voir les changements de formatage appliqués à un message.</string>
+    <string name="SendingFormattingTextDialog_message">Certaines personnes utilisent peut-être une version de Signal qui ne prend pas en charge le texte formaté. Elles ne pourront pas voir les modifications apportées à la mise en forme.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Envoyer quand même</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -584,6 +585,12 @@
         <item quantity="one">Enregistrement de la pièce jointe dans l\'espace de stockage…</item>
         <item quantity="other">Enregistrement de %1$d pièces jointes dans l\'espace de stockage…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
     <string name="ConversationFragment_pending">Envoi en cours…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Données (Signal)</string>
@@ -1063,7 +1070,7 @@
     <!-- Title of dialog when the QR code being scanned is invalid -->
     <string name="AddLinkDeviceFragment__linking_device_failed">Impossible d’associer l’appareil</string>
     <!-- Text shown in a dialog when the QR code being scanned is invalid -->
-    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Ce code QR est incorrect. Veuillez scanner le code QR affiché sur l’appareil à associer.</string>
+    <string name="AddLinkDeviceFragment__this_qr_code_not_valid">Ce code QR est incorrect. Veuillez scanner le code QR affiché sur l\'appareil à associer.</string>
     <!-- Button in dialog to retry linking a device with a qr code -->
     <string name="AddLinkDeviceFragment__retry">Réessayer</string>
 
@@ -1071,7 +1078,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Transférer tous les messages</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transférez vos médias récents et vos messages texte vers votre appareil associé.</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and your last 45 days of media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ne pas les transférer</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1375,7 +1382,7 @@
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité, invitez vos contacts sur Signal.</string>
     <string name="ManageGroupActivity_invite_now">Inviter</string>
     <string name="ManageGroupActivity_more">plus</string>
-    <string name="ManageGroupActivity_add_group_description">Présenter le groupe en quelques mots…</string>
+    <string name="ManageGroupActivity_add_group_description">Présentez le groupe en quelques mots…</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
@@ -1410,6 +1417,14 @@
     <string name="RemoteRestoreActivity__couldnt_transfer">Impossible de terminer le transfert</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Une erreur nous empêche de transférer votre compte. Veuillez choisir une autre méthode de transfert et réessayer.</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">Couldn\'t restore this backup</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">Not now</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me prévenir quand on me mentionne</string>
@@ -2169,7 +2184,7 @@
 
     <!-- RecaptchaRequiredBottomSheetFragment -->
     <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Confirmer le reCAPTCHA pour continuer d\'échanger des messages</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pour nous aider à empêcher le spam sur Signal, merci de confirmer le reCAPTCHA.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pour nous aider à lutter contre le spam sur Signal, merci de confirmer le reCAPTCHA.</string>
     <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Vous pourrez reprendre vos échanges sur Signal une fois le reCAPTCHA confirmé. Tous vos messages en attente seront automatiquement envoyés.</string>
 
     <!-- Recipient -->
@@ -2816,7 +2831,7 @@
 
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Votre contact utilise une version plus récente de Signal. Le format de son code QR est incompatible avec votre version. Installez une mise à jour Signal pour confirmer son numéro de sécurité.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le format du code QR que vous avez scanné ne correspond pas à celui d\'un code de confirmation du numéro de sécurité. Veuillez le scanner de nouveau.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Le format du code QR que vous avez scanné ne correspond pas à celui d\'un code de confirmation de numéro de sécurité. Veuillez le rescanner.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Partager le numéro de sécurité via…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Notre numéro de sécurité Signal :</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Aucune appli disponible pour le partage.</string>
@@ -3029,10 +3044,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Compression en cours…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -5121,11 +5133,11 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Saisissez votre ancien numéro de téléphone</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Saisissez l\'indicatif de pays associé à votre nouveau numéro</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Saisissez votre nouveau numéro de téléphone</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Votre nouveau numéro de téléphone doit être différent de votre ancien numéro.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number cannot be the same as your old phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Changer de numéro</string>
-    <string name="ChangeNumberVerifyFragment__verifying_s">Vérification de %1$s</string>
+    <string name="ChangeNumberVerifyFragment__verifying_s">Vérification du %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha requis</string>
 
     <!-- ChangeNumberConfirmFragment -->
@@ -5134,7 +5146,7 @@
     <string name="ChangeNumberConfirmFragment__edit_number">Modifier le numéro</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
-    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Changement de numéro Signal – Besoin d’aide : code PIN sous Android (PIN v2)</string>
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Changement de numéro Signal – Besoin d\'aide : code PIN sous Android (PIN v2)</string>
 
     <!-- ChangeNumberPinDiffersFragment -->
     <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Les codes PIN ne correspondent pas.</string>
@@ -5147,11 +5159,11 @@
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
     <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vous avez tenté de changer de numéro, mais nous ne savons pas encore si l\'opération a réussi.\n\n Nous vérifions de nouveau…</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__change_status_confirmed">Changement d’état confirmé</string>
+    <string name="ChangeNumberLockActivity__change_status_confirmed">Changement confirmé</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Le numéro %1$s est maintenant confirmé. S\'il ne s\'agit pas de votre nouveau numéro, nous vous invitons à recommencer la procédure de changement de numéro.</string>
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__change_status_unconfirmed">État du changement non confirmé</string>
+    <string name="ChangeNumberLockActivity__change_status_unconfirmed">Changement non confirmé</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
     <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Impossible de vérifier l\'état de votre demande de changement de numéro. (Erreur : %1$s)</string>
     <!-- Dialog button to retry confirming the number on the server -->
@@ -5405,8 +5417,8 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Enregistrer</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Modifier la couleur</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">Cette couleur est utilisée dans %1$d conversation. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
-        <item quantity="other">Cette couleur est utilisée dans %1$d conversations. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
+        <item quantity="one">Cette couleur est appliquée à %1$d conversation. Voulez-vous l\'appliquer à toutes les conversations ?</item>
+        <item quantity="other">Cette couleur est appliquée à %1$d conversations. Voulez-vous l\'appliquer à toutes les conversations ?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -5819,6 +5831,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">Votre virement de %1$s est en attente. Le traitement des virements nécessite en général entre 1 et 14 jours ouvrés.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">En savoir plus</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Installez la dernière version de Signal</string>
@@ -6897,11 +6911,11 @@
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Code pays de l\'IBAN non pris en charge</string>
     <!-- Error label for IBAN field when number is invalid -->
-    <string name="BankTransferDetailsFragment__invalid_iban">IBAN invalide</string>
+    <string name="BankTransferDetailsFragment__invalid_iban">IBAN incorrect</string>
     <!-- Error label for name field when name is not at least two characters long -->
     <string name="BankTransferDetailsFragment__minimum_2_characters">2 caractères minimum</string>
     <!-- Error label for email field when email is not valid -->
-    <string name="BankTransferDetailsFragment__invalid_email_address">Adresse e-mail invalide</string>
+    <string name="BankTransferDetailsFragment__invalid_email_address">Adresse e-mail non valide</string>
 
     <!-- IdealTransferDetailsFragment -->
     <!-- Title of the screen, displayed in the toolbar -->
@@ -7532,7 +7546,10 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Impossible de terminer la sauvegarde</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Votre appareil n’a pas effectué de sauvegarde complète depuis %1$d jours. Vérifiez qu’il est connecté au Wi-Fi, puis appuyez sur \"Sauvegarder maintenant\". </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one">Your device hasn\'t completed a backup for %1$d day. Make sure your device is connected to wi-fi and tap \"Back up now.\" </item>
+        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">En savoir plus</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->

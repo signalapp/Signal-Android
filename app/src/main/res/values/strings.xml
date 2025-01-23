@@ -586,7 +586,7 @@
         <item quantity="one">Saving attachment to storage…</item>
         <item quantity="other">Saving %1$d attachments to storage…</item>
     </plurals>
-    <!-- Dialog title asking to save media to your phone's storage -->
+    <!-- Dialog title asking to save media to your phone\'s storage -->
     <string name="ConversationFragment__save_to_phone">Save to phone?</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>

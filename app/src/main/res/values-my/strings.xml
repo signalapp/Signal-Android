@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -573,6 +574,12 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="other">ပူးတွဲဖိုင် %1$d ကို ဖုန်းထဲတွင် သိမ်းနေသည်</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
     <string name="ConversationFragment_pending">ဆိုင်းငံ့ထားသည်…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">ဒေတာ (Signal)</string>
@@ -1051,7 +1058,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">မက်ဆေ့ချ်မှတ်တမ်းကို လွှဲပြောင်းရန်</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">သင်၏ စာတိုမက်ဆေ့ချ်များနှင့် လတ်တလောမီဒီယာကို သင်ချိတ်ထားသည့်စက်သို့ လွှဲပြောင်းပါ</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and your last 45 days of media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">မလွှဲပြောင်းပါ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1372,6 +1379,14 @@
     <string name="RemoteRestoreActivity__couldnt_transfer">လွှဲပြောင်းခြင်းကို အပြီးသတ်၍ မရပါ</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ချွတ်ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သောကြောင့် သင့်အကောင့်ကို လွှဲပြောင်း၍မရပါ။ လွှဲပြောင်းရန်နည်းလမ်းကို ရွေးချယ်၍ ထပ်စမ်းကြည့်ပါ။</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">Couldn\'t restore this backup</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">Not now</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">မန်းရှင်းများရှိလျှင် ကျွန်ုပ်ကိုအသိပေးပါ</string>
@@ -2940,10 +2955,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">လုပ်ဆောင်နေဆဲ…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -5002,7 +5014,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">သင့်နံပါတ်အဟောင်းကို သတ်မှတ်ပေးရပါမည်</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">သင့်နံပါတ်အသစ်၏ နိုင်ငံကုဒ်ကို သတ်မှတ်ပေးရပါမည်</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">သင့်နံပါတ်အသစ်ကို သတ်မှတ်ပေးရပါမည်</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">သင့်ဖုန်းနံပါတ်အသစ်သည် သင့်ဖုန်းနံပါတ်ဟောင်းနှင့် မတူနိုင်ပါ</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number cannot be the same as your old phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">နံပါတ် ပြောင်းရန်</string>
@@ -5686,6 +5698,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">သင်၏ %1$s ဘဏ်ငွေလွှဲပြောင်းမှုကို လုပ်ဆောင်ဆဲဖြစ်ပါသည်။ ဘဏ်ငွေလွှဲပြောင်းမှုများ ပြီးစီးရန် ရုံးဖွင့်ရက် 1 ရက်မှ 14 ရက်အထိ ကြာနိုင်ပါသည်။  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">ပိုမိုလေ့လာရန်</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
@@ -7371,7 +7385,9 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">သင့်စက်သည် ဘက်ခ်အပ်လုပ်ခြင်း မပြီးမြောက်သည်မှာ %1$d ရက်ရှိပြီဖြစ်သည်။ သင့်စက်ပစ္စည်းကို wi-fi နှင့် ချိတ်ဆက်ထားကြောင်း သေချာစေပြီး \"ယခု ဘက်ခ်အပ်လုပ်မည်\" ကိုနှိပ်ပါ။ </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->

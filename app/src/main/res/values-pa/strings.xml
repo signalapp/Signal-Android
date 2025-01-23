@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -584,6 +585,12 @@
         <item quantity="one">ਅਟੈਚਮੈਂਟ ਨੂੰ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</item>
         <item quantity="other">%1$d ਅਟੈਚਮੈਂਟਾਂ ਨੂੰ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
     <string name="ConversationFragment_pending">ਬਾਕੀ…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">ਡੇਟਾ (Signal)</string>
@@ -1071,7 +1078,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">ਆਪਣੇ ਟੈਕਸਟ ਸੁਨੇਹਿਆਂ ਅਤੇ ਹਾਲੀਆ ਮੀਡੀਆ ਨੂੰ ਆਪਣੇ ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ \'ਤੇ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and your last 45 days of media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">ਟ੍ਰਾਂਸਫਰ ਨਾ ਕਰੋ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1410,6 +1417,14 @@
     <string name="RemoteRestoreActivity__couldnt_transfer">ਟ੍ਰਾਂਸਫਰ ਨੂੰ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ਕਿਸੇ ਗੜਬੜ ਕਾਰਨ ਤੁਹਾਡਾ ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਆਪਣੀ ਟ੍ਰਾਂਸਫਰ ਵਿਧੀ ਚੁਣ ਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">Couldn\'t restore this backup</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">Not now</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ਹਵਾਲਿਆਂ ਲਈ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ</string>
@@ -3029,10 +3044,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -5121,7 +5133,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">ਤੁਹਾਨੂੰ ਆਪਣਾ ਪੁਰਾਣਾ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣਾ ਪਵੇਗਾ</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">ਤੁਹਾਡੇ ਆਪਣੇ ਨਵੇਂ ਨੰਬਰ ਦਾ ਦੇਸ਼ ਕੋਡ ਦੇਣਾ ਪਵੇਗਾ</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">ਤੁਹਾਨੂੰ ਆਪਣਾ ਨਵਾਂ ਫ਼ੋਨ ਨੰਬਰ ਦੇਣਾ ਪਵੇਗਾ</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">ਤੁਹਾਡਾ ਨਵਾਂ ਫ਼ੋਨ ਨੰਬਰ ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਫ਼ੋਨ ਨੰਬਰ ਵਰਗਾ ਨਹੀਂ ਹੋ ਸਕਦਾ</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number cannot be the same as your old phone number</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">ਨੰਬਰ ਬਦਲੋ</string>
@@ -5819,6 +5831,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">ਤੁਹਾਡਾ %1$s ਦਾ ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ ਅਜੇ ਬਾਕੀ ਹੈ। ਬੈਂਕ ਟ੍ਰਾਂਸਫਰ ਨੂੰ ਪੂਰਾ ਹੋਣ ਵਿੱਚ 1 ਤੋਂ 14 ਕਾਰੋਬਾਰੀ ਦਿਨ ਲੱਗ ਸਕਦੇ ਹਨ।  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">ਹੋਰ ਜਾਣੋ</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string>
@@ -7532,7 +7546,10 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ਬੈਕਅੱਪ ਪੂਰਾ ਨਹੀਂ ਕਰ ਸਕੇ</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਦਾ %1$d ਦਿਨਾਂ ਤੋਂ ਬੈਕਅੱਪ ਨਹੀਂ ਲਿਆ ਗਿਆ ਹੈ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡਾ ਡਿਵਾਈਸ Wi-Fi ਨਾਲ ਕਨੈਕਟ ਹੈ ਅਤੇ \"ਹੁਣੇ ਬੈਕਅੱਪ ਲਓ\" \'ਤੇ ਟੈਪ ਕਰੋ। </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one">Your device hasn\'t completed a backup for %1$d day. Make sure your device is connected to wi-fi and tap \"Back up now.\" </item>
+        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">ਹੋਰ ਜਾਣੋ</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
