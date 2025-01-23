@@ -468,11 +468,13 @@ class ChatItemArchiveImporter(
   private fun ChatItem.toMessageContentValues(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): ContentValues {
     val contentValues = ContentValues()
 
+    val toRecipientId = if (this.outgoing != null) chatRecipientId else selfId
+
     contentValues.put(MessageTable.TYPE, this.getMessageType())
     contentValues.put(MessageTable.DATE_SENT, this.dateSent)
     contentValues.put(MessageTable.DATE_SERVER, this.incoming?.dateServerSent ?: -1)
     contentValues.put(MessageTable.FROM_RECIPIENT_ID, fromRecipientId.serialize())
-    contentValues.put(MessageTable.TO_RECIPIENT_ID, (if (this.outgoing != null) chatRecipientId else selfId).serialize())
+    contentValues.put(MessageTable.TO_RECIPIENT_ID, toRecipientId.serialize())
     contentValues.put(MessageTable.THREAD_ID, threadId)
     contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.dateSent)
     contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOfOrNull { it.timestamp } ?: 0)
@@ -525,7 +527,7 @@ class ChatItemArchiveImporter(
     when {
       this.standardMessage != null -> contentValues.addStandardMessage(this.standardMessage)
       this.remoteDeletedMessage != null -> contentValues.put(MessageTable.REMOTE_DELETED, 1)
-      this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage)
+      this.updateMessage != null -> contentValues.addUpdateMessage(this.updateMessage, fromRecipientId, toRecipientId)
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
       this.viewOnceMessage != null -> contentValues.addViewOnce(this.viewOnceMessage)
@@ -672,7 +674,7 @@ class ChatItemArchiveImporter(
     }
   }
 
-  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage) {
+  private fun ContentValues.addUpdateMessage(updateMessage: ChatUpdateMessage, fromRecipientId: RecipientId, toRecipientId: RecipientId) {
     var typeFlags: Long = 0
     when {
       updateMessage.simpleUpdate != null -> {
@@ -695,6 +697,12 @@ class ChatItemArchiveImporter(
           SimpleChatUpdate.Type.BLOCKED -> MessageTypes.SPECIAL_TYPE_BLOCKED or typeWithoutBase
           SimpleChatUpdate.Type.UNBLOCKED -> MessageTypes.SPECIAL_TYPE_UNBLOCKED or typeWithoutBase
           SimpleChatUpdate.Type.MESSAGE_REQUEST_ACCEPTED -> MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED or typeWithoutBase
+        }
+
+        // Identity verification changes have to/from swapped
+        if (updateMessage.simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_VERIFIED || updateMessage.simpleUpdate.type == SimpleChatUpdate.Type.IDENTITY_DEFAULT) {
+          put(MessageTable.FROM_RECIPIENT_ID, toRecipientId.serialize())
+          put(MessageTable.TO_RECIPIENT_ID, fromRecipientId.serialize())
         }
       }
       updateMessage.expirationTimerChange != null -> {

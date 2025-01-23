@@ -67,6 +67,18 @@ object ExportSkips {
     return log(0, "Sticker pack  had an invalid packKey.")
   }
 
+  fun identityUpdateForSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Identity update for ourselves.")
+  }
+
+  fun identityDefaultForSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Identity default update for ourselves.")
+  }
+
+  fun identityVerifiedForSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Identity verified update for ourselves.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }

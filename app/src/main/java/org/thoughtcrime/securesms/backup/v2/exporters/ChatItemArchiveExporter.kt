@@ -166,17 +166,26 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isIdentityUpdate(record.type) -> {
-          if (record.fromRecipientId == selfRecipientId.toLong()) continue
+          if (record.fromRecipientId == selfRecipientId.toLong()) {
+            Log.w(TAG, ExportSkips.identityUpdateForSelf(record.dateSent))
+            continue
+          }
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_UPDATE)
         }
 
         MessageTypes.isIdentityVerified(record.type) -> {
-          if (record.fromRecipientId == selfRecipientId.toLong()) continue
+          if (record.toRecipientId == selfRecipientId.toLong()) {
+            Log.w(TAG, ExportSkips.identityVerifiedForSelf(record.dateSent))
+            continue
+          }
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_VERIFIED)
         }
 
         MessageTypes.isIdentityDefault(record.type) -> {
-          if (record.fromRecipientId == selfRecipientId.toLong()) continue
+          if (record.toRecipientId == selfRecipientId.toLong()) {
+            Log.w(TAG, ExportSkips.identityDefaultForSelf(record.dateSent))
+            continue
+          }
           builder.updateMessage = simpleUpdate(SimpleChatUpdate.Type.IDENTITY_DEFAULT)
         }
 
@@ -434,7 +443,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   // We want to ensure all outgoing messages are from ourselves.
   val fromRecipientId = when {
     direction == Direction.OUTGOING -> selfRecipientId.toLong()
-    direction == Direction.DIRECTIONLESS && MessageTypes.isOutgoingMessageType(record.type) -> selfRecipientId.toLong()
+    record.type.isIdentityVerifyType() -> record.toRecipientId
     else -> record.fromRecipientId
   }
 
@@ -1327,6 +1336,11 @@ private fun Long.isDirectionlessType(): Boolean {
     MessageTypes.isGroupUpdate(this) ||
     MessageTypes.isGroupV1MigrationEvent(this) ||
     MessageTypes.isGroupQuit(this)
+}
+
+private fun Long.isIdentityVerifyType(): Boolean {
+  return MessageTypes.isIdentityVerified(this) ||
+    MessageTypes.isIdentityDefault(this)
 }
 
 private fun String.e164ToLong(): Long? {
