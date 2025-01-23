@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logI
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -66,11 +67,16 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     val storageServiceKey = SignalStore.storageService.storageKey
     val repository = StorageServiceRepository(AppDependencies.storageServiceApi)
 
-    val currentVersion = when (val result = repository.getManifestVersion()) {
+    val currentVersion: Long = when (val result = repository.getManifestVersion()) {
       is NetworkResult.Success -> result.result
       is NetworkResult.ApplicationError -> throw result.throwable
       is NetworkResult.NetworkError -> throw result.exception
-      is NetworkResult.StatusCodeError -> throw result.exception
+      is NetworkResult.StatusCodeError -> {
+        when (result.code) {
+          404 -> 0L.logI(TAG, "No manifest found, defaulting to version 0.")
+          else -> throw result.exception
+        }
+      }
     }
     val oldContactStorageIds: Map<RecipientId, StorageId> = SignalDatabase.recipients.getContactStorageSyncIdsMap()
 
