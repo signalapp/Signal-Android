@@ -444,6 +444,9 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   val fromRecipientId = when {
     direction == Direction.OUTGOING -> selfRecipientId.toLong()
     record.type.isIdentityVerifyType() -> record.toRecipientId
+    MessageTypes.isEndSessionType(record.type) && MessageTypes.isOutgoingMessageType(record.type) -> record.toRecipientId
+    MessageTypes.isExpirationTimerUpdate(record.type) && MessageTypes.isOutgoingMessageType(type) -> selfRecipientId.toLong()
+    MessageTypes.isOutgoingAudioCall(type) || MessageTypes.isOutgoingVideoCall(type) -> selfRecipientId.toLong()
     else -> record.fromRecipientId
   }
 
