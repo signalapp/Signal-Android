@@ -55,6 +55,7 @@ public interface CameraFragment {
   void presentHud(int selectedMediaCount);
   void fadeOutControls(@NonNull Runnable onEndAction);
   void fadeInControls();
+  void stopVideoRecording();
 
   interface Controller {
     void onCameraError();

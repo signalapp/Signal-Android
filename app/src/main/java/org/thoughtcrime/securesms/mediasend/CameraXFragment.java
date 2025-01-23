@@ -98,6 +98,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private View                             selfieFlash;
   private MemoryFileDescriptor             videoFileDescriptor;
   private LifecycleCameraController        cameraController;
+  private CameraXVideoCaptureHelper        cameraXVideoCaptureHelper;
   private Disposable                       mostRecentItemDisposable = Disposable.disposed();
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
@@ -227,6 +228,12 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     mostRecentItemDisposable.dispose();
     closeVideoFileDescriptor();
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+  }
+
+  @Override public void stopVideoRecording() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      cameraXVideoCaptureHelper.onVideoCaptureComplete();
+    }
   }
 
   @Override
@@ -439,7 +446,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
         Log.d(TAG, "Max duration: " + maxDuration + " sec");
 
-        captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
+        cameraXVideoCaptureHelper = new CameraXVideoCaptureHelper(
             this,
             captureButton,
             lifecycleCameraController,
@@ -466,7 +473,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                 controller.onVideoCaptureError();
               }
             }
-        ));
+        );
+        captureButton.setVideoCaptureListener(cameraXVideoCaptureHelper);
         displayVideoRecordingTooltipIfNecessary(captureButton);
       } catch (IOException e) {
         Log.w(TAG, "Video capture is not supported on this device.", e);

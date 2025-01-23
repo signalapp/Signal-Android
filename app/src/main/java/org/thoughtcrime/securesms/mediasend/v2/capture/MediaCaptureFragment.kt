@@ -124,6 +124,10 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
         viewLifecycleOwner,
         object : OnBackPressedCallback(true) {
           override fun handleOnBackPressed() {
+            if(sharedViewModel.isVideoRecording.value==true) {
+              captureChildFragment.stopVideoRecording()
+              return
+            }
             requireActivity().finish()
           }
         }

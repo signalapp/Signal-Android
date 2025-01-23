@@ -236,6 +236,10 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
                      });
   }
 
+  @Override public void stopVideoRecording() {
+    throw new UnsupportedOperationException("Camera1 does not support this operation");
+  }
+
   @Override
   public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
     Log.d(TAG, "onSurfaceTextureAvailable");
