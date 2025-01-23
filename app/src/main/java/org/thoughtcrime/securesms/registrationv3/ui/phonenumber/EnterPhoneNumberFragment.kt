@@ -10,7 +10,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
-import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuInflater
@@ -25,6 +24,8 @@ import androidx.core.view.MenuProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.map
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -33,6 +34,7 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
@@ -90,7 +92,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   private lateinit var phoneNumberInputLayout: TextInputEditText
   private lateinit var spinnerView: MaterialAutoCompleteTextView
 
-  private var currentPhoneNumberFormatter: TextWatcher? = null
+  private var currentPhoneNumberFormatter: AsYouTypeFormatter? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -153,13 +155,17 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       }
     }
 
-    fragmentViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
-
-      fragmentState.phoneNumberFormatter?.let {
-        bindPhoneNumberFormatter(it)
+    fragmentViewModel
+      .uiState
+      .map { it.phoneNumberRegionCode }
+      .distinctUntilChanged()
+      .observe(viewLifecycleOwner) { regionCode ->
+        currentPhoneNumberFormatter = PhoneNumberUtil.getInstance().getAsYouTypeFormatter(regionCode)
+        reformatText(phoneNumberInputLayout.text)
         phoneNumberInputLayout.requestFocus()
       }
 
+    fragmentViewModel.uiState.observe(viewLifecycleOwner) { fragmentState ->
       if (fragmentViewModel.isEnteredNumberPossible(fragmentState)) {
         sharedViewModel.setPhoneNumber(fragmentViewModel.parsePhoneNumber(fragmentState))
       } else {
@@ -177,9 +183,6 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     if (existingPhoneNumber != null) {
       fragmentViewModel.restoreState(existingPhoneNumber)
       spinnerView.setText(existingPhoneNumber.countryCode.toString())
-      fragmentViewModel.formatter?.let {
-        bindPhoneNumberFormatter(it)
-      }
       phoneNumberInputLayout.setText(existingPhoneNumber.nationalNumber.toString())
     } else {
       spinnerView.setText(fragmentViewModel.countryPrefix().toString())
@@ -193,15 +196,24 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
   }
 
-  private fun bindPhoneNumberFormatter(formatter: TextWatcher) {
-    if (formatter != currentPhoneNumberFormatter) {
-      currentPhoneNumberFormatter?.let { oldWatcher ->
-        Log.d(TAG, "Removing current phone number formatter in fragment")
-        phoneNumberInputLayout.removeTextChangedListener(oldWatcher)
+  private fun reformatText(text: Editable?) {
+    if (text.isNullOrEmpty()) {
+      return
+    }
+
+    currentPhoneNumberFormatter?.let { formatter ->
+      formatter.clear()
+
+      var formattedNumber: String? = null
+      text.forEach {
+        if (it.isDigit()) {
+          formattedNumber = formatter.inputDigit(it)
+        }
       }
-      phoneNumberInputLayout.addTextChangedListener(formatter)
-      currentPhoneNumberFormatter = formatter
-      Log.d(TAG, "Updated phone number formatter in fragment")
+
+      if (formattedNumber != null && text.toString() != formattedNumber) {
+        text.replace(0, text.length, formattedNumber)
+      }
     }
   }
 
@@ -225,9 +237,12 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       }
     }
 
-    phoneNumberInputLayout.addTextChangedListener {
-      fragmentViewModel.setPhoneNumber(it?.toString())
-    }
+    phoneNumberInputLayout.addTextChangedListener(
+      afterTextChanged = {
+        reformatText(it)
+        fragmentViewModel.setPhoneNumber(it?.toString())
+      }
+    )
 
     val scrollView = binding.scrollView
     val registerButton = binding.registerButton
@@ -388,6 +403,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         Log.i(TAG, result.log())
         handleRequestVerificationCodeRateLimited(result)
       }
+
       is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentGenericError(result)
       is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.e164VerificationMode)
       is VerificationCodeRequestResult.RateLimited -> {
@@ -525,7 +541,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       sharedViewModel.fetchFcmToken(requireContext())
     } else {
       sharedViewModel.uiState.value?.let { value ->
-        val now = System.currentTimeMillis()
+        val now = System.currentTimeMillis().milliseconds
         if (value.phoneNumber == null) {
           fragmentViewModel.setError(EnterPhoneNumberState.Error.INVALID_PHONE_NUMBER)
           sharedViewModel.setInProgress(false)

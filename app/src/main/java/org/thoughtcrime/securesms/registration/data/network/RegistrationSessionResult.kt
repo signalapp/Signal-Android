@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.registration.data.network
 
-import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
@@ -13,23 +12,37 @@ import org.whispersystems.signalservice.api.push.exceptions.NoSuchSessionExcepti
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 sealed class RegistrationSessionResult(cause: Throwable?) : RegistrationResult(cause)
 
-interface SessionMetadataHolder {
-  fun getMetadata(): RegistrationSessionMetadataResponse
+interface SessionMetadataResult {
+  val sessionId: String
+  val nextSmsTimestamp: Duration
+  val nextCallTimestamp: Duration
+  val nextVerificationAttempt: Duration
+  val allowedToRequestCode: Boolean
+  val challengesRequested: List<Challenge>
+  val verified: Boolean
 }
 
 sealed class RegistrationSessionCreationResult(cause: Throwable?) : RegistrationSessionResult(cause) {
   companion object {
 
-    private val TAG = Log.tag(RegistrationSessionResult::class.java)
-
     @JvmStatic
     fun from(networkResult: NetworkResult<RegistrationSessionMetadataResponse>): RegistrationSessionCreationResult {
       return when (networkResult) {
         is NetworkResult.Success -> {
-          Success(networkResult.result)
+          Success(
+            sessionId = networkResult.result.metadata.id,
+            nextSmsTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextSms?.seconds),
+            nextCallTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextCall?.seconds),
+            nextVerificationAttempt = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextVerificationAttempt?.seconds),
+            allowedToRequestCode = networkResult.result.metadata.allowedToRequestCode,
+            challengesRequested = Challenge.parse(networkResult.result.metadata.requestedInformation),
+            verified = networkResult.result.metadata.verified
+          )
         }
 
         is NetworkResult.ApplicationError -> UnknownError(networkResult.throwable)
@@ -49,11 +62,15 @@ sealed class RegistrationSessionCreationResult(cause: Throwable?) : Registration
     }
   }
 
-  class Success(private val metadata: RegistrationSessionMetadataResponse) : RegistrationSessionCreationResult(null), SessionMetadataHolder {
-    override fun getMetadata(): RegistrationSessionMetadataResponse {
-      return metadata
-    }
-  }
+  class Success(
+    override val sessionId: String,
+    override val nextSmsTimestamp: Duration,
+    override val nextCallTimestamp: Duration,
+    override val nextVerificationAttempt: Duration,
+    override val allowedToRequestCode: Boolean,
+    override val challengesRequested: List<Challenge>,
+    override val verified: Boolean
+  ) : RegistrationSessionCreationResult(null), SessionMetadataResult
 
   class RateLimited(cause: Throwable, val timeRemaining: Long?) : RegistrationSessionCreationResult(cause)
   class AttemptsExhausted(cause: Throwable) : RegistrationSessionCreationResult(cause)
@@ -67,7 +84,15 @@ sealed class RegistrationSessionCheckResult(cause: Throwable?) : RegistrationSes
     fun from(networkResult: NetworkResult<RegistrationSessionMetadataResponse>): RegistrationSessionCheckResult {
       return when (networkResult) {
         is NetworkResult.Success -> {
-          Success(networkResult.result)
+          Success(
+            sessionId = networkResult.result.metadata.id,
+            nextSmsTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextSms?.seconds),
+            nextCallTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextCall?.seconds),
+            nextVerificationAttempt = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextVerificationAttempt?.seconds),
+            allowedToRequestCode = networkResult.result.metadata.allowedToRequestCode,
+            challengesRequested = Challenge.parse(networkResult.result.metadata.requestedInformation),
+            verified = networkResult.result.metadata.verified
+          )
         }
 
         is NetworkResult.ApplicationError -> UnknownError(networkResult.throwable)
@@ -82,11 +107,15 @@ sealed class RegistrationSessionCheckResult(cause: Throwable?) : RegistrationSes
     }
   }
 
-  class Success(private val metadata: RegistrationSessionMetadataResponse) : RegistrationSessionCheckResult(null), SessionMetadataHolder {
-    override fun getMetadata(): RegistrationSessionMetadataResponse {
-      return metadata
-    }
-  }
+  class Success(
+    override val sessionId: String,
+    override val nextSmsTimestamp: Duration,
+    override val nextCallTimestamp: Duration,
+    override val nextVerificationAttempt: Duration,
+    override val allowedToRequestCode: Boolean,
+    override val challengesRequested: List<Challenge>,
+    override val verified: Boolean
+  ) : RegistrationSessionCheckResult(null), SessionMetadataResult
 
   class SessionNotFound(cause: Throwable) : RegistrationSessionCheckResult(cause)
   class UnknownError(cause: Throwable) : RegistrationSessionCheckResult(cause)

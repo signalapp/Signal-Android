@@ -19,12 +19,15 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.util.ThreadUtil
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterCodeBinding
+import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionCheckResult
@@ -119,25 +122,31 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       }
     }
 
-    sharedViewModel.uiState.observe(viewLifecycleOwner) {
-      it.sessionCreationError?.let { error ->
+    sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
+      sharedState.sessionCreationError?.let { error ->
         handleSessionCreationError(error)
         sharedViewModel.sessionCreationErrorShown()
       }
 
-      it.sessionStateError?.let { error ->
+      sharedState.sessionStateError?.let { error ->
         handleSessionErrorResponse(error)
         sharedViewModel.sessionStateErrorShown()
       }
 
-      it.registerAccountError?.let { error ->
+      sharedState.registerAccountError?.let { error ->
         handleRegistrationErrorResponse(error)
         sharedViewModel.registerAccountErrorShown()
       }
 
-      binding.resendSmsCountDown.startCountDownTo(it.nextSmsTimestamp)
-      binding.callMeCountDown.startCountDownTo(it.nextCallTimestamp)
-      if (it.inProgress) {
+      if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
+        sharedViewModel.submitCaptchaToken(requireContext())
+      } else if (sharedState.challengesRemaining.isNotEmpty()) {
+        handleChallenges(sharedState.challengesRemaining)
+      }
+
+      binding.resendSmsCountDown.startCountDownTo(sharedState.nextSmsTimestamp)
+      binding.callMeCountDown.startCountDownTo(sharedState.nextCallTimestamp)
+      if (sharedState.inProgress) {
         binding.keyboard.displayProgress()
       } else {
         binding.keyboard.displayKeyboard()
@@ -219,6 +228,7 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
         handleRequestVerificationCodeRateLimited(result)
       }
       is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentSubmitVerificationCodeRateLimited()
+      is VerificationCodeRequestResult.TokenNotAccepted -> presentRemoteErrorDialog(getString(R.string.RegistrationActivity_we_need_to_verify_that_youre_human)) { _, _ -> moveToCaptcha() }
       else -> presentGenericError(result)
     }
   }
@@ -236,6 +246,13 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
       is RegisterAccountResult.RateLimited -> presentRateLimitedDialog()
 
       else -> presentGenericError(result)
+    }
+  }
+
+  private fun handleChallenges(remainingChallenges: List<Challenge>) {
+    when (remainingChallenges.first()) {
+      Challenge.CAPTCHA -> moveToCaptcha()
+      Challenge.PUSH -> sharedViewModel.requestAndSubmitPushToken(requireContext())
     }
   }
 
@@ -361,6 +378,11 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PUSH_NETWORK_AUDITED)
     NavHostFragment.findNavController(this).popBackStack()
     sharedViewModel.setInProgress(false)
+  }
+
+  private fun moveToCaptcha() {
+    findNavController().safeNavigate(EnterCodeFragmentDirections.actionRequestCaptcha())
+    ThreadUtil.postToMain { sharedViewModel.setInProgress(false) }
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)

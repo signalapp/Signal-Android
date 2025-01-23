@@ -3309,23 +3309,11 @@ public class PushServiceSocket {
   }
 
   private static RegistrationSessionMetadataResponse parseSessionMetadataResponse(ResponseBody body, Function<String, String> getHeader) throws IOException {
-    long serverDeliveredTimestamp = 0;
-    try {
-      String stringValue = getHeader.apply(SERVER_DELIVERED_TIMESTAMP_HEADER);
-      stringValue = stringValue != null ? stringValue : "0";
+    long                            retryAfterLong = Util.parseLong(getHeader.apply("Retry-After"), -1);
+    Long                            retryAfterMs   = retryAfterLong != -1 ? TimeUnit.SECONDS.toMillis(retryAfterLong) : null;
+    RegistrationSessionMetadataJson responseBody   = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
 
-      serverDeliveredTimestamp = Long.parseLong(stringValue);
-    } catch (NumberFormatException e) {
-      Log.w(TAG, e);
-    }
-
-    long retryAfterLong = Util.parseLong(getHeader.apply("Retry-After"), -1);
-    Long retryAfter     = retryAfterLong != -1 ? TimeUnit.SECONDS.toMillis(retryAfterLong) : null;
-
-    RegistrationSessionMetadataHeaders responseHeaders = new RegistrationSessionMetadataHeaders(serverDeliveredTimestamp, retryAfter);
-    RegistrationSessionMetadataJson    responseBody    = JsonUtil.fromJson(body.string(), RegistrationSessionMetadataJson.class);
-
-    return new RegistrationSessionMetadataResponse(responseHeaders, responseBody, null);
+    return new RegistrationSessionMetadataResponse(responseBody, System.currentTimeMillis(), retryAfterMs);
   }
 
   private static @Nonnull String urlEncode(@Nonnull String data) throws IOException {

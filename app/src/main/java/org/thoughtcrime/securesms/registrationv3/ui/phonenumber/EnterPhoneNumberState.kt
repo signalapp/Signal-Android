@@ -5,16 +5,15 @@
 
 package org.thoughtcrime.securesms.registrationv3.ui.phonenumber
 
-import android.text.TextWatcher
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 
 /**
  * State holder for the phone number entry screen, including phone number and Play Services errors.
  */
 data class EnterPhoneNumberState(
-  val countryPrefixIndex: Int = 0,
+  val countryPrefixIndex: Int,
   val phoneNumber: String = "",
-  val phoneNumberFormatter: TextWatcher? = null,
+  val phoneNumberRegionCode: String,
   val mode: RegistrationRepository.E164VerificationMode = RegistrationRepository.E164VerificationMode.SMS_WITHOUT_LISTENER,
   val error: Error = Error.NONE
 ) {

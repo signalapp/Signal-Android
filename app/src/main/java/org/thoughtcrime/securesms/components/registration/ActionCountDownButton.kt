@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.annotation.StringRes
 import com.google.android.material.button.MaterialButton
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class ActionCountDownButton @JvmOverloads constructor(
   context: Context,
@@ -17,7 +19,7 @@ class ActionCountDownButton @JvmOverloads constructor(
   @StringRes
   private var disabledText = 0
 
-  private var countDownToTime: Long = 0
+  private var countDownToTime: Duration = 0.seconds
   private var listener: Listener? = null
 
   private var updateRunnable = Runnable {
@@ -27,8 +29,8 @@ class ActionCountDownButton @JvmOverloads constructor(
   /**
    * Starts a count down to the specified {@param time}.
    */
-  fun startCountDownTo(time: Long) {
-    if (time > 0) {
+  fun startCountDownTo(time: Duration) {
+    if (time > 0.seconds) {
       countDownToTime = time
       removeCallbacks(updateRunnable)
       updateCountDown()
@@ -46,11 +48,11 @@ class ActionCountDownButton @JvmOverloads constructor(
   }
 
   private fun updateCountDown() {
-    val remainingMillis = countDownToTime - System.currentTimeMillis()
-    if (remainingMillis > 1000) {
+    val remaining = countDownToTime - System.currentTimeMillis().milliseconds
+    if (remaining > 1.seconds) {
       isEnabled = false
       alpha = 0.5f
-      val totalRemainingSeconds = TimeUnit.MILLISECONDS.toSeconds(remainingMillis).toInt()
+      val totalRemainingSeconds = remaining.inWholeSeconds.toInt()
       val minutesRemaining = totalRemainingSeconds / 60
       val secondsRemaining = totalRemainingSeconds % 60
 

@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.registration.data.network
 
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
-import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException
 import org.whispersystems.signalservice.api.push.exceptions.ChallengeRequiredException
@@ -27,6 +26,7 @@ import org.whispersystems.signalservice.internal.push.LockedException
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * This is a processor to map a [RegistrationSessionMetadataResponse] to all the known outcomes.
@@ -47,9 +47,9 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
           } else {
             Success(
               sessionId = networkResult.result.metadata.id,
-              nextSmsTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextSms),
-              nextCallTimestamp = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextCall),
-              nextVerificationAttempt = RegistrationRepository.deriveTimestamp(networkResult.result.headers, networkResult.result.metadata.nextVerificationAttempt),
+              nextSmsTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextSms?.seconds),
+              nextCallTimestamp = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextCall?.seconds),
+              nextVerificationAttempt = networkResult.result.deriveTimestamp(delta = networkResult.result.metadata.nextVerificationAttempt?.seconds),
               allowedToRequestCode = networkResult.result.metadata.allowedToRequestCode,
               challengesRequested = Challenge.parse(networkResult.result.metadata.requestedInformation),
               verified = networkResult.result.metadata.verified
@@ -75,8 +75,8 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
             is RequestVerificationCodeRateLimitException -> {
               RequestVerificationCodeRateLimited(
                 cause = cause,
-                nextSmsTimestamp = RegistrationRepository.deriveTimestamp(cause.sessionMetadata.headers, cause.sessionMetadata.metadata.nextSms),
-                nextCallTimestamp = RegistrationRepository.deriveTimestamp(cause.sessionMetadata.headers, cause.sessionMetadata.metadata.nextCall)
+                nextSmsTimestamp = cause.sessionMetadata.deriveTimestamp(delta = cause.sessionMetadata.metadata.nextSms?.seconds),
+                nextCallTimestamp = cause.sessionMetadata.deriveTimestamp(delta = cause.sessionMetadata.metadata.nextCall?.seconds)
               )
             }
             is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials, svr3Credentials = cause.svr3Credentials)
@@ -93,7 +93,7 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
     }
   }
 
-  class Success(val sessionId: String, val nextSmsTimestamp: Long, val nextCallTimestamp: Long, nextVerificationAttempt: Long, val allowedToRequestCode: Boolean, challengesRequested: List<Challenge>, val verified: Boolean) : VerificationCodeRequestResult(null)
+  class Success(val sessionId: String, val nextSmsTimestamp: Duration, val nextCallTimestamp: Duration, nextVerificationAttempt: Duration, val allowedToRequestCode: Boolean, challengesRequested: List<Challenge>, val verified: Boolean) : VerificationCodeRequestResult(null)
 
   class ChallengeRequired(val challenges: List<Challenge>) : VerificationCodeRequestResult(null)
 
@@ -111,17 +111,17 @@ sealed class VerificationCodeRequestResult(cause: Throwable?) : RegistrationResu
 
   class MalformedRequest(cause: Throwable) : VerificationCodeRequestResult(cause)
 
-  class RequestVerificationCodeRateLimited(cause: Throwable, val nextSmsTimestamp: Long, val nextCallTimestamp: Long) : VerificationCodeRequestResult(cause) {
-    val willBeAbleToRequestAgain: Boolean = nextSmsTimestamp > 0 || nextCallTimestamp > 0
+  class RequestVerificationCodeRateLimited(cause: Throwable, val nextSmsTimestamp: Duration, val nextCallTimestamp: Duration) : VerificationCodeRequestResult(cause) {
+    val willBeAbleToRequestAgain: Boolean = nextSmsTimestamp > 0.seconds || nextCallTimestamp > 0.seconds
     fun log(now: Duration = System.currentTimeMillis().milliseconds): String {
-      val sms = if (nextSmsTimestamp > 0) {
-        "${(nextSmsTimestamp.milliseconds - now).inWholeSeconds}s"
+      val sms = if (nextSmsTimestamp > 0.seconds) {
+        "${(nextSmsTimestamp - now).inWholeSeconds}s"
       } else {
         "Never"
       }
 
-      val call = if (nextCallTimestamp > 0) {
-        "${(nextCallTimestamp.milliseconds - now).inWholeSeconds}s"
+      val call = if (nextCallTimestamp > 0.seconds) {
+        "${(nextCallTimestamp - now).inWholeSeconds}s"
       } else {
         "Never"
       }

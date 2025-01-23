@@ -77,7 +77,6 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
-import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataHeaders
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.io.IOException
@@ -302,7 +301,7 @@ object RegistrationRepository {
       val result = RegistrationSessionCreationResult.from(registrationSessionResult)
       if (result is RegistrationSessionCreationResult.Success) {
         Log.d(TAG, "Updating registration session and E164 in value store.")
-        SignalStore.registration.sessionId = result.getMetadata().metadata.id
+        SignalStore.registration.sessionId = result.sessionId
         SignalStore.registration.sessionE164 = e164
       }
 
@@ -482,16 +481,6 @@ object RegistrationRepository {
         return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(ex)
       }
     }
-
-  @JvmStatic
-  fun deriveTimestamp(headers: RegistrationSessionMetadataHeaders, deltaSeconds: Int?): Long {
-    if (deltaSeconds == null) {
-      return 0L
-    }
-
-    val timestamp: Long = headers.serverDeliveredTimestamp
-    return timestamp + deltaSeconds.seconds.inWholeMilliseconds
-  }
 
   suspend fun hasValidSvrAuthCredentials(context: Context, e164: String, password: String): BackupAuthCheckResult =
     withContext(Dispatchers.IO) {

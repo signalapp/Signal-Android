@@ -26,7 +26,8 @@ public final class SignalStrengthPhoneStateListener extends PhoneStateListener
   private static final String TAG = Log.tag(SignalStrengthPhoneStateListener.class);
 
   private final Callback  callback;
-  private final Debouncer debouncer = new Debouncer(1000);
+  private final Debouncer  debouncer    = new Debouncer(1000);
+  private volatile boolean hasLowSignal = true;
 
   @SuppressWarnings("deprecation")
   public SignalStrengthPhoneStateListener(@NonNull LifecycleOwner lifecycleOwner, @NonNull Callback callback) {
@@ -40,10 +41,14 @@ public final class SignalStrengthPhoneStateListener extends PhoneStateListener
     if (signalStrength == null) return;
 
     if (isLowLevel(signalStrength)) {
+      hasLowSignal = true;
       Log.w(TAG, "No cell signal detected");
       debouncer.publish(callback::onNoCellSignalPresent);
     } else {
-      Log.i(TAG, "Cell signal detected");
+      if (hasLowSignal) {
+        hasLowSignal = false;
+        Log.i(TAG, "Cell signal detected");
+      }
       debouncer.clear();
       callback.onCellSignalPresent();
     }

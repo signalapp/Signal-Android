@@ -16,6 +16,8 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionR
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * State holder shared across all of registration.
@@ -42,9 +44,9 @@ data class RegistrationState(
   val challengesPresented: Set<Challenge> = emptySet(),
   val captchaToken: String? = null,
   val allowedToRequestCode: Boolean = false,
-  val nextSmsTimestamp: Long = 0L,
-  val nextCallTimestamp: Long = 0L,
-  val nextVerificationAttempt: Long = 0L,
+  val nextSmsTimestamp: Duration = 0.seconds,
+  val nextCallTimestamp: Duration = 0.seconds,
+  val nextVerificationAttempt: Duration = 0.seconds,
   val verified: Boolean = false,
   val smsListenerTimeout: Long = 0L,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
