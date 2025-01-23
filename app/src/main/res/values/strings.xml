@@ -6402,6 +6402,8 @@
     <string name="MediaSelectionActivity__text">Text</string>
     <!-- Camera label for media selection toggle -->
     <string name="MediaSelectionActivity__camera">Camera</string>
+    <!-- Video label for media selection toggle -->
+    <string name="MediaSelectionActivity__video">Video</string>
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Type or paste a URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.mediasend.CameraFragment
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -110,6 +111,14 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
 
     sharedViewModel.state.observe(viewLifecycleOwner) { state ->
       captureChildFragment.presentHud(state.selectedMedia.size)
+    }
+
+    sharedViewModel.mediaMode.observe(viewLifecycleOwner) { state->
+      if(state==MediaSelectionActivity.MediaMode.CAMERA) {
+        captureChildFragment.changeVideoToCamera()
+      } else if(state==MediaSelectionActivity.MediaMode.VIDEO) {
+        captureChildFragment.changeCameraToVideo()
+      }
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)

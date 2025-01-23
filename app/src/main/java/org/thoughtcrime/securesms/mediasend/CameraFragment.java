@@ -55,6 +55,8 @@ public interface CameraFragment {
   void presentHud(int selectedMediaCount);
   void fadeOutControls(@NonNull Runnable onEndAction);
   void fadeInControls();
+  default void changeCameraToVideo() { }
+  default void changeVideoToCamera() { }
 
   interface Controller {
     void onCameraError();

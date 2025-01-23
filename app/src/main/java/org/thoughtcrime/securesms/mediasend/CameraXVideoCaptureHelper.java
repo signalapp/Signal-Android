@@ -39,8 +39,14 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+interface VideoCaptureListener {
+  void onVideoCaptureStarted();
+  void onVideoCaptureComplete();
+  void onZoomIncremented(float percent);
+}
+
 @RequiresApi(26)
-class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener {
+class CameraXVideoCaptureHelper implements VideoCaptureListener {
 
   private static final String TAG               = Log.tag(CameraXVideoCaptureHelper.class);
   private static final String VIDEO_DEBUG_LABEL = "video-capture";
@@ -86,7 +92,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   };
 
   CameraXVideoCaptureHelper(@NonNull Fragment fragment,
-                            @NonNull CameraButtonView captureButton,
+                            @NonNull Consumer<Float> progressListener,
                             @NonNull CameraController cameraController,
                             @NonNull PreviewView previewView,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
@@ -109,9 +115,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     this.cameraXModePolicy      = cameraXModePolicy;
 
     updateProgressAnimator.setInterpolator(new LinearInterpolator());
-    updateProgressAnimator.addUpdateListener(anim -> {
-      captureButton.setProgress(anim.getAnimatedFraction());
-    });
+    updateProgressAnimator.addUpdateListener(anim -> progressListener.accept(anim.getAnimatedFraction()));
   }
 
   @Override

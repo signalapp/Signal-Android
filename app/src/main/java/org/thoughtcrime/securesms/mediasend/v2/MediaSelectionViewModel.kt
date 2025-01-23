@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.common.io.ByteStreams
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.MessageStyler
+import org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.review.AddMessageCharacterCount
@@ -80,6 +82,9 @@ class MediaSelectionViewModel(
 
   val state: LiveData<MediaSelectionState> = store.stateLiveData
 
+  private val _mediaMode :MutableLiveData<MediaSelectionActivity.MediaMode> = MutableLiveData(MediaSelectionActivity.MediaMode.CAMERA);
+  val mediaMode : LiveData<MediaSelectionActivity.MediaMode> = _mediaMode
+
   private val internalHudCommands = PublishSubject.create<HudCommand>()
 
   val mediaErrors: BehaviorSubject<MediaValidator.FilterError> = BehaviorSubject.createDefault(MediaValidator.FilterError.None)
@@ -97,6 +102,10 @@ class MediaSelectionViewModel(
       }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun updateMediaModeState(state: MediaSelectionActivity.MediaMode) {
+    _mediaMode.value = state
   }
 
   fun updateAddAMessageCount(input: CharSequence?) {
@@ -467,6 +476,8 @@ class MediaSelectionViewModel(
       val blobUri = BlobProvider.getInstance().forData(serializedEditorState).createForSingleUseInMemory()
       outState.putParcelable(STATE_EDITORS, blobUri)
     }
+
+    outState.putString(MEDIA_MODE_STATE, mediaMode.value?.name ?: MediaSelectionActivity.MediaMode.CAMERA.name)
   }
 
   fun hasSelectedMedia(): Boolean {
@@ -523,6 +534,9 @@ class MediaSelectionViewModel(
         editorStateMap = editorStateMap
       )
     }
+
+    val mediaModeName = savedInstanceState.getString(MEDIA_MODE_STATE) ?: MediaSelectionActivity.MediaMode.CAMERA.name
+    _mediaMode.value = MediaSelectionActivity.MediaMode.valueOf(mediaModeName)
   }
 
   private fun Bundle.toAssociation(): Pair<Uri, Any> {
@@ -574,6 +588,7 @@ class MediaSelectionViewModel(
     private const val STATE_CAMERA_FIRST_CAPTURE = "$STATE_PREFIX.camera_first_capture"
     private const val STATE_EDITORS = "$STATE_PREFIX.editors"
     private const val STATE_EDITOR_COUNT = "$STATE_PREFIX.editor_count"
+    private const val MEDIA_MODE_STATE = "$STATE_PREFIX.mediaMode"
 
     @JvmStatic
     fun clampToMaxClipDuration(data: VideoTrimData, maxVideoDurationUs: Long, preserveStartTime: Boolean): VideoTrimData {

@@ -102,9 +102,12 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
   private boolean                          isMediaSelected;
+  private boolean                          isVideoCamera            = false;
   private View                             missingPermissionsContainer;
   private TextView                         missingPermissionsText;
   private MaterialButton                   allowAccessButton;
+  private CameraButtonView                 captureButton;
+  private VideoCameraButtonView            videoCaptureButton;
 
   private final Executor    qrAnalysisExecutor = Executors.newSingleThreadExecutor();
   private final QrProcessor qrProcessor        = new QrProcessor();
@@ -155,13 +158,12 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     this.cameraParent                = view.findViewById(R.id.camerax_camera_parent);
-
     this.previewView                 = view.findViewById(R.id.camerax_camera);
     this.controlsContainer           = view.findViewById(R.id.camerax_controls_container);
     this.cameraXModePolicy           = CameraXModePolicy.acquire(requireContext(),
-                                                        controller.getMediaConstraints(),
-                                                        requireArguments().getBoolean(IS_VIDEO_ENABLED, true),
-                                                        requireArguments().getBoolean(IS_QR_SCAN_ENABLED, false));
+                                                                 controller.getMediaConstraints(),
+                                                                 requireArguments().getBoolean(IS_VIDEO_ENABLED, true),
+                                                                 requireArguments().getBoolean(IS_QR_SCAN_ENABLED, false));
     this.missingPermissionsContainer = view.findViewById(R.id.missing_permissions_container);
     this.missingPermissionsText      = view.findViewById(R.id.missing_permissions_text);
     this.allowAccessButton           = view.findViewById(R.id.allow_access_button);
@@ -304,7 +306,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       Permissions.with(this)
                  .request(Manifest.permission.CAMERA)
                  .ifNecessary()
-                 .onAllGranted (() -> missingPermissionsContainer.setVisibility(View.GONE))
+                 .onAllGranted(() -> missingPermissionsContainer.setVisibility(View.GONE))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show())
                  .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos, getParentFragmentManager())
                  .execute();
@@ -383,8 +385,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
   @SuppressLint({ "ClickableViewAccessibility", "MissingPermission" })
   private void initControls(LifecycleCameraController lifecycleCameraController) {
+    captureButton      = requireView().findViewById(R.id.camera_capture_button);
+    videoCaptureButton = requireView().findViewById(R.id.video_capture_button);
     View                   flipButton    = requireView().findViewById(R.id.camera_flip_button);
-    CameraButtonView       captureButton = requireView().findViewById(R.id.camera_capture_button);
     View                   galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View                   countButton   = requireView().findViewById(R.id.camera_review_button);
     CameraXFlashToggleView flashButton   = requireView().findViewById(R.id.camera_flash_button);
@@ -439,9 +442,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
         Log.d(TAG, "Max duration: " + maxDuration + " sec");
 
-        captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
+        CameraXVideoCaptureHelper videoCaptureHelper = new CameraXVideoCaptureHelper(
             this,
-            captureButton,
+            progress -> {
+              if (isVideoCamera) {
+                videoCaptureButton.setProgress(progress);
+              } else {
+                captureButton.setProgress(progress);
+              }
+            },
             lifecycleCameraController,
             previewView,
             videoFileDescriptor,
@@ -465,7 +474,11 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                 controller.onVideoCaptureError();
               }
             }
-        ));
+        );
+
+        captureButton.setVideoCaptureListener(videoCaptureHelper);
+        videoCaptureButton.setVideoCaptureListener(videoCaptureHelper);
+
         displayVideoRecordingTooltipIfNecessary(captureButton);
       } catch (IOException e) {
         Log.w(TAG, "Video capture is not supported on this device.", e);
@@ -482,6 +495,36 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                  "Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + ", " +
                  "MaxDuration: " + VideoUtil.getMaxVideoRecordDurationInSeconds(requireContext(), controller.getMediaConstraints()) + " sec");
     }
+  }
+
+  @Override public void changeCameraToVideo() {
+    isVideoCamera = true;
+    updateCameraButtonsVisibility();
+  }
+
+  @Override public void changeVideoToCamera() {
+    isVideoCamera = false;
+    updateCameraButtonsVisibility();
+  }
+
+  private void updateCameraButtonsVisibility() {
+    MediaCountIndicatorButton     countButton  = requireView().findViewById(R.id.camera_review_button);
+    ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) countButton.getLayoutParams();
+    if (isVideoCamera) {
+      layoutParams.topToTop       = videoCaptureButton.getId();
+      layoutParams.bottomToBottom = videoCaptureButton.getId();
+
+      captureButton.setVisibility(View.GONE);
+      videoCaptureButton.setVisibility(View.VISIBLE);
+    } else {
+      layoutParams.topToTop       = captureButton.getId();
+      layoutParams.bottomToBottom = captureButton.getId();
+
+      captureButton.setVisibility(View.VISIBLE);
+      videoCaptureButton.setVisibility(View.GONE);
+    }
+
+    countButton.setLayoutParams(layoutParams);
   }
 
   private void displayVideoRecordingTooltipIfNecessary(CameraButtonView captureButton) {

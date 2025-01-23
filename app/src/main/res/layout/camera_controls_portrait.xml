@@ -17,6 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:recordSize="54dp" />
 
+    <org.thoughtcrime.securesms.mediasend.VideoCameraButtonView
+        android:id="@+id/video_capture_button"
+        android:layout_width="@dimen/camera_capture_button_size"
+        android:layout_height="@dimen/camera_capture_button_size"
+        android:contentDescription="@string/CameraXFragment_capture_description"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:recordSize="@dimen/camera_capture_image_button_size" />
+
     <org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView
         android:id="@+id/camera_flash_button"
         android:layout_width="36dp"

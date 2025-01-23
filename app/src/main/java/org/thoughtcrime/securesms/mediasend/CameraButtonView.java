@@ -300,10 +300,4 @@ public class CameraButtonView extends View {
       videoCaptureListener.onZoomIncremented(percent);
     }
   }
-
-  interface VideoCaptureListener {
-    void onVideoCaptureStarted();
-    void onVideoCaptureComplete();
-    void onZoomIncremented(float percent);
-  }
 }
