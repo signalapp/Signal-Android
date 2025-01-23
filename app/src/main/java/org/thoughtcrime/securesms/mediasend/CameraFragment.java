@@ -60,6 +60,7 @@ public interface CameraFragment {
     void onCameraError();
     void onImageCaptured(@NonNull byte[] data, int width, int height);
     void onVideoCaptured(@NonNull FileDescriptor fd);
+    void onVideoCaptureStarted();
     void onVideoCaptureError();
     void onGalleryClicked();
     void onCameraCountButtonClicked();

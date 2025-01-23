@@ -111,6 +111,9 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
   }
 
   @Override
+  public void onVideoCaptureStarted() { throw new UnsupportedOperationException("Cannot set profile as video"); }
+
+  @Override
   public void onVideoCaptureError() {
     throw new AssertionError("This should never happen");
   }

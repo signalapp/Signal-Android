@@ -140,6 +140,11 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     captureChildFragment.fadeInControls()
   }
 
+  override fun onStop() {
+    super.onStop()
+    sharedViewModel.updateIsVideoRecordingState(false)
+  }
+
   override fun onCameraError() {
     Log.w(TAG, "Camera Error.")
 
@@ -155,12 +160,18 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     viewModel.onImageCaptured(data, width, height)
   }
 
+  override fun onVideoCaptureStarted() {
+    sharedViewModel.updateIsVideoRecordingState(true)
+  }
+
   override fun onVideoCaptured(fd: FileDescriptor) {
     viewModel.onVideoCaptured(fd)
+    sharedViewModel.updateIsVideoRecordingState(false)
   }
 
   override fun onVideoCaptureError() {
     Log.w(TAG, "Video capture error.")
+    sharedViewModel.updateIsVideoRecordingState(false)
     Toast.makeText(requireContext(), R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
   }
 
