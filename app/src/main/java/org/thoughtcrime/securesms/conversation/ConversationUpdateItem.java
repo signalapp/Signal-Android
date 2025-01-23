@@ -742,7 +742,9 @@ public final class ConversationUpdateItem extends FrameLayout
         return;
       }
 
-      IdentityUtil.getRemoteIdentityKey(getContext(), messageRecord.getToRecipient()).addListener(new ListenableFuture.Listener<>() {
+      Recipient recipient = messageRecord.isIdentityUpdate() ? messageRecord.getFromRecipient() : messageRecord.getToRecipient();
+
+      IdentityUtil.getRemoteIdentityKey(getContext(), recipient).addListener(new ListenableFuture.Listener<>() {
         @Override
         public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {
