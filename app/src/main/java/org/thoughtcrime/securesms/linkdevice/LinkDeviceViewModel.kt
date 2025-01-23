@@ -407,7 +407,14 @@ class LinkDeviceViewModel : ViewModel() {
     LinkedDeviceInactiveCheckJob.enqueue()
   }
 
-  private fun Uri.supportsLinkAndSync(): Boolean = this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
+  private fun Uri.supportsLinkAndSync(): Boolean {
+    return if (RemoteConfig.internalUser) {
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true
+    } else {
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
+    }
+  }
 
   fun onSyncErrorIgnored() = viewModelScope.launch(Dispatchers.IO) {
     val dialogState = _state.value.dialogState

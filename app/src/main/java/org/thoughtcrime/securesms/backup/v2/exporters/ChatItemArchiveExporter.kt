@@ -771,7 +771,7 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
 }
 
 private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
-  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.archiveMediaId == null && it.width == 0 && it.height == 0 && it.blurHash == null}
+  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.archiveMediaId == null && it.width == 0 && it.height == 0 && it.blurHash == null }
 
   return ViewOnceMessage(
     attachment = attachment?.toRemoteMessageAttachment(mediaArchiveEnabled),
