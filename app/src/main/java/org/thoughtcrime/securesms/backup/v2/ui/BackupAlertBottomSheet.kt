@@ -160,8 +160,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
       is BackupAlert.DiskFull -> {
         displaySkipRestoreDialog()
       }
-      // TODO [backups] - Update support URL with backups page
-      BackupAlert.BackupFailed -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_support_url))
+      BackupAlert.BackupFailed -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_failed_support_url))
       BackupAlert.CouldNotRedeemBackup -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_support_url)) // TODO [backups] final url
     }
 
