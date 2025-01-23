@@ -586,6 +586,12 @@
         <item quantity="one">Saving attachment to storage…</item>
         <item quantity="other">Saving %1$d attachments to storage…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone's storage -->
+    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
     <string name="ConversationFragment_pending">Pending…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Data (Signal)</string>

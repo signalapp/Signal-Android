@@ -653,7 +653,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   @Override
   public void onSave() {
-    SaveAttachmentTask.showWarningDialog(requireContext(), (dialogInterface, i) -> {
+    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext(), () -> {
       if (StorageUtil.canWriteToMediaStore()) {
         performSaveToDisk();
         return;

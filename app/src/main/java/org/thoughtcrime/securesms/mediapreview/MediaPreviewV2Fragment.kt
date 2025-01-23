@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -558,10 +557,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
-    SaveAttachmentTask.showWarningDialog(requireContext()) { _: DialogInterface?, _: Int ->
+    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext()) {
       if (StorageUtil.canWriteToMediaStore()) {
         performSaveToDisk(mediaItem)
-        return@showWarningDialog
+        return@showWarningDialogIfNecessary
       }
       Permissions.with(this)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)

@@ -16,11 +16,9 @@ import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.MultiDeviceDeleteSyncJob;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StorageUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -46,13 +44,13 @@ final class MediaActions {
       return;
     }
 
-    SaveAttachmentTask.showWarningDialog(context, (dialogInterface, which) -> Permissions.with(fragment)
+    SaveAttachmentTask.showWarningDialogIfNecessary(context, () -> Permissions.with(fragment)
                       .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                       .ifNecessary()
                       .withPermanentDenialDialog(fragment.getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                       .onAnyDenied(() -> Toast.makeText(context, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                       .onAllGranted(() -> performSaveToDisk(context, mediaRecords, postExecute))
-                      .execute(), mediaRecords.size());
+                      .execute());
   }
 
   static void handleDeleteMedia(@NonNull Context context,

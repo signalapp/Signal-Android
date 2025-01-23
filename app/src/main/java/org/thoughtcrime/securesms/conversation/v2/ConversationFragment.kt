@@ -2381,7 +2381,7 @@ class ConversationFragment :
 
     val attachments = SaveAttachmentUtil.getAttachmentsForRecord(record)
 
-    SaveAttachmentUtil.showWarningDialog(requireContext(), attachments.size) { _, _ ->
+    SaveAttachmentUtil.showWarningDialogIfNecessary(requireContext()) {
       if (StorageUtil.canWriteToMediaStore()) {
         performAttachmentSave(attachments)
       } else {
