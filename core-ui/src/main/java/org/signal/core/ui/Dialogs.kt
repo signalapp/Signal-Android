@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -138,6 +139,7 @@ object Dialogs {
           modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
+            .testTag("dialog-circular-progress-indicator")
         )
       },
       modifier = Modifier

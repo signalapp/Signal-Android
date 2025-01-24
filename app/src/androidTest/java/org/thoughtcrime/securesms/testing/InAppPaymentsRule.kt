@@ -18,6 +18,7 @@ import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 class InAppPaymentsRule : ExternalResource() {
   override fun before() {
     initialiseConfigurationResponse()
+    initialisePutSubscription()
   }
 
   private fun initialiseConfigurationResponse() {
@@ -27,6 +28,14 @@ class InAppPaymentsRule : ExternalResource() {
         assets.open("inAppPaymentsTests/configuration.json").use { stream ->
           MockResponse().success(JsonUtils.fromJson(stream, SubscriptionsConfiguration::class.java))
         }
+      }
+    )
+  }
+
+  private fun initialisePutSubscription() {
+    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
+      Put("/v1/subscription/") {
+        MockResponse().success()
       }
     )
   }

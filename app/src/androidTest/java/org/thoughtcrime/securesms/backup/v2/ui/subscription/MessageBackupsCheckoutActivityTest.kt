@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.ClipboardManager
+import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -21,15 +23,20 @@ import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockkStatic
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.billing.BillingProduct
 import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.billing.BillingPurchaseState
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
@@ -53,16 +60,72 @@ class MessageBackupsCheckoutActivityTest {
   fun setUp() {
     every { AppDependencies.billingApi.getBillingPurchaseResults() } returns purchaseResults
     coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(price = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")))
+    coEvery { AppDependencies.billingApi.launchBillingFlow(any()) } returns Unit
 
     mockkStatic(RemoteConfig::class)
     every { RemoteConfig.messageBackups } returns true
   }
 
   @Test
-  fun e2e_happy_path() {
+  fun e2e_paid_happy_path() {
     val scenario = launchCheckoutFlow()
     val context = InstrumentationRegistry.getInstrumentation().targetContext
 
+    e2e_shared_happy_path(context, scenario)
+
+    composeTestRule.onNodeWithTag("message-backups-type-selection-screen-lazy-column")
+      .performScrollToNode(hasText(context.getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)))
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)).performClick()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsEnabled()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
+    composeTestRule.waitForIdle()
+
+    runBlocking {
+      purchaseResults.emit(
+        BillingPurchaseResult.Success(
+          purchaseState = BillingPurchaseState.PURCHASED,
+          purchaseToken = "asdf",
+          isAcknowledged = false,
+          purchaseTime = System.currentTimeMillis(),
+          isAutoRenewing = true
+        )
+      )
+    }
+
+    composeTestRule.waitForIdle()
+    composeTestRule.onNodeWithTag("dialog-circular-progress-indicator").assertIsDisplayed()
+
+    val iap = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+    assertThat(iap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+
+    SignalDatabase.inAppPayments.update(
+      inAppPayment = iap!!.copy(
+        state = InAppPaymentTable.State.END
+      )
+    )
+
+    composeTestRule.waitForIdle()
+    composeTestRule.onNodeWithTag("dialog-circular-progress-indicator").assertIsNotDisplayed()
+  }
+
+  @Test
+  fun e2e_free_happy_path() {
+    val scenario = launchCheckoutFlow()
+    val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+    e2e_shared_happy_path(context, scenario)
+
+    composeTestRule.onNodeWithTag("message-backups-type-selection-screen-lazy-column")
+      .performScrollToNode(hasText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)))
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)).performClick()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsEnabled()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
+    composeTestRule.waitForIdle()
+
+    assertThat(SignalStore.backup.backupTier).isEqualTo(MessageBackupTier.FREE)
+  }
+
+  private fun e2e_shared_happy_path(context: Context, scenario: ActivityScenario<MessageBackupsCheckoutActivity>) {
     assertThat(SignalStore.backup.backupTier).isNull()
 
     // Backup education screen
@@ -100,14 +163,6 @@ class MessageBackupsCheckoutActivityTest {
     // Type selection screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessagesBackupsTypeSelectionScreen__choose_your_backup_plan)).assertIsDisplayed()
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsNotEnabled()
-    composeTestRule.onNodeWithTag("message-backups-type-selection-screen-lazy-column")
-      .performScrollToNode(hasText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)))
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)).performClick()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsEnabled()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
-    composeTestRule.waitForIdle()
-
-    assertThat(SignalStore.backup.backupTier).isEqualTo(MessageBackupTier.FREE)
   }
 
   private fun launchCheckoutFlow(tier: MessageBackupTier? = null): ActivityScenario<MessageBackupsCheckoutActivity> {
