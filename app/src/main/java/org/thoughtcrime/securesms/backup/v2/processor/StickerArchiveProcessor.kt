@@ -68,14 +68,14 @@ object StickerArchiveProcessor {
 
 private fun StickerPackRecord.toBackupFrame(): Frame? {
   val packIdBytes = try {
-    Hex.fromStringCondensed(this.packId)
+    Hex.fromStringCondensed(this.packId)?.takeIf { it.size == 16 } ?: throw IOException("Incorrect length!")
   } catch (e: IOException) {
     Log.w(TAG, ExportSkips.invalidStickerPackId())
     return null
   }
 
   val packKeyBytes = try {
-    Hex.fromStringCondensed(this.packKey)
+    Hex.fromStringCondensed(this.packKey)?.takeIf { it.size == 32 } ?: throw IOException("Incorrect length!")
   } catch (e: IOException) {
     Log.w(TAG, ExportSkips.invalidStickerPackKey())
     return null

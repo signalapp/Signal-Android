@@ -983,16 +983,16 @@ private fun DatabaseAttachment.toRemoteStickerMessage(sentTimestamp: Long, media
   val stickerLocator = this.stickerLocator!!
 
   val packId = try {
-    Hex.fromStringCondensed(stickerLocator.packId)
+    Hex.fromStringCondensed(stickerLocator.packId).takeIf { it.size == 16 } ?: throw IOException("Incorrect length!")
   } catch (e: IOException) {
-    Log.w(TAG, ExportSkips.invalidChatItemStickerPackId(sentTimestamp))
+    Log.w(TAG, ExportSkips.invalidChatItemStickerPackId(sentTimestamp), e)
     return null
   }
 
   val packKey = try {
-    Hex.fromStringCondensed(stickerLocator.packKey)
+    Hex.fromStringCondensed(stickerLocator.packKey).takeIf { it.size == 32 } ?: throw IOException("Incorrect length!")
   } catch (e: IOException) {
-    Log.w(TAG, ExportSkips.invalidChatItemStickerPackKey(sentTimestamp))
+    Log.w(TAG, ExportSkips.invalidChatItemStickerPackKey(sentTimestamp), e)
     return null
   }
 
