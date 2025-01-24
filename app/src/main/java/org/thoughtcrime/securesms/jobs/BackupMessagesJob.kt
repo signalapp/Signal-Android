@@ -226,7 +226,7 @@ class BackupMessagesJob private constructor(
       }
 
       is ArchiveValidator.ValidationResult.ValidationError -> {
-        Log.w(TAG, "The backup file fails validation! Message: " + result.exception.message)
+        Log.w(TAG, "The backup file fails validation! Message: ${result.exception.message}, Details: ${result.messageDetails}")
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
       }

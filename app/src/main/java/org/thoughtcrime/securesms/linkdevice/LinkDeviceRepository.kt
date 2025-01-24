@@ -277,7 +277,7 @@ object LinkDeviceRepository {
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
       is ArchiveValidator.ValidationResult.ValidationError -> {
-        Log.w(TAG, "[createAndUploadArchive] The backup file fails validation!", result.exception)
+        Log.w(TAG, "[createAndUploadArchive] The backup file fails validation! Details: ${result.messageDetails}", result.exception)
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
     }
