@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -70,6 +72,10 @@ fun MessageBackupsKeyRecordScreen(
     skipPartiallyExpanded = true
   )
 
+  val backupKeyString = remember(backupKey) {
+    backupKey.chunked(4).joinToString("  ")
+  }
+
   Scaffolds.Settings(
     title = "",
     navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
@@ -82,67 +88,79 @@ fun MessageBackupsKeyRecordScreen(
         .fillMaxSize(),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      Image(
-        painter = painterResource(R.drawable.image_signal_backups_lock),
-        contentDescription = null,
+      LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-          .padding(top = 24.dp)
-          .size(80.dp)
-      )
-
-      Text(
-        text = stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key),
-        style = MaterialTheme.typography.headlineMedium,
-        modifier = Modifier.padding(top = 16.dp)
-      )
-
-      Text(
-        text = stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover),
-        textAlign = TextAlign.Center,
-        style = MaterialTheme.typography.bodyLarge,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(top = 12.dp)
-      )
-
-      val backupKeyString = remember(backupKey) {
-        backupKey.chunked(4).joinToString("  ")
-      }
-
-      Box(
-        modifier = Modifier
-          .padding(top = 24.dp, bottom = 16.dp)
-          .background(
-            color = SignalTheme.colors.colorSurface1,
-            shape = RoundedCornerShape(10.dp)
+          .weight(1f)
+          .testTag("message-backups-key-record-screen-lazy-column")
+      ) {
+        item {
+          Image(
+            painter = painterResource(R.drawable.image_signal_backups_lock),
+            contentDescription = null,
+            modifier = Modifier
+              .padding(top = 24.dp)
+              .size(80.dp)
           )
-          .padding(24.dp)
-      ) {
-        Text(
-          text = backupKeyString,
-          style = MaterialTheme.typography.bodyLarge
-            .copy(
-              fontSize = 18.sp,
-              fontWeight = FontWeight(400),
-              letterSpacing = 1.44.sp,
-              lineHeight = 36.sp,
-              textAlign = TextAlign.Center,
-              fontFamily = FontFamily.Monospace
-            )
-        )
-      }
+        }
 
-      Buttons.Small(
-        onClick = { onCopyToClipboardClick(backupKeyString) }
-      ) {
-        Text(
-          text = stringResource(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)
-        )
+        item {
+          Text(
+            text = stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key),
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(top = 16.dp)
+          )
+        }
+
+        item {
+          Text(
+            text = stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 12.dp)
+          )
+        }
+
+        item {
+          Box(
+            modifier = Modifier
+              .padding(top = 24.dp, bottom = 16.dp)
+              .background(
+                color = SignalTheme.colors.colorSurface1,
+                shape = RoundedCornerShape(10.dp)
+              )
+              .padding(24.dp)
+          ) {
+            Text(
+              text = backupKeyString,
+              style = MaterialTheme.typography.bodyLarge
+                .copy(
+                  fontSize = 18.sp,
+                  fontWeight = FontWeight(400),
+                  letterSpacing = 1.44.sp,
+                  lineHeight = 36.sp,
+                  textAlign = TextAlign.Center,
+                  fontFamily = FontFamily.Monospace
+                )
+            )
+          }
+        }
+
+        item {
+          Buttons.Small(
+            onClick = { onCopyToClipboardClick(backupKeyString) }
+          ) {
+            Text(
+              text = stringResource(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)
+            )
+          }
+        }
       }
 
       Box(
         modifier = Modifier
           .fillMaxWidth()
-          .weight(1f)
           .padding(bottom = 24.dp)
       ) {
         Buttons.LargeTonal(
@@ -189,66 +207,80 @@ private fun BottomSheetContent(
 ) {
   var checked by remember { mutableStateOf(false) }
 
-  Column(
+  LazyColumn(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier
       .fillMaxWidth()
       .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
+      .testTag("message-backups-key-record-screen-sheet-content")
   ) {
-    BottomSheets.Handle()
-    Text(
-      text = stringResource(R.string.MessageBackupsKeyRecordScreen__keep_your_key_safe),
-      style = MaterialTheme.typography.titleLarge,
-      textAlign = TextAlign.Center,
-      modifier = Modifier.padding(top = 30.dp)
-    )
+    item {
+      BottomSheets.Handle()
+    }
 
-    Text(
-      text = stringResource(R.string.MessageBackupsKeyRecordScreen__signal_will_not),
-      style = MaterialTheme.typography.bodyLarge,
-      color = MaterialTheme.colorScheme.onSurfaceVariant,
-      textAlign = TextAlign.Center,
-      modifier = Modifier.padding(top = 12.dp)
-    )
-
-    Row(
-      verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier
-        .padding(vertical = 24.dp)
-        .defaultMinSize(minWidth = 220.dp)
-        .clip(shape = RoundedCornerShape(percent = 50))
-        .clickable(onClick = { checked = !checked })
-    ) {
-      Checkbox(
-        checked = checked,
-        onCheckedChange = { checked = it }
-      )
-
+    item {
       Text(
-        text = stringResource(R.string.MessageBackupsKeyRecordScreen__ive_recorded_my_key),
-        style = MaterialTheme.typography.bodyLarge
+        text = stringResource(R.string.MessageBackupsKeyRecordScreen__keep_your_key_safe),
+        style = MaterialTheme.typography.titleLarge,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(top = 30.dp)
       )
     }
 
-    Buttons.LargeTonal(
-      enabled = checked,
-      onClick = onContinueClick,
-      modifier = Modifier
-        .padding(bottom = 16.dp)
-        .defaultMinSize(minWidth = 220.dp)
-    ) {
-      Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__continue))
+    item {
+      Text(
+        text = stringResource(R.string.MessageBackupsKeyRecordScreen__signal_will_not),
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(top = 12.dp)
+      )
     }
 
-    TextButton(
-      onClick = onSeeKeyAgainClick,
-      modifier = Modifier
-        .padding(bottom = 24.dp)
-        .defaultMinSize(minWidth = 220.dp)
-    ) {
-      Text(
-        text = stringResource(R.string.MessageBackupsKeyRecordScreen__see_key_again)
-      )
+    item {
+      Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+          .padding(vertical = 24.dp)
+          .defaultMinSize(minWidth = 220.dp)
+          .clip(shape = RoundedCornerShape(percent = 50))
+          .clickable(onClick = { checked = !checked })
+      ) {
+        Checkbox(
+          checked = checked,
+          onCheckedChange = { checked = it }
+        )
+
+        Text(
+          text = stringResource(R.string.MessageBackupsKeyRecordScreen__ive_recorded_my_key),
+          style = MaterialTheme.typography.bodyLarge
+        )
+      }
+    }
+
+    item {
+      Buttons.LargeTonal(
+        enabled = checked,
+        onClick = onContinueClick,
+        modifier = Modifier
+          .padding(bottom = 16.dp)
+          .defaultMinSize(minWidth = 220.dp)
+      ) {
+        Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__continue))
+      }
+    }
+
+    item {
+      TextButton(
+        onClick = onSeeKeyAgainClick,
+        modifier = Modifier
+          .padding(bottom = 24.dp)
+          .defaultMinSize(minWidth = 220.dp)
+      ) {
+        Text(
+          text = stringResource(R.string.MessageBackupsKeyRecordScreen__see_key_again)
+        )
+      }
     }
   }
 }

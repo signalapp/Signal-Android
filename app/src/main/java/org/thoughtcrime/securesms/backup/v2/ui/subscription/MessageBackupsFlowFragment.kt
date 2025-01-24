@@ -9,6 +9,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -20,12 +21,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.util.getSerializableCompat
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.Nav
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -36,7 +39,8 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
   companion object {
 
-    private const val TIER = "tier"
+    @VisibleForTesting
+    const val TIER = "tier"
 
     fun create(messageBackupTier: MessageBackupTier?): MessageBackupsFlowFragment {
       return MessageBackupsFlowFragment().apply {
@@ -88,7 +92,9 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         MessageBackupsEducationScreen(
           onNavigationClick = viewModel::goToPreviousStage,
           onEnableBackups = viewModel::goToNextStage,
-          onLearnMore = {}
+          onLearnMore = {
+            CommunicationActions.openBrowserLink(requireContext(), getString(R.string.backup_support_url))
+          }
         )
       }
 

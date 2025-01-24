@@ -24,13 +24,12 @@ import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDepende
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.Delete
 import org.thoughtcrime.securesms.testing.Get
+import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.actions.RecyclerViewScrollToBottomAction
 import org.thoughtcrime.securesms.testing.success
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Currency
 import kotlin.time.Duration.Companion.days
@@ -41,6 +40,9 @@ import kotlin.time.Duration.Companion.milliseconds
 class CheckoutFlowActivityTest__RecurringDonations {
   @get:Rule
   val harness = SignalActivityRule(othersCount = 10)
+
+  @get:Rule
+  val iapRule = InAppPaymentsRule()
 
   private val intent = CheckoutFlowActivity.createIntent(InstrumentationRegistry.getInstrumentation().targetContext, InAppPaymentType.RECURRING_DONATION)
 
@@ -59,7 +61,6 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @Test
   fun givenACurrentDonation_whenILoadScreen_thenIExpectUpgradeButton() {
-    initialiseConfigurationResponse()
     initialiseActiveSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
@@ -71,7 +72,6 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @Test
   fun givenACurrentDonation_whenIPressCancel_thenIExpectCancellationDialog() {
-    initialiseConfigurationResponse()
     initialiseActiveSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
@@ -85,24 +85,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @Test
   fun givenAPendingRecurringDonation_whenILoadScreen_thenIExpectDisabledUpgradeButton() {
-    initialiseConfigurationResponse()
     initialisePendingSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
     onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isNotEnabled()))
-  }
-
-  private fun initialiseConfigurationResponse() {
-    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Get("/v1/subscription/configuration") {
-        val assets = InstrumentationRegistry.getInstrumentation().context.resources.assets
-        assets.open("inAppPaymentsTests/configuration.json").use { stream ->
-          MockResponse().success(JsonUtils.fromJson(stream, SubscriptionsConfiguration::class.java))
-        }
-      }
-    )
   }
 
   private fun initialiseActiveSubscription() {
