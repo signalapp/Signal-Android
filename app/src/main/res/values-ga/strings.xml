@@ -1536,9 +1536,9 @@
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
     <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <string name="RemoteRestoreActivity__update_signal">Nuashonraigh Signal</string>
     <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Not now</string>
+    <string name="RemoteRestoreActivity__not_now">Ní anois</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Cuir Tráchtanna in iúl dom</string>
@@ -3311,7 +3311,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Próiseáil…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
+    <string name="TransferControlView__download_progress_s_s">%1$s / %2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->

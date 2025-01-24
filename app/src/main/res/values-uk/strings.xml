@@ -1498,9 +1498,9 @@
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
     <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <string name="RemoteRestoreActivity__update_signal">Оновити Signal</string>
     <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Not now</string>
+    <string name="RemoteRestoreActivity__not_now">Не зараз</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Сповіщати про згадки</string>
@@ -2411,10 +2411,10 @@
     </plurals>
     <!-- Displayed in call status during call link when no users are pending -->
     <plurals name="WebRtcCallActivity__d_people">
-        <item quantity="one">%1$d особи</item>
-        <item quantity="few">%1$d осіб</item>
-        <item quantity="many">%1$d осіб</item>
-        <item quantity="other">%1$d осіб</item>
+        <item quantity="one">%1$d людина</item>
+        <item quantity="few">%1$d людини</item>
+        <item quantity="many">%1$d людей</item>
+        <item quantity="other">%1$d людини</item>
     </plurals>
     <!-- Title of dialog displayed when a user\'s join request is denied for call link entry -->
     <string name="WebRtcCallActivity__join_request_denied">Запит на приєднання відхилено</string>
@@ -2522,7 +2522,7 @@
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">Перемкнути камеру</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Перемкнути звук</string>
+    <string name="WebRtcCallView__toggle_mute">Вимкнути / Увімкнути звук</string>
     <!-- Content description for additional actions menu button -->
     <string name="WebRtcCallView__additional_actions">Додаткові дії</string>
     <!-- Content description for end-call button -->
@@ -2531,17 +2531,17 @@
     <string name="WebRtcCallView__toggle_group_ringing">Увімкнути дзвінок для групового виклику</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Виникла помилка інтерфейсу користувача. Будь ласка, повідомте розробників про цю помилку.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Виникла помилка інтерфейсу. Будь ласка, повідомте розробників про цю помилку.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Не виявлено доступних аудіопортів вводу / виводу.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Не виявлено доступних пристроїв аудіовходу / виходу.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Значок, який представляє пристрій Bluetooth.</string>
+    <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Значок Bluetooth-пристрою.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Значок, який представляє дротову гарнітуру.</string>
+    <string name="WebRtcAudioOutputBottomSheet__headset_icon_content_description">Значок, який провідної гарнітури.</string>
     <!-- A text description of the speaker icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок, який представляє пристрій гучного зв\'язку.</string>
+    <string name="WebRtcAudioOutputBottomSheet__speaker_icon_content_description">Значок пристрою гучного зв\'язку.</string>
     <!-- A text description of the earpiece icon, used for accessibility. -->
-    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Значок, який представляє навушники пристрою.</string>
+    <string name="WebRtcAudioOutputBottomSheet__earpiece_icon_content_description">Значок навушників.</string>
 
     <!-- A clickable button to "raise your hand" in a group call to signify you have something to say -->
     <string name="CallOverflowPopupWindow__raise_hand">Підняти руку</string>
@@ -2554,7 +2554,7 @@
     <!-- A negative button for a dialog confirming the user wants to lower their hand (withdraw a raised hand) -->
     <string name="CallOverflowPopupWindow__cancel">Скасувати</string>
     <!-- A button to take you to a list of participants with raised hands -->
-    <string name="CallOverflowPopupWindow__view">Детальніше</string>
+    <string name="CallOverflowPopupWindow__view">Переглянути</string>
 
 
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
@@ -2598,7 +2598,7 @@
     </plurals>
 
     <!-- An accessibility label for screen readers on a view that can be expanded -->
-    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Розгорнути перегляд тих, хто підняв руки</string>
+    <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Показати всіх, хто підняв руки</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2610,9 +2610,9 @@
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s є в контактах телефона</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">Ви не маєте спільних груп</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Спільних груп немає</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
-    <string name="AboutSheet__review_requests_carefully">Переглядайте запити уважно</string>
+    <string name="AboutSheet__review_requests_carefully">Уважно перевіряйте, від кого надходять запити</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
     <plurals name="AboutSheet__d_groups_in">
         <item quantity="one">%1$d спільна група</item>
@@ -2687,11 +2687,11 @@
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
-    <string name="RegistrationActivity_phone_number_verification_dialog_title">Чи правильно вказаний номер телефону нижче?</string>
+    <string name="RegistrationActivity_phone_number_verification_dialog_title">Чи правильно зазначено номер телефону?</string>
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Необхідна додаткова перевірка</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Ми надішлемо код підтвердження на цей номер. Може стягуватися плата згідно з тарифами.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">На цей номер буде надіслано код підтвердження. Може стягуватися плата згідно з тарифами оператора.</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">На цей номер буде здійснено виклик для його перевірки.</string>
     <string name="RegistrationActivity_edit_number">Змінити номер</string>
     <string name="RegistrationActivity_missing_google_play_services">Відсутні сервіси Google Play</string>
@@ -2704,14 +2704,14 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal потребує доступу до ваших контактів, щоб ви могли зв\'язуватися з друзями. Ваші контакти буде вивантажено з використанням функції конфіденційного виявлення контактів Signal, тобто їх буде зашифровано наскрізним методом і вони будуть невидимі для служби Signal.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, спробуйте пізніше.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, повторіть через %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Ви зробили забагато спроб зареєструвати цей номер. Будь ласка, спробуйте ще раз через %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Неможливо з\'єднатися з сервісом. Перевірте з\'єднання з мережею і спробуйте знову.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
     <string name="RegistrationActivity_sms_provider_error">Signal не вдалося надіслати SMS-повідомлення з кодом через проблеми з оператором SMS. Спробуйте зареєструватися через кілька годин.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Ми не змогли надіслати вам код підтвердження в SMS. Код можна також отримати, прийнявши аудіовиклик.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">Не вдається надіслати запит на код підтвердження. Перевірте підключення до мережі та спробуйте знову.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">Не вдається надіслати запит на код підтвердження. Перевірте з\'єднання з мережею і спробуйте знову.</string>
     <string name="RegistrationActivity_non_standard_number_format">Нестандартний формат номеру</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Здається, ви ввели номер у нестандартному форматі: %1$s.\n\nВи мали на увазі %2$s?</string>
@@ -2719,9 +2719,9 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
     <string name="RegistrationActivity_call_requested">Запит на виклик надіслано</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
-    <string name="RegistrationActivity_sms_requested">SMS запитано</string>
+    <string name="RegistrationActivity_sms_requested">Ви попросили надіслати SMS</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Код підтвердження запитано</string>
+    <string name="RegistrationActivity_code_requested">Ви попросили надіслати код підтвердження</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Ще %1$d крок, і журнал налагодження буде надіслано</item>
         <item quantity="few">Ще %1$d кроки, і журнал налагодження буде надіслано</item>
@@ -2748,7 +2748,7 @@
     <string name="RegistrationActivity_verification_code">Код підтвердження</string>
     <string name="RegistrationActivity_resend_code">Надішліть код ще раз</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Виникли проблеми з реєстрацією?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Проблеми з реєстрацією?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Переконайтеся, що телефон перебуває в зоні дії мобільної мережі й може прийняти SMS або виклик.\n • Запевніться, що ви можете приймати телефонні виклики на цей номер.\n • Перевірте, чи правильно ви ввели свій номер.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
@@ -2775,7 +2775,7 @@
     <!-- ReviewBannerView text when a name conflict has been found -->
     <string name="ReviewBannerView__name_conflict_found">Виявлено конфлікт імен</string>
     <!-- Button label to view name conflicts -->
-    <string name="ReviewBannerView__view">Детальніше</string>
+    <string name="ReviewBannerView__view">Переглянути</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Результатів для «%1$s» не знайдено</string>
@@ -2911,9 +2911,9 @@
     <string name="ThreadRecord_video">Відео</string>
     <string name="ThreadRecord_chat_session_refreshed">Сесію чату оновлено</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s донатить від вашого імені</string>
+    <string name="ThreadRecord__s_donated_for_you">Користувач %1$s зробив донат від вашого імені</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">Ви задонатили від імені користувача %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Ви зробили донат від імені користувача %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Ви активували значок</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
@@ -2925,15 +2925,15 @@
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Заплановане повідомлення</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Вашу історію повідомлень було об’єднано</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Вашу історію повідомлень об’єднано</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
-    <string name="ThreadRecord_s_belongs_to_s">%2$s володіє номером %1$s</string>
+    <string name="ThreadRecord_s_belongs_to_s">Номер %1$s належить користувачеві %2$s</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Оновлення Signal</string>
     <string name="ApkUpdateNotifications_prompt_install_body">Доступна нова версія Signal. Торкніться, щоб оновити.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Не вдалося оновити Signal</string>
-    <string name="ApkUpdateNotifications_failed_general_body">Ми спробуємо знову пізніше.</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Не вдалось оновити Signal</string>
+    <string name="ApkUpdateNotifications_failed_general_body">Ми спробуємо оновити його пізніше.</string>
     <string name="ApkUpdateNotifications_auto_update_success_title">Signal успішно оновлено</string>
     <string name="ApkUpdateNotifications_auto_update_success_body">Ваш застосунок автоматично оновлено до версії %1$s.</string>
     <string name="ApkUpdateNotifications_manual_update_success_body">Версію оновлено до %1$s.</string>
@@ -3056,7 +3056,7 @@
     <string name="MediaPreviewActivity_s_to_you">Користувач %1$s надіслав вам</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Медіафайл більше не доступний.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Не вдається відтворити медіа.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">Не вдається відтворити медіафайл.</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">Під час пошуку повідомлення сталася помилка.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Немає застосунку, через який можна було б поділитися цим медіафайлом.</string>

@@ -1498,9 +1498,9 @@
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
     <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <string name="RemoteRestoreActivity__update_signal">Zaktualizuj Signal</string>
     <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Not now</string>
+    <string name="RemoteRestoreActivity__not_now">Nie teraz</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>

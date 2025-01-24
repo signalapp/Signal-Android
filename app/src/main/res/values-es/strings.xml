@@ -252,7 +252,7 @@
         <item quantity="other">+%1$d personas</item>
     </plurals>
     <!-- Unknown people row icon content description -->
-    <string name="CallInfoView__more_information">Más información</string>
+    <string name="CallInfoView__more_information">Más información</string>
     <!-- Unknown people row info dialog message -->
     <string name="CallInfoView__before_joining_a_call">Antes de unirte a una llamada, solo podrás ver los nombres de las personas que tengas como contactos en tu teléfono, con las que estés en un grupo o con las que hayas chateado en privado. Verás todos los nombres y las fotos una vez que te hayas unido a la llamada.</string>
     <!-- Unknown people row info dialog action to close the dialog -->
@@ -820,7 +820,7 @@
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaura tus mensajes y archivos multimedia desde una copia de seguridad local. Si no los restauras ahora, no podrás hacerlo más tarde.</string>
     <string name="ChooseBackupFragment__icon_content_description">Icono Restaurar desde copia de seguridad</string>
     <string name="ChooseBackupFragment__choose_backup">Seleccionar copia</string>
-    <string name="ChooseBackupFragment__learn_more">Más información</string>
+    <string name="ChooseBackupFragment__learn_more">Más información</string>
     <string name="ChooseBackupFragment__no_file_browser_available">No hay explorador de archivos disponible</string>
 
     <!-- RestoreBackupFragment -->
@@ -893,7 +893,7 @@
     <string name="BackupsPreferenceFragment__turn_on">Activar</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactivar</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"Para restaurar una copia de seguridad, reinstala Signal. Abre la aplicación, toca \"Restaurar copia\" y busca el archivo de copia de seguridad. %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">Más información</string>
+    <string name="BackupsPreferenceFragment__learn_more">Más información</string>
     <string name="BackupsPreferenceFragment__in_progress">En curso…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Verificando copia de seguridad…</string>
@@ -1021,7 +1021,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">Tu dispositivo se ha vinculado correctamente, pero tus mensajes no se han podido transferir.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
-    <string name="LinkDeviceFragment__learn_more">Más información</string>
+    <string name="LinkDeviceFragment__learn_more">Más información</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Reintentar</string>
@@ -1422,9 +1422,9 @@
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
     <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
-    <string name="RemoteRestoreActivity__update_signal">Update Signal</string>
+    <string name="RemoteRestoreActivity__update_signal">Actualizar Signal</string>
     <!-- Text label button to dismiss the dialog -->
-    <string name="RemoteRestoreActivity__not_now">Not now</string>
+    <string name="RemoteRestoreActivity__not_now">Ahora no</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme cuando alguien me mencione</string>
@@ -1606,9 +1606,9 @@
     <string name="InviteActivity_no_app_to_share_to">Parece que no tienes ninguna aplicación para compartir la invitación.</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">Más información</string>
+    <string name="LearnMoreTextView_learn_more">Más información</string>
 
-    <string name="SpanUtil__read_more">Más información</string>
+    <string name="SpanUtil__read_more">Más información</string>
 
     <!-- LongMessageActivity -->
     <string name="LongMessageActivity_unable_to_find_message">No se ha podido encontrar el mensaje</string>
@@ -2844,7 +2844,7 @@
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">Aceptar</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Más información</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_learn_more">Más información</string>
     <!-- Confirmation button on scan result dialogs -->
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">Aceptar</string>
 
@@ -2893,7 +2893,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Error al borrar el mensaje, es posible que el mensaje aún exista</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_read_more_overflow_text">Más información</string>
+    <string name="MediaPreviewFragment_read_more_overflow_text">Más información</string>
 
     <!-- MessageNotifier -->
     <!-- Text shown in a system notification that is used to summarize your notification. The first placeholder is a pluralized string that describes how many messages (e.g. "3 messages"), and the second placeholder is a pluralized string that describes the number of unique chats those message appear in (e.g. "2 chats"). -->
@@ -3214,7 +3214,7 @@
 
     <!-- ConversationUpdateItem -->
     <string name="ConversationUpdateItem_loading">Cargando</string>
-    <string name="ConversationUpdateItem_learn_more">Más información</string>
+    <string name="ConversationUpdateItem_learn_more">Más información</string>
     <string name="ConversationUpdateItem_join_call">Unirse a la llamada</string>
     <!-- Action button label for starting a new call in the current conversation -->
     <string name="ConversationUpdateItem_call_back">Devolver llamada</string>
@@ -4233,11 +4233,11 @@
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">La función de descubrimiento privado de contactos de Signal no puede procesar temporalmente los contactos de tu teléfono.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
-    <string name="reminder_cds_warning_learn_more">Más información</string>
+    <string name="reminder_cds_warning_learn_more">Más información</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">La función de descubrimiento privado de contactos de Signal no puede procesar los contactos de tu teléfono.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
-    <string name="reminder_cds_permanent_error_learn_more">Más información</string>
+    <string name="reminder_cds_permanent_error_learn_more">Más información</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Guardar</string>
@@ -4291,7 +4291,7 @@
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">¡Los PIN han llegado a Signal!</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">El PIN mantiene la información guardada en Signal cifrada para que solo tú tengas acceso. Tu perfil, ajustes y contactos se restaurarán al reinstalar Signal. No necesitarás el PIN para abrir la aplicación.</string>
-    <string name="KbsSplashFragment__learn_more">Más información</string>
+    <string name="KbsSplashFragment__learn_more">Más información</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueo de registro = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueo de registro ahora se llama PIN y permite más funciones. Actualízalo ahora.</string>
@@ -4312,7 +4312,7 @@
     <string name="AccountLockedFragment__account_locked">Cuenta bloqueada</string>
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tu cuenta ha sido bloqueada para proteger tu privacidad y seguridad. Después de %1$d días con tu cuenta inactiva, podrás volver a registrar tu cuenta con un nuevo PIN. Previamente se eliminará tu perfil, contactos, grupos y personas bloqueadas.</string>
     <string name="AccountLockedFragment__next">Siguiente</string>
-    <string name="AccountLockedFragment__learn_more">Más información</string>
+    <string name="AccountLockedFragment__learn_more">Más información</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
@@ -5079,7 +5079,7 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Exporta un informe de los datos de tu cuenta de Signal. Este informe no incluye ningún mensaje ni archivo multimedia. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Más información</string>
+    <string name="ExportAccountDataFragment__learn_more">Más información</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
     <string name="ExportAccountDataFragment__export_report">Exportar informe</string>
 
@@ -5830,7 +5830,7 @@
     <!-- Displayed as a dialog message when clicking on a donation row that is pending. Placeholder is a formatted fiat amount -->
     <string name="MySupportPreference__your_bank_transfer_of_s">Tu transferencia bancaria de %1$s está pendiente. Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
-    <string name="MySupportPreference__learn_more">Más información</string>
+    <string name="MySupportPreference__learn_more">Más información</string>
     <!-- Displayed when a subscription refresh is being performed -->
     <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
 
@@ -5909,7 +5909,7 @@
     <!-- Displayed on manage donations screen as a dialog message when payment method failed -->
     <string name="DonationsErrors__try_another_payment_method">Selecciona otro método de pago o contacta con tu banco para más información.</string>
     <!-- Displayed on manage donations screen error dialogs as an action label -->
-    <string name="DonationsErrors__learn_more">Más información</string>
+    <string name="DonationsErrors__learn_more">Más información</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">No se ha podido procesar la donación.%1$s</string>
     <string name="DonationsErrors__your_payment">No se ha podido procesar tu donación y no se ha aplicado ningún cargo. Inténtalo de nuevo.</string>
@@ -5964,7 +5964,7 @@
     <!-- Stripe decline code verify on Google Pay and try again -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Comprueba que tu método de pago está al día en Google Pay e inténtalo de nuevo.</string>
     <!-- Stripe decline code learn more action label -->
-    <string name="DeclineCode__learn_more">Más información</string>
+    <string name="DeclineCode__learn_more">Más información</string>
     <!-- Stripe decline code contact issuer -->
     <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Comprueba que tu método de pago está al día en Google Pay e inténtalo de nuevo. Si el problema persiste, contacta con tu banco.</string>
     <!-- Stripe decline code purchase not supported -->
@@ -6793,7 +6793,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacidad sin fines de lucro</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privacidad sin ánimo de lucro</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Continuar</string>
     <!-- Description below title -->
@@ -6879,7 +6879,7 @@
     <!-- Subtitle of screen displaying the bank transfer mandate, placeholder is \'Learn more\' -->
     <string name="BankTransferMandateFragment__stripe_processes_donations">Stripe procesa las donaciones realizadas a Signal. Signal no recoge ni almacena tu información personal. %1$s</string>
     <!-- Subtitle learn more of screen displaying bank transfer mandate -->
-    <string name="BankTransferMandateFragment__learn_more">Más información</string>
+    <string name="BankTransferMandateFragment__learn_more">Más información</string>
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__agree">Aceptar</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
@@ -6891,7 +6891,7 @@
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
     <string name="BankTransferDetailsFragment__enter_your_bank_details">Introduce tus datos bancarios y correo electrónico. Stripe utiliza este correo electrónico para enviarte actualizaciones sobre tu donación. %1$s</string>
     <!-- Subtext learn more link text -->
-    <string name="BankTransferDetailsFragment__learn_more">Más información</string>
+    <string name="BankTransferDetailsFragment__learn_more">Más información</string>
     <!-- Text field label for name on bank account -->
     <string name="BankTransferDetailsFragment__name_on_bank_account">Nombre en la cuenta bancaria</string>
     <!-- Text field label for IBAN -->
@@ -6925,7 +6925,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Introduce tus datos bancarios. Signal no recoge ni almacena tu información personal. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
-    <string name="IdealTransferDetailsFragment__learn_more">Más información</string>
+    <string name="IdealTransferDetailsFragment__learn_more">Más información</string>
     <!-- Hint label for text entry box for name on bank account -->
     <string name="IdealTransferDetailsFragment__name_on_bank_account">Nombre en la cuenta bancaria</string>
     <!-- Hint label for text entry box for email -->
@@ -6957,7 +6957,7 @@
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en completarse. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
-    <string name="DonationPendingBottomSheet__learn_more">Más información</string>
+    <string name="DonationPendingBottomSheet__learn_more">Más información</string>
     <!-- Confirmation button for donation pending sheet displayed after donating via a bank transfer. -->
     <string name="DonationPendingBottomSheet__done">Listo</string>
 
@@ -6997,7 +6997,7 @@
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">El número de contactos de tu teléfono supera el límite que Signal puede procesar. Para encontrar contactos en Signal, considera eliminar los contactos o las cuentas de tu teléfono que estén sincronizando muchos contactos.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_learn_more">Más información</string>
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Más información</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Abrir contactos</string>
     <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
@@ -7049,7 +7049,7 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__dismiss">Ignorar</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__learn_more">Más información</string>
+    <string name="SetUpYourUsername__learn_more">Más información</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_title">Nuevas formas de conectarte</string>
@@ -7058,7 +7058,7 @@
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
     <string name="PnpLaunchMegaphone_dismiss">Ignorar</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
-    <string name="PnpLaunchMegaphone_learn_more">Más información</string>
+    <string name="PnpLaunchMegaphone_learn_more">Más información</string>
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
@@ -7427,7 +7427,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
     <string name="MonthlyDonationCanceled__message">Tu donación mensual se ha cancelado. %1$s\n\nTu insignia ya no será visible en tu perfil. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
-    <string name="MonthlyDonationCanceled__learn_more">Más información</string>
+    <string name="MonthlyDonationCanceled__learn_more">Más información</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
     <string name="MonthlyDonationCanceled__renew_button">Renovar suscripción</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
@@ -7551,7 +7551,7 @@
         <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
-    <string name="BackupAlertBottomSheet__learn_more">Más información</string>
+    <string name="BackupAlertBottomSheet__learn_more">Más información</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Omitir restauración</string>
     <!-- Primary action button to start backup immediately -->
@@ -7914,7 +7914,7 @@
     <!-- Action button label to proceed with backups activation -->
     <string name="MessageBackupsEducationScreen__enable_backups">Habilitar copias de seguridad</string>
     <!-- Action button label to learn more -->
-    <string name="MessageBackupsEducationScreen__learn_more">Más información</string>
+    <string name="MessageBackupsEducationScreen__learn_more">Más información</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
