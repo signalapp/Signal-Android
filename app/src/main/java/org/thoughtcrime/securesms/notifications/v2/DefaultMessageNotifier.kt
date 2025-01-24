@@ -125,6 +125,11 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
   ) {
     NotificationChannels.getInstance().ensureCustomChannelConsistency()
 
+    if (!Recipient.isSelfSet) {
+      Log.w(TAG, "Attempting to update notifications without local self, aborting")
+      return
+    }
+
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
     val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings.messageNotificationsPrivacy
     val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
