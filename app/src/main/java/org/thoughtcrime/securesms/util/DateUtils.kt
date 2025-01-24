@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.conversation.v2.computed.FormattedDate
 import java.text.DateFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -182,14 +183,30 @@ object DateUtils : android.text.format.DateUtils() {
   }
 
   /**
-   * Formats the timestamp as a date, without the year, followed by the time
-   * eg. Jan 15 at 9:00pm
+   * Given a timestamp, formats as "at time".
+   * Pluralization allows for Romance languages to be translated correctly
+   * eg. at 7:23pm, at 13:20
+   */
+  @JvmStatic
+  fun getOnlyTimeAtString(context: Context, timestamp: Long): String {
+    val time = timestamp.toLocalTime().formatHours(context)
+    val hour = getHour(context, timestamp)
+
+    return context.resources.getQuantityString(R.plurals.DateUtils_time_at, hour, time)
+  }
+
+  /**
+   * Formats the timestamp as a date, without the year, followed by the time.
+   * Pluralization allows for Romance languages to be translated correctly
+   * eg. on Jan 15 at 9:00pm
    */
   @JvmStatic
   fun getDateTimeString(context: Context, locale: Locale, timestamp: Long): String {
     val date = timestamp.toDateString("MMM d", locale)
     val time = timestamp.toLocalTime().formatHours(context)
-    return context.getString(R.string.DateUtils_date_at, date, time)
+    val hour = getHour(context, timestamp)
+
+    return context.resources.getQuantityString(R.plurals.DateUtils_date_time_at, hour, date, time)
   }
 
   /**
@@ -361,6 +378,16 @@ object DateUtils : android.text.format.DateUtils() {
 
   private fun isYesterday(time: Long): Boolean {
     return isToday(time + TimeUnit.DAYS.toMillis(1))
+  }
+
+  private fun getHour(context: Context, timestamp: Long): Int {
+    val cal = Calendar.getInstance(Locale.getDefault())
+    cal.timeInMillis = timestamp
+    return if (context.is24HourFormat()) {
+      cal[Calendar.HOUR_OF_DAY]
+    } else {
+      cal[Calendar.HOUR]
+    }
   }
 
   private fun Context.is24HourFormat(): Boolean {

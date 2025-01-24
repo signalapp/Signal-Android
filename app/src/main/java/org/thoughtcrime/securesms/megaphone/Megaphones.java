@@ -299,7 +299,7 @@ public final class Megaphones {
   }
 
   private static @NonNull Megaphone buildNewLinkedDeviceMegaphone(@NonNull Context context) {
-    String createdAt = DateUtils.getOnlyTimeString(context, SignalStore.misc().getNewLinkedDeviceCreatedTime());
+    String createdAt = DateUtils.getOnlyTimeAtString(context, SignalStore.misc().getNewLinkedDeviceCreatedTime());
     return new Megaphone.Builder(Event.NEW_LINKED_DEVICE, Megaphone.Style.BASIC)
         .setTitle(R.string.NewLinkedDeviceNotification__you_linked_new_device)
         .setBody(context.getString(R.string.NewLinkedDeviceMegaphone__a_new_device_was_linked, createdAt))

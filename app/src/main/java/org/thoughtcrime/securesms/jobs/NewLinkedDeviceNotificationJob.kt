@@ -74,7 +74,7 @@ class NewLinkedDeviceNotificationJob private constructor(
       val builder = NotificationCompat.Builder(context, NotificationChannels.getInstance().NEW_LINKED_DEVICE)
         .setSmallIcon(R.drawable.ic_notification)
         .setContentTitle(context.getString(R.string.NewLinkedDeviceNotification__you_linked_new_device))
-        .setContentText(context.getString(R.string.NewLinkedDeviceNotification__a_new_device_was_linked, DateUtils.getOnlyTimeString(context, data.deviceCreatedAt)))
+        .setContentText(context.getString(R.string.NewLinkedDeviceNotification__a_new_device_was_linked, DateUtils.getOnlyTimeAtString(context, data.deviceCreatedAt)))
         .setContentIntent(pendingIntent)
 
       ServiceUtil.getNotificationManager(context).notify(NotificationIds.NEW_LINKED_DEVICE, builder.build())
