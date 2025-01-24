@@ -383,23 +383,10 @@ class ChatItemArchiveImporter(
     }
 
     if (this.standardMessage != null) {
-      val bodyRanges = this.standardMessage.text?.bodyRanges
-      if (!bodyRanges.isNullOrEmpty()) {
-        val mentions = bodyRanges.filter { it.mentionAci != null && it.start != null && it.length != null }
-          .mapNotNull {
-            val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
-
-            if (aci != null && !aci.isUnknown) {
-              val id = RecipientId.from(aci)
-              Mention(id, it.start!!, it.length!!)
-            } else {
-              null
-            }
-          }
-        if (mentions.isNotEmpty()) {
-          followUps += { messageId ->
-            SignalDatabase.mentions.insert(threadId, messageId, mentions)
-          }
+      val mentions = this.standardMessage.text?.bodyRanges.filterToLocalMentions()
+      if (mentions.isNotEmpty()) {
+        followUps += { messageId ->
+          SignalDatabase.mentions.insert(threadId, messageId, mentions)
         }
       }
       val linkPreviews = this.standardMessage.linkPreview.map { it.toLocalLinkPreview() }
@@ -929,7 +916,7 @@ class ChatItemArchiveImporter(
     this.put(MessageTable.QUOTE_AUTHOR, importState.requireLocalRecipientId(quote.authorId).serialize())
     this.put(MessageTable.QUOTE_BODY, quote.text?.body)
     this.put(MessageTable.QUOTE_TYPE, quote.type.toLocalQuoteType())
-    this.put(MessageTable.QUOTE_BODY_RANGES, quote.text?.bodyRanges?.toLocalBodyRanges()?.encode())
+    this.put(MessageTable.QUOTE_BODY_RANGES, quote.text?.bodyRanges?.toLocalBodyRanges(includeMentions = true)?.encode())
     this.put(MessageTable.QUOTE_MISSING, (quote.targetSentTimestamp == null).toInt())
   }
 
@@ -983,13 +970,13 @@ class ChatItemArchiveImporter(
     }
   }
 
-  private fun List<BodyRange>.toLocalBodyRanges(): BodyRangeList? {
+  private fun List<BodyRange>.toLocalBodyRanges(includeMentions: Boolean = false): BodyRangeList? {
     if (this.isEmpty()) {
       return null
     }
 
     return BodyRangeList(
-      ranges = this.filter { it.mentionAci == null }.map { bodyRange ->
+      ranges = this.filter { includeMentions || it.mentionAci == null }.map { bodyRange ->
         BodyRangeList.BodyRange(
           mentionUuid = bodyRange.mentionAci?.let { UuidUtil.fromByteString(it) }?.toString(),
           style = bodyRange.style?.let {
@@ -1133,6 +1120,24 @@ class ChatItemArchiveImporter(
       ContactAttachment.PostalAddress.Type.UNKNOWN,
       null -> Contact.PostalAddress.Type.CUSTOM
     }
+  }
+
+  private fun List<BodyRange>?.filterToLocalMentions(): List<Mention> {
+    if (this == null) {
+      return emptyList()
+    }
+
+    return this.filter { it.mentionAci != null && it.start != null && it.length != null }
+      .mapNotNull {
+        val aci = ServiceId.ACI.parseOrNull(it.mentionAci!!)
+
+        if (aci != null && !aci.isUnknown) {
+          val id = RecipientId.from(aci)
+          Mention(id, it.start!!, it.length!!)
+        } else {
+          null
+        }
+      }
   }
 
   private class MessageInsert(

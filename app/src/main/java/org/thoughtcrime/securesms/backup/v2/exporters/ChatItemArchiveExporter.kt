@@ -940,13 +940,15 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
     QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
   }
 
+  val bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(dateSent) ?: emptyList()
+
   return Quote(
     targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID }?.clampToValidBackupRange(),
     authorId = this.quoteAuthor,
     text = this.quoteBody?.let { body ->
       Text(
         body = body,
-        bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()
+        bodyRanges = bodyRanges
       )
     },
     attachments = if (remoteType == Quote.Type.VIEW_ONCE) {
