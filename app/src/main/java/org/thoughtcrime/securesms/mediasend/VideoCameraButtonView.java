@@ -38,18 +38,14 @@ public class VideoCameraButtonView extends View {
   private final RectF progressRect = new RectF();
   private final RectF stopIconRect = new RectF();
 
-  private final @NonNull OnClickListener startRecordingClickListener = v -> {
-    notifyVideoCaptureStarted();
-    setScaleX(1f);
-    setScaleY(1f);
-    isRecordingVideo = true;
-  };
-
-  private final @NonNull OnClickListener stopRecordingClickListener = v -> {
-    notifyVideoCaptureEnded();
-    setScaleX(1f);
-    setScaleY(1f);
-    isRecordingVideo = false;
+  private final @NonNull OnClickListener internalClickListener = v -> {
+    if(isRecordingVideo) {
+      notifyVideoCaptureStarted();
+      isRecordingVideo = true;
+    } else {
+      notifyVideoCaptureEnded();
+      isRecordingVideo = false;
+    }
   };
 
   public VideoCameraButtonView(@NonNull Context context) {
@@ -160,7 +156,7 @@ public class VideoCameraButtonView extends View {
 
     if (videoCaptureListener != null) {
       this.videoCaptureListener = videoCaptureListener;
-      setOnClickListener(startRecordingClickListener);
+      setOnClickListener(internalClickListener);
     }
   }
 
@@ -179,14 +175,5 @@ public class VideoCameraButtonView extends View {
     if (isRecordingVideo && videoCaptureListener != null) {
       videoCaptureListener.onVideoCaptureComplete();
     }
-  }
-
-  @Override public boolean performClick() {
-    if (isRecordingVideo) {
-      setOnClickListener(stopRecordingClickListener);
-    } else {
-      setOnClickListener(startRecordingClickListener);
-    }
-    return super.performClick();
   }
 }
