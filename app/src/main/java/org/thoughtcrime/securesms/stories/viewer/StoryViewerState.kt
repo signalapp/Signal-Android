@@ -22,7 +22,7 @@ data class StoryViewerState(
   }
 
   sealed class CrossfadeTarget {
-    object None : CrossfadeTarget()
+    data object None : CrossfadeTarget()
     data class Record(val messageRecord: MmsMessageRecord) : CrossfadeTarget()
   }
 }

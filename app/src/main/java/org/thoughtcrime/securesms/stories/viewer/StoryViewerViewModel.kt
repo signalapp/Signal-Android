@@ -136,13 +136,22 @@ class StoryViewerViewModel(
 
   fun refresh() {
     disposables.clear()
-    disposables += repository.getFirstStory(storyViewerArgs.recipientId, storyViewerArgs.storyId).subscribe { record ->
-      store.update {
-        it.copy(
-          crossfadeTarget = StoryViewerState.CrossfadeTarget.Record(record)
-        )
+    disposables += repository.getFirstStory(storyViewerArgs.recipientId, storyViewerArgs.storyId)
+      .doOnSuccess { record ->
+        store.update {
+          it.copy(
+            crossfadeTarget = StoryViewerState.CrossfadeTarget.Record(record)
+          )
+        }
       }
-    }
+      .onErrorComplete {
+        store.update {
+          it.copy(
+            crossfadeTarget = StoryViewerState.CrossfadeTarget.None
+          )
+        }
+        true
+      }.subscribe()
     disposables += getStories().subscribe { recipientIds ->
       store.update {
         val page: Int = if (it.pages.isNotEmpty()) {
