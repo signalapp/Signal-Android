@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.DeleteAbandonedAttachmentsJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -60,6 +61,7 @@ public final class AppInitialization {
     AppDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_HANDS.getPackId(), BlessedPacks.SWOON_HANDS.getPackKey()));
     AppDependencies.getJobManager().add(StickerPackDownloadJob.forReference(BlessedPacks.SWOON_FACES.getPackId(), BlessedPacks.SWOON_FACES.getPackKey()));
     EmojiSearchIndexDownloadJob.scheduleImmediately();
+    DeleteAbandonedAttachmentsJob.enqueue();
   }
 
   /**
