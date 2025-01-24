@@ -59,7 +59,7 @@
     <dimen name="media_bubble_max_height_condensed">150dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
     <dimen name="media_bubble_gif_width">240dp</dimen>
-    <dimen name="message_audio_width">242dp</dimen>
+    <dimen name="message_audio_width">212dp</dimen>
     <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
     <dimen name="message_audio_duration_margin_start">56dp</dimen>
 
