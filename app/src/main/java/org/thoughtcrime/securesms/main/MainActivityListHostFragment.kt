@@ -108,6 +108,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         R.id.callLogFragment -> goToStateFromCalling(state, controller)
       }
     }
+
+    disposables += conversationListTabsViewModel.getNotificationProfiles().subscribeBy { profiles ->
+      updateNotificationProfileStatus(profiles)
+    }
   }
 
   private fun goToStateFromConversationList(state: ConversationListTabsState, navController: NavController) {
@@ -314,7 +318,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     }
   }
 
-  override fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
+  private fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
     val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
     if (activeProfile != null) {
       if (activeProfile.id != SignalStore.notificationProfile.lastProfilePopup) {
