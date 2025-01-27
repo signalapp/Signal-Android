@@ -37,7 +37,7 @@ object IBANVisualTransformation : VisualTransformation {
     }
 
     override fun transformedToOriginal(offset: Int): Int {
-      return offset - (offset / 4)
+      return offset - (offset / 5)
     }
   }
 }

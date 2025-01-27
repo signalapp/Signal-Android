@@ -6,6 +6,9 @@
 package org.thoughtcrime.securesms.registrationv3.ui.restore
 
 import android.graphics.Typeface
+import android.os.Bundle
+import android.view.View
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
@@ -36,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -47,17 +52,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
+import org.signal.core.ui.Dialogs
 import org.signal.core.ui.Previews
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationState
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberMode
@@ -72,29 +84,50 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class EnterBackupKeyFragment : ComposeFragment() {
 
   companion object {
-    private const val LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059752-Backup-and-Restore-Messages"
+    private const val LEARN_MORE_URL = "https://support.signal.org/hc/articles/360007059752"
   }
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val viewModel by viewModels<EnterBackupKeyViewModel>()
 
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    viewLifecycleOwner.lifecycleScope.launch {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+        sharedViewModel
+          .state
+          .map { it.registerAccountError }
+          .filterNotNull()
+          .collect {
+            sharedViewModel.registerAccountErrorShown()
+            viewModel.handleRegistrationFailure(it)
+          }
+      }
+    }
+  }
+
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
 
     EnterBackupKeyScreen(
+      backupKey = viewModel.backupKey,
       state = state,
       sharedState = sharedState,
       onBackupKeyChanged = viewModel::updateBackupKey,
       onNextClicked = {
+        viewModel.registering()
         sharedViewModel.registerWithBackupKey(
           context = requireContext(),
-          backupKey = state.backupKey,
+          backupKey = viewModel.backupKey,
           e164 = null,
           pin = null
         )
       },
+      onRegistrationErrorDismiss = viewModel::clearRegistrationError,
+      onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
       onSkip = { findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)) }
     )
@@ -104,9 +137,12 @@ class EnterBackupKeyFragment : ComposeFragment() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun EnterBackupKeyScreen(
+  backupKey: String,
   state: EnterBackupKeyState,
   sharedState: RegistrationState,
   onBackupKeyChanged: (String) -> Unit = {},
+  onRegistrationErrorDismiss: () -> Unit = {},
+  onBackupKeyHelp: () -> Unit = {},
   onNextClicked: () -> Unit = {},
   onLearnMore: () -> Unit = {},
   onSkip: () -> Unit = {}
@@ -137,26 +173,38 @@ private fun EnterBackupKeyScreen(
           )
         }
 
-        Buttons.LargeTonal(
-          enabled = state.backupKeyValid && !sharedState.inProgress,
-          onClick = onNextClicked
-        ) {
-          Text(
-            text = stringResource(id = R.string.RegistrationActivity_next)
-          )
+        AnimatedContent(
+          targetState = state.isRegistering,
+          label = "next-progress"
+        ) { isRegistering ->
+          if (isRegistering) {
+            CircularProgressIndicator(
+              modifier = Modifier.size(40.dp)
+            )
+          } else {
+            Buttons.LargeTonal(
+              enabled = state.backupKeyValid && state.aepValidationError == null,
+              onClick = onNextClicked
+            ) {
+              Text(
+                text = stringResource(id = R.string.RegistrationActivity_next)
+              )
+            }
+          }
         }
       }
     }
   ) {
     val focusRequester = remember { FocusRequester() }
-    val visualTransform = remember(state.length, state.chunkLength) { BackupKeyVisualTransformation(length = state.length, chunkSize = state.chunkLength) }
+    val visualTransform = remember(state.chunkLength) { BackupKeyVisualTransformation(chunkSize = state.chunkLength) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     TextField(
-      value = state.backupKey,
+      value = backupKey,
+      onValueChange = onBackupKeyChanged,
       label = {
         Text(text = stringResource(id = R.string.EnterBackupKey_backup_key))
       },
-      onValueChange = onBackupKeyChanged,
       textStyle = LocalTextStyle.current.copy(
         fontFamily = FontFamily(typeface = Typeface.MONOSPACE),
         lineHeight = 36.sp
@@ -168,8 +216,15 @@ private fun EnterBackupKeyScreen(
         autoCorrectEnabled = false
       ),
       keyboardActions = KeyboardActions(
-        onNext = { if (state.backupKeyValid) onNextClicked() }
+        onNext = {
+          if (state.backupKeyValid) {
+            keyboardController?.hide()
+            onNextClicked()
+          }
+        }
       ),
+      supportingText = { state.aepValidationError?.ValidationErrorMessage() },
+      isError = state.aepValidationError != null,
       minLines = 4,
       visualTransformation = visualTransform,
       modifier = Modifier
@@ -201,6 +256,40 @@ private fun EnterBackupKeyScreen(
         )
       }
     }
+
+    if (state.showRegistrationError) {
+      if (state.registerAccountResult is RegisterAccountResult.IncorrectRecoveryPassword) {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.EnterBackupKey_incorrect_backup_key_title),
+          body = stringResource(R.string.EnterBackupKey_incorrect_backup_key_message),
+          confirm = stringResource(R.string.EnterBackupKey_try_again),
+          dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+          onConfirm = {},
+          onDeny = onBackupKeyHelp,
+          onDismiss = onRegistrationErrorDismiss
+        )
+      } else {
+        val message = when (state.registerAccountResult) {
+          is RegisterAccountResult.RateLimited -> stringResource(R.string.RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later)
+          else -> stringResource(R.string.RegistrationActivity_error_connecting_to_service)
+        }
+
+        Dialogs.SimpleMessageDialog(
+          message = message,
+          onDismiss = onRegistrationErrorDismiss,
+          dismiss = stringResource(android.R.string.ok)
+        )
+      }
+    }
+  }
+}
+
+@Composable
+private fun EnterBackupKeyViewModel.AEPValidationError.ValidationErrorMessage() {
+  when (this) {
+    is EnterBackupKeyViewModel.AEPValidationError.TooLong -> Text(text = stringResource(R.string.EnterBackupKey_too_long_error, this.count, this.max))
+    EnterBackupKeyViewModel.AEPValidationError.Invalid -> Text(text = stringResource(R.string.EnterBackupKey_invalid_backup_key_error))
+    EnterBackupKeyViewModel.AEPValidationError.Incorrect -> Text(text = stringResource(R.string.EnterBackupKey_incorrect_backup_key_error))
   }
 }
 
@@ -209,7 +298,20 @@ private fun EnterBackupKeyScreen(
 private fun EnterBackupKeyScreenPreview() {
   Previews.Preview {
     EnterBackupKeyScreen(
-      state = EnterBackupKeyState(backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t", length = 64, chunkLength = 4),
+      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+      state = EnterBackupKeyState(requiredLength = 64, chunkLength = 4),
+      sharedState = RegistrationState(phoneNumber = null, recoveryPassword = null)
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun EnterBackupKeyScreenErrorPreview() {
+  Previews.Preview {
+    EnterBackupKeyScreen(
+      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+      state = EnterBackupKeyState(requiredLength = 64, chunkLength = 4, aepValidationError = EnterBackupKeyViewModel.AEPValidationError.Invalid),
       sharedState = RegistrationState(phoneNumber = null, recoveryPassword = null)
     )
   }

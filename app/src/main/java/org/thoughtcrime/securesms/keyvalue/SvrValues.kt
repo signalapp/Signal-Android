@@ -19,7 +19,6 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
     private const val SVR2_AUTH_TOKENS = "kbs.kbs_auth_tokens"
     private const val SVR_LAST_AUTH_REFRESH_TIMESTAMP = "kbs.kbs_auth_tokens.last_refresh_timestamp"
     private const val SVR3_AUTH_TOKENS = "kbs.svr3_auth_tokens"
-    private const val RESTORED_VIA_ACCOUNT_ENTROPY_KEY = "kbs.restore_via_account_entropy_pool"
     private const val INITIAL_RESTORE_MASTER_KEY = "kbs.initialRestoreMasterKey"
   }
 
@@ -145,16 +144,13 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
 
   @Synchronized
   fun hasOptedInWithAccess(): Boolean {
-    return hasPin() || restoredViaAccountEntropyPool
+    return hasPin() || SignalStore.account.restoredAccountEntropyPool
   }
 
   @Synchronized
   fun hasPin(): Boolean {
     return localPinHash != null
   }
-
-  @get:Synchronized
-  val restoredViaAccountEntropyPool by booleanValue(RESTORED_VIA_ACCOUNT_ENTROPY_KEY, false)
 
   @get:Synchronized
   @set:Synchronized
@@ -242,7 +238,6 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
       .putBoolean(OPTED_OUT, true)
       .remove(LOCK_LOCAL_PIN_HASH)
       .remove(PIN)
-      .remove(RESTORED_VIA_ACCOUNT_ENTROPY_KEY)
       .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
       .commit()
   }

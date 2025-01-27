@@ -104,6 +104,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
   }
 
   private fun navigateToNextScreenViaRestore(userSelection: WelcomeUserSelection) {
+    sharedViewModel.maybePrefillE164(requireContext())
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
 
     when (userSelection) {

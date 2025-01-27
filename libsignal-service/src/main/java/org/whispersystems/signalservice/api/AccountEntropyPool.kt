@@ -30,6 +30,14 @@ class AccountEntropyPool(val value: String) {
 
       return AccountEntropyPool(stripped)
     }
+
+    fun isFullyValid(input: String): Boolean {
+      return LibSignalAccountEntropyPool.isValid(input)
+    }
+
+    fun removeIllegalCharacters(input: String): String {
+      return input.replace(INVALID_CHARACTERS, "")
+    }
   }
 
   fun deriveMasterKey(): MasterKey {
