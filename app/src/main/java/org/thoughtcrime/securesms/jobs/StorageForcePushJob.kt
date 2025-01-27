@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -84,6 +85,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     val newContactStorageIds = generateContactStorageIds(oldContactStorageIds)
     val inserts: MutableList<SignalStorageRecord> = oldContactStorageIds.keys
       .mapNotNull { SignalDatabase.recipients.getRecordForSync(it) }
+      .filter { it.recipientType != RecipientTable.RecipientType.INDIVIDUAL || (it.aci != null || it.pni != null || it.e164 != null) }
       .map { record -> StorageSyncModels.localToRemoteRecord(record, newContactStorageIds[record.id]!!.raw) }
       .toMutableList()
 
