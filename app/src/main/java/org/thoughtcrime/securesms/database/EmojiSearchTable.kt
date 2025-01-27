@@ -62,7 +62,7 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
     readableDatabase
       .select(LABEL, EMOJI, RANK)
       .from(TABLE_NAME)
-      .where("$LABEL LIKE ?", "%$query%")
+      .where("$LABEL LIKE ? OR $EMOJI = ?", "%$query%", query)
       .orderBy("$RANK ASC")
       .limit(limit)
       .run()
@@ -123,7 +123,7 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
   private fun similarityScore(searchTerm: String, entry: Entry, maxRank: Int): Float {
     val match: String = entry.label
 
-    if (searchTerm == match) {
+    if (searchTerm == entry.emoji || searchTerm == match) {
       return entry.scaledRank(maxRank)
     }
 
