@@ -36,7 +36,7 @@ class OneTimeInAppPaymentRepositoryTest {
   val appDependencies = MockAppDependenciesRule()
 
   @get:Rule
-  val donationsTestRule = DonationsTestRule()
+  val inAppPaymentsTestRule = InAppPaymentsTestRule()
 
   @Test
   fun `Given a throwable and self, when I handleCreatePaymentIntentError, then I expect a ONE_TIME error`() {
@@ -174,7 +174,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `When I getBoosts, then I expect a filtered set of boost objects`() {
-    donationsTestRule.initializeDonationsConfigurationMock()
+    inAppPaymentsTestRule.initializeDonationsConfigurationMock()
 
     val testObserver = OneTimeInAppPaymentRepository.getBoosts().test()
     rxRule.defaultScheduler.triggerActions()
@@ -188,7 +188,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `When I getBoostBadge, then I expect a boost badge`() {
-    donationsTestRule.initializeDonationsConfigurationMock()
+    inAppPaymentsTestRule.initializeDonationsConfigurationMock()
 
     val testObserver = OneTimeInAppPaymentRepository.getBoostBadge().test()
     rxRule.defaultScheduler.triggerActions()
@@ -200,7 +200,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `When I getMinimumDonationAmounts, then I expect a map of 3 currencies`() {
-    donationsTestRule.initializeDonationsConfigurationMock()
+    inAppPaymentsTestRule.initializeDonationsConfigurationMock()
 
     val testObserver = OneTimeInAppPaymentRepository.getMinimumDonationAmounts().test()
     rxRule.defaultScheduler.triggerActions()
@@ -212,7 +212,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `Given a long running transaction, when I waitForOneTimeRedemption, then I expect DonationPending`() {
-    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.SEPADebit)
+    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.SEPADebit)
 
     every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
 
@@ -230,7 +230,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `Given a non long running transaction, when I waitForOneTimeRedemption, then I expect TimeoutWaitingForTokenError`() {
-    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
+    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
 
     every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
 
@@ -248,7 +248,7 @@ class OneTimeInAppPaymentRepositoryTest {
 
   @Test
   fun `Given no delays, when I waitForOneTimeRedemption, then I expect happy path`() {
-    val inAppPayment = donationsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
+    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
 
     every { InAppPaymentsRepository.observeUpdates(inAppPayment.id) } returns Flowable.just(inAppPayment.copy(state = InAppPaymentTable.State.END))
     every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment

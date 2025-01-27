@@ -50,7 +50,7 @@ class InAppPaymentRecurringContextJob private constructor(
 
     const val KEY = "InAppPurchaseRecurringContextJob"
 
-    fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
+    fun create(inAppPayment: InAppPaymentTable.InAppPayment): InAppPaymentRecurringContextJob {
       return InAppPaymentRecurringContextJob(
         inAppPaymentId = inAppPayment.id,
         parameters = Parameters.Builder()

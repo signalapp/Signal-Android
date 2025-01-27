@@ -17,24 +17,35 @@ import org.junit.rules.ExternalResource
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
+import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentMethodType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.math.BigDecimal
 import java.util.Currency
+import java.util.concurrent.atomic.AtomicReference
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Common setup between different tests that rely on donations infrastructure.
  */
-class DonationsTestRule : ExternalResource() {
+class InAppPaymentsTestRule : ExternalResource() {
+
+  private var nextId = 1L
+  private val inAppPaymentCache = mutableMapOf<InAppPaymentTable.InAppPaymentId, InAppPaymentTable.InAppPayment>()
 
   private val configuration: SubscriptionsConfiguration by lazy {
     val testConfigJsonData = javaClass.classLoader!!.getResourceAsStream("donations_configuration_test_data.json").bufferedReader().readText()
@@ -58,14 +69,48 @@ class DonationsTestRule : ExternalResource() {
     every { InAppDonations.isIDEALAvailable() } returns true
 
     mockkObject(SignalDatabase.Companion)
+    every { SignalDatabase.Companion.donationReceipts } returns mockk {
+      every { SignalDatabase.Companion.donationReceipts.addReceipt(any()) } returns Unit
+    }
+
     every { SignalDatabase.Companion.inAppPayments } returns mockk {
-      every { SignalDatabase.Companion.inAppPayments.update(any()) } returns Unit
+      every { SignalDatabase.Companion.inAppPayments.insert(any(), any(), any(), any(), any()) } answers {
+        val inAppPaymentData: InAppPaymentData = arg(4)
+        val iap = createInAppPayment(firstArg(), inAppPaymentData.paymentMethodType.toPaymentSourceType())
+        val id = InAppPaymentTable.InAppPaymentId(nextId)
+        nextId++
+
+        inAppPaymentCache[id] = iap.copy(
+          id = id,
+          state = secondArg(),
+          subscriberId = thirdArg(),
+          endOfPeriod = arg(3) ?: 0.seconds,
+          data = inAppPaymentData
+        )
+
+        id
+      }
+
+      every { SignalDatabase.Companion.inAppPayments.update(any()) } answers {
+        val inAppPayment = firstArg<InAppPaymentTable.InAppPayment>()
+        inAppPaymentCache[inAppPayment.id] = inAppPayment
+      }
+
+      every { SignalDatabase.Companion.inAppPayments.getById(any()) } answers {
+        val inAppPaymentId = firstArg<InAppPaymentTable.InAppPaymentId>()
+        inAppPaymentCache[inAppPaymentId]
+      }
+    }
+
+    mockkObject(SignalStore.Companion)
+    every { SignalStore.Companion.inAppPayments } returns mockk {
+      every { setLastEndOfPeriod(any()) } returns Unit
     }
   }
 
   override fun after() {
     unmockkStatic(RemoteConfig::class, InAppPaymentsRepository::class)
-    unmockkObject(InAppDonations, SignalDatabase.Companion)
+    unmockkObject(InAppDonations, SignalDatabase.Companion, SignalStore.Companion)
   }
 
   /**
@@ -73,6 +118,38 @@ class DonationsTestRule : ExternalResource() {
    */
   fun initializeDonationsConfigurationMock() {
     every { AppDependencies.donationsService.getDonationsConfiguration(any()) } returns ServiceResponse(200, "", configuration, null, null)
+  }
+
+  fun initializeActiveSubscriptionMock(
+    activeSubscription: ActiveSubscription? = null,
+    executionError: Throwable? = null,
+    applicationError: Throwable? = null
+  ) {
+    every { AppDependencies.donationsService.getSubscription(any()) } returns ServiceResponse(200, "", activeSubscription, null, null)
+  }
+
+  fun initializeSubmitReceiptCredentialRequestSync() {
+    val receiptCredentialResponse = mockk<ReceiptCredentialResponse>()
+    every { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) } returns ServiceResponse(200, "", receiptCredentialResponse, null, null)
+  }
+
+  fun createActiveSubscription(): ActiveSubscription {
+    return ActiveSubscription(
+      ActiveSubscription.Subscription(
+        2000,
+        "USD",
+        BigDecimal.ONE,
+        System.currentTimeMillis().milliseconds.inWholeSeconds + 45.days.inWholeSeconds,
+        true,
+        System.currentTimeMillis().milliseconds.inWholeSeconds + 45.days.inWholeSeconds,
+        false,
+        "active",
+        "STRIPE",
+        "CARD",
+        false
+      ),
+      null
+    )
   }
 
   fun createInAppPayment(
@@ -95,5 +172,15 @@ class DonationsTestRule : ExternalResource() {
         amount = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")).toFiatValue()
       )
     )
+  }
+
+  companion object {
+    fun mockLocalSubscriberAccess(initialSubscriber: InAppPaymentSubscriberRecord? = null): AtomicReference<InAppPaymentSubscriberRecord?> {
+      val ref = AtomicReference(initialSubscriber)
+      every { InAppPaymentsRepository.getSubscriber(any()) } answers { ref.get() }
+      every { InAppPaymentsRepository.setSubscriber(any()) } answers { ref.set(firstArg()) }
+
+      return ref
+    }
   }
 }

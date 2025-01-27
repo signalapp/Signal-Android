@@ -37,6 +37,7 @@ public final class SystemOutLogger extends Log.Logger {
 
   private String format(char level, String tag, String message, Throwable t) {
     if (t != null) {
+      t.printStackTrace();
       return String.format("%c[%s] %s %s:%s", level, tag, message, t.getClass().getSimpleName(), t.getMessage());
     } else {
       return String.format("%c[%s] %s", level, tag, message);
