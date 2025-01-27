@@ -88,6 +88,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
   private val connectionNecessarySemaphore = Semaphore(0)
   private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkUnavailable ->
     lock.withLock {
+      AppDependencies.libsignalNetwork.onNetworkChange()
       if (isNetworkUnavailable()) {
         Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.")
         decryptionDrained = false
