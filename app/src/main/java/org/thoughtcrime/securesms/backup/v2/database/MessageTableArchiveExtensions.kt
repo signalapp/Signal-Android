@@ -27,7 +27,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
     """CREATE INDEX $dateReceivedIndex ON ${MessageTable.TABLE_NAME} (
       ${MessageTable.DATE_RECEIVED} ASC,
       ${MessageTable.STORY_TYPE},
-      ${MessageTable.ID},
+      ${MessageTable.PARENT_STORY_ID},
       ${MessageTable.DATE_SENT},
       ${MessageTable.DATE_SERVER},
       ${MessageTable.TYPE},
@@ -59,9 +59,9 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       ${MessageTable.MISMATCHED_IDENTITIES},
       ${MessageTable.TYPE},
       ${MessageTable.MESSAGE_EXTRAS},
-      ${MessageTable.VIEW_ONCE},
-      ${MessageTable.PARENT_STORY_ID}
+      ${MessageTable.VIEW_ONCE}
     )
+    WHERE ${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.PARENT_STORY_ID} <= 0
     """.trimMargin()
   )
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
@@ -128,7 +128,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
           MessageTable.PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.DATE_RECEIVED} >= $lastSeenReceivedTime")
+        .where("${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.PARENT_STORY_ID} <= 0 AND ${MessageTable.DATE_RECEIVED} >= $lastSeenReceivedTime")
         .limit(count)
         .orderBy("${MessageTable.DATE_RECEIVED} ASC")
         .run()
