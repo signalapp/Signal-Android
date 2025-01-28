@@ -956,21 +956,28 @@ private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, atta
   }
 
   val bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(dateSent) ?: emptyList()
+  val body = this.quoteBody?.takeUnless { it.isBlank() }?.let { body ->
+    Text(
+      body = body,
+      bodyRanges = bodyRanges
+    )
+  }
+  val attachments = if (remoteType == Quote.Type.VIEW_ONCE) {
+    emptyList()
+  } else {
+    attachments?.toRemoteQuoteAttachments(mediaArchiveEnabled) ?: emptyList()
+  }
+
+  if (body == null && attachments.isEmpty()) {
+    Log.w(TAG, ExportOddities.emptyQuote(this.dateSent))
+    return null
+  }
 
   return Quote(
     targetSentTimestamp = this.quoteTargetSentTimestamp.takeIf { !this.quoteMissing && it != MessageTable.QUOTE_TARGET_MISSING_ID }?.clampToValidBackupRange(),
     authorId = this.quoteAuthor,
-    text = this.quoteBody?.let { body ->
-      Text(
-        body = body,
-        bodyRanges = bodyRanges
-      )
-    },
-    attachments = if (remoteType == Quote.Type.VIEW_ONCE) {
-      emptyList()
-    } else {
-      attachments?.toRemoteQuoteAttachments(mediaArchiveEnabled) ?: emptyList()
-    },
+    text = body,
+    attachments = attachments,
     type = remoteType
   )
 }

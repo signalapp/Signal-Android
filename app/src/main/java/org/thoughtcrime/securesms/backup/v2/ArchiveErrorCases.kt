@@ -130,6 +130,10 @@ object ExportOddities {
     return log(0, "Distribution list had self as a member. Removing it.")
   }
 
+  fun emptyQuote(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Quote had no text or attachments. Removing it.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[ODDITY][$sentTimestamp] $message"
   }

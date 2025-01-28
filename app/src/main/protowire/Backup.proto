@@ -30,6 +30,7 @@ message BackupInfo {
 // For example, Chats may all be together at the beginning,
 // or may each immediately precede its first ChatItem.
 message Frame {
+  // If unset, importers should skip this frame without throwing an error.
   oneof item {
     AccountData account = 1;
     Recipient recipient = 2;
@@ -44,13 +45,13 @@ message Frame {
 
 message AccountData {
   enum PhoneNumberSharingMode {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Nobody"
     EVERYBODY = 1;
     NOBODY = 2;
   }
   message UsernameLink {
     enum Color {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Interpret as "Blue"
       BLUE = 1;
       WHITE = 2;
       GREY = 3;
@@ -97,6 +98,7 @@ message AccountData {
   message IAPSubscriberData {
     bytes subscriberId = 1;
 
+    // If unset, importers should ignore the subscriber data without throwing an error.
     oneof iapSubscriptionId {
       // Identifies an Android Play Store IAP subscription.
       string purchaseToken = 2;
@@ -119,6 +121,7 @@ message AccountData {
 
 message Recipient {
   uint64 id = 1; // generated id for reference only within this file
+  // If unset, importers should skip this frame without throwing an error.
   oneof destination {
     Contact contact = 2;
     Group group = 3;
@@ -131,9 +134,9 @@ message Recipient {
 
 message Contact {
   enum IdentityState {
-    DEFAULT = 0;
+    DEFAULT = 0; // A valid value -- indicates unset by the user
     VERIFIED = 1;
-    UNVERIFIED = 2;
+    UNVERIFIED = 2; // Was once verified and is now unverified
   }
 
   message Registered {}
@@ -142,7 +145,7 @@ message Contact {
   }
 
   enum Visibility {
-    VISIBLE = 0;
+    VISIBLE = 0; // A valid value -- the contact is not hidden
     HIDDEN = 1;
     HIDDEN_MESSAGE_REQUEST = 2;
   }
@@ -159,6 +162,7 @@ message Contact {
   bool blocked = 5;
   Visibility visibility = 6;
 
+  // If unset, consider the user to be registered
   oneof registration {
     Registered registered = 7;
     NotRegistered notRegistered = 8;
@@ -177,7 +181,7 @@ message Contact {
 
 message Group {
   enum StorySendMode {
-    DEFAULT = 0;
+    DEFAULT = 0; // A valid value -- indicates unset by the user
     DISABLED = 1;
     ENABLED = 2;
   }
@@ -187,6 +191,7 @@ message Group {
   bool hideStory = 3;
   StorySendMode storySendMode = 4;
   GroupSnapshot snapshot = 5;
+  bool blocked = 6;
 
   // These are simply plaintext copies of the groups proto from Groups.proto.
   // They should be kept completely in-sync with Groups.proto.
@@ -210,6 +215,7 @@ message Group {
   }
 
   message GroupAttributeBlob {
+    // If unset, consider the field it represents to not be present
     oneof content {
       string title = 1;
       bytes avatar = 2;
@@ -220,7 +226,7 @@ message Group {
 
   message Member {
     enum Role {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Intepret as "Default"
       DEFAULT = 1;
       ADMINISTRATOR = 2;
     }
@@ -252,7 +258,7 @@ message Group {
 
   message AccessControl {
     enum AccessRequired {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Intepret as "Unsatisfiable"
       ANY = 1;
       MEMBER = 2;
       ADMINISTRATOR = 3;
@@ -292,7 +298,7 @@ message Chat {
  */
 message CallLink {
   enum Restrictions {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Admin Approval"
     NONE = 1;
     ADMIN_APPROVAL = 2;
   }
@@ -306,7 +312,7 @@ message CallLink {
 
 message AdHocCall {
   enum State {
-    UNKNOWN_STATE = 0;
+    UNKNOWN_STATE = 0; // Interpret as "Generic"
     GENERIC = 1;
   }
 
@@ -322,6 +328,7 @@ message DistributionListItem {
   // by an all-0 UUID (00000000-0000-0000-0000-000000000000).
   bytes distributionId = 1; // distribution list ids are uuids
 
+  // If unset, importers should skip the item entirely without showing an error.
   oneof item {
     uint64 deletionTimestamp = 2;
     DistributionList distributionList = 3;
@@ -330,7 +337,7 @@ message DistributionListItem {
 
 message DistributionList {
   enum PrivacyMode {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Only with"
     ONLY_WITH = 1;
     ALL_EXCEPT = 2;
     ALL = 3;
@@ -365,12 +372,14 @@ message ChatItem {
   repeated ChatItem revisions = 6; // ordered from oldest to newest
   bool sms = 7;
 
+  // If unset, importers should skip this item without throwing an error.
   oneof directionalDetails {
     IncomingMessageDetails incoming = 8;
     OutgoingMessageDetails outgoing = 9;
     DirectionlessMessageDetails directionless = 10;
   }
 
+  // If unset, importers should skip this item without throwing an error.
   oneof item {
     StandardMessage standardMessage = 11;
     ContactMessage contactMessage = 12;
@@ -419,6 +428,7 @@ message SendStatus {
   uint64 recipientId = 1;
   uint64 timestamp = 2; // the time the status was last updated -- if from a receipt, it should be the sentTime of the receipt
 
+  // If unset, importers should consider the status to be "pending"
   oneof deliveryStatus {
     Pending pending = 3;
     Sent sent = 4;
@@ -455,6 +465,7 @@ message DirectStoryReplyMessage {
     FilePointer longText = 2;
   }
 
+  // If unset, importers should ignore the message without throwing an error.
   oneof reply {
     TextReply textReply = 1;
     string emoji = 2;
@@ -473,7 +484,7 @@ message PaymentNotification {
 
     message FailedTransaction { // Failed payments can't be synced from the ledger
       enum FailureReason {
-        GENERIC = 0;
+        GENERIC = 0; // A valid value -- reason unknown
         NETWORK = 1;
         INSUFFICIENT_FUNDS = 2;
       }
@@ -482,7 +493,7 @@ message PaymentNotification {
 
     message Transaction {
       enum Status {
-        INITIAL = 0;
+        INITIAL = 0; // A valid value -- state unconfirmed
         SUBMITTED = 1;
         SUCCESSFUL = 2;
       }
@@ -499,6 +510,7 @@ message PaymentNotification {
       optional bytes receipt = 7; // mobile coin blobs
     }
 
+    // If unset, importers should treat the transaction as successful with no metadata.
     oneof payment {
       Transaction transaction = 1;
       FailedTransaction failedTransaction = 2;
@@ -513,7 +525,7 @@ message PaymentNotification {
 
 message GiftBadge {
   enum State {
-    UNOPENED = 0;
+    UNOPENED = 0; // A valid state
     OPENED = 1;
     REDEEMED = 2;
     FAILED = 3;
@@ -541,7 +553,7 @@ message ContactAttachment {
 
   message Phone {
     enum Type {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Interpret as "Home"
       HOME = 1;
       MOBILE = 2;
       WORK = 3;
@@ -555,7 +567,7 @@ message ContactAttachment {
 
   message Email {
     enum Type {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Intepret as "Home"
       HOME = 1;
       MOBILE = 2;
       WORK = 3;
@@ -569,7 +581,7 @@ message ContactAttachment {
 
   message PostalAddress {
     enum Type {
-      UNKNOWN = 0;
+      UNKNOWN = 0; // Interpret as "Home"
       HOME = 1;
       WORK = 2;
       CUSTOM = 3;
@@ -629,7 +641,7 @@ message MessageAttachment {
   // but explicitly mutually exclusive. Note the different raw values
   // (non-zero starting values are not supported in proto3.)
   enum Flag {
-    NONE = 0;
+    NONE = 0; // A valid value -- no flag applied
     VOICE_MESSAGE = 1;
     BORDERLESS = 2;
     GIF = 3;
@@ -680,6 +692,7 @@ message FilePointer {
   message InvalidAttachmentLocator {
   }
 
+  // If unset, importers should consider it to be an InvalidAttachmentLocator without throwing an error.
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator = 2;
@@ -698,7 +711,7 @@ message FilePointer {
 
 message Quote {
   enum Type {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Normal"
     NORMAL = 1;
     GIFT_BADGE = 2;
     VIEW_ONCE = 3;
@@ -719,7 +732,7 @@ message Quote {
 
 message BodyRange {
   enum Style {
-    NONE = 0;
+    NONE = 0; // Importers should ignore the body range without throwing an error.
     BOLD = 1;
     ITALIC = 2;
     SPOILER = 3;
@@ -727,9 +740,12 @@ message BodyRange {
     MONOSPACE = 5;
   }
 
-  optional uint32 start = 1;
-  optional uint32 length = 2;
+  // 'start' and 'length' are measured in UTF-16 code units.
+  // They may refer to offsets in a longText attachment.
+  uint32 start = 1;
+  uint32 length = 2;
 
+  // If unset, importers should ignore the body range without throwing an error.
   oneof associatedValue {
     bytes mentionAci = 3;
     Style style = 4;
@@ -746,6 +762,7 @@ message Reaction {
 }
 
 message ChatUpdateMessage {
+  // If unset, importers should ignore the update message without throwing an error.
   oneof update {
     SimpleChatUpdate simpleUpdate = 1;
     GroupChangeChatUpdate groupChange = 2;
@@ -761,19 +778,19 @@ message ChatUpdateMessage {
 
 message IndividualCall {
   enum Type {
-    UNKNOWN_TYPE = 0;
+    UNKNOWN_TYPE = 0; // Interpret as "Audio call"
     AUDIO_CALL = 1;
     VIDEO_CALL = 2;
   }
 
   enum Direction {
-    UNKNOWN_DIRECTION = 0;
+    UNKNOWN_DIRECTION = 0; // Interpret as "Incoming"
     INCOMING = 1;
     OUTGOING = 2;
   }
 
   enum State {
-    UNKNOWN_STATE = 0;
+    UNKNOWN_STATE = 0; // Interpret as "Accepted"
     ACCEPTED = 1;
     NOT_ACCEPTED = 2;
     // An incoming call that is no longer ongoing, which we neither accepted
@@ -794,7 +811,7 @@ message IndividualCall {
 
 message GroupCall {
   enum State {
-    UNKNOWN_STATE = 0;
+    UNKNOWN_STATE = 0; // Interpret as "Generic"
     // A group call was started without ringing.
     GENERIC = 1;
     // We joined a group call that was started without ringing.
@@ -825,7 +842,7 @@ message GroupCall {
 
 message SimpleChatUpdate {
   enum Type {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Importers should skip the update without throwing an error.
     JOINED_SIGNAL = 1;
     IDENTITY_UPDATE = 2;
     IDENTITY_VERIFIED = 3;
@@ -859,6 +876,7 @@ message ProfileChangeChatUpdate {
 }
 
 message LearnedProfileChatUpdate {
+  // If unset, importers should consider the previous name to be an empty string.
   oneof previousName {
     uint64 e164 = 1;
     string username = 2;
@@ -875,6 +893,7 @@ message SessionSwitchoverChatUpdate {
 
 message GroupChangeChatUpdate {
   message Update {
+    // If unset, importers should consider it to be a GenericGroupUpdate with unset updaterAci
     oneof update {
       GenericGroupUpdate genericGroupUpdate = 1;
       GroupCreationUpdate groupCreationUpdate = 2;
@@ -944,7 +963,7 @@ message GroupDescriptionUpdate {
 }
 
 enum GroupV2AccessLevel {
-  UNKNOWN = 0;
+  UNKNOWN = 0; // Interpret as "Unsatisfiable"
   ANY = 1;
   MEMBER = 2;
   ADMINISTRATOR = 3;
@@ -1134,6 +1153,7 @@ message ChatStyle {
   message CustomChatColor {
     uint64 id = 1;
 
+    // If unset, use the default chat color
     oneof color {
       fixed32 solid = 2; // 0xAARRGGBB
       Gradient gradient = 3;
@@ -1144,7 +1164,7 @@ message ChatStyle {
   }
 
   enum WallpaperPreset {
-    UNKNOWN_WALLPAPER_PRESET = 0;
+    UNKNOWN_WALLPAPER_PRESET = 0; // Interpret as the wallpaper being unset
     SOLID_BLUSH = 1;
     SOLID_COPPER = 2;
     SOLID_DUST = 3;
@@ -1169,7 +1189,7 @@ message ChatStyle {
   }
 
   enum BubbleColorPreset {
-    UNKNOWN_BUBBLE_COLOR_PRESET = 0;
+    UNKNOWN_BUBBLE_COLOR_PRESET = 0; // Interpret as the user's default chat bubble color
     SOLID_ULTRAMARINE = 1;
     SOLID_CRIMSON = 2;
     SOLID_VERMILION = 3;
@@ -1194,6 +1214,7 @@ message ChatStyle {
     GRADIENT_TANGERINE = 22;
   }
 
+  // If unset, importers should consider there to be no wallpaper.
   oneof wallpaper {
     WallpaperPreset wallpaperPreset = 1;
     // This `FilePointer` is expected not to contain a `fileName`, `width`,
@@ -1201,6 +1222,7 @@ message ChatStyle {
     FilePointer wallpaperPhoto = 2;
   }
 
+  // If unset, importers should consider it to be AutomaticBubbleColor
   oneof bubbleColor {
     // Bubble setting is automatically determined based on the wallpaper setting,
     // or `SOLID_ULTRAMARINE` for `noWallpaper`
@@ -1216,7 +1238,7 @@ message ChatStyle {
 
 message NotificationProfile {
   enum DayOfWeek {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Monday"
     MONDAY = 1;
     TUESDAY = 2;
     WEDNESDAY = 3;
@@ -1242,7 +1264,7 @@ message NotificationProfile {
 message ChatFolder {
   // Represents the default "All chats" folder record vs all other custom folders
   enum FolderType {
-    UNKNOWN = 0;
+    UNKNOWN = 0; // Interpret as "Custom"
     ALL = 1;
     CUSTOM = 2;
   }

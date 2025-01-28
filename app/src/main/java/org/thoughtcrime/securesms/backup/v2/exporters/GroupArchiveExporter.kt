@@ -56,6 +56,7 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
       group = ArchiveGroup(
         masterKey = cursor.requireNonNullBlob(GroupTable.V2_MASTER_KEY).toByteString(),
         whitelisted = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
+        blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         hideStory = extras?.hideStory() ?: false,
         storySendMode = showAsStoryState.toRemote(),
         snapshot = decryptedGroup.toRemote(isActive, selfAci)

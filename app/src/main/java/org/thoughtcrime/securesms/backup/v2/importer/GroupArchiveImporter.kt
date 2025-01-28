@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import android.content.ContentValues
 import org.signal.core.util.Base64
+import org.signal.core.util.toInt
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.storageservice.protos.groups.AccessControl
@@ -51,7 +52,8 @@ object GroupArchiveImporter {
     val values = ContentValues().apply {
       put(RecipientTable.GROUP_ID, groupId.toString())
       put(RecipientTable.AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
-      put(RecipientTable.PROFILE_SHARING, group.whitelisted)
+      put(RecipientTable.PROFILE_SHARING, group.whitelisted.toInt())
+      put(RecipientTable.BLOCKED, group.blocked.toInt())
       put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
       put(RecipientTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
       if (group.hideStory) {
