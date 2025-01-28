@@ -87,6 +87,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
     batchSize = 10_000,
     mediaArchiveEnabled = mediaBackupEnabled,
     selfRecipientId = selfRecipientId,
+    noteToSelfThreadId = db.threadTable.getThreadIdFor(selfRecipientId) ?: -1L,
     exportState = exportState,
     cursorGenerator = { lastSeenReceivedTime, count ->
       readableDatabase

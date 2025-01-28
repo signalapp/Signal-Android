@@ -51,6 +51,10 @@ object ExportSkips {
     return log(sentTimestamp, "Direct story reply has no body.")
   }
 
+  fun directStoryReplyInNoteToSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Direct story reply in Note to Self.")
+  }
+
   fun invalidChatItemStickerPackId(sentTimestamp: Long): String {
     return log(sentTimestamp, "Sticker message had an invalid packId.")
   }
@@ -85,6 +89,18 @@ object ExportSkips {
 
   fun oneOnOneMessageInTheWrongChat(sentTimestamp: Long): String {
     return log(sentTimestamp, "A 1:1 message is located in the wrong chat.")
+  }
+
+  fun paymentNotificationInNoteToSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Payment notification is in Note to Self.")
+  }
+
+  fun profileChangeInNoteToSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Profile change in Note to Self.")
+  }
+
+  fun profileChangeFromSelf(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Profile change from self.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

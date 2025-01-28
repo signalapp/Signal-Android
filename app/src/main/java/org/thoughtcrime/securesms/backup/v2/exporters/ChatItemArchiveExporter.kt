@@ -116,6 +116,7 @@ private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 class ChatItemArchiveExporter(
   private val db: SignalDatabase,
   private val selfRecipientId: RecipientId,
+  private val noteToSelfThreadId: Long,
   private val backupStartTime: Long,
   private val batchSize: Int,
   private val mediaArchiveEnabled: Boolean,
@@ -249,6 +250,16 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isProfileChange(record.type) -> {
+          if (record.threadId == noteToSelfThreadId) {
+            Log.w(TAG, ExportSkips.profileChangeInNoteToSelf(record.dateSent))
+            continue
+          }
+
+          if (record.fromRecipientId == selfRecipientId.toLong()) {
+            Log.w(TAG, ExportSkips.profileChangeFromSelf(record.dateSent))
+            continue
+          }
+
           builder.updateMessage = record.toRemoteProfileChangeUpdate() ?: continue
         }
 
@@ -287,6 +298,10 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isPaymentsNotification(record.type) -> {
+          if (record.threadId == noteToSelfThreadId) {
+            Log.w(TAG, ExportSkips.paymentNotificationInNoteToSelf(record.dateSent))
+            continue
+          }
           builder.paymentNotification = record.toRemotePaymentNotificationUpdate(db)
         }
 
@@ -303,6 +318,10 @@ class ChatItemArchiveExporter(
         }
 
         record.parentStoryId != 0L -> {
+          if (record.threadId == noteToSelfThreadId) {
+            Log.w(TAG, ExportSkips.directStoryReplyInNoteToSelf(record.dateSent))
+            continue
+          }
           builder.directStoryReplyMessage = record.toRemoteDirectStoryReplyMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[record.id]) ?: continue
         }
 
@@ -451,6 +470,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     MessageTypes.isEndSessionType(record.type) && MessageTypes.isOutgoingMessageType(record.type) -> record.toRecipientId
     MessageTypes.isExpirationTimerUpdate(record.type) && MessageTypes.isOutgoingMessageType(type) -> selfRecipientId.toLong()
     MessageTypes.isOutgoingAudioCall(type) || MessageTypes.isOutgoingVideoCall(type) -> selfRecipientId.toLong()
+    MessageTypes.isMessageRequestAccepted(type) -> selfRecipientId.toLong()
     else -> record.fromRecipientId
   }
 
