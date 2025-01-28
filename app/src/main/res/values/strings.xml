@@ -589,7 +589,10 @@
     <!-- Dialog title asking to save media to your phone\'s storage -->
     <string name="ConversationFragment__save_to_phone">Save to phone?</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+    </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
     <string name="ConversationFragment_pending">Pending…</string>
@@ -1971,12 +1974,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">%1$s is in the call · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">You are in the call · %1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s and you are in the call · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s and %2$s are in the call · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$s is in the call</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">You are in the call</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s and you are in the call</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s and %2$s are in the call</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->

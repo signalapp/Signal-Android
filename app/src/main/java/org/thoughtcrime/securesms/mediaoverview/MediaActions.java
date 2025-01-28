@@ -44,7 +44,7 @@ final class MediaActions {
       return;
     }
 
-    SaveAttachmentTask.showWarningDialogIfNecessary(context, () -> Permissions.with(fragment)
+    SaveAttachmentTask.showWarningDialogIfNecessary(context, mediaRecords.size(), () -> Permissions.with(fragment)
                       .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                       .ifNecessary()
                       .withPermanentDenialDialog(fragment.getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))

@@ -78,7 +78,9 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
-class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v2), MediaPreviewFragment.Events {
+class MediaPreviewV2Fragment :
+  LoggingFragment(R.layout.fragment_media_preview_v2),
+  MediaPreviewFragment.Events {
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
@@ -557,7 +559,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
-    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext()) {
+    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext(), 1) {
       if (StorageUtil.canWriteToMediaStore()) {
         performSaveToDisk(mediaItem)
         return@showWarningDialogIfNecessary

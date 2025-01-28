@@ -54,7 +54,7 @@ object SaveAttachmentUtil {
 
   private val TAG = Log.tag(SaveAttachmentUtil::class.java)
 
-  fun showWarningDialogIfNecessary(context: Context, onSave: () -> Unit) {
+  fun showWarningDialogIfNecessary(context: Context, count: Int, onSave: () -> Unit) {
     if (SignalStore.uiHints.hasDismissedSaveStorageWarning()) {
       onSave()
     } else {
@@ -62,7 +62,7 @@ object SaveAttachmentUtil {
         .setView(R.layout.dialog_save_attachment)
         .setTitle(R.string.ConversationFragment__save_to_phone)
         .setCancelable(true)
-        .setMessage(R.string.ConversationFragment__this_media_will_be_saved)
+        .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
         .setPositiveButton(R.string.save) { dialog, _ ->
           val checkbox = (dialog as AlertDialog).findViewById<CheckBox>(R.id.checkbox)!!
           if (checkbox.isChecked) {

@@ -435,7 +435,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     }
   }
 
-  public static void showWarningDialogIfNecessary(Context context, Runnable onSave) {
+  public static void showWarningDialogIfNecessary(Context context, int count, Runnable onSave) {
     if (SignalStore.uiHints().hasDismissedSaveStorageWarning()) {
       onSave.run();
     } else {
@@ -443,7 +443,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
           .setView(R.layout.dialog_save_attachment)
           .setTitle(R.string.ConversationFragment__save_to_phone)
           .setCancelable(true)
-          .setMessage(R.string.ConversationFragment__this_media_will_be_saved)
+          .setMessage(context.getResources().getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
           .setPositiveButton(R.string.save, ((dialog, i) -> {
             CheckBox checkbox = ((AlertDialog) dialog).findViewById(R.id.checkbox);
             if (checkbox.isChecked()) {
