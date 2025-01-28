@@ -7,6 +7,8 @@ import android.os.Parcel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.map
 import com.google.common.io.ByteStreams
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
@@ -79,6 +81,8 @@ class MediaSelectionViewModel(
   val isContactSelectionRequired = destination == MediaSelectionDestination.ChooseAfterMediaSelection
 
   val state: LiveData<MediaSelectionState> = store.stateLiveData
+
+  val hasSelectedMedia: LiveData<Boolean> = store.stateLiveData.map { it.selectedMedia.isNotEmpty() }.distinctUntilChanged()
 
   private val internalHudCommands = PublishSubject.create<HudCommand>()
 
@@ -467,10 +471,6 @@ class MediaSelectionViewModel(
       val blobUri = BlobProvider.getInstance().forData(serializedEditorState).createForSingleUseInMemory()
       outState.putParcelable(STATE_EDITORS, blobUri)
     }
-  }
-
-  fun hasSelectedMedia(): Boolean {
-    return store.state.selectedMedia.isNotEmpty()
   }
 
   fun clearMediaErrors() {
