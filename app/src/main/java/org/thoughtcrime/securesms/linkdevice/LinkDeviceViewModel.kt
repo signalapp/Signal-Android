@@ -410,9 +410,10 @@ class LinkDeviceViewModel : ViewModel() {
   private fun Uri.supportsLinkAndSync(): Boolean {
     return if (RemoteConfig.internalUser) {
       this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
     } else {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
     }
   }
 
