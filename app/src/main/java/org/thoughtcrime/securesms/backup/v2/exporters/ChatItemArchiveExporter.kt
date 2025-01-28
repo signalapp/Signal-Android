@@ -427,6 +427,10 @@ private fun simpleUpdate(type: SimpleChatUpdate.Type): ChatUpdateMessage {
 private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: RecipientId, isGroupThread: Boolean, groupReceipts: List<GroupReceiptTable.GroupReceiptInfo>?, exportState: ExportState, backupStartTime: Long): ChatItem.Builder? {
   val record = this
 
+  if (this.threadId !in exportState.threadIds) {
+    return null
+  }
+
   val direction = when {
     record.type.isDirectionlessType() && !record.remoteDeleted -> {
       Direction.DIRECTIONLESS
@@ -448,6 +452,17 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     MessageTypes.isExpirationTimerUpdate(record.type) && MessageTypes.isOutgoingMessageType(type) -> selfRecipientId.toLong()
     MessageTypes.isOutgoingAudioCall(type) || MessageTypes.isOutgoingVideoCall(type) -> selfRecipientId.toLong()
     else -> record.fromRecipientId
+  }
+
+  if (!exportState.contactRecipientIds.contains(fromRecipientId)) {
+    Log.w(TAG, ExportSkips.fromRecipientIsNotAnIndividual(this.dateSent))
+    return null
+  }
+
+  val threadRecipientId = exportState.threadIdToRecipientId[record.threadId]!!
+  if (exportState.contactRecipientIds.contains(threadRecipientId) && fromRecipientId != threadRecipientId && fromRecipientId != selfRecipientId.toLong()) {
+    Log.w(TAG, ExportSkips.oneOnOneMessageInTheWrongChat(this.dateSent))
+    return null
   }
 
   val builder = ChatItem.Builder().apply {

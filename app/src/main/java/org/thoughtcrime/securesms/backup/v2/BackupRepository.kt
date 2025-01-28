@@ -1523,7 +1523,8 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
   val recipientIds: MutableSet<Long> = hashSetOf()
   val threadIds: MutableSet<Long> = hashSetOf()
-  val localToRemoteCustomChatColors: MutableMap<Long, Int> = hashMapOf()
+  val contactRecipientIds: MutableSet<Long> = hashSetOf()
+  val threadIdToRecipientId: MutableMap<Long, Long> = hashMapOf()
 }
 
 class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {

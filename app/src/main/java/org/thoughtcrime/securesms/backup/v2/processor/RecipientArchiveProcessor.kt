@@ -38,6 +38,7 @@ object RecipientArchiveProcessor {
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
+      exportState.contactRecipientIds.add(releaseChannelId.toLong())
       emitter.emit(
         Frame(
           recipient = ArchiveRecipient(
@@ -54,6 +55,7 @@ object RecipientArchiveProcessor {
       for (recipient in reader) {
         if (recipient != null) {
           exportState.recipientIds.add(recipient.id)
+          exportState.contactRecipientIds.add(recipient.id)
           emitter.emit(Frame(recipient = recipient))
         }
       }

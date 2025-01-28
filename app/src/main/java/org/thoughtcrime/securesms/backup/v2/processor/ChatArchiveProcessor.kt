@@ -32,6 +32,7 @@ object ChatArchiveProcessor {
       for (chat in reader) {
         if (exportState.recipientIds.contains(chat.recipientId)) {
           exportState.threadIds.add(chat.id)
+          exportState.threadIdToRecipientId[chat.id] = chat.recipientId
           emitter.emit(Frame(chat = chat))
         } else {
           Log.w(TAG, "dropping thread for deleted recipient ${chat.recipientId}")

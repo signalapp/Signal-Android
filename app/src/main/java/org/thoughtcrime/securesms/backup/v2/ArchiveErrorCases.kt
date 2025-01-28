@@ -79,6 +79,14 @@ object ExportSkips {
     return log(sentTimestamp, "Identity verified update for ourselves.")
   }
 
+  fun fromRecipientIsNotAnIndividual(sentTimestamp: Long): String {
+    return log(sentTimestamp, "The fromRecipient does not represent an individual person.")
+  }
+
+  fun oneOnOneMessageInTheWrongChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "A 1:1 message is located in the wrong chat.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
