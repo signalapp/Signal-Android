@@ -128,7 +128,8 @@ class ChatItemArchiveImporter(
       MessageTable.MESSAGE_EXTRAS,
       MessageTable.ORIGINAL_MESSAGE_ID,
       MessageTable.LATEST_REVISION_ID,
-      MessageTable.PARENT_STORY_ID
+      MessageTable.PARENT_STORY_ID,
+      MessageTable.NOTIFIED
     )
 
     private val REACTION_COLUMNS = arrayOf(

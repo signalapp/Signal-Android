@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
-import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.backup.MediaName
@@ -139,10 +138,6 @@ class RestoreAttachmentJob private constructor(
       } else {
         throw e
       }
-    }
-
-    if (!SignalDatabase.messages.isStory(messageId)) {
-      AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
     }
   }
 
