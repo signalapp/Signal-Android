@@ -12,6 +12,7 @@ import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
@@ -1524,7 +1525,10 @@ class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
   val recipientIds: MutableSet<Long> = hashSetOf()
   val threadIds: MutableSet<Long> = hashSetOf()
   val contactRecipientIds: MutableSet<Long> = hashSetOf()
+  val groupRecipientIds: MutableSet<Long> = hashSetOf()
   val threadIdToRecipientId: MutableMap<Long, Long> = hashMapOf()
+  val recipientIdToAci: MutableMap<Long, ByteString> = hashMapOf()
+  val aciToRecipientId: MutableMap<String, Long> = hashMapOf()
 }
 
 class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {

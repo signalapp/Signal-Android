@@ -35,6 +35,11 @@ object RecipientArchiveProcessor {
   val TAG = Log.tag(RecipientArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, signalStore: SignalStore, exportState: ExportState, selfRecipientId: RecipientId, selfAci: ServiceId.ACI, emitter: BackupFrameEmitter) {
+    exportState.recipientIds.add(selfRecipientId.toLong())
+    exportState.contactRecipientIds.add(selfRecipientId.toLong())
+    exportState.recipientIdToAci[selfRecipientId.toLong()] = selfAci.toByteString()
+    exportState.aciToRecipientId[selfAci.toString()] = selfRecipientId.toLong()
+
     val releaseChannelId = signalStore.releaseChannelValues.releaseChannelRecipientId
     if (releaseChannelId != null) {
       exportState.recipientIds.add(releaseChannelId.toLong())
@@ -56,6 +61,11 @@ object RecipientArchiveProcessor {
         if (recipient != null) {
           exportState.recipientIds.add(recipient.id)
           exportState.contactRecipientIds.add(recipient.id)
+          recipient.contact?.aci?.let {
+            exportState.recipientIdToAci[recipient.id] = it
+            exportState.aciToRecipientId[ServiceId.ACI.parseOrThrow(it).toString()] = recipient.id
+          }
+
           emitter.emit(Frame(recipient = recipient))
         }
       }
@@ -64,6 +74,7 @@ object RecipientArchiveProcessor {
     db.recipientTable.getGroupsForBackup(selfAci).use { reader ->
       for (recipient in reader) {
         exportState.recipientIds.add(recipient.id)
+        exportState.groupRecipientIds.add(recipient.id)
         emitter.emit(Frame(recipient = recipient))
       }
     }
