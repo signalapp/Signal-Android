@@ -108,7 +108,7 @@
     <string name="MediaGalleryFragment__no_photos_found">Ez da argazki edo bideorik aurkitu. Signal-ek zuk hautatutako argazki eta bideotarako sarbidea du bakarrik.</string>
 
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">Ez da multimedia fitxategia aukeratzeko aplikaziorik aurkitu.</string>
+    <string name="AttachmentManager_cant_open_media_selection">Ez da multimedia-edukia aukeratzeko aplikaziorik aurkitu.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal aplikazioak Gordailurako baimena behar du argazkiak, bideoak edo audioak bidaltzeko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Gordailua\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal aplikazioak Kontaktuetarako baimena behar du kontaktuak atzitu ahal izateko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal aplikazioak Kokapenerako baimena behar du kokalekuak bidali ahal izateko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kokalekua\".</string>
@@ -138,7 +138,7 @@
     <string name="AttachmentManager__cancel">Utzi</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Multimedia igotzen…</string>
+    <string name="AttachmentUploadJob_uploading_media">Multimedia-edukia kargatzen…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Bideoa konprimatzen…</string>
 
     <!-- BackgroundMessageRetriever -->
@@ -532,7 +532,7 @@
     <!-- Button text for an active group call but the call is currently full and unjoinable -->
     <string name="ConversationActivity_full">Beteta</string>
 
-    <string name="ConversationActivity_error_sending_media">Errorea multimedia bidaltzean</string>
+    <string name="ConversationActivity_error_sending_media">Errorea multimedia-edukia bidaltzean</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal-en jada ez dira onartzen SMS mezuak.</string>
@@ -569,8 +569,8 @@
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Biltegian gorde?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">Multimedia-fitxategi hauek memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
-        <item quantity="other">%1$d multimedia-fitxategiak memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
+        <item quantity="one">Multimedia-eduki hauek memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
+        <item quantity="other">%1$d multimedia-edukiak memorian gordetzen badituzu, telefonoan duzun beste edozein aplikaziok ikusi ahal izango ditu.\n\nAurrera egin nahi duzu?</item>
     </plurals>
     <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
         <item quantity="one">Errorea eranskina biltegian gordetzerakoan!</item>
@@ -586,11 +586,14 @@
         <item quantity="other">%1$d eraskin biltegian gordetzen…</item>
     </plurals>
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <string name="ConversationFragment__save_to_phone">Telefonoan gorde nahi duzu?</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+    </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
-    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
+    <string name="ConversationFragment_dont_show_again">Ez erakutsi berriro</string>
     <string name="ConversationFragment_pending">Zain…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Datuak (Signal)</string>
@@ -817,7 +820,7 @@
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Babeskopia berreskuratu?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Berreskuratu babeskopia lokal bateko mezuak eta multimedia elementuak. Orain ez baduzu egiten, gero ezingo duzu.</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">Leheneratu babeskopia lokal bateko mezuak eta multimedia-edukiak. Orain leheneratu ezean, gero ezingo duzu.</string>
     <string name="ChooseBackupFragment__icon_content_description">Babeskopiaren ikonotik leheneratu</string>
     <string name="ChooseBackupFragment__choose_backup">Aukeratu babeskopia</string>
     <string name="ChooseBackupFragment__learn_more">Gehiago jakin</string>
@@ -926,8 +929,16 @@
     <string name="DateUtils_tomorrow">Bihar</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Gaur gauean</string>
-    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s (%2$s)</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
+    <plurals name="DateUtils_date_time_at">
+        <item quantity="one">on %1$s at %2$s</item>
+        <item quantity="other">on %1$s at %2$s</item>
+    </plurals>
+    <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
+    <plurals name="DateUtils_time_at">
+        <item quantity="one">at %1$s</item>
+        <item quantity="other">at %1$s</item>
+    </plurals>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1036,7 +1047,7 @@
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">Kendu zaio lotura gailuari</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">Lotu zenuen gailua (%1$s) jada ez dago lotuta.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Ados</string>
 
@@ -1078,7 +1089,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Transferitu mezu-historia</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and your last 45 days of media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transferitu testu-mezuak eta azken 45 egunetako multimedia-edukia</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ez transferitu</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1087,7 +1098,7 @@
     <!-- Title of notification telling users that a device was linked to their account -->
     <string name="NewLinkedDeviceNotification__you_linked_new_device">Gailu berri bat lotu duzu</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Gailu berri bat lotu da kontuarekin (%1$s). Sakatu ikusteko.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account %1$s. Tap to view.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" gailuari lotura kendu nahi diozu?</string>
@@ -1418,9 +1429,9 @@
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Errore bat gertatu da eta ezin izan da transferitu zure kontua. Saiatu berriro transferentzia-metodo bat aukeratuta.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Couldn\'t restore this backup</string>
+    <string name="RemoteRestoreActivity__couldnt_restore">Ezin izan da leheneratu babeskopia hau</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
+    <string name="RemoteRestoreActivity__update_latest">Signal-en bertsio honek ezin du leheneratu babeskopia. Egunera ezazu azken bertsiora eta saiatu berriro.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
     <string name="RemoteRestoreActivity__update_signal">Eguneratu Signal</string>
     <!-- Text label button to dismiss the dialog -->
@@ -1620,7 +1631,7 @@
     <string name="MessageRetrievalService_background_connection_enabled">Atzeko planoko konexioa gaituta</string>
 
     <!-- MediaOverviewActivity -->
-    <string name="MediaOverviewActivity_Media">Multimedia</string>
+    <string name="MediaOverviewActivity_Media">Multimedia-edukia</string>
     <string name="MediaOverviewActivity_Files">Fitxategiak</string>
     <string name="MediaOverviewActivity_Audio">Audioa</string>
     <string name="MediaOverviewActivity_All">Denak</string>
@@ -1683,7 +1694,7 @@
     <string name="Megaphones_add_a_profile_photo">Profileko a.</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Gailu berri bat lotu da kontuarekin (%1$s).</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">Ikusi gailua</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
@@ -1706,7 +1717,7 @@
     <string name="NotificationsMegaphone_not_now">Orain ez</string>
 
     <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia mezua</string>
+    <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia-mezua</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mezu berria deskargatzen</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Errore bat gertatu da MMS mezua deskargatzean; sakatu berriro saiatzeko</string>
 
@@ -1717,7 +1728,7 @@
     <string name="MediaSendActivity_camera_unavailable">Kamera ez dago eskuragarri</string>
 
     <!-- MediaRepository -->
-    <string name="MediaRepository_all_media">Multimedia fitxategi guztiak</string>
+    <string name="MediaRepository_all_media">Multimedia-eduki guztiak</string>
     <string name="MediaRepository__camera">Kamera</string>
 
     <!-- MessageRecord -->
@@ -1962,12 +1973,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">%1$s deian dago · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">Deian zaude · %1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s and you are in the call · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s eta %2$s deian daude · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$s deian dago</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">Deian zaude</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s and you are in the call</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s eta %2$s deian daude</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -2599,7 +2614,7 @@
     <string name="RevealableMessageView_view_photo">Ikusi argazkia</string>
     <string name="RevealableMessageView_view_video">Bideoa Ikusi</string>
     <string name="RevealableMessageView_viewed">Ikusita</string>
-    <string name="RevealableMessageView_media">Multimedia</string>
+    <string name="RevealableMessageView_media">Multimedia-edukia</string>
 
     <!-- ReviewBannerView -->
     <!-- ReviewBannerView text when a name conflict has been found -->
@@ -2707,7 +2722,7 @@
     <string name="ThreadRecord_left_the_group">Taldea utzi duzu</string>
     <string name="ThreadRecord_secure_session_reset">Saio segurua berrezarri da.</string>
     <string name="ThreadRecord_draft">Zirriborroa:</string>
-    <string name="ThreadRecord_media_message">Multimedia mezua</string>
+    <string name="ThreadRecord_media_message">Multimedia-mezua</string>
     <string name="ThreadRecord_sticker">Eranskailua</string>
     <string name="ThreadRecord_view_once_photo">Behin ikusteko argazkia</string>
     <string name="ThreadRecord_view_once_video">Behin ikusteko bideoa</string>
@@ -5133,7 +5148,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Zure telefono-zenbaki zaharra zehaztu behar duzu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Zure zenbaki berriaren herrialde-kodea zehaztu behar duzu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Zure telefono-zenbaki zaharra zehaztu behar duzu</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number cannot be the same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Telefono-zenbaki berria ezin da izan telefono-zenbaki zaharra</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Aldatu zenbakia</string>
@@ -5832,7 +5847,7 @@
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Informazio gehiago</string>
     <!-- Displayed when a subscription refresh is being performed -->
-    <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
+    <string name="MySupportPreference__checking_subscription">Harpidetza egiaztatzen…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Eguneratu Signal</string>
@@ -7547,8 +7562,8 @@
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Ezin izan da osatu babeskopia</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <plurals name="BackupAlertBottomSheet__your_device_hasnt">
-        <item quantity="one">Your device hasn\'t completed a backup for %1$d day. Make sure your device is connected to wi-fi and tap \"Back up now.\" </item>
-        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+        <item quantity="one">Gailuak ez du babeskopiarik egin %1$d egunez. Ziurtatu gailua wifira konektatuta dagoela eta sakatu \"Egin babeskopia\". </item>
+        <item quantity="other">Gailuak ez du babeskopiarik egin %1$d egunez. Ziurtatu gailua wifira konektatuta dagoela eta sakatu \"Egin babeskopia\".</item>
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Informazio gehiago</string>
@@ -8051,6 +8066,20 @@
     <string name="EnterBackupKey_learn_more">Informazio gehiago</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Saltatu eta ez leheneratu</string>
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect backup key</string>
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
+    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_try_again">Try again</string>
+    <!-- Dialog negative button text to get help with backup key -->
+    <string name="EnterBackupKey_backup_key_help">Backup key help</string>
+    <!-- Text field error text when the backup key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect backup key</string>
+    <!-- Text field error text when the backup key is too long -->
+    <string name="EnterBackupKey_too_long_error">Too long (%1$d/%2$d)</string>
+    <!-- Text field error when the backup key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Invalid backup key</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Eskaneatu kode hau telefono zaharrarekin</string>

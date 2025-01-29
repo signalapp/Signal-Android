@@ -8070,9 +8070,9 @@
     <string name="EnterBackupKey_learn_more">Learn more</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Skip and don\'t restore</string>
-    <!-- Dialog title shown when entered AEP doesn't work to register with provided e164 -->
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect backup key</string>
-    <!-- Dialog message shown when entered AEP doesn't work to register with provided e164 -->
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
     <string name="EnterBackupKey_try_again">Try again</string>

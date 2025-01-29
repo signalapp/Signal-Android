@@ -586,11 +586,14 @@
         <item quantity="other">در حال ذخیره‌سازی %1$d پیوست در حافظه…</item>
     </plurals>
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Save to phone?</string>
+    <string name="ConversationFragment__save_to_phone">در تلفن ذخیره شود؟</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <string name="ConversationFragment__this_media_will_be_saved">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</string>
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+    </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
-    <string name="ConversationFragment_dont_show_again">Don\'t show again</string>
+    <string name="ConversationFragment_dont_show_again">دیگر نشان نده</string>
     <string name="ConversationFragment_pending">در انتظار…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">اینترنت (سیگنال)</string>
@@ -816,15 +819,15 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">هیچ‌کسی قادر به مشاهدۀ آنلاین بودن شما در سیگنال نیست، مگر اینکه به کسی پیام دهید یا گفتگویی فعلی با او داشته باشید.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود.</string>
-    <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق آیکون پشتیبان</string>
+    <string name="ChooseBackupFragment__restore_from_backup">بازیابی از پشتیبان؟</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازیابی کنید. اگر هم‌اکنون بازیابی نکنید، بعداً قادر به بازیابی نخواهید بود.</string>
+    <string name="ChooseBackupFragment__icon_content_description">بازیابی از طریق آیکون پشتیبان</string>
     <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
     <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
     <string name="ChooseBackupFragment__no_file_browser_available">هیچ مرورگر فایلی در دسترس نیست</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">بازگردانی کامل شد</string>
+    <string name="RestoreBackupFragment__restore_complete">بازیابی کامل شد</string>
     <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">برای ادامهٔ استفاده از نسخه‌های پشتیبان، لطفاً یک پوشه انتخاب کنید. نسخه‌های پشتیبانی جدید در این محل ذخیره خواهند شد.</string>
     <string name="RestoreBackupFragment__choose_folder">انتخاب پوشه</string>
     <string name="RestoreBackupFragment__not_now">حالا نه</string>
@@ -892,7 +895,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">گذرواژهٔ پشتیبان خود را امتحان کرده و همخوانی داشتن آن را وارسی کنید.</string>
     <string name="BackupsPreferenceFragment__turn_on">روشن</string>
     <string name="BackupsPreferenceFragment__turn_off">خاموش</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"برای بازگردانی یک پشتیبان، یک نسخهٔ جدید سیگنال را نصب کنید. برنامه را باز کرده و روی «بازگردانی پشتیبان» ضربه بزنید، سپس فایل پشتیبان را مشخص کنید. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"برای بازیابی یک پشتیبان، یک نسخهٔ جدید سیگنال را نصب کنید. برنامه را باز کرده و روی «بازیابی پشتیبان» ضربه بزنید، سپس فایل پشتیبان را مشخص کنید. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">بیشتر یاد بگیرید</string>
     <string name="BackupsPreferenceFragment__in_progress">در حال پیشرفت…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -926,8 +929,16 @@
     <string name="DateUtils_tomorrow">فردا</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">امشب</string>
-    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. Jan 15 at 9:00pm -->
-    <string name="DateUtils_date_at">%1$s در %2$s</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
+    <plurals name="DateUtils_date_time_at">
+        <item quantity="one">on %1$s at %2$s</item>
+        <item quantity="other">on %1$s at %2$s</item>
+    </plurals>
+    <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
+    <plurals name="DateUtils_time_at">
+        <item quantity="one">at %1$s</item>
+        <item quantity="other">at %1$s</item>
+    </plurals>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -1036,7 +1047,7 @@
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">اتصال دستگاه قطع شد</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">دستگاهی که در %1$s متصل شده بود، دیگر متصل نیست.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">تأیید</string>
 
@@ -1078,7 +1089,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">انتقال تاریخچه پیام</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and your last 45 days of media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">همه پیام‌های متنی و رسانه ۴۵ روز گذشته خود را انتقال دهید</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">انتقال داده نشود</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1087,7 +1098,7 @@
     <!-- Title of notification telling users that a device was linked to their account -->
     <string name="NewLinkedDeviceNotification__you_linked_new_device">دستگاه جدیدی را متصل کردید</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">دستگاه جدیدی به حسابتان در %1$s متصل شد. برای مشاهده، ضربه بزنید.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account %1$s. Tap to view.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">قطع ارتباط با «%1$s»؟</string>
@@ -1400,11 +1411,11 @@
     <!-- Feature list message label for free and paid tier -->
     <string name="RemoteRestoreActivity__all_of_your_messages">همه پیام‌های شما</string>
     <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">بازگردانی از پشتیبان</string>
+    <string name="RemoteRestoreActivity__restore_from_backup">بازیابی از پشتیبان</string>
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">نسخه پشتیبان شما شامل موارد زیر است:</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">بازگردانی پشتیبان</string>
+    <string name="RemoteRestoreActivity__restore_backup">بازیابی پشتیبان</string>
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">آخرین پشتیبان‌گیری در %1$s در %2$s انجام شده است.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
@@ -1418,9 +1429,9 @@
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">خطایی رخ داد و انتقال حسابتان انجام نشد. با انتخاب روش انتقال، دوباره امتحان کنید.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
-    <string name="RemoteRestoreActivity__couldnt_restore">Couldn\'t restore this backup</string>
+    <string name="RemoteRestoreActivity__couldnt_restore">این نسخه پشتیبان بازیابی نشد</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">This version of Signal can\'t restore your backup. Update to the latest version and try again.</string>
+    <string name="RemoteRestoreActivity__update_latest">این نسخه از سیگنال نمی‌تواند نسخه پشتیبان شما را بازیابی کند. به آخرین نسخه به‌روزرسانی کنید و دوباره امتحان کنید.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
     <string name="RemoteRestoreActivity__update_signal">به‌روزرسانی سیگنال</string>
     <!-- Text label button to dismiss the dialog -->
@@ -1683,7 +1694,7 @@
     <string name="Megaphones_add_a_profile_photo">افزودن عکس نمایه</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">دستگاه جدیدی به حسابتان در %1$s متصل شد.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">مشاهده دستگاه</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
@@ -1962,12 +1973,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">‏%1$s در این تماس است · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">شما در این تماس هستید · %1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s and you are in the call · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">‏%1$s و %2$s در این تماس هستند · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">‏%1$s در این تماس است</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">شما در این تماس هستید</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s and you are in the call</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">‏%1$s و %2$s در این تماس هستند</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -1977,7 +1992,7 @@
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
     <string name="MessageRecord__missed_video_call">تماس تصویری ازدست‌رفته</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">تماس تصویری از دست رفته · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">تماس تصویری از‌دست‌رفته · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
     <string name="MessageRecord__incoming_video_call">تماس تصویری دریافتی</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
@@ -2146,7 +2161,7 @@
 
     <!-- PinRestoreLockedFragment -->
     <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس زدن پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب کاربری سیگنال خود دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب کاربری‌تان بدون هیچ اطلاعات و تنظیمات از پیش ذخیره‌شده‌ای بازگردانی خواهد شد.</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس زدن پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب کاربری سیگنال خود دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب کاربری‌تان بدون هیچ اطلاعات و تنظیمات از پیش ذخیره‌شده‌ای بازیابی خواهد شد.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
@@ -2163,7 +2178,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">هشدار</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، وقتی دوباره در سیگنال ثبت‌نام می‌کنید، همه داده‌ها را از دست خواهید داد، مگر اینکه به‌صورت دستی پشتیبان‌گیری و بازگردانی کنید. وقتی پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، وقتی دوباره در سیگنال ثبت‌نام می‌کنید، همه داده‌ها را از دست خواهید داد، مگر اینکه به‌صورت دستی پشتیبان‌گیری و بازیابی کنید. وقتی پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
     <string name="PinOptOutDialog_disable_pin">غیرفعال کردن پین</string>
 
     <!-- RatingManager -->
@@ -3711,8 +3726,8 @@
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">تصویری که نشان می‌دهد نماد جایگزین برنامه در کجا قابل مشاهده خواهد بود.</string>
     <string name="preferences__disable_pin">غیرفعال کردن پین</string>
     <string name="preferences__enable_pin">فعال کردن پین</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
-    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازیابی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
+    <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازیابی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
     <string name="preferences__system_default">پیش‌فرض سیستم</string>
     <string name="preferences__language">زبان</string>
     <string name="preferences__signal_messages_and_calls">تماس‌ها و پیام‌های سیگنال</string>
@@ -3851,7 +3866,7 @@
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">از سیگنال برای ارسال و دریافت MobileCoin، یک ارز دیجیتال متمرکز بر حریم خصوصی، استفاده کنید. برای شروع فعال‌سازی کنید.</string>
     <string name="PaymentsHomeFragment__activate_payments">فعال کردن پرداخت‌ها</string>
     <string name="PaymentsHomeFragment__activating_payments">فعال کردن پرداخت‌ها…</string>
-    <string name="PaymentsHomeFragment__restore_payments_account">بازگردانی حساب کاربری پرداخت‌ها</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">بازیابی حساب کاربری پرداخت‌ها</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">هنوز فعالیت تازه‌ای وجود ندارد</string>
     <string name="PaymentsHomeFragment__recent_activity">فعالیت اخیر</string>
     <string name="PaymentsHomeFragment__see_all">مشاهدهٔ همه</string>
@@ -4228,7 +4243,7 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_service_outage_text">سیگنال با مشکلات فنی روبروست. ما سخت در تلاش برای بازگردانی هرچه سریع‌تر سرویس هستیم.</string>
+    <string name="reminder_header_service_outage_text">سیگنال با مشکلات فنی روبروست. ما سخت در تلاش برای بازیابی هرچه سریع‌تر سرویس هستیم.</string>
     <string name="reminder_header_progress">%%%1$d</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">کشف مخاطب خصوصی سیگنال به‌طور موقت نمی‌تواند مخاطبان تلفن شما را پردازش کند.</string>
@@ -4290,7 +4305,7 @@
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">معرفی پین‌ها</string>
-    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
+    <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازیابی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
     <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
   <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
@@ -4384,12 +4399,12 @@
     <string name="Permissions_not_now">حالا نه</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">در حال انتقال پایگاه دادهٔ سیگنال</string>
     <string name="enter_backup_passphrase_dialog__backup_passphrase">گذرواژهٔ پشتیبان‌</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزگذاری خواهند شد. شما برای بازگردانی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
-    <string name="backup_enable_dialog__you_must_have_this_passphrase">شما باید این گذرواژه را برای بازگردانی پشتیبان داشته باشید.</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">پشتیبان‌ها روی یک حافظهٔ خارجی ذخیره و با گذرواژهٔ زیر رمزگذاری خواهند شد. شما برای بازیابی پشتیبان خود باید گذرواژهٔ زیر را داشته باشید.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">شما باید این گذرواژه را برای بازیابی پشتیبان داشته باشید.</string>
     <string name="backup_enable_dialog__folder">پوشه</string>
-    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازگردانی پشتیبان خود نخواهم بود.</string>
-    <string name="registration_activity__restore_backup">بازگردانی پشتیبان</string>
-    <string name="registration_activity__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر به بازیابی پشتیبان خود نخواهم بود.</string>
+    <string name="registration_activity__restore_backup">بازیابی پشتیبان</string>
+    <string name="registration_activity__transfer_or_restore_account">انتقال یا بازیابی حساب کاربری</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">بازیابی یا انتقال</string>
     <string name="registration_activity__transfer_account">انتقال حساب کاربری</string>
@@ -4401,15 +4416,15 @@
     <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید‌ی جدید</string>
     <!-- Title for dialog to enter in the backup passphrase -->
     <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
-    <string name="RegistrationActivity_restore">بازگردانی</string>
+    <string name="RegistrationActivity_restore">بازیابی</string>
     <string name="RegistrationActivity_backup_failure_downgrade">امکان وارد کردن پشتیبان از نسخه‌های جدیدتر سیگنال نیست</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">نسخه پشتیبان حاوی داده‌های ناقص است</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">گذرواژهٔ پشتیبان ناصحیح</string>
     <string name="RegistrationActivity_checking">در حال بررسی…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d پیام تا به الان…</string>
-    <string name="RegistrationActivity_restore_from_backup">بازگردانی از پشتیبان؟</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به انجام این کار نخواهید بود.</string>
+    <string name="RegistrationActivity_restore_from_backup">بازیابی از پشتیبان؟</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازیابی کنید. اگر هم‌اکنون بازیابی نکنید، بعداً قادر به انجام این کار نخواهید بود.</string>
     <string name="RegistrationActivity_backup_size_s">اندازهٔ پشتیبان: %1$s</string>
     <string name="RegistrationActivity_backup_timestamp_s">برچسب زمان پشتیبان: %1$s</string>
     <string name="BackupDialog_enable_local_backups">فعال‌سازی پشتیبان‌های محلی؟</string>
@@ -4559,13 +4574,13 @@
     <string name="preferences_account_delete_all_data_failed">اطلاعات پاک نشد</string>
 
     <!-- TransferOrRestoreFragment -->
-    <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر از قبل یک حساب کاربری سیگنال باز کرده‌اید، می‌توانید حساب کاربری و پیام‌های خود را انتقال داده یا بازگردانی کنید</string>
+    <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازیابی حساب کاربری</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر از قبل یک حساب کاربری سیگنال باز کرده‌اید، می‌توانید حساب کاربری و پیام‌های خود را انتقال داده یا بازیابی کنید</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">انتقال از دستگاه اندروید</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">حساب کاربری و پیام‌های خود را از دستگاه اندروید قدیمی خود انتقال دهید. به دسترسی به دستگاه قدیمی خود نیاز دارید.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">به دسترسی به دستگاه قدیمی خود نیاز دارید.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">بازگردانی از پشتیبان</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">پیام‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، در آینده قادر به بازگردانی نخواهید بود.</string>
+    <string name="TransferOrRestoreFragment__restore_from_backup">بازیابی از پشتیبان</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">پیام‌های خود را از یک پشتیبان محلی بازیابی کنید. اگر هم‌اکنون بازیابی نکنید، در آینده قادر به بازیابی نخواهید بود.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">بازیابی پشتیبان محلی</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">بازیابی پشتیبان سیگنال</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">همۀ پیام‌های متنی + رسانه ۳۰ روز گذشته خود را بازیابی کنید</string>
@@ -4593,8 +4608,8 @@
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">سیگنال به مجوز مکان برای یافتن و اتصال به دستگاه اندروید قدیمی شما نیاز دارد</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">سیگنال به سرویس‌های مکان فعال برای کشف و اتصال به دستگاه قدیمی اندروید شما نیاز دارد</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">سیگنال به Wi-Fi روشن برای کشف و اتصال به دستگاه اندروید قدیمی شما نیاز دارد. Wi-Fi باید روشن بماند ولی لازم نیست به یک شبکهٔ Wi-Fi متصل باشد.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">متأسفانه، به نظر می‌رسد این دستگاه از Wi-Fi Direct پشتیبانی نمی‌کند. سیگنال از Wi-Fi Direct برای کشف و اتصال به دستگاه قدیمی اندروید شما استفاده می‌کند. شما هنوز می‌توانید برای بازگرداندن حساب کاربری‌تان از دستگاه قدیمی اندروید خود یک پشتیبان را بازگردانی کنید.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">بازگردانی یک پشتیبان</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">متأسفانه، به نظر می‌رسد این دستگاه از Wi-Fi Direct پشتیبانی نمی‌کند. سیگنال از Wi-Fi Direct برای کشف و اتصال به دستگاه قدیمی اندروید شما استفاده می‌کند. شما هنوز می‌توانید برای بازگرداندن حساب کاربری‌تان از دستگاه قدیمی اندروید خود یک پشتیبان را بازیابی کنید.</string>
+    <string name="NewDeviceTransferSetup__restore_a_backup">بازیابی یک پشتیبان</string>
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">یک خطای غیرمنتظره حین تلاش برای اتصال به دستگاه اندروید قدیمی شما رخ داد.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
@@ -4660,7 +4675,7 @@
     <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال را روی دستگاه اندروید جدید خود بارگیری کنید</string>
     <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"روی «انتقال یا بازگردانی حساب کاربری» ضربه بزنید"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"روی «انتقال یا بازیابی حساب کاربری» ضربه بزنید"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">۳.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"هنگام پرسیده شدن «انتقال از دستگاه اندروید» و سپس «ادامه» را انتخاب کنید. هر دو دستگاه را نزدیک نگه دارید."</string>
     <string name="OldDeviceTransferInstructions__continue">ادامه</string>
@@ -4927,7 +4942,7 @@
     <string name="payment_info_card_hide">مخفی‌سازی</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">ذخیره‌سازی عبارت بازیابی</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">عبارت بازیابی راه دیگری برای بازگردانی حساب کاربری پرداخت‌های شما را فراهم می‌کند.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">عبارت بازیابی راه دیگری برای بازیابی حساب کاربری پرداخت‌های شما را فراهم می‌کند.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">ذخیره‌سازی عبارت خود</string>
     <string name="payment_info_card_update_your_pin">پین خود را به‌روزرسانی کنید</string>
@@ -4957,14 +4972,14 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ذخیره‌سازی عبارت بازیابی</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">عبارت بازیابی را وارد کنید</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">اگر پین سیگنال خود را تأیید کنید موجودی‌تان هنگام نصب دوباره سیگنال به‌طور خودکار بازگردانی خواهد شد. همچنین می‌توانید موجودی خود را با استفاده از عبارت بازیابی، که یک عبارت %1$d کلمه‌ای منحصر به شما است، بازگردانی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</item>
-        <item quantity="other">اگر پین سیگنال خود را تأیید کنید موجودی شما هنگام نصب دوباره سیگنال به‌طور خودکار بازگردانی خواهد شد. همچنین می‌توانید موجودی خود را با استفاده از عبارت بازیابی، که یک عبارت %1$d کلمه‌ای منحصر به شما است، بازگردانی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</item>
+        <item quantity="one">اگر پین سیگنال خود را تأیید کنید موجودی‌تان هنگام نصب دوباره سیگنال به‌طور خودکار بازیابی خواهد شد. همچنین می‌توانید موجودی خود را با استفاده از عبارت بازیابی، که یک عبارت %1$d کلمه‌ای منحصر به شما است، بازیابی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</item>
+        <item quantity="other">اگر پین سیگنال خود را تأیید کنید موجودی شما هنگام نصب دوباره سیگنال به‌طور خودکار بازیابی خواهد شد. همچنین می‌توانید موجودی خود را با استفاده از عبارت بازیابی، که یک عبارت %1$d کلمه‌ای منحصر به شما است، بازیابی کنید. آن را یادداشت و در یک مکان امن نگهداری کنید.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">شما موجودی دارید! زمان ذخیره‌سازی عبارت بازیابی است—یک رمز 24 کلمه‌ای که می‌توانید برای بازیابی موجودی خود از آن استفاده کنید.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">وقت ذخیره‌سازی عبارت بازیابی است—یک رمز ۲۴ کلمه‌ای که می‌توانید برای بازیابی موجودی خود از آن استفاده کنید.</string>
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">عبارت بازیابی شما یک عبارت %1$d-کلمه‌ای مختص شماست. از این عبارت برای بازگردانی موجودی خود استفاده کنید.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">عبارت بازیابی شما یک عبارت %1$d-کلمه‌ای مختص شماست. از این عبارت برای بازیابی موجودی خود استفاده کنید.</string>
     <string name="PaymentsRecoveryStartFragment__start">شروع</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">به صورت دستی وارد کنید</string>
     <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">جایگذاری از کلیپ‌بورد</string>
@@ -4994,7 +5009,7 @@
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">%1$d کلمهٔ زیر را به ترتیب یادداشت کنید. فهرست خود را در یک جای امن نگهداری کنید.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">مطمئن شوید عبارت خود را به درستی وارد کرده‌اید.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">عکس از صفحه نگیرید و یا با ایمیل ارسال نکنید.</string>
-    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">حساب پرداخت‌ها بازگردانی شد.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">حساب پرداخت‌ها بازیابی شد.</string>
     <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">عبارت بازیابی نامعتبر</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">مطمئن شوید عبارت خود را بدرستی وارد کرده‌اید و دوباره امتحان کنید.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">کپی به کلیپ‌بورد؟</string>
@@ -5133,7 +5148,7 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">شما باید کد کشور شمارهٔ جدید خود را مشخص کنید</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">شما باید شماره تلفن جدید خود را مشخص کنید</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Your new phone number cannot be the same as your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">شماره تلفن جدیدتان نمی‌تواند همان شماره تلفن قبلی‌تان باشد</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">تغییر شماره</string>
@@ -5832,7 +5847,7 @@
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">اطلاعات بیشتر</string>
     <!-- Displayed when a subscription refresh is being performed -->
-    <string name="MySupportPreference__checking_subscription">Checking subscription…</string>
+    <string name="MySupportPreference__checking_subscription">در حال بررسی اشتراک…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">به‌روزرسانی سیگنال</string>
@@ -7547,8 +7562,8 @@
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">پشتیبان‌گیری انجام نشد</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <plurals name="BackupAlertBottomSheet__your_device_hasnt">
-        <item quantity="one">Your device hasn\'t completed a backup for %1$d day. Make sure your device is connected to wi-fi and tap \"Back up now.\" </item>
-        <item quantity="other">Your device hasn\'t completed a backup for %1$d days. Make sure your device is connected to wi-fi and tap \"Back up now.\"</item>
+        <item quantity="one">دستگاه شما به‌‍مدت %1$d روز پشتیبان‌گیری نکرده است. مطمئن شوید که دستگاه به Wi-Fi متصل است و روی «اکنون پشتیبان‌گیری شود» ضربه بزنید. </item>
+        <item quantity="other">دستگاه شما به‌‍مدت %1$d روز پشتیبان‌گیری نکرده است. مطمئن شوید که دستگاه به وای‌فای متصل است و روی «اکنون پشتیبان‌گیری شود» ضربه بزنید.</item>
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">اطلاعات بیشتر</string>
@@ -7607,7 +7622,7 @@
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">بازیابی موقتاً متوقف شد</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
-    <string name="BackupStatus__restore_complete">بازگردانی کامل شد</string>
+    <string name="BackupStatus__restore_complete">بازیابی کامل شد</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">جزئیات</string>
 
@@ -8051,6 +8066,20 @@
     <string name="EnterBackupKey_learn_more">اطلاعات بیشتر</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">رد کردن و عدم بازیابی</string>
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect backup key</string>
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
+    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_try_again">Try again</string>
+    <!-- Dialog negative button text to get help with backup key -->
+    <string name="EnterBackupKey_backup_key_help">Backup key help</string>
+    <!-- Text field error text when the backup key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect backup key</string>
+    <!-- Text field error text when the backup key is too long -->
+    <string name="EnterBackupKey_too_long_error">Too long (%1$d/%2$d)</string>
+    <!-- Text field error when the backup key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Invalid backup key</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">این کد را با تلفن قدیمی خود اسکن کنید</string>
@@ -8087,7 +8116,7 @@
     <string name="TransferAccount_continue_on_your_other_device_details">به انتقال حساب خود در دستگاه دیگرتان ادامه دهید.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">بازگردانی کامل شد</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">بازیابی کامل شد</string>
     <!-- Restore Complete bottom sheet dialog message -->
     <string name="RestoreCompleteBottomSheet_restore_complete_message">حساب سیگنال و پیام‌های شما در حال انتقال به دستگاه دیگر شماست. اکنون سیگنال در این دستگاه غیرفعال است.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
