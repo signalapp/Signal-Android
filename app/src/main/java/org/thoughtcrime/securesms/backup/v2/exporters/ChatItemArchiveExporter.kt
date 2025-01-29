@@ -280,11 +280,6 @@ class ChatItemArchiveExporter(
             continue
           }
 
-          if (record.fromRecipientId == selfRecipientId.toLong()) {
-            Log.w(TAG, ExportSkips.profileChangeFromSelf(record.dateSent))
-            continue
-          }
-
           builder.updateMessage = record.toRemoteProfileChangeUpdate() ?: continue
           transformTimer.emit("profile-change")
         }
