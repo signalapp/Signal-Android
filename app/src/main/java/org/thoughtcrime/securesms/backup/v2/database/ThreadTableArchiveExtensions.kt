@@ -35,7 +35,6 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase, includeImageWallpapers: 
       FROM ${ThreadTable.TABLE_NAME}
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE
-        (${ThreadTable.ACTIVE} = 1 OR ${RecipientTable.MESSAGE_EXPIRATION_TIME} > 0 OR ${RecipientTable.MUTE_UNTIL} > 0 OR ${ThreadTable.ARCHIVED} != 0) AND
         ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} NOT IN (${RecipientTable.RecipientType.DISTRIBUTION_LIST.id}, ${RecipientTable.RecipientType.CALL_LINK.id})
     """
   val cursor = readableDatabase.query(query)
