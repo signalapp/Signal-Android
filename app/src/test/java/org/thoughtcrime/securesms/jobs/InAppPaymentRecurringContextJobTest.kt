@@ -4,10 +4,12 @@ import android.app.Application
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,15 +20,20 @@ import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsTestRule
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
+import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -109,7 +116,7 @@ class InAppPaymentRecurringContextJobTest {
   @Test
   fun `Test happy path for subscription redemption`() {
     val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
-    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription)
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
 
     val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
     val job = InAppPaymentRecurringContextJob.create(iap)
@@ -199,10 +206,330 @@ class InAppPaymentRecurringContextJobTest {
   fun `Given no available subscription, when I run, then I expect retry`() {
     val iap = insertInAppPayment()
     val job = InAppPaymentRecurringContextJob.create(iap)
-    inAppPaymentsTestRule.initializeActiveSubscriptionMock(ActiveSubscription(null, null))
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = ActiveSubscription(null, null))
 
     val result = job.run()
     assertThat(result.isRetry).isTrue()
+  }
+
+  @Test
+  fun `Given getActiveSubscription app-level error, when I run, then I expect failure`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(applicationError = Exception())
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+  }
+
+  @Test
+  fun `Given getActiveSubscription execution error, when I run, then I expect retry`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(executionError = Exception())
+
+    val result = job.run()
+    assertThat(result.isRetry).isTrue()
+  }
+
+  @Test
+  fun `Given a failed payment on a keep-alive, when I run, then I expect failure proper iap state`() {
+    val iap = insertInAppPayment(
+      redemptionState = InAppPaymentData.RedemptionState(
+        stage = InAppPaymentData.RedemptionState.Stage.INIT,
+        keepAlive = true
+      )
+    )
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      status = "past_due",
+      chargeFailure = null
+    )
+
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+
+    assertThat(updatedIap?.data?.error?.data_).isEqualTo(InAppPaymentKeepAliveJob.KEEP_ALIVE)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+    assertThat(result.isFailure).isTrue()
+  }
+
+  @Test
+  fun `Given a generic failed payment, when I run, then I expect properly updated state`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      status = "past_due",
+      chargeFailure = null
+    )
+
+    InAppPaymentsTestRule.mockLocalSubscriberAccess()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.data?.error?.data_).isEqualTo("past_due")
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(result.isFailure).isTrue()
+
+    val subscriber = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
+    assertThat(subscriber.requiresCancel).isTrue()
+  }
+
+  @Test
+  fun `Given a charge failure, when I run, then I expect properly updated state`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val chargeFailure = ChargeFailure("test", "", "", "", "")
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      status = "past_due",
+      chargeFailure = chargeFailure
+    )
+
+    InAppPaymentsTestRule.mockLocalSubscriberAccess()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.data?.error?.data_).isEqualTo("test")
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(result.isFailure).isTrue()
+
+    val subscriber = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
+    assertThat(subscriber.requiresCancel).isTrue()
+  }
+
+  @Test
+  fun `Given an inactive subscription, when I run, then I retry`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      isActive = false,
+      chargeFailure = null
+    )
+
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+
+    assertThat(updatedIap?.data?.error).isNull()
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+    assertThat(result.isRetry).isTrue()
+  }
+
+  @Test
+  fun `Given an inactive subscription with a charge failure, when I run, then I update state and fail`() {
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val chargeFailure = ChargeFailure("test", "", "", "", "")
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      isActive = false,
+      chargeFailure = chargeFailure
+    )
+
+    InAppPaymentsTestRule.mockLocalSubscriberAccess()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+
+    assertThat(updatedIap?.data?.error?.data_).isEqualTo("test")
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(result.isFailure).isTrue()
+  }
+
+  @Test
+  fun `Given a canceled subscription with a charge failure for keep-alive, when I run, then I update state and fail`() {
+    val iap = insertInAppPayment(
+      redemptionState = InAppPaymentData.RedemptionState(
+        stage = InAppPaymentData.RedemptionState.Stage.INIT,
+        keepAlive = true
+      )
+    )
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    val chargeFailure = ChargeFailure("test", "", "", "", "")
+    val sub = inAppPaymentsTestRule.createActiveSubscription(
+      status = "canceled",
+      isActive = false,
+      chargeFailure = chargeFailure
+    )
+
+    InAppPaymentsTestRule.mockLocalSubscriberAccess()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = sub)
+
+    val result = job.run()
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+
+    assertThat(updatedIap?.data?.cancellation?.reason).isEqualTo(InAppPaymentData.Cancellation.Reason.CANCELED)
+    assertThat(updatedIap?.data?.cancellation?.chargeFailure).isEqualTo(chargeFailure.toInAppPaymentDataChargeFailure())
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(result.isFailure).isTrue()
+  }
+
+  @Test
+  fun `Given user has donor entitlement already, when I run, then I do not expect receipt request`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+
+    every { AppDependencies.signalServiceAccountManager.whoAmI } returns mockk {
+      every { entitlements } returns WhoAmIResponse.Entitlements(
+        badges = listOf(WhoAmIResponse.BadgeEntitlement("2000", false, Long.MAX_VALUE))
+      )
+    }
+
+    val iap = insertInAppPayment(
+      badge = BadgeList.Badge(id = "2000")
+    )
+
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isSuccess).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) }
+  }
+
+  @Test
+  fun `Given user has backup entitlement already, when I run, then I do not expect receipt request`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+
+    every { AppDependencies.signalServiceAccountManager.whoAmI } returns mockk {
+      every { entitlements } returns WhoAmIResponse.Entitlements(
+        backup = WhoAmIResponse.BackupEntitlement(201L, Long.MAX_VALUE)
+      )
+    }
+
+    val iap = insertInAppPayment(
+      type = InAppPaymentType.RECURRING_BACKUP
+    )
+
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isSuccess).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) }
+  }
+
+  @Test
+  fun `Given 204 application error, when I run, then I expect a retry`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 204)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isRetry).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+    assertThat(updatedIap?.data?.error?.type).isNull()
+  }
+
+  @Test
+  fun `Given 400 application error, when I run, then I expect a terminal iap state`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 400)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(updatedIap?.data?.error?.type).isEqualTo(InAppPaymentData.Error.Type.REDEMPTION)
+  }
+
+  @Test
+  fun `Given 402 application error, when I run, then I expect a retry`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 402)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isRetry).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
+    assertThat(updatedIap?.data?.error?.type).isNull()
+  }
+
+  @Test
+  fun `Given 403 application error, when I run, then I expect a terminal iap state`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 403)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(updatedIap?.data?.error?.type).isEqualTo(InAppPaymentData.Error.Type.REDEMPTION)
+  }
+
+  @Test
+  fun `Given 404 application error, when I run, then I expect a terminal iap state`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 404)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(updatedIap?.data?.error?.type).isEqualTo(InAppPaymentData.Error.Type.REDEMPTION)
+  }
+
+  @Test
+  fun `Given 409 application error, when I run, then I expect a terminal iap state`() {
+    val activeSubscription = inAppPaymentsTestRule.createActiveSubscription()
+    inAppPaymentsTestRule.initializeActiveSubscriptionMock(activeSubscription = activeSubscription)
+    inAppPaymentsTestRule.initializeSubmitReceiptCredentialRequestSync(status = 409)
+
+    val iap = insertInAppPayment(paymentSourceType = PaymentSourceType.Stripe.IDEAL, type = InAppPaymentType.RECURRING_BACKUP)
+    val job = InAppPaymentRecurringContextJob.create(iap)
+    job.onAdded()
+
+    val result = job.run()
+    assertThat(result.isFailure).isTrue()
+    verify(atLeast = 0, atMost = 0) { AppDependencies.clientZkReceiptOperations.receiveReceiptCredential(any(), any()) }
+
+    val updatedIap = SignalDatabase.inAppPayments.getById(iap.id)
+    assertThat(updatedIap?.state).isEqualTo(InAppPaymentTable.State.END)
+    assertThat(updatedIap?.data?.error?.type).isEqualTo(InAppPaymentData.Error.Type.REDEMPTION)
+    assertThat(updatedIap?.data?.error?.data_).isEqualTo("409")
   }
 
   private fun insertInAppPayment(
@@ -210,8 +537,10 @@ class InAppPaymentRecurringContextJobTest {
     state: InAppPaymentTable.State = InAppPaymentTable.State.CREATED,
     subscriberId: SubscriberId? = SubscriberId.generate(),
     paymentSourceType: PaymentSourceType = PaymentSourceType.Stripe.CreditCard,
+    badge: BadgeList.Badge? = null,
     redemptionState: InAppPaymentData.RedemptionState? = InAppPaymentData.RedemptionState(
-      stage = InAppPaymentData.RedemptionState.Stage.INIT
+      stage = InAppPaymentData.RedemptionState.Stage.INIT,
+      keepAlive = false
     )
   ): InAppPaymentTable.InAppPayment {
     val iap = inAppPaymentsTestRule.createInAppPayment(type, paymentSourceType)
@@ -221,6 +550,7 @@ class InAppPaymentRecurringContextJobTest {
       subscriberId = subscriberId,
       endOfPeriod = null,
       inAppPaymentData = iap.data.copy(
+        badge = badge,
         redemption = redemptionState
       )
     )

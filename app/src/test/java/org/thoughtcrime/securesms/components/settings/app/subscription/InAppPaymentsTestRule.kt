@@ -28,7 +28,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -106,6 +108,9 @@ class InAppPaymentsTestRule : ExternalResource() {
     every { SignalStore.Companion.inAppPayments } returns mockk {
       every { setLastEndOfPeriod(any()) } returns Unit
     }
+    every { SignalStore.Companion.backup } returns mockk {
+      every { hasBackupAlreadyRedeemedError = any() } returns Unit
+    }
   }
 
   override fun after() {
@@ -121,34 +126,42 @@ class InAppPaymentsTestRule : ExternalResource() {
   }
 
   fun initializeActiveSubscriptionMock(
+    status: Int = 200,
     activeSubscription: ActiveSubscription? = null,
     executionError: Throwable? = null,
     applicationError: Throwable? = null
   ) {
-    every { AppDependencies.donationsService.getSubscription(any()) } returns ServiceResponse(200, "", activeSubscription, null, null)
+    every { AppDependencies.donationsService.getSubscription(any()) } returns ServiceResponse(status, "", activeSubscription, applicationError, executionError)
   }
 
-  fun initializeSubmitReceiptCredentialRequestSync() {
-    val receiptCredentialResponse = mockk<ReceiptCredentialResponse>()
-    every { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) } returns ServiceResponse(200, "", receiptCredentialResponse, null, null)
+  fun initializeSubmitReceiptCredentialRequestSync(
+    status: Int = 200
+  ) {
+    val receiptCredentialResponse = if (status == 200) mockk<ReceiptCredentialResponse>() else null
+    val applicationError = if (status == 200) null else NonSuccessfulResponseCodeException(status)
+    every { AppDependencies.donationsService.submitReceiptCredentialRequestSync(any(), any()) } returns ServiceResponse(status, "", receiptCredentialResponse, applicationError, null)
   }
 
-  fun createActiveSubscription(): ActiveSubscription {
+  fun createActiveSubscription(
+    status: String = "active",
+    isActive: Boolean = true,
+    chargeFailure: ChargeFailure? = null
+  ): ActiveSubscription {
     return ActiveSubscription(
       ActiveSubscription.Subscription(
         2000,
         "USD",
         BigDecimal.ONE,
         System.currentTimeMillis().milliseconds.inWholeSeconds + 45.days.inWholeSeconds,
-        true,
+        isActive,
         System.currentTimeMillis().milliseconds.inWholeSeconds + 45.days.inWholeSeconds,
         false,
-        "active",
+        status,
         "STRIPE",
         "CARD",
         false
       ),
-      null
+      chargeFailure
     )
   }
 
@@ -179,6 +192,12 @@ class InAppPaymentsTestRule : ExternalResource() {
       val ref = AtomicReference(initialSubscriber)
       every { InAppPaymentsRepository.getSubscriber(any()) } answers { ref.get() }
       every { InAppPaymentsRepository.setSubscriber(any()) } answers { ref.set(firstArg()) }
+      every { SignalDatabase.inAppPaymentSubscribers.getBySubscriberId(any()) } answers {
+        ref.get()
+      }
+      every { SignalDatabase.inAppPaymentSubscribers.insertOrReplace(any()) } answers {
+        ref.set(firstArg())
+      }
 
       return ref
     }

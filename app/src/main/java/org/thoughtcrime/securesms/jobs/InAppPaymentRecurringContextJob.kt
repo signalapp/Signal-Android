@@ -443,7 +443,6 @@ class InAppPaymentRecurringContextJob private constructor(
     inAppPayment: InAppPaymentTable.InAppPayment,
     serviceResponse: ServiceResponse<ReceiptCredentialResponse>
   ) {
-    val isForKeepAlive = inAppPayment.data.redemption!!.keepAlive == true
     val applicationError = serviceResponse.applicationError.get()
     when (serviceResponse.status) {
       204 -> {
@@ -482,6 +481,7 @@ class InAppPaymentRecurringContextJob private constructor(
         }
 
         updateInAppPaymentWithTokenAlreadyRedeemedError(inAppPayment)
+        throw Exception(applicationError)
       }
 
       else -> {
