@@ -319,6 +319,10 @@ class ControlsAndInfoController private constructor(
 
     showOrHideControlsOnUpdate(previousState)
 
+    if (controlState == WebRtcControls.PIP) {
+      waitingToBeLetIn.visible = false
+    }
+
     if (controlState != WebRtcControls.PIP && controlState.controlVisibilitiesChanged(previousState)) {
       updateControlVisibilities()
     }
