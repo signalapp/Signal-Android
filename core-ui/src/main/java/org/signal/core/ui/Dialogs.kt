@@ -216,7 +216,7 @@ object Dialogs {
           }
         }
       },
-      modifier = Modifier.size(200.dp, 250.dp)
+      modifier = Modifier.size(200.dp, 270.dp)
     )
   }
 
