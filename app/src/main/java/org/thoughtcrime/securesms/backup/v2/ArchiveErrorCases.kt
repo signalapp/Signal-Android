@@ -103,6 +103,14 @@ object ExportSkips {
     return log(sentTimestamp, "Profile change from self.")
   }
 
+  fun emptyProfileNameChange(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Profile name change was empty.")
+  }
+
+  fun emptyLearnedProfileChange(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Learned profile update was empty.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
