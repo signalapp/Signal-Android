@@ -38,5 +38,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_dialog_title" />
+        app:layout_constraintTop_toBottomOf="@id/progress_dialog_title"
+        android:textAlignment="center" />
 </androidx.constraintlayout.widget.ConstraintLayout>
