@@ -2924,6 +2924,10 @@ class ConversationFragment :
       getVoiceNoteMediaController().startConsecutivePlayback(uri, messageId, position)
     }
 
+    override fun onSingleVoiceNotePlay(uri: Uri, messageId: Long, position: Double) {
+      getVoiceNoteMediaController().startSinglePlayback(uri, messageId, position)
+    }
+
     override fun onVoiceNoteSeekTo(uri: Uri, position: Double) {
       getVoiceNoteMediaController().seekToPosition(uri, position)
     }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,6 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
-import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart.Attachments
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -126,7 +125,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
       recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
     }
 
-    initializeGiphyMp4(view.findViewById(R.id.video_container) as ViewGroup, list)
+    initializeGiphyMp4(view.findViewById(R.id.video_container)!!, list)
   }
 
   private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
@@ -255,29 +254,9 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
       callback.getConversationAdapterListener().onGroupMemberClicked(recipientId, groupId)
     }
 
-    override fun onItemClick(item: MultiselectPart) = Unit
-    override fun onItemLongClick(itemView: View, item: MultiselectPart) = Unit
-    override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
-    override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
-    override fun onMessageWithRecaptchaNeededClicked(messageRecord: MessageRecord) = Unit
-    override fun onGroupMigrationLearnMoreClicked(membershipChange: GroupMigrationMembershipChange) = Unit
-    override fun onChatSessionRefreshLearnMoreClicked() = Unit
-    override fun onBadDecryptLearnMoreClicked(author: RecipientId) = Unit
-    override fun onSafetyNumberLearnMoreClicked(recipient: Recipient) = Unit
-    override fun onJoinGroupCallClicked() = Unit
-    override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) = Unit
-    override fun onEnableCallNotificationsClicked() = Unit
-    override fun onCallToAction(action: String) = Unit
-    override fun onDonateClicked() = Unit
-    override fun onRecipientNameClicked(target: RecipientId) = Unit
-    override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) = Unit
-    override fun onActivatePaymentsClicked() = Unit
-    override fun onSendPaymentClicked(recipientId: RecipientId) = Unit
-    override fun onEditedIndicatorClicked(conversationMessage: ConversationMessage) = Unit
-    override fun onShowSafetyTips(forGroup: Boolean) = Unit
-    override fun onReportSpamLearnMoreClicked() = Unit
-    override fun onMessageRequestAcceptOptionsClicked() = Unit
-    override fun onItemDoubleClick(item: MultiselectPart) = Unit
+    override fun onVoiceNotePlay(uri: Uri, messageId: Long, position: Double) {
+      callback.getConversationAdapterListener().onSingleVoiceNotePlay(uri, messageId, position)
+    }
   }
 
   companion object {
