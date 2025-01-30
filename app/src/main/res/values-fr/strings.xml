@@ -399,8 +399,8 @@
     <string name="ContactShareEditActivity__avatar">Photo de profil</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">Non envoyé. Appuyer pour afficher des infos.</string>
-    <string name="ConversationItem_error_partially_not_delivered">Envoi partiel. Toucher pour afficher plus d\'infos.</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">Non envoyé. Appuyer pour afficher plus d\'infos.</string>
+    <string name="ConversationItem_error_partially_not_delivered">Envoi partiel. Appuyer pour afficher plus d\'infos.</string>
     <string name="ConversationItem_error_network_not_delivered">Non envoyé.</string>
     <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
     <string name="ConversationItem_send_paused">Envoi mis en pause</string>
@@ -1952,7 +1952,7 @@
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à %1$s</string>
+    <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
     <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements. N’envoyez de paiements qu’aux personnes en qui vous avez confiance.</string>
     <!-- Message to inform user that payments was activated-->
@@ -2522,7 +2522,7 @@
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Échec de l\'envoi</string>
     <!-- Toolbar title when solving a captcha -->
-    <string name="RecaptchaProofActivity_complete_verification">Procéder à la confirmation</string>
+    <string name="RecaptchaProofActivity_complete_verification">Confirmer le reCAPTCHA</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Sélectionnez votre pays</string>
@@ -2595,7 +2595,7 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">Un problème d’inscription ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone dispose d’un signal cellulaire pour recevoir votre SMS ou votre appel.\n • Confirmez que vous pouvez recevoir un appel à ce numéro.\n • Vérifiez que vous avez renseigné votre numéro de téléphone correctement.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone capte bien le signal mobile pour recevoir un SMS ou un appel.\n • Vérifiez que ce numéro reçoit bien les appels.\n • Vérifiez aussi que vous avez saisi le bon numéro de téléphone.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Pour en savoir plus, veuillez consulter %1$s ou %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2730,7 +2730,7 @@
     <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé.</string>
     <string name="ThreadRecord_you_deleted_this_message">Vous avez supprimé ce message.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à {0}</string>
+    <string name="ThreadRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements à {0}</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
     <string name="ThreadRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements</string>
     <!-- Displayed in the notification when the user activates payments -->
@@ -3858,12 +3858,12 @@
     <!-- Payments -->
     <string name="PaymentsActivityFragment__all_activity">Toutes les activités</string>
     <string name="PaymentsAllActivityFragment__all">Tous</string>
-    <string name="PaymentsAllActivityFragment__sent">Envoyés</string>
+    <string name="PaymentsAllActivityFragment__sent">Émis</string>
     <string name="PaymentsAllActivityFragment__received">Reçus</string>
 
     <!-- Displayed on a welcome screen for payments -->
     <string name="PaymentsHomeFragment_introducing_payments">Découvrez la fonction de paiements</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilisez Signal pour envoyer et recevoir des MobileCoin, une monnaie numérique visant à protéger vos données. Activez pour commencer.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal vous permet d\'envoyer et de recevoir des MobileCoins, une nouvelle monnaie numérique centrée sur la protection des données. Activez les paiements pour commencer.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activer les paiements</string>
     <string name="PaymentsHomeFragment__activating_payments">Activation des paiements…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Récupérer un compte de paiement</string>
@@ -3872,7 +3872,7 @@
     <string name="PaymentsHomeFragment__see_all">Tout afficher</string>
     <string name="PaymentsHomeFragment__add_funds">Ajouter des fonds</string>
     <string name="PaymentsHomeFragment__send">Envoyer</string>
-    <string name="PaymentsHomeFragment__sent_s">Envoyé %1$s</string>
+    <string name="PaymentsHomeFragment__sent_s">Émis %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Reçu %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Virement vers la plateforme d\'échange</string>
     <string name="PaymentsHomeFragment__currency_conversion">Conversion des devises</string>
@@ -3880,7 +3880,7 @@
     <string name="PaymentsHomeFragment__recovery_phrase">Phrase de récupération</string>
     <string name="PaymentsHomeFragment__help">Aide</string>
     <string name="PaymentsHomeFragment__coin_cleanup_fee">Frais d\'agrégation des pièces</string>
-    <string name="PaymentsHomeFragment__sent_payment">Paiement envoyé</string>
+    <string name="PaymentsHomeFragment__sent_payment">Paiement émis</string>
     <string name="PaymentsHomeFragment__received_payment">Paiement reçu</string>
     <string name="PaymentsHomeFragment__processing_payment">Paiement en cours de traitement</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
@@ -3901,7 +3901,7 @@
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Vous pouvez utiliser Signal pour envoyer et recevoir des MobileCoins. Tous les paiements sont soumis aux conditions d\'utilisation de MobileCoin et de MobileCoin Wallet. Avertissement : des problèmes peuvent se produire et entraîner la perte de paiements et de soldes. De telles pertes sont irrécupérables. </string>
     <string name="PaymentsHomeFragment__activate">Activer</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Afficher les conditions d\'utilisation de MobileCoin</string>
-    <string name="PaymentsHomeFragment__payments_not_available">Les paiements ne sont plus proposés dans Signal. Vous pouvez encore virer des fonds vers une plateforme d\'échange, mais vous ne pouvez plus ni envoyer, ni recevoir de paiements, ni ajouter de fonds.</string>
+    <string name="PaymentsHomeFragment__payments_not_available">Il n\'est plus possible d\'effectuer des paiements via Signal. Vous pouvez encore virer des fonds vers une plateforme d\'échange, mais vous ne pouvez plus ni envoyer, ni recevoir de paiements, ni ajouter de fonds dans l\'appli.</string>
 
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
@@ -3995,8 +3995,8 @@
     <string name="PaymentsDetailsFragment__payment_complete">Paiement effectué</string>
     <string name="PaymentsDetailsFragment__payment_failed">Échec du paiement</string>
     <string name="PaymentsDetailsFragment__network_fee">Frais de réseau</string>
-    <string name="PaymentsDetailsFragment__sent_by">Envoyé par</string>
-    <string name="PaymentsDetailsFragment__sent_to_s">Envoyé à %1$s</string>
+    <string name="PaymentsDetailsFragment__sent_by">Émis par</string>
+    <string name="PaymentsDetailsFragment__sent_to_s">En faveur de %1$s</string>
     <string name="PaymentsDetailsFragment__you_on_s_at_s">Vous, le %1$s à %2$s</string>
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, le %2$s à %3$s</string>
     <!-- Prefix to a name to indicate who a payment was sent to -->
@@ -4008,7 +4008,7 @@
     <string name="PaymentsDetailsFragment__no_details_available">Aucune autre information n\'est disponible pour cette transaction</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
-    <string name="PaymentsDetailsFragment__sent_payment">Paiement envoyé</string>
+    <string name="PaymentsDetailsFragment__sent_payment">Paiement émis</string>
     <string name="PaymentsDetailsFragment__received_payment">Paiement reçu</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Paiement effectué %1$s</string>
     <string name="PaymentsDetailsFragment__block_number">Numéro de bloc</string>
@@ -4016,7 +4016,7 @@
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">Effectuer un virement</string>
     <string name="PaymentsTransferFragment__scan_qr_code">Scanner le code QR</string>
-    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Destinataire : scannez ou saisissez l\'adresse du portefeuille</string>
+    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Bénéficiaire : scannez ou saisissez l\'adresse du portefeuille</string>
     <string name="PaymentsTransferFragment__you_can_transfer">Pour virer des MobileCoins, effectuez un virement vers l\'adresse de portefeuille fournie par la plateforme d\'échange. L\'adresse de portefeuille est une suite de chiffres et de lettres qui s\'affiche généralement sous le code QR.</string>
     <string name="PaymentsTransferFragment__next">Suivant</string>
     <string name="PaymentsTransferFragment__invalid_address">Adresse incorrecte</string>
@@ -4072,7 +4072,7 @@
     <string name="ConfirmPayment__payment_complete">Paiement effectué</string>
     <string name="ConfirmPayment__payment_failed">Échec du paiement</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Le traitement du paiement va se poursuivre</string>
-    <string name="ConfirmPaymentFragment__invalid_recipient">Destinataire incorrect.</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Bénéficiaire incorrect.</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Impossible d\'afficher le verrouillage des paiements</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
@@ -4834,7 +4834,7 @@
 
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
-    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Débit Wi-Fi insuffisant. Connexion via le réseau cellulaire.</string>
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Débit Wi-Fi insuffisant. Connexion via le réseau mobile.</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
@@ -6326,7 +6326,7 @@
     <!-- Story View context menu action to remove them from a story -->
     <string name="StoryViewItem__remove_viewer">Retirer le spectateur</string>
     <!-- Displayed when a story has no replies yet -->
-    <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
+    <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réaction pour le moment</string>
     <!-- Displayed when no longer a group member -->
     <string name="StoryGroupReplyFragment__you_cant_reply">Vous ne pouvez pas interagir avec cette story, car vous n\'êtes plus membre de ce groupe.</string>
     <!-- Displayed for when you reacted to a story when viewing replies -->
@@ -7020,7 +7020,7 @@
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">Vous avez envoyé %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">Vous avez envoyé à %1$s</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
     <string name="PaymentMessageView_s_sent_you">%1$s vous a envoyé</string>
 
@@ -7757,13 +7757,13 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Détails de la sauvegarde</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restaurer via les données cellulaires</string>
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restaurer via les données mobiles</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Taille de la sauvegarde :</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Fréquence de sauvegarde :</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sauvegarder via les données cellulaires</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sauvegarder via les données mobiles</string>
     <!-- Row label for viewing backup key -->
     <string name="RemoteBackupsSettingsFragment__view_backup_key">Afficher la clé de sauvegarde</string>
     <!-- Prompt title for unlocking device to view backup key -->

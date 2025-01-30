@@ -1066,7 +1066,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Transfer riwayat pesan</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer pesan teks dan media Anda dari 45 hari terakhir</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer media dari 45 hari terakhir dan pesan teks Anda</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Jangan transfer</string>
     <!-- Description in bottom sheet of what not transferring history will do -->

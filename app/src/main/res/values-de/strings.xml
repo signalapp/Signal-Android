@@ -5768,7 +5768,7 @@
 
     <string name="ImageView__badge">Abzeichen</string>
 
-    <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende stornieren</string>
+    <string name="SubscribeFragment__cancel_subscription">Regelmäßige Spende kündigen</string>
     <string name="SubscribeFragment__confirm_cancellation">Stornierung bestätigen?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Es findet keine weitere Abbuchung statt. Dein Abzeichen wird am Ende deines Abrechnungszeitraums aus deinem Profil entfernt.</string>
     <string name="SubscribeFragment__not_now">Jetzt nicht</string>
@@ -7677,7 +7677,7 @@
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
     <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/Monat · Verlängert sich am %2$s</string>
     <!-- Row title to change or cancel subscription -->
-    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Regelmäßige Spende ändern oder kündigen</string>
+    <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Backup-Abo ändern oder kündigen</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -7773,7 +7773,7 @@
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Datensicherung gelöscht und ausgeschaltet.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Art der Datensicherung geändert und regelmäßige Spende storniert</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Art der Datensicherung geändert und Abo storniert</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Abo gekündigt</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->
@@ -7857,7 +7857,7 @@
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Dein Backup-Abo auf diesem Gerät ist für den nächsten %1$d Tag gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
-        <item quantity="other">Dein Backup-Abo Spende auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
+        <item quantity="other">Dein Backup-Abo auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Erneuern</string>
@@ -7973,7 +7973,7 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Datensicherungsart ändern</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Regelmäßige Spende kündigen</string>
+    <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Abo kündigen</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Kostenlos</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
@@ -8011,7 +8011,7 @@
     <!-- Action button label to cancel subscription and download later -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Später bestätigen und herunterladen</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Regelmäßige Zahlung beibehalten</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Abo beibehalten</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">Erinnerung-Icon</string>
