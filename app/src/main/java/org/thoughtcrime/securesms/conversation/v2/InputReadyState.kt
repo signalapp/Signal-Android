@@ -21,7 +21,13 @@ class InputReadyState(
   val isUnauthorized: Boolean,
   val threadContainsSms: Boolean
 ) {
-  private val selfMemberLevel: GroupTable.MemberLevel? = groupRecord?.let { if (it.isActive) it.memberLevel(Recipient.self()) else GroupTable.MemberLevel.NOT_A_MEMBER }
+  private val selfMemberLevel: GroupTable.MemberLevel? = groupRecord?.let {
+    val level = it.memberLevel(Recipient.self())
+    if (!it.isActive && level == GroupTable.MemberLevel.FULL_MEMBER) {
+      GroupTable.MemberLevel.NOT_A_MEMBER
+    }
+    level
+  }
 
   val isAnnouncementGroup: Boolean? = groupRecord?.isAnnouncementGroup
   val isActiveGroup: Boolean? = if (selfMemberLevel == null) null else selfMemberLevel != GroupTable.MemberLevel.NOT_A_MEMBER
