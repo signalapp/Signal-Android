@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
@@ -61,7 +62,7 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
       radioPref(
         title = DSLSettingsText.from(R.string.PhoneNumberPrivacy_nobody),
         isChecked = state == WhoCanFindMeByPhoneNumberState.NOBODY,
-        onClick = { viewModel.onNobodyCanFindMeByPhoneNumberSelected() }
+        onClick = this@WhoCanFindMeByPhoneNumberFragment::onNobodyCanFindMeByNumberClicked
       )
 
       textPref(
@@ -75,5 +76,14 @@ class WhoCanFindMeByPhoneNumberFragment : DSLSettingsFragment(
         )
       )
     }
+  }
+
+  private fun onNobodyCanFindMeByNumberClicked() {
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title)
+      .setMessage(getString(R.string.PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message))
+      .setNegativeButton(getString(R.string.PhoneNumberPrivacySettingsFragment__cancel), null)
+      .setPositiveButton(android.R.string.ok) { _, _ -> viewModel.onNobodyCanFindMeByPhoneNumberSelected() }
+      .show()
   }
 }
