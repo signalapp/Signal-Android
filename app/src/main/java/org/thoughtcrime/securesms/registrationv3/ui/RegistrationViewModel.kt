@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.registration.ui.toE164
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
+import org.thoughtcrime.securesms.registrationv3.ui.countrycode.Country
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
@@ -985,6 +986,18 @@ class RegistrationViewModel : ViewModel() {
         AuthCredentials.create(it.substring(0, colonIndex), it.substring(colonIndex + 1))
       }
       .firstOrNull()
+  }
+
+  fun setCurrentCountryPicked(country: Country) {
+    store.update {
+      it.copy(country = country)
+    }
+  }
+
+  fun clearCountry() {
+    store.update {
+      it.copy(country = null)
+    }
   }
 
   companion object {

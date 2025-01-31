@@ -13,8 +13,11 @@ import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
+import org.thoughtcrime.securesms.registrationv3.ui.countrycode.Country
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 
 /**
  * ViewModel for the phone number entry screen.
@@ -51,9 +54,7 @@ class EnterPhoneNumberViewModel : ViewModel() {
       it.copy(mode = value)
     }
 
-  fun countryPrefix(): CountryPrefix {
-    return supportedCountryPrefixes[store.value.countryPrefixIndex]
-  }
+  fun countryPrefix(): CountryPrefix = supportedCountryPrefixes[store.value.countryPrefixIndex]
 
   fun setPhoneNumber(phoneNumber: String?) {
     store.update { it.copy(phoneNumber = phoneNumber ?: "") }
@@ -69,7 +70,12 @@ class EnterPhoneNumberViewModel : ViewModel() {
     store.update {
       it.copy(
         countryPrefixIndex = matchingIndex,
-        phoneNumberRegionCode = supportedCountryPrefixes[matchingIndex].regionCode
+        phoneNumberRegionCode = supportedCountryPrefixes[matchingIndex].regionCode,
+        country = Country(
+          name = PhoneNumberFormatter.getRegionDisplayName(supportedCountryPrefixes[matchingIndex].regionCode).orElse(""),
+          emoji = CountryUtils.countryToEmoji(supportedCountryPrefixes[matchingIndex].regionCode),
+          countryCode = digits.toString()
+        )
       )
     }
   }
