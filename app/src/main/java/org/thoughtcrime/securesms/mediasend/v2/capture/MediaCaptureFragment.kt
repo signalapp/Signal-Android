@@ -92,7 +92,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
         is MediaCaptureEvent.DeviceLinkScannedFromQrCode -> {
           MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.MediaCaptureFragment_device_link_dialog_title)
-            .setMessage(R.string.MediaCaptureFragment_device_link_dialog_body)
+            .setMessage(R.string.MediaCaptureFragment_it_looks_like_youre_trying)
             .setPositiveButton(R.string.MediaCaptureFragment_device_link_dialog_continue) { d, _ ->
               startActivity(AppSettingsActivity.linkedDevices(requireContext()))
               requireActivity().finish()
