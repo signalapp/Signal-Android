@@ -1830,7 +1830,8 @@ class ConversationFragment :
     slide: Slide? = null,
     contacts: List<Contact> = emptyList(),
     quote: QuoteModel? = null,
-    clearCompose: Boolean = true
+    clearCompose: Boolean = true,
+    scheduledDate: Long = -1,
   ) {
     sendMessage(
       slideDeck = slide?.let { SlideDeck().apply { addSlide(slide) } },
@@ -1842,7 +1843,8 @@ class ConversationFragment :
       messageToEdit = null,
       quote = quote,
       linkPreviews = emptyList(),
-      bypassPreSendSafetyNumberCheck = true
+      bypassPreSendSafetyNumberCheck = true,
+      scheduledDate = scheduledDate
     )
   }
 
@@ -1882,6 +1884,7 @@ class ConversationFragment :
     }
 
     if (inputPanel.isRecordingInLockedMode) {
+      viewModel.updateScheduledDate(scheduledDate)
       inputPanel.releaseRecordingLock()
       return
     }
@@ -3966,7 +3969,7 @@ class ConversationFragment :
     }
 
     override fun canSchedule(): Boolean {
-      return !(inputPanel.isRecordingInLockedMode || draftViewModel.voiceNoteDraft != null)
+      return draftViewModel.voiceNoteDraft == null
     }
   }
 
@@ -4422,8 +4425,10 @@ class ConversationFragment :
 
       sendMessageWithoutComposeInput(
         slide = audioSlide,
+        scheduledDate = viewModel.scheduledDate,
         quote = inputPanel.quote.orNull()
       )
+      viewModel.clearScheduledDate()
     }
 
     override fun cancelEphemeralVoiceNoteDraft(draft: VoiceNoteDraft) {
