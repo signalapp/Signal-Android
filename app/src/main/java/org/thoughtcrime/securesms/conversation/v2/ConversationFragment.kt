@@ -1830,7 +1830,8 @@ class ConversationFragment :
     slide: Slide? = null,
     contacts: List<Contact> = emptyList(),
     quote: QuoteModel? = null,
-    clearCompose: Boolean = true
+    clearCompose: Boolean = true,
+    scheduledDate: Long = -1,
   ) {
     sendMessage(
       slideDeck = slide?.let { SlideDeck().apply { addSlide(slide) } },
@@ -1842,7 +1843,8 @@ class ConversationFragment :
       messageToEdit = null,
       quote = quote,
       linkPreviews = emptyList(),
-      bypassPreSendSafetyNumberCheck = true
+      bypassPreSendSafetyNumberCheck = true,
+      scheduledDate = scheduledDate
     )
   }
 
@@ -1882,19 +1884,24 @@ class ConversationFragment :
     }
 
     if (inputPanel.isRecordingInLockedMode) {
-      inputPanel.releaseRecordingLock()
+      inputPanel.releaseRecordingLockAndSend()
       return
     }
 
     if (slideDeck == null) {
       val voiceNote: DraftTable.Draft? = draftViewModel.voiceNoteDraft
       if (voiceNote != null) {
-        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(voiceNote), clearCompose = true)
+        sendMessageWithoutComposeInput(
+          slide = AudioSlide.createFromVoiceNoteDraft(voiceNote),
+          quote = quote,
+          clearCompose = true,
+          scheduledDate = scheduledDate
+        )
         return
       }
     }
 
-    if (body.isNullOrBlank() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
+    if (body.isBlank() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
       Log.i(TAG, "Unable to send due to empty message")
       toast(R.string.ConversationActivity_message_is_empty_exclamation)
       return
@@ -3956,6 +3963,10 @@ class ConversationFragment :
     }
 
     override fun onSendScheduled() {
+      if(inputPanel.isRecordingInLockedMode) {
+        inputPanel.onSaveRecordDraft()
+      }
+
       ScheduleMessageContextMenu.show(sendButton, (requireView() as ViewGroup)) { time ->
         if (time == -1L) {
           showSchedule(childFragmentManager)
@@ -3963,10 +3974,6 @@ class ConversationFragment :
           sendMessage(scheduledDate = time)
         }
       }
-    }
-
-    override fun canSchedule(): Boolean {
-      return !(inputPanel.isRecordingInLockedMode || draftViewModel.voiceNoteDraft != null)
     }
   }
 
@@ -4110,6 +4117,11 @@ class ConversationFragment :
         updateToggleButtonState()
       }
       voiceMessageRecordingDelegate.onRecorderCanceled(byUser)
+    }
+
+    override fun onRecorderSaveDraft() {
+      voiceMessageRecordingDelegate.onRecordSaveDraft()
+      inputPanel.voiceNoteDraft = draftViewModel.voiceNoteDraft
     }
 
     override fun onRecorderPermissionRequired() {
