@@ -11,7 +11,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.PendingIntentFlags;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -26,7 +26,7 @@ public final class GroupCallSafetyNumberChangeNotificationUtil {
   }
 
   public static void showNotification(@NonNull Context context, @NonNull Recipient recipient) {
-    Intent contentIntent = new Intent(context, WebRtcCallActivity.class);
+    Intent contentIntent = new Intent(context, CallIntent.getActivityClass());
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, PendingIntentFlags.mutable());

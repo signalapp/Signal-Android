@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import org.thoughtcrime.securesms.WebRtcCallActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -23,7 +22,8 @@ class CallIntent(
 
     private const val CALL_INTENT_PREFIX = "CallIntent"
 
-    private fun getActivityClass(): Class<out Activity> = if (RemoteConfig.newCallUi || SignalStore.internal.newCallingUi) {
+    @JvmStatic
+    fun getActivityClass(): Class<out Activity> = if (RemoteConfig.newCallUi || SignalStore.internal.newCallingUi) {
       CallActivity::class.java
     } else {
       WebRtcCallActivity::class.java

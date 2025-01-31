@@ -46,8 +46,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.WebRtcCallActivity
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
@@ -65,7 +65,7 @@ import kotlin.time.Duration.Companion.seconds
  * Brain for rendering the call controls and info within a bottom sheet when we display the activity in portrait mode.
  */
 class ControlsAndInfoController private constructor(
-  private val webRtcCallActivity: WebRtcCallActivity,
+  private val activity: BaseActivity,
   private val webRtcCallView: WebRtcCallView,
   private val overflowPopupWindow: CallOverflowPopupWindow,
   private val viewModel: WebRtcCallViewModel,
@@ -74,13 +74,13 @@ class ControlsAndInfoController private constructor(
 ) : Disposable by disposables {
 
   constructor(
-    webRtcCallActivity: WebRtcCallActivity,
+    activity: BaseActivity,
     webRtcCallView: WebRtcCallView,
     overflowPopupWindow: CallOverflowPopupWindow,
     viewModel: WebRtcCallViewModel,
     controlsAndInfoViewModel: ControlsAndInfoViewModel
   ) : this(
-    webRtcCallActivity,
+    activity,
     webRtcCallView,
     overflowPopupWindow,
     viewModel,
@@ -108,15 +108,15 @@ class ControlsAndInfoController private constructor(
   private val aboveControlsGuideline: Guideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
   private val toggleCameraDirectionView: View = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
   private val callControls: ConstraintLayout = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
-  private val isLandscape = webRtcCallActivity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+  private val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
   private val waitingToBeLetInProgressDrawable = IndeterminateDrawable.createCircularDrawable(
-    webRtcCallActivity,
-    CircularProgressIndicatorSpec(webRtcCallActivity, null).apply {
+    activity,
+    CircularProgressIndicatorSpec(activity, null).apply {
       indicatorSize = 20.dp
       indicatorInset = 0.dp
       trackThickness = 2.dp
       trackCornerRadius = 1.dp
-      indicatorColors = intArrayOf(ContextCompat.getColor(webRtcCallActivity, R.color.signal_colorOnBackground))
+      indicatorColors = intArrayOf(ContextCompat.getColor(activity, R.color.signal_colorOnBackground))
       trackColor = Color.TRANSPARENT
     }
   )
@@ -133,7 +133,7 @@ class ControlsAndInfoController private constructor(
   private var previousCallControlHeightData = HeightData()
   private var controlState: WebRtcControls = WebRtcControls.NONE
 
-  private val callInfoCallbacks = CallInfoCallbacks(webRtcCallActivity, controlsAndInfoViewModel)
+  private val callInfoCallbacks = CallInfoCallbacks(activity, controlsAndInfoViewModel)
 
   init {
     raiseHandComposeView.apply {
@@ -179,9 +179,9 @@ class ControlsAndInfoController private constructor(
       hide(delay = HIDE_CONTROL_DELAY)
     }
 
-    webRtcCallActivity
+    activity
       .supportFragmentManager
-      .setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, webRtcCallActivity) { resultKey, bundle ->
+      .setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
         if (bundle.containsKey(resultKey)) {
           setName(bundle.getString(resultKey)!!)
         }
@@ -193,7 +193,7 @@ class ControlsAndInfoController private constructor(
         .setTopRightCorner(CornerFamily.ROUNDED, 18.dp.toFloat())
         .build()
     ).apply {
-      fillColor = ColorStateList.valueOf(ContextCompat.getColor(webRtcCallActivity, R.color.signal_colorSurface))
+      fillColor = ColorStateList.valueOf(ContextCompat.getColor(activity, R.color.signal_colorSurface))
     }
 
     behavior.isHideable = true
@@ -440,7 +440,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private fun toastFailure() {
-    Toast.makeText(webRtcCallActivity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+    Toast.makeText(activity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 
   private fun ConstraintSet.setControlConstraints(@IdRes viewId: Int, visible: Boolean, @Px horizontalMargins: Int) {

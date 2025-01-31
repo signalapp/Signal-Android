@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
+import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.concurrent.SimpleTask;
 
 public class VoiceCallShare extends Activity {
   
@@ -40,7 +40,7 @@ public class VoiceCallShare extends Activity {
                 AppDependencies.getSignalCallManager().startOutgoingAudioCall(recipient);
               }
 
-              Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
+              Intent activityIntent = new Intent(this, CallIntent.getActivityClass());
               activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
               startActivity(activityIntent);
             }

@@ -34,7 +34,6 @@ import org.signal.ringrtc.NetworkRoute;
 import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
-import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
 import org.thoughtcrime.securesms.database.CallLinkTable;
@@ -538,7 +537,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return false;
     }
 
-    context.startActivity(new Intent(context, WebRtcCallActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    context.startActivity(new Intent(context, CallIntent.getActivityClass()).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     return true;
   }
 
