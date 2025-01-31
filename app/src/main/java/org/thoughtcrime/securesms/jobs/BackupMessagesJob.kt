@@ -215,7 +215,7 @@ class BackupMessagesJob private constructor(
 
     stopwatch.split("export")
 
-    when (val result = ArchiveValidator.validate(tempBackupFile, backupKey)) {
+    when (val result = ArchiveValidator.validate(tempBackupFile, backupKey, forTransfer = false)) {
       ArchiveValidator.ValidationResult.Success -> {
         Log.d(TAG, "Successfully passed validation.")
       }

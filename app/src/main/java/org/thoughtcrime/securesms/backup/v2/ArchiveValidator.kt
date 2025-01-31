@@ -23,13 +23,18 @@ object ArchiveValidator {
   /**
    * Validates the provided [backupFile] that is encrypted with the provided [backupKey].
    */
-  fun validate(backupFile: File, backupKey: MessageBackupKey): ValidationResult {
+  fun validate(backupFile: File, backupKey: MessageBackupKey, forTransfer: Boolean): ValidationResult {
     return try {
       val backupId = backupKey.deriveBackupId(SignalStore.account.requireAci())
       val libSignalBackupKey = LibSignalBackupKey(backupKey.value)
       val backupKey = LibSignalMessageBackupKey(libSignalBackupKey, backupId.value)
 
-      MessageBackup.validate(backupKey, MessageBackup.Purpose.REMOTE_BACKUP, { backupFile.inputStream() }, backupFile.length())
+      MessageBackup.validate(
+        backupKey,
+        if (forTransfer) MessageBackup.Purpose.DEVICE_TRANSFER else MessageBackup.Purpose.REMOTE_BACKUP,
+        { backupFile.inputStream() },
+        backupFile.length()
+      )
 
       ValidationResult.Success
     } catch (e: IOException) {

@@ -460,6 +460,7 @@ object BackupRepository {
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
     mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
     exportExtras: ((SignalDatabase) -> Unit)? = null
@@ -481,6 +482,7 @@ object BackupRepository {
       writer = writer,
       progressEmitter = progressEmitter,
       mediaBackupEnabled = mediaBackupEnabled,
+      forTransfer = forTransfer,
       cancellationSignal = cancellationSignal,
       exportExtras = exportExtras
     )
@@ -500,6 +502,7 @@ object BackupRepository {
     isLocal: Boolean,
     writer: BackupExportWriter,
     mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
     exportExtras: ((SignalDatabase) -> Unit)? = null
@@ -515,7 +518,7 @@ object BackupRepository {
       val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot(keyValueDbName)
       eventTimer.emit("store-db-snapshot")
 
-      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled)
+      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled, forTransfer = forTransfer)
       val selfAci = signalStoreSnapshot.accountValues.aci!!
       val selfRecipientId = dbSnapshot.recipientTable.getByAci(selfAci).get().toLong().let { RecipientId.from(it) }
 
@@ -1521,7 +1524,11 @@ data class ResumableMessagesBackupUploadSpec(
 
 data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
-class ExportState(val backupTime: Long, val mediaBackupEnabled: Boolean) {
+class ExportState(
+  val backupTime: Long,
+  val mediaBackupEnabled: Boolean,
+  val forTransfer: Boolean
+) {
   val recipientIds: MutableSet<Long> = hashSetOf()
   val threadIds: MutableSet<Long> = hashSetOf()
   val contactRecipientIds: MutableSet<Long> = hashSetOf()

@@ -143,7 +143,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           append = { bytes -> tempFile.appendBytes(bytes) }
         )
         _state.value = _state.value.copy(statusMessage = "Export complete! Validating...")
-        ArchiveValidator.validate(tempFile, SignalStore.backup.messageBackupKey)
+        ArchiveValidator.validate(tempFile, SignalStore.backup.messageBackupKey, forTransfer = false)
       }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())

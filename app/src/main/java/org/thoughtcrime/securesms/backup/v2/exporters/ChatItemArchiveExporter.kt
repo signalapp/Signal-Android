@@ -562,9 +562,14 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     }
   }
 
-  if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null && builder.expireStartDate!! + builder.expiresInMs!! < backupStartTime + 1.days.inWholeMilliseconds) {
-    Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
-    return null
+  if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null) {
+    val expiresAt = builder.expireStartDate!! + builder.expiresInMs!!
+    val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + 1.days.inWholeMilliseconds
+
+    if (expiresAt < threshold) {
+      Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
+      return null
+    }
   }
 
   if (builder.expireStartDate != null && builder.expiresInMs == null) {
@@ -1499,10 +1504,6 @@ private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Lo
 
   val expiresIn = this.requireLong(MessageTable.EXPIRES_IN)
   val expireStarted = this.requireLong(MessageTable.EXPIRE_STARTED)
-
-  if (expireStarted != 0L && expireStarted + expiresIn < backupStartTime + 1.days.inWholeMilliseconds) {
-    return null
-  }
 
   return BackupMessageRecord(
     id = id,

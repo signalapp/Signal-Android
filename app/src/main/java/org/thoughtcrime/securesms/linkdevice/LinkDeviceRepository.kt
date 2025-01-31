@@ -254,6 +254,7 @@ object LinkDeviceRepository {
         append = { tempBackupFile.appendBytes(it) },
         messageBackupKey = ephemeralMessageBackupKey,
         mediaBackupEnabled = false,
+        forTransfer = true,
         cancellationSignal = cancellationSignal
       )
     } catch (e: Exception) {
@@ -268,7 +269,7 @@ object LinkDeviceRepository {
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
-    when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey)) {
+    when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey, forTransfer = true)) {
       ArchiveValidator.ValidationResult.Success -> {
         Log.d(TAG, "[createAndUploadArchive] Successfully passed validation.")
       }
