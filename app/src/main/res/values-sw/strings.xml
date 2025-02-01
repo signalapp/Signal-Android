@@ -2111,7 +2111,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Samahani, una vifaa vingi vilivyounganishwa tayari, jaribu kuondoa baadhi</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Samahani, hiki sio kiungo halali cha msimbo wa QR kwa kifaa</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Unganisha kifaa cha Signal</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Inaonekana unajaribu kuunganisha kifaa cha Signal kwa kutumia skana ya mhusika wa 3. Kwa usalama wako, tafadhali skani msimbo tena kutoka ndani ya Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kamera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Imeshindwa kuskani msimbo wa QR bila ruhusa ya Kamera</string>
@@ -2457,6 +2457,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Panua muonekano wa mkono kuinuliwa</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">Your country</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal Connection</string>
@@ -2539,6 +2546,12 @@
     <string name="RegistrationActivity_additional_verification_required">Uthibitishaji wa ziada unahitajika</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Kodi ya uthibitisho itatumwa kwenye namba hii. Bei ya mtoa huduma inaweza ikatumiwa.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Utapokea msimbo wa kuthibitisha. Gharama za mtoa huduma ya mawasiliano yako zitatumika.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">+0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Utapokea simu ya kuthibitisha nambari hii.</string>
     <string name="RegistrationActivity_edit_number">Hariri nambari</string>
     <string name="RegistrationActivity_missing_google_play_services">Huduma za Google Play zinakosekana</string>
@@ -5741,7 +5754,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Unganisha kifaa?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Inaonekana kama vile unajaribu kuunganisha kifaa cha Signal. Gusa kuendelea na kuskani code tena ili kuiunganisha tena.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Endelea</string>
 
@@ -8071,7 +8084,7 @@
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
-    <string name="EnterBackupKey_try_again">Try again</string>
+    <string name="EnterBackupKey_try_again">Jaribu tena</string>
     <!-- Dialog negative button text to get help with backup key -->
     <string name="EnterBackupKey_backup_key_help">Backup key help</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->

@@ -1105,7 +1105,7 @@
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">Zapisz</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Nazwa urządzenia zaktualizowana</string>
+    <string name="EditDeviceNameFragment__device_name_updated">Nazwa urządzenia zmieniona</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
     <string name="EditDeviceNameFragment__unable_to_change">Nie można zmienić nazwy urządzenia. Spróbuj ponownie później.</string>
 
@@ -2241,7 +2241,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Masz zbyt dużo powiązanych urządzeń, spróbuj usunąć któreś z nich zanim spróbujesz ponownie</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Wygląda na to, że próbujesz dodać urządzenie Signal używając skanera nieznanego dostawy. Dla Twojego bezpieczeństwa prosimy, abyś zeskanował(a) kod używając Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal wymaga pozwolenia na dostęp do aparatu w celu zeskanowania kodu QR, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nie można zeskanować kodu QR bez zezwolenia na dostęp do aparatu</string>
@@ -2621,6 +2621,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Rozwiń widok podniesionych rąk</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">Your country</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Kontakt Signal</string>
@@ -2713,6 +2720,12 @@
     <string name="RegistrationActivity_additional_verification_required">Wymagana jest dodatkowa weryfikacja</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Kod weryfikacyjny zostanie przesłany na ten numer. Mogą zostać nałożone opłaty operatora.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">+0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Otrzymasz telefon, aby zweryfikować ten numer.</string>
     <string name="RegistrationActivity_edit_number">Edytuj numer</string>
     <string name="RegistrationActivity_missing_google_play_services">Brak Usług Google Play</string>
@@ -6013,7 +6026,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Dodać urządzenie?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Wygląda na to, że próbujesz dodać urządzenie Signal. Aby to zrobić, stuknij opcję „Dalej” i ponownie zeskanuj kod.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Kontynuuj</string>
 
@@ -7742,7 +7755,7 @@
     <!-- Content description for confirming a user -->
     <string name="PendingParticipantsBottomSheet__approve">Zaakceptuj</string>
     <!-- Button text to allow all participants to join the call -->
-    <string name="PendingParticipantsBottomSheet__approve_all">Przyjmij wszystkie</string>
+    <string name="PendingParticipantsBottomSheet__approve_all">Zaakceptuj wszystkie</string>
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">Odrzuć wszystkie</string>
 
@@ -7934,7 +7947,7 @@
     <!-- Dialog title when a backup redemption fails -->
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Nie udało się skorzystać z usługi tworzenia kopii zapasowych</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">Wystąpił błąd i nie udało się utworzyć kopii zapasowej. Sprawdź, czy na pewno masz najnowszą wersję aplikacji Signal, i spróbuj ponownie. Jeśli problem będzie się powtarzać, skontaktuj się z naszą pomocą techniczną.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">Wystąpił błąd i nie udało się utworzyć kopii zapasowej. Sprawdź, czy masz najnowszą wersję aplikacji Signal, i spróbuj ponownie. Jeśli problem będzie się powtarzać, skontaktuj się z pomocą techniczną.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Sprawdź dostępność aktualizacji</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7973,7 +7986,7 @@
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
     <string name="BackupStatusRow__restore_waiting_for_wifi">Przywracanie wstrzymane: oczekiwanie na Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">Przywracanie wstrzymane: brak internetu…</string>
+    <string name="BackupStatusRow__restore_no_internet">Przywracanie wstrzymane: brak połączenia z internetem…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Przywracanie wstrzymane: niski poziom naładowania baterii</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
@@ -7981,9 +7994,9 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Pomiń pobieranie</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Nie udało się dokończyć tworzenia ostatniej kopii zapasowej. Aby spróbować ponownie, sprawdź, czy Twoje urządzenie ma połączenie z Wi-Fi i dotknij opcji Utwórz kopię zapasową teraz.</string>
+    <string name="BackupStatusRow__your_last_backup">Nie udało się dokończyć tworzenia ostatniej kopii zapasowej. Aby spróbować ponownie, sprawdź, czy Twoje urządzenie ma połączenie z Wi-Fi, i dotknij opcji „Utwórz kopię zapasową teraz”.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Nie udało się dokończyć tworzenia ostatniej kopii zapasowej. Sprawdź, czy na pewno masz najnowszą wersję aplikacji Signal, i spróbuj ponownie.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">Nie udało się dokończyć tworzenia ostatniej kopii zapasowej. Sprawdź, czy masz najnowszą wersję aplikacji Signal, i spróbuj ponownie.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Dowiedz się więcej</string>
 
@@ -8198,7 +8211,7 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Dowiedz się więcej</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Trwa przetwarzanie kopii zapasowej…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Przetwarzanie kopii zapasowej…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Przygotowywanie kopii zapasowej…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
@@ -8415,7 +8428,7 @@
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
-    <string name="EnterBackupKey_try_again">Try again</string>
+    <string name="EnterBackupKey_try_again">Spróbuj ponownie</string>
     <!-- Dialog negative button text to get help with backup key -->
     <string name="EnterBackupKey_backup_key_help">Backup key help</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->

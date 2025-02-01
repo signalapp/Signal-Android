@@ -2111,7 +2111,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ക്ഷമിക്കണം, നിങ്ങൾക്ക് ഇതിനകം തന്നെ നിരവധി ഉപകരണങ്ങൾ ബന്ധിപ്പിച്ചിട്ടുണ്ട്, ചിലത് നീക്കംചെയ്യാൻ ശ്രമിക്കുക</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ക്ഷമിക്കണം, ഇത് സാധുവായ ഉപകരണ ലിങ്ക് QR കോഡല്ല.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">ഒരു Signal ഉപകരണം ബന്ധിപ്പിക്കണോ?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ഒരു മൂന്നാം കക്ഷി സ്കാനർ ഉപയോഗിച്ച് നിങ്ങൾ ഒരു Signal ഉപകരണം ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. നിങ്ങളുടെ പരിരക്ഷയ്‌ക്കായി, Signal-നുള്ളിൽ നിന്ന് കോഡ് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ഒരു QR കോഡ് സ്കാൻ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ക്യാമറ അനുമതിയില്ലാതെ ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ കഴിയില്ല</string>
@@ -2457,6 +2457,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">ഉയർത്തിയ കൈയുടെ കാഴ്ച വിപുലമാക്കി</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">Your country</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal കണക്ഷൻ</string>
@@ -2539,6 +2546,12 @@
     <string name="RegistrationActivity_additional_verification_required">അധിക പരിശോധിച്ചുറപ്പിക്കൽ ആവശ്യമാണ്</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ് ഈ നമ്പറിലേക്ക് അയയ്ക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">+0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ഈ നമ്പർ പരിശോധിക്കാൻ വേണ്ടി നിങ്ങൾക്ക് ഒരു കോൾ വരും.</string>
     <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services കാണുന്നില്ല</string>
@@ -5741,7 +5754,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">ഉപകരണം ലിങ്ക് ചെയ്യണോ?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്ക് ചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. കോഡ് ലിങ്ക് ചെയ്യാൻ തുടരുക ടാപ്പ് ചെയ്‌ത് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">തുടരുക</string>
 
@@ -8071,7 +8084,7 @@
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
-    <string name="EnterBackupKey_try_again">Try again</string>
+    <string name="EnterBackupKey_try_again">വീണ്ടും ശ്രമിക്കുക</string>
     <!-- Dialog negative button text to get help with backup key -->
     <string name="EnterBackupKey_backup_key_help">Backup key help</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->

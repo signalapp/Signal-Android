@@ -589,8 +589,8 @@
     <string name="ConversationFragment__save_to_phone">Да се зачува на телефон?</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="one">Оваа медиумска датотека ќе се зачува на вашиот телефон. Други апликации може да имаат пристап до неа, во зависност од овозможените дозволи на вашиот телефон.</item>
+        <item quantity="other">Овие медиумски датотеки ќе се зачуваат на вашиот телефон. Други апликации може да имаат пристап до неа, во зависност од овозможените дозволи на вашиот телефон.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Не прикажувај повторно</string>
@@ -931,13 +931,13 @@
     <string name="DateUtils_tonight">Ноќва</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
     <plurals name="DateUtils_date_time_at">
-        <item quantity="one">on %1$s at %2$s</item>
-        <item quantity="other">on %1$s at %2$s</item>
+        <item quantity="one">на %1$s во %2$s</item>
+        <item quantity="other">на %1$s во %2$s</item>
     </plurals>
     <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
     <plurals name="DateUtils_time_at">
-        <item quantity="one">at %1$s</item>
-        <item quantity="other">at %1$s</item>
+        <item quantity="one">во %1$s</item>
+        <item quantity="other">во %1$s</item>
     </plurals>
 
     <!-- Scheduled Messages -->
@@ -1047,7 +1047,7 @@
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">Поврзувањето со уредот е отстрането</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Уредот што беше поврзан на %1$s повеќе не е поврзан.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Во ред</string>
 
@@ -1098,7 +1098,7 @@
     <!-- Title of notification telling users that a device was linked to their account -->
     <string name="NewLinkedDeviceNotification__you_linked_new_device">Поврзавте нов уред</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Нов уред беше поврзан со вашата корисничка сметка во %1$s. Допрете за да го видите.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Да се прекине поврзувањето со „%1$s“?</string>
@@ -1694,7 +1694,7 @@
     <string name="Megaphones_add_a_profile_photo">Додај слика</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Нов уред беше поврзан со вашата корисничка сметка во %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">Види го уредот</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
@@ -1974,7 +1974,7 @@
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">Вие сте на повикот · %1$s</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
-    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s and you are in the call · %2$s</string>
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">На повик сте со %1$s · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s и %2$s се на повикот · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
@@ -1982,7 +1982,7 @@
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">Вие сте на повикот</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
-    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s and you are in the call</string>
+    <string name="MessageRecord_s_and_you_are_in_the_call">На повик сте со %1$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s и %2$s се на овој повик</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -2111,7 +2111,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Извинете, имате премногу поврзани уреди, обидете се да отстраните некои од нив</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Извинете, ова не е валиден QR код за поврзување со уредот.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Да поврзам уред со Signal?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Изгледа дека сакате да поврзете Signal уред користејќи скенер од 3та страна. За Ваша заштита, Ве молиме повторно скенирајте го кодот преку Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете до менито за поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Не може да се скенира QR кодот без дозвола до камерата</string>
@@ -2457,6 +2457,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Проширете го приказот на крената рака</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">Your country</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal врска</string>
@@ -2539,6 +2546,12 @@
     <string name="RegistrationActivity_additional_verification_required">Потребна е дополнителна проверка</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">На овој број ќе се испрати код за проверка. Можно е да ви се наплатат тарифи на операторот.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Ќе примите код за проверка. Можно е да важат цените од операторот.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">+0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ќе примите повик за проверка на овој број.</string>
     <string name="RegistrationActivity_edit_number">Уреди го бројот</string>
     <string name="RegistrationActivity_missing_google_play_services">Недостасуваат Google Play услуги</string>
@@ -5741,7 +5754,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Сакате да се поврзе уредот?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Изгледа дека сакате да поврзете Signal уред. Допрете „продолжи“ и скенирајте го кодот уште еднаш за поврзување.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Продолжи</string>
 
@@ -8067,19 +8080,19 @@
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Прескокнете и не враќајте</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect backup key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Неточен клуч за резервни копии</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Проверете дали се регистрирате со истиот телефонски број и клучот за резервни копии од 64 знаци што го зачувавте кога овозможивте резервни копии на Signal. Резервните копии не може да се вратат без овој клуч.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
-    <string name="EnterBackupKey_try_again">Try again</string>
+    <string name="EnterBackupKey_try_again">Обидете се повторно</string>
     <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Backup key help</string>
+    <string name="EnterBackupKey_backup_key_help">Помош за клуч за резервни копии</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect backup key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Неточен клуч за резервни копии</string>
     <!-- Text field error text when the backup key is too long -->
-    <string name="EnterBackupKey_too_long_error">Too long (%1$d/%2$d)</string>
+    <string name="EnterBackupKey_too_long_error">Предолго (%1$d/%2$d)</string>
     <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid backup key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Неважечки клуч за резервни копии</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Скенирајте го овој код со вашиот стар телефон</string>
