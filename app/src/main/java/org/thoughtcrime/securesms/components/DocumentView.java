@@ -173,7 +173,7 @@ public class DocumentView extends FrameLayout {
 
     @Override
     public void onClick(View v) {
-      if (!slide.isPendingDownload() && !slide.isInProgress() && viewListener != null) {
+      if (slide.hasDocument() && slide.getUri()!=null && viewListener != null) {
         viewListener.onClick(v, slide);
       }
     }
