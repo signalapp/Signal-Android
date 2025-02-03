@@ -243,7 +243,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       final Intent transferOrRestore = RestoreActivity.getRestoreIntent(activity);
       transferOrRestore.putExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, MainActivity.clearTop(requireContext()));
       startActivity(transferOrRestore);
-    } else if (Recipient.self().getProfileName().isEmpty() || !AvatarHelper.hasAvatar(activity, Recipient.self().getId())) {
+    } else if (Recipient.self().getProfileName().isEmpty()) {
       final Intent main    = MainActivity.clearTop(activity);
       final Intent profile = CreateProfileActivity.getIntentForUserProfile(activity);
 
