@@ -302,7 +302,9 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale, @NonNull ConversationItemDisplayMode displayMode) {
     dateView.forceLayout();
-    if (messageRecord.isMediaPending()) {
+     if (MessageRecordUtil.isScheduled(messageRecord)) {
+      dateView.setText(DateUtils.getOnlyTimeString(getContext(), ((MmsMessageRecord) messageRecord).getScheduledDate()));
+    } else if (messageRecord.isMediaPending()) {
       dateView.setText(null);
     } else if (messageRecord.isFailed()) {
       int errorMsg;
@@ -317,8 +319,6 @@ public class ConversationItemFooter extends ConstraintLayout {
       dateView.setText(errorMsg);
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
-    } else if (MessageRecordUtil.isScheduled(messageRecord)) {
-      dateView.setText(DateUtils.getOnlyTimeString(getContext(), ((MmsMessageRecord) messageRecord).getScheduledDate()));
     } else {
       long timestamp = messageRecord.getTimestamp();
       FormattedDate date = DateUtils.getDatelessRelativeTimeSpanFormattedDate(getContext(), locale, timestamp);
