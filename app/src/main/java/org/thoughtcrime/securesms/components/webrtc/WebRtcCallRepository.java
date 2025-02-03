@@ -16,16 +16,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import java.util.Collections;
 import java.util.List;
 
-class WebRtcCallRepository {
+public final class WebRtcCallRepository {
 
-  private final Context      context;
-
-  WebRtcCallRepository(@NonNull Context context) {
-    this.context      = context;
-  }
+  private WebRtcCallRepository() {}
 
   @WorkerThread
-  void getIdentityRecords(@NonNull Recipient recipient, @NonNull Consumer<IdentityRecordList> consumer) {
+  public static void getIdentityRecords(@NonNull Recipient recipient, @NonNull Consumer<IdentityRecordList> consumer) {
     SignalExecutors.BOUNDED.execute(() -> {
       List<Recipient> recipients;
 

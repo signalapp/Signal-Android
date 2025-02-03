@@ -60,8 +60,6 @@ import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
-import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
-import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel.SafetyNumberChangeEvent
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoController
@@ -487,27 +485,27 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     viewModel.setIsLandscapeEnabled(true)
     viewModel.setIsInPipMode(isInPipMode())
     viewModel.microphoneEnabled.observe(this, callScreen::setMicEnabled)
-    viewModel.webRtcControls.observe(this) { controls ->
+    viewModel.getWebRtcControls().observe(this) { controls ->
       callScreen.setWebRtcControls(controls)
       controlsAndInfo.updateControls(controls)
     }
-    viewModel.events.observe(this, this::handleViewModelEvent)
+    viewModel.getEvents().observe(this, this::handleViewModelEvent)
 
-    lifecycleDisposable.add(viewModel.inCallstatus.subscribe(this::handleInCallStatus))
-    lifecycleDisposable.add(viewModel.recipientFlowable.subscribe(callScreen::setRecipient))
+    lifecycleDisposable.add(viewModel.getInCallStatus().subscribe(this::handleInCallStatus))
+    lifecycleDisposable.add(viewModel.getRecipientFlowable().subscribe(callScreen::setRecipient))
 
     val isStartedFromCallLink = getCallIntent().isStartedFromCallLink
     LiveDataUtil.combineLatest(
       viewModel.callParticipantsState.toFlowable(BackpressureStrategy.LATEST).toLiveData(),
-      viewModel.ephemeralState
+      viewModel.getEphemeralState()
     ) { state, ephemeralState ->
       CallParticipantsViewState(state, ephemeralState, orientation == Orientation.PORTRAIT_BOTTOM_EDGE, true, isStartedFromCallLink)
     }.observe(this, callScreen::updateCallParticipants)
 
-    viewModel.callParticipantListUpdate.observe(this, participantUpdateWindow::addCallParticipantListUpdate)
-    viewModel.safetyNumberChangeEvent.observe(this, this::handleSafetyNumberChangeEvent)
-    viewModel.groupMembersChanged.observe(this) { updateGroupMembersForGroupCall() }
-    viewModel.groupMemberCount.observe(this, this::handleGroupMemberCountChange)
+    viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate)
+    viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent)
+    viewModel.getGroupMembersChanged().observe(this) { updateGroupMembersForGroupCall() }
+    viewModel.getGroupMemberCount().observe(this, this::handleGroupMemberCountChange)
     lifecycleDisposable.add(viewModel.shouldShowSpeakerHint().subscribe(this::updateSpeakerHint))
 
     callScreen.viewTreeObserver.addOnGlobalLayoutListener {
@@ -530,7 +528,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     callScreen.setPendingParticipantsViewListener(PendingParticipantsViewListener())
-    lifecycleDisposable += viewModel.pendingParticipants.subscribe(callScreen::updatePendingParticipantsList)
+    lifecycleDisposable += viewModel.getPendingParticipants().subscribe(callScreen::updatePendingParticipantsList)
   }
 
   private fun initializePictureInPictureParams() {
@@ -589,7 +587,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       this
     ) { _, result ->
       val action: PendingParticipantsBottomSheet.Action = PendingParticipantsBottomSheet.getAction(result)
-      val recipientIds = viewModel.pendingParticipantsSnapshot.getUnresolvedPendingParticipants().map { it.recipient.id }
+      val recipientIds = viewModel.getPendingParticipantsSnapshot().getUnresolvedPendingParticipants().map { it.recipient.id }
 
       when (action) {
         PendingParticipantsBottomSheet.Action.NONE -> Unit
@@ -911,7 +909,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
   }
 
-  private fun handleSafetyNumberChangeEvent(safetyNumberChangeEvent: SafetyNumberChangeEvent) {
+  private fun handleSafetyNumberChangeEvent(safetyNumberChangeEvent: WebRtcCallViewModel.SafetyNumberChangeEvent) {
     if (safetyNumberChangeEvent.recipientIds.isNotEmpty()) {
       if (safetyNumberChangeEvent.isInPipMode) {
         GroupCallSafetyNumberChangeNotificationUtil.showNotification(this, viewModel.recipient.get())
@@ -1033,7 +1031,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   }
 
   private fun maybeDisplaySpeakerphonePopup(nextOutput: WebRtcAudioOutput) {
-    val currentOutput = viewModel.currentAudioOutput
+    val currentOutput = viewModel.getCurrentAudioOutput()
     if (currentOutput == WebRtcAudioOutput.SPEAKER && nextOutput != WebRtcAudioOutput.SPEAKER) {
       callStateUpdatePopupWindow.onCallStateUpdate(CallControlsChange.SPEAKER_OFF)
     } else if (currentOutput != WebRtcAudioOutput.SPEAKER && nextOutput == WebRtcAudioOutput.SPEAKER) {
@@ -1065,7 +1063,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun onHidden() {
-      val controlState = viewModel.webRtcControls.value
+      val controlState = viewModel.getWebRtcControls().value
       if (controlState == null || !controlState.displayErrorControls()) {
         fullscreenHelper.hideSystemUI()
         videoTooltip?.dismiss()
@@ -1130,7 +1128,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun onAcceptCallPressed() {
-      if (viewModel.isAnswerWithVideoAvailable) {
+      if (viewModel.isAnswerWithVideoAvailable()) {
         handleAnswerWithVideo()
       } else {
         handleAnswerWithAudio()
@@ -1165,7 +1163,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun toggleControls() {
-      val controlState = viewModel.webRtcControls.value
+      val controlState = viewModel.getWebRtcControls().value
       if (controlState != null && !controlState.displayIncomingCallButtons() && !controlState.displayErrorControls()) {
         controlsAndInfo.toggleControls()
       }

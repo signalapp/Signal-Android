@@ -45,6 +45,7 @@ import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -80,7 +81,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
       System.currentTimeMillis().milliseconds
     }
 
-    val participants = viewModel.pendingParticipants
+    val participants = viewModel.getPendingParticipants()
       .map { it.pendingParticipantCollection.getAllPendingParticipants(launchTime).toList() }
       .subscribeAsState(initial = emptyList())
 

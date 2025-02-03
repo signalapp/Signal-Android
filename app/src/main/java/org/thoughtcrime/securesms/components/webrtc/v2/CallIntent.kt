@@ -8,8 +8,6 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * CallIntent wraps an intent inside one of the call activities to allow for easy typed access to the necessary data within it.
@@ -23,11 +21,7 @@ class CallIntent(
     private const val CALL_INTENT_PREFIX = "CallIntent"
 
     @JvmStatic
-    fun getActivityClass(): Class<out Activity> = if (RemoteConfig.newCallUi || SignalStore.internal.newCallingUi) {
-      CallActivity::class.java
-    } else {
-      WebRtcCallActivity::class.java
-    }
+    fun getActivityClass(): Class<out Activity> = WebRtcCallActivity::class.java
 
     private fun getActionString(action: Action): String {
       return "$CALL_INTENT_PREFIX.${action.code}"
