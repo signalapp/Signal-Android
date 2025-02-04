@@ -438,7 +438,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
               BuildConfig.SIGNAL_AGENT,
               healthMonitor,
               Stories.isFeatureEnabled(),
-              LibSignalNetworkExtensions.createChatService(libSignalNetworkSupplier.get(), null, Stories.isFeatureEnabled(), null),
+              libSignalNetworkSupplier.get(),
               shadowPercentage,
               bridge
           );

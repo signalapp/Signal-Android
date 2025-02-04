@@ -12,14 +12,16 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
+import okio.withLock
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.net.AuthenticatedChatService
-import org.signal.libsignal.net.ChatListener
-import org.signal.libsignal.net.ChatService
+import org.signal.libsignal.internal.CompletableFuture
+import org.signal.libsignal.net.AuthenticatedChatConnection
+import org.signal.libsignal.net.ChatConnection
+import org.signal.libsignal.net.ChatConnectionListener
 import org.signal.libsignal.net.ChatServiceException
 import org.signal.libsignal.net.DeviceDeregisteredException
 import org.signal.libsignal.net.Network
-import org.signal.libsignal.net.UnauthenticatedChatService
+import org.signal.libsignal.net.UnauthenticatedChatConnection
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -35,21 +37,20 @@ import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 import kotlin.time.Duration.Companion.seconds
-import org.signal.libsignal.net.ChatService.Request as LibSignalRequest
-import org.signal.libsignal.net.ChatService.Response as LibSignalResponse
+import org.signal.libsignal.net.ChatConnection.Request as LibSignalRequest
+import org.signal.libsignal.net.ChatConnection.Response as LibSignalResponse
 
 /**
  * Implements the WebSocketConnection interface via libsignal-net
  *
  * Notable implementation choices:
- * - [chatService] contains both the authenticated and unauthenticated connections,
- *   which one to use for [sendRequest]/[sendResponse] is based on [isAuthenticated].
- * - keep-alive requests always use the [org.signal.libsignal.net.ChatService.unauthenticatedSendAndDebug]
- *   API, and log the debug info on success.
- * - regular sends use [org.signal.libsignal.net.ChatService.unauthenticatedSend] and don't create any overhead.
+ * - [chatConnection] contains either an authenticated or an unauthenticated connections
+ * - keep-alive requests are sent on both authenticated and unauthenticated connections, mirroring the existing OkHttp behavior
  * - [org.whispersystems.signalservice.api.websocket.WebSocketConnectionState] reporting is implemented
  *   as close as possible to the original implementation in
  *   [org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection].
+ * - we expose fake "psuedo IDs" for incoming requests so the layer on top of ours can work with IDs, just
+ *    like with the old OkHttp implementation, and internally we map these IDs to AckSenders
  */
 class LibSignalChatConnection(
   name: String,
@@ -73,10 +74,10 @@ class LibSignalChatConnection(
   // tell us to send a response for that ID, and then we use the pseudo ID as a handle to find
   // the callback given to us earlier by libsignal-net, and we call that callback.
   private val nextIncomingMessageInternalPseudoId = AtomicLong(1)
-  val ackSenderForInternalPseudoId = ConcurrentHashMap<Long, ChatListener.ServerMessageAck>()
+  val ackSenderForInternalPseudoId = ConcurrentHashMap<Long, ChatConnectionListener.ServerMessageAck>()
 
   private val CHAT_SERVICE_LOCK = ReentrantLock()
-  private var chatService: ChatService? = null
+  private var chatConnection: ChatConnection? = null
 
   companion object {
     const val SERVICE_ENVELOPE_REQUEST_VERB = "PUT"
@@ -142,23 +143,38 @@ class LibSignalChatConnection(
     // There's no sense in resetting nextIncomingMessageInternalPseudoId.
   }
 
+  init {
+    if (credentialsProvider != null) {
+      check(!credentialsProvider.username.isNullOrEmpty())
+      check(!credentialsProvider.password.isNullOrEmpty())
+    }
+  }
+
   override fun connect(): Observable<WebSocketConnectionState> {
     CHAT_SERVICE_LOCK.withLock {
-      if (chatService != null) {
+      if (!isDead()) {
         return state
       }
-
       Log.i(TAG, "$name Connecting...")
-      chatService = network.createChatService(credentialsProvider, receiveStories, listener).apply {
-        state.onNext(WebSocketConnectionState.CONNECTING)
-        connect().whenComplete(
-          onSuccess = { debugInfo ->
+      val chatConnectionFuture: CompletableFuture<out ChatConnection> = if (credentialsProvider == null) {
+        network.connectUnauthChat(listener)
+      } else {
+        network.connectAuthChat(credentialsProvider.username, credentialsProvider.password, receiveStories, listener)
+      }
+      state.onNext(WebSocketConnectionState.CONNECTING)
+      chatConnectionFuture.whenComplete(
+        onSuccess = { connection ->
+          CHAT_SERVICE_LOCK.withLock {
+            chatConnection = connection
+            connection?.start()
             Log.i(TAG, "$name Connected")
-            Log.d(TAG, "$name $debugInfo")
             state.onNext(WebSocketConnectionState.CONNECTED)
-          },
-          onFailure = { throwable ->
+          }
+        },
+        onFailure = { throwable ->
+          CHAT_SERVICE_LOCK.withLock {
             Log.w(TAG, "$name [connect] Failure:", throwable)
+            chatConnection = null
             // Internally, libsignal-net will throw this DeviceDeregisteredException when the HTTP CONNECT
             // request returns HTTP 403.
             // The chat service currently does not return HTTP 401 on /v1/websocket.
@@ -169,27 +185,38 @@ class LibSignalChatConnection(
               state.onNext(WebSocketConnectionState.FAILED)
             }
           }
-        )
-      }
+        }
+      )
       return state
     }
   }
 
   override fun isDead(): Boolean {
     CHAT_SERVICE_LOCK.withLock {
-      return chatService == null
+      return when (state.value) {
+        WebSocketConnectionState.DISCONNECTED,
+        WebSocketConnectionState.DISCONNECTING,
+        WebSocketConnectionState.FAILED,
+        WebSocketConnectionState.AUTHENTICATION_FAILED -> true
+
+        WebSocketConnectionState.CONNECTING,
+        WebSocketConnectionState.CONNECTED,
+        WebSocketConnectionState.RECONNECTING -> false
+
+        null -> throw IllegalStateException("LibSignalChatConnection.state can never be null")
+      }
     }
   }
 
   override fun disconnect() {
     CHAT_SERVICE_LOCK.withLock {
-      if (chatService == null) {
+      if (isDead()) {
         return
       }
 
       Log.i(TAG, "$name Disconnecting...")
       state.onNext(WebSocketConnectionState.DISCONNECTING)
-      chatService!!.disconnect()
+      chatConnection!!.disconnect()
         .whenComplete(
           onSuccess = {
             Log.i(TAG, "$name Disconnected")
@@ -200,18 +227,18 @@ class LibSignalChatConnection(
             state.onNext(WebSocketConnectionState.DISCONNECTED)
           }
         )
-      chatService = null
+      chatConnection = null
     }
   }
 
   override fun sendRequest(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     CHAT_SERVICE_LOCK.withLock {
-      if (chatService == null) {
+      if (isDead()) {
         return Single.error(IOException("$name is closed!"))
       }
       val single = SingleSubject.create<WebsocketResponse>()
       val internalRequest = request.toLibSignalRequest()
-      chatService!!.send(internalRequest)
+      chatConnection!!.send(internalRequest)
         .whenComplete(
           onSuccess = { response ->
             Log.d(TAG, "$name [sendRequest] Success: ${response!!.status}")
@@ -219,13 +246,13 @@ class LibSignalChatConnection(
               in 400..599 -> {
                 healthMonitor.onMessageError(
                   status = response.status,
-                  isIdentifiedWebSocket = chatService is AuthenticatedChatService
+                  isIdentifiedWebSocket = chatConnection is AuthenticatedChatConnection
                 )
               }
             }
             // Here success means "we received the response" even if it is reporting an error.
             // This is consistent with the behavior of the OkHttpWebSocketConnection.
-            single.onSuccess(response.toWebsocketResponse(isUnidentified = (chatService is UnauthenticatedChatService)))
+            single.onSuccess(response.toWebsocketResponse(isUnidentified = (chatConnection is UnauthenticatedChatConnection)))
           },
           onFailure = { throwable ->
             Log.w(TAG, "$name [sendRequest] Failure:", throwable)
@@ -238,29 +265,29 @@ class LibSignalChatConnection(
 
   override fun sendKeepAlive() {
     CHAT_SERVICE_LOCK.withLock {
-      if (chatService == null) {
+      if (isDead()) {
         return
       }
 
       Log.i(TAG, "$name Sending keep alive...")
-      chatService!!.sendAndDebug(KEEP_ALIVE_REQUEST)
+      chatConnection!!.send(KEEP_ALIVE_REQUEST)
         .whenComplete(
-          onSuccess = { debugResponse ->
+          onSuccess = { response ->
             Log.d(TAG, "$name [sendKeepAlive] Success")
-            when (debugResponse!!.response.status) {
+            when (response!!.status) {
               in 200..299 -> {
                 healthMonitor.onKeepAliveResponse(
                   sentTimestamp = Instant.now().toEpochMilli(), // ignored. can be any value
-                  isIdentifiedWebSocket = chatService is AuthenticatedChatService
+                  isIdentifiedWebSocket = chatConnection is AuthenticatedChatConnection
                 )
               }
 
               in 400..599 -> {
-                healthMonitor.onMessageError(debugResponse.response.status, (chatService is AuthenticatedChatService))
+                healthMonitor.onMessageError(response.status, (chatConnection is AuthenticatedChatConnection))
               }
 
               else -> {
-                Log.w(TAG, "$name [sendKeepAlive] Unsupported keep alive response status: ${debugResponse.response.status}")
+                Log.w(TAG, "$name [sendKeepAlive] Unsupported keep alive response status: ${response.status}")
               }
             }
           },
@@ -310,8 +337,8 @@ class LibSignalChatConnection(
 
   private val listener = LibSignalChatListener()
 
-  private inner class LibSignalChatListener : ChatListener {
-    override fun onIncomingMessage(chat: ChatService, envelope: ByteArray, serverDeliveryTimestamp: Long, sendAck: ChatListener.ServerMessageAck?) {
+  private inner class LibSignalChatListener : ChatConnectionListener {
+    override fun onIncomingMessage(chat: ChatConnection, envelope: ByteArray, serverDeliveryTimestamp: Long, sendAck: ChatConnectionListener.ServerMessageAck?) {
       // NB: The order here is intentional to ensure concurrency-safety, so that when a request is pulled off the queue, its sendAck is
       // already in the ackSender map, if it exists.
       val internalPseudoId = nextIncomingMessageInternalPseudoId.getAndIncrement()
@@ -328,15 +355,15 @@ class LibSignalChatConnection(
       incomingRequestQueue.put(incomingWebSocketRequest)
     }
 
-    override fun onConnectionInterrupted(chat: ChatService, disconnectReason: ChatServiceException) {
+    override fun onConnectionInterrupted(chat: ChatConnection, disconnectReason: ChatServiceException) {
       CHAT_SERVICE_LOCK.withLock {
         Log.i(TAG, "$name connection interrupted", disconnectReason)
-        chatService = null
+        chatConnection = null
         state.onNext(WebSocketConnectionState.DISCONNECTED)
       }
     }
 
-    override fun onQueueEmpty(chat: ChatService) {
+    override fun onQueueEmpty(chat: ChatConnection) {
       val internalPseudoId = nextIncomingMessageInternalPseudoId.getAndIncrement()
       val queueEmptyRequest = WebSocketRequestMessage(
         verb = SOCKET_EMPTY_REQUEST_VERB,
