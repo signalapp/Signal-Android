@@ -16,14 +16,14 @@ class AccountEntropyPool(val value: String) {
 
   companion object {
     private val INVALID_CHARACTERS = Regex("[^0-9a-zA-Z]")
-    private const val LENGTH = 64
+    const val LENGTH = 64
 
     fun generate(): AccountEntropyPool {
       return AccountEntropyPool(LibSignalAccountEntropyPool.generate())
     }
 
     fun parseOrNull(input: String): AccountEntropyPool? {
-      val stripped = input.replace(INVALID_CHARACTERS, "")
+      val stripped = removeIllegalCharacters(input)
       if (stripped.length != LENGTH) {
         return null
       }

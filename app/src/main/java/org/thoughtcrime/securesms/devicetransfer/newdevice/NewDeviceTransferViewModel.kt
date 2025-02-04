@@ -11,6 +11,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
@@ -24,7 +26,7 @@ class NewDeviceTransferViewModel : ViewModel() {
         RegistrationUtil.maybeMarkRegistrationComplete()
       }
 
-      SignalStore.registration.markRestoreCompleted()
+      SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 
       withContext(Dispatchers.Main) {
         onComplete()

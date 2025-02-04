@@ -14,6 +14,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -26,6 +27,7 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
@@ -33,7 +35,13 @@ import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
+import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.Skipped
+import org.thoughtcrime.securesms.keyvalue.Start
+import org.thoughtcrime.securesms.keyvalue.intendToRestore
+import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
@@ -80,6 +88,7 @@ import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
+import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
@@ -863,9 +872,9 @@ class RegistrationViewModel : ViewModel() {
     SignalStore.registration.localRegistrationMetadata = metadata
     RegistrationRepository.registerAccountLocally(context, metadata)
 
-    if (!remoteResult.storageCapable && !SignalStore.registration.hasCompletedRestore()) {
+    if (!remoteResult.storageCapable && SignalStore.registration.restoreDecisionState.isDecisionPending) {
       // Not being storage capable is a high signal that account is new and there's no data to restore
-      SignalStore.registration.markSkippedTransferOrRestore()
+      SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
     }
 
     if (reglockEnabled || SignalStore.svr.hasOptedInWithAccess()) {
@@ -892,10 +901,56 @@ class RegistrationViewModel : ViewModel() {
 
     refreshRemoteConfig()
 
+    val checkpoint = if (SignalStore.registration.restoreDecisionState.isDecisionPending &&
+      SignalStore.registration.restoreDecisionState.isWantingManualRemoteRestore &&
+      !SignalStore.backup.isBackupTierRestored
+    ) {
+      RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED
+    } else {
+      RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
+    }
+
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
+        registrationCheckpoint = checkpoint
       )
+    }
+  }
+
+  fun resetRestoreDecision() {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Start
+  }
+
+  fun intendToRestore(hasOldDevice: Boolean, fromRemote: Boolean? = null) {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.intendToRestore(hasOldDevice, fromRemote)
+  }
+
+  fun skipRestoreAfterRegistration() {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
+    store.update {
+      it.copy(registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE)
+    }
+  }
+
+  fun restoreBackupTier() {
+    store.update {
+      it.copy(registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED)
+    }
+
+    viewModelScope.launch {
+      val start = System.currentTimeMillis()
+      val tierUnknown = BackupRepository.restoreBackupTier(SignalStore.account.requireAci()) == null
+      delay(max(0L, 500L - (System.currentTimeMillis() - start)))
+
+      if (tierUnknown) {
+        store.update {
+          it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED)
+        }
+      } else {
+        store.update {
+          it.copy(registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE)
+        }
+      }
     }
   }
 

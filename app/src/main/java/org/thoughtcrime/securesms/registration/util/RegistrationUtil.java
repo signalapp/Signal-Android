@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -32,7 +33,7 @@ public final class RegistrationUtil {
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
         (SignalStore.svr().hasOptedInWithAccess() || SignalStore.svr().hasOptedOut()) &&
-        (!RemoteConfig.restoreAfterRegistration() || (SignalStore.registration().hasSkippedTransferOrRestore() || SignalStore.registration().hasCompletedRestore())))
+        (!RemoteConfig.INSTANCE.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState())))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registration().markRegistrationComplete();

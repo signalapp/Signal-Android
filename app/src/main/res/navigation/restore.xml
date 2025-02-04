@@ -79,6 +79,20 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/go_to_post_restore_enter_backup_key"
+            app:destination="@id/enterBackupKey"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/enterBackupKey"
+        android:name="org.thoughtcrime.securesms.restore.enterbackupkey.PostRegistrationEnterBackupKeyFragment">
+
     </fragment>
 
     <fragment

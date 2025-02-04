@@ -36,8 +36,8 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
   private static final String TABLE_NAME = "key_value";
   private static final String ID         = "_id";
-  private static final String KEY        = "key";
-  private static final String VALUE      = "value";
+  public  static final String KEY        = "key";
+  public  static final String VALUE      = "value";
   private static final String TYPE       = "type";
 
   private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +

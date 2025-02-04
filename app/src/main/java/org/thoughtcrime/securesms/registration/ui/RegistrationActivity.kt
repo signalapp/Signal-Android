@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.pin.PinRestoreActivity
 import org.thoughtcrime.securesms.profiles.AvatarHelper
@@ -87,7 +88,7 @@ class RegistrationActivity : BaseActivity() {
       val startIntent = MainActivity.clearTop(this).apply {
         if (needsPin) {
           putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationActivity))
-        } else if (!SignalStore.registration.hasSkippedTransferOrRestore() && RemoteConfig.messageBackups) {
+        } else if (SignalStore.registration.restoreDecisionState.isDecisionPending && RemoteConfig.messageBackups) {
           putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationActivity))
         } else if (needsProfile) {
           putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationActivity))

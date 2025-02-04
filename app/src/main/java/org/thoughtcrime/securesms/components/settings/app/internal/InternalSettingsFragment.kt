@@ -868,7 +868,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
                 SignalStore.account.setRegistered(false)
                 SignalStore.registration.clearRegistrationComplete()
                 SignalStore.registration.hasUploadedProfile = false
-                SignalStore.registration.debugClearSkippedTransferOrRestore()
                 Toast.makeText(context, "Unregistered!", Toast.LENGTH_SHORT).show()
               }
 

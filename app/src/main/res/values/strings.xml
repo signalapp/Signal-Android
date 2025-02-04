@@ -8097,6 +8097,12 @@
     <string name="EnterBackupKey_too_long_error">Too long (%1$d/%2$d)</string>
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Invalid backup key</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">Skip restore</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Scan this code with your old phone</string>

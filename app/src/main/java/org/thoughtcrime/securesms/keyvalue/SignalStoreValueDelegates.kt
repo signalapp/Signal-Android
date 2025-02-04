@@ -42,6 +42,10 @@ internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter
   return KeyValueProtoValue(key, adapter, this.store)
 }
 
+internal fun <M> SignalStoreValues.protoValue(key: String, default: M, adapter: ProtoAdapter<M>): SignalStoreValueDelegate<M> {
+  return KeyValueProtoWithDefaultValue(key, default, adapter, this.store)
+}
+
 internal fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
   return PreconditionDelegate(
     delegate = this,
@@ -151,6 +155,29 @@ private class NullableBlobValue(private val key: String, default: ByteArray?, st
 
   override fun setValue(values: KeyValueStore, value: ByteArray?) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class KeyValueProtoWithDefaultValue<M>(
+  private val key: String,
+  default: M,
+  private val adapter: ProtoAdapter<M>,
+  store: KeyValueStore
+) : SignalStoreValueDelegate<M>(store, default) {
+  override fun getValue(values: KeyValueStore): M {
+    return if (values.containsKey(key)) {
+      adapter.decode(values.getBlob(key, null))
+    } else {
+      default
+    }
+  }
+
+  override fun setValue(values: KeyValueStore, value: M) {
+    if (value != null) {
+      values.beginWrite().putBlob(key, adapter.encode(value)).apply()
+    } else {
+      values.beginWrite().remove(key).apply()
+    }
   }
 }
 

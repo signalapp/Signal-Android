@@ -12,10 +12,9 @@ import assertk.assertions.extracting
 import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
-import io.mockk.Runs
 import io.mockk.every
-import io.mockk.just
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.unmockkAll
 import io.mockk.verify
 import org.junit.After
@@ -26,7 +25,10 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log.initialize
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
+import org.thoughtcrime.securesms.keyvalue.Skipped
+import org.thoughtcrime.securesms.keyvalue.Start
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.LogRecorder
@@ -48,8 +50,7 @@ class RegistrationUtilTest {
   @Before
   fun setup() {
     mockkObject(Recipient)
-    mockkObject(RemoteConfig)
-    every { RemoteConfig.init() } just Runs
+    mockkStatic(RemoteConfig::class)
 
     logRecorder = LogRecorder()
     initialize(logRecorder)
@@ -94,7 +95,7 @@ class RegistrationUtilTest {
     every { Recipient.self() } returns Recipient(profileName = ProfileName.fromParts("Dark", "Helmet"))
     every { signalStore.svr.hasOptedInWithAccess() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns true
-    every { signalStore.registration.hasSkippedTransferOrRestore() } returns true
+    every { signalStore.registration.restoreDecisionState } returns RestoreDecisionState.Skipped
 
     RegistrationUtil.maybeMarkRegistrationComplete()
 
@@ -121,8 +122,7 @@ class RegistrationUtilTest {
 
     every { signalStore.svr.hasOptedInWithAccess() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns true
-    every { signalStore.registration.hasSkippedTransferOrRestore() } returns false
-    every { signalStore.registration.hasCompletedRestore() } returns false
+    every { signalStore.registration.restoreDecisionState } returns RestoreDecisionState.Start
 
     RegistrationUtil.maybeMarkRegistrationComplete()
 

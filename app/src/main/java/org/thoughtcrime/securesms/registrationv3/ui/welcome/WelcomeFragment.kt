@@ -83,6 +83,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
   }
 
   private fun navigateToNextScreenViaContinue() {
+    sharedViewModel.resetRestoreDecision()
     sharedViewModel.maybePrefillE164(requireContext())
     findNavController().safeNavigate(WelcomeFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.NORMAL))
   }
@@ -109,8 +110,14 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
 
     when (userSelection) {
       WelcomeUserSelection.CONTINUE -> throw IllegalArgumentException()
-      WelcomeUserSelection.RESTORE_WITH_OLD_PHONE -> findNavController().safeNavigate(WelcomeFragmentDirections.goToRestoreViaQr())
-      WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> findNavController().safeNavigate(WelcomeFragmentDirections.goToSelectRestoreMethod(userSelection))
+      WelcomeUserSelection.RESTORE_WITH_OLD_PHONE -> {
+        sharedViewModel.intendToRestore(hasOldDevice = true, fromRemote = true)
+        findNavController().safeNavigate(WelcomeFragmentDirections.goToRestoreViaQr())
+      }
+      WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> {
+        sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = true)
+        findNavController().safeNavigate(WelcomeFragmentDirections.goToSelectRestoreMethod(userSelection))
+      }
     }
   }
 
