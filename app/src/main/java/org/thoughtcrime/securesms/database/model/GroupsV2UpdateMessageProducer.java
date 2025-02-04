@@ -400,7 +400,13 @@ final class GroupsV2UpdateMessageProducer {
         if (requestingMemberIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          boolean editorIsYou = selfIds.matches(update.updaterAci);
+
+          if (editorIsYou) {
+            updates.add(updateDescription(R.string.MessageRecord_you_denied_a_request_to_join_the_group_from_s, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          } else {
+            updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          }
         }
       }
     }

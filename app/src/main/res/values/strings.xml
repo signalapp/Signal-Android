@@ -1930,6 +1930,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Your request to join the group has been denied by an admin.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s denied a request to join the group from %2$s.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">A request to join the group from %1$s has been denied.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">You canceled your request to join the group.</string>
