@@ -72,6 +72,19 @@ enum class CameraDisplay(
       cameraViewportGravity = CameraViewportGravity.BOTTOM
     ),
     toggleBottomMargin = 54
+  ),
+  DISPLAY_6_5(
+    aspectRatio = 5f / 6f,
+    roundViewFinderCorners = false,
+    withTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 120,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    withoutTogglePositionInfo = PositionInfo(
+      cameraCaptureMarginBottomDp = 84,
+      cameraViewportGravity = CameraViewportGravity.CENTER
+    ),
+    toggleBottomMargin = 54
   );
 
   @Px
@@ -127,6 +140,7 @@ enum class CameraDisplay(
         aspectRatio <= DISPLAY_20_9.aspectRatio -> DISPLAY_20_9
         aspectRatio <= DISPLAY_19_9.aspectRatio -> DISPLAY_19_9
         aspectRatio <= DISPLAY_18_9.aspectRatio -> DISPLAY_18_9
+        aspectRatio >= DISPLAY_6_5.aspectRatio -> DISPLAY_6_5
         else -> DISPLAY_16_9
       }
     }
