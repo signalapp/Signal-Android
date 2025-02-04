@@ -4,6 +4,7 @@ import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 
 class RegistrationValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
@@ -71,5 +72,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
   @get:JvmName("isRestoringOnNewDevice")
   var restoringOnNewDevice: Boolean by booleanValue(RESTORING_ON_NEW_DEVICE, false)
 
-  var restoreDecisionState: RestoreDecisionState by protoValue(RESTORE_DECISION_STATE, RestoreDecisionState.Skipped, RestoreDecisionState.ADAPTER)
+  var restoreDecisionState: RestoreDecisionState by protoValue(RESTORE_DECISION_STATE, RestoreDecisionState.Skipped, RestoreDecisionState.ADAPTER) { newValue ->
+    AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
+  }
 }

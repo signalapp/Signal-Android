@@ -249,7 +249,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   val totalRestorableAttachmentSizeFlow: Flow<Long>
     get() = totalRestorableAttachmentSizeValue.toFlow()
 
-  val isRestoreInProgress: Boolean
+  val isMediaRestoreInProgress: Boolean
     get() = totalRestorableAttachmentSize > 0
 
   /** Store that lets you interact with message ZK credentials. */

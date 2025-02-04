@@ -42,7 +42,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   private var totalRestoredSize: Long = 0
 
   override val enabled: Boolean
-    get() = SignalStore.backup.isRestoreInProgress || totalRestoredSize > 0
+    get() = SignalStore.backup.isMediaRestoreInProgress || totalRestoredSize > 0
 
   override val dataFlow: Flow<BackupStatusData> by lazy {
     SignalStore

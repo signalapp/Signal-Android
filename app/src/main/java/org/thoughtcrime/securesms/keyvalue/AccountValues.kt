@@ -408,7 +408,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     putBoolean(KEY_IS_REGISTERED, registered)
 
-    AppDependencies.incomingMessageObserver.notifyRegistrationChanged()
+    AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
 
     if (previous != registered) {
       Recipient.self().live().refresh()
@@ -426,7 +426,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   fun clearRegistrationButKeepCredentials() {
     putBoolean(KEY_IS_REGISTERED, false)
 
-    AppDependencies.incomingMessageObserver.notifyRegistrationChanged()
+    AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
 
     Recipient.self().live().refresh()
   }
