@@ -2910,10 +2910,18 @@ public class PushServiceSocket {
   }
 
   private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body, getHeader) -> {
+    if (getHeader.apply("X-Signal-Timestamp") == null) {
+      throw new NonSuccessfulResponseCodeException(500, "Missing timestamp header");
+    }
+
     if (responseCode == 409) throw new GroupExistsException();
   };
 
   private static final ResponseCodeHandler GROUPS_V2_GET_CURRENT_HANDLER    = (responseCode, body, getHeader) -> {
+    if (getHeader.apply("X-Signal-Timestamp") == null) {
+      throw new NonSuccessfulResponseCodeException(500, "Missing timestamp header");
+    }
+
     switch (responseCode) {
       case 403: throw new NotInGroupException();
       case 404: throw new GroupNotFoundException();
@@ -2921,15 +2929,20 @@ public class PushServiceSocket {
   };
 
   private static final ResponseCodeHandler GROUPS_V2_PATCH_RESPONSE_HANDLER = (responseCode, body, getHeader) -> {
+    if (getHeader.apply("X-Signal-Timestamp") == null) {
+      throw new NonSuccessfulResponseCodeException(500, "Missing timestamp header");
+    }
+
     if (responseCode == 400) throw new GroupPatchNotAcceptedException();
   };
 
-  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = new ResponseCodeHandler() {
-    @Override
-    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException {
-      if (responseCode == 403) {
-        throw new ForbiddenException(Optional.ofNullable(getHeader.apply("X-Signal-Forbidden-Reason")));
-      }
+  private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = (responseCode, body, getHeader) -> {
+    if (getHeader.apply("X-Signal-Timestamp") == null) {
+      throw new NonSuccessfulResponseCodeException(500, "Missing timestamp header");
+    }
+
+    if (responseCode == 403) {
+      throw new ForbiddenException(Optional.ofNullable(getHeader.apply("X-Signal-Forbidden-Reason")));
     }
   };
 

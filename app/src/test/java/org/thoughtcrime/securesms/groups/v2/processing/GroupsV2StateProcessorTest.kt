@@ -7,6 +7,7 @@ import assertk.assertions.any
 import assertk.assertions.contains
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
+import assertk.fail
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
@@ -70,6 +71,7 @@ import org.whispersystems.signalservice.api.groupsv2.ReceivedGroupSendEndorsemen
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.ServiceIds
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException
 import java.io.IOException
 import java.util.Optional
@@ -1044,5 +1046,42 @@ class GroupsV2StateProcessorTest {
     )
 
     assertThat(result.updateStatus, "inactive local is still updated given same revision from server").isEqualTo(GroupUpdateResult.UpdateStatus.GROUP_UPDATED)
+  }
+
+  /**
+   * If we get a 500 back from the service we handle it gracefully.
+   */
+  @Test
+  fun ignore403sWithoutSignalTimestampHeader() {
+    given {
+      localState(
+        active = false,
+        revision = 5,
+        members = selfAndOthers
+      )
+      changeSet {
+        changeLog(6) {
+          change {
+            setNewTitle("new title")
+          }
+        }
+      }
+      apiCallParameters(requestedRevision = 5, includeFirst = false)
+      expectTableUpdate = false
+    }
+
+    every { groupsV2API.getGroupJoinedAt(any()) } returns NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(500))
+
+    try {
+      processor.updateLocalGroupToRevision(
+        targetRevision = GroupsV2StateProcessor.LATEST,
+        timestamp = 0
+      )
+    } catch (e: NonSuccessfulResponseCodeException) {
+      assertThat(e.code).isEqualTo(500)
+      return
+    }
+
+    fail("No exception thrown")
   }
 }
