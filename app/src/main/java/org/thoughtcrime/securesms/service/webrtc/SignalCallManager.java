@@ -616,11 +616,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         case REMOTE_CONNECTED:
           return p.handleCallConnected(s, remotePeer);
         case REMOTE_AUDIO_ENABLE:
-          // TODO: Implement handling when the remote enables audio.
-          break;
+          return p.handleRemoteAudioEnable(s, true);
         case REMOTE_AUDIO_DISABLE:
-          // TODO: Implement handling when the remote disables audio.
-          break;
+          return p.handleRemoteAudioEnable(s, false);
         case REMOTE_VIDEO_ENABLE:
           return p.handleRemoteVideoEnable(s, true);
         case REMOTE_VIDEO_DISABLE:

@@ -67,6 +67,10 @@ data class CallParticipant(
     return copy(identityKey = identityKey)
   }
 
+  fun withAudioEnabled(audioEnabled: Boolean): CallParticipant {
+    return copy(isMicrophoneEnabled = audioEnabled)
+  }
+
   fun withVideoEnabled(videoEnabled: Boolean): CallParticipant {
     return copy(isVideoEnabled = videoEnabled)
   }

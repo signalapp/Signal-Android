@@ -375,6 +375,11 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
+  protected @NonNull WebRtcServiceState handleRemoteAudioEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    Log.i(tag, "handleRemoteAudioEnable not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(tag, "handleRemoteVideoEnable not processed");
     return currentState;
