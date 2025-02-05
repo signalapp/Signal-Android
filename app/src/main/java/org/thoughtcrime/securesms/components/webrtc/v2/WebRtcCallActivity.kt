@@ -145,8 +145,14 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     lifecycleDisposable.bindTo(this)
 
-    window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
-    window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    if (Build.VERSION.SDK_INT >= 27) {
+      setTurnScreenOn(true)
+      setShowWhenLocked(true)
+    } else {
+      window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+      window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
+
     super.onCreate(savedInstanceState)
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -281,7 +287,11 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     if (!callPermissionsDialogController.isAskingForPermission && !viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
       if (state != null && (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere)) {
-        finish()
+        if (getCallIntent().isStartedFromFullScreen && state.callState == WebRtcViewModel.State.CALL_INCOMING) {
+          Log.w(TAG, "Pausing during full-screen incoming call view. Refusing to finish.")
+        } else {
+          finish()
+        }
       }
     }
   }
@@ -325,12 +335,15 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   @SuppressLint("MissingSuperCall")
   override fun onUserLeaveHint() {
+    Log.d(TAG, "onUserLeaveHint", Exception())
     super.onUserLeaveHint()
-    enterPipModeIfPossible()
+    if (viewModel.callParticipantsStateSnapshot?.callState != WebRtcViewModel.State.CALL_INCOMING) {
+      enterPipModeIfPossible()
+    }
   }
 
   override fun onBackPressed() {
-    if (!enterPipModeIfPossible()) {
+    if (viewModel.callParticipantsStateSnapshot?.callState == WebRtcViewModel.State.CALL_INCOMING || !enterPipModeIfPossible()) {
       super.onBackPressed()
     }
   }
