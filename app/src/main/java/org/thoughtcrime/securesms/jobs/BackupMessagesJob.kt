@@ -93,6 +93,7 @@ class BackupMessagesJob private constructor(
     if (!isCanceled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.")
       SignalStore.backup.markMessageBackupFailure()
+      ArchiveUploadProgress.onMainBackupFileUploadFailure()
     }
   }
 
