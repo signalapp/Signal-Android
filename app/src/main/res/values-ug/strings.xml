@@ -962,7 +962,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Signal نى ئۈستەليۈزى ياكى iPad دە ئىشلىتىڭ. ئۇچۇرلىرىڭىز ئۇلانغان ئۈسكۈنىلىرىڭىزگە ماسقەدەملىنىدۇ.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">يېڭى ئۈسكۈنە باغلاش</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1870,6 +1870,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">گۇرۇپپىغا قوشۇلۇش ئىلتىماسىڭىزنى بىر باشقۇرغۇچى رەت قىلدى.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s نىڭ گۇرۇپپىغا قوشۇلۇش ئىلتىماسىنى %1$s رەت قىلدى.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s نىڭ گۇرۇپپىغا قوشۇلۇش ئىلتىماسى رەت قىلىندى.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">گۇرۇپپىغا قوشۇلۇش ئىلتىماسىڭىزدىن ۋاز كەچتىڭىز.</string>
@@ -7921,6 +7922,12 @@
     <string name="EnterBackupKey_too_long_error">بەك ئۇزۇن (%2$d/%1$d)</string>
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">ئىناۋەتسىز زاپاسلاش ئاچقۇچى</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">Skip restore</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">كونا تېلېفونىڭىز بىلەن بۇ كودنى سىكانىرلاڭ</string>

@@ -611,10 +611,10 @@
     <string name="ConversationFragment__save_to_phone">Spremiti na telefon?</string>
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="few">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="many">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="one">Medijski zapisi spremit će se u prostor za pohranu vašeg telefona. Druge aplikacije moći će im pristupiti ovisno o dopuštenjima vašeg telefona.</item>
+        <item quantity="few">Medijski zapisi spremit će se u prostor za pohranu vašeg telefona. Druge aplikacije moći će im pristupiti ovisno o dopuštenjima vašeg telefona.</item>
+        <item quantity="many">Medijski zapisi spremit će se u prostor za pohranu vašeg telefona. Druge aplikacije moći će im pristupiti ovisno o dopuštenjima vašeg telefona.</item>
+        <item quantity="other">Medijski zapisi spremit će se u prostor za pohranu vašeg telefona. Druge aplikacije moći će im pristupiti ovisno o dopuštenjima vašeg telefona.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Ne prikazuj više</string>
@@ -973,17 +973,17 @@
     <string name="DateUtils_tonight">Večeras</string>
     <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
     <plurals name="DateUtils_date_time_at">
-        <item quantity="one">on %1$s at %2$s</item>
-        <item quantity="few">on %1$s at %2$s</item>
-        <item quantity="many">on %1$s at %2$s</item>
-        <item quantity="other">on %1$s at %2$s</item>
+        <item quantity="one">%1$s u %2$s</item>
+        <item quantity="few">%1$s u %2$s</item>
+        <item quantity="many">%1$s u %2$s</item>
+        <item quantity="other">%1$s u %2$s</item>
     </plurals>
     <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
     <plurals name="DateUtils_time_at">
-        <item quantity="one">at %1$s</item>
-        <item quantity="few">at %1$s</item>
-        <item quantity="many">at %1$s</item>
-        <item quantity="other">at %1$s</item>
+        <item quantity="one">u %1$s</item>
+        <item quantity="few">u %1$s</item>
+        <item quantity="many">u %1$s</item>
+        <item quantity="other">u %1$s</item>
     </plurals>
 
     <!-- Scheduled Messages -->
@@ -1031,7 +1031,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Koristite Signal na računalu ili iPadu. Vaše će se poruke sinkronizirati s vašim povezanim uređajima.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Poveži novi uređaj</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1093,7 +1093,7 @@
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">Veza s uređajem je prekinuta</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">The device that was linked %1$s is no longer linked.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Uređaj koji ste povezali %1$s više nije povezan.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">U redu</string>
 
@@ -1144,7 +1144,7 @@
     <!-- Title of notification telling users that a device was linked to their account -->
     <string name="NewLinkedDeviceNotification__you_linked_new_device">Novi uređaj je povezan</string>
     <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">A new device was linked to your account %1$s. Tap to view.</string>
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Povezali ste novi uređaj sa svojim računom u %1$s. Dodirnite za pregled.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Poništi vezu s \"%1$s\"?</string>
@@ -1418,10 +1418,10 @@
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće dodati u naslijeđene grupe.</string>
     <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">Dodati člana \"%1$s\" u \"%2$s\"?</item>
-        <item quantity="few">Dodati %3$d člana u \"%2$s\"?</item>
-        <item quantity="many">Dodati %3$d članova u \"%2$s\"?</item>
-        <item quantity="other">Dodati %3$d članova u \"%2$s\"?</item>
+        <item quantity="one">Dodati %1$s u grupu „%2$s“?</item>
+        <item quantity="few">Dodati %3$d člana u grupu „%2$s“?</item>
+        <item quantity="many">Dodati %3$d članova u grupu „%2$s“?</item>
+        <item quantity="other">Dodati %3$d članova u grupu „%2$s“?</item>
     </plurals>
     <string name="AddMembersActivity__add">Dodaj</string>
     <string name="AddMembersActivity__add_members">Dodaj članove</string>
@@ -1796,7 +1796,7 @@
     <string name="Megaphones_add_a_profile_photo">Slika profila</string>
 
     <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
-    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">A new device was linked to your account %1$s.</string>
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Povezali ste novi uređaj s vašim računom %1$s.</string>
     <!-- Button shown on megaphone that will redirect to the linked devices screen -->
     <string name="NewLinkedDeviceMegaphone__view_device">Prikaži uređaj</string>
     <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
@@ -2047,6 +2047,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Vaš zahtjev za pridruživanje u grupu je odbijen od administratora.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s je odbio zahtjev za pridruživanje u grupu od %2$s.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Odbili ste zahtjev za pridruživanje u grupu od %1$s.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Otkazali ste zahtjev za pridruživanje ovoj grupi.</string>
@@ -2092,7 +2093,7 @@
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">Pridružili ste se pozivu · %1$s</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
-    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s and you are in the call · %2$s</string>
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s i vi sudjelujete u pozivu · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s i %2$s sudjeluju u ovom pozivu · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
@@ -2100,7 +2101,7 @@
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">Vi sudjelujete u ovom pozivu</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
-    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s and you are in the call</string>
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s i vi sudjelujete u pozivu</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s i %2$s sudjeluju u ovom pozivu</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -8424,19 +8425,25 @@
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Preskoči sigurnosno kopiranje</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect backup key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Netočan ključ za sigurnosnu kopiju</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character backup key you saved when enabling Signal backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Provjerite jeste li se registrirali s istim brojem telefona i 64-znamenkastim ključem za sigurnosnu kopiju koji ste postavili kada ste omogućili sigurnosne kopije Signala. Sigurnosne kopije nije moguće vratiti bez tog ključa.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
     <string name="EnterBackupKey_try_again">Pokušaj ponovno</string>
     <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Backup key help</string>
+    <string name="EnterBackupKey_backup_key_help">Pomoć za ključ za sigurnosnu kopiju</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect backup key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Netočan ključ za sigurnosnu kopiju</string>
     <!-- Text field error text when the backup key is too long -->
-    <string name="EnterBackupKey_too_long_error">Too long (%1$d/%2$d)</string>
+    <string name="EnterBackupKey_too_long_error">Predugo (%1$d/%2$d)</string>
     <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid backup key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Ključ za sigurnosnu kopiju nije važeći</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">Skip restore</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Skenirajte ovaj kôd svojim starim uređajem</string>
