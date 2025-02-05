@@ -26,13 +26,13 @@ import android.view.ViewGroup;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.view.ViewKt;
 import androidx.core.widget.TextViewCompat;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -57,6 +57,14 @@ public class EmojiTextView extends AppCompatTextView {
   private static final char  ELLIPSIS        = '…';
   private static final float JUMBOMOJI_SCALE = 0.8f;
 
+  /**
+   * Due to how ConstraintLayout works, we can end up with looping onSizeChanged
+   * as we try to figure out how long this thing should be. So, this adds a bit
+   * of slop so we don't have dancing text.
+   */
+  @Px
+  private static final int SKIP_SET_TEXT_THRESHOLD = 2;
+
   private CharSequence           previousText;
   private BufferType             previousBufferType;
   private TransformationMethod   previousTransformationMethod;
@@ -74,6 +82,8 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                forceJumboEmoji;
   private boolean                renderSpoilers;
   private boolean                shrinkWrap;
+  private int                    lastSizeChangedWidth  = -1;
+  private int                    lastSizeChangedHeight = -1;
 
   private MentionRendererDelegate mentionRendererDelegate;
   private SpoilerRendererDelegate spoilerRendererDelegate;
@@ -449,6 +459,16 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
+
+    int deltaLastChangeWidth = Math.abs(lastSizeChangedWidth - w);
+    int deltaLastChangeHeight = Math.abs(lastSizeChangedHeight - h);
+
+    if (deltaLastChangeWidth <= SKIP_SET_TEXT_THRESHOLD && deltaLastChangeHeight <= SKIP_SET_TEXT_THRESHOLD) {
+      return;
+    }
+
+    lastSizeChangedWidth  = w;
+    lastSizeChangedHeight = h;
 
     if (!sizeChangeInProgress) {
       sizeChangeInProgress = true;
