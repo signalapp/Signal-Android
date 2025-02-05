@@ -125,7 +125,6 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     sharedViewModel.uiState.observe(viewLifecycleOwner) { sharedState ->
       presentRegisterButton(sharedState)
       updateEnabledControls(sharedState.inProgress, sharedState.isReRegister)
-      updateCountrySelection(sharedState.country)
 
       sharedState.networkError?.let {
         presentNetworkError(it)
@@ -185,7 +184,13 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     initializeInputFields()
 
     val existingPhoneNumber = sharedViewModel.phoneNumber
-    if (existingPhoneNumber != null) {
+    val country = sharedViewModel.country
+
+    if (country != null) {
+      binding.countryEmoji.text = country.emoji
+      binding.country.text = country.name
+      spinnerView.setText(country.countryCode)
+    } else if (existingPhoneNumber != null) {
       fragmentViewModel.restoreState(existingPhoneNumber)
       spinnerView.setText(existingPhoneNumber.countryCode.toString())
       phoneNumberInputLayout.setText(existingPhoneNumber.nationalNumber.toString())
@@ -200,9 +205,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     if (country != null) {
       binding.countryEmoji.text = country.emoji
       binding.country.text = country.name
-      binding.countryCode.editText?.setText(country.countryCode)
     }
-    sharedViewModel.clearCountry()
   }
 
   private fun reformatText(text: Editable?) {
@@ -248,7 +251,12 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       val sanitized = s.toString().filter { c -> c.isDigit() }
       if (sanitized.isNotNullOrBlank()) {
         val countryCode: Int = sanitized.toInt()
-        fragmentViewModel.setCountry(countryCode)
+        if (sharedViewModel.country != null) {
+          fragmentViewModel.setCountry(countryCode, sharedViewModel.country)
+          sharedViewModel.clearCountry()
+        } else {
+          fragmentViewModel.setCountry(countryCode)
+        }
       }
     }
 

@@ -62,22 +62,24 @@ class EnterPhoneNumberViewModel : ViewModel() {
     store.update { it.copy(phoneNumber = phoneNumber ?: "") }
   }
 
-  fun setCountry(digits: Int) {
+  fun setCountry(digits: Int, country: Country? = null) {
     val matchingIndex = countryCodeToAdapterIndex(digits)
     if (matchingIndex == -1) {
       Log.d(TAG, "Invalid country code specified $digits")
       return
     }
 
+    val matchedCountry = Country(
+      name = PhoneNumberFormatter.getRegionDisplayName(supportedCountryPrefixes[matchingIndex].regionCode).orElse(""),
+      emoji = CountryUtils.countryToEmoji(supportedCountryPrefixes[matchingIndex].regionCode),
+      countryCode = digits.toString()
+    )
+
     store.update {
       it.copy(
         countryPrefixIndex = matchingIndex,
         phoneNumberRegionCode = supportedCountryPrefixes[matchingIndex].regionCode,
-        country = Country(
-          name = PhoneNumberFormatter.getRegionDisplayName(supportedCountryPrefixes[matchingIndex].regionCode).orElse(""),
-          emoji = CountryUtils.countryToEmoji(supportedCountryPrefixes[matchingIndex].regionCode),
-          countryCode = digits.toString()
-        )
+        country = country ?: matchedCountry
       )
     }
   }
