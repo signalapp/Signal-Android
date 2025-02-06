@@ -249,6 +249,7 @@ import org.thoughtcrime.securesms.keyboard.gif.GifKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.sticker.StickerSearchDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.SignalStore.Companion.emoji
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
@@ -2854,21 +2855,28 @@ class ConversationFragment :
     }
 
     override fun onItemDoubleClick(item: MultiselectPart) {
-      Log.d(TAG, "onItemDoubleClick")
-      onDoubleTapToEdit(item.conversationMessage)
+      val edited = onDoubleTapToEdit(item.conversationMessage)
+      if (!edited) {
+        onDoubleTapToQuickReact(item.conversationMessage);
+      }
     }
 
-    private fun onDoubleTapToEdit(conversationMessage: ConversationMessage) {
+    private fun onDoubleTapToEdit(conversationMessage: ConversationMessage): Boolean {
       if (!isValidEditMessageSend(conversationMessage.getMessageRecord(), System.currentTimeMillis())) {
-        return
+        return false
       }
 
       if (SignalStore.uiHints.hasSeenDoubleTapEditEducationSheet) {
         onDoubleTapEditEducationSheetNext(conversationMessage)
-        return
+        return true
       }
 
       DoubleTapEditEducationSheet(conversationMessage).show(childFragmentManager, DoubleTapEditEducationSheet.KEY)
+      return true
+    }
+
+    private fun onDoubleTapToQuickReact(conversationMessage: ConversationMessage) {
+      disposables += viewModel.updateReaction(conversationMessage.messageRecord, emoji.reactions[0]).subscribe()
     }
 
     override fun onPaymentTombstoneClicked() {
