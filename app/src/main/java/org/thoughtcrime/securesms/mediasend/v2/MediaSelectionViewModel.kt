@@ -107,7 +107,7 @@ class MediaSelectionViewModel(
     store.update {
       it.copy(
         isMeteredConnection = metered,
-        isPreUploadEnabled = shouldPreUpload(metered, it.recipient)
+        isPreUploadEnabled = shouldPreUpload(metered)
       )
     }
   }
@@ -120,7 +120,7 @@ class MediaSelectionViewModel(
       store.update(Recipient.live(recipientSearchKey.recipientId).liveData) { r, s ->
         s.copy(
           recipient = r,
-          isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection, r)
+          isPreUploadEnabled = shouldPreUpload(s.isMeteredConnection)
         )
       }
     }
@@ -449,8 +449,8 @@ class MediaSelectionViewModel(
     repository.uploadRepository.cancelUpload(media)
   }
 
-  private fun shouldPreUpload(metered: Boolean, recipient: Recipient?): Boolean {
-    return !metered && !repository.isLocalSelfSend(recipient)
+  private fun shouldPreUpload(metered: Boolean): Boolean {
+    return !metered
   }
 
   fun onSaveState(outState: Bundle) {

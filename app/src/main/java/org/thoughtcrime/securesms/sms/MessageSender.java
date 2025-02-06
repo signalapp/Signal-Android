@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
-import org.thoughtcrime.securesms.jobs.MarkNoteToSelfAttachmentUploadedJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
@@ -59,17 +58,14 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
-import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.ParcelUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
@@ -78,10 +74,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -203,8 +197,8 @@ public class MessageSender {
                           recipient,
                           SendType.SIGNAL,
                           messageId,
-                          jobDependencyIds,
-                          false);
+                          jobDependencyIds
+      );
     }
 
     onMessageSent();
@@ -240,7 +234,7 @@ public class MessageSender {
         SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
 
-      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), message.getScheduledDate() > 0);
+      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
       onMessageSent();
       threadTable.update(allocatedThreadId, true, true);
 
@@ -282,7 +276,7 @@ public class MessageSender {
 
       attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
-      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds, false);
+      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds);
       onMessageSent();
       threadTable.update(allocatedThreadId, true, true);
 
@@ -398,9 +392,7 @@ public class MessageSender {
       long      messageId = messageIds.get(i);
       Recipient recipient = messages.get(i).getThreadRecipient();
 
-      if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
-        sendLocalMediaSelf(messageId);
-      } else if (recipient.isPushGroup()) {
+      if (recipient.isPushGroup()) {
         jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), Collections.emptySet(), true, false), messageDependsOnIds, recipient.getId().toQueueKey());
       } else if (recipient.isDistributionList()) {
         jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true, Collections.emptySet()), messageDependsOnIds, recipient.getId().toQueueKey());
@@ -415,9 +407,6 @@ public class MessageSender {
    *         be enqueued (like in the case of a local self-send).
    */
   public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient, @NonNull Media media) {
-    if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
-      return null;
-    }
     Log.i(TAG, "Pre-uploading attachment for " + (recipient != null ? recipient.getId() : "null"));
 
     try {
@@ -508,7 +497,7 @@ public class MessageSender {
       sendType = SendType.SIGNAL;
     }
 
-    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), false);
+    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
 
     onMessageSent();
   }
@@ -532,12 +521,9 @@ public class MessageSender {
                                           Recipient recipient,
                                           SendType sendType,
                                           long messageId,
-                                          @NonNull Collection<String> uploadJobIds,
-                                          boolean isScheduledSend)
+                                          @NonNull Collection<String> uploadJobIds)
   {
-    if (isLocalSelfSend(context, recipient, sendType) && !isScheduledSend && !SignalStore.backup().backsUpMedia()) {
-      sendLocalMediaSelf(messageId);
-    } else if (recipient.isPushGroup()) {
+    if (recipient.isPushGroup()) {
       sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (recipient.isDistributionList()) {
       sendDistributionList(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
@@ -606,64 +592,6 @@ public class MessageSender {
         Log.w(TAG, e1);
         return false;
       }
-    }
-  }
-
-  public static boolean isLocalSelfSend(@NonNull Context context, @Nullable Recipient recipient, SendType sendType) {
-    return recipient != null                    &&
-           recipient.isSelf()                   &&
-           sendType == SendType.SIGNAL          &&
-           SignalStore.account().isRegistered() &&
-           !SignalStore.account().hasLinkedDevices();
-  }
-
-  private static void sendLocalMediaSelf(long messageId) {
-    try {
-      ExpiringMessageManager expirationManager = AppDependencies.getExpiringMessageManager();
-      MessageTable           mmsDatabase    = SignalDatabase.messages();
-      OutgoingMessage        message        = mmsDatabase.getOutgoingMessage(messageId);
-      SyncMessageId          syncId         = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
-      List<Attachment>       attachments    = new LinkedList<>();
-
-
-      attachments.addAll(message.getAttachments());
-
-      attachments.addAll(Stream.of(message.getLinkPreviews())
-                               .map(LinkPreview::getThumbnail)
-                               .filter(Optional::isPresent)
-                               .map(Optional::get)
-                               .toList());
-
-      attachments.addAll(Stream.of(message.getSharedContacts())
-                               .map(Contact::getAvatar).withoutNulls()
-                               .map(Contact.Avatar::getAttachment).withoutNulls()
-                               .toList());
-
-      List<AttachmentCompressionJob> compressionJobs = Stream.of(attachments)
-                                                             .map(a -> AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, false, -1))
-                                                             .toList();
-
-      List<MarkNoteToSelfAttachmentUploadedJob> fakeUploadJobs = Stream.of(attachments)
-                                                                       .map(a -> new MarkNoteToSelfAttachmentUploadedJob(messageId, ((DatabaseAttachment) a).attachmentId))
-                                                                       .toList();
-
-      AppDependencies.getJobManager().startChain(compressionJobs)
-                     .then(fakeUploadJobs)
-                     .enqueue();
-
-      mmsDatabase.markAsSent(messageId, true);
-      mmsDatabase.markUnidentified(messageId, true);
-
-      mmsDatabase.incrementDeliveryReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
-      mmsDatabase.incrementReadReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
-      mmsDatabase.incrementViewedReceiptCount(message.getSentTimeMillis(), Recipient.self().getId(), System.currentTimeMillis());
-
-      if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
-        mmsDatabase.markExpireStarted(messageId);
-        expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
-      }
-    } catch (NoSuchMessageException | MmsException e) {
-      Log.w(TAG, "Failed to update self-sent message.", e);
     }
   }
 

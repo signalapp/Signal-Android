@@ -118,22 +118,7 @@ class MediaSelectionRepository(context: Context) {
         StoryType.NONE
       }
 
-      if (MessageSender.isLocalSelfSend(context, singleRecipient, SendType.SIGNAL)) {
-        Log.i(TAG, "Local self-send. Skipping pre-upload.")
-        emitter.onSuccess(
-          MediaSendActivityResult(
-            recipientId = singleRecipient!!.id,
-            nonUploadedMedia = updatedMedia,
-            body = trimmedBody,
-            messageSendType = sendType,
-            isViewOnce = isViewOnce,
-            mentions = trimmedMentions,
-            bodyRanges = trimmedBodyRanges,
-            storyType = StoryType.NONE,
-            scheduledTime = scheduledTime
-          )
-        )
-      } else if (scheduledTime != -1L && storyType == StoryType.NONE) {
+      if (scheduledTime != -1L && storyType == StoryType.NONE) {
         Log.i(TAG, "Scheduled message. Skipping pre-upload.")
         if (contacts.isEmpty()) {
           emitter.onSuccess(
@@ -259,10 +244,6 @@ class MediaSelectionRepository(context: Context) {
     deleteBlobs(selectedMedia)
     uploadRepository.cancelAllUploads()
     uploadRepository.deleteAbandonedAttachments()
-  }
-
-  fun isLocalSelfSend(recipient: Recipient?): Boolean {
-    return MessageSender.isLocalSelfSend(context, recipient, SendType.SIGNAL)
   }
 
   @WorkerThread
