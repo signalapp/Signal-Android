@@ -106,7 +106,6 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
@@ -3651,53 +3650,43 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun applyBlockedUpdate(blocked: List<SignalServiceAddress>, groupIds: List<ByteArray?>) {
-    val blockedE164 = blocked
-      .filter { b: SignalServiceAddress -> b.number.isPresent }
-      .map { b: SignalServiceAddress -> b.number.get() }
-      .toList()
+  fun applyBlockedUpdate(blockedE164s: List<String>, blockedAcis: List<ACI>, blockedGroupIds: List<ByteArray?>) {
+    writableDatabase.withinTransaction { db ->
+      db.updateAll(TABLE_NAME)
+        .values(BLOCKED to 0)
+        .run()
 
-    val blockedUuid = blocked
-      .map { b: SignalServiceAddress -> b.serviceId.toString().lowercase() }
-      .toList()
+      val blockValues = contentValuesOf(
+        BLOCKED to 1,
+        PROFILE_SHARING to 0
+      )
 
-    val db = writableDatabase
-    db.beginTransaction()
-    try {
-      val resetBlocked = ContentValues().apply {
-        put(BLOCKED, 0)
-      }
-      db.update(TABLE_NAME, resetBlocked, null, null)
+      val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
+      db.update(TABLE_NAME)
+        .values(blockValues)
+        .where(e164Query.where, e164Query.whereArgs)
+        .run()
 
-      val setBlocked = ContentValues().apply {
-        put(BLOCKED, 1)
-        put(PROFILE_SHARING, 0)
-      }
+      val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
+      db.update(TABLE_NAME)
+        .values(blockValues)
+        .where(aciQuery.where, aciQuery.whereArgs)
+        .run()
 
-      for (e164 in blockedE164) {
-        db.update(TABLE_NAME, setBlocked, "$E164 = ?", arrayOf(e164))
-      }
-
-      for (uuid in blockedUuid) {
-        db.update(TABLE_NAME, setBlocked, "$ACI_COLUMN = ?", arrayOf(uuid))
-      }
-
-      val groupIdStrings: MutableList<V1> = ArrayList(groupIds.size)
-      for (raw in groupIds) {
+      val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
         try {
-          groupIdStrings.add(GroupId.v1(raw))
+          GroupId.v1(raw)
         } catch (e: BadGroupIdException) {
           Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
+          null
         }
       }
 
-      for (groupId in groupIdStrings) {
-        db.update(TABLE_NAME, setBlocked, "$GROUP_ID = ?", arrayOf(groupId.toString()))
-      }
-
-      db.setTransactionSuccessful()
-    } finally {
-      db.endTransaction()
+      val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
+      db.update(TABLE_NAME)
+        .values(blockValues)
+        .where(groupIdQuery.where, groupIdQuery.whereArgs)
+        .run()
     }
 
     AppDependencies.recipientCache.clear()
