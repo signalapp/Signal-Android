@@ -14,13 +14,16 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 import org.thoughtcrime.securesms.util.drawAsTopItemDecoration
 import org.thoughtcrime.securesms.util.layoutIn
 import org.thoughtcrime.securesms.util.toLocalDate
 import java.util.Locale
+import kotlin.math.max
 
 private typealias ConversationElement = MappingModel<*>
 
@@ -53,6 +56,8 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
       headerCache.values.forEach { it.updateForWallpaper() }
       unreadViewHolder?.updateForWallpaper()
     }
+
+  var selfRecipientId: RecipientId? = null
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val viewHolder = parent.getChildViewHolder(view)
@@ -125,7 +130,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     val state: UnreadState = unreadState
 
     if (state is UnreadState.InitialUnreadState) {
-      val firstUnread: ConversationMessageElement? = findFirstUnreadStartingAt(items, (state.unreadCount - 1).coerceIn(items.indices))
+      val firstUnread: ConversationMessageElement? = findFirstUnreadStartingAt(items, (state.unreadCount - 1).coerceIn(items.indices), state.unreadCount)
       val timestamp = firstUnread?.timestamp()
       if (timestamp != null) {
         unreadState = UnreadState.CompleteUnreadState(unreadCount = state.unreadCount, firstUnreadTimestamp = timestamp)
@@ -138,9 +143,12 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
             unreadState = UnreadState.None
             break
           } else {
-            newUnreadCount++
+            if ((element.conversationMessage.messageRecord as? MmsMessageRecord)?.countsTowardsUnread() == true) {
+              newUnreadCount++
+            }
+
             if (element.timestamp() == state.firstUnreadTimestamp) {
-              unreadState = state.copy(unreadCount = newUnreadCount)
+              unreadState = state.copy(unreadCount = max(state.unreadCount, newUnreadCount))
               break
             }
           }
@@ -149,15 +157,50 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     }
   }
 
-  private fun findFirstUnreadStartingAt(items: List<ConversationElement?>, startingIndex: Int): ConversationMessageElement? {
+  /**
+   * Attempt to find the "first" unread message, searching a range of 20 items in the list starting at index `unreadCount - 1`. The
+   * search helps us skip over interspersed read messages like chat events that could mess up the location of the header.
+   */
+  private fun findFirstUnreadStartingAt(items: List<ConversationElement?>, startingIndex: Int, unreadCount: Int): ConversationMessageElement? {
     val endingIndex = (startingIndex + 20).coerceAtMost(items.lastIndex)
+    var targetUnread: ConversationMessageElement? = null
+    var runningUnreadCount = 0
+
     for (index in startingIndex..endingIndex) {
       val item = items[index] as? ConversationMessageElement
       if ((item?.conversationMessage?.messageRecord as? MmsMessageRecord)?.isRead == false) {
-        return item
+        targetUnread = item
+        runningUnreadCount++
+      }
+
+      if (runningUnreadCount >= unreadCount) {
+        break
       }
     }
-    return items[startingIndex] as? ConversationMessageElement
+
+    return targetUnread ?: items[startingIndex] as? ConversationMessageElement
+  }
+
+  /**
+   * Only include message that would normally count towards unread count when updating the banner while new messages
+   * come in while viewing the chat.
+   *
+   * Note 1: This excludes all group chat update events even though added to group is considered unread normally. The
+   * corner case for being freshly added to a group, viewing the conversation, receiving new messages, and with the
+   * header in view is corner enough. It does not warrant reading in group state to determine if an event is a group add
+   * for each group event encountered.
+   *
+   * Note 2: The caller should've already checked [MmsMessageRecord.isOutgoing] before calling this but some outgoing
+   * messages don't use the outgoing types like an outgoing group call, so filter on the [MmsMessageRecord.fromRecipient]
+   * here as well.
+   */
+  private fun MmsMessageRecord.countsTowardsUnread(): Boolean {
+    val likelyIncoming = MessageTypes.isInboxType(this.type) ||
+      MessageTypes.isGroupCall(this.type) ||
+      MessageTypes.isIncomingAudioCall(this.type) ||
+      MessageTypes.isIncomingVideoCall(this.type)
+
+    return likelyIncoming && !MessageTypes.isGroupUpdate(this.type) && this.fromRecipient.id != selfRecipientId
   }
 
   private fun isFirstUnread(bindingAdapterPosition: Int): Boolean {
