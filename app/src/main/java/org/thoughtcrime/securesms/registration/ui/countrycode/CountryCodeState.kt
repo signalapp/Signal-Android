@@ -12,5 +12,6 @@ data class CountryCodeState(
   val query: String = "",
   val countryList: List<Country> = emptyList(),
   val commonCountryList: List<Country> = emptyList(),
-  val filteredList: List<Country> = emptyList()
+  val filteredList: List<Country> = emptyList(),
+  val startingIndex: Int = 0
 )

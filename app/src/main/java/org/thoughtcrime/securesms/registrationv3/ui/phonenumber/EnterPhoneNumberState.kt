@@ -5,8 +5,8 @@
 
 package org.thoughtcrime.securesms.registrationv3.ui.phonenumber
 
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
-import org.thoughtcrime.securesms.registrationv3.ui.countrycode.Country
 
 /**
  * State holder for the phone number entry screen, including phone number and Play Services errors.

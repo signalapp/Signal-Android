@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.registration.ui.phonenumber
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.google.i18n.phonenumbers.NumberParseException
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 
 /**
@@ -54,25 +56,73 @@ class EnterPhoneNumberViewModel : ViewModel() {
       it.copy(mode = value)
     }
 
-  fun countryPrefix(): CountryPrefix {
-    return supportedCountryPrefixes[store.value.countryPrefixIndex]
+  fun getDefaultCountryCode(context: Context): Int {
+    val existingCountry = store.value.country
+    val maybeRegionCode = Util.getNetworkCountryIso(context)
+    val regionCode = if (maybeRegionCode != null && supportedCountryPrefixes.any { it.regionCode == maybeRegionCode }) {
+      maybeRegionCode
+    } else {
+      Log.w(TAG, "Could not find region code")
+      "US"
+    }
+
+    val countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(regionCode)
+
+    store.update {
+      it.copy(
+        country = existingCountry ?: Country(
+          name = PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""),
+          emoji = CountryUtils.countryToEmoji(regionCode),
+          countryCode = countryCode,
+          regionCode = regionCode
+        )
+      )
+    }
+
+    return existingCountry?.countryCode ?: countryCode
   }
+
+  val country: Country?
+    get() = store.value.country
 
   fun setPhoneNumber(phoneNumber: String?) {
     store.update { it.copy(phoneNumber = phoneNumber ?: "") }
   }
 
+  fun clearCountry() {
+    store.update {
+      it.copy(
+        country = null,
+        phoneNumberRegionCode = "",
+        countryPrefixIndex = 0
+      )
+    }
+  }
+
   fun setCountry(digits: Int, country: Country? = null) {
-    val matchingIndex = countryCodeToAdapterIndex(digits)
-    if (matchingIndex == -1) {
-      Log.d(TAG, "Invalid country code specified $digits")
+    if (country == null && digits == store.value.country?.countryCode) {
       return
     }
 
+    val matchingIndex = countryCodeToAdapterIndex(digits)
+    if (matchingIndex == -1) {
+      Log.d(TAG, "Invalid country code specified $digits")
+      store.update {
+        it.copy(
+          country = null,
+          phoneNumberRegionCode = "",
+          countryPrefixIndex = 0
+        )
+      }
+      return
+    }
+
+    val regionCode = supportedCountryPrefixes[matchingIndex].regionCode
     val matchedCountry = Country(
-      name = PhoneNumberFormatter.getRegionDisplayName(supportedCountryPrefixes[matchingIndex].regionCode).orElse(""),
-      emoji = CountryUtils.countryToEmoji(supportedCountryPrefixes[matchingIndex].regionCode),
-      countryCode = digits.toString()
+      name = PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""),
+      emoji = CountryUtils.countryToEmoji(regionCode),
+      countryCode = digits,
+      regionCode = regionCode
     )
 
     store.update {
@@ -90,7 +140,8 @@ class EnterPhoneNumberViewModel : ViewModel() {
 
   fun isEnteredNumberPossible(state: EnterPhoneNumberState): Boolean {
     return try {
-      PhoneNumberUtil.getInstance().isPossibleNumber(parsePhoneNumber(state))
+      state.country != null &&
+        PhoneNumberUtil.getInstance().isPossibleNumber(parsePhoneNumber(state))
     } catch (ex: NumberParseException) {
       false
     }

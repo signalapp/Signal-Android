@@ -232,6 +232,11 @@ public class Util {
     return Optional.ofNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
   }
 
+  public static @Nullable String getNetworkCountryIso(Context context) {
+    String networkCountryIso = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getNetworkCountryIso();
+    return networkCountryIso == null ? null : networkCountryIso.toUpperCase();
+  }
+
   public static @NonNull <T> T firstNonNull(@Nullable T optional, @NonNull T fallback) {
     return optional != null ? optional : fallback;
   }

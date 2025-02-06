@@ -2556,7 +2556,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">+0</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">You\'ll receive a call to verify this number.</string>
     <string name="RegistrationActivity_edit_number">Edit number</string>
     <string name="RegistrationActivity_missing_google_play_services">Missing Google Play Services</string>

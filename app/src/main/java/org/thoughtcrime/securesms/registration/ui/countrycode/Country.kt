@@ -5,7 +5,12 @@
 
 package org.thoughtcrime.securesms.registration.ui.countrycode
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /**
  * Data class string describing useful characteristics of countries when selecting one. Used in the [CountryCodeState]
+ * An example is: Country(emoji=🇺🇸, name = "United States", countryCode = 1, regionCode= "US")
  */
-data class Country(val emoji: String, val name: String, val countryCode: String)
+@Parcelize
+data class Country(val emoji: String, val name: String, val countryCode: Int, val regionCode: String) : Parcelable
