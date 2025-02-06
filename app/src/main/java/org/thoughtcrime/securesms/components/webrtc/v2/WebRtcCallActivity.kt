@@ -64,7 +64,6 @@ import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.WifiToCellularPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoController
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
-import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog
 import org.thoughtcrime.securesms.components.webrtc.requests.CallLinkIncomingRequestSheet
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -591,7 +590,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private fun registerSystemPipChangeListeners() {
     addOnPictureInPictureModeChangedListener {
-      CallParticipantsListDialog.dismiss(supportFragmentManager)
       CallReactionScrubber.dismissCustomEmojiBottomSheet(supportFragmentManager)
     }
   }
