@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.components.settings.app.usernamelinks.main
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -34,7 +33,6 @@ class QrImageSelectionActivity : AppCompatActivity(), MediaGalleryFragment.Callb
     setContentView(R.layout.username_qr_image_selection_activity)
   }
 
-  @SuppressLint("LogTagInlined")
   override fun onMediaSelected(media: Media) {
     setResult(RESULT_OK, Intent().setData(media.uri))
     finish()

@@ -1,22 +1,18 @@
 package org.thoughtcrime.securesms.contacts;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import android.database.MatrixCursor;
-import android.database.MergeCursor;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.CursorUtil;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
@@ -35,7 +31,6 @@ public class ContactRepository {
 
   private final RecipientTable recipientTable;
   private final String         noteToSelfTitle;
-  private final Context           context;
 
   public static final String ID_COLUMN           = "id";
   public static final String NAME_COLUMN         = "name";
@@ -46,11 +41,7 @@ public class ContactRepository {
          static final String ABOUT_COLUMN        = "about";
 
   static final int NORMAL_TYPE       = 0;
-  static final int PUSH_TYPE         = 1 << 0;
-  static final int NEW_PHONE_TYPE    = 1 << 2;
-  static final int NEW_USERNAME_TYPE = 1 << 3;
-  static final int RECENT_TYPE       = 1 << 4;
-  static final int DIVIDER_TYPE      = 1 << 5;
+  static final int PUSH_TYPE         = 1;
 
   /** Maps the recipient results to the legacy contact column names */
   private static final List<Pair<String, ValueMapper>> SEARCH_CURSOR_MAPPERS = new ArrayList<Pair<String, ValueMapper>>() {{
@@ -101,33 +92,20 @@ public class ContactRepository {
     }));
   }};
 
-  public ContactRepository(@NonNull Context context, @NonNull String noteToSelfTitle) {
-    this.recipientTable  = SignalDatabase.recipients();
+  public ContactRepository(@NonNull String noteToSelfTitle) {
     this.noteToSelfTitle = noteToSelfTitle;
-    this.context           = context.getApplicationContext();
+    this.recipientTable  = SignalDatabase.recipients();
   }
 
   @WorkerThread
   public @NonNull Cursor querySignalContacts(@NonNull String query) {
-    return querySignalContacts(new RecipientTable.ContactSearchQuery(query, true, ContactSearchSortOrder.NATURAL));
+    return querySignalContacts(new RecipientTable.ContactSearchQuery(query, new RecipientTable.IncludeSelfMode.IncludeWithRemap(noteToSelfTitle), ContactSearchSortOrder.NATURAL));
   }
 
   @WorkerThread
   public @NonNull Cursor querySignalContacts(@NonNull RecipientTable.ContactSearchQuery contactSearchQuery) {
-    Cursor cursor = TextUtils.isEmpty(contactSearchQuery.getQuery()) ? recipientTable.getSignalContacts(contactSearchQuery.getIncludeSelf())
+    Cursor cursor = TextUtils.isEmpty(contactSearchQuery.getQuery()) ? recipientTable.getSignalContacts(contactSearchQuery.getIncludeSelfMode())
                                                                      : recipientTable.querySignalContacts(contactSearchQuery);
-
-    cursor = handleNoteToSelfQuery(contactSearchQuery.getQuery(), contactSearchQuery.getIncludeSelf(), cursor);
-
-    return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
-  }
-
-  @WorkerThread
-  public @NonNull Cursor queryNonGroupContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getNonGroupContacts(includeSelf)
-                                             : recipientTable.queryNonGroupContacts(query, includeSelf);
-
-    cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
 
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }
@@ -139,31 +117,6 @@ public class ContactRepository {
 
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }
-
-  private @NonNull Cursor handleNoteToSelfQuery(@NonNull String query, boolean includeSelf, Cursor cursor) {
-    if (includeSelf && noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
-      Recipient self        = Recipient.self();
-      boolean   nameMatch   = self.getDisplayName(context).toLowerCase().contains(query.toLowerCase());
-      boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);
-      boolean   shouldAdd   = !nameMatch && !numberMatch;
-
-      if (shouldAdd) {
-        MatrixCursor selfCursor = new MatrixCursor(RecipientTable.SEARCH_PROJECTION_NAMES);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().orElse(""), self.getEmail().orElse(null), null, -1, RecipientTable.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), null, true, noteToSelfTitle, noteToSelfTitle });
-
-        cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
-      }
-    }
-    return cursor;
-  }
-
-  @WorkerThread
-  public Cursor queryNonSignalContacts(@NonNull String query) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getNonSignalContacts()
-                                             : recipientTable.queryNonSignalContacts(query);
-    return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
-  }
-
 
   /**
    * This lets us mock the legacy cursor interface while using the new cursor, even though the data

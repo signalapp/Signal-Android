@@ -233,7 +233,7 @@ public final class LiveRecipientCache {
       stopwatch.split("thread");
 
       if (SignalStore.registration().isRegistrationComplete() && SignalStore.account().getAci() != null) {
-        try (Cursor cursor = SignalDatabase.recipients().getNonGroupContacts(false)) {
+        try (Cursor cursor = SignalDatabase.recipients().getNonGroupContacts(RecipientTable.IncludeSelfMode.Exclude.INSTANCE)) {
           int count = 0;
           while (cursor != null && cursor.moveToNext() && count < CONTACT_CACHE_WARM_MAX) {
             RecipientId id = RecipientId.from(CursorUtil.requireLong(cursor, RecipientTable.ID));

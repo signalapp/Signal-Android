@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.databinding.ViewAllSignalConnectionsFragmentBinding
 import org.thoughtcrime.securesms.groups.SelectionLimits
 
@@ -43,7 +44,7 @@ class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_conne
       addSection(
         ContactSearchConfiguration.Section.Individuals(
           includeHeader = false,
-          includeSelf = false,
+          includeSelfMode = RecipientTable.IncludeSelfMode.Exclude,
           includeLetterHeaders = true,
           transportType = ContactSearchConfiguration.TransportType.PUSH
         )

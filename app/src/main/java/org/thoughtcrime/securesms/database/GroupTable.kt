@@ -341,7 +341,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
   }
 
   fun queryGroupsByMemberName(inputQuery: String): Cursor {
-    val subquery = recipients.getAllContactsSubquery(inputQuery)
+    val subquery = recipients.getAllContactsSubquery(inputQuery, RecipientTable.IncludeSelfMode.IncludeWithoutRemap)
     val statement = """
       SELECT 
         DISTINCT $TABLE_NAME.*, 

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.SearchConfigurationProvider
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -64,7 +65,7 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.gift_flow_recipient
 
       addSection(
         ContactSearchConfiguration.Section.Individuals(
-          includeSelf = false,
+          includeSelfMode = RecipientTable.IncludeSelfMode.Exclude,
           transportType = ContactSearchConfiguration.TransportType.PUSH,
           includeHeader = true
         )

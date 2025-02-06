@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.MockCursor
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache
@@ -194,7 +195,7 @@ class ContactSearchPagedDataSourceTest {
       addSection(
         ContactSearchConfiguration.Section.Individuals(
           includeHeader = true,
-          includeSelf = false,
+          includeSelfMode = RecipientTable.IncludeSelfMode.Exclude,
           transportType = ContactSearchConfiguration.TransportType.ALL,
           expandConfig = ContactSearchConfiguration.ExpandConfig(isExpanded = false)
         )
@@ -202,7 +203,6 @@ class ContactSearchPagedDataSourceTest {
     }
 
     every { repository.getRecents(recents) } returns cursor
-    every { repository.queryNonGroupContacts(isNull(), any()) } returns cursor
     every { repository.querySignalContacts(any()) } returns cursor
     every { cursor.count } returns 10
 

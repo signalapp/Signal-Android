@@ -50,7 +50,7 @@ class CameraContactsRepository {
     this.threadTable   = SignalDatabase.threads();
     this.groupDatabase = SignalDatabase.groups();
     this.recipientTable    = SignalDatabase.recipients();
-    this.contactRepository = new ContactRepository(context, context.getString(R.string.note_to_self));
+    this.contactRepository = new ContactRepository(context.getString(R.string.note_to_self));
     this.serialExecutor    = SignalExecutors.SERIAL;
     this.parallelExecutor  = SignalExecutors.BOUNDED;
   }
