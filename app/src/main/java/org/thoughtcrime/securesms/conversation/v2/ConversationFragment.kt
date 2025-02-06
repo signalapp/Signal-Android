@@ -2857,7 +2857,7 @@ class ConversationFragment :
     override fun onItemDoubleClick(item: MultiselectPart) {
       val edited = onDoubleTapToEdit(item.conversationMessage)
       if (!edited) {
-        onDoubleTapToQuickReact(item.conversationMessage);
+        onDoubleTapToQuickReact(item.conversationMessage)
       }
     }
 
