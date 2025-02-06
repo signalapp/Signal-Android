@@ -225,21 +225,26 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun addThreadToIncludedChat(threadId: Long?) {
-    if (threadId == null || threadId == -1L) {
+  fun addThreadsToFolder(threadIds: LongArray?) {
+    if (threadIds == null || threadIds.isEmpty()) {
       return
     }
     viewModelScope.launch {
       val updatedFolder = internalState.value.currentFolder
-      val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
-      if (recipient != null) {
-        internalState.update {
-          it.copy(
-            currentFolder = updatedFolder.copy(
-              includedRecipients = setOf(recipient)
-            )
-          )
+      val includedRecipients = mutableSetOf<Recipient>()
+      threadIds.forEach { threadId ->
+        val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)
+        if (recipient != null) {
+          includedRecipients.add(recipient)
         }
+      }
+
+      internalState.update {
+        it.copy(
+          currentFolder = updatedFolder.copy(
+            includedRecipients = includedRecipients
+          )
+        )
       }
     }
   }

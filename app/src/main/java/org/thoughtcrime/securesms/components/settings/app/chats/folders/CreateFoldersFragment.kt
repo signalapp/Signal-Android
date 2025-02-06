@@ -99,7 +99,7 @@ class CreateFoldersFragment : ComposeFragment() {
     LaunchedEffect(Unit) {
       if (state.originalFolder == state.currentFolder) {
         viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
-        viewModel.addThreadToIncludedChat(arguments?.getLong(KEY_THREAD_ID))
+        viewModel.addThreadsToFolder(arguments?.getLongArray(KEY_THREAD_IDS))
       }
     }
 
@@ -170,7 +170,7 @@ class CreateFoldersFragment : ComposeFragment() {
 
   companion object {
     private val KEY_FOLDER_ID = "folder_id"
-    private val KEY_THREAD_ID = "thread_id"
+    private val KEY_THREAD_IDS = "thread_ids"
   }
 }
 
