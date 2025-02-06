@@ -427,8 +427,9 @@
             app:argType="long" />
 
         <argument
-            android:name="thread_id"
-            app:argType="long" />
+            android:name="thread_ids"
+            app:argType="long[]"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_createFoldersFragment_to_chooseChatsFragment"
