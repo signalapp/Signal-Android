@@ -375,6 +375,32 @@ class LibSignalChatConnectionTest {
     assertTrue(connection.readRequestIfAvailable().isEmpty)
   }
 
+  @Test
+  fun regressionTestDisconnectWhileConnecting() {
+    every { network.connectUnauthChat(any()) } answers {
+      chatListener = firstArg()
+      delay {
+        // We do not complete the future, so we stay in the CONNECTING state forever.
+      }
+    }
+
+    connection.connect()
+    connection.disconnect()
+  }
+
+  @Test
+  fun regressionTestSendWhileConnecting() {
+    every { network.connectUnauthChat(any()) } answers {
+      chatListener = firstArg()
+      delay {
+        // We do not complete the future, so we stay in the CONNECTING state forever.
+      }
+    }
+
+    connection.connect()
+    connection.sendRequest(WebSocketRequestMessage("GET", "/fake-path"))
+  }
+
   private fun <T> delay(action: ((CompletableFuture<T>) -> Unit)): CompletableFuture<T> {
     val future = CompletableFuture<T>()
     executor.submit {
