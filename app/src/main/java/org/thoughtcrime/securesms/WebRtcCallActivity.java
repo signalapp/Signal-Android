@@ -178,7 +178,14 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     lifecycleDisposable = new LifecycleDisposable();
     lifecycleDisposable.bindTo(this);
 
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+    if (Build.VERSION.SDK_INT >= 27) {
+      setTurnScreenOn(true);
+      setShowWhenLocked(true);
+    } else {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+    }
+
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
 
@@ -322,7 +329,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     if (!callPermissionsDialogController.isAskingForPermission() && !viewModel.isCallStarting() && !isChangingConfigurations()) {
       CallParticipantsState state = viewModel.getCallParticipantsStateSnapshot();
       if (state != null && (state.getCallState().isPreJoinOrNetworkUnavailable() || state.getCallState().isIncomingOrHandledElsewhere())) {
-        finish();
+        if (getCallIntent().isStartedFromFullScreen() && state.getCallState() == WebRtcViewModel.State.CALL_INCOMING) {
+          Log.w(TAG, "Pausing during full-screen incoming call view. Refusing to finish.");
+        } else {
+          finish();
+        }
       }
     }
   }
@@ -375,12 +386,16 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   @Override
   protected void onUserLeaveHint() {
     super.onUserLeaveHint();
-    enterPipModeIfPossible();
+    CallParticipantsState snapshot = viewModel.getCallParticipantsStateSnapshot();
+    if (snapshot != null && snapshot.getCallState() != WebRtcViewModel.State.CALL_INCOMING) {
+      enterPipModeIfPossible();
+    }
   }
 
   @Override
   public void onBackPressed() {
-    if (!enterPipModeIfPossible()) {
+    CallParticipantsState snapshot = viewModel.getCallParticipantsStateSnapshot();
+    if (snapshot == null || snapshot.getCallState() == WebRtcViewModel.State.CALL_INCOMING || !enterPipModeIfPossible()) {
       super.onBackPressed();
     }
   }
