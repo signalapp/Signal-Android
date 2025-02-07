@@ -47,6 +47,7 @@ object CountryUtils {
       }
   }
 
+  @JvmStatic
   fun countryToEmoji(countryCode: String): String {
     return if (countryCode.isNotEmpty()) {
       countryCode

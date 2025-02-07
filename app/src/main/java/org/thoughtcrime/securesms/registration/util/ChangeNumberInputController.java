@@ -21,7 +21,10 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country;
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
+import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 /**
  * Handle the logic and formatting of phone number input specifically for change number flows.
@@ -150,7 +153,7 @@ public final class ChangeNumberInputController {
 
   private void setCountryDisplay(@Nullable String regionDisplayName) {
     countrySpinnerAdapter.clear();
-    if (regionDisplayName == null) {
+    if (regionDisplayName == null || regionDisplayName.isEmpty()) {
       countrySpinnerAdapter.add(context.getString(R.string.RegistrationActivity_select_your_country));
     } else {
       countrySpinnerAdapter.add(regionDisplayName);
@@ -245,7 +248,8 @@ public final class ChangeNumberInputController {
       }
 
       if (!isUpdating) {
-        callbacks.setCountry(countryCode);
+        Country country = new Country(CountryUtils.countryToEmoji(regionCode), PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""), countryCode, regionCode);
+        callbacks.setCountry(country);
       }
     }
 
@@ -269,6 +273,6 @@ public final class ChangeNumberInputController {
 
     void setNationalNumber(@NonNull String number);
 
-    void setCountry(int countryCode);
+    void setCountry(@NonNull Country country);
   }
 }

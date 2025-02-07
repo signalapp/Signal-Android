@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
@@ -32,7 +33,9 @@ data class ChangeNumberState(
   val captchaToken: String? = null,
   val challengesRequested: List<Challenge> = emptyList(),
   val challengesPresented: Set<Challenge> = emptySet(),
-  val allowedToRequestCode: Boolean = false
+  val allowedToRequestCode: Boolean = false,
+  val oldCountry: Country? = null,
+  val newCountry: Country? = null
 ) {
   val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
 }

@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.registration.data.network.SessionMetadataResul
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.sms.SmsRetrieverReceiver
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
@@ -100,15 +101,24 @@ class ChangeNumberViewModel : ViewModel() {
   val svrTriesRemaining: Int
     get() = store.value.svrTriesRemaining
 
+  val oldCountry: Country?
+    get() = store.value.oldCountry
+
+  val newCountry: Country?
+    get() = store.value.newCountry
+
   fun setOldNationalNumber(updatedNumber: String) {
     store.update {
       it.copy(oldPhoneNumber = oldNumberState.toBuilder().nationalNumber(updatedNumber).build())
     }
   }
 
-  fun setOldCountry(countryCode: Int, country: String? = null) {
+  fun setOldCountry(country: Country) {
     store.update {
-      it.copy(oldPhoneNumber = oldNumberState.toBuilder().selectedCountryDisplayName(country).countryCode(countryCode).build())
+      it.copy(
+        oldPhoneNumber = oldNumberState.toBuilder().selectedCountryDisplayName(country.name).countryCode(country.countryCode).build(),
+        oldCountry = country
+      )
     }
   }
 
@@ -118,9 +128,12 @@ class ChangeNumberViewModel : ViewModel() {
     }
   }
 
-  fun setNewCountry(countryCode: Int, country: String? = null) {
+  fun setNewCountry(country: Country) {
     store.update {
-      it.copy(number = number.toBuilder().selectedCountryDisplayName(country).countryCode(countryCode).build())
+      it.copy(
+        number = number.toBuilder().selectedCountryDisplayName(country.name).countryCode(country.countryCode).build(),
+        newCountry = country
+      )
     }
   }
 

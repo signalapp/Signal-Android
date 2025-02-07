@@ -75,6 +75,7 @@ class CountryCodeFragment : ComposeFragment() {
 
   companion object {
     private val TAG = Log.tag(CountryCodeFragment::class.java)
+    const val RESULT_KEY = "result_key"
     const val REQUEST_KEY_COUNTRY = "request_key_country"
     const val REQUEST_COUNTRY = "country"
     const val RESULT_COUNTRY = "country"
@@ -86,6 +87,8 @@ class CountryCodeFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    val resultKey = arguments?.getString(RESULT_KEY) ?: REQUEST_KEY_COUNTRY
+
     Screen(
       state = state,
       title = stringResource(R.string.CountryCodeFragment__your_country),
@@ -93,7 +96,7 @@ class CountryCodeFragment : ComposeFragment() {
       onDismissed = { findNavController().popBackStack() },
       onClick = { country ->
         setFragmentResult(
-          REQUEST_KEY_COUNTRY,
+          resultKey,
           bundleOf(
             RESULT_COUNTRY to country
           )

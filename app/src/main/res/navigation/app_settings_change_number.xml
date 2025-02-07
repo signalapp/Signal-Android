@@ -58,12 +58,17 @@
 
     <fragment
         android:id="@+id/countryPickerFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberCountryPickerFragment"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.countrycode.CountryCodeFragment"
         tools:layout="@layout/fragment_registration_country_picker">
 
         <argument
             android:name="result_key"
             app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="country"
+            app:argType="org.thoughtcrime.securesms.registration.ui.countrycode.Country"
             app:nullable="true" />
     </fragment>
 
