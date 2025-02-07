@@ -1025,6 +1025,21 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">جاری رکھیں پر ٹیپ کریں اور تصدیق کرنے کے لیے اپنے فون کا لاک درج کریں۔ اپنے Signal کا پِن درج نہ کریں۔</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">جاری رکھیں</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">میسج سنک ناکام ہو گئی</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1929,7 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">گروپ میں شامل ہونے کی آپ کی درخواست کو منتظم نے مسترد کردیا ہے۔</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">آپ نے %1$s سے گروپ میں شامل ہونے کی درخواست کی تردید کی۔</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s نے %2$s کی اس گروپ میں شامل ہونے کی درخواست کی تردید کی۔</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s کی گروپ میں شامل ہونے کی درخواست مسترد کردی گئی ہے۔</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">آپ نے گروپ میں شامل ہونے کی اپنی درخواست منسوخ کردی۔</string>
@@ -2461,9 +2476,9 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Your country</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">نام اور ایڈریس کے ذریعے تلاش کریں</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">انجان ملک</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2552,7 +2567,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">+0</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">اس نمبر کی تصدیق کے لیئے آپ کو کال موصول ہوگی۔</string>
     <string name="RegistrationActivity_edit_number">نمبر ترتیب کرے</string>
     <string name="RegistrationActivity_missing_google_play_services">غائب گوگل پلے سروسز</string>
@@ -8099,7 +8114,7 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Skip restore</string>
+    <string name="EnterBackupKey_skip_restore">بحال کرنا نظر انداز کریں</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">اپنے پرانے فون سے اس کوڈ کو اسکین کریں</string>

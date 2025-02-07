@@ -1025,6 +1025,21 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">தொடர்க என்பதை அழுத்தி, உங்கள் மொபைலின் பூட்டை உள்ளிட்டு உறுதிப்படுத்தவும். உங்கள் சிக்னல் பின்-ஐ உள்ளிட வேண்டாம்.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">தொடர்க</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">மெசேஜ்களை ஒத்திசைக்க முடியவில்லை</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1863,9 +1878,9 @@
     <string name="MessageRecord_the_group_description_has_changed">தி குழு விளக்கம் மாறிவிட்டது.</string>
 
     <!-- GV2 avatar change -->
-    <string name="MessageRecord_you_changed_the_group_avatar">குழு சின்னத்தை மாற்றியுள்ளீர்கள்.</string>
-    <string name="MessageRecord_s_changed_the_group_avatar">%1$s குழு அவதாரத்தை மாற்றினார்.</string>
-    <string name="MessageRecord_the_group_group_avatar_has_been_changed">குழு அவதாரம் மாற்றப்பட்டுள்ளது.</string>
+    <string name="MessageRecord_you_changed_the_group_avatar">நீங்கள் குழு அவதாரை மாற்றினீர்கள்.</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s குழு அவதாரை மாற்றினார்.</string>
+    <string name="MessageRecord_the_group_group_avatar_has_been_changed">குழு அவதார் மாற்றப்பட்டுள்ளது.</string>
 
     <!-- GV2 attribute access level change -->
     <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">குழு தகவலை யார் திருத்தலாம் என்பதை நீங்கள் \"%1$s\" அவர்களுக்கு மாற்றியுள்ளீர்கள்.</string>
@@ -1929,7 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">குழுவில் சேர உங்கள் கோரிக்கை நிர்வாகியால் மறுக்கப்பட்டுள்ளது.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">குழுவில் சேர கோரிக்கையை நீங்கள் மறுத்தீர்கள் %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">குழுவில் சேர %2$s வின் கோரிக்கையை%1$s மறுத்தார்.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">குழுவில் சேர%1$s கோரிக்கை மறுக்கப்பட்டது.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">குழுவில் சேர உங்கள் கோரிக்கையை ரத்து செய்துள்ளீர்கள்.</string>
@@ -2552,7 +2567,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">+0</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">இந்த எண்ணை சரிபார்க்க உங்களுக்கு அழைப்பு வரும்.</string>
     <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play சேவைகளைக் காணவில்லை</string>
@@ -8099,7 +8114,7 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Skip restore</string>
+    <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">உங்களின் பழைய ஃபோன் கொண்டு இந்தக் குறியீட்டை ஸ்கேன் செய்யவும்</string>

@@ -1002,6 +1002,21 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">［Continue］をタップし、スマートフォンの解錠コードを入力して確認します。Signal PINを入力しないようにしてください。</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">続行</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">メッセージの同期ができませんでした</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1870,7 +1885,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">このグループへの参加申請は、管理者によって拒否されました。</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s からのグループ参加申請を拒否しました。</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申請を拒否しました。</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s からのグループ参加申請は拒否されました。</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">グループ参加申請をキャンセルしました。</string>
@@ -2379,9 +2394,9 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Your country</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">名前や電話番号で検索</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">不明な国名</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2465,7 +2480,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">+0</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">この番号を認証するため、通話が着信します。</string>
     <string name="RegistrationActivity_edit_number">番号を編集する</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
@@ -7927,7 +7942,7 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Skip restore</string>
+    <string name="EnterBackupKey_skip_restore">復元をスキップする</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">以前利用していた端末でこのコードをスキャンしてください</string>

@@ -1025,6 +1025,21 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Toca continuar e introduce el patrón de bloqueo de tu teléfono para confirmar. No introduzcas tu PIN de Signal.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continuar</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Error en la sincronización de mensajes</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1477,7 +1492,7 @@
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Ha habido un problema con tu alias; ya no está asignado a tu cuenta. Puedes intentar configurarlo de nuevo o elegir uno distinto.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Hubo un problema con el código QR y el enlace de tu alias; ya no es válido. Crea un nuevo enlace para compartir.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Ha habido un problema con el código QR y el enlace de tu alias, por lo que ya no son válidos. Crea un nuevo enlace para compartir.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Corregir ahora</string>
 
@@ -1916,8 +1931,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ha solicitado unirse al grupo mediante enlace.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s ha solicitado y cancelado su solicitud para unirse al grupo mediante enlace.</item>
-        <item quantity="other">%1$s ha solicitado y cancelado %2$d veces unirse al grupo mediante enlace.</item>
+        <item quantity="one">%1$s ha enviado y cancelado una solicitud para unirse al grupo mediante enlace.</item>
+        <item quantity="other">%1$s ha enviado y cancelado %2$d solicitudes para unirse al grupo mediante enlace.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -1929,7 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Alguien que es admin ha rechazado tu solicitud para unirte al grupo.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">You denied a request to join the group from %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Has rechazado la solicitud de %1$s para unirse al grupo.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ha rechazado la solicitud de %2$s para unirse al grupo.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Se ha rechazado la solicitud de %1$s para unirse al grupo.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Has cancelado tu solicitud para unirte al grupo.</string>
@@ -2461,9 +2476,9 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Your country</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">Buscar por nombre o número</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">País desconocido</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2552,7 +2567,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">+0</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Recibirás una llamada para verificar este número.</string>
     <string name="RegistrationActivity_edit_number">Editar número</string>
     <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play no instalados</string>
@@ -2637,7 +2652,7 @@
     <string name="ReviewBannerView__view">Ver</string>
 
     <!-- Search -->
-    <string name="SearchFragment_no_results">No se han encontrado resultados para \"%1$s\"</string>
+    <string name="SearchFragment_no_results">No hay ningún resultado para \"%1$s\"</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -3594,7 +3609,7 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderas</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonos</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No se han encontrado resultados</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No hay ningún resultado</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Usar predeterminado</string>
@@ -3887,7 +3902,7 @@
     <string name="PaymentsHomeFragment__add_funds">Añadir fondos</string>
     <string name="PaymentsHomeFragment__send">Enviar</string>
     <string name="PaymentsHomeFragment__sent_s">Enviado %1$s</string>
-    <string name="PaymentsHomeFragment__received_s">Recibido: %1$s</string>
+    <string name="PaymentsHomeFragment__received_s">Recibido %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir a plataforma de intercambio</string>
     <string name="PaymentsHomeFragment__currency_conversion">Conversión de moneda</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Desactivar pagos</string>
@@ -5497,8 +5512,8 @@
 
     <!-- StickerSearchDialogFragment -->
     <string name="StickerSearchDialogFragment_search_stickers">Buscar stickers</string>
-    <string name="StickerSearchDialogFragment_no_results_found">No se han encontrado resultados</string>
-    <string name="EmojiSearchFragment__no_results_found">No se han encontrado resultados</string>
+    <string name="StickerSearchDialogFragment_no_results_found">No hay ningún resultado</string>
+    <string name="EmojiSearchFragment__no_results_found">No hay ningún resultado</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Tono de llamada desconocido</string>
 
     <!-- ConversationSettingsFragment -->
@@ -6189,7 +6204,7 @@
     <!-- Option to view profile details -->
     <string name="NotificationProfileSelection__view_settings">Ver ajustes</string>
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
-    <string name="NotificationProfileSelection__on_until_s">Activo hasta: %1$s</string>
+    <string name="NotificationProfileSelection__on_until_s">Activo hasta %1$s</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">No se ha podido abrir el selector.</string>
@@ -6381,8 +6396,8 @@
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Oculta tu historia a ciertas personas</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
-        <item quantity="one">%1$d persona excluida</item>
-        <item quantity="other">%1$d personas excluidas</item>
+        <item quantity="one">excepto %1$d persona</item>
+        <item quantity="other">excepto %1$d personas</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with">Compartir solo con…</string>
@@ -6431,7 +6446,7 @@
     <string name="EditPrivateStoryNameFragment__story_name">Título de historia</string>
     <!-- Save button label when editing a custom story name -->
     <!-- Displayed in text post creator before user enters text -->
-    <string name="TextStoryPostCreationFragment__tap_to_add_text">Toca para añadir texto</string>
+    <string name="TextStoryPostCreationFragment__tap_to_add_text">Toca para escribir</string>
     <!-- Button label for changing font when creating a text post -->
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Añadir texto</string>
@@ -6637,8 +6652,8 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
-        <item quantity="one">%1$s · %2$d persona excluida</item>
-        <item quantity="other">%1$s · %2$d personas excluidas</item>
+        <item quantity="one">%1$s · excepto %2$d</item>
+        <item quantity="other">%1$s · excepto %2$d</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Toca para elegir quién puede ver la historia</string>
@@ -8099,7 +8114,7 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">Skip restore</string>
+    <string name="EnterBackupKey_skip_restore">Omitir restauración</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Escanea este código con tu teléfono anterior</string>
