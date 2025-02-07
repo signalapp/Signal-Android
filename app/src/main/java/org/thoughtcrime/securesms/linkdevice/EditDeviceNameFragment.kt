@@ -68,13 +68,14 @@ class EditDeviceNameFragment : ComposeFragment() {
         LinkDeviceSettingsState.OneTimeEvent.SnackbarNameChangeFailure -> {
           Snackbar.make(requireView(), context.getString(R.string.EditDeviceNameFragment__unable_to_change), Snackbar.LENGTH_LONG).show()
         }
-        LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.None -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> Unit
-        is LinkDeviceSettingsState.OneTimeEvent.ToastLinked -> Unit
-        LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed -> Unit
-        is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked -> Unit
+        LinkDeviceSettingsState.OneTimeEvent.HideFinishedSheet,
+        LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner,
+        LinkDeviceSettingsState.OneTimeEvent.None,
+        LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet,
+        is LinkDeviceSettingsState.OneTimeEvent.ToastLinked,
+        LinkDeviceSettingsState.OneTimeEvent.ToastNetworkFailed,
+        is LinkDeviceSettingsState.OneTimeEvent.ToastUnlinked,
+        LinkDeviceSettingsState.OneTimeEvent.LaunchEmail,
         LinkDeviceSettingsState.OneTimeEvent.SnackbarLinkCancelled -> Unit
       }
     }

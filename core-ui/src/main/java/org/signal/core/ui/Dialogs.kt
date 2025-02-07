@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import org.signal.core.ui.Dialogs.AdvancedAlertDialog
 import org.signal.core.ui.Dialogs.PermissionRationaleDialog
 import org.signal.core.ui.Dialogs.SimpleAlertDialog
 import org.signal.core.ui.Dialogs.SimpleMessageDialog
@@ -284,6 +285,66 @@ object Dialogs {
       }
     }
   }
+
+  /**
+   * Alert dialog that supports three options. 
+   * If you only need two options (confirm/dismiss), use [SimpleAlertDialog] instead. 
+   */
+  @Composable
+  fun AdvancedAlertDialog(
+    title: String = "",
+    body: String = "",
+    positive: String,
+    neutral: String,
+    negative: String,
+    onPositive: () -> Unit,
+    onNegative: () -> Unit,
+    onNeutral: () -> Unit
+  ) {
+    Dialog(
+      onDismissRequest = onNegative,
+      properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+      Surface(
+        modifier = Modifier
+          .fillMaxWidth(fraction = 0.75f)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column(modifier = Modifier.padding(24.dp)) {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge
+          )
+
+          Text(
+            text = body,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(vertical = 16.dp)
+          )
+
+          Column(
+            horizontalAlignment = Alignment.End,
+            modifier = Modifier.fillMaxWidth()
+          ) {
+            TextButton(onClick = onPositive) {
+              Text(text = positive)
+            }
+            TextButton(onClick = onNeutral) {
+              Text(text = neutral)
+            }
+            TextButton(onClick = onNegative) {
+              Text(text = negative)
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @Preview
@@ -312,6 +373,23 @@ private fun AlertDialogPreview() {
     onConfirm = {},
     onDismiss = {}
   )
+}
+
+@SignalPreview
+@Composable
+private fun AdvancedAlertDialogPreview() {
+  Previews.Preview {
+    AdvancedAlertDialog(
+      title = "Title text",
+      body = "Body message text.",
+      positive = "Continue",
+      neutral = "Learn more",
+      negative = "Not now",
+      onPositive = {},
+      onNegative = {},
+      onNeutral = {}
+    )
+  }
 }
 
 @Preview

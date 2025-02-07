@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDe
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEvent
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.link.TransferArchiveError
 import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse
+import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -40,6 +42,7 @@ class LinkDeviceViewModel : ViewModel() {
 
   private val _state = MutableStateFlow(LinkDeviceSettingsState())
   val state = _state.asStateFlow()
+  private val submitDebugLogRepository: SubmitDebugLogRepository = SubmitDebugLogRepository()
 
   private var pollJob: Job? = null
 
@@ -433,6 +436,14 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
+  fun onSyncErrorContactSupport() {
+    _state.update {
+      it.copy(
+        dialogState = DialogState.ContactSupport
+      )
+    }
+  }
+
   fun onSyncErrorRetryRequested() = viewModelScope.launch(Dispatchers.IO) {
     val dialogState = _state.value.dialogState
     if (dialogState is DialogState.SyncingFailed) {
@@ -497,6 +508,35 @@ class LinkDeviceViewModel : ViewModel() {
         it.copy(
           oneTimeEvent = event
         )
+      }
+    }
+  }
+
+  fun onContactSupport(includeLogs: Boolean) {
+    viewModelScope.launch {
+      if (includeLogs) {
+        _state.update {
+          it.copy(
+            dialogState = DialogState.LoadingDebugLog
+          )
+        }
+        submitDebugLogRepository.buildAndSubmitLog { result ->
+          val url = result.getOrNull()
+          _state.update {
+            it.copy(
+              debugLogUrl = url,
+              oneTimeEvent = OneTimeEvent.LaunchEmail,
+              dialogState = DialogState.None
+            )
+          }
+        }
+      } else {
+        _state.update {
+          it.copy(
+            oneTimeEvent = OneTimeEvent.LaunchEmail,
+            dialogState = DialogState.None
+          )
+        }
       }
     }
   }
