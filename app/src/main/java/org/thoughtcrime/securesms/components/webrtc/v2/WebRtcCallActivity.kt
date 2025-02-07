@@ -291,7 +291,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     if (!callPermissionsDialogController.isAskingForPermission && !viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
-      if (state != null && (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere)) {
+      if (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere) {
         if (getCallIntent().isStartedFromFullScreen && state.callState == WebRtcViewModel.State.CALL_INCOMING) {
           Log.w(TAG, "Pausing during full-screen incoming call view. Refusing to finish.")
         } else {
@@ -316,12 +316,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     if (!viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
-      if (state != null) {
-        if (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere) {
-          AppDependencies.signalCallManager.cancelPreJoin()
-        } else if (state.callState.inOngoingCall && isInPipMode()) {
-          AppDependencies.signalCallManager.relaunchPipOnForeground()
-        }
+      if (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere) {
+        AppDependencies.signalCallManager.cancelPreJoin()
+      } else if (state.callState.inOngoingCall && isInPipMode()) {
+        AppDependencies.signalCallManager.relaunchPipOnForeground()
       }
     }
   }
@@ -342,13 +340,13 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   override fun onUserLeaveHint() {
     Log.d(TAG, "onUserLeaveHint", Exception())
     super.onUserLeaveHint()
-    if (viewModel.callParticipantsStateSnapshot?.callState != WebRtcViewModel.State.CALL_INCOMING) {
+    if (viewModel.callParticipantsStateSnapshot.callState != WebRtcViewModel.State.CALL_INCOMING) {
       enterPipModeIfPossible()
     }
   }
 
   override fun onBackPressed() {
-    if (viewModel.callParticipantsStateSnapshot?.callState == WebRtcViewModel.State.CALL_INCOMING || !enterPipModeIfPossible()) {
+    if (viewModel.callParticipantsStateSnapshot.callState == WebRtcViewModel.State.CALL_INCOMING || !enterPipModeIfPossible()) {
       super.onBackPressed()
     }
   }
@@ -370,8 +368,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   override fun onMessageResentAfterSafetyNumberChange() = Unit
 
   override fun onCanceled() {
-    val state: CallParticipantsState? = viewModel.callParticipantsStateSnapshot
-    if (state != null && state.groupCallState.isNotIdle) {
+    val state: CallParticipantsState = viewModel.callParticipantsStateSnapshot
+    if (state.groupCallState.isNotIdle) {
       if (state.callState.isPreJoinOrNetworkUnavailable) {
         AppDependencies.signalCallManager.cancelPreJoin()
         finish()
@@ -484,8 +482,8 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     callStateUpdatePopupWindow = CallStateUpdatePopupWindow(callScreen)
     wifiToCellularPopupWindow = WifiToCellularPopupWindow(callScreen)
     callOverflowPopupWindow = CallOverflowPopupWindow(this, callScreen) {
-      val state: CallParticipantsState? = viewModel.callParticipantsStateSnapshot
-      state?.localParticipant?.isHandRaised ?: false
+      val state: CallParticipantsState = viewModel.callParticipantsStateSnapshot
+      state.localParticipant.isHandRaised
     }
 
     lifecycle.addObserver(participantUpdateWindow)
@@ -1232,7 +1230,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     override fun toggleControls() {
       val controlState = viewModel.getWebRtcControls().value
-      if (controlState != null && !controlState.displayIncomingCallButtons() && !controlState.displayErrorControls()) {
+      if (!controlState.displayIncomingCallButtons() && !controlState.displayErrorControls()) {
         controlsAndInfo.toggleControls()
       }
     }
