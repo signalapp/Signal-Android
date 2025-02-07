@@ -25,15 +25,20 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
-import androidx.lifecycle.toLiveData
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.window.java.layout.WindowInfoTrackerCallbackAdapter
 import androidx.window.layout.FoldingFeature
 import androidx.window.layout.WindowInfoTracker
 import androidx.window.layout.WindowLayoutInfo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -88,7 +93,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.WindowUtil
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
@@ -211,12 +215,12 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     if (!hasCameraPermission() && !hasAudioPermission()) {
       askCameraAudioPermissions {
-        callScreen.setMicEnabled(viewModel.microphoneEnabled.value ?: false)
+        callScreen.setMicEnabled(viewModel.microphoneEnabled.value)
         handleSetMuteVideo(false)
       }
     } else if (!hasAudioPermission()) {
       askAudioPermissions {
-        callScreen.setMicEnabled(viewModel.microphoneEnabled.value ?: false)
+        callScreen.setMicEnabled(viewModel.microphoneEnabled.value)
       }
     }
   }
@@ -498,36 +502,74 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     viewModel.setIsLandscapeEnabled(true)
     viewModel.setIsInPipMode(isInPipMode())
-    viewModel.microphoneEnabled.observe(this, callScreen::setMicEnabled)
-    viewModel.getWebRtcControls().observe(this) { controls ->
-      callScreen.setWebRtcControls(controls)
-      controlsAndInfo.updateControls(controls)
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        launch {
+          viewModel.microphoneEnabled.collectLatest {
+            callScreen.setMicEnabled(it)
+          }
+        }
+
+        launch {
+          viewModel.getWebRtcControls().collectLatest {
+            callScreen.setWebRtcControls(it)
+            controlsAndInfo.updateControls(it)
+          }
+        }
+
+        launch {
+          viewModel.getEvents().collect { handleViewModelEvent(it) }
+        }
+
+        launch {
+          viewModel.getInCallStatus().collectLatest {
+            handleInCallStatus(it)
+          }
+        }
+
+        launch {
+          viewModel.getRecipientFlow().collectLatest {
+            callScreen.setRecipient(it)
+          }
+        }
+
+        launch {
+          val isStartedFromCallLink = getCallIntent().isStartedFromCallLink
+          combine(
+            viewModel.callParticipantsState,
+            viewModel.getEphemeralState().filterNotNull()
+          ) { state, ephemeralState ->
+            CallParticipantsViewState(state, ephemeralState, orientation == Orientation.PORTRAIT_BOTTOM_EDGE, true, isStartedFromCallLink)
+          }.collectLatest(callScreen::updateCallParticipants)
+        }
+
+        launch {
+          viewModel.getCallParticipantListUpdate().collectLatest(participantUpdateWindow::addCallParticipantListUpdate)
+        }
+
+        launch {
+          viewModel.getSafetyNumberChangeEvent().collect { handleSafetyNumberChangeEvent(it) }
+        }
+
+        launch {
+          viewModel.getGroupMembersChanged().collectLatest { updateGroupMembersForGroupCall() }
+        }
+
+        launch {
+          viewModel.getGroupMemberCount().collectLatest { handleGroupMemberCountChange(it) }
+        }
+
+        launch {
+          viewModel.shouldShowSpeakerHint().collectLatest { updateSpeakerHint(it) }
+        }
+      }
     }
-    viewModel.getEvents().observe(this, this::handleViewModelEvent)
-
-    lifecycleDisposable.add(viewModel.getInCallStatus().subscribe(this::handleInCallStatus))
-    lifecycleDisposable.add(viewModel.getRecipientFlowable().subscribe(callScreen::setRecipient))
-
-    val isStartedFromCallLink = getCallIntent().isStartedFromCallLink
-    LiveDataUtil.combineLatest(
-      viewModel.callParticipantsState.toFlowable(BackpressureStrategy.LATEST).toLiveData(),
-      viewModel.getEphemeralState()
-    ) { state, ephemeralState ->
-      CallParticipantsViewState(state, ephemeralState, orientation == Orientation.PORTRAIT_BOTTOM_EDGE, true, isStartedFromCallLink)
-    }.observe(this, callScreen::updateCallParticipants)
-
-    viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate)
-    viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent)
-    viewModel.getGroupMembersChanged().observe(this) { updateGroupMembersForGroupCall() }
-    viewModel.getGroupMemberCount().observe(this, this::handleGroupMemberCountChange)
-    lifecycleDisposable.add(viewModel.shouldShowSpeakerHint().subscribe(this::updateSpeakerHint))
 
     callScreen.viewTreeObserver.addOnGlobalLayoutListener {
       val state = viewModel.callParticipantsStateSnapshot
-      if (state != null) {
-        if (state.needsNewRequestSizes()) {
-          requestNewSizesThrottle.publish { AppDependencies.signalCallManager.updateRenderedResolutions() }
-        }
+      if (state.needsNewRequestSizes()) {
+        requestNewSizesThrottle.publish { AppDependencies.signalCallManager.updateRenderedResolutions() }
       }
     }
 
@@ -542,7 +584,14 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     callScreen.setPendingParticipantsViewListener(PendingParticipantsViewListener())
-    lifecycleDisposable += viewModel.getPendingParticipants().subscribe(callScreen::updatePendingParticipantsList)
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        launch {
+          viewModel.getPendingParticipants().collect(callScreen::updatePendingParticipantsList)
+        }
+      }
+    }
   }
 
   private fun initializePictureInPictureParams() {
@@ -558,9 +607,15 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       pipBuilderParams.setAspectRatio(aspectRatio)
 
       if (Build.VERSION.SDK_INT >= 31) {
-        viewModel.canEnterPipMode().observe(this) {
-          pipBuilderParams.setAutoEnterEnabled(it)
-          tryToSetPictureInPictureParams()
+        lifecycleScope.launch {
+          lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            launch {
+              viewModel.canEnterPipMode().collectLatest {
+                pipBuilderParams.setAutoEnterEnabled(it)
+                tryToSetPictureInPictureParams()
+              }
+            }
+          }
         }
       } else {
         tryToSetPictureInPictureParams()
@@ -1077,7 +1132,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     override fun onHidden() {
       val controlState = viewModel.getWebRtcControls().value
-      if (controlState == null || !controlState.displayErrorControls()) {
+      if (!controlState.displayErrorControls()) {
         fullscreenHelper.hideSystemUI()
         videoTooltip?.dismiss()
       }
