@@ -150,8 +150,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       setShowWhenLocked(true)
     } else {
       window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
-      window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+      window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
     }
+
+    window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
     super.onCreate(savedInstanceState)
 
