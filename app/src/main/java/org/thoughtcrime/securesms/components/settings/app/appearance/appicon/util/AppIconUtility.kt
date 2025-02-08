@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log
 
 class AppIconUtility(context: Context) {
   private val applicationContext: Context = context.applicationContext
-  private val pm = applicationContext.packageManager
+  private val packageManager = applicationContext.packageManager
 
   val currentAppIcon by lazy { readCurrentAppIconFromPackageManager() }
 
@@ -26,13 +26,13 @@ class AppIconUtility(context: Context) {
 
   fun setNewAppIcon(desiredAppIcon: AppIconPreset) {
     Log.d(TAG, "Setting new app icon.")
-    pm.setComponentEnabledSetting(desiredAppIcon.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP)
+    packageManager.setComponentEnabledSetting(desiredAppIcon.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP)
     Log.d(TAG, "${desiredAppIcon.name} enabled.")
     val previousAppIcon = currentAppIcon
-    pm.setComponentEnabledSetting(previousAppIcon.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
+    packageManager.setComponentEnabledSetting(previousAppIcon.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
     Log.d(TAG, "${previousAppIcon.name} disabled.")
     enumValues<AppIconPreset>().filterNot { it == desiredAppIcon || it == previousAppIcon }.forEach {
-      pm.setComponentEnabledSetting(it.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
+      packageManager.setComponentEnabledSetting(it.getComponentName(applicationContext), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP)
       Log.d(TAG, "${it.name} disabled.")
     }
   }
@@ -40,7 +40,7 @@ class AppIconUtility(context: Context) {
   private fun readCurrentAppIconFromPackageManager(): AppIconPreset {
     val activeIcon = enumValues<AppIconPreset>().firstOrNull {
       val componentName = it.getComponentName(applicationContext)
-      val componentEnabledSetting = pm.getComponentEnabledSetting(componentName)
+      val componentEnabledSetting = packageManager.getComponentEnabledSetting(componentName)
 
       Log.d(TAG, "Found $componentName with state of $componentEnabledSetting")
       if (it == AppIconPreset.DEFAULT && componentEnabledSetting == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT) {
