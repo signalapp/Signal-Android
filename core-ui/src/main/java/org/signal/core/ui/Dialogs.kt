@@ -287,8 +287,8 @@ object Dialogs {
   }
 
   /**
-   * Alert dialog that supports three options. 
-   * If you only need two options (confirm/dismiss), use [SimpleAlertDialog] instead. 
+   * Alert dialog that supports three options.
+   * If you only need two options (confirm/dismiss), use [SimpleAlertDialog] instead.
    */
   @Composable
   fun AdvancedAlertDialog(
