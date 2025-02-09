@@ -208,9 +208,10 @@ private fun Content(
           Row {
             AndroidView(factory = ::EmojiTextView) {
               it.text = model.about
-              it.setTextColor(textColor.toArgb())
 
               TextViewCompat.setTextAppearance(it, R.style.Signal_Text_BodyLarge)
+
+              it.setTextColor(textColor.toArgb())
             }
           }
         },
