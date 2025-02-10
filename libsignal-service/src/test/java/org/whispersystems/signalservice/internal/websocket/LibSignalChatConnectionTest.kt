@@ -69,6 +69,12 @@ class LibSignalChatConnectionTest {
       delay {
         it.complete(null)
         disconnectLatch?.countDown()
+
+        // The disconnectReason is null when the disconnect is due to the local client requesting the disconnect.
+        // This is a regression test because we previously forgot to update the Kotlin type definitions to
+        //   match this when the behavior changed in libsignal-client, causing NullPointerExceptions
+        //   missed connection interrupted events.
+        chatListener!!.onConnectionInterrupted(chatConnection, null)
       }
     }
 

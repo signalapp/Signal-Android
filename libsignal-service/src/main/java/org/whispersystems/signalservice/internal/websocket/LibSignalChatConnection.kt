@@ -379,7 +379,7 @@ class LibSignalChatConnection(
       incomingRequestQueue.put(incomingWebSocketRequest)
     }
 
-    override fun onConnectionInterrupted(chat: ChatConnection, disconnectReason: ChatServiceException) {
+    override fun onConnectionInterrupted(chat: ChatConnection, disconnectReason: ChatServiceException?) {
       CHAT_SERVICE_LOCK.withLock {
         Log.i(TAG, "$name connection interrupted", disconnectReason)
         chatConnection = null
