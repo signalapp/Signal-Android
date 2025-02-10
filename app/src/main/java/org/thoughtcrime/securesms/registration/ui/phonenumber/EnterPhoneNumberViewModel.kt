@@ -67,9 +67,12 @@ class EnterPhoneNumberViewModel : ViewModel() {
     }
 
     val countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(regionCode)
+    val prefixIndex = countryCodeToAdapterIndex(countryCode)
 
     store.update {
       it.copy(
+        countryPrefixIndex = prefixIndex,
+        phoneNumberRegionCode = regionCode,
         country = existingCountry ?: Country(
           name = PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""),
           emoji = CountryUtils.countryToEmoji(regionCode),
