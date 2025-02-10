@@ -53,6 +53,7 @@
                     android:textAppearance="@style/Signal.Text.BodyLarge"
                     android:drawableStart="@drawable/symbol_plus_9"
                     android:drawablePadding="4dp"
+                    app:drawableTint="@color/signal_colorOnSurfaceVariant_60"
                     android:gravity="start|center_vertical"
                     android:textColor="@color/signal_colorOnSurfaceVariant" />
 
