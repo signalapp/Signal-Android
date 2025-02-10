@@ -112,6 +112,14 @@ class RegistrationViewModel : ViewModel() {
   val phoneNumber: Phonenumber.PhoneNumber?
     get() = store.value.phoneNumber
 
+  var nationalNumber: String
+    get() = store.value.nationalNumber
+    set(value) {
+      store.update {
+        it.copy(nationalNumber = value)
+      }
+    }
+
   fun maybePrefillE164(context: Context) {
     Log.v(TAG, "maybePrefillE164()")
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS)) {

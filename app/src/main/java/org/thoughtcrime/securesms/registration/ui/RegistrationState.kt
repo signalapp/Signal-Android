@@ -26,6 +26,7 @@ data class RegistrationState(
   val sessionId: String? = null,
   val enteredCode: String = "",
   val phoneNumber: Phonenumber.PhoneNumber? = fetchExistingE164FromValues(),
+  val nationalNumber: String = "",
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
   val canSkipSms: Boolean = false,
