@@ -985,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">டெஸ்க்டாப் அல்லது iPad இல் இந்த சிக்னல் கணக்கைப் பயன்படுத்துங்கள்.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">புதிய சாதனத்தை இணை</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -2127,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">மன்னிக்கவும், ஏற்கனவே பல சாதனங்கள் இணைக்கப்பட்டுள்ளது, சிலவற்றை வெளியேற்றவும் …</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">மன்னிக்கவும், இது சரியான சாதன இணைப்பு QR குறியீடு அல்ல.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal சாதனத்தை இணைக்கவா?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">இந்த சிக்னல் கணக்கில் டெஸ்க்டாப் அல்லது iPad ஐ இணைக்க, இணைக்கப்பட்ட சாதனங்கள் என்பதற்குச் சென்று \"புதிய சாதனத்தை இணை\" என்பதைத் தட்டி, QR குறியீட்டை மீண்டும் ஸ்கேன் செய்யுங்கள். சிக்னலில் இருந்து நேரடியாக வழங்கப்படும் QR குறியீடுகளை மட்டுமே ஸ்கேன் செய்வதை உறுதிப்படுத்திக்கொள்ளுங்கள்.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR குறியீட்டை ஸ்கேன் செய்ய Signal கேமரா அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"கேமரா\" ஐ இயக்கவும்.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">கேமரா அனுமதியின்றி QR குறியீட்டை ஸ்கேன் செய்ய முடியவில்லை</string>
@@ -2474,11 +2474,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">உயர்த்தப்பட்ட கை காட்சியை விரிவுபடுத்தவும்</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">உங்கள் நாடு</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">பெயர் அல்லது எண் வாரியாகத் தேடுக</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">அறியப்படாத நாடு</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2565,7 +2565,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">ஒரு நாட்டைத் தேர்வு செய்யுங்கள்</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">இந்த எண்ணை சரிபார்க்க உங்களுக்கு அழைப்பு வரும்.</string>
@@ -5770,7 +5770,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">சாதனத்தை இணைக்க வேண்டுமா?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">நீங்கள் சிக்னல் சாதனத்தை இணைக்க முயல்வது போல் தெரிகிறது. தொடர்க என்பதைத் தட்டி, பின்னர் \"புதிய சாதனத்தை இணை\" என்பதைத் தட்டி, QR குறியீட்டை மீண்டும் ஸ்கேன் செய்யுங்கள்.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">தொடர்க</string>
 
@@ -8110,9 +8110,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">தவறான காப்புப்பிரதி குறியீடு</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">நீங்கள் உள்ளீடு செய்த காப்புப்பிரதி குறியீடு சரியானது, ஆனால் அதனுடன் தொடர்புடைய காப்புப்பிரதி எதுவும் இல்லை. நீங்கள் பழைய தொலைபேசியை இன்னும் வைத்திருந்தால், காப்புப்பிரதிகள் இயக்கப்பட்டிருப்பதை உறுதிசெய்து, காப்புப்பிரதி நிறைவு செய்யப்பட்டது என்பதை உறுதிப்படுத்துங்கள், மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 

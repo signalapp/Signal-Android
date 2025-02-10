@@ -1944,7 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Votre demande d’adhésion au groupe a été refusée par un administrateur.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Vous avez refusé la demande d’adhésion de %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Vous avez refusé la demande d\'adhésion de %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s a refusé la demande d’adhésion de %2$s.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">La demande d’adhésion de %1$s a été refusée.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Vous avez annulé votre demande d’adhésion au groupe.</string>

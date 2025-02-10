@@ -2190,7 +2190,7 @@
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
     <string name="ReRegisterWithPinFragment_skip_local">Wenn du dich nicht mehr an deine PIN erinnern kannst, kannst du eine neue erstellen.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Maximale Anzahl der Versuche zum Erraten deiner PIN ist ereicht.  Du kannst immer noch auf dein Signal-Konto zugreifen, indem du eine neue PIN erstellst.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Maximale Anzahl der Versuche zum Erraten deiner PIN ist erreicht.  Du kannst immer noch auf dein Signal-Konto zugreifen, indem du eine neue PIN erstellst.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Warnung</string>
@@ -2563,7 +2563,7 @@
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Ein Verifizierungscode wird an diese Nummer gesendet. Je nach Tarif können Gebühren anfallen.</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifizierungscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Select a country</string>
     <!-- Hint text explaining that this is where the country code should go -->
@@ -3665,7 +3665,7 @@
     <string name="preferences__change_your_passphrase">Deine Passphrase ändern</string>
     <!-- Legacy preference menu item to enable a passphrase screen lock that is only available to those who have previously had a passphrase -->
     <string name="preferences__enable_passphrase">Passphrasengeschützte Bildschirmsperre aktivieren</string>
-    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bildschirm und Benachrichtungen mit einer Passphrase sperren</string>
+    <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bildschirm und Benachrichtigungen mit einer Passphrase sperren</string>
     <string name="preferences__screen_security">Bildschirmschutz</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal bei Inaktivität nach einer festgelegten Verzögerungszeit automatisch sperren</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
@@ -4975,7 +4975,7 @@
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Speichere deine Wiederherstellungsphrase</string>
     <string name="payment_info_card_update_your_pin">Aktualisiere deine PIN</string>
-    <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand sollest du zum erhöhten Schutz deines Kontos eventuell zu einer alphanumerischen PIN wechseln.</string>
+    <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand solltest du zum erhöhten Schutz deines Kontos eventuell zu einer alphanumerischen PIN wechseln.</string>
     <string name="payment_info_card_update_pin">PIN aktualisieren</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
@@ -6601,7 +6601,7 @@
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Füge eine Nachricht hinzu</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">Empänger wird verifiziert …</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">Empfänger wird verifiziert …</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s hat für dich gespendet</string>
     <!-- Title for sheet shown when opening a sent gift -->
@@ -7353,7 +7353,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Die Änderungen konnten nicht gespeichert werden. Überprüfe deine Netzverbindung und versuche es erneut.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Die Genehmigungseinstellungen des Administrators konnten nicht aktualisiert werden. Sicherstellen, dass der Anruflink derzeit nicht verwendet wird.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Admin-Genehmigungseinstellungen konnten nicht aktualisiert werden. Anruflink darf nicht in Verwendung sein.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Anruflink konnte nicht gelöscht werden, da er gerade verwendet wird.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

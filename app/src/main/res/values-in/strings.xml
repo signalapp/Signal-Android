@@ -1885,7 +1885,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Permintaan Anda bergabung grup ditolak oleh admin.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Anda menolak permintaan bergabung ke grup dari %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Anda menolak permintaan gabung grup dari %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s menolak permintaan dari %2$s untuk bergabung ke grup.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Permintaan bergabung ke grup dari %1$s ditolak.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Anda membatalkan permintaan bergabung ke grup.</string>
@@ -2394,9 +2394,9 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Your country</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Cari berdasarkan nama atau nomer</string>
+    <string name="CountryCodeFragment__search_by">Cari berdasarkan nama atau nomor telepon</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Negara Tidak Dikenal</string>
+    <string name="CountryCodeFragment__unknown_country">Negara tidak diketahui</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->

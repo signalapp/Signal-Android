@@ -985,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ఈ Signal ఖాతాను డెస్క్‌టాప్ లేదా iPad లో ఉపయోగించండి.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">కొత్త పరికరాన్ని లింక్ చేయండి</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -2127,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">క్షమించండి,మీరు చాల పరికరాలను అనుసంధానం చేసారు, కొన్ని తొలగించడానికి ప్రయత్నించండి.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">క్షమించండి,ఇది ఒక చెల్లని అనుసంధానం చేసిన పరికరం యొక్క QR కోడ్.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">ఒక Signal పరికరం లింక్ చేయాలా?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">ఈ Signal ఖాతాకు డెస్క్‌టాప్ లేదా iPad ను లింక్ చేయడానికి, లింక్ చేసిన పరికరాలకు వెళ్లండి మరియు \"కొత్త పరికరాన్ని లింక్ చేయండి\"పై తట్టి, QR కోడ్‌ను మళ్లీ స్కాన్ చేయండి. Signal నుండి నేరుగా వచ్చే QR కోడ్‌లను మాత్రమే మీరు స్కాన్ చేశారని నిర్ధారించుకోండి.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ఒక QR కోడ్ను స్కాన్ చేయడానికి Signalకు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">కెమెరా అనుమతి లేకుండా QR కోడ్ను స్కాన్ చేయడం సాధ్యపడలేదు</string>
@@ -2474,11 +2474,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">చేయి ఎత్తిన వీక్షణను విస్తరించండి</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">మీ దేశం</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">పేరు లేదా నంబర్ ద్వారా శోధించండి</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">తెలియని దేశం</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2565,7 +2565,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">దేశాన్ని ఎంచుకోండి</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ఈ సంఖ్యను ధృవీకరించడానికి మీకు కాల్ వస్తుంది.</string>
@@ -5770,7 +5770,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">పరికరాన్ని లింక్ చేసేదా?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">మీరు Signal పరికరాన్ని లింక్ చేయడానికి ప్రయత్నిస్తున్నట్లు కనిపిస్తోంది. కొనసాగించును తట్టండి, ఆపై \"కొత్త పరికరాన్ని లింక్ చేయండి\"పై తట్టండి, QR కోడ్‌ను మళ్లీ స్కాన్ చేయండి.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">కొనసాగండి</string>
 
@@ -8110,9 +8110,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">చెల్లని బ్యాకప్ కీ</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">బ్యాకప్ కనుగొనబడలేదు</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">మీరు ఎంటర్ చేసిన బ్యాకప్ కీ సరైనది, కానీ దానితో అనుబంధించబడిన బ్యాకప్ ఏదీ లేదు. ఒకవేళ మీ పాత ఫోన్ ఇంకా మీ దగ్గర ఉంటే, బ్యాకప్‌లు ఎనేబుల్ చేయబడ్డాయని మరియు బ్యాకప్ పూర్తయిందని నిర్ధారించుకుని, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
 

@@ -962,7 +962,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">ใช้บัญชี Signal นี้บนเดสก์ท็อปหรือ iPad</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">เชื่อมโยงอุปกรณ์เครื่องใหม่</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -2062,7 +2062,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ขออภัย คุณมีอุปกรณ์ที่เชื่อมโยงมากเกินไป ลองถอนการเชื่อมโยงจากบางอุปกรณ์</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ขออภัย นี่ไม่ใช่รหัส QR สำหรับเชื่อมโยงอุปกรณ์ที่ถูกต้อง</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">เชื่อมโยงกับอุปกรณ์ Signal หรือไม่?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">เชื่อมโยงเดสก์ท็อปหรือ iPad กับบัญชี Signal นี้ โดยไปที่อุปกรณ์ที่คุณต้องการเชื่อมโยง จากนั้นให้แตะ \"เชื่อมโยงอุปกรณ์เครื่องใหม่\" แล้วสแกนคิวอาร์โค้ดอีกครั้ง โปรดตรวจสอบให้แน่ใจว่าคุณสแกนคิวอาร์โค้ดที่มาจาก Signal โดยตรงเท่านั้น</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ไม่สามารถสแกนรหัส QR ได้หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
@@ -2392,7 +2392,7 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">ขยายดูหน้ารวมสมาชิกที่ยกมือ</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">ประเทศของคุณ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
     <string name="CountryCodeFragment__search_by">ค้นหาโดยชื่อหรือหมายเลข</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
@@ -2478,7 +2478,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">เลือกประเทศ</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">คุณจะได้รับสายโทรเข้าเพื่อยืนยันหมายเลขนี้</string>
@@ -5634,7 +5634,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">เชื่อมโยงอุปกรณ์หรือไม่</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">ดูเหมือนว่าคุณพยายามจะเชื่อมโยงอุปกรณ์ Signal แตะดำเนินการต่อ จากนั้นให้แตะ \"เชื่อมโยงอุปกรณ์เครื่องใหม่\" แล้วสแกนคิวอาร์โค้ดอีกครั้ง</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">ดำเนินการต่อ</string>
 
@@ -7938,9 +7938,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">กุญแจสำรองใช้งานไม่ได้</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">ไม่พบข้อมูลสำรอง</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">กุญแจสำรองที่คุณใส่ถูกต้อง แต่ระบบไม่พบข้อมูลสำรองที่เชื่อมโยงกับกุญแจดังกล่าว หากคุณยังมีโทรศัพท์เครื่องเก่า โปรดตรวจสอบว่าการสำรองข้อมูลเปิดใช้งานอยู่และมีการดำเนินการสำรองข้อมูลเสร็จสมบูรณ์แล้ว จากนั้นโปรดลองใหม่อีกครั้ง</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ข้ามการกู้คืน</string>
 

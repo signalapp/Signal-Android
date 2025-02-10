@@ -962,7 +962,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Desktop သို့မဟုတ် iPad တွင် ဤ Signal အကောင့်ကိုသုံးပါ။</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">စက်အသစ်တစ်ခုကို ချိတ်ဆက်ရန်</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -2062,7 +2062,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">သင့်ဖုန်းဖြင့် ချိတ်ဆက်ထားသော ဖုန်းများ များနေသည်။ အချို့ချိတ်ဆက်မှုများအား ဖယ်လိုက်ပါ။</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ဝမ်းနည်းပါတယ်။ QR ကုဒ်မှားနေသည်။</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal အသုံးပြုသော ဖုန်းအားချိတ်မည်။</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Desktop သို့မဟုတ် iPad ကို ဤ Signal အကောင့်သို့ လင့်ခ်ချိတ်ရန် ချိတ်ထားသောစက််များသို့ သွားကာ \"စက်အသစ်တစ်ခုကို ချိတ်ဆက်ပါ\" ကိုနှိပ်ပြီး QR ကုဒ်ကို ထပ်မံစကင်န်ဖတ်ပါ။ Signal မှ တိုက်ရိုက်လာသော QR ကုဒ်များကိုသာ စကင်န်ဖတ်ပါ။</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
@@ -2392,11 +2392,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">လက်မြှောက်ထားသူများကို ဖြန့်၍ ကြည့်ရှုရန်</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">နိုင်ငံ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">အမည် သို့မဟုတ် နံပါတ်ဖြင့် ရှာရန်</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">အမည်မသိ နိုင်ငံ</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2478,7 +2478,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">အတည်ပြုချက်နံပါတ် သင်လက်ခံရရှိပါမည်၊ ဖုန်းခေါ်ဆိုခ သို့ SMS မက်ဆေ့ချ် ပို့ဆောင်ခ ကျသင့်မည်ဖြစ်သည်။</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">နိုင်ငံတစ်ခုကို ရွေးပါ</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">၎င်းနံပတ်ကို အတည်ပြုရန်အတွက် အဝင်ဖုန်းတစ်ခု လက်ခံရရှိပါမည်</string>
@@ -5634,7 +5634,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">စက်ကို ချိတ်ဆက်မည်လား။</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">သင်သည် Signal စက်တစ်လုံးကို ချိတ်ဆက်ရန် ကြိုးစားနေပုံရပါသည်။ ဆက်လုပ်ရန်ကို နှိပ်ကာ \"စက်အသစ်တစ်ခုကို ချိတ်ဆက်ပါ\" ကိုနှိပ်ပြီး QR ကုဒ်ကို ထပ်မံစကင်န်ဖတ်ပါ။</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">ဆက်လုပ်ရန်</string>
 
@@ -7938,9 +7938,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">ဘက်ခ်အပ်ကီး အကျုံးမဝင်ပါ</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">ဘက်ခ်အပ် ရှာမတွေ့ပါ</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">သင်ထည့်လိုက်သော ဘက်ခ်အပ်ကီးသည် မှန်ကန်သော်လည်း ၎င်းနှင့် ဆက်စပ်နေသည့် ဘက်ခ်အပ်မရှိပါ။ သင့်တွင် ဖုန်းအဟောင်းရှိနေသေးပါက ဘက်ခ်အပ်ကိုဖွင့်ထားပြီး ဘက်ခ်အပ်ကူးယူမှုပြီးသွားကြောင်း သေချာစေကာ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
 
