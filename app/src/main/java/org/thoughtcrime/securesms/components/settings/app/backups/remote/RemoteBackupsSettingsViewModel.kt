@@ -59,7 +59,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     RemoteBackupsSettingsState(
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-      backupSize = SignalStore.backup.totalBackupSize,
+      backupMediaSize = SignalStore.backup.totalBackupSize,
       backupsFrequency = SignalStore.backup.backupFrequency,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
@@ -162,7 +162,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         backupState = RemoteBackupsSettingsState.BackupState.Loading,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-        backupSize = SignalStore.backup.totalBackupSize,
+        backupMediaSize = SignalStore.backup.totalBackupSize,
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular

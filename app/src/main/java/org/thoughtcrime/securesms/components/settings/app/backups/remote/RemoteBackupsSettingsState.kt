@@ -17,7 +17,7 @@ data class RemoteBackupsSettingsState(
   val canRestoreUsingCellular: Boolean = false,
   val hasRedemptionError: Boolean = false,
   val backupState: BackupState = BackupState.Loading,
-  val backupSize: Long = 0,
+  val backupMediaSize: Long = 0,
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
