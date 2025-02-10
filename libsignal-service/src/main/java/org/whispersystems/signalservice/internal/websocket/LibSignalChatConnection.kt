@@ -12,7 +12,6 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.SingleSubject
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
-import okio.withLock
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.internal.CompletableFuture
 import org.signal.libsignal.net.AuthenticatedChatConnection
