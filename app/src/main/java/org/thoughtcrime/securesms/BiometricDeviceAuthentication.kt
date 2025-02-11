@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
@@ -36,20 +37,35 @@ class BiometricDeviceAuthentication(
     private val DISALLOWED_BIOMETRIC_VERSIONS = setOf(28, 29)
   }
 
+  private fun isDeviceSecure(context: Context): Boolean {
+    return if (Build.VERSION.SDK_INT > 23) {
+      ServiceUtil.getKeyguardManager(context).isDeviceSecure
+    } else {
+      ServiceUtil.getKeyguardManager(context).isKeyguardSecure
+    }
+  }
+
   fun canAuthenticate(context: Context): Boolean {
-    val isKeyGuardSecure = ServiceUtil.getKeyguardManager(context).isKeyguardSecure
-    return isKeyGuardSecure && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+    return isDeviceSecure(context) && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+  }
+
+  private fun isDontKeepActivitiesOn(context: Context): Boolean {
+    return Build.VERSION.SDK_INT < 30 && Settings.Global.getInt(context.contentResolver, Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0) != 0
   }
 
   fun authenticate(context: Context, force: Boolean, showConfirmDeviceCredentialIntent: () -> Unit): Boolean {
-    val isKeyGuardSecure = ServiceUtil.getKeyguardManager(context).isKeyguardSecure
+    val isDeviceSecure = isDeviceSecure(context)
 
-    if (!isKeyGuardSecure) {
-      Log.w(TAG, "Keyguard not secure...")
+    if (!isDeviceSecure) {
+      Log.w(TAG, "Device not secure...")
       return false
     }
 
-    return if (!DISALLOWED_BIOMETRIC_VERSIONS.contains(Build.VERSION.SDK_INT) && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
+    return if (
+      !isDontKeepActivitiesOn(context) &&
+      !DISALLOWED_BIOMETRIC_VERSIONS.contains(Build.VERSION.SDK_INT) &&
+      biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+    ) {
       if (force) {
         Log.i(TAG, "Listening for biometric authentication...")
         try {
@@ -89,10 +105,9 @@ class BiometricDeviceLockContract : ActivityResultContract<String, Int>() {
     return keyguardManager.createConfirmDeviceCredentialIntent(input, "")
   }
 
-  override fun parseResult(resultCode: Int, intent: Intent?) =
-    if (resultCode != Activity.RESULT_OK) {
-      BiometricDeviceAuthentication.NOT_AUTHENTICATED
-    } else {
-      BiometricDeviceAuthentication.AUTHENTICATED
-    }
+  override fun parseResult(resultCode: Int, intent: Intent?) = if (resultCode != Activity.RESULT_OK) {
+    BiometricDeviceAuthentication.NOT_AUTHENTICATED
+  } else {
+    BiometricDeviceAuthentication.AUTHENTICATED
+  }
 }

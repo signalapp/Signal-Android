@@ -260,7 +260,11 @@ class LinkDeviceFragment : ComposeFragment() {
   private inner class BiometricAuthenticationListener : BiometricPrompt.AuthenticationCallback() {
     override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
       Log.w(TAG, "Authentication error: $errorCode")
-      onAuthenticationFailed()
+      if (errorCode == BiometricPrompt.ERROR_CANCELED) {
+        findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+      } else {
+        onAuthenticationFailed()
+      }
     }
 
     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
