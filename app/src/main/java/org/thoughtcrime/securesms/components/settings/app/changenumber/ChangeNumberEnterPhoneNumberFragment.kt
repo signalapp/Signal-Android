@@ -15,14 +15,12 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.util.getParcelableCompat
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentChangeNumberEnterPhoneNumberBinding
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.util.ChangeNumberInputController
-import org.thoughtcrime.securesms.registrationv3.ui.countrycode.CountryCodeFragment
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -32,8 +30,6 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_change_number_enter_phone_number) {
 
   companion object {
-    private val TAG: String = Log.tag(ChangeNumberEnterPhoneNumberFragment::class.java)
-
     private const val OLD_NUMBER_COUNTRY_SELECT = "old_number_country"
     private const val NEW_NUMBER_COUNTRY_SELECT = "new_number_country"
   }
@@ -113,12 +109,12 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
     )
 
     parentFragmentManager.setFragmentResultListener(OLD_NUMBER_COUNTRY_SELECT, this) { _: String, bundle: Bundle ->
-      val country = bundle.getParcelableCompat(CountryCodeFragment.RESULT_COUNTRY, Country::class.java)!!
+      val country = bundle.getParcelableCompat(ChangeNumberCountryCodeFragment.RESULT_COUNTRY, Country::class.java)!!
       viewModel.setOldCountry(country)
     }
 
     parentFragmentManager.setFragmentResultListener(NEW_NUMBER_COUNTRY_SELECT, this) { _: String, bundle: Bundle ->
-      val country = bundle.getParcelableCompat(CountryCodeFragment.RESULT_COUNTRY, Country::class.java)!!
+      val country = bundle.getParcelableCompat(ChangeNumberCountryCodeFragment.RESULT_COUNTRY, Country::class.java)!!
       viewModel.setNewCountry(country)
     }
 

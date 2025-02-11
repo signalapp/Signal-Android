@@ -1,10 +1,12 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-package org.thoughtcrime.securesms.registration.ui.countrycode
+package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import android.os.Bundle
 import android.view.View
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
@@ -14,17 +16,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import org.signal.core.util.getParcelableCompat
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeSelectScreen
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeViewModel
 
 /**
- * Country picker fragment used in registration V1
+ * Country code picker specific to change number flow.
  */
-class CountryCodeFragment : ComposeFragment() {
+class ChangeNumberCountryCodeFragment : ComposeFragment() {
 
   companion object {
-    private val TAG = Log.tag(CountryCodeFragment::class.java)
+    const val RESULT_KEY = "result_key"
     const val REQUEST_KEY_COUNTRY = "request_key_country"
     const val REQUEST_COUNTRY = "country"
     const val RESULT_COUNTRY = "country"
@@ -36,6 +40,8 @@ class CountryCodeFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    val resultKey = arguments?.getString(RESULT_KEY) ?: REQUEST_KEY_COUNTRY
+
     CountryCodeSelectScreen(
       state = state,
       title = stringResource(R.string.CountryCodeFragment__your_country),
@@ -43,7 +49,7 @@ class CountryCodeFragment : ComposeFragment() {
       onDismissed = { findNavController().popBackStack() },
       onClick = { country ->
         setFragmentResult(
-          REQUEST_KEY_COUNTRY,
+          resultKey,
           bundleOf(
             RESULT_COUNTRY to country
           )

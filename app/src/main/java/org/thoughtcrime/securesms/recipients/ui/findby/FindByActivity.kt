@@ -76,8 +76,8 @@ import org.thoughtcrime.securesms.invites.InviteActions
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberVisualTransformation
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeSelectScreen
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeState
-import org.thoughtcrime.securesms.registrationv3.ui.countrycode.Screen
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.viewModel
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
@@ -165,7 +165,7 @@ class FindByActivity : PassphraseRequiredActivity() {
           }
 
           composable("select-country-prefix") {
-            Screen(
+            CountryCodeSelectScreen(
               state = CountryCodeState(
                 query = state.query,
                 filteredList = state.filteredCountries,
