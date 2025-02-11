@@ -159,7 +159,7 @@ public final class MultiShareSender {
       }
 
       if (!recipientSearchKey.isStory()) {
-        SignalDatabase.threads().setRead(threadId, true);
+        SignalDatabase.threads().setRead(threadId);
       }
 
       // XXX We must do this to avoid sending out messages to the same recipient with the same

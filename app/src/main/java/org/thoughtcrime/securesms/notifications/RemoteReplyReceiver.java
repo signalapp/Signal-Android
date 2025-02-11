@@ -120,7 +120,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                        .addStickyThread(new ConversationId(threadId, groupStoryId != Long.MIN_VALUE ? groupStoryId : null),
                                                 intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
 
-        List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId, true);
+        List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(threadId);
 
         AppDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(messageIds);

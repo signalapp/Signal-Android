@@ -245,7 +245,7 @@ object SyncMessageProcessor {
       }
 
       if (threadId != -1L) {
-        SignalDatabase.threads.setRead(threadId, true)
+        SignalDatabase.threads.setRead(threadId)
         AppDependencies.messageNotifier.updateNotification(context)
       }
 
@@ -959,7 +959,7 @@ object SyncMessageProcessor {
 
     val threadToLatestRead: MutableMap<Long, Long> = HashMap()
     val unhandled: Collection<MessageTable.SyncMessageId> = SignalDatabase.messages.setTimestampReadFromSyncMessage(readMessages, envelopeTimestamp, threadToLatestRead)
-    val markedMessages: List<MarkedMessageInfo> = SignalDatabase.threads.setReadSince(threadToLatestRead, false)
+    val markedMessages: List<MarkedMessageInfo> = SignalDatabase.threads.setReadSince(threadToLatestRead)
 
     if (Util.hasItems(markedMessages)) {
       log("Updating past SignalDatabase.messages: " + markedMessages.size)

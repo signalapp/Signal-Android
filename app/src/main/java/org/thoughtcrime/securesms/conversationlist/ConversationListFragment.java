@@ -1156,7 +1156,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       stopwatch.split("task-start");
 
-      List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(ids, false);
+      List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(ids);
       stopwatch.split("db");
 
       AppDependencies.getMessageNotifier().updateNotification(context);

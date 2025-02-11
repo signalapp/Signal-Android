@@ -271,7 +271,7 @@ class ConversationListViewModel(
   fun markChatFolderRead(chatFolder: ChatFolderRecord) {
     viewModelScope.launch(Dispatchers.IO) {
       val ids = SignalDatabase.threads.getThreadIdsByChatFolder(chatFolder)
-      val messageIds = SignalDatabase.threads.setRead(ids, false)
+      val messageIds = SignalDatabase.threads.setRead(ids)
       AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
       MarkReadReceiver.process(messageIds)
     }

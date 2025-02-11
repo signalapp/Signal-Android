@@ -702,8 +702,6 @@ class ConversationFragment :
 
     inputPanel.onPause()
 
-    viewModel.markLastSeen()
-
     EventBus.getDefault().unregister(this)
   }
 

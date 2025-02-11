@@ -734,7 +734,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun getViewedIncomingMessages(threadId: Long): List<MarkedMessageInfo> {
     return readableDatabase
-      .select(ID, FROM_RECIPIENT_ID, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE)
+      .select(ID, FROM_RECIPIENT_ID, DATE_RECEIVED, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE)
       .from(TABLE_NAME)
       .where("$THREAD_ID = ? AND $VIEWED_COLUMN > 0 AND $TYPE & ${MessageTypes.BASE_INBOX_TYPE} = ${MessageTypes.BASE_INBOX_TYPE}", threadId)
       .run()
@@ -756,7 +756,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     val results: List<MarkedMessageInfo> = readableDatabase
-      .select(ID, FROM_RECIPIENT_ID, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE)
+      .select(ID, FROM_RECIPIENT_ID, DATE_SENT, DATE_RECEIVED, TYPE, THREAD_ID, STORY_TYPE)
       .from(TABLE_NAME)
       .where("$ID IN (${Util.join(messageIds, ",")}) AND $VIEWED_COLUMN = 0")
       .run()
@@ -803,7 +803,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   fun setOutgoingGiftsRevealed(messageIds: List<Long>): List<MarkedMessageInfo> {
     val results: List<MarkedMessageInfo> = readableDatabase
-      .select(ID, TO_RECIPIENT_ID, DATE_SENT, THREAD_ID, STORY_TYPE)
+      .select(ID, TO_RECIPIENT_ID, DATE_SENT, DATE_RECEIVED, THREAD_ID, STORY_TYPE)
       .from(TABLE_NAME)
       .where("""$ID IN (${Util.join(messageIds, ",")}) AND ($outgoingTypeClause) AND ($TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} = ${MessageTypes.SPECIAL_TYPE_GIFT_BADGE}) AND $VIEWED_COLUMN = 0""")
       .run()
@@ -2346,13 +2346,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           UPDATE $TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID
           SET $READ = 1, $REACTIONS_UNREAD = 0, $REACTIONS_LAST_SEEN = ${System.currentTimeMillis()}
           WHERE $where
-          RETURNING $ID, $FROM_RECIPIENT_ID, $DATE_SENT, $TYPE, $EXPIRES_IN, $EXPIRE_STARTED, $THREAD_ID, $STORY_TYPE
+          RETURNING $ID, $FROM_RECIPIENT_ID, $DATE_SENT, $DATE_RECEIVED, $TYPE, $EXPIRES_IN, $EXPIRE_STARTED, $THREAD_ID, $STORY_TYPE
         """,
       arguments ?: emptyArray()
     ).readToList { cursor ->
       val threadId = cursor.requireLong(THREAD_ID)
       val recipientId = RecipientId.from(cursor.requireLong(FROM_RECIPIENT_ID))
       val dateSent = cursor.requireLong(DATE_SENT)
+      val dateReceived = cursor.requireLong(DATE_RECEIVED)
       val messageId = cursor.requireLong(ID)
       val expiresIn = cursor.requireLong(EXPIRES_IN)
       val expireStarted = cursor.requireLong(EXPIRE_STARTED)
@@ -2361,7 +2362,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val storyType = fromCode(CursorUtil.requireInt(cursor, STORY_TYPE))
 
       if (recipientId != releaseChannelId) {
-        MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType)
+        MarkedMessageInfo(threadId, syncMessageId, MessageId(messageId), expirationInfo, storyType, dateReceived)
       } else {
         null
       }
@@ -3005,12 +3006,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
     }
 
+    val dateReceived = editedMessage?.dateReceived ?: System.currentTimeMillis()
+
     val contentValues = ContentValues()
     contentValues.put(DATE_SENT, message.sentTimeMillis)
     contentValues.put(TYPE, type)
     contentValues.put(THREAD_ID, threadId)
     contentValues.put(READ, 1)
-    contentValues.put(DATE_RECEIVED, editedMessage?.dateReceived ?: System.currentTimeMillis())
+    contentValues.put(DATE_RECEIVED, dateReceived)
     contentValues.put(SMS_SUBSCRIPTION_ID, message.subscriptionId)
     contentValues.put(EXPIRES_IN, editedMessage?.expiresIn ?: message.expiresIn)
     contentValues.put(EXPIRE_TIMER_VERSION, editedMessage?.expireTimerVersion ?: message.expireTimerVersion)
@@ -3136,7 +3139,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       reactions.moveReactionsToNewMessage(messageId, message.messageToEdit)
     }
 
-    threads.updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId)
+    threads.updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId, dateReceived)
 
     if (!message.storyType.isStory) {
       if (message.outgoingQuote == null && editedMessage == null) {
@@ -4209,11 +4212,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .take(limit.toInt())
   }
 
-  fun getMessagePositionOnOrAfterTimestamp(threadId: Long, timestamp: Long): Int {
+  fun getMessagePositionByDateReceivedTimestamp(threadId: Long, timestamp: Long, inclusive: Boolean): Int {
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$THREAD_ID = $threadId AND $DATE_RECEIVED >= $timestamp AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL")
+      .where("$THREAD_ID = $threadId AND $DATE_RECEIVED ${if (inclusive) ">=" else ">"} $timestamp AND $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL")
       .run()
       .readToSingleInt()
   }
@@ -4593,7 +4596,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
       for (threadId in updatedThreads) {
         threads.updateReadState(threadId)
-        threads.setLastSeen(threadId)
       }
     }
 
@@ -5004,7 +5006,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         timetamp = this.requireLong(DATE_SENT)
       ),
       expirationInfo = null,
-      storyType = StoryType.fromCode(this.requireInt(STORY_TYPE))
+      storyType = StoryType.fromCode(this.requireInt(STORY_TYPE)),
+      dateReceived = this.requireLong(DATE_RECEIVED)
     )
   }
 
@@ -5070,6 +5073,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .run()
 
     return !hasMessages
+  }
+
+  fun getMostRecentReadMessageDateReceived(threadId: Long): Long? {
+    return readableDatabase
+      .select(DATE_RECEIVED)
+      .from("$TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID")
+      .where("$THREAD_ID = ? AND $READ = 1", threadId)
+      .orderBy("$DATE_RECEIVED DESC")
+      .limit(1)
+      .run()
+      .readToSingleLongOrNull()
   }
 
   fun getMostRecentAddressableMessages(threadId: Long, excludeExpiring: Boolean): Set<MessageRecord> {
@@ -5144,7 +5158,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val syncMessageId: SyncMessageId,
     val messageId: MessageId,
     val expirationInfo: ExpirationInfo?,
-    val storyType: StoryType
+    val storyType: StoryType,
+    val dateReceived: Long
   )
 
   data class InsertResult(

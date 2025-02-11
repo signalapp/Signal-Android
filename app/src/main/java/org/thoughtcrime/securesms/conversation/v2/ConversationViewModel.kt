@@ -577,10 +577,6 @@ class ConversationViewModel(
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun markLastSeen() {
-    repository.markLastSeen(threadId)
-  }
-
   fun onChatSearchOpened() {
     // Trigger the lazy load, so we can race initialization of the validator
     _jumpToDateValidator

@@ -471,6 +471,23 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .run()
 
     val messageRecords: List<MarkedMessageInfo> = messages.setAllMessagesRead()
+    val threadsToMessages = messageRecords.groupBy { it.threadId }
+
+    writableDatabase.withinTransaction {
+      threadsToMessages.forEach { (threadId, messages) ->
+        val latestDateReceived = messages.maxByOrNull { it.dateReceived }?.dateReceived
+        if (latestDateReceived != null && latestDateReceived > 0) {
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(
+              LAST_SCROLLED to 0,
+              LAST_SEEN to latestDateReceived
+            )
+            .where(ID_WHERE, threadId)
+            .run()
+        }
+      }
+    }
 
     messages.setAllReactionsSeen()
     notifyConversationListListeners()
@@ -487,43 +504,43 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun setEntireThreadRead(threadId: Long): List<MarkedMessageInfo> {
-    setRead(threadId, false)
+    setRead(threadId)
     return messages.setEntireThreadRead(threadId)
   }
 
-  fun setRead(threadId: Long, lastSeen: Boolean): List<MarkedMessageInfo> {
-    return setReadSince(Collections.singletonMap(threadId, -1L), lastSeen)
+  fun setRead(threadId: Long): List<MarkedMessageInfo> {
+    return setReadSince(Collections.singletonMap(threadId, -1L))
   }
 
-  fun setRead(conversationId: ConversationId, lastSeen: Boolean): List<MarkedMessageInfo> {
+  fun setRead(conversationId: ConversationId): List<MarkedMessageInfo> {
     return if (conversationId.groupStoryId == null) {
-      setRead(conversationId.threadId, lastSeen)
+      setRead(conversationId.threadId)
     } else {
       setGroupStoryReadSince(conversationId.threadId, conversationId.groupStoryId, System.currentTimeMillis())
     }
   }
 
-  fun setReadSince(conversationId: ConversationId, lastSeen: Boolean, sinceTimestamp: Long): List<MarkedMessageInfo> {
+  fun setReadSince(conversationId: ConversationId, sinceTimestamp: Long): List<MarkedMessageInfo> {
     return if (conversationId.groupStoryId != null) {
       setGroupStoryReadSince(conversationId.threadId, conversationId.groupStoryId, sinceTimestamp)
     } else {
-      setReadSince(conversationId.threadId, lastSeen, sinceTimestamp)
+      setReadSince(conversationId.threadId, sinceTimestamp)
     }
   }
 
-  fun setReadSince(threadId: Long, lastSeen: Boolean, sinceTimestamp: Long): List<MarkedMessageInfo> {
-    return setReadSince(Collections.singletonMap(threadId, sinceTimestamp), lastSeen)
+  fun setReadSince(threadId: Long, sinceTimestamp: Long): List<MarkedMessageInfo> {
+    return setReadSince(Collections.singletonMap(threadId, sinceTimestamp))
   }
 
-  fun setRead(threadIds: Collection<Long>, lastSeen: Boolean): List<MarkedMessageInfo> {
-    return setReadSince(threadIds.associateWith { -1L }, lastSeen)
+  fun setRead(threadIds: Collection<Long>): List<MarkedMessageInfo> {
+    return setReadSince(threadIds.associateWith { -1L })
   }
 
   private fun setGroupStoryReadSince(threadId: Long, groupStoryId: Long, sinceTimestamp: Long): List<MarkedMessageInfo> {
     return messages.setGroupStoryMessagesReadSince(threadId, groupStoryId, sinceTimestamp)
   }
 
-  fun setReadSince(threadIdToSinceTimestamp: Map<Long, Long>, lastSeen: Boolean): List<MarkedMessageInfo> {
+  fun setReadSince(threadIdToSinceTimestamp: Map<Long, Long>): List<MarkedMessageInfo> {
     val messageRecords: MutableList<MarkedMessageInfo> = LinkedList()
     var needsSync = false
 
@@ -537,16 +554,14 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
+        val lastSeenTimestamp = messages.getMostRecentReadMessageDateReceived(threadId) ?: System.currentTimeMillis()
 
         val contentValues = contentValuesOf(
           READ to ReadStatus.READ.serialize(),
           UNREAD_COUNT to unreadCount,
-          UNREAD_SELF_MENTION_COUNT to unreadMentionsCount
+          UNREAD_SELF_MENTION_COUNT to unreadMentionsCount,
+          LAST_SEEN to lastSeenTimestamp
         )
-
-        if (lastSeen) {
-          contentValues.put(LAST_SEEN, if (sinceTimestamp == -1L) System.currentTimeMillis() else sinceTimestamp)
-        }
 
         db.update(TABLE_NAME)
           .values(contentValues)
@@ -1199,16 +1214,6 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     setArchived(setOf(threadId), archive = false)
   }
 
-  fun setLastSeen(threadId: Long) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(LAST_SEEN to System.currentTimeMillis())
-      .where("$ID = ?", threadId)
-      .run()
-
-    notifyConversationListListeners()
-  }
-
   fun setLastScrolled(threadId: Long, lastScrolledTimestamp: Long) {
     writableDatabase
       .update(TABLE_NAME)
@@ -1488,14 +1493,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .run()
   }
 
-  fun updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId: Long) {
+  fun updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId: Long, lastSeenTimestamp: Long) {
+    val values = contentValuesOf(
+      HAS_SENT to 1,
+      LAST_SCROLLED to 0
+    )
+
+    if (lastSeenTimestamp > 0) {
+      values.put(LAST_SEEN, lastSeenTimestamp)
+    }
+
     writableDatabase
       .update(TABLE_NAME)
-      .values(
-        LAST_SEEN to System.currentTimeMillis(),
-        HAS_SENT to 1,
-        LAST_SCROLLED to 0
-      )
+      .values(values)
       .where("$ID = ?", threadId)
       .run()
   }

@@ -542,12 +542,6 @@ class ConversationRepository(
     AppDependencies.expiringMessageManager.scheduleDeletion(expirationInfos)
   }
 
-  fun markLastSeen(threadId: Long) {
-    SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.threads.setLastSeen(threadId)
-    }
-  }
-
   fun getEarliestMessageSentDate(threadId: Long): Single<Long> {
     return Single
       .fromCallable { SignalDatabase.messages.getEarliestMessageSentDate(threadId) }
