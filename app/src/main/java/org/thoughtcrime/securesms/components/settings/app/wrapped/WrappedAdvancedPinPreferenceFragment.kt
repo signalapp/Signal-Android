@@ -6,7 +6,7 @@ import org.thoughtcrime.securesms.preferences.AdvancedPinPreferenceFragment
 
 class WrappedAdvancedPinPreferenceFragment : SettingsWrapperFragment() {
   override fun getFragment(): Fragment {
-    toolbar.setTitle(R.string.preferences__advanced_pin_settings)
+    toolbar.setTitle(R.string.preferences__advanced_pin_settings_title)
     return AdvancedPinPreferenceFragment()
   }
 }
