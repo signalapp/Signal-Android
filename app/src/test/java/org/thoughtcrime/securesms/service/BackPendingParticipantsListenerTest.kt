@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 
-class BackListenerTest {
+class BackPendingParticipantsListenerTest {
 
   @Test
   fun testBackupJitterExactlyWithinJitterWindow() {

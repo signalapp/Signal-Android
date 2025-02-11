@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.webrtc.v2.PendingParticipantsListener
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
@@ -32,7 +33,7 @@ class PendingParticipantsView @JvmOverloads constructor(
     inflate(context, R.layout.pending_participant_view, this)
   }
 
-  var listener: Listener? = null
+  var listener: PendingParticipantsListener? = null
 
   private val avatar: AvatarImageView = findViewById(R.id.pending_participants_avatar)
   private val name: TextView = findViewById(R.id.pending_participants_name)
@@ -80,27 +81,5 @@ class PendingParticipantsView @JvmOverloads constructor(
     }
 
     visible = true
-  }
-
-  interface Listener {
-    /**
-     * Display the sheet containing the request for the top level participant
-     */
-    fun onLaunchRecipientSheet(pendingRecipient: Recipient)
-
-    /**
-     * Given recipient should be admitted to the call
-     */
-    fun onAllowPendingRecipient(pendingRecipient: Recipient)
-
-    /**
-     * Given recipient should be rejected from the call
-     */
-    fun onRejectPendingRecipient(pendingRecipient: Recipient)
-
-    /**
-     * Display the sheet containing all of the requests for the given call
-     */
-    fun onLaunchPendingRequestsSheet()
   }
 }

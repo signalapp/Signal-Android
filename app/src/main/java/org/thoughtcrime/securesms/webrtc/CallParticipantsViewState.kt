@@ -7,8 +7,7 @@ class CallParticipantsViewState(
   callParticipantsState: CallParticipantsState,
   ephemeralState: WebRtcEphemeralState,
   val isPortrait: Boolean,
-  val isLandscapeEnabled: Boolean,
-  val isStartedFromCallLink: Boolean
+  val isLandscapeEnabled: Boolean
 ) {
 
   val callParticipantsState = CallParticipantsState.update(callParticipantsState, ephemeralState)

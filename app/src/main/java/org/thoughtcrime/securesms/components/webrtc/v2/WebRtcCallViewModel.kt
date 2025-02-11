@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
-import org.thoughtcrime.securesms.service.webrtc.state.PendingParticipantsState
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
 import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager

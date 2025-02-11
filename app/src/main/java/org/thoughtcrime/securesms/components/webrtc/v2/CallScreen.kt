@@ -34,8 +34,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -81,8 +79,14 @@ fun CallScreen(
   webRtcCallState: WebRtcViewModel.State,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
-  callControlsCallback: CallControlsCallback = CallControlsCallback.Empty,
+  callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
+    skipHiddenState = callControlsState.skipHiddenState,
+    onControlsToggled = {}
+  ),
+  callScreenControlsListener: CallScreenControlsListener = CallScreenControlsListener.Empty,
+  callScreenSheetDisplayListener: CallScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
   callParticipantsPagerState: CallParticipantsPagerState,
+  pendingParticipantsListener: PendingParticipantsListener = PendingParticipantsListener.Empty,
   overflowParticipants: List<CallParticipant>,
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
@@ -98,20 +102,8 @@ fun CallScreen(
     mutableFloatStateOf(0f)
   }
 
-  val skipHiddenState by rememberUpdatedState(newValue = callControlsState.skipHiddenState)
-  val valueChangeOperation: (SheetValue) -> Boolean = remember {
-    {
-      !(it == SheetValue.Hidden && skipHiddenState)
-    }
-  }
-
+  val scaffoldState = remember(callScreenController) { callScreenController.scaffoldState }
   val scope = rememberCoroutineScope()
-  val scaffoldState = rememberBottomSheetScaffoldState(
-    bottomSheetState = rememberStandardBottomSheetState(
-      confirmValueChange = valueChangeOperation,
-      skipHiddenState = false
-    )
-  )
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 
   BoxWithConstraints {
@@ -123,7 +115,7 @@ fun CallScreen(
     var peekHeight by remember { mutableFloatStateOf(88f) }
 
     BottomSheetScaffold(
-      scaffoldState = scaffoldState,
+      scaffoldState = callScreenController.scaffoldState,
       sheetDragHandle = null,
       sheetPeekHeight = peekHeight.dp,
       sheetMaxWidth = 540.dp,
@@ -153,7 +145,8 @@ fun CallScreen(
           if (callControlsAlpha > 0f) {
             CallControls(
               callControlsState = callControlsState,
-              callControlsCallback = callControlsCallback,
+              callScreenControlsListener = callScreenControlsListener,
+              callScreenSheetDisplayListener = callScreenSheetDisplayListener,
               displayVideoTooltip = callScreenState.displayVideoTooltip,
               modifier = Modifier
                 .fillMaxWidth()
@@ -182,7 +175,8 @@ fun CallScreen(
           callControlsState = callControlsState,
           callScreenState = callScreenState,
           onPipClick = onLocalPictureInPictureClicked,
-          onControlsToggled = onControlsToggled
+          onControlsToggled = onControlsToggled,
+          callScreenController = callScreenController
         )
       }
 
@@ -202,7 +196,8 @@ fun CallScreen(
             callControlsState = callControlsState,
             callScreenState = callScreenState,
             onPipClick = onLocalPictureInPictureClicked,
-            onControlsToggled = onControlsToggled
+            onControlsToggled = onControlsToggled,
+            callScreenController = callScreenController
           )
         }
       }
@@ -251,6 +246,17 @@ fun CallScreen(
           .padding(bottom = padding)
           .padding(bottom = 20.dp)
       )
+
+      val state = remember(callScreenState.pendingParticipantsState) {
+        callScreenState.pendingParticipantsState
+      }
+
+      if (state != null) {
+        PendingParticipants(
+          pendingParticipantsState = state,
+          pendingParticipantsListener = pendingParticipantsListener
+        )
+      }
     }
   }
 
@@ -272,6 +278,7 @@ private fun BoxScope.Viewport(
   scaffoldState: BottomSheetScaffoldState,
   callControlsState: CallControlsState,
   callScreenState: CallScreenState,
+  callScreenController: CallScreenController,
   onPipClick: () -> Unit,
   onControlsToggled: (Boolean) -> Unit
 ) {
@@ -288,7 +295,7 @@ private fun BoxScope.Viewport(
     val scope = rememberCoroutineScope()
 
     val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState && !callScreenState.isDisplayingAudioToggleSheet)
-    LaunchedEffect(hideSheet) {
+    LaunchedEffect(callScreenController.restartTimerRequests, hideSheet) {
       if (hideSheet) {
         delay(5.seconds)
         scaffoldState.bottomSheetState.hide()
@@ -309,13 +316,7 @@ private fun BoxScope.Viewport(
             .clickable(
               onClick = {
                 scope.launch {
-                  if (scaffoldState.bottomSheetState.isVisible) {
-                    scaffoldState.bottomSheetState.hide()
-                    onControlsToggled(false)
-                  } else {
-                    onControlsToggled(true)
-                    scaffoldState.bottomSheetState.show()
-                  }
+                  callScreenController.handleEvent(CallScreenController.Event.TOGGLE_CONTROLS)
                 }
               },
               enabled = !callControlsState.skipHiddenState

@@ -130,7 +130,7 @@ public final class WebRtcControls {
   public @Px int getFold() {
     return foldableState.getFoldPoint();
   }
-
+  
   public @StringRes int getStartCallButtonText() {
     if (isGroupCall()) {
       if (groupCallState == GroupCallState.FULL) {

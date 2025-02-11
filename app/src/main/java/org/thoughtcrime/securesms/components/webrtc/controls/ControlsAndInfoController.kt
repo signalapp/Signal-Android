@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
+import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsVisibilityListener
 import org.thoughtcrime.securesms.components.webrtc.v2.CallInfoCallbacks
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
@@ -125,7 +126,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
-  private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
+  private val callControlsVisibilityListeners = mutableSetOf<CallControlsVisibilityListener>()
 
   private val handler: Handler?
     get() = webRtcCallView.handler
@@ -246,8 +247,8 @@ class ControlsAndInfoController private constructor(
     callInfoComposeView.translationY = INFO_TRANSLATION_DISTANCE
   }
 
-  fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {
-    return bottomSheetVisibilityListeners.add(listener)
+  fun addVisibilityListener(listener: CallControlsVisibilityListener): Boolean {
+    return callControlsVisibilityListeners.add(listener)
   }
 
   fun onStateRestored() {
@@ -279,7 +280,7 @@ class ControlsAndInfoController private constructor(
     behavior.isHideable = false
     behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-    bottomSheetVisibilityListeners.forEach { it.onShown() }
+    callControlsVisibilityListeners.forEach { it.onShown() }
   }
 
   private fun hide(delay: Long = 0L) {
@@ -288,7 +289,7 @@ class ControlsAndInfoController private constructor(
         behavior.isHideable = true
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
 
-        bottomSheetVisibilityListeners.forEach { it.onHidden() }
+        callControlsVisibilityListeners.forEach { it.onHidden() }
       }
     } else {
       cancelScheduledHide()
@@ -489,10 +490,5 @@ class ControlsAndInfoController private constructor(
     fun hasChanged(controlHeight: Int, coordinatorHeight: Int): Boolean {
       return controlHeight != this.controlHeight || coordinatorHeight != this.coordinatorHeight
     }
-  }
-
-  interface BottomSheetVisibilityListener {
-    fun onShown()
-    fun onHidden()
   }
 }
