@@ -173,7 +173,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
 
     Log.i(TAG, "Enqueuing job chain.")
     val updatedPayment = SignalDatabase.inAppPayments.getById(inAppPayment.id)
-    InAppPaymentOneTimeContextJob.createJobChain(updatedPayment!!).enqueue()
+    InAppPaymentOneTimeContextJob.createJobChain(updatedPayment!!, isFromAuthCheck = true).enqueue()
     return CheckResult.Success(Unit)
   }
 

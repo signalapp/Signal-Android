@@ -57,12 +57,12 @@ class InAppPaymentOneTimeContextJob private constructor(
       )
     }
 
-    fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
+    fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false, isFromAuthCheck: Boolean = false): Chain {
       return when (inAppPayment.type) {
         InAppPaymentType.ONE_TIME_DONATION -> {
           AppDependencies.jobManager
             .startChain(create(inAppPayment))
-            .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+            .then(InAppPaymentRedemptionJob.create(inAppPayment = inAppPayment, makePrimary = makePrimary, isFromAuthCheck = isFromAuthCheck))
             .then(RefreshOwnProfileJob())
             .then(MultiDeviceProfileContentUpdateJob())
         }

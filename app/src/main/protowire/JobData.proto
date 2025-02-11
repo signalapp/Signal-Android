@@ -69,6 +69,7 @@ message InAppPaymentRedemptionJobData {
   }
 
   bool makePrimary = 3;
+  bool isFromAuthCheck = 4;
 }
 
 message DeleteSyncJobData {

@@ -20,10 +20,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -106,20 +104,17 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   private fun handleLaunchExternal(intent: Intent) {
-    lifecycleDisposable += Completable
-      .fromAction {
-        SignalDatabase.inAppPayments.update(args.inAppPayment)
-      }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe {
-        result = bundleOf(
-          LAUNCHED_EXTERNAL to true
-        )
+    startActivity(intent)
 
-        startActivity(intent)
-        dismissAllowingStateLoss()
-      }
+    SignalExecutors.BOUNDED_IO.execute {
+      SignalDatabase.inAppPayments.update(args.inAppPayment)
+    }
+
+    result = bundleOf(
+      LAUNCHED_EXTERNAL to true
+    )
+
+    dismissAllowingStateLoss()
   }
 
   private inner class Stripe3DSWebClient : WebViewClient() {
