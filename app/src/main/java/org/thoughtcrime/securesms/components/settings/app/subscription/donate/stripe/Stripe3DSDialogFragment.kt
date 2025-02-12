@@ -89,7 +89,12 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
           gravity = Gravity.TOP or Gravity.CENTER_HORIZONTAL
         }
         setOnClickListener {
-          handleLaunchExternal(Intent(Intent.ACTION_VIEW, args.uri))
+          ExternalNavigationHelper.maybeLaunchExternalNavigationIntent(
+            context,
+            args.uri
+          ) {
+            handleLaunchExternal(it)
+          }
         }
       }
       binding.root.addView(openApp)
