@@ -1236,9 +1236,7 @@ class ConversationFragment :
   }
 
   private fun presentIdentityRecordsState(identityRecordsState: IdentityRecordsState) {
-    if (!identityRecordsState.isGroup) {
-      binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
-    }
+    binding.conversationTitleView.root.setVerified(identityRecordsState.isVerified)
 
     if (identityRecordsState.isUnverified) {
       binding.conversationBanner.showUnverifiedBanner(identityRecordsState.identityRecords)
