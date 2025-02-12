@@ -346,6 +346,9 @@ sealed class ConversationSettingsViewModel(
         val canShowMore = !groupState.groupMembersExpanded && fullMembers.size > 6
 
         state.copy(
+          buttonStripState = state.buttonStripState.copy(
+            isVideoAvailable = state.buttonStripState.isVideoAvailable && fullMembers.size > 1
+          ),
           specificSettingsState = groupState.copy(
             allMembers = fullMembers,
             members = if (!canShowMore) fullMembers else fullMembers.take(5),
