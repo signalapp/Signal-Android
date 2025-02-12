@@ -1525,7 +1525,7 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
       @JvmStatic
       fun from(event: CallEvent.Event?): Event? {
         return when (event) {
-          null, CallEvent.Event.UNKNOWN_ACTION, CallEvent.Event.OBSERVED -> null
+          null, CallEvent.Event.UNKNOWN_EVENT, CallEvent.Event.OBSERVED -> null
           CallEvent.Event.ACCEPTED -> ACCEPTED
           CallEvent.Event.NOT_ACCEPTED -> NOT_ACCEPTED
           CallEvent.Event.DELETE -> DELETE

@@ -274,7 +274,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
   @VisibleForTesting
   fun processEnvelope(bufferedProtocolStore: BufferedProtocolStore, envelope: Envelope, serverDeliveredTimestamp: Long): List<FollowUpOperation>? {
     return when (envelope.type) {
-      Envelope.Type.RECEIPT -> {
+      Envelope.Type.SERVER_DELIVERY_RECEIPT -> {
         processReceipt(envelope)
         null
       }

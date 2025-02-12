@@ -28,7 +28,7 @@ public final class AttachmentPointerUtil {
                                               pointer.height != null ? pointer.height : 0,
                                               pointer.digest != null ? Optional.of(pointer.digest.toByteArray()) : Optional.empty(),
                                               pointer.incrementalMac != null ? Optional.of(pointer.incrementalMac.toByteArray()) : Optional.empty(),
-                                              pointer.incrementalMacChunkSize != null ? pointer.incrementalMacChunkSize : 0,
+                                              pointer.chunkSize != null ? pointer.chunkSize : 0,
                                               pointer.fileName != null ? Optional.of(pointer.fileName) : Optional.empty(),
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.VOICE_MESSAGE.getValue())) != 0,
                                               ((pointer.flags != null ? pointer.flags : 0) & FlagUtil.toBinaryFlag(AttachmentPointer.Flags.BORDERLESS.getValue())) != 0,
@@ -36,7 +36,7 @@ public final class AttachmentPointerUtil {
                                               pointer.caption != null ? Optional.of(pointer.caption) : Optional.empty(),
                                               pointer.blurHash != null ? Optional.of(pointer.blurHash) : Optional.empty(),
                                               pointer.uploadTimestamp != null ? pointer.uploadTimestamp : 0,
-                                              UuidUtil.fromByteStringOrNull(pointer.uuid));
+                                              UuidUtil.fromByteStringOrNull(pointer.clientUuid));
   }
 
   public static AttachmentPointer createAttachmentPointer(SignalServiceAttachmentPointer attachment) {
@@ -53,7 +53,7 @@ public final class AttachmentPointerUtil {
     }
 
     if (attachment.getIncrementalMacChunkSize() > 0) {
-      builder.incrementalMacChunkSize(attachment.getIncrementalMacChunkSize());
+      builder.chunkSize(attachment.getIncrementalMacChunkSize());
     }
 
     if (attachment.getRemoteId() instanceof SignalServiceAttachmentRemoteId.V2) {
@@ -105,7 +105,7 @@ public final class AttachmentPointerUtil {
     }
 
     if (attachment.getUuid() != null) {
-      builder.uuid(UuidUtil.toByteString(attachment.getUuid()));
+      builder.clientUuid(UuidUtil.toByteString(attachment.getUuid()));
     }
 
     return builder.build();

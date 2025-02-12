@@ -21,10 +21,10 @@ public final class MobileCoinPublicAddressProfileUtil {
     byte[] signature = identityKeyPair.getPrivateKey().calculateSignature(publicAddressBytes);
 
     return new PaymentAddress.Builder()
-                             .mobileCoinAddress(new PaymentAddress.MobileCoinAddress.Builder()
-                                                                                    .address(ByteString.of(publicAddressBytes))
-                                                                                    .signature(ByteString.of(signature))
-                                                                                    .build())
+                             .mobileCoin(new PaymentAddress.MobileCoin.Builder()
+                                             .publicAddress(ByteString.of(publicAddressBytes))
+                                             .signature(ByteString.of(signature))
+                                             .build())
                              .build();
   }
 
@@ -37,16 +37,16 @@ public final class MobileCoinPublicAddressProfileUtil {
                                                       @NonNull IdentityKey identityKey)
       throws PaymentsAddressException
   {
-    if (paymentAddress.mobileCoinAddress == null) {
+    if (paymentAddress.mobileCoin == null) {
       throw new PaymentsAddressException(PaymentsAddressException.Code.NO_ADDRESS);
     }
 
-    if (paymentAddress.mobileCoinAddress.address == null || paymentAddress.mobileCoinAddress.signature == null) {
+    if (paymentAddress.mobileCoin.publicAddress == null || paymentAddress.mobileCoin.signature == null) {
       throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS_SIGNATURE);
     }
 
-    byte[] bytes     = paymentAddress.mobileCoinAddress.address.toByteArray();
-    byte[] signature = paymentAddress.mobileCoinAddress.signature.toByteArray();
+    byte[] bytes     = paymentAddress.mobileCoin.publicAddress.toByteArray();
+    byte[] signature = paymentAddress.mobileCoin.signature.toByteArray();
 
     if (signature.length != 64 || !identityKey.getPublicKey().verifySignature(bytes, signature)) {
       throw new PaymentsAddressException(PaymentsAddressException.Code.INVALID_ADDRESS_SIGNATURE);

@@ -57,34 +57,6 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
       contactDetails.avatar(avatarBuilder.build());
     }
 
-    if (contact.getColor().isPresent()) {
-      contactDetails.color(contact.getColor().get());
-    }
-
-    if (contact.getVerified().isPresent()) {
-      Verified.State state;
-
-      switch (contact.getVerified().get().getVerified()) {
-        case VERIFIED:
-          state = Verified.State.VERIFIED; break;
-        case UNVERIFIED:
-          state = Verified.State.UNVERIFIED; break;
-        default:
-          state = Verified.State.DEFAULT; break;
-      }
-
-      Verified.Builder verifiedBuilder = new Verified.Builder()
-          .identityKey(ByteString.of(contact.getVerified().get().getIdentityKey().serialize()))
-          .destinationAci(contact.getVerified().get().getDestination().getServiceId().toString())
-          .state(state);
-
-      contactDetails.verified(verifiedBuilder.build());
-    }
-
-    if (contact.getProfileKey().isPresent()) {
-      contactDetails.profileKey(ByteString.of(contact.getProfileKey().get().serialize()));
-    }
-
     if (contact.getExpirationTimer().isPresent()) {
       contactDetails.expireTimer(contact.getExpirationTimer().get());
     }
@@ -92,8 +64,6 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
     if (contact.getInboxPosition().isPresent()) {
       contactDetails.inboxPosition(contact.getInboxPosition().get());
     }
-
-    contactDetails.archived(contact.isArchived());
 
     byte[] serializedContactDetails = contactDetails.build().encode();
 

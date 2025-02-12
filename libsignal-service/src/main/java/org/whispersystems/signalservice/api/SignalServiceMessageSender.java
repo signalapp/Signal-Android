@@ -1391,7 +1391,7 @@ public class SignalServiceMessageSender {
         unidentifiedDeliveryStatuses.add(new SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
                                                                                         .destinationServiceId(result.getAddress().getServiceId().toString())
                                                                                         .unidentified(false)
-                                                                                        .destinationIdentityKey(identity)
+                                                                                        .destinationPniIdentityKey(identity)
                                                                                         .build());
       }
     }
@@ -1664,10 +1664,6 @@ public class SignalServiceMessageSender {
     Content.Builder          container   = new Content.Builder();
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
-
-    if (keysMessage.getStorageService() != null) {
-      builder.storageService(ByteString.of(keysMessage.getStorageService().serialize()));
-    }
 
     if (keysMessage.getMaster() != null) {
       builder.master(ByteString.of(keysMessage.getMaster().serialize()));

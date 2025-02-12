@@ -157,7 +157,6 @@ object SyncMessageProcessor {
       syncMessage.fetchLatest?.type != null -> handleSynchronizeFetchMessage(syncMessage.fetchLatest!!.type!!, envelope.timestamp!!)
       syncMessage.messageRequestResponse != null -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse!!, envelope.timestamp!!)
       syncMessage.outgoingPayment != null -> handleSynchronizeOutgoingPayment(syncMessage.outgoingPayment!!, envelope.timestamp!!)
-      syncMessage.keys?.storageService != null -> handleSynchronizeKeys(syncMessage.keys!!.storageService!!, envelope.timestamp!!)
       syncMessage.contacts != null -> handleSynchronizeContacts(syncMessage.contacts!!, envelope.timestamp!!)
       syncMessage.callEvent != null -> handleSynchronizeCallEvent(syncMessage.callEvent!!, envelope.timestamp!!)
       syncMessage.callLinkUpdate != null -> handleSynchronizeCallLink(syncMessage.callLinkUpdate!!, envelope.timestamp!!)
@@ -262,7 +261,7 @@ object SyncMessageProcessor {
 
   private fun handlePniIdentityKeys(envelope: Envelope, sent: Sent) {
     for (status in sent.unidentifiedStatus) {
-      if (status.destinationIdentityKey == null) {
+      if (status.destinationPniIdentityKey == null) {
         continue
       }
 
@@ -280,7 +279,7 @@ object SyncMessageProcessor {
 
       try {
         log(envelope.timestamp!!, "Saving identity from sent transcript for $pni")
-        val identityKey = IdentityKey(status.destinationIdentityKey!!.toByteArray())
+        val identityKey = IdentityKey(status.destinationPniIdentityKey!!.toByteArray())
         AppDependencies.protocolStore.aci().identities().saveIdentity(address, identityKey)
       } catch (e: InvalidKeyException) {
         warn(envelope.timestamp!!, "Failed to deserialize identity key for $pni")
@@ -1262,7 +1261,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    if (callEvent.id == null) {
+    if (callEvent.callId == null) {
       log(envelopeTimestamp, "Synchronize call event missing call id, ignoring. type: ${callEvent.type}")
       return
     }
@@ -1346,7 +1345,7 @@ object SyncMessageProcessor {
         roomId,
         CallLinkCredentials(
           callLinkUpdate.rootKey!!.toByteArray(),
-          callLinkUpdate.adminPassKey?.toByteArray()
+          callLinkUpdate.adminPasskey?.toByteArray()
         )
       )
     } else {
@@ -1357,7 +1356,7 @@ object SyncMessageProcessor {
           roomId = roomId,
           credentials = CallLinkCredentials(
             linkKeyBytes = callLinkRootKey.keyBytes,
-            adminPassBytes = callLinkUpdate.adminPassKey?.toByteArray()
+            adminPassBytes = callLinkUpdate.adminPasskey?.toByteArray()
           ),
           state = SignalCallLinkState(),
           deletionTimestamp = 0L
@@ -1371,7 +1370,7 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeOneToOneCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    val callId: Long = callEvent.id!!
+    val callId: Long = callEvent.callId!!
     val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
     val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
@@ -1410,7 +1409,7 @@ object SyncMessageProcessor {
 
   @Throws(BadGroupIdException::class)
   private fun handleSynchronizeGroupOrAdHocCallEvent(callEvent: SyncMessage.CallEvent, envelopeTimestamp: Long) {
-    val callId: Long = callEvent.id!!
+    val callId: Long = callEvent.callId!!
     val timestamp: Long = callEvent.timestamp ?: 0L
     val type: CallTable.Type? = CallTable.Type.from(callEvent.type)
     val direction: CallTable.Direction? = CallTable.Direction.from(callEvent.direction)
@@ -1491,11 +1490,11 @@ object SyncMessageProcessor {
       }
     } else {
       when (event) {
-        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedCallFromSyncEvent(callEvent.id!!, recipient.id, type, direction, timestamp)
-        CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.id!!, recipient.id, direction, timestamp)
+        CallTable.Event.DELETE -> SignalDatabase.calls.insertDeletedCallFromSyncEvent(callEvent.callId!!, recipient.id, type, direction, timestamp)
+        CallTable.Event.ACCEPTED -> SignalDatabase.calls.insertAcceptedGroupCall(callEvent.callId!!, recipient.id, direction, timestamp)
         CallTable.Event.NOT_ACCEPTED -> {
           if (callEvent.direction == SyncMessage.CallEvent.Direction.INCOMING) {
-            SignalDatabase.calls.insertDeclinedGroupCall(callEvent.id!!, recipient.id, timestamp)
+            SignalDatabase.calls.insertDeclinedGroupCall(callEvent.callId!!, recipient.id, timestamp)
           } else {
             warn(envelopeTimestamp, "Invalid direction OUTGOING for event NOT_ACCEPTED for non-existing call")
           }
@@ -1677,7 +1676,7 @@ object SyncMessageProcessor {
   }
 
   private fun SyncMessage.DeleteForMe.AttachmentDelete.toSyncAttachmentId(syncMessageId: MessageTable.SyncMessageId?, envelopeTimestamp: Long): AttachmentTable.SyncAttachmentId? {
-    val uuid = UuidUtil.fromByteStringOrNull(uuid)
+    val uuid = UuidUtil.fromByteStringOrNull(clientUuid)
     val digest = fallbackDigest?.toByteArray()
     val plaintextHash = fallbackPlaintextHash?.let { Base64.encodeWithPadding(it.toByteArray()) }
 

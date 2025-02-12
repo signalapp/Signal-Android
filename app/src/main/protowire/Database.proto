@@ -12,6 +12,7 @@ option java_package        = "org.thoughtcrime.securesms.database.model.database
 option java_multiple_files = true;
 
 import Backup.proto;
+import SignalServiceLegacy.proto;
 
 // DEPRECATED -- only here for database migrations
 message ReactionList {

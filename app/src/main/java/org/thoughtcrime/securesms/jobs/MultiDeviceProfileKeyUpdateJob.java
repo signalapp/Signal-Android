@@ -81,11 +81,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
                                 Optional.empty(),
                                 Optional.empty(),
                                 Optional.empty(),
-                                profileKey,
-                                Optional.empty(),
-                                Optional.empty(),
-                                Optional.empty(),
-                                false));
+                                Optional.empty()));
 
     out.close();
 

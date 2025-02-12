@@ -258,7 +258,7 @@ object MessageContentFuzzer {
                   authorServiceId = Recipient.resolved(message.first).requireAci().toString(),
                   sentTimestamp = message.second
                 ),
-                uuid = uuid?.let { UuidUtil.toByteString(it) },
+                clientUuid = uuid?.let { UuidUtil.toByteString(it) },
                 fallbackDigest = digest?.toByteString(),
                 fallbackPlaintextHash = plainTextHash?.let { Base64.decodeOrNull(it)?.toByteString() }
               )

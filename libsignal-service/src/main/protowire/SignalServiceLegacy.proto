@@ -1,0 +1,40 @@
+/*
+ * Copyright 2020-2022 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+/**
+ * This file contains protos that were removed from SignalService.proto, but are still needed by our application,
+ * typically for serialization purposes.
+ */
+
+syntax = "proto2";
+
+package signalservice;
+
+option java_package = "org.whispersystems.signalservice.internal.push";
+option java_outer_classname = "SignalServiceProtos";
+
+import SignalService.proto;
+
+message GroupContext {
+  enum Type {
+    UNKNOWN = 0;
+    UPDATE = 1;
+    DELIVER = 2;
+    QUIT = 3;
+    REQUEST_INFO = 4;
+  }
+
+  message Member {
+    reserved     /* uuid */ 1; // removed
+    optional string e164 = 2;
+  }
+
+  optional bytes id = 1;
+  optional Type type = 2;
+  optional string name = 3;
+  repeated string membersE164 = 4;
+  repeated Member members = 6;
+  optional signalservice.AttachmentPointer avatar = 5;
+}

@@ -35,13 +35,9 @@ public class DeviceContactsInputStreamTest {
         e164First,
         Optional.of("Teal'c"),
         Optional.empty(),
-        Optional.of("ultramarine"),
-        Optional.of(new VerifiedMessage(new SignalServiceAddress(aciFirst.get(), e164First), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
-        Optional.of(generateProfileKey()),
         Optional.of(0),
         Optional.of(0),
-        Optional.of(0),
-        false
+        Optional.of(0)
     );
 
     DeviceContact second = new DeviceContact(
@@ -49,13 +45,9 @@ public class DeviceContactsInputStreamTest {
         e164Second,
         Optional.of("Bra'tac"),
         Optional.empty(),
-        Optional.of("ultramarine"),
-        Optional.of(new VerifiedMessage(new SignalServiceAddress(aciSecond.get(), e164Second), generateIdentityKey(), VerifiedMessage.VerifiedState.DEFAULT, System.currentTimeMillis())),
-        Optional.of(generateProfileKey()),
         Optional.of(0),
         Optional.of(0),
-        Optional.of(0),
-        false
+        Optional.of(0)
     );
 
     output.write(first);
@@ -72,24 +64,9 @@ public class DeviceContactsInputStreamTest {
     assertEquals(first.getAci(), readFirst.getAci());
     assertEquals(first.getE164(), readFirst.getE164());
     assertEquals(first.getName(), readFirst.getName());
-    assertEquals(first.getColor(), readFirst.getColor());
-    assertEquals(first.getVerified().get().getIdentityKey(), readFirst.getVerified().get().getIdentityKey());
-    assertEquals(first.isArchived(), readFirst.isArchived());
 
     assertEquals(second.getAci(), readSecond.getAci());
     assertEquals(second.getE164(), readSecond.getE164());
     assertEquals(second.getName(), readSecond.getName());
-    assertEquals(second.getColor(), readSecond.getColor());
-    assertEquals(second.getVerified().get().getIdentityKey(), readSecond.getVerified().get().getIdentityKey());
-    assertEquals(second.isArchived(), readSecond.isArchived());
-  }
-
-  private static IdentityKey generateIdentityKey() {
-    ECKeyPair djbKeyPair = Curve.generateKeyPair();
-    return new IdentityKey(djbKeyPair.getPublicKey());
-  }
-
-  private static ProfileKey generateProfileKey() throws InvalidInputException {
-     return new ProfileKey(Util.getSecretBytes(32));
   }
 }

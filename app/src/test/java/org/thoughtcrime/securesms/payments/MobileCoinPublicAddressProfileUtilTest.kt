@@ -46,12 +46,12 @@ class MobileCoinPublicAddressProfileUtilTest {
     val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
-    val mobileCoinAddress = signedPaymentAddress.mobileCoinAddress!!
+    val mobileCoinAddress = signedPaymentAddress.mobileCoin!!
 
     val signature = mobileCoinAddress.signature!!.toByteArray()
     signature[0] = (signature[0].toInt() xor 0x01).toByte()
     val tamperedSignature = signedPaymentAddress.newBuilder()
-      .mobileCoinAddress(
+      .mobileCoin(
         mobileCoinAddress
           .newBuilder()
           .signature(ByteString.of(*signature))
@@ -69,15 +69,15 @@ class MobileCoinPublicAddressProfileUtilTest {
     val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
     val addressBytes = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(addressBytes, identityKeyPair)
-    val mobileCoinAddress = signedPaymentAddress.mobileCoinAddress!!
+    val mobileCoinAddress = signedPaymentAddress.mobileCoin!!
 
-    val address = mobileCoinAddress.address!!.toByteArray()
+    val address = mobileCoinAddress.publicAddress!!.toByteArray()
     address[0] = (address[0].toInt() xor 0x01).toByte()
     val tamperedAddress = signedPaymentAddress.newBuilder()
-      .mobileCoinAddress(
+      .mobileCoin(
         mobileCoinAddress
           .newBuilder()
-          .address(ByteString.of(*address))
+          .publicAddress(ByteString.of(*address))
           .build()
       )
       .build()
@@ -94,8 +94,8 @@ class MobileCoinPublicAddressProfileUtilTest {
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 
     val removedSignature = signedPaymentAddress.newBuilder()
-      .mobileCoinAddress(
-        signedPaymentAddress.mobileCoinAddress!!
+      .mobileCoin(
+        signedPaymentAddress.mobileCoin!!
           .newBuilder()
           .signature(null)
           .build()
@@ -114,10 +114,10 @@ class MobileCoinPublicAddressProfileUtilTest {
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 
     val removedAddress = signedPaymentAddress.newBuilder()
-      .mobileCoinAddress(
-        signedPaymentAddress.mobileCoinAddress!!
+      .mobileCoin(
+        signedPaymentAddress.mobileCoin!!
           .newBuilder()
-          .address(null)
+          .publicAddress(null)
           .build()
       )
       .build()

@@ -61,12 +61,6 @@ public final class MessageGroupContext {
     }
   }
 
-  public MessageGroupContext(@NonNull GroupContext group) {
-    this.groupV1             = new GroupV1Properties(group);
-    this.groupV2             = null;
-    this.group               = groupV1;
-  }
-
   public MessageGroupContext(@NonNull DecryptedGroupV2Context group) {
     this.groupV1             = null;
     this.groupV2             = new GroupV2Properties(group);
