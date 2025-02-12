@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Android Service responsible for playback of voice notes.
@@ -171,8 +172,8 @@ public class VoiceNotePlaybackService extends MediaSessionService {
       if (reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
         sendViewedReceiptForCurrentWindowIndex();
         MediaItem currentMediaItem = player.getCurrentMediaItem();
-        if (currentMediaItem != null && currentMediaItem.playbackProperties != null) {
-          Log.d(TAG, "onPositionDiscontinuity: current window uri: " + currentMediaItem.playbackProperties.uri);
+        if (currentMediaItem != null && currentMediaItem.localConfiguration != null) {
+          Log.d(TAG, "onPositionDiscontinuity: current window uri: " + currentMediaItem.localConfiguration.uri);
         }
 
         PlaybackParameters playbackParameters = getPlaybackParametersForWindowPosition(mediaItemIndex);
@@ -221,12 +222,12 @@ public class VoiceNotePlaybackService extends MediaSessionService {
     ContextCompat.getMainExecutor(getApplicationContext()).execute(() -> {
       if (player != null) {
         final MediaItem currentItem = player.getCurrentMediaItem();
-        if (currentItem == null || currentItem.playbackProperties == null) {
+        if (currentItem == null || currentItem.localConfiguration == null) {
           Log.d(TAG, "Current item is null or playback properties are null.");
           return;
         }
 
-        final Uri currentlyPlayingUri = currentItem.playbackProperties.uri;
+        final Uri currentlyPlayingUri = currentItem.localConfiguration.uri;
 
         if (currentlyPlayingUri == VoiceNoteMediaItemFactory.NEXT_URI || currentlyPlayingUri == VoiceNoteMediaItemFactory.END_URI) {
           Log.v(TAG, "Attachment deleted while voice note service was playing a system tone.");
@@ -317,16 +318,16 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   private void sendViewedReceiptForCurrentWindowIndex() {
     if (player.getPlaybackState() == Player.STATE_READY &&
         player.getPlayWhenReady() &&
-        player.getCurrentWindowIndex() != C.INDEX_UNSET)
+        player.getCurrentMediaItemIndex() != C.INDEX_UNSET)
     {
 
       MediaItem currentMediaItem = player.getCurrentMediaItem();
-      if (currentMediaItem == null || currentMediaItem.playbackProperties == null) {
+      if (currentMediaItem == null || currentMediaItem.localConfiguration == null) {
         return;
       }
 
-      Uri mediaUri = currentMediaItem.playbackProperties.uri;
-      if (!mediaUri.getScheme().equals("content")) {
+      Uri mediaUri = currentMediaItem.localConfiguration.uri;
+      if (!Objects.equals(mediaUri.getScheme(), "content")) {
         return;
       }
 
@@ -336,7 +337,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
           return;
         }
         long         messageId       = extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
-        RecipientId  recipientId     = RecipientId.from(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID));
+        RecipientId  recipientId     = RecipientId.from(Objects.requireNonNull(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID)));
         MessageTable messageDatabase = SignalDatabase.messages();
 
         MessageTable.MarkedMessageInfo markedMessageInfo = messageDatabase.setIncomingMessageViewed(messageId);
