@@ -283,9 +283,13 @@ class ConversationListViewModel(
     }
   }
 
-  fun addToFolder(folderId: Long, threadId: Long) {
+  fun addToFolder(folderId: Long, threadIds: List<Long>) {
     viewModelScope.launch(Dispatchers.IO) {
-      SignalDatabase.chatFolders.addToFolder(folderId, threadId)
+      val threadIdsAndIsIncluded = threadIds.map { threadId ->
+        val isAlreadyIncluded = folders.find { it.chatFolder.id == folderId }?.chatFolder?.includedChats?.contains(threadId) ?: false
+        Pair(threadId,isAlreadyIncluded)
+      }
+      SignalDatabase.chatFolders.addToFolderIfNotIncluded(folderId, threadIdsAndIsIncluded)
     }
   }
 

@@ -380,15 +380,19 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Adds a thread to a chat folder
    */
-  fun addToFolder(folderId: Long, threadId: Long) {
+  fun addToFolderIfNotIncluded(folderId: Long, threadIdsAndIsIncluded: List<Pair<Long, Boolean>>) {
     writableDatabase.withinTransaction { db ->
-      db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
-        .values(
-          ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
-          ChatFolderMembershipTable.THREAD_ID to threadId,
-          ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.INCLUDED.value
-        )
-        .run(SQLiteDatabase.CONFLICT_REPLACE)
+      threadIdsAndIsIncluded.forEach { (threadId, isIncluded) ->
+        if (!isIncluded) {
+          db.insertInto(ChatFolderMembershipTable.TABLE_NAME)
+            .values(
+              ChatFolderMembershipTable.CHAT_FOLDER_ID to folderId,
+              ChatFolderMembershipTable.THREAD_ID to threadId,
+              ChatFolderMembershipTable.MEMBERSHIP_TYPE to MembershipType.INCLUDED.value
+            )
+            .run(SQLiteDatabase.CONFLICT_REPLACE)
+        }
+      }
 
       AppDependencies.databaseObserver.notifyChatFolderObservers()
     }
