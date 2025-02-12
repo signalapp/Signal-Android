@@ -985,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Използвайте този акаунт в Signal на настолен компютър или iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Свързване на ново устройство</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Продължаване</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Връзка с отдела за поддръжка</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Желаете ли да изпратите доклад за дебъг?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Отказ</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2127,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">За съжалние, имате твърде много свързани устройства, опитайте да премахнете някои от тях…</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">За съжаление, това не е валидна QR връзка.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Свързване със Signal устройство?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">За свързване на настолен компютър или iPad към този акаунт в Signal отидете на „Свързани устройства“ и докоснете „Свързване на ново устройство“ и сканирайте QR кода отново. Уверете се, че сканирате само QR кодове, които са предоставени директно от Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Неуспешно сканиране на QR код без разрешение за достъп до камерата</string>
@@ -2474,11 +2474,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Разширяване на изгледа с вдигнати ръце</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">Вашата държава</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">Търсене по име или номер</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">Неизвестна държава</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2565,7 +2565,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Ще получите код за потвърждение. Може да се начислят такси от оператора.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">Изберете държава</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ще получите обаждане, за да потвърдите този номер.</string>
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Език</string>
     <string name="preferences__signal_messages_and_calls">Signal съобщения и обаждания</string>
     <string name="preferences__advanced_pin_settings">Разширени настройки за ПИН</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Безплатни, лични съобщения и обаждания до Signal потребители</string>
     <string name="preferences__submit_debug_log">Изпращане на доклад</string>
     <string name="preferences__delete_account">Изтриване на акаунт</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Връзката е неуспешна</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Неуспешно свързане с проксито. Провери прокси адреса и опитай отново.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Свързан си с проксито. Може да изключиш проксито по всяка време в Настройки.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Успех</string>
     <string name="preferences_failed_to_connect">Неуспешна връзка</string>
     <string name="preferences_enter_proxy_address">Въведи прокси адрес</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Копирано</string>
     <string name="BackupDialog_no_file_picker_available">Няма наличен файл за избор.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Въведи паролата за архива</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Валидиране</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно въведена парола за архива</string>
     <string name="BackupDialog_passphrase_was_not_correct">Паролата не беше правилна</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Регистрация за Signal - Код за потвърждение за Android</string>
     <string name="RegistrationActivity_incorrect_code">Некоректен код</string>
     <string name="BackupUtil_never">Никога</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Непознат</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Телефонен номер</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Опитайте да изключите Wi-Fi на двете устройства и след това отново да го включите.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Уверете се, че и двете устройства са в режим на прехвърляне.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Към страницата за помощ</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Опитай отново</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Чакаме за друго устройство</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Натиснете Продължи на другото си устройство за да започнете прехвърлянето.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Промени Номер</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Проверка на %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Изисква се Captcha</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Разрешения</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Заявки и покани</string>
     <string name="ConversationSettingsFragment__group_link">Връзка към групата</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Добави като контакт</string>
     <string name="ConversationSettingsFragment__unmute">Изключване на тих режим</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Споделяне</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Навигиране нагоре</string>
     <string name="MultiselectForwardFragment__forward_to">Препращане до</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видеоклиповете ще бъдат съкратени до 30-секундни клипове и изпратени като няколко истории.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видеоклиповете, изпратени в „Истории“, не могат да бъдат по-дълги от 30 секунди.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Препратените съобщения вече се изпращат незабавно.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Изпращане на %1$d съобщение</item>
@@ -5770,7 +5780,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Свързване на устройството?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Изглежда се опитвате да свържете устройство със Signal. Докоснете „продължаване“ и след това докоснете „Свързване на ново устройство“ и сканирайте QR отново.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Продължете</string>
 
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/месец</string>
     <string name="MySupportPreference__renews_s">Подновява се на %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Обработка на трансакцията…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Неуспешно добавяне на значката. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Информация</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Изпращане…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Изпращане на %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Изпращането неуспешно</string>
@@ -8110,9 +8121,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Невалиден резервен ключ</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">Не е открито резервно копие</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Резервният ключ, който сте въвели, е правилен, но няма резервно копие, свързано с него. Ако все още пазите стария си телефон, се уверете, че архивирането е активирано и че има завършено резервно копие, и опитайте отново.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Пропуснете възстановяването</string>
 

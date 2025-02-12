@@ -1003,17 +1003,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">繼續</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">聯絡支援團隊</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">係咪要提交除錯記錄？</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">您嘅除錯記錄檔會幫到我哋更快搵出問題嘅箇中原因。有就錦上添花，但唔係事必要您提交您嘅記錄檔嘅。</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">連同除錯記錄檔提交</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">抽起除錯記錄檔提交</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">取消</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3658,6 +3658,8 @@
     <string name="preferences__language">語言</string>
     <string name="preferences__signal_messages_and_calls">Signal 訊息同通話</string>
     <string name="preferences__advanced_pin_settings">進階 PIN 碼設定</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Signal 使用者免費又私密互傳訊息同通話</string>
     <string name="preferences__submit_debug_log">提交除錯記錄檔</string>
     <string name="preferences__delete_account">刪除帳戶</string>
@@ -3760,6 +3762,7 @@
     <string name="preferences_connection_failed">連線唔掂</string>
     <string name="preferences_couldnt_connect_to_the_proxy">連唔到線去代理伺服器。麻煩您檢查下代理伺服器位址，然後再試下啦。</string>
     <string name="preferences_you_are_connected_to_the_proxy">您已連咗線去代理伺服器。您可以隨時喺 [設定] 度閂咗代理伺服器。</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">成功</string>
     <string name="preferences_failed_to_connect">連唔到線</string>
     <string name="preferences_enter_proxy_address">輸入代理伺服器位址</string>
@@ -4354,6 +4357,7 @@
     <string name="BackupDialog_copied_to_clipboard">複製咗去剪貼簿</string>
     <string name="BackupDialog_no_file_picker_available">部機無檔案挑選器用得到。</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">打返您個備份密碼去驗證下</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">驗證</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您輸入嘅備份密碼正確無誤</string>
     <string name="BackupDialog_passphrase_was_not_correct">密碼有誤</string>
@@ -4378,6 +4382,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android 版驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">個碼唔啱</string>
     <string name="BackupUtil_never">唔使喇</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">未知</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">電話冧把</string>
@@ -4562,6 +4567,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">試下熄咗再開返 Wi-Fi，兩部機都係。</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">請確保兩部機都處於轉移模式中。</string>
     <string name="DeviceTransferSetup__go_to_support_page">前往支援網頁</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">再試一次</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">等緊另一部機</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">喺對面部機撳一下 [繼續] 以開始轉移。</string>
@@ -5059,6 +5065,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">轉冧把</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">驗證緊 %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">要做咗 CAPTCHA 先得</string>
 
@@ -5427,6 +5434,7 @@
     <string name="ConversationSettingsFragment__permissions">准許</string>
     <string name="ConversationSettingsFragment__requests_and_invites">請求與邀請</string>
     <string name="ConversationSettingsFragment__group_link">谷拎</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">加做聯絡人</string>
     <string name="ConversationSettingsFragment__unmute">取消靜音</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5539,6 +5547,7 @@
     <string name="ShareInterstitialActivity__share">分享</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">返去上一版</string>
     <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5549,6 +5558,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">影片會裁剪至 30 秒，然後用幾個限時動態傳送。</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">發送至限時動態嘅影片唔可以超過 30 秒。</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄訊息，而家嗱嗱聲同您迅速純熟送出。</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="other">傳送呢 %1$d 個訊息</item>
@@ -5729,6 +5739,7 @@
 
     <string name="MySupportPreference__s_per_month">每月 %1$s</string>
     <string name="MySupportPreference__renews_s">到 %1$s 續期</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">處理緊交易…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">加唔到個襟章。%1$s</string>
@@ -6141,7 +6152,7 @@
     <string name="StoriesLandingItem__info">詳細</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">送緊出去…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">傳送緊 %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">傳送失敗</string>

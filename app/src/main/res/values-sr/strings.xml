@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Настави</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Обратите се подршци</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Желите ли да пошаљете извештај о грешкама?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Извештаји о грешкама нам помажу да лакше отклонимо проблем. Слање извештаја није обавезно.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Пошаљи са извештајем о грешкама</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Пошаљи без извештаја о грешкама</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Откажи</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Језик</string>
     <string name="preferences__signal_messages_and_calls">Поруке и позиви преко Signal-a</string>
     <string name="preferences__advanced_pin_settings">Напредна подешавања PIN-а</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Бесплатне приватне поруке и позиви упућени корисницима Signal-a</string>
     <string name="preferences__submit_debug_log">Пошаљи извештај о грешкама</string>
     <string name="preferences__delete_account">Брисање налога</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Веза није успостављена</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Повезивање на прокси сервер није успело. Проверите адресу прокси сервера и пробајте поново.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Повезани сте са прокси сервером. Можете искључити прокси сервер у било ком тренутку у подешавањима.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Успешно</string>
     <string name="preferences_failed_to_connect">Повезивање није успело.</string>
     <string name="preferences_enter_proxy_address">Унесите адресу прокси сервера</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Копирано</string>
     <string name="BackupDialog_no_file_picker_available">Није доступан бирач фајлова.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Унесите приступну фразу за резервне копије да бисте је потврдили</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Верификуј</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Унели сте приступну фразу за резервне копије</string>
     <string name="BackupDialog_passphrase_was_not_correct">Приступна фраза није тачна</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Rегистрација Signal-a – шифра за верификацију за Android</string>
     <string name="RegistrationActivity_incorrect_code">Нетачан код</string>
     <string name="BackupUtil_never">Никад</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Непознато</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Број телефона</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Пробајте да угасите и упалите Wi-Fi на оба уређаја.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Проверите да ли су оба уређаја у режиму за пренос.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Иди на страницу за подршку</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Пробајте поново</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Чека се други уређај</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Додирните „Настави“ на другом уређају да бисте започели пренос.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Промени број</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Верификовање: %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Неопходна је провера Captcha</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Дозволе</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Захтеви и позивнице</string>
     <string name="ConversationSettingsFragment__group_link">Линк за групу</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
     <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Поделите</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Иди на врх</string>
     <string name="MultiselectForwardFragment__forward_to">Проследите кориснику</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Видео записи ће бити скраћени на клипове од 30 секунди и послати као више прича.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Видео записи објављени у причама не могу бити дужи од 30 секунди.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђене поруке се сада шаљу одмах.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Пошаљи %1$d поруку</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s месечно</string>
     <string name="MySupportPreference__renews_s">Обнавља се на дан %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Трансакција се обрађује…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Додавање значке није успело. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Информације</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Слање…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Слање %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Слање није успело</string>

@@ -985,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use esta conta Signal no desktop ou iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Associe um novo dispositivo</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continuar</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Contactar o Suporte</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Enviar registo de depuração?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Os seus registos de depuração irão ajudar-nos a resolver mais rapidamente o seu problema. A submissão dos seus registos é opcional.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Enviar com relatório de depuração</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Enviar sem relatório de depuração</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Cancelar</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2127,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Lamentamos mas tem demasiados dispositivos associados, tente remover alguns</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lamento mas este não é um código QR de associação ao dispositivo válido.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Associar a um dispositivo Signal?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Para associar um computador ou iPad a esta conta Signal, aceda a Dispositivos associados e toque em \"Associe um novo dispositivo\" e leia novamente o código QR. Certifique-se de que só lê códigos QR provenientes diretamente do Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do seu telemóvel, selecione o Signal e nas \"Permissões\" ative a \"Câmara\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Não é possível ler um código QR sem ter a permissão de acesso à câmara.</string>
@@ -2474,7 +2474,7 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Expandir visualização de mão levantada</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">O seu país</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
     <string name="CountryCodeFragment__search_by">Procurar por nome ou número</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
@@ -2565,7 +2565,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Irá receber um código de verificação. Poderão existir custos por parte da sua operadora.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">Selecione um país</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Irá receber uma chamada para verificar este número</string>
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Idioma</string>
     <string name="preferences__signal_messages_and_calls">Mensagens e chamadas do Signal</string>
     <string name="preferences__advanced_pin_settings">Definições avançadas do PIN</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Mensagens e chamadas privadas gratuitas para utilizadores do Signal</string>
     <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
     <string name="preferences__delete_account">Eliminar conta</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Falha de ligação</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Não é possível ligar ao proxy. Consulte o endereço de proxy e tente novamente.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Não é possível ligar ao proxy. Pode desligar o proxy a qualquer momento a partir das \'Definições\'.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Sucesso</string>
     <string name="preferences_failed_to_connect">Falha na ligação</string>
     <string name="preferences_enter_proxy_address">Introduza o endereço proxy</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="BackupDialog_no_file_picker_available">Sem selecionadores de ficheiros disponíveis.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduza a sua frase-chave para verificação</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Verificar</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Introduziu com sucesso a sua frase-chave de segurança</string>
     <string name="BackupDialog_passphrase_was_not_correct">Frase-chave incorreta</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Registo Signal - Código de verificação para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código Incorrecto</string>
     <string name="BackupUtil_never">Nunca</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Desconhecido</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Número de telefone</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Experimente desativar e ativar o Wi-Fi, em ambos os dispositivos.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assegure-se que ambos os dispostivos se encontram no modo de transferência.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Ir para a página de suporte</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">A aguardar por outro dispositivo</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Toque em \'Continuar\' no seu outro dispositivo para iniciar a transferência.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Alterar número</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">A verificar %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha necessário</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Permissões</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Pedidos e convites</string>
     <string name="ConversationSettingsFragment__group_link">Link do grupo</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Adicionar como contacto</string>
     <string name="ConversationSettingsFragment__unmute">Anular silêncio</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Partilhar</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
     <string name="MultiselectForwardFragment__forward_to">Reencaminhar para</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Os vídeos serão reduzidos para clipes de 30 segundos e enviados em várias histórias.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Os vídeos enviados para as histórias não podem ter mais do que 30 segundos.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">As mensagens reencaminhadas agora são enviadas imediatamente.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Enviar %1$d mensagem</item>
@@ -5770,7 +5780,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Associar dispositivo?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Parece que está a tentar associar um dispositivo Signal. Toque em continuar e depois em \"Associe um novo dispositivo\" e leia novamente o código QR.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Continuar</string>
 
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/mês</string>
     <string name="MySupportPreference__renews_s">Renovações %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">A processar a transação…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Não foi possível adicionar o crachá. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">A enviar…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">A enviar %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Falha ao enviar</string>
@@ -8110,9 +8121,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Chave da cópia de segurança inválida</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">Cópia de segurança não encontrada</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">A chave de cópia de segurança que introduziu está correta, mas não existe nenhuma cópia de segurança associada à mesma. Se ainda tiver o seu telemóvel antigo, certifique-se de que as cópias de segurança estão ativadas e de que foi concluída uma cópia de segurança e tente novamente.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Saltar restauro</string>
 

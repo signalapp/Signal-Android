@@ -1077,7 +1077,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدِم حساب سيجنال هذا على الحاسوب أو جهاز الآيباد.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">قُم بربط جهازٍ جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1118,17 +1118,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">متابعة</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">الاتصال بالدعم</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">أترغبُ بالإبلاغ عن المشكلة؟</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">تساعدنا سجلات التصحيح في استكشاف مشاكلك وإصلاحها في أسرع وقت. إرسال سجلاتك إلينا أمر اختياري.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">إرسال مع سجل التصحيح</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">إرسال بدون سجل التصحيح</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">إلغاء</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2180,7 +2180,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">تمَّ رفض طلبك للانضمام للمجموعة من قبل مُشرِف عليها.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">لقد رفضت طلب انضمام %1$s للمجموعة.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">رفضتَ طلب انضمام %1$s للمجموعة.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">رفضَ %1$s طلب %2$s للانضمام للمجموعة.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">رُفِضَ طلب %1$s للانضمام للمجموعة.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">ألغيتَ طلب انضمامك للمجموعة.</string>
@@ -2387,7 +2387,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرًا، لديك عدة أجهزة مرتبطة. يُرجى إزالة بعضها.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرًا، الرابط غير صحيح.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">لِربط حاسوب أو جهاز الآيباد بحساب سيجنال هذا، انتقل إلى \"الأجهزة المُرتبطة\" وانقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد. تأكَّد من مسح كود الـ QR الصادر مباشرًة من سيجنال فقط.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن بشكلٍ دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا.</string>
@@ -2802,11 +2802,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">توسيع عرض رفع اليد</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">بلدك</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">البحث بالاسم أو الرقم</string>
+    <string name="CountryCodeFragment__search_by">البحث بحسب الاسم أو الرقم</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">بلد مجهول</string>
+    <string name="CountryCodeFragment__unknown_country">بلد غير معروف</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2913,7 +2913,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تحقّق. قد تنطبّق تكلفة من مزوّد الخدمة.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">اختر بلدًا</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقُّق من هذا الرقم.</string>
@@ -4173,6 +4173,8 @@
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
     <string name="preferences__advanced_pin_settings">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مستخدمي سيجنال</string>
     <string name="preferences__submit_debug_log">إرسال سِجل التصحيح</string>
     <string name="preferences__delete_account">حذف الحساب</string>
@@ -4285,6 +4287,7 @@
     <string name="preferences_connection_failed">فشِل الاتصال</string>
     <string name="preferences_couldnt_connect_to_the_proxy">تعذَّر الاتصال بالبروكسي. تحقَّق من عنوان البروكسي وحاوِل مرّة أخرى.</string>
     <string name="preferences_you_are_connected_to_the_proxy">أنت مُتَّصِل بالبروكسي. يمكنك إيقافه في أي وقت من قسم \"اﻹعدادات\".</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">نجاح</string>
     <string name="preferences_failed_to_connect">فشِل الاتصال</string>
     <string name="preferences_enter_proxy_address">أدخِل عنوان البروكسي</string>
@@ -4924,6 +4927,7 @@
     <string name="BackupDialog_copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
     <string name="BackupDialog_no_file_picker_available">مُتصفِّح الملفات غير متاح.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">أدخِل العبارة السرية للنسخة الاحتياطية للتحقُّق</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">تحقُّق</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">أدخلتَ العبارة السرية للنسخة الاحتياطية بنجاح.</string>
     <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
@@ -4948,6 +4952,7 @@
     <string name="RegistrationActivity_code_support_subject">تسجيل سيجنال - كود التحقُّق لـ Android</string>
     <string name="RegistrationActivity_incorrect_code">كود غير صحيح</string>
     <string name="BackupUtil_never">أبدًا</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">غير معروف</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">رقم الهاتف</string>
@@ -5132,6 +5137,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">حاوِل إيقاف الواي فاي ثم تشغيلها في كلا الجهازين.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">تأكَّد من أن كلا الجهازين في وضع النقل.</string>
     <string name="DeviceTransferSetup__go_to_support_page">انتقل إلى صفحة الدعم</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">حاوِل مُجدَّدًا</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">في انتظار الجهاز الآخر</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">انقر على \"متابعة\" في جهازك الآخر لبدء النقل.</string>
@@ -5669,6 +5675,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">تغيير الرقم</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">جارٍ التحقُّق من %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">حل الاختبار مطلوب</string>
 
@@ -6072,6 +6079,7 @@
     <string name="ConversationSettingsFragment__permissions">الأذونات</string>
     <string name="ConversationSettingsFragment__requests_and_invites">الطلبات والدعوات</string>
     <string name="ConversationSettingsFragment__group_link">رابط المجموعة</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">إضافة كجهة اتصال</string>
     <string name="ConversationSettingsFragment__unmute">إلغاء كتم الدردشات</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -6189,6 +6197,7 @@
     <string name="ShareInterstitialActivity__share">مشاركة</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">التصفُّح نحو اﻷعلى</string>
     <string name="MultiselectForwardFragment__forward_to">إعادة التوجيه نحو</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -6199,6 +6208,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">سَيتم تجزئة الفيديوهات إلى مقاطع من 30 ثانية وإرسالها كعدة قِصص.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">لا يمكن أن تتعدى مقاطع الفيديو المرسَلة إلى القِصص 30 ثانية.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">تمَّ اﻵن إرسال الرسائل الموجَّهة فورًا.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="zero">لم تُرسَل أي رسالة. (%1$d)</item>
@@ -6314,7 +6324,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">هل ترغبُ بربط الجهاز؟</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">يَبدو أنك تُحاول ربط جهاز يستخدم سيجنال. انقر على \"متابعة\" ثم انقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">متابعة</string>
 
@@ -6409,6 +6419,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
     <string name="MySupportPreference__renews_s">يتجدَّد في %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">تعذَّر إضافة الشارة. %1$s</string>
@@ -6821,7 +6832,7 @@
     <string name="StoriesLandingItem__info">المعلومات</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">جاٍر الإرسال…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">جاٍر الإرسال %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">فشل الإرسال</string>
@@ -8798,11 +8809,11 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">مفتاح النسخ الاحتياطي غير صالح.</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">لا توجد نسخة احتياطية</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخ الاحتياطي الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخ الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل من جديد.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
-    <string name="EnterBackupKey_skip_restore">تخطّي الاستعادة</string>
+    <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">امسح هذا الكود ضوئيًا باستخدام جهازك القديم</string>

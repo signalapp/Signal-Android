@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">ਕੀ ਤੁਸੀਂ ਡੀਬੱਗ ਲੌਗ ਦਰਜ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">ਰੱਦ ਕਰੋ</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">ਭਾਸ਼ਾ</string>
     <string name="preferences__signal_messages_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ</string>
     <string name="preferences__advanced_pin_settings">ਤਕਨੀਕੀ PIN ਸੈਟਿੰਗਾਂ</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Signal ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਮੁਫ਼ਤ ਪ੍ਰਾਈਵੇਟ ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ</string>
     <string name="preferences__submit_debug_log">ਡੀਬੱਗ ਲਾਗ ਦਰਜ ਕਰੋ</string>
     <string name="preferences__delete_account">ਖਾਤਾ ਮਿਟਾਓ</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">ਕਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ</string>
     <string name="preferences_couldnt_connect_to_the_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="preferences_you_are_connected_to_the_proxy">ਤੁਸੀਂ ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਹੋਏ ਹੋ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਤੋਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਪ੍ਰੌਕਸੀ ਨੂੰ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">ਸਫ਼ਲ</string>
     <string name="preferences_failed_to_connect">ਕਨੈਕਟ ਕਰਨ ਲਈ ਅਸਫ਼ਲ</string>
     <string name="preferences_enter_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦਰਜ ਕਰੋ</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
     <string name="BackupDialog_no_file_picker_available">ਕੋਈ ਫਾਇਲ ਚੁਣਨ ਵਾਲਾ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">ਤਸਦੀਕ ਕਰਨ ਲਈ ਆਪਣਾ ਬੈਕਅੱਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਦਿਓ</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">ਤਸਦੀਕ ਕਰੋ</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ਤੁਸੀਂ ਆਪਣਾ ਬੈਕਅੱਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਕਾਮਯਾਬੀ ਨਾਲ ਭਰਿਆ ਹੈ</string>
     <string name="BackupDialog_passphrase_was_not_correct">ਪਾਸਫ਼੍ਰੇਜ਼ ਸਹੀ ਨਹੀਂ ਹੈ</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - ਐਂਡਰਾਇਡ ਲਈ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ</string>
     <string name="RegistrationActivity_incorrect_code">ਗਲਤ ਕੋਡ</string>
     <string name="BackupUtil_never">ਕਦੇ ਨਹੀਂ</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">ਅਣਜਾਣ</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ਫ਼ੋਨ ਨੰਬਰ</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Wi-Fi ਨੂੰ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਉੱਪਰ, ਬੰਦ ਅਤੇ ਚਾਲੂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਟ੍ਰਾਂਸਫ਼ਰ ਮੋਡ ਵਿੱਚ ਹਨ।</string>
     <string name="DeviceTransferSetup__go_to_support_page">ਸਹਾਇਤਾ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">ਹੋਰ ਡਿਵਾਈਸ ਦੀ ਉਡੀਕ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ਟ੍ਰਾਂਸਫ਼ਰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣੀ ਦੂਜੀ ਡਿਵਾਈਸ ਉੱਪਰ ਜਾਰੀ ਰੱਖੋ ’ਤੇ ਟੈਪ ਕਰੋ।</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">ਨੰਬਰ ਬਦਲੋ</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s ਤਸਦੀਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">ਕੈਪਚਾ ਚਾਹੀਦਾ ਹੈ</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
     <string name="ConversationSettingsFragment__requests_and_invites">ਬੇਨਤੀਆਂ &amp; ਸੱਦੇ</string>
     <string name="ConversationSettingsFragment__group_link">ਗਰੁੱਪ ਲਿੰਕ</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ਸੰਪਰਕ ਵਜੋਂ ਸ਼ਾਮਲ ਕਰੋ</string>
     <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">ਸਾਂਝਾ ਕਰੋ</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">ਉੱਤੇ ਜਾਓ</string>
     <string name="MultiselectForwardFragment__forward_to">ਅੱਗੇ ਭੇਜੋ</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">ਵੀਡੀਓ ਨੂੰ ਕੱਟ ਕੇ 30 ਸਕਿੰਟ ਦੀਆਂ ਕਲਿੱਪਾਂ ਬਣਾਈਆਂ ਜਾਣਗੀਆਂ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਕਈ ਸਟੋਰੀਆਂ ਦੇ ਰੂਪ ਵਿੱਚ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ਸਟੋਰੀ ਵਿੱਚ ਭੇਜੇ ਗਏ ਵੀਡੀਓ 30 ਸਕਿੰਟ ਤੋਂ ਲੰਮੇ ਨਹੀਂ ਹੋ ਸਕਦੇ।</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ਅੱਗੇ ਭੇਜੇ ਸੁਨੇਹੇ ਹੁਣ ਫ਼ੌਰਨ ਭੇਜੇ ਜਾਂਦੇ ਹਨ।</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$dਸੁਨੇਹਾ ਭੇਜੋ</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/ਮਹੀਨਾ</string>
     <string name="MySupportPreference__renews_s">%1$s ਨੂੰ ਰੀਨਿਊ ਹੁੰਦੀ ਹੈ</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">ਲੈਣ-ਦੇਣ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ਬੈਜ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕੇ। %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">ਜਾਣਕਾਰੀ</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d ਨੂੰ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>

@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continua</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Contatta l\'assistenza</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Vuoi inviarci un log di debug?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">I log di debug ci aiuteranno a risolvere il problema più rapidamente. L\'invio dei log è facoltativo.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Invia con log di debug</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Invia senza log di debug</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Annulla</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Lingua</string>
     <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
     <string name="preferences__advanced_pin_settings">Impostazioni PIN avanzate</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
     <string name="preferences__submit_debug_log">Invia log di debug</string>
     <string name="preferences__delete_account">Elimina account</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Connessione fallita</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Impossibile connettersi al proxy. Controlla l\'indirizzo proxy e riprova.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Sei connesso al proxy. Puoi disattivare il proxy in qualsiasi momento dalle impostazioni.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Successo</string>
     <string name="preferences_failed_to_connect">Connessione fallita</string>
     <string name="preferences_enter_proxy_address">Inserisci indirizzo proxy</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Aggiunto agli appunti</string>
     <string name="BackupDialog_no_file_picker_available">Nessun selettore di file disponibile.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Inserisci la passphrase del tuo backup per verificarla</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Verifica</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hai inserito correttamente la passphrase del tuo backup</string>
     <string name="BackupDialog_passphrase_was_not_correct">La passphrase non è corretta</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
     <string name="RegistrationActivity_incorrect_code">Codice errato</string>
     <string name="BackupUtil_never">Mai</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Sconosciuto</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Numero di telefono</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prova a disattivare e attivare il Wi-Fi su entrambi i dispositivi.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assicurati che entrambi i dispositivi siano in modalità di trasferimento.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Vai alla pagina di supporto</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Riprova</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">In attesa di un altro dispositivo</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Clicca Continua sul tuo altro dispositivo per iniziare il trasferimento.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Cambia numero</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Verifica di %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha richiesto</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Permessi</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Richieste e inviti</string>
     <string name="ConversationSettingsFragment__group_link">Link del gruppo</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Aggiungi come un contatto</string>
     <string name="ConversationSettingsFragment__unmute">Non silenziare</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Condividi</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Torna indietro</string>
     <string name="MultiselectForwardFragment__forward_to">Inoltra a</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">I video lunghi vengono tagliati in clip di 30 secondi e poi inviati sotto forma di più Storie.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">I video inviati come Storie non possono superare i 30 secondi.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">I messaggi inoltrati vengono ora inviati immediatamente.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Invia %1$d messaggio</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/mese</string>
     <string name="MySupportPreference__renews_s">Rinnovo %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Elaborazione della transazione…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Non è stato possibile aggiungere il badge. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Informazioni</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Invio in corso…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Invio in corso %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Invio non riuscito</string>

@@ -985,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Tumia akaunti hii ya Signal kwenye desktop au iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Unganisha kifaa kipya</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Endelea</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Wasiliana Msaada</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Je, wasilisha kumbukumbu za utatuzi?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Ghairi</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2127,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Samahani, una vifaa vingi vilivyounganishwa tayari, jaribu kuondoa baadhi</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Samahani, hiki sio kiungo halali cha msimbo wa QR kwa kifaa</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Unganisha kifaa cha Signal</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Ili kuunganisha desktop au iPad na akaunti hii ya Signal, nenda kwenye Vifaa Vilivyounganishwa na ubonyeze \"Unganisha Kifaa Kipya\" kisha uskani kodi ya QR tena. Hakikisha unaskani kodi za QR tu ambazo huja moja kwa moja kutoka Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal inahitaji ruhusa ya Kamera ili kuskani msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Kamera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Imeshindwa kuskani msimbo wa QR bila ruhusa ya Kamera</string>
@@ -2474,11 +2474,11 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Panua muonekano wa mkono kuinuliwa</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">Nchi unayoishi</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Search by name or number</string>
+    <string name="CountryCodeFragment__search_by">Tafuta kwa jina au namba</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
-    <string name="CountryCodeFragment__unknown_country">Unknown country</string>
+    <string name="CountryCodeFragment__unknown_country">Nchi isiyofahamika</string>
 
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
@@ -2565,7 +2565,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Utapokea msimbo wa kuthibitisha. Gharama za mtoa huduma ya mawasiliano yako zitatumika.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">Chagua nchi</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Utapokea simu ya kuthibitisha nambari hii.</string>
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Lugha</string>
     <string name="preferences__signal_messages_and_calls">Ujumbe na simu za Signal</string>
     <string name="preferences__advanced_pin_settings">Mipangilio ya PIN ya Hali ya Juu</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na simu kwa watumiaji wa Signal</string>
     <string name="preferences__submit_debug_log">Wasilisha tunzakumbukumbu ya ueuaji</string>
     <string name="preferences__delete_account">Futa akaunti</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Muunganisho umekatika</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Hukuunganisha kwenye kipengele mbadala. Kagua anwani mbadala kisha ujaribu tena.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Umeunganisha kwenye kipengele mbadala. Unaweza kuzima kipengele mbadala wakati wowote kwenye Mipangilio.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Umefanikiwa</string>
     <string name="preferences_failed_to_connect">Hujaunganisha</string>
     <string name="preferences_enter_proxy_address">Weka anwani mbadala</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
     <string name="BackupDialog_no_file_picker_available">Hakuna kiteua faili kinachopatikana.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Ingiza kifungu maneno chako cha nakilihifadhi ili kuhakikisha</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Hakikisha</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Umefaulu kuweka kifungu maneno chako cha nakilihifadhi</string>
     <string name="BackupDialog_passphrase_was_not_correct">Kifungu maneno hakikuwa sahihi</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Usajili wa Signal: Msimbo wa Hakiki wa Android</string>
     <string name="RegistrationActivity_incorrect_code">Kodi isiyo sahihi</string>
     <string name="BackupUtil_never">Kamwe</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Isiyojulikana</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Nambari ya simu</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Jaribu kuzima na kuwasha Wi-Fi, kwenye vifaa vyote viwili.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Hakikisha vifaa vyote viko katika hali ya kuhamisha.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Nenda kwenye ukurasa wa usaidizi</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Jaribu tena</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Inasubiri kifaa kile kingine</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Gusa Endelea kwenye kifaa chako kingine ili kuanza mchakato wa kuhamisha.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Badili Nambari</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Kudhibitisha %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha inahitajika</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Ruhusa</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Maombi na mialiko</string>
     <string name="ConversationSettingsFragment__group_link">Kiungo cha kikundi</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Mwongeze awe mwasiliani</string>
     <string name="ConversationSettingsFragment__unmute">Washa</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Shiriki</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Nenda juu</string>
     <string name="MultiselectForwardFragment__forward_to">Shiriki kwa</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video zitapunguzwa kuwa sekunde 30 kisha kutumwa kama Stori kadhaa.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video zinazotumwa kwa Stori haziwezi kuwa zaidi ya sekunde 30.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Jumbe zilizoshirikishwa zinatumwa mara moja.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Tuma arafa %1$d</item>
@@ -5770,7 +5780,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Unganisha kifaa?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Inaonekana kama unajaribu kuunganisha kifaa cha Signal. Gusa endelea na kisha gusa \"Unganisha kifaa kipya\" na uskani kodi ya QR tena.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Endelea</string>
 
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/mwezi</string>
     <string name="MySupportPreference__renews_s">Kuhuishwa %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Inachakata muamala…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Imeshindwa kuongeza beji. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Maelezo</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Inatuma…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Inatuma %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Kutuma kumeshindikina</string>
@@ -8110,9 +8121,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Ufunguo mbadala batili</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">Nakala ya hifadhi haijapatikana</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ufunguo mbadala ulioingiza ni sahihi, lakini hakuna nakala rudufu inayohusiana nayo. Ikiwa bado unayo simu yako ya zamani, hakikisha nakala za hifadhi zinawezeshwa na kwamba uhifadhi umekamilika na ujaribu tena.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ruka rejesha</string>
 

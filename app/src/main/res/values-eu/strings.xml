@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Jarraitu</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Jarri harremanetan laguntza-zerbitzuarekin</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Arazketa-erregistroa bidali nahi duzu?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Utzi</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Hizkuntza</string>
     <string name="preferences__signal_messages_and_calls">Signal mezu eta deiak</string>
     <string name="preferences__advanced_pin_settings">PINarekin loturiko ezarpen aurreratuak</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Mezu eta dei pribatu doanak Signal erabiltzaileri.</string>
     <string name="preferences__submit_debug_log">Arazketaren informazioa bidali</string>
     <string name="preferences__delete_account">Ezabatu kontua</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Konexioak huts egin du</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Ezin izan da proxyra konektatu. Egiaztatu helbidea ondo dagoela eta saiatu berriz.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Proxyra konektatuta zaude. Edozein momentutan desaktibatu dezakezu proxya Ezarpenetatik.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Ondo</string>
     <string name="preferences_failed_to_connect">Konexioak huts egin du</string>
     <string name="preferences_enter_proxy_address">Idatzi proxyaren helbidea</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Arbelera kopiatuta</string>
     <string name="BackupDialog_no_file_picker_available">Ez dago fitxategiak-aukeratzekorik.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Idatzi zure babeskopiaren pasaesaldia, egiaztatzeko</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Baieztatu</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ondo sartu duzu zure babeskopiaren pasaesaldia</string>
     <string name="BackupDialog_passphrase_was_not_correct">Pasaesaldi ez da zuzena</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>
     <string name="BackupUtil_never">Inoiz ez</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ezezaguna</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefono-zenbakia</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Saiatu bi gailuetan WiFi-a itzaltzen eta pizten</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ziurtatu bi gailuak transferentzia moduan daudela.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Joan laguntza orrira</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Saiatu berriro</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Beste gailu baten zain</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Transferentzia hasteko, sakatu Jarraitu beste gailuan.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Aldatu zenbakia</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$segiaztatzen</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha behar da</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Baimenak</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Eskaerak &amp; gonbidapenak</string>
     <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Gehitu kontaktu gisa</string>
     <string name="ConversationSettingsFragment__unmute">Aktibatu jakinarazpenak</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Partekatu</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Nabigatu gora</string>
     <string name="MultiselectForwardFragment__forward_to">Aurreratu hona</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Bideoak 30 s-ko klipetan moztuko dira, eta hainbat istorio gisa bidaliko.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Istorioetara bidalitako bideoak ezin dira 30 s baino luzeagoak izan.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Birbidalitako mezuak berehala bidaltzen dira.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Bidali mezu %1$d</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/hilabete</string>
     <string name="MySupportPreference__renews_s">Berritze-data: %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Transakzioa prozesatzen…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Ezin izan da gehitu bereizgarria. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Bidaltzen…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$dbidaltzen…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Bidaltzeak huts egin du</string>

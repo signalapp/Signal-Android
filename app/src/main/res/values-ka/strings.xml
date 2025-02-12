@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">გაგრძელება</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">გსურს გაუმართაობის რეესტრის ატვირთვა?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">გაუქმება</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">ენა</string>
     <string name="preferences__signal_messages_and_calls">Signal-ის შეტყობინებები და ზარები</string>
     <string name="preferences__advanced_pin_settings">პინ-კოდის გაფართოებული პარამეტრები</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">უფასო პირადი შეტყობინებები და ზარები Signal-ის მომხმარებლებისთვის</string>
     <string name="preferences__submit_debug_log">გაუმართაობის რეესტრის გაგზავნა</string>
     <string name="preferences__delete_account">მონაცემების წაშლა</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">დაკავშირება ვერ მოხერხდა</string>
     <string name="preferences_couldnt_connect_to_the_proxy">პროქსისთან დაკავშირება ვერ მოხერხდა. შეამოწმე პროქსის მისამართი და თავიდან სცადე.</string>
     <string name="preferences_you_are_connected_to_the_proxy">პროქსისთან დაკავშირებული ხარ. შეგიძლია ნებისმიერ დროს გამორთო პროქსი პარამეტრებიდან.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">წარმატება</string>
     <string name="preferences_failed_to_connect">დაკავშირება ვერ მოხერხდა</string>
     <string name="preferences_enter_proxy_address">შეიყვანე პროქსის მისამართი</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">დაკოპირებულია ბუფერში</string>
     <string name="BackupDialog_no_file_picker_available">ფაილის ამომრჩევი არაა ხელმისაწვდომი.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">ვერიფიცირებისთვის შეიყვანე შენი სარეზერვო კოპიების პაროლ-ფრაზა</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">ვერიფიკაცია</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">შენ წარმატებით შეიყვანე სარეზერვო კოპიების პაროლ-ფრაზა</string>
     <string name="BackupDialog_passphrase_was_not_correct">პაროლ-ფრაზა არასწორი იყო</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal-ის რეგისტრაცია - დადასტურების კოდი Android-ითვის</string>
     <string name="RegistrationActivity_incorrect_code">არასწორი კოდი</string>
     <string name="BackupUtil_never">არასდროს</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">უცნობი</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ტელეფონის ნომერი</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">სცადე Wi-Fi-ის გამორთვა და ჩართვა ორივე მოწყობილობაზე.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">დარწმუნდი, რომ ორივე მოწყობილობა გადატანის რეჟიმშია.</string>
     <string name="DeviceTransferSetup__go_to_support_page">მხარდაჭერის გვერდზე გადასვლა</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">სცადეთ ახლიდან</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">ველოდებით მეორე მოწყობილობას</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">გადაცემის დასაწყებად დააჭირე გაგრძელებას შენს მეორე მოწყობილობაზე.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">ნომრის შეცვლა</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">მიმდინარეობს ვერიფიკაცია %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">საჭიროა Captcha-ს გავლა</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">ნებართვები</string>
     <string name="ConversationSettingsFragment__requests_and_invites">მოთხოვნები &amp; მოწვევები</string>
     <string name="ConversationSettingsFragment__group_link">ჯგუფის ბმული</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">კონტაქტად დამატება</string>
     <string name="ConversationSettingsFragment__unmute">მდუმარე რეჟიმის გამორთვა</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">გაზიარება</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">ზემოთ ასვლა</string>
     <string name="MultiselectForwardFragment__forward_to">გაეგზავნოთ ჩამოთვლილებს</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">ვიდეოები 30 წამიან კლიპებად დაიჭრება და რამოდენიმე Story-ის სახით გაიგზავნება.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Stories-ში გაგზავნილი ვიდეოები 30 წმ-ზე მეტი ვერ იქნება.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">გადაგზავნილი შეტყობინებები ახლა დაუყოვნებლივ იგზავნება.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d შეტყობინების გაგზავნა</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/თვე</string>
     <string name="MySupportPreference__renews_s">განახლდება %1$s-ში</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">ვამუშავებთ ტრანზაქციას…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ემბლემის დამატება ვერ მოხერხდა. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">ინფორმაცია</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">იგზავნება…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">იგზავნება %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">გაგზავნა ჩაიშალა</string>

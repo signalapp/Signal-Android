@@ -1072,9 +1072,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Nadaljuj</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Obrnite se na podporo</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Želite poslati sistemsko zabeležbo?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1082,7 +1082,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Prekliči</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3967,6 +3967,8 @@
     <string name="preferences__language">Jezik</string>
     <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
     <string name="preferences__advanced_pin_settings">Napredne nastavite PIN</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom_cam aplikacije Signal</string>
     <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
     <string name="preferences__delete_account">Izbris računa</string>
@@ -4075,6 +4077,7 @@
     <string name="preferences_connection_failed">Povezovanje ni uspelo</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Povezovanje s proksijem ni uspelo. Preverite proksi naslov in poskusite znova.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Povezani ste s proksijem. Povezavo lahko kadarkoli prekinete v Nastavitvah.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Uspeh</string>
     <string name="preferences_failed_to_connect">Povezovanje ni uspelo</string>
     <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
@@ -4696,6 +4699,7 @@
     <string name="BackupDialog_copied_to_clipboard">Kopirano v odložišče</string>
     <string name="BackupDialog_no_file_picker_available">Ni nameščene aplikacije za upravljanje datotek.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Vnesite geslo svoje varnostne kopije</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Potrdi</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>
     <string name="BackupDialog_passphrase_was_not_correct">Geslo ni bilo pravilno</string>
@@ -4720,6 +4724,7 @@
     <string name="RegistrationActivity_code_support_subject">Registracija za storitev Signal - verifikacijska koda za Android</string>
     <string name="RegistrationActivity_incorrect_code">Napačna koda</string>
     <string name="BackupUtil_never">Nikoli</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Neznano</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefonska številka</string>
@@ -4904,6 +4909,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Poskusite izklopiti in ponovno vklopiti Wi-Fi na obeh napravah.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Na obeh napravah v Signalu vklopite prenos računa.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Podporna stran za Signal</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Poskusi znova</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Čakanje na drugo napravo</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Za začetek prenosa tapnite \"Naprej\" na drugi napravi.</string>
@@ -5425,6 +5431,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Sprememba številke</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Preverjam %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Zahtevana potrditev, da niste robot</string>
 
@@ -5814,6 +5821,7 @@
     <string name="ConversationSettingsFragment__permissions">Dovoljenja</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Prošnje &amp; vabila</string>
     <string name="ConversationSettingsFragment__group_link">Povezava do skupine</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj kot stik</string>
     <string name="ConversationSettingsFragment__unmute">Prekini utišanje</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5929,6 +5937,7 @@
     <string name="ShareInterstitialActivity__share">Deli</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Premik navzgor</string>
     <string name="MultiselectForwardFragment__forward_to">Posreduj</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5939,6 +5948,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoposnetki bodo obrezani na 30-sekundne posnetke in poslani kot več zgodb.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoposnetki, poslani v zgodbe, ne smejo biti daljši od 30 s.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Posredovana sporočila so zdaj poslana v trenutku.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Pošlji %1$d sporočilo</item>
@@ -6137,6 +6147,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/mesec</string>
     <string name="MySupportPreference__renews_s">Obnovitev naročnine: %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Obdelava transakcije …</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Nismo mogli dodati značke. %1$s</string>
@@ -6549,7 +6560,7 @@
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Pošiljanje …</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Pošiljanje %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Pošiljanje ni uspelo</string>

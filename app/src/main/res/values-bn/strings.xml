@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">চালিয়ে যান</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">ডিবাগ লগ জমা দেবেন?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">আপনার ডিবাগ লগগুলি আমাদেরকে সমস্যা দ্রুত সমাধানে সহায়তা করবে। আপনার লগ জমা দেওয়া বাধ্যতামূলক নয়।</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ডিবাগ লগ সহ জমা দিন</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ডিবাগ লগ ছাড়াই জমা দিন</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">বাতিল করুন</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2567,7 +2567,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">এটি দেশ নির্বাচন করুন</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
+    <string name="RegistrationActivity_default_country_code">০</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">এই নম্বরটি যাচাই করার জন্য আপনি একটি কল পাবেন।</string>
     <string name="RegistrationActivity_edit_number">নম্বর সম্পাদনা</string>
     <string name="RegistrationActivity_missing_google_play_services">গুগল প্লে সার্ভিস নিখোজ</string>
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">ভাষা</string>
     <string name="preferences__signal_messages_and_calls">Signal বার্তাসমূহ এবং কল সমূহ</string>
     <string name="preferences__advanced_pin_settings">অ্যাডভান্সড পিন সেটিংস</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Signal ব্যবহারকারীদের জন্য বিনামূল্যে ব্যক্তিগত বার্তা এবং কল সমূহ</string>
     <string name="preferences__submit_debug_log">ডিবাগ লগ সাবমিট করুন</string>
     <string name="preferences__delete_account">অ্যাকাউন্ট মুছে ফেলুন</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">সংযোগ ব্যর্থ হয়েছে</string>
     <string name="preferences_couldnt_connect_to_the_proxy">প্রক্সিতে সংযুক্ত করা যায়নি। প্রক্সি ঠিকানাটি যাচাই করুন এবং আবার চেষ্টা করুন।</string>
     <string name="preferences_you_are_connected_to_the_proxy">আপনি প্রক্সিতে সংযুক্ত আছেন। আপনি সেটিংস থেকে যে কোনও সময় প্রক্সিটি বন্ধ করতে পারেন।</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">সফল</string>
     <string name="preferences_failed_to_connect">সংযোগ স্থাপন করতে ব্যর্থ হয়েছে</string>
     <string name="preferences_enter_proxy_address">প্রক্সি ঠিকানা লিখুন</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="BackupDialog_no_file_picker_available">কোনও ফাইল বাছাইকারী উপলভ্য নয়।</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">যাচাই করতে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করান</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">যাচাই করুন</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">আপনি সফলভাবে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করিয়েছেন</string>
     <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal নিবন্ধন - অ্যানড্রয়েড এর জন্য যাচাইকরণ কোড</string>
     <string name="RegistrationActivity_incorrect_code">ভুল কোড</string>
     <string name="BackupUtil_never">কখনোই না</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">অজানা</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ফোন নম্বর</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">উভয় ডিভাইসে ওয়াই-ফাই বন্ধ এবং চালু করার চেষ্টা করুন।</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">নিশ্চিত করুন যে দুটি ডিভাইসই ট্রান্সফার মোড-এ রয়েছে।</string>
     <string name="DeviceTransferSetup__go_to_support_page">সাপোর্ট পৃষ্ঠায় যান</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">আবারো চেষ্টা করুন</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">অন্যান্য ডিভাইসের জন্য অপেক্ষা করা হচ্ছে</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ট্রান্সফার করা শুরু করতে আপনার অন্য ডিভাইসে চালিয়ে যান অপশনে ট্যাপ করুন।</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">নাম্বার পরিবর্তন করুন</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s যাচাই করা হচ্ছে</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">ক্যাপচা প্রয়োজন</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">অনুমতিসমূহ</string>
     <string name="ConversationSettingsFragment__requests_and_invites">অনুরোধ &amp; আমন্ত্রণ</string>
     <string name="ConversationSettingsFragment__group_link">গ্রুপের লিংক</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">কন্ট্যাক্ট হিসেবে যোগ করুন</string>
     <string name="ConversationSettingsFragment__unmute">আনমিউট করুন</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">শেয়ার করুন</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">উপরে যাও</string>
     <string name="MultiselectForwardFragment__forward_to">সামনে</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">ভিডিওগুলোকে 30 সেকেন্ড ক্লিপে কাটা হবে এবং একাধিক স্টোরি হিসেবে পাঠানো হবে।</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">স্টোরি-তে পাঠানো ভিডিও 30 সেকেন্ডের বেশি হতে পারবে না।</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ফরোয়ার্ড করা বার্তা এখন অবিলম্বে পাঠানো হয়।</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d টি বার্তা পাঠান</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/মাস</string>
     <string name="MySupportPreference__renews_s">%1$s নবায়ন করছে</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">লেনদেন প্রক্রিয়া করা হচ্ছে…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ব্যাজ যোগ করা যায়নি। %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">তথ্য</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">পাঠানো হচ্ছে…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d পাঠানো হচ্ছে…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">পাঠাতে ব্যর্থ হয়েছে</string>

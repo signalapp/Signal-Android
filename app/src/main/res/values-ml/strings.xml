@@ -1026,9 +1026,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">തുടരുക</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കണോ?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1036,7 +1036,7 @@
     <!-- Button option to not submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">റദ്ദാക്കുക</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">ഭാഷ</string>
     <string name="preferences__signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും</string>
     <string name="preferences__advanced_pin_settings">വിപുല PIN ക്രമീകരണങ്ങൾ</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">സിഗ്നൽ ഉപയോക്താക്കൾക്ക് സൗജന്യ സ്വകാര്യ സന്ദേശങ്ങളും കോളുകളും</string>
     <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
     <string name="preferences__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കൂ</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">കണക്ഷൻ പരാജയപ്പെട്ടു</string>
     <string name="preferences_couldnt_connect_to_the_proxy">പ്രോക്‌സിയിലേക്ക് കണക്റ്റുചെയ്യാൻ സാധിച്ചില്ല. പ്രോക്സി അഡ്രസ് പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക</string>
     <string name="preferences_you_are_connected_to_the_proxy">നിങ്ങൾ പ്രോക്സിയുമായ് കണക്ട് ചെയ്തിരിക്കുന്നു . പ്രോക്സി ഓഫ് ചെയ്യണമെങ്കിൽ ക്രമീകരണങ്ങളിൽ പോവുക</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">വിജയകരം</string>
     <string name="preferences_failed_to_connect">ബന്ധിപ്പിക്കാനായില്ല</string>
     <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="BackupDialog_no_file_picker_available">ഫയൽ പിക്കറൊന്നും ലഭ്യമല്ല.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങൾ ബാക്കപ്പിന്റെ രഹസ്യവാചകം വിജയകരമായി നൽകി</string>
     <string name="BackupDialog_passphrase_was_not_correct">രഹസ്യവാചകം ശരിയായിരുന്നില്ല</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള സ്ഥിരീകരണ കോഡ്</string>
     <string name="RegistrationActivity_incorrect_code">കോഡ് തെറ്റാണ്</string>
     <string name="BackupUtil_never">ഒരിക്കലും വേണ്ട</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">അജ്ഞാതം</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ഫോൺ നമ്പർ</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">രണ്ട് ഉപകരണങ്ങളിലും വൈ-ഫൈ ഓഫ് ചെയ്യാനും ഓണാക്കാനും ശ്രമിക്കുക.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">രണ്ട് ഉപകരണങ്ങളും ട്രാൻസ്ഫർ മോഡിലാണെന്ന് ഉറപ്പാക്കുക.</string>
     <string name="DeviceTransferSetup__go_to_support_page">പിന്തുണ പേജിലേക്ക് പോകുക</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">മറ്റ് ഉപകരണത്തിനായി കാത്തിരിക്കുന്നു</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ട്രാൻസ്ഫർ ആരംഭിക്കുന്നതിന് നിങ്ങളുടെ മറ്റൊരു ഉപകരണത്തിൽ തുടരുക തൊടുക.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">നമ്പർ മാറ്റുക</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$sഉറപ്പാക്കുന്നു</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">ക്യാപ്ച ആവശ്യമാണ്</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">അനുമതികൾ</string>
     <string name="ConversationSettingsFragment__requests_and_invites">അഭ്യർത്ഥനകൾ &amp; ക്ഷണങ്ങൾ</string>
     <string name="ConversationSettingsFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക്</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">ഒരു കോൺടാക്റ്റായി ചേർക്കുക</string>
     <string name="ConversationSettingsFragment__unmute">അൺമ്യൂട്ട് ചെയ്യുക</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">പങ്കിടുക</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
     <string name="MultiselectForwardFragment__forward_to">ഫോർവേഡ് ചെയ്യുക</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">വീഡിയോകൾ 30 സെക്കൻഡ് ദൈർഘ്യമുള്ള ക്ലിപ്പുകളായി ട്രിം ചെയ്‌ത് ഒന്നിലധികം സ്റ്റോറീസായി അയയ്‌ക്കും.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">സ്‌റ്റോറികളിലേക്ക് അയയ്‌ക്കുന്ന വീഡിയോകളുടെ ദൈർഘ്യം 30 സെക്കൻഡിൽ കൂടരുത്.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">കൈമാറിയ സന്ദേശങ്ങള്‍ ഇപ്പോൾ ഉടനടി അയയ്‌ക്കുന്നു.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d സന്ദേശം അയയ്ക്കുക</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/മാസം</string>
     <string name="MySupportPreference__renews_s">%1$s പുതുക്കുന്നു</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">ഇടപാട് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ബാഡ്‌ജ് ചേർക്കാനായില്ല. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">വിവരം</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">അയയ്ക്കുന്നു…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d എണ്ണം അയയ്ക്കുന്നു….</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>

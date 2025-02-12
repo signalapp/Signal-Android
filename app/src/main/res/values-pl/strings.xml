@@ -185,11 +185,11 @@
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Nieprawidłowy rok</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
-    <string name="CreditCardFragment__donate_s">Wpłać darowiznę w wys. %1$s</string>
+    <string name="CreditCardFragment__donate_s">Wpłać %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
-    <string name="CreditCardFragment__donate_s_month">Wpłacaj darowiznę w wys. %1$s/miesiąc</string>
+    <string name="CreditCardFragment__donate_s_month">Wpłacaj %1$s co miesiąc</string>
     <!-- Button label to confirm credit card input and proceed with backups payment. Placeholder is formatted price. -->
-    <string name="CreditCardFragment__pay_s_month">Wpłacaj darowiznę w wys. %1$s/miesiąc</string>
+    <string name="CreditCardFragment__pay_s_month">Wpłacaj %1$s co miesiąc</string>
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
@@ -1031,9 +1031,9 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Korzystaj z tego konta Signal na komputerze lub iPadzie.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">Powiąż nowe urządzenie</string>
+    <string name="LinkDeviceFragment__link_a_new_device">Połącz nowe urządzenie</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s Wiadomości i informacje o czacie są zabezpieczone szyfrowaniem end-to-end na wszystkich urządzeniach</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
@@ -1072,17 +1072,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Kontynuuj</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Kontakt z działem technicznym</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Wysłać raport debugowania?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Dzienniki debugowania pomogą nam szybciej rozwiązać problem. Załączenie dzienników jest opcjonalne.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Wyślij z dziennikami debugowania</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Wyślij bez dzienników debugowania</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Anuluj</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -1150,7 +1150,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Przenieś historię wiadomości</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Przenieś swoje wiadomości i multimedia z ostatnich 45 dni</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Przenieś swoje wiadomości, w tym multimedia z ostatnich 45 dni</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Nie przenoś</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -2062,7 +2062,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Twoja prośba o przyjęcie do grupy została odrzucona przez administratora.</string>
-    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Odrzucasz prośbę o przyjęcie do grupy, której nadawca to %1$s.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Odrzucasz prośbę o przyjęcie do grupy, której nadawcą jest %1$s.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s odrzucił(a) prośbę o przyjęcie do grupy od %2$s.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Prośba %1$s o przyjęcie do grupy została odrzucona.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Anulowałeś(aś) swoją prośbę o przyjęcie do grupy.</string>
@@ -2257,7 +2257,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Masz zbyt dużo powiązanych urządzeń, spróbuj usunąć któreś z nich zanim spróbujesz ponownie</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Przepraszamy, ale to nie jest prawidłowy link QR.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Dodać nowe urządzenie Signal?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Aby połączyć konto Signal z komputerem lub iPadem, przejdź do sekcji Połączone urządzenia, dotknij opcji „Połącz nowe urządzenie” i zeskanuj kod QR ponownie. Pamiętaj, aby skanować wyłącznie kody QR pochodzące bezpośrednio z aplikacji Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal wymaga pozwolenia na dostęp do aparatu w celu zeskanowania kodu QR, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Nie można zeskanować kodu QR bez zezwolenia na dostęp do aparatu</string>
@@ -2638,9 +2638,9 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Rozwiń widok podniesionych rąk</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">Twój kraj</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Szukaj po nazwie lub numerze</string>
+    <string name="CountryCodeFragment__search_by">Szukaj po nazwie lub kodzie kraju</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Nieznany kraj</string>
 
@@ -2739,7 +2739,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">Wybierz kraj</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Otrzymasz telefon, aby zweryfikować ten numer.</string>
@@ -2963,7 +2963,7 @@
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s wpłacił(a) darowiznę w Twoim imieniu</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">Wpłaciłeś(-aś) darowiznę w imieniu %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Darowizna wpłacona w imieniu tej osoby: %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Odebrałeś(-aś) odznakę</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
@@ -3911,7 +3911,7 @@
     <string name="preferences__slow">Wolno</string>
     <string name="preferences__help">Pomoc</string>
     <string name="preferences__advanced">Zaawansowane</string>
-    <string name="preferences__donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
+    <string name="preferences__donate_to_signal">Wesprzyj Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__privacy">Prywatność</string>
     <!-- Preference label for stories -->
@@ -3967,6 +3967,8 @@
     <string name="preferences__language">Język</string>
     <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
     <string name="preferences__advanced_pin_settings">Zaawansowane ustawienia PIN-u</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
     <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
     <string name="preferences__delete_account">Usuń konto</string>
@@ -4075,6 +4077,7 @@
     <string name="preferences_connection_failed">Błąd połączenia</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Nie udało się połączyć z serwerem proxy. Sprawdź adres proxy i spróbuj ponownie.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Zostałeś(aś) połączony(a) z serwerem proxy. W każdej chwili możesz wyłączyć proxy w Ustawieniach.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Sukces</string>
     <string name="preferences_failed_to_connect">Nie udało się połączyć</string>
     <string name="preferences_enter_proxy_address">Podaj adres proxy</string>
@@ -4696,6 +4699,7 @@
     <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka</string>
     <string name="BackupDialog_no_file_picker_available">Brak dostępnej aplikacji do wyboru plików.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Wprowadź hasło kopii zapasowej, aby je zweryfikować</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Zweryfikuj</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>
     <string name="BackupDialog_passphrase_was_not_correct">Hasło jest nieprawidłowe</string>
@@ -4720,6 +4724,7 @@
     <string name="RegistrationActivity_code_support_subject">Rejestracja Signal - Kod weryfikacyjny dla systemu Android</string>
     <string name="RegistrationActivity_incorrect_code">Niepoprawny kod</string>
     <string name="BackupUtil_never">Nigdy</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Nieznane</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Numer telefonu</string>
@@ -4904,6 +4909,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Spróbuj wyłączyć i włączyć Wi-Fi na obu urządzeniach.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Upewnij się, że oba urządzenia są w trybie transferu.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Przejdź do strony pomocy</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Spróbuj ponownie</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Oczekiwanie na drugie urządzenie</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Stuknij Kontynuuj, na drugim urządzeniu, aby rozpocząć transfer.</string>
@@ -5425,6 +5431,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Zmień numer</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Weryfikowanie %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Wymagane wypełnienie captcha</string>
 
@@ -5726,7 +5733,7 @@
     <!-- ChatColorGradientTool -->
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Wesprzyj Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim, jak Ty. Przekaż comiesięczną darowiznę i otrzymaj odznakę.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
@@ -5814,6 +5821,7 @@
     <string name="ConversationSettingsFragment__permissions">Uprawnienia</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
     <string name="ConversationSettingsFragment__group_link">Link do grupy</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj, jako kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Cofnij wyciszenie</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5929,6 +5937,7 @@
     <string name="ShareInterstitialActivity__share">Udostępnij</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Przejdź do góry</string>
     <string name="MultiselectForwardFragment__forward_to">Przekaż do</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5939,6 +5948,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Filmy zostaną przycięte do 30-sekundowych klipów i wysłane jako kilka relacji.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Filmy przesyłane do relacji mogą mieć maksymalnie 30 sekund.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Przekazywane wiadomości są teraz natychmiast wysyłane.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Wysłano %1$d wiadomość</item>
@@ -6042,14 +6052,14 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Dodać urządzenie?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Wygląda na to, że próbujesz połączyć urządzenie z aplikacją Signal. Aby to zrobić, dotknij opcji „Kontynuuj”, wybierz „Połącz nowe urządzenie” i zeskanuj kod QR ponownie.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Kontynuuj</string>
 
 
     <string name="BadgesOverviewFragment__my_badges">Moje odznaki</string>
     <string name="BadgesOverviewFragment__featured_badge">Wyświetlana odznaka</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Wyświetlaj odznaki na profilu</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Wyświetlaj odznaki w profilu</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Nie udało się zaktualizować profilu</string>
 
 
@@ -6080,20 +6090,20 @@
     <string name="SubscribeFragment__update">Uaktualnij</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dziś z Twojego konta zostanie pobrana pełna kwota (%1$s) za nową subskrypcję. Twoja subskrypcja będzie odnawiać się co miesiąc.</string>
 
-    <string name="Subscription__s_per_month">%1$s/miesiąc</string>
+    <string name="Subscription__s_per_month">%1$s miesięcznie</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">Przedłużane %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Wygasa %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal jest inny.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal jest inny</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Prywatne wysyłanie wiadomości. Bez reklam, bez śledzenia, bez nadzoru.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">To prywatny komunikator. Bez reklam, bez śledzenia, bez kompromisów.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal istnieje dzięki darowiznom, co oznacza, że Twoja prywatność jest naszym priorytetem. Tworzymy Signal dla Ciebie, a nie dla zysku czy w celu zdobycia Twoich danych.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal istnieje dzięki darowiznom, więc Twoja prywatność to nasz priorytet. Tworzymy aplikację Signal dla Ciebie, a nie dla zysku czy w celu pozyskania Twoich danych.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Jeśli możesz, wpłać darowiznę na rzecz Signal — to dzięki osobom takim jak Ty nasza aplikacja pozostaje przyjazną, niezawodną przestrzenią dostępną dla wszystkich.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Jeśli możesz, wesprzyj Signal darowizną. To dzięki osobom takim jak Ty nasza aplikacja jest przyjazną przestrzenią godną zaufania i dostępną dla wszystkich.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
@@ -6109,7 +6119,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Wesprzyj Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Więcej</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -6131,12 +6141,13 @@
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">Twoja jednorazowa darowizna w wysokości %1$s nie mogła zostać zatwierdzona. Przejdź do swojej aplikacji bankowej, aby zatwierdzić swoją płatność iDEAL.</string>
 
-    <string name="Boost__enter_custom_amount">Podaj własną kwotę</string>
+    <string name="Boost__enter_custom_amount">Podaj inną kwotę</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Minimalna kwota darowizny wynosi %1$s</string>
 
-    <string name="MySupportPreference__s_per_month">%1$s/miesiąc</string>
+    <string name="MySupportPreference__s_per_month">%1$s miesięcznie</string>
     <string name="MySupportPreference__renews_s">Przedłużane %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Przetwarzanie transakcji…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Nie udało się dodać odznaki. %1$s</string>
@@ -6186,7 +6197,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Twoja comiesięczna subskrypcja została anulowana, gdyż nie udało nam się przetworzyć Twojej płatności. Twoja odznaka nie jest już widoczna w Twoim profilu.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Twoja comiesięczna darowizna została anulowana. %1$s Twoja odznaka %2$s nie jest już widoczna na profilu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, wpłać darowiznę.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Nadal możesz korzystać z aplikacji Signal, ale jeśli chcesz ją wesprzeć i odzyskać odznakę, wpłać darowiznę.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Odnów subskrypcję</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Przejdź do Google Pay</string>
@@ -6260,7 +6271,7 @@
     <string name="DonationsErrors__your_ideal_couldnt_be_processed">Twoja darowizna za pośrednictwem iDEAL nie mogła zostać przetworzona. Wypróbuj inną metodę płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Darowizna w imieniu: %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">%1$s, wpłacam w Twoim imieniu darowiznę</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s wpłacił(a) w Twoim imieniu darowiznę na rzecz Signal</string>
     <!-- Gift badge redeem action label -->
@@ -6495,7 +6506,7 @@
     <!-- Donation receipts recurring tab label -->
     <string name="DonationReceiptListFragment__recurring">Odnawiana</string>
     <!-- Donation receipts one-time tab label -->
-    <string name="DonationReceiptListFragment__one_time">Jeden raz</string>
+    <string name="DonationReceiptListFragment__one_time">Jednorazowo</string>
     <!-- Donation receipts gift tab -->
     <string name="DonationReceiptListFragment__for_a_friend">Dla znajomego</string>
     <!-- Donation receipts gift tab label -->
@@ -6549,7 +6560,7 @@
     <string name="StoriesLandingItem__info">Informacje</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Wysyłanie…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Wysyłanie %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Wysyłanie nie powiodło się</string>
@@ -6871,10 +6882,10 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">Wpłać darowiznę w imieniu znajomego</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Wesprzyj Signal, wpłacając darowiznę w imieniu innego użytkownika naszej usługi — znajomego lub rodziny. Osoba ta otrzyma od nas na %1$d dzień odznakę do wyświetlenia na profilu.</item>
-        <item quantity="few">Wesprzyj Signal, wpłacając darowiznę w imieniu innego użytkownika naszej usługi — znajomego lub rodziny. Osoba ta otrzyma od nas na %1$d dni odznakę do wyświetlenia na profilu.</item>
-        <item quantity="many">Wesprzyj Signal, wpłacając darowiznę w imieniu innego użytkownika naszej usługi — znajomego lub rodziny. Osoba ta otrzyma od nas na %1$d dni odznakę do wyświetlenia na profilu.</item>
-        <item quantity="other">Wesprzyj Signal, wpłacając darowiznę w imieniu innego użytkownika naszej usługi — znajomego lub rodziny. Osoba ta otrzyma od nas na %1$d dni odznakę do wyświetlenia na profilu.</item>
+        <item quantity="one">Wesprzyj Signal i wpłać darowiznę w imieniu innej osoby, np. przyjaciółki czy kogoś z rodziny, korzystającej z naszej aplikacji. Osoba ta otrzyma od nas odznakę, którą może wyświetlać w swoim profilu przez %1$d dzień.</item>
+        <item quantity="few">Wesprzyj Signal i wpłać darowiznę w imieniu innej osoby, np. przyjaciółki czy kogoś z rodziny, korzystającej z naszej aplikacji. Osoba ta otrzyma od nas odznakę, którą może wyświetlać w swoim profilu przez %1$d dni.</item>
+        <item quantity="many">Wesprzyj Signal i wpłać darowiznę w imieniu innej osoby, np. przyjaciółki czy kogoś z rodziny, korzystającej z naszej aplikacji. Osoba ta otrzyma od nas odznakę, którą może wyświetlać w swoim profilu przez %1$d dni.</item>
+        <item quantity="other">Wesprzyj Signal i wpłać darowiznę w imieniu innej osoby, np. przyjaciółki czy kogoś z rodziny, korzystającej z naszej aplikacji. Osoba ta otrzyma od nas odznakę, którą może wyświetlać w swoim profilu przez %1$d dnia.</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Dalej</string>
@@ -6885,7 +6896,7 @@
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Wyślij do</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Obdarowany zostanie powiadomiony o darowiźnie w osobistej wiadomości. Poniżej możesz dołączyć własną wiadomość.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Osoba ta otrzyma powiadomienie o darowiźnie w prywatnej wiadomości. Poniżej możesz dodać coś od siebie.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Darowizna jednorazowa</string>
     <!-- Hint for add message input -->
@@ -6899,7 +6910,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s wpłacił(a) darowiznę na rzecz Signal w Twoim imieniu! Pochwal się na profilu, że wspierasz apkę.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Wpłaciłeś(-aś) darowiznę na rzecz Signal w imieniu %1$s. Otrzyma on(a) możliwość pochwalenia się wsparciem na profilu.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Twoja darowizna na rzecz aplikacji Signal została wpłacona w imieniu wybranej osoby. %1$s może się teraz pochwalić wsparciem w swoim profilu.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Odbierz</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6907,7 +6918,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Odbieranie odznaki…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">Wpłaciłeś(-aś) darowiznę na rzecz Signal w imieniu %1$s. Otrzyma on(a) możliwość pochwalenia się wsparciem na profilu.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Twoja darowizna na rzecz aplikacji Signal została wpłacona w imieniu wybranej osoby. %1$s może się teraz pochwalić wsparciem w swoim profilu.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Twoja odznaka wygasła</string>
     <!-- Expired gift sheet top description text -->
@@ -7147,11 +7158,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Prywatność ponad zyskiem</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Prywatność ponad zysk</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Kontynuuj</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Prywatne wysyłanie wiadomości, finansowane przez Ciebie. Bez reklam, bez śledzenia, bez nadzoru. Wpłać darowiznę i wspieraj Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Prywatny komunikator finansowany przez Ciebie. Bez reklam, bez śledzenia, bez kompromisów. Wpłać darowiznę i wesprzyj Signal.</string>
     <!-- Dialog title when a user tries to donate while they already have a pending donation. -->
     <string name="DonateToSignalFragment__you_have_a_donation_pending">Twoja darowizna oczekuje na realizację</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
@@ -7172,7 +7183,7 @@
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Co miesiąc</string>
     <!-- Donation pill toggle one-time text -->
-    <string name="DonationPillToggle__one_time">Jeden raz</string>
+    <string name="DonationPillToggle__one_time">Jednorazowo</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
@@ -7180,7 +7191,7 @@
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">Zdobądź odznakę %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Wpłać darowiznę %1$s na rzecz Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Wpłać %1$s i wepsrzyj Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
         <item quantity="one">Zdobądź odznakę %1$s na %2$d dzień</item>
@@ -7257,9 +7268,9 @@
     <!-- Text label for button to show user how to find their IBAN -->
     <string name="BankTransferDetailsFragment__find_account_info">Znajdź informacje o koncie</string>
     <!-- Donate button label for monthly subscription -->
-    <string name="BankTransferDetailsFragment__donate_s_month">Wpłacaj darowiznę w wys. %1$s/miesiąc</string>
+    <string name="BankTransferDetailsFragment__donate_s_month">Wpłacaj %1$s co miesiąc</string>
     <!-- Donate button label for one-time -->
-    <string name="BankTransferDetailsFragment__donate_s">Wpłać darowiznę w wys. %1$s</string>
+    <string name="BankTransferDetailsFragment__donate_s">Wpłać %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
     <string name="BankTransferDetailsFragment__iban_is_too_short">IBAN jest za krótki</string>
     <!-- Error label for IBAN field when number is too long -->
@@ -7329,7 +7340,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Darowizna przekazana</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Otrzymaliśmy Twój przelew. Możesz przypiąć tę odznakę do swojego profilu, by pochwalić się udzielonym nam wsparciem.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Otrzymaliśmy Twój przelew. Możesz wyświetlić w swoim profilu tę odznakę, aby pochwalić się udzielonym nam wsparciem.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Gotowe</string>
 
@@ -8034,7 +8045,7 @@
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">Historia płatności</string>
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/miesiąc · Przedłużane %2$s</string>
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s miesięcznie · Kolejna wpłata %2$s</string>
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Zmień lub anuluj subskrypcję</string>
 
@@ -8100,7 +8111,7 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/miesiąc · Przedłużane %2$s</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s miesięcznie, kolejna wpłata %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Ostatnia kopia zapasowa: %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
@@ -8150,7 +8161,7 @@
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
     <string name="RemoteBackupsSettingsFragment__backups_disabled">Kopie zapasowe wyłączone</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
-    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/miesiąc</string>
+    <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s miesięcznie</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
     <string name="RemoteBackupsSettingsFragment__payment_pending">Przetwarzanie płatności…</string>
     <!-- Displayed in card while waiting for network -->
@@ -8346,7 +8357,7 @@
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Za darmo</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
-    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/miesiąc</string>
+    <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s miesięcznie</string>
     <!-- Title for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__text_plus_all_your_media">Wiadomości tekstowe + wszystkie Twoje multimedia</string>
     <!-- Title for paid tier. Placeholder is days of media retention. -->
@@ -8454,9 +8465,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Nieprawidłowy kod kopii zapasowej</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">Nie udało się znaleźć kopii zapasowej</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Wprowadzony kod jest poprawny, ale nie została z nim powiązana żadna kopia zapasowa. Jeśli nadal masz swój stary telefon, upewnij się, że włączona jest na nim funkcja tworzenia kopii zapasowych, a kopia zapasowa została utworzona. Następnie spróbuj ponownie.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Pomiń przywracanie</string>
 

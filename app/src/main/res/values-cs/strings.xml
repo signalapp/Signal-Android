@@ -1072,17 +1072,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Pokračovat</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Kontaktovat podporu</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Odeslat protokol ladění?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">S vaším debug logem se nám podaří vyřešit váš problém rychleji. Nahrání vašich logů není povinné.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Odeslat s debug logem</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Odeslat bez debug logu</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Zrušit</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3967,6 +3967,8 @@
     <string name="preferences__language">Jazyk</string>
     <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>
     <string name="preferences__advanced_pin_settings">Pokročilá nastavení PIN</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
     <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
     <string name="preferences__delete_account">Smazat účet</string>
@@ -4075,6 +4077,7 @@
     <string name="preferences_connection_failed">Spojení selhalo</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Nebylo možné se připojit k proxy. Zkontrolujte adresu proxy a zkuste to znovu.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Jste připojeni k proxy. Proxy můžete kdykoliv vypnout z Nastavení.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Úspěch</string>
     <string name="preferences_failed_to_connect">Připojení selhalo</string>
     <string name="preferences_enter_proxy_address">Zadat adresu proxy</string>
@@ -4696,6 +4699,7 @@
     <string name="BackupDialog_copied_to_clipboard">Zkopírováno do schránky</string>
     <string name="BackupDialog_no_file_picker_available">Není k dispozici žádná aplikace pro výběr souborů.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Pro ověření zadejte přístupovou frázi pro vaši zálohu</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Ověřit</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Úspěšně jste zadali přístupovou frázi pro vaši zálohu</string>
     <string name="BackupDialog_passphrase_was_not_correct">Přístupová fráze nebyla správná</string>
@@ -4720,6 +4724,7 @@
     <string name="RegistrationActivity_code_support_subject">Registrace Signal - ověřovací kód pro Android</string>
     <string name="RegistrationActivity_incorrect_code">Špatný kód</string>
     <string name="BackupUtil_never">Nikdy</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Neznámý</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefonní číslo</string>
@@ -4904,6 +4909,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Zkuste vypnout a zapnout Wi-Fi na obou zařízeních.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Ujistěte se, že obě zařízení jsou v režimu přenosu.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Jít na web podpory</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Zkusit znovu</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Čekám na další zařízení</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Klepněte na pokračovat na svém druhém zařízení pro zahájení přenosu.</string>
@@ -5425,6 +5431,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Změnit číslo</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Ověřuji %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Vyžaduje se Captcha</string>
 
@@ -5814,6 +5821,7 @@
     <string name="ConversationSettingsFragment__permissions">Oprávnění</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Požadavky &amp; pozvánky</string>
     <string name="ConversationSettingsFragment__group_link">Odkaz skupiny</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Přidat jako kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Zrušit ztlumení</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5929,6 +5937,7 @@
     <string name="ShareInterstitialActivity__share">Sdílet</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Přejděte nahoru</string>
     <string name="MultiselectForwardFragment__forward_to">Přeposlat</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5939,6 +5948,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videa budou zkrácena na 30vteřinové klipy a odeslána jako několik příběhů.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videa odeslaná do příběhů nesmí být delší než 30 vteřin.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Přeposlané zprávy se nyní odesílají okamžitě.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Odeslat %1$d zprávu</item>
@@ -6137,6 +6147,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
     <string name="MySupportPreference__renews_s">Obnovení %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Zpracovávání transakce…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Nezdařilo se přidat odznak.%1$s</string>
@@ -6549,7 +6560,7 @@
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Odesílání…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Odesílám %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Odeslání selhalo</string>

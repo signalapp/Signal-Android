@@ -1008,7 +1008,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Use this Signal account on desktop or iPad.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Folosește acest cont Signal pe desktop sau iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Asociază un dispozitiv nou</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1049,17 +1049,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continuă</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Contactează Asistența</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Trimiți jurnalul de depanare?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Jurnalele tale de depanare ne vor ajuta să rezolvăm mai rapid problema. Trimiterea lor este opțională.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Trimite împreună cu jurnalul de depanare</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Trimite fără jurnalul de depanare</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Anulează</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2192,7 +2192,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai deja prea multe dispozitive asociate, încearcă să elimini câteva</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău, acest cod de asociere QR este invalid.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Asociez un dispozitiv Signal?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\"and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Pentru a asocia un desktop sau un iPad la acest cont Signal, accesează Dispozitive asociate și atinge „Asociază un dispozitiv nou” și scanează din nou codul QR. Asigură-te că scanezi doar codurile QR care vin direct de la Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Te rugăm continuă în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
@@ -2556,7 +2556,7 @@
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Extinde vizualizarea mâinilor ridicate</string>
 
     <!-- Toolbar title of country picker selection page -->
-    <string name="CountryCodeFragment__your_country">Your country</string>
+    <string name="CountryCodeFragment__your_country">Țara ta</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
     <string name="CountryCodeFragment__search_by">Caută dupa nume sau număr</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
@@ -2652,7 +2652,7 @@
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Vei primi un cod de verificare. Se pot aplica tarife de operator.</string>
     <!-- Hint text to select a country -->
-    <string name="RegistrationActivity_select_a_country">Select a country</string>
+    <string name="RegistrationActivity_select_a_country">Selectează o țară</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Vei primi un apel pentru a verifica acest număr.</string>
@@ -3864,6 +3864,8 @@
     <string name="preferences__language">Limba</string>
     <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
     <string name="preferences__advanced_pin_settings">Setări PIN avansate</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private și gratuite cu utilizatorii Signal</string>
     <string name="preferences__submit_debug_log">Trimite jurnalul de depanare</string>
     <string name="preferences__delete_account">Șterge-ți contul</string>
@@ -3970,6 +3972,7 @@
     <string name="preferences_connection_failed">Conexiune eșuată</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Conexiunea la proxy nu a reușit. Verifică adresa proxy și încearcă din nou.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Ești conectat la proxy. Poți dezactiva proxy-ul în orice moment din Setări.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Succes</string>
     <string name="preferences_failed_to_connect">Conexiunea a eșuat</string>
     <string name="preferences_enter_proxy_address">Introdu adresa proxy</string>
@@ -4582,6 +4585,7 @@
     <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
     <string name="BackupDialog_no_file_picker_available">Nu este disponibil niciun selector de fișiere.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Introdu parola de backup pentru a verifica</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Verifică</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ai introdus cu succes parola de backup</string>
     <string name="BackupDialog_passphrase_was_not_correct">Parola nu a fost corectă</string>
@@ -4606,6 +4610,7 @@
     <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de Verificare pentru Android</string>
     <string name="RegistrationActivity_incorrect_code">Cod incorect</string>
     <string name="BackupUtil_never">Niciodată</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Necunoscut</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Număr de telefon</string>
@@ -4790,6 +4795,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Încercă să dezactivezi și să activezi Wi-Fi pe ambele dispozitive.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Asigură-te că ambele dispozitive sunt în modul de transfer.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Deschide pagina de asistență</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Încercă din nou</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Se așteaptă celălalt dispozitiv</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Atinge Continuare pe celălalt dispozitiv pentru a începe transferul.</string>
@@ -5303,6 +5309,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Schimbă Numărul</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Se verifică %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha este necesară</string>
 
@@ -5685,6 +5692,7 @@
     <string name="ConversationSettingsFragment__permissions">Permisiuni</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Solicitări și invitații</string>
     <string name="ConversationSettingsFragment__group_link">Link grup</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Adaugă ca și contact</string>
     <string name="ConversationSettingsFragment__unmute">Activare sunet notificări</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5799,6 +5807,7 @@
     <string name="ShareInterstitialActivity__share">Distribuie</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Navighează în sus</string>
     <string name="MultiselectForwardFragment__forward_to">Redirecționează către</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5809,6 +5818,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoclipurile vor fi scurtate la clipuri de 30 de secunde și trimise ca Povești multiple.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoclipurile trimise către povești nu pot fi mai lungi de 30 de secunde.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesajele redirecționate sunt acum trimise imediat.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Trimite %1$d mesaj</item>
@@ -5906,7 +5916,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Asociezi dispozitivul?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_it_looks_like_youre_trying">It looks like you\'re trying to link a Signal device. Tap continue and then tap \"Link a New Device\" and scan the QR code again.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Se pare că încerci să asociezi un dispozitiv Signal. Atinge Continuă, apoi atinge „Asociază un dispozitiv nou” și scanează din nou codul QR.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Continuă</string>
 
@@ -6001,6 +6011,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/lună</string>
     <string name="MySupportPreference__renews_s">Se reînnoiește %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Se procesează tranzacția…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Nu s-a putut adăuga insigna. %1$s</string>
@@ -6413,7 +6424,7 @@
     <string name="StoriesLandingItem__info">Informații</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Se trimite…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Se trimite %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Trimitere eșuată</string>
@@ -8282,9 +8293,9 @@
     <!-- Text field error when the backup key is invalid -->
     <string name="EnterBackupKey_invalid_backup_key_error">Cod de rezervă nevalid</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_not_found">Backup not found</string>
+    <string name="EnterBackupKey_backup_not_found">Backup-ul nu a fost găsit</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The backup key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Codul de rezervă pe care l-ai introdus este corect, dar nu este nicio copie de rezervă asociată cu acesta. Dacă ai încă vechiul telefon, asigură-te că backup-urile sunt activate și că a fost finalizată o copie de rezervă și încearcă din nou.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Sari peste restaurare</string>
 

@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">ચાલુ રાખો</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">ડીબગ લૉગ સબમિટ કરવો છે?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">તમારા ડિબગ લૉગ્સ તમારી સમસ્યાને ઝડપથી નિવારણ કરવામાં મદદ કરશે. તમારા લૉગ્સ સબમિટ કરવું વૈકલ્પિક છે.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ડિબગ લૉગ સાથે સબમિટ કરો</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ડિબગ લૉગ વિના સબમિટ કરો</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">રદ કરો</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">ભાષા</string>
     <string name="preferences__signal_messages_and_calls">Signal મેસેજ અને કૉલ્સ</string>
     <string name="preferences__advanced_pin_settings">અદ્યતન PIN સેટિંગ્સ</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">મફત ખાનગી મેસેજ અને Signal વપરાશકર્તાઓને કૉલ્સ</string>
     <string name="preferences__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
     <string name="preferences__delete_account">એકાઉન્ટ ડિલીટ કરો</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">કનેક્શન નિષ્ફળ થયું</string>
     <string name="preferences_couldnt_connect_to_the_proxy">પ્રોક્સી સાથે કનેક્ટ કરી શકાયું નથી. પ્રોક્સી એડ્રેસ તપાસો અને ફરી પ્રયાસ કરો.</string>
     <string name="preferences_you_are_connected_to_the_proxy">તમે પ્રોક્સી સાથે જોડાયેલા છો. તમે સેટિંગ્સમાંથી કોઈપણ સમયે પ્રોક્સી બંધ કરી શકો છો.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">સફળતા</string>
     <string name="preferences_failed_to_connect">કનેક્ટ કરવામાં નિષ્ફળ</string>
     <string name="preferences_enter_proxy_address">પ્રોક્સી એડ્રેસ ઉમેરો</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">ક્લિપબોર્ડ પર કૉપી કરેલું</string>
     <string name="BackupDialog_no_file_picker_available">કોઈ ફાઇલ પિકર ઉપલબ્ધ નથી</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">તમારો બૅકઅપ પાસફ્રેઝ દાખલ કરો અને ચકાસો</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">ચકાસો</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">તમે સફળતાપૂર્વક તમારો બૅકઅપ પાસફ્રેઝ દાખલ કર્યો</string>
     <string name="BackupDialog_passphrase_was_not_correct">પાસફ્રેઝ સાચો ન હતો</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal રજીસ્ટ્રેશન - Android માટે ચકાસણી કોડ</string>
     <string name="RegistrationActivity_incorrect_code">ખોટો કોડ</string>
     <string name="BackupUtil_never">ક્યારેય નહિ</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">અજાણ્યું</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">ફોન નંબર</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">બંને ડિવાઇસ પર Wi-Fi બંધ અને ચાલુ કરવાનો પ્રયાસ કરો.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ખાતરી કરો કે બંને ડિવાઇસ ટ્રાન્સફર મોડમાં છે.</string>
     <string name="DeviceTransferSetup__go_to_support_page">સપોર્ટ પેજ પર જાઓ</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">ફરીથી પ્રયત્ન કરો</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">અન્ય ડિવાઇસની રાહ જોવી</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ટ્રાન્સફર શરૂ કરવા માટે તમારા અન્ય ડિવાઇસ પર ચાલુ રાખો પર ટેપ કરો.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">નંબર બદલો</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$sને ચકાસી રહ્યા છીએ</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">કેપ્ચા આવશ્યક છે</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">પરવાનગી</string>
     <string name="ConversationSettingsFragment__requests_and_invites">વિનંતીઓ &amp; આમંત્રણ</string>
     <string name="ConversationSettingsFragment__group_link">ગ્રુપ લિંક</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">સંપર્કોમાં ઉમેરો</string>
     <string name="ConversationSettingsFragment__unmute">અનમ્યૂટ કરો</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">શેર કરો</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">નેવિગેટ અપ</string>
     <string name="MultiselectForwardFragment__forward_to">આમને ફોરવર્ડ કરો</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">વિડીયો 30 સેકન્ડની ક્લિપમાં કાપવામાં આવશે અને એકથી વધુ સ્ટોરી તરીકે મોકલવામાં આવશે.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">સ્ટોરી તરીકે મોકલવામાં આવતા વિડીયો 30 સેકન્ડથી વધુ લાંબા ન હોઈ શકે.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">ફોરવર્ડ કરેલા મેસેજ હવે તાત્કાલિક મોકલવામાં આવે છે.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d મેસેજ મોકલો</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/માસ</string>
     <string name="MySupportPreference__renews_s">%1$sના રોજ રિન્યૂ થશે</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">ટ્રાન્ઝેક્શનની પ્રક્રિયા ચાલુ છે…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">બૅજ ઉમેરી ન શક્યા. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">માહિતી</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">મોકલી રહ્યો છે…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">મોકલી રહ્યા છીએ %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">મોકલવામાં નિષ્ફળ</string>

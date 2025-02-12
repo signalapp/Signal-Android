@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Συνέχεια</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Επικοινωνία με την υποστήριξη</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Αποστολή αρχείου καταγραφής αποσφαλμάτωσης;</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Τα αρχεία καταγραφής θα μας βοηθήσουν στην γρηγορότερη επίλυση του προβλήματος. Η υποβολή των αρχείων είναι προαιρετική.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Υποβολή με αρχείο καταγραφής</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Υποβολή χωρίς αρχείο καταγραφής</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Ακύρωση</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Γλώσσα</string>
     <string name="preferences__signal_messages_and_calls">Μηνύματα και κλήσεις του Signal</string>
     <string name="preferences__advanced_pin_settings">Ρυθμίσεις PIN για προχωρημένους</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες και τις χρήστριες του Signal</string>
     <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
     <string name="preferences__delete_account">Διαγραφή λογαριασμού</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Αποτυχία σύνδεσης</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Αποτυχία σύνδεσης το proxy. Έλεγξε τη διεύθυνση proxy και ξαναπροσπάθησε.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Έχεις συνδεθεί στο proxy. Μπορείς να το απενεργοποιήσεις οποιαδήποτε στιγμή στις Ρυθμίσεις.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Επιτυχία</string>
     <string name="preferences_failed_to_connect">Αποτυχία σύνδεσης</string>
     <string name="preferences_enter_proxy_address">Εισαγωγή διεύθυνσης proxy</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
     <string name="BackupDialog_no_file_picker_available">Δεν υπάρχει διαθέσιμη εφαρμογή επιλογής αρχείων.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Εισάγετε το συνθηματικό αντιγράφου ασφαλείας για επιβεβαίωση</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Επιβεβαίωση</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>
     <string name="BackupDialog_passphrase_was_not_correct">Το συνθηματικό δεν ήταν σωστό</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
     <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>
     <string name="BackupUtil_never">Ποτέ</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Άγνωστο</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Αριθμός τηλεφώνου</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Δοκίμασε να κλείσεις και να ξανανοίξεις το Wi-Fi και στις δύο συσκευές.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Επιβεβαίωσε πως και οι δύο συσκευές είναι στη κατάσταση μεταφοράς.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Πήγαινε στη σελίδα υποστήριξης</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Ξαναπροσπάθησε</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Αναμονή για την άλλη συσκευή</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Πάτα Συνέχεια στην άλλη σου συσκευή για να ξεκινήσεις τη μεταφορά.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Αλλαγή αριθμού</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Επιβεβαίωση του %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Απαιτείται Captcha</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Άδειες</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Αιτήματα &amp; προσκλήσεις</string>
     <string name="ConversationSettingsFragment__group_link">Σύνδεσμος ομάδας</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Προσθήκη ως επαφή</string>
     <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Μοιράσου</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Μετάβαση προς τα πάνω</string>
     <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Τα βίντεο θα κόβονται σε κλιπ των 30 δευτερολέπτων και θα στέλνονται ως πολλές Ιστορίες.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Τα βίντεο που στέλνονται σε Ιστορίες δεν πρέπει να έχουν διάρκεια μεγαλύτερη των 30 δευτερολέπτων.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Πλέον τα προωθημένα μηνύματα στέλνονται αμέσως.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Αποστολή %1$d μηνύματος</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
     <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Επεξεργασία συναλλαγής…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Αδυναμία προσθήκης σήματος. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Πληροφορίες</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Στέλνεται…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Αποστολή %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Αποτυχία αποστολής</string>

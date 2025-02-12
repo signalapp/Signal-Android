@@ -1072,17 +1072,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">המשך</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">יצירת קשר עם התמיכה</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">רוצה להגיש יומן ניפוי באגים?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">יומני ניפוי התקלים שלך יעזרו לנו לפתור מהר יותר את הסוגייה שלך. הגשת יומנים היא רשותית.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">הגש עם יומן ניפוי תקלים</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">הגש בלי יומן ניפוי תקלים</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">ביטול</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3967,6 +3967,8 @@
     <string name="preferences__language">שפה</string>
     <string name="preferences__signal_messages_and_calls">הודעות ושיחות של Signal</string>
     <string name="preferences__advanced_pin_settings">הגדרות PIN מתקדמות</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">הודעות ושיחות פרטיות חינמיות אל משתמשי Signal</string>
     <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
     <string name="preferences__delete_account">מחיקת חשבון</string>
@@ -4075,6 +4077,7 @@
     <string name="preferences_connection_failed">חיבור נכשל</string>
     <string name="preferences_couldnt_connect_to_the_proxy">לא היה ניתן להתחבר אל יפוי הכוח. בדוק את כתובת יפוי הכוח ונסה שוב.</string>
     <string name="preferences_you_are_connected_to_the_proxy">אתה מחובר אל יפוי הכוח. אתה יכול לכבות את יפוי הכוח בכל זמן מתוך ההגדרות.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">הצלחה</string>
     <string name="preferences_failed_to_connect">נכשל בהתחברות</string>
     <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
@@ -4696,6 +4699,7 @@
     <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
     <string name="BackupDialog_no_file_picker_available">אין בורר קבצים זמין.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">הכנס את משפט־סיסמת הגיבוי שלך כדי לוודא</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">וודא</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>
     <string name="BackupDialog_passphrase_was_not_correct">משפט־הסיסמה לא היה נכון</string>
@@ -4720,6 +4724,7 @@
     <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
     <string name="RegistrationActivity_incorrect_code">קוד שגוי</string>
     <string name="BackupUtil_never">אף פעם</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">בלתי ידוע</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">מספר טלפון</string>
@@ -4904,6 +4909,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">נסה לכבות Wi-Fi ולהפעיל אותו, בשני המכשירים.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">וודא ששני המכשירים במצב העברה.</string>
     <string name="DeviceTransferSetup__go_to_support_page">לך אל דף התמיכה</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">נסה שוב</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">ממתין אל המכשיר האחר</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">הקש על המסך במכשיר האחר שלך כדי להתחיל את ההעברה.</string>
@@ -5425,6 +5431,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">שנה מספר</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">מוודא את %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">אתגר מענה דרוש</string>
 
@@ -5814,6 +5821,7 @@
     <string name="ConversationSettingsFragment__permissions">הרשאות</string>
     <string name="ConversationSettingsFragment__requests_and_invites">בקשות והזמנות</string>
     <string name="ConversationSettingsFragment__group_link">קישור קבוצה</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">הוסף כאיש קשר</string>
     <string name="ConversationSettingsFragment__unmute">ביטול השתקה</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5929,6 +5937,7 @@
     <string name="ShareInterstitialActivity__share">שתף</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">נווט למעלה</string>
     <string name="MultiselectForwardFragment__forward_to">העבר הלאה אל</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5939,6 +5948,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">סרטונים ייחתכו לקליפים של 30 שניות וישלחו כסטוריז נפרדים.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">סרטונים שנשלחים כסטוריז לא יכולים להיות יותר מ-30 שניות.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">הודעות מועברות הלאה נשלחות כעת באופן מיידי.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">שלח הודעה %1$d</item>
@@ -6137,6 +6147,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/חודש</string>
     <string name="MySupportPreference__renews_s">מתחדש ב–%1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">מעבד עסקה…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">לא היה ניתן להוסיף תג. %1$s</string>
@@ -6549,7 +6560,7 @@
     <string name="StoriesLandingItem__info">מידע</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">שולח…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">שולח %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">השליחה נכשלה</string>

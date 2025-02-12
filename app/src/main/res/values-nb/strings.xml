@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Fortsett</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">Kontakt brukerstøtte</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Vil du sende inn en feilsøkingslogg?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Debugloggene vil hjelpe oss med å feilsøke problemet ditt raskere. Det er valgfritt å sende inn loggene dine.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Send inn med feilsøkingslogg</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Send inn uten feilsøkingslogg</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">Avbryt</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">Språk</string>
     <string name="preferences__signal_messages_and_calls">Signal-meldinger og -samtaler</string>
     <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
     <string name="preferences__delete_account">Slett kontoen</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">Tilkoblingen mislyktes</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Kunne ikke koble til proxyen. Sjekk proxy-adressen og prøv på nytt.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Du er koblet til proxyen. Du kan når som helst slå av proxyen i innstillingene.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Suksess</string>
     <string name="preferences_failed_to_connect">Tilkobling mislyktes</string>
     <string name="preferences_enter_proxy_address">Skriv inn proxy-adressen</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavle</string>
     <string name="BackupDialog_no_file_picker_available">Ingen filvelger tilgjengelig.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Bekreft ved å skrive inn passordfrasen for sikkerhetskopi</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Bekreft</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har bekreftet passordfrasen for sikkerhetskopi</string>
     <string name="BackupDialog_passphrase_was_not_correct">Passordfrasen stemmer ikke overens</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
     <string name="RegistrationActivity_incorrect_code">Feil kode</string>
     <string name="BackupUtil_never">Aldri</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Ukjent</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefonnummer</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv å skru Wi-Fi av og på igjen på begge enheter.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sørg for at begge enheter er i overføringsmodus.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Gå til support-siden</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Venter på den andre enheten</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Trykk Fortsett på den andre enheten for å starte overføring</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Endre telefonnummer</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">Bekrefter %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha kreves</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Tillatelser</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Forespørsler og invitasjoner</string>
     <string name="ConversationSettingsFragment__group_link">Gruppelenke</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Legg til som ny kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Slå lyd på</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">Del</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Gå opp</string>
     <string name="MultiselectForwardFragment__forward_to">Videresend til</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Videoene trimmes ned til klipp på 30 sekunder og sendes som flere storyer.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Videoer som legges ut på Storyer kan ikke være lenger enn 30 sekunder.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Videresendte meldinger sendes nå umiddelbart.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">Send %1$d melding</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s per måned</string>
     <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Transaksjonen behandles …</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kunne ikke legge til merket. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Info</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Sender…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">Sender %1$d …</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Sending feilet</string>

@@ -1026,17 +1026,17 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">ادامه</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Contact support</string>
+    <string name="LinkDeviceFragment__contact_support">ارتباط با پشتیبانی</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Submit debug log?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">گزارش اشکال‌زدایی ارسال شود؟</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">گزارش‌های اشکال‌زدایی شما به ما کمک خواهد کرد تا مشکل‌تان را سریع‌تر حل کنیم. ارسال این گزارش‌ها اختیاری است.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ارسال با گزارش اشکال‌زدایی</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ارسال بدون گزارش اشکال‌زدایی</string>
     <!-- Button option to dismiss dialog -->
-    <string name="LinkDeviceFragment__cancel">Cancel</string>
+    <string name="LinkDeviceFragment__cancel">لغو</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
@@ -2567,7 +2567,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">یک کشور را انتخاب کنید</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">0</string>
+    <string name="RegistrationActivity_default_country_code">۰</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">شما تماسی برای وارسی این شماره دریافت خواهید کرد.</string>
     <string name="RegistrationActivity_edit_number">ویرایش شماره</string>
     <string name="RegistrationActivity_missing_google_play_services">فاقد خدمات Google Play</string>
@@ -3761,6 +3761,8 @@
     <string name="preferences__language">زبان</string>
     <string name="preferences__signal_messages_and_calls">تماس‌ها و پیام‌های سیگنال</string>
     <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
     <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران سیگنال</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
     <string name="preferences__delete_account">پاک کردن حساب</string>
@@ -3865,6 +3867,7 @@
     <string name="preferences_connection_failed">اتصال موفق نبود</string>
     <string name="preferences_couldnt_connect_to_the_proxy">اتصال به پروکسی ممکن نبود. نشانی پروکسی را بررسی کرده و دوباره امتحان کنید.</string>
     <string name="preferences_you_are_connected_to_the_proxy">شما به پروکسی متصل شدید. می‌توانید پروکسی را در هر زمانی از تنظیمات غیرفعال کنید.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">موفقیت</string>
     <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
     <string name="preferences_enter_proxy_address">نشانی پروکسی را وارد کنید</string>
@@ -4468,6 +4471,7 @@
     <string name="BackupDialog_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
     <string name="BackupDialog_no_file_picker_available">انتخاب کنندهٔ فایل در دسترس نیست.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای وارسی وارد کنید</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">وارسی</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
     <string name="BackupDialog_passphrase_was_not_correct">گذرواژه نادرست بود</string>
@@ -4492,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">ثبت‌نام سیگنال - کد وارسی برای اندروید</string>
     <string name="RegistrationActivity_incorrect_code">کد نادرست</string>
     <string name="BackupUtil_never">هرگز</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">ناشناخته</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">شماره تلفن</string>
@@ -4676,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">خاموش و روشن کردن Wi-Fi را، روی هر دو دستگاه امتحان کنید.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">مطمئن شوید هر دو دستگاه در حالت انتقال قرار دارند.</string>
     <string name="DeviceTransferSetup__go_to_support_page">برو به صفحهٔ پشتیبانی</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">دوباره امتحان کنید</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">در حال انتظار برای دستگاه دیگر</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">برای آغاز انتقال در دستگاه دیگرتان روی ادامه ضربه بزنید.</string>
@@ -5181,6 +5187,7 @@
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">تغییر شماره</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">در حال وارسی %1$s</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha لازم است</string>
 
@@ -5556,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">مجوزها</string>
     <string name="ConversationSettingsFragment__requests_and_invites">درخواست‌ها و دعوت‌ها</string>
     <string name="ConversationSettingsFragment__group_link">پیوند گروه</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">افزودن به صورت یک مخاطب</string>
     <string name="ConversationSettingsFragment__unmute">صدادار کردن</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5669,6 +5677,7 @@
     <string name="ShareInterstitialActivity__share">اشتراک‌گذاری</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">حرکت به سمت بالا</string>
     <string name="MultiselectForwardFragment__forward_to">بازارسال به</string>
     <!-- Displayed when sharing content to people via the fragment -->
@@ -5679,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">ویدیوها به کلیپ‌های 30 ثانیه‌ای بریده می‌شوند و به صورت استوری‌های متعدد ارسال می‌شوند.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">ویدیوهای ارسالی به استوری‌ها نمی‌توانند بیشتر از 30 ثانیه باشند.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">ارسال %1$d پیام</item>
@@ -5865,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
     <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">در حال پردازش تراکنش…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">افزودن نشان ممکن نبود. %1$s</string>
@@ -6277,7 +6288,7 @@
     <string name="StoriesLandingItem__info">اطلاعات</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">در حال ارسال…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">در حال ارسال %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">ارسال ناموفق بود</string>
