@@ -619,6 +619,10 @@ public abstract class WebRtcActionProcessor {
       callParticipant.getVideoSink().setDeviceOrientationDegrees(sinkRotationDegrees);
     }
 
+    AppDependencies.getSignalCallManager()
+                   .getLockManager()
+                   .updateOrientation(Orientation.fromDegrees(orientationDegrees));
+
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))

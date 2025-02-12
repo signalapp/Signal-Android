@@ -134,11 +134,9 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     lifecycleDisposable.bindTo(this)
 
     if (Build.VERSION.SDK_INT >= 27) {
-      setTurnScreenOn(true)
       setShowWhenLocked(true)
     } else {
       window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
-      window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
     }
 
     window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
