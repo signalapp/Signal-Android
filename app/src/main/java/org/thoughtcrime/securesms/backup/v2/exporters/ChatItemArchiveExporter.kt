@@ -1003,7 +1003,7 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
   return StandardMessage(
     quote = this.toRemoteQuote(mediaArchiveEnabled, quotedAttachments),
     text = text.takeUnless { hasVoiceNote },
-    attachments = messageAttachments.toRemoteAttachments(mediaArchiveEnabled),
+    attachments = messageAttachments.toRemoteAttachments(mediaArchiveEnabled).withFixedVoiceNotes(textPresent = text != null || longTextAttachment != null),
     linkPreview = linkPreviews.map { it.toRemoteLinkPreview(mediaArchiveEnabled) },
     longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
     reactions = reactionRecords.toRemote()
@@ -1494,6 +1494,16 @@ fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
 
 private fun Text?.isNullOrBlank(): Boolean {
   return this == null || this.body.isBlank()
+}
+
+private fun List<MessageAttachment>.withFixedVoiceNotes(textPresent: Boolean): List<MessageAttachment> {
+  return this.map {
+    if (textPresent && it.flag == MessageAttachment.Flag.VOICE_MESSAGE) {
+      it.copy(flag = MessageAttachment.Flag.NONE)
+    } else {
+      it
+    }
+  }
 }
 
 private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {
