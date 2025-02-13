@@ -1448,7 +1448,9 @@ object BackupRepository {
    * prevents early initialization with incorrect keys before we have restored them.
    */
   private fun initBackupAndFetchAuth(): NetworkResult<ArchiveServiceAccessPair> {
-    return if (SignalStore.backup.backupsInitialized) {
+    return if (!RemoteConfig.messageBackups) {
+      NetworkResult.StatusCodeError(555, null, null, NonSuccessfulResponseCodeException(555, "Backups disabled!"))
+    } else if (SignalStore.backup.backupsInitialized) {
       getArchiveServiceAccessPair().runOnStatusCodeError(resetInitializedStateErrorAction)
     } else if (isPreRestoreDuringRegistration()) {
       Log.w(TAG, "Requesting/using auth credentials in pre-restore state", Throwable())
