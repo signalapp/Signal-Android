@@ -7,6 +7,7 @@ import "ResumableUploads.proto";
 option java_package        = "org.thoughtcrime.securesms.jobs.protos";
 option java_multiple_files = true;
 
+import SignalService.proto;
 
 message CallSyncEventJobRecord {
 
@@ -157,4 +158,15 @@ message BackupMessagesJobData {
 message NewLinkedDeviceNotificationJobData {
   uint32 deviceId = 1;
   uint64 deviceCreatedAt = 2;
+}
+
+message MultiDeviceAttachmentBackfillMissingJobData {
+  signalservice.AddressableMessage targetMessage = 1;
+  signalservice.ConversationIdentifier targetConversation = 2;
+}
+
+message MultiDeviceAttachmentBackfillUpdateJobData {
+  signalservice.AddressableMessage targetMessage = 1;
+  signalservice.ConversationIdentifier targetConversation = 2;
+  uint64 messageId = 3;
 }

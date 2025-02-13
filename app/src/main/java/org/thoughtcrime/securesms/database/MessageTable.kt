@@ -3570,6 +3570,15 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .readToSingleLongOrNull()
   }
 
+  fun getMessageIdOrNull(message: SyncMessageId, threadId: Long): Long? {
+    return readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$DATE_SENT = ? AND $FROM_RECIPIENT_ID = ? AND $THREAD_ID = $threadId", message.timetamp, message.recipientId)
+      .run()
+      .readToSingleLongOrNull()
+  }
+
   fun deleteMessages(messagesToDelete: List<SyncMessageId>): List<SyncMessageId> {
     val threads = mutableSetOf<Long>()
     val unhandled = mutableListOf<SyncMessageId>()

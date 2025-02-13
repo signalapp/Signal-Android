@@ -1127,5 +1127,12 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /** Whether or not this device respect attachment backfill requests.  */
+  val attachmentBackfillSync: Boolean by remoteBoolean(
+    key = "android.attachmentBackfillSync",
+    defaultValue = false,
+    hotSwappable = true
+  )
+
   // endregion
 }

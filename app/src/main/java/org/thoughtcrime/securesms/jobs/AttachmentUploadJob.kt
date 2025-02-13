@@ -138,7 +138,6 @@ class AttachmentUploadJob private constructor(
 
     SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
 
-    val messageSender = AppDependencies.signalServiceMessageSender
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp

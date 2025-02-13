@@ -761,6 +761,8 @@ public class SignalServiceMessageSender {
       content = createCallLogEventContent(message.getCallLogEvent().get());
     } else if (message.getDeviceNameChange().isPresent()) {
       content = createDeviceNameChangeContent(message.getDeviceNameChange().get());
+    } else if (message.getAttachmentBackfillResponse().isPresent()) {
+      content = createAttachmentBackfillResponseContent(message.getAttachmentBackfillResponse().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1736,6 +1738,13 @@ public class SignalServiceMessageSender {
   private Content createDeviceNameChangeContent(SyncMessage.DeviceNameChange proto) {
     Content.Builder     container = new Content.Builder();
     SyncMessage.Builder builder   = createSyncMessageBuilder().deviceNameChange(proto);
+
+    return container.syncMessage(builder.build()).build();
+  }
+
+  private Content createAttachmentBackfillResponseContent(SyncMessage.AttachmentBackfillResponse proto) {
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().attachmentBackfillResponse(proto);
 
     return container.syncMessage(builder.build()).build();
   }
