@@ -85,7 +85,7 @@ class Recipient(
   private val callRingtoneUri: Uri? = null,
   val expiresInSeconds: Int = 0,
   val expireTimerVersion: Int = 1,
-  private val registeredValue: RegisteredState = RegisteredState.UNKNOWN,
+  private val registeredValue: RegisteredState = RegisteredState.NOT_REGISTERED,
   val profileKey: ByteArray? = null,
   val expiringProfileKeyCredential: ExpiringProfileKeyCredential? = null,
   private val groupName: String? = null,
@@ -181,6 +181,9 @@ class Recipient(
 
   /** Whether the recipient has been hidden from the contact list. */
   val isHidden: Boolean = hiddenState != HiddenState.NOT_HIDDEN
+
+  /** Whether or not this is an unknown recipient. */
+  val isUnknown: Boolean = id.isUnknown
 
   /** Whether the recipient represents an individual person (as opposed to a group or list). */
   val isIndividual: Boolean
