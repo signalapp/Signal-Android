@@ -134,5 +134,5 @@ private fun String.e164ToLong(): Long? {
     this
   }
 
-  return fixed.toLongOrNull()
+  return fixed.toLongOrNull()?.takeUnless { it == 0L }
 }
