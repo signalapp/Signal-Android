@@ -72,7 +72,7 @@ class MultiDeviceAttachmentBackfillUpdateJob(
   }
 
   override fun run(): Result {
-    val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId).sortedBy { it.displayOrder }
+    val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId).filterNot { it.quote }.sortedBy { it.displayOrder }
     if (attachments.isEmpty()) {
       Log.w(TAG, "Failed to find any attachments for the message! Sending a missing response.")
       MultiDeviceAttachmentBackfillMissingJob.enqueue(targetMessage, targetConversation)
