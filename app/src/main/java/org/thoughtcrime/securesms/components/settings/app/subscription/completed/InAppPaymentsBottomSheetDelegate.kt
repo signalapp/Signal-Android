@@ -75,11 +75,7 @@ class InAppPaymentsBottomSheetDelegate(
         TerminalDonationBottomSheet.show(fragmentManager, donation)
       } else if (donation.error != null) {
         lifecycleDisposable += badgeRepository.getBadge(donation).observeOn(AndroidSchedulers.mainThread()).subscribe { badge ->
-          val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.Builder(badge).build().toBundle()
-          val sheet = ThanksForYourSupportBottomSheetDialogFragment()
-
-          sheet.arguments = args
-          sheet.show(fragmentManager, null)
+          ThanksForYourSupportBottomSheetDialogFragment.create(badge).show(fragmentManager, ThanksForYourSupportBottomSheetDialogFragment.SHEET_TAG)
         }
       }
     }

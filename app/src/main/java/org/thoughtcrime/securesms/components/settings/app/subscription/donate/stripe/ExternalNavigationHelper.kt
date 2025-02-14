@@ -24,9 +24,9 @@ object ExternalNavigationHelper {
 
   private val TAG = Log.tag(ExternalNavigationHelper::class)
 
-  fun maybeLaunchExternalNavigationIntent(context: Context, webRequestUri: Uri?, launchIntent: (Intent) -> Unit): Boolean {
+  fun maybeLaunchExternalNavigationIntent(context: Context, webRequestUri: Uri?, force: Boolean = false, launchIntent: (Intent) -> Unit): Boolean {
     val url = webRequestUri ?: return false
-    if (url.scheme?.startsWith("http") == true || url.scheme == StripeApi.RETURN_URL_SCHEME) {
+    if (!force && (url.scheme?.startsWith("http") == true || url.scheme == StripeApi.RETURN_URL_SCHEME)) {
       return false
     }
 

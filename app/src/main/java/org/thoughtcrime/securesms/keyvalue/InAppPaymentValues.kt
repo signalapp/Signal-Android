@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.st
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
-import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.databaseprotos.TerminalDonationQueue
 import org.thoughtcrime.securesms.database.model.isExpired
@@ -585,17 +584,6 @@ class InAppPaymentValues internal constructor(store: KeyValueStore) : SignalStor
     synchronized(this) {
       this._pendingOneTimeDonation = pendingOneTimeDonation
       pendingOneTimeDonationPublisher.onNext(Optional.ofNullable(pendingOneTimeDonation))
-    }
-  }
-
-  fun setPendingOneTimeDonationError(error: DonationErrorValue) {
-    synchronized(this) {
-      val pendingOneTimeDonation = getPendingOneTimeDonation()
-      if (pendingOneTimeDonation != null) {
-        setPendingOneTimeDonation(pendingOneTimeDonation.newBuilder().error(error).build())
-      } else {
-        Log.w(TAG, "PendingOneTimeDonation was null, ignoring error.")
-      }
     }
   }
 

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.BadgeRepository
+import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -29,6 +30,19 @@ import org.thoughtcrime.securesms.util.fragments.findListener
 import org.thoughtcrime.securesms.util.visible
 
 class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSheetDialogFragment() {
+
+  companion object {
+    private val TAG = Log.tag(ThanksForYourSupportBottomSheetDialogFragment::class.java)
+    const val SHEET_TAG = "ThanksForYourSupportBottomSheet"
+
+    fun create(badge: Badge): ThanksForYourSupportBottomSheetDialogFragment {
+      val args = ThanksForYourSupportBottomSheetDialogFragmentArgs.Builder(badge).build().toBundle()
+      val sheet = ThanksForYourSupportBottomSheetDialogFragment()
+
+      sheet.arguments = args
+      return sheet
+    }
+  }
 
   override val peekHeightPercentage: Float = 1f
 
@@ -154,10 +168,6 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
     } else {
       findListener<Callback>()?.onBoostThanksSheetDismissed()
     }
-  }
-
-  companion object {
-    private val TAG = Log.tag(ThanksForYourSupportBottomSheetDialogFragment::class.java)
   }
 
   interface Callback {
