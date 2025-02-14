@@ -43,7 +43,6 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
-  private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
   private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
@@ -51,7 +50,7 @@ object SvrRepository {
   private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
     listOf(svr3, svr2)
   } else {
-    listOf(svr2, svr2Legacy)
+    listOf(svr2)
   }
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
@@ -63,9 +62,6 @@ object SvrRepository {
       }
       if (Svr3Migration.shouldWriteToSvr2) {
         implementations += svr2
-      }
-      if (Svr3Migration.shouldWriteToSvr2) {
-        implementations += svr2Legacy
       }
       return implementations
     }
@@ -102,8 +98,7 @@ object SvrRepository {
         )
       } else {
         listOf(
-          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
-          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
+          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) }
         )
       }
 
