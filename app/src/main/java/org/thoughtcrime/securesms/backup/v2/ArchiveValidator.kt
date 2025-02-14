@@ -10,6 +10,8 @@ import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.ValidationError
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.isStory
 import org.thoughtcrime.securesms.util.isStoryReaction
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
@@ -40,11 +42,36 @@ object ArchiveValidator {
     } catch (e: IOException) {
       ValidationResult.ReadError(e)
     } catch (e: ValidationError) {
-      val sentTimestamp = "\\d{10,}+".toRegex().find(e.message ?: "")?.value?.toLongOrNull()
-      ValidationResult.ValidationError(
-        exception = e,
-        messageDetails = sentTimestamp?.let { fetchMessageDetails(it) } ?: emptyList()
-      )
+      if (e.message?.contains("have the same phone number") == true) {
+        val recipientIds = """RecipientId\((\d+)\)""".toRegex()
+          .findAll(e.message ?: "")
+          .map { it.groupValues[1] }
+          .mapNotNull { it.toLongOrNull() }
+          .map { RecipientId.from(it) }
+          .toList()
+
+        val recipientIdA = recipientIds.getOrNull(0)
+        val recipientIdB = recipientIds.getOrNull(1)
+
+        val e164A = recipientIdA?.let { Recipient.resolved(it).e164.orElse("UNKNOWN") }.let { "KEEP_E164::$it" }
+        val e164B = recipientIdB?.let { Recipient.resolved(it).e164.orElse("UNKNOWN") }.let { "KEEP_E164::$it" }
+
+        ValidationResult.RecipientDuplicateE164Error(
+          exception = e,
+          details = DuplicateRecipientDetails(
+            recipientIdA = recipientIds.getOrNull(0),
+            recipientIdB = recipientIds.getOrNull(1),
+            e164A = e164A,
+            e164B = e164B
+          )
+        )
+      } else {
+        val sentTimestamp = "\\d{10,}+".toRegex().find(e.message ?: "")?.value?.toLongOrNull()
+        ValidationResult.MessageValidationError(
+          exception = e,
+          messageDetails = sentTimestamp?.let { fetchMessageDetails(it) } ?: emptyList()
+        )
+      }
     }
   }
 
@@ -74,9 +101,13 @@ object ArchiveValidator {
   sealed interface ValidationResult {
     data object Success : ValidationResult
     data class ReadError(val exception: IOException) : ValidationResult
-    data class ValidationError(
-      val exception: org.signal.libsignal.messagebackup.ValidationError,
+    data class MessageValidationError(
+      val exception: ValidationError,
       val messageDetails: List<MessageDetails>
+    ) : ValidationResult
+    data class RecipientDuplicateE164Error(
+      val exception: ValidationError,
+      val details: DuplicateRecipientDetails
     ) : ValidationResult
   }
 
@@ -96,5 +127,12 @@ object ArchiveValidator {
     val isStoryReaction: Boolean,
     val originalMessageId: Long,
     val isLatestRevision: Boolean
+  )
+
+  data class DuplicateRecipientDetails(
+    val recipientIdA: RecipientId?,
+    val recipientIdB: RecipientId?,
+    val e164A: String?,
+    val e164B: String?
   )
 }

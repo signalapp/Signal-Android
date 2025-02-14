@@ -226,8 +226,14 @@ class BackupMessagesJob private constructor(
         return BackupFileResult.Retry
       }
 
-      is ArchiveValidator.ValidationResult.ValidationError -> {
+      is ArchiveValidator.ValidationResult.MessageValidationError -> {
         Log.w(TAG, "The backup file fails validation! Message: ${result.exception.message}, Details: ${result.messageDetails}")
+        ArchiveUploadProgress.onValidationFailure()
+        return BackupFileResult.Failure
+      }
+
+      is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
+        Log.w(TAG, "The backup file fails validation with a duplicate recipient! Message: ${result.exception.message}, Details: ${result.details}")
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
       }

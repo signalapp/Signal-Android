@@ -151,8 +151,12 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         val message = when (result) {
           is ArchiveValidator.ValidationResult.ReadError -> "Failed to read backup file!"
           ArchiveValidator.ValidationResult.Success -> "Validation passed!"
-          is ArchiveValidator.ValidationResult.ValidationError -> {
+          is ArchiveValidator.ValidationResult.MessageValidationError -> {
             Log.w(TAG, "Validation failed! Details: ${result.messageDetails}", result.exception)
+            "Validation failed :( Check the logs for details."
+          }
+          is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
+            Log.w(TAG, "Validation failed with a duplicate recipient! Details: ${result.details}", result.exception)
             "Validation failed :( Check the logs for details."
           }
         }

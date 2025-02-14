@@ -277,8 +277,12 @@ object LinkDeviceRepository {
         Log.w(TAG, "[createAndUploadArchive] Failed to read the file during validation!", result.exception)
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
-      is ArchiveValidator.ValidationResult.ValidationError -> {
+      is ArchiveValidator.ValidationResult.MessageValidationError -> {
         Log.w(TAG, "[createAndUploadArchive] The backup file fails validation! Details: ${result.messageDetails}", result.exception)
+        return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
+      }
+      is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
+        Log.w(TAG, "[createAndUploadArchive] The backup file fails validation with a duplicate recipient! Details: ${result.details}", result.exception)
         return LinkUploadArchiveResult.BackupCreationFailure(result.exception)
       }
     }
