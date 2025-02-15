@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Appels et messages Signal</string>
     <string name="preferences__advanced_pin_settings">Paramètres de PIN avancés</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Paramètres de PIN avancés</string>
     <string name="preferences__free_private_messages_and_calls">Messages et appels gratuits et confidentiels vers les utilisateurs de Signal</string>
     <string name="preferences__submit_debug_log">Envoyer le journal de débogage</string>
     <string name="preferences__delete_account">Supprimer le compte</string>
@@ -4497,7 +4497,7 @@
     <string name="RegistrationActivity_incorrect_code">Code incorrect</string>
     <string name="BackupUtil_never">Jamais</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
-    <string name="BackupUtil_unknown">Inconnu</string>
+    <string name="BackupUtil_unknown">Inconnue</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Numéro de téléphone</string>
     <!-- Subtext below option to launch into phone number privacy settings screen -->
@@ -6938,7 +6938,7 @@
     <!-- Button label to continue with transfer -->
     <string name="BankTransferMandateFragment__agree">Accepter</string>
     <!-- Button label to read more of the bank mandate that is currently off screen -->
-    <string name="BankTransferMandateFragment__read_more">Lire la suite</string>
+    <string name="BankTransferMandateFragment__read_more">En savoir plus</string>
     <!-- Text displayed when mandate load fails -->
     <string name="BankTransferMandateFragment__failed_to_load_mandate">Échec du chargement</string>
 

@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">Signal 訊息與通話</string>
     <string name="preferences__advanced_pin_settings">進階 PIN 碼設定</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">進階 PIN 碼設定</string>
     <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
     <string name="preferences__submit_debug_log">送出偵錯日誌</string>
     <string name="preferences__delete_account">刪除帳號</string>

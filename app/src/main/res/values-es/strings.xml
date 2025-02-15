@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Mensajes y llamadas de Signal</string>
     <string name="preferences__advanced_pin_settings">Ajustes avanzados del PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Ajustes avanzados del PIN</string>
     <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes confidenciales y gratuitos a través de Signal</string>
     <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
     <string name="preferences__delete_account">Eliminar cuenta</string>
@@ -5571,7 +5571,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Chat silenciado para siempre</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Número copiado al portapapeles.</string>
     <string name="ConversationSettingsFragment__phone_number">Número de teléfono</string>
-    <string name="ConversationSettingsFragment__get_badges">Apoya a Signal y consigue insignias para mostrar en tu perfil. Toca sobre las insignias para obtener más información.</string>
+    <string name="ConversationSettingsFragment__get_badges">Apoya a Signal y consigue insignias para mostrar en tu perfil. Toca sobre una insignia para obtener más información.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Añadir participantes</string>
@@ -5835,7 +5835,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">¡Gracias por tu apoyo!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Has ganado una insignia por donar a Signal. Añádela a tu perfil para mostrar tu apoyo.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Has ganado una insignia por tu donación a Signal. Añádela a tu perfil para mostrar tu apoyo.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">También puedes</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">contribuir mensualmente.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar en mi perfil</string>
@@ -5843,7 +5843,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continuar</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si tienes más de una insignia, puedes seleccionar cuál quieres que otras personas vean en tu perfil.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Apoya a Signal y consigue insignias para tu lucir en tu perfil.</string>
+    <string name="BecomeASustainerFragment__get_badges">Apoya a Signal y consigue insignias para lucir en tu perfil.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Al ser una organización sin ánimo de lucro, sin anuncios ni inversores, Signal se sostiene gracias al apoyo de personas como tú.</string>
 
     <!-- Button label for creating a donation -->
@@ -5925,7 +5925,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Tu suscripción mensual se ha cancelado porque no hemos podido procesar tu pago. Tu insignia ya no se muestra en tu perfil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Tu donación mensual recurrente se ha cancelado. %1$s Tu insignia %2$s ya no se muestra en tu perfil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la app, pero considera apoyar a Signal y reactiva tu insignia. Renuévala ahora.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puedes continuar usando la app, pero considera apoyar a Signal y reactivar tu insignia. Renuévala ahora.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar suscripción</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Ir a Google Pay</string>
@@ -5986,7 +5986,7 @@
     <string name="DonationsErrors__your_payment_is_still">Tu donación aún se está procesando. Este proceso puede llevar unos minutos dependiendo de tu conexión.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas conexión a Internet para cancelar la suscripción.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir una insignia. También puedes hacer una donación en la página web de Signal para apoyar a Signal.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Tu dispositivo no tiene Google Pay activado, por lo que no puedes crear una suscripción y conseguir una insignia. Prueba a hacer una donación en la página web de Signal para apoyar a Signal.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de red. Comprueba tu conexión e inténtalo de nuevo.</string>
     <string name="NetworkFailure__retry">Reintentar</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6618,9 +6618,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">¡Gracias por tu apoyo!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">¡%1$s ha hecho una donación a Signal en tu nombre! Muestra tu apoyo a Signal en tu perfil.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">¡%1$s ha hecho una donación a Signal en tu nombre! Muestra tu insignia de apoyo a Signal en tu perfil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Has hecho una donación a Signal en nombre de %1$s. Podrá añadir la insignia a su perfil para mostrar que apoya a Signal.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Has hecho una donación a Signal en nombre de %1$s. Ahora podrá mostrar su insignia de apoyo a Signal en su perfil.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Canjear</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -6632,7 +6632,7 @@
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Tu insignia ha caducado</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Tu insignia ha caducado y ya no es visible para otras personas en tu perfil.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Tu insignia ha caducado y ya no se muestra en tu perfil.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Para seguir apoyando una tecnología diseñada para ti, considera optar por una suscripción mensual.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -7028,7 +7028,7 @@
     <!-- Title of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
     <string name="DonationCompletedBottomSheet__donation_complete">Donación completada</string>
     <!-- Text block of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed -->
-    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Hemos recibido tu transferencia bancaria. Puedes añadir esta insignia a tu perfil para mostrar que apoyas a Signal.</string>
+    <string name="DonationCompleteBottomSheet__your_bank_transfer_was_received">Hemos recibido tu transferencia bancaria. Puedes mostrar tu insignia de apoyo a Signal en tu perfil.</string>
     <!-- Button text of \'Donation Complete\' sheet displayed after a bank transfer completes and the badge is redeemed to dismiss sheet -->
     <string name="DonationCompleteBottomSheet__done">Listo</string>
 
@@ -7480,7 +7480,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Donación mensual cancelada</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, body for dialog. First placeholder is a payment related error message. Second placeholder is \'learn more\' -->
-    <string name="MonthlyDonationCanceled__message">Tu donación mensual se ha cancelado. %1$s\n\nTu insignia ya no será visible en tu perfil. %2$s</string>
+    <string name="MonthlyDonationCanceled__message">Tu donación mensual se ha cancelado. %1$s\n\nTu insignia ya no se mostrará en tu perfil. %2$s</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">Más información</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->

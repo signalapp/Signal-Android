@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal-meddelanden och -samtal</string>
     <string name="preferences__advanced_pin_settings">Avancerade PIN-kodsinställningar</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Avancerade PIN-kodsinställningar</string>
     <string name="preferences__free_private_messages_and_calls">Gratis privata meddelanden och samtal med andra Signal-användare</string>
     <string name="preferences__submit_debug_log">Skicka in felsökningslogg</string>
     <string name="preferences__delete_account">Ta bort konto</string>

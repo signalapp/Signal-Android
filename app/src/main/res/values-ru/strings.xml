@@ -3968,7 +3968,7 @@
     <string name="preferences__signal_messages_and_calls">Звонки и сообщения Signal</string>
     <string name="preferences__advanced_pin_settings">Расширенные настройки PIN-кода</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Расширенные настройки PIN-кода</string>
     <string name="preferences__free_private_messages_and_calls">Бесплатные приватные сообщения и звонки пользователям Signal</string>
     <string name="preferences__submit_debug_log">Отправить журнал отладки</string>
     <string name="preferences__delete_account">Удалить учётную запись</string>

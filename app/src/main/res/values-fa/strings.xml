@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">تماس‌ها و پیام‌های سیگنال</string>
     <string name="preferences__advanced_pin_settings">تنظیمات پیشرفتهٔ پین</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">تنظیمات پیشرفتهٔ پین</string>
     <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران سیگنال</string>
     <string name="preferences__submit_debug_log">ارسال گزارش عیب‌یابی</string>
     <string name="preferences__delete_account">پاک کردن حساب</string>

@@ -2394,7 +2394,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">دۆلىتىڭىزنى تاللاڭ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">ئات ياكى نومۇر بويىچە ئىزدەيدۇ</string>
+    <string name="CountryCodeFragment__search_by">فامىلە ياكى تېلېفون نومۇرىنىڭ دۆلەت باش نۇمۇرى بويىچە ئىزدەڭ</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">نامەلۇم دۆلەت</string>
 
@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">Signal ئۇچۇر ۋە چاقىرىشلىرى</string>
     <string name="preferences__advanced_pin_settings">ئالىي PIN تەڭشەكلىرى</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">ئالىي PIN تەڭشەكلىرى</string>
     <string name="preferences__free_private_messages_and_calls">Signal ئىشلەتكۈچىلىرىگە ھەقسىز شەخسىي ئۇچۇرلار ۋە چاقىرىقلار</string>
     <string name="preferences__submit_debug_log">سازلاش خاتىرە يوللا</string>
     <string name="preferences__delete_account">ھېساباتنى ئۆچۈر</string>

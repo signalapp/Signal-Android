@@ -3968,7 +3968,7 @@
     <string name="preferences__signal_messages_and_calls">Signal správy a hovory</string>
     <string name="preferences__advanced_pin_settings">Pokročilé nastavenia PIN kódu</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Pokročilé nastavenia PIN kódu</string>
     <string name="preferences__free_private_messages_and_calls">Bezplatné zabezpečené správy a hovory medzi užívateľmi Signalu</string>
     <string name="preferences__submit_debug_log">Odoslať ladiaci záznam</string>
     <string name="preferences__delete_account">Vymazať účet</string>

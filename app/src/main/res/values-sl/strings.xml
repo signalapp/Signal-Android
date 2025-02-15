@@ -3968,7 +3968,7 @@
     <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
     <string name="preferences__advanced_pin_settings">Napredne nastavite PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Napredne nastavite PIN</string>
     <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom_cam aplikacije Signal</string>
     <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
     <string name="preferences__delete_account">Izbris računa</string>

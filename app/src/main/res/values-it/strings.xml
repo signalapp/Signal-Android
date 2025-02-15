@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
     <string name="preferences__advanced_pin_settings">Impostazioni PIN avanzate</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Impostazioni PIN avanzate</string>
     <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
     <string name="preferences__submit_debug_log">Invia log di debug</string>
     <string name="preferences__delete_account">Elimina account</string>

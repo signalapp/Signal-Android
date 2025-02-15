@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal મેસેજ અને કૉલ્સ</string>
     <string name="preferences__advanced_pin_settings">અદ્યતન PIN સેટિંગ્સ</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">અદ્યતન PIN સેટિંગ્સ</string>
     <string name="preferences__free_private_messages_and_calls">મફત ખાનગી મેસેજ અને Signal વપરાશકર્તાઓને કૉલ્સ</string>
     <string name="preferences__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
     <string name="preferences__delete_account">એકાઉન્ટ ડિલીટ કરો</string>

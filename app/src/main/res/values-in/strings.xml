@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Signal</string>
     <string name="preferences__advanced_pin_settings">Pengaturan PIN tingkat lanjut</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Pengaturan PIN tingkat lanjut</string>
     <string name="preferences__free_private_messages_and_calls">Pesan dan panggilan privat gratis ke pengguna Signal</string>
     <string name="preferences__submit_debug_log">Kirim log awakutu</string>
     <string name="preferences__delete_account">Hapus akun</string>

@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Signal</string>
     <string name="preferences__advanced_pin_settings">การตั้งค่า PIN ขั้นสูง</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">การตั้งค่า PIN ขั้นสูง</string>
     <string name="preferences__free_private_messages_and_calls">โทรและส่งข้อความส่วนตัวถึงผู้ใช้ Signal ฟรี</string>
     <string name="preferences__submit_debug_log">ส่งปูมดีบัก</string>
     <string name="preferences__delete_account">ลบบัญชี</string>

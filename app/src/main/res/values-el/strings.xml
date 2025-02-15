@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Μηνύματα και κλήσεις του Signal</string>
     <string name="preferences__advanced_pin_settings">Ρυθμίσεις PIN για προχωρημένους</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Ρυθμίσεις PIN για προχωρημένους</string>
     <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες και τις χρήστριες του Signal</string>
     <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
     <string name="preferences__delete_account">Διαγραφή λογαριασμού</string>

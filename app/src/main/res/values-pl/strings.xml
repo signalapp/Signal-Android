@@ -1524,7 +1524,7 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Nie udało się przenieść danych</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">Wystąpił błąd i nie udało się przenieść konta. Aby spróbować ponownie, wybierz metodę przenoszenia danych.</string>
+    <string name="RemoteRestoreActivity__error_occurred">Wystąpił błąd i nie udało się przenieść konta. Aby spróbować ponownie, wybierz inną metodę przenoszenia danych.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
     <string name="RemoteRestoreActivity__couldnt_restore">Nie udało się przywrócić kopii zapasowej</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
@@ -3968,7 +3968,7 @@
     <string name="preferences__signal_messages_and_calls">Wiadomości i połączenia Signal</string>
     <string name="preferences__advanced_pin_settings">Zaawansowane ustawienia PIN-u</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Zaawansowane ustawienia PIN-u</string>
     <string name="preferences__free_private_messages_and_calls">Darmowe oraz prywatne wiadomości i połączenia do użytkowników Signal</string>
     <string name="preferences__submit_debug_log">Wyślij logi debugowania</string>
     <string name="preferences__delete_account">Usuń konto</string>
@@ -7684,7 +7684,7 @@
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Nie udało się zapisać zmian. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Displayed whenever an admin update fails with a 409. -->
-    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Nie udało się zaktualizować ustawień dotyczących zatwierdzania przez administratora. Sprawdź, czy link do połączenia nie jest obecnie używany.</string>
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Nie udało się zmienić ustawień zatwierdzania. Sprawdź, czy link do połączenia nie jest w użyciu</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Nie udało się usunąć linku do połączenia, ponieważ jest on obecnie używany.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->

@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal-Nachrichten und ‑Anrufe</string>
     <string name="preferences__advanced_pin_settings">Erweiterte PIN-Einstellungen</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Erweiterte PIN-Einstellungen</string>
     <string name="preferences__free_private_messages_and_calls">Kostenlos und verschlüsselt mit Signal-Kontakten Nachrichten austauschen und telefonieren</string>
     <string name="preferences__submit_debug_log">Diagnoseprotokoll übermitteln</string>
     <string name="preferences__delete_account">Konto löschen</string>

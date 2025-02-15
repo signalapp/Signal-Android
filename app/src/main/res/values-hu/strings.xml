@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Az országod</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Keresés név vagy telefonszám alapján</string>
+    <string name="CountryCodeFragment__search_by">Keresés név vagy ország előhívószám alapján</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Ismeretlen ország</string>
 
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal üzenetek és hívások</string>
     <string name="preferences__advanced_pin_settings">További PIN beállítások</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">További PIN beállítások</string>
     <string name="preferences__free_private_messages_and_calls">Ingyenes és privát üzenetek, valamint hívások Signal felhasználók részére</string>
     <string name="preferences__submit_debug_log">Hibakeresési napló küldése</string>
     <string name="preferences__delete_account">Fiók törlése</string>

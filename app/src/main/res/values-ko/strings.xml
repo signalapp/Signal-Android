@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">Signal 메시지 및 전화</string>
     <string name="preferences__advanced_pin_settings">PIN 고급 설정</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">PIN 고급 설정</string>
     <string name="preferences__free_private_messages_and_calls">Signal 사용자에게 무료 보안 메시지 및 전화 걸기</string>
     <string name="preferences__submit_debug_log">디버그 로그 제출</string>
     <string name="preferences__delete_account">계정 삭제</string>

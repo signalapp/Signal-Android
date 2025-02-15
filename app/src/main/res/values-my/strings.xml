@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">Signal စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
     <string name="preferences__advanced_pin_settings">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">အဆင့်မြင့် ပင်နံပါတ် အပြင်အဆင်များ</string>
     <string name="preferences__free_private_messages_and_calls">Signal အသုံးပြုသူများအတွက် အခမဲ့စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
     <string name="preferences__submit_debug_log">Debug log ကို တင်ပြပါ</string>
     <string name="preferences__delete_account">အကောင့်ကို ဖျက်ရန်</string>

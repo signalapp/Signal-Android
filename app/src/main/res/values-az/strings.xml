@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal mesajları və zəngləri</string>
     <string name="preferences__advanced_pin_settings">Qabaqcıl PIN tənzimləmələri</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Qabaqcıl PIN tənzimləmələri</string>
     <string name="preferences__free_private_messages_and_calls">Signal istifadəçilərinə özəl ödənişsiz mesaj və zənglər</string>
     <string name="preferences__submit_debug_log">Sazlama jurnalını göndər</string>
     <string name="preferences__delete_account">Hesabı sil</string>

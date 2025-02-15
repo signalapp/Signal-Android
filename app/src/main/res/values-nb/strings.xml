@@ -1026,11 +1026,11 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Fortsett</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Kontakt brukerstøtte</string>
+    <string name="LinkDeviceFragment__contact_support">Kontakt brukerstøtten</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Vil du sende inn en feilsøkingslogg?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Debugloggene vil hjelpe oss med å feilsøke problemet ditt raskere. Det er valgfritt å sende inn loggene dine.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Feilsøkingsloggene hjelper oss med å feilsøke problemet ditt raskere. Det er valgfritt å sende inn disse loggene.</string>
     <!-- Button option to submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_with_debug">Send inn med feilsøkingslogg</string>
     <!-- Button option to not submit debug log when contacting support -->
@@ -1038,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Avbryt</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android-eksport (Link&amp;Sync) mislyktes</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Synkroniseringen mislyktes</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Land</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Søk etter navn eller nummer</string>
+    <string name="CountryCodeFragment__search_by">Søk etter navn eller landskode</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Ukjent land</string>
 
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal-meldinger og -samtaler</string>
     <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Avanserte innstillinger for PIN-kode</string>
     <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
     <string name="preferences__delete_account">Slett kontoen</string>

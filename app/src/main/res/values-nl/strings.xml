@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Je land</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Zoeken op naam of landnummer</string>
+    <string name="CountryCodeFragment__search_by">Zoeken op naam of landcode</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Onbekend land</string>
 
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
     <string name="preferences__advanced_pin_settings">Geavanceerde pincode-instellingen</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">Geavanceerde pincode-instellingen</string>
     <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
     <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
     <string name="preferences__delete_account">Account verwijderen</string>
@@ -5876,7 +5876,7 @@
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Verlengt op %1$s</string>
     <!-- Subtitle shown when processing a donation transaction -->
-    <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken…</string>
+    <string name="MySupportPreference__processing_transaction">Donatie aan het verwerken…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Neem contact op met ondersteuning.</string>

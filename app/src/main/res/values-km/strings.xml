@@ -3659,7 +3659,7 @@
     <string name="preferences__signal_messages_and_calls">ការផ្ញើសារ និងការហៅSignal</string>
     <string name="preferences__advanced_pin_settings">ការកំណត់លេខកូដ PIN ជាន់ខ្ពស់</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Advanced PIN settings</string>
+    <string name="preferences__advanced_pin_settings_title">ការកំណត់លេខកូដ PIN ជាន់ខ្ពស់</string>
     <string name="preferences__free_private_messages_and_calls">ការផ្ញើសារ និងការហៅចេញជាឯកជនភាព​ ដោយមិនគិតថ្លៃ​ ទៅកាន់អ្នកប្រើប្រាស់Signal</string>
     <string name="preferences__submit_debug_log">បញ្ជូនកំណត់ហេតុបញ្ហា</string>
     <string name="preferences__delete_account">លុបគណនី</string>
