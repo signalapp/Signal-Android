@@ -285,11 +285,11 @@ class ConversationListViewModel(
 
   fun addToFolder(folderId: Long, threadIds: List<Long>) {
     viewModelScope.launch(Dispatchers.IO) {
-      val threadIdsAndIsIncluded = threadIds.map { threadId ->
-        val isAlreadyIncluded = folders.find { it.chatFolder.id == folderId }?.chatFolder?.includedChats?.contains(threadId) ?: false
-        Pair(threadId,isAlreadyIncluded)
+      val includedChats = folders.find { it.chatFolder.id == folderId }?.chatFolder?.includedChats
+      val threadIdsNotIncluded = threadIds.filterNot { threadId ->
+        includedChats?.contains(threadId) ?: false
       }
-      SignalDatabase.chatFolders.addToFolderIfNotIncluded(folderId, threadIdsAndIsIncluded)
+      SignalDatabase.chatFolders.addToFolder(folderId, threadIdsNotIncluded)
     }
   }
 

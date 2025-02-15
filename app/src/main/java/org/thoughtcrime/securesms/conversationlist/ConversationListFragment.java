@@ -1508,10 +1508,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           (conversation.getThreadRecord().getRecipient().isIndividual() ||
            conversation.getThreadRecord().getRecipient().isPushV2Group()))
       {
-        List<Conversation> conversations = new ArrayList<>();
-        conversations.add(conversation);
         items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () ->
-            showAddToFolderBottomSheet(conversations)
+            showAddToFolderBottomSheet(conversation)
         ));
       } else if (viewModel.getCurrentFolder().getFolderType() != ChatFolderRecord.FolderType.ALL) {
         items.add(new ActionItem(R.drawable.symbol_folder_minus, getString(R.string.ConversationListFragment_remove_from_folder), () -> viewModel.removeChatFromFolder(conversation.getThreadRecord().getThreadId())));
@@ -1581,23 +1579,46 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     closeSearchIfOpen();
   }
 
-  private void showAddToFolderBottomSheet(List<Conversation> conversations) {
-    boolean isIndividual = false;
-    if (conversations.size() == 1) {
-      isIndividual = conversations.get(0).getThreadRecord().getRecipient().isIndividual();
-    }
+  private void showAddToFolderBottomSheet(Conversation conversation) {
     showAddToFolderBottomSheet(
-        conversations.stream().map(conversation -> conversation.getThreadRecord().getThreadId()).collect(Collectors.toList()),
-        isIndividual
+        Collections.singletonList(conversation.getThreadRecord().getThreadId()),
+        conversation.getThreadRecord().getRecipient().isIndividual(),
+        conversation.getThreadRecord().getRecipient().isGroup()
     );
   }
 
-  private void showAddToFolderBottomSheet(List<Long> threadIds, Boolean isIndividual) {
+  private void showAddToFolderBottomSheet(Set<Conversation> conversations) {
+    List<Long> threadIds = new ArrayList<>();
+    boolean areAllIndividualChats = true;
+    boolean areAllGroupChats = true;
+
+    for (Conversation conversation : conversations) {
+      threadIds.add(conversation.getThreadRecord().getThreadId());
+      boolean isIndividual = conversation.getThreadRecord().getRecipient().isIndividual();
+      boolean isGroup = conversation.getThreadRecord().getRecipient().isGroup();
+
+      if (!isIndividual) {
+        areAllIndividualChats = false;
+      }
+      if (!isGroup) {
+        areAllGroupChats = false;
+      }
+    }
+
+    showAddToFolderBottomSheet(
+        threadIds,
+        areAllIndividualChats,
+        areAllGroupChats
+    );
+  }
+
+  private void showAddToFolderBottomSheet(List<Long> threadIds, Boolean areAllIndividualChats, Boolean areAllGroupChats) {
     List<ChatFolderRecord> folders = viewModel.getFolders().stream().map(ChatFolderMappingModel::getChatFolder).collect(Collectors.toList());
     AddToFolderBottomSheet.showChatFolderSheet(
         folders,
         threadIds,
-        isIndividual,
+        areAllIndividualChats,
+        areAllGroupChats,
         this::endActionModeIfActive
     ).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
   }
@@ -1650,7 +1671,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (!isArchived()) {
       items.add(new ActionItem(R.drawable.symbol_folder_add, getString(R.string.ConversationListFragment_add_to_folder), () -> {
-        showAddToFolderBottomSheet(new ArrayList<>(selectionIds), false);
+        showAddToFolderBottomSheet(viewModel.currentSelectedConversations());
       }));
     }
 
