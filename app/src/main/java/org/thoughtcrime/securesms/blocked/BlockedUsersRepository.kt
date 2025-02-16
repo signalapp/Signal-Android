@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.blocked
 
 import android.content.Context
-import androidx.core.util.Consumer
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -27,43 +26,43 @@ class BlockedUsersRepository(private val context: Context, private val dispatche
   companion object {
     private val TAG = Log.tag(BlockedUsersRepository::class.java)
   }
-  
 
-  suspend fun getBlocked(blockedUsers: Consumer<List<Recipient>>) {
-    withContext(dispatcher) {
+  suspend fun getBlocked() : Result<List<Recipient>> {
+    return withContext(dispatcher) {
       val records: List<RecipientRecord> = recipients.getBlocked()
       val recipients: List<Recipient> = records.map { resolved(it.id) }
-      blockedUsers.accept(recipients)
+      Result.success(recipients)
     }
   }
 
-  suspend fun block(recipientId: RecipientId, onSuccess: ()-> Unit, onFailure: ()-> Unit) {
-    withContext(dispatcher) {
-      runCatching {
+  suspend fun block(recipientId: RecipientId) : Result<Unit> {
+    return withContext(dispatcher) {
+      try {
         RecipientUtil.block(context, resolved(recipientId))
-      }.onSuccess {
-        onSuccess()
-      }.onFailure { throwable ->
-        when (throwable) {
+        Result.success(Unit)
+      }catch (e :Exception ){
+        when (e) {
           is IOException, is GroupChangeFailedException, is GroupChangeBusyException -> {
-            onFailure().also { w(TAG, "block: failed to block recipient: ", throwable) }
-          }else -> throw throwable
+            w(TAG, "block: failed to block recipient: ", e)
+            Result.failure(e)
+          }
+          else -> throw e
         }
       }
     }
   }
 
-  suspend fun createAndBlock(number: String, onSuccess: ()-> Unit) {
-    withContext(dispatcher) {
+  suspend fun createAndBlock(number: String) : Result<Unit> {
+    return withContext(dispatcher) {
       RecipientUtil.blockNonGroup(context, external(context, number))
-      onSuccess()
+      Result.success(Unit)
     }
   }
 
-  suspend fun unblock(recipientId: RecipientId, onSuccess: ()->Unit) {
-    withContext(dispatcher) {
+  suspend fun unblock(recipientId: RecipientId) : Result<Unit> {
+    return withContext(dispatcher) {
       RecipientUtil.unblock(resolved(recipientId))
-      onSuccess()
+      Result.success(Unit)
     }
   }
 }
