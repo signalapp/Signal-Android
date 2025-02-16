@@ -12,9 +12,12 @@ import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import org.signal.core.util.concurrent.LifecycleDisposable
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.ContactSelectionListFragment.OnContactSelectedListener
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -39,7 +42,6 @@ class BlockedUsersActivity : PassphraseRequiredActivity(), BlockedUsersFragment.
   }
 
   private val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
-  private val lifecycleDisposable = LifecycleDisposable()
   private val viewModel : BlockedUsersViewModel by viewModels(
     factoryProducer = ViewModelFactory.factoryProducer {
       BlockedUsersViewModel(BlockedUsersRepository(this))
@@ -48,7 +50,6 @@ class BlockedUsersActivity : PassphraseRequiredActivity(), BlockedUsersFragment.
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     super.onCreate(savedInstanceState, ready)
-    lifecycleDisposable.bindTo(this)
     dynamicTheme.onCreate(this)
     setContentView(R.layout.blocked_users_activity)
 
@@ -82,11 +83,11 @@ class BlockedUsersActivity : PassphraseRequiredActivity(), BlockedUsersFragment.
       .commit()
 
     val container = findViewById<View>(R.id.fragment_container)
-    lifecycleDisposable.add(
-      viewModel.getEvents().subscribe {
+    lifecycleScope.launch{
+      viewModel.events.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).collect {
         event: BlockedUsersViewModel.Event -> handleEvent(container, event)
       }
-    )
+    }
   }
 
   override fun onResume() {
