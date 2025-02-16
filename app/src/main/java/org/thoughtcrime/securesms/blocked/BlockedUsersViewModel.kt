@@ -23,53 +23,48 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
   private val _events = MutableSharedFlow<Event>()
   val events = _events.asSharedFlow()
   init {
-    loadRecipients()
-  }
-
-  private fun emitEvent(event: Event) {
     viewModelScope.launch {
-      _events.emit(event)
+      loadRecipients()
     }
   }
 
   fun block(recipientId: RecipientId) {
     viewModelScope.launch {
-      repository.block(
-        recipientId,
-        onSuccess = {
+      repository.block(recipientId)
+        .onSuccess {
           loadRecipients()
-          emitEvent(Event(EventType.BLOCK_SUCCEEDED, resolved(recipientId)))
-        },
-        onFailure = {
-          emitEvent(Event(EventType.BLOCK_FAILED, resolved(recipientId)))
-        })
+          _events.emit(Event(EventType.BLOCK_SUCCEEDED, resolved(recipientId)))
+        }.onFailure {
+          _events.emit(Event(EventType.BLOCK_FAILED, resolved(recipientId)))
+        }
     }
   }
 
   fun createAndBlock(number: String) {
     viewModelScope.launch {
-      repository.createAndBlock(number) {
-        loadRecipients()
-        emitEvent(Event(EventType.BLOCK_SUCCEEDED, number))
-      }
+      repository.createAndBlock(number)
+        .onSuccess {
+          loadRecipients()
+          _events.emit(Event(EventType.BLOCK_SUCCEEDED, number))
+        }
     }
   }
 
   fun unblock(recipientId: RecipientId) {
     viewModelScope.launch {
-      repository.unblock(recipientId) {
-        loadRecipients()
-        emitEvent(Event(EventType.UNBLOCK_SUCCEEDED, resolved(recipientId)))
-      }
+      repository.unblock(recipientId)
+        .onSuccess {
+          loadRecipients()
+          _events.emit(Event(EventType.UNBLOCK_SUCCEEDED, resolved(recipientId)))
+        }
     }
   }
 
-   private fun loadRecipients() {
-    viewModelScope.launch {
-      repository.getBlocked { recipientList ->
-        _recipients.update { recipientList }
+   private suspend fun loadRecipients() {
+      repository.getBlocked()
+        .onSuccess { recipientList ->
+          _recipients.update { recipientList }
       }
-    }
   }
 
   enum class EventType{
