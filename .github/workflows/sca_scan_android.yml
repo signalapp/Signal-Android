@@ -1,0 +1,20 @@
+on:
+  pull_request:
+    branches: [ "master" ]
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+ ## Your logic here
+
+ ## And then:   run: snyk test --all-sub-projects
+
+
+ ## The thing is , Your codebases are amazing. Its just Android that is fucked for all of us.  Maven , so easy. Gradle (in Android projects) , you will get vulns on your own machhine (RCE and DDOS 8-10).
+ ## Its not just the test enviroment (eg your own machine) but also in the release apk.  This app is best of all on securrity on Android and it does not get better.
+ ## Maybe best to dump android and focus on your other platforms.  Snyk is not lying.  IF snyk test --all-sub-projects and continue-on-error=false then no android projects would pass.
+ ## 
+ ## With that said , continue doing great work Signal. We love you <3 
+ ## If you add a SCA scan you can add a badge and put on readme. However, that badge updates bases on the latests scan. I dont think anyone would understand that this is the best Android app we have.
+ ##  Maybe this PR can wake people up? Signal is great but Android needs to step up and mass surveilence must stop. Otherwise we end up with this shit. 
+ 
