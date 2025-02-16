@@ -12,14 +12,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import org.signal.core.util.concurrent.LifecycleDisposable
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.recipients.Recipient
 
 class BlockedUsersFragment : Fragment() {
-  private val lifecycleDisposable = LifecycleDisposable()
   private var listener: Listener? = null
   private val viewModel: BlockedUsersViewModel by activityViewModels()
 
@@ -53,13 +56,11 @@ class BlockedUsersFragment : Fragment() {
       this.adapter = adapter
     }
 
-    lifecycleDisposable.apply {
-      bindTo(viewLifecycleOwner)
-      add(viewModel.getRecipients().subscribe { list: List<Recipient?> ->
-          empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
-          adapter.submitList(list)
-        }
-      )
+    lifecycleScope.launch{
+      viewModel.recipients.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).collectLatest { list: List<Recipient?> ->
+        empty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
+        adapter.submitList(list)
+      }
     }
   }
 

@@ -7,29 +7,29 @@ package org.thoughtcrime.securesms.blocked
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.PublishSubject
-import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : ViewModel() {
-  private val recipients: Subject<List<Recipient>> = BehaviorSubject.create()
-  private val events: Subject<Event> = PublishSubject.create()
+  private val _recipients = MutableStateFlow<List<Recipient>>(emptyList())
+  val recipients = _recipients.asStateFlow()
+  private val _events = MutableSharedFlow<Event>()
+  val events = _events.asSharedFlow()
   init {
     loadRecipients()
   }
 
-  fun getRecipients(): Observable<List<Recipient>> {
-    return recipients.observeOn(AndroidSchedulers.mainThread())
-  }
-
-  fun getEvents(): Observable<Event> {
-    return events.observeOn(AndroidSchedulers.mainThread())
+  private fun emitEvent(event: Event) {
+    viewModelScope.launch {
+      _events.emit(event)
+    }
   }
 
   fun block(recipientId: RecipientId) {
@@ -38,10 +38,10 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
         recipientId,
         onSuccess = {
           loadRecipients()
-          events.onNext(Event(EventType.BLOCK_SUCCEEDED, resolved(recipientId)))
+          emitEvent(Event(EventType.BLOCK_SUCCEEDED, resolved(recipientId)))
         },
         onFailure = {
-          events.onNext(Event(EventType.BLOCK_FAILED, resolved(recipientId)))
+          emitEvent(Event(EventType.BLOCK_FAILED, resolved(recipientId)))
         })
     }
   }
@@ -50,7 +50,7 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
     viewModelScope.launch {
       repository.createAndBlock(number) {
         loadRecipients()
-        events.onNext(Event(EventType.BLOCK_SUCCEEDED, number))
+        emitEvent(Event(EventType.BLOCK_SUCCEEDED, number))
       }
     }
   }
@@ -59,14 +59,16 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
     viewModelScope.launch {
       repository.unblock(recipientId) {
         loadRecipients()
-        events.onNext(Event(EventType.UNBLOCK_SUCCEEDED, resolved(recipientId)))
+        emitEvent(Event(EventType.UNBLOCK_SUCCEEDED, resolved(recipientId)))
       }
     }
   }
 
-  private fun loadRecipients() {
+   private fun loadRecipients() {
     viewModelScope.launch {
-      repository.getBlocked(recipients::onNext)
+      repository.getBlocked { recipientList ->
+        _recipients.update { recipientList }
+      }
     }
   }
 
