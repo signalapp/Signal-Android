@@ -94,6 +94,10 @@ tasks.register("clean", Delete::class) {
   delete(rootProject.layout.buildDirectory)
 }
 
+subprojects {
+    tasks.register<DependencyReportTask>("allDependencies"){}
+}
+
 tasks.register("format") {
   group = "Formatting"
   description = "Runs the ktlint formatter on all sources in this project and included builds"
