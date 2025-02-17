@@ -16,7 +16,7 @@ enum class BackupFrequencyV1(val days: Int) {
   NEVER(999);
 
   @StringRes
-  fun getResourceId():  Int {
+  fun getResourceId(): Int {
     return when (this) {
       DAILY -> R.string.BackupsPreferenceFragment__frequency_label_daily
       WEEKLY -> R.string.BackupsPreferenceFragment__frequency_label_weekly
