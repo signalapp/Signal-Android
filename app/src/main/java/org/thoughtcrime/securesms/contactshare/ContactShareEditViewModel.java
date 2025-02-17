@@ -65,7 +65,6 @@ class ContactShareEditViewModel extends ViewModel {
 
   void updateContactName(int contactPosition, @NonNull Name name) {
     if (name.isEmpty()) {
-      events.postValue(Event.BAD_CONTACT);
       return;
     }
 

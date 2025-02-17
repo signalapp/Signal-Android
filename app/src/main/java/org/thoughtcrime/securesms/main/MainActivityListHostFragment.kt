@@ -108,6 +108,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         R.id.callLogFragment -> goToStateFromCalling(state, controller)
       }
     }
+
+    disposables += conversationListTabsViewModel.getNotificationProfiles().subscribeBy { profiles ->
+      updateNotificationProfileStatus(profiles)
+    }
   }
 
   private fun goToStateFromConversationList(state: ConversationListTabsState, navController: NavController) {
@@ -166,7 +170,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     super.onResume()
     SimpleTask.run(viewLifecycleOwner.lifecycle, { Recipient.self() }, ::initializeProfileIcon)
 
-    _backupsFailedDot.alpha = if (BackupRepository.shouldDisplayBackupFailedIndicator()) {
+    _backupsFailedDot.alpha = if (BackupRepository.shouldDisplayBackupFailedIndicator() || BackupRepository.shouldDisplayBackupAlreadyRedeemedIndicator()) {
       1f
     } else {
       0f
@@ -176,6 +180,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       .findViewById<View>(R.id.fragment_container)
       .findNavController()
       .addOnDestinationChangedListener(destinationChangedListener)
+
+    if (conversationListTabsViewModel.isMultiSelectOpen()) {
+      presentToolbarForMultiselect()
+    }
   }
 
   override fun onPause() {
@@ -310,7 +318,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     }
   }
 
-  override fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
+  private fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
     val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
     if (activeProfile != null) {
       if (activeProfile.id != SignalStore.notificationProfile.lastProfilePopup) {

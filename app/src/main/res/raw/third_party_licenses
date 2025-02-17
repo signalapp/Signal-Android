@@ -25,7 +25,6 @@ The following dependencies are licensed under Apache License, Version 2.0:
 * Android Tracing (https://developer.android.com/jetpack/androidx/releases/tracing#1.0.0)
 * AndroidX Futures (https://developer.android.com/topic/libraries/architecture/index.html)
 * AndroidX Test Library (https://developer.android.com/testing)
-* AssertJ fluent assertions
 * AutoValue Annotations (https://github.com/google/auto/tree/master/value)
 * Byte Buddy (without dependencies)
 * Byte Buddy agent
@@ -336,6 +335,7 @@ The following dependencies are licensed under The MIT License:
 * annotations (http://robolectric.org)
 * framework (http://robolectric.org)
 * junit (http://robolectric.org)
+* assertk (https://github.com/willowtreeapps/assertk)
 * ktlint (https://github.com/pinterest/ktlint)
 * ktlint-cli-reporter (https://github.com/pinterest/ktlint)
 * ktlint-cli-ruleset-core (https://github.com/pinterest/ktlint)
@@ -353,9 +353,6 @@ The following dependencies are licensed under The MIT License:
 * ktlint-rule-engine-core (https://github.com/pinterest/ktlint)
 * ktlint-ruleset-standard (https://github.com/pinterest/ktlint)
 * maven-dependency-resolver (http://robolectric.org)
-* mockito-android (https://github.com/mockito/mockito)
-* mockito-core (https://github.com/mockito/mockito)
-* mockito-inline (https://github.com/mockito/mockito)
 * nativeruntime (http://robolectric.org)
 * pluginapi (http://robolectric.org)
 * reflector (http://robolectric.org)

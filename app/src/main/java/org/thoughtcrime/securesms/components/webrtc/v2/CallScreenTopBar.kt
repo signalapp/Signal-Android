@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 @Composable
 fun CallScreenTopBar(
   callRecipient: Recipient,
-  callStatus: CallString?,
+  callStatus: String?,
   modifier: Modifier = Modifier,
   onNavigationClick: () -> Unit = {},
   onCallInfoClick: () -> Unit = {}
@@ -70,7 +70,7 @@ fun CallScreenTopBar(
 @Composable
 fun CallScreenPreJoinOverlay(
   callRecipient: Recipient,
-  callStatus: CallString?,
+  callStatus: String?,
   isLocalVideoEnabled: Boolean,
   modifier: Modifier = Modifier,
   onNavigationClick: () -> Unit = {},
@@ -103,7 +103,7 @@ fun CallScreenPreJoinOverlay(
 
     if (callStatus != null) {
       Text(
-        text = callStatus.renderToString(),
+        text = callStatus,
         style = MaterialTheme.typography.bodyMedium,
         color = Color.White,
         modifier = Modifier.padding(top = 8.dp)
@@ -136,7 +136,7 @@ fun CallScreenPreJoinOverlay(
 @Composable
 private fun CallScreenTopAppBar(
   callRecipient: Recipient? = null,
-  callStatus: CallString? = null,
+  callStatus: String? = null,
   onNavigationClick: () -> Unit = {},
   onCallInfoClick: () -> Unit = {}
 ) {
@@ -162,7 +162,7 @@ private fun CallScreenTopAppBar(
 
         if (callStatus != null) {
           Text(
-            text = callStatus.renderToString(),
+            text = callStatus,
             style = MaterialTheme.typography.bodyMedium.copy(shadow = textShadow),
             modifier = Modifier.padding(top = 2.dp)
           )
@@ -212,7 +212,7 @@ fun CallScreenPreJoinOverlayPreview() {
   Previews.Preview {
     CallScreenPreJoinOverlay(
       callRecipient = Recipient(systemContactName = "Test User"),
-      callStatus = CallString.ResourceString(R.string.Recipient_unknown),
+      callStatus = stringResource(R.string.Recipient_unknown),
       isLocalVideoEnabled = false
     )
   }

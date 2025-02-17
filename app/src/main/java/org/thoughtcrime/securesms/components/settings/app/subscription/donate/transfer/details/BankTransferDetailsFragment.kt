@@ -243,7 +243,9 @@ private fun BankTransferDetailsContent(
         item {
           TextField(
             value = state.iban,
-            onValueChange = onIBANChanged,
+            onValueChange = { value ->
+              onIBANChanged(value.replace(" ", ""))
+            },
             label = {
               Text(text = stringResource(id = R.string.BankTransferDetailsFragment__iban))
             },

@@ -83,7 +83,7 @@ object CallEventSyncMessageUtil {
 
     return CallEvent(
       conversationId = conversationId,
-      id = callId,
+      callId = callId,
       timestamp = timestamp,
       type = callType,
       direction = if (isOutgoing) CallEvent.Direction.OUTGOING else CallEvent.Direction.INCOMING,

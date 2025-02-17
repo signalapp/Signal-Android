@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -370,7 +371,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
               @Override
               public void onRefreshContactsClicked() {
-                if (onRefreshListener != null) {
+                if (onRefreshListener != null && !isRefreshing()) {
                   setRefreshing(true);
                   onRefreshListener.onRefresh();
                 }
@@ -568,6 +569,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public void setRefreshing(boolean refreshing) {
     swipeRefresh.setRefreshing(refreshing);
+  }
+
+  public boolean isRefreshing() {
+    return swipeRefresh.isRefreshing();
   }
 
   public void reset() {
@@ -947,7 +952,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
         boolean hideHeader = newCallCallback != null || (newConversationCallback != null && !hasQuery);
         builder.addSection(new ContactSearchConfiguration.Section.Individuals(
-            includeSelf,
+            includeSelf ? new RecipientTable.IncludeSelfMode.IncludeWithRemap(getString(R.string.note_to_self)) : RecipientTable.IncludeSelfMode.Exclude.INSTANCE,
             transportType,
             !hideHeader,
             null,

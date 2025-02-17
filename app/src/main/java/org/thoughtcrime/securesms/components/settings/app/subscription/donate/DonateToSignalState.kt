@@ -6,7 +6,6 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.NonVerifiedMonthlyDonation
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isLongRunning
 import org.thoughtcrime.securesms.database.model.isPending
@@ -114,7 +113,7 @@ data class DonateToSignalState(
   }
 
   data class MonthlyDonationState(
-    val selectedCurrency: Currency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION),
+    val selectedCurrency: Currency = SignalStore.inAppPayments.getRecurringDonationCurrency(),
     val subscriptions: List<Subscription> = emptyList(),
     private val _activeSubscription: ActiveSubscription? = null,
     val selectedSubscription: Subscription? = null,

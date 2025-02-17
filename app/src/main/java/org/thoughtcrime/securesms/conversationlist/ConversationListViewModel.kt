@@ -17,7 +17,6 @@ import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFoldersRepository
-import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource
 import org.thoughtcrime.securesms.conversationlist.model.Conversation
@@ -31,7 +30,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
-import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -40,8 +38,7 @@ import java.util.concurrent.TimeUnit
 
 class ConversationListViewModel(
   private val isArchived: Boolean,
-  private val megaphoneRepository: MegaphoneRepository = AppDependencies.megaphoneRepository,
-  private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
+  private val megaphoneRepository: MegaphoneRepository = AppDependencies.megaphoneRepository
 ) : ViewModel() {
 
   companion object {
@@ -241,11 +238,6 @@ class ConversationListViewModel(
     }
   }
 
-  fun getNotificationProfiles(): Flowable<List<NotificationProfile>> {
-    return notificationProfilesRepository.getProfiles()
-      .observeOn(AndroidSchedulers.mainThread())
-  }
-
   private fun setSelection(newSelection: Collection<Conversation>) {
     store.update {
       val selection = newSelection.toSet()
@@ -279,7 +271,7 @@ class ConversationListViewModel(
   fun markChatFolderRead(chatFolder: ChatFolderRecord) {
     viewModelScope.launch(Dispatchers.IO) {
       val ids = SignalDatabase.threads.getThreadIdsByChatFolder(chatFolder)
-      val messageIds = SignalDatabase.threads.setRead(ids, false)
+      val messageIds = SignalDatabase.threads.setRead(ids)
       AppDependencies.messageNotifier.updateNotification(AppDependencies.application)
       MarkReadReceiver.process(messageIds)
     }

@@ -197,7 +197,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       } else if (records.isEmpty()) {
         return idGenerator.getId(tag + "_" + STABLE_ID_TEXT);
       } else {
-        return idGenerator.getId(records.get(localPosition - 1).getPackId());
+        return idGenerator.getId(records.get(localPosition - 1).packId);
       }
     }
 
@@ -264,38 +264,38 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
               boolean lastInList,
               boolean allowApngAnimation)
     {
-      SpannableStringBuilder titleBuilder = new SpannableStringBuilder(stickerPack.getTitle().orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
-      if (BlessedPacks.contains(stickerPack.getPackId())) {
+      SpannableStringBuilder titleBuilder = new SpannableStringBuilder(stickerPack.titleOptional.orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_untitled)));
+      if (BlessedPacks.contains(stickerPack.packId)) {
         titleBuilder.append(blessedBadge);
       }
 
       title.setText(titleBuilder);
-      author.setText(stickerPack.getAuthor().orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
+      author.setText(stickerPack.authorOptional.orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
       divider.setVisibility(lastInList ? View.GONE : View.VISIBLE);
 
-      requestManager.load(new DecryptableUri(stickerPack.getCover().getUri()))
+      requestManager.load(new DecryptableUri(stickerPack.cover.uri))
                    .transition(DrawableTransitionOptions.withCrossFade())
                    .fitCenter()
                    .set(ApngOptions.ANIMATE, allowApngAnimation)
                    .into(cover);
 
-      if (stickerPack.isInstalled()) {
+      if (stickerPack.isInstalled) {
         actionButtonImage.setImageResource(R.drawable.ic_x);
-        actionButton.setOnClickListener(v -> eventListener.onStickerPackUninstallClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
+        actionButton.setOnClickListener(v -> eventListener.onStickerPackUninstallClicked(stickerPack.packId, stickerPack.packKey));
 
         shareButton.setVisibility(View.VISIBLE);
         shareButtonImage.setVisibility(View.VISIBLE);
-        shareButton.setOnClickListener(v -> eventListener.onStickerPackShareClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
+        shareButton.setOnClickListener(v -> eventListener.onStickerPackShareClicked(stickerPack.packId, stickerPack.packKey));
       } else {
         actionButtonImage.setImageResource(R.drawable.symbol_arrow_down_24);
-        actionButton.setOnClickListener(v -> eventListener.onStickerPackInstallClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
+        actionButton.setOnClickListener(v -> eventListener.onStickerPackInstallClicked(stickerPack.packId, stickerPack.packKey));
 
         shareButton.setVisibility(View.GONE);
         shareButtonImage.setVisibility(View.GONE);
         shareButton.setOnClickListener(null);
       }
 
-      itemView.setOnClickListener(v -> eventListener.onStickerPackClicked(stickerPack.getPackId(), stickerPack.getPackKey()));
+      itemView.setOnClickListener(v -> eventListener.onStickerPackClicked(stickerPack.packId, stickerPack.packKey));
     }
 
     void recycle() {

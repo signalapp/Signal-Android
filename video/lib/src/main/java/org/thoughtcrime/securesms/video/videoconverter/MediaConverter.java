@@ -138,14 +138,20 @@ public final class MediaConverter {
         mAllowAudioRemux = allow;
     }
 
+    /**
+     * @return The total content size of the MP4 mdat box.
+     */
     @WorkerThread
     @RequiresApi(23)
-    public void convert() throws EncodingException, IOException {
+    public long convert() throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception           exception           = null;
         Muxer               muxer               = null;
         VideoTrackConverter videoTrackConverter = null;
         AudioTrackConverter audioTrackConverter = null;
+
+        long mdatContentLength = 0;
+        boolean muxerStopped = false;
 
         try {
             muxer = mOutput.createMuxer();
@@ -161,6 +167,9 @@ public final class MediaConverter {
                     videoTrackConverter,
                     audioTrackConverter,
                     muxer);
+
+            mdatContentLength = muxer.stop();
+            muxerStopped = true;
 
         } catch (EncodingException | IOException e) {
             Log.e(TAG, "error converting", e);
@@ -196,7 +205,9 @@ public final class MediaConverter {
             }
             try {
                 if (muxer != null) {
-                    muxer.stop();
+                    if (!muxerStopped) {
+                        muxer.stop();
+                    }
                     muxer.release();
                 }
             } catch (Exception e) {
@@ -209,6 +220,8 @@ public final class MediaConverter {
         if (exception != null) {
             throw new EncodingException("Transcode failed", exception);
         }
+
+        return mdatContentLength;
     }
 
     /**

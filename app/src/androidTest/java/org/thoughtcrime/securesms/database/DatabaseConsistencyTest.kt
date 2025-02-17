@@ -112,6 +112,7 @@ class DatabaseConsistencyTest {
       .map { it.trim() }
       .joinToString(separator = " ")
       .replace(Regex.fromLiteral(" ,"), ",")
+      .replace(",([^\\s])".toRegex(), ", $1")
       .replace(Regex("\\s+"), " ")
       .replace(Regex.fromLiteral("( "), "(")
       .replace(Regex.fromLiteral(" )"), ")")

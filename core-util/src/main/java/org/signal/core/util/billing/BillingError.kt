@@ -7,4 +7,4 @@ package org.signal.core.util.billing
 
 class BillingError(
   val billingResponseCode: Int
-) : Exception()
+) : Exception("$billingResponseCode")

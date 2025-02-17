@@ -218,6 +218,7 @@ public final class SpanUtil {
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
         ds.setUnderlineText(false);
+        ds.setColor(context.getResources().getColor(R.color.signal_accent_primary));
       }
     }, start, start + clickable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 

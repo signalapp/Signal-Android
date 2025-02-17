@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import android.content.Context
 import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ImportState
@@ -54,8 +55,8 @@ object AccountDataArchiveProcessor {
     val selfId = db.recipientTable.getByAci(signalStore.accountValues.aci!!).get()
     val selfRecord = db.recipientTable.getRecordForSync(selfId)!!
 
-    val donationCurrency = signalStore.inAppPaymentValues.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
-    val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
+    val donationCurrency = signalStore.inAppPaymentValues.getRecurringDonationCurrency()
+    val donationSubscriber = db.inAppPaymentSubscriberTable.getByCurrencyCode(donationCurrency.currencyCode)
 
     val chatColors = SignalStore.chatColors.chatColors
     val chatWallpaper = SignalStore.wallpaper.currentRawWallpaper
@@ -68,7 +69,7 @@ object AccountDataArchiveProcessor {
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
           username = selfRecord.username?.takeIf { it.isNotBlank() },
-          usernameLink = if (signalStore.accountValues.usernameLink != null) {
+          usernameLink = if (selfRecord.username.isNotNullOrBlank() && signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
               entropy = signalStore.accountValues.usernameLink?.entropy?.toByteString() ?: EMPTY,
               serverId = signalStore.accountValues.usernameLink?.serverId?.toByteArray()?.toByteString() ?: EMPTY,
@@ -127,11 +128,12 @@ object AccountDataArchiveProcessor {
         val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)
 
         val subscriber = InAppPaymentSubscriberRecord(
-          remoteSubscriberId,
-          Currency.getInstance(accountData.donationSubscriberData.currencyCode),
-          InAppPaymentSubscriberRecord.Type.DONATION,
-          localSubscriber?.requiresCancel ?: accountData.donationSubscriberData.manuallyCancelled,
-          InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION)
+          subscriberId = remoteSubscriberId,
+          currency = Currency.getInstance(accountData.donationSubscriberData.currencyCode),
+          type = InAppPaymentSubscriberRecord.Type.DONATION,
+          requiresCancel = localSubscriber?.requiresCancel ?: accountData.donationSubscriberData.manuallyCancelled,
+          paymentMethodType = InAppPaymentsRepository.getLatestPaymentMethodType(InAppPaymentSubscriberRecord.Type.DONATION),
+          iapSubscriptionId = null
         )
 
         InAppPaymentsRepository.setSubscriber(subscriber)
@@ -273,9 +275,12 @@ object AccountDataArchiveProcessor {
     }
   }
 
+  /**
+   * This method only supports donations subscriber data, and assumes there is a currency code available.
+   */
   private fun InAppPaymentSubscriberRecord.toSubscriberData(manuallyCancelled: Boolean): AccountData.SubscriberData {
     val subscriberId = subscriberId.bytes.toByteString()
-    val currencyCode = currency.currencyCode
+    val currencyCode = currency!!.currencyCode
     return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
   }
 

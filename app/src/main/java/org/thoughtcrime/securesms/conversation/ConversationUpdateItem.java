@@ -452,11 +452,11 @@ public final class ConversationUpdateItem extends FrameLayout
       boolean                isRingingOnLocalDevice = groupCallUpdateDetails.isRingingOnLocalDevice;
       boolean                endedRecently          = GroupCallUpdateDetailsUtil.checkCallEndedRecently(groupCallUpdateDetails);
       UpdateDescription      updateDescription      = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
-      Collection<ACI>        acis                   = updateDescription.getMentioned();
+      Collection<ServiceId>  serviceIds             = updateDescription.getMentioned();
 
       int text = 0;
-      if (Util.hasItems(acis) || isRingingOnLocalDevice) {
-        if (acis.contains(SignalStore.account().requireAci())) {
+      if (Util.hasItems(serviceIds) || isRingingOnLocalDevice) {
+        if (serviceIds.contains(SignalStore.account().requireAci())) {
           text = R.string.ConversationUpdateItem_return_to_call;
         } else if (GroupCallUpdateDetailsUtil.parse(conversationMessage.getMessageRecord().getBody()).isCallFull) {
           text = R.string.ConversationUpdateItem_call_is_full;
@@ -742,7 +742,9 @@ public final class ConversationUpdateItem extends FrameLayout
         return;
       }
 
-      IdentityUtil.getRemoteIdentityKey(getContext(), messageRecord.getToRecipient()).addListener(new ListenableFuture.Listener<>() {
+      Recipient recipient = messageRecord.isIdentityUpdate() ? messageRecord.getFromRecipient() : messageRecord.getToRecipient();
+
+      IdentityUtil.getRemoteIdentityKey(getContext(), recipient).addListener(new ListenableFuture.Listener<>() {
         @Override
         public void onSuccess(Optional<IdentityRecord> result) {
           if (result.isPresent()) {

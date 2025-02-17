@@ -30,6 +30,7 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
@@ -77,7 +78,9 @@ import java.util.stream.Collectors
 import javax.annotation.CheckReturnValue
 import kotlin.math.abs
 
-class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
+class GroupTable(context: Context?, databaseHelper: SignalDatabase?) :
+  DatabaseTable(context, databaseHelper),
+  RecipientIdDatabaseReference {
 
   companion object {
     private val TAG = Log.tag(GroupTable::class.java)
@@ -338,7 +341,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun queryGroupsByMemberName(inputQuery: String): Cursor {
-    val subquery = recipients.getAllContactsSubquery(inputQuery)
+    val subquery = recipients.getAllContactsSubquery(inputQuery, RecipientTable.IncludeSelfMode.IncludeWithoutRemap)
     val statement = """
       SELECT 
         DISTINCT $TABLE_NAME.*, 
@@ -508,6 +511,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   fun getGroups(): Reader {
     val cursor = readableDatabase.query(joinedGroupSelect())
     return Reader(cursor)
+  }
+
+  fun getInactiveGroups(): Reader {
+    val query = SqlUtil.buildQuery("$TABLE_NAME.$ACTIVE = ?", false.toInt())
+    val select = "${joinedGroupSelect()} WHERE ${query.where}"
+
+    return Reader(readableDatabase.query(select, query.whereArgs))
   }
 
   fun getActiveGroupCount(): Int {
@@ -1089,7 +1099,9 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
   }
 
-  class Reader(val cursor: Cursor?) : Closeable, ContactSearchIterator<GroupRecord> {
+  class Reader(val cursor: Cursor?) :
+    Closeable,
+    ContactSearchIterator<GroupRecord> {
 
     fun getNext(): GroupRecord? {
       return if (cursor == null || !cursor.moveToNext()) {
@@ -1112,7 +1124,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           recipientId = RecipientId.from(cursor.requireNonNullString(RECIPIENT_ID)),
           title = cursor.requireString(TITLE),
           serializedMembers = cursor.requireString(MEMBER_GROUP_CONCAT),
-          serializedUnmigratedV1Members = cursor.requireString(UNMIGRATED_V1_MEMBERS),
+          serializedUnmigratedV1Members = null,
           avatarId = cursor.requireLong(AVATAR_ID),
           avatarKey = cursor.requireBlob(AVATAR_KEY),
           avatarContentType = cursor.requireString(AVATAR_CONTENT_TYPE),
@@ -1153,6 +1165,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     val bannedMembers: Set<ServiceId> by lazy {
       DecryptedGroupUtil.bannedMembersToServiceIdSet(decryptedGroup.bannedMembers)
+    }
+
+    val avatarKey: String by lazy {
+      decryptedGroup.avatar
     }
 
     fun isAdmin(recipient: Recipient): Boolean {
@@ -1395,7 +1411,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       ""
     } else {
       val glob = buildCaseInsensitiveGlobPattern(titleSearchQuery)
-      ", ($TITLE GLOB \"$glob\") as $TITLE_SEARCH_RANK"
+      ", ($TITLE GLOB '$glob') as $TITLE_SEARCH_RANK"
     }
 
     return """

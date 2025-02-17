@@ -169,8 +169,18 @@ object LocalArchiver {
       EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_STICKER))
     }
 
-    override fun onMessage() {
-      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_MESSAGE))
+    override fun onNotificationProfile() {
+      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.NOTIFICATION_PROFILE))
+    }
+
+    override fun onChatFolder() {
+      EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.CHAT_FOLDER))
+    }
+
+    override fun onMessage(currentProgress: Long, approximateCount: Long) {
+      if (currentProgress == 0L) {
+        EventBus.getDefault().post(LocalBackupV2Event(LocalBackupV2Event.Type.PROGRESS_MESSAGE))
+      }
     }
 
     override fun onAttachment(currentProgress: Long, totalCount: Long) {

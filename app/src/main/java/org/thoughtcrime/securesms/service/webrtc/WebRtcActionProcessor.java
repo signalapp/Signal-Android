@@ -375,6 +375,11 @@ public abstract class WebRtcActionProcessor {
                        .build();
   }
 
+  protected @NonNull WebRtcServiceState handleRemoteAudioEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    Log.i(tag, "handleRemoteAudioEnable not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     Log.i(tag, "handleRemoteVideoEnable not processed");
     return currentState;
@@ -614,6 +619,10 @@ public abstract class WebRtcActionProcessor {
       callParticipant.getVideoSink().setDeviceOrientationDegrees(sinkRotationDegrees);
     }
 
+    AppDependencies.getSignalCallManager()
+                   .getLockManager()
+                   .updateOrientation(Orientation.fromDegrees(orientationDegrees));
+
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
@@ -850,7 +859,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @NonNull Throwable error) {
+  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @Nullable Throwable error) {
     Log.w(tag, "groupCallFailure(): " + message, error);
 
     GroupCall groupCall = currentState.getCallInfoState().getGroupCall();

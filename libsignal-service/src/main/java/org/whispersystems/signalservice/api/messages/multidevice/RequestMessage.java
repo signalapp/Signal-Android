@@ -40,11 +40,7 @@ public class RequestMessage {
     return request.type == Request.Type.KEYS;
   }
 
-  public boolean isPniIdentityRequest() {
-    return request.type == Request.Type.PNI_IDENTITY;
-  }
-
   public boolean isUrgent() {
-    return isContactsRequest() || isKeysRequest() || isPniIdentityRequest();
+    return isContactsRequest() || isKeysRequest();
   }
 }

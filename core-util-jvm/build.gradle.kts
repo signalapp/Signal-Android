@@ -55,7 +55,6 @@ dependencies {
   implementation(libs.kotlinx.coroutines.core.jvm)
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.assertj.core)
-  testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.kotlinx.coroutines.test)
 }

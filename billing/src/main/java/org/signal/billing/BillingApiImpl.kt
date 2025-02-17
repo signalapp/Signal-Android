@@ -170,23 +170,25 @@ internal class BillingApiImpl(
   }
 
   override suspend fun queryProduct(): BillingProduct? {
-    try {
-      val products = queryProductsInternal()
+    return withContext(Dispatchers.IO) {
+      try {
+        val products = queryProductsInternal()
 
-      val details: ProductDetails? = products.productDetailsList?.firstOrNull { it.productId == billingDependencies.getProductId() }
-      val pricing: ProductDetails.PricingPhase? = details?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.firstOrNull()
+        val details: ProductDetails? = products.productDetailsList?.firstOrNull { it.productId == billingDependencies.getProductId() }
+        val pricing: ProductDetails.PricingPhase? = details?.subscriptionOfferDetails?.firstOrNull()?.pricingPhases?.pricingPhaseList?.firstOrNull()
 
-      if (pricing == null) {
-        Log.d(TAG, "No pricing available.")
-        return null
+        if (pricing == null) {
+          Log.d(TAG, "No pricing available.")
+          null
+        } else {
+          BillingProduct(
+            price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+          )
+        }
+      } catch (e: BillingError) {
+        Log.w(TAG, "Failed to query product. Returning null. Error code: ${e.billingResponseCode}", e)
+        null
       }
-
-      return BillingProduct(
-        price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
-      )
-    } catch (e: BillingError) {
-      Log.w(TAG, "Failed to query product. Returning null. Error code: ${e.billingResponseCode}", e)
-      return null
     }
   }
 
@@ -199,8 +201,6 @@ internal class BillingApiImpl(
       Log.d(TAG, "Querying purchases.")
       billingClient.queryPurchasesAsync(param)
     }
-
-    purchasesUpdatedListener.onPurchasesUpdated(result.billingResult, result.purchasesList)
 
     val purchase = result.purchasesList.maxByOrNull { it.purchaseTime } ?: return BillingPurchaseResult.None
 
@@ -255,8 +255,13 @@ internal class BillingApiImpl(
    * to out-of-date Google Play API
    */
   override suspend fun isApiAvailable(): Boolean {
-    return doOnConnectionReady {
-      billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+    return try {
+      doOnConnectionReady {
+        billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+      }
+    } catch (e: BillingError) {
+      Log.e(TAG, "Failed to connect to Google Play Billing", e)
+      false
     }
   }
 

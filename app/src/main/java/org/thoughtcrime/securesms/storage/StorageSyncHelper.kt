@@ -172,11 +172,11 @@ object StorageSyncHelper {
       }
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
-        safeSetSubscriber(it.subscriberId.bytes.toByteString(), it.currency.currencyCode)
+        safeSetSubscriber(it.subscriberId.bytes.toByteString(), it.currency?.currencyCode ?: "")
       }
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)?.let {
-        safeSetBackupsSubscriber(it.subscriberId.bytes.toByteString(), it.currency.currencyCode)
+        safeSetBackupsSubscriber(it.subscriberId.bytes.toByteString(), it.iapSubscriptionId)
       }
 
       safeSetPayments(SignalStore.payments.mobileCoinPaymentsEnabled(), Optional.ofNullable(SignalStore.payments.paymentsEntropy).map { obj: Entropy -> obj.bytes }.orElse(null))
@@ -219,9 +219,14 @@ object StorageSyncHelper {
       SignalStore.story.viewedReceiptsEnabled = update.new.proto.storyViewReceiptsEnabled == OptionalBool.ENABLED
     }
 
-    val remoteSubscriber = StorageSyncModels.remoteToLocalSubscriber(update.new.proto.subscriberId, update.new.proto.subscriberCurrencyCode, InAppPaymentSubscriberRecord.Type.DONATION)
+    val remoteSubscriber = StorageSyncModels.remoteToLocalDonorSubscriber(update.new.proto.subscriberId, update.new.proto.subscriberCurrencyCode)
     if (remoteSubscriber != null) {
       setSubscriber(remoteSubscriber)
+    }
+
+    val remoteBackupsSubscriber = StorageSyncModels.remoteToLocalBackupSubscriber(update.new.proto.backupSubscriberData)
+    if (remoteBackupsSubscriber != null) {
+      setSubscriber(remoteBackupsSubscriber)
     }
 
     if (update.new.proto.subscriptionManuallyCancelled && !update.old.proto.subscriptionManuallyCancelled) {

@@ -39,7 +39,7 @@ public final class StreamingMuxer implements Muxer {
   }
 
   @Override
-  public void stop() throws IOException {
+  public long stop() throws IOException {
     if (mp4Writer == null) {
       throw new IllegalStateException("calling stop prior to start");
     }
@@ -47,7 +47,11 @@ public final class StreamingMuxer implements Muxer {
       track.finish();
     }
     mp4Writer.close();
+    long mdatLength = mp4Writer.getTotalMdatContentLength();
+
     mp4Writer = null;
+
+    return mdatLength;
   }
 
   @Override

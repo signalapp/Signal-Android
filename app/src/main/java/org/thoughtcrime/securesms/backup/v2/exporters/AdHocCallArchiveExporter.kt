@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.database
 import android.database.Cursor
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.backup.v2.proto.AdHocCall
+import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
 import org.thoughtcrime.securesms.database.CallTable
 import java.io.Closeable
 
@@ -31,7 +32,7 @@ class AdHocCallArchiveExporter(private val cursor: Cursor) : Iterator<AdHocCall>
       callId = callId,
       recipientId = cursor.requireLong(CallTable.PEER),
       state = AdHocCall.State.GENERIC,
-      callTimestamp = cursor.requireLong(CallTable.TIMESTAMP)
+      callTimestamp = cursor.requireLong(CallTable.TIMESTAMP).clampToValidBackupRange()
     )
   }
 

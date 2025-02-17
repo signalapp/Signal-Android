@@ -992,13 +992,6 @@ object RemoteConfig {
     hotSwappable = true
   )
 
-  /** Make CDSI lookups via libsignal-net instead of native websocket.  */
-  val useLibsignalNetForCdsiLookup: Boolean by remoteBoolean(
-    key = "android.cds.libsignal.4",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** The lifespan of a linked device (i.e. the time it can be inactive for before it expires), in milliseconds.  */
   @JvmStatic
   val linkedDeviceLifespan: Long by remoteValue(
@@ -1090,7 +1083,7 @@ object RemoteConfig {
   /** JSON object representing some details about how we might want to warn the user around connectivity issues. */
   val connectivityWarningConfig: String by remoteString(
     key = "android.connectivityWarningConfig",
-    defaultValue = "",
+    defaultValue = "{}",
     hotSwappable = true
   )
 
@@ -1129,15 +1122,7 @@ object RemoteConfig {
   /** Whether or not this device supports syncing data to newly-linked device. */
   @JvmStatic
   val linkAndSync: Boolean by remoteBoolean(
-    key = "android.linkAndSync.2",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
-  /** Whether or not this device supports the new storage service recordIkm encryption. */
-  @JvmStatic
-  val storageServiceEncryptionV2: Boolean by remoteBoolean(
-    key = "android.ssre2",
+    key = "android.linkAndSync.3",
     defaultValue = false,
     hotSwappable = true
   )

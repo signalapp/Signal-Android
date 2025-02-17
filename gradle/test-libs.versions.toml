@@ -17,13 +17,10 @@ androidx-test-orchestrator = "androidx.test:orchestrator:1.4.1"
 androidx-test-runner = { module = "androidx.test:runner", version.ref = "androidx-test" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 kotlinx-coroutines-test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0"
-mockito-core = "org.mockito:mockito-inline:4.6.1"
-mockito-kotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 bouncycastle-bcprov-jdk15on = "org.bouncycastle:bcprov-jdk15on:1.70"
 bouncycastle-bcpkix-jdk15on = "org.bouncycastle:bcpkix-jdk15on:1.70"
-hamcrest-hamcrest = "org.hamcrest:hamcrest:2.2"
-assertj-core = "org.assertj:assertj-core:3.11.1"
+assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
 square-okhttp-mockserver = "com.squareup.okhttp3:mockwebserver:4.12.0"
 mockk = "io.mockk:mockk:1.13.2"
 mockk-android = "io.mockk:mockk-android:1.13.2"

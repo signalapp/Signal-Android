@@ -26,11 +26,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,11 +43,11 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.reactivex.rxjava3.core.BackpressureStrategy
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.map
 import org.signal.core.ui.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
+import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
@@ -65,26 +65,27 @@ object RaiseHandSnackbar {
   fun View(webRtcCallViewModel: WebRtcCallViewModel, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
     var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false)) }
 
-    val raisedHandsState by webRtcCallViewModel.callParticipantsState
-      .toFlowable(BackpressureStrategy.LATEST)
-      .map { state ->
-        val raisedHands = state.raisedHands.sortedBy {
-          if (it.sender.isSelf) {
-            if (it.sender.isPrimary) {
-              0
+    val raisedHandsState by remember {
+      webRtcCallViewModel.callParticipantsState
+        .map { state ->
+          val raisedHands = state.raisedHands.sortedBy {
+            if (it.sender.isSelf) {
+              if (it.sender.isPrimary) {
+                0
+              } else {
+                1
+              }
             } else {
-              1
+              it.timestamp
             }
-          } else {
-            it.timestamp
           }
+          val shouldExpand = RaiseHandState.shouldExpand(raisedHands)
+          if (!expansionState.forced) {
+            expansionState = ExpansionState(shouldExpand, false)
+          }
+          raisedHands
         }
-        val shouldExpand = RaiseHandState.shouldExpand(raisedHands)
-        if (!expansionState.forced) {
-          expansionState = ExpansionState(shouldExpand, false)
-        }
-        raisedHands
-      }.subscribeAsState(initial = emptyList())
+    }.collectAsState(initial = emptyList())
 
     val state by remember {
       derivedStateOf {

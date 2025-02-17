@@ -27,13 +27,14 @@ import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.Closeable
 
 /**
  * Provides a nice iterable interface over a [RecipientTable] cursor, converting rows to [ArchiveRecipient]s.
  * Important: Because this is backed by a cursor, you must close it. It's recommended to use `.use()` or try-with-resources.
  */
-class GroupArchiveExporter(private val cursor: Cursor) : Iterator<ArchiveRecipient>, Closeable {
+class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val cursor: Cursor) : Iterator<ArchiveRecipient>, Closeable {
 
   override fun hasNext(): Boolean {
     return cursor.count > 0 && !cursor.isLast
@@ -47,6 +48,7 @@ class GroupArchiveExporter(private val cursor: Cursor) : Iterator<ArchiveRecipie
     val extras = RecipientTableCursorUtil.getExtras(cursor)
     val showAsStoryState: GroupTable.ShowAsStoryState = GroupTable.ShowAsStoryState.deserialize(cursor.requireInt(GroupTable.SHOW_AS_STORY_STATE))
 
+    val isActive: Boolean = cursor.requireBoolean(GroupTable.ACTIVE)
     val decryptedGroup: DecryptedGroup = DecryptedGroup.ADAPTER.decode(cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)!!)
 
     return ArchiveRecipient(
@@ -54,9 +56,10 @@ class GroupArchiveExporter(private val cursor: Cursor) : Iterator<ArchiveRecipie
       group = ArchiveGroup(
         masterKey = cursor.requireNonNullBlob(GroupTable.V2_MASTER_KEY).toByteString(),
         whitelisted = cursor.requireBoolean(RecipientTable.PROFILE_SHARING),
+        blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         hideStory = extras?.hideStory() ?: false,
         storySendMode = showAsStoryState.toRemote(),
-        snapshot = decryptedGroup.toRemote()
+        snapshot = decryptedGroup.toRemote(isActive, selfAci)
       )
     )
   }
@@ -74,10 +77,13 @@ private fun GroupTable.ShowAsStoryState.toRemote(): Group.StorySendMode {
   }
 }
 
-private fun DecryptedGroup.toRemote(): Group.GroupSnapshot? {
+private fun DecryptedGroup.toRemote(isActive: Boolean, selfAci: ServiceId.ACI): Group.GroupSnapshot? {
   if (this.revision == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION || this.revision == GroupsV2StateProcessor.PLACEHOLDER_REVISION) {
     return null
   }
+
+  val selfAciBytes = selfAci.toByteString()
+  val memberFilter = { m: DecryptedMember -> isActive || m.aciBytes != selfAciBytes }
 
   return Group.GroupSnapshot(
     title = Group.GroupAttributeBlob(title = this.title),
@@ -85,7 +91,7 @@ private fun DecryptedGroup.toRemote(): Group.GroupSnapshot? {
     disappearingMessagesTimer = this.disappearingMessagesTimer?.takeIf { it.duration > 0 }?.let { Group.GroupAttributeBlob(disappearingMessagesDuration = it.duration) },
     accessControl = this.accessControl?.toRemote(),
     version = this.revision,
-    members = this.members.map { it.toRemote() },
+    members = this.members.filter(memberFilter).map { it.toRemote() },
     membersPendingProfileKey = this.pendingMembers.map { it.toRemote() },
     membersPendingAdminApproval = this.requestingMembers.map { it.toRemote() },
     inviteLinkPassword = this.inviteLinkPassword,

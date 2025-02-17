@@ -62,7 +62,7 @@ public class MarkReadHelper {
     debouncer.publish(() -> {
       EXECUTOR.execute(() -> {
         ThreadTable                          threadTable = SignalDatabase.threads();
-        List<MessageTable.MarkedMessageInfo> infos       = threadTable.setReadSince(conversationId, false, timestamp);
+        List<MessageTable.MarkedMessageInfo> infos       = threadTable.setReadSince(conversationId, timestamp);
 
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");
 

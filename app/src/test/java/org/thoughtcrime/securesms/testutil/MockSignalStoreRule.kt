@@ -11,6 +11,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.junit.rules.ExternalResource
 import org.thoughtcrime.securesms.keyvalue.AccountValues
+import org.thoughtcrime.securesms.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.RegistrationValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -41,17 +42,22 @@ class MockSignalStoreRule(private val relaxed: Set<KClass<*>> = emptySet()) : Ex
   lateinit var svr: SvrValues
     private set
 
+  lateinit var emoji: EmojiValues
+    private set
+
   override fun before() {
     account = mockk(relaxed = relaxed.contains(AccountValues::class), relaxUnitFun = true)
     phoneNumberPrivacy = mockk(relaxed = relaxed.contains(PhoneNumberPrivacyValues::class), relaxUnitFun = true)
     registration = mockk(relaxed = relaxed.contains(RegistrationValues::class), relaxUnitFun = true)
     svr = mockk(relaxed = relaxed.contains(SvrValues::class), relaxUnitFun = true)
+    emoji = mockk(relaxed = relaxed.contains(EmojiValues::class), relaxUnitFun = true)
 
     mockkObject(SignalStore)
     every { SignalStore.account } returns account
     every { SignalStore.phoneNumberPrivacy } returns phoneNumberPrivacy
     every { SignalStore.registration } returns registration
     every { SignalStore.svr } returns svr
+    every { SignalStore.emoji } returns emoji
   }
 
   override fun after() {

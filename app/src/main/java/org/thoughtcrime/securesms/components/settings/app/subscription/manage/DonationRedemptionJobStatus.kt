@@ -14,7 +14,7 @@ sealed class DonationRedemptionJobStatus {
   /**
    * No pending/running jobs for a donation type.
    */
-  object None : DonationRedemptionJobStatus()
+  data object None : DonationRedemptionJobStatus()
 
   /**
    * Donation is pending external user verification (e.g., iDEAL).
@@ -31,26 +31,34 @@ sealed class DonationRedemptionJobStatus {
    *
    * For one-time donations, pending donation data available via the store.
    */
-  object PendingReceiptRequest : DonationRedemptionJobStatus()
+  data object PendingReceiptRequest : DonationRedemptionJobStatus()
 
   /**
    * Donation is at the receipt redemption status.
    *
    * For one-time donations, pending donation data available via the store.
    */
-  object PendingReceiptRedemption : DonationRedemptionJobStatus()
+  data object PendingReceiptRedemption : DonationRedemptionJobStatus()
+
+  /**
+   * Donation is being refreshed during a keep-alive.
+   *
+   * This is an invalid state for one-time donations.
+   */
+  data object PendingKeepAlive : DonationRedemptionJobStatus()
 
   /**
    * Representation of a failed subscription job chain derived from no pending/running jobs and
    * a failure state in the store.
    */
-  object FailedSubscription : DonationRedemptionJobStatus()
+  data object FailedSubscription : DonationRedemptionJobStatus()
 
   fun isInProgress(): Boolean {
     return when (this) {
       is PendingExternalVerification,
       PendingReceiptRedemption,
-      PendingReceiptRequest -> true
+      PendingReceiptRequest,
+      PendingKeepAlive -> true
 
       FailedSubscription,
       None -> false

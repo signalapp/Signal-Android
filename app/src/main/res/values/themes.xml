@@ -74,7 +74,6 @@
 
         <item name="theme_type">dark</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="colorPrimary">@color/core_grey_95</item>
         <item name="colorAccent">@color/core_ultramarine_light</item>
     </style>
 
@@ -144,17 +143,19 @@
         <!-- Allows for Overrides -->
     </style>
 
-    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
+    <style name="TextSecure.BaseLightTheme" parent="@style/Theme.Material3.Light">
         <item name="theme_type">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/signal_colorPrimary</item>
         <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
         <item name="colorSecondary">@color/signal_colorSecondary</item>
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
         <item name="colorSurface">@color/signal_colorSurface</item>
         <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorSurfaceContainer">@color/signal_colorSurface</item>
         <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
         <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
         <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
@@ -163,6 +164,11 @@
         <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
         <item name="colorOnBackground">@color/signal_colorOnBackground</item>
         <item name="colorOutline">@color/signal_colorOutline</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
+        <item name="colorControlActivated">@color/signal_colorPrimary</item>
+        <item name="colorControlHighlight">@color/transparent_black_10</item>
+        <item name="android:textColorHighlight">@color/signal_colorPrimaryContainer</item>
+
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
         <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
         <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
@@ -189,10 +195,6 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_light_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_light_theme</item>
-        <item name="colorPrimaryDark">@color/signal_colorPrimary</item>
-        <item name="colorAccent">@color/signal_colorPrimary</item>
-        <item name="colorControlActivated">@color/signal_colorPrimary</item>
-        <item name="colorControlHighlight">@color/transparent_black_10</item>
         <item name="android:windowBackground">@color/signal_colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
@@ -224,26 +226,29 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
-
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
+        <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
+        <item name="collapsingToolbarLayoutStyle">@style/Signal.Widget.CollapsingToolbar</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
         <!-- leave empty to allow overriding -->
     </style>
 
-    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
+    <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.Material3.Dark">
         <item name="theme_type">dark</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/signal_colorPrimary</item>
         <item name="colorPrimaryContainer">@color/signal_colorPrimaryContainer</item>
         <item name="colorSecondary">@color/signal_colorSecondary</item>
         <item name="colorSecondaryContainer">@color/signal_colorSecondaryContainer</item>
         <item name="colorSurface">@color/signal_colorSurface</item>
         <item name="colorSurfaceVariant">@color/signal_colorSurfaceVariant</item>
+        <item name="colorSurfaceContainer">@color/signal_colorSurface</item>
         <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
         <item name="colorOnPrimaryContainer">@color/signal_colorOnPrimaryContainer</item>
         <item name="colorOnSecondary">@color/signal_colorOnSecondary</item>
@@ -252,6 +257,11 @@
         <item name="colorOnSurfaceVariant">@color/signal_colorOnSurfaceVariant</item>
         <item name="colorOnBackground">@color/signal_colorOnBackground</item>
         <item name="colorOutline">@color/signal_colorOutline</item>
+        <item name="colorAccent">@color/signal_colorPrimary</item>
+        <item name="colorControlActivated">@color/signal_colorPrimary</item>
+        <item name="colorControlHighlight">@color/transparent_white_10</item>
+        <item name="android:textColorHighlight">@color/signal_colorPrimaryContainer</item>
+
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
         <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
         <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
@@ -275,9 +285,6 @@
         <item name="actionModeStyle">@style/TextSecure.ActionModeStyle</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/signal_colorPrimary</item>
-        <item name="colorControlActivated">@color/signal_colorPrimary</item>
-        <item name="colorControlHighlight">@color/transparent_white_10</item>
         <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/transparent_white_10</item>
         <item name="android:windowBackground">@color/signal_colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -314,9 +321,10 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
-
         <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
         <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
+        <item name="materialCardViewOutlinedStyle">@style/Widget.Material3.CardView.Filled</item>
+        <item name="collapsingToolbarLayoutStyle">@style/Signal.Widget.CollapsingToolbar</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="MaterialAlertDialog.Material3">

@@ -14,6 +14,7 @@ import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import okio.ByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
@@ -49,6 +50,7 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   private val serviceNetworkAccessMock: SignalServiceNetworkAccess
   private val recipientCache: LiveRecipientCache
   private var signalServiceMessageSender: SignalServiceMessageSender? = null
+  private var billingApi: BillingApi = mockk()
 
   init {
     runSync {
@@ -107,6 +109,8 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
 
     recipientCache = LiveRecipientCache(application) { r -> r.run() }
   }
+
+  override fun provideBillingApi(): BillingApi = billingApi
 
   override fun provideSignalServiceNetworkAccess(): SignalServiceNetworkAccess {
     return serviceNetworkAccessMock

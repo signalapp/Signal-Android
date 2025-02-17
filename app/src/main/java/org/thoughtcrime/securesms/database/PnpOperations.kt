@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import app.cash.exhaustive.Exhaustive
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -49,7 +48,6 @@ data class PnpDataSet(
     val records: MutableSet<RecipientRecord> = listOfNotNull(e164Record, pniRecord, aciRecord).toMutableSet()
 
     for (operation in operations) {
-      @Exhaustive
       when (operation) {
         is PnpOperation.RemoveE164 -> {
           records.replace(operation.recipientId) { it.copy(e164 = null) }

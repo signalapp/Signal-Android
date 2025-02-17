@@ -1,13 +1,15 @@
 package org.thoughtcrime.securesms.jobs
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNotEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
+import assertk.assertions.prop
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Test
-import org.thoughtcrime.securesms.assertIs
-import org.thoughtcrime.securesms.assertIsNot
-import org.thoughtcrime.securesms.assertIsNotNull
-import org.thoughtcrime.securesms.assertIsNull
 import org.thoughtcrime.securesms.database.JobDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec
@@ -77,8 +79,8 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase())
     subject.insertJobs(DataSet1.FULL_SPECS)
 
-    subject.getJobSpec(DataSet1.JOB_1.id) assertIs DataSet1.JOB_1
-    subject.getJobSpec(DataSet1.JOB_2.id) assertIs DataSet1.JOB_2
+    assertThat(subject.getJobSpec(DataSet1.JOB_1.id)).isEqualTo(DataSet1.JOB_1)
+    assertThat(subject.getJobSpec(DataSet1.JOB_2.id)).isEqualTo(DataSet1.JOB_2)
   }
 
   @Test
@@ -98,8 +100,8 @@ class FastJobStorageTest {
     subject.init()
     subject.updateAllJobsToBePending()
 
-    subject.getJobSpec("1")!!.isRunning assertIs false
-    subject.getJobSpec("2")!!.isRunning assertIs false
+    assertThat(subject.getJobSpec("1")!!.isRunning).isEqualTo(false)
+    assertThat(subject.getJobSpec("2")!!.isRunning).isEqualTo(false)
   }
 
   @Test
@@ -167,9 +169,9 @@ class FastJobStorageTest {
     subject.init()
     subject.updateJobs(listOf(update1, update2))
 
-    subject.getJobSpec("1") assertIs update1
-    subject.getJobSpec("2") assertIs update2
-    subject.getJobSpec("3") assertIs fullSpec3.jobSpec
+    assertThat(subject.getJobSpec("1")).isEqualTo(update1)
+    assertThat(subject.getJobSpec("2")).isEqualTo(update2)
+    assertThat(subject.getJobSpec("3")).isEqualTo(fullSpec3.jobSpec)
   }
 
   @Test
@@ -232,9 +234,9 @@ class FastJobStorageTest {
       }
     }
 
-    subject.getJobSpec("1") assertIs update1
-    subject.getJobSpec("2") assertIs update2
-    subject.getJobSpec("3") assertIs fullSpec3.jobSpec
+    assertThat(subject.getJobSpec("1")).isEqualTo(update1)
+    assertThat(subject.getJobSpec("2")).isEqualTo(update2)
+    assertThat(subject.getJobSpec("3")).isEqualTo(fullSpec3.jobSpec)
   }
 
   @Test
@@ -256,8 +258,8 @@ class FastJobStorageTest {
 
     subject.markJobAsRunning(id = DataSet1.JOB_1.id, currentTime = 42)
 
-    subject.getJobSpec(DataSet1.JOB_1.id)!!.isRunning assertIs true
-    subject.getJobSpec(DataSet1.JOB_1.id)!!.lastRunAttemptTime assertIs 42
+    assertThat(subject.getJobSpec(DataSet1.JOB_1.id)!!.isRunning).isEqualTo(true)
+    assertThat(subject.getJobSpec(DataSet1.JOB_1.id)!!.lastRunAttemptTime).isEqualTo(42)
   }
 
   @Test
@@ -313,11 +315,11 @@ class FastJobStorageTest {
 
     val job = subject.getJobSpec("1")
     check(job != null)
-    job.isRunning assertIs false
-    job.lastRunAttemptTime assertIs 3
-    job.runAttempt assertIs 2
-    job.nextBackoffInterval assertIs 10
-    job.serializedData!!.toString(Charset.defaultCharset()) assertIs "a"
+    assertThat(job.isRunning).isEqualTo(false)
+    assertThat(job.lastRunAttemptTime).isEqualTo(3)
+    assertThat(job.runAttempt).isEqualTo(2)
+    assertThat(job.nextBackoffInterval).isEqualTo(10)
+    assertThat(job.serializedData!!.toString(Charset.defaultCharset())).isEqualTo("a")
   }
 
   @Test
@@ -328,7 +330,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getNextEligibleJob(1, NO_PREDICATE) assertIs null
+    assertThat(subject.getNextEligibleJob(1, NO_PREDICATE)).isEqualTo(null)
   }
 
   @Test
@@ -338,18 +340,18 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs null
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(null)
   }
 
   @Test
   fun `getNextEligibleJob - none when next run time is after current time`() {
-    val currentTime = 0L
+    val currentTime = 1L
     val fullSpec = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q", lastRunAttemptTime = 0, nextBackoffInterval = 10), emptyList(), emptyList())
 
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getNextEligibleJob(currentTime, NO_PREDICATE) assertIs null
+    assertThat(subject.getNextEligibleJob(currentTime, NO_PREDICATE)).isEqualTo(null)
   }
 
   @Test
@@ -360,7 +362,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getNextEligibleJob(0, NO_PREDICATE) assertIs null
+    assertThat(subject.getNextEligibleJob(0, NO_PREDICATE)).isEqualTo(null)
   }
 
   @Test
@@ -370,7 +372,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec.jobSpec
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec.jobSpec)
   }
 
   @Test
@@ -381,10 +383,10 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec1.jobSpec
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec1.jobSpec)
     subject.deleteJob(fullSpec1.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec2.jobSpec
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec2.jobSpec)
   }
 
   @Test
@@ -396,8 +398,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec2.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec2.jobSpec.id)
   }
 
   @Test
@@ -409,8 +412,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec1.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec1.jobSpec.id)
   }
 
   @Test
@@ -423,8 +427,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec2.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec2.jobSpec.id)
   }
 
   @Test
@@ -445,40 +450,40 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3, fullSpec4, fullSpec5, fullSpec6, fullSpec7, fullSpec8, fullSpec9, fullSpec10, fullSpec11, fullSpec12)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec2.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec2.jobSpec)
     subject.deleteJob(fullSpec2.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec6.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec6.jobSpec)
     subject.deleteJob(fullSpec6.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec11.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec11.jobSpec)
     subject.deleteJob(fullSpec11.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec10.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec10.jobSpec)
     subject.deleteJob(fullSpec10.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec12.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec12.jobSpec)
     subject.deleteJob(fullSpec12.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec3.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec3.jobSpec)
     subject.deleteJob(fullSpec3.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec5.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec5.jobSpec)
     subject.deleteJob(fullSpec5.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec9.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec9.jobSpec)
     subject.deleteJob(fullSpec9.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec1.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec1.jobSpec)
     subject.deleteJob(fullSpec1.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec4.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec4.jobSpec)
     subject.deleteJob(fullSpec4.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec7.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec7.jobSpec)
     subject.deleteJob(fullSpec7.jobSpec.id)
 
-    subject.getNextEligibleJob(10, NO_PREDICATE) assertIs fullSpec8.jobSpec
+    assertThat(subject.getNextEligibleJob(15, NO_PREDICATE)).isEqualTo(fullSpec8.jobSpec)
   }
 
   @Test
@@ -491,8 +496,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec2.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec2.jobSpec.id)
   }
 
   @Test
@@ -504,8 +510,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec2.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec2.jobSpec.id)
   }
 
   @Test
@@ -518,8 +525,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(currentTime, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs fullSpec1.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(fullSpec1.jobSpec.id)
   }
 
   @Test
@@ -531,8 +539,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs migrationSpec.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(migrationSpec.jobSpec.id)
   }
 
   @Test
@@ -543,7 +552,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(plainSpec, migrationSpec)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE).assertIsNull()
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isNull()
   }
 
   @Test
@@ -554,7 +563,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    subject.getNextEligibleJob(10, NO_PREDICATE).assertIsNull()
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isNull()
   }
 
   @Test
@@ -566,8 +575,9 @@ class FastJobStorageTest {
     subject.init()
 
     val job = subject.getNextEligibleJob(10, NO_PREDICATE)
-    job.assertIsNotNull()
-    job.id assertIs migrationSpec1.jobSpec.id
+    assertThat(job).isNotNull()
+      .prop(JobSpec::id)
+      .isEqualTo(migrationSpec1.jobSpec.id)
   }
 
   @Test
@@ -580,7 +590,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(listOf(migrationSpec1, migrationSpec2)))
     subject.init()
 
-    subject.getNextEligibleJob(currentTime, NO_PREDICATE).assertIsNull()
+    assertThat(subject.getNextEligibleJob(currentTime, NO_PREDICATE)).isNull()
   }
 
   @Test
@@ -588,10 +598,10 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
     subject.deleteJob(DataSet1.JOB_1.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isNotEqualTo(DataSet1.JOB_1)
   }
 
   @Test
@@ -609,10 +619,10 @@ class FastJobStorageTest {
     )
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs firstJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(firstJob)
     subject.deleteJob(firstJob.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs secondJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(secondJob)
   }
 
   @Test
@@ -632,13 +642,13 @@ class FastJobStorageTest {
     )
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs secondJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(secondJob)
     subject.deleteJob(secondJob.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs thirdJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(thirdJob)
     subject.deleteJob(thirdJob.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs firstJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(firstJob)
     subject.deleteJob(firstJob.id)
   }
 
@@ -659,13 +669,13 @@ class FastJobStorageTest {
     )
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs secondJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(secondJob)
     subject.deleteJob(secondJob.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs thirdJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(thirdJob)
     subject.deleteJob(thirdJob.id)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs firstJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(firstJob)
     subject.deleteJob(firstJob.id)
   }
 
@@ -674,10 +684,10 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
     subject.markJobAsRunning(DataSet1.JOB_1.id, 1)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isNotEqualTo(DataSet1.JOB_1)
   }
 
   @Test
@@ -685,10 +695,10 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
     subject.updateJobAfterRetry(DataSet1.JOB_1.id, 1, 1000, 1_000_000, null)
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isNotEqualTo(DataSet1.JOB_1)
   }
 
   @Test
@@ -697,11 +707,11 @@ class FastJobStorageTest {
     subject.init()
 
     subject.markJobAsRunning(DataSet1.JOB_1.id, 1)
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isNotEqualTo(DataSet1.JOB_1)
 
     subject.updateAllJobsToBePending()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE)?.id assertIs DataSet1.JOB_1.id // The last run attempt time changes, so some fields will be different
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)?.id).isEqualTo(DataSet1.JOB_1.id) // The last run attempt time changes, so some fields will be different
   }
 
   @Test
@@ -709,10 +719,10 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
     subject.updateJobs(listOf(DataSet1.JOB_1.copy(isRunning = true)))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIsNot DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isNotEqualTo(DataSet1.JOB_1)
   }
 
   @Test
@@ -720,12 +730,12 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
 
     val higherPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", globalPriority = Job.Parameters.PRIORITY_HIGH)
     subject.insertJobs(listOf(FullSpec(jobSpec = higherPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(higherPriorityJob)
   }
 
   @Test
@@ -733,12 +743,12 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
 
     val higherPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", queuePriority = Job.Parameters.PRIORITY_HIGH)
     subject.insertJobs(listOf(FullSpec(jobSpec = higherPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(higherPriorityJob)
   }
 
   @Test
@@ -749,12 +759,12 @@ class FastJobStorageTest {
     val lowerPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", globalPriority = Job.Parameters.PRIORITY_LOW)
     subject.insertJobs(listOf(FullSpec(jobSpec = lowerPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
 
     val higherPriorityJob = lowerPriorityJob.copy(globalPriority = Job.Parameters.PRIORITY_HIGH)
     subject.updateJobs(listOf(higherPriorityJob))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(higherPriorityJob)
   }
 
   @Test
@@ -765,12 +775,12 @@ class FastJobStorageTest {
     val lowerPriorityJob = DataSet1.JOB_1.copy(id = "id-bigboi", queuePriority = Job.Parameters.PRIORITY_LOW)
     subject.insertJobs(listOf(FullSpec(jobSpec = lowerPriorityJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
 
     val higherPriorityJob = lowerPriorityJob.copy(queuePriority = Job.Parameters.PRIORITY_HIGH)
     subject.updateJobs(listOf(higherPriorityJob))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs higherPriorityJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(higherPriorityJob)
   }
 
   @Test
@@ -781,12 +791,26 @@ class FastJobStorageTest {
     val newerJob = DataSet1.JOB_1.copy(id = "id-bigboi", createTime = 1000)
     subject.insertJobs(listOf(FullSpec(jobSpec = newerJob, constraintSpecs = emptyList(), dependencySpecs = emptyList())))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs DataSet1.JOB_1
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(DataSet1.JOB_1)
 
     val olderJob = newerJob.copy(createTime = 0)
     subject.updateJobs(listOf(olderJob))
 
-    subject.getNextEligibleJob(100, NO_PREDICATE) assertIs olderJob
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(olderJob)
+  }
+
+  @Test
+  fun `getNextEligibleJob - jobs with initial delay will not run until after the delay`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q1", createTime = 1, initialDelay = 10), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q2", createTime = 2, initialDelay = 0), emptyList(), emptyList())
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
+    subject.init()
+
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec2.jobSpec)
+    subject.deleteJob(fullSpec2.jobSpec.id)
+
+    assertThat(subject.getNextEligibleJob(20, NO_PREDICATE)).isEqualTo(fullSpec1.jobSpec)
   }
 
   @Test
@@ -826,13 +850,13 @@ class FastJobStorageTest {
     val constraints = subject.debugGetConstraintSpecs(1000)
     val dependencies = subject.debugGetAllDependencySpecs()
 
-    jobs.size assertIs 2
-    jobs[0] assertIs DataSet1.JOB_2
-    jobs[1] assertIs DataSet1.JOB_3
-    constraints.size assertIs 1
-    constraints[0] assertIs DataSet1.CONSTRAINT_2
-    dependencies.size assertIs 1
-    subject.getJobSpec("id1") assertIs null
+    assertThat(jobs.size).isEqualTo(2)
+    assertThat(jobs[0]).isEqualTo(DataSet1.JOB_2)
+    assertThat(jobs[1]).isEqualTo(DataSet1.JOB_3)
+    assertThat(constraints.size).isEqualTo(1)
+    assertThat(constraints[0]).isEqualTo(DataSet1.CONSTRAINT_2)
+    assertThat(dependencies.size).isEqualTo(1)
+    assertThat(subject.getJobSpec("id1")).isEqualTo(null)
   }
 
   @Test
@@ -841,9 +865,9 @@ class FastJobStorageTest {
     subject.init()
 
     val result = subject.getDependencySpecsThatDependOnJob("id1")
-    result.size assertIs 2
-    result[0] assertIs DataSet1.DEPENDENCY_2
-    result[1] assertIs DataSet1.DEPENDENCY_3
+    assertThat(result.size).isEqualTo(2)
+    assertThat(result[0]).isEqualTo(DataSet1.DEPENDENCY_2)
+    assertThat(result[1]).isEqualTo(DataSet1.DEPENDENCY_3)
   }
 
   @Test
@@ -852,8 +876,8 @@ class FastJobStorageTest {
     subject.init()
 
     val result = subject.getDependencySpecsThatDependOnJob("id2")
-    result.size assertIs 1
-    result[0] assertIs DataSet1.DEPENDENCY_3
+    assertThat(result.size).isEqualTo(1)
+    assertThat(result[0]).isEqualTo(DataSet1.DEPENDENCY_3)
   }
 
   @Test
@@ -862,7 +886,7 @@ class FastJobStorageTest {
     subject.init()
 
     val result = subject.getDependencySpecsThatDependOnJob("id3")
-    result.size assertIs 0
+    assertThat(result.size).isEqualTo(0)
   }
 
   @Test
@@ -871,7 +895,7 @@ class FastJobStorageTest {
     subject.init()
 
     val result = subject.getJobsInQueue("x")
-    result.size assertIs 0
+    assertThat(result.size).isEqualTo(0)
   }
 
   @Test
@@ -880,8 +904,8 @@ class FastJobStorageTest {
     subject.init()
 
     val result = subject.getJobsInQueue("q1")
-    result.size assertIs 1
-    result[0].id assertIs "id1"
+    assertThat(result.size).isEqualTo(1)
+    assertThat(result[0].id).isEqualTo("id1")
   }
 
   @Test
@@ -889,8 +913,8 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getJobCountForFactory("f1") assertIs 1
-    subject.getJobCountForFactory("does-not-exist") assertIs 0
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(1)
+    assertThat(subject.getJobCountForFactory("does-not-exist")).isEqualTo(0)
   }
 
   @Test
@@ -898,9 +922,9 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.getJobCountForFactoryAndQueue("f1", "q1") assertIs 1
-    subject.getJobCountForFactoryAndQueue("f2", "q1") assertIs 0
-    subject.getJobCountForFactoryAndQueue("f1", "does-not-exist") assertIs 0
+    assertThat(subject.getJobCountForFactoryAndQueue("f1", "q1")).isEqualTo(1)
+    assertThat(subject.getJobCountForFactoryAndQueue("f2", "q1")).isEqualTo(0)
+    assertThat(subject.getJobCountForFactoryAndQueue("f1", "does-not-exist")).isEqualTo(0)
   }
 
   @Test
@@ -908,8 +932,8 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.areQueuesEmpty(TestHelpers.setOf("q1")) assertIs false
-    subject.areQueuesEmpty(TestHelpers.setOf("q1", "q2")) assertIs false
+    assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q1"))).isEqualTo(false)
+    assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q1", "q2"))).isEqualTo(false)
   }
 
   @Test
@@ -917,7 +941,7 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.areQueuesEmpty(TestHelpers.setOf("q1", "q5")) assertIs false
+    assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q1", "q5"))).isEqualTo(false)
   }
 
   @Test
@@ -925,8 +949,8 @@ class FastJobStorageTest {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
 
-    subject.areQueuesEmpty(TestHelpers.setOf("q4")) assertIs true
-    subject.areQueuesEmpty(TestHelpers.setOf("q4", "q5")) assertIs true
+    assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q4"))).isEqualTo(true)
+    assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q4", "q5"))).isEqualTo(true)
   }
 
   private fun mockDatabase(fullSpecs: List<FullSpec> = emptyList()): JobDatabase {
@@ -1008,11 +1032,11 @@ class FastJobStorageTest {
     }
     every { mock.getMostEligibleJobInQueue(any()) } answers {
       jobs
+        .asSequence()
         .filter { it.queueKey == firstArg() }
         .sortedBy { it.createTime }
         .sortedByDescending { it.queuePriority }
-        .sortedByDescending { it.globalPriority }
-        .firstOrNull()
+        .maxByOrNull { it.globalPriority }
     }
 
     return mock
@@ -1033,7 +1057,8 @@ class FastJobStorageTest {
     isRunning: Boolean = false,
     isMemoryOnly: Boolean = false,
     globalPriority: Int = 0,
-    queuePriority: Int = 0
+    queuePriority: Int = 0,
+    initialDelay: Long = 0
   ): JobSpec {
     return JobSpec(
       id = id,
@@ -1050,7 +1075,8 @@ class FastJobStorageTest {
       isRunning = isRunning,
       isMemoryOnly = isMemoryOnly,
       globalPriority = globalPriority,
-      queuePriority = queuePriority
+      queuePriority = queuePriority,
+      initialDelay = initialDelay
     )
   }
 
@@ -1070,7 +1096,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
     val JOB_2 = JobSpec(
       id = "id2",
@@ -1087,7 +1114,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
     val JOB_3 = JobSpec(
       id = "id3",
@@ -1104,7 +1132,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
 
     val CONSTRAINT_1 = ConstraintSpec(jobSpecId = "id1", factoryKey = "f1", isMemoryOnly = false)
@@ -1118,22 +1147,22 @@ class FastJobStorageTest {
     val FULL_SPEC_3 = FullSpec(JOB_3, emptyList(), listOf(DEPENDENCY_3))
     val FULL_SPECS = listOf(FULL_SPEC_1, FULL_SPEC_2, FULL_SPEC_3)
     fun assertJobsMatch(jobs: List<JobSpec?>) {
-      jobs.size assertIs 3
-      jobs.contains(JOB_1) assertIs true
-      jobs.contains(JOB_2) assertIs true
-      jobs.contains(JOB_3) assertIs true
+      assertThat(jobs.size).isEqualTo(3)
+      assertThat(jobs.contains(JOB_1)).isEqualTo(true)
+      assertThat(jobs.contains(JOB_2)).isEqualTo(true)
+      assertThat(jobs.contains(JOB_3)).isEqualTo(true)
     }
 
     fun assertConstraintsMatch(constraints: List<ConstraintSpec?>) {
-      constraints.size assertIs 2
-      constraints.contains(CONSTRAINT_1) assertIs true
-      constraints.contains(CONSTRAINT_2) assertIs true
+      assertThat(constraints.size).isEqualTo(2)
+      assertThat(constraints.contains(CONSTRAINT_1)).isEqualTo(true)
+      assertThat(constraints.contains(CONSTRAINT_2)).isEqualTo(true)
     }
 
     fun assertDependenciesMatch(dependencies: List<DependencySpec?>) {
-      dependencies.size assertIs 2
-      dependencies.contains(DEPENDENCY_2) assertIs true
-      dependencies.contains(DEPENDENCY_3) assertIs true
+      assertThat(dependencies.size).isEqualTo(2)
+      assertThat(dependencies.contains(DEPENDENCY_2)).isEqualTo(true)
+      assertThat(dependencies.contains(DEPENDENCY_3)).isEqualTo(true)
     }
   }
 
@@ -1153,7 +1182,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = true,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
     val CONSTRAINT_1 = ConstraintSpec(jobSpecId = "id1", factoryKey = "f1", isMemoryOnly = true)
     val FULL_SPEC_1 = FullSpec(JOB_1, listOf(CONSTRAINT_1), emptyList())
@@ -1176,7 +1206,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
     val JOB_2 = JobSpec(
       id = "id2",
@@ -1193,7 +1224,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
     val JOB_3 = JobSpec(
       id = "id3",
@@ -1210,7 +1242,8 @@ class FastJobStorageTest {
       isRunning = false,
       isMemoryOnly = false,
       globalPriority = 0,
-      queuePriority = 0
+      queuePriority = 0,
+      initialDelay = 0
     )
 
     val DEPENDENCY_1 = DependencySpec(jobId = "id1", dependsOnJobId = "id2", isMemoryOnly = false)
@@ -1222,20 +1255,20 @@ class FastJobStorageTest {
     val FULL_SPECS = listOf(FULL_SPEC_1, FULL_SPEC_2, FULL_SPEC_3)
 
     fun assertJobsMatch(jobs: List<JobSpec?>) {
-      jobs.size assertIs 3
-      jobs.contains(JOB_1) assertIs true
-      jobs.contains(JOB_2) assertIs true
-      jobs.contains(JOB_3) assertIs true
+      assertThat(jobs.size).isEqualTo(3)
+      assertThat(jobs.contains(JOB_1)).isEqualTo(true)
+      assertThat(jobs.contains(JOB_2)).isEqualTo(true)
+      assertThat(jobs.contains(JOB_3)).isEqualTo(true)
     }
 
     fun assertConstraintsMatch(constraints: List<ConstraintSpec?>) {
-      constraints.size assertIs 0
+      assertThat(constraints.size).isEqualTo(0)
     }
 
     fun assertDependenciesMatch(dependencies: List<DependencySpec?>) {
-      dependencies.size assertIs 1
-      dependencies.contains(DEPENDENCY_1) assertIs false
-      dependencies.contains(DEPENDENCY_3) assertIs true
+      assertThat(dependencies.size).isEqualTo(1)
+      assertThat(dependencies.contains(DEPENDENCY_1)).isEqualTo(false)
+      assertThat(dependencies.contains(DEPENDENCY_3)).isEqualTo(true)
     }
   }
 }

@@ -53,6 +53,7 @@ import org.signal.libsignal.protocol.util.Hex
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundViewModel.QueryResult
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.util.Util
 
 class InternalSqlitePlaygroundFragment : ComposeFragment() {
 
@@ -130,12 +131,18 @@ private fun QueryBox(onQuerySubmitted: (String) -> Unit = {}) {
 private fun QueryResults(results: QueryResult?) {
   val columnWidth = LocalConfiguration.current.screenWidthDp.dp / 2
   val horizontalScrollState = rememberScrollState()
+  val context = LocalContext.current
 
   if (results == null) {
     Text("Waiting on query results.")
     return
   }
-  Text("${results.rows.size} rows in ${results.totalTimeString} ms", modifier = Modifier.padding(4.dp))
+  Row(verticalAlignment = Alignment.CenterVertically) {
+    Text("${results.rows.size} rows in ${results.totalTimeString} ms", modifier = Modifier.padding(4.dp).weight(1f))
+    Buttons.Small(onClick = { Util.copyToClipboard(context, results.toCopyString()) }) {
+      Text("Copy results")
+    }
+  }
   QueryRow(data = results.columns, columnWidth = columnWidth, scrollState = horizontalScrollState, fontWeight = FontWeight.Bold)
 
   LazyColumn {
@@ -178,6 +185,30 @@ private fun Any?.toDisplayString(): String {
     is ByteArray -> "Blob { ${Hex.toStringCondensed(this)} }"
     else -> this.toString()
   }
+}
+
+private fun QueryResult.toCopyString(): String {
+  val builder = StringBuilder()
+
+  builder.append(this.columns.toCsv()).append("\n")
+
+  for (row in this.rows) {
+    builder.append(row.toCsv()).append("\n")
+  }
+
+  return builder.toString()
+}
+
+private fun List<Any?>.toCsv(): String {
+  return this.joinToString(
+    separator = ",",
+    transform = { input ->
+      input
+        .toDisplayString()
+        .replace("\"", "\"\"")
+        .let { if (it.isNotEmpty()) "\"$it\"" else "" }
+    }
+  )
 }
 
 @SignalPreview

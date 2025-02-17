@@ -188,7 +188,8 @@
             app:thumbHintTextSize="14sp"
             app:thumbTouchRadius="24dp"
             app:thumbWidth="6dp"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            tools:targetApi="23" />
 
         <TextView
             android:id="@+id/video_size_hint"

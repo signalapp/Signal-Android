@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ZoomState;
 import androidx.camera.video.FileDescriptorOutputOptions;
 import androidx.camera.video.Recording;
@@ -153,6 +154,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     FileDescriptorOutputOptions outputOptions = new FileDescriptorOutputOptions.Builder(memoryFileDescriptor.getParcelFileDescriptor()).build();
     AudioConfig                 audioConfig   = AudioConfig.create(true);
 
+    cameraController.enableTorch(cameraController.getImageCaptureFlashMode() <= ImageCapture.FLASH_MODE_ON);
     activeRecording = cameraController.startRecording(outputOptions, audioConfig, ContextCompat.getMainExecutor(fragment.requireContext()), videoSavedListener);
 
     updateProgressAnimator.start();

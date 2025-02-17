@@ -408,12 +408,23 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new WebSocketFactory() {
       @Override
       public WebSocketConnection createWebSocket() {
-        return new OkHttpWebSocketConnection("normal",
-                                             signalServiceConfigurationSupplier.get(),
-                                             Optional.of(new DynamicCredentialsProvider()),
-                                             BuildConfig.SIGNAL_AGENT,
-                                             healthMonitor,
-                                             Stories.isFeatureEnabled());
+        if (RemoteConfig.libSignalWebSocketEnabled()) {
+          Network network = libSignalNetworkSupplier.get();
+          return new LibSignalChatConnection(
+              "libsignal-auth",
+              network,
+              new DynamicCredentialsProvider(),
+              Stories.isFeatureEnabled(),
+              healthMonitor
+          );
+        } else {
+          return new OkHttpWebSocketConnection("normal",
+                                               signalServiceConfigurationSupplier.get(),
+                                               Optional.of(new DynamicCredentialsProvider()),
+                                               BuildConfig.SIGNAL_AGENT,
+                                               healthMonitor,
+                                               Stories.isFeatureEnabled());
+        }
       }
 
       @Override
@@ -427,7 +438,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
               BuildConfig.SIGNAL_AGENT,
               healthMonitor,
               Stories.isFeatureEnabled(),
-              LibSignalNetworkExtensions.createChatService(libSignalNetworkSupplier.get(), null, Stories.isFeatureEnabled(), null),
+              libSignalNetworkSupplier.get(),
               shadowPercentage,
               bridge
           );
@@ -454,7 +465,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull BillingApi provideBillingApi() {
-    return BillingFactory.create(GooglePlayBillingDependencies.INSTANCE, RemoteConfig.messageBackups() && !Environment.IS_STAGING);
+    return BillingFactory.create(GooglePlayBillingDependencies.INSTANCE, RemoteConfig.messageBackups() && Environment.Backups.supportsGooglePlayBilling());
   }
 
   @Override

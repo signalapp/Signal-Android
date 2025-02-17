@@ -414,13 +414,13 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     return when (privacyMode) {
       DistributionListPrivacyMode.ALL -> {
         SignalDatabase.recipients
-          .getSignalContacts(false)!!
+          .getSignalContacts(RecipientTable.IncludeSelfMode.Exclude)
           .readToList { it.requireObject(RecipientTable.ID, RecipientId.SERIALIZER) }
       }
       DistributionListPrivacyMode.ONLY_WITH -> rawMembers
       DistributionListPrivacyMode.ALL_EXCEPT -> {
         SignalDatabase.recipients
-          .getSignalContacts(false)!!
+          .getSignalContacts(RecipientTable.IncludeSelfMode.Exclude)
           .readToList(
             predicate = { !rawMembers.contains(it) },
             mapper = { it.requireObject(RecipientTable.ID, RecipientId.SERIALIZER) }
@@ -453,7 +453,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     readableDatabase.withinTransaction {
       privacyMode = getPrivacyMode(listId)
       rawMemberCount = getRawMemberCount(listId, privacyMode)
-      totalContactCount = SignalDatabase.recipients.getSignalContactsCount(false)
+      totalContactCount = SignalDatabase.recipients.getSignalContactsCount(RecipientTable.IncludeSelfMode.Exclude)
     }
 
     val memberCount = when (privacyMode) {
@@ -525,12 +525,14 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
       .run()
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    writableDatabase
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
       .update(MembershipTable.TABLE_NAME)
-      .values(MembershipTable.RECIPIENT_ID to newId.serialize())
-      .where("${MembershipTable.RECIPIENT_ID} = ?", oldId)
+      .values(MembershipTable.RECIPIENT_ID to toId.serialize())
+      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
       .run(SQLiteDatabase.CONFLICT_REPLACE)
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {

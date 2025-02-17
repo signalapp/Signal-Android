@@ -148,9 +148,6 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
     when (requestResult) {
       is VerificationCodeRequestResult.Success -> throw IllegalStateException("Session error handler called on successful response!")
       is VerificationCodeRequestResult.RateLimited -> onRateLimited()
-      is VerificationCodeRequestResult.AttemptsExhausted -> {
-        findNavController().safeNavigate(RegistrationLockFragmentDirections.actionAccountLocked())
-      }
 
       is VerificationCodeRequestResult.RegistrationLocked -> {
         Log.i(TAG, "Registration locked response to verify account!")

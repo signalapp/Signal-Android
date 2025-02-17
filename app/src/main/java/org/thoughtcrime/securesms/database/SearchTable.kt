@@ -259,6 +259,14 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   /**
+   * Rebuilds the FTS index.
+   * Warning: This could be very expensive! (often seconds)
+   */
+  fun rebuildIndex(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase) {
+    db.execSQL("INSERT INTO $FTS_TABLE_NAME($FTS_TABLE_NAME) VALUES('rebuild')")
+  }
+
+  /**
    * Drops all tables and recreates them.
    */
   @JvmOverloads

@@ -40,7 +40,8 @@
     <fragment
         android:id="@+id/grantPermissionsFragment"
         android:name="org.thoughtcrime.securesms.registration.ui.grantpermissions.GrantPermissionsFragment"
-        android:label="fragment_grant_permissions">
+        android:label="fragment_grant_permissions"
+        tools:targetApi="23">
 
         <action
             android:id="@+id/action_enter_phone_number"
@@ -58,12 +59,31 @@
     </fragment>
 
     <fragment
+        android:id="@+id/countryPickerFragment"
+        android:name="org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeFragment"
+        tools:layout="@layout/fragment_registration_country_picker">
+
+        <argument
+            android:name="country"
+            app:argType="org.thoughtcrime.securesms.registration.ui.countrycode.Country"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
         android:id="@+id/enterPhoneNumberFragment"
         android:name="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberFragment"
         android:label="fragment_enter_phone_number"
         tools:layout="@layout/fragment_registration_enter_phone_number">
 
-         <action
+        <action
+            android:id="@+id/action_countryPicker"
+            app:destination="@id/countryPickerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
             android:id="@+id/action_enterVerificationCode"
             app:destination="@id/enterCodeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -117,12 +137,6 @@
 
 
     </fragment>
-
-    <fragment
-        android:id="@+id/countryPickerFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment"
-        android:label="fragment_country_picker"
-        tools:layout="@layout/fragment_registration_country_picker" />
 
     <fragment
         android:id="@+id/enterCodeFragment"

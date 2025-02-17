@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.storage
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
+import org.signal.core.util.isNullOrEmpty
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
@@ -283,10 +285,32 @@ object StorageSyncModels {
     }
   }
 
-  fun remoteToLocalSubscriber(
+  fun remoteToLocalBackupSubscriber(
+    iapData: AccountRecord.IAPSubscriberData?
+  ): InAppPaymentSubscriberRecord? {
+    if (iapData == null || iapData.subscriberId.isNullOrEmpty()) {
+      return null
+    }
+
+    val subscriberId = SubscriberId.fromBytes(iapData.subscriberId.toByteArray())
+    val localSubscriberRecord = inAppPaymentSubscribers.getBySubscriberId(subscriberId)
+    val requiresCancel = localSubscriberRecord != null && localSubscriberRecord.requiresCancel
+    val paymentMethodType = localSubscriberRecord?.paymentMethodType ?: InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+    val iapSubscriptionId = IAPSubscriptionId.from(iapData) ?: return null
+
+    return InAppPaymentSubscriberRecord(
+      subscriberId = subscriberId,
+      currency = null,
+      type = InAppPaymentSubscriberRecord.Type.BACKUP,
+      requiresCancel = requiresCancel,
+      paymentMethodType = paymentMethodType,
+      iapSubscriptionId = iapSubscriptionId
+    )
+  }
+
+  fun remoteToLocalDonorSubscriber(
     subscriberId: ByteString,
-    subscriberCurrencyCode: String,
-    type: InAppPaymentSubscriberRecord.Type
+    subscriberCurrencyCode: String
   ): InAppPaymentSubscriberRecord? {
     if (subscriberId.isNotEmpty()) {
       val subscriberId = SubscriberId.fromBytes(subscriberId.toByteArray())
@@ -305,7 +329,14 @@ object StorageSyncModels {
         }
       }
 
-      return InAppPaymentSubscriberRecord(subscriberId, currency, type, requiresCancel, paymentMethodType)
+      return InAppPaymentSubscriberRecord(
+        subscriberId = subscriberId,
+        currency = currency,
+        type = InAppPaymentSubscriberRecord.Type.DONATION,
+        requiresCancel = requiresCancel,
+        paymentMethodType = paymentMethodType,
+        iapSubscriptionId = null
+      )
     } else {
       return null
     }

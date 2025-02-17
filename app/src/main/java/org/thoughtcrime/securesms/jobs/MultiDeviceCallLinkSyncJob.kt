@@ -34,7 +34,7 @@ class MultiDeviceCallLinkSyncJob private constructor(
       .build(),
     CallLinkUpdate(
       rootKey = credentials.linkKeyBytes.toByteString(),
-      adminPassKey = credentials.adminPassBytes!!.toByteString()
+      adminPasskey = credentials.adminPassBytes!!.toByteString()
     )
   )
 

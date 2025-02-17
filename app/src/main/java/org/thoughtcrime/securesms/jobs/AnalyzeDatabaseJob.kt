@@ -75,8 +75,8 @@ class AnalyzeDatabaseJob private constructor(
     val table = tables[startingIndex]
 
     logTime(TAG, "analyze-$table", decimalPlaces = 2) {
-      SignalDatabase.rawDatabase.rawQuery("PRAGMA analysis_limit=1000")
-      SignalDatabase.rawDatabase.rawQuery("ANALYZE $table")
+      SignalDatabase.rawDatabase.rawQuery("PRAGMA analysis_limit=1000").close()
+      SignalDatabase.rawDatabase.rawQuery("ANALYZE $table").close()
     }
 
     if (startingIndex >= tables.size - 1) {

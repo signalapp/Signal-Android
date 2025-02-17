@@ -4,15 +4,14 @@
  */
 package org.whispersystems.signalservice.internal.crypto
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Test
 import org.signal.core.util.StreamUtil
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 class PaddingInputStreamTest {
-
   /**
    * Small stress test to confirm padding input only returns the source stream data
    * followed strictly by zeros.
@@ -31,9 +30,9 @@ class PaddingInputStreamTest {
 
       paddedData.forEachIndexed { index, byte ->
         if (index < length) {
-          assertThat(byte, `is`(source[index]))
+          assertThat(byte).isEqualTo(source[index])
         } else {
-          assertThat(byte, `is`(0x00))
+          assertThat(byte).isEqualTo(0x00)
         }
       }
     }

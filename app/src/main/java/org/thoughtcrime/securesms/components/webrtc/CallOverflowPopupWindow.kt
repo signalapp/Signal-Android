@@ -68,7 +68,7 @@ class CallOverflowPopupWindow(private val activity: FragmentActivity, parentView
     PopupWindowCompat.showAsDropDown(this, anchor, xOffset, yOffset, Gravity.NO_GRAVITY)
   }
 
-  interface RaisedHandDelegate {
+  fun interface RaisedHandDelegate {
     fun isSelfHandRaised(): Boolean
   }
 }

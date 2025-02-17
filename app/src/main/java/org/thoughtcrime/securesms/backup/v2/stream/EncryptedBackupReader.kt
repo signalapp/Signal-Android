@@ -31,8 +31,7 @@ import javax.crypto.spec.SecretKeySpec
  * that decrypted data is gunzipped, then that data is read as frames.
  */
 class EncryptedBackupReader(
-  key: MessageBackupKey,
-  aci: ACI,
+  keyMaterial: MessageBackupKey.BackupKeyMaterial,
   val length: Long,
   dataStream: () -> InputStream
 ) : BackupImportReader {
@@ -42,9 +41,11 @@ class EncryptedBackupReader(
   val stream: InputStream
   val countingStream: CountingInputStream
 
-  init {
-    val keyMaterial = key.deriveBackupSecrets(aci)
+  constructor(key: MessageBackupKey, aci: ACI, length: Long, dataStream: () -> InputStream) :
+    this(key.deriveBackupSecrets(aci), length, dataStream) {
+  }
 
+  init {
     dataStream().use { validateMac(keyMaterial.macKey, length, it) }
 
     countingStream = CountingInputStream(dataStream())

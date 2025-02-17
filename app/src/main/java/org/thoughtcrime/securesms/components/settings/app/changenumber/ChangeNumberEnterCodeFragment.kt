@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.registration.sms.ReceivedSmsEvent
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Screen used to enter the registration code provided by the service.
@@ -132,8 +133,8 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
   }
 
   private fun onStateUpdate(state: ChangeNumberState) {
-    binding.codeEntryLayout.resendSmsCountDown.startCountDownTo(state.nextSmsTimestamp)
-    binding.codeEntryLayout.callMeCountDown.startCountDownTo(state.nextCallTimestamp)
+    binding.codeEntryLayout.resendSmsCountDown.startCountDownTo(state.nextSmsTimestamp.milliseconds)
+    binding.codeEntryLayout.callMeCountDown.startCountDownTo(state.nextCallTimestamp.milliseconds)
     when (val outcome = state.changeNumberOutcome) {
       is ChangeNumberOutcome.RecoveryPasswordWorked,
       is ChangeNumberOutcome.VerificationCodeWorked -> changeNumberSuccess()
@@ -165,7 +166,6 @@ class ChangeNumberEnterCodeFragment : LoggingFragment(R.layout.fragment_change_n
     when (result) {
       is VerificationCodeRequestResult.Success -> binding.codeEntryLayout.keyboard.displaySuccess()
       is VerificationCodeRequestResult.RateLimited -> presentRateLimitedDialog()
-      is VerificationCodeRequestResult.AttemptsExhausted -> presentAccountLocked()
       is VerificationCodeRequestResult.RegistrationLocked -> presentRegistrationLocked(result.timeRemaining)
       else -> presentGenericError(result)
     }

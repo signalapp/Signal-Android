@@ -88,7 +88,9 @@ public final class GroupsV2AuthorizationSignalStoreCache implements GroupsV2Auth
 
       return result;
     } catch (IOException | InvalidInputException e) {
-      throw new AssertionError(e);
+      Log.w(TAG, "Unable to read cached credentials, clearing and requesting new ones instead", e);
+      clear();
+      return Collections.emptyMap();
     }
   }
 

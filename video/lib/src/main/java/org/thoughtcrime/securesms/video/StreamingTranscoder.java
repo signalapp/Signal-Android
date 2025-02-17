@@ -127,7 +127,10 @@ public final class StreamingTranscoder {
     return new StreamingTranscoder(dataSource, options, codec, videoBitrate, audioBitrate, shortEdge, allowAudioRemux);
   }
 
-  public void transcode(@NonNull Progress progress,
+  /**
+   * @return The total content size of the MP4 mdat box.
+   */
+  public long transcode(@NonNull Progress progress,
                         @NonNull OutputStream stream,
                         @Nullable TranscoderCancelationSignal cancelationSignal)
       throws IOException, EncodingException
@@ -193,7 +196,7 @@ public final class StreamingTranscoder {
       return cancelationSignal != null && cancelationSignal.isCanceled();
     });
 
-    converter.convert();
+    long mdatSize = converter.convert();
 
     long  outSize           = outStream.getCount();
     float encodeDurationSec = (System.currentTimeMillis() - startTime) / 1000f;
@@ -217,6 +220,8 @@ public final class StreamingTranscoder {
     }
 
     stream.flush();
+
+    return mdatSize;
   }
 
   public boolean isTranscodeRequired() {

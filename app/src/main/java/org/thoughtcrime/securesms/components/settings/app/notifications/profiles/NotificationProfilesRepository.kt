@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.NotificationProfileDatabase
+import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.util.toMillis
  * One stop shop for all your Notification Profile data needs.
  */
 class NotificationProfilesRepository {
-  private val database: NotificationProfileDatabase = SignalDatabase.notificationProfiles
+  private val database: NotificationProfileTables = SignalDatabase.notificationProfiles
 
   fun getProfiles(): Flowable<List<NotificationProfile>> {
     return RxDatabaseObserver
@@ -54,17 +54,17 @@ class NotificationProfilesRepository {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun createProfile(name: String, selectedEmoji: String): Single<NotificationProfileDatabase.NotificationProfileChangeResult> {
+  fun createProfile(name: String, selectedEmoji: String): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.createProfile(name = name, emoji = selectedEmoji, color = AvatarColor.random(), createdAt = System.currentTimeMillis()) }
       .subscribeOn(Schedulers.io())
   }
 
-  fun updateProfile(profileId: Long, name: String, selectedEmoji: String): Single<NotificationProfileDatabase.NotificationProfileChangeResult> {
+  fun updateProfile(profileId: Long, name: String, selectedEmoji: String): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.updateProfile(profileId = profileId, name = name, emoji = selectedEmoji) }
       .subscribeOn(Schedulers.io())
   }
 
-  fun updateProfile(profile: NotificationProfile): Single<NotificationProfileDatabase.NotificationProfileChangeResult> {
+  fun updateProfile(profile: NotificationProfile): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.updateProfile(profile) }
       .subscribeOn(Schedulers.io())
   }
@@ -99,7 +99,7 @@ class NotificationProfilesRepository {
       .take(1)
       .singleOrError()
       .flatMap { updateProfile(it.copy(allowAllMentions = !it.allowAllMentions)) }
-      .map { (it as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile }
+      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
   }
 
   fun toggleAllowAllCalls(profileId: Long): Single<NotificationProfile> {
@@ -107,7 +107,7 @@ class NotificationProfilesRepository {
       .take(1)
       .singleOrError()
       .flatMap { updateProfile(it.copy(allowAllCalls = !it.allowAllCalls)) }
-      .map { (it as NotificationProfileDatabase.NotificationProfileChangeResult.Success).notificationProfile }
+      .map { (it as NotificationProfileTables.NotificationProfileChangeResult.Success).notificationProfile }
   }
 
   fun manuallyToggleProfile(profile: NotificationProfile, now: Long = System.currentTimeMillis()): Completable {

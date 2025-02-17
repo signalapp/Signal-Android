@@ -28,12 +28,17 @@ import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Fragment that allows users to scan a QR code from their camera to link a device
  */
 class AddLinkDeviceFragment : ComposeFragment() {
+
+  companion object {
+    private const val VIBRATE_DURATION_MS = 50
+  }
 
   private val viewModel: LinkDeviceViewModel by activityViewModels()
 
@@ -44,9 +49,9 @@ class AddLinkDeviceFragment : ComposeFragment() {
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = Manifest.permission.CAMERA)
 
-    if (!state.seenIntroSheet) {
+    if (!state.seenQrEducationSheet) {
       navController.safeNavigate(R.id.action_addLinkDeviceFragment_to_linkDeviceIntroBottomSheet)
-      viewModel.markIntroSheetSeen()
+      viewModel.markQrEducationSheetSeen()
     }
 
     if (state.qrCodeState != LinkDeviceSettingsState.QrCodeState.NONE && navController.currentDestination?.id == R.id.linkDeviceIntroBottomSheet) {
@@ -59,7 +64,12 @@ class AddLinkDeviceFragment : ComposeFragment() {
       hasPermissions = cameraPermissionState.status.isGranted,
       onRequestPermissions = { askPermissions() },
       onShowFrontCamera = { viewModel.showFrontCamera() },
-      onQrCodeScanned = { data -> viewModel.onQrCodeScanned(data) },
+      onQrCodeScanned = { data ->
+        if (VibrateUtil.isHapticFeedbackEnabled(requireContext())) {
+          VibrateUtil.vibrate(requireContext(), VIBRATE_DURATION_MS)
+        }
+        viewModel.onQrCodeScanned(data)
+      },
       onQrCodeApproved = {
         navController.popBackStack()
         viewModel.addDevice(shouldSync = false)

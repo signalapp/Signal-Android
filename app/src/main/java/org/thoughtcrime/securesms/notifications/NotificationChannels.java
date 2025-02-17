@@ -80,6 +80,7 @@ public class NotificationChannels {
   public final String CALL_STATUS                      = "call_status";
   public final String APP_ALERTS                       = "app_alerts";
   public final String ADDITIONAL_MESSAGE_NOTIFICATIONS = "additional_message_notifications";
+  public final String NEW_LINKED_DEVICE                = "new_linked_device";
 
   private static volatile NotificationChannels instance;
 
@@ -634,6 +635,7 @@ public class NotificationChannels {
     NotificationChannel callStatus                     = new NotificationChannel(CALL_STATUS, context.getString(R.string.NotificationChannel_call_status), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel appAlerts                      = new NotificationChannel(APP_ALERTS, context.getString(R.string.NotificationChannel_critical_app_alerts), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel additionalMessageNotifications = new NotificationChannel(ADDITIONAL_MESSAGE_NOTIFICATIONS, context.getString(R.string.NotificationChannel_additional_message_notifications), NotificationManager.IMPORTANCE_HIGH);
+    NotificationChannel newLinkedDevice                = new NotificationChannel(NEW_LINKED_DEVICE, context.getString(R.string.NotificationChannel_new_linked_device), NotificationManager.IMPORTANCE_HIGH);
 
     messages.setGroup(CATEGORY_MESSAGES);
     setVibrationEnabled(messages, SignalStore.settings().isMessageVibrateEnabled());
@@ -651,7 +653,7 @@ public class NotificationChannels {
     callStatus.setShowBadge(false);
     appAlerts.setShowBadge(false);
 
-    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents, background, callStatus, appAlerts, additionalMessageNotifications));
+    notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes, joinEvents, background, callStatus, appAlerts, additionalMessageNotifications, newLinkedDevice));
 
     if (BuildConfig.MANAGES_APP_UPDATES) {
       NotificationChannel appUpdates = new NotificationChannel(APP_UPDATES, context.getString(R.string.NotificationChannel_app_updates), NotificationManager.IMPORTANCE_DEFAULT);

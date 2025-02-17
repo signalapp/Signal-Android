@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.hasSize
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +20,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIsSize
 
 @RunWith(AndroidJUnit4::class)
 class NameCollisionTablesTest {
@@ -43,7 +44,7 @@ class NameCollisionTablesTest {
     SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(threadRecipientId))
     val actual = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(threadRecipientId)
 
-    actual assertIsSize 0
+    assertThat(actual).hasSize(0)
   }
 
   @Test
@@ -55,8 +56,8 @@ class NameCollisionTablesTest {
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
     val actualBob = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
 
-    actualAlice assertIsSize 2
-    actualBob assertIsSize 2
+    assertThat(actualAlice).hasSize(2)
+    assertThat(actualBob).hasSize(2)
   }
 
   @Test
@@ -68,8 +69,8 @@ class NameCollisionTablesTest {
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
     val actualBob = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
 
-    actualAlice assertIsSize 0
-    actualBob assertIsSize 0
+    assertThat(actualAlice).hasSize(0)
+    assertThat(actualBob).hasSize(0)
   }
 
   @Test
@@ -83,9 +84,9 @@ class NameCollisionTablesTest {
     val actualBob = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
     val actualCharlie = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(charlie)
 
-    actualAlice assertIsSize 0
-    actualBob assertIsSize 2
-    actualCharlie assertIsSize 2
+    assertThat(actualAlice).hasSize(0)
+    assertThat(actualBob).hasSize(2)
+    assertThat(actualCharlie).hasSize(2)
   }
 
   @Test
@@ -99,7 +100,7 @@ class NameCollisionTablesTest {
 
     val actualAlice = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
 
-    actualAlice assertIsSize 2
+    assertThat(actualAlice).hasSize(2)
   }
 
   @Test
@@ -110,7 +111,7 @@ class NameCollisionTablesTest {
 
     val actualCollisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
 
-    actualCollisions assertIsSize 0
+    assertThat(actualCollisions).hasSize(0)
   }
 
   @Test
@@ -124,7 +125,7 @@ class NameCollisionTablesTest {
 
     val actualCollisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(alice)
 
-    actualCollisions assertIsSize 0
+    assertThat(actualCollisions).hasSize(0)
   }
 
   @Test
@@ -137,7 +138,7 @@ class NameCollisionTablesTest {
 
     val actualCollisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(bob)
 
-    actualCollisions assertIsSize 2
+    assertThat(actualCollisions).hasSize(2)
   }
 
   @Test
@@ -154,7 +155,7 @@ class NameCollisionTablesTest {
 
     val collisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(info.recipientId)
 
-    collisions assertIsSize 2
+    assertThat(collisions).hasSize(2)
   }
 
   @Test
@@ -173,7 +174,7 @@ class NameCollisionTablesTest {
 
     val collisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(info.recipientId)
 
-    collisions assertIsSize 0
+    assertThat(collisions).hasSize(0)
   }
 
   @Test
@@ -190,7 +191,7 @@ class NameCollisionTablesTest {
 
     val collisions = SignalDatabase.nameCollisions.getCollisionsForThreadRecipientId(info.recipientId)
 
-    collisions assertIsSize 0
+    assertThat(collisions).hasSize(0)
   }
 
   private fun setUpRecipient(recipientId: RecipientId): RecipientId {

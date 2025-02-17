@@ -10,10 +10,15 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class ConversationListTabsViewModel(startingTab: ConversationListTab, repository: ConversationListTabRepository) : ViewModel() {
+
+  private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
+
   private val store = RxStore(ConversationListTabsState(tab = startingTab))
 
   val stateSnapshot: ConversationListTabsState
@@ -47,6 +52,11 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
     disposables.clear()
   }
 
+  fun getNotificationProfiles(): Flowable<List<NotificationProfile>> {
+    return notificationProfilesRepository.getProfiles()
+      .observeOn(AndroidSchedulers.mainThread())
+  }
+
   fun onChatsSelected() {
     internalTabClickEvents.onNext(ConversationListTab.CHATS)
     performStoreUpdate { it.copy(tab = ConversationListTab.CHATS) }
@@ -72,6 +82,10 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
 
   fun onMultiSelectStarted() {
     performStoreUpdate { it.copy(visibilityState = it.visibilityState.copy(isMultiSelectOpen = true)) }
+  }
+
+  fun isMultiSelectOpen(): Boolean {
+    return store.state.visibilityState.isMultiSelectOpen
   }
 
   fun onMultiSelectFinished() {

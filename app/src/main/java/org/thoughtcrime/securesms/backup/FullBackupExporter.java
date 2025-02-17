@@ -483,7 +483,7 @@ public class FullBackupExporter extends FullBackupBase {
                                    long estimatedCount)
       throws IOException
   {
-    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTable._ID));
+    long rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTable.ID));
     long size  = cursor.getLong(cursor.getColumnIndexOrThrow(StickerTable.FILE_LENGTH));
 
     String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerTable.FILE_PATH));

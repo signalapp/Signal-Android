@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyData
@@ -56,7 +57,7 @@ class MyStorySettingsRepository {
 
   fun getAllSignalConnectionsCount(): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.recipients.getSignalContactsCount(false)
+      SignalDatabase.recipients.getSignalContactsCount(RecipientTable.IncludeSelfMode.Exclude)
     }.subscribeOn(Schedulers.io())
   }
 

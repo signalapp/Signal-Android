@@ -59,9 +59,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     RemoteBackupsSettingsState(
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-      backupSize = SignalStore.backup.totalBackupSize,
+      backupMediaSize = SignalStore.backup.totalBackupSize,
       backupsFrequency = SignalStore.backup.backupFrequency,
-      canBackUpUsingCellular = SignalStore.backup.backupWithCellular
+      canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
+      canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
     )
   )
 
@@ -107,6 +108,11 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
     SignalStore.backup.backupWithCellular = canBackUpUsingCellular
     _state.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
+  }
+
+  fun setCanRestoreUsingCellular(canRestoreUsingCellular: Boolean) {
+    SignalStore.backup.restoreWithCellular = canRestoreUsingCellular
+    _state.update { it.copy(canRestoreUsingCellular = canRestoreUsingCellular) }
   }
 
   fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
@@ -156,9 +162,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         backupState = RemoteBackupsSettingsState.BackupState.Loading,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-        backupSize = SignalStore.backup.totalBackupSize,
+        backupMediaSize = SignalStore.backup.totalBackupSize,
         backupsFrequency = SignalStore.backup.backupFrequency,
-        canBackUpUsingCellular = SignalStore.backup.backupWithCellular
+        canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
+        canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
       )
     }
 
@@ -208,8 +215,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
       }
 
-      // TODO [backups] - handle other cases.
-
       return
     }
 
@@ -233,6 +238,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
             Log.d(TAG, "Subscription found. Updating UI state with subscription details.")
             _state.update {
               it.copy(
+                hasRedemptionError = lastPurchase?.data?.error?.data_ == "409",
                 backupState = when {
                   subscription.isActive -> RemoteBackupsSettingsState.BackupState.ActivePaid(
                     messageBackupsType = type,

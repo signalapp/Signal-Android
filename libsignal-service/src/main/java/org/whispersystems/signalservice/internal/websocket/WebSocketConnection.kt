@@ -35,5 +35,5 @@ interface WebSocketConnection {
   fun readRequest(timeoutMillis: Long): WebSocketRequestMessage
 
   @Throws(IOException::class)
-  fun sendResponse(response: WebSocketResponseMessage?)
+  fun sendResponse(response: WebSocketResponseMessage)
 }

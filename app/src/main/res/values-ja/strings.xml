@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -409,6 +410,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s へ</string>
     <string name="ConversationItem_read_more">  続きを読む</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  さらにダウンロード</string>
     <string name="ConversationItem_pending">  保留中</string>
     <string name="ConversationItem_this_message_was_deleted">このメッセージは消去されました。</string>
@@ -572,6 +574,14 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="other">%1$d個の添付ファイルをストレージに保存しています…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">スマートフォンに保存しますか？</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="other">このメディアはスマートフォンのストレージに保存されます。スマートフォンの権限設定によっては、他のアプリからもアクセスできる場合があります。</item>
+    </plurals>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">今後表示しない</string>
     <string name="ConversationFragment_pending">保留中…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">データ (Signal)</string>
@@ -869,6 +879,7 @@
     <string name="BackupsPreferenceFragment__in_progress">実行しています…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">バックアップを検証しています…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">これまで %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%%完了</string>
@@ -897,6 +908,14 @@
     <string name="DateUtils_tomorrow">明日</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">今夜</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
+    <plurals name="DateUtils_date_time_at">
+        <item quantity="other">%1$s %2$sに</item>
+    </plurals>
+    <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
+    <plurals name="DateUtils_time_at">
+        <item quantity="other">%1$sに</item>
+    </plurals>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -943,7 +962,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">DesktopまたはiPadでSignalを使用してください。メッセージはリンク済み端末で同期されます。</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">デスクトップまたはiPadでこのSignalアカウントを使用してください。</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">新しい端末をリンクする</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -983,28 +1002,58 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">［Continue］をタップし、スマートフォンの解錠コードを入力して確認します。Signal PINを入力しないようにしてください。</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">続行</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">サポートに問い合わせる</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">デバッグログを送信しますか？</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">デバッグログがあると、問題の早い解決に役立ちます。ログの提出は任意です。</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">デバッグログを添付して送信する</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">デバッグログなしで送信する</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">キャンセル</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">メッセージの同期ができませんでした</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">メッセージをリンク済み端末に転送できませんでした。もう一度リンクして転送を試すか、メッセージ履歴を転送せずに続行することができます。</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">端末は正常にリンクされましたが、メッセージを移行できませんでした。</string>
+    <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
+    <string name="LinkDeviceFragment__learn_more">詳しく見る</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">もう一度リンクする</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">再試行</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">転送せずに続ける</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">名前を編集</string>
+    <!-- Toast shown when the process of linking a device has been cancelled -->
+    <string name="LinkDeviceFragment__linking_cancelled">リンクがキャンセルされました</string>
+    <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
+    <string name="LinkDeviceFragment__do_not_close">アプリを閉じないでください</string>
+    <!-- Dialog title shown when a device is unlinked -->
+    <string name="LinkDeviceFragment__device_unlinked">端末のリンクが解除されました</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">%1$sリンクされた端末は、リンクが解除されました。</string>
+    <!-- Button to dismiss dialog -->
+    <string name="LinkDeviceFragment__ok">OK</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">端末名を編集する</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">端末名</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">保存</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">端末名がアップデートされました</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">デバイス名を変更できません。あとで再度試してください。</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1032,11 +1081,16 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">メッセージ履歴を移行する</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">テキストメッセージと過去45日間のメディアを移行する</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">移行しない</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">過去のメッセージとメディアをリンク済み端末に移行しません</string>
+
+    <!-- Title of notification telling users that a device was linked to their account -->
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">新しい端末をリンクしました</string>
+    <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">%1$s、新しい端末があなたのアカウントにリンクされました。タップして確認。</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">「%1$s」のリンクを解除しますか？</string>
@@ -1260,6 +1314,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">完了</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか？</item>
     </plurals>
@@ -1338,11 +1393,23 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">最終バックアップは%1$sの%2$sです。</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">最終バックアップは%1$sの%2$sにおこなわれました。バックアップサイズは%3$sです。</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">バックアップの詳細を取得中…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">復元をスキップする</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">移行を完了できませんでした</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">エラーが発生したため、アカウントを移行できませんでした。移行方法を選択して、もう一度お試しください。</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">このバックアップを復元できませんでした</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">このバージョンの Signal ではバックアップを復元できません。最新バージョンにアップデートして、もう一度お試しください。</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Signalをアップデートしてください</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">今はしない</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
@@ -1410,7 +1477,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">サウンドとバイブの変更</string>
     <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
     <string name="CustomNotificationsDialogFragment__ringtone">着信音</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">既定</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">不明</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1583,9 +1652,17 @@
     <string name="Megaphones_verify_pin">PINを確認する</string>
     <string name="Megaphones_get_started">始めましょう</string>
     <string name="Megaphones_new_group">新規グループ</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">友達を招待する</string>
     <string name="Megaphones_chat_colors">チャットの色</string>
     <string name="Megaphones_add_a_profile_photo">プロフィール画像を追加する</string>
+
+    <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">%1$s、新しい端末があなたのアカウントにリンクされました。</string>
+    <!-- Button shown on megaphone that will redirect to the linked devices screen -->
+    <string name="NewLinkedDeviceMegaphone__view_device">端末を表示する</string>
+    <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
+    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">返信</string>
@@ -1808,6 +1885,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">このグループへの参加申請は、管理者によって拒否されました。</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">%1$s からのグループ参加申請を拒否しました。</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申請を拒否しました。</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s からのグループ参加申請は拒否されました。</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">グループ参加申請をキャンセルしました。</string>
@@ -1852,12 +1930,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">%1$sは通話中です・%2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">あなたは通話中です・%1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s とあなたは通話中です · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$sと%2$sが通話中です・%3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$sは通話中です</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">あなたは通話中です</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s とあなたは通話中です</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$sと%2$sが通話中です</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -1931,6 +2013,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s さんとのチャットを継続して、名前と写真を共有しますか？</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加し、あなたの名前と画像をメンバーと共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">このグループに参加して、あなたの名前と写真をメンバー達と共有しますか？ 同意するまで、メッセージは表示されません。</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">このグループに参加しますか？招待を受け入れるまで、あなたがメッセージを見たことは他のメンバーにはわかりません。</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">このグループのブロックを解除し、名前とプロフィール画像の共有を許可しますか？ブロックを解除するまでメッセージは届きません。</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -1979,7 +2062,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">リンクしている端末が多すぎます。いくつか削除してください。</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">この端末リンク用QRコードは正しくありません。</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal端末をリンクしますか？</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">サードパーティのスキャナを使って端末をリンクしようとしていますが、安全のためSignal内からもう一度コードをスキャンしてください。</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">デスクトップまたはiPadをこのSignalアカウントにリンクするには、［リンク済み端末］→［新しい端末をリンクする］をタップし、もう一度QRコードをスキャンしてください。Signalに直接表示されたQRコードのみをスキャンしてください。</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">カメラへのアクセス許可がないとQRコードをスキャンできません</string>
@@ -2110,6 +2193,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">タップして動画を有効にする</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s と通話するには、Signalにカメラへのアクセスを許可してください。</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">呼び出しています…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2307,6 +2391,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">挙手の表示を拡大する</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">国の選択</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">名前や電話番号で検索</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">不明な国名</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signalコネクション</string>
@@ -2338,6 +2429,7 @@
     <plurals name="CallParticipantsListDialog__signal_will_ring">
         <item quantity="other">Signalは(%1$d)を呼び出します</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="other">Signalは(%1$d)に通知を送信します</item>
     </plurals>
@@ -2365,6 +2457,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">送信失敗</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">認証を完了してください</string>
 
     <!-- RegistrationActivity -->
@@ -2382,6 +2475,12 @@
     <string name="RegistrationActivity_additional_verification_required">追加の認証手続きが必要です</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">この番号に認証コードが送付されます。通信料金が発生する場合があります。</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">国を選択</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">この番号を認証するため、通話が着信します。</string>
     <string name="RegistrationActivity_edit_number">番号を編集する</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
@@ -2397,7 +2496,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">この番号の登録試行回数が多すぎます。%1$s分後にもう一度お試しください。.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">サービスに接続できませんでした。ネットワークの接続を確認してから、再度試してください。</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">SMSプロバイダーの問題により、SignalはSMSコードを送信できませんでした。時間をおいてからもう一度お試しください。</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">SMSで認証コードを送信できませんでした。音声通話でコードを受信してみてください。</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2560,6 +2659,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">グループが更新されました</string>
+    <!-- Text shown you have left a group -->
     <string name="ThreadRecord_left_the_group">グループを抜けました</string>
     <string name="ThreadRecord_secure_session_reset">セキュアセッションがリセットされました。</string>
     <string name="ThreadRecord_draft">下書き:</string>
@@ -2761,6 +2861,7 @@
     <plurals name="MessageNotifier_d_chats">
         <item quantity="other">%1$d件のチャット</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
     <string name="MessageNotifier_locked_message">ロックされたメッセージ</string>
     <string name="MessageNotifier_message_delivery_failed">メッセージを配送できませんでした。</string>
@@ -2830,6 +2931,8 @@
     <string name="NotificationChannel_critical_app_alerts">重要なアプリのアラート</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">その他のメッセージ通知</string>
+    <!-- Notification channel name for notifications sent when a device has been linked -->
+    <string name="NotificationChannel_new_linked_device">新しいリンク済み端末</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2883,6 +2986,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">動画を再生</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">キャプション付き</string>
 
     <!-- TransferControlView -->
@@ -2892,10 +2996,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">処理中…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -3382,10 +3483,10 @@
         <item>機能のリクエスト</item>
         <item>質問</item>
         <item>フィードバック</item>
-        <item>その他</item>
         <item>決済機能 (MobileCoin)</item>
         <item>寄付 &amp; バッジ</item>
         <item>Signal Androidバックアップ</item>
+        <item>その他</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Androidデバッグログの提供</string>
@@ -3464,7 +3565,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックします</string>
     <string name="preferences__screen_security">画面のセキュリティ</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定した無操作時間経過後にSignalを自動でロックします。</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">無操作タイムアウトのパスフレーズ</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">無操作タイムアウトの間隔</string>
     <string name="preferences__notifications">通知</string>
     <string name="preferences__led_color">LED色</string>
@@ -3475,6 +3578,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">着信音</string>
     <string name="preferences__silent">無音</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">既定</string>
     <string name="preferences__repeat_alerts">アラートの繰り返し</string>
     <string name="preferences__never">なし</string>
@@ -3491,6 +3595,7 @@
     <string name="preferences__cyan">シアン</string>
     <string name="preferences__magenta">マゼンタ</string>
     <string name="preferences__white">白</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">なし</string>
     <string name="preferences__fast">速い</string>
     <string name="preferences__normal">普通</string>
@@ -3553,6 +3658,8 @@
     <string name="preferences__language">言語</string>
     <string name="preferences__signal_messages_and_calls">Signalメッセージと通話</string>
     <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">PINの詳細設定</string>
     <string name="preferences__free_private_messages_and_calls">Signalユーザーにプライベートメッセージと通話の自由を</string>
     <string name="preferences__submit_debug_log">デバッグログの提出</string>
     <string name="preferences__delete_account">アカウントの消去</string>
@@ -3655,6 +3762,7 @@
     <string name="preferences_connection_failed">接続失敗</string>
     <string name="preferences_couldnt_connect_to_the_proxy">プロキシに接続できませんでした。プロキシアドレスを確認して、再度試してください。</string>
     <string name="preferences_you_are_connected_to_the_proxy">プロキシに接続しました。いつでも設定でプロキシを無効にできます。</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">成功</string>
     <string name="preferences_failed_to_connect">接続に失敗しました</string>
     <string name="preferences_enter_proxy_address">プロキシアドレスを入力してください</string>
@@ -4077,6 +4185,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
 
     <!-- new_conversation_activity -->
@@ -4243,10 +4352,12 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">すべてのローカルバックアップを消去して無効にしますか？</string>
     <string name="BackupDialog_delete_backups_statement">バックアップを消去する</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">バックアップを有効にするには、フォルダを選択してください。バックアップはこの場所に保存されます。</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">フォルダを選択する</string>
     <string name="BackupDialog_copied_to_clipboard">クリップボードにコピーしました</string>
     <string name="BackupDialog_no_file_picker_available">ファイルピッカーがありません。</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">確認したいバックアップ用パスフレーズを入力してください</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">確認する</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">正しいバックアップ用パスフレーズが入力されました</string>
     <string name="BackupDialog_passphrase_was_not_correct">パスフレーズが違います</string>
@@ -4271,6 +4382,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
     <string name="RegistrationActivity_incorrect_code">コードが違います</string>
     <string name="BackupUtil_never">なし</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">不明</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">電話番号</string>
@@ -4455,6 +4567,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">両方の端末でWi-Fiのオフ、オンを試してください。</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">両方の端末が移行モードであることを確認してください。</string>
     <string name="DeviceTransferSetup__go_to_support_page">サポートページへ</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">もう一度試す</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">他の端末を待っています</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">移行を開始するには、他方の端末で「続ける」をタップしてください。</string>
@@ -4680,6 +4793,7 @@
     <string name="ShareActivity__share">共有する</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">送信する</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">インテントから共有データを取得できませんでした。</string>
@@ -4868,6 +4982,8 @@
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Signalバックアップのサブスクリプションを更新してください</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">バックアップが完了していません</string>
+    <!-- String alerting user that backup redemption -->
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">バックアップのサブスクリプションを有効化することができませんでした</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">友達を招待</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -4945,9 +5061,11 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">変更前の電話番号を入力してください</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">新しい電話番号の国番号を入力してください</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">新しい電話番号を入力してください</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">新しい電話番等は、古い電話番号と同じにすることはできません</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">電話番号の変更</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s を検証しています</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">画像認証が必要です</string>
 
@@ -5316,6 +5434,7 @@
     <string name="ConversationSettingsFragment__permissions">アクセス許可</string>
     <string name="ConversationSettingsFragment__requests_and_invites">申請と招待</string>
     <string name="ConversationSettingsFragment__group_link">グループリンク</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">連絡先に追加</string>
     <string name="ConversationSettingsFragment__unmute">ミュート解除</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5340,6 +5459,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">ミュートしていません</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">メンション</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">常に通知する</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">通知しない</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
 
@@ -5427,9 +5547,10 @@
     <string name="ShareInterstitialActivity__share">共有</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">上へ</string>
     <string name="MultiselectForwardFragment__forward_to">転送先</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">共有</string>
     <string name="MultiselectForwardFragment__add_a_message">メッセージを追加してください</string>
     <string name="MultiselectForwardFragment__faster_forwards">より速い転送</string>
@@ -5437,6 +5558,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">動画は30秒にトリミングされ、複数のストーリーとして送信されます。</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">30秒以上の動画はストーリーに送信できません。</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">転送メッセージがすぐに送信されるようになりました。</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="other">%1$d件のメッセージを送信</item>
@@ -5522,7 +5644,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">端末をリンクしますか？</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Signal端末をリンクしようとしていますか？続ける、をタップし、もう一度コードをスキャンしてリンクしてください。</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Signal端末をリンクしようとしていますか？［続ける］→［新しい端末をリンクする］をタップし、もう一度QRコードをスキャンしてください。</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">続行</string>
 
@@ -5617,6 +5739,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/月</string>
     <string name="MySupportPreference__renews_s">更新 %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">処理しています…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">バッジを追加できませんでした。%1$s</string>
@@ -5627,6 +5750,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">%1$sの銀行振込が手続き中です。銀行振り込みの場合、完了するまで1～14日かかる場合があります。  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">詳しく見る</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">サブスクリプションを確認中…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signalをアップデートしてください</string>
@@ -6027,7 +6152,7 @@
     <string name="StoriesLandingItem__info">詳細</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">送信しています…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d件送信しています…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">送信に失敗しました。</string>
@@ -6150,7 +6275,7 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">選択した人とのみ共有する</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="other">%1$d人</item>
+        <item quantity="other">閲覧者 %1$d人</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">ストーリーを閲覧できるユーザーを選択してください。変更は、すでに送信したストーリーには影響しません。</string>
@@ -6280,7 +6405,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">クリップボードにコピーしました</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">…続き</string>
+    <string name="StoryViewerPageFragment__read_more">続きを読む</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">返信を送信しています…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7078,6 +7203,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">通話リンクの消去</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">変更内容を保存できませんでした。ネットワーク接続を確認して再度試してください。</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">管理者権限の設定をアップデートできませんでした。通話リンクが現在使用中でないことを確認してください。</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">通話リンクは現在使用中のため消去できませんでした。</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7310,7 +7437,9 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">バックアップが完了していません</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">ご利用の端末では %1$d 日間バックアップが実行されていません。端末がWi-Fiに接続されていることをご確認の上、「今すぐバックアップを実行する」をタップしてください。 </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="other">ご利用の端末では %1$d 日間バックアップが実行されていません。端末がWi-Fiに接続されていることをご確認の上、「今すぐバックアップを実行する」をタップしてください。</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">詳しく見る</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7347,10 +7476,18 @@
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">復元をスキップした場合、バックアップ内の残りのメディアと添付ファイルは、ストレージ容量が確保できたときにダウンロードできます。</string>
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">バックアップに失敗しました</string>
+    <!-- Dialog title when a backup redemption fails -->
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">バックアップのサブスクリプションを有効化することができませんでした</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">エラーが発生し、バックアップを完了できませんでした。Signalが最新のバージョンであることをご確認の上もう一度お試しください。この問題が解決しない場合は、サポートにお問い合わせください。</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">アップデートを確認する</string>
+    <!-- Backup redemption error sheet text line 1 -->
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">今月内で、サブスクリプションを有効化しようとした端末が多すぎます。以下の理由が考えられます：</string>
+    <!-- Backup redemption error sheet bullet point 1 -->
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Signalアカウントの再登録回数が多すぎる。</string>
+    <!-- Backup redemption error sheet bullet point 2 -->
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">同じサブスクリプションを使用している端末が多すぎる。</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7377,15 +7514,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">ダウンロードをキャンセルする</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">ダウンロード中：%2$s のうち %1$s （%3$s%%）</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">復元中：%2$sのうち%1$s（%3$s％）</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">復元を一時停止しました：Wi-Fi接続の待機中…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">復元を一時停止しました：インターネット接続がありません…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">復元を一時停止しました：端末のバッテリー残量が少なくなっています</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">バックアップをダウンロードできる十分な空き容量がありません。続けるためには%1$sの空き容量を確保してください。</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">ダウンロードをスキップする</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">前回のバックアップは完了していません。ご利用中のスマートフォンがWi-Fiに接続されている事をご確認の上、「今すぐバックアップを実行する」をタップしてもう一度お試しください。</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">前回のバックアップは完了していません。Signalが最新のバージョンであることをご確認の上もう一度お試しください。</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">詳しく見る</string>
 
@@ -7481,10 +7624,14 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signalバックアップ</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">認証が必要です</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">決済履歴</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">バックアップの詳細</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">モバイルデータ通信を使って復元する</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">バックアップの容量</string>
     <!-- Row label for backup frequency -->
@@ -7590,7 +7737,13 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">詳しく見る</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">バックアップを処理中…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">バックアップを準備中…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="other">メッセージ%2$dのうち%1$dを処理中です（%3$d）</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="other">この端末上にないバックアップデータが %1$s あります。サブスクリプションが %2$d 日後に終了すると、バックアップは消去されます。</item>
@@ -7609,8 +7762,10 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">バックアップの無効化と消去ができませんでした</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">ネットワークエラーが発生しました。インターネット接続を確認してもう一度試してください。</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">アップロード中：%2$sのうち%1$s（%3$d％）</string>
+    <!-- Button label to see more details about redemption error -->
+    <string name="RemoteBackupsSettingsFragment__details">詳細</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7779,6 +7934,26 @@
     <string name="EnterBackupKey_learn_more">詳しく見る</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">スキップして復元しない</string>
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_title">バックアップキーが正しくありません</string>
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Signalのバックアップを有効にした際に保存したのと同じ電話番号と64文字のバックアップキーで登録していることを確認してください。このキーがないとバックアップを復元できません。</string>
+    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_try_again">もう一度試す</string>
+    <!-- Dialog negative button text to get help with backup key -->
+    <string name="EnterBackupKey_backup_key_help">バックアップキーのヘルプ</string>
+    <!-- Text field error text when the backup key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">バックアップキーが正しくありません</string>
+    <!-- Text field error text when the backup key is too long -->
+    <string name="EnterBackupKey_too_long_error">長すぎます (%1$d/%2$d)</string>
+    <!-- Text field error when the backup key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">バックアップキーが無効です</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">バックアップが見つかりません</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">入力されたバックアップキーは正しいですが、これに関連付けられたバックアップがありません。以前のスマートフォンを保管されている場合は、バックアップが有効になっており、バックアップが完了していることを確認してから、もう一度お試しください。</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">復元をスキップする</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">以前利用していた端末でこのコードをスキャンしてください</string>
@@ -7794,6 +7969,8 @@
     <string name="RestoreViaQr_qr_code_scanned">以前利用していた端末でスキャンされました</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">再試行</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">エラーが発生したため、アカウントを移行できませんでした。QRコードをもう一度スキャンしてやり直してください。</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">アカウントの移行</string>
@@ -7824,15 +8001,15 @@
     <string name="RestoreCompleteBottomSheet_button">OK</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">復元するバックアップがありません</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">iPhoneからAndroidにメッセージとメディアを移行する場合は、以前ご利用していた端末でSignalバックアップを有効にしておかなければなりません。</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">以前利用していた端末でSignalを開きます</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">設定 &gt; バックアップ　の順にタップします</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">バックアップを有効にして、バックアップが完了するまでお待ちください</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">復元をスキップする</string>
 

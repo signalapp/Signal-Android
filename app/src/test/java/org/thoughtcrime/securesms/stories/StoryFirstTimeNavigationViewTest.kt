@@ -6,57 +6,43 @@ import android.os.Looper.getMainLooper
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.ImageView
-import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.RequestManager
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.verify
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.MockedStatic
-import org.mockito.junit.MockitoJUnit
-import org.mockito.junit.MockitoRule
-import org.mockito.kotlin.any
-import org.mockito.kotlin.eq
-import org.mockito.kotlin.never
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.util.visible
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
 class StoryFirstTimeNavigationViewTest {
+  private val testSubject =
+    StoryFirstTimeNavigationView(ContextThemeWrapper(getApplicationContext(), R.style.Signal_DayNight))
 
-  @Rule
-  @JvmField
-  val mockitoRule: MockitoRule = MockitoJUnit.rule()
-
-  private lateinit var testSubject: StoryFirstTimeNavigationView
-
-  @Mock
-  private lateinit var glide: MockedStatic<Glide>
-
-  @Mock
-  private lateinit var requestManager: RequestManager
-
-  @Mock
-  private lateinit var requestBuilder: RequestBuilder<Drawable>
+  private val requestBuilder = mockk<RequestBuilder<Drawable>>(relaxed = true) {
+    every { addListener(any()) } returns this@mockk
+  }
+  private val requestManager = mockk<RequestManager>(relaxUnitFun = true) {
+    every { load(any<BlurHash>()) } returns requestBuilder
+  }
 
   @Before
   fun setUp() {
-    testSubject = StoryFirstTimeNavigationView(ContextThemeWrapper(ApplicationProvider.getApplicationContext(), org.thoughtcrime.securesms.R.style.Signal_DayNight))
-
-    whenever(Glide.with(any<View>())).thenReturn(requestManager)
-    whenever(requestManager.load(any<BlurHash>())).thenReturn(requestBuilder)
-    whenever(requestBuilder.addListener(any())).thenReturn(requestBuilder)
+    mockkStatic(Glide::class)
+    every { Glide.with(any<View>()) } returns requestManager
   }
 
   @Test
@@ -64,8 +50,8 @@ class StoryFirstTimeNavigationViewTest {
   fun `Given sdk 31, when I create testSubject, then I expect overlay visible and blur hash not visible`() {
     shadowOf(getMainLooper()).idle()
 
-    assertTrue(testSubject.findViewById<View>(org.thoughtcrime.securesms.R.id.edu_overlay).visible)
-    assertFalse(testSubject.findViewById<View>(org.thoughtcrime.securesms.R.id.edu_blur_hash).visible)
+    assertTrue(testSubject.findViewById<View>(R.id.edu_overlay).visible)
+    assertFalse(testSubject.findViewById<View>(R.id.edu_blur_hash).visible)
   }
 
   @Test
@@ -73,8 +59,8 @@ class StoryFirstTimeNavigationViewTest {
   fun `Given sdk 30, when I create testSubject, then I expect overlay visible and blur hash visible`() {
     shadowOf(getMainLooper()).idle()
 
-    assertTrue(testSubject.findViewById<View>(org.thoughtcrime.securesms.R.id.edu_overlay).visible)
-    assertTrue(testSubject.findViewById<View>(org.thoughtcrime.securesms.R.id.edu_blur_hash).visible)
+    assertTrue(testSubject.findViewById<View>(R.id.edu_overlay).visible)
+    assertTrue(testSubject.findViewById<View>(R.id.edu_blur_hash).visible)
   }
 
   @Test
@@ -84,7 +70,7 @@ class StoryFirstTimeNavigationViewTest {
 
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
 
-    assertFalse(testSubject.findViewById<View>(org.thoughtcrime.securesms.R.id.edu_blur_hash).visible)
+    assertFalse(testSubject.findViewById<View>(R.id.edu_blur_hash).visible)
   }
 
   @Test
@@ -94,8 +80,8 @@ class StoryFirstTimeNavigationViewTest {
 
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
 
-    val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
-    verify(requestBuilder).into(eq(blurHashView))
+    val blurHashView = testSubject.findViewById<ImageView>(R.id.edu_blur_hash)
+    verify { requestBuilder.into(blurHashView) }
   }
 
   @Test
@@ -105,9 +91,9 @@ class StoryFirstTimeNavigationViewTest {
 
     testSubject.setBlurHash(null)
 
-    val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
+    val blurHashView = testSubject.findViewById<ImageView>(R.id.edu_blur_hash)
     assertFalse(blurHashView.visible)
-    verify(requestManager).clear(blurHashView)
+    verify { requestManager.clear(blurHashView) }
   }
 
   @Test
@@ -122,8 +108,8 @@ class StoryFirstTimeNavigationViewTest {
 
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
 
-    val blurHashView = testSubject.findViewById<ImageView>(org.thoughtcrime.securesms.R.id.edu_blur_hash)
-    verify(requestBuilder, never()).into(eq(blurHashView))
+    val blurHashView = testSubject.findViewById<ImageView>(R.id.edu_blur_hash)
+    verify(exactly = 0) { requestBuilder.into(blurHashView) }
   }
 
   @Test

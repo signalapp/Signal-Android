@@ -16,6 +16,7 @@ import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.backup.BackupKey
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
@@ -215,9 +216,9 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
   /**
    * Uploads your main backup file to cloud storage.
    */
-  fun uploadBackupFile(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, data: InputStream, dataLength: Long): NetworkResult<Unit> {
+  fun uploadBackupFile(uploadForm: AttachmentUploadForm, resumableUploadUrl: String, data: InputStream, dataLength: Long, progressListener: SignalServiceAttachment.ProgressListener? = null): NetworkResult<Unit> {
     return NetworkResult.fromFetch {
-      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength)
+      pushServiceSocket.uploadBackupFile(uploadForm, resumableUploadUrl, data, dataLength, progressListener)
     }
   }
 

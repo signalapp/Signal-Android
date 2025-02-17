@@ -54,6 +54,7 @@ public class BlobProvider {
   private static final String DRAFT_ATTACHMENTS_DIRECTORY = "draft_blobs";
   private static final String MULTI_SESSION_DIRECTORY     = "multi_session_blobs";
   private static final String SINGLE_SESSION_DIRECTORY    = "single_session_blobs";
+  private static final String TEMP_BACKUPS_DIRECTORY      = "temp_backups";
 
   public static final String AUTHORITY   = BuildConfig.APPLICATION_ID + ".blob";
   public static final Uri    CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/blob");
@@ -262,6 +263,24 @@ public class BlobProvider {
     });
   }
 
+  @WorkerThread
+  public synchronized void clearTemporaryBackupsDirectory(@NonNull Context context) {
+    File   directory = getOrCreateDirectory(context, TEMP_BACKUPS_DIRECTORY);
+    File[] files     = directory.listFiles();
+
+    if (files != null) {
+      for (File file : files) {
+        if (file.delete()) {
+          Log.d(TAG, "Deleted temporary backup file: " + file.getName());
+        } else {
+          Log.w(TAG, "Failed to delete temporary backup file: " + file.getName());
+        }
+      }
+    } else {
+      Log.w(TAG, "Null directory listing!");
+    }
+  }
+
   @VisibleForTesting
   public synchronized byte[] getMemoryBlob(@NonNull Uri uri) {
     return memoryBlobs.get(uri);
@@ -413,6 +432,8 @@ public class BlobProvider {
         return MULTI_SESSION_DIRECTORY;
       case ATTACHMENT_DRAFT:
         return DRAFT_ATTACHMENTS_DIRECTORY;
+      case TEMP_BACKUPS:
+        return TEMP_BACKUPS_DIRECTORY;
     }
     return storageType == StorageType.MULTI_SESSION_DISK ? MULTI_SESSION_DIRECTORY : SINGLE_SESSION_DIRECTORY;
   }
@@ -440,6 +461,19 @@ public class BlobProvider {
    */
   public File forNonAutoEncryptingSingleSessionOnDisk(@NonNull Context context) {
     String directory = getDirectory(StorageType.SINGLE_SESSION_DISK);
+    String id        = UUID.randomUUID().toString();
+    return new File(getOrCreateDirectory(context, directory), buildFileName(id));
+  }
+
+  /**
+   * Returns a {@link File} within the appropriate directory to persist between multiple
+   * process lifetimes. Unlike other blobs, this is just a file reference and no
+   * automatic encryption occurs when reading or writing and must be done by the caller.
+   *
+   * @return file located in the appropriate directory. The directory is periodically cleared.
+   */
+  public File forTemporaryBackup(@NonNull Context context) {
+    String directory = getDirectory(StorageType.TEMP_BACKUPS);
     String id        = UUID.randomUUID().toString();
     return new File(getOrCreateDirectory(context, directory), buildFileName(id));
   }
@@ -623,7 +657,8 @@ public class BlobProvider {
     SINGLE_SESSION_MEMORY("single-session-memory", true),
     SINGLE_SESSION_DISK("single-session-disk", false),
     MULTI_SESSION_DISK("multi-session-disk", false),
-    ATTACHMENT_DRAFT("attachment-draft", false);
+    ATTACHMENT_DRAFT("attachment-draft", false),
+    TEMP_BACKUPS("temporary-backups", false);
 
     private final String  encoded;
     private final boolean inMemory;

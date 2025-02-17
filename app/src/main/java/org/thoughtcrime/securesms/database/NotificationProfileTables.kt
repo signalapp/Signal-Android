@@ -7,11 +7,13 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteConstraintException
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.toInt
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
@@ -22,9 +24,11 @@ import java.time.DayOfWeek
 /**
  * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed memebers.
  */
-class NotificationProfileDatabase(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
+class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
+    private val TAG = Log.tag(NotificationProfileTable::class)
+
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(NotificationProfileTable.CREATE_TABLE, NotificationProfileScheduleTable.CREATE_TABLE, NotificationProfileAllowedMembersTable.CREATE_TABLE)
 
@@ -32,7 +36,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_INDEX)
   }
 
-  private object NotificationProfileTable {
+  object NotificationProfileTable {
     const val TABLE_NAME = "notification_profile"
 
     const val ID = "_id"
@@ -56,7 +60,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     """
   }
 
-  private object NotificationProfileScheduleTable {
+  object NotificationProfileScheduleTable {
     const val TABLE_NAME = "notification_profile_schedule"
 
     const val ID = "_id"
@@ -82,7 +86,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     const val CREATE_INDEX = "CREATE INDEX notification_profile_schedule_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
   }
 
-  private object NotificationProfileAllowedMembersTable {
+  object NotificationProfileAllowedMembersTable {
     const val TABLE_NAME = "notification_profile_allowed_members"
 
     const val ID = "_id"
@@ -296,16 +300,15 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    val query = "${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?"
-    val args = SqlUtil.buildArgs(oldId)
-    val values = ContentValues().apply {
-      put(NotificationProfileAllowedMembersTable.RECIPIENT_ID, newId.serialize())
-    }
-
-    databaseHelper.signalWritableDatabase.update(NotificationProfileAllowedMembersTable.TABLE_NAME, values, query, args)
-
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
+      .update(NotificationProfileAllowedMembersTable.TABLE_NAME)
+      .values(NotificationProfileAllowedMembersTable.RECIPIENT_ID to toId.serialize())
+      .where("${NotificationProfileAllowedMembersTable.RECIPIENT_ID} = ?", fromId)
+      .run()
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   private fun getProfile(cursor: Cursor): NotificationProfile {
@@ -367,7 +370,7 @@ class NotificationProfileDatabase(context: Context, databaseHelper: SignalDataba
   }
 }
 
-private fun Iterable<DayOfWeek>.serialize(): String {
+fun Iterable<DayOfWeek>.serialize(): String {
   return joinToString(separator = ",", transform = { it.serialize() })
 }
 

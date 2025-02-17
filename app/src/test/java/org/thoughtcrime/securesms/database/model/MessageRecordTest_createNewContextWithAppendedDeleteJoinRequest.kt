@@ -1,30 +1,28 @@
 package org.thoughtcrime.securesms.database.model
 
+import io.mockk.every
+import io.mockk.mockk
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.internal.push.GroupContextV2
-import java.util.Random
 import java.util.UUID
+import kotlin.random.Random
 
 @Suppress("ClassName")
 class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
-
   /**
    * Given a non-gv2 message, when I append, then I expect an assertion error
    */
   @Test(expected = AssertionError::class)
   fun throwOnNonGv2() {
-    val messageRecord = mock<MessageRecord> {
-      on { decryptedGroupV2Context } doReturn null
+    val messageRecord = mockk<MessageRecord> {
+      every { decryptedGroupV2Context } returns null
     }
 
     MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 0, ByteString.EMPTY)
@@ -37,8 +35,8 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
   fun throwOnEmptyGv2Change() {
     val groupContext = DecryptedGroupV2Context()
 
-    val messageRecord = mock<MessageRecord> {
-      on { decryptedGroupV2Context } doReturn groupContext
+    val messageRecord = mockk<MessageRecord> {
+      every { decryptedGroupV2Context } returns groupContext
     }
 
     MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 0, ByteString.EMPTY)
@@ -59,26 +57,20 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
       .build()
 
     val context = DecryptedGroupV2Context.Builder()
-      .context(GroupContextV2.Builder().masterKey(randomBytes().toByteString()).build())
+      .context(GroupContextV2.Builder().masterKey(Random.nextBytes(32).toByteString()).build())
       .change(change)
       .build()
 
-    val messageRecord = mock<MessageRecord> {
-      on { decryptedGroupV2Context } doReturn context
+    val messageRecord = mockk<MessageRecord> {
+      every { decryptedGroupV2Context } returns context
     }
 
     val newEncodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 10, aliceByteString)
 
     val newContext = DecryptedGroupV2Context.ADAPTER.decode(Base64.decode(newEncodedBody))
 
-    assertThat("revision updated to 10", newContext.change!!.revision, `is`(10))
-    assertThat("change should retain join request", newContext.change!!.newRequestingMembers[0].aciBytes, `is`(aliceByteString))
-    assertThat("change should add delete request", newContext.change!!.deleteRequestingMembers[0], `is`(aliceByteString))
-  }
-
-  private fun randomBytes(): ByteArray {
-    val bytes = ByteArray(32)
-    Random().nextBytes(bytes)
-    return bytes
+    assertEquals("revision updated to 10", newContext.change?.revision, 10)
+    assertEquals("change should retain join request", newContext.change?.newRequestingMembers?.single()?.aciBytes, aliceByteString)
+    assertEquals("change should add delete request", newContext.change?.deleteRequestingMembers?.single(), aliceByteString)
   }
 }

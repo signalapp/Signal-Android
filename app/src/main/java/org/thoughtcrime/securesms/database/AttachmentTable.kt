@@ -930,7 +930,7 @@ class AttachmentTable(
         cursor.requireString(THUMBNAIL_FILE)?.let { filesInDb += it }
       }
 
-    filesInDb += SignalDatabase.stickers.allStickerFiles
+    filesInDb += SignalDatabase.stickers.getAllStickerFiles()
 
     val onDiskButNotInDatabase: Set<String> = filesOnDisk - filesInDb
 

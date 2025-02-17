@@ -8,6 +8,7 @@ import org.signal.core.util.nullIfEmpty
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.safeSetBackupsSubscriber
@@ -88,14 +89,15 @@ class AccountRecordProcessor(
     }
 
     val backupsSubscriberId: ByteString
-    val backupsSubscriberCurrencyCode: String
+    val backupsPurchaseToken: IAPSubscriptionId?
 
-    if (remote.proto.backupsSubscriberId.isNotEmpty()) {
-      backupsSubscriberId = remote.proto.backupsSubscriberId
-      backupsSubscriberCurrencyCode = remote.proto.backupsSubscriberCurrencyCode
+    val remoteBackupSubscriberData = remote.proto.backupSubscriberData
+    if (remoteBackupSubscriberData != null && remoteBackupSubscriberData.subscriberId.isNotEmpty()) {
+      backupsSubscriberId = remoteBackupSubscriberData.subscriberId
+      backupsPurchaseToken = IAPSubscriptionId.from(remoteBackupSubscriberData)
     } else {
-      backupsSubscriberId = local.proto.backupsSubscriberId
-      backupsSubscriberCurrencyCode = remote.proto.backupsSubscriberCurrencyCode
+      backupsSubscriberId = local.proto.backupSubscriberData?.subscriberId ?: ByteString.EMPTY
+      backupsPurchaseToken = IAPSubscriptionId.from(local.proto.backupSubscriberData)
     }
 
     val storyViewReceiptsState = if (remote.proto.storyViewReceiptsEnabled == OptionalBool.UNSET) {
@@ -139,7 +141,7 @@ class AccountRecordProcessor(
 
       safeSetPayments(payments?.enabled == true, payments?.entropy?.toByteArray())
       safeSetSubscriber(donationSubscriberId, donationSubscriberCurrencyCode)
-      safeSetBackupsSubscriber(backupsSubscriberId, backupsSubscriberCurrencyCode)
+      safeSetBackupsSubscriber(backupsSubscriberId, backupsPurchaseToken)
     }.toSignalAccountRecord(StorageId.forAccount(keyGenerator.generate()))
 
     return if (doParamsMatch(remote, merged)) {

@@ -325,6 +325,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
                                .changeCallInfoState()
                                .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
+                               .setGroupCallEndReason(groupCallEndReason)
                                .build();
 
     webRtcInteractor.postStateUpdate(currentState);

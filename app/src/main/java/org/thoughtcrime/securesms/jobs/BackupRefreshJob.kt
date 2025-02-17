@@ -27,7 +27,7 @@ class BackupRefreshJob private constructor(
     private val TAG = Log.tag(BackupRefreshJob::class)
     const val KEY = "BackupRefreshJob"
 
-    private val TIME_BETWEEN_CHECKINS = 3.days
+    private val TIME_BETWEEN_CHECKINS = 1.days
 
     @JvmStatic
     fun enqueueIfNecessary() {
@@ -44,7 +44,7 @@ class BackupRefreshJob private constructor(
             parameters = Parameters.Builder()
               .addConstraint(NetworkConstraint.KEY)
               .setMaxAttempts(Parameters.UNLIMITED)
-              .setLifespan(3.days.inWholeMilliseconds)
+              .setLifespan(1.days.inWholeMilliseconds)
               .setMaxInstancesForFactory(1)
               .build()
           )

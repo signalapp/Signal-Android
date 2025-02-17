@@ -121,11 +121,13 @@ class PendingPniSignatureMessageTable(context: Context, databaseHelper: SignalDa
     writableDatabase.deleteAll(TABLE_NAME)
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    writableDatabase
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
       .update(TABLE_NAME)
-      .values(RECIPIENT_ID to newId.serialize())
-      .where("$RECIPIENT_ID = ?", oldId)
+      .values(RECIPIENT_ID to toId.serialize())
+      .where("$RECIPIENT_ID = ?", fromId)
       .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 }

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -8,7 +10,6 @@ import org.signal.core.util.count
 import org.signal.core.util.readToSingleInt
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.testing.assertIs
 
 @RunWith(AndroidJUnit4::class)
 class BackupMediaSnapshotTableTest {
@@ -27,7 +28,7 @@ class BackupMediaSnapshotTableTest {
 
     val count = getSyncedItemCount(pendingSyncTime)
 
-    count.assertIs(0)
+    assertThat(count).isEqualTo(0)
   }
 
   @Test
@@ -38,7 +39,7 @@ class BackupMediaSnapshotTableTest {
 
     val count = getSyncedItemCount(pendingSyncTime)
 
-    count.assertIs(SEQUENCE_COUNT)
+    assertThat(count).isEqualTo(SEQUENCE_COUNT)
   }
 
   @Test
@@ -56,7 +57,7 @@ class BackupMediaSnapshotTableTest {
       .run()
       .readToSingleInt(-1)
 
-    count.assertIs(50)
+    assertThat(count).isEqualTo(50)
   }
 
   @Test
@@ -77,8 +78,8 @@ class BackupMediaSnapshotTableTest {
 
     val total = getTotalItemCount()
 
-    count.assertIs(50)
-    total.assertIs(SEQUENCE_COUNT)
+    assertThat(count).isEqualTo(50)
+    assertThat(total).isEqualTo(SEQUENCE_COUNT)
   }
 
   @Test
@@ -96,7 +97,7 @@ class BackupMediaSnapshotTableTest {
 
     val total = getTotalItemCount()
 
-    total.assertIs(50)
+    assertThat(total).isEqualTo(50)
   }
 
   private fun getTotalItemCount(): Int {

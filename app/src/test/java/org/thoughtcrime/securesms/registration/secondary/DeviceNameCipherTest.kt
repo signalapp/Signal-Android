@@ -1,14 +1,13 @@
 package org.thoughtcrime.securesms.registration.secondary
 
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Test
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import java.nio.charset.Charset
 
 class DeviceNameCipherTest {
-
   @Test
   fun encryptDeviceName() {
     val deviceName = "xXxCoolDeviceNamexXx"
@@ -18,6 +17,6 @@ class DeviceNameCipherTest {
 
     val plaintext = DeviceNameCipher.decryptDeviceName(DeviceName.ADAPTER.decode(encryptedDeviceName), identityKeyPair)!!
 
-    assertThat(String(plaintext, Charset.forName("UTF-8")), `is`(deviceName))
+    assertThat(String(plaintext, Charset.forName("UTF-8"))).isEqualTo(deviceName)
   }
 }

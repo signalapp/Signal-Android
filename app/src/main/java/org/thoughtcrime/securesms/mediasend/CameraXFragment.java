@@ -376,6 +376,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       constraintSet.clone((ConstraintLayout) requireView());
       constraintSet.connect(R.id.camerax_camera_parent, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
       constraintSet.applyTo((ConstraintLayout) requireView());
+      ViewUtil.setTopMargin(cameraCard, ViewUtil.getStatusBarHeight(requireView()));
+      ViewUtil.setBottomMargin(cameraCard, ViewUtil.getNavigationBarHeight(requireView()));
     } else {
       ViewUtil.setBottomMargin(cameraCard, cameraDisplay.getCameraViewportMarginBottom());
     }

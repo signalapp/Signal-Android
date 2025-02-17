@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
@@ -51,6 +50,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout;
+import org.thoughtcrime.securesms.components.webrtc.v2.CallScreenControlsListener;
+import org.thoughtcrime.securesms.components.webrtc.v2.PendingParticipantsListener;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -60,7 +61,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
-import org.thoughtcrime.securesms.service.webrtc.state.PendingParticipantsState;
+import org.thoughtcrime.securesms.components.webrtc.v2.PendingParticipantsState;
 import org.thoughtcrime.securesms.stories.viewer.reply.reaction.MultiReactionBurstLayout;
 import org.thoughtcrime.securesms.util.BlurTransformation;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
@@ -94,7 +95,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private TextView                      recipientName;
   private TextView                      status;
   private TextView                      incomingRingStatus;
-  private ControlsListener              controlsListener;
+  private CallScreenControlsListener    controlsListener;
   private RecipientId                   recipientId;
   private ImageView                     answer;
   private TextView                      answerWithoutVideoLabel;
@@ -137,7 +138,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
   private WebRtcReactionsRecyclerAdapter        reactionsAdapter;
   private PictureInPictureExpansionHelper       pictureInPictureExpansionHelper;
-  private PendingParticipantsView.Listener      pendingParticipantsViewListener;
+  private PendingParticipantsListener           pendingParticipantsViewListener;
 
   private final Set<View> incomingCallViews    = new HashSet<>();
   private final Set<View> topViews             = new HashSet<>();
@@ -284,18 +285,18 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(isOn, ringToggle.isActivated()));
     });
 
-    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
-    smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
+    cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onCameraDirectionChanged));
+    smallLocalRender.findViewById(R.id.call_participant_switch_camera).setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onCameraDirectionChanged));
 
     overflow.setOnClickListener(v -> {
-      runIfNonNull(controlsListener, ControlsListener::onOverflowClicked);
+      runIfNonNull(controlsListener, CallScreenControlsListener::onOverflowClicked);
     });
 
-    hangup.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onEndCallPressed));
-    decline.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onDenyCallPressed));
+    hangup.setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onEndCallPressed));
+    decline.setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onDenyCallPressed));
 
-    answer.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallPressed));
-    answerWithoutVideo.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallWithVoiceOnlyPressed));
+    answer.setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onAcceptCallPressed));
+    answerWithoutVideo.setOnClickListener(v -> runIfNonNull(controlsListener, CallScreenControlsListener::onAcceptCallWithVoiceOnlyPressed));
 
     pictureInPictureGestureHelper   = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
     pictureInPictureExpansionHelper = new PictureInPictureExpansionHelper(smallLocalRenderFrame, state -> {
@@ -430,7 +431,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     }
   }
 
-  public void setControlsListener(@Nullable ControlsListener controlsListener) {
+  public void setControlsListener(@Nullable CallScreenControlsListener controlsListener) {
     this.controlsListener = controlsListener;
   }
 
@@ -442,7 +443,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     micToggle.setChecked(hasAudioPermission() && isMicEnabled, false);
   }
 
-  public void setPendingParticipantsViewListener(@Nullable PendingParticipantsView.Listener listener) {
+  public void setPendingParticipantsViewListener(@Nullable PendingParticipantsListener listener) {
     pendingParticipantsViewListener = listener;
   }
 
@@ -584,7 +585,7 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
         break;
       case SMALLER_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToSmallRectangle(localCallParticipant.isMoreThanOneCameraAvailable());
+        animatePipToSmallRectangle(displaySmallSelfPipInLandscape, localCallParticipant.isMoreThanOneCameraAvailable());
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
@@ -644,52 +645,6 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
       collapsedToolbar.setSubtitle(status);
     } catch (IllegalStateException e) {
       Log.w(TAG, "IllegalStateException trying to set status on collapsed Toolbar.");
-    }
-  }
-
-  private void setStatus(@StringRes int statusRes) {
-    setStatus(getContext().getString(statusRes));
-  }
-
-  public void setStatusFromHangupType(@NonNull HangupMessage.Type hangupType) {
-    switch (hangupType) {
-      case NORMAL:
-      case NEED_PERMISSION:
-        setStatus(R.string.RedPhone_ending_call);
-        break;
-      case ACCEPTED:
-        setStatus(R.string.WebRtcCallActivity__answered_on_a_linked_device);
-        break;
-      case DECLINED:
-        setStatus(R.string.WebRtcCallActivity__declined_on_a_linked_device);
-        break;
-      case BUSY:
-        setStatus(R.string.WebRtcCallActivity__busy_on_a_linked_device);
-        break;
-      default:
-        throw new IllegalStateException("Unknown hangup type: " + hangupType);
-    }
-  }
-
-  public void setStatusFromGroupCallState(@NonNull WebRtcViewModel.GroupCallState groupCallState) {
-    switch (groupCallState) {
-      case DISCONNECTED:
-        setStatus(R.string.WebRtcCallView__disconnected);
-        break;
-      case RECONNECTING:
-        setStatus(R.string.WebRtcCallView__reconnecting);
-        break;
-      case CONNECTED_AND_JOINING:
-        setStatus(R.string.WebRtcCallView__joining);
-        break;
-      case CONNECTED_AND_PENDING:
-        setStatus(R.string.WebRtcCallView__waiting_to_be_let_in);
-        break;
-      case CONNECTING:
-      case CONNECTED_AND_JOINED:
-      case CONNECTED:
-        setStatus("");
-        break;
     }
   }
 
@@ -849,9 +804,17 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.NORMAL_SELF_PIP, moreThanOneCameraAvailable);
   }
 
-  private void animatePipToSmallRectangle(boolean moreThanOneCameraAvailable) {
-    pictureInPictureExpansionHelper.startDefaultSizeTransition(new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP),
-                                                                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP)),
+  private void animatePipToSmallRectangle(boolean isLandscape, boolean moreThanOneCameraAvailable) {
+    final Point dimens;
+    if (isLandscape) {
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP));
+    } else {
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_WIDTH_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.MINI_PIP_HEIGHT_DP));
+    }
+
+    pictureInPictureExpansionHelper.startDefaultSizeTransition(dimens,
                                                                new PictureInPictureExpansionHelper.Callback() {
                                                                  @Override
                                                                  public void onAnimationHasFinished() {
@@ -969,28 +932,5 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
   }
 
   public void onControlTopChanged() {
-  }
-
-  public interface ControlsListener {
-    void onStartCall(boolean isVideoCall);
-    void onCancelStartCall();
-    void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput);
-    @RequiresApi(31)
-    void onAudioOutputChanged31(@NonNull WebRtcAudioDevice audioOutput);
-    void onVideoChanged(boolean isVideoEnabled);
-    void onMicChanged(boolean isMicEnabled);
-    void onOverflowClicked();
-    void onCameraDirectionChanged();
-    void onEndCallPressed();
-    void onDenyCallPressed();
-    void onAcceptCallWithVoiceOnlyPressed();
-    void onAcceptCallPressed();
-    void onPageChanged(@NonNull CallParticipantsState.SelectedPage page);
-    void onLocalPictureInPictureClicked();
-    void onRingGroupChanged(boolean ringGroup, boolean ringingAllowed);
-    void onCallInfoClicked();
-    void onNavigateUpClicked();
-    void toggleControls();
-    void onAudioPermissionsRequested(Runnable onGranted);
   }
 }

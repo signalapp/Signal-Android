@@ -12,7 +12,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.MockResponse
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,23 +24,25 @@ import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDepende
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.Delete
 import org.thoughtcrime.securesms.testing.Get
+import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
+import org.thoughtcrime.securesms.testing.actions.RecyclerViewScrollToBottomAction
 import org.thoughtcrime.securesms.testing.success
-import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Currency
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
-@Ignore("Test fails on small screens, requires scrolling.")
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
 class CheckoutFlowActivityTest__RecurringDonations {
   @get:Rule
   val harness = SignalActivityRule(othersCount = 10)
+
+  @get:Rule
+  val iapRule = InAppPaymentsRule()
 
   private val intent = CheckoutFlowActivity.createIntent(InstrumentationRegistry.getInstrumentation().targetContext, InAppPaymentType.RECURRING_DONATION)
 
@@ -54,25 +55,27 @@ class CheckoutFlowActivityTest__RecurringDonations {
   @Test
   fun givenNoCurrentDonation_whenILoadScreen_thenIExpectContinueButton() {
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+    onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText("Continue")).check(matches(isDisplayed()))
   }
 
   @Test
   fun givenACurrentDonation_whenILoadScreen_thenIExpectUpgradeButton() {
-    initialiseConfigurationResponse()
     initialiseActiveSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+
+    onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).check(matches(isDisplayed()))
   }
 
   @Test
   fun givenACurrentDonation_whenIPressCancel_thenIExpectCancellationDialog() {
-    initialiseConfigurationResponse()
     initialiseActiveSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+    onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).perform(ViewActions.click())
     onView(withText(R.string.SubscribeFragment__confirm_cancellation)).check(matches(isDisplayed()))
@@ -82,23 +85,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @Test
   fun givenAPendingRecurringDonation_whenILoadScreen_thenIExpectDisabledUpgradeButton() {
-    initialiseConfigurationResponse()
     initialisePendingSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+    onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isNotEnabled()))
-  }
-
-  private fun initialiseConfigurationResponse() {
-    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
-      Get("/v1/subscription/configuration") {
-        val assets = InstrumentationRegistry.getInstrumentation().context.resources.assets
-        assets.open("inAppPaymentsTests/configuration.json").use { stream ->
-          MockResponse().success(JsonUtils.fromJson(stream, SubscriptionsConfiguration::class.java))
-        }
-      }
-    )
   }
 
   private fun initialiseActiveSubscription() {
@@ -108,11 +100,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
       currency = currency,
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
     )
 
     InAppPaymentsRepository.setSubscriber(subscriber)
-    SignalStore.inAppPayments.setSubscriberCurrency(currency, subscriber.type)
+    SignalStore.inAppPayments.setRecurringDonationCurrency(currency)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/subscription/${subscriber.subscriberId.serialize()}") {
@@ -149,11 +142,12 @@ class CheckoutFlowActivityTest__RecurringDonations {
       currency = currency,
       type = InAppPaymentSubscriberRecord.Type.DONATION,
       requiresCancel = false,
-      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD
+      paymentMethodType = InAppPaymentData.PaymentMethodType.CARD,
+      iapSubscriptionId = null
     )
 
     InAppPaymentsRepository.setSubscriber(subscriber)
-    SignalStore.inAppPayments.setSubscriberCurrency(currency, subscriber.type)
+    SignalStore.inAppPayments.setRecurringDonationCurrency(currency)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/subscription/${subscriber.subscriberId.serialize()}") {

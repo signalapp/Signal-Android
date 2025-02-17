@@ -72,6 +72,10 @@ public class EmojiValues extends SignalStoreValues {
     return getString(PREFIX + canonical, emoji);
   }
 
+  public void removePreferredVariation(@NonNull String emoji) {
+    getStore().beginWrite().remove(PREFIX + emoji).apply();
+  }
+
   /**
    * Returns a list usable emoji that the user has selected as their defaults. If any stored reactions are unreadable, it will provide a default.
    * For raw access to the unfiltered list of reactions, see {@link #getRawReactions()}.

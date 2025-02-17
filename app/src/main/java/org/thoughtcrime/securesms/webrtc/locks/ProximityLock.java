@@ -1,13 +1,10 @@
 package org.thoughtcrime.securesms.webrtc.locks;
 
-import android.os.Build;
 import android.os.PowerManager;
 
-import org.signal.core.util.logging.Log;
+import androidx.annotation.Nullable;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Optional;
+import org.signal.core.util.logging.Log;
 
 /**
  * Controls access to the proximity lock.
@@ -19,76 +16,35 @@ class ProximityLock {
 
   private static final String TAG = Log.tag(ProximityLock.class);
 
-  private final Method                          wakelockParameterizedRelease = getWakelockParamterizedReleaseMethod();
-  private final Optional<PowerManager.WakeLock> proximityLock;
-
-  private static final int PROXIMITY_SCREEN_OFF_WAKE_LOCK = 32;
-  private static final int WAIT_FOR_PROXIMITY_NEGATIVE    = 1;
+  private final PowerManager.WakeLock proximityLock;
 
   ProximityLock(PowerManager pm) {
     proximityLock = getProximityLock(pm);
   }
 
-  private Optional<PowerManager.WakeLock> getProximityLock(PowerManager pm) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      if (pm.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
-        return Optional.ofNullable(pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:proximity"));
-      } else {
-        return Optional.empty();
-      }
+  private @Nullable PowerManager.WakeLock getProximityLock(PowerManager pm) {
+    if (pm.isWakeLockLevelSupported(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK)) {
+      return pm.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:proximity");
     } else {
-      try {
-        return Optional.ofNullable(pm.newWakeLock(PROXIMITY_SCREEN_OFF_WAKE_LOCK, "signal:incall"));
-      } catch (Throwable t) {
-        Log.e(TAG, "Failed to create proximity lock", t);
-        return Optional.empty();
-      }
+      return null;
     }
   }
 
   public void acquire() {
-    if (!proximityLock.isPresent() || proximityLock.get().isHeld()) {
+    if (proximityLock == null || proximityLock.isHeld()) {
       return;
     }
 
-    proximityLock.get().acquire();
+    proximityLock.acquire();
   }
 
   public void release() {
-    if (!proximityLock.isPresent() || !proximityLock.get().isHeld()) {
+    if (proximityLock == null || !proximityLock.isHeld()) {
       return;
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      proximityLock.get().release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
-    } else {
-      boolean released = false;
+    proximityLock.release(PowerManager.RELEASE_FLAG_WAIT_FOR_NO_PROXIMITY);
 
-      if (wakelockParameterizedRelease != null) {
-        try {
-          wakelockParameterizedRelease.invoke(proximityLock.get(), WAIT_FOR_PROXIMITY_NEGATIVE);
-          released = true;
-        } catch (IllegalAccessException e) {
-          Log.w(TAG, e);
-        } catch (InvocationTargetException e) {
-          Log.w(TAG, e);
-        }
-      }
-
-      if (!released) {
-        proximityLock.get().release();
-      }
-    }
-
-    Log.d(TAG, "Released proximity lock:" + proximityLock.get().isHeld());
-  }
-
-  private static Method getWakelockParamterizedReleaseMethod() {
-    try {
-      return PowerManager.WakeLock.class.getDeclaredMethod("release", Integer.TYPE);
-    } catch (NoSuchMethodException e) {
-      Log.d(TAG, "Parameterized WakeLock release not available on this device.");
-    }
-    return null;
+    Log.d(TAG, "Released proximity lock:" + proximityLock.isHeld());
   }
 }

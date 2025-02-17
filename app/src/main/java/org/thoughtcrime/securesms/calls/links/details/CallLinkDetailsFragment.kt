@@ -17,8 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
@@ -27,6 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.ui.Dialogs
@@ -81,7 +84,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val showAlreadyInACall by viewModel.showAlreadyInACall.collectAsStateWithLifecycle(false)
 
     CallLinkDetails(
@@ -166,9 +169,14 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
 
   override fun onApproveAllMembersChanged(checked: Boolean) {
     lifecycleDisposable += viewModel.setApproveAllMembers(checked).observeOn(AndroidSchedulers.mainThread()).subscribeBy(onSuccess = {
-      if (it !is UpdateCallLinkResult.Update) {
+      if (it is UpdateCallLinkResult.Failure) {
         Log.w(TAG, "Failed to change restrictions. $it")
-        toastFailure()
+
+        if (it.status == 409.toShort()) {
+          toastCallLinkInUse()
+        } else {
+          toastFailure()
+        }
       }
     }, onError = handleError("onApproveAllMembersChanged"))
   }
@@ -189,12 +197,16 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     }
   }
 
+  private fun toastCallLinkInUse() {
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_update_admin_approval, Snackbar.LENGTH_LONG).show()
+  }
+
   private fun toastFailure() {
-    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_save_changes, Snackbar.LENGTH_LONG).show()
   }
 
   private fun toastCouldNotDeleteCallLink() {
-    Toast.makeText(requireContext(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Toast.LENGTH_LONG).show()
+    Snackbar.make(requireView(), R.string.CallLinkDetailsFragment__couldnt_delete_call_link, Snackbar.LENGTH_LONG).show()
   }
 }
 
@@ -236,6 +248,7 @@ private fun CallLinkDetailsPreview() {
   SignalTheme(false) {
     CallLinkDetails(
       CallLinkDetailsState(
+        false,
         false,
         callLink
       ),
@@ -297,7 +310,8 @@ private fun CallLinkDetails(
         Rows.ToggleRow(
           checked = state.callLink.state.restrictions == Restrictions.ADMIN_APPROVAL,
           text = stringResource(id = R.string.CallLinkDetailsFragment__require_admin_approval),
-          onCheckChanged = callback::onApproveAllMembersChanged
+          onCheckChanged = callback::onApproveAllMembersChanged,
+          isLoading = state.isLoadingAdminApprovalChange
         )
 
         Dividers.Default()
@@ -305,25 +319,25 @@ private fun CallLinkDetails(
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__share_link_via_signal),
-        icon = painterResource(id = R.drawable.symbol_forward_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_forward_24),
         onClick = callback::onShareLinkViaSignalClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CreateCallLinkBottomSheetDialogFragment__copy_link),
-        icon = painterResource(id = R.drawable.symbol_copy_android_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_copy_android_24),
         onClick = callback::onCopyClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__share_link),
-        icon = painterResource(id = R.drawable.symbol_link_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_link_24),
         onClick = callback::onShareClicked
       )
 
       Rows.TextRow(
         text = stringResource(id = R.string.CallLinkDetailsFragment__delete_call_link),
-        icon = painterResource(id = R.drawable.symbol_trash_24),
+        icon = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
         foregroundTint = MaterialTheme.colorScheme.error,
         onClick = callback::onDeleteClicked
       )

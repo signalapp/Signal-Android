@@ -44,10 +44,10 @@ class StickerSearchRepository {
 private fun StickerRecordReader.readAll(): List<StickerRecord> {
   val stickers: MutableList<StickerRecord> = mutableListOf()
   use { reader ->
-    var record: StickerRecord? = reader.next
+    var record: StickerRecord? = reader.getNext()
     while (record != null) {
       stickers.add(record)
-      record = reader.next
+      record = reader.getNext()
     }
   }
   return stickers

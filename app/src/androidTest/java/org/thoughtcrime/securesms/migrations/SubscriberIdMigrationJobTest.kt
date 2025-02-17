@@ -1,6 +1,10 @@
 package org.thoughtcrime.securesms.migrations
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNotNull
+import assertk.assertions.isTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.count
@@ -11,8 +15,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.testing.assertIs
-import org.thoughtcrime.securesms.testing.assertIsNotNull
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
 
@@ -30,26 +32,29 @@ class SubscriberIdMigrationJobTest {
       .run()
       .readToSingleInt()
 
-    actual assertIs 0
+    assertThat(actual).isEqualTo(0)
   }
 
   @Test
   fun givenUSDSubscriber_whenIRunSubscriberIdMigrationJob_thenIExpectASingleEntry() {
     val subscriberId = SubscriberId.generate()
-    SignalStore.inAppPayments.setSubscriberCurrency(Currency.getInstance("USD"), InAppPaymentSubscriberRecord.Type.DONATION)
+    SignalStore.inAppPayments.setRecurringDonationCurrency(Currency.getInstance("USD"))
     SignalStore.inAppPayments.setSubscriber("USD", subscriberId)
     SignalStore.inAppPayments.setSubscriptionPaymentSourceType(PaymentSourceType.PayPal)
     SignalStore.inAppPayments.shouldCancelSubscriptionBeforeNextSubscribeAttempt = true
 
     testSubject.run()
 
-    val actual = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode("USD", InAppPaymentSubscriberRecord.Type.DONATION)
+    val actual = SignalDatabase.inAppPaymentSubscribers.getByCurrencyCode("USD")
 
-    actual.assertIsNotNull()
-    actual!!.subscriberId.bytes assertIs subscriberId.bytes
-    actual.paymentMethodType assertIs InAppPaymentData.PaymentMethodType.PAYPAL
-    actual.requiresCancel assertIs true
-    actual.currency assertIs Currency.getInstance("USD")
-    actual.type assertIs InAppPaymentSubscriberRecord.Type.DONATION
+    assertThat(actual)
+      .isNotNull()
+      .given {
+        assertThat(it.subscriberId.bytes).isEqualTo(subscriberId.bytes)
+        assertThat(it.paymentMethodType).isEqualTo(InAppPaymentData.PaymentMethodType.PAYPAL)
+        assertThat(it.requiresCancel).isTrue()
+        assertThat(it.currency).isEqualTo(Currency.getInstance("USD"))
+        assertThat(it.type).isEqualTo(InAppPaymentSubscriberRecord.Type.DONATION)
+      }
   }
 }

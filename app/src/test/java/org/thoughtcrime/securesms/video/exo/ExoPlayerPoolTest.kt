@@ -1,17 +1,13 @@
 package org.thoughtcrime.securesms.video.exo
 
 import androidx.media3.exoplayer.ExoPlayer
+import io.mockk.mockk
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
-import org.junit.Assert.fail
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
-import org.mockito.Mockito.mock
 
-@RunWith(JUnit4::class)
 class ExoPlayerPoolTest {
-
   @Test
   fun `Given an empty pool, when I require a player, then I expect a player`() {
     // GIVEN
@@ -24,16 +20,16 @@ class ExoPlayerPoolTest {
     assertNotNull(player)
   }
 
-  @Test(expected = IllegalStateException::class)
+  @Test
   fun `Given a pool without available players, when I require a player, then I expect an exception`() {
     // GIVEN
     val testSubject = createTestSubject(1, 0)
 
-    // WHEN
-    testSubject.require("")
-
     // THEN
-    fail("Expected an IllegalStateException")
+    assertThrows(IllegalStateException::class.java) {
+      // WHEN
+      testSubject.require("")
+    }
   }
 
   @Test
@@ -63,17 +59,17 @@ class ExoPlayerPoolTest {
     assertTrue(morePlayers.all { it != null })
   }
 
-  @Test(expected = IllegalArgumentException::class)
+  @Test
   fun `Given an ExoPlayer not in the pool, when I pool it, then I expect an IllegalArgumentException`() {
     // GIVEN
-    val player = mock(ExoPlayer::class.java)
+    val player = mockk<ExoPlayer>()
     val pool = createTestSubject(1, 10)
 
-    // WHEN
-    pool.pool(player)
-
     // THEN
-    fail("Expected an IllegalArgumentException to be thrown")
+    assertThrows(IllegalArgumentException::class.java) {
+      // WHEN
+      pool.pool(player)
+    }
   }
 
   private fun createTestSubject(
@@ -82,7 +78,7 @@ class ExoPlayerPoolTest {
   ): ExoPlayerPool<ExoPlayer> {
     return object : ExoPlayerPool<ExoPlayer>(maximumReservedPlayers) {
       override fun createPlayer(): ExoPlayer {
-        return mock(ExoPlayer::class.java)
+        return mockk<ExoPlayer>(relaxUnitFun = true)
       }
 
       override fun getMaxSimultaneousPlayback(): Int {

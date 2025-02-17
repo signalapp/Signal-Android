@@ -369,5 +369,10 @@ public class WebRtcServiceStateBuilder {
       toBuild.setCallLinkDisconnectReason(callLinkDisconnectReason);
       return this;
     }
+
+    public @NonNull CallInfoStateBuilder setGroupCallEndReason(@Nullable GroupCall.GroupCallEndReason groupCallEndReason) {
+      toBuild.setGroupCallEndReason(groupCallEndReason);
+      return this;
+    }
   }
 }

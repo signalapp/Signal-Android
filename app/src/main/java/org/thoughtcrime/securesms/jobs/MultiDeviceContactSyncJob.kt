@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMessageException
-import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -16,7 +15,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
-import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage.VerifiedState
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil
@@ -100,42 +98,6 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
           recipients.setExpireMessagesWithoutIncrementingVersion(recipient.id, contact.expirationTimer.get())
         } else {
           Log.w(TAG, "[ContactSync] ${recipient.id} was synced with an old expiration timer. Ignoring. Recieved: ${contact.expirationTimerVersion.get()} Current: ${recipient.expireTimerVersion}")
-        }
-      }
-
-      if (contact.profileKey.isPresent) {
-        val profileKey = contact.profileKey.get()
-        recipients.setProfileKey(recipient.id, profileKey)
-      }
-
-      if (contact.verified.isPresent) {
-        val verifiedStatus: VerifiedStatus = when (contact.verified.get().verified) {
-          VerifiedState.VERIFIED -> VerifiedStatus.VERIFIED
-          VerifiedState.UNVERIFIED -> VerifiedStatus.UNVERIFIED
-          else -> VerifiedStatus.DEFAULT
-        }
-
-        if (recipient.serviceId.isPresent) {
-          AppDependencies.protocolStore.aci().identities().saveIdentityWithoutSideEffects(
-            recipient.id,
-            recipient.serviceId.get(),
-            contact.verified.get().identityKey,
-            verifiedStatus,
-            false,
-            contact.verified.get().timestamp,
-            true
-          )
-        } else {
-          Log.w(TAG, "Missing serviceId for ${recipient.id} -- cannot save identity!")
-        }
-      }
-
-      val threadRecord = threads.getThreadRecord(threads.getThreadIdFor(recipient.id))
-      if (threadRecord != null && contact.isArchived != threadRecord.isArchived) {
-        if (contact.isArchived) {
-          threads.archiveConversation(threadRecord.threadId)
-        } else {
-          threads.unarchiveConversation(threadRecord.threadId)
         }
       }
 

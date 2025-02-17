@@ -131,6 +131,7 @@ import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -155,6 +156,7 @@ import io.reactivex.rxjava3.exceptions.CompositeException;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
 import okio.ByteString;
+import okio.Utf8;
 
 /**
  * The main interface for sending Signal Service messages.
@@ -1007,6 +1009,10 @@ public class SignalServiceMessageSender {
     Content.Builder     container   = new Content.Builder();
     DataMessage.Builder dataMessage = createDataMessage(message);
 
+    if (dataMessage.body != null && Utf8.size(dataMessage.body) > 2048) {
+      throw new ContentTooLargeException(Utf8.size(dataMessage.body));
+    }
+
     return enforceMaxContentSize(container.dataMessage(dataMessage.build()).build());
   }
 
@@ -1385,7 +1391,7 @@ public class SignalServiceMessageSender {
         unidentifiedDeliveryStatuses.add(new SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder()
                                                                                         .destinationServiceId(result.getAddress().getServiceId().toString())
                                                                                         .unidentified(false)
-                                                                                        .destinationIdentityKey(identity)
+                                                                                        .destinationPniIdentityKey(identity)
                                                                                         .build());
       }
     }
@@ -1658,10 +1664,6 @@ public class SignalServiceMessageSender {
     Content.Builder          container   = new Content.Builder();
     SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
     SyncMessage.Keys.Builder builder     = new SyncMessage.Keys.Builder();
-
-    if (keysMessage.getStorageService() != null) {
-      builder.storageService(ByteString.of(keysMessage.getStorageService().serialize()));
-    }
 
     if (keysMessage.getMaster() != null) {
       builder.master(ByteString.of(keysMessage.getMaster().serialize()));

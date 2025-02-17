@@ -1,13 +1,6 @@
 package org.thoughtcrime.securesms.testing
 
 import android.database.Cursor
-import org.hamcrest.Matcher
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.hasSize
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.not
-import org.hamcrest.Matchers.notNullValue
-import org.hamcrest.Matchers.nullValue
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -33,32 +26,6 @@ fun runSync(runnable: () -> Unit) {
     }
   }.start()
   lock.await()
-}
-
-/* Various kotlin-ifications of hamcrest matchers */
-
-fun <T : Any?> T.assertIsNull() {
-  assertThat(this, nullValue())
-}
-
-fun <T : Any?> T.assertIsNotNull() {
-  assertThat(this, notNullValue())
-}
-
-infix fun <T : Any?> T.assertIs(expected: T) {
-  assertThat(this, `is`(expected))
-}
-
-infix fun <T : Any> T.assertIsNot(expected: T) {
-  assertThat(this, not(`is`(expected)))
-}
-
-infix fun <E, T : Collection<E>> T.assertIsSize(expected: Int) {
-  assertThat(this, hasSize(expected))
-}
-
-infix fun <T : Any> T.assert(matcher: Matcher<T>) {
-  assertThat(this, matcher)
 }
 
 fun CountDownLatch.awaitFor(duration: Duration) {

@@ -23,35 +23,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layoutDirection="ltr"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/verify_subheader">
+            app:layout_constraintTop_toBottomOf="@id/country_picker">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/country_code"
-                style="@style/Widget.Signal.TextInputLayout.Registration.Dropdown"
+                style="@style/Widget.Signal.TextInputLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
-                app:errorEnabled="false"
-                app:hintEnabled="false">
+                app:errorEnabled="false">
 
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:digits="+1234567890"
-                    android:drawablePadding="-24dp"
-                    android:hint="@string/Registration_country_code_entry_hint"
-                    android:imeOptions="actionNext"
-                    android:maxLength="4"
-                    android:maxLines="1"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:digits="1234567890"
+                    android:maxLength="3"
                     android:padding="0dp"
+                    android:minHeight="56dp"
+                    android:minWidth="76dp"
+                    android:maxLines="1"
                     android:singleLine="true"
-                    android:textColor="?attr/colorOnSurface"
-                    tools:text="+1" />
+                    android:textAppearance="@style/Signal.Text.BodyLarge"
+                    android:drawableStart="@drawable/symbol_plus_9"
+                    android:drawablePadding="4dp"
+                    app:drawableTint="@color/signal_colorOnSurfaceVariant_60"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/signal_colorOnSurfaceVariant" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/RegistrationActivity_phone_number_description"
+                android:layout_marginStart="20dp"
                 android:theme="@style/Signal.ThemeOverlay.TextInputLayout"
                 app:editTextStyle="@style/Signal.ThemeOverlay.TextInputLayout">
 
@@ -98,10 +103,59 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
-            android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started"
+            android:text="@string/RegistrationActivity_you_will_receive_a_verification_code"
             android:textColor="@color/signal_colorOnSurfaceVariant"
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/country_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/country_picker_background"
+            android:minHeight="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verify_subheader">
+
+            <TextView
+                android:id="@+id/country_emoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="16dp"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                tools:text="🇺🇸" />
+
+            <TextView
+                android:id="@+id/country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/country_emoji"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/Signal.Text.BodyLarge"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                android:text="@string/RegistrationActivity_select_a_country" />
+
+            <ImageView
+                android:id="@+id/dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="12dp"
+                app:tint="@color/signal_colorOnSurfaceVariant"
+                android:src="@drawable/symbol_dropdown_triangle_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancel_button"
@@ -124,8 +178,8 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
+            android:layout_marginBottom="8dp"
+            app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
             app:layout_constraintBottom_toTopOf="@+id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />

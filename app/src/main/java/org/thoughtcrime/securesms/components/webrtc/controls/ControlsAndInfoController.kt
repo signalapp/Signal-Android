@@ -46,15 +46,16 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.parcelize.Parcelize
 import org.signal.core.util.dp
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.WebRtcCallActivity
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
 import org.thoughtcrime.securesms.components.webrtc.CallOverflowPopupWindow
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView
-import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
+import org.thoughtcrime.securesms.components.webrtc.v2.CallControlsVisibilityListener
 import org.thoughtcrime.securesms.components.webrtc.v2.CallInfoCallbacks
+import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
 import org.thoughtcrime.securesms.util.padding
 import org.thoughtcrime.securesms.util.visible
@@ -65,7 +66,7 @@ import kotlin.time.Duration.Companion.seconds
  * Brain for rendering the call controls and info within a bottom sheet when we display the activity in portrait mode.
  */
 class ControlsAndInfoController private constructor(
-  private val webRtcCallActivity: WebRtcCallActivity,
+  private val activity: BaseActivity,
   private val webRtcCallView: WebRtcCallView,
   private val overflowPopupWindow: CallOverflowPopupWindow,
   private val viewModel: WebRtcCallViewModel,
@@ -74,13 +75,13 @@ class ControlsAndInfoController private constructor(
 ) : Disposable by disposables {
 
   constructor(
-    webRtcCallActivity: WebRtcCallActivity,
+    activity: BaseActivity,
     webRtcCallView: WebRtcCallView,
     overflowPopupWindow: CallOverflowPopupWindow,
     viewModel: WebRtcCallViewModel,
     controlsAndInfoViewModel: ControlsAndInfoViewModel
   ) : this(
-    webRtcCallActivity,
+    activity,
     webRtcCallView,
     overflowPopupWindow,
     viewModel,
@@ -108,15 +109,15 @@ class ControlsAndInfoController private constructor(
   private val aboveControlsGuideline: Guideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
   private val toggleCameraDirectionView: View = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
   private val callControls: ConstraintLayout = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
-  private val isLandscape = webRtcCallActivity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+  private val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
   private val waitingToBeLetInProgressDrawable = IndeterminateDrawable.createCircularDrawable(
-    webRtcCallActivity,
-    CircularProgressIndicatorSpec(webRtcCallActivity, null).apply {
+    activity,
+    CircularProgressIndicatorSpec(activity, null).apply {
       indicatorSize = 20.dp
       indicatorInset = 0.dp
       trackThickness = 2.dp
       trackCornerRadius = 1.dp
-      indicatorColors = intArrayOf(ContextCompat.getColor(webRtcCallActivity, R.color.signal_colorOnBackground))
+      indicatorColors = intArrayOf(ContextCompat.getColor(activity, R.color.signal_colorOnBackground))
       trackColor = Color.TRANSPARENT
     }
   )
@@ -125,7 +126,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private val scheduleHideControlsRunnable: Runnable = Runnable { onScheduledHide() }
-  private val bottomSheetVisibilityListeners = mutableSetOf<BottomSheetVisibilityListener>()
+  private val callControlsVisibilityListeners = mutableSetOf<CallControlsVisibilityListener>()
 
   private val handler: Handler?
     get() = webRtcCallView.handler
@@ -133,7 +134,7 @@ class ControlsAndInfoController private constructor(
   private var previousCallControlHeightData = HeightData()
   private var controlState: WebRtcControls = WebRtcControls.NONE
 
-  private val callInfoCallbacks = CallInfoCallbacks(webRtcCallActivity, controlsAndInfoViewModel)
+  private val callInfoCallbacks = CallInfoCallbacks(activity, controlsAndInfoViewModel)
 
   init {
     raiseHandComposeView.apply {
@@ -179,9 +180,9 @@ class ControlsAndInfoController private constructor(
       hide(delay = HIDE_CONTROL_DELAY)
     }
 
-    webRtcCallActivity
+    activity
       .supportFragmentManager
-      .setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, webRtcCallActivity) { resultKey, bundle ->
+      .setFragmentResultListener(EditCallLinkNameDialogFragment.RESULT_KEY, activity) { resultKey, bundle ->
         if (bundle.containsKey(resultKey)) {
           setName(bundle.getString(resultKey)!!)
         }
@@ -193,7 +194,7 @@ class ControlsAndInfoController private constructor(
         .setTopRightCorner(CornerFamily.ROUNDED, 18.dp.toFloat())
         .build()
     ).apply {
-      fillColor = ColorStateList.valueOf(ContextCompat.getColor(webRtcCallActivity, R.color.signal_colorSurface))
+      fillColor = ColorStateList.valueOf(ContextCompat.getColor(activity, R.color.signal_colorSurface))
     }
 
     behavior.isHideable = true
@@ -246,8 +247,8 @@ class ControlsAndInfoController private constructor(
     callInfoComposeView.translationY = INFO_TRANSLATION_DISTANCE
   }
 
-  fun addVisibilityListener(listener: BottomSheetVisibilityListener): Boolean {
-    return bottomSheetVisibilityListeners.add(listener)
+  fun addVisibilityListener(listener: CallControlsVisibilityListener): Boolean {
+    return callControlsVisibilityListeners.add(listener)
   }
 
   fun onStateRestored() {
@@ -279,16 +280,16 @@ class ControlsAndInfoController private constructor(
     behavior.isHideable = false
     behavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
-    bottomSheetVisibilityListeners.forEach { it.onShown() }
+    callControlsVisibilityListeners.forEach { it.onShown() }
   }
 
   private fun hide(delay: Long = 0L) {
     if (delay == 0L) {
-      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
+      if (controlState.isFadeOutEnabled || controlState == WebRtcControls.PIP || controlState.displayErrorControls() || controlState.displayIncomingCallButtons()) {
         behavior.isHideable = true
         behavior.state = BottomSheetBehavior.STATE_HIDDEN
 
-        bottomSheetVisibilityListeners.forEach { it.onHidden() }
+        callControlsVisibilityListeners.forEach { it.onHidden() }
       }
     } else {
       cancelScheduledHide()
@@ -319,6 +320,10 @@ class ControlsAndInfoController private constructor(
 
     showOrHideControlsOnUpdate(previousState)
 
+    if (controlState == WebRtcControls.PIP) {
+      waitingToBeLetIn.visible = false
+    }
+
     if (controlState != WebRtcControls.PIP && controlState.controlVisibilitiesChanged(previousState)) {
       updateControlVisibilities()
     }
@@ -343,7 +348,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private fun showOrHideControlsOnUpdate(previousState: WebRtcControls) {
-    if (controlState == WebRtcControls.PIP || controlState.displayErrorControls()) {
+    if (controlState == WebRtcControls.PIP || controlState.displayErrorControls() || controlState.displayIncomingCallButtons()) {
       hide()
       return
     }
@@ -436,7 +441,7 @@ class ControlsAndInfoController private constructor(
   }
 
   private fun toastFailure() {
-    Toast.makeText(webRtcCallActivity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
+    Toast.makeText(activity, R.string.CallLinkDetailsFragment__couldnt_save_changes, Toast.LENGTH_LONG).show()
   }
 
   private fun ConstraintSet.setControlConstraints(@IdRes viewId: Int, visible: Boolean, @Px horizontalMargins: Int) {
@@ -485,10 +490,5 @@ class ControlsAndInfoController private constructor(
     fun hasChanged(controlHeight: Int, coordinatorHeight: Int): Boolean {
       return controlHeight != this.controlHeight || coordinatorHeight != this.coordinatorHeight
     }
-  }
-
-  interface BottomSheetVisibilityListener {
-    fun onShown()
-    fun onHidden()
   }
 }

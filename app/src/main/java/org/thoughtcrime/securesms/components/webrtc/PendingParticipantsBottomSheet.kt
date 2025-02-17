@@ -23,8 +23,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,12 +40,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import kotlinx.coroutines.flow.map
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -80,12 +83,13 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
       System.currentTimeMillis().milliseconds
     }
 
-    val participants = viewModel.pendingParticipants
-      .map { it.pendingParticipantCollection.getAllPendingParticipants(launchTime).toList() }
-      .subscribeAsState(initial = emptyList())
+    val participants by remember {
+      viewModel.getPendingParticipants()
+        .map { it.pendingParticipantCollection.getAllPendingParticipants(launchTime).toList() }
+    }.collectAsState(initial = emptyList())
 
     PendingParticipantsSheet(
-      pendingParticipants = participants.value,
+      pendingParticipants = participants,
       onApproveAll = this::onApproveAll,
       onDenyAll = this::onDenyAll,
       onApprove = this::onApprove,

@@ -11,6 +11,7 @@ import org.signal.core.util.readToList
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireLong
 import org.signal.core.util.toInt
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageLogEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -419,16 +420,14 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     writableDatabase.execSQL(MslPayloadTable.AFTER_MESSAGE_DELETE_TRIGGER)
   }
 
-  override fun remapRecipient(oldRecipientId: RecipientId, newRecipientId: RecipientId) {
-    val values = ContentValues().apply {
-      put(MslRecipientTable.RECIPIENT_ID, newRecipientId.serialize())
-    }
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
+      .update(MslRecipientTable.TABLE_NAME)
+      .values(MslRecipientTable.RECIPIENT_ID to toId.serialize())
+      .where("${MslRecipientTable.RECIPIENT_ID} = ?", fromId)
+      .run()
 
-    val db = databaseHelper.signalWritableDatabase
-    val query = "${MslRecipientTable.RECIPIENT_ID} = ?"
-    val args = SqlUtil.buildArgs(oldRecipientId.serialize())
-
-    db.update(MslRecipientTable.TABLE_NAME, values, query, args)
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   private data class RecipientDevice(val recipientId: RecipientId, val devices: List<Int>)

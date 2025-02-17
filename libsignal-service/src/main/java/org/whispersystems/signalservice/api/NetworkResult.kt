@@ -96,6 +96,36 @@ sealed class NetworkResult<T>(
     } catch (e: Throwable) {
       ApplicationError(e)
     }
+
+    /**
+     * Runs [operation] to perform a network call. If [shouldRetry] returns false for the result, then returns it. Otherwise will call [operation] repeatedly
+     * until [shouldRetry] returns false or is called [maxAttempts] number of times.
+     *
+     * @param maxAttempts Max attempts to try the network operation, must be 1 or more, default is 5
+     * @param shouldRetry Predicate to determine if network operation should be retried, default is any [NetworkError] result is retried
+     * @param logAttempt Log each attempt before [operation] is called, default is noop
+     * @param operation Network operation that can be called repeatedly for each attempt
+     */
+    fun <T : Any?> withRetry(
+      maxAttempts: Int = 5,
+      shouldRetry: (NetworkResult<T>) -> Boolean = { it is NetworkError },
+      logAttempt: (attempt: Int, maxAttempts: Int) -> Unit = { _, _ -> },
+      operation: () -> NetworkResult<T>
+    ): NetworkResult<T> {
+      require(maxAttempts > 0)
+
+      lateinit var result: NetworkResult<T>
+      for (attempt in 0 until maxAttempts) {
+        logAttempt(attempt, maxAttempts)
+        result = operation()
+
+        if (!shouldRetry(result)) {
+          return result
+        }
+      }
+
+      return result
+    }
   }
 
   /** Indicates the request was successful */
@@ -160,6 +190,7 @@ sealed class NetworkResult<T>(
           ApplicationError<R>(e).runOnStatusCodeError(statusCodeErrorActions)
         }
       }
+
       is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
       is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
       is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, exception).runOnStatusCodeError(statusCodeErrorActions)

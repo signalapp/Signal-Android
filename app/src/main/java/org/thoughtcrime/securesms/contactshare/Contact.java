@@ -43,7 +43,7 @@ public class Contact implements Parcelable {
   @JsonProperty
   private final Avatar              avatar;
 
-  public Contact(@JsonProperty("name")            @NonNull  Name                name,
+  public Contact(@JsonProperty("name")            @Nullable Name                name,
                  @JsonProperty("organization")    @Nullable String              organization,
                  @JsonProperty("phoneNumbers")    @NonNull  List<Phone>         phoneNumbers,
                  @JsonProperty("emails")          @NonNull  List<Email>         emails,
@@ -77,7 +77,7 @@ public class Contact implements Parcelable {
   }
 
   public @NonNull Name getName() {
-    return name;
+    return name == null ? Name.EMPTY_NAME : name;
   }
 
   public @Nullable String getOrganization() {
@@ -228,6 +228,8 @@ public class Contact implements Parcelable {
       dest.writeString(nickname);
     }
 
+    public static Name EMPTY_NAME = new Name("","","","","","");
+
     public static final Creator<Name> CREATOR = new Creator<Name>() {
       @Override
       public Name createFromParcel(Parcel in) {
@@ -356,7 +358,7 @@ public class Contact implements Parcelable {
       return type;
     }
 
-    public @NonNull String getLabel() {
+    public @Nullable String getLabel() {
       return label;
     }
 

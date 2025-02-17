@@ -22,13 +22,16 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
+import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
@@ -103,7 +106,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
           when (state) {
             JobTracker.JobState.SUCCESS -> {
               Log.i(TAG, "Restore successful")
-              SignalStore.registration.markRestoreCompleted()
+              SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 
               if (!RegistrationRepository.isMissingProfileData()) {
                 RegistrationUtil.maybeMarkRegistrationComplete()
@@ -135,7 +138,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   }
 
   fun cancel() {
-    SignalStore.registration.markSkippedTransferOrRestore()
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
   }
 
   fun clearError() {
@@ -143,7 +146,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   }
 
   fun skipRestore() {
-    SignalStore.registration.markSkippedTransferOrRestore()
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
 
     viewModelScope.launch {
       withContext(Dispatchers.IO) {

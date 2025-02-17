@@ -24,7 +24,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import app.cash.exhaustive.Exhaustive
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -286,7 +285,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.events.subscribe { event ->
-      @Exhaustive
       when (event) {
         is ConversationSettingsEvent.AddToAGroup -> handleAddToAGroup(event)
         is ConversationSettingsEvent.AddMembersToGroup -> handleAddMembersToGroup(event)
@@ -847,48 +845,51 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           }
         )
 
-        val reportSpamTint = if (state.isDeprecatedOrUnregistered) R.color.signal_alert_primary_50 else R.color.signal_alert_primary
-        clickPref(
-          title = DSLSettingsText.from(R.string.ConversationFragment_report_spam, ContextCompat.getColor(requireContext(), reportSpamTint)),
-          icon = DSLSettingsIcon.from(R.drawable.symbol_spam_24, reportSpamTint),
-          isEnabled = !state.isDeprecatedOrUnregistered,
-          onClick = {
-            BlockUnblockDialog.showReportSpamFor(
-              requireContext(),
-              viewLifecycleOwner.lifecycle,
-              state.recipient,
-              {
-                viewModel
-                  .onReportSpam()
-                  .subscribeBy {
-                    Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam, Toast.LENGTH_SHORT).show()
-                    onToolbarNavigationClicked()
-                  }
-                  .addTo(lifecycleDisposable)
-              },
-              if (state.recipient.isBlocked) {
-                null
-              } else {
-                Runnable {
+        if (!state.recipient.isReleaseNotes) {
+          val reportSpamTint = if (state.isDeprecatedOrUnregistered) R.color.signal_alert_primary_50 else R.color.signal_alert_primary
+          clickPref(
+            title = DSLSettingsText.from(R.string.ConversationFragment_report_spam, ContextCompat.getColor(requireContext(), reportSpamTint)),
+            icon = DSLSettingsIcon.from(R.drawable.symbol_spam_24, reportSpamTint),
+            isEnabled = !state.isDeprecatedOrUnregistered,
+            onClick = {
+              BlockUnblockDialog.showReportSpamFor(
+                requireContext(),
+                viewLifecycleOwner.lifecycle,
+                state.recipient,
+                {
                   viewModel
-                    .onBlockAndReportSpam()
-                    .subscribeBy { result ->
-                      when (result) {
-                        is Result.Success -> {
-                          Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam_and_blocked, Toast.LENGTH_SHORT).show()
-                          onToolbarNavigationClicked()
-                        }
-                        is Result.Failure -> {
-                          Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(result.failure), Toast.LENGTH_SHORT).show()
-                        }
-                      }
+                    .onReportSpam()
+                    .subscribeBy {
+                      Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam, Toast.LENGTH_SHORT).show()
+                      onToolbarNavigationClicked()
                     }
                     .addTo(lifecycleDisposable)
+                },
+                if (state.recipient.isBlocked) {
+                  null
+                } else {
+                  Runnable {
+                    viewModel
+                      .onBlockAndReportSpam()
+                      .subscribeBy { result ->
+                        when (result) {
+                          is Result.Success -> {
+                            Toast.makeText(requireContext(), R.string.ConversationFragment_reported_as_spam_and_blocked, Toast.LENGTH_SHORT).show()
+                            onToolbarNavigationClicked()
+                          }
+
+                          is Result.Failure -> {
+                            Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(result.failure), Toast.LENGTH_SHORT).show()
+                          }
+                        }
+                      }
+                      .addTo(lifecycleDisposable)
+                  }
                 }
-              }
-            )
-          }
-        )
+              )
+            }
+          )
+        }
       }
     }
   }

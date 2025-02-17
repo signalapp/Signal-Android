@@ -82,7 +82,7 @@ public class StickerDownloadJob extends BaseJob {
 
     StickerRecord stickerRecord = db.getSticker(sticker.getPackId(), sticker.getStickerId(), sticker.isCover());
     if (stickerRecord != null) {
-      try (InputStream stream = PartAuthority.getAttachmentStream(context, stickerRecord.getUri())) {
+      try (InputStream stream = PartAuthority.getAttachmentStream(context, stickerRecord.uri)) {
         if (stream != null) {
           Log.w(TAG, "Sticker already downloaded.");
           return;

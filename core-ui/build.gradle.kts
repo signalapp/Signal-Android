@@ -1,5 +1,6 @@
 plugins {
   id("signal-library")
+  alias(libs.plugins.compose.compiler)
 }
 
 android {

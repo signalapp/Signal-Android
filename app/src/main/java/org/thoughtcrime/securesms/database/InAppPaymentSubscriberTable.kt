@@ -13,17 +13,21 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.DatabaseSerializer
 import org.signal.core.util.Serializer
 import org.signal.core.util.insertInto
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import java.util.Currency
 
@@ -61,7 +65,13 @@ class InAppPaymentSubscriberTable(
     /** Specifies which payment method was utilized for the latest transaction with this id */
     private const val PAYMENT_METHOD_TYPE = "payment_method_type"
 
-    const val CREATE_TABLE = """
+    /** Google Play Billing purchase token, only valid for backup payments */
+    private const val PURCHASE_TOKEN = "purchase_token"
+
+    /** iOS original transaction id token, only valid for synced backups that originated on iOS */
+    private const val ORIGINAL_TRANSACTION_ID = "original_transaction_id"
+
+    val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $SUBSCRIBER_ID TEXT NOT NULL UNIQUE,
@@ -69,7 +79,14 @@ class InAppPaymentSubscriberTable(
         $TYPE INTEGER NOT NULL,
         $REQUIRES_CANCEL INTEGER DEFAULT 0,
         $PAYMENT_METHOD_TYPE INTEGER DEFAULT 0,
-        UNIQUE($CURRENCY_CODE, $TYPE)
+        $PURCHASE_TOKEN TEXT,
+        $ORIGINAL_TRANSACTION_ID INTEGER,
+        UNIQUE($CURRENCY_CODE, $TYPE),
+        CHECK ( 
+          ($CURRENCY_CODE != '' AND $PURCHASE_TOKEN IS NULL AND $ORIGINAL_TRANSACTION_ID IS NULL AND $TYPE = ${TypeSerializer.serialize(InAppPaymentSubscriberRecord.Type.DONATION)})
+          OR ($CURRENCY_CODE = '' AND $PURCHASE_TOKEN IS NOT NULL AND $ORIGINAL_TRANSACTION_ID IS NULL AND $TYPE = ${TypeSerializer.serialize(InAppPaymentSubscriberRecord.Type.BACKUP)})
+          OR ($CURRENCY_CODE = '' AND $PURCHASE_TOKEN IS NULL AND $ORIGINAL_TRANSACTION_ID IS NOT NULL AND $TYPE = ${TypeSerializer.serialize(InAppPaymentSubscriberRecord.Type.BACKUP)})
+        )
       )
     """
   }
@@ -80,18 +97,29 @@ class InAppPaymentSubscriberTable(
    * This is a destructive, mutating operation. For setting specific values, prefer the alternative setters available on this table class.
    */
   fun insertOrReplace(inAppPaymentSubscriberRecord: InAppPaymentSubscriberRecord) {
-    Log.i(TAG, "Setting subscriber for currency ${inAppPaymentSubscriberRecord.currency.currencyCode}", Exception(), true)
+    if (inAppPaymentSubscriberRecord.type == InAppPaymentSubscriberRecord.Type.DONATION) {
+      Log.i(TAG, "Setting subscriber for currency ${inAppPaymentSubscriberRecord.currency?.currencyCode}", Exception(), true)
+    }
 
     writableDatabase.withinTransaction { db ->
       db.insertInto(TABLE_NAME)
         .values(InAppPaymentSubscriberSerializer.serialize(inAppPaymentSubscriberRecord))
         .run(conflictStrategy = SQLiteDatabase.CONFLICT_REPLACE)
 
-      SignalStore.inAppPayments.setSubscriberCurrency(
-        inAppPaymentSubscriberRecord.currency,
-        inAppPaymentSubscriberRecord.type
-      )
+      if (inAppPaymentSubscriberRecord.type == InAppPaymentSubscriberRecord.Type.DONATION) {
+        SignalStore.inAppPayments.setRecurringDonationCurrency(
+          inAppPaymentSubscriberRecord.currency!!
+        )
+      }
     }
+  }
+
+  fun getBackupsSubscriber(): InAppPaymentSubscriberRecord? {
+    return readableDatabase.select()
+      .from(TABLE_NAME)
+      .where("$TYPE = ?", TypeSerializer.serialize(InAppPaymentSubscriberRecord.Type.BACKUP))
+      .run()
+      .readToSingleObject(InAppPaymentSubscriberSerializer)
   }
 
   /**
@@ -117,10 +145,11 @@ class InAppPaymentSubscriberTable(
   /**
    * Retrieves a subscriber for the given type by the currency code.
    */
-  fun getByCurrencyCode(currencyCode: String, type: InAppPaymentSubscriberRecord.Type): InAppPaymentSubscriberRecord? {
-    return readableDatabase.select()
+  fun getByCurrencyCode(currencyCode: String): InAppPaymentSubscriberRecord? {
+    return readableDatabase
+      .select()
       .from(TABLE_NAME)
-      .where("$TYPE = ? AND $CURRENCY_CODE = ?", TypeSerializer.serialize(type), currencyCode.uppercase())
+      .where("$CURRENCY_CODE = ?", currencyCode.uppercase())
       .run()
       .readToSingleObject(InAppPaymentSubscriberSerializer)
   }
@@ -129,7 +158,8 @@ class InAppPaymentSubscriberTable(
    * Retrieves a subscriber by SubscriberId
    */
   fun getBySubscriberId(subscriberId: SubscriberId): InAppPaymentSubscriberRecord? {
-    return readableDatabase.select()
+    return readableDatabase
+      .select()
       .from(TABLE_NAME)
       .where("$SUBSCRIBER_ID = ?", subscriberId.serialize())
       .run()
@@ -140,10 +170,12 @@ class InAppPaymentSubscriberTable(
     override fun serialize(data: InAppPaymentSubscriberRecord): ContentValues {
       return contentValuesOf(
         SUBSCRIBER_ID to data.subscriberId.serialize(),
-        CURRENCY_CODE to data.currency.currencyCode.uppercase(),
+        CURRENCY_CODE to (data.currency?.currencyCode?.uppercase() ?: ""),
         TYPE to TypeSerializer.serialize(data.type),
         REQUIRES_CANCEL to data.requiresCancel,
-        PAYMENT_METHOD_TYPE to data.paymentMethodType.value
+        PAYMENT_METHOD_TYPE to data.paymentMethodType.value,
+        PURCHASE_TOKEN to data.iapSubscriptionId?.purchaseToken,
+        ORIGINAL_TRANSACTION_ID to data.iapSubscriptionId?.originalTransactionId
       )
     }
 
@@ -152,11 +184,35 @@ class InAppPaymentSubscriberTable(
       val currencyCode = input.requireNonNullString(CURRENCY_CODE).takeIf { it.isNotEmpty() }
       return InAppPaymentSubscriberRecord(
         subscriberId = SubscriberId.deserialize(input.requireNonNullString(SUBSCRIBER_ID)),
-        currency = currencyCode?.let { Currency.getInstance(it) } ?: SignalStore.inAppPayments.getSubscriptionCurrency(type),
+        currency = resolveCurrency(currencyCode, type),
         type = type,
         requiresCancel = input.requireBoolean(REQUIRES_CANCEL) || currencyCode.isNullOrBlank(),
-        paymentMethodType = InAppPaymentData.PaymentMethodType.fromValue(input.requireInt(PAYMENT_METHOD_TYPE)) ?: InAppPaymentData.PaymentMethodType.UNKNOWN
+        paymentMethodType = InAppPaymentData.PaymentMethodType.fromValue(input.requireInt(PAYMENT_METHOD_TYPE)) ?: InAppPaymentData.PaymentMethodType.UNKNOWN,
+        iapSubscriptionId = readIAPSubscriptionIdFromCursor(input)
       )
+    }
+
+    private fun resolveCurrency(currencyCode: String?, type: InAppPaymentSubscriberRecord.Type): Currency? {
+      return currencyCode?.let {
+        Currency.getInstance(currencyCode)
+      } ?: if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
+        SignalStore.inAppPayments.getRecurringDonationCurrency()
+      } else {
+        null
+      }
+    }
+
+    private fun readIAPSubscriptionIdFromCursor(cursor: Cursor): IAPSubscriptionId? {
+      val purchaseToken = cursor.requireString(PURCHASE_TOKEN)
+      val originalTransactionId = cursor.requireLongOrNull(ORIGINAL_TRANSACTION_ID)
+
+      return if (purchaseToken.isNotNullOrBlank()) {
+        IAPSubscriptionId.GooglePlayBillingPurchaseToken(purchaseToken)
+      } else if (originalTransactionId != null) {
+        IAPSubscriptionId.AppleIAPOriginalTransactionId(originalTransactionId)
+      } else {
+        null
+      }
     }
   }
 

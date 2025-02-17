@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.manage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -9,9 +10,15 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -31,6 +38,9 @@ class ManageDonationsViewModel : ViewModel() {
   private val networkDisposable: Disposable
 
   val state: LiveData<ManageDonationsState> = store.stateLiveData
+  private val internalDisplayThanksBottomSheetPulse = MutableSharedFlow<Badge>()
+
+  val displayThanksBottomSheetPulse: SharedFlow<Badge> = internalDisplayThanksBottomSheetPulse
 
   init {
     store.update(Recipient.self().live().liveDataResolved) { self, state ->
@@ -45,6 +55,13 @@ class ManageDonationsViewModel : ViewModel() {
           retry()
         }
       }
+
+    viewModelScope.launch {
+      ManageDonationsRepository.consumeSuccessfulIdealPayments()
+        .collectLatest {
+          internalDisplayThanksBottomSheetPulse.emit(Badges.fromDatabaseBadge(it.data.badge!!))
+        }
+    }
   }
 
   override fun onCleared() {
@@ -145,6 +162,7 @@ class ManageDonationsViewModel : ViewModel() {
     return when (status) {
       DonationRedemptionJobStatus.FailedSubscription -> ManageDonationsState.RedemptionState.FAILED
       DonationRedemptionJobStatus.None -> ManageDonationsState.RedemptionState.NONE
+      DonationRedemptionJobStatus.PendingKeepAlive -> ManageDonationsState.RedemptionState.SUBSCRIPTION_REFRESH
 
       is DonationRedemptionJobStatus.PendingExternalVerification,
       DonationRedemptionJobStatus.PendingReceiptRedemption,

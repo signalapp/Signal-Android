@@ -79,7 +79,7 @@ public class SearchRepository {
     this.recipientTable    = SignalDatabase.recipients();
     this.mentionTable      = SignalDatabase.mentions();
     this.messageTable      = SignalDatabase.messages();
-    this.contactRepository = new ContactRepository(context, noteToSelfTitle);
+    this.contactRepository = new ContactRepository(noteToSelfTitle);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
@@ -129,7 +129,7 @@ public class SearchRepository {
     }
 
     Set<RecipientId> filteredContacts = new LinkedHashSet<>();
-    try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query)) {
+    try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query, RecipientTable.IncludeSelfMode.IncludeWithoutRemap.INSTANCE)) {
       while (cursor != null && cursor.moveToNext()) {
         filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientTable.ID)));
       }

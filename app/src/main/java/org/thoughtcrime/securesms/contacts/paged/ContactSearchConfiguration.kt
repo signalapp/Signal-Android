@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts.paged
 
 import org.thoughtcrime.securesms.contacts.HeaderAction
+import org.thoughtcrime.securesms.database.RecipientTable
 
 /**
  * A strongly typed descriptor of how a given list of contacts should be formatted
@@ -76,7 +77,7 @@ class ContactSearchConfiguration private constructor(
      * Model: [ContactSearchAdapter.RecipientModel]
      */
     data class Individuals(
-      val includeSelf: Boolean,
+      val includeSelfMode: RecipientTable.IncludeSelfMode,
       val transportType: TransportType,
       override val includeHeader: Boolean,
       override val expandConfig: ExpandConfig? = null,

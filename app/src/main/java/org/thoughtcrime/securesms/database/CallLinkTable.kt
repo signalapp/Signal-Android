@@ -348,7 +348,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun deleteNonAdminCallLinks(roomIds: Set<CallLinkRoomId>) {
-    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
+    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds.map { it.serialize() })
 
     queries.forEach {
       writableDatabase.delete(TABLE_NAME)
@@ -368,7 +368,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun getAdminCallLinks(roomIds: Set<CallLinkRoomId>): Set<CallLink> {
-    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds)
+    val queries = SqlUtil.buildCollectionQuery(ROOM_ID, roomIds.map { it.serialize() })
 
     return queries.map {
       writableDatabase
@@ -386,7 +386,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         .where("$ADMIN_KEY IS NULL")
         .run()
     } else {
-      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).forEach {
+      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds.map { it.serialize() }, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).forEach {
         writableDatabase.delete(TABLE_NAME)
           .where("${it.where} AND $ADMIN_KEY IS NULL", it.whereArgs)
           .run()
@@ -404,7 +404,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         .readToList { CallLinkDeserializer.deserialize(it) }
         .toSet()
     } else {
-      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).map {
+      SqlUtil.buildCollectionQuery(ROOM_ID, roomIds.map { it.serialize() }, collectionOperator = SqlUtil.CollectionOperator.NOT_IN).map {
         writableDatabase
           .select()
           .from(TABLE_NAME)
@@ -455,7 +455,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       $limitOffset
     """.trimIndent()
 
-    return readableDatabase.query(statement, searchFilter?.whereArgs)
+    return readableDatabase.query(statement, searchFilter?.whereArgs ?: arrayOf())
   }
 
   private object CallLinkSerializer : Serializer<CallLink, ContentValues> {
@@ -526,13 +526,11 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    writableDatabase.update(TABLE_NAME)
-      .values(
-        contentValuesOf(
-          RECIPIENT_ID to toId.toLong()
-        )
-      )
+    val count = writableDatabase.update(TABLE_NAME)
+      .values(RECIPIENT_ID to toId.toLong())
       .where("$RECIPIENT_ID = ?", fromId.toLong())
       .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 }

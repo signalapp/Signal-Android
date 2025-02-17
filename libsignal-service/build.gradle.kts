@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -31,9 +32,11 @@ java {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-  kotlinOptions {
-    jvmTarget = signalKotlinJvmTarget
-    freeCompilerArgs = listOf("-Xjvm-default=all")
+  kotlin {
+    compilerOptions {
+      jvmTarget = JvmTarget.fromTarget(signalKotlinJvmTarget)
+      freeCompilerArgs = listOf("-Xjvm-default=all")
+    }
   }
 }
 
@@ -101,11 +104,9 @@ dependencies {
   implementation(project(":core-util-jvm"))
 
   testImplementation(testLibs.junit.junit)
-  testImplementation(testLibs.assertj.core)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.conscrypt.openjdk.uber)
-  testImplementation(testLibs.mockito.core)
   testImplementation(testLibs.mockk)
-  testImplementation(testLibs.hamcrest.hamcrest)
 
   testFixturesImplementation(libs.libsignal.client)
   testFixturesImplementation(testLibs.junit.junit)

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.logsubmit
 import android.content.Context
 import org.signal.core.util.getAllIndexDefinitions
 import org.signal.core.util.getAllTableDefinitions
+import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeys
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.helpers.SignalDatabaseMigrations
@@ -36,6 +37,12 @@ class LogSectionDatabaseSchema : LogSection {
     builder.append("--- Foreign Keys").append("\n")
     SignalDatabase.rawDatabase.getForeignKeys().forEach {
       builder.append("${it.table}.${it.column} DEPENDS ON ${it.dependsOnTable}.${it.dependsOnColumn}, ON DELETE ${it.onDelete}").append("\n")
+    }
+    builder.append("\n\n")
+
+    builder.append("--- Triggers").append("\n")
+    SignalDatabase.rawDatabase.getAllTriggerDefinitions().forEach {
+      builder.append(it.statement).append("\n")
     }
     builder.append("\n\n")
 

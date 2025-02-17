@@ -176,10 +176,6 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
 
       if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
         receivedDate.setText(formatBoldString(R.string.message_details_header_received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
-        receivedDate.setOnLongClickListener(v -> {
-          copyToClipboard(String.valueOf(messageRecord.getDateReceived()));
-          return true;
-        });
         receivedDate.setVisibility(View.VISIBLE);
       } else {
         receivedDate.setVisibility(View.GONE);

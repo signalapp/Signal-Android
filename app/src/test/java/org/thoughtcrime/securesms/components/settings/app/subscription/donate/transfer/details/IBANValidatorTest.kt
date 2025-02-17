@@ -10,9 +10,17 @@ import org.junit.Test
 
 class IBANValidatorTest {
   companion object {
+    private const val FI_IBAN = "FI2112345600000785"
     private const val VALID_IBAN = "GB82WEST12345698765432"
     private const val INVALID_IBAN = "GB82WEST12335698765432"
     private const val INVALID_COUNTRY = "US82WEST12335698765432"
+  }
+
+  @Test
+  fun `Given a finnish IBAN, when I validate, then I expect POTENTIALLY_VALID`() {
+    val actual = IBANValidator.validate(FI_IBAN, false)
+
+    assertEquals(IBANValidator.Validity.COMPLETELY_VALID, actual)
   }
 
   @Test

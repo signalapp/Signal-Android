@@ -9,7 +9,8 @@ import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
+import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
 
 /**
  * State for driving find by number/username screen.
@@ -17,12 +18,11 @@ import org.thoughtcrime.securesms.registration.util.CountryPrefix
 data class FindByState(
   val mode: FindByMode,
   val userEntry: String = "",
-  val supportedCountryPrefixes: List<CountryPrefix> = PhoneNumberUtil.getInstance().supportedCallingCodes
-    .map { CountryPrefix(it, PhoneNumberUtil.getInstance().getRegionCodeForCountryCode(it)) }
-    .sortedBy { it.digits.toString() },
-  val selectedCountryPrefix: CountryPrefix = supportedCountryPrefixes.first(),
-  val countryPrefixSearchEntry: String = "",
-  val isLookupInProgress: Boolean = false
+  val supportedCountries: List<Country> = CountryUtils.getCountries(),
+  val filteredCountries: List<Country> = emptyList(),
+  val selectedCountry: Country = supportedCountries.first(),
+  val isLookupInProgress: Boolean = false,
+  val query: String = ""
 ) {
   companion object {
     fun startingState(self: Recipient, mode: FindByMode): FindByState {
@@ -36,7 +36,7 @@ data class FindByState(
 
       val state = FindByState(mode = mode)
       return state.copy(
-        selectedCountryPrefix = state.supportedCountryPrefixes.firstOrNull { it.digits == countryCode } ?: state.supportedCountryPrefixes.first()
+        selectedCountry = state.supportedCountries.firstOrNull { it.countryCode == countryCode } ?: state.supportedCountries.first()
       )
     }
   }

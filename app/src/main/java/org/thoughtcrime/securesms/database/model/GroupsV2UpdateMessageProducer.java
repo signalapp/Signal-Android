@@ -233,9 +233,10 @@ final class GroupsV2UpdateMessageProducer {
       updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.revokerAci, R.drawable.ic_update_group_decline_16));
     }
   }
+
   private void describeGroupExpirationTimerUpdate(@NonNull GroupExpirationTimerUpdate update, @NonNull List<UpdateDescription> updates) {
     final int duration = Math.toIntExact(update.expiresInMs / 1000);
-    String time = ExpirationUtil.getExpirationDisplayValue(context, duration);
+    String    time     = ExpirationUtil.getExpirationDisplayValue(context, duration);
     if (update.updaterAci == null) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
     } else {
@@ -269,11 +270,13 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeGroupV2MigrationDroppedMembersUpdate(@NonNull GroupV2MigrationDroppedMembersUpdate update, @NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed, update.droppedMembersCount, update.droppedMembersCount), R.drawable.ic_update_group_remove_16));
+    updates.add(updateDescription(context.getResources()
+                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed, update.droppedMembersCount, update.droppedMembersCount), R.drawable.ic_update_group_remove_16));
   }
 
   private void describeGroupV2MigrationInvitedMembersUpdate(@NonNull GroupV2MigrationInvitedMembersUpdate update, @NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited, update.invitedMembersCount, update.invitedMembersCount), R.drawable.ic_update_group_remove_16));
+    updates.add(updateDescription(context.getResources()
+                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited, update.invitedMembersCount, update.invitedMembersCount), R.drawable.ic_update_group_remove_16));
   }
 
   private void describeGroupV2MigrationUpdate(@NonNull GroupV2MigrationUpdate update, @NonNull List<UpdateDescription> updates) {
@@ -357,7 +360,7 @@ final class GroupsV2UpdateMessageProducer {
     boolean requestingMemberIsYou = selfIds.matches(update.requestorAci);
 
     if (requestingMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), R.drawable.ic_update_group_decline_16));
     } else {
       updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, update.requestorAci, R.drawable.ic_update_group_decline_16));
     }
@@ -397,7 +400,13 @@ final class GroupsV2UpdateMessageProducer {
         if (requestingMemberIsYou) {
           updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          boolean editorIsYou = selfIds.matches(update.updaterAci);
+
+          if (editorIsYou) {
+            updates.add(updateDescription(R.string.MessageRecord_you_denied_a_request_to_join_the_group_from_s, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          } else {
+            updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          }
         }
       }
     }
@@ -501,6 +510,7 @@ final class GroupsV2UpdateMessageProducer {
       updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, update.inviteeCount, update.inviterAci, update.inviteeCount, R.drawable.ic_update_group_add_16));
     }
   }
+
   private void describeSelfInvitedOtherUserToGroupUpdate(@NonNull SelfInvitedOtherUserToGroupUpdate update, @NonNull List<UpdateDescription> updates) {
     updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, update.inviteeServiceId, R.drawable.ic_update_group_add_16));
   }
@@ -662,12 +672,17 @@ final class GroupsV2UpdateMessageProducer {
 
   private AccessControl.AccessRequired backupGv2AccessLevelToGroups(@NonNull GroupV2AccessLevel accessLevel) {
     switch (accessLevel) {
-      case ANY: return AccessControl.AccessRequired.ANY;
-      case MEMBER: return AccessControl.AccessRequired.MEMBER;
-      case ADMINISTRATOR: return AccessControl.AccessRequired.ADMINISTRATOR;
-      case UNSATISFIABLE: return AccessControl.AccessRequired.UNSATISFIABLE;
+      case ANY:
+        return AccessControl.AccessRequired.ANY;
+      case MEMBER:
+        return AccessControl.AccessRequired.MEMBER;
+      case ADMINISTRATOR:
+        return AccessControl.AccessRequired.ADMINISTRATOR;
+      case UNSATISFIABLE:
+        return AccessControl.AccessRequired.UNSATISFIABLE;
       default:
-      case UNKNOWN: return AccessControl.AccessRequired.UNKNOWN;
+      case UNKNOWN:
+        return AccessControl.AccessRequired.UNKNOWN;
     }
   }
 
@@ -1483,7 +1498,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull ByteString serviceId1Bytes,
                                               @DrawableRes int iconResource)
   {
-    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
@@ -1502,8 +1517,8 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull ByteString serviceId2Bytes,
                                               @DrawableRes int iconResource)
   {
-    ACI serviceId1 = ACI.parseOrUnknown(serviceId1Bytes);
-    ACI serviceId2 = ACI.parseOrUnknown(serviceId2Bytes);
+    ServiceId serviceId1 = ServiceId.parseOrUnknown(serviceId1Bytes);
+    ServiceId serviceId2 = ServiceId.parseOrUnknown(serviceId2Bytes);
 
     RecipientId recipientId1 = RecipientId.from(serviceId1);
     RecipientId recipientId2 = RecipientId.from(serviceId2);
@@ -1525,7 +1540,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull Object formatArg,
                                               @DrawableRes int iconResource)
   {
-    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(
@@ -1546,7 +1561,7 @@ final class GroupsV2UpdateMessageProducer {
                                               @NonNull Object formatArg,
                                               @DrawableRes int iconResource)
   {
-    ACI         serviceId   = ACI.parseOrUnknown(serviceId1Bytes);
+    ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
 
     return UpdateDescription.mentioning(

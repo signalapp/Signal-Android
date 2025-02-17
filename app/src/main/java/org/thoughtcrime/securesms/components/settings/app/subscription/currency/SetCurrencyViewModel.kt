@@ -24,7 +24,7 @@ class SetCurrencyViewModel(
   private val store = Store(
     SetCurrencyState(
       selectedCurrencyCode = if (inAppPaymentType.recurring) {
-        SignalStore.inAppPayments.getSubscriptionCurrency(inAppPaymentType.requireSubscriberType()).currencyCode
+        SignalStore.inAppPayments.getRecurringDonationCurrency().currencyCode
       } else {
         SignalStore.inAppPayments.getOneTimeCurrency().currencyCode
       },
@@ -33,6 +33,10 @@ class SetCurrencyViewModel(
         .sortedWith(CurrencyComparator(BuildConfig.DEFAULT_CURRENCIES.split(",")))
     )
   )
+
+  init {
+    check(inAppPaymentType != InAppPaymentType.RECURRING_BACKUP) { "Setting currency is unsupported for backups." }
+  }
 
   val state: LiveData<SetCurrencyState> = store.stateLiveData
 
@@ -43,7 +47,7 @@ class SetCurrencyViewModel(
       SignalStore.inAppPayments.setOneTimeCurrency(Currency.getInstance(selectedCurrencyCode))
     } else {
       val currency = Currency.getInstance(selectedCurrencyCode)
-      val subscriber = InAppPaymentsRepository.getSubscriber(currency, inAppPaymentType.requireSubscriberType())
+      val subscriber = InAppPaymentsRepository.getRecurringDonationSubscriber(currency)
 
       if (subscriber != null) {
         InAppPaymentsRepository.setSubscriber(subscriber)
@@ -54,7 +58,8 @@ class SetCurrencyViewModel(
             currency = currency,
             type = inAppPaymentType.requireSubscriberType(),
             requiresCancel = false,
-            paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+            paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN,
+            iapSubscriptionId = null
           )
         )
       }

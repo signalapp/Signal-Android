@@ -54,6 +54,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentResultListener
@@ -532,7 +533,9 @@ class ConversationFragment :
 
   private val motionEventRelay: MotionEventRelay by viewModels(ownerProducer = { requireActivity() })
 
-  private val actionModeCallback = ActionModeCallback()
+  private val actionModeCallback by lazy {
+    ActionModeCallback()
+  }
 
   private val container: InputAwareConstraintLayout
     get() = requireView() as InputAwareConstraintLayout
@@ -698,8 +701,6 @@ class ConversationFragment :
     }
 
     inputPanel.onPause()
-
-    viewModel.markLastSeen()
 
     EventBus.getDefault().unregister(this)
   }
@@ -895,6 +896,7 @@ class ConversationFragment :
       .subscribeOn(Schedulers.io())
       .doOnSuccess { state ->
         SignalLocalMetrics.ConversationOpen.onDataLoaded()
+        conversationItemDecorations.selfRecipientId = Recipient.self().id
         conversationItemDecorations.setFirstUnreadCount(state.meta.unreadCount)
         colorizer.onGroupMembershipChanged(state.meta.groupMemberAcis)
       }
@@ -1278,25 +1280,6 @@ class ConversationFragment :
         Optional.empty()
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
-    }
-  }
-
-  private fun calculateCharactersRemaining() {
-    val messageBody: String = binding.conversationInputPanel.embeddedTextEditor.textTrimmed.toString()
-    val charactersLeftView: TextView = binding.conversationInputSpaceLeft
-    val characterState = MessageSendType.SignalMessageSendType.calculateCharacters(messageBody)
-
-    if (characterState.charactersRemaining <= 15 || characterState.messagesSpent > 1) {
-      charactersLeftView.text = String.format(
-        Locale.getDefault(),
-        "%d/%d (%d)",
-        characterState.charactersRemaining,
-        characterState.maxTotalMessageSize,
-        characterState.messagesSpent
-      )
-      charactersLeftView.visibility = View.VISIBLE
-    } else {
-      charactersLeftView.visibility = View.GONE
     }
   }
 
@@ -2400,7 +2383,7 @@ class ConversationFragment :
 
     val attachments = SaveAttachmentUtil.getAttachmentsForRecord(record)
 
-    SaveAttachmentUtil.showWarningDialog(requireContext(), attachments.size) { _, _ ->
+    SaveAttachmentUtil.showWarningDialogIfNecessary(requireContext(), attachments.size) {
       if (StorageUtil.canWriteToMediaStore()) {
         performAttachmentSave(attachments)
       } else {
@@ -2501,13 +2484,14 @@ class ConversationFragment :
     override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
       val recipient = viewModel.recipientSnapshot ?: return false
 
-      return actionMode == null && MenuState.canReplyToMessage(
-        recipient,
-        MenuState.isActionMessage(conversationMessage.messageRecord),
-        conversationMessage.messageRecord,
-        viewModel.hasMessageRequestState,
-        conversationGroupViewModel.isNonAdminInAnnouncementGroup()
-      )
+      return actionMode == null &&
+        MenuState.canReplyToMessage(
+          recipient,
+          MenuState.isActionMessage(conversationMessage.messageRecord),
+          conversationMessage.messageRecord,
+          viewModel.hasMessageRequestState,
+          conversationGroupViewModel.isNonAdminInAnnouncementGroup()
+        )
     }
   }
 
@@ -3256,7 +3240,7 @@ class ConversationFragment :
 
                 binding.conversationItemRecycler.suppressLayout(false)
                 if (selectedConversationModel.audioUri != null) {
-                  getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.getId())
+                  getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
                 }
 
                 WindowUtil.setLightStatusBarFromTheme(requireActivity())
@@ -3326,12 +3310,12 @@ class ConversationFragment :
     }
 
     private fun MessageRecord.getAudioUriForLongClick(): Uri? {
-      val playbackState = getVoiceNoteMediaController().voiceNotePlaybackState.value
-      if (playbackState == null || !playbackState.isPlaying) {
+      if (!hasAudio()) {
         return null
       }
 
-      if (hasAudio() || !isMms) {
+      val playbackState = getVoiceNoteMediaController().voiceNotePlaybackState.value
+      if (playbackState == null || !playbackState.isPlaying) {
         return null
       }
 
@@ -3661,7 +3645,7 @@ class ConversationFragment :
       mode.title = calculateSelectedItemCount()
 
       searchMenuItem?.collapseActionView()
-      binding.toolbar.visible = false
+      binding.toolbar.isInvisible = true
       if (scheduledMessagesStub.isVisible) {
         reShowScheduleMessagesBar = true
         scheduledMessagesStub.visibility = View.GONE
@@ -3679,7 +3663,7 @@ class ConversationFragment :
       adapter.clearSelection()
       setBottomActionBarVisibility(false)
 
-      binding.toolbar.visible = true
+      binding.toolbar.isInvisible = false
       if (reShowScheduleMessagesBar) {
         scheduledMessagesStub.visibility = View.VISIBLE
         reShowScheduleMessagesBar = false
@@ -3953,7 +3937,10 @@ class ConversationFragment :
 
   //region Compose + Send Callbacks
 
-  private inner class SendButtonListener : View.OnClickListener, OnEditorActionListener, SendButton.ScheduledSendListener {
+  private inner class SendButtonListener :
+    View.OnClickListener,
+    OnEditorActionListener,
+    SendButton.ScheduledSendListener {
     override fun onClick(v: View) {
       sendMessage()
     }
@@ -4020,7 +4007,6 @@ class ConversationFragment :
     }
 
     override fun afterTextChanged(s: Editable) {
-      calculateCharactersRemaining()
       if (composeText.textTrimmed.isEmpty() || beforeLength == 0) {
         composeText.postDelayed({
           if (lifecycle.currentState.isAtLeast(Lifecycle.State.CREATED)) {
@@ -4282,7 +4268,10 @@ class ConversationFragment :
     override fun create(): Fragment = KeyboardPagerFragment()
   }
 
-  private inner class KeyboardEvents : OnBackPressedCallback(false), InputAwareConstraintLayout.Listener, InsetAwareConstraintLayout.KeyboardStateListener {
+  private inner class KeyboardEvents :
+    OnBackPressedCallback(false),
+    InputAwareConstraintLayout.Listener,
+    InsetAwareConstraintLayout.KeyboardStateListener {
     override fun handleOnBackPressed() {
       container.hideInput()
     }

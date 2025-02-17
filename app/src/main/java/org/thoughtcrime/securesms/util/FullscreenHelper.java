@@ -94,6 +94,10 @@ public final class FullscreenHelper {
       boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
 
       for (View view : views) {
+        if (view == null) {
+          continue;
+        }
+
         view.animate()
             .alpha(hide ? 0 : 1)
             .withStartAction(() -> {

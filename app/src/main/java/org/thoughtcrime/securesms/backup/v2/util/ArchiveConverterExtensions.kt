@@ -62,7 +62,7 @@ fun FilePointer?.toLocalAttachment(
       isGif = gif,
       caption = Optional.ofNullable(this.caption),
       blurHash = Optional.ofNullable(this.blurHash),
-      uploadTimestamp = this.attachmentLocator.uploadTimestamp ?: 0,
+      uploadTimestamp = this.attachmentLocator.uploadTimestamp?.clampToValidBackupRange() ?: 0,
       uuid = UuidUtil.fromByteStringOrNull(uuid)
     )
     return PointerAttachment.forPointer(
@@ -165,10 +165,14 @@ fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, content
   builder.attachmentLocator = FilePointer.AttachmentLocator(
     cdnKey = this.remoteLocation,
     cdnNumber = this.cdn.cdnNumber,
-    uploadTimestamp = this.uploadTimestamp.takeIf { it > 0 },
+    uploadTimestamp = this.uploadTimestamp.takeIf { it > 0 }?.clampToValidBackupRange(),
     key = Base64.decode(remoteKey).toByteString(),
     size = this.size.toInt(),
     digest = this.remoteDigest.toByteString()
   )
   return builder.build()
+}
+
+fun Long.clampToValidBackupRange(): Long {
+  return this.coerceIn(0, 8640000000000000)
 }

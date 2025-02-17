@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.select
@@ -26,6 +27,8 @@ import org.whispersystems.signalservice.api.push.DistributionId
 class StorySendTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), RecipientIdDatabaseReference {
 
   companion object {
+    private val TAG = Log.tag(StorySendTable::class)
+
     const val TABLE_NAME = "story_sends"
     const val ID = "_id"
     const val MESSAGE_ID = "message_id"
@@ -210,12 +213,14 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     return null
   }
 
-  override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
-    val query = "$RECIPIENT_ID = ?"
-    val args = SqlUtil.buildArgs(oldId)
-    val values = contentValuesOf(RECIPIENT_ID to newId.serialize())
+  override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    val count = writableDatabase
+      .update(TABLE_NAME)
+      .values(RECIPIENT_ID to toId.serialize())
+      .where("$RECIPIENT_ID = ?", fromId.serialize())
+      .run()
 
-    writableDatabase.update(TABLE_NAME, values, query, args)
+    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
   }
 
   /**

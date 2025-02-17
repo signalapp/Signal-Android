@@ -118,22 +118,7 @@ class MediaSelectionRepository(context: Context) {
         StoryType.NONE
       }
 
-      if (MessageSender.isLocalSelfSend(context, singleRecipient, SendType.SIGNAL)) {
-        Log.i(TAG, "Local self-send. Skipping pre-upload.")
-        emitter.onSuccess(
-          MediaSendActivityResult(
-            recipientId = singleRecipient!!.id,
-            nonUploadedMedia = updatedMedia,
-            body = trimmedBody,
-            messageSendType = sendType,
-            isViewOnce = isViewOnce,
-            mentions = trimmedMentions,
-            bodyRanges = trimmedBodyRanges,
-            storyType = StoryType.NONE,
-            scheduledTime = scheduledTime
-          )
-        )
-      } else if (scheduledTime != -1L && storyType == StoryType.NONE) {
+      if (scheduledTime != -1L && storyType == StoryType.NONE) {
         Log.i(TAG, "Scheduled message. Skipping pre-upload.")
         if (contacts.isEmpty()) {
           emitter.onSuccess(
@@ -169,7 +154,7 @@ class MediaSelectionRepository(context: Context) {
           )
         )
       } else {
-        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody, sendType.calculateCharacters(trimmedBody).maxPrimaryMessageSize)
+        val splitMessage = MessageUtil.getSplitMessage(context, trimmedBody)
         val splitBody = splitMessage.body
 
         if (splitMessage.textSlide.isPresent) {
@@ -261,10 +246,6 @@ class MediaSelectionRepository(context: Context) {
     uploadRepository.deleteAbandonedAttachments()
   }
 
-  fun isLocalSelfSend(recipient: Recipient?): Boolean {
-    return MessageSender.isLocalSelfSend(context, recipient, SendType.SIGNAL)
-  }
-
   @WorkerThread
   private fun buildModelsToTransform(
     selectedMedia: List<Media>,
@@ -325,7 +306,7 @@ class MediaSelectionRepository(context: Context) {
         Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.contentType + "'. Skipping.")
       }
     }
-    val splitMessage = MessageUtil.getSplitMessage(context, body, sendType.calculateCharacters(body).maxPrimaryMessageSize)
+    val splitMessage = MessageUtil.getSplitMessage(context, body)
     val splitBody = splitMessage.body
     if (splitMessage.textSlide.isPresent) {
       slideDeck.addSlide(splitMessage.textSlide.get())

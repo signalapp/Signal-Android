@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
@@ -239,7 +240,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
     Activity activity = requireActivity();
 
-    if (RemoteConfig.messageBackups() && !SignalStore.registration().hasCompletedRestore()) {
+    if (RemoteConfig.messageBackups() && RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState())) {
       final Intent transferOrRestore = RestoreActivity.getRestoreIntent(activity);
       transferOrRestore.putExtra(PassphraseRequiredActivity.NEXT_INTENT_EXTRA, MainActivity.clearTop(requireContext()));
       startActivity(transferOrRestore);

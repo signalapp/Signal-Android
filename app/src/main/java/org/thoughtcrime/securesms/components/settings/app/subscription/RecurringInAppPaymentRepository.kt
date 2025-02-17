@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.LevelUpdateOperation
 import org.thoughtcrime.securesms.subscription.Subscription
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -109,36 +110,47 @@ object RecurringInAppPaymentRepository {
     return cancelCompletable.andThen(ensureSubscriberId(subscriberType, isRotation = true))
   }
 
-  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false): Completable {
-    Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
-    val subscriberId: SubscriberId = if (isRotation) {
-      SubscriberId.generate()
-    } else {
-      InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
-    }
+  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false, iapSubscriptionId: IAPSubscriptionId? = null): Completable {
+    return Single.fromCallable {
+      Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
 
-    return Single
-      .fromCallable {
-        donationsService.putSubscription(subscriberId)
+      if (isRotation) {
+        SubscriberId.generate()
+      } else {
+        InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
       }
-      .subscribeOn(Schedulers.io())
-      .flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement()
-      .doOnComplete {
-        Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
+    }.flatMap { subscriberId ->
+      Single
+        .fromCallable {
+          donationsService.putSubscription(subscriberId)
+        }
+        .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
+        .map { subscriberId }
+    }.doOnSuccess { subscriberId ->
+      Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
 
-        InAppPaymentsRepository.setSubscriber(
-          InAppPaymentSubscriberRecord(
-            subscriberId = subscriberId,
-            currency = SignalStore.inAppPayments.getSubscriptionCurrency(subscriberType),
-            type = subscriberType,
-            requiresCancel = false,
-            paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
-          )
+      InAppPaymentsRepository.setSubscriber(
+        InAppPaymentSubscriberRecord(
+          subscriberId = subscriberId,
+          currency = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+            SignalStore.inAppPayments.getRecurringDonationCurrency()
+          } else {
+            null
+          },
+          type = subscriberType,
+          requiresCancel = false,
+          paymentMethodType = if (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP) {
+            InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+          } else {
+            InAppPaymentData.PaymentMethodType.UNKNOWN
+          },
+          iapSubscriptionId = iapSubscriptionId
         )
+      )
 
-        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-        StorageSyncHelper.scheduleSyncForDataChange()
-      }
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }.ignoreElement().subscribeOn(Schedulers.io())
   }
 
   fun cancelActiveSubscriptionSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
@@ -212,7 +224,7 @@ object RecurringInAppPaymentRepository {
             AppDependencies.donationsService.updateSubscriptionLevel(
               subscriber.subscriberId,
               subscriptionLevel,
-              subscriber.currency.currencyCode,
+              subscriber.currency!!.currencyCode,
               levelUpdateOperation.idempotencyKey.serialize(),
               subscriberType.lock
             )
@@ -247,7 +259,7 @@ object RecurringInAppPaymentRepository {
               }.take(1).map {
                 if (it.data.error != null) {
                   Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
-                  throw DonationError.genericBadgeRedemptionFailure(errorSource)
+                  throw InAppPaymentError(it.data.error)
                 }
                 it
               }.firstOrError()

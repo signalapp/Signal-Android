@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
-import org.thoughtcrime.securesms.database.NotificationProfileDatabase
+import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 
 class EditNotificationProfileViewModel(private val profileId: Long, private val repository: NotificationProfilesRepository) : ViewModel() {
@@ -34,8 +34,8 @@ class EditNotificationProfileViewModel(private val profileId: Long, private val 
 
     return save.map { r ->
       when (r) {
-        is NotificationProfileDatabase.NotificationProfileChangeResult.Success -> SaveNotificationProfileResult.Success(r.notificationProfile, createMode)
-        NotificationProfileDatabase.NotificationProfileChangeResult.DuplicateName -> SaveNotificationProfileResult.DuplicateNameFailure
+        is NotificationProfileTables.NotificationProfileChangeResult.Success -> SaveNotificationProfileResult.Success(r.notificationProfile, createMode)
+        NotificationProfileTables.NotificationProfileChangeResult.DuplicateName -> SaveNotificationProfileResult.DuplicateNameFailure
       }
     }.observeOn(AndroidSchedulers.mainThread())
   }

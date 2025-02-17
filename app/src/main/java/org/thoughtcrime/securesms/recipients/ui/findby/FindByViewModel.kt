@@ -17,7 +17,7 @@ import org.signal.core.util.concurrent.safeBlockingGet
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientRepository
-import org.thoughtcrime.securesms.registration.util.CountryPrefix
+import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.util.UsernameUtil
 
 class FindByViewModel(
@@ -40,12 +40,8 @@ class FindByViewModel(
     internalState.value = state.value.copy(userEntry = cleansed)
   }
 
-  fun onCountryPrefixSearchEntryChanged(searchEntry: String) {
-    internalState.value = state.value.copy(countryPrefixSearchEntry = searchEntry)
-  }
-
-  fun onCountryPrefixSelected(countryPrefix: CountryPrefix) {
-    internalState.value = state.value.copy(selectedCountryPrefix = countryPrefix)
+  fun onCountrySelected(country: Country) {
+    internalState.value = state.value.copy(selectedCountry = country)
   }
 
   suspend fun onNextClicked(context: Context): FindByResult {
@@ -80,7 +76,7 @@ class FindByViewModel(
   @WorkerThread
   private fun performPhoneLookup(context: Context): FindByResult {
     val stateSnapshot = state.value
-    val countryCode = stateSnapshot.selectedCountryPrefix.digits
+    val countryCode = stateSnapshot.selectedCountry.countryCode
     val nationalNumber = stateSnapshot.userEntry.removePrefix(countryCode.toString())
 
     val e164 = "+$countryCode$nationalNumber"
@@ -90,6 +86,24 @@ class FindByViewModel(
       RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
       is RecipientRepository.LookupResult.NotFound -> FindByResult.NotFound(result.recipientId)
       is RecipientRepository.LookupResult.Success -> FindByResult.Success(result.recipientId)
+    }
+  }
+
+  fun filterCountries(filterBy: String) {
+    if (filterBy.isEmpty()) {
+      internalState.value = state.value.copy(
+        query = filterBy,
+        filteredCountries = emptyList()
+      )
+    } else {
+      internalState.value = state.value.copy(
+        query = filterBy,
+        filteredCountries = state.value.supportedCountries.filter { country: Country ->
+          country.name.contains(filterBy, ignoreCase = true) ||
+            country.countryCode.toString().contains(filterBy) ||
+            (filterBy.equals("usa", ignoreCase = true) && country.name.equals("United States", ignoreCase = true))
+        }
+      )
     }
   }
 }

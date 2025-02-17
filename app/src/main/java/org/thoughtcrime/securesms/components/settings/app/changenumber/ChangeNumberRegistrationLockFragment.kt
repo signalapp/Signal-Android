@@ -155,7 +155,6 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     when (requestResult) {
       is VerificationCodeRequestResult.Success -> Unit
       is VerificationCodeRequestResult.RateLimited -> onRateLimited()
-      is VerificationCodeRequestResult.AttemptsExhausted,
       is VerificationCodeRequestResult.RegistrationLocked -> {
         navigateToAccountLocked()
       }
@@ -166,7 +165,8 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
       is VerificationCodeRequestResult.ImpossibleNumber,
       is VerificationCodeRequestResult.InvalidTransportModeFailure,
       is VerificationCodeRequestResult.MalformedRequest,
-      is VerificationCodeRequestResult.MustRetry,
+      is VerificationCodeRequestResult.RequestVerificationCodeRateLimited,
+      is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited,
       is VerificationCodeRequestResult.NoSuchSession,
       is VerificationCodeRequestResult.NonNormalizedNumber,
       is VerificationCodeRequestResult.TokenNotAccepted,

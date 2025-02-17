@@ -13,14 +13,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 /**
  * Visual formatter for backup keys.
  *
- * @param length max length of key
  * @param chunkSize character count per group
  */
-class BackupKeyVisualTransformation(private val length: Int, private val chunkSize: Int) : VisualTransformation {
+class BackupKeyVisualTransformation(private val chunkSize: Int) : VisualTransformation {
   override fun filter(text: AnnotatedString): TransformedText {
     var output = ""
-    for (i in text.take(length).indices) {
-      output += text[i]
+    for ((i, c) in text.withIndex()) {
+      output += c
       if (i % chunkSize == chunkSize - 1) {
         output += " "
       }
@@ -38,7 +37,7 @@ class BackupKeyVisualTransformation(private val length: Int, private val chunkSi
     }
 
     override fun transformedToOriginal(offset: Int): Int {
-      return offset - (offset / chunkSize)
+      return offset - (offset / (chunkSize + 1))
     }
   }
 }

@@ -34,7 +34,7 @@ public final class GroupCallUpdateDetailsUtil {
     GroupCallUpdateDetails details = new GroupCallUpdateDetails.Builder()
         .startedCallUuid(Objects.toString(startedCallAci, ""))
         .startedCallTimestamp(groupCallChatUpdate.startedCallTimestamp)
-        .endedCallTimestamp(groupCallChatUpdate.endedCallTimestamp)
+        .endedCallTimestamp(groupCallChatUpdate.endedCallTimestamp != null ? groupCallChatUpdate.endedCallTimestamp : 0)
         .isCallFull(false)
         .isRingingOnLocalDevice(false)
         .build();

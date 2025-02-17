@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -11,6 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +24,7 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -434,20 +435,25 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     }
   }
 
-  public static void showWarningDialog(Context context, OnClickListener onAcceptListener) {
-    showWarningDialog(context, onAcceptListener, 1);
-  }
-
-  public static void showWarningDialog(Context context, OnClickListener onAcceptListener, int count) {
-    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
-    builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
-    builder.setIcon(R.drawable.symbol_error_triangle_fill_24);
-    builder.setCancelable(true);
-    builder.setMessage(context.getResources().getQuantityString(R.plurals.ConversationFragment_saving_n_media_to_storage_warning,
-                                                                count, count));
-    builder.setPositiveButton(R.string.yes, onAcceptListener);
-    builder.setNegativeButton(R.string.no, null);
-    builder.show();
+  public static void showWarningDialogIfNecessary(Context context, int count, Runnable onSave) {
+    if (SignalStore.uiHints().hasDismissedSaveStorageWarning()) {
+      onSave.run();
+    } else {
+      new MaterialAlertDialogBuilder(context)
+          .setView(R.layout.dialog_save_attachment)
+          .setTitle(R.string.ConversationFragment__save_to_phone)
+          .setCancelable(true)
+          .setMessage(context.getResources().getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
+          .setPositiveButton(R.string.save, ((dialog, i) -> {
+            CheckBox checkbox = ((AlertDialog) dialog).findViewById(R.id.checkbox);
+            if (checkbox.isChecked()) {
+              SignalStore.uiHints().markDismissedSaveStorageWarning();
+            }
+            onSave.run();
+          }))
+          .setNegativeButton(android.R.string.cancel, null)
+          .show();
+    }
   }
 }
 

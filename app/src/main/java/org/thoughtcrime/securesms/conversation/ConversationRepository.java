@@ -58,7 +58,7 @@ public class ConversationRepository {
     boolean                             showUniversalExpireTimerUpdate = false;
 
     if (lastSeen > 0) {
-      lastSeenPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
+      lastSeenPosition = SignalDatabase.messages().getMessagePositionByDateReceivedTimestamp(threadId, lastSeen, false);
     }
 
     if (lastSeenPosition <= 0) {
@@ -66,7 +66,7 @@ public class ConversationRepository {
     }
 
     if (lastSeen == 0 && lastScrolled > 0) {
-      lastScrolledPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
+      lastScrolledPosition = SignalDatabase.messages().getMessagePositionByDateReceivedTimestamp(threadId, lastScrolled, true);
     }
 
     if (!isMessageRequestAccepted) {

@@ -56,10 +56,10 @@ public final class ImageEditorStickerSelectActivity extends AppCompatActivity im
   @Override
   public void onStickerSelected(@NonNull StickerRecord sticker) {
     Intent intent = new Intent();
-    intent.setData(sticker.getUri());
+    intent.setData(sticker.uri);
     setResult(RESULT_OK, intent);
 
-    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.stickers().updateStickerLastUsedTime(sticker.getRowId(), System.currentTimeMillis()));
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.stickers().updateStickerLastUsedTime(sticker.rowId, System.currentTimeMillis()));
     ViewUtil.hideKeyboard(this, findViewById(android.R.id.content));
     finish();
   }

@@ -69,6 +69,7 @@ message InAppPaymentRedemptionJobData {
   }
 
   bool makePrimary = 3;
+  bool isFromAuthCheck = 4;
 }
 
 message DeleteSyncJobData {
@@ -144,4 +145,16 @@ message BackupMediaSnapshotSyncJobData {
 
 message DeviceNameChangeJobData {
   uint32 deviceId = 1;
+}
+
+message BackupMessagesJobData {
+  uint64 syncTime = 1;
+  string dataFile = 2;
+  ResumableUpload uploadSpec = 3;
+  string resumableUri = 4;
+}
+
+message NewLinkedDeviceNotificationJobData {
+  uint32 deviceId = 1;
+  uint64 deviceCreatedAt = 2;
 }

@@ -24,7 +24,24 @@ message ArchiveUploadProgressState {
         UploadingAttachments = 3;
     }
 
+    /**
+     * Describes the current phase the backup is in when we are exporting the database
+     * to the temporary file.
+     */
+    enum BackupPhase {
+        BackupPhaseNone = 0;
+        Account = 1;
+        Recipient = 2;
+        Thread = 3;
+        Call = 4;
+        Sticker = 5;
+        Message = 6;
+        NotificationProfile = 7;
+        ChatFolder = 8;
+    }
+
     State state = 1;
     uint64 completedAttachments = 2;
     uint64 totalAttachments = 3;
+    BackupPhase backupPhase = 4;
 }

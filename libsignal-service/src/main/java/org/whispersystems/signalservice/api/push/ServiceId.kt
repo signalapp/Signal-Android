@@ -98,6 +98,13 @@ sealed class ServiceId(val libSignalServiceId: LibSignalServiceId) {
     @JvmStatic
     @Throws(IllegalArgumentException::class)
     fun parseOrThrow(bytes: ByteString): ServiceId = parseOrThrow(bytes.toByteArray())
+
+    /** Parses a ServiceId serialized as a ByteString. Returns [ACI.UNKNOWN] if not parseable. */
+    @JvmStatic
+    @Throws(IllegalArgumentException::class)
+    fun parseOrUnknown(bytes: ByteString): ServiceId {
+      return parseOrNull(bytes) ?: ACI.UNKNOWN
+    }
   }
 
   val rawUuid: UUID = libSignalServiceId.rawUUID

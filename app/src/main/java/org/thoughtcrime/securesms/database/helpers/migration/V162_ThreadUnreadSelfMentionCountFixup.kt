@@ -22,7 +22,7 @@ object V162_ThreadUnreadSelfMentionCountFixup : SignalDatabaseMigration {
 
   @Suppress("SameParameterValue")
   private fun columnMissing(db: SupportSQLiteDatabase, table: String, column: String): Boolean {
-    db.query("PRAGMA table_info($table)", null).use { cursor ->
+    db.query("PRAGMA table_info($table)", arrayOf()).use { cursor ->
       val nameColumnIndex = cursor.getColumnIndexOrThrow("name")
       while (cursor.moveToNext()) {
         val name = cursor.getString(nameColumnIndex)

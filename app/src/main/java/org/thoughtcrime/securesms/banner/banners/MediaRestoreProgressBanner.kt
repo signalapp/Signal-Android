@@ -42,7 +42,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   private var totalRestoredSize: Long = 0
 
   override val enabled: Boolean
-    get() = SignalStore.backup.isRestoreInProgress || totalRestoredSize > 0
+    get() = SignalStore.backup.isMediaRestoreInProgress || totalRestoredSize > 0
 
   override val dataFlow: Flow<BackupStatusData> by lazy {
     SignalStore
@@ -73,6 +73,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
     BackupStatusBanner(
       data = model,
+      onBannerClick = listener::onBannerClick,
       onActionClick = listener::onActionClick,
       onDismissClick = listener::onDismissComplete
     )
@@ -107,14 +108,15 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
     return flow
       .throttleLatest(1.seconds)
       .map {
+        val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
+        val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
+        val completedBytes = totalRestoreSize - remainingAttachmentSize
+
         when {
-          !WifiConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
-          !NetworkConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET)
-          !BatteryNotLowConstraint.isMet() -> BackupStatusData.RestoringMedia(restoreStatus = BackupStatusData.RestoreStatus.LOW_BATTERY)
+          !WifiConstraint.isMet(AppDependencies.application) && !SignalStore.backup.restoreWithCellular -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
+          !NetworkConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET)
+          !BatteryNotLowConstraint.isMet() -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.LOW_BATTERY)
           else -> {
-            val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
-            val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-            val completedBytes = totalRestoreSize - remainingAttachmentSize
             val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
 
             if (availableBytes > -1L && remainingAttachmentSize > availableBytes) {
@@ -129,11 +131,13 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
   }
 
   interface RestoreProgressBannerListener {
+    fun onBannerClick()
     fun onActionClick(data: BackupStatusData)
     fun onDismissComplete()
   }
 
   private object EmptyListener : RestoreProgressBannerListener {
+    override fun onBannerClick() = Unit
     override fun onActionClick(data: BackupStatusData) = Unit
     override fun onDismissComplete() = Unit
   }

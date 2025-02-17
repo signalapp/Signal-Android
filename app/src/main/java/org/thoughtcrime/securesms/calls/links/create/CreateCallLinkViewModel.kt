@@ -53,6 +53,9 @@ class CreateCallLinkViewModel(
   private val internalShowAlreadyInACall = MutableStateFlow(false)
   val showAlreadyInACall: StateFlow<Boolean> = internalShowAlreadyInACall
 
+  private val internalIsLoadingAdminApprovalChange = MutableStateFlow(false)
+  val isLoadingAdminApprovalChange: StateFlow<Boolean> = internalIsLoadingAdminApprovalChange
+
   private val disposables = CompositeDisposable()
 
   init {
@@ -88,11 +91,12 @@ class CreateCallLinkViewModel(
         }
       }
       .observeOn(AndroidSchedulers.mainThread())
-  }
-
-  fun toggleApproveAllMembers(): Single<UpdateCallLinkResult> {
-    return setApproveAllMembers(_callLink.value.state.restrictions != Restrictions.ADMIN_APPROVAL)
-      .observeOn(AndroidSchedulers.mainThread())
+      .doOnSubscribe {
+        internalIsLoadingAdminApprovalChange.update { true }
+      }
+      .doFinally {
+        internalIsLoadingAdminApprovalChange.update { false }
+      }
   }
 
   fun setCallName(callName: String): Single<UpdateCallLinkResult> {

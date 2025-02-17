@@ -42,6 +42,10 @@ internal fun <M> SignalStoreValues.protoValue(key: String, adapter: ProtoAdapter
   return KeyValueProtoValue(key, adapter, this.store)
 }
 
+internal fun <M> SignalStoreValues.protoValue(key: String, default: M, adapter: ProtoAdapter<M>, onSet: ((M) -> Unit)? = null): SignalStoreValueDelegate<M> {
+  return KeyValueProtoWithDefaultValue(key, default, adapter, this.store, onSet)
+}
+
 internal fun <T> SignalStoreValueDelegate<T>.withPrecondition(precondition: () -> Boolean): SignalStoreValueDelegate<T> {
   return PreconditionDelegate(
     delegate = this,
@@ -60,7 +64,7 @@ internal fun <T> SignalStoreValueDelegate<T>.map(transform: (T) -> T): SignalSto
  * Kotlin delegate that serves as a base for all other value types. This allows us to only expose this sealed
  * class to callers and protect the individual implementations as private behind the various extension functions.
  */
-sealed class SignalStoreValueDelegate<T>(val store: KeyValueStore, open val default: T) {
+sealed class SignalStoreValueDelegate<T>(val store: KeyValueStore, open val default: T, private val onSet: ((T) -> Unit)? = null) {
 
   private var flow: Lazy<MutableStateFlow<T>> = lazy { MutableStateFlow(getValue(store)) }
 
@@ -70,6 +74,7 @@ sealed class SignalStoreValueDelegate<T>(val store: KeyValueStore, open val defa
 
   operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
     setValue(store, value)
+    onSet?.invoke(value)
     if (flow.isInitialized()) {
       flow.value.tryEmit(value)
     }
@@ -151,6 +156,30 @@ private class NullableBlobValue(private val key: String, default: ByteArray?, st
 
   override fun setValue(values: KeyValueStore, value: ByteArray?) {
     values.beginWrite().putBlob(key, value).apply()
+  }
+}
+
+private class KeyValueProtoWithDefaultValue<M>(
+  private val key: String,
+  default: M,
+  private val adapter: ProtoAdapter<M>,
+  store: KeyValueStore,
+  onSet: ((M) -> Unit)? = null
+) : SignalStoreValueDelegate<M>(store, default, onSet) {
+  override fun getValue(values: KeyValueStore): M {
+    return if (values.containsKey(key)) {
+      adapter.decode(values.getBlob(key, null))
+    } else {
+      default
+    }
+  }
+
+  override fun setValue(values: KeyValueStore, value: M) {
+    if (value != null) {
+      values.beginWrite().putBlob(key, adapter.encode(value)).apply()
+    } else {
+      values.beginWrite().remove(key).apply()
+    }
   }
 }
 

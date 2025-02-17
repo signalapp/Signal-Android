@@ -204,8 +204,10 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleManualRefresh() {
-    contactsFragment.setRefreshing(true);
-    onRefresh();
+    if (!contactsFragment.isRefreshing()) {
+      contactsFragment.setRefreshing(true);
+      onRefresh();
+    }
   }
 
   private void handleCreateGroup() {
@@ -356,6 +358,7 @@ public class NewConversationActivity extends ContactSelectionActivity
                                               recipient,
                                               () -> {
                                                 disposables.add(viewModel.blockContact(recipient).subscribe(() -> {
+                                                  handleManualRefresh();
                                                   displaySnackbar(R.string.NewConversationActivity__s_has_been_blocked, recipient.getDisplayName(this));
                                                   contactsFragment.reset();
                                                 }));
@@ -381,8 +384,9 @@ public class NewConversationActivity extends ContactSelectionActivity
         .setPositiveButton(R.string.NewConversationActivity__remove,
                            (dialog, which) -> {
                              disposables.add(viewModel.hideContact(recipient).subscribe(() -> {
-                               onRefresh();
+                               handleManualRefresh();
                                displaySnackbar(R.string.NewConversationActivity__s_has_been_removed, recipient.getDisplayName(this));
+                               contactsFragment.reset();
                              }));
                            }
         )

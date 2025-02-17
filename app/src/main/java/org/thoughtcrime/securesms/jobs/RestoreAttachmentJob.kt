@@ -20,11 +20,10 @@ import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
-import org.thoughtcrime.securesms.notifications.v2.ConversationId.Companion.forConversation
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.backup.MediaName
@@ -108,7 +107,7 @@ class RestoreAttachmentJob private constructor(
   private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
     Parameters.Builder()
       .setQueue(queue)
-      .addConstraint(WifiConstraint.KEY)
+      .addConstraint(RestoreAttachmentConstraint.KEY)
       .addConstraint(BatteryNotLowConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(30))
       .build(),
@@ -139,10 +138,6 @@ class RestoreAttachmentJob private constructor(
       } else {
         throw e
       }
-    }
-
-    if (!SignalDatabase.messages.isStory(messageId)) {
-      AppDependencies.messageNotifier.updateNotification(context, forConversation(0))
     }
   }
 

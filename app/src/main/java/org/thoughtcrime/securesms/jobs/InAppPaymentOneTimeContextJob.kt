@@ -12,10 +12,12 @@ import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toDonationProcessor
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -55,12 +57,12 @@ class InAppPaymentOneTimeContextJob private constructor(
       )
     }
 
-    fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false): Chain {
+    fun createJobChain(inAppPayment: InAppPaymentTable.InAppPayment, makePrimary: Boolean = false, isFromAuthCheck: Boolean = false): Chain {
       return when (inAppPayment.type) {
         InAppPaymentType.ONE_TIME_DONATION -> {
           AppDependencies.jobManager
             .startChain(create(inAppPayment))
-            .then(InAppPaymentRedemptionJob.create(inAppPayment, makePrimary))
+            .then(InAppPaymentRedemptionJob.create(inAppPayment = inAppPayment, makePrimary = makePrimary, isFromAuthCheck = isFromAuthCheck))
             .then(RefreshOwnProfileJob())
             .then(MultiDeviceProfileContentUpdateJob())
         }
@@ -99,6 +101,7 @@ class InAppPaymentOneTimeContextJob private constructor(
 
   override fun onAdded() {
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
+    info("Added context job for payment with state ${inAppPayment?.state}")
     if (inAppPayment?.state == InAppPaymentTable.State.CREATED) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
@@ -137,7 +140,15 @@ class InAppPaymentOneTimeContextJob private constructor(
           throw InAppPaymentRetryException(e)
         }
 
-        info("Got presentation. Updating state and completing.")
+        info("Got presentation. Updating state, recording receipt, and completing.")
+        val inAppPaymentReceiptRecord = if (inAppPayment.type == InAppPaymentType.ONE_TIME_DONATION) {
+          InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
+        } else {
+          InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
+        }
+
+        SignalDatabase.donationReceipts.addReceipt(inAppPaymentReceiptRecord)
+
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
             data = inAppPayment.data.copy(
@@ -184,7 +195,12 @@ class InAppPaymentOneTimeContextJob private constructor(
 
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Invalid state: ${inAppPayment.state} but expected PENDING")
-      throw IOException("InAppPayment is in an invalid state")
+
+      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+        warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
+      } else {
+        throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
+      }
     }
 
     if (inAppPayment.data.redemption == null) {
@@ -207,6 +223,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     } ?: InAppPaymentsRepository.generateRequestCredential()
 
     val updatedPayment = inAppPayment.copy(
+      state = InAppPaymentTable.State.PENDING,
       data = inAppPayment.data.copy(
         redemption = inAppPayment.data.redemption.copy(
           stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,

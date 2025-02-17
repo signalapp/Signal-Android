@@ -316,7 +316,7 @@ class MultiDeviceDeleteSyncJob private constructor(
               DeleteForMe.AttachmentDelete(
                 conversation = conversation,
                 targetMessage = targetMessage,
-                uuid = it.uuid,
+                clientUuid = it.uuid,
                 fallbackDigest = it.digest,
                 fallbackPlaintextHash = it.plaintextHash
               )

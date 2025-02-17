@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.skippedRestoreChoice
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 
@@ -60,7 +61,7 @@ class RestoreViewModel : ViewModel() {
   }
 
   fun getAvailableRestoreMethods(): List<RestoreMethod> {
-    if (SignalStore.registration.isOtherDeviceAndroid) {
+    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice) {
       val methods = mutableListOf(RestoreMethod.FROM_OLD_DEVICE, RestoreMethod.FROM_LOCAL_BACKUP_V1)
       when (SignalStore.backup.backupTier) {
         MessageBackupTier.FREE -> methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
@@ -78,5 +79,9 @@ class RestoreViewModel : ViewModel() {
     }
 
     return emptyList()
+  }
+
+  fun hasRestoredAccountEntropyPool(): Boolean {
+    return SignalStore.account.restoredAccountEntropyPool
   }
 }

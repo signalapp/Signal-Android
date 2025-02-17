@@ -33,8 +33,9 @@ final class AndroidMuxer implements Muxer {
     }
 
     @Override
-    public void stop() {
+    public long stop() {
         muxer.stop();
+        return 0;
     }
 
     @Override

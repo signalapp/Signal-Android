@@ -46,6 +46,7 @@ fun MessageBackupsEducationScreen(
 ) {
   Scaffolds.Settings(
     onNavigationClick = onNavigationClick,
+    navigationContentDescription = stringResource(android.R.string.cancel),
     navigationIconPainter = painterResource(id = R.drawable.symbol_x_24),
     title = ""
   ) {

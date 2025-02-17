@@ -915,6 +915,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         }),
         new MediaRestoreProgressBanner(new MediaRestoreProgressBanner.RestoreProgressBannerListener() {
           @Override
+          public void onBannerClick() {
+            startActivity(AppSettingsActivity.backupsSettings(requireContext()));
+          }
+
+          @Override
           public void onActionClick(@NonNull BackupStatusData backupStatusData) {
             if (backupStatusData instanceof BackupStatusData.NotEnoughFreeSpace) {
               BackupAlertBottomSheet.create(new BackupAlert.DiskFull(((BackupStatusData.NotEnoughFreeSpace) backupStatusData).getRequiredSpace()))
@@ -1018,7 +1023,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.add(viewModel.getMegaphoneState().subscribe(this::onMegaphoneChanged));
     lifecycleDisposable.add(viewModel.getConversationsState().subscribe(this::onConversationListChanged));
     lifecycleDisposable.add(viewModel.getHasNoConversations().subscribe(this::updateEmptyState));
-    lifecycleDisposable.add(viewModel.getNotificationProfiles().subscribe(profiles -> requireCallback().updateNotificationProfileStatus(profiles)));
     lifecycleDisposable.add(viewModel.getWebSocketState().subscribe(pipeState -> requireCallback().updateProxyStatus(pipeState)));
     lifecycleDisposable.add(viewModel.getChatFolderState().subscribe(this::onChatFoldersChanged));
 
@@ -1035,7 +1039,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.add(
         viewModel.getSelectedState().subscribe(conversations -> {
           defaultAdapter.setSelectedConversations(conversations);
-          updateMultiSelectState();
+          if (conversations.isEmpty()) {
+            endActionModeIfActive();
+          } else {
+            updateMultiSelectState();
+          }
         })
     );
   }
@@ -1148,7 +1156,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       stopwatch.split("task-start");
 
-      List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(ids, false);
+      List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(ids);
       stopwatch.split("db");
 
       AppDependencies.getMessageNotifier().updateNotification(context);
@@ -1269,8 +1277,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
           @Override
           protected Void doInBackground(Void... params) {
+            Log.d(TAG, "[handleDelete] Deleting " + selectedConversations.size() + " chats");
             SignalDatabase.threads().deleteConversations(selectedConversations, true);
             AppDependencies.getMessageNotifier().updateNotification(requireActivity());
+            Log.d(TAG, "[handleDelete] Delete complete");
             return null;
           }
 
@@ -1446,12 +1456,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
       viewModel.toggleConversationSelected(conversation);
-
-      if (viewModel.currentSelectedConversations().isEmpty()) {
-        endActionModeIfActive();
-      } else {
-        updateMultiSelectState();
-      }
     }
   }
 
@@ -1899,7 +1903,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
             canvas.translate(itemView.getLeft() + gutter + extra,
                              itemView.getTop() + (itemView.getBottom() - itemView.getTop() - archiveDrawable.getIntrinsicHeight()) / 2f);
           } else {
-            canvas.translate(itemView.getRight() - gutter - extra,
+            canvas.translate(itemView.getRight() - gutter - extra - archiveDrawable.getIntrinsicWidth(),
                              itemView.getTop() + (itemView.getBottom() - itemView.getTop() - archiveDrawable.getIntrinsicHeight()) / 2f);
           }
 
@@ -2029,8 +2033,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @NonNull View getUnreadPaymentsDot();
 
     @NonNull Stub<Toolbar> getBasicToolbar();
-
-    void updateNotificationProfileStatus(@NonNull List<NotificationProfile> notificationProfiles);
 
     void updateProxyStatus(@NonNull WebSocketConnectionState state);
 

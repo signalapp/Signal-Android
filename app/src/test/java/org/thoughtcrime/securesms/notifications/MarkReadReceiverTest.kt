@@ -94,7 +94,8 @@ class MarkReadReceiverTest {
       SyncMessageId(recipientId, 0),
       MessageId(1),
       ExpirationInfo(0, 0, 0, false),
-      StoryType.NONE
+      StoryType.NONE,
+      0
     )
   }
 }

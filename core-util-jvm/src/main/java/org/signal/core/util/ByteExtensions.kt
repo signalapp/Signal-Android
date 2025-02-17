@@ -99,6 +99,18 @@ class ByteSize(val bytes: Long) {
     return bytes.compareTo(other.bytes)
   }
 
+  operator fun plus(other: ByteSize): ByteSize {
+    return ByteSize(this.inWholeBytes + other.inWholeBytes)
+  }
+
+  fun percentageOf(other: ByteSize): Float {
+    return this.inWholeBytes.toFloat() / other.inWholeBytes.toFloat()
+  }
+
+  operator fun minus(other: ByteSize): ByteSize {
+    return ByteSize(this.inWholeBytes - other.inWholeBytes)
+  }
+
   enum class Size(val label: String) {
     BYTE("B"),
     KIBIBYTE("KB"),

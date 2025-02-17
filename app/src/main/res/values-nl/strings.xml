@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -411,8 +412,9 @@
     <string name="ConversationItem_from_s">van %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">aan %1$s</string>
-    <string name="ConversationItem_read_more"> Meer lezen</string>
-    <string name="ConversationItem_download_more"> Meer downloaden</string>
+    <string name="ConversationItem_read_more">  Meer lezen</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
+    <string name="ConversationItem_download_more">  Meer downloaden</string>
     <string name="ConversationItem_pending">  In afwachting</string>
     <string name="ConversationItem_this_message_was_deleted">Dit bericht is verwijderd.</string>
     <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht verwijderd.</string>
@@ -459,7 +461,7 @@
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Ongeldige ontvanger!</string>
-    <string name="ConversationActivity_added_to_home_screen">Aan startscherm toegevoegd</string>
+    <string name="ConversationActivity_added_to_home_screen">Toegevoegd aan startscherm</string>
     <string name="ConversationActivity_calls_not_supported">Bellen wordt niet ondersteund</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
     <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
@@ -583,6 +585,15 @@
         <item quantity="one">Bijlage opslaan in lokale opslag…</item>
         <item quantity="other">%1$d bijlagen opslaan in lokale opslag…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">Opslaan op telefoon?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="one">Dit bestand wordt opgeslagen in de opslag van je telefoon. Andere apps hebben er mogelijk toegang toe, afhankelijk van de verleende app-rechten op je telefoon.</item>
+        <item quantity="other">Deze bestanden worden opgeslagen in de opslag van je telefoon. Andere apps hebben er mogelijk toegang toe, afhankelijk van de verleende app-rechten op je telefoon.</item>
+    </plurals>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">Niet meer weergeven</string>
     <string name="ConversationFragment_pending">In afwachting…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
@@ -810,7 +821,7 @@
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Herstel je berichten en media vanuit een lokale back-up. Herstellen vanuit een back-up kan alleen tijdens deze stap en kun je op een later moment niet alsnog doen.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
+    <string name="ChooseBackupFragment__icon_content_description">Icoon voor back-upgegevens terugzetten</string>
     <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
     <string name="ChooseBackupFragment__learn_more">Meer lezen</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Geen bestandsbrowser beschikbaar</string>
@@ -889,6 +900,7 @@
     <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">Back-up verifiëren…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% tot nu toe…</string>
@@ -917,6 +929,16 @@
     <string name="DateUtils_tomorrow">Morgen</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">Vanavond</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
+    <plurals name="DateUtils_date_time_at">
+        <item quantity="one">op %1$s om %2$s uur</item>
+        <item quantity="other">op %1$s om %2$s uur</item>
+    </plurals>
+    <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
+    <plurals name="DateUtils_time_at">
+        <item quantity="one">om %1$s uur</item>
+        <item quantity="other">om %1$s uur</item>
+    </plurals>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -963,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Gebruik Signal op een desktop of iPad. Je berichten worden gesynchroniseerd met je gekoppelde apparaten.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">Gebruik dit Signal-account op een desktop of iPad.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">Een nieuw apparaat koppelen</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1003,28 +1025,58 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Tik op doorgaan en ontgrendel met je telefoonvergrendeling om te bevestigen. Voer niet je Signal-pincode in.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Doorgaan</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">Neem contact op met ondersteuning</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">Foutopsporingslog indienen?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">Je foutopsporingslog helpt ons om je probleem sneller te ontdekken en op te lossen. Het indienen van een foutopsporingslog is optioneel.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">Indienen met foutopsporingslog</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">Indienen zonder foutopsporingslog</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">Annuleren</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Berichtsynchronisatie niet gelukt</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">Je berichten konden niet worden overgezet naar je gekoppelde apparaat. Je kunt proberen opnieuw te koppelen en over te zetten, of doorgaan zonder je chatgeschiedenis over te zetten.</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">Je apparaat is succesvol gekoppeld, maar je berichten konden niet worden overgezet.</string>
+    <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
+    <string name="LinkDeviceFragment__learn_more">Meer lezen</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">Probeer opnieuw te koppelen</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">Opnieuw proberen</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">Doorgaan zonder over te zetten</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">Naam bewerken</string>
+    <!-- Toast shown when the process of linking a device has been cancelled -->
+    <string name="LinkDeviceFragment__linking_cancelled">Koppelen van apparaat geannuleerd</string>
+    <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
+    <string name="LinkDeviceFragment__do_not_close">Sluit Signal niet</string>
+    <!-- Dialog title shown when a device is unlinked -->
+    <string name="LinkDeviceFragment__device_unlinked">Apparaat ontkoppeld</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">Het apparaat dat %1$s was gekoppeld, is nu ontkoppeld.</string>
+    <!-- Button to dismiss dialog -->
+    <string name="LinkDeviceFragment__ok">OK</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">Apparaatnaam bewerken</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">Apparaatnaam</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">Opslaan</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">Apparaatnaam bijgewerkt</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">Kan de apparaatnaam niet wijzigen. Probeer het later opnieuw.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1052,11 +1104,16 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Chatgeschiedenis overzetten</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Zet al je tekstberichten en de laatste 45 dagen aan media over</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Niet overzetten</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">Oude berichten en media worden niet overgezet naar je gekoppelde apparaat</string>
+
+    <!-- Title of notification telling users that a device was linked to their account -->
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">Je hebt een nieuw apparaat gekoppeld</string>
+    <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">Een nieuw apparaat werd gekoppeld aan je account %1$s. Tik om te bekijken.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">‘%1$s’ ontkoppelen?</string>
@@ -1296,6 +1353,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Klaar</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan verouderde groepen.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">%1$s toevoegen aan de groep ‘%2$s’?</item>
         <item quantity="other">%3$d leden toevoegen aan de groep ‘%2$s’?</item>
@@ -1376,11 +1434,23 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">De laatste back-up is gemaakt op %1$s om %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">De laatste back-up is gemaakt op %1$s om %2$s. Je back-upgrootte is %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Back-upgegevens aan het ophalen…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">Herstel overslaan</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">Het overzetten kon niet worden voltooid</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens door je overzetmethode te kiezen.</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">Back-up kon niet worden teruggezet</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">Deze versie van Signal kan je back-up niet herstellen. Werk bij naar de meest recente versie en probeer het opnieuw.</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Signal bijwerken</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">Niet nu</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij vermeldingen</string>
@@ -1450,7 +1520,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Geluid en trillen aanpassen</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Oproepinstellingen</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Beltoon</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1631,9 +1703,17 @@
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Aan de slag</string>
     <string name="Megaphones_new_group">Nieuwe groep</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">Uitnodigen</string>
     <string name="Megaphones_chat_colors">Chatkleur</string>
     <string name="Megaphones_add_a_profile_photo">Profielfoto</string>
+
+    <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">Een nieuw apparaat werd gekoppeld aan je account %1$s.</string>
+    <!-- Button shown on megaphone that will redirect to the linked devices screen -->
+    <string name="NewLinkedDeviceMegaphone__view_device">Apparaat bekijken</string>
+    <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
+    <string name="NewLinkedDeviceMegaphone__ok">OK</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">Antwoorden</string>
@@ -1864,6 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">Je hebt het verzoek van %1$s om lid te worden van de groep afgewezen.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Een verzoek van %1$s om lid te worden van de groep is afgewezen.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Je hebt je verzoek om lid te worden van de groep ingetrokken.</string>
@@ -1908,12 +1989,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">%1$s is aanwezig in de oproep · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">Jij bent aanwezig in de oproep · %1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s en jij zijn aanwezig in de oproep · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s en %2$s zijn aanwezig in de oproep · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$s is aanwezig in de oproep</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">Jij bent aanwezig in de oproep</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s en jij zijn aanwezig in de oproep</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s en %2$s zijn aanwezig in de oproep</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -1989,6 +2074,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Doorgaan met deze chat met %1$s en je profielnaam, -foto en -omschrijving met hen delen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep en je profielnaam, -foto en -omschrijving met de andere leden delen? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Wil je lid worden van deze groep en je profielnaam, -foto en -omschrijving met de andere leden delen? Je kunt hun berichten nog niet zien totdat je de uitnodiging hebt geaccepteerd.</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep? Leden van de groep weten niet dat je hun berichten hebt gezien totdat je het gespreksverzoek hebt geaccepteerd.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je deze groep deblokkeren en je profielnaam, -foto en -omschrijving met de leden delen? Totdat je de groep hebt gedeblokkeerd, zul je geen berichten ontvangen.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -2041,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, je hebt al te veel apparaten gekoppeld, verwijder er eerst een</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR-code om een apparaat te koppelen.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wilt koppelen met behulp van een externe scanner. Scan voor de veiligheid de code opnieuw vanuit Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Om een desktop of iPad aan dit Signal-account te koppelen, ga naar Gekoppelde apparaten, tik op ‘Een nieuw apparaat koppelen’ en scan de QR-code opnieuw. Zorg ervoor dat je alleen QR-codes scant die rechtstreeks van Signal komen.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar je hebt dit geweigerd. Ga naar de app-instellingen in je telefooninstellingen, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
@@ -2174,6 +2260,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang tot je camera nodig om %1$s te bellen</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
     <string name="WebRtcCallActivity__calling">Oproep aan het starten…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2386,6 +2473,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">Weergave opgestoken hand uitklappen</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">Je land</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">Zoeken op naam of landcode</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">Onbekend land</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal-contact</string>
@@ -2420,6 +2514,7 @@
         <item quantity="one">Signal zal bellen naar (%1$d)</item>
         <item quantity="other">Signal zal bellen naar (%1$d)</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="one">Signal zal een melding sturen naar (%1$d)</item>
         <item quantity="other">Signal zal een melding sturen naar (%1$d)</item>
@@ -2449,6 +2544,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">Indienen is mislukt</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">Verificatie voltooien</string>
 
     <!-- RegistrationActivity -->
@@ -2466,6 +2562,12 @@
     <string name="RegistrationActivity_additional_verification_required">Aanvullende verificatie vereist</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Er wordt een verificatiecode naar dit nummer gestuurd. Providertarieven kunnen van toepassing zijn.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">Selecteer een land</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Je zult gebeld worden om dit telefoonnummer te verifiëren.</string>
     <string name="RegistrationActivity_edit_number">Telefoonnummer bewerken</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play Services ontbreekt</string>
@@ -2481,7 +2583,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">Je hebt te vaak geprobeerd dit telefoonnummer te registreren. Probeer het opnieuw over %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Controleer je internetverbinding en probeer het opnieuw.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">Signal kon geen sms-code verzenden vanwege problemen met de sms-provider. Probeer het over enkele uren opnieuw.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">We konden je geen verificatiecode sturen via sms. Probeer in plaats daarvan je code via een spraakoproep te ontvangen.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2645,7 +2747,8 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Groep aangepast</string>
-    <string name="ThreadRecord_left_the_group">Iemand heeft de groep verlaten</string>
+    <!-- Text shown you have left a group -->
+    <string name="ThreadRecord_left_the_group">Groep verlaten</string>
     <string name="ThreadRecord_secure_session_reset">Beveiligde sessie opnieuw ingesteld.</string>
     <string name="ThreadRecord_draft">Concept:</string>
     <string name="ThreadRecord_media_message">Mediabericht</string>
@@ -2849,6 +2952,7 @@
         <item quantity="one">%1$d chat</item>
         <item quantity="other">%1$d chats</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
     <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Signal om het weer te geven</string>
     <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
@@ -2918,6 +3022,8 @@
     <string name="NotificationChannel_critical_app_alerts">Belangrijke app-meldingen</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">Aanvullende berichtmeldingen</string>
+    <!-- Notification channel name for notifications sent when a device has been linked -->
+    <string name="NotificationChannel_new_linked_device">Nieuw gekoppeld apparaat</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2971,6 +3077,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Video afspelen</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">Heeft een bijschrift</string>
 
     <!-- TransferControlView -->
@@ -2981,10 +3088,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">Aan het verwerken…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -3232,7 +3336,7 @@
     <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Oproepmeldingen inschakelen</string>
     <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Achtergrondactiviteit inschakelen</string>
     <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Alles ziet er nu goed uit!</string>
-    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Tik hier en schakel ‘Meldingen weergeven’ in om oproepmeldingen te ontvangen.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Tik hier en schakel ‘Meldingen toestaan’ in om oproepmeldingen te ontvangen.</string>
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Tik hier en schakel meldingen in en zorg dat geluiden en pop-ups zijn ingeschakeld om oproepmeldingen te ontvangen.</string>
     <!-- Message shown when Signal determines potential issues with getting call notifications and how to fix it -->
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Tik hier en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen. </string>
@@ -3407,7 +3511,7 @@
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">Vergelijk bovenstaande nummers met het apparaat van je contact om end-to-end-versleuteling met %1$s te verifiëren. Je kunt ook de QR-code op het apparaat van je contact scannen.</string>
     <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
     <string name="verify_display_fragment__successful_match">De nummers komen overeen</string>
-    <string name="verify_display_fragment__failed_to_verify_safety_number">Verifiëren niet gelukt</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">De nummers komen niet overeen</string>
     <string name="verify_display_fragment__loading">Aan het laden…</string>
     <string name="verify_display_fragment__mark_as_verified">Als geverifieerd markeren</string>
     <string name="verify_display_fragment__clear_verification">Verificatie ongedaan maken</string>
@@ -3461,7 +3565,7 @@
     <string name="HelpFragment__include_debug_log">Foutopsporingslog bijvoegen.</string>
     <string name="HelpFragment__whats_this">Wat is dit?</string>
     <string name="HelpFragment__how_do_you_feel">Hoe voel je je? (Optioneel)</string>
-    <string name="HelpFragment__tell_us_why_youre_reaching_out">Laat ons weten waarom je contact zoekt.</string>
+    <string name="HelpFragment__tell_us_why_youre_reaching_out">Laat ons weten waarom je contact zoekt</string>
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
   <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
@@ -3481,10 +3585,10 @@
         <item>Verzoek nieuwe functie</item>
         <item>Vraag</item>
         <item>Feedback</item>
-        <item>Anders</item>
         <item>Betalingen (MobileCoin)</item>
         <item>Donaties &amp; badges</item>
         <item>Signal Android back-up</item>
+        <item>Anders</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android-foutopsporingslog ingediend</string>
@@ -3517,7 +3621,7 @@
     <string name="arrays__mute_for_seven_days">7 dagen lang dempen</string>
     <string name="arrays__always">Voor altijd</string>
 
-    <string name="arrays__settings_default">Gebruik systeemstandaard</string>
+    <string name="arrays__settings_default">Gebruik standaardinstelling</string>
     <string name="arrays__enabled">Ingeschakeld</string>
     <string name="arrays__disabled">Uitgeschakeld</string>
 
@@ -3535,7 +3639,7 @@
     <string name="arrays__large">Groot</string>
     <string name="arrays__extra_large">Extra groot</string>
 
-    <string name="arrays__default">Systeemstandaard</string>
+    <string name="arrays__default">Standaard</string>
     <string name="arrays__high">Hoog</string>
     <!-- Setting title that represent an abstract priority to assign to notifications as the max/highest priority a notification can be within the system. -->
     <string name="arrays__max">Maximaal</string>
@@ -3564,7 +3668,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Signal-app en -meldingen met een wachtwoord</string>
     <string name="preferences__screen_security">Meekijkpreventie</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
     <string name="preferences__notifications">Meldingen</string>
     <string name="preferences__led_color">LED-kleur</string>
@@ -3575,7 +3681,8 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">Berichtgeluid</string>
     <string name="preferences__silent">Stil</string>
-    <string name="preferences__default">Standaardmeldingen</string>
+    <!-- Preference menu item to use the default sound for notifications -->
+    <string name="preferences__default">Standaard</string>
     <string name="preferences__repeat_alerts">Herhaal meldingen</string>
     <string name="preferences__never">Nooit</string>
     <string name="preferences__one_time">Een keer</string>
@@ -3591,6 +3698,7 @@
     <string name="preferences__cyan">Cyaan</string>
     <string name="preferences__magenta">Magenta</string>
     <string name="preferences__white">Wit</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">Niets</string>
     <string name="preferences__fast">Snel</string>
     <string name="preferences__normal">Normaal</string>
@@ -3653,6 +3761,8 @@
     <string name="preferences__language">Taal</string>
     <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
     <string name="preferences__advanced_pin_settings">Geavanceerde pincode-instellingen</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">Geavanceerde pincode-instellingen</string>
     <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
     <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
     <string name="preferences__delete_account">Account verwijderen</string>
@@ -3757,6 +3867,7 @@
     <string name="preferences_connection_failed">Verbinding mislukt</string>
     <string name="preferences_couldnt_connect_to_the_proxy">Verbinding maken is mislukt. Controleer of je het juiste proxyadres het ingevuld en probeer het opnieuw.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Signal is verbonden met de proxy. Je kunt de proxy op elk gewenst moment uitschakelen vanuit Signals instellingen.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Succesvol</string>
     <string name="preferences_failed_to_connect">Verbinding maken is mislukt</string>
     <string name="preferences_enter_proxy_address">Voer een proxyadres in</string>
@@ -4113,7 +4224,7 @@
     <string name="conversation__menu_leave_group">Groep verlaten</string>
     <string name="conversation__menu_view_all_media">Alle media</string>
     <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
-    <string name="conversation__menu_add_shortcut">Aan startscherm toevoegen</string>
+    <string name="conversation__menu_add_shortcut">Toevoegen aan startscherm</string>
     <string name="conversation__menu_create_bubble">Ballon aanmaken</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Tekstopmaak</string>
@@ -4167,11 +4278,11 @@
     <string name="reminder_header_service_outage_text">Signal ondervindt momenteel technische problemen. We zijn hard aan het werk om de service zo snel mogelijk te herstellen.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery kan tijdelijk de contacten van je telefoon niet verwerken.</string>
+    <string name="reminder_cds_warning_body">Signals private contact discovery kan tijdelijk de contacten van je telefoon niet verwerken.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Meer informatie</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery kan de contacten van je telefoon niet verwerken.</string>
+    <string name="reminder_cds_permanent_error_body">Signals private contact discovery kan de contacten van je telefoon niet verwerken.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Meer informatie</string>
 
@@ -4181,6 +4292,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">Mediavoorbeeld</string>
 
     <!-- new_conversation_activity -->
@@ -4265,8 +4377,8 @@
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Android (Pincode-versie 2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-        <item quantity="one">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dag inactivitieit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
-        <item quantity="other">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dagen inactivitieit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+        <item quantity="one">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dag inactiviteit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+        <item quantity="other">Voor je privacy en veiligheid is er geen mogelijkheid om je pincode te herstellen. Als je je pincode niet meer weet, dan kun je je na %1$d dagen inactiviteit opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
     </plurals>
 
     <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
@@ -4354,10 +4466,12 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">Back-ups uitschakelen en alle lokale back-ups verwijderen?</string>
     <string name="BackupDialog_delete_backups_statement">Back-ups verwijderen</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-ups te kunnen inschakelen.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Kies een map</string>
     <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
     <string name="BackupDialog_no_file_picker_available">Er is geen bestandskiezer beschikbaar.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Voer je back-upwachtwoord in om deze te verifiëren</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Verifiëren</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
     <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
@@ -4382,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
     <string name="RegistrationActivity_incorrect_code">Onjuiste code</string>
     <string name="BackupUtil_never">Nooit</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">Onbekend</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">Telefoonnummer</string>
@@ -4566,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Probeer of het helpt om wifi uit te schakelen en weer in te schakelen op beide apparaten.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Zorg ervoor dat beide apparaten in overzet-modus staan.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Ga naar de ondersteuningspagina</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">Opnieuw proberen</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Aan het wachten op het andere apparaat…</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tik om het overzetten te beginnen op je andere apparaat op ‘Doorgaan’.</string>
@@ -4634,7 +4750,7 @@
     <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
     <string name="RecipientBottomSheet_unable_to_open_contacts">Geen app gevonden om de contactenlijst weer te geven.</string>
     <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
-    <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
+    <string name="RecipientBottomSheet_add_to_another_group">Aan een andere groep toevoegen</string>
     <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
     <string name="RecipientBottomSheet_make_admin">Beheerder maken</string>
     <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
@@ -4798,6 +4914,7 @@
     <string name="ShareActivity__share">Delen</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">Verzenden</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Kan gegevens om te delen niet ophalen</string>
@@ -4987,6 +5104,8 @@
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Vernieuw je Signal back-upabonnement</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Back-up kon niet worden voltooid</string>
+    <!-- String alerting user that backup redemption -->
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Kan je back-upabonnement niet activeren</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Vrienden uitnodigen</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5064,9 +5183,11 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Je moet je oude telefoonnummer invullen</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Je moet je nieuwe landcode aangeven</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Je moet je nieuwe telefoonnummer invullen</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Je nieuwe telefoonnummer kan niet hetzelfde zijn als je oude telefoonnummer</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Telefoonnummer wijzigen</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s aan het verifiëren</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vereist</string>
 
@@ -5442,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodigingen</string>
     <string name="ConversationSettingsFragment__group_link">Groepslink</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">Als contact toevoegen</string>
     <string name="ConversationSettingsFragment__unmute">Dempen opheffen</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5466,6 +5588,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niet gedempt</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Vermeldingen</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Altijd een melding bij vermeldingen</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Geen meldingen als gedempt</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
 
@@ -5554,9 +5677,10 @@
     <string name="ShareInterstitialActivity__share">Delen</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
     <string name="MultiselectForwardFragment__forward_to">Doorsturen naar</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">Delen naar</string>
     <string name="MultiselectForwardFragment__add_a_message">Berichttekst toevoegen</string>
     <string name="MultiselectForwardFragment__faster_forwards">Sneller doorsturen</string>
@@ -5564,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">Video\'s worden in clips van 30 seconden geknipt en als meerdere verhalen verstuurd.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Video\'s die naar verhalen worden gestuurd kunnen niet langer zijn dan 30 seconden.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">Doorgestuurde berichten worden vanaf nu onmiddellijk verzonden.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d bericht verzenden</item>
@@ -5655,7 +5780,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">Apparaat koppelen?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">Het lijkt erop dat je een Signal-apparaat probeert te koppelen. Tik op Doorgaan en scan de code opnieuw om het apparaat te koppelen.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">Het lijkt erop dat je een Signal-apparaat probeert te koppelen. Tik op Doorgaan, vervolgens op ‘Een nieuw apparaat koppelen’ en scan de QR-code opnieuw.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">Doorgaan</string>
 
@@ -5684,7 +5809,7 @@
 
     <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie stopzetten</string>
     <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie stopzetten?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste donatieperiode is afgelopen.</string>
     <string name="SubscribeFragment__not_now">Niet nu</string>
     <string name="SubscribeFragment__confirm">Bevestigen</string>
     <string name="SubscribeFragment__update_subscription">Maandelijkse donatie aanpassen</string>
@@ -5695,7 +5820,7 @@
 
     <string name="Subscription__s_per_month">%1$s/maand</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Wordt %1$s vernieuwd</string>
+    <string name="Subscription__renews_s">Verlengt op %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Verloopt %1$s</string>
 
@@ -5749,8 +5874,9 @@
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Het minimumbedrag dat je kunt doneren is %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
-    <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
-    <string name="MySupportPreference__processing_transaction">Transactie aan het verwerken…</string>
+    <string name="MySupportPreference__renews_s">Verlengt op %1$s</string>
+    <!-- Subtitle shown when processing a donation transaction -->
+    <string name="MySupportPreference__processing_transaction">Donatie aan het verwerken…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Neem contact op met ondersteuning.</string>
@@ -5760,6 +5886,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">Je bankoverschrijving van %1$s is in behandeling. Het kan 1 tot 14 werkdagen duren voordat een bankoverschrijving is voltooid.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Meer lezen</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">Abonnement aan het controleren…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal bijwerken</string>
@@ -6160,7 +6288,7 @@
     <string name="StoriesLandingItem__info">Bericht­details</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">Bezig met verzenden…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d aan het verzenden…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Verzenden is mislukt</string>
@@ -6222,7 +6350,7 @@
     <!-- Displayed when viewing a post that has failed to send -->
     <string name="StoryViewerPageFragment__send_failed">Verzenden is mislukt. Tik om opnieuw te proberen</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
-    <string name="StoryViewerPageFragment__reply_to_group">Naar de groep reageren</string>
+    <string name="StoryViewerPageFragment__reply_to_group">Reageren op groepsverhaal</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Nog door niemand gezien</string>
     <!-- Displayed when user has disabled receipts -->
@@ -6288,8 +6416,8 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Alleen delen met specifieke personen</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="one">%1$d persoon</item>
-        <item quantity="other">%1$d personen</item>
+        <item quantity="one">%1$d kijker</item>
+        <item quantity="other">%1$d kijkers</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Kies wie je verhaal kan zien. Wijzigingen hebben geen invloed op verhalen die je al hebt gedeeld.</string>
@@ -6420,7 +6548,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">Gekopieerd naar klembord</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">Meer lezen</string>
+    <string name="StoryViewerPageFragment__read_more">Meer lezen</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Privéreactie aan het verzenden…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7235,6 +7363,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">Oproeplink verwijderen</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">Kan wijzigingen niet opslaan. Controleer je internetverbinding en probeer het opnieuw.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">Goedkeuringsinstellingen konden niet worden bijgewerkt. Controleer of er geen actieve oproep is.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">Oproeplink kon niet worden verwijderd, omdat deze op dit moment in gebruik is.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7471,7 +7601,10 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Back-up kon niet worden voltooid</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">Je apparaat heeft in de afgelopen %1$d dagen geen back-up voltooid. Zorg ervoor dat je apparaat is verbonden met wifi en tik op ‘Nu back-up maken’. </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one">Je apparaat heeft %1$d dag geen back-up voltooid. Zorg ervoor dat je apparaat is verbonden met wifi en tik op ‘Nu back-up maken’. </item>
+        <item quantity="other">Je apparaat heeft de afgelopen %1$d dagen geen back-up voltooid. Zorg ervoor dat je apparaat is verbonden met wifi en tik op ‘Nu back-up maken’.</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Meer lezen</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7508,10 +7641,18 @@
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Als je herstellen overslaat, kunnen de resterende media en bijlagen in je back-up op een later moment worden gedownload wanneer er opslagruimte vrijkomt.</string>
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Het maken van een back-up is mislukt</string>
+    <!-- Dialog title when a backup redemption fails -->
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Kan je back-upabonnement niet activeren</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">Er is een fout opgetreden en je back-up kon niet worden voltooid. Zorg ervoor dat je de nieuwste versie van Signal hebt geïnstalleerd en probeer het opnieuw. Als dit probleem zich blijft voordoen, neem dan contact op met ondersteuning.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">Controleren op updates</string>
+    <!-- Backup redemption error sheet text line 1 -->
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Er is deze maand op te veel apparaten een poging gedaan je abonnement te activeren. Misschien:</string>
+    <!-- Backup redemption error sheet bullet point 1 -->
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Heb je je Signal-account te vaak opnieuw geregistreerd.</string>
+    <!-- Backup redemption error sheet bullet point 2 -->
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">Gebruik je hetzelfde abonnement op te veel apparaten.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7538,15 +7679,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">Download annuleren</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">Voortgang download: %1$s van %2$s (%3$s)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">%1$s van %2$s (%3$s%%) aan het herstellen</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">Herstellen gepauzeerd: wachten op wifi…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">Herstellen gepauzeerd: geen internet…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">Herstellen gepauzeerd: batterij van apparaat is bijna leeg</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Niet genoeg opslagruimte om je back-up te downloaden. Maak %1$s ruimte vrij om door te gaan.</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Downloaden overslaan</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">De laatste back-up kon niet worden voltooid. Zorg ervoor dat je telefoon is verbonden met wifi, tik op ‘Nu back-up maken’ en probeer het opnieuw.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">De laatste back-up kon niet worden voltooid. Zorg ervoor dat je de nieuwste versie van Signal hebt geïnstalleerd en probeer het opnieuw.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Meer lezen</string>
 
@@ -7568,7 +7715,7 @@
     <!-- Row title for entering payment history -->
     <string name="BackupsTypeSettingsFragment__payment_history">Betalingsgeschiedenis</string>
     <!-- Row description detailing renewal information. First placeholder is formatted price. Second placeholder is formatted date. -->
-    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+    <string name="BackupsTypeSettingsFragment__s_month_renews_s">%1$s/maand · Verlengt op %2$s</string>
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Abonnement wijzigen of opzeggen</string>
 
@@ -7632,7 +7779,7 @@
 
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
-    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+    <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/maand · Verlengt op %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Laatste back-up %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
@@ -7643,10 +7790,14 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal back-ups</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authenticatie vereist</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingsgeschiedenis</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Back-upgegevens</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Herstellen via mobiel netwerk</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Back-upgrootte</string>
     <!-- Row label for backup frequency -->
@@ -7686,7 +7837,7 @@
     <!-- String for free backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_plan_is_free">Je back-upabonnement is gratis</string>
     <!-- Displays the date the subscription will renew. Placeholder is the date. -->
-    <string name="RemoteBackupsSettingsFragment__renews_s">Wordt %1$s vernieuwd</string>
+    <string name="RemoteBackupsSettingsFragment__renews_s">Verlengt op %1$s</string>
     <!-- Displays the date the subscription will expire. Placeholder is the date. -->
     <string name="RemoteBackupsSettingsFragment__expires_on_s">Verloopt op %1$s</string>
     <!-- Displays the date the subscription expired. Placeholder is the date. -->
@@ -7745,15 +7896,22 @@
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Afhankelijk van de grootte van je back-up kan dit even duren. Tijdens het downloaden kun je je telefoon gebruiken zoals je normaal doet.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Je abonnement op dit apparaat is nog %1$d dag geldig. Vernieuw om Signal back-ups te blijven gebruiken</item>
-        <item quantity="other">Je abonnement op dit apparaat is nog %1$d dagen geldig. Vernieuw om Signal back-ups te blijven gebruiken</item>
+        <item quantity="one">Je abonnement op dit apparaat is nog %1$d dag geldig. Verleng om Signal back-ups te blijven gebruiken</item>
+        <item quantity="other">Je abonnement op dit apparaat is nog %1$d dagen geldig. Verleng om Signal back-ups te blijven gebruiken</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
-    <string name="RemoteBackupsSettingsFragment__renew">Vernieuwen</string>
+    <string name="RemoteBackupsSettingsFragment__renew">Verlengen</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Meer lezen</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Back-up aan het maken…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Back-up aan het voorbereiden…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="one">%1$d bericht van %2$d (%3$d%%) aan het verwerken</item>
+        <item quantity="other">%1$d berichten van %2$d (%3$d%%) aan het verwerken</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">Je hebt %1$s aan back-upgegevens die niet op dit apparaat staan. Je back-up wordt verwijderd over %2$d dag wanneer je abonnement afloopt.</item>
@@ -7774,8 +7932,10 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Back-ups konden niet worden uitgeschakeld en verwijderd</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Er is een netwerkfout opgetreden. Controleer je internetverbinding en probeer het opnieuw.</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">%1$s van %2$s (%3$d%%) aan het uploaden</string>
+    <!-- Button label to see more details about redemption error -->
+    <string name="RemoteBackupsSettingsFragment__details">Details</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7791,7 +7951,7 @@
     <!-- Third item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Je abonnement onlangs is verlopen.</string>
     <!-- Note underneath bullet points -->
-    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Heb je een actief abonnement op je oude telefoon, overweeg dan om het op te zeggen voordat het wordt vernieuwd.</string>
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Heb je een actief abonnement op je oude telefoon, overweeg dan om het op te zeggen voordat het wordt verlengd.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
     <string name="SubscriptionNotFoundBottomSheet__got_it">Begrepen</string>
     <!-- Action button label to contact support -->
@@ -7894,7 +8054,7 @@
     <string name="ConfirmBackupCancellationDialog__keep_subscription">Abonnement behouden</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
-    <string name="ReminderView_icon_content_description">Herinneringspictogram</string>
+    <string name="ReminderView_icon_content_description">Herinneringsicoon</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Ik heb mijn oude telefoon</string>
@@ -7913,7 +8073,7 @@
     <!-- Option title for restoring via signal backups -->
     <string name="SelectRestoreMethodFragment__from_signal_backups">Vanaf Signal back-ups</string>
     <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Je gratis of betaalde Signal backup-abonnement</string>
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Je gratis of betaalde Signal back-upabonnement</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Vanaf een back-upmap</string>
     <!-- Option title for restoring via a local backup file -->
@@ -7946,13 +8106,33 @@
     <string name="EnterBackupKey_learn_more">Meer lezen</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Overslaan en niet herstellen</string>
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_title">Onjuiste back-upsleutel</string>
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Zorg ervoor dat je je registreert met hetzelfde telefoonnummer en dezelfde back-upsleutel van 64 tekens die je hebt opgeslagen bij het inschakelen van Signal back-ups. Back-ups kunnen niet worden hersteld zonder deze sleutel.</string>
+    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_try_again">Opnieuw proberen</string>
+    <!-- Dialog negative button text to get help with backup key -->
+    <string name="EnterBackupKey_backup_key_help">Hulp bij back-upsleutel</string>
+    <!-- Text field error text when the backup key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Onjuiste back-upsleutel</string>
+    <!-- Text field error text when the backup key is too long -->
+    <string name="EnterBackupKey_too_long_error">Te lang (%1$d/%2$d)</string>
+    <!-- Text field error when the backup key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Ongeldige back-upsleutel</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">Back-upbestand niet gevonden</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">De back-upsleutel die je hebt ingevoerd, is juist, maar er is geen back-up aan gekoppeld. Als je je oude telefoon nog hebt, zorg er dan voor dat back-ups zijn ingeschakeld en dat er een back-up is gemaakt. Probeer het dan opnieuw.</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">Herstel overslaan</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Scan deze code met je oude telefoon</string>
     <!-- First instruction on what to do with restore via qr code -->
     <string name="RestoreViaQr_instruction_1">Open Signal op je oude apparaat</string>
     <!-- Second instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_2">Tik op het camerapictogram </string>
+    <string name="RestoreViaQr_instruction_2">Tik op het camera-icoon </string>
     <!-- Third instruction on what to do with restore via qr code -->
     <string name="RestoreViaQr_instruction_3">Scan deze code met de camera</string>
     <!-- Error message shown when qr code could not be loaded -->
@@ -7961,6 +8141,8 @@
     <string name="RestoreViaQr_qr_code_scanned">Gescand op oud apparaat</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">Opnieuw proberen</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">Er is een fout opgetreden en je account kon niet worden overgezet. Probeer het nog eens door de QR-code opnieuw te scannen.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">Account overzetten</string>
@@ -7991,15 +8173,15 @@
     <string name="RestoreCompleteBottomSheet_button">Oké</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">Geen back-up om te herstellen</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">Omdat je overstapt van iPhone naar Android is de enige manier om je berichten en media over te zetten door Signal back-ups in te schakelen op je oude apparaat.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Open Signal op je oude apparaat</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">Tik op Instellingen &gt; Back-ups</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">Schakel back-ups in en wacht tot je back-up is voltooid</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Herstel overslaan</string>
 

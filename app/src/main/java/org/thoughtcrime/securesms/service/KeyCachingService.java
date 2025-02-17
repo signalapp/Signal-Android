@@ -23,7 +23,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
@@ -34,6 +33,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.DummyActivity;
@@ -121,16 +121,12 @@ public class KeyCachingService extends Service {
       foregroundService();
       broadcastNewSecret();
       startTimeoutIfAppropriate(this);
-      
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          if (!ApplicationMigrations.isUpdate(KeyCachingService.this)) {
-            AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
-          }
-          return null;
+
+      SignalExecutors.BOUNDED.execute(() -> {
+        if (!ApplicationMigrations.isUpdate(KeyCachingService.this)) {
+          AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
         }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      });
     }
   }
 
@@ -196,13 +192,9 @@ public class KeyCachingService extends Service {
 
     sendBroadcast(intent, KEY_PERMISSION);
 
-    new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
-        return null;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    SignalExecutors.BOUNDED.execute(() -> {
+      AppDependencies.getMessageNotifier().updateNotification(KeyCachingService.this);
+    });
   }
 
   private void handleLockToggled() {

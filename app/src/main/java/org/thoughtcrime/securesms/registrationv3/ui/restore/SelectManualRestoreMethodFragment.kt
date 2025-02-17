@@ -53,8 +53,14 @@ class SelectManualRestoreMethodFragment : ComposeFragment() {
 
   private fun startRestoreMethod(method: RestoreMethod) {
     when (method) {
-      RestoreMethod.FROM_SIGNAL_BACKUPS -> findNavController().safeNavigate(SelectManualRestoreMethodFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_MANUAL_SIGNAL_BACKUPS_RESTORE))
-      RestoreMethod.FROM_LOCAL_BACKUP_V1 -> launchRestoreActivity.launch(RestoreActivity.getLocalRestoreIntent(requireContext()))
+      RestoreMethod.FROM_SIGNAL_BACKUPS -> {
+        sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = true)
+        findNavController().safeNavigate(SelectManualRestoreMethodFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.COLLECT_FOR_MANUAL_SIGNAL_BACKUPS_RESTORE))
+      }
+      RestoreMethod.FROM_LOCAL_BACKUP_V1 -> {
+        sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false)
+        launchRestoreActivity.launch(RestoreActivity.getLocalRestoreIntent(requireContext()))
+      }
       RestoreMethod.FROM_OLD_DEVICE -> error("Device transfer not supported in manual restore flow")
       RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")
     }

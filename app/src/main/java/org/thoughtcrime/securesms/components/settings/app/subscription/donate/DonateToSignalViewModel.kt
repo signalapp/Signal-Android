@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.database.model.isExpired
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
@@ -51,8 +50,7 @@ import java.util.Optional
  * only in charge of rendering our "current view of the world."
  */
 class DonateToSignalViewModel(
-  startType: InAppPaymentType,
-  private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository
+  startType: InAppPaymentType
 ) : ViewModel() {
 
   companion object {
@@ -73,7 +71,7 @@ class DonateToSignalViewModel(
   val inAppPaymentId: Flowable<InAppPaymentTable.InAppPaymentId> = _inAppPaymentId.onBackpressureLatest().distinctUntilChanged()
 
   init {
-    initializeOneTimeDonationState(oneTimeInAppPaymentRepository)
+    initializeOneTimeDonationState(OneTimeInAppPaymentRepository)
     initializeMonthlyDonationState(RecurringInAppPaymentRepository)
 
     networkDisposable += InternetConnectionObserver
@@ -97,7 +95,7 @@ class DonateToSignalViewModel(
   fun retryOneTimeDonationState() {
     if (!oneTimeDonationDisposables.isDisposed && store.state.oneTimeDonationState.donationStage == DonateToSignalState.DonationStage.FAILURE) {
       store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(donationStage = DonateToSignalState.DonationStage.INIT)) }
-      initializeOneTimeDonationState(oneTimeInAppPaymentRepository)
+      initializeOneTimeDonationState(OneTimeInAppPaymentRepository)
     }
   }
 
@@ -182,7 +180,7 @@ class DonateToSignalViewModel(
   }
 
   fun refreshActiveSubscription() {
-    RecurringInAppPaymentRepository
+    monthlyDonationDisposables += RecurringInAppPaymentRepository
       .getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
       .subscribeBy(
         onSuccess = {
@@ -241,6 +239,8 @@ class DonateToSignalViewModel(
     val oneTimeDonationFromJob: Observable<Optional<PendingOneTimeDonation>> = InAppPaymentsRepository.observeInAppPaymentRedemption(InAppPaymentType.ONE_TIME_DONATION).map {
       when (it) {
         is DonationRedemptionJobStatus.PendingExternalVerification -> Optional.ofNullable(it.pendingOneTimeDonation)
+
+        DonationRedemptionJobStatus.PendingKeepAlive -> error("Invalid state for one time donation")
 
         DonationRedemptionJobStatus.PendingReceiptRedemption,
         DonationRedemptionJobStatus.PendingReceiptRequest,
@@ -388,17 +388,18 @@ class DonateToSignalViewModel(
       onSuccess = { subscriptions ->
         if (subscriptions.isNotEmpty()) {
           val priceCurrencies = subscriptions[0].prices.map { it.currency }
-          val selectedCurrency = SignalStore.inAppPayments.getSubscriptionCurrency(InAppPaymentSubscriberRecord.Type.DONATION)
+          val selectedCurrency = SignalStore.inAppPayments.getRecurringDonationCurrency()
 
           if (selectedCurrency !in priceCurrencies) {
             Log.w(TAG, "Unsupported currency selection. Defaulting to USD. $selectedCurrency isn't supported.")
             val usd = PlatformCurrencyUtil.USD
-            val newSubscriber = InAppPaymentsRepository.getSubscriber(usd, InAppPaymentSubscriberRecord.Type.DONATION) ?: InAppPaymentSubscriberRecord(
+            val newSubscriber = InAppPaymentsRepository.getRecurringDonationSubscriber(usd) ?: InAppPaymentSubscriberRecord(
               subscriberId = SubscriberId.generate(),
               currency = usd,
               type = InAppPaymentSubscriberRecord.Type.DONATION,
               requiresCancel = false,
-              paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN
+              paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN,
+              iapSubscriptionId = null
             )
             InAppPaymentsRepository.setSubscriber(newSubscriber)
             RecurringInAppPaymentRepository.syncAccountRecord().subscribe()
@@ -427,11 +428,10 @@ class DonateToSignalViewModel(
   }
 
   class Factory(
-    private val startType: InAppPaymentType,
-    private val oneTimeInAppPaymentRepository: OneTimeInAppPaymentRepository = OneTimeInAppPaymentRepository(AppDependencies.donationsService)
+    private val startType: InAppPaymentType
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonateToSignalViewModel(startType, oneTimeInAppPaymentRepository)) as T
+      return modelClass.cast(DonateToSignalViewModel(startType)) as T
     }
   }
 }

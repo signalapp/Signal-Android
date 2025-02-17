@@ -1,20 +1,30 @@
 package org.whispersystems.signalservice.internal.push
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * This is a parsed, POJO representation of the server response describing the state of the registration session.
- * The useful headers and the request body are wrapped in a single holder class.
  */
 data class RegistrationSessionMetadataResponse(
-  val headers: RegistrationSessionMetadataHeaders,
-  val body: RegistrationSessionMetadataJson,
-  val state: RegistrationSessionState?
-)
+  val metadata: RegistrationSessionMetadataJson,
+  val clientReceivedAt: Duration,
+  val retryAfterTimestamp: Duration? = null
+) {
+  constructor(metadata: RegistrationSessionMetadataJson, clientReceivedAt: Long, retryAfterTimestamp: Long?) : this(metadata, clientReceivedAt.milliseconds, retryAfterTimestamp?.milliseconds)
 
-data class RegistrationSessionMetadataHeaders(
-  val timestamp: Long
-)
+  fun deriveTimestamp(delta: Duration?): Duration {
+    if (delta == null) {
+      return 0.milliseconds
+    }
+
+    val now = System.currentTimeMillis().milliseconds
+    val base = clientReceivedAt.takeIf { clientReceivedAt <= now } ?: now
+
+    return base + delta
+  }
+}
 
 data class RegistrationSessionMetadataJson(
   @JsonProperty("id") val id: String,
@@ -33,7 +43,3 @@ data class RegistrationSessionMetadataJson(
     return requestedInformation.contains("captcha")
   }
 }
-
-data class RegistrationSessionState(
-  var pushChallengeTimedOut: Boolean
-)

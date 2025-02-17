@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
 import android.app.Application
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isNull
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.nullValue
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -27,7 +27,6 @@ import java.time.ZoneOffset
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
 class NotificationProfilesTest {
-
   @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
@@ -72,13 +71,13 @@ class NotificationProfilesTest {
 
   @Test
   fun `when no profiles then return null`() {
-    assertThat("no active profile", NotificationProfiles.getActiveProfile(emptyList(), 1000L, utc), nullValue())
+    assertThat(NotificationProfiles.getActiveProfile(emptyList(), 1000L, utc), "no active profile").isNull()
   }
 
   @Test
   fun `when no manually enabled or schedule profiles then return null`() {
     val profiles = listOf(first, second)
-    assertThat("no active profile", NotificationProfiles.getActiveProfile(profiles, 3000L, utc), nullValue())
+    assertThat(NotificationProfiles.getActiveProfile(profiles, 3000L, utc), "no active profile").isNull()
   }
 
   @Test
@@ -88,14 +87,14 @@ class NotificationProfilesTest {
     every { notificationProfileValues.manuallyDisabledAt } returns 5000L
 
     val profiles = listOf(first, second)
-    assertThat("active profile is profile second", NotificationProfiles.getActiveProfile(profiles, 3000L, utc), `is`(profiles[1]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, 3000L, utc), "active profile is profile second").isEqualTo(profiles[1])
   }
 
   @Test
   fun `when first is scheduled and second is not manually enabled and now is within schedule return first`() {
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
   }
 
   @Test
@@ -106,7 +105,7 @@ class NotificationProfilesTest {
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[1]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[1])
   }
 
   @Test
@@ -118,7 +117,7 @@ class NotificationProfilesTest {
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 900, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
 
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
   }
 
   @Test
@@ -127,7 +126,7 @@ class NotificationProfilesTest {
     val secondSchedule = NotificationProfileSchedule(id = 4L, true, start = 800, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = firstSchedule), second.copy(schedule = secondSchedule))
 
-    assertThat("active profile is second", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[1]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is second").isEqualTo(profiles[1])
   }
 
   @Test
@@ -140,7 +139,7 @@ class NotificationProfilesTest {
     val secondSchedule = NotificationProfileSchedule(id = 4L, true, start = 700, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = firstSchedule), second.copy(schedule = secondSchedule))
 
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
   }
 
   @Test
@@ -151,7 +150,7 @@ class NotificationProfilesTest {
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, end = 845, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
   }
 
   @Test
@@ -162,7 +161,7 @@ class NotificationProfilesTest {
 
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 700, end = 1000, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), nullValue())
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), "active profile is null").isNull()
   }
 
   @Test
@@ -173,7 +172,7 @@ class NotificationProfilesTest {
 
     val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 700, end = 900, daysEnabled = setOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY))
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is first", NotificationProfiles.getActiveProfile(profiles, monday830am.toMillis(ZoneOffset.UTC), utc), `is`(profiles[0]))
+    assertThat(NotificationProfiles.getActiveProfile(profiles, monday830am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
   }
 
   @Test
@@ -184,6 +183,6 @@ class NotificationProfilesTest {
 
     val schedule = NotificationProfileSchedule(id = 3L, enabled = true, start = 2200, end = 1000, daysEnabled = DayOfWeek.entries.toSet())
     val profiles = listOf(first.copy(schedule = schedule))
-    assertThat("active profile is null", NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), nullValue())
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday9am.toMillis(ZoneOffset.UTC), utc), "active profile is null").isNull()
   }
 }

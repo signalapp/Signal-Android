@@ -81,7 +81,7 @@ public class StickerRolloverTouchListener implements RecyclerView.OnItemTouchLis
 
   public void enterHoverMode(@NonNull RecyclerView recyclerView, @NonNull KeyboardStickerListAdapter.Sticker sticker) {
     this.hoverMode = true;
-    showSticker(recyclerView, sticker.getUri(), sticker.getStickerRecord().getEmoji());
+    showSticker(recyclerView, sticker.getUri(), sticker.getStickerRecord().emoji);
   }
 
   private void exitHoverMode() {

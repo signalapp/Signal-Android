@@ -65,7 +65,7 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   }
 
   public MegaphoneDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, databaseSecret.asString(),  null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook(), true);
+    super(application, DATABASE_NAME, databaseSecret.asString(),  null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(application, DATABASE_NAME), new SqlCipherDatabaseHook(), true);
 
     this.application = application;
   }

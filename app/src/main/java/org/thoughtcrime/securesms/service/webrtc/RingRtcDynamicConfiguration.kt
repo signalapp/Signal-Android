@@ -21,7 +21,7 @@ object RingRtcDynamicConfiguration {
 
     return if (shouldUseOboeAdm()) {
       when {
-        shouldUseSoftwareAecForOboe() -> AudioProcessingMethod.ForceSoftwareAec3
+        shouldUseSoftwareAecForOboe() || isKnownFaultyHardwareImplementation() -> AudioProcessingMethod.ForceSoftwareAec3
         else -> AudioProcessingMethod.ForceHardware
       }
     } else {

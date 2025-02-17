@@ -81,7 +81,6 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
       SaveAnimation.NONE -> confirm.cancelSpinning()
       SaveAnimation.LOADING -> confirm.setSpinning()
       SaveAnimation.SUCCESS -> {
-        confirm.cancelSpinning()
         requireActivity().setResult(Activity.RESULT_OK)
         closeNavGraphBranch()
         RegistrationUtil.maybeMarkRegistrationComplete()

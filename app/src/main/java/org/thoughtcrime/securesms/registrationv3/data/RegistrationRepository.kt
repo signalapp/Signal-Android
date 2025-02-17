@@ -61,7 +61,6 @@ import org.thoughtcrime.securesms.registration.fcm.PushChallengeRequest
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
@@ -78,7 +77,6 @@ import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
-import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataHeaders
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.io.IOException
@@ -303,7 +301,7 @@ object RegistrationRepository {
       val result = RegistrationSessionCreationResult.from(registrationSessionResult)
       if (result is RegistrationSessionCreationResult.Success) {
         Log.d(TAG, "Updating registration session and E164 in value store.")
-        SignalStore.registration.sessionId = result.getMetadata().body.id
+        SignalStore.registration.sessionId = result.sessionId
         SignalStore.registration.sessionE164 = e164
       }
 
@@ -415,7 +413,7 @@ object RegistrationRepository {
         registrationLock = registrationLock,
         unidentifiedAccessKey = unidentifiedAccessKey,
         unrestrictedUnidentifiedAccess = universalUnidentifiedAccess,
-        capabilities = AppCapabilities.getCapabilities(true, RemoteConfig.storageServiceEncryptionV2),
+        capabilities = AppCapabilities.getCapabilities(true),
         discoverableByPhoneNumber = SignalStore.phoneNumberPrivacy.phoneNumberDiscoverabilityMode == PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode.DISCOVERABLE,
         name = null,
         pniRegistrationId = registrationData.pniRegistrationId,
@@ -468,8 +466,8 @@ object RegistrationRepository {
         if (receivedPush) {
           val challenge = subscriber.challenge
           if (challenge != null) {
-            Log.w(TAG, "Push challenge token received.")
-            return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.result.body.id, challenge)
+            Log.i(TAG, "Push challenge token received.")
+            return@withContext accountManager.submitPushChallengeToken(sessionCreationResponse.result.metadata.id, challenge)
           } else {
             Log.w(TAG, "Push received but challenge token was null.")
           }
@@ -483,16 +481,6 @@ object RegistrationRepository {
         return@withContext NetworkResult.ApplicationError<RegistrationSessionMetadataResponse>(ex)
       }
     }
-
-  @JvmStatic
-  fun deriveTimestamp(headers: RegistrationSessionMetadataHeaders, deltaSeconds: Int?): Long {
-    if (deltaSeconds == null) {
-      return 0L
-    }
-
-    val timestamp: Long = headers.timestamp
-    return timestamp + deltaSeconds.seconds.inWholeMilliseconds
-  }
 
   suspend fun hasValidSvrAuthCredentials(context: Context, e164: String, password: String): BackupAuthCheckResult =
     withContext(Dispatchers.IO) {

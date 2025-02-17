@@ -52,12 +52,15 @@ public final class DoNotDisturbUtil {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {
+      case NotificationManager.INTERRUPTION_FILTER_ALL:
+        return true;
       case NotificationManager.INTERRUPTION_FILTER_PRIORITY:
         return handlePriority(context, notificationManager, recipient);
       case NotificationManager.INTERRUPTION_FILTER_NONE:
       case NotificationManager.INTERRUPTION_FILTER_ALARMS:
         return false;
       default:
+        Log.w(TAG, "Unknown interruption filter, will interrupt user: " + notificationManager.getCurrentInterruptionFilter());
         return true;
     }
   }
@@ -77,25 +80,37 @@ public final class DoNotDisturbUtil {
       return false;
     }
 
+    final boolean isContactPriority = isContactPriority(context, recipient, policy.priorityCallSenders);
+    final boolean isRepeatCaller    = isRepeatCaller(context, recipient);
+    Log.i(TAG, "Handling priority - Contact priority: " + isContactPriority + ", Repeat caller: " + isRepeatCaller);
+
     if (areCallsPrioritized && !isRepeatCallerEnabled) {
-      return isContactPriority(context, recipient, policy.priorityCallSenders);
+      return isContactPriority;
     }
 
     if (!areCallsPrioritized) {
-      return isRepeatCaller(context, recipient);
+      return isRepeatCaller;
     }
 
-    return isContactPriority(context, recipient, policy.priorityCallSenders) || isRepeatCaller(context, recipient);
+    return isContactPriority || isRepeatCaller;
   }
 
   private static boolean isContactPriority(@NonNull Context context, @NonNull Recipient recipient, int priority) {
+    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
+      return false;
+    }
+
+    boolean isSystemContact  = recipient.resolve().isSystemContact();
+    boolean isContactStarred = isContactStarred(context, recipient);
+    Log.i(TAG, "Checking contact priority - Priority " + priority + ", System contact: " + isSystemContact + ", Starred contact: " + isContactStarred);
+
     switch (priority) {
       case NotificationManager.Policy.PRIORITY_SENDERS_ANY:
         return true;
       case NotificationManager.Policy.PRIORITY_SENDERS_CONTACTS:
-        return recipient.resolve().isSystemContact();
+        return isSystemContact;
       case NotificationManager.Policy.PRIORITY_SENDERS_STARRED:
-        return isContactStarred(context, recipient);
+        return isContactStarred;
     }
 
     Log.w(TAG, "Unknown priority " + priority);
@@ -104,10 +119,6 @@ public final class DoNotDisturbUtil {
 
   private static boolean isContactStarred(@NonNull Context context, @NonNull Recipient recipient) {
     if (!recipient.resolve().isSystemContact()) return false;
-
-    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-      return false;
-    }
 
     //noinspection ConstantConditions
     try (Cursor cursor = context.getContentResolver().query(recipient.resolve().getContactUri(), new String[]{ContactsContract.Contacts.STARRED}, null, null, null)) {

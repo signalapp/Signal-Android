@@ -63,7 +63,6 @@ public final class WebRtcControls {
          false);
   }
 
-  @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
   public WebRtcControls(boolean isLocalVideoEnabled,
                  boolean isRemoteVideoEnabled,
                  boolean isMoreThanOneCameraAvailable,
@@ -131,7 +130,7 @@ public final class WebRtcControls {
   public @Px int getFold() {
     return foldableState.getFoldPoint();
   }
-
+  
   public @StringRes int getStartCallButtonText() {
     if (isGroupCall()) {
       if (groupCallState == GroupCallState.FULL) {
@@ -248,7 +247,7 @@ public final class WebRtcControls {
   }
 
   public boolean showSmallHeader() {
-    return isAtLeastOutgoing();
+    return isAtLeastOutgoing() || callState == CallState.RECONNECTING;
   }
 
   public boolean showFullScreenShade() {

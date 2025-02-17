@@ -426,7 +426,7 @@ public abstract class PushSendJob extends SendJob {
       byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.stickerLocator.packKey);
       int                     stickerId  = stickerAttachment.stickerLocator.stickerId;
       StickerRecord           record     = SignalDatabase.stickers().getSticker(stickerAttachment.stickerLocator.packId, stickerId, false);
-      String                  emoji      = record != null ? record.getEmoji() : null;
+      String                  emoji      = record != null ? record.emoji : null;
       SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
 
       return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, emoji, attachment));

@@ -1,7 +1,8 @@
 package org.thoughtcrime.securesms.profiles.manage
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
 import org.junit.Test
-import org.thoughtcrime.securesms.assertIs
 
 class UsernameEditStateMachineTest {
   @Test
@@ -10,7 +11,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = "", discriminator = "07", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -21,7 +22,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -32,7 +33,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -43,7 +44,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -54,7 +55,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -65,7 +66,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -76,7 +77,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -87,7 +88,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -96,7 +97,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = "", discriminator = "07", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -107,7 +108,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -118,7 +119,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -129,7 +130,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -140,7 +141,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -151,7 +152,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -162,7 +163,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -173,7 +174,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -184,7 +185,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -195,7 +196,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -206,7 +207,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -217,7 +218,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -228,7 +229,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -239,7 +240,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -250,7 +251,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -261,7 +262,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -272,7 +273,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.NoUserEntry(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -283,7 +284,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -294,7 +295,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -305,7 +306,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -316,7 +317,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -327,7 +328,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNicknameAndDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.USER)
     val actual = given.onUserChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -338,7 +339,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = "", discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -349,7 +350,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredDiscriminator(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedNickname(nickname)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -360,7 +361,7 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = "", stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator("")
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 
   @Test
@@ -371,6 +372,6 @@ class UsernameEditStateMachineTest {
     val expected = UsernameEditStateMachine.UserEnteredNickname(nickname = nickname, discriminator = discriminator, stateModifier = UsernameEditStateMachine.StateModifier.SYSTEM)
     val actual = given.onSystemChangedDiscriminator(discriminator)
 
-    actual assertIs expected
+    assertThat(actual).isEqualTo(expected)
   }
 }

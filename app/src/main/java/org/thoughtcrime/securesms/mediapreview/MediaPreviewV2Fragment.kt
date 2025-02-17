@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -79,7 +78,9 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
-class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v2), MediaPreviewFragment.Events {
+class MediaPreviewV2Fragment :
+  LoggingFragment(R.layout.fragment_media_preview_v2),
+  MediaPreviewFragment.Events {
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
@@ -558,10 +559,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
-    SaveAttachmentTask.showWarningDialog(requireContext()) { _: DialogInterface?, _: Int ->
+    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext(), 1) {
       if (StorageUtil.canWriteToMediaStore()) {
         performSaveToDisk(mediaItem)
-        return@showWarningDialog
+        return@showWarningDialogIfNecessary
       }
       Permissions.with(this)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)

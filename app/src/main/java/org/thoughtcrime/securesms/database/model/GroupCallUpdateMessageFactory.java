@@ -32,7 +32,7 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
   private final ACI                    selfAci;
 
   public GroupCallUpdateMessageFactory(@NonNull Context context,
-                                       @NonNull List<ACI> joinedMembers,
+                                       @NonNull List<ServiceId> joinedMembers,
                                        boolean withTime,
                                        @NonNull GroupCallUpdateDetails groupCallUpdateDetails)
   {
@@ -93,13 +93,22 @@ public class GroupCallUpdateMessageFactory implements UpdateDescription.Spannabl
                           : context.getString(R.string.MessageRecord_s_is_in_the_call, describe(joinedMembers.get(0)));
         }
       case 2:
-        return withTime ? context.getString(R.string.MessageRecord_s_and_s_are_in_the_call_s1,
-                                            describe(joinedMembers.get(0)),
-                                            describe(joinedMembers.get(1)),
-                                            time)
-                        : context.getString(R.string.MessageRecord_s_and_s_are_in_the_call,
-                                            describe(joinedMembers.get(0)),
-                                            describe(joinedMembers.get(1)));
+        boolean includesSelf = joinedMembers.contains(selfAci);
+        if (includesSelf) {
+          return withTime ? context.getString(R.string.MessageRecord_s_and_you_are_in_the_call_s1,
+                                              describe(joinedMembers.get(0)),
+                                              time)
+                          : context.getString(R.string.MessageRecord_s_and_you_are_in_the_call,
+                                              describe(joinedMembers.get(0)));
+        } else {
+          return withTime ? context.getString(R.string.MessageRecord_s_and_s_are_in_the_call_s1,
+                                              describe(joinedMembers.get(0)),
+                                              describe(joinedMembers.get(1)),
+                                              time)
+                          : context.getString(R.string.MessageRecord_s_and_s_are_in_the_call,
+                                              describe(joinedMembers.get(0)),
+                                              describe(joinedMembers.get(1)));
+        }
       default:
         int others = joinedMembers.size() - 2;
         return withTime ? context.getResources().getQuantityString(R.plurals.MessageRecord_s_s_and_d_others_are_in_the_call_s,

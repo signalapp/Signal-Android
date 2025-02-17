@@ -5,6 +5,10 @@
 
 package org.thoughtcrime.securesms.database
 
+import assertk.assertThat
+import assertk.assertions.isEqualTo
+import assertk.assertions.isFalse
+import assertk.assertions.isTrue
 import org.junit.Test
 import org.signal.core.util.forEach
 import org.signal.core.util.requireLong
@@ -13,7 +17,6 @@ import org.signal.core.util.select
 import org.signal.core.util.updateAll
 import org.thoughtcrime.securesms.crash.CrashConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.testing.assertIs
 
 class LogDatabaseTest {
 
@@ -37,7 +40,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -58,7 +61,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -79,7 +82,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -100,7 +103,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -121,7 +124,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -142,7 +145,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs true
+    assertThat(foundMatch).isTrue()
   }
 
   @Test
@@ -163,7 +166,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs false
+    assertThat(foundMatch).isFalse()
   }
 
   @Test
@@ -184,7 +187,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs false
+    assertThat(foundMatch).isFalse()
   }
 
   @Test
@@ -205,7 +208,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime
     )
 
-    foundMatch assertIs false
+    assertThat(foundMatch).isFalse()
   }
 
   @Test
@@ -231,7 +234,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime - 100
     )
 
-    foundMatch assertIs false
+    assertThat(foundMatch).isFalse()
   }
 
   @Test
@@ -245,7 +248,7 @@ class LogDatabaseTest {
       promptThreshold = currentTime - 100
     )
 
-    foundMatch assertIs false
+    assertThat(foundMatch).isFalse()
   }
 
   @Test
@@ -279,9 +282,9 @@ class LogDatabaseTest {
       .run()
       .forEach {
         if (it.requireNonNullString(LogDatabase.CrashTable.NAME) == "TestName") {
-          it.requireLong(LogDatabase.CrashTable.LAST_PROMPTED_AT) assertIs currentTime
+          assertThat(it.requireLong(LogDatabase.CrashTable.LAST_PROMPTED_AT)).isEqualTo(currentTime)
         } else {
-          it.requireLong(LogDatabase.CrashTable.LAST_PROMPTED_AT) assertIs 0
+          assertThat(it.requireLong(LogDatabase.CrashTable.LAST_PROMPTED_AT)).isEqualTo(0)
         }
       }
   }

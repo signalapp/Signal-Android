@@ -449,7 +449,8 @@ class JobController {
                                   false,
                                   job.getParameters().isMemoryOnly(),
                                   job.getParameters().getGlobalPriority(),
-                                  job.getParameters().getQueuePriority());
+                                  job.getParameters().getQueuePriority(),
+                                  job.getParameters().getInitialDelay());
 
     List<ConstraintSpec> constraintSpecs = Stream.of(job.getParameters().getConstraintKeys())
                                                  .map(key -> new ConstraintSpec(jobSpec.getId(), key, jobSpec.isMemoryOnly()))
@@ -476,7 +477,7 @@ class JobController {
         constraints.add(constraintInstantiator.instantiate(key));
       }
 
-      scheduler.schedule(0, constraints);
+      scheduler.schedule(job.getParameters().getInitialDelay(), constraints);
     }
   }
 
@@ -558,7 +559,8 @@ class JobController {
                        jobSpec.isRunning(),
                        jobSpec.isMemoryOnly(),
                        jobSpec.getGlobalPriority(),
-                       jobSpec.getQueuePriority());
+                       jobSpec.getQueuePriority(),
+                       jobSpec.getInitialDelay());
   }
 
   interface Callback {

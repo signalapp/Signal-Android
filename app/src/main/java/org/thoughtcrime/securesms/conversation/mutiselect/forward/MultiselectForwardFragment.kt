@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchError
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
@@ -469,7 +470,7 @@ class MultiselectForwardFragment :
           ContactSearchConfiguration.Section.Individuals(
             includeHeader = true,
             transportType = ContactSearchConfiguration.TransportType.PUSH,
-            includeSelf = true
+            includeSelfMode = RecipientTable.IncludeSelfMode.IncludeWithRemap(getString(R.string.note_to_self))
           )
         )
 

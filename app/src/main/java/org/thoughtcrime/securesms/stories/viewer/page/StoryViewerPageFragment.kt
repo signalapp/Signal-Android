@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Rect
+import android.graphics.Typeface
 import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
@@ -13,6 +14,7 @@ import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.StyleSpan
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
@@ -923,7 +925,9 @@ class StoryViewerPageFragment :
     caption.visible = displayBody.isNotEmpty()
     caption.requestLayout()
     caption.movementMethod = LinkMovementMethod.getInstance()
-    caption.setOverflowText(getString(R.string.StoryViewerPageFragment__see_more))
+    val overflow = SpannableString(getString(R.string.StoryViewerPageFragment__read_more))
+    overflow.setSpan(StyleSpan(Typeface.BOLD), 0, overflow.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    caption.setOverflowText(overflow)
     caption.maxLines = 5
     caption.text = displayBody
     caption.setMaxLength(280)

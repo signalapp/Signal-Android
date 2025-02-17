@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 
-fun ThreadTable.getThreadsForBackup(db: SignalDatabase): ChatArchiveExporter {
+fun ThreadTable.getThreadsForBackup(db: SignalDatabase, includeImageWallpapers: Boolean): ChatArchiveExporter {
   //language=sql
   val query = """
       SELECT
@@ -35,12 +35,11 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase): ChatArchiveExporter {
       FROM ${ThreadTable.TABLE_NAME}
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
       WHERE
-        ${ThreadTable.ACTIVE} = 1 AND
         ${RecipientTable.TABLE_NAME}.${RecipientTable.TYPE} NOT IN (${RecipientTable.RecipientType.DISTRIBUTION_LIST.id}, ${RecipientTable.RecipientType.CALL_LINK.id})
     """
   val cursor = readableDatabase.query(query)
 
-  return ChatArchiveExporter(cursor, db)
+  return ChatArchiveExporter(cursor, db, includeImageWallpapers)
 }
 
 fun ThreadTable.getThreadGroupStatus(messageIds: Collection<Long>): Map<Long, Boolean> {

@@ -10,7 +10,9 @@ import io.reactivex.rxjava3.core.Single
 import okhttp3.Response
 import okhttp3.WebSocket
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.net.ChatService
+import org.signal.libsignal.net.ChatConnection
+import org.signal.libsignal.net.Network
+import org.signal.libsignal.net.UnauthenticatedChatConnection
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -46,7 +48,7 @@ class ShadowingWebSocketConnection(
   signalAgent: String,
   healthMonitor: HealthMonitor,
   allowStories: Boolean,
-  private val chatService: ChatService,
+  private val network: Network,
   private val shadowPercentage: Int,
   private val bridge: WebSocketShadowingBridge
 ) : OkHttpWebSocketConnection(
@@ -67,19 +69,33 @@ class ShadowingWebSocketConnection(
   }
   private val canShadow: AtomicBoolean = AtomicBoolean(false)
   private val executor: ExecutorService = Executors.newSingleThreadExecutor()
+  private var chatConnection: UnauthenticatedChatConnection? = null
+  private var shadowingConnectPending = false
 
   override fun connect(): Observable<WebSocketConnectionState> {
-    executor.submit {
-      chatService.connect().whenComplete(
-        onSuccess = {
-          canShadow.set(true)
-          Log.i(TAG, "Shadow socket connected.")
-        },
-        onFailure = {
-          canShadow.set(false)
-          Log.i(TAG, "Shadow socket failed to connect.")
-        }
-      )
+    // NB: The potential for race conditions here was introduced when we switched from ChatService's
+    //   long lived connection model to the single-use ChatConnection model.
+    // At this time, we do not intend to ever use this code in production again, so I'm deferring properly
+    //  fixing it with a refactor, and instead just doing the bare minimum to avoid an obvious race.
+    // If we do want to use this again in production, we should probably refactor to depend on the higher level
+    //   LibSignalChatConnection, rather than the lower level ChatConnection API.
+    if (chatConnection == null && !shadowingConnectPending) {
+      shadowingConnectPending = true
+      executor.submit {
+        network.connectUnauthChat(null).whenComplete(
+          onSuccess = { connection ->
+            shadowingConnectPending = false
+            chatConnection = connection
+            canShadow.set(true)
+            Log.i(TAG, "Shadow socket connected.")
+          },
+          onFailure = {
+            shadowingConnectPending = false
+            canShadow.set(false)
+            Log.i(TAG, "Shadow socket failed to connect.")
+          }
+        )
+      }
     }
     return super.connect()
   }
@@ -96,7 +112,7 @@ class ShadowingWebSocketConnection(
 
   override fun disconnect() {
     executor.submit {
-      chatService.disconnect().thenApply {
+      chatConnection?.disconnect()?.thenApply {
         canShadow.set(false)
         Log.i(TAG, "Shadow socket disconnected.")
       }
@@ -133,22 +149,23 @@ class ShadowingWebSocketConnection(
   }
 
   private fun libsignalKeepAlive(actualResponse: WebsocketResponse) {
-    val request = ChatService.Request(
+    val connection = chatConnection ?: return
+    val request = ChatConnection.Request(
       "GET",
       "/v1/keepalive",
       emptyMap(),
       ByteArray(0),
       KEEP_ALIVE_TIMEOUT.inWholeMilliseconds.toInt()
     )
-    chatService.sendAndDebug(request)
-      .whenComplete(
-        onSuccess = {
+    connection.send(request)
+      ?.whenComplete(
+        onSuccess = { response ->
           stats.requestsCompared.incrementAndGet()
-          val goodStatus = (it?.response?.status ?: -1) in 200..299
+          val goodStatus = (response?.status ?: -1) in 200..299
           if (!goodStatus) {
             stats.badStatuses.incrementAndGet()
           }
-          Log.i(TAG, "$it")
+          Log.i(TAG, response?.message)
         },
         onFailure = {
           stats.requestsCompared.incrementAndGet()

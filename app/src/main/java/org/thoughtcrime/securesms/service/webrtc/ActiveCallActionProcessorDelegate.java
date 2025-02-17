@@ -57,6 +57,21 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   }
 
   @Override
+  protected @NonNull WebRtcServiceState handleRemoteAudioEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
+    RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
+
+    Log.i(tag, "handleRemoteAudioEnable(): call_id: " + activePeer.getCallId());
+
+    CallParticipant oldParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
+    CallParticipant newParticipant = oldParticipant.withAudioEnabled(enable);
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .putParticipant(activePeer.getRecipient(), newParticipant)
+                       .build();
+  }
+
+  @Override
   protected @NonNull WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 

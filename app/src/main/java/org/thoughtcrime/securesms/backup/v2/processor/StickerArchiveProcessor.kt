@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Hex
 import org.signal.core.util.insertInto
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.ExportSkips
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.StickerPack
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -18,20 +20,22 @@ import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
+import java.io.IOException
+
+private val TAG = Log.tag(StickerArchiveProcessor::class)
 
 /**
  * Handles importing/exporting [StickerPack] frames for an archive.
  */
 object StickerArchiveProcessor {
   fun export(db: SignalDatabase, emitter: BackupFrameEmitter) {
-    StickerPackRecordReader(db.stickerTable.allStickerPacks).use { reader ->
-      var record: StickerPackRecord? = reader.next
-      while (record != null) {
-        if (record.isInstalled) {
-          val frame = record.toBackupFrame()
+    StickerPackRecordReader(db.stickerTable.getAllStickerPacks()).use { reader ->
+      var record: StickerPackRecord? = null
+      while (reader.getNext()?.let { record = it } != null) {
+        if (record!!.isInstalled) {
+          val frame = record!!.toBackupFrame() ?: continue
           emitter.emit(frame)
         }
-        record = reader.next
       }
     }
   }
@@ -62,12 +66,24 @@ object StickerArchiveProcessor {
   }
 }
 
-private fun StickerPackRecord.toBackupFrame(): Frame {
-  val packIdBytes = Hex.fromStringCondensed(packId)
-  val packKey = Hex.fromStringCondensed(packKey)
+private fun StickerPackRecord.toBackupFrame(): Frame? {
+  val packIdBytes = try {
+    Hex.fromStringCondensed(this.packId)?.takeIf { it.size == 16 } ?: throw IOException("Incorrect length!")
+  } catch (e: IOException) {
+    Log.w(TAG, ExportSkips.invalidStickerPackId())
+    return null
+  }
+
+  val packKeyBytes = try {
+    Hex.fromStringCondensed(this.packKey)?.takeIf { it.size == 32 } ?: throw IOException("Incorrect length!")
+  } catch (e: IOException) {
+    Log.w(TAG, ExportSkips.invalidStickerPackKey())
+    return null
+  }
+
   val pack = StickerPack(
     packId = packIdBytes.toByteString(),
-    packKey = packKey.toByteString()
+    packKey = packKeyBytes.toByteString()
   )
   return Frame(stickerPack = pack)
 }

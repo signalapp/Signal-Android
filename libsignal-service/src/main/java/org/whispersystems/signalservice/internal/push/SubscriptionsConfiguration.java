@@ -89,7 +89,7 @@ public class SubscriptionsConfiguration {
     @JsonProperty("levels")
     private Map<Integer, BackupLevelConfiguration> backupLevelConfigurationMap;
 
-    @JsonProperty("backupFreeTierMediaDays")
+    @JsonProperty("freeTierMediaDays")
     private int freeTierMediaDays;
 
     public Map<Integer, BackupLevelConfiguration> getBackupLevelConfigurationMap() {

@@ -30,14 +30,14 @@ public final class UpdateDescription {
     Spannable create();
   }
 
-  private final Collection<ACI>  mentioned;
-  private final SpannableFactory stringFactory;
-  private final Spannable        staticString;
-  private final int              lightIconResource;
-  private final int              lightTint;
-  private final int              darkTint;
+  private final Collection<ServiceId> mentioned;
+  private final SpannableFactory      stringFactory;
+  private final Spannable             staticString;
+  private final int                   lightIconResource;
+  private final int                   lightTint;
+  private final int                   darkTint;
 
-  private UpdateDescription(@NonNull Collection<ACI> mentioned,
+  private UpdateDescription(@NonNull Collection<ServiceId> mentioned,
                             @Nullable SpannableFactory stringFactory,
                             @Nullable Spannable staticString,
                             @DrawableRes int iconResource,
@@ -62,11 +62,11 @@ public final class UpdateDescription {
    * @param mentioned     UUIDs of recipients that are mentioned in the string.
    * @param stringFactory The background method for generating the string.
    */
-  public static UpdateDescription mentioning(@NonNull Collection<ACI> mentioned,
+  public static UpdateDescription mentioning(@NonNull Collection<ServiceId> mentioned,
                                              @NonNull SpannableFactory stringFactory,
                                              @DrawableRes int iconResource)
   {
-    return new UpdateDescription(mentioned.stream().filter(ACI::isValid).collect(Collectors.toList()),
+    return new UpdateDescription(mentioned.stream().filter(ServiceId::isValid).collect(Collectors.toList()),
                                  stringFactory,
                                  null,
                                  iconResource,
@@ -127,7 +127,7 @@ public final class UpdateDescription {
   }
 
   @AnyThread
-  public @NonNull Collection<ACI> getMentioned() {
+  public @NonNull Collection<ServiceId> getMentioned() {
     return mentioned;
   }
 
@@ -158,7 +158,7 @@ public final class UpdateDescription {
       );
     }
 
-    Set<ACI> allMentioned = new HashSet<>();
+    Set<ServiceId> allMentioned = new HashSet<>();
 
     for (UpdateDescription updateDescription : updateDescriptions) {
       allMentioned.addAll(updateDescription.getMentioned());

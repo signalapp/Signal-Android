@@ -39,7 +39,7 @@ class BaseStoryRecipientSelectionRepository {
 
   fun getAllSignalContacts(): Single<Set<RecipientId>> {
     return Single.fromCallable {
-      SignalDatabase.recipients.getSignalContacts(false)?.use {
+      SignalDatabase.recipients.getSignalContacts(RecipientTable.IncludeSelfMode.Exclude).use {
         val recipientSet = mutableSetOf<RecipientId>()
         while (it.moveToNext()) {
           recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))

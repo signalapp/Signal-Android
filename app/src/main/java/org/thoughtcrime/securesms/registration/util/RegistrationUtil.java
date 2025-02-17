@@ -8,9 +8,11 @@ package org.thoughtcrime.securesms.registration.util;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
+import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.RemoteConfig;
@@ -31,7 +33,7 @@ public final class RegistrationUtil {
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
         (SignalStore.svr().hasOptedInWithAccess() || SignalStore.svr().hasOptedOut()) &&
-        (!RemoteConfig.restoreAfterRegistration() || (SignalStore.registration().hasSkippedTransferOrRestore() || SignalStore.registration().hasCompletedRestore())))
+        (!RemoteConfig.INSTANCE.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState())))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registration().markRegistrationComplete();
@@ -47,6 +49,9 @@ public final class RegistrationUtil {
                      .then(new StorageSyncJob())
                      .then(new DirectoryRefreshJob(false))
                      .enqueue();
+
+      SignalStore.emoji().clearSearchIndexMetadata();
+      EmojiSearchIndexDownloadJob.scheduleImmediately();
 
     } else if (!SignalStore.registration().isRegistrationComplete()) {
       Log.i(TAG, "Registration is not yet complete.", new Throwable());

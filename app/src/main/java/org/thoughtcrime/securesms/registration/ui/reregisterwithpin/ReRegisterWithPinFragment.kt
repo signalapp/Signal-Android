@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration_pin_restore_entry_v2) {
@@ -76,21 +77,24 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
 
     binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
 
-    registrationViewModel.uiState.observe(viewLifecycleOwner, ::updateViewState)
+    LiveDataUtil
+      .combineLatest(registrationViewModel.uiState, reRegisterViewModel.uiState) { reg, rereg -> reg to rereg }
+      .observe(viewLifecycleOwner) { (registrationState, reRegisterState) -> updateViewState(registrationState, reRegisterState) }
   }
 
-  private fun updateViewState(state: RegistrationState) {
+  private fun updateViewState(state: RegistrationState, reRegisterState: ReRegisterWithPinState) {
     if (state.networkError != null) {
       genericErrorDialog()
       registrationViewModel.networkErrorShown()
     } else if (!state.canSkipSms) {
       findNavController().safeNavigate(ReRegisterWithPinFragmentDirections.actionReRegisterWithPinFragmentToEnterPhoneNumberFragment())
+      registrationViewModel.setInProgress(false)
     } else if (state.isRegistrationLockEnabled && state.svrTriesRemaining == 0) {
       Log.w(TAG, "Unable to continue skip flow, KBS is locked")
       onAccountLocked()
     } else {
       presentProgress(state.inProgress)
-      presentTriesRemaining(state.svrTriesRemaining)
+      presentTriesRemaining(reRegisterState, state.svrTriesRemaining)
     }
 
     state.registerAccountError?.let { error ->
@@ -131,14 +135,15 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
       context = requireContext(),
       pin = pin,
       wrongPinHandler = {
+        registrationViewModel.setInProgress(false)
         reRegisterViewModel.markIncorrectGuess()
       }
     )
   }
 
-  private fun presentTriesRemaining(triesRemaining: Int) {
-    if (reRegisterViewModel.hasIncorrectGuess) {
-      if (triesRemaining == 1 && !reRegisterViewModel.isLocalVerification) {
+  private fun presentTriesRemaining(reRegisterState: ReRegisterWithPinState, triesRemaining: Int) {
+    if (reRegisterState.hasIncorrectGuess) {
+      if (triesRemaining == 1 && !reRegisterState.isLocalVerification) {
         MaterialAlertDialogBuilder(requireContext())
           .setTitle(R.string.PinRestoreEntryFragment_incorrect_pin)
           .setMessage(resources.getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining, triesRemaining))
@@ -155,7 +160,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
     } else {
       if (triesRemaining == 1) {
         binding.pinRestoreForgotPin.visibility = View.VISIBLE
-        if (!reRegisterViewModel.isLocalVerification) {
+        if (!reRegisterState.isLocalVerification) {
           MaterialAlertDialogBuilder(requireContext())
             .setMessage(resources.getQuantityString(R.plurals.PinRestoreEntryFragment_you_have_d_attempt_remaining, triesRemaining, triesRemaining))
             .setPositiveButton(android.R.string.ok, null)

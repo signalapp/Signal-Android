@@ -77,8 +77,13 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     }
 
     viewModel.state.observe(viewLifecycleOwner) {
+      actionButton.isEnabled = it.selection.isNotEmpty()
+
       if (it.distributionListId == null || it.privateStory != null) {
-        getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
+        if (it.isStartingSelection) {
+          getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
+          viewModel.onStartingSelectionAdded()
+        }
         presentTitle(toolbar, it.selection.size)
       }
     }
@@ -138,7 +143,9 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
     return HeaderAction(
       R.string.BaseStoryRecipientSelectionFragment__select_all
     ) {
-      viewModel.toggleSelectAll()
+      lifecycleDisposable += viewModel.toggleSelectAll().subscribe { updatedRecipients ->
+        getAttachedContactSelectionFragment().markSelected(updatedRecipients)
+      }
     }
   }
 

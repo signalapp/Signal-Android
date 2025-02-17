@@ -19,7 +19,6 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.util.Optional
-import javax.annotation.meta.Exhaustive
 
 /**
  * Renders Avatar objects into Media objects. This can involve creating a Bitmap, depending on the
@@ -39,7 +38,6 @@ object AvatarRenderer {
   }
 
   fun renderAvatar(context: Context, avatar: Avatar, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {
-    @Exhaustive
     when (avatar) {
       is Avatar.Resource -> renderResource(context, avatar, onAvatarRendered, onRenderFailed)
       is Avatar.Vector -> renderVector(context, avatar, onAvatarRendered, onRenderFailed)

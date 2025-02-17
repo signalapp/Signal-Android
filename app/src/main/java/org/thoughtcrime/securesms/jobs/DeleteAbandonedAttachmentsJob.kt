@@ -20,6 +20,7 @@ class DeleteAbandonedAttachmentsJob private constructor(parameters: Parameters) 
     private val TAG = Log.tag(DeleteAbandonedAttachmentsJob::class)
     const val KEY = "DeleteAbandonedAttachmentsJob"
 
+    @JvmStatic
     fun enqueue() {
       AppDependencies.jobManager.add(DeleteAbandonedAttachmentsJob())
     }

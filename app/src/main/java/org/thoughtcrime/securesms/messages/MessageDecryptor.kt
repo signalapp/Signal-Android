@@ -197,9 +197,9 @@ object MessageDecryptor {
       }
 
       // TODO We can move this to the "message processing" stage once we give it access to the envelope. But for now it'll stay here.
-      if (envelope.reportingToken != null && envelope.reportingToken!!.size > 0) {
+      if (envelope.report_spam_token != null && envelope.report_spam_token!!.size > 0) {
         val sender = RecipientId.from(cipherResult.metadata.sourceServiceId)
-        SignalDatabase.recipients.setReportingToken(sender, envelope.reportingToken!!.toByteArray())
+        SignalDatabase.recipients.setReportingToken(sender, envelope.report_spam_token!!.toByteArray())
       }
 
       Result.Success(envelope, serverDeliveredTimestamp, cipherResult.content, cipherResult.metadata, followUpOperations.toUnmodifiableList())

@@ -73,7 +73,8 @@ public class JobMigrator {
                            jobSpec.isRunning(),
                            jobSpec.isMemoryOnly(),
                            jobSpec.getGlobalPriority(),
-                           jobSpec.getQueuePriority());
+                           jobSpec.getQueuePriority(),
+                           jobSpec.getInitialDelay());
       });
     }
 

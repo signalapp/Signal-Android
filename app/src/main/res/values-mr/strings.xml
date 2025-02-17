@@ -10,6 +10,7 @@
   <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
   <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
   <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
   <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
   <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
   <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
@@ -412,6 +413,7 @@
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s पर्यंत</string>
     <string name="ConversationItem_read_more"> अधिक जाणा</string>
+    <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  अधिक डाऊनलोड करा</string>
     <string name="ConversationItem_pending">  प्रलंबित</string>
     <string name="ConversationItem_this_message_was_deleted">हा संदेश हटवला गेला.</string>
@@ -583,6 +585,15 @@
         <item quantity="one">संलग्नक संग्रहणामध्ये जतन करत आहे…</item>
         <item quantity="other">%1$d संलग्नके संग्रहणामध्ये जतन करत आहे…</item>
     </plurals>
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="ConversationFragment__save_to_phone">फोनवर सेव्ह करूया?</string>
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="ConversationFragment__this_media_will_be_saved">
+        <item quantity="one">हा मिडीया तुमच्या फोनमध्ये सेव्ह केला जाईल. इतर ॲप्स ना तुमच्या फोनच्या अनुमतीनुसार तो प्राप्त करता येईल.</item>
+        <item quantity="other">हा मिडीया तुमच्या फोनमध्ये सेव्ह केला जाईल. इतर ॲप्स ना तुमच्या फोनच्या अनुमतीनुसार तो प्राप्त करता येईल.</item>
+    </plurals>
+    <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
+    <string name="ConversationFragment_dont_show_again">पुन्हा दाखवू नका</string>
     <string name="ConversationFragment_pending">प्रलंबित…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">डेटा (Signal)</string>
@@ -889,6 +900,7 @@
     <string name="BackupsPreferenceFragment__in_progress">प्रगतीपथावर…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
     <string name="BackupsPreferenceFragment__verifying_backup">बॅकअप सत्यापित करत आहे…</string>
+    <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">%1$d आतापर्यंत…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% आत्तापर्यंत…</string>
@@ -917,6 +929,16 @@
     <string name="DateUtils_tomorrow">उद्या</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
     <string name="DateUtils_tonight">आज रात्री</string>
+    <!-- Used when showing the time a device was linked. %1$s is replaced with the date while %2$s is replaced with the time. e.g. on Jan 15 at 9:00pm -->
+    <plurals name="DateUtils_date_time_at">
+        <item quantity="one">%1$s रोजी %2$s वाजता</item>
+        <item quantity="other">%1$s रोजी %2$s वाजता</item>
+    </plurals>
+    <!-- Used when showing the time a device was linked. e.g. at 9:00pm -->
+    <plurals name="DateUtils_time_at">
+        <item quantity="one">%1$s वाजता</item>
+        <item quantity="other">%1$s वाजता</item>
+    </plurals>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
@@ -963,7 +985,7 @@
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
-    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">डेस्कटॉप किंवा iPad वर Signal वापरा. आपले संदेश आपल्या लिंक केलेल्या डिव्हाइसेसशी सिंक केले जातील.</string>
+    <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">डेस्कटॉपवर किंवा iPad वर हे Signal खाते वापरा.</string>
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">नवीन डिव्हाइस लिंक करा</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
@@ -1003,28 +1025,58 @@
     <string name="LinkDeviceFragment__tap_continue_and_enter_phone">सुरू ठेवा वर टॅप करा आणि पुष्टी करण्यासाठी आपल्या फोनचे लॉक प्रविष्ट करा. आपले Signal पिन प्रविष्ट करू नका.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">सुरू ठेवा</string>
+    <!-- Option on button to contact support -->
+    <string name="LinkDeviceFragment__contact_support">सपोर्टशी संपर्क साधा</string>
+    <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
+    <string name="LinkDeviceFragment__submit_debug_log">डीबग लॉग सबमिट करायचा?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="LinkDeviceFragment__your_debug_logs">आपले डीबग लॉग आम्हाला आपल्या समस्या जलदतेने सोडविण्यात मदत करतील. आपले लॉग प्रविष्ट करणे पर्यायी आहे.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_with_debug">डीबग लॉग सोबत प्रविष्ट करा</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="LinkDeviceFragment__submit_without_debug">डीबग लॉग विना प्रविष्ट करा</string>
+    <!-- Button option to dismiss dialog -->
+    <string name="LinkDeviceFragment__cancel">रद्द करा</string>
+    <!-- Email subject when contacting support on a linked device syncing issue -->
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">संदेश सिंक अयशस्वी</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_body">आपले संदेश आपल्या लिंक केलेल्या डिव्हाइसकडे हस्तांतरित करता आले नाहीत. आपण पुन्हा लिंक करून मग हस्तांतरित करून पाहू शकता, किंवा आपला संदेश इतिहास हस्तांतरित न करता पुढे जाऊ शकता.</string>
+    <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
+    <string name="LinkDeviceFragment__sync_failure_body_unretryable">आपला डिव्हाइस यशस्वीरित्या लिंक केला गेला, परंतु आपले संदेश हस्तांतरित केले जाऊ शकले नाहीत.</string>
+    <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
+    <string name="LinkDeviceFragment__learn_more">अधिक जाणून घ्या</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
-    <string name="LinkDeviceFragment__sync_failure_retry_button">पुन्हा लिंक करून पाहा</string>
+    <string name="LinkDeviceFragment__sync_failure_retry_button">पुन्हा प्रयत्न करा</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
     <string name="LinkDeviceFragment__sync_failure_dismiss_button">हस्तांतरित न करता पुढे जा</string>
     <!-- Option in context menu to edit the name of a linked device -->
     <string name="LinkDeviceFragment__edit_name">नाव संपादित करा</string>
+    <!-- Toast shown when the process of linking a device has been cancelled -->
+    <string name="LinkDeviceFragment__linking_cancelled">लिंक करणे रद्द केले</string>
+    <!-- Message shown in progress dialog telling users to avoid closing the app while messages are being synced -->
+    <string name="LinkDeviceFragment__do_not_close">ॲप बंद करू नका</string>
+    <!-- Dialog title shown when a device is unlinked -->
+    <string name="LinkDeviceFragment__device_unlinked">डिव्हाईस अनलिंक करा</string>
+    <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
+    <string name="LinkDeviceFragment__the_device_that_was">%1$s लिंक केलेला डिव्हाईस आता लिंक्ड राहिलेला नाही.</string>
+    <!-- Button to dismiss dialog -->
+    <string name="LinkDeviceFragment__ok">ठीक</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
-    <string name="EditDeviceNameFragment__edit">Edit device name</string>
+    <string name="EditDeviceNameFragment__edit">डिव्हाईसचे नाव संपादित करा</string>
     <!-- Text hint shown when entering in a new device name -->
     <string name="EditDeviceNameFragment__device_name">डिव्हाईस नाव</string>
     <!-- Button to save name change -->
     <string name="EditDeviceNameFragment__save">जतन करा</string>
     <!-- Toast message shown when a device name was successfully changed -->
-    <string name="EditDeviceNameFragment__device_name_updated">Device name updated</string>
+    <string name="EditDeviceNameFragment__device_name_updated">डिव्हाईसचे नाव अद्यतनित केले</string>
     <!-- Toast message shown when a device name could not be changed and to try again later -->
-    <string name="EditDeviceNameFragment__unable_to_change">Unable to change device name. Try again later.</string>
+    <string name="EditDeviceNameFragment__unable_to_change">डिव्हाईसचे नाव बदलता येत नाही. नंतर पुन्हा प्रयत्न करा.</string>
 
     <!-- AddLinkDeviceFragment -->
     <!-- Description text shown on the QR code scanner when linking a device -->
@@ -1052,11 +1104,16 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">संदेश इतिहास हस्तांतरित करा</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfer your text messages and recent media to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">तुमचे संदेश आणि गेल्या ४५ दिवसांतील तुमचा मिडीया हस्तांतरित करा</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">हस्तांतरित करू नका</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
-    <string name="LinkDeviceSyncBottomSheet_no_old_messages">No old messages or media will be transferred to your linked device</string>
+    <string name="LinkDeviceSyncBottomSheet_no_old_messages">आपल्या लिंक केलेल्या डिव्हाइसवर कोणतेही जुने संदेश किंवा मिडीया हस्तांतरित केले जाणार नाहीत</string>
+
+    <!-- Title of notification telling users that a device was linked to their account -->
+    <string name="NewLinkedDeviceNotification__you_linked_new_device">आपण एक नवीन डिव्हाइस लिंक केलात</string>
+    <!-- Message body of notification telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceNotification__a_new_device_was_linked">नवा डिव्हाइस आपल्या अकाऊंट वर %1$s लिंक झाला. पाहण्यासाठी टॅप करा.</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" अनलिंक करायचे?</string>
@@ -1296,9 +1353,10 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">ठीक</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
+    <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
-        <item quantity="one">\"%2$s\" मध्ये \"%1$s\" जोडायचे?</item>
-        <item quantity="other">\"%2$s\" मध्ये %3$d सदस्य जोडायचे?</item>
+        <item quantity="one">\"%2$s\" मध्ये \"%1$s\"ना समाविष्ट करा?</item>
+        <item quantity="other">\"%2$s\" मध्ये %3$d सदस्य समाविष्ट करा?</item>
     </plurals>
     <string name="AddMembersActivity__add">जोडा</string>
     <string name="AddMembersActivity__add_members">सदस्य जोडा</string>
@@ -1376,11 +1434,23 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">आपला शेवटचा बॅकअप %1$s रोजी %2$s वाजता घेतला.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Your last backup was made on %1$s at %2$s. Your backup size is %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">आपला शेवटचा बॅकअप %1$s रोजी %2$s वाजता घेतला. आपल्या बॅकअपचे माप %3$s आहे.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">बॅकअप तपशील आणत आहे…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">पुर्नस्थापित करणे वगळा</string>
+    <!-- Dialog title displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__couldnt_transfer">हस्तांतरण पूर्ण करता आले नाही</string>
+    <!-- Dialog message displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__error_occurred">एक त्रुटी उद्भवली आणि आपले अकाऊंट हस्तांतरित करता आले नाही. आपली हस्तांतरण पद्धत निवडून पुन्हा प्रयत्न करा.</string>
+    <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
+    <string name="RemoteRestoreActivity__couldnt_restore">हा बॅकअप परत आणता आला नाही</string>
+    <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
+    <string name="RemoteRestoreActivity__update_latest">Signal ची ही आवृत्ती तुमचा बॅकअप परत आणू शकत नाही. अद्यतन करून नवीन आवृत्ती घ्या आणि पुन्हा प्रयत्न करा.</string>
+    <!-- Text on button that when pressed will redirect them to update Signal -->
+    <string name="RemoteRestoreActivity__update_signal">Signal अद्यतनित करा</string>
+    <!-- Text label button to dismiss the dialog -->
+    <string name="RemoteRestoreActivity__not_now">आता नाही</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">उल्लेखा साठी मला सूचित करा</string>
@@ -1450,7 +1520,9 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">आवाज आणि कंपन बदला</string>
     <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
     <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
+    <!-- Subtitle when the ringtone used for calls is the default system -->
     <string name="CustomNotificationsDialogFragment__default">पूर्वनिर्धारित</string>
+    <!-- Subtitle when the ringtone used for calls is unknown -->
     <string name="CustomNotificationsDialogFragment__unknown">अज्ञात</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
@@ -1631,9 +1703,17 @@
     <string name="Megaphones_verify_pin">PIN सत्यापित करा</string>
     <string name="Megaphones_get_started">सुरू करा</string>
     <string name="Megaphones_new_group">नवीन गट</string>
+    <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
     <string name="Megaphones_invite_friends">मित्रांना बोलवा</string>
     <string name="Megaphones_chat_colors">चॅट रंग</string>
     <string name="Megaphones_add_a_profile_photo">प्रोफाईल फोटो</string>
+
+    <!-- Message body of megaphone telling users that a device was linked to their account. %1$s is the time it was linked -->
+    <string name="NewLinkedDeviceMegaphone__a_new_device_was_linked">नवा डिव्हाइस आपल्या अकाऊंट वर %1$s लिंक झाला.</string>
+    <!-- Button shown on megaphone that will redirect to the linked devices screen -->
+    <string name="NewLinkedDeviceMegaphone__view_device">डिव्हाईस पहा</string>
+    <!-- Button shown on megaphone to acknowledge and dismiss the megaphone -->
+    <string name="NewLinkedDeviceMegaphone__ok">ठीक</string>
 
     <!-- Title of a bottom sheet to render messages that all quote a specific message -->
     <string name="MessageQuotesBottomSheet_replies">प्रत्युत्तरे</string>
@@ -1864,6 +1944,7 @@
 
     <!-- GV2 group link deny -->
     <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">आपली गटामध्ये सामील होण्याची विनंती प्रशासकाद्वारे नाकारली गेली आहे.</string>
+    <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">आपण%1$sकडून गटात सामील होण्याची विनंतीला नकार दिला.</string>
     <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s कडून गटात सामील होण्याची विनंती %1$s ने नाकारली.</string>
     <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s ची गटात सामील होण्याची विनंती नाकारण्यात आली आहे.</string>
     <string name="MessageRecord_you_canceled_your_request_to_join_the_group">आपण गटात सामील होण्याची आपली विनंती रद्द केली.</string>
@@ -1908,12 +1989,16 @@
     <string name="MessageRecord_s_is_in_the_call_s">%1$s कॉल मध्ये आहे · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
     <string name="MessageRecord_you_are_in_the_call_s1">आपण कॉलमध्ये आहात · %1$s</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
+    <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s आणि तुम्ही कॉलमध्ये आहात · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_and_s_are_in_the_call_s1">%1$s आणि %2$s कॉलमध्ये आहेत · %3$s</string>
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$s कॉल मध्ये आहेत</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
     <string name="MessageRecord_you_are_in_the_call">आपण कॉलमध्ये आहात</string>
+    <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
+    <string name="MessageRecord_s_and_you_are_in_the_call">%1$s आणि तुम्ही कॉलमध्ये आहात</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
     <string name="MessageRecord_s_and_s_are_in_the_call">%1$s आणि %2$s कॉलमध्ये आहेत</string>
     <!-- Chat log text for a group call that ended within the last 5 minutes -->
@@ -1989,6 +2074,7 @@
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">आपले %1$s सोबतचे चॅट सुरू ठेवायचे आणि त्याच्या सदस्यांसह आपले नाव आणि फोटो सामायिक करायचे?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करू द्यायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करा? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहू शकणार नाही.</string>
+    <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">हा गट अनावरोधित करायचा आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करायचे? आपण त्यांना अनावरोधित करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -2041,7 +2127,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">क्षमस्व, आपल्याकडे आधीपासून खूप सारे डिव्हाईस लिंक केलेले आहेत, काही काढून प्रयत्न करा</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">क्षमस्व, हा एक वैध डिव्हाईस लिंक QR कोड नाही.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">एक Signal डिव्हाईस लिंक करायचा?</string>
-    <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">आपण 3य पक्ष स्कॅनर वापरून Signal डिव्हाईस लिंक करण्याचा प्रयत्न करत आहात. आपल्या सुरक्षेसाठी, कृपया Signal मध्ये कोड पुन्हा स्कॅन करा.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">या Signal खात्याला डेस्कटॉप किंवा iPad लिंक करण्यासाठी, लिंंक केलेले डिव्हायसेसमध्ये जा आणि \"नवीन डिव्हाईस लिंक करा\" वर टॅप करा आणि QR कोड पुन्हा स्कॅन करा. Signal वरून थेट येणारे QR कोड्सच स्कॅन कराल याची खात्री करा.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR कोड स्कॅन करण्यासाठी Signal ला कॅमेरा परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"कॅमेरा\" सक्षम करा.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कॅमेरा परवानगी विना QR कोड स्कॅन करण्यास अक्षम</string>
@@ -2174,6 +2260,7 @@
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">आपला व्हिडिओ चालू करण्यासाठी येथे टॅप करा</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या कॅमेराचा अॅक्सेस हवा आहे</string>
+    <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
@@ -2386,6 +2473,13 @@
     <!-- An accessibility label for screen readers on a view that can be expanded -->
     <string name="CallOverflowPopupWindow__expand_snackbar_accessibility_label">वर केलेल्या हाताचा दृश्य विस्तार करा</string>
 
+    <!-- Toolbar title of country picker selection page -->
+    <string name="CountryCodeFragment__your_country">तुमचा देश</string>
+    <!-- Hint text in search bar to either enter in a country name or number -->
+    <string name="CountryCodeFragment__search_by">नाव किंवा नंबर द्वारा शोधा</string>
+    <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
+    <string name="CountryCodeFragment__unknown_country">अज्ञात देश</string>
+
     <!-- AboutSheet -->
     <!-- Displayed in a sheet row and allows user to open signal connection explanation on tap -->
     <string name="AboutSheet__signal_connection">Signal कनेक्शन</string>
@@ -2420,6 +2514,7 @@
         <item quantity="one">(%1$d)ला Signal रिंग करेल</item>
         <item quantity="other">(%1$d) ला Signal रिंग करेल</item>
     </plurals>
+    <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
         <item quantity="one">(%1$d)ला Signal सूचित करेल</item>
         <item quantity="other">(%1$d)ना Signal सूचित करेल</item>
@@ -2449,6 +2544,7 @@
 
     <!-- RecaptchaProofActivity -->
     <string name="RecaptchaProofActivity_failed_to_submit">पाठविण्यात अयशस्वी</string>
+    <!-- Toolbar title when solving a captcha -->
     <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूर्ण करा</string>
 
     <!-- RegistrationActivity -->
@@ -2466,6 +2562,12 @@
     <string name="RegistrationActivity_additional_verification_required">अतिरिक्त सत्यापन आवश्यक आहे</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
     <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">या नंबरला सत्यापन कोड पाठवला जाईल. कॅरियर दर लागू शकतात.</string>
+    <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">आपल्याला एक सत्यापन कोड प्राप्त होईल. वाहक रेट लागू होऊ शकतात.</string>
+    <!-- Hint text to select a country -->
+    <string name="RegistrationActivity_select_a_country">एक देश निवडा</string>
+    <!-- Hint text explaining that this is where the country code should go -->
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">हा नंबर सत्यापित करण्यासाठी आपल्याला कॉल येईल.</string>
     <string name="RegistrationActivity_edit_number">नंबर संपादित करा</string>
     <string name="RegistrationActivity_missing_google_play_services">Google प्ले सेवा नाहीत</string>
@@ -2481,7 +2583,7 @@
     <string name="RegistrationActivity_rate_limited_to_try_again">आपण या क्रमांकांची नोंदणी करण्यास असंख्य प्रयत्न केले आहेत. कृपया %1$s मध्ये पुन्हा प्रयत्न करा.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">सेवेसोबत कनेक्ट करण्यात अक्षम. कृपया नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">Signal couldn\'t send an SMS code because of issues with the SMS provider. Try again in several hours.</string>
+    <string name="RegistrationActivity_sms_provider_error">SMS प्रदात्याकडील समस्यांमुळे सिग्नलला SMS कोड पाठवता आला नाही. काही तासांनंतर पुन्हा प्रयत्न करा.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">आम्ही SMS मार्फत आपणाला सत्यापन कोड पाठवू शकत नाही. त्याऐवजी व्हॉइस कॉल मार्फत आपला कोड प्राप्त करण्याचा प्रयत्न करा.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -2645,6 +2747,7 @@
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">गट अद्यतनित</string>
+    <!-- Text shown you have left a group -->
     <string name="ThreadRecord_left_the_group">गट सोडले</string>
     <string name="ThreadRecord_secure_session_reset">सुरक्षित सत्र रीसेट.</string>
     <string name="ThreadRecord_draft">मसुदा:</string>
@@ -2849,6 +2952,7 @@
         <item quantity="one">%1$d चॅट्स</item>
         <item quantity="other">%1$d चॅट्स</item>
     </plurals>
+    <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
     <string name="MessageNotifier_most_recent_from_s">याकडून सर्वात अलीकडील: %1$s</string>
     <string name="MessageNotifier_locked_message">लॉक केलेला संदेश</string>
     <string name="MessageNotifier_message_delivery_failed">संदेश पोहोचवणे अयशस्वी.</string>
@@ -2918,6 +3022,8 @@
     <string name="NotificationChannel_critical_app_alerts">गंभीर अ‍ॅप सतर्क</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_additional_message_notifications">अतिरिक्त संदेश अधिसूचना</string>
+    <!-- Notification channel name for notifications sent when a device has been linked -->
+    <string name="NotificationChannel_new_linked_device">नव्याने लिंक केलेला डिव्हाइस</string>
 
     <!-- ProfileEditNameFragment -->
 
@@ -2971,6 +3077,7 @@
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">व्हिडिओ प्ले करा</string>
+    <!-- Content description to describe an icon that indicates a video has captions -->
     <string name="ThumbnailView_Has_a_caption_description">यास कॅप्शन आहे</string>
 
     <!-- TransferControlView -->
@@ -2981,10 +3088,7 @@
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">प्रक्रिया करत आहे…</string>
     <!-- Status update label used while the device is transmitting data over the network. Will take the form of "1.0 MB/2.0 MB" -->
-    <string name="TransferControlView__download_progress">%1$1.1f MB/%2$2.1f MB</string>
-    <!-- Attachment file size label for not-yet-downloaded images and video. Will take the form of "1.0 MB" -->
-    <string name="TransferControlView__filesize">%1$1.1f MB</string>
-
+    <string name="TransferControlView__download_progress_s_s">%1$s/%2$s</string>
 
     <!-- UnauthorizedReminder -->
     <!-- Message shown in a reminder banner when the user\'s device is no longer registered -->
@@ -3481,10 +3585,10 @@
         <item>वैशिष्ट्य विनंती</item>
         <item>प्रश्न</item>
         <item>अभिप्राय</item>
-        <item>इतर</item>
         <item>पेमेंट्स (मोबाईलकॉईन)</item>
         <item>देणगी व बॅजेस</item>
         <item>Signal ॲन्ड्रॉइड बॅकअप</item>
+        <item>इतर</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
     <string name="DebugLogsPromptDialogFragment__signal_android_support_request">Signal Android डीबग लॉग सबमिशन</string>
@@ -3564,7 +3668,9 @@
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">स्क्रीन आणि सूचना पासफ्रेजने लॉक करा</string>
     <string name="preferences__screen_security">स्क्रीन सुरक्षा</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">निष्क्रियतेच्या निर्दिष्ट काळानंतर Signal स्वयं-लॉक करा</string>
+    <!-- Legacy preference menu item to enable locking of app after inactivity -->
     <string name="preferences__inactivity_timeout_passphrase">निष्क्रियता टाईमआऊट पासफ्रेझ</string>
+    <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">निष्क्रियता टाईमआऊट काळ</string>
     <string name="preferences__notifications">सूचना</string>
     <string name="preferences__led_color">LED रंग</string>
@@ -3575,6 +3681,7 @@
     <!-- Preference menu item to control the sound of notifications -->
     <string name="preferences__sound">ध्वनी</string>
     <string name="preferences__silent">शांत</string>
+    <!-- Preference menu item to use the default sound for notifications -->
     <string name="preferences__default">पूर्वनिर्धारित</string>
     <string name="preferences__repeat_alerts">सतर्कतेची पुनरावृत्ती करा</string>
     <string name="preferences__never">कधीही नाही</string>
@@ -3591,6 +3698,7 @@
     <string name="preferences__cyan">आकाशी</string>
     <string name="preferences__magenta">जांभळा</string>
     <string name="preferences__white">पांढरा</string>
+    <!-- Text shown when no preference label has been selected -->
     <string name="preferences__none">कुठलेही नाही</string>
     <string name="preferences__fast">जलद</string>
     <string name="preferences__normal">सामान्य</string>
@@ -3653,6 +3761,8 @@
     <string name="preferences__language">भाषा</string>
     <string name="preferences__signal_messages_and_calls">Signal संदेश आणि कॉल</string>
     <string name="preferences__advanced_pin_settings">प्रगत PIN सेटिंग</string>
+    <!-- Title of toolbar for the advanced pin settings screen -->
+    <string name="preferences__advanced_pin_settings_title">प्रगत PIN सेटिंग</string>
     <string name="preferences__free_private_messages_and_calls">Signal वापरकर्त्यांना विनामुल्य खाजगी संदेश आणि कॉल</string>
     <string name="preferences__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
     <string name="preferences__delete_account">अकाऊंट हटवा</string>
@@ -3757,6 +3867,7 @@
     <string name="preferences_connection_failed">कनेक्शन अयशस्वी</string>
     <string name="preferences_couldnt_connect_to_the_proxy">प्रॉक्सी शी कनेक्ट करणे शक्य झाले नाही. प्रॉक्सी पत्ता तपासा आणि पुन्हा प्रयत्न करा.</string>
     <string name="preferences_you_are_connected_to_the_proxy">आपण प्रॉक्सी शी कनेक्ट आहात. आपण सेटिंग मधून कोणत्याही वेळी प्रॉक्सी बंद करू शकता.</string>
+    <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">यशस्वी</string>
     <string name="preferences_failed_to_connect">कनेक्ट करण्यात अयशस्वी</string>
     <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
@@ -4181,6 +4292,7 @@
 
 
     <!-- media_preview_activity -->
+    <!-- Content description of images or videos when viewing media -->
     <string name="media_preview_activity__media_content_description">मिडिया पुनरावलोकन</string>
 
     <!-- new_conversation_activity -->
@@ -4354,10 +4466,12 @@
     <string name="BackupDialog_disable_and_delete_all_local_backups">सर्व स्थानिक बॅकअप अक्षम करायचे आणि हटवायचे?</string>
     <string name="BackupDialog_delete_backups_statement">बॅकअप हटवा</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">बॅकअप सक्षम करण्यासाठी, फोल्डर निवडा. बॅकअप या स्थानावर जतन केले जातील.</string>
+    <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">फोल्डर निवडा</string>
     <string name="BackupDialog_copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
     <string name="BackupDialog_no_file_picker_available">कुठलाही फाईल निवडणारा उपलब्ध नाही.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">सत्यापित करण्यासाठी आपला बॅकअप पासफ्रेझ प्रविष्ट करा</string>
+    <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">सत्यापित करा</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आपण आपला बॅकअप पासफ्रेझ यशस्वीरीत्या प्रविष्ट केला आहे</string>
     <string name="BackupDialog_passphrase_was_not_correct">पासफ्रेझ बरोबर नव्हता</string>
@@ -4382,6 +4496,7 @@
     <string name="RegistrationActivity_code_support_subject">Signal नोंदणी - Android करिता सत्यापन कोड</string>
     <string name="RegistrationActivity_incorrect_code">चुकीचा कोड</string>
     <string name="BackupUtil_never">कधीही नाही</string>
+    <!-- Subtext below last backup time when we do not know when the last backup was -->
     <string name="BackupUtil_unknown">अज्ञात</string>
     <!-- Phone number heading displayed as a screen title -->
     <string name="preferences_app_protection__phone_number">फोन नंबर</string>
@@ -4566,6 +4681,7 @@
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">दोन्ही डिव्हाइसवर, Wi-Fi चालू आणि बंद करून पहा.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">दोन्ही डिव्हाइस स्थानांतर मोडमध्ये असल्याची खात्री करा.</string>
     <string name="DeviceTransferSetup__go_to_support_page">समर्थन पृष्ठावर जा</string>
+    <!-- Button text when a device transfer could not occur and to try again -->
     <string name="DeviceTransferSetup__try_again">पुन्हा प्रयत्न करा</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">इतर डिव्हाइससाठी प्रतीक्षा करत आहे</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">स्थानांतरण चालू करण्यासाठी आपल्या इतर डिव्हाइसवर सुरू ठेवावर टॅप करा.</string>
@@ -4798,6 +4914,7 @@
     <string name="ShareActivity__share">सामायिक करा</string>
     <!-- Label to describe circular spinner button -->
     <string name="ShareActivity__send">पाठवा</string>
+    <!-- When sharing to a list of people, %1$s is the name of a person -->
     <string name="ShareActivity__comma_s">, %1$s</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">इंटेन्टमधून शेअर डेटा मिळू शकत नाही.</string>
@@ -4987,6 +5104,8 @@
     <string name="AppSettingsFragment__renew_your_signal_backups_subscription">आपले सिग्नल बॅकअप्स सदस्यत्व रीन्यू करा</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">बॅकअप पूर्ण करू शकत नाही</string>
+    <!-- String alerting user that backup redemption -->
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">तुमचे बॅकअप सदस्यत्व रिडीम करता आले नाही</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">आपल्या मित्रांना आमंत्रित करा</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5064,9 +5183,11 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">तुम्ही तुमचा जुना फोन नंबर नमूद करणे आवश्यक आहे</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">तुम्ही तुमच्या नवीन नंबरचा देश कोड नमूद करणे आवश्यक आहे</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">आपण आपला नवीन फोन नंबर निर्दिष्ट करणे आवश्यक आहे</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">तुमचा नवा फोन नंबर आणि तुमचा जुना फोन नंबर एकच असू शकत नाही</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">फोन नंबर बदला</string>
+    <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
     <string name="ChangeNumberVerifyFragment__verifying_s">%1$s सत्यापित करत आहे…</string>
     <string name="ChangeNumberVerifyFragment__captcha_required">Captcha आवश्यक</string>
 
@@ -5442,6 +5563,7 @@
     <string name="ConversationSettingsFragment__permissions">परवानग्या</string>
     <string name="ConversationSettingsFragment__requests_and_invites">विनंत्या आणि आमंत्रण</string>
     <string name="ConversationSettingsFragment__group_link">गट लिंक</string>
+    <!-- Option in conversation settings to add a user as a contact -->
     <string name="ConversationSettingsFragment__add_as_a_contact">संपर्क म्हणून जोडा</string>
     <string name="ConversationSettingsFragment__unmute">अनम्यूट करा</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
@@ -5466,6 +5588,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्यूट केलेले नाही</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">उल्लेख</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">नेहमी सूचित करा</string>
+    <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">सूचित करू नका</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">सानुकूल सूचना</string>
 
@@ -5554,9 +5677,10 @@
     <string name="ShareInterstitialActivity__share">सामायिक करा</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Content description describing the back arrow on toolbars -->
     <string name="DSLSettingsToolbar__navigate_up">वर नॅव्हिगेट करा</string>
     <string name="MultiselectForwardFragment__forward_to">यांना फॉर्वर्ड करा</string>
-    <!-- Displayed when sharing content via the fragment -->
+    <!-- Displayed when sharing content to people via the fragment -->
     <string name="MultiselectForwardFragment__share_with">यासोबत सामायिक करा</string>
     <string name="MultiselectForwardFragment__add_a_message">संदेश जोडा</string>
     <string name="MultiselectForwardFragment__faster_forwards">जलद फॉर्वर्डस्</string>
@@ -5564,6 +5688,7 @@
     <string name="MultiselectForwardFragment__videos_will_be_trimmed">व्हिडिओ 30से क्लिप्स मध्ये कापले जातील आणि एकाधिक स्टोरीज म्हणून पाठवले जातील.</string>
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">स्टोरीजला पाठवलेले व्हिडिओ हे 30से पेक्षा मोठे असू नयेत.</string>
+    <!-- Body in alert dialog telling users that messages are now sent immediately -->
     <string name="MultiselectForwardFragment__forwarded_messages_are_now">फॉर्वर्ड केलेले संदेश आत्ता विनाविलंब पाठवले जातील.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
         <item quantity="one">%1$d संदेश पाठवा</item>
@@ -5655,7 +5780,7 @@
     <!-- The title of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
     <string name="MediaCaptureFragment_device_link_dialog_title">डिव्हाइस लिंक करायचे?</string>
     <!-- The body of a dialog notifying that the user scanned a QR code that could be used to link a Signal device. -->
-    <string name="MediaCaptureFragment_device_link_dialog_body">आपण Signal डिव्हाइस लिंक करण्याचा प्रयत्न करत आहात असे दिसते. पुढे सुरू ठेवा टॅप करा आणि त्याला पुन्हा लिंक करण्यासाठी कोड स्कॅन करा.</string>
+    <string name="MediaCaptureFragment_it_looks_like_youre_trying">आपण Signal डिव्हाइस लिंक करण्याचा प्रयत्न करत आहात असे दिसते. चालू ठेवा वर टॅप करा आणि मग \"नवीन डिव्हाईस लिंक करा\" वर टॅप करा आणि QR कोड पुन्हा स्कॅन करा.</string>
     <!-- The label of a dialog asking the user if they would like to continue to the linked device settings screen. -->
     <string name="MediaCaptureFragment_device_link_dialog_continue">सुरू ठेवा</string>
 
@@ -5750,6 +5875,7 @@
 
     <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
     <string name="MySupportPreference__renews_s">%1$s नी नूतनीकरण केले</string>
+    <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">ट्रांझ्याक्शन प्रक्रिया करत आहे…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">बॅज जोडता आला नाही. %1$s</string>
@@ -5760,6 +5886,8 @@
     <string name="MySupportPreference__your_bank_transfer_of_s">आपले %1$s चे बँक हस्तांतरण प्रलंबित आहे. बँक हस्तांतरण पूर्ण होण्यासाठी 1 ते 14 व्यावसायिक दिवस लागू शकतात.  </string>
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">अधिक जाणून घ्या</string>
+    <!-- Displayed when a subscription refresh is being performed -->
+    <string name="MySupportPreference__checking_subscription">सदस्यत्व तपासत आहोत…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal अद्यतनित करा</string>
@@ -6160,7 +6288,7 @@
     <string name="StoriesLandingItem__info">माहिती</string>
     <!-- Label when a story is pending sending -->
     <string name="StoriesLandingItem__sending">पाठवत आहे…</string>
-    <!-- Label when multiple stories are pending sending -->
+    <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
     <string name="StoriesLandingItem__sending_d">%1$d पाठवत आहे…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">पाठविणे अयशस्वी</string>
@@ -6288,8 +6416,8 @@
     <string name="MyStorySettingsFragment__only_share_with_selected_people">निवडलेल्या लोकांसोबत शेअर करा</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
-        <item quantity="one">%1$d व्यक्ति</item>
-        <item quantity="other">%1$d लोक</item>
+        <item quantity="one">%1$d दर्शक</item>
+        <item quantity="other">%1$d दर्शक</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
     <string name="MyStorySettingsFragment__choose_who_can_view_your_story">आपली स्टोरी कोण पाहू शकते ते निवडा. बदलांचा आपण आधीच पाठवलेल्या स्टोरीजवर परिणाम होणार नाही.</string>
@@ -6420,7 +6548,7 @@
     <!-- Displayed when copying group story reply text to clipboard -->
     <string name="StoryGroupReplyFragment__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
     <!-- Displayed in story caption when content is longer than 5 lines -->
-    <string name="StoryViewerPageFragment__see_more">अधिक पहा</string>
+    <string name="StoryViewerPageFragment__read_more">आणखी वाचा</string>
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">उत्तर पाठवत आहे…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
@@ -7235,6 +7363,8 @@
     <string name="CallLinkDetailsFragment__delete_call_link">कॉल लिंक हटवा</string>
     <!-- Displayed whenever a name change, revocation, etc, fails. -->
     <string name="CallLinkDetailsFragment__couldnt_save_changes">बदल जतन करू शकत नाही. आपले नेटवर्क कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
+    <!-- Displayed whenever an admin update fails with a 409. -->
+    <string name="CallLinkDetailsFragment__couldnt_update_admin_approval">ॲडमिन मंजुरीच्या सेटिंग्ज अद्यतन करता आल्या नाहीत. कॉल लिंक सध्या वापरात नाही ना ते तपासा.</string>
     <!-- Displayed when the call link is in use when the user tries to delete it -->
     <string name="CallLinkDetailsFragment__couldnt_delete_call_link">कॉल लिंक हटवता आली नाही कारण ती सध्या वापरात आहे.</string>
     <!-- Displayed as title in dialog when user attempts to delete the link -->
@@ -7317,7 +7447,7 @@
 
     <!-- PendingParticipantsBottomSheet -->
     <!-- Title of the bottom sheet displaying requests to join the call link -->
-    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">या कॉलमध्ये जॉईन होण्याच्या विनंती</string>
+    <string name="PendingParticipantsBottomSheet__requests_to_join_this_call">या कॉलमध्ये सामील होण्यासाठी विनंती</string>
     <!-- Subtitle of the bottom sheet denoting the total number of people waiting -->
     <plurals name="PendingParticipantsBottomSheet__d_people_waiting">
         <item quantity="one">%1$d व्यक्ती प्रतिक्षेत</item>
@@ -7471,7 +7601,10 @@
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">बॅकअप पूर्ण करू शकत नाही</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
-    <string name="BackupAlertBottomSheet__your_device_hasnt">आपल्या डिव्हाइसने %1$d दिवसांसाठी बॅकअप पूर्ण केलेला नाही. आपले डिव्हाइस wi-fi शी कनेक्ट केले असल्याची खात्री करा आणि \"आत्ता बॅकअप घ्या.\" वर टॅप करा. </string>
+    <plurals name="BackupAlertBottomSheet__your_device_hasnt">
+        <item quantity="one">आपल्या डिव्हाइसने %1$d दिवसासाठी बॅकअप पूर्ण केलेला नाही. आपले डिव्हाइस wi-fi शी कनेक्ट केले असल्याची खात्री करा आणि \"आत्ता बॅकअप घ्या.\" वर टॅप करा. </item>
+        <item quantity="other">आपल्या डिव्हाइसने %1$d दिवसांसाठी बॅकअप पूर्ण केलेला नाही. आपले डिव्हाइस wi-fi शी कनेक्ट केले असल्याची खात्री करा आणि \"आत्ता बॅकअप घ्या.\" वर टॅप करा.</item>
+    </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">अधिक जाणून घ्या</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
@@ -7508,10 +7641,18 @@
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">जर आपण पूर्ववत करायचे टाळलेत तर आपल्या बॅकअपमधील उरलेला मिडीया आणि अटॅचमेंट्स नंतर साठवणीसाठी जागा मिळाल्यावर डाऊनलोड करता येतात.</string>
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">बॅकअप अयशस्वी</string>
+    <!-- Dialog title when a backup redemption fails -->
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">तुमचे बॅकअप सदस्यत्व रिडीम करता आले नाही</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">एक त्रुटी उद्भवली आणि आपला बॅकअप पूर्ण होऊ शकला नाही. आपल्याकडे Signal ची सर्वांत नवी आवृत्ती असल्याची खात्री करा आणि पुन्हा प्रयत्न करा. जर ही समस्या उद्भवत राहिली, तर सपोर्ट शी संंपर्क साधा.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
-    <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
+    <string name="BackupAlertBottomSheet__check_for_update">अद्यतन शोधा</string>
+    <!-- Backup redemption error sheet text line 1 -->
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">या महिन्यात अनेक डिव्हायसेस वरून तुमचे सदस्यत्व रिडीम करण्याचा प्रयत्न झाला आहे. तुम्ही कदाचितः</string>
+    <!-- Backup redemption error sheet bullet point 1 -->
+    <string name="BackupAlertBottomSheet__reregistered_your_signal_account">तुमचा Signal अकाऊंट अनेक वेळा पुन्हा नोंदवला असेल.</string>
+    <!-- Backup redemption error sheet bullet point 2 -->
+    <string name="BackupAlertBottomSheet__have_too_many_devices_using_the_same_subscription">एकच सदस्यत्व अनेक डिव्हायसेस वर वापरले असेल.</string>
 
     <!-- BackupStatus -->
     <!-- Status title when user does not have enough free space to download their media. Placeholder is required disk space. -->
@@ -7538,15 +7679,21 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">डाउनलोड रद्द करा</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">डाउनलोड होत आहे: %2$s पैकी %1$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">%2$s पैकी %1$s (%3$s%%) रीस्टोर होत आहे</string>
+    <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
+    <string name="BackupStatusRow__restore_waiting_for_wifi">रीस्टोर थांबले आहे: Wi-Fi च्या प्रतीक्षेत…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for internet -->
+    <string name="BackupStatusRow__restore_no_internet">रीस्टोर थांबले: इंटरनेट नाही…</string>
+    <!-- Text displayed under progress bar when restoring media pauses for low battery -->
+    <string name="BackupStatusRow__restore_device_has_low_battery">रीस्टोर थांबले आहे : डिव्हाइसची बॅटरी कमी आहे</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">आपला बॅकअप डाउनलोड करण्यासाठी पुरेशी जागा उपलब्ध नाही. पुढे सुरू ठेवण्यासाठी %1$s जागा मोकळी करा.</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">डाउनलोड वगळा</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Your last backup couldn\'t be completed. Make sure your phone is connected to Wi-Fi and tap \"Back up now\" to try again.</string>
+    <string name="BackupStatusRow__your_last_backup">आपला शेवटचा बॅकअप पूर्ण होऊ शकला नाही. आपला फोन वाय-फायशी कनेक्टेड असल्याची खात्री करा आणि पुन्हा प्रयत्न करण्यासाठी \"आता बॅकअप घ्या\" वर टॅप करा.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Your last backup couldn\'t be completed. Make sure you\'re on the latest version of Signal and try again.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">आपला शेवटचा बॅकअप पूर्ण होऊ शकला नाही. आपल्याकडे Signal ची सर्वांत नवी आवृत्ती असल्याची खात्री करा आणि पुन्हा प्रयत्न करा.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">अधिक जाणून घ्या</string>
 
@@ -7643,10 +7790,14 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal बॅकअप</string>
+    <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
+    <string name="RemoteBackupsSettingsFragment__authenticatino_required">अधिस्वीकृती आवश्यक आहे</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">पेमेंट्स इतिहास</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">बॅकअप तपशील</string>
+    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">मोबाइल वापरून रीस्टोर करा</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">बॅकअप आकार</string>
     <!-- Row label for backup frequency -->
@@ -7753,7 +7904,14 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">अधिक जाणून घ्या</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Processing backup…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">बॅकअपवर प्रक्रिया करत आहोत…</string>
+    <!-- Linear progress dialog text shown when preparing a backup -->
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">बॅकअपची तयारी करत आहे…</string>
+    <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
+    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
+        <item quantity="one">%2$d पैकी %1$d संदेशावर (%3$d%%) प्रक्रिया होत आहे</item>
+        <item quantity="other">%2$d पैकी %1$d संदेशांवर (%3$d%%) प्रक्रिया होत आहे</item>
+    </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
         <item quantity="one">आपल्याकडे %1$s बॅकअप डेटा आहे पण तो या डिव्हाईसवर नाही. आपले सदस्यत्व %2$d दिवसाने संपल्यावर आपला बॅकअप हटवला जाईल.</item>
@@ -7774,8 +7932,10 @@
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">बॅकअप्स बंद करता आणि हटवता आले नाहीत</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">नेटवर्कमध्ये त्रुटी उद्भवली. कृपया आपले इंटरनेट कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
-    <!-- Progress message when backup file is being uploaded -->
-    <string name="RemoteBackupsSettingsFragment__uploading_messages">Uploading messages…</string>
+    <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">%2$s पैकी %1$s (%3$d%%) अपलोड होत आहे</string>
+    <!-- Button label to see more details about redemption error -->
+    <string name="RemoteBackupsSettingsFragment__details">तपशील</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -7946,6 +8106,26 @@
     <string name="EnterBackupKey_learn_more">अधिक जाणून घ्या</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">वगळा आणि परत मिळवू नका</string>
+    <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_title">चुकीची बॅकअप की</string>
+    <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Signal बॅकअप्स सुरु करतेवेळी तुम्ही जतन केला होता तोच फोन नंबर आणि ६४ अक्षरी बॅकअप की वापरून तुम्ही नोंदणी करत आहात याची खात्री करा. बॅकअप्स या कीशिवाय पुन्हा मिळवता येत नाहीत.</string>
+    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_try_again">पुन्हा प्रयत्न करा</string>
+    <!-- Dialog negative button text to get help with backup key -->
+    <string name="EnterBackupKey_backup_key_help">बॅकअप की मदत</string>
+    <!-- Text field error text when the backup key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">चुकीची बॅकअप की</string>
+    <!-- Text field error text when the backup key is too long -->
+    <string name="EnterBackupKey_too_long_error">खूप लांब (%1$d/%2$d)</string>
+    <!-- Text field error when the backup key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">अवैध बॅकअप की</string>
+    <!-- Dialog title shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_not_found">बॅकअप सापडला नाही</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">तुम्ही एंटर केलेली बॅकअप की बरोबर आहे, पण त्याच्याशी संलग्न कोणताही बॅकअप नाही. जर तुमच्याकडे अजूनही तुमचा जुना फोन असेल, तर बॅकअप्स सक्रिय केलेले असल्याची आणि बॅकअप पूर्ण झालेला असल्याची खात्री करा आणि मग पुन्हा प्रयत्न करा.</string>
+    <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
+    <string name="EnterBackupKey_skip_restore">पुर्नस्थापित करणे वगळा</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">आपल्या जुन्या फोनने हा कोड स्कॅन करा</string>
@@ -7961,6 +8141,8 @@
     <string name="RestoreViaQr_qr_code_scanned">जुन्या डिव्हाईसवर स्कॅन केले</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">पुन्हा प्रयत्न करा</string>
+    <!-- Error message shown when register after receiving the provisioning message failed -->
+    <string name="RestoreViaQr_registration_error">एक त्रुटी उद्भवली आणि आपले अकाऊंट हस्तांतरित होऊ शकले नाही. QR पुन्हा स्कॅन करून पुन्हा प्रयत्न करा.</string>
 
     <!-- Old device Transfer account screen title -->
     <string name="TransferAccount_title">खाते स्थानांतरित करा</string>
@@ -7991,15 +8173,15 @@
     <string name="RestoreCompleteBottomSheet_button">ठीक आहे</string>
 
     <!-- No Backup to Restore screen title -->
-    <string name="NoBackupToRestore_title">No Backup to Restore</string>
+    <string name="NoBackupToRestore_title">परत मिळवता येण्यासाठी बॅकअप उपलब्ध नाही</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">आपण iPhone वरून Android वर येत असल्या कारणाने, आपल्या जुन्या डिव्हाईसवर Signal बॅकअप्स सक्षम करणे हा आपले संदेश आणि मिडीया हस्तांतरित करण्याचा एकमेव मार्ग आहे.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">आपल्या जुन्या डिव्हाईसवर Signal उघडा</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
-    <string name="NoBackupToRestore_step2">Tap Settings &gt; Backups</string>
+    <string name="NoBackupToRestore_step2">सेटिंग्ज वर टॅप करा &gt; बॅकअप्स</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->
-    <string name="NoBackupToRestore_step3">Enable backups and wait until your backup is complete</string>
+    <string name="NoBackupToRestore_step3">बॅकअप्स सक्षम करा आणि आपला बॅकअप पूर्ण होईपर्यंत वाट पाहा</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">पुर्नस्थापित करणे वगळा</string>
 
