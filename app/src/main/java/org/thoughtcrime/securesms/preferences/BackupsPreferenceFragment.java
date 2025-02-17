@@ -57,10 +57,10 @@ public class BackupsPreferenceFragment extends Fragment {
   private View        create;
   private View        folder;
   private View        verify;
-  private View     timer;
-  private View     frequencyView;
-  private TextView timeLabel;
-  private TextView frequencyLabel;
+  private View        timer;
+  private View        frequencyView;
+  private TextView    timeLabel;
+  private TextView    frequencyLabel;
   private TextView    toggle;
   private TextView    info;
   private TextView    summary;
@@ -344,6 +344,7 @@ public class BackupsPreferenceFragment extends Fragment {
     create.setVisibility(View.VISIBLE);
     verify.setVisibility(View.VISIBLE);
     timer.setVisibility(View.VISIBLE);
+    frequencyView.setVisibility(View.VISIBLE);
     updateTimeLabel();
     setBackupFolderName();
   }
@@ -354,6 +355,7 @@ public class BackupsPreferenceFragment extends Fragment {
     folder.setVisibility(View.GONE);
     verify.setVisibility(View.GONE);
     timer.setVisibility(View.GONE);
+    frequencyView.setVisibility(View.GONE);
     AppDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);
   }
 }

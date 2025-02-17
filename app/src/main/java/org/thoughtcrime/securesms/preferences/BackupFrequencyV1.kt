@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.preferences
 import androidx.annotation.StringRes
 import org.thoughtcrime.securesms.R
 
-enum class BackupFrequencyV1(val days: Int?) {
+enum class BackupFrequencyV1(val days: Int) {
   DAILY(1),
   WEEKLY(7),
   MONTHLY(30),

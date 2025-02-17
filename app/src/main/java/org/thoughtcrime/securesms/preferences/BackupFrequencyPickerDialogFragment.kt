@@ -15,7 +15,10 @@ class BackupFrequencyPickerDialogFragment(private val defaultFrequency: BackupFr
 
   override fun onCreateDialog(savedInstance: Bundle?): Dialog {
     val context = requireContext()
-    val localizedFrequencyOptions = frequencyOptions.map { context.getString(it.getResourceId()) }.toTypedArray()
+    val localizedFrequencyOptions = frequencyOptions
+      .map { it.getResourceId() }
+      .map { context.getString(it) }
+      .toTypedArray()
     val defaultIndex = frequencyOptions.indexOf(defaultFrequency)
 
     return MaterialAlertDialogBuilder(context)
