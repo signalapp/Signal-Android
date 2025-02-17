@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.preferences.BackupFrequencyV1;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -31,7 +32,7 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
 
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
-    if (SignalStore.settings().isBackupEnabled()) {
+    if (SignalStore.settings().isBackupEnabled() && SignalStore.settings().getBackupFrequency() != BackupFrequencyV1.NEVER) {
       LocalBackupJob.enqueue(false);
     }
 
@@ -39,19 +40,25 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
   }
 
   public static void schedule(Context context) {
-    if (SignalStore.settings().isBackupEnabled()) {
+    if (SignalStore.settings().isBackupEnabled() && SignalStore.settings().getBackupFrequency() != BackupFrequencyV1.NEVER) {
       new LocalBackupListener().onReceive(context, getScheduleIntent());
     }
   }
 
   public static long setNextBackupTimeToIntervalFromNow(@NonNull Context context) {
-    LocalDateTime now    = LocalDateTime.now();
-    int           freq   = SignalStore.settings().getBackupFrequency();
-    int           hour   = SignalStore.settings().getBackupHour();
-    int           minute = SignalStore.settings().getBackupMinute();
-    LocalDateTime next   = MessageBackupListener.getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS, new Random());
+    BackupFrequencyV1 freq = SignalStore.settings().getBackupFrequency();
 
-    next = next.plusDays(freq);
+    if (freq == BackupFrequencyV1.NEVER) {
+      TextSecurePreferences.setNextBackupTime(context, -1);
+      return -1;
+    }
+
+    LocalDateTime     now  = LocalDateTime.now();
+    int               hour = SignalStore.settings().getBackupHour();
+    int             minute = SignalStore.settings().getBackupMinute();
+    LocalDateTime     next = MessageBackupListener.getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, BACKUP_JITTER_WINDOW_SECONDS, new Random());
+
+    next = next.plusDays(freq.getDays());
     long nextTime = JavaTimeExtensionsKt.toMillis(next);
 
     TextSecurePreferences.setNextBackupTime(context, nextTime);

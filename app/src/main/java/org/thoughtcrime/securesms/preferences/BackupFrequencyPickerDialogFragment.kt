@@ -7,24 +7,28 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.thoughtcrime.securesms.R
+class BackupFrequencyPickerDialogFragment(private val defaultFrequency: BackupFrequencyV1) : DialogFragment() {
 
-class BackupFrequencyPickerDialogFragment(private val defaultFrequency: Int) : DialogFragment() {
-  private val dayOptions = arrayOf("1", "7", "30", "90", "180", "365")
-  private var index: Int = 0
+  private val frequencyOptions = BackupFrequencyV1.entries
+  private var selectedFrequency: BackupFrequencyV1 = defaultFrequency
   private var callback: OnClickListener? = null
 
   override fun onCreateDialog(savedInstance: Bundle?): Dialog {
-    val defaultIndex = this.dayOptions.indexOf(this.defaultFrequency.toString())  // preselect the backup frequency choice if it's valid
-    this.index = defaultIndex
-    return MaterialAlertDialogBuilder(requireContext())
-      .setSingleChoiceItems(this.dayOptions, defaultIndex) { _, i -> this.index = i }
+    val context = requireContext()
+    val localizedFrequencyOptions = frequencyOptions.map { context.getString(it.getResourceId()) }.toTypedArray()
+    val defaultIndex = frequencyOptions.indexOf(defaultFrequency)
+
+    return MaterialAlertDialogBuilder(context)
+      .setSingleChoiceItems(localizedFrequencyOptions, defaultIndex) { _, selectedIndex ->
+        selectedFrequency = frequencyOptions[selectedIndex]
+      }
       .setTitle(R.string.BackupFrequencyPickerDialogFragment__enter_frequency)
-      .setPositiveButton(R.string.BackupFrequencyPickerDialogFragment__ok, this.callback)
+      .setPositiveButton(R.string.BackupFrequencyPickerDialogFragment__ok, callback)
       .setNegativeButton(R.string.BackupFrequencyPickerDialogFragment__cancel, null)
       .create()
   }
 
-  fun getValue(): Int = this.dayOptions[this.index].toInt()
+  fun getValue(): BackupFrequencyV1 = selectedFrequency
 
   fun setOnPositiveButtonClickListener(cb: OnClickListener) {
     this.callback = cb
