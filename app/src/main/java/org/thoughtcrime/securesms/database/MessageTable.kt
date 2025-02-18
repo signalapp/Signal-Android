@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.database.sqlite.SQLiteException
 import android.text.SpannableString
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
@@ -4818,11 +4819,46 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    val fromCount = writableDatabase
-      .update(TABLE_NAME)
-      .values(FROM_RECIPIENT_ID to toId.serialize())
-      .where("$FROM_RECIPIENT_ID = ?", fromId)
-      .run()
+    val fromCount = try {
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(FROM_RECIPIENT_ID to toId.serialize())
+        .where("$FROM_RECIPIENT_ID = ?", fromId)
+        .run()
+    } catch (e: SQLiteException) {
+      Log.w(TAG, "Failed to remap fromRecipient, likely causes a unique constraint violation. Fixing.", e)
+      val fromIdLong = fromId.toLong()
+      val toIdLong = toId.toLong()
+
+      // Looks at all of the messages where the fromRecipient is either fromId or toId, then
+      // finds all messages where the threadId and dateSent match, but the fromRecipients do not.
+      // Deletes the more recent of the messages to prevent duplicates.
+      val deleteCount = writableDatabase
+        .delete(TABLE_NAME)
+        .where(
+          """
+          $ID IN (
+            SELECT $ID FROM $TABLE_NAME AS m1
+            WHERE $FROM_RECIPIENT_ID IN ($fromIdLong, $toIdLong)
+            AND EXISTS (
+              SELECT 1 FROM $TABLE_NAME AS m2
+              WHERE m1.$THREAD_ID = m2.$THREAD_ID
+              AND m1.$DATE_SENT = m2.$DATE_SENT
+              AND m1.$FROM_RECIPIENT_ID !=  m2.$FROM_RECIPIENT_ID
+              AND m1.$ID > m2.$ID
+            )
+          )
+          """
+        )
+        .run()
+
+      Log.w(TAG, "Deleted $deleteCount duplicates. Retrying the remap.", e)
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(FROM_RECIPIENT_ID to toId.serialize())
+        .where("$FROM_RECIPIENT_ID = ?", fromId)
+        .run()
+    }
 
     val toCount = writableDatabase
       .update(TABLE_NAME)
