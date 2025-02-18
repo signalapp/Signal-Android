@@ -805,8 +805,7 @@ class ConversationFragment :
 
   override fun onStickerSelected(sticker: StickerRecord) {
     sendSticker(
-      stickerRecord = sticker,
-      clearCompose = false
+      stickerRecord = sticker
     )
   }
 
@@ -1523,7 +1522,7 @@ class ConversationFragment :
 
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
-      is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)
+      is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide)
       is ShareOrDraftData.SetText -> composeText.setDraftText(data.text)
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetEditMessage -> {
@@ -1811,8 +1810,7 @@ class ConversationFragment :
   }
 
   private fun sendSticker(
-    stickerRecord: StickerRecord,
-    clearCompose: Boolean
+    stickerRecord: StickerRecord
   ) {
     val stickerLocator = StickerLocator(stickerRecord.packId, stickerRecord.packKey, stickerRecord.stickerId, stickerRecord.emoji)
     val slide = StickerSlide(
@@ -1823,7 +1821,7 @@ class ConversationFragment :
       stickerRecord.contentType
     )
 
-    sendMessageWithoutComposeInput(slide = slide, clearCompose = clearCompose)
+    sendMessageWithoutComposeInput(slide = slide)
 
     viewModel.updateStickerLastUsedTime(stickerRecord, System.currentTimeMillis().milliseconds)
   }
@@ -1831,7 +1829,6 @@ class ConversationFragment :
   private fun sendMessageWithoutComposeInput(
     slide: Slide? = null,
     contacts: List<Contact> = emptyList(),
-    quote: QuoteModel? = null,
     clearCompose: Boolean = true
   ) {
     sendMessage(
@@ -1842,7 +1839,6 @@ class ConversationFragment :
       mentions = emptyList(),
       bodyRanges = null,
       messageToEdit = null,
-      quote = quote,
       linkPreviews = emptyList(),
       bypassPreSendSafetyNumberCheck = true
     )
@@ -1891,12 +1887,12 @@ class ConversationFragment :
     if (slideDeck == null) {
       val voiceNote: DraftTable.Draft? = draftViewModel.voiceNoteDraft
       if (voiceNote != null) {
-        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(voiceNote), clearCompose = true)
+        sendMessageWithoutComposeInput(slide = AudioSlide.createFromVoiceNoteDraft(voiceNote))
         return
       }
     }
 
-    if (body.isNullOrBlank() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
+    if (body.isBlank() && slideDeck?.containsMediaSlide() != true && preUploadResults.isEmpty() && contacts.isEmpty()) {
       Log.i(TAG, "Unable to send due to empty message")
       toast(R.string.ConversationActivity_message_is_empty_exclamation)
       return
@@ -3680,8 +3676,7 @@ class ConversationFragment :
   private inner class ActivityResultCallbacks : ConversationActivityResultContracts.Callbacks {
     override fun onSendContacts(contacts: List<Contact>) {
       sendMessageWithoutComposeInput(
-        contacts = contacts,
-        clearCompose = false
+        contacts = contacts
       )
     }
 
@@ -4135,8 +4130,7 @@ class ConversationFragment :
 
     override fun onStickerSuggestionSelected(sticker: StickerRecord) {
       sendSticker(
-        stickerRecord = sticker,
-        clearCompose = true
+        stickerRecord = sticker
       )
     }
 
@@ -4423,8 +4417,7 @@ class ConversationFragment :
       val audioSlide = AudioSlide(draft.uri, draft.size, MediaUtil.AUDIO_AAC, true)
 
       sendMessageWithoutComposeInput(
-        slide = audioSlide,
-        quote = inputPanel.quote.orNull()
+        slide = audioSlide
       )
     }
 

@@ -81,7 +81,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.badges.gifts.GiftMessageView;
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift;
-import org.thoughtcrime.securesms.billing.upgrade.UpgradeToStartMediaBackupSheet;
 import org.thoughtcrime.securesms.calls.links.CallLinks;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
@@ -145,7 +144,6 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.PlaceholderURLSpan;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
@@ -680,9 +678,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int availableWidth;
     if (hasAudio(messageRecord)) {
       availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+    } else if((hasSticker(messageRecord) && isCaptionlessMms(messageRecord)) || isBorderless(messageRecord)) {
+      availableWidth = stickerStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(stickerStub.get()) + ViewUtil.getRightMargin(stickerStub.get());
+    } else if(hasSharedContact(messageRecord)) {
+      availableWidth = sharedContactStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(sharedContactStub.get()) + ViewUtil.getRightMargin(sharedContactStub.get());
+    } else if(hasDocument(messageRecord)) {
+      availableWidth = documentViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(documentViewStub.get()) + ViewUtil.getRightMargin(documentViewStub.get());
     } else if (!isViewOnceMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
       availableWidth = mediaThumbnailStub.require().getMeasuredWidth();
-    } else {
+    }  else {
       availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
     }
 
