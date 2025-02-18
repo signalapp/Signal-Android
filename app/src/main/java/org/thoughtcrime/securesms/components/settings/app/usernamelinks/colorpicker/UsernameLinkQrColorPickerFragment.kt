@@ -8,11 +8,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -21,6 +24,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,13 +62,21 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state: UsernameLinkQrColorPickerState by viewModel.state
     val navController: NavController by remember { mutableStateOf(findNavController()) }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
-      topBar = { TopAppBarContent(onBackClicked = { navController.popBackStack() }) }
+      modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+      topBar = {
+        TopAppBarContent(
+          scrollBehavior = scrollBehavior,
+          onBackClicked = { navController.popBackStack() }
+        )
+      }
     ) { contentPadding ->
       Column(
         modifier = Modifier
           .padding(contentPadding)
+          .verticalScroll(rememberScrollState())
           .fillMaxWidth()
           .fillMaxHeight(),
         verticalArrangement = Arrangement.SpaceBetween,
@@ -83,9 +97,8 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
 
         Row(
           modifier = Modifier
-            .weight(1f, false)
             .fillMaxWidth()
-            .padding(end = 24.dp),
+            .padding(end = 24.dp, bottom = 24.dp),
           horizontalArrangement = Arrangement.End
         ) {
           Buttons.MediumTonal(onClick = { navController.popBackStack() }) {
@@ -97,7 +110,10 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
   }
 
   @Composable
-  private fun TopAppBarContent(onBackClicked: () -> Unit) {
+  private fun TopAppBarContent(
+    scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
+    onBackClicked: () -> Unit
+  ) {
     TopAppBar(
       title = {
         Text(stringResource(R.string.UsernameLinkSettings_color_picker_app_bar_title))
@@ -110,14 +126,15 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
             contentDescription = null
           )
         }
-      }
+      },
+      scrollBehavior = scrollBehavior
     )
   }
 
   @Composable
   private fun ColorPicker(colors: ImmutableList<UsernameQrCodeColorScheme>, selected: UsernameQrCodeColorScheme, onSelectionChanged: (UsernameQrCodeColorScheme) -> Unit) {
     LazyVerticalGrid(
-      modifier = Modifier.padding(horizontal = 30.dp),
+      modifier = Modifier.padding(horizontal = 30.dp).heightIn(max = 880.dp),
       columns = GridCells.Adaptive(minSize = 88.dp)
     ) {
       colors.forEach { color ->
