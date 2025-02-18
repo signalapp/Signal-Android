@@ -55,11 +55,13 @@ public interface CameraFragment {
   void presentHud(int selectedMediaCount);
   void fadeOutControls(@NonNull Runnable onEndAction);
   void fadeInControls();
+  void stopVideoRecording();
 
   interface Controller {
     void onCameraError();
     void onImageCaptured(@NonNull byte[] data, int width, int height);
     void onVideoCaptured(@NonNull FileDescriptor fd);
+    void onVideoCaptureStarted();
     void onVideoCaptureError();
     void onGalleryClicked();
     void onCameraCountButtonClicked();
