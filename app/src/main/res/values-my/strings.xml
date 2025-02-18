@@ -1007,15 +1007,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">ပြစ်ချက်မှတ်တမ်း ပေးပို့မည်လား။</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">ပြစ်ချက်မှတ်တမ်းများသည် သင့်ပြဿနာကို ပိုမိုမြန်ဆန်စွာ ဖြေရှင်းရန် အထောက်အကူပေးမည်။ သင်၏မှတ်တမ်းများကို ဆန္ဒရှိမှတင်သွင်းနိုင်သည်။</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ပြစ်ချက်မှတ်တမ်းဖြင့် တင်ပြရန်</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ပြစ်ချက်မှတ်တမ်းမပါဘဲ တင်ပြရန်</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">မလုပ်တော့ပါ</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync ထုတ်ယူခြင်း မအောင်မြင်ပါ။</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">မက်ဆေ့ချ်တူအောင်ညှိခြင်း မအောင်မြင်ပါ</string>
@@ -2394,7 +2394,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">နိုင်ငံ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">အမည် သို့မဟုတ် နံပါတ်ဖြင့် ရှာရန်</string>
+    <string name="CountryCodeFragment__search_by">အမည် သို့မဟုတ် နိုင်ငံကုဒ်နံပါတ်ဖြင့် ရှာရန်</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">အမည်မသိ နိုင်ငံ</string>
 
@@ -2480,7 +2480,7 @@
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">နိုင်ငံတစ်ခုကို ရွေးပါ</string>
     <!-- Hint text explaining that this is where the country code should go -->
-    <string name="RegistrationActivity_default_country_code">၀</string>
+    <string name="RegistrationActivity_default_country_code">0</string>
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">၎င်းနံပတ်ကို အတည်ပြုရန်အတွက် အဝင်ဖုန်းတစ်ခု လက်ခံရရှိပါမည်</string>
     <string name="RegistrationActivity_edit_number">နံပါတ်ကို ပြင်မယ်</string>
     <string name="RegistrationActivity_missing_google_play_services">Google Play မရှိပါ</string>

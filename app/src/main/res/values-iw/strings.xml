@@ -1076,15 +1076,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">רוצה להגיש יומן ניפוי באגים?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">יומני ניפוי התקלים שלך יעזרו לנו לפתור מהר יותר את הסוגייה שלך. הגשת יומנים היא רשותית.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">יומני ניפוי הבאגים שלך יעזרו לנו לפתור מהר יותר את הסוגייה שלך. הגשת יומנים היא רשות.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">הגש עם יומן ניפוי תקלים</string>
+    <string name="LinkDeviceFragment__submit_with_debug">שליחה עם יומן ניפוי באגים</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">הגש בלי יומן ניפוי תקלים</string>
+    <string name="LinkDeviceFragment__submit_without_debug">שליחה בלי יומן ניפוי באגים</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">ביטול</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync נכשל</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">סנכרון הודעות נכשל</string>
@@ -2640,7 +2640,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">המדינה שלך</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">חפש לפי שם או מספר</string>
+    <string name="CountryCodeFragment__search_by">חיפוש לפי שם או קידומת מדינה</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">מדינה בלתי ידועה</string>
 

@@ -1038,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Cancelar</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Error en la exportación de Android (Link&amp;Sync)</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Error en la sincronización de mensajes</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Tu país</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Buscar por nombre o número</string>
+    <string name="CountryCodeFragment__search_by">Buscar por nombre o código del país</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">País desconocido</string>
 
@@ -3280,7 +3280,7 @@
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">Activar pagos</string>
     <!-- Update item alerting the user they hid this person and that they can message them to unhide them -->
-    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Has eliminado a esta persona, envíale un mensaje de nuevo y se la volverá a añadir a tu lista.</string>
+    <string name="ConversationUpdateItem_hidden_contact_message_to_add_back">Has eliminado a esta persona. Envíale un mensaje de nuevo para volver a añadirla a tu lista de contactos.</string>
     <!-- Update item button text shown for the accepted message request update message -->
     <string name="ConversationUpdateItem_options">Opciones</string>
     <!-- Update item button text shown for a profile name change. -->
@@ -5829,7 +5829,7 @@
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Mensajería privada. Sin anuncios, ni rastreos, ni vigilancia.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal se mantiene con tus donaciones, con lo que tu privacidad es nuestra máxima prioridad. Signal está diseñada para ti; no para tus datos o para obtener beneficios.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal se financia con donaciones de personas como tú, con lo que tu privacidad es nuestra máxima prioridad. Signal está diseñada para ti, no para obtener datos ni ganancias.</string>
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Si puedes, dona hoy para que Signal siga siendo un lugar divertido, fiable y disponible para todos.</string>
 
@@ -6293,7 +6293,7 @@
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">No enviado</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">Enviada parcialmente</string>
+    <string name="StoriesLandingItem__partially_sent">Enviado parcialmente</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
     <string name="StoriesLandingItem__tap_to_retry">Toca para reintentar</string>
     <!-- Title of dialog confirming decision to hide a story -->
@@ -6346,7 +6346,7 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Responder</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Enviada parcialmente. Toca para ver más.</string>
+    <string name="StoryViewerPageFragment__partially_sent">Enviado parcialmente. Toca para ver más.</string>
     <!-- Displayed when viewing a post that has failed to send -->
     <string name="StoryViewerPageFragment__send_failed">No enviado. Toca para reintentar.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
@@ -6771,9 +6771,9 @@
     <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Compartir solo con…</string>
 
     <!-- Story info header sent heading -->
-    <string name="StoryInfoHeader__sent">Enviada</string>
+    <string name="StoryInfoHeader__sent">Enviado</string>
     <!-- Story info header received heading -->
-    <string name="StoryInfoHeader__received">Recibida</string>
+    <string name="StoryInfoHeader__received">Recibido</string>
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Tamaño del archivo</string>
     <!-- Story info "Sent to" header -->

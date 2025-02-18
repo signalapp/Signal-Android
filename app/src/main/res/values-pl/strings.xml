@@ -1072,9 +1072,9 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Kontynuuj</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Kontakt z działem technicznym</string>
+    <string name="LinkDeviceFragment__contact_support">Skontaktuj się z pomocą techniczną</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">Wysłać raport debugowania?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">Przesłać dzienniki debugowania?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">Dzienniki debugowania pomogą nam szybciej rozwiązać problem. Załączenie dzienników jest opcjonalne.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -1084,7 +1084,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Anuluj</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Nieudany eksport w systemie Android (Link&amp;Sync)</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Nieudana synchronizacja wiadomości</string>
@@ -4035,7 +4035,7 @@
     <string name="preferences_chats__chats">Czaty</string>
     <string name="preferences_app_updates__title">Aktualizacje aplikacji</string>
     <string name="preferences_data_and_storage__manage_storage">Zarządzaj pamięcią</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Używaj mniej danych dla połączeń</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Zżywaj mniej danych podczas połączeń</string>
     <string name="preferences_data_and_storage__never">Nigdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi i sieć komórkowa</string>
     <string name="preferences_data_and_storage__mobile_data_only">Tylko sieć komórkowa</string>

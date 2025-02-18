@@ -1026,11 +1026,11 @@
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continuar</string>
     <!-- Option on button to contact support -->
-    <string name="LinkDeviceFragment__contact_support">Entre em contato com o suporte</string>
+    <string name="LinkDeviceFragment__contact_support">Entrar em contato com o suporte</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Enviar registro de depuração?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Os seus registros de depuração nos ajudarão a resolver seu problema mais rápido. Enviá-los é opcional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Seus registros de depuração nos ajudarão a resolver o problema mais rápido. O envio é opcional.</string>
     <!-- Button option to submit debug log when contacting support -->
     <string name="LinkDeviceFragment__submit_with_debug">Enviar com registro de depuração</string>
     <!-- Button option to not submit debug log when contacting support -->
@@ -1038,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Cancelar</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Falha na exportação (Link&amp;Sync) do Android</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Falha na sincronização de mensagens</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">País</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Buscar por nome ou número</string>
+    <string name="CountryCodeFragment__search_by">Buscar por nome ou código do país</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">País desconhecido</string>
 

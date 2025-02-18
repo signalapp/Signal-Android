@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Kas saata silumislogi?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Sinu silumislogid aitavad meil su probleemi kiiremini lahendada. Logide saatmine on valikuline.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Postita koos silumislogiga</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Postita ilma silumislogita</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Loobu</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync eksport nurjus</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Sõnumite sünkroniseerimine nurjus</string>
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signali sõnumid ja kõned</string>
     <string name="preferences__advanced_pin_settings">Täpsemad PINi seaded</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Täpsemad PINi seaded</string>
+    <string name="preferences__advanced_pin_settings_title">Täpsemad PIN-koodi sätted</string>
     <string name="preferences__free_private_messages_and_calls">Tasuta privaatsõnumid ja kõned Signali kasutajatele</string>
     <string name="preferences__submit_debug_log">Saada silumislogi</string>
     <string name="preferences__delete_account">Kustuta konto</string>

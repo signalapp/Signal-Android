@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">ડીબગ લૉગ સબમિટ કરવો છે?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">તમારા ડિબગ લૉગ્સ તમારી સમસ્યાને ઝડપથી નિવારણ કરવામાં મદદ કરશે. તમારા લૉગ્સ સબમિટ કરવું વૈકલ્પિક છે.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">તમારા ડીબગ લૉગ તમારી સમસ્યાને ઝડપથી નિવારણ કરવામાં મદદ કરશે. તમારા લૉગ સબમિટ કરવું વૈકલ્પિક છે.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">ડિબગ લૉગ સાથે સબમિટ કરો</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ડીબગ લૉગ સાથે સબમિટ કરો</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">ડિબગ લૉગ વિના સબમિટ કરો</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ડીબગ લૉગ વિના સબમિટ કરો</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">રદ કરો</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync એક્સપોર્ટ નિષ્ફળ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">મેસેજ સિંક નિષ્ફળ થયું</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">તમારો દેશ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">નામ કે નંબરથી શોધો</string>
+    <string name="CountryCodeFragment__search_by">દેશના નામ કે નંબરથી શોધો</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">અજાણ્યો દેશ</string>
 
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal મેસેજ અને કૉલ્સ</string>
     <string name="preferences__advanced_pin_settings">અદ્યતન PIN સેટિંગ્સ</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">અદ્યતન PIN સેટિંગ્સ</string>
+    <string name="preferences__advanced_pin_settings_title">વિગતવાર પિન સેટિંગ્સ</string>
     <string name="preferences__free_private_messages_and_calls">મફત ખાનગી મેસેજ અને Signal વપરાશકર્તાઓને કૉલ્સ</string>
     <string name="preferences__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
     <string name="preferences__delete_account">એકાઉન્ટ ડિલીટ કરો</string>

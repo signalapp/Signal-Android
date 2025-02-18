@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಬೇಕೆ?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">ನಿಮ್ಮ ಡೀಬಗ್ ಲಾಗ್‌ಗಳು ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವೇಗವಾಗಿ ಪರಿಹರಿಸಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನಿಮ್ಮ ಲಾಗ್‌ಗಳನ್ನು ಸಲ್ಲಿಸುವುದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ಡೀಬಗ್ ಲಾಗ್ ಜೊತೆಗೆ ಸಲ್ಲಿಸಿ</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ಡೀಬಗ್ ಲಾಗ್ ಇಲ್ಲದೆಯೇ ಸಲ್ಲಿಸಿ</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">ರದ್ದುಮಾಡಿ</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android ಲಿಂಕ್ ಮತ್ತು ಸಿಂಕ್ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ವಿಫಲವಾಗಿದೆ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">ಮೆಸೇಜ್ ಸಿಂಕ್ ವಿಫಲವಾಗಿದೆ</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">ನಿಮ್ಮ ದೇಶ</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯ ಪ್ರಕಾರ ಹುಡುಕಿ</string>
+    <string name="CountryCodeFragment__search_by">ಹೆಸರು ಅಥವಾ ದೇಶದ ಕೋಡ್ ಪ್ರಕಾರ ಹುಡುಕಿ</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">ತಿಳಿದಿರದ ದೇಶ</string>
 

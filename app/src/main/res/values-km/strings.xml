@@ -1007,15 +1007,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">ដាក់បញ្ជូនកំណត់ត្រាបញ្ហា?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">កំណត់ត្រាបញ្ហារបស់អ្នកនឹងជួយយើងដោះស្រាយបញ្ហារបស់អ្នកឱ្យបានកាន់តែលឿន។ អ្នកមានជម្រើសដាក់ឬមិនដាក់បញ្ជូនកំណត់ត្រារបស់អ្នក។</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ដាក់បញ្ជូនជាមួយកំណត់ត្រាបញ្ហា</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ដាក់បញ្ជូនដោយគ្មានកំណត់ត្រាបញ្ហា</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">បោះបង់</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">ការនាំចេញ Android (Link&amp;Sync) មិនបានជោគជ័យ</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">ការធ្វើសមកាលកម្មសារមិនបានជោគជ័យ</string>
@@ -2394,7 +2394,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">ប្រទេសរបស់អ្នក</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">ស្វែងរកតាមឈ្មោះ ឬលេខ</string>
+    <string name="CountryCodeFragment__search_by">ស្វែងរកតាមឈ្មោះ ឬលេខកូដប្រទេស</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">ប្រទេសមិនស្គាល់</string>
 

@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കണോ?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">നിങ്ങളുടെ ഡീബഗ് ലോഗുകൾ പ്രശ്നം വേഗത്തിൽ പരിഹരിക്കാൻ ഞങ്ങളെ സഹായിക്കും. നിങ്ങളുടെ ലോഗുകൾ സമർപ്പിക്കുന്നത് ഓപ്ഷണലാണ്.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">ഡീബഗ് ലോഗ് ഉപയോഗിച്ച് സമർപ്പിക്കുക</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">ഡീബഗ് ലോഗ് ഇല്ലാതെ സമർപ്പിക്കുക</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">റദ്ദാക്കുക</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android എക്സ്പോർട്ട് (Link&amp;Sync) പരാജയപ്പെട്ടു</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">സന്ദേശ സമന്വയം പരാജയപ്പെട്ടു</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">നിങ്ങളുടെ രാജ്യം</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">പേരോ നമ്പറോ ഉപയോഗിച്ച് തിരയുക</string>
+    <string name="CountryCodeFragment__search_by">പേരോ രാജ്യ കോഡ് നമ്പറോ ഉപയോഗിച്ച് തിരയുക</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">അജ്ഞാത രാജ്യം</string>
 
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal സന്ദേശങ്ങളും കോളുകളും</string>
     <string name="preferences__advanced_pin_settings">വിപുല PIN ക്രമീകരണങ്ങൾ</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">വിപുല PIN ക്രമീകരണങ്ങൾ</string>
+    <string name="preferences__advanced_pin_settings_title">വിപുലമായ PIN ക്രമീകരണങ്ങൾ</string>
     <string name="preferences__free_private_messages_and_calls">സിഗ്നൽ ഉപയോക്താക്കൾക്ക് സൗജന്യ സ്വകാര്യ സന്ദേശങ്ങളും കോളുകളും</string>
     <string name="preferences__submit_debug_log">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
     <string name="preferences__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കൂ</string>

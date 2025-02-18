@@ -1038,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Annuleren</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android-export (Link&amp;Sync) mislukt</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Berichtsynchronisatie niet gelukt</string>
@@ -3762,7 +3762,7 @@
     <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
     <string name="preferences__advanced_pin_settings">Geavanceerde pincode-instellingen</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Geavanceerde pincode-instellingen</string>
+    <string name="preferences__advanced_pin_settings_title">Geav. pincode-instellingen</string>
     <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
     <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
     <string name="preferences__delete_account">Account verwijderen</string>

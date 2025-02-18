@@ -1038,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Annuler</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Échec de l\'exportation Link&amp;Sync Android</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Impossible de synchroniser les messages</string>
@@ -2341,7 +2341,7 @@
     <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal</string>
     <string name="WebRtcCallView__start_call">Lancer un appel</string>
     <string name="WebRtcCallView__join_call">Rejoindre l\'appel</string>
-    <string name="WebRtcCallView__call_is_full">L\'appel est complet</string>
+    <string name="WebRtcCallView__call_is_full">Cet appel est complet</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Cet appel a atteint le nombre maximal de %1$d participants. Veuillez réessayer plus tard.</string>
     <string name="WebRtcCallView__your_video_is_off">Votre vidéo est désactivée</string>
     <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
@@ -3185,7 +3185,7 @@
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ne correspond à aucun utilisateur Signal. Veuillez vérifier le nom d\'utilisateur et réessayer."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Inutile de vous ajouter au groupe</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Le groupe a atteint sa taille maximale</string>
-    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal ne peuvent pas accueillir plus de %1$d membres.</string>
+    <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Les groupes Signal peuvent accueillir jusqu\'à %1$d membres.</string>
     <string name="ContactSelectionListFragment_recommended_member_limit_reached">Votre groupe a atteint la taille maximale recommandée</string>
     <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Pour un fonctionnement optimal, les groupes Signal peuvent accueillir jusqu\'à %1$d membres. Si vous dépassez cette limite, l\'envoi et la réception des messages risquent de s\'en trouver ralentis.</string>
     <plurals name="ContactSelectionListFragment_d_members">
@@ -3263,7 +3263,7 @@
     <!-- Action button label for starting a new call in the current conversation -->
     <string name="ConversationUpdateItem_call_back">Rappeler</string>
     <string name="ConversationUpdateItem_return_to_call">Revenir à l\'appel</string>
-    <string name="ConversationUpdateItem_call_is_full">L\'appel est complet</string>
+    <string name="ConversationUpdateItem_call_is_full">Cet appel est complet</string>
     <string name="ConversationUpdateItem_invite_friends">Inviter des amis</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Activer les notifications d\'appel</string>
     <string name="ConversationUpdateItem_update_contact">Mettre à jour le contact</string>

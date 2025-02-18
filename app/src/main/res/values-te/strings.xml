@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">డీబగ్ లాగ్‌ను సమర్పించేదా?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">మీ సమస్యను వేగంగా పరిష్కరించడానికి మీ డీబగ్ లాగ్స్ మాకు సహాయపడతాయి. మీ లాగ్స్‌ను సమర్పించడం అనేది ఐచ్ఛికం.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">డీబగ్ లాగ్‌తో సమర్పించండి</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">డీబగ్ లాగ్ లేకుండా సమర్పించండి</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">రద్దు చేయండి</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android లింక్&amp;సింక్ ఎగుమతి విఫలమైంది</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">సందేశ సమకాలీకరణ విఫలమైంది</string>

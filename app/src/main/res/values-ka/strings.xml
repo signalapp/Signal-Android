@@ -1030,15 +1030,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">გსურს გაუმართაობის რეესტრის ატვირთვა?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">გაუმართაობის რეესტრში ატვირთვა დაგვეხმარება, შენი პრობლემა უფრო სწრაფად მოვაგვაროთ. რეესტრში ატვირთვა არჩევითია.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">გაუმართაობის რეესტრით ატვირთვა</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">გაუმართაობის რეესტრის გარეშე ატვირთვა</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">გაუქმება</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android-ის ექსპორტირება (Link&amp;Sync) ვერ მოხერხდა</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">შეტყობინებების სინქრონიზაცია ვერ მოხერხდა</string>
@@ -2476,7 +2476,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">შენი ქვეყანა</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">სახელით ან ნომრით ძებნა</string>
+    <string name="CountryCodeFragment__search_by">სახელით ან ქვეყნის კოდით ძებნა</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">უცნობი ქვეყანა</string>
 

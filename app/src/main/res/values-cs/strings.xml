@@ -1076,15 +1076,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Odeslat protokol ladění?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">S vaším debug logem se nám podaří vyřešit váš problém rychleji. Nahrání vašich logů není povinné.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Protokoly ladění nám pomohou rychleji vyřešit váš problém. Odeslání protokolů je nepovinné.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Odeslat s debug logem</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Odeslat s protokolem ladění</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Odeslat bez debug logu</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Odeslat bez protokolu ladění</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Zrušit</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Export (Link&amp;Sync) se nezdařil</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Synchronizace zpráv se nezdařila</string>
@@ -2640,7 +2640,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Vaše země</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Hledat podle jména nebo čísla</string>
+    <string name="CountryCodeFragment__search_by">Hledat podle jména nebo předčíslí země</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Neznámá země</string>
 
@@ -3968,7 +3968,7 @@
     <string name="preferences__signal_messages_and_calls">Signal zprávy a volání</string>
     <string name="preferences__advanced_pin_settings">Pokročilá nastavení PIN</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
-    <string name="preferences__advanced_pin_settings_title">Pokročilá nastavení PIN</string>
+    <string name="preferences__advanced_pin_settings_title">Rozšířené nastavení PIN</string>
     <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
     <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
     <string name="preferences__delete_account">Smazat účet</string>
