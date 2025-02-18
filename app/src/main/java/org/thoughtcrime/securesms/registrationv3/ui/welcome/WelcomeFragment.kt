@@ -74,6 +74,11 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    sharedViewModel.resetRestoreDecision()
+  }
+
   private fun onContinueClicked() {
     if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
       findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.CONTINUE))
@@ -83,7 +88,6 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
   }
 
   private fun navigateToNextScreenViaContinue() {
-    sharedViewModel.resetRestoreDecision()
     sharedViewModel.maybePrefillE164(requireContext())
     findNavController().safeNavigate(WelcomeFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.NORMAL))
   }
