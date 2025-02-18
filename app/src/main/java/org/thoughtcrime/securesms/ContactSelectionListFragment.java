@@ -447,6 +447,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public int getSelectedMembersSize() {
+    if (contactSearchMediator == null) {
+      return 0;
+    }
+
     return contactSearchMediator.getSelectedMembersSize();
   }
 
@@ -471,11 +475,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public int getSelectedContactsCount() {
-    if (contactSearchMediator == null) {
-      return 0;
-    }
-
-    return contactSearchMediator.getSelectedContacts().size();
+    return getSelectedMembersSize();
   }
 
   public int getTotalMemberCount() {
