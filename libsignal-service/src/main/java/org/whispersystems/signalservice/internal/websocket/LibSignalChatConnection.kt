@@ -388,6 +388,7 @@ class LibSignalChatConnection(
     }
 
     override fun onQueueEmpty(chat: ChatConnection) {
+      Log.i(TAG, "$name queue empty")
       val internalPseudoId = nextIncomingMessageInternalPseudoId.getAndIncrement()
       val queueEmptyRequest = WebSocketRequestMessage(
         verb = SOCKET_EMPTY_REQUEST_VERB,
