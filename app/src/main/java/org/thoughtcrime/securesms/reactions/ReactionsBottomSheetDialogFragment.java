@@ -29,15 +29,17 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.Objects;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+
 public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
   private static final String ARGS_MESSAGE_ID = "reactions.args.message.id";
   private static final String ARGS_IS_MMS     = "reactions.args.is.mms";
 
-  private ViewPager2                recipientPagerView;
-  private ReactionViewPagerAdapter  recipientsAdapter;
-  private ReactionsViewModel        viewModel;
-  private Callback                  callback;
+  private ViewPager2               recipientPagerView;
+  private ReactionViewPagerAdapter recipientsAdapter;
+  private ReactionsViewModel       viewModel;
+  private Callback                 callback;
 
   private final LifecycleDisposable disposables = new LifecycleDisposable();
 
@@ -164,7 +166,7 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   private void setUpViewModel(@NonNull MessageId messageId) {
-    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(messageId);
+    ReactionsViewModel.Factory factory = new ReactionsViewModel.Factory(new ReactionsRepository(requireContext()), messageId);
 
     viewModel = new ViewModelProvider(this, factory).get(ReactionsViewModel.class);
 
@@ -173,6 +175,16 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
 
       recipientsAdapter.submitList(emojiCounts);
     }));
+
+    recipientsAdapter.addListener(
+        () -> disposables.add(
+            viewModel.removeReactionEmoji()
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .subscribe(
+                         it -> recipientsAdapter.notifyItemRemoved(0)
+                     )
+        )
+    );
   }
 
   public interface Callback {
