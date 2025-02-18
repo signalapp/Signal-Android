@@ -95,12 +95,12 @@ public class RetrieveProfileAvatarJob extends BaseJob {
       return;
     }
 
-    if (forceUpdate) {
-      ProfileAvatarFileDetails details = recipient.getProfileAvatarFileDetails();
-      if (!details.hasFile() || (details.getLastModified() > System.currentTimeMillis() || details.getLastModified() + MIN_TIME_BETWEEN_FORCE_RETRY < System.currentTimeMillis())) {
-        Log.i(TAG, "Forcing re-download of avatar.");
+    ProfileAvatarFileDetails details = recipient.getProfileAvatarFileDetails();
+    if (!details.hasFile() || forceUpdate) {
+      if (details.getLastModified() > System.currentTimeMillis() || details.getLastModified() + MIN_TIME_BETWEEN_FORCE_RETRY < System.currentTimeMillis()) {
+        Log.i(TAG, "Forcing re-download of avatar. hasFile: " + details.hasFile());
       } else {
-        Log.i(TAG, "Too early to force re-download avatar.");
+        Log.i(TAG, "Too early to force re-download avatar. hasFile: " + details.hasFile());
         return;
       }
     } else if (profileAvatar != null && profileAvatar.equals(recipient.resolve().getProfileAvatar())) {
