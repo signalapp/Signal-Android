@@ -150,6 +150,10 @@ class ConversationViewModel(
   var titleViewParticipantsSnapshot: List<Recipient> = emptyList()
     private set
 
+  @Volatile
+  var scheduledDate: Long = -1L
+    private set
+
   val isPushAvailable: Boolean
     get() = recipientSnapshot?.isRegistered == true && Recipient.self().isRegistered
 
@@ -308,6 +312,14 @@ class ConversationViewModel(
         override fun onError(e: Throwable) = Unit
         override fun onComplete() = Unit
       })
+  }
+
+  fun updateScheduledDate(scheduledDate: Long) {
+    this.scheduledDate = scheduledDate
+  }
+
+  fun clearScheduledDate() {
+    this.scheduledDate = -1
   }
 
   fun getBannerFlows(
