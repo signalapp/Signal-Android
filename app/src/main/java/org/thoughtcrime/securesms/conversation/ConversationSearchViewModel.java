@@ -36,7 +36,7 @@ public class ConversationSearchViewModel extends ViewModel {
   }
 
   public void onQueryUpdated(@NonNull String query, long threadId, boolean forced) {
-    if (firstSearch && query.length() < 2) {
+    if (firstSearch && queryTooShort(query)) {
       result.postValue(new SearchResult(Collections.emptyList(), 0));
       return;
     }
@@ -106,6 +106,21 @@ public class ConversationSearchViewModel extends ViewModel {
         });
       });
     });
+  }
+
+  private static boolean queryTooShort(String query) {
+    if (query.isEmpty()) {
+      return true;
+    }
+
+    if (query.length() >= 2) {
+      return false;
+    }
+
+    char    onlyCharacter = query.charAt(0);
+    boolean alphaNumeric  = Character.isAlphabetic(onlyCharacter) || Character.isDigit(onlyCharacter);
+
+    return alphaNumeric;
   }
 
   public static class SearchResult {
