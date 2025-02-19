@@ -134,11 +134,12 @@ fun CallScreenPreJoinOverlay(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CallScreenTopAppBar(
+fun CallScreenTopAppBar(
   callRecipient: Recipient? = null,
   callStatus: String? = null,
   onNavigationClick: () -> Unit = {},
-  onCallInfoClick: () -> Unit = {}
+  onCallInfoClick: () -> Unit = {},
+  modifier: Modifier = Modifier
 ) {
   val textShadow = remember {
     Shadow(
@@ -148,6 +149,7 @@ private fun CallScreenTopAppBar(
   }
 
   TopAppBar(
+    modifier = modifier,
     colors = TopAppBarDefaults.topAppBarColors().copy(
       containerColor = Color.Transparent
     ),

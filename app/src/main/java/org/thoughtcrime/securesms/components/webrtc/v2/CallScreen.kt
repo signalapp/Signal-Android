@@ -77,6 +77,7 @@ private const val SHEET_BOTTOM_PADDING = 16
 fun CallScreen(
   callRecipient: Recipient,
   webRtcCallState: WebRtcViewModel.State,
+  isRemoteVideoOffer: Boolean,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
   callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
@@ -98,6 +99,16 @@ fun CallScreen(
   onControlsToggled: (Boolean) -> Unit,
   onCallScreenDialogDismissed: () -> Unit = {}
 ) {
+  if (webRtcCallState == WebRtcViewModel.State.CALL_INCOMING) {
+    IncomingCallScreen(
+      callRecipient = callRecipient,
+      isVideoCall = isRemoteVideoOffer,
+      callStatus = callScreenState.callStatus,
+      callScreenControlsListener = callScreenControlsListener
+    )
+    return
+  }
+
   var peekPercentage by remember {
     mutableFloatStateOf(0f)
   }
@@ -284,8 +295,7 @@ private fun BoxScope.Viewport(
 ) {
   if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
     LargeLocalVideoRenderer(
-      localParticipant = localParticipant,
-      localRenderState = localRenderState
+      localParticipant = localParticipant
     )
   }
 
@@ -369,12 +379,10 @@ private fun BoxScope.Viewport(
  */
 @Composable
 private fun LargeLocalVideoRenderer(
-  localParticipant: CallParticipant,
-  localRenderState: WebRtcLocalRenderState
+  localParticipant: CallParticipant
 ) {
   LocalParticipantRenderer(
     localParticipant = localParticipant,
-    localRenderState = localRenderState,
     modifier = Modifier
       .fillMaxSize()
       .clip(MaterialTheme.shapes.extraLarge)
@@ -407,7 +415,6 @@ private fun TinyLocalVideoRenderer(
 
   LocalParticipantRenderer(
     localParticipant = localParticipant,
-    localRenderState = localRenderState,
     modifier = modifier
       .padding(16.dp)
       .height(height)
@@ -449,7 +456,6 @@ private fun SmallMoveableLocalVideoRenderer(
   ) {
     LocalParticipantRenderer(
       localParticipant = localParticipant,
-      localRenderState = localRenderState,
       modifier = Modifier
         .fillMaxSize()
         .clip(MaterialTheme.shapes.medium)
@@ -498,6 +504,7 @@ private fun CallScreenPreview() {
     CallScreen(
       callRecipient = Recipient(systemContactName = "Test User"),
       webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
+      isRemoteVideoOffer = false,
       callScreenState = CallScreenState(),
       callControlsState = CallControlsState(
         displayMicToggle = true,

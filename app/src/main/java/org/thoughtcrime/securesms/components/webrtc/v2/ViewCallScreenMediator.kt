@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import org.signal.core.util.concurrent.LifecycleDisposable
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoCont
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 
 /**
@@ -193,5 +195,9 @@ class ViewCallScreenMediator(
 
   override fun showWifiToCellularPopupWindow() {
     wifiToCellularPopupWindow.show()
+  }
+
+  override fun hideMissingPermissionsNotice() {
+    callScreen.findViewById<View>(R.id.missing_permissions_container).visible = false
   }
 }

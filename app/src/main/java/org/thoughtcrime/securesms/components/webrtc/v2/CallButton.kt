@@ -21,12 +21,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.IconButtons
 import org.signal.core.ui.Previews
 import org.thoughtcrime.securesms.R
+
+private val defaultCallButtonIconSize: Dp = 24.dp
 
 @Composable
 private fun ToggleCallButton(
@@ -67,7 +70,8 @@ private fun CallButton(
   contentDescription: String?,
   modifier: Modifier = Modifier,
   containerColor: Color = MaterialTheme.colorScheme.secondaryContainer,
-  contentColor: Color = colorResource(id = R.color.signal_light_colorOnPrimary)
+  contentColor: Color = colorResource(id = R.color.signal_light_colorOnPrimary),
+  iconSize: Dp = defaultCallButtonIconSize
 ) {
   val buttonSize = dimensionResource(id = R.dimen.webrtc_button_size)
   IconButtons.IconButton(
@@ -82,7 +86,8 @@ private fun CallButton(
     Icon(
       painter = painter,
       contentDescription = contentDescription,
-      modifier = Modifier.size(28.dp)
+      modifier = Modifier.size(iconSize),
+      tint = contentColor
     )
   }
 }
@@ -152,13 +157,51 @@ fun AdditionalActionsButton(
 @Composable
 fun HangupButton(
   onClick: () -> Unit,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  iconSize: Dp = defaultCallButtonIconSize
 ) {
   CallButton(
     onClick = onClick,
     painter = painterResource(id = R.drawable.symbol_phone_down_fill_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__end_call),
     containerColor = colorResource(id = R.color.webrtc_hangup_background),
+    modifier = modifier,
+    iconSize = iconSize
+  )
+}
+
+@Composable
+fun AcceptCallButton(
+  onClick: () -> Unit,
+  isVideoCall: Boolean,
+  modifier: Modifier = Modifier,
+  iconSize: Dp = defaultCallButtonIconSize
+) {
+  CallButton(
+    onClick = onClick,
+    painter = if (isVideoCall) {
+      painterResource(id = R.drawable.symbol_video_fill_24)
+    } else {
+      painterResource(id = R.drawable.symbol_phone_fill_white_24)
+    },
+    contentDescription = stringResource(id = R.string.WebRtcCallScreen__answer),
+    containerColor = colorResource(id = R.color.webrtc_answer_background),
+    iconSize = iconSize,
+    modifier = modifier
+  )
+}
+
+@Composable
+fun AnswerWithoutVideoButton(
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  CallButton(
+    onClick = onClick,
+    painter = painterResource(id = R.drawable.symbol_video_slash_fill_24),
+    contentDescription = stringResource(id = R.string.WebRtcCallScreen__answer_without_video),
+    containerColor = Color.White,
+    contentColor = Color.Black,
     modifier = modifier
   )
 }
@@ -256,6 +299,38 @@ private fun AdditionalActionsButtonPreview() {
 private fun HangupButtonPreview() {
   Previews.Preview {
     HangupButton(
+      onClick = {}
+    )
+  }
+}
+
+@DarkPreview
+@Composable
+private fun VideoAcceptCallButtonPreview() {
+  Previews.Preview {
+    AcceptCallButton(
+      onClick = {},
+      isVideoCall = true
+    )
+  }
+}
+
+@DarkPreview
+@Composable
+private fun AcceptCallButtonPreview() {
+  Previews.Preview {
+    AcceptCallButton(
+      onClick = {},
+      isVideoCall = false
+    )
+  }
+}
+
+@DarkPreview
+@Composable
+private fun AnswerWithoutVideoButtonPreview() {
+  Previews.Preview {
+    AnswerWithoutVideoButton(
       onClick = {}
     )
   }

@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.viewinterop.AndroidView
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
-import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -31,8 +30,8 @@ import org.webrtc.RendererCommon
 @Composable
 fun LocalParticipantRenderer(
   localParticipant: CallParticipant,
-  localRenderState: WebRtcLocalRenderState,
-  modifier: Modifier = Modifier
+  modifier: Modifier = Modifier,
+  force: Boolean = false
 ) {
   BoxWithConstraints(
     modifier = modifier
@@ -70,7 +69,7 @@ fun LocalParticipantRenderer(
       modifier = Modifier.fillMaxSize()
     )
 
-    if (localParticipant.isVideoEnabled) {
+    if (force || localParticipant.isVideoEnabled) {
       AndroidView(
         factory = ::TextureViewRenderer,
         modifier = Modifier.fillMaxSize(),

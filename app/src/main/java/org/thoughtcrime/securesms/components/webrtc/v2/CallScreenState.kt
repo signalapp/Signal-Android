@@ -26,6 +26,7 @@ data class CallScreenState(
   val displaySwipeToSpeakerHint: Boolean = false,
   val displayWifiToCellularPopup: Boolean = false,
   val displayAdditionalActionsPopup: Boolean = false,
+  val displayMissingPermissionsNotice: Boolean = false,
   val pendingParticipantsState: PendingParticipantsState? = null,
   val isParticipantUpdatePopupEnabled: Boolean = false,
   val isCallStateUpdatePopupEnabled: Boolean = false

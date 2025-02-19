@@ -53,6 +53,7 @@ interface CallScreenMediator {
   fun enableParticipantUpdatePopup(enabled: Boolean)
   fun enableCallStateUpdatePopup(enabled: Boolean)
   fun showWifiToCellularPopupWindow()
+  fun hideMissingPermissionsNotice()
 
   fun setStatusFromGroupCallState(context: Context, groupCallState: WebRtcViewModel.GroupCallState) {
     when (groupCallState) {

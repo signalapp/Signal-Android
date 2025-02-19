@@ -108,6 +108,7 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
         CallScreen(
           callRecipient = recipient,
           webRtcCallState = webRtcCallState,
+          isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,
@@ -274,6 +275,10 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
 
   override fun showWifiToCellularPopupWindow() {
     callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = true) }
+  }
+
+  override fun hideMissingPermissionsNotice() {
+    callScreenViewModel.callScreenState.update { it.copy(displayMissingPermissionsNotice = false) }
   }
 
   /**
