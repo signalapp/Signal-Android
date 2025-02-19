@@ -16,11 +16,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.Buttons
@@ -35,10 +35,10 @@ private val defaultCallButtonIconSize: Dp = 24.dp
 private fun ToggleCallButton(
   checked: Boolean,
   onCheckedChange: (Boolean) -> Unit,
-  painter: Painter,
+  imageVector: ImageVector,
   contentDescription: String?,
   modifier: Modifier = Modifier,
-  checkedPainter: Painter = painter
+  checkedImageVector: ImageVector = imageVector
 ) {
   val buttonSize = dimensionResource(id = R.dimen.webrtc_button_size)
   IconButtons.IconToggleButton(
@@ -56,7 +56,7 @@ private fun ToggleCallButton(
     }
   ) {
     Icon(
-      painter = if (checked) checkedPainter else painter,
+      imageVector = if (checked) checkedImageVector else imageVector,
       contentDescription = contentDescription,
       modifier = Modifier.size(28.dp)
     )
@@ -66,7 +66,7 @@ private fun ToggleCallButton(
 @Composable
 private fun CallButton(
   onClick: () -> Unit,
-  painter: Painter,
+  imageVector: ImageVector,
   contentDescription: String?,
   modifier: Modifier = Modifier,
   containerColor: Color = MaterialTheme.colorScheme.secondaryContainer,
@@ -84,7 +84,7 @@ private fun CallButton(
     )
   ) {
     Icon(
-      painter = painter,
+      imageVector = imageVector,
       contentDescription = contentDescription,
       modifier = Modifier.size(iconSize),
       tint = contentColor
@@ -101,8 +101,8 @@ fun ToggleVideoButton(
   ToggleCallButton(
     checked = isVideoEnabled,
     onCheckedChange = onChange,
-    painter = painterResource(id = R.drawable.symbol_video_slash_fill_24),
-    checkedPainter = painterResource(id = R.drawable.symbol_video_fill_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_slash_fill_24),
+    checkedImageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_fill_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__toggle_camera),
     modifier = modifier
   )
@@ -117,8 +117,8 @@ fun ToggleMicButton(
   ToggleCallButton(
     checked = isMicEnabled,
     onCheckedChange = onChange,
-    painter = painterResource(id = R.drawable.symbol_mic_slash_fill_24),
-    checkedPainter = painterResource(id = R.drawable.symbol_mic_fill_white_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_mic_slash_fill_24),
+    checkedImageVector = ImageVector.vectorResource(id = R.drawable.symbol_mic_fill_white_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__toggle_mute),
     modifier = modifier
   )
@@ -134,8 +134,8 @@ fun ToggleRingButton(
   ToggleCallButton(
     checked = isRingEnabled,
     onCheckedChange = { onChange(it, isRingAllowed) },
-    painter = painterResource(id = R.drawable.symbol_bell_slash_fill_24),
-    checkedPainter = painterResource(id = R.drawable.symbol_bell_ring_fill_white_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_bell_slash_fill_24),
+    checkedImageVector = ImageVector.vectorResource(id = R.drawable.symbol_bell_ring_fill_white_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__toggle_group_ringing),
     modifier = modifier
   )
@@ -148,7 +148,7 @@ fun AdditionalActionsButton(
 ) {
   CallButton(
     onClick = onClick,
-    painter = painterResource(id = R.drawable.symbol_more_white_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_more_white_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__additional_actions),
     modifier = modifier
   )
@@ -162,7 +162,7 @@ fun HangupButton(
 ) {
   CallButton(
     onClick = onClick,
-    painter = painterResource(id = R.drawable.symbol_phone_down_fill_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_phone_down_fill_24),
     contentDescription = stringResource(id = R.string.WebRtcCallView__end_call),
     containerColor = colorResource(id = R.color.webrtc_hangup_background),
     modifier = modifier,
@@ -179,10 +179,10 @@ fun AcceptCallButton(
 ) {
   CallButton(
     onClick = onClick,
-    painter = if (isVideoCall) {
-      painterResource(id = R.drawable.symbol_video_fill_24)
+    imageVector = if (isVideoCall) {
+      ImageVector.vectorResource(id = R.drawable.symbol_video_fill_24)
     } else {
-      painterResource(id = R.drawable.symbol_phone_fill_white_24)
+      ImageVector.vectorResource(id = R.drawable.symbol_phone_fill_white_24)
     },
     contentDescription = stringResource(id = R.string.WebRtcCallScreen__answer),
     containerColor = colorResource(id = R.color.webrtc_answer_background),
@@ -198,7 +198,7 @@ fun AnswerWithoutVideoButton(
 ) {
   CallButton(
     onClick = onClick,
-    painter = painterResource(id = R.drawable.symbol_video_slash_fill_24),
+    imageVector = ImageVector.vectorResource(id = R.drawable.symbol_video_slash_fill_24),
     contentDescription = stringResource(id = R.string.WebRtcCallScreen__answer_without_video),
     containerColor = Color.White,
     contentColor = Color.Black,

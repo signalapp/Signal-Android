@@ -322,7 +322,6 @@ private fun BoxScope.Viewport(
           modifier = Modifier
             .fillMaxWidth()
             .weight(1f)
-            .clip(MaterialTheme.shapes.extraLarge)
             .clickable(
               onClick = {
                 scope.launch {
