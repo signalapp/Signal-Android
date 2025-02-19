@@ -289,7 +289,11 @@ class LibSignalChatConnection(
 
   override fun sendKeepAlive() {
     CHAT_SERVICE_LOCK.withLock {
-      if (isDead()) {
+      // This is a stronger check than isDead, to handle the case where chatConnection may be null
+      //   because we are still connecting.
+      // TODO [andrew]: Decide if this is the right behavior long term, or if we want to queue these
+      //   like we plan to queue other requests long term.
+      if (state.value != WebSocketConnectionState.CONNECTED) {
         return
       }
 
