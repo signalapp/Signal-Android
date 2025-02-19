@@ -1580,45 +1580,53 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void showAddToFolderBottomSheet(Conversation conversation) {
+    boolean isIndividual = conversation.getThreadRecord().getRecipient().isIndividual();
+    boolean isGroup = conversation.getThreadRecord().getRecipient().isGroup();
+    int type;
+    if (isIndividual) {
+      type = AddToFolderBottomSheet.ThreadType.INDIVIDUAL.getValue();
+    } else if (isGroup) {
+      type = AddToFolderBottomSheet.ThreadType.GROUP.getValue();
+    } else {
+      type = AddToFolderBottomSheet.ThreadType.OTHER.getValue();
+    }
     showAddToFolderBottomSheet(
         Collections.singletonList(conversation.getThreadRecord().getThreadId()),
-        conversation.getThreadRecord().getRecipient().isIndividual(),
-        conversation.getThreadRecord().getRecipient().isGroup()
+        Collections.singletonList(type)
     );
   }
 
   private void showAddToFolderBottomSheet(Set<Conversation> conversations) {
     List<Long> threadIds = new ArrayList<>();
-    boolean areAllIndividualChats = true;
-    boolean areAllGroupChats = true;
+    List<Integer> threadTypes = new ArrayList<>();
 
     for (Conversation conversation : conversations) {
       threadIds.add(conversation.getThreadRecord().getThreadId());
       boolean isIndividual = conversation.getThreadRecord().getRecipient().isIndividual();
       boolean isGroup = conversation.getThreadRecord().getRecipient().isGroup();
-
-      if (!isIndividual) {
-        areAllIndividualChats = false;
+      int type;
+      if (isIndividual) {
+        type = AddToFolderBottomSheet.ThreadType.INDIVIDUAL.getValue();
+      } else if (isGroup) {
+        type = AddToFolderBottomSheet.ThreadType.GROUP.getValue();
+      } else {
+        type = AddToFolderBottomSheet.ThreadType.OTHER.getValue();
       }
-      if (!isGroup) {
-        areAllGroupChats = false;
-      }
+      threadTypes.add(type);
     }
 
     showAddToFolderBottomSheet(
         threadIds,
-        areAllIndividualChats,
-        areAllGroupChats
+        threadTypes
     );
   }
 
-  private void showAddToFolderBottomSheet(List<Long> threadIds, Boolean areAllIndividualChats, Boolean areAllGroupChats) {
+  private void showAddToFolderBottomSheet(List<Long> threadIds, List<Integer> threadTypes) {
     List<ChatFolderRecord> folders = viewModel.getFolders().stream().map(ChatFolderMappingModel::getChatFolder).collect(Collectors.toList());
     AddToFolderBottomSheet.showChatFolderSheet(
         folders,
         threadIds,
-        areAllIndividualChats,
-        areAllGroupChats,
+        threadTypes,
         this::endActionModeIfActive
     ).show(getParentFragmentManager(), BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
   }

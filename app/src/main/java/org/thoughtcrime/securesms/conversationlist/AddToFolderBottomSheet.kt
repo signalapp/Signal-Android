@@ -53,30 +53,36 @@ class AddToFolderBottomSheet private constructor(private val onDismissListener: 
     fun onDismiss()
   }
 
+  enum class ThreadType(val value: Int) {
+    INDIVIDUAL(1),
+    GROUP(2),
+    OTHER(3)
+  }
+
   private val viewModel by viewModel { ConversationListViewModel(isArchived = false) }
 
   companion object {
     private const val ARG_FOLDERS = "argument.folders"
     private const val ARG_THREAD_IDS = "argument.thread.ids"
-    private const val ARG_ARE_ALL_INDIVIDUAL_CHATS = "argument.are.all.individual.chats"
-    private const val ARG_ARE_ALL_GROUP_CHATS = "argument.are.all.group.chats"
+    private const val ARG_THREAD_TYPES = "argument.thread.types"
 
     /**
      * Shows a bottom sheet that allows a thread to be added to a folder.
      *
      * @param folders list of available folders to add a thread to
      * @param threadIds list of threads that are going to be added
-     * @param areAllIndividualChats whether the threads are all individual/1:1 chats as opposed to group chats
-     * @param areAllGroupChats whether the threads are all group chats as opposed to individual/1:1 chats
+     * @param threadTypes list of ThreadType of threads present in threadIds
      */
     @JvmStatic
-    fun showChatFolderSheet(folders: List<ChatFolderRecord>, threadIds: List<Long>, areAllIndividualChats : Boolean, areAllGroupChats : Boolean, onDismissListener: OnDismissListener): ComposeBottomSheetDialogFragment {
+    fun showChatFolderSheet(folders: List<ChatFolderRecord>, threadIds: List<Long>, threadTypes: List<Int>, onDismissListener: OnDismissListener): ComposeBottomSheetDialogFragment {
+      assert(threadIds.size==threadTypes.size) {
+        "ThreadIds and ThreadTypes should have same size"
+      }
       return AddToFolderBottomSheet(onDismissListener).apply {
         arguments = bundleOf(
           ARG_FOLDERS to folders,
           ARG_THREAD_IDS to threadIds.toLongArray(),
-          ARG_ARE_ALL_INDIVIDUAL_CHATS to areAllIndividualChats,
-          ARG_ARE_ALL_GROUP_CHATS to areAllGroupChats,
+          ARG_THREAD_TYPES to threadTypes.toIntArray(),
         )
       }
     }
@@ -86,18 +92,15 @@ class AddToFolderBottomSheet private constructor(private val onDismissListener: 
   override fun SheetContent() {
     val folders = requireArguments().getParcelableArrayListCompat(ARG_FOLDERS, ChatFolderRecord::class.java)?.filter { it.folderType != ChatFolderRecord.FolderType.ALL }
     val threadIds = requireArguments().getLongArray(ARG_THREAD_IDS)?.asList() ?: throw IllegalArgumentException("At least one ThreadId is expected!")
-    val areAllIndividualChats = requireArguments().getBoolean(ARG_ARE_ALL_INDIVIDUAL_CHATS)
-    val areAllGroupChats = requireArguments().getBoolean(ARG_ARE_ALL_GROUP_CHATS)
-
+    val threadTypes = requireArguments().getIntArray(ARG_THREAD_TYPES)?.asList() ?: throw IllegalArgumentException("At least one ThreadId is expected!")
     AddToChatFolderSheetContent(
       threadIds = threadIds,
-      areAllIndividualChats = areAllIndividualChats,
-      areAllGroupChats = areAllGroupChats,
+      threadTypes = threadTypes,
       folders = remember { folders ?: emptyList() },
       onClick = { folder, isAlreadyAdded ->
         if (isAlreadyAdded) {
           val message = requireContext().resources.getQuantityString(
-            R.plurals.AddToFolderBottomSheet_chats_added_to_s,
+            R.plurals.AddToFolderBottomSheet_these_chat_are_already_in_s,
             threadIds.size,
             folder.name
           )
@@ -121,8 +124,7 @@ class AddToFolderBottomSheet private constructor(private val onDismissListener: 
 @Composable
 private fun AddToChatFolderSheetContent(
   threadIds: List<Long>,
-  areAllIndividualChats: Boolean,
-  areAllGroupChats: Boolean,
+  threadTypes: List<Int>,
   folders: List<ChatFolderRecord>,
   onClick: (ChatFolderRecord, Boolean) -> Unit = { _, _ -> },
   onCreate: () -> Unit = {}
@@ -147,11 +149,7 @@ private fun AddToChatFolderSheetContent(
         .background(color = MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(18.dp))
     ) {
       items(folders) { folder ->
-        val isIncludedViaChatType = (areAllIndividualChats && folder.showIndividualChats) || (areAllGroupChats && folder.showGroupChats)
-        val isIncludedExplicitly = folder.includedChats.containsAll(threadIds)
-        val isExcludedExplicitly = folder.excludedChats.containsAll(threadIds)
-
-        val isAlreadyAdded = (isIncludedExplicitly || isIncludedViaChatType) && !isExcludedExplicitly
+        val isAlreadyAdded = isThreadListAlreadyAdded(folder, threadIds, threadTypes)
 
         Row(
           verticalAlignment = Alignment.CenterVertically,
@@ -227,6 +225,28 @@ private fun AddToChatFolderSheetContent(
   }
 }
 
+fun isThreadListAlreadyAdded(folder: ChatFolderRecord, threadIds: List<Long>, threadTypes: List<Int>): Boolean {
+  val isAnyExcluded = threadIds.any {
+    folder.excludedChats.contains(it)
+  }
+  if (isAnyExcluded) {
+    return false
+  }
+
+  if (folder.showIndividualChats) {
+    return threadTypes.indices.all { index ->
+      threadTypes[index] == AddToFolderBottomSheet.ThreadType.INDIVIDUAL.value || folder.includedChats.contains(threadIds[index])
+    }
+  }
+  if (folder.showGroupChats) {
+    return threadTypes.indices.all { index ->
+      threadTypes[index] == AddToFolderBottomSheet.ThreadType.GROUP.value || folder.includedChats.contains(threadIds[index])
+    }
+  }
+
+  return folder.includedChats.containsAll(threadIds)
+}
+
 @SignalPreview
 @Composable
 private fun AddToChatFolderSheetContentPreview() {
@@ -234,8 +254,7 @@ private fun AddToChatFolderSheetContentPreview() {
     AddToChatFolderSheetContent(
       folders = listOf(ChatFolderRecord(name = "Friends"), ChatFolderRecord(name = "Work")),
       threadIds = listOf(1),
-      areAllIndividualChats = true,
-      areAllGroupChats = false
+      threadTypes = listOf(0)
     )
   }
 }
