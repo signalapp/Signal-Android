@@ -18,10 +18,12 @@ import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : ViewModel() {
-  private val _recipients = MutableStateFlow<List<Recipient>>(emptyList())
-  val recipients = _recipients.asStateFlow()
-  private val _events = MutableSharedFlow<Event>()
+  private val _events = MutableSharedFlow<BlockUserEvent>()
   val events = _events.asSharedFlow()
+
+  private val _blockedUsers = MutableStateFlow<List<Recipient>>(emptyList())
+  val blockedUsers = _blockedUsers.asStateFlow()
+
   init {
     viewModelScope.launch {
       loadRecipients()
@@ -33,9 +35,9 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
       repository.block(recipientId)
         .onSuccess {
           loadRecipients()
-          _events.emit(Event(EventType.BLOCK_SUCCEEDED, resolved(recipientId)))
+          _events.emit(BlockUserEvent.BlockSucceeded(resolved(recipientId)))
         }.onFailure {
-          _events.emit(Event(EventType.BLOCK_FAILED, resolved(recipientId)))
+          _events.emit(BlockUserEvent.BlockFailed(resolved(recipientId)))
         }
     }
   }
@@ -45,7 +47,7 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
       repository.createAndBlock(number)
         .onSuccess {
           loadRecipients()
-          _events.emit(Event(EventType.BLOCK_SUCCEEDED, number))
+          _events.emit(BlockUserEvent.CreateAndBlockSucceeded(number))
         }
     }
   }
@@ -55,7 +57,7 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
       repository.unblock(recipientId)
         .onSuccess {
           loadRecipients()
-          _events.emit(Event(EventType.UNBLOCK_SUCCEEDED, resolved(recipientId)))
+          _events.emit(BlockUserEvent.UnblockSucceeded(resolved(recipientId)))
         }
     }
   }
@@ -63,20 +65,15 @@ class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : Vi
    private suspend fun loadRecipients() {
       repository.getBlocked()
         .onSuccess { recipientList ->
-          _recipients.update { recipientList }
+          _blockedUsers.update { recipientList }
       }
   }
 
-  enum class EventType{
-    BLOCK_SUCCEEDED,
-    BLOCK_FAILED,
-    UNBLOCK_SUCCEEDED
-  }
+}
 
-  data class Event private constructor(val eventType: EventType,
-                                       val recipient: Recipient?,
-                                       val number: String?){
-    constructor(eventType: EventType, recipient: Recipient) : this(eventType, recipient, null)
-    constructor(eventType: EventType, number: String) : this(eventType, null, number)
-  }
+sealed interface BlockUserEvent {
+  data class BlockSucceeded(val recipient: Recipient) : BlockUserEvent
+  data class BlockFailed(val recipient: Recipient): BlockUserEvent
+  data class CreateAndBlockSucceeded(val number : String) : BlockUserEvent
+  data class UnblockSucceeded(val recipient: Recipient): BlockUserEvent
 }

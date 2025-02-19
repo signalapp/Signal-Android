@@ -153,6 +153,12 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   private           ListClickListener                    listClickListener = new ListClickListener();
   @Nullable private SwipeRefreshLayout.OnRefreshListener onRefreshListener;
 
+  public ContactSelectionListFragment(){}
+
+  public ContactSelectionListFragment(OnContactSelectedListener onContactSelectedListener) {
+    this.onContactSelectedListener = onContactSelectedListener;
+  }
+
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
