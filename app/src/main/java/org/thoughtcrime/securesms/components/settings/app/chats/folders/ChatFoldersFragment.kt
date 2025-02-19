@@ -84,7 +84,7 @@ class ChatFoldersFragment : ComposeFragment() {
         navController = navController,
         modifier = Modifier.padding(contentPadding),
         onFolderClicked = {
-          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, -1))
+          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, null))
         },
         onAdd = { folder ->
           Toast.makeText(requireContext(), getString(R.string.ChatFoldersFragment__folder_added, folder.name), Toast.LENGTH_SHORT).show()
