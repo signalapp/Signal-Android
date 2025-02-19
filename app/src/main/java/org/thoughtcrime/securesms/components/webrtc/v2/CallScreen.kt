@@ -384,7 +384,6 @@ private fun LargeLocalVideoRenderer(
     localParticipant = localParticipant,
     modifier = Modifier
       .fillMaxSize()
-      .clip(MaterialTheme.shapes.extraLarge)
   )
 }
 

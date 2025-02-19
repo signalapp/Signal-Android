@@ -15,6 +15,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -32,6 +35,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Compose call screen wrapper
@@ -254,7 +258,7 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
   }
 
   override fun onCallStateUpdate(callControlsChange: CallControlsChange) {
-    callScreenViewModel.callScreenState.update { it.copy(callControlsChange = callControlsChange) }
+    callScreenViewModel.emitCallControlsChange(callControlsChange)
   }
 
   override fun dismissCallOverflowPopup() {
@@ -298,10 +302,23 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
       )
     )
 
+    private var callControlsChangeJob: Job? = null
+
     val callParticipantListUpdate = MutableStateFlow(CallParticipantListUpdate.computeDeltaUpdate(emptyList(), emptyList()))
 
     fun emitControllerEvent(controllerEvent: CallScreenController.Event) {
       viewModelScope.launch { callScreenControllerEvents.emit(controllerEvent) }
+    }
+
+    fun emitCallControlsChange(callControlsChange: CallControlsChange) {
+      viewModelScope.launch {
+        callControlsChangeJob?.cancelAndJoin()
+        callControlsChangeJob = launch {
+          callScreenState.update { it.copy(callControlsChange = callControlsChange) }
+          delay(2.seconds)
+          callScreenState.update { it.copy(callControlsChange = null) }
+        }
+      }
     }
   }
 }
