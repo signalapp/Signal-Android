@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.util.PowerManagerCompat
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
-class DozeBanner(private val context: Context) : Banner<Unit>() {
+class DozeBanner(private val context: Context, private val onDismissListener: () -> Unit) : Banner<Unit>() {
 
   override val enabled: Boolean
     get() = Build.VERSION.SDK_INT >= 23 && !SignalStore.account.fcmEnabled && !TextSecurePreferences.hasPromptedOptimizeDoze(context) && !ServiceUtil.getPowerManager(context).isIgnoringBatteryOptimizations(context.packageName)
@@ -42,6 +42,7 @@ class DozeBanner(private val context: Context) : Banner<Unit>() {
       contentPadding = contentPadding,
       onDismissListener = {
         TextSecurePreferences.setPromptedOptimizeDoze(context, true)
+        onDismissListener.invoke()
       },
       onOkListener = {
         TextSecurePreferences.setPromptedOptimizeDoze(context, true)
