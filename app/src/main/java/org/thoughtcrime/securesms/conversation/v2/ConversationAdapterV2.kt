@@ -5,13 +5,13 @@
 
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.content.Context
 import android.text.TextUtils
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.LifecycleOwner
@@ -23,6 +23,7 @@ import org.signal.core.util.toOptional
 import org.thoughtcrime.securesms.BindableConversationItem
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.Unbindable
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
@@ -78,6 +79,7 @@ class ConversationAdapterV2(
 
   companion object {
     private val TAG = Log.tag(ConversationAdapterV2::class.java)
+    private val MIN_GROUPS_THRESHOLD = 2
   }
 
   private val _selected = hashSetOf<MultiselectPart>()
@@ -539,41 +541,66 @@ class ConversationAdapterV2(
       val title: String = conversationBanner.setTitle(recipient) {
         displayDialogFragment(AboutSheet.create(recipient))
       }
+
+      if (recipient.isReleaseNotes) {
+        conversationBanner.showReleaseNoteHeader()
+      }
+
       conversationBanner.setAbout(recipient)
 
       if (recipient.isGroup) {
+        if (!groupInfo.hasExistingContacts) {
+          conversationBanner.setUnverifiedNameSubtitle(R.drawable.symbol_group_question_20, R.string.ConversationFragment_group_names, true) {
+            clickListener.onShowUnverifiedProfileSheet(true)
+          }
+        } else {
+          conversationBanner.hideUnverifiedNameSubtitle()
+        }
+
         if (groupInfo.pendingMemberCount > 0) {
           val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, groupInfo.pendingMemberCount, groupInfo.pendingMemberCount)
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited), R.drawable.symbol_group_light_20)
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited), R.drawable.symbol_group_light_20) { goToGroupSettings(recipient) }
         } else if (groupInfo.fullMemberCount > 0) {
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount), R.drawable.symbol_group_light_20)
+          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount), R.drawable.symbol_group_light_20) { goToGroupSettings(recipient) }
         } else {
           conversationBanner.hideSubtitle()
         }
       } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_light_24)
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_light_24, null)
       } else {
+        if (recipient.nickname.isEmpty && !recipient.isSystemContact) {
+          conversationBanner.setUnverifiedNameSubtitle(R.drawable.symbol_person_question_16, R.string.ConversationFragment_profile_names, false) {
+            clickListener.onShowUnverifiedProfileSheet(false)
+          }
+        } else {
+          conversationBanner.hideUnverifiedNameSubtitle()
+        }
+
         val subtitle: String? = recipient.takeIf { it.shouldShowE164 }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {
           conversationBanner.hideSubtitle()
         } else {
-          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_light_20)
+          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_light_20, null)
         }
       }
 
       conversationBanner.hideButton()
 
-      if (messageRequestState?.isAccepted == false && sharedGroups.isEmpty() && !isSelf && !recipient.isGroup) {
-        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully), R.drawable.symbol_error_circle_24)
+      if (messageRequestState?.isAccepted == false && !isSelf && !recipient.isGroup) {
+        if (sharedGroups.size < MIN_GROUPS_THRESHOLD) {
+          conversationBanner.showWarningSubtitle()
+        }
         conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
           clickListener.onShowSafetyTips(false)
         }
-      } else if (messageRequestState?.isAccepted == false && recipient.isGroup && !groupInfo.hasExistingContacts) {
-        conversationBanner.setDescription(context.getString(R.string.ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully), R.drawable.symbol_error_circle_24)
+        conversationBanner.setDescription(getDescription(context, sharedGroups), R.drawable.symbol_group_light_20)
+      } else if (messageRequestState?.isAccepted == false && recipient.isGroup) {
+        conversationBanner.showWarningSubtitle()
         conversationBanner.setButton(context.getString(R.string.ConversationFragment_safety_tips)) {
           clickListener.onShowSafetyTips(true)
         }
-      } else if (sharedGroups.isEmpty() || isSelf) {
+      } else if ((recipient.isGroup && sharedGroups.isEmpty()) || isSelf) {
+        conversationBanner.hideWarningSubtitle()
         if (TextUtils.isEmpty(groupInfo.description)) {
           conversationBanner.setLinkifyDescription(false)
           conversationBanner.hideDescription()
@@ -592,22 +619,36 @@ class ConversationAdapterV2(
           }
         }
       } else {
-        val description: String = when (sharedGroups.size) {
-          1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, sharedGroups[0])
-          2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, sharedGroups[0], sharedGroups[1])
-          3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, sharedGroups[0], sharedGroups[1], sharedGroups[2])
-          else -> {
-            val others: Int = sharedGroups.size - 2
-            context.getString(
-              R.string.MessageRequestProfileView_member_of_many_groups,
-              sharedGroups[0],
-              sharedGroups[1],
-              context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others)
-            )
-          }
-        }
-        conversationBanner.setDescription(HtmlCompat.fromHtml(description, 0), R.drawable.symbol_group_light_20)
+        conversationBanner.hideWarningSubtitle()
+        conversationBanner.setDescription(getDescription(context, sharedGroups), R.drawable.symbol_group_light_20)
       }
+    }
+
+    private fun getDescription(context: Context, sharedGroups: List<String>): String {
+      return when (sharedGroups.size) {
+        0 -> context.getString(R.string.ConversationUpdateItem_no_groups_in_common_review_requests_carefully)
+        1 -> context.getString(R.string.MessageRequestProfileView_member_of_one_group, sharedGroups[0])
+        2 -> context.getString(R.string.MessageRequestProfileView_member_of_two_groups, sharedGroups[0], sharedGroups[1])
+        3 -> context.getString(R.string.MessageRequestProfileView_member_of_many_groups, sharedGroups[0], sharedGroups[1], sharedGroups[2])
+        else -> {
+          val others: Int = sharedGroups.size - 2
+          context.getString(
+            R.string.MessageRequestProfileView_member_of_many_groups,
+            sharedGroups[0],
+            sharedGroups[1],
+            context.resources.getQuantityString(R.plurals.MessageRequestProfileView_member_of_d_additional_groups, others, others)
+          )
+        }
+      }
+    }
+
+    private fun goToGroupSettings(recipient: Recipient) {
+      val intent = ConversationSettingsActivity.forGroup(getContext(), recipient.requireGroupId())
+      val bundle = ConversationSettingsActivity.createTransitionBundle(
+        getContext(),
+        conversationBanner.getViewById(R.id.message_request_avatar)
+      )
+      getContext().startActivity(intent, bundle)
     }
   }
 

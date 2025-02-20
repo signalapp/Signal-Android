@@ -2952,6 +2952,10 @@ class ConversationFragment :
       ConversationDialogs.displaySafetyNumberLearnMoreDialog(this@ConversationFragment, recipient)
     }
 
+    override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
+      UnverifiedProfileNameBottomSheet.show(parentFragmentManager, forGroup)
+    }
+
     override fun onJoinGroupCallClicked() {
       val activity = activity ?: return
       val recipient = viewModel.recipientSnapshot ?: return

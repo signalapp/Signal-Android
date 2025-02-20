@@ -186,6 +186,10 @@ public final class SpanUtil {
     return spannable;
   }
 
+  public static Spannable clickSubstring(@NonNull Context context, @StringRes int mainString, @StringRes int clickableString, @NonNull View.OnClickListener clickListener) {
+    return clickSubstring(context, mainString, clickableString, clickListener, false, R.color.signal_accent_primary);
+  }
+
   /**
    * Takes two resources:
    * - one resource that has a single string placeholder
@@ -198,8 +202,10 @@ public final class SpanUtil {
    *
    * -> This is a clickable string.
    * (where "clickable" is blue and will trigger the provided click listener when clicked)
+   *
+   * Can optionally configure the color & if it's underlined. Default is blue with no underline.
    */
-  public static Spannable clickSubstring(@NonNull Context context, @StringRes int mainString, @StringRes int clickableString, @NonNull View.OnClickListener clickListener) {
+  public static Spannable clickSubstring(@NonNull Context context, @StringRes int mainString, @StringRes int clickableString, @NonNull View.OnClickListener clickListener, boolean shouldUnderline, int linkColor) {
     String main      = context.getString(mainString, SPAN_PLACE_HOLDER);
     String clickable = context.getString(clickableString);
 
@@ -217,8 +223,8 @@ public final class SpanUtil {
       @Override
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
-        ds.setUnderlineText(false);
-        ds.setColor(context.getResources().getColor(R.color.signal_accent_primary));
+        ds.setUnderlineText(shouldUnderline);
+        ds.setColor(context.getResources().getColor(linkColor));
       }
     }, start, start + clickable.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
@@ -238,13 +244,21 @@ public final class SpanUtil {
   public static CharSequence clickSubstring(@NonNull CharSequence fullString,
                                             @NonNull CharSequence substring,
                                             @NonNull View.OnClickListener clickListener,
-                                            @ColorInt int linkColor)
+                                            @ColorInt int linkColor) {
+    return clickSubstring(fullString, substring, clickListener, linkColor, false);
+  }
+
+  public static CharSequence clickSubstring(@NonNull CharSequence fullString,
+                                            @NonNull CharSequence substring,
+                                            @NonNull View.OnClickListener clickListener,
+                                            @ColorInt int linkColor,
+                                            boolean shouldUnderline)
   {
     ClickableSpan clickable = new ClickableSpan() {
       @Override
       public void updateDrawState(@NonNull TextPaint ds) {
         super.updateDrawState(ds);
-        ds.setUnderlineText(false);
+        ds.setUnderlineText(shouldUnderline);
         ds.setColor(linkColor);
       }
 

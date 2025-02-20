@@ -5,12 +5,14 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
@@ -92,25 +94,39 @@ public class ConversationHeaderView extends ConstraintLayout {
     return title.toString();
   }
 
-  public void setAbout(@NonNull Recipient recipient) {
-    String about;
-    if (recipient.isReleaseNotes()) {
-      about = getContext().getString(R.string.ReleaseNotes__signal_release_notes_and_news);
-    } else {
-      about = recipient.getCombinedAboutAndEmoji();
-    }
-
-    binding.messageRequestAbout.setText(about);
-    binding.messageRequestAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
+  public void showReleaseNoteHeader() {
+    binding.messageRequestInfo.setVisibility(View.GONE);
+    binding.releaseHeaderContainer.setVisibility(View.VISIBLE);
+    binding.releaseHeaderDescription1.setText(prependIcon(getContext().getString(R.string.ReleaseNotes__this_is_official_chat_period), R.drawable.symbol_official_20));
+    binding.releaseHeaderDescription2.setText(prependIcon(getContext().getString(R.string.ReleaseNotes__keep_up_to_date_period), R.drawable.symbol_bell_20));
   }
 
-  public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes) {
+  public void setAbout(@NonNull Recipient recipient) {
+    String about = recipient.getCombinedAboutAndEmoji();
+    binding.messageRequestAbout.setText(about);
+    binding.messageRequestAbout.setVisibility(TextUtils.isEmpty(about) || recipient.isReleaseNotes() ? GONE : VISIBLE);
+  }
+
+  public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes, @Nullable Runnable onClick) {
     if (TextUtils.isEmpty(subtitle)) {
       hideSubtitle();
       return;
     }
 
-    binding.messageRequestSubtitle.setText(prependIcon(subtitle, iconRes));
+    if (onClick != null) {
+      binding.messageRequestSubtitle.setMovementMethod(LinkMovementMethod.getInstance());
+      CharSequence builder = SpanUtil.clickSubstring(
+          subtitle,
+          subtitle,
+          listener -> onClick.run(),
+          ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface),
+          true
+      );
+      binding.messageRequestSubtitle.setText(prependIcon(builder, iconRes));
+    } else {
+      binding.messageRequestSubtitle.setText(prependIcon(subtitle, iconRes));
+    }
+
     binding.messageRequestSubtitle.setVisibility(View.VISIBLE);
   }
 
@@ -132,6 +148,32 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestButton.setText(button);
     binding.messageRequestButton.setOnClickListener(v -> onClick.run());
     binding.messageRequestButton.setVisibility(View.VISIBLE);
+  }
+
+  public void showWarningSubtitle() {
+    binding.messageRequestReviewCarefully.setVisibility(View.VISIBLE);
+  }
+
+  public void hideWarningSubtitle() {
+    binding.messageRequestReviewCarefully.setVisibility(View.GONE);
+  }
+
+  public void setUnverifiedNameSubtitle(@DrawableRes int iconRes, @StringRes int clickableRes, boolean forGroup, @Nullable Runnable onClick) {
+    binding.messageRequestProfileNameUnverified.setVisibility(View.VISIBLE);
+    binding.messageRequestProfileNameUnverified.setMovementMethod(LinkMovementMethod.getInstance());
+    CharSequence builder = SpanUtil.clickSubstring(
+        getContext(),
+        R.string.ConversationFragment_profile_names_not_verified,
+        clickableRes,
+        listener -> onClick.run(),
+        true,
+        R.color.signal_colorOnSurface
+    );
+    binding.messageRequestProfileNameUnverified.setText(prependIcon(builder, iconRes, forGroup));
+  }
+
+  public void hideUnverifiedNameSubtitle() {
+    binding.messageRequestProfileNameUnverified.setVisibility(View.GONE);
   }
 
   public void showBackgroundBubble(boolean enabled) {
@@ -176,6 +218,9 @@ public class ConversationHeaderView extends ConstraintLayout {
         binding.messageRequestInfoOutline.setVisibility(View.VISIBLE);
         binding.messageRequestDivider.setVisibility(View.INVISIBLE);
       }
+    } else if (ViewKt.isVisible(binding.releaseHeaderContainer)) {
+      binding.messageRequestInfoOutline.setVisibility(View.GONE);
+      binding.messageRequestDivider.setVisibility(View.INVISIBLE);
     } else {
       binding.messageRequestInfoOutline.setVisibility(View.GONE);
       binding.messageRequestDivider.setVisibility(View.GONE);
@@ -183,9 +228,15 @@ public class ConversationHeaderView extends ConstraintLayout {
   }
 
   private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes) {
+    return prependIcon(input, iconRes, false);
+  }
+
+
+  private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes, boolean useIntrinsicWidth) {
     Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
     Preconditions.checkNotNull(drawable);
-    drawable.setBounds(0, 0, (int) DimensionUnit.SP.toPixels(20), (int) DimensionUnit.SP.toPixels(20));
+    int width = useIntrinsicWidth ? drawable.getIntrinsicWidth() : (int) DimensionUnit.SP.toPixels(20);
+    drawable.setBounds(0, 0, width, (int) DimensionUnit.SP.toPixels(20));
     drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
 
     return new SpannableStringBuilder()

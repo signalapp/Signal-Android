@@ -33,6 +33,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.getParcelableArrayListExtraCompat
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.InviteActivity
@@ -52,6 +53,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.NO_TINT
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.AvatarPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.BioTextPreference
@@ -492,6 +495,18 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         dividerPref()
       }
 
+      if (state.recipient.isReleaseNotes) {
+        textPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_official_20),
+          title = DSLSettingsText.from(R.string.ReleaseNotes__this_is_official_chat)
+        )
+        textPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_bell_20),
+          title = DSLSettingsText.from(R.string.ReleaseNotes__keep_up_to_date)
+        )
+        dividerPref()
+      }
+
       val summary = DSLSettingsText.from(formatDisappearingMessagesLifespan(state.disappearingMessagesLifespan))
       val icon = if (state.disappearingMessagesLifespan <= 0 || state.recipient.isBlocked) {
         R.drawable.symbol_timer_slash_24
@@ -630,6 +645,27 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           onClick = {
             startActivity(MediaOverviewActivity.forThread(requireContext(), state.threadId))
           }
+        )
+      }
+
+      if (state.recipient.isReleaseNotes) {
+        dividerPref()
+        sectionHeaderPref(R.string.preferences__help)
+
+        externalLinkPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_help_24),
+          title = DSLSettingsText.from(R.string.HelpSettingsFragment__support_center),
+          linkId = R.string.support_center_url
+        )
+        clickPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_invite_24),
+          title = DSLSettingsText.from(R.string.HelpSettingsFragment__contact_us),
+          onClick = { startActivity(AppSettingsActivity.help(requireContext())) }
+        )
+        clickPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_heart_24),
+          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
+          onClick = { startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_DONATION)) }
         )
       }
 

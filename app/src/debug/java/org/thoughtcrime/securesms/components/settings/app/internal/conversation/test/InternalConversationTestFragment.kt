@@ -327,5 +327,9 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
     override fun onMessageRequestAcceptOptionsClicked() {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
+
+    override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
   }
 }

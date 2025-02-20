@@ -47,7 +47,8 @@ import kotlin.Unit;
 
 public final class MessageRequestRepository {
 
-  private static final String TAG = Log.tag(MessageRequestRepository.class);
+  private static final String TAG                  = Log.tag(MessageRequestRepository.class);
+  private static final int    MIN_GROUPS_THRESHOLD = 2;
 
   private final Context  context;
   private final Executor executor;
@@ -68,7 +69,7 @@ public final class MessageRequestRepository {
       if (groupRecord.get().isV2Group()) {
         List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
         for (Recipient recipient : recipients) {
-          if ((recipient.isProfileSharing() || recipient.getHasGroupsInCommon()) && !recipient.isSelf()) {
+          if ((recipient.isProfileSharing() || recipient.isSystemContact()) && !recipient.isSelf()) {
             groupHasExistingContacts = true;
             break;
           }
@@ -139,8 +140,11 @@ public final class MessageRequestRepository {
       } else {
         Recipient.HiddenState hiddenState    = RecipientUtil.getRecipientHiddenState(threadId);
         boolean               reportedAsSpam = reportedAsSpam(threadId);
+        List<String>          sharedGroups   = SignalDatabase.groups().getPushGroupNamesContainingMember(recipient.getId());
 
-        if (hiddenState == Recipient.HiddenState.NOT_HIDDEN) {
+        if (hiddenState == Recipient.HiddenState.NOT_HIDDEN && sharedGroups.size() < MIN_GROUPS_THRESHOLD) {
+          return new MessageRequestState(MessageRequestState.State.INDIVIDUAL_FEW_CONNECTIONS, reportedAsSpam);
+        } else if (hiddenState == Recipient.HiddenState.NOT_HIDDEN) {
           return new MessageRequestState(MessageRequestState.State.INDIVIDUAL, reportedAsSpam);
         } else if (hiddenState == Recipient.HiddenState.HIDDEN) {
           return new MessageRequestState(MessageRequestState.State.NONE_HIDDEN, reportedAsSpam);
