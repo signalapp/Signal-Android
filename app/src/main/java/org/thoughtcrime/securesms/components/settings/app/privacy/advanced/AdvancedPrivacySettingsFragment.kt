@@ -52,7 +52,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
         R.drawable.ic_unidentified_delivery
       )
     )
-    unidentifiedDeliveryIcon.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20))
+    unidentifiedDeliveryIcon.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(15))
     val iconTint = ContextCompat.getColor(requireContext(), R.color.signal_text_primary_dialog)
     unidentifiedDeliveryIcon.colorFilter = PorterDuffColorFilter(iconTint, PorterDuff.Mode.SRC_IN)
 
