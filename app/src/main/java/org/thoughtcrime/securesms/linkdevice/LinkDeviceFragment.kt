@@ -212,10 +212,7 @@ class LinkDeviceFragment : ComposeFragment() {
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
         onSyncFailureRetryRequested = { viewModel.onSyncErrorRetryRequested() },
         onSyncFailureIgnored = { viewModel.onSyncErrorIgnored() },
-        onSyncFailureLearnMore = {
-          viewModel.onSyncErrorIgnored()
-          CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.LinkDeviceFragment__learn_more_url))
-        },
+        onSyncFailureLearnMore = { CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.LinkDeviceFragment__learn_more_url)) },
         onSyncFailureContactSupport = { viewModel.onSyncErrorContactSupport() },
         onSyncCancelled = { viewModel.onSyncCancelled() },
         onEditDevice = { device ->
