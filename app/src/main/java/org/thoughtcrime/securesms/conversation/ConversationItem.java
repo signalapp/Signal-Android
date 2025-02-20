@@ -1263,11 +1263,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       //noinspection ConstantConditions
       documentViewStub.get().setDocument(
-          ((MmsMessageRecord) messageRecord).getSlideDeck().getDocumentSlide(),
+          ((MmsMessageRecord) messageRecord).getSlideDeck() .getDocumentSlide(),
           showControls,
-          displayMode != ConversationItemDisplayMode.Detailed.INSTANCE
+          displayMode != ConversationItemDisplayMode.Detailed.INSTANCE,
+          messageRecord.isOutgoing()
       );
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
+      documentViewStub.get().setCancelTransferClickListener(attachmentCancelClickListener);
+      documentViewStub.get().setResendTransferClickListener(new ResendClickListener(messageRecord));
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
