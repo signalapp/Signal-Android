@@ -56,6 +56,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.BottomSheets
 import org.signal.core.ui.Previews
+import org.signal.core.ui.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
@@ -86,6 +87,7 @@ fun CallScreen(
   ),
   callScreenControlsListener: CallScreenControlsListener = CallScreenControlsListener.Empty,
   callScreenSheetDisplayListener: CallScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
+  additionalActionsListener: AdditionalActionsListener = AdditionalActionsListener.Empty,
   callParticipantsPagerState: CallParticipantsPagerState,
   pendingParticipantsListener: PendingParticipantsListener = PendingParticipantsListener.Empty,
   overflowParticipants: List<CallParticipant>,
@@ -117,6 +119,21 @@ fun CallScreen(
   val scope = rememberCoroutineScope()
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 
+  val additionalActionsPopupState = TriggerAlignedPopupState.rememberTriggerAlignedPopupState()
+  val additionalActionsState = remember(
+    callScreenState.reactions,
+    localParticipant.isHandRaised
+  ) {
+    AdditionalActionsState(
+      reactions = callScreenState.reactions,
+      isSelfHandRaised = localParticipant.isHandRaised,
+      listener = additionalActionsListener,
+      triggerAlignedPopupState = additionalActionsPopupState
+    )
+  }
+
+  additionalActionsPopupState.display = callScreenState.displayAdditionalActionsDialog
+
   BoxWithConstraints {
     val maxHeight = constraints.maxHeight
     val maxSheetHeight = round(constraints.maxHeight * 0.66f)
@@ -132,6 +149,11 @@ fun CallScreen(
       sheetMaxWidth = 540.dp,
       sheetContent = {
         BottomSheets.Handle(modifier = Modifier.align(Alignment.CenterHorizontally))
+
+        AdditionalActionsPopup(
+          onDismissRequest = callScreenControlsListener::onDismissOverflow,
+          state = additionalActionsState
+        )
 
         Box(
           modifier = Modifier
@@ -159,6 +181,7 @@ fun CallScreen(
               callScreenControlsListener = callScreenControlsListener,
               callScreenSheetDisplayListener = callScreenSheetDisplayListener,
               displayVideoTooltip = callScreenState.displayVideoTooltip,
+              additionalActionsState = additionalActionsState,
               modifier = Modifier
                 .fillMaxWidth()
                 .alpha(callControlsAlpha)
@@ -304,7 +327,7 @@ private fun BoxScope.Viewport(
     val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
     val scope = rememberCoroutineScope()
 
-    val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState && !callScreenState.isDisplayingAudioToggleSheet)
+    val hideSheet by rememberUpdatedState(newValue = scaffoldState.bottomSheetState.currentValue == SheetValue.PartiallyExpanded && !callControlsState.skipHiddenState && !callScreenState.isDisplayingControlMenu())
     LaunchedEffect(callScreenController.restartTimerRequests, hideSheet) {
       if (hideSheet) {
         delay(5.seconds)

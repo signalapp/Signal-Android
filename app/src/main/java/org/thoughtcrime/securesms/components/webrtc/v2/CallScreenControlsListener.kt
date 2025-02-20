@@ -23,6 +23,7 @@ interface CallScreenControlsListener {
   fun onVideoChanged(isVideoEnabled: Boolean)
   fun onMicChanged(isMicEnabled: Boolean)
   fun onOverflowClicked()
+  fun onDismissOverflow()
   fun onCameraDirectionChanged()
   fun onEndCallPressed()
   fun onDenyCallPressed()
@@ -44,6 +45,7 @@ interface CallScreenControlsListener {
     override fun onVideoChanged(isVideoEnabled: Boolean) = Unit
     override fun onMicChanged(isMicEnabled: Boolean) = Unit
     override fun onOverflowClicked() = Unit
+    override fun onDismissOverflow() = Unit
     override fun onCameraDirectionChanged() = Unit
     override fun onEndCallPressed() = Unit
     override fun onDenyCallPressed() = Unit

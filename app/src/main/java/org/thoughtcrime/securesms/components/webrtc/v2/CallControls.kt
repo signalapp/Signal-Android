@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import org.signal.core.ui.DarkPreview
 import org.signal.core.ui.Previews
+import org.signal.core.ui.TriggerAlignedPopupState.Companion.popupTrigger
+import org.signal.core.ui.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
@@ -50,6 +52,7 @@ fun CallControls(
   callControlsState: CallControlsState,
   callScreenControlsListener: CallScreenControlsListener,
   callScreenSheetDisplayListener: CallScreenSheetDisplayListener,
+  additionalActionsState: AdditionalActionsState,
   modifier: Modifier = Modifier
 ) {
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
@@ -138,7 +141,10 @@ fun CallControls(
       }
 
       if (callControlsState.displayAdditionalActions) {
-        AdditionalActionsButton(onClick = callScreenControlsListener::onOverflowClicked)
+        AdditionalActionsButton(
+          onClick = callScreenControlsListener::onOverflowClicked,
+          modifier = Modifier.popupTrigger(additionalActionsState.triggerAlignedPopupState)
+        )
       }
 
       if (callControlsState.displayEndCallButton) {
@@ -187,7 +193,10 @@ fun CallControlsPreview() {
       ),
       displayVideoTooltip = false,
       callScreenControlsListener = CallScreenControlsListener.Empty,
-      callScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty
+      callScreenSheetDisplayListener = CallScreenSheetDisplayListener.Empty,
+      additionalActionsState = AdditionalActionsState(
+        triggerAlignedPopupState = rememberTriggerAlignedPopupState()
+      )
     )
   }
 }
@@ -197,10 +206,12 @@ fun CallControlsPreview() {
  */
 interface CallScreenSheetDisplayListener {
   fun onAudioDeviceSheetDisplayChanged(displayed: Boolean)
+  fun onOverflowDisplayChanged(displayed: Boolean)
   fun onVideoTooltipDismissed()
 
   object Empty : CallScreenSheetDisplayListener {
     override fun onAudioDeviceSheetDisplayChanged(displayed: Boolean) = Unit
+    override fun onOverflowDisplayChanged(displayed: Boolean) = Unit
     override fun onVideoTooltipDismissed() = Unit
   }
 }

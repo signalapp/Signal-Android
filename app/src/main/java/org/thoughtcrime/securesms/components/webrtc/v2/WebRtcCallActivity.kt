@@ -1139,6 +1139,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       callScreen.toggleOverflowPopup()
     }
 
+    override fun onDismissOverflow() {
+      callScreen.dismissCallOverflowPopup()
+    }
+
     override fun onCameraDirectionChanged() {
       handleFlipCamera()
     }
