@@ -181,7 +181,7 @@
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
     <string name="CreditCardFragment__invalid_month">Mes no válido</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Año requerido</string>
+    <string name="CreditCardFragment__year_required">El año es obligatorio</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
     <string name="CreditCardFragment__invalid_year">Año no válido</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
@@ -195,9 +195,9 @@
     <!-- Preference title with placeholder for amount. -->
     <string name="OneTimeDonationPreference__one_time_s">Pago único de %1$s</string>
     <!-- Preference subtitle when donation is pending -->
-    <string name="OneTimeDonationPreference__donation_pending">Donación pendiente</string>
+    <string name="OneTimeDonationPreference__donation_pending">Tu donación está pendiente</string>
     <!-- Preference subtitle when donation is processing -->
-    <string name="OneTimeDonationPreference__donation_processing">Donación en proceso</string>
+    <string name="OneTimeDonationPreference__donation_processing">Tu donación se está procesando</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">¿Bloquear y abandonar \"%1$s\"?</string>
@@ -212,7 +212,7 @@
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Las personas que bloquees no podrán llamarte ni enviarte mensajes.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">No recibir noticias y novedades de Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">No recibir noticias ni novedades de Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Volver a recibir noticias y novedades de Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">¿Desbloquear a %1$s?</string>
@@ -307,8 +307,8 @@
     <string name="CameraContacts_signal_groups">Grupos de Signal</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">Puedes compartir con un máximo de %1$d chat.</item>
-        <item quantity="other">Puedes compartir con un máximo de %1$d chats.</item>
+        <item quantity="one">No puedes seleccionar más de %1$d chat.</item>
+        <item quantity="other">No puedes seleccionar más de %1$d chats.</item>
     </plurals>
     <string name="CameraContacts_select_signal_recipients">Selecciona contactos de Signal</string>
     <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
@@ -333,7 +333,7 @@
     <string name="ClientDeprecatedActivity_update">Actualizar</string>
     <string name="ClientDeprecatedActivity_dont_update">No actualizar</string>
     <string name="ClientDeprecatedActivity_warning">Advertencia</string>
-    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Esta versión de Signal ha caducado. Puedes consultar tus mensajes, pero no podrás enviar ni recibir mensajes hasta que actualices.</string>
+    <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Esta versión de Signal ha caducado. Puedes ver tus mensajes, pero no podrás enviar ni recibir mensajes hasta que actualices la app.</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No se ha encontrado un navegador web.</string>
@@ -417,19 +417,19 @@
     <string name="ConversationItem_download_more">  Descargar más</string>
     <string name="ConversationItem_pending">  Pendiente</string>
     <string name="ConversationItem_this_message_was_deleted">Se ha eliminado este mensaje.</string>
-    <string name="ConversationItem_you_deleted_this_message">Mensaje eliminado.</string>
+    <string name="ConversationItem_you_deleted_this_message">Has eliminado este mensaje.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">No se puede descargar el mensaje. %1$s tendrá que enviarlo de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">No se puede descargar la imagen. %1$s tendrá que enviarlo de nuevo.</string>
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">No se puede descargar la imagen. %1$s tendrá que enviarla de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">No se puede descargar el vídeo %1$s tendrá que enviarlo de nuevo.</string>
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">No se puede descargar el vídeo. %1$s tendrá que enviarlo de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">No se puede descargar el mensaje. Tendrás que enviarlo de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">No se puede descargar la imagen. Tendrás que enviarlo de nuevo.</string>
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">No se puede descargar la imagen. Tendrás que enviarla de nuevo.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">No se puede descargar el vídeo Tendrás que enviarlo de nuevo.</string>
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">No se puede descargar el vídeo. Tendrás que enviarlo de nuevo.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">editado ahora</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
@@ -456,8 +456,8 @@
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">Solo se puede hacer %1$d cambio en este mensaje de texto.</item>
-        <item quantity="other">Solo se pueden hacer %1$d cambios en este mensaje de texto.</item>
+        <item quantity="one">Solo se puede hacer %1$d cambio en este mensaje.</item>
+        <item quantity="other">Solo se pueden hacer %1$d cambios en este mensaje.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinatario no válido</string>
@@ -516,7 +516,7 @@
     <string name="ConversationActivity_delete_conversation">¿Eliminar chat?</string>
     <string name="ConversationActivity_delete_and_leave_group">¿Eliminar y abandonar grupo?</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Este chat se eliminará de todos tus dispositivos.</string>
-    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo, que se eliminará de todos tus dispositivos.</string>
+    <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abandonarás este grupo y se eliminará de todos tus dispositivos.</string>
     <string name="ConversationActivity_delete">Eliminar</string>
     <string name="ConversationActivity_delete_and_leave">Eliminar y abandonar</string>
 
@@ -537,18 +537,18 @@
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Los mensajes SMS ya no son compatibles con Signal.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Los mensajes SMS ya no son compatibles con Signal. Invita a %1$s a Signal para mantener aquí tu conversación.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Los mensajes SMS ya no son compatibles con Signal. Invita a %1$s a Signal para seguir chateando aquí.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Esta persona ya no usa Signal. Invítala a Signal para seguir chateando aquí.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Invitar a Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">Se te volverá a recordar pronto.</string>
+    <string name="ConversationActivity__you_will_be_reminded_again_soon">Te lo volveremos a recordar pronto.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Enviando texto formateado</string>
+    <string name="SendingFormattingTextDialog_title">Mensajes de texto con formato</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Algunas personas pueden estar usando una versión de Signal que no admite texto formateado. No podrán ver los cambios de formato que has realizado en tu mensaje.</string>
+    <string name="SendingFormattingTextDialog_message">Es posible que algunas personas tengan una versión de Signal que no admite texto con formato, por lo que no verán los cambios que has hecho en tu mensaje.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Enviar de todos modos</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -608,14 +608,14 @@
     <!-- Dialog button for deleting one or more note-to-self messages that will be sync\'d to other devices -->
     <string name="ConversationFragment_delete">Eliminar</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Eliminar en todas partes</string>
+    <string name="ConversationFragment_delete_everywhere">Eliminar en todos mis dispositivos</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Este mensaje se eliminará para todas las personas en el chat si usan una versión reciente de Signal. Podrán ver que has eliminado un mensaje.</string>
     <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
     <string name="ConversationFragment_failed_to_open_message">No se ha podido abrir el mensaje</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puedes deslizar hacia la derecha sobre cualquier mensaje para responder rápidamente</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puedes deslizar hacia la izquierda sobre cualquier mensaje para responder rápidamente</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Los archivos multimedia de visualización única se eliminan después de ser enviados</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Los archivos multimedia de visualización única se eliminan automáticamente tras el envío</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Ya has visto este mensaje</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">En este chat puedes añadir notas visibles solo para ti. Si tienes dispositivos vinculados a tu cuenta, las notas nuevas se sincronizarán.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d participantes tienen el mismo nombre.</string>
@@ -669,6 +669,14 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Denunciado como spam y bloqueado</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Has aceptado una solicitud de mensaje de %1$s. Si ha sido un error, puedes elegir una de las siguientes acciones.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Review carefully</string>
+    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Profile names</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Group names</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consejos de seguridad</string>
@@ -680,6 +688,10 @@
     <string name="SafetyTips_previous_tip">Anterior</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Siguiente</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Estafas de criptomonedas o dinero</string>
     <!-- Message of tip 1 -->
@@ -697,6 +709,21 @@
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Ten cuidado con las empresas o agencias gubernamentales que se pongan en contacto contigo. Los mensajes que involucren a entidades como agencias tributarias y empresas de mensajería pueden ser spam.</string>
 
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Quitar filtro</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
@@ -707,7 +734,7 @@
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="one">Se eliminará de forma permanente el chat seleccionado.</item>
-        <item quantity="other">Se eliminarán de forma permanente los %1$d chats seleccionados.</item>
+        <item quantity="other">Se eliminarán de forma permanente los %1$d chats seleccionados.</item>
     </plurals>
     <!-- Dialog message shown when deleting one to many conversations from the chat list and the user has a linked device -->
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device">
@@ -759,8 +786,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Selecciona una carpeta</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">Añadido a \"%1$s\"</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Este chat ya está en la carpeta \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">This chat is already in \"%1$s\"</item>
+        <item quantity="other">These chats are already in \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Perfil de notificaciones</string>
@@ -1104,7 +1134,7 @@
     <!-- Option in bottom sheet to transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_transfer">Transferir historial de mensajes</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfiere todos tus mensajes de texto y tus archivos multimedia de los últimos 45 días</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Transfiere todos tus mensajes de texto, así como tus archivos multimedia de los últimos 45 días</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">No transferir</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -2103,6 +2133,16 @@
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Denunciar</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Join</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Las contraseñas no coinciden.</string>
@@ -2485,12 +2525,16 @@
     <string name="AboutSheet__signal_connection">Contacto de Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Identidad verificada</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Pending message request</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">No tienes mensajes privados con %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s está en tus contactos del teléfono</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No tienes grupos en común</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Revisa detenidamente las solicitudes</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2757,7 +2801,7 @@
     <string name="ThreadRecord_view_once_video">Vídeo de visualización única</string>
     <string name="ThreadRecord_view_once_media">Archivo multimedia</string>
     <string name="ThreadRecord_this_message_was_deleted">Se ha eliminado este mensaje.</string>
-    <string name="ThreadRecord_you_deleted_this_message">Mensaje eliminado.</string>
+    <string name="ThreadRecord_you_deleted_this_message">Has eliminado este mensaje.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Has enviado una solicitud para activar Pagos</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
@@ -3269,7 +3313,8 @@
     <string name="ConversationUpdateItem_update_contact">Actualizar contacto</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Bloquear solicitud</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No tienes grupos en común. Revisa las solicitudes detenidamente.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ninguno de los participantes de este grupo está en tus contactos. Revisa las solicitudes detenidamente.</string>
     <string name="ConversationUpdateItem_view">Ver</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">La duración de los mensajes temporales será de %1$s cuando inicies un chat con alguien.</string>
@@ -3587,7 +3632,7 @@
         <item>Comentarios</item>
         <item>Pagos (MobileCoin)</item>
         <item>Donaciones e insignias</item>
-        <item>Copia de seguridad de Signal Android</item>
+        <item>Copia de seguridad de Signal Android</item>
         <item>Otra</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
@@ -5105,7 +5150,7 @@
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- String alerting user that backup redemption -->
-    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No se ha podido activar tu suscripción a las copias de seguridad</string>
+    <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No se ha podido recuperar tu suscripción a las copias de seguridad</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">¡Invita a otras personas!</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -6226,6 +6271,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Notas de las versiones y novedades de Signal</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Actividad</string>
@@ -7642,13 +7697,13 @@
     <!-- Dialog title when a backup fails to be created -->
     <string name="BackupAlertBottomSheet__backup_failed">Error en la copia de seguridad</string>
     <!-- Dialog title when a backup redemption fails -->
-    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido activar tu suscripción a las copias de seguridad</string>
+    <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido recuperar tu suscripción a las copias de seguridad</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualizaciones</string>
     <!-- Backup redemption error sheet text line 1 -->
-    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Se ha intentado activar tu suscripción desde demasiados dispositivos este mes. Es posible que:</string>
+    <string name="BackupAlertBottomSheet__too_many_devices_have_tried">Se ha intentado recuperar tu suscripción desde demasiados dispositivos este mes. Es posible que:</string>
     <!-- Backup redemption error sheet bullet point 1 -->
     <string name="BackupAlertBottomSheet__reregistered_your_signal_account">Hayas vuelto a registrar tu cuenta de Signal demasiadas veces.</string>
     <!-- Backup redemption error sheet bullet point 2 -->
@@ -8113,7 +8168,7 @@
     <!-- Dialog positive button text to try entering their backup key again -->
     <string name="EnterBackupKey_try_again">Reintentar</string>
     <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Ayuda con la clave de copia de seguridad</string>
+    <string name="EnterBackupKey_backup_key_help">Ayuda con la clave</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->
     <string name="EnterBackupKey_incorrect_backup_key_error">Clave de copia de seguridad incorrecta</string>
     <!-- Text field error text when the backup key is too long -->

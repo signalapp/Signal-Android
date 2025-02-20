@@ -717,6 +717,14 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">تمَّ الإبلاغ عن المجموعة وتمَّ حظرها</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">قبلتَ طلب مراسلة من %1$s. إذا حدث هذا عن طريق الخطأ، يمكنك اختيار أحد الإجراءات التالية.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Review carefully</string>
+    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Profile names</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Group names</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">نصائح السلامة</string>
@@ -728,6 +736,10 @@
     <string name="SafetyTips_previous_tip">النصيحة السابقة</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">النصيحة التالية</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">عمليات الاحتيال المالية أو من خلال العملات المشفرة</string>
     <!-- Message of tip 1 -->
@@ -744,6 +756,21 @@
     <string name="SafetyTips_tip4_title">الشركات والمُؤسسات الوهمية</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">تأكَّد من الشركات أو الوكالات الحكومية التي تتواصل معك. قد تكون الرسائل التي تُظهِر معلومات عن وكالات الضرائب وشركات التوصيل وغيرها رسائل غير مرغوب بها.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">إزالة الفلتر</string>
@@ -843,8 +870,15 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">اِختر مجلد</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">تمَّت الإضافة إلى \"%1$s\"</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">هذه الدردشة موجودة بالفعل في المجلد \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="zero">These chats are already in \"%1$s\"</item>
+        <item quantity="one">This chat is already in \"%1$s\"</item>
+        <item quantity="two">These chats are already in \"%1$s\"</item>
+        <item quantity="few">These chats are already in \"%1$s\"</item>
+        <item quantity="many">These chats are already in \"%1$s\"</item>
+        <item quantity="other">These chats are already in \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">مركز الإشعارات</string>
@@ -2363,6 +2397,16 @@
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">إبلاغ…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Join</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">العبارات السرية غير متطابقة!</string>
@@ -2813,12 +2857,16 @@
     <string name="AboutSheet__signal_connection">جهة اتصال سيجنال</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">تمَّ التحقُّق</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Pending message request</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">لا توجد رسائل مباشرة مع %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات الاتصال على هاتفك</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشترَكة بينكم.</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">مراجعة الطلبات بعناية</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3649,7 +3697,8 @@
     <string name="ConversationUpdateItem_update_contact">تحديث جهة الاتصال</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">حظر الطلب</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا يوجود مجموعات مشتركة. يُرجى مراجعة الطلبات بعناية.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">لا يوجود جهات اتصال في هذه المجموعة. يُرجى مراجعة الطلبات بعناية.</string>
     <string name="ConversationUpdateItem_view">إظهار</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">سيتمُّ تعيين توقيت إخفاء الرسائل إلى %1$s عندما تقوم بمراسلته.</string>
@@ -6770,6 +6819,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">ملاحظات ومستجدات خاصة بإصدار سيجنال</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">كل النشاطات</string>

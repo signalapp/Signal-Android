@@ -672,7 +672,7 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be 'Profile names' or 'Group names' -->
+    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
     <string name="ConversationFragment_profile_names_not_verified">%s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Profile names</string>
@@ -710,7 +710,7 @@
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Be careful of businesses or government agencies contacting you. Messages involving tax agencies, couriers, and more can be spam.</string>
 
-    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be 'Profile names' -->
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
     <string name="ProfileNameBottomSheet__profile_names_on_signal">%s on Signal are chosen by their account holder.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
     <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
@@ -718,7 +718,7 @@
     <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
     <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
-    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be 'Group names' -->
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
     <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
     <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>

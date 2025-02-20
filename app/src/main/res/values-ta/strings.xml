@@ -669,6 +669,14 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">ஸ்பேம் எனப் புகாரளிக்கப்பட்டு தடுக்கப்பட்டது</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$sஇடமிருந்து பெற்ற மெசேஜ் கோரிக்கையை நீங்கள் ஏற்றுக்கொண்டீர்கள். இது தவறுதலாக நடைபெற்றிருந்தால், கீழே கொடுக்கப்பட்ட நடவடிக்கையிலிருந்து நீங்கள் ஒன்றைத் தேர்ந்தெடுக்கலாம்.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Review carefully</string>
+    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Profile names</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Group names</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">பாதுகாப்பு உதவிக்குறிப்புகள்</string>
@@ -680,6 +688,10 @@
     <string name="SafetyTips_previous_tip">முந்தைய உதவிக்குறிப்பு</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">அடுத்த உதவிக்குறிப்பு</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">கிரிப்டோ அல்லது பண மோசடிகள்</string>
     <!-- Message of tip 1 -->
@@ -696,6 +708,21 @@
     <string name="SafetyTips_tip4_title">போலி நிறுவனங்கள் மற்றும் அமைப்புகள்</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">உங்களைத் தொடர்பு கொள்ளும் வணிகங்கள் அல்லது அரசு நிறுவனங்களிடமிருந்து கவனமாக இருங்கள். வரி ஏஜென்சிகள், கூரியர்கள் மற்றும் பலவற்றை உள்ளடக்கிய மெசேஜ்கள் ஸ்பேமாக இருக்கலாம்.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ஃபில்டரை அழி</string>
@@ -759,8 +786,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">கோப்புறையைத் தேர்வு செய்க</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" இல் சேர்க்கப்பட்டது</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">இந்த சாட் ஏற்கனவே \"%1$s\" கோப்புறையில் உள்ளது</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">This chat is already in \"%1$s\"</item>
+        <item quantity="other">These chats are already in \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">அறிவிப்பு சுயவிவரம்</string>
@@ -2103,6 +2133,16 @@
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">புகாரளி…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Join</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">கடவுச்சொற்கள் பொருந்தவில்லை!</string>
@@ -2485,12 +2525,16 @@
     <string name="AboutSheet__signal_connection">சிக்னல் இணைப்பு</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">சரிபார்க்கப்பட்டது</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Pending message request</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">உங்களுக்கும் %1$sக்கும் இடையில் எந்த நேரடி மெசேஜ்களும் இல்லை</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">உங்கள் தொலைபேசி தொடர்புகளில் %1$s உள்ளார்</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">உங்களுக்குப் பொதுவான குழுக்கள் எதுவும் இல்லை</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3269,7 +3313,8 @@
     <string name="ConversationUpdateItem_update_contact">தொடர்பைப் புதுப்பிக்கவும்</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">கோரிக்கையைத் தடைசெய்</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">இல்லை குழுக்கள்பொதுவாக. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">இல்லை இதில் தொடர்புகள் குழு. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
     <string name="ConversationUpdateItem_view">காண்க</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">நீங்கள் அவர்களுக்கு செய்தி அனுப்பும் போது காணாமல் போகும் செய்திகள் நேரம் %1$s ஆக அமைக்கப்படும்.</string>
@@ -6226,6 +6271,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">சிக்னல் வெளியீடு குறிப்புகள், செய்திகள்</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">அனைத்து செயல்பாடுகளும்</string>

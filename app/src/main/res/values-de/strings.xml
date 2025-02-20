@@ -669,6 +669,14 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Als Spam gemeldet und blockiert</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Du hast eine Unterhaltungsanfrage von %1$s angenommen. Wenn das ein Fehler war, kannst du unten eine Aktion auswählen.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Review carefully</string>
+    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Profile names</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Group names</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Sicherheitstipps</string>
@@ -680,6 +688,10 @@
     <string name="SafetyTips_previous_tip">Vorheriger Tipp</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Nächster Tipp</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Krypto- oder Geldbetrug</string>
     <!-- Message of tip 1 -->
@@ -696,6 +708,21 @@
     <string name="SafetyTips_tip4_title">Gefälschte Unternehmen und Institutionen</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Sei vorsichtig, wenn Unternehmen oder Regierungsbehörden dich kontaktieren. Nachrichten, bei denen es um Steuerbehörden, Kuriere usw. geht, können Spam sein.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filter entfernen</string>
@@ -759,8 +786,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Einen Ordner wählen</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">Zu »%1$s« hinzugefügt</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Dieser Chat befindet sich bereits im Ordner »%1$s«.</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">This chat is already in \"%1$s\"</item>
+        <item quantity="other">These chats are already in \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Benachrichtigungsprofil</string>
@@ -1203,7 +1233,7 @@
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Was sind Gruppen neuen Typs?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @-Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Der vor der Aktualisierung bestehende Nachrichtenverlauf und die Medieninhalte wurden erhalten.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du musst eine Einladung zum erneuten Gruppenbeitritt annehmen und wirst bis dahin keine Gruppennachrichten erhalten.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -1218,7 +1248,7 @@
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Zu Gruppe neuen Typs aktualisieren</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Diese Gruppe aktualisieren</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Gruppen neuen Typs besitzen Funktionen wie @-Erwähnungen und Gruppen-Admins und werden zukünftig weitere Funktionen unterstützen.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Der bestehende Nachrichtenverlauf und die Medieninhalte werden durch die Aktualisierung erhalten bleiben.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Ein Netzfehler ist aufgetreten. Bitte versuche es später erneut.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Aktualisierung konnte nicht durchgeführt werden.</string>
@@ -1402,7 +1432,7 @@
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
     <string name="ManageGroupActivity_legacy_group_learn_more">Dies ist eine Gruppe alten Typs. Funktionen wie Gruppen-Admins sind nur in Gruppen neuen Typs verfügbar.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">Dies ist eine Gruppe alten Typs. Für neue Funktionen wie @Erwähnungen und Admins,</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">Dies ist eine Gruppe alten Typs. Für neue Funktionen wie @-Erwähnungen und Admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Diese Gruppe alten Typs kann nicht zu einer Gruppe neuen Typs aktualisiert werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
     <string name="ManageGroupActivity_upgrade_this_group">aktualisiere diese Gruppe.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dies ist eine ungesicherte MMS-Gruppe. Lade deine Kontakte zu Signal ein, um dich vertraulich zu unterhalten.</string>
@@ -2069,7 +2099,7 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Aktualisierungen und Neuigkeiten von %1$s erhalten? Du wirst keine Aktualisierungen erhalten, es sei denn, du erteilst eine Freigabe.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Chat mit dieser Gruppe fortsetzen und deinen Namen und dein Foto mit deren Mitgliedern teilen?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Erstelle eine neue Gruppe, um neue Funktionen wie @Erwähnungen und Administrator zu aktivieren.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Erstelle eine neue Gruppe, um neue Funktionen wie @-Erwähnungen und Administrator zu aktivieren.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Diese Gruppe alten Typs kann nicht mehr verwendet werden. Die maximale Gruppengröße von %1$d Mitgliedern ist überschritten.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Chat mit %1$s fortsetzen und deinen Namen und dein Foto mit diesem Kontakt teilen?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Möchtest du dieser Gruppe beitreten und deinen Namen und dein Foto mit ihren Mitgliedern teilen? Diese wissen nicht, dass du ihre Nachrichten gesehen hast, bis du die Anfrage annimmst.</string>
@@ -2103,6 +2133,16 @@
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Melden …</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Join</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrasen stimmen nicht überein!</string>
@@ -2190,7 +2230,7 @@
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
     <string name="ReRegisterWithPinFragment_skip_local">Wenn du dich nicht mehr an deine PIN erinnern kannst, kannst du eine neue erstellen.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Maximale Anzahl der Versuche zum Erraten deiner PIN ist erreicht.  Du kannst immer noch auf dein Signal-Konto zugreifen, indem du eine neue PIN erstellst.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Maximale Anzahl der Versuche zum Erraten deiner PIN ist erreicht. Du kannst immer noch auf dein Signal-Konto zugreifen, indem du eine neue PIN erstellst.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Warnung</string>
@@ -2485,12 +2525,16 @@
     <string name="AboutSheet__signal_connection">Signal-Kontakt</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verifiziert</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Pending message request</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Keine Einzelchats mit %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten gespeichert</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">Ihr habt keine gemeinsamen Gruppen</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Prüfe Anfragen sorgfältig</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2635,7 +2679,7 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Registrierungssperre einschalten?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Registrierungssperre ausschalten?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Falls du beim erneuten Registrieren von Signal deine Signal-PIN nicht mehr weißt, wird dein Konto für sieben Tage gesperrt.</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Falls du beim erneuten Registrieren von Signal deine Signal-PIN nicht mehr weißt, wird dein Konto für 7 Tage gesperrt.</string>
     <string name="RegistrationLockV2Dialog_turn_on">Einschalten</string>
     <string name="RegistrationLockV2Dialog_turn_off">Ausschalten</string>
 
@@ -3269,7 +3313,8 @@
     <string name="ConversationUpdateItem_update_contact">Kontakt aktualisieren</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Anfrage blockieren</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Keine gemeinsamen Gruppen. Prüfe Anfragen sorgfältig.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Keine Kontakte in dieser Gruppe. Prüfe Anfragen sorgfältig.</string>
     <string name="ConversationUpdateItem_view">Anzeigen</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die Ablaufzeit für verschwindende Nachrichten wird auf %1$s festgelegt, sobald du der Person eine Nachricht sendest.</string>
@@ -5709,7 +5754,7 @@
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
     <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Nur Admins können in dieser Gruppe Nachrichten senden.</string>
     <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
-    <string name="MultiselectForwardFragment__you_cant_select_more_chats">Du kannst maximal fünf Chats auswählen</string>
+    <string name="MultiselectForwardFragment__you_cant_select_more_chats">Du kannst maximal 5 Chats auswählen</string>
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
@@ -5955,7 +6000,7 @@
     <!-- Displayed as a message in a dialog or notification when stripe decline code issuer not available for backup payment. -->
     <string name="InAppPaymentErrors__StripeDeclineCode__try_completing_the_payment_again">Versuche erneut, diesen Kauf abzuschließen, oder kontaktiere für mehr Informationen deine Bank.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
-    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Diese Zahlung wurde vom Kontoinhaber/von der Kontoinhaberin widerrufen und konnte nicht bearbeitet werden. Dir wurde nichts berechnet.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Diese Zahlung wurde von der Person, der das Konto gehört, widerrufen und konnte nicht bearbeitet werden. Dir wurde nichts berechnet.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
     <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Bei der Bearbeitung dieser Zahlung ist ein Fehler aufgetreten. Bitte versuche es erneut.</string>
 
@@ -6065,7 +6110,7 @@
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_account_provided">Das angegebene Bankkonto hat nicht genügend Guthaben, um diesen Kauf abzuschließen. Versuche es noch einmal oder kontaktiere deine Bank, um mehr zu erfahren.</string>
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__this_payment_was_revoked">Diese Spende wurde vom Kontoinhaber/von der Kontoinhaberin widerrufen und konnte nicht bearbeitet werden. Es wurde kein Betrag abgebucht.</string>
+    <string name="StripeFailureCode__this_payment_was_revoked">Diese Spende wurde von der Person, der das Konto gehört, widerrufen und konnte nicht bearbeitet werden. Es wurde kein Betrag abgebucht.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
     <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Bei der Bearbeitung dieser Spende ist ein Fehler aufgetreten. Bitte versuche es erneut.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
@@ -6226,6 +6271,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal-Versionshinweise und Neuigkeiten</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Alle Aktivitäten</string>
@@ -6948,7 +7003,7 @@
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Mehr erfahren</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Name Kontoinhaber*in</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
@@ -6982,7 +7037,7 @@
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Mehr erfahren</string>
     <!-- Hint label for text entry box for name on bank account -->
-    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name des Kontoinhabers</string>
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">Name Kontoinhaber*in</string>
     <!-- Hint label for text entry box for email -->
     <string name="IdealTransferDetailsFragment__email">E-Mail</string>
     <!-- Default label for bank selection -->
@@ -7409,9 +7464,9 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Der QR-Code war ungültig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Ein Nutzer/eine Nutzerin mit dem Nutzernamen %1$s konnte nicht gefunden werden.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Nutzer*in mit dem Nutzernamen %1$s konnte nicht gefunden werden.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Diese(r) Nutzer/Nutzerin konnte nicht gefunden werden.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Nutzer*in konnte nicht gefunden werden.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Ein Netzwerkfehler ist aufgetreten. Bitte versuche es erneut.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
@@ -7745,7 +7800,7 @@
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Upgraden um diese Funktion zu aktivieren</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden.  Upgrade deine Backup-Option, um diese Funktion zu nutzen.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden. Upgrade deine Backup-Option, um diese Funktion zu nutzen.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
 
