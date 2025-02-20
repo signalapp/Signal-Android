@@ -1215,6 +1215,13 @@ object BackupRepository {
       .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: $it") }
   }
 
+  fun deleteBackup(): NetworkResult<Unit> {
+    return initBackupAndFetchAuth()
+      .then { credential ->
+        SignalNetwork.archive.deleteBackup(SignalStore.account.requireAci(), credential.messageBackupAccess)
+      }
+  }
+
   fun debugDeleteAllArchivedMedia(): NetworkResult<Unit> {
     return debugGetArchivedMediaState()
       .then { archivedMedia ->

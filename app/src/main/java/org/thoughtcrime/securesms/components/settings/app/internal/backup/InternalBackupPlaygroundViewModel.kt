@@ -18,6 +18,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Hex
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
@@ -155,6 +157,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
             Log.w(TAG, "Validation failed! Details: ${result.messageDetails}", result.exception)
             "Validation failed :( Check the logs for details."
           }
+
           is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
             Log.w(TAG, "Validation failed with a duplicate recipient! Details: ${result.details}", result.exception)
             "Validation failed :( Check the logs for details."
@@ -530,6 +533,29 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
           _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
         }
       )
+  }
+
+  suspend fun deleteRemoteBackupData(): Boolean = withContext(Dispatchers.IO) {
+    when (val result = BackupRepository.debugDeleteAllArchivedMedia()) {
+      is NetworkResult.Success -> Log.i(TAG, "Remote data deleted")
+      else -> {
+        Log.w(TAG, "Unable to delete media", result.getCause())
+        return@withContext false
+      }
+    }
+
+    when (val result = BackupRepository.deleteBackup()) {
+      is NetworkResult.Success -> {
+        SignalStore.backup.backupsInitialized = false
+        SignalStore.backup.messageCredentials.clearAll()
+        SignalStore.backup.mediaCredentials.clearAll()
+        SignalStore.backup.cachedMediaCdnPath = null
+        return@withContext true
+      }
+      else -> Log.w(TAG, "Unable to delete remote data", result.getCause())
+    }
+
+    return@withContext false
   }
 
   override fun onCleared() {

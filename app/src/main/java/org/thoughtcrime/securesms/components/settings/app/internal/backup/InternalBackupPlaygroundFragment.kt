@@ -64,8 +64,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.ui.Dividers
 import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows
@@ -222,6 +226,21 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .setMessage("After you choose a file to import, this will delete all of your chats, then restore them from the file! Only do this on a test device!")
               .setPositiveButton("Wipe and restore") { _, _ -> viewModel.import(SignalStore.settings.signalBackupDirectory!!) }
               .show()
+          },
+          onDeleteRemoteBackup = {
+            MaterialAlertDialogBuilder(context)
+              .setTitle("Are you sure?")
+              .setMessage("This will delete all of your remote backup data?")
+              .setPositiveButton("Delete remote data") { _, _ ->
+                lifecycleScope.launch {
+                  val success = viewModel.deleteRemoteBackupData()
+                  withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), if (success) "Deleted!" else "Failed!", Toast.LENGTH_SHORT).show()
+                  }
+                }
+              }
+              .setNegativeButton("Cancel", null)
+              .show()
           }
         )
       },
@@ -317,7 +336,8 @@ fun Screen(
   onSavePlaintextBackupToDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
-  onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> }
+  onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
+  onDeleteRemoteBackup: () -> Unit = {}
 ) {
   val context = LocalContext.current
   val scrollState = rememberScrollState()
@@ -490,6 +510,12 @@ fun Screen(
         text = "Wipe all data and restore a new-style local backup",
         label = "Erases all content on your device, followed by a restore of a previously-generated new-style local backup.",
         onClick = onImportNewStyleLocalBackupClicked
+      )
+
+      Rows.TextRow(
+        text = "Delete all backup data on server",
+        label = "Erases all content on the server.",
+        onClick = onDeleteRemoteBackup
       )
 
       Dividers.Default()
