@@ -123,7 +123,11 @@ class FcmFetchForegroundService : Service() {
 
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     Log.d(TAG, "onStartCommand()")
-    postForegroundNotification()
+    try {
+      postForegroundNotification()
+    } catch (e: RuntimeException) {
+      Log.w(TAG, "Failed to start foreground service! StopSelf: ${intent?.getBooleanExtra(KEY_STOP_SELF, false)}", e)
+    }
 
     return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
       WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
