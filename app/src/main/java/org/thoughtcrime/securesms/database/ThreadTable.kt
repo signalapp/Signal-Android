@@ -20,6 +20,7 @@ import org.signal.core.util.or
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleInt
+import org.signal.core.util.readToSingleIntOrNull
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -114,7 +115,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val LAST_SEEN = "last_seen"
     const val HAS_SENT = "has_sent"
     const val LAST_SCROLLED = "last_scrolled"
-    const val PINNED = "pinned"
+    const val PINNED_ORDER = "pinned_order"
     const val UNREAD_SELF_MENTION_COUNT = "unread_self_mention_count"
     const val ACTIVE = "active"
 
@@ -144,7 +145,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $LAST_SEEN INTEGER DEFAULT 0, 
         $HAS_SENT INTEGER DEFAULT 0, 
         $LAST_SCROLLED INTEGER DEFAULT 0, 
-        $PINNED INTEGER DEFAULT 0, 
+        $PINNED_ORDER INTEGER UNIQUE DEFAULT NULL, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0,
         $ACTIVE INTEGER DEFAULT 0,
         $SNIPPET_MESSAGE_EXTRAS BLOB DEFAULT NULL
@@ -154,8 +155,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     @JvmField
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID, $ACTIVE);",
-      "CREATE INDEX IF NOT EXISTS archived_count_index ON $TABLE_NAME ($ACTIVE, $ARCHIVED, $MEANINGFUL_MESSAGES, $PINNED);",
-      "CREATE INDEX IF NOT EXISTS thread_pinned_index ON $TABLE_NAME ($PINNED);",
+      "CREATE INDEX IF NOT EXISTS archived_count_index ON $TABLE_NAME ($ACTIVE, $ARCHIVED, $MEANINGFUL_MESSAGES, $PINNED_ORDER);",
+      "CREATE INDEX IF NOT EXISTS thread_pinned_index ON $TABLE_NAME ($PINNED_ORDER);",
       "CREATE INDEX IF NOT EXISTS thread_read ON $TABLE_NAME ($READ);",
       "CREATE INDEX IF NOT EXISTS thread_active ON $TABLE_NAME ($ACTIVE);"
     )
@@ -182,7 +183,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       LAST_SEEN,
       HAS_READ_RECEIPT,
       LAST_SCROLLED,
-      PINNED,
+      PINNED_ORDER,
       UNREAD_SELF_MENTION_COUNT
     )
 
@@ -936,7 +937,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       for (threadId in threadIds) {
         val values = ContentValues().apply {
           if (archive) {
-            put(PINNED, "0")
+            put(PINNED_ORDER, null as Int?)
             put(ARCHIVED, "1")
           } else {
             put(ARCHIVED, "0")
@@ -992,13 +993,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val folderQuery = chatFolder.toQuery()
     val filterQuery = conversationFilter.toQuery()
     val where = if (pinned) {
-      "$ARCHIVED = 0 AND $PINNED != 0 $filterQuery $folderQuery"
+      "$ARCHIVED = 0 AND $PINNED_ORDER NOT NULL $filterQuery $folderQuery"
     } else {
-      "$ARCHIVED = 0 AND $PINNED = 0 AND $MEANINGFUL_MESSAGES != 0 $filterQuery $folderQuery"
+      "$ARCHIVED = 0 AND $PINNED_ORDER IS NULL AND $MEANINGFUL_MESSAGES != 0 $filterQuery $folderQuery"
     }
 
     val query = if (pinned) {
-      createQuery(where, PINNED + " ASC", offset, limit)
+      createQuery(where, PINNED_ORDER + " ASC", offset, limit)
     } else {
       createQuery(where, offset, limit, preferPinned = false)
     }
@@ -1029,7 +1030,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       readableDatabase
         .select("COUNT(*)")
         .from(TABLE_NAME)
-        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND $PINNED_ORDER NOT NULL $filterQuery")
         .run()
         .readToSingleInt(0)
     } else {
@@ -1042,7 +1043,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         WHERE 
           $ACTIVE = 1 AND 
           $ARCHIVED = 0 AND 
-          $PINNED != 0
+          $PINNED_ORDER NOT NULL
           $filterQuery 
           $folderQuery
         """
@@ -1057,7 +1058,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       readableDatabase
         .select("COUNT(*)")
         .from(TABLE_NAME)
-        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
+        .where("$ACTIVE = 1 AND $ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED_ORDER NOT NULL) $filterQuery")
         .run()
         .readToSingleInt(0)
     } else {
@@ -1071,7 +1072,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         WHERE 
           $ACTIVE = 1 AND 
           $ARCHIVED = 0 AND 
-          ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0)
+          ($MEANINGFUL_MESSAGES != 0 OR $PINNED_ORDER NOT NULL)
           $filterQuery
           $folderQuery
         """
@@ -1129,7 +1130,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase
       .select(ID, RECIPIENT_ID)
       .from(TABLE_NAME)
-      .where("$PINNED > 0")
+      .where("$PINNED_ORDER NOT NULL")
       .run()
       .readToList { cursor ->
         RecipientId.from(cursor.requireLong(RECIPIENT_ID))
@@ -1143,7 +1144,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return readableDatabase
       .select(ID)
       .from(TABLE_NAME)
-      .where("$PINNED > 0")
+      .where("$PINNED_ORDER NOT NULL")
       .run()
       .readToList { cursor ->
         cursor.requireLong(ID)
@@ -1164,19 +1165,24 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     writableDatabase.withinTransaction { db ->
       if (clearFirst) {
         db.update(TABLE_NAME)
-          .values(PINNED to 0)
-          .where("$PINNED > 0")
+          .values(PINNED_ORDER to null)
+          .where("$PINNED_ORDER NOT NULL")
           .run()
       }
 
-      var pinnedCount = getPinnedConversationListCount(ConversationFilter.OFF)
+      val maxPinnedOrder = db.select("MAX($PINNED_ORDER)")
+        .from(TABLE_NAME)
+        .run()
+        .readToSingleIntOrNull() ?: 0
+
+      var pinnedOrder = maxPinnedOrder + 1
 
       for (threadId in threadIds) {
-        pinnedCount++
         db.update(TABLE_NAME)
-          .values(PINNED to pinnedCount, ACTIVE to 1)
+          .values(PINNED_ORDER to pinnedOrder, ACTIVE to 1)
           .where("$ID = ?", threadId)
           .run()
+        pinnedOrder++
       }
     }
 
@@ -1189,13 +1195,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     writableDatabase.withinTransaction { db ->
       val query: SqlUtil.Query = SqlUtil.buildSingleCollectionQuery(ID, threadIds)
       db.update(TABLE_NAME)
-        .values(PINNED to 0)
+        .values(PINNED_ORDER to null)
         .where(query.where, *query.whereArgs)
         .run()
 
       getPinnedThreadIds().forEachIndexed { index: Int, threadId: Long ->
         db.update(TABLE_NAME)
-          .values(PINNED to index + 1)
+          .values(PINNED_ORDER to index + 1)
           .where("$ID = ?", threadId)
           .run()
       }
@@ -1550,7 +1556,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread)
 
       db.updateAll(TABLE_NAME)
-        .values(PINNED to 0)
+        .values(PINNED_ORDER to null)
         .run()
 
       var pinnedPosition = 1
@@ -1584,7 +1590,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         if (pinnedRecipient != null) {
           db.update(TABLE_NAME)
-            .values(PINNED to pinnedPosition, ACTIVE to 1)
+            .values(PINNED_ORDER to pinnedPosition, ACTIVE to 1)
             .where("$RECIPIENT_ID = ?", pinnedRecipient.id)
             .run()
         }
@@ -1958,7 +1964,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       LAST_SEEN to 0,
       HAS_SENT to 0,
       LAST_SCROLLED to 0,
-      PINNED to 0,
+      PINNED_ORDER to null,
       UNREAD_SELF_MENTION_COUNT to 0,
       ACTIVE to 0
     )
@@ -2074,7 +2080,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   private fun createQuery(where: String, offset: Long, limit: Long, preferPinned: Boolean): String {
     val orderBy = if (preferPinned) {
-      "$TABLE_NAME.$PINNED DESC, $TABLE_NAME.$DATE DESC"
+      "$TABLE_NAME.$PINNED_ORDER DESC, $TABLE_NAME.$DATE DESC"
     } else {
       "$TABLE_NAME.$DATE DESC"
     }
@@ -2258,7 +2264,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         .setMeaningfulMessages(cursor.requireLong(MEANINGFUL_MESSAGES) > 0)
         .setUnreadCount(cursor.requireInt(UNREAD_COUNT))
         .setForcedUnread(cursor.requireInt(READ) == ReadStatus.FORCED_UNREAD.serialize())
-        .setPinned(cursor.requireBoolean(PINNED))
+        .setPinned(cursor.requireBoolean(PINNED_ORDER))
         .setUnreadSelfMentionsCount(cursor.requireInt(UNREAD_SELF_MENTION_COUNT))
         .setExtra(extra)
         .setSnippetMessageExtras(messageExtras)

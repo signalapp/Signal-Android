@@ -22,7 +22,7 @@ fun ThreadTable.getThreadsForBackup(db: SignalDatabase, includeImageWallpapers: 
       SELECT
         ${ThreadTable.TABLE_NAME}.${ThreadTable.ID}, 
         ${ThreadTable.RECIPIENT_ID}, 
-        ${ThreadTable.PINNED}, 
+        ${ThreadTable.PINNED_ORDER}, 
         ${ThreadTable.READ}, 
         ${ThreadTable.ARCHIVED},
         ${RecipientTable.TABLE_NAME}.${RecipientTable.MESSAGE_EXPIRATION_TIME},
