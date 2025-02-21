@@ -360,7 +360,7 @@ class ChatItemArchiveExporter(
 
         else -> {
           val attachments = extraData.attachmentsById[record.id]
-          if (attachments?.isNotEmpty() == true && attachments.all { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrEmpty()) {
+          if (attachments?.isNotEmpty() == true && attachments.any { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrBlank()) {
             Log.w(TAG, ExportSkips.invalidLongTextChatItem(record.dateSent))
             continue
           }
