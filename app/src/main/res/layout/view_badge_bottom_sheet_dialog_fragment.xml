@@ -28,7 +28,7 @@
         android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
-        android:text="@string/ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website"
+        android:text="@string/ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
