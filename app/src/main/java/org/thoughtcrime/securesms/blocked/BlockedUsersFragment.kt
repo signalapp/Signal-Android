@@ -33,9 +33,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
+import org.signal.core.ui.Previews
 import org.signal.core.ui.Rows.TextAndLabel
 import org.signal.core.ui.Rows.TextRow
 import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.SignalPreview
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -43,7 +45,6 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ViewModelFactory
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import kotlin.jvm.optionals.getOrNull
 
 class BlockedUsersFragment : ComposeFragment() {
   private val viewModel: BlockedUsersViewModel by activityViewModels(
@@ -54,6 +55,12 @@ class BlockedUsersFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
+    val blockedUsers by viewModel.blockedUsers.collectAsStateWithLifecycle()
+    BlockedUsersScreen(blockedUsers)
+  }
+
+  @Composable
+  fun BlockedUsersScreen(blockedUsers :List<BlockedUserRecipientState>){
     Scaffolds.Settings(
       title = stringResource(R.string.BlockedUsersActivity__blocked_users),
       navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
@@ -63,15 +70,13 @@ class BlockedUsersFragment : ComposeFragment() {
         Modifier
           .padding(paddingValues)
           .fillMaxSize()){
-        BlockedUsers(Modifier.fillMaxSize())
+        BlockedUsersContent(blockedUsers)
       }
     }
   }
 
   @Composable
-  fun BlockedUsers(modifier: Modifier = Modifier){
-    val blockedUsers by viewModel.blockedUsers.collectAsStateWithLifecycle()
-
+  fun BlockedUsersContent(blockedUsers :List<BlockedUserRecipientState>, modifier: Modifier = Modifier, ){
     val displaySnackbar : (Int, String) -> Unit = { messageResId, displayName ->
       Snackbar.make(requireView(), getString(messageResId, displayName), Snackbar.LENGTH_SHORT).show()
     }
@@ -113,21 +118,21 @@ class BlockedUsersFragment : ComposeFragment() {
           )
         }
       } else {
-        LazyColumn {
-          items(blockedUsers) { recipient ->
+        LazyColumn(modifier.weight(1f)) {
+          items(blockedUsers) { state ->
             TextRow(
               text = {
                 TextAndLabel(
-                  text = recipient.getDisplayName(requireContext()),
-                  label = recipient.username.getOrNull(),
+                  text = state.displayName,
+                  label = state.username,
                 )
               },
               icon = {
                 Column {
-                  AvatarImage(recipient = recipient, modifier = Modifier.size(dimensionResource(R.dimen.small_avatar_size)))
+                  AvatarImage(recipient = state.recipient, modifier = Modifier.size(dimensionResource(R.dimen.small_avatar_size)))
                 }
               },
-              onClick = { handleRecipientClicked(recipient) },
+              onClick = { handleRecipientClicked(state.recipient) },
               paddingValues = PaddingValues(
                 horizontal = dimensionResource(R.dimen.dsl_settings_gutter),
                 vertical = dimensionResource(R.dimen.small_avatar_text_row_spacer_size)),
@@ -145,4 +150,30 @@ class BlockedUsersFragment : ComposeFragment() {
     }
   }
 
+  @SignalPreview
+  @Composable
+  fun BlockedUsersPreview(){
+    val previewRecipients = listOf(
+      BlockedUserRecipientState(
+        Recipient(),
+        displayName = "Test User",
+        username = "testuser.01"
+      ),
+      BlockedUserRecipientState(
+        Recipient(),
+        displayName = "Another Person",
+      ),
+      BlockedUserRecipientState(
+        Recipient(),
+        displayName = "Someone Else",
+        username = "anonymous.01"
+      ),
+
+    )
+
+    Previews.Preview(){
+      BlockedUsersScreen(blockedUsers = previewRecipients)
+    }
+
+  }
 }

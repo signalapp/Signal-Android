@@ -17,11 +17,12 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.resolved
 import org.thoughtcrime.securesms.recipients.RecipientId
 
+
 class BlockedUsersViewModel(private val repository: BlockedUsersRepository) : ViewModel() {
   private val _events = MutableSharedFlow<BlockUserEvent>()
   val events = _events.asSharedFlow()
 
-  private val _blockedUsers = MutableStateFlow<List<Recipient>>(emptyList())
+  private val _blockedUsers = MutableStateFlow<List<BlockedUserRecipientState>>(emptyList())
   val blockedUsers = _blockedUsers.asStateFlow()
 
   init {
