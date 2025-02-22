@@ -19,6 +19,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -91,7 +92,7 @@ class BlockedUsersContactSelectionFragment : ComposeFragment(), OnContactSelecte
   @Composable
   fun ContactSelectionTextBox(fragment: ContactSelectionListFragment, modifier: Modifier = Modifier){
     var filterText by remember { mutableStateOf("") }
-    var keyboardType by remember{ mutableStateOf(KeyboardType.Text) }
+    var keyboardType by remember { mutableStateOf(KeyboardType.Text) }
 
     TextFields.TextField(
       value = filterText,
@@ -150,20 +151,27 @@ class BlockedUsersContactSelectionFragment : ComposeFragment(), OnContactSelecte
 
   @Composable
   fun ContactSelection(contactSelectionListFragment: ContactSelectionListFragment){
+    val frameId = remember { View.generateViewId() }
+
     AndroidView(
       modifier = Modifier.fillMaxSize(),
       factory = { context ->
-        FrameLayout(context).apply { id = View.generateViewId() }
+        FrameLayout(context).apply { id = frameId }
       },
-      update = { frameLayout ->
-        val fragmentManager = requireActivity().supportFragmentManager
-        if (fragmentManager.findFragmentById(frameLayout.id) != contactSelectionListFragment) {
-          fragmentManager.beginTransaction()
-            .replace(frameLayout.id, contactSelectionListFragment)
-            .commit()
-        }
-      }
     )
+
+    DisposableEffect(frameId) {
+      val fragmentManager = requireActivity().supportFragmentManager
+      fragmentManager.beginTransaction()
+        .replace(frameId, contactSelectionListFragment)
+        .commit()
+
+      onDispose {
+        fragmentManager.beginTransaction()
+          .remove(contactSelectionListFragment)
+          .commit()
+      }
+    }
   }
 
   override fun onBeforeContactSelected(isFromUnknownSearchKey: Boolean, recipientId: Optional<RecipientId>, number: String?, chatType: Optional<ChatType>, callback: Consumer<Boolean>) {
