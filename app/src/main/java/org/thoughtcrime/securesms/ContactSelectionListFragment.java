@@ -483,7 +483,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       return 0;
     }
 
-    return getSelectedContactsCount() + contactSearchMediator.getFixedContactsSize();
+    return getSelectedMembersSize() + contactSearchMediator.getFixedContactsSize();
   }
 
   private Set<RecipientId> getCurrentSelection() {
