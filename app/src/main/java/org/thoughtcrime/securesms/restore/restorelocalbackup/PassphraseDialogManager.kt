@@ -36,7 +36,7 @@ class PassphraseDialogManager(private val context: Context) {
       .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
       .setView(view)
       .setPositiveButton(R.string.RegistrationActivity_restore) { _, _ ->
-        ViewUtil.hideKeyboard(context, prompt)
+        // Do nothing, we'll handle this in the onShowListener
       }
       .setNegativeButton(android.R.string.cancel, null)
       .create()
