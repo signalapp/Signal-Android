@@ -724,20 +724,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return RecipientReader(cursor)
   }
 
-  fun getRecords(ids: Collection<RecipientId>): Map<RecipientId, RecipientRecord> {
-    val queries = SqlUtil.buildCollectionQuery(
+  fun getExistingRecords(ids: Collection<RecipientId>): Map<RecipientId, RecipientRecord> {
+    val query = SqlUtil.buildFastCollectionQuery(
       column = ID,
       values = ids.map { it.serialize() }
     )
 
-    val foundRecords = queries.flatMap { query ->
-      readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).readToList { cursor ->
-        RecipientTableCursorUtil.getRecord(context, cursor)
-      }
-    }
+    val foundRecords = readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToList { cursor -> RecipientTableCursorUtil.getRecord(context, cursor) }
 
     val foundIds = foundRecords.map { record -> record.id }
-    val remappedRecords = ids.filterNot { it in foundIds }.map(::findRemappedIdRecord)
+    val remappedRecords = ids.filterNot { it in foundIds }.mapNotNull { findRemappedIdRecord(it) }
 
     return (foundRecords + remappedRecords).associateBy { it.id }
   }
@@ -750,20 +751,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return if (cursor != null && cursor.moveToNext()) {
         RecipientTableCursorUtil.getRecord(context, cursor)
       } else {
-        findRemappedIdRecord(id)
+        findRemappedIdRecordOrThrow(id)
       }
     }
   }
 
-  private fun findRemappedIdRecord(id: RecipientId): RecipientRecord {
+  private fun findRemappedIdRecord(id: RecipientId): RecipientRecord? {
     val remapped = RemappedRecords.getInstance().getRecipient(id)
 
     return if (remapped.isPresent) {
       Log.w(TAG, "Missing recipient for $id, but found it in the remapped records as ${remapped.get()}")
       getRecord(remapped.get())
     } else {
-      throw MissingRecipientException(id)
+      null
     }
+  }
+
+  private fun findRemappedIdRecordOrThrow(id: RecipientId): RecipientRecord {
+    return findRemappedIdRecord(id) ?: throw MissingRecipientException(id)
   }
 
   fun getRecordForSync(id: RecipientId): RecipientRecord? {
