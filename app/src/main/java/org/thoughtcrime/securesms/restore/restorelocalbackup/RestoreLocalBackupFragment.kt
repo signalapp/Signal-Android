@@ -6,15 +6,12 @@
 package org.thoughtcrime.securesms.restore.restorelocalbackup
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -33,7 +30,6 @@ import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewModelFactory
-import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -180,22 +176,9 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
   }
 
   private fun presentBackupPassPhrasePromptDialog() {
-    val view = LayoutInflater.from(requireContext()).inflate(R.layout.enter_backup_passphrase_dialog, null)
-    val prompt = view.findViewById<EditText>(R.id.restore_passphrase_input)
-
-    prompt.addTextChangedListener(PassphraseAsYouTypeFormatter())
-
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
-      .setView(view)
-      .setPositiveButton(R.string.RegistrationActivity_restore) { _, _ ->
-        ViewUtil.hideKeyboard(requireContext(), prompt)
-
-        val passphrase = prompt.getText().toString()
-        restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), passphrase)
-      }
-      .setNegativeButton(android.R.string.cancel, null)
-      .show()
+    PassphraseDialogManager(requireContext()).showDialog { passphrase ->
+      restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), passphrase)
+    }
 
     Log.i(TAG, "Prompt for backup passphrase shown to user.")
   }
