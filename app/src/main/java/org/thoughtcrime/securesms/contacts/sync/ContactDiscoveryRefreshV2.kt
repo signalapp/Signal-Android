@@ -96,7 +96,8 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.empty(),
         10_000,
-        AppDependencies.libsignalNetwork
+        AppDependencies.libsignalNetwork,
+        RemoteConfig.libsignalRouteBasedCDSILookup
       ) {
         Log.i(TAG, "Ignoring token for one-off lookup.")
       }
@@ -160,7 +161,8 @@ object ContactDiscoveryRefreshV2 {
         SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
         Optional.ofNullable(token),
         timeoutMs,
-        AppDependencies.libsignalNetwork
+        AppDependencies.libsignalNetwork,
+        RemoteConfig.libsignalRouteBasedCDSILookup
       ) { tokenToSave ->
         stopwatch.split("network-pre-token")
         if (!isPartialRefresh) {

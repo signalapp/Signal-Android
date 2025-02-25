@@ -221,11 +221,12 @@ public class SignalServiceAccountManager {
                                                            Optional<byte[]> token,
                                                            Long timeoutMs,
                                                            @Nonnull Network libsignalNetwork,
+                                                           boolean useLibsignalRouteBasedCDSIConnectionLogic,
                                                            Consumer<byte[]> tokenSaver)
       throws IOException
   {
     CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
-    CdsiV2Service                                   service = new CdsiV2Service(libsignalNetwork);
+    CdsiV2Service                                   service = new CdsiV2Service(libsignalNetwork, useLibsignalRouteBasedCDSIConnectionLogic);
     CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
     Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
 

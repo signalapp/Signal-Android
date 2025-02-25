@@ -53,10 +53,10 @@ public final class CdsiV2Service {
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(@Nonnull Network network) {
+  public CdsiV2Service(@Nonnull Network network, boolean useLibsignalRouteBasedCDSIConnectionLogic) {
     this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
       try {
-        Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
+        Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver, useLibsignalRouteBasedCDSIConnectionLogic);
         return Single.fromFuture(cdsiRequest)
                      .onErrorResumeNext((Throwable err) -> {
                        if (err instanceof ExecutionException && err.getCause() != null) {
