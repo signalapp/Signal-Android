@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -185,17 +187,31 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
     prompt.addTextChangedListener(PassphraseAsYouTypeFormatter())
 
-    MaterialAlertDialogBuilder(requireContext())
+    val alertDialog = MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
       .setView(view)
       .setPositiveButton(R.string.RegistrationActivity_restore) { _, _ ->
-        ViewUtil.hideKeyboard(requireContext(), prompt)
-
-        val passphrase = prompt.getText().toString()
-        restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), passphrase)
+        // Do nothing, we'll handle this in the setOnShowListener method below.
       }
       .setNegativeButton(android.R.string.cancel, null)
-      .show()
+      .create()
+
+    alertDialog.setOnShowListener { dialog ->
+      val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+      positiveButton.isEnabled = false
+
+      prompt.doOnTextChanged { text, _, _, _ ->
+        val input = text.toString()
+        positiveButton.isEnabled = input.isNotBlank()
+      }
+
+      positiveButton.setOnClickListener {
+        ViewUtil.hideKeyboard(requireContext(), prompt)
+        restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), prompt.text.toString())
+        dialog.dismiss()
+      }
+    }
+    alertDialog.show()
 
     Log.i(TAG, "Prompt for backup passphrase shown to user.")
   }
