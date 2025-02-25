@@ -78,6 +78,9 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .identityState(cursor.optionalInt(IdentityTable.VERIFIED).map { IdentityTable.VerifiedStatus.forState(it) }.orElse(IdentityTable.VerifiedStatus.DEFAULT).toRemote())
       .note(cursor.requireString(RecipientTable.NOTE) ?: "")
       .nickname(cursor.readNickname())
+      .systemGivenName(cursor.requireString(RecipientTable.SYSTEM_GIVEN_NAME) ?: "")
+      .systemFamilyName(cursor.requireString(RecipientTable.SYSTEM_FAMILY_NAME) ?: "")
+      .systemNickname(cursor.requireString(RecipientTable.SYSTEM_NICKNAME) ?: "")
 
     val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {

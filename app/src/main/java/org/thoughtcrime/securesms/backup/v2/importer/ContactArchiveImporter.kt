@@ -52,7 +52,10 @@ object ContactArchiveImporter {
       RecipientTable.EXTRAS to contact.toLocalExtras().encode(),
       RecipientTable.NOTE to contact.note,
       RecipientTable.NICKNAME_GIVEN_NAME to contact.nickname?.given,
-      RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family
+      RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family,
+      RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
+      RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
+      RecipientTable.SYSTEM_NICKNAME to contact.systemNickname
     )
 
     if (contact.registered != null) {

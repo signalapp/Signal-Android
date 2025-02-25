@@ -177,6 +177,9 @@ message Contact {
   IdentityState identityState = 15;
   Name nickname = 16; // absent iff both `given` and `family` are empty
   string note = 17;
+  string systemGivenName = 18;
+  string systemFamilyName = 19;
+  string systemNickname = 20;
 }
 
 message Group {
