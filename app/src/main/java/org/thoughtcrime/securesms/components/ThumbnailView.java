@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.components.transfercontrols.TransferControlVie
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -488,7 +489,12 @@ public class ThumbnailView extends FrameLayout {
 
     transferControlViewStub.setVisibility(View.GONE);
 
-    RequestBuilder<Drawable> request = requestManager.load(new DecryptableUri(uri))
+    Object glideModel = uri;
+    if (PartAuthority.isLocalUri(uri)) {
+      glideModel = new DecryptableUri(uri);
+    }
+
+    RequestBuilder<Drawable> request = requestManager.load(glideModel)
                                                   .diskCacheStrategy(DiskCacheStrategy.NONE)
                                                   .downsample(SignalDownsampleStrategy.CENTER_OUTSIDE_NO_UPSCALE)
                                                   .listener(listener);
