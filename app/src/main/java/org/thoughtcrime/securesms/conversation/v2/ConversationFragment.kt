@@ -1594,6 +1594,12 @@ class ConversationFragment :
       return
     }
 
+    if (editMessage.body == composeText.editableText.toString()) {
+      Log.d(TAG, "Updated message matches original, exiting edit mode")
+      inputPanel.exitEditMessageMode()
+      return
+    }
+
     sendMessage()
   }
 
