@@ -450,7 +450,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeGroupInvitationDeclinedUpdate(@NonNull GroupInvitationDeclinedUpdate update, @NonNull List<UpdateDescription> updates) {
-    if (selfIds.matches(update.inviteeAci)) {
+    if (update.inviteeAci != null && selfIds.matches(update.inviteeAci)) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
     } else {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));

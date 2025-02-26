@@ -241,9 +241,10 @@ object GroupsV2UpdateMessageConverter {
     for (invitee in change.deletePendingMembers) {
       val decline = invitee.serviceIdBytes == editorAci
       if (decline) {
+        val inviteeServiceId = ServiceId.parseOrNull(invitee.serviceIdBytes)
         updates.add(
           GroupChangeChatUpdate.Update(
-            groupInvitationDeclinedUpdate = GroupInvitationDeclinedUpdate(inviteeAci = invitee.serviceIdBytes)
+            groupInvitationDeclinedUpdate = GroupInvitationDeclinedUpdate(inviteeAci = if (inviteeServiceId is ServiceId.ACI) invitee.serviceIdBytes else null)
           )
         )
       } else if (selfIds.matches(invitee.serviceIdBytes)) {

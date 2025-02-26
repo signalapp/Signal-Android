@@ -172,9 +172,10 @@ public class ApplicationMigrations {
     static final int DUPLICATE_E164_FIX            = 128;
     static final int FTS_TRIGGER_FIX               = 129;
     static final int THREAD_TABLE_PINNED_MIGRATION = 130;
+    static final int GROUP_DECLINE_INVITE_FIX      = 131;
   }
 
-  public static final int CURRENT_VERSION = 130;
+  public static final int CURRENT_VERSION = 131;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -791,6 +792,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.THREAD_TABLE_PINNED_MIGRATION) {
       jobs.put(Version.THREAD_TABLE_PINNED_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_DECLINE_INVITE_FIX) {
+      jobs.put(Version.GROUP_DECLINE_INVITE_FIX, new DatabaseMigrationJob());
     }
 
     return jobs;
