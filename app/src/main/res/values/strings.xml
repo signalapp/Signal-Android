@@ -672,8 +672,10 @@
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">You accepted a message request from %1$s. If this was a mistake, you can choose an action below.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
     <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
     <string name="ConversationFragment_profile_names_not_verified">%s are not verified</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">Profile names</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->

@@ -163,7 +163,7 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestProfileNameUnverified.setMovementMethod(LinkMovementMethod.getInstance());
     CharSequence builder = SpanUtil.clickSubstring(
         getContext(),
-        R.string.ConversationFragment_profile_names_not_verified,
+        forGroup ? R.string.ConversationFragment_group_names_not_verified : R.string.ConversationFragment_profile_names_not_verified,
         clickableRes,
         listener -> onClick.run(),
         true,
