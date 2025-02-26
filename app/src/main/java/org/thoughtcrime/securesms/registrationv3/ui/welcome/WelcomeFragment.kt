@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumber
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * First screen that is displayed on the very first app launch.
@@ -49,6 +50,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
     binding.welcomeContinueButton.setOnClickListener { onContinueClicked() }
     binding.welcomeTermsButton.setOnClickListener { onTermsClicked() }
     binding.welcomeTransferOrRestore.setOnClickListener { onRestoreOrTransferClicked() }
+    binding.welcomeTransferOrRestore.visible = !sharedViewModel.isReregister
 
     childFragmentManager.setFragmentResultListener(RestoreWelcomeBottomSheet.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
       if (requestKey == RestoreWelcomeBottomSheet.REQUEST_KEY) {

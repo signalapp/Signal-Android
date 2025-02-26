@@ -8,24 +8,23 @@ package org.thoughtcrime.securesms.pin
 import android.app.backup.BackupManager
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
+import kotlinx.coroutines.runBlocking
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
-import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
-import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
-import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
+import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
@@ -168,7 +167,6 @@ object SvrRepository {
             SignalStore.svr.isRegistrationLockEnabled = false
             SignalStore.pin.resetPinReminders()
             SignalStore.pin.keyboardType = pinKeyboardType
-            SignalStore.storageService.needsAccountRestore = false
 
             when (implementation.svrVersion) {
               SvrVersion.SVR2 -> SignalStore.svr.appendSvr2AuthTokenToList(response.authorization.asBasic())
@@ -178,15 +176,8 @@ object SvrRepository {
             AppDependencies.jobManager.add(ResetSvrGuessCountJob())
             stopwatch.split("metadata")
 
-            AppDependencies.jobManager.runSynchronously(StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN)
-            stopwatch.split("account-restore")
-
-            AppDependencies
-              .jobManager
-              .startChain(StorageSyncJob())
-              .then(ReclaimUsernameAndLinkJob())
-              .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
-            stopwatch.split("contact-restore")
+            runBlocking { StorageServiceRestore.restore() }
+            stopwatch.split("restore-account")
 
             if (implementation.svrVersion != SvrVersion.SVR2 && Svr3Migration.shouldWriteToSvr2) {
               AppDependencies.jobManager.add(Svr2MirrorJob())

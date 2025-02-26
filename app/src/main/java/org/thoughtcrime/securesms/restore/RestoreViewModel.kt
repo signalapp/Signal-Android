@@ -7,15 +7,25 @@ package org.thoughtcrime.securesms.restore
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.skippedRestoreChoice
+import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
+import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
+import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
 
 /**
  * Shared view model for the restore flow.
@@ -23,6 +33,9 @@ import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationTyp
 class RestoreViewModel : ViewModel() {
   private val store = MutableStateFlow(RestoreState())
   val uiState = store.asLiveData()
+
+  var showStorageAccountRestoreProgress by mutableStateOf(false)
+    private set
 
   fun setNextIntent(nextIntent: Intent) {
     store.update {
@@ -83,5 +96,20 @@ class RestoreViewModel : ViewModel() {
 
   fun hasRestoredAccountEntropyPool(): Boolean {
     return SignalStore.account.restoredAccountEntropyPool
+  }
+
+  fun skipRestore() {
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
+
+    viewModelScope.launch {
+      QuickRegistrationRepository.setRestoreMethodForOldDevice(ApiRestoreMethod.DECLINE)
+    }
+  }
+
+  suspend fun performStorageServiceAccountRestoreIfNeeded() {
+    if (hasRestoredAccountEntropyPool() || SignalStore.svr.masterKeyForInitialDataRestore != null) {
+      showStorageAccountRestoreProgress = true
+      StorageServiceRestore.restore()
+    }
   }
 }

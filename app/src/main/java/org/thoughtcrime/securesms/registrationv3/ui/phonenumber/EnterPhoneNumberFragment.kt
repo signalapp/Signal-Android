@@ -160,17 +160,23 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         handleRegistrationErrorResponse(it)
         sharedViewModel.registerAccountErrorShown()
       }
-
-      if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
-        sharedViewModel.submitCaptchaToken(requireContext())
-      } else if (sharedState.challengesRemaining.isNotEmpty()) {
-        handleChallenges(sharedState.challengesRemaining)
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
-        moveToEnterPinScreen()
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
-        moveToVerificationEntryScreen()
-      }
     }
+
+    sharedViewModel
+      .uiState
+      .map { it.toNavigationStateOnly() }
+      .distinctUntilChanged()
+      .observe(viewLifecycleOwner) { sharedState ->
+        if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
+          sharedViewModel.submitCaptchaToken(requireContext())
+        } else if (sharedState.challengesRemaining.isNotEmpty()) {
+          handleChallenges(sharedState.challengesRemaining)
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
+          moveToEnterPinScreen()
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
+          moveToVerificationEntryScreen()
+        }
+      }
 
     fragmentViewModel
       .uiState

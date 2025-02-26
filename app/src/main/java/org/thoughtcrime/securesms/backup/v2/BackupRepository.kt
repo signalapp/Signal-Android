@@ -1313,7 +1313,7 @@ object BackupRepository {
       val timestampResult = getBackupFileLastModified()
       when {
         timestampResult is NetworkResult.Success -> {
-          timestampResult.result?.let { SignalStore.backup.lastBackupTime = it.toMillis() }
+          SignalStore.backup.lastBackupTime = timestampResult.result?.toMillis() ?: 0L
         }
 
         timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {

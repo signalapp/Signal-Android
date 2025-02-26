@@ -18,9 +18,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.StorageForcePushJob
-import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification
 import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification.AEPValidationError
@@ -70,9 +67,6 @@ class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
       if (backupTier != null) {
         Log.i(TAG, "Backup tier found with entered AEP, migrating to new AEP and moving on to restore")
         SignalStore.account.restoreAccountEntropyPool(aep!!)
-        AppDependencies.jobManager.add(Svr2MirrorJob())
-        AppDependencies.jobManager.add(StorageForcePushJob())
-
         store.update { it.copy(restoreBackupTierSuccessful = true) }
       } else {
         Log.w(TAG, "Unable to validate AEP against currently registered account")

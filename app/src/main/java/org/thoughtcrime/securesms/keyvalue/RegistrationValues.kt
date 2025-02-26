@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -9,6 +10,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 class RegistrationValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
 
   companion object {
+    private val TAG = Log.tag(RegistrationValues::class)
+
     private const val REGISTRATION_COMPLETE = "registration.complete"
     private const val PIN_REQUIRED = "registration.pin_required"
     private const val HAS_UPLOADED_PROFILE = "registration.has_uploaded_profile"
@@ -72,7 +75,17 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
   @get:JvmName("isRestoringOnNewDevice")
   var restoringOnNewDevice: Boolean by booleanValue(RESTORING_ON_NEW_DEVICE, false)
 
-  var restoreDecisionState: RestoreDecisionState by protoValue(RESTORE_DECISION_STATE, RestoreDecisionState.Skipped, RestoreDecisionState.ADAPTER) { newValue ->
-    AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
-  }
+  var restoreDecisionState: RestoreDecisionState
+    get() = store.getBlob(RESTORE_DECISION_STATE, null)?.let { RestoreDecisionState.ADAPTER.decode(it) } ?: RestoreDecisionState.Skipped
+    set(newValue) {
+      if (isRegistrationComplete) {
+        Log.w(TAG, "Registration was completed, cannot change initial restore decision state")
+      } else {
+        Log.v(TAG, "Restore decision set: $newValue", Throwable())
+        store.beginWrite()
+          .putBlob(RESTORE_DECISION_STATE, newValue.encode())
+          .apply()
+        AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
+      }
+    }
 }

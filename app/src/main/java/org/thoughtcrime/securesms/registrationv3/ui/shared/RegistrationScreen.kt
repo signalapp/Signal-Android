@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -49,7 +50,7 @@ fun RegistrationScreen(
   title: String,
   subtitle: String,
   bottomContent: @Composable (BoxScope.() -> Unit),
-  mainContent: @Composable () -> Unit
+  mainContent: @Composable ColumnScope.() -> Unit
 ) {
   RegistrationScreen(title, AnnotatedString(subtitle), bottomContent, mainContent)
 }
@@ -62,7 +63,7 @@ fun RegistrationScreen(
   title: String,
   subtitle: AnnotatedString?,
   bottomContent: @Composable (BoxScope.() -> Unit),
-  mainContent: @Composable () -> Unit
+  mainContent: @Composable ColumnScope.() -> Unit
 ) {
   Surface {
     Column(

@@ -29,7 +29,7 @@ class SelectManualRestoreMethodFragment : ComposeFragment() {
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
 
-  private val launchRestoreActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+  private val localBackupRestore = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
     when (val resultCode = result.resultCode) {
       Activity.RESULT_OK -> {
         sharedViewModel.onBackupSuccessfullyRestored()
@@ -47,7 +47,10 @@ class SelectManualRestoreMethodFragment : ComposeFragment() {
     SelectRestoreMethodScreen(
       restoreMethods = listOf(RestoreMethod.FROM_SIGNAL_BACKUPS, RestoreMethod.FROM_LOCAL_BACKUP_V1),
       onRestoreMethodClicked = this::startRestoreMethod,
-      onSkip = { findNavController().safeNavigate(SelectManualRestoreMethodFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.NORMAL)) }
+      onSkip = {
+        sharedViewModel.skipRestore()
+        findNavController().safeNavigate(SelectManualRestoreMethodFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.NORMAL))
+      }
     )
   }
 
@@ -59,7 +62,7 @@ class SelectManualRestoreMethodFragment : ComposeFragment() {
       }
       RestoreMethod.FROM_LOCAL_BACKUP_V1 -> {
         sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = false)
-        launchRestoreActivity.launch(RestoreActivity.getLocalRestoreIntent(requireContext()))
+        localBackupRestore.launch(RestoreActivity.getLocalRestoreIntent(requireContext()))
       }
       RestoreMethod.FROM_OLD_DEVICE -> error("Device transfer not supported in manual restore flow")
       RestoreMethod.FROM_LOCAL_BACKUP_V2 -> error("Not currently supported")

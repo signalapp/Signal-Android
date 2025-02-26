@@ -47,7 +47,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
     super.onViewCreated(view, savedInstanceState)
 
     viewLifecycleOwner.lifecycleScope.launch {
-      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         sharedViewModel
           .state
           .map { it.registerAccountError }
@@ -60,7 +60,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
     }
 
     viewLifecycleOwner.lifecycleScope.launch {
-      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         sharedViewModel
           .state
           .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED }
@@ -94,18 +94,31 @@ class EnterBackupKeyFragment : ComposeFragment() {
       },
 
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
-      onSkip = { findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION)) }
-
-    ) {
-      ErrorContent(
-        state = state,
-        onBackupTierRetry = { sharedViewModel.restoreBackupTier() },
-        onSkipRestoreAfterRegistration = sharedViewModel::skipRestoreAfterRegistration,
-        onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupKeyFailed,
-        onRegistrationErrorDismiss = viewModel::clearRegistrationError,
-        onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) }
-      )
-    }
+      onSkip = {
+        sharedViewModel.skipRestore()
+        findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
+      },
+      dialogContent = {
+        if (state.showStorageAccountRestoreProgress) {
+          Dialogs.IndeterminateProgressDialog()
+        } else {
+          ErrorContent(
+            state = state,
+            onBackupTierRetry = { sharedViewModel.restoreBackupTier() },
+            onSkipRestoreAfterRegistration = {
+              viewLifecycleOwner.lifecycleScope.launch {
+                sharedViewModel.skipRestore()
+                viewModel.performStorageServiceAccountRestoreIfNeeded()
+                sharedViewModel.resumeNormalRegistration()
+              }
+            },
+            onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupKeyFailed,
+            onRegistrationErrorDismiss = viewModel::clearRegistrationError,
+            onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) }
+          )
+        }
+      }
+    )
   }
 }
 

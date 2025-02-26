@@ -73,7 +73,7 @@ fun EnterBackupKeyScreen(
   onNextClicked: () -> Unit = {},
   onLearnMore: () -> Unit = {},
   onSkip: () -> Unit = {},
-  errorContent: @Composable () -> Unit
+  dialogContent: @Composable () -> Unit
 ) {
   val coroutineScope = rememberCoroutineScope()
   val sheetState = rememberModalBottomSheetState(
@@ -185,7 +185,7 @@ fun EnterBackupKeyScreen(
       }
     }
 
-    errorContent()
+    dialogContent()
   }
 }
 

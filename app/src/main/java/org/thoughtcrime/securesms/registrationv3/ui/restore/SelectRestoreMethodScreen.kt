@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.registrationv3.ui.restore
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -24,7 +25,8 @@ import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
 fun SelectRestoreMethodScreen(
   restoreMethods: List<RestoreMethod>,
   onRestoreMethodClicked: (RestoreMethod) -> Unit = {},
-  onSkip: () -> Unit = {}
+  onSkip: () -> Unit = {},
+  extraContent: @Composable ColumnScope.() -> Unit = {}
 ) {
   RegistrationScreen(
     title = stringResource(id = R.string.SelectRestoreMethodFragment__restore_or_transfer_account),
@@ -46,6 +48,8 @@ fun SelectRestoreMethodScreen(
         onRowClick = { onRestoreMethodClicked(method) }
       )
     }
+
+    extraContent()
   }
 }
 

@@ -33,7 +33,7 @@ public final class RegistrationUtil {
         SignalStore.account().isRegistered() &&
         !Recipient.self().getProfileName().isEmpty() &&
         (SignalStore.svr().hasOptedInWithAccess() || SignalStore.svr().hasOptedOut()) &&
-        (!RemoteConfig.INSTANCE.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState())))
+        (!RemoteConfig.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState())))
     {
       Log.i(TAG, "Marking registration completed.", new Throwable());
       SignalStore.registration().markRegistrationComplete();

@@ -101,6 +101,13 @@ class EnterBackupKeyViewModel : ViewModel() {
     }
   }
 
+  suspend fun performStorageServiceAccountRestoreIfNeeded() {
+    if (SignalStore.account.restoredAccountEntropyPool || SignalStore.svr.masterKeyForInitialDataRestore != null) {
+      store.update { it.copy(showBackupTierNotRestoreError = false, showStorageAccountRestoreProgress = true) }
+      StorageServiceRestore.restore()
+    }
+  }
+
   data class EnterBackupKeyState(
     val backupKeyValid: Boolean = false,
     val requiredLength: Int,
@@ -109,6 +116,7 @@ class EnterBackupKeyViewModel : ViewModel() {
     val showRegistrationError: Boolean = false,
     val showBackupTierNotRestoreError: Boolean = false,
     val registerAccountResult: RegisterAccountResult? = null,
-    val aepValidationError: AEPValidationError? = null
+    val aepValidationError: AEPValidationError? = null,
+    val showStorageAccountRestoreProgress: Boolean = false
   )
 }

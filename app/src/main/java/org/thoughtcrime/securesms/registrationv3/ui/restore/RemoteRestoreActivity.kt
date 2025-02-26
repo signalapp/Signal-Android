@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFe
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsTypeFeatureRow
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
@@ -93,7 +92,8 @@ class RemoteRestoreActivity : BaseActivity() {
         .firstOrNull()
 
       if (restored != null) {
-        continueRegistration(restored.missingProfileData)
+        startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
+        finish()
       }
     }
 
@@ -106,12 +106,15 @@ class RemoteRestoreActivity : BaseActivity() {
             state = state,
             onRestoreBackupClick = { viewModel.restore() },
             onCancelClick = {
-              if (state.isRemoteRestoreOnlyOption) {
-                viewModel.skipRestore()
-                startActivity(MainActivity.clearTop(this))
-              }
+              lifecycleScope.launch {
+                if (state.isRemoteRestoreOnlyOption) {
+                  viewModel.skipRestore()
+                  viewModel.performStorageServiceAccountRestoreIfNeeded()
+                  startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
+                }
 
-              finish()
+                finish()
+              }
             },
             onErrorDialogDismiss = { viewModel.clearError() },
             onUpdateSignal = {
@@ -128,20 +131,6 @@ class RemoteRestoreActivity : BaseActivity() {
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onEvent(restoreEvent: RestoreV2Event) {
     viewModel.updateRestoreProgress(restoreEvent)
-  }
-
-  private fun continueRegistration(missingProfileData: Boolean) {
-    val main = MainActivity.clearTop(this)
-
-    if (missingProfileData) {
-      val profile = CreateProfileActivity.getIntentForUserProfile(this)
-      profile.putExtra("next_intent", main)
-      startActivity(profile)
-    } else {
-      startActivity(main)
-    }
-
-    finish()
   }
 }
 
@@ -171,11 +160,15 @@ private fun RestoreFromBackupContent(
     }
 
     RemoteRestoreViewModel.ScreenState.LoadState.NOT_FOUND -> {
-      RestoreFailedDialog(onDismiss = onCancelClick)
+      BackupNotFoundDialog(onDismiss = onCancelClick)
     }
 
     RemoteRestoreViewModel.ScreenState.LoadState.FAILURE -> {
       RestoreFailedDialog(onDismiss = onCancelClick)
+    }
+
+    RemoteRestoreViewModel.ScreenState.LoadState.STORAGE_SERVICE_RESTORE -> {
+      Dialogs.IndeterminateProgressDialog()
     }
   }
 }
@@ -401,6 +394,19 @@ private fun ProgressDialogPreview() {
       )
     )
   }
+}
+
+@Composable
+fun BackupNotFoundDialog(
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.EnterBackupKey_backup_not_found),
+    body = stringResource(R.string.EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup),
+    confirm = stringResource(android.R.string.ok),
+    onConfirm = onDismiss,
+    onDismiss = onDismiss
+  )
 }
 
 @Composable

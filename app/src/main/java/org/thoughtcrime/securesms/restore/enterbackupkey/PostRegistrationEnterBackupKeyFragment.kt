@@ -25,8 +25,8 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registrationv3.ui.restore.EnterBackupKeyScreen
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 /**
@@ -44,7 +44,7 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
     super.onViewCreated(view, savedInstanceState)
 
     viewLifecycleOwner.lifecycleScope.launch {
-      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+      viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         val successful = viewModel
           .state
           .map { it.restoreBackupTierSuccessful }
@@ -52,8 +52,8 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
           .firstOrNull() ?: false
 
         if (successful) {
-          Log.i(TAG, "Successfully restored AEP, moving to remote restore")
-          startActivity(RemoteRestoreActivity.getIntent(requireContext()))
+          Log.i(TAG, "Successfully restored an AEP, moving to remote restore")
+          findNavController().safeNavigate(PostRegistrationEnterBackupKeyFragmentDirections.goToRemoteRestoreActivity())
         }
       }
     }
@@ -78,7 +78,7 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
     ) {
       ErrorContent(
         showBackupTierNotRestoreError = state.showBackupTierNotRestoreError,
-        onBackupTierRetry = { /*viewModel.restoreBackupTier()*/ }, // TODO
+        onBackupTierRetry = { viewModel.restoreBackupTier() },
         onCancel = { findNavController().popBackStack() },
         onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupTierFailed
       )
