@@ -1119,14 +1119,6 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether or not this device supports syncing data to newly-linked device. */
-  @JvmStatic
-  val linkAndSync: Boolean by remoteBoolean(
-    key = "android.linkAndSync.3",
-    defaultValue = false,
-    hotSwappable = true
-  )
-
   /** Whether or not this device respect attachment backfill requests.  */
   val attachmentBackfillSync: Boolean by remoteBoolean(
     key = "android.attachmentBackfillSync",

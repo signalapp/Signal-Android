@@ -181,7 +181,7 @@ class LinkDeviceViewModel : ViewModel() {
     if (LinkDeviceRepository.isValidQr(uri)) {
       _state.update {
         it.copy(
-          qrCodeState = if (uri.supportsLinkAndSync() && RemoteConfig.linkAndSync) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
+          qrCodeState = if (uri.supportsLinkAndSync()) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
           linkUri = uri,
           showFrontCamera = null
         )
@@ -225,7 +225,7 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "Adding device with sync.")
       addDeviceWithSync(linkUri)
     } else {
-      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()}, remoteConfig: ${RemoteConfig.linkAndSync})")
+      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()})")
       addDeviceWithoutSync(linkUri)
     }
   }
