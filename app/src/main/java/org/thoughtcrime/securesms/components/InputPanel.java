@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -73,7 +72,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -569,17 +567,6 @@ public class InputPanel extends ConstraintLayout
   @Override
   public void onRecordPressed() {
     if (listener != null) listener.onRecorderStarted();
-    recordTime.display();
-    slideToCancel.display();
-
-    if (emojiVisible) {
-      fadeOut(mediaKeyboard);
-    }
-
-    fadeOut(composeText);
-    fadeOut(quickCameraToggle);
-    fadeOut(quickAudioToggle);
-    fadeOut(buttonToggle);
   }
 
   @Override
@@ -613,15 +600,20 @@ public class InputPanel extends ConstraintLayout
   @Override
   public void onRecordCanceled(boolean byUser) {
     Log.d(TAG, "Recording canceled byUser=" + byUser);
-    onRecordHideEvent();
-    if (listener != null) listener.onRecorderCanceled(byUser);
+    long elapsedTime = onRecordHideEvent();
+
+    if (listener != null) {
+      Log.d(TAG, "Elapsed time: " + elapsedTime);
+      if (elapsedTime > 1000) {
+        listener.onRecorderCanceled(byUser);
+      } else {
+        listener.onRecorderCanceled(true);
+      }
+    }
   }
 
   @Override
   public void onRecordLocked() {
-    slideToCancel.hide();
-    recordLockCancel.setVisibility(View.VISIBLE);
-    fadeIn(buttonToggle);
     if (listener != null) listener.onRecorderLocked();
   }
 
@@ -641,21 +633,7 @@ public class InputPanel extends ConstraintLayout
   }
 
   private long onRecordHideEvent() {
-    recordLockCancel.setVisibility(View.GONE);
-
-    ListenableFuture<Void> future      = slideToCancel.hide();
-    long                   elapsedTime = recordTime.hide();
-
-    future.addListener(new AssertedSuccessListener<Void>() {
-      @Override
-      public void onSuccess(Void result) {
-        if (voiceNoteDraftView.getDraft() == null) {
-          fadeInNormalComposeViews();
-        }
-      }
-    });
-
-    return elapsedTime;
+    return recordTime.hide();
   }
 
   @Override
@@ -692,6 +670,10 @@ public class InputPanel extends ConstraintLayout
     return microphoneRecorderView.isRecordingLocked();
   }
 
+  private boolean isRecordingWithoutLock() {
+    return microphoneRecorderView.isRecordingWithoutLock();
+  }
+
   public void releaseRecordingLock() {
     microphoneRecorderView.unlockAction();
   }
@@ -699,19 +681,81 @@ public class InputPanel extends ConstraintLayout
   public void setVoiceNoteDraft(@Nullable DraftTable.Draft voiceNoteDraft) {
     if (voiceNoteDraft != null) {
       voiceNoteDraftView.setDraft(voiceNoteDraft);
-      voiceNoteDraftView.setVisibility(VISIBLE);
-      hideNormalComposeViews();
-      fadeIn(buttonToggle);
-      buttonToggle.displayQuick(sendButton);
     } else {
       voiceNoteDraftView.clearDraft();
-      ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
-      fadeInNormalComposeViews();
     }
   }
 
-  public @Nullable DraftTable.Draft getVoiceNoteDraft() {
-    return voiceNoteDraftView.getDraft();
+  public void updateComposeViews() {
+    if (isRecordingWithoutLock()) {
+      showRecordingWithoutLockViews();
+      hideVoiceNoteDraftViews();
+      hideRecordingInLockViews();
+      hideNormalComposeViews();
+      return;
+    }
+
+    if (isRecordingInLockedMode()) {
+      showRecordingInLockViews();
+      return;
+    }
+
+    if (voiceNoteDraftView.getDraft() != null) {
+      hideRecordingViews();
+      hideNormalComposeViews();
+      showVoiceNoteDraftViews();
+      return;
+    }
+
+    hideVoiceNoteDraftViews();
+    hideRecordingViews();
+    showNormalComposeViews();
+  }
+
+  private void hideRecordingViews() {
+    android.util.Log.e(TAG, "hideRecordingViews");
+    recordLockCancel.setVisibility(GONE);
+    recordTime.hide();
+    slideToCancel.hide();
+  }
+
+  private void showVoiceNoteDraftViews() {
+    voiceNoteDraftView.setVisibility(VISIBLE);
+    fadeIn(buttonToggle);
+    buttonToggle.displayQuick(sendButton);
+  }
+
+  private void hideVoiceNoteDraftViews() {
+    ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
+  }
+
+  private void showRecordingWithoutLockViews() {
+    recordTime.display();
+    slideToCancel.display();
+    buttonToggle.animate().cancel();
+    buttonToggle.setAlpha(0f);
+  }
+
+  private void showRecordingInLockViews() {
+    slideToCancel.hide();
+    recordLockCancel.setVisibility(View.VISIBLE);
+    fadeIn(buttonToggle);
+    buttonToggle.displayQuick(sendButton);
+  }
+
+  private void hideRecordingInLockViews() {
+    recordLockCancel.setVisibility(GONE);
+  }
+
+  private void showNormalComposeViews() {
+    if (emojiVisible) {
+      fadeIn(mediaKeyboard);
+    }
+
+    fadeIn(composeText);
+    fadeIn(quickCameraToggle);
+    fadeIn(quickAudioToggle);
+    fadeIn(buttonToggle);
   }
 
   private void hideNormalComposeViews() {
@@ -726,18 +770,12 @@ public class InputPanel extends ConstraintLayout
     }
   }
 
-  private void fadeInNormalComposeViews() {
-    if (emojiVisible) {
-      fadeIn(mediaKeyboard);
-    }
-
-    fadeIn(composeText);
-    fadeIn(quickCameraToggle);
-    fadeIn(quickAudioToggle);
-    fadeIn(buttonToggle);
+  public @Nullable DraftTable.Draft getVoiceNoteDraft() {
+    return voiceNoteDraftView.getDraft();
   }
 
   private void fadeIn(@NonNull View v) {
+    v.animate().cancel();
     v.animate()
      .setListener(new AnimationStartListener() {
        @Override
@@ -873,7 +911,7 @@ public class InputPanel extends ConstraintLayout
     public void display() {
       this.startTime = System.currentTimeMillis();
       this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
-      ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
+      recordTimeView.setVisibility(View.VISIBLE);
       ThreadUtil.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
       microphone.setVisibility(View.VISIBLE);
       microphone.startAnimation(pulseAnimation());
@@ -883,7 +921,7 @@ public class InputPanel extends ConstraintLayout
     public long hide() {
       long elapsedTime = System.currentTimeMillis() - startTime;
       this.startTime = 0;
-      ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
+      recordTimeView.setVisibility(View.INVISIBLE);
       microphone.clearAnimation();
       ViewUtil.fadeOut(this.microphone, FADE_TIME, View.INVISIBLE);
       return elapsedTime;
@@ -894,7 +932,7 @@ public class InputPanel extends ConstraintLayout
     public void run() {
       long localStartTime = startTime;
       if (localStartTime > 0) {
-        long elapsedTime = System.currentTimeMillis() - localStartTime;
+        long elapsedTime    = System.currentTimeMillis() - localStartTime;
         long elapsedSeconds = TimeUnit.MILLISECONDS.toSeconds(elapsedTime);
         if (elapsedSeconds >= limitSeconds) {
           onLimitHit.run();
