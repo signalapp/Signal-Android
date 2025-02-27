@@ -8,6 +8,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -155,9 +156,9 @@ class EditProfileViewModel extends ViewModel {
 
     repository.uploadProfile(profileName,
                              displayName,
-                             !Objects.equals(StringUtil.stripBidiProtection(oldDisplayName), displayName),
+                             !Objects.equals(BidiUtil.stripBidiProtection(oldDisplayName), displayName),
                              description,
-                             !Objects.equals(StringUtil.stripBidiProtection(oldDescription), description),
+                             !Objects.equals(BidiUtil.stripBidiProtection(oldDescription), description),
                              newAvatar,
                              !Arrays.equals(oldAvatar, newAvatar),
                              uploadResult::postValue);

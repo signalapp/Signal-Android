@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.collections.immutable.toImmutableList
-import org.signal.core.util.StringUtil
+import org.signal.core.util.BidiUtil
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
@@ -532,7 +532,7 @@ class Recipient(
     if (Util.isEmpty(name)) {
       name = getUnknownDisplayName(context)
     }
-    return StringUtil.isolateBidi(name)
+    return BidiUtil.isolateBidi(name)
   }
 
   fun hasNonUsernameDisplayName(context: Context): Boolean {
@@ -569,21 +569,21 @@ class Recipient(
   /** A display name to use when rendering a mention of this user. */
   fun getMentionDisplayName(context: Context): String {
     var name: String? = if (isSelf) profileName.toString() else getGroupName(context)
-    name = StringUtil.isolateBidi(name)
+    name = BidiUtil.isolateBidi(name)
 
     if (name.isBlank()) {
       name = if (isSelf) getGroupName(context) else nickname.toString()
-      name = StringUtil.isolateBidi(name)
+      name = BidiUtil.isolateBidi(name)
     }
 
     if (name.isBlank()) {
       name = if (isSelf) getGroupName(context) else systemContactName
-      name = StringUtil.isolateBidi(name)
+      name = BidiUtil.isolateBidi(name)
     }
 
     if (name.isBlank()) {
       name = if (isSelf) getGroupName(context) else profileName.toString()
-      name = StringUtil.isolateBidi(name)
+      name = BidiUtil.isolateBidi(name)
     }
 
     if (name.isBlank() && e164Value.isNotNullOrBlank()) {
@@ -591,11 +591,11 @@ class Recipient(
     }
 
     if (name.isBlank()) {
-      name = StringUtil.isolateBidi(emailValue)
+      name = BidiUtil.isolateBidi(emailValue)
     }
 
     if (name.isBlank()) {
-      name = StringUtil.isolateBidi(context.getString(R.string.Recipient_unknown))
+      name = BidiUtil.isolateBidi(context.getString(R.string.Recipient_unknown))
     }
 
     return name
@@ -615,7 +615,7 @@ class Recipient(
       getDisplayName(context)
     ).firstOrNull { it.isNotNullOrBlank() }
 
-    return StringUtil.isolateBidi(name)
+    return BidiUtil.isolateBidi(name)
   }
 
   private fun getUnknownDisplayName(context: Context): String {

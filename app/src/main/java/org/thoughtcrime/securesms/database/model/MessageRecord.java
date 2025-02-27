@@ -34,6 +34,7 @@ import androidx.core.content.ContextCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.Base64;
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -470,8 +471,8 @@ public abstract class MessageRecord extends DisplayRecord {
     if (profileChangeDetails != null) {
       if (profileChangeDetails.profileNameChange != null) {
         String displayName  = getFromRecipient().getDisplayName(context);
-        String newName      = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.newValue).toString());
-        String previousName = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.previous).toString());
+        String newName      = BidiUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.newValue).toString());
+        String previousName = BidiUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.previous).toString());
 
         String updateMessage;
         if (getFromRecipient().isSystemContact()) {

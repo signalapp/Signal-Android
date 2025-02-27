@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
@@ -115,7 +116,7 @@ public final class GroupUtil {
         return description.toString();
       }
 
-      String title = StringUtil.isolateBidi(groupContext.getName());
+      String title = BidiUtil.isolateBidi(groupContext.getName());
 
       if (members != null && members.size() > 0) {
         description.append("\n");

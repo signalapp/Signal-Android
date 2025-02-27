@@ -49,7 +49,7 @@ public final class StringUtilTest_hasMixedTextDirection {
 
   @Test
   public void trim() {
-    boolean output = StringUtil.hasMixedTextDirection(input);
+    boolean output = BidiUtil.hasMixedTextDirection(input);
     assertEquals(expected, output);
   }
 }

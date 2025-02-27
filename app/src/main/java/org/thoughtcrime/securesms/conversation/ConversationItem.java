@@ -70,6 +70,7 @@ import com.google.common.collect.Sets;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
@@ -561,7 +562,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         !bodyText.isJumbomoji() &&
         conversationMessage.getBottomButton() == null &&
-        !StringUtil.hasMixedTextDirection(bodyText.getText()) &&
+        !BidiUtil.hasMixedTextDirection(bodyText.getText()) &&
         !messageRecord.isRemoteDelete() &&
         bodyText.getLastLineWidth() > 0)
     {

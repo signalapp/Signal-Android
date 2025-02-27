@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.model
 
 import okio.ByteString
-import org.signal.core.util.StringUtil
+import org.signal.core.util.BidiUtil
 import org.signal.core.util.isNullOrEmpty
 import org.signal.storageservice.protos.groups.AccessControl
 import org.signal.storageservice.protos.groups.AccessControl.AccessRequired
@@ -340,7 +340,7 @@ object GroupsV2UpdateMessageConverter {
   fun translateNewTitle(change: DecryptedGroupChange, editorUnknown: Boolean, updates: MutableList<GroupChangeChatUpdate.Update>) {
     if (change.newTitle != null) {
       val editorAci = if (editorUnknown) null else change.editorServiceIdBytes
-      val newTitle = StringUtil.isolateBidi(change.newTitle?.value_)
+      val newTitle = BidiUtil.isolateBidi(change.newTitle?.value_)
       updates.add(
         GroupChangeChatUpdate.Update(
           groupNameUpdate = GroupNameUpdate(

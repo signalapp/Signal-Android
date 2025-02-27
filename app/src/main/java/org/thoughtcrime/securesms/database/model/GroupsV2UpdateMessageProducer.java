@@ -12,6 +12,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.StringUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
@@ -551,9 +552,9 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupNameUpdate(@NonNull GroupNameUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(update.newGroupName)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(update.newGroupName)), R.drawable.ic_update_group_name_16));
     } else {
-      String newTitle = StringUtil.isolateBidi(update.newGroupName);
+      String newTitle = BidiUtil.isolateBidi(update.newGroupName);
       if (selfIds.matches(update.updaterAci)) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
       } else {
@@ -1081,7 +1082,7 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
     if (change.newTitle != null) {
-      String newTitle = StringUtil.isolateBidi(change.newTitle.value_);
+      String newTitle = BidiUtil.isolateBidi(change.newTitle.value_);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
       } else {
@@ -1104,7 +1105,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newTitle != null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
     }
   }
 
@@ -1118,7 +1119,7 @@ final class GroupsV2UpdateMessageProducer {
         updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, groupDescriptionUpdate.updaterAci, R.drawable.ic_update_group_name_16));
       }
     } else {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(groupDescriptionUpdate.newDescription)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(groupDescriptionUpdate.newDescription)), R.drawable.ic_update_group_name_16));
     }
   }
 

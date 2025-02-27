@@ -10,6 +10,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
@@ -80,7 +81,7 @@ public class PhoneNumberFormatter {
   }
 
   public static @NonNull String prettyPrint(@NonNull String e164) {
-    return StringUtil.forceLtr(get(AppDependencies.getApplication()).prettyPrintFormat(e164));
+    return BidiUtil.forceLtr(get(AppDependencies.getApplication()).prettyPrintFormat(e164));
   }
 
   public @NonNull String prettyPrintFormat(@NonNull String e164) {
@@ -91,13 +92,13 @@ public class PhoneNumberFormatter {
           localNumber.get().countryCode == parsedNumber.getCountryCode() &&
           NATIONAL_FORMAT_COUNTRY_CODES.contains(localNumber.get().getCountryCode()))
       {
-        return StringUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
+        return BidiUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
       } else {
-        return StringUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL));
+        return BidiUtil.isolateBidi(phoneNumberUtil.format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL));
       }
     } catch (NumberParseException e) {
       Log.w(TAG, "Failed to format number: " + e.toString());
-      return StringUtil.isolateBidi(e164);
+      return BidiUtil.isolateBidi(e164);
     }
   }
 
