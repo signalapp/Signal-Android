@@ -103,8 +103,8 @@ class StorageRotateManifestJob private constructor(parameters: Parameters) : Job
         Result.failure()
       }
       is StorageServiceRepository.WriteStorageRecordsResult.StatusCodeError -> {
-        Log.w(TAG, "Encountered a status code error during write, retrying.", result.exception)
-        Result.retry(defaultBackoff())
+        Log.w(TAG, "Encountered a non-conflict status code error during write. Failing.", result.exception)
+        Result.failure()
       }
 
       is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> {
