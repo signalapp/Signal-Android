@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.common.io.ByteStreams
@@ -80,6 +81,9 @@ class MediaSelectionViewModel(
 
   val state: LiveData<MediaSelectionState> = store.stateLiveData
 
+  private val _isVideoRecording: MutableLiveData<Boolean> = MutableLiveData(false)
+  val isVideoRecording: LiveData<Boolean> = _isVideoRecording
+
   private val internalHudCommands = PublishSubject.create<HudCommand>()
 
   val mediaErrors: BehaviorSubject<MediaValidator.FilterError> = BehaviorSubject.createDefault(MediaValidator.FilterError.None)
@@ -97,6 +101,10 @@ class MediaSelectionViewModel(
       }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun updateIsVideoRecordingState(state: Boolean) {
+    _isVideoRecording.value = state
   }
 
   fun updateAddAMessageCount(input: CharSequence?) {
