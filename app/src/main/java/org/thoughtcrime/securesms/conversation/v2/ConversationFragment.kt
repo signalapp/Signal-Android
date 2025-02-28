@@ -1025,12 +1025,6 @@ class ConversationFragment :
     childFragmentManager.setFragmentResultListener(AttachmentKeyboardFragment.RESULT_KEY, viewLifecycleOwner, AttachmentKeyboardFragmentListener())
     motionEventRelay.setDrain(MotionEventRelayDrain(this))
 
-    voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
-      this,
-      AudioRecorder(requireContext(), inputPanel),
-      VoiceMessageRecordingSessionCallbacks()
-    )
-
     val conversationBannerListener = ConversationBannerListener()
     binding.conversationBanner.listener = conversationBannerListener
 
@@ -1086,22 +1080,10 @@ class ConversationFragment :
       .subscribeBy { (inputReadyState, data) -> handleShareOrDraftData(inputReadyState, data) }
       .addTo(disposables)
 
-    disposables.add(
-      draftViewModel
-        .state
-        .distinctUntilChanged { previous, next -> previous.voiceNoteDraft == next.voiceNoteDraft }
-        .subscribe {
-          inputPanel.voiceNoteDraft = it.voiceNoteDraft
-          updateToggleButtonState()
-        }
-    )
-
     initializeSearch()
     initializeLinkPreviews()
     initializeStickerSuggestions()
     initializeInlineSearch()
-
-    inputPanel.setListener(InputPanelListener())
 
     viewModel
       .getScheduledMessagesCount()
@@ -1669,6 +1651,22 @@ class ConversationFragment :
 
     conversationItemDecorations = ConversationItemDecorations(hasWallpaper = args.wallpaper != null)
     binding.conversationItemRecycler.addItemDecoration(conversationItemDecorations, 0)
+
+    voiceMessageRecordingDelegate = VoiceMessageRecordingDelegate(
+      this,
+      AudioRecorder(requireContext(), inputPanel),
+      VoiceMessageRecordingSessionCallbacks()
+    )
+
+    inputPanel.setListener(InputPanelListener())
+
+    disposables += draftViewModel
+      .state
+      .distinctUntilChanged { previous, next -> previous.voiceNoteDraft == next.voiceNoteDraft }
+      .subscribe {
+        inputPanel.voiceNoteDraft = it.voiceNoteDraft
+        updateToggleButtonState()
+      }
   }
 
   private fun initializeGiphyMp4(): GiphyMp4ProjectionRecycler {
@@ -1772,6 +1770,7 @@ class ConversationFragment :
   }
 
   private fun updateToggleButtonState() {
+    inputPanel.updateComposeViews()
     val buttonToggle: AnimatingToggle = binding.conversationInputPanel.buttonToggle
     val quickAttachment: HidingLinearLayout = binding.conversationInputPanel.quickAttachmentToggle
     val inlineAttachment: HidingLinearLayout = binding.conversationInputPanel.inlineAttachmentContainer
@@ -4063,7 +4062,7 @@ class ConversationFragment :
       }
 
       val typingStatusSender = AppDependencies.typingStatusSender
-      if (text.length == 0) {
+      if (text.isEmpty()) {
         typingStatusSender.onTypingStoppedWithNotify(args.threadId)
       } else if (text.length < previousText.length && previousText.contains(text)) {
         typingStatusSender.onTypingStopped(args.threadId)
@@ -4102,6 +4101,7 @@ class ConversationFragment :
     }
 
     override fun onRecorderStarted() {
+      updateToggleButtonState()
       voiceMessageRecordingDelegate.onRecorderStarted()
     }
 
