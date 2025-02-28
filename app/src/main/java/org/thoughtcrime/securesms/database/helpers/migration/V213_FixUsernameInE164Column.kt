@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * There was a bug where adding a member to a group by username could put that username in the e164 column.

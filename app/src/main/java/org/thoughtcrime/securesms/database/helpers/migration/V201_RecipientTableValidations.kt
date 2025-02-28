@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * This migration rebuilds the recipient table to drop some deprecated columns, rename others to match their intended name, and some new constraints.

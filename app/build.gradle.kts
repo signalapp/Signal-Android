@@ -559,6 +559,7 @@ dependencies {
   implementation(libs.lottie.compose)
   implementation(libs.signal.android.database.sqlcipher)
   implementation(libs.androidx.sqlite)
+  testImplementation(libs.androidx.sqlite.framework)
   implementation(libs.google.ez.vcard) {
     exclude(group = "com.fasterxml.jackson.core")
     exclude(group = "org.freemarker")

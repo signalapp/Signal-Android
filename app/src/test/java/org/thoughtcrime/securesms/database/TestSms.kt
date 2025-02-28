@@ -1,24 +1,26 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
+import androidx.sqlite.db.SupportSQLiteDatabase
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.util.Optional
 import java.util.UUID
-import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 
 /**
  * Helper methods for inserting SMS messages into the SMS table.
  */
 object TestSms {
 
+  private var startSentTimestamp = System.currentTimeMillis()
+
   fun insert(
-    db: AndroidSQLiteDatabase,
+    db: SupportSQLiteDatabase,
     sender: RecipientId = RecipientId.from(1),
     senderDeviceId: Int = 1,
-    sentTimestampMillis: Long = System.currentTimeMillis(),
+    sentTimestampMillis: Long = startSentTimestamp++,
     serverTimestampMillis: Long = System.currentTimeMillis(),
     receivedTimestampMillis: Long = System.currentTimeMillis(),
     encodedBody: String = "encodedBody",
@@ -53,7 +55,7 @@ object TestSms {
   }
 
   fun insert(
-    db: AndroidSQLiteDatabase,
+    db: SupportSQLiteDatabase,
     message: IncomingMessage,
     type: Long = MessageTypes.BASE_INBOX_TYPE,
     unread: Boolean = false,
@@ -75,6 +77,6 @@ object TestSms {
       put(MessageTable.SERVER_GUID, message.serverGuid)
     }
 
-    return db.insert(MessageTable.TABLE_NAME, null, values)
+    return db.insert(MessageTable.TABLE_NAME, 0, values)
   }
 }

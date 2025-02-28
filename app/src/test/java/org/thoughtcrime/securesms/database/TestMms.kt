@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -12,12 +13,14 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  */
 object TestMms {
 
+  private var startSendTimestamp = System.currentTimeMillis()
+
   fun insert(
-    db: SQLiteDatabase,
+    db: SupportSQLiteDatabase,
     recipient: Recipient = Recipient.UNKNOWN,
     recipientId: RecipientId = Recipient.UNKNOWN.id,
     body: String = "body",
-    sentTimeMillis: Long = System.currentTimeMillis(),
+    sentTimeMillis: Long = startSendTimestamp++,
     receivedTimestampMillis: Long = System.currentTimeMillis(),
     expiresIn: Long = 0,
     expireTimerVersion: Int = 1,
@@ -64,7 +67,7 @@ object TestMms {
   }
 
   private fun insert(
-    db: SQLiteDatabase,
+    db: SupportSQLiteDatabase,
     message: OutgoingMessage,
     recipientId: RecipientId = message.threadRecipient.id,
     body: String = message.body,
@@ -96,7 +99,7 @@ object TestMms {
       put(MessageTable.MENTIONS_SELF, 0)
     }
 
-    return db.insert(MessageTable.TABLE_NAME, null, contentValues)
+    return db.insert(MessageTable.TABLE_NAME, 0, contentValues)
   }
 
   fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {

@@ -6,8 +6,8 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Recreates the message FTS stuff, but with a tokenizer property that lets us search for emoji.

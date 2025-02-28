@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import androidx.core.content.contentValuesOf
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.readToList
 import org.signal.core.util.requireNonNullString
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Migrates all IDs from the GroupTable into the GroupMembershipTable

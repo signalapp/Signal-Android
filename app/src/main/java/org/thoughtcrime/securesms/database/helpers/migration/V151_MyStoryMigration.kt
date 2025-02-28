@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.database.helpers.migration
 import android.app.Application
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
 /**

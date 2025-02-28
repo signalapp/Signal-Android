@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.testing
 
 import android.content.ContentValues
 import android.database.Cursor
+import android.database.SQLException
+import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQuery
-import org.signal.core.util.toAndroidQuery
+import net.zetetic.database.sqlcipher.SQLiteQueryBuilder
 import java.util.Locale
 import android.database.sqlite.SQLiteDatabase as AndroidSQLiteDatabase
 import android.database.sqlite.SQLiteTransactionListener as AndroidSQLiteTransactionListener
@@ -15,7 +17,7 @@ import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabas
  * Partial implementation of [SignalSQLiteDatabase] using an instance of [AndroidSQLiteDatabase] instead
  * of SQLCipher.
  */
-class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : SignalSQLiteDatabase(null) {
+class TestSignalSQLiteDatabase(private val database: SupportSQLiteDatabase) : SignalSQLiteDatabase(null) {
   override fun getSqlCipherDatabase(): net.zetetic.database.sqlcipher.SQLiteDatabase {
     throw UnsupportedOperationException()
   }
@@ -33,7 +35,7 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
   }
 
   override fun query(distinct: Boolean, table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
-    return database.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
+    throw UnsupportedOperationException()
   }
 
   override fun queryWithFactory(
@@ -48,75 +50,83 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
     orderBy: String?,
     limit: String?
   ): Cursor {
-    return database.queryWithFactory(null, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
+    throw UnsupportedOperationException()
   }
 
   override fun query(query: SupportSQLiteQuery): Cursor {
-    val converted = query.toAndroidQuery()
-    return database.rawQuery(converted.where, converted.whereArgs)
-  }
-
-  override fun query(table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?): Cursor {
-    return database.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
+    return database.query(query)
   }
 
   override fun query(table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?, limit: String?): Cursor {
-    return database.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit)
+    val query: String = SQLiteQueryBuilder.buildQueryString(false, table, columns, selection, groupBy, having, orderBy, limit)
+    return database.query(query, selectionArgs ?: emptyArray())
+  }
+
+  override fun query(table: String, columns: Array<out String>?, selection: String?, selectionArgs: Array<out String>?, groupBy: String?, having: String?, orderBy: String?): Cursor {
+    return query(table, columns, selection, selectionArgs, groupBy, having, orderBy, null)
   }
 
   override fun rawQuery(sql: String, selectionArgs: Array<out String>?): Cursor {
-    return database.rawQuery(sql, selectionArgs)
+    return database.query(sql, selectionArgs ?: emptyArray())
   }
 
   override fun rawQuery(sql: String, args: Array<out Any>?): Cursor {
-    return database.rawQuery(sql, args?.map(Any::toString)?.toTypedArray())
+    return database.query(sql, args ?: emptyArray())
   }
 
   override fun rawQueryWithFactory(cursorFactory: net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory?, sql: String, selectionArgs: Array<out String>?, editTable: String): Cursor {
-    return database.rawQueryWithFactory(null, sql, selectionArgs, editTable)
+    throw UnsupportedOperationException()
   }
 
   override fun rawQuery(sql: String, selectionArgs: Array<out String>?, initialRead: Int, maxRead: Int): Cursor {
     throw UnsupportedOperationException()
   }
 
-  override fun insert(table: String, nullColumnHack: String?, values: ContentValues?): Long {
-    return database.insert(table, nullColumnHack, values)
+  override fun insert(table: String, nullColumnHack: String?, values: ContentValues): Long {
+    return database.insert(table, 0, values)
   }
 
-  override fun insertOrThrow(table: String, nullColumnHack: String?, values: ContentValues?): Long {
-    return database.insertOrThrow(table, nullColumnHack, values)
+  override fun insertOrThrow(table: String, nullColumnHack: String?, values: ContentValues): Long {
+    val result = database.insert(table, 0, values)
+    if (result < 0) {
+      throw SQLException()
+    }
+    return result
   }
 
-  override fun replace(table: String, nullColumnHack: String?, initialValues: ContentValues?): Long {
-    return database.replace(table, nullColumnHack, initialValues)
+  override fun replace(table: String, nullColumnHack: String?, initialValues: ContentValues): Long {
+    return database.insert(table, 5, initialValues)
   }
 
-  override fun replaceOrThrow(table: String, nullColumnHack: String?, initialValues: ContentValues?): Long {
-    return database.replaceOrThrow(table, nullColumnHack, initialValues)
+  override fun replaceOrThrow(table: String, nullColumnHack: String?, initialValues: ContentValues): Long {
+    val result = replace(table, nullColumnHack, initialValues)
+    if (result < 0) {
+      throw SQLException()
+    }
+    return result
   }
 
-  override fun insertWithOnConflict(table: String, nullColumnHack: String?, initialValues: ContentValues?, conflictAlgorithm: Int): Long {
-    return database.insertWithOnConflict(table, nullColumnHack, initialValues, conflictAlgorithm)
+  override fun insertWithOnConflict(table: String, nullColumnHack: String?, initialValues: ContentValues, conflictAlgorithm: Int): Long {
+    return database.insert(table, conflictAlgorithm, initialValues)
   }
 
   override fun delete(table: String, whereClause: String?, whereArgs: Array<out String>?): Int {
     return database.delete(table, whereClause, whereArgs)
   }
 
-  override fun update(table: String, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?): Int {
-    return database.update(table, values, whereClause, whereArgs)
+  override fun update(table: String, values: ContentValues, whereClause: String?, whereArgs: Array<out String>?): Int {
+    return database.update(table, 0, values, whereClause, whereArgs)
   }
 
-  override fun updateWithOnConflict(table: String, values: ContentValues?, whereClause: String?, whereArgs: Array<out String>?, conflictAlgorithm: Int): Int {
-    return database.updateWithOnConflict(table, values, whereClause, whereArgs, conflictAlgorithm)
+  override fun updateWithOnConflict(table: String, values: ContentValues, whereClause: String?, whereArgs: Array<out String>?, conflictAlgorithm: Int): Int {
+    return database.update(table, conflictAlgorithm, values, whereClause, whereArgs)
   }
 
   override fun execSQL(sql: String) {
     database.execSQL(sql)
   }
 
-  override fun rawExecSQL(sql: String?) {
+  override fun rawExecSQL(sql: String) {
     database.execSQL(sql)
   }
 
@@ -135,8 +145,8 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
   override val isWriteAheadLoggingEnabled: Boolean
     get() = throw UnsupportedOperationException()
 
-  override fun setForeignKeyConstraintsEnabled(enable: Boolean) {
-    database.setForeignKeyConstraintsEnabled(enable)
+  override fun setForeignKeyConstraintsEnabled(enabled: Boolean) {
+    database.setForeignKeyConstraintsEnabled(enabled)
   }
 
   override fun beginTransactionWithListener(transactionListener: SQLCipherSQLiteTransactionListener?) {
@@ -182,23 +192,22 @@ class ProxySignalSQLiteDatabase(private val database: AndroidSQLiteDatabase) : S
   override val isDbLockedByCurrentThread: Boolean
     get() = database.isDbLockedByCurrentThread
 
-  @Suppress("DEPRECATION")
   override fun isDbLockedByOtherThreads(): Boolean {
-    return database.isDbLockedByOtherThreads
+    return false
   }
 
   override fun yieldIfContendedSafely(): Boolean {
     return database.yieldIfContendedSafely()
   }
 
-  override fun yieldIfContendedSafely(sleepAfterYieldDelay: Long): Boolean {
-    return database.yieldIfContendedSafely(sleepAfterYieldDelay)
+  override fun yieldIfContendedSafely(sleepAfterYieldDelayMillis: Long): Boolean {
+    return database.yieldIfContendedSafely(sleepAfterYieldDelayMillis)
   }
 
   override var version: Int
     get() = database.version
     set(value) {
-      database.version = version
+      database.version = value
     }
 
   override val maximumSize: Long
