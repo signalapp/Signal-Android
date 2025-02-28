@@ -670,13 +670,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">તમે %1$s તરફથી મેસેજની વિનંતી સ્વીકારી. જો આ ભૂલમાં થયું હોય, તો તમે નીચેમાંથી કોઈ ક્રિયા પસંદ કરી શકો છો.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">કાળજીપૂર્વક રિવ્યૂ કરો</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s ચકાસાયેલ નથી</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">પ્રોફાઇલ નેમ</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">ગ્રૂપના નામ</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">સલામતી ટિપ્સ</string>
@@ -689,9 +691,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">આગળની ટિપ</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">નકલી નામ અને એકાઉન્ટ</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal ક્યારેય તમારા રજીસ્ટ્રેશન કોડ અથવા પિન માટે તમારો સંપર્ક કરશે નહીં. કોઈ અન્ય હોવાનો ઢોંગ કરતી વિનંતિઓથી સાવધ રહો. પ્રોફાઇલ નેમ તેમના એકાઉન્ટ ધારક દ્વારા પસંદ કરવામાં આવે છે અને તે ચકાસવામાં આવતા નથી.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">ક્રિપ્ટો અથવા પૈસાને લગતા સ્કેમ</string>
     <!-- Message of tip 1 -->
@@ -710,19 +712,19 @@
     <string name="SafetyTips_tip4_message">તમારો સંપર્ક કરતાં બિઝનેસ અથવા સરકારી એજન્સીથી સાવચેત રહો. ટેક્સ એજન્સી, કુરિયર વગેરેને શામેલ કરતાં મેસેજ સ્પામ હોઈ શકે છે.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal પર %1$s તેમના એકાઉન્ટ ધારક દ્વારા પસંદ કરવામાં આવે છે.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">પ્રોફાઇલ નેમ ચકાસાયેલા નથી</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">કોઈ અન્ય હોવાનો ઢોંગ કરતા એકાઉન્ટથી સાવધ રહો</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">અજાણ્યા લોકો સાથે વ્યક્તિગત માહિતી શેર કરશો નહીં</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s ગ્રૂપના સભ્યો દ્વારા પસંદ કરવામાં આવે છે.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">કોઈ સંસ્થાઓ અને બિઝનેસ હોવાનો ઢોંગ કરતા ગ્રૂપથી સાવધ રહો</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">ગ્રૂપમાં સભ્યોના પ્રોફાઇલ નેમ ચકાસવામાં આવતા નથી</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ફિલ્ટર દૂર કરો</string>
@@ -788,8 +790,8 @@
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\"માં ઉમેર્યું</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">આ ચેટ પહેલાથી જ \"%1$s\" માં છે</item>
+        <item quantity="other">આ ચેટ પહેલાથી જ \"%1$s\" માં છે</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -2134,15 +2136,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">જાણ કરો…</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">વિનંતી સ્વીકારીએ?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">વિનંતીઓને કાળજીપૂર્વક રિવ્યૂ કરો. પ્રોફાઇલ નેમ તેમના એકાઉન્ટ ધારક દ્વારા પસંદ કરવામાં આવે છે અને તે ચકાસવામાં આવતા નથી.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">ગ્રૂપમાં જોડાવું છે?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">વિનંતીઓને કાળજીપૂર્વક રિવ્યૂ કરો. ગ્રૂપના નામ ગ્રૂપના સભ્યો દ્વારા પસંદ કરવામાં આવે છે અને તેને ચકાસવામાં આવતા નથી.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">જોડાઓ</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">પાસફ્રેઝ મેળ ખાતા નથી!</string>
@@ -2526,15 +2528,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">ચકાસણી કરેલ</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">પ્રોફાઇલ નેમ ચકાસાયેલા નથી</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">મેસેજની વિનંતી બાકી</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s સાથે કોઈ ડાઇરેક્ટ મેસેજ નથી</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s તમારા ફોન સંપર્કોમાં છે</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">કોઈ ગ્રૂપ સામાન્ય નથી</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">વિનંતીઓની કાળજીપૂર્વક રિવ્યુ કરો</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3314,7 +3316,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">વિનંતી બ્લૉક કરો</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">કોઈ ગ્રૂપ સામાન્ય નથી</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">આ ગ્રુપમાં કોઈ સંપર્કો નથી. વિનંતીઓની કાળજીપૂર્વક સમીક્ષા કરો.</string>
     <string name="ConversationUpdateItem_view">વ્યૂ</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">જ્યારે તમે મેસેજ મોકલો ત્યારે અદૃશ્ય થઈ રહેલો મેસેજ સમય %1$s પર સેટ કરવામાં આવશે.</string>
@@ -6031,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">તમારા દાનની પ્રક્રિયા હજી ચાલુ છે. આમાં તમારા કનેક્શનને આધારે થોડી મિનિટો લાગી શકે છે.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">સબ્સ્ક્રિપ્શન રદ કરવાનું નિષ્ફળ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">સબ્સ્ક્રિપ્શન રદ કરવા માટે ઇન્ટરનેટ કનેક્શનની જરૂર પડશે.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">તમારું ડિવાઇસ Google Pay સપોર્ટ કરતું નથી, તેથી તમે બૅજ અર્જિત કરવા માટે સબ્સ્ક્રાઇબ કરી શકતા નથી. તમે હજી પણ અમારી વેબસાઇટ પર યોગદાન આપીને Signalને સહયોગ આપી શકો છો.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">નેટવર્ક ત્રુટિ. તમારું કનેક્શન તપાસો અને ફરી પ્રયાસ કરો.</string>
     <string name="NetworkFailure__retry">ફરી પ્રયાસ કરો</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6272,15 +6274,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal રીલીઝ નોટ્સ અને સમાચાર</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">આ Signal તરફથી સત્તાવાર અને એક માત્ર ચેટ છે.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">સમાચાર અને રિલીઝ નોંધ સાથે અપ ટૂ ડેટ રહો.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">આ Signal તરફથી સત્તાવાર અને એક માત્ર ચેટ છે</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">સમાચાર અને રિલીઝ નોંધ સાથે અપ ટૂ ડેટ રહો</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">સત્તાવાર અને એક માત્ર Signal ચેટ</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">બધી પ્રવૃત્તિ</string>

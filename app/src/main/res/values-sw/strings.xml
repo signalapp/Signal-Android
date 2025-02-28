@@ -670,13 +670,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Umekubali ombi la ujumbe kutoka kwa %1$s. Ikiwa hii ilikuwa ni makosa, unaweza kuchagua hatua mojawapo hapa chini.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">Kagua kwa uangalifu</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s hajathibitishwa</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">Jina la wasifu</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">Jina la kikundi</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Vidokezo vya Usalama</string>
@@ -689,9 +691,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Kidokezo kifuatacho</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">Majina na akaunti bandia</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal haitawahi wasiliana nawe kupata nambari yako ya usajili au PIN. Kuwa makini na maombi yanayoiga wengine. Majina ya wasifu huchaguliwa na mmiliki wa akaunti na huwa hayajathibitishwa.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Ulaghai wa crypto au fedha</string>
     <!-- Message of tip 1 -->
@@ -710,19 +712,19 @@
     <string name="SafetyTips_tip4_message">Kuwa makini na biashara au mawakala wa serikali wanaokutafuta. Ujumbe unaohusisha mawakala wa kodi, matarishi, na zaidi unaweza kuwa wa ulaghai.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s kwenye Signal yamechaguliwa na mwenye akaunti.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Majina ya wasifu hayajathibitishwa</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Kuwa makini na akaunti zinazoiga wengine</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Usiwape watu usiowafahamu taarifa zako binafsi</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s yamechaguliwa na wanachama wa kikundi.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Kuwa makini na vikundi vinavyoiga mashirika na biashara</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Majina ya wasifu ya wanachama katika vikundi hayajathibitishwa</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Futa chujio</string>
@@ -788,8 +790,8 @@
     <string name="AddToFolderBottomSheet_added_to_s">Imewekwa kwenye \"%1$s\"</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">Gumzo hili tayari liko katika \"%1$s\"</item>
+        <item quantity="other">Magumzo haya tayari yako katika \"%1$s\"</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -2134,15 +2136,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Ripoti…</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">Je, kubali ombi?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Kagua maombi kwa uangalifu. Majina ya wasifu huchaguliwa na mmiliki wa akaunti na huwa hayathibitishwi.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">Ujiunge na kikundi?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Kagua maombi kwa uangalifu. Majina ya wasifu huchaguliwa na wanachama wa kikundi na huwa hayathibitishwi.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">Jiunge</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nenosiro haiwiani</string>
@@ -2526,15 +2528,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Imethibitishwa</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">Majina ya wasifu hayajathibitishwa</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">Ombi la ujumbe lililosubirishwa</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Huna jumbe za moja kwa moja na %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yuko kwenye wawasiliani wako</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Hakuna vikundi mnavyoshiriki pamoja</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Kagua maombi kwa uangalifu</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3314,7 +3316,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Zuia ombi</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Hakuna vikundi mnavyoshiriki pamoja</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Hakuna waasiliani katika kikundi hiki. Kagua maombi kwa uangalifu.</string>
     <string name="ConversationUpdateItem_view">Tazama</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Wakati wa kutoweka kwa ujumbe utawekwa kuwa %1$s utakapowatumia ujumbe.</string>
@@ -6031,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Mchango wako bado unachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemeana na mtandao wako.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Imeshindwa kughairi usajili</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Kughairi usajili kunahitaji muunganisho wa mtandao.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Kifaa chako hakiegemezi Google Pay, kwa hivyo huwezi kujiandikisha ili kupata beji. Unaweza kuiunga mkono Signal kwa kutoa mchango kwenye tovuti yetu.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hitilafu ya mtandao. Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
     <string name="NetworkFailure__retry">Jaribu Upya</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6272,15 +6274,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; Habari</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Hili ndio gumzo rasmi na pekee kutoka Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Pata taarifa mpya za habari na matoleo.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Hili ndilo gumzo rasmi na pekee kutoka Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">Pata taarifa mpya za habari na matoleo</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">Gumzo rasmi na pekee la Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Shughuli zote</string>

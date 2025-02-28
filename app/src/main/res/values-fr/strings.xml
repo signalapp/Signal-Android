@@ -481,7 +481,7 @@
     <string name="ConversationActivity_admins">admins</string>
     <string name="ConversationActivity_message_an_admin">Écrire à un admin</string>
     <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l\'appel de groupe</string>
-    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les administrateurs de ce groupe peuvent démarrer un appel.</string>
+    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les admins de ce groupe peuvent démarrer un appel.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Aucune appli disponible pour ouvrir ce lien sur votre appareil.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande a bien été envoyée à l’admin. Un message vous signalera si vous êtes autorisé à rejoindre le groupe.</string>
     <string name="ConversationActivity_cancel_request">Annuler la demande</string>
@@ -670,13 +670,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Vous avez accepté l’invitation par message de %1$s. S’il s’agit d’une erreur, choisissez l’une des actions suivantes.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">Faites attention</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">Signal ne vérifie pas les %1$s</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">noms de profil</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">noms de groupe</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Conseils de sécurité</string>
@@ -689,9 +691,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Conseil suivant</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">Faux noms et faux comptes</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal ne vous demande jamais de communiquer votre code d\'inscription ni votre PIN. Attention aux usurpations d\'identité lorsque vous recevez des invitations par message ! Les utilisateurs choisissent librement leur nom de profil et leur identité n\'est pas vérifiée.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Escroqueries financières ou liées aux crypto-monnaies</string>
     <!-- Message of tip 1 -->
@@ -710,19 +712,19 @@
     <string name="SafetyTips_tip4_message">Soyez prudent lorsque des entreprises ou des organismes publics vous contactent. Les messages qui affirment provenir de transporteurs ou de services fiscaux, par exemple, peuvent être des spams.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Sur Signal, les %1$s sont librement choisis par les utilisateurs.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Signal ne vérifie pas les noms de profil</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Certains utilisateurs peuvent se faire passer pour d\'autres : faites attention</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Ne communiquez pas vos informations personnelles à des inconnus</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">Les %1$s sont choisis par les membres ou les admins.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Attention aux groupes qui se font passer pour des organisations ou des entreprises</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Lorsque des utilisateurs rejoignent un groupe, Signal ne vérifie pas les noms de profil de ses membres</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Supprimer le filtre</string>
@@ -788,8 +790,8 @@
     <string name="AddToFolderBottomSheet_added_to_s">Ajoutée à \"%1$s\"</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">Cette conversation est déjà dans le dossier \"%1$s\"</item>
+        <item quantity="other">Ces conversations sont déjà dans le dossier \"%1$s\"</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -1233,8 +1235,8 @@
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Les \"nouveaux groupes\", qu\'est-ce que c\'est ?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux groupes proposent des fonctionnalités comme les @mentions et les admins – et en compteront bien d\'autres bientôt.</string>
-    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tout l’historique des messages et tous les médias d’avant la conversion ont été conservés.</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Les nouveaux groupes proposent des fonctionnalités comme les @mentions et les admins – et en compteront d\'autres bientôt.</string>
+    <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tous les messages et médias échangés avant la conversion sont conservés.</string>
     <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Pour réintégrer ce groupe, vous devrez accepter une invitation. Vous ne recevrez aucun message du groupe tant que vous ne l’aurez pas acceptée.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
         <item quantity="one">Pour réintégrer le groupe, cette personne devra accepter une invitation. Elle ne recevra aucun message du groupe tant qu’elle ne l’aura pas acceptée :</item>
@@ -1248,7 +1250,7 @@
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Passer aux nouveaux groupes</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Convertir ce groupe</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Les nouveaux groupes proposent des fonctionnalités comme les @mentions et les admins – et en compteront bien d\'autres bientôt.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Les nouveaux groupes proposent des fonctionnalités comme les @mentions et les admins – et en compteront d\'autres bientôt.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Tout l’historique des messages et tous les médias d’avant la conversion seront conservés.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Une erreur réseau s’est produite. Veuillez réessayer plus tard.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Impossible de convertir le groupe</string>
@@ -1807,7 +1809,7 @@
     <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vous avez défini le délai avant disparition des messages éphémères sur %1$s.</string>
     <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s a défini le délai avant disparition des messages éphémères sur %2$s.</string>
     <string name="MessageRecord_disappearing_message_time_set_to_s">Délai avant disparition des messages éphémères défini sur %1$s.</string>
-    <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en Nouveau groupe.</string>
+    <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ce groupe a été converti en \"nouveau groupe\".</string>
     <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Impossible de vous ajouter au nouveau groupe. Vous avez donc reçu une invitation à le rejoindre.</string>
     <string name="MessageRecord_chat_session_refreshed">Actualisation de la session</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
@@ -1954,7 +1956,7 @@
 
     <!-- GV2 group link joins -->
     <string name="MessageRecord_you_joined_the_group_via_the_group_link">Vous avez rejoint le groupe via le lien du groupe.</string>
-    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s a rejoint le groupe grâce via le lien du groupe.</string>
+    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s a rejoint le groupe via le lien du groupe.</string>
 
     <!-- GV2 group link requests -->
     <string name="MessageRecord_you_sent_a_request_to_join_the_group">Vous avez demandé à rejoindre le groupe.</string>
@@ -2018,7 +2020,7 @@
     <!-- Chat log text for an ongoing group call that has one participant with a placeholder for the short display name of the user that joined and a placeholder for formatted time -->
     <string name="MessageRecord_s_is_in_the_call_s">%1$s a rejoint l’appel · %2$s</string>
     <!-- Chat log text for an ongoing group call only the local user has joined with a placeholder for formatted time -->
-    <string name="MessageRecord_you_are_in_the_call_s1">Vous avez rejoint l’appel · %1$s</string>
+    <string name="MessageRecord_you_are_in_the_call_s1">Vous avez rejoint l\'appel · %1$s</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user and %2$s is the formatted time -->
     <string name="MessageRecord_s_and_you_are_in_the_call_s1">%1$s et vous participez à l\'appel · %2$s</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders for the short display name of the users that joined and a placeholder for formatted time -->
@@ -2026,7 +2028,7 @@
     <!-- Chat log text for an ongoing group call that has one participant -->
     <string name="MessageRecord_s_is_in_the_call">%1$s a rejoint l’appel</string>
     <!-- Chat log text for an ongoing group call only the local user has joined -->
-    <string name="MessageRecord_you_are_in_the_call">Vous avez rejoint l’appel</string>
+    <string name="MessageRecord_you_are_in_the_call">Vous avez rejoint l\'appel</string>
     <!-- Chat log text for an ongoing group call with you and another participant where %1$s is the short display name of the other user -->
     <string name="MessageRecord_s_and_you_are_in_the_call">%1$s et vous participez à l\'appel</string>
     <!-- Chat log text for an ongoing group call with two participants with two placeholders, each for the short display name of the users that joined -->
@@ -2134,15 +2136,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Signaler</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">Accepter la demande ?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Examinez attentivement les demandes. Les utilisateurs choisissent librement leur nom de profil et leur identité n\'est pas vérifiée.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">Rejoindre le groupe ?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Examinez attentivement les demandes. Les noms de groupe sont choisis par les membres ou les admins et ils ne sont pas vérifiés.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">Rejoindre</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les phrases secrètes ne correspondent pas.</string>
@@ -2526,15 +2528,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Confirmé</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">Signal ne vérifie pas les noms de profil</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">Invitation par message en attente</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Aucun message privé avec %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s se trouve dans les contacts de votre téléphone</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Aucun groupe en commun</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Examinez attentivement les demandes</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3314,7 +3316,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Bloquer la demande</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Aucun groupe en commun</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Aucun contact dans ce groupe. Examinez attentivement les demandes.</string>
     <string name="ConversationUpdateItem_view">Afficher</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Lorsque vous enverrez des messages à ce contact, le délai avant disparition des messages éphémères sera défini sur %1$s.</string>
@@ -4860,8 +4862,8 @@
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">Si vous ne reconnaissez pas l’utilisateur à l’origine de la demande, examinez le contact ci-dessous et choisissez l’action appropriée.</item>
-        <item quantity="other">Si vous ne reconnaissez pas l’utilisateur à l’origine de la demande, examinez les contacts ci-dessous et choisissez l’action appropriée.</item>
+        <item quantity="one">Si vous ne reconnaissez pas l\'utilisateur à l\'origine de la demande, examinez le contact ci-dessous et choisissez l\'action appropriée.</item>
+        <item quantity="other">Si vous ne reconnaissez pas l\'utilisateur à l\'origine de la demande, examinez les contacts ci-dessous et choisissez l\'action appropriée.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
@@ -5572,7 +5574,7 @@
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__cant_add_to_group_story">Impossible d’ajouter du contenu à une story de groupe</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Seuls les administrateurs peuvent ajouter du contenu à la story du groupe</string>
+    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Seuls les admins peuvent ajouter du contenu à la story du groupe</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Application \"Contacts\" introuvable</string>
     <string name="ConversationSettingsFragment__start_video_call">Passer un appel vidéo</string>
@@ -6031,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil n\'est pas compatible avec Google Pay : vous ne pouvez donc pas vous abonner pour gagner un macaron, mais vous pouvez encore soutenir Signal et faire un don via notre site web.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Veuillez vérifier votre connexion et réessayer.</string>
     <string name="NetworkFailure__retry">Réessayer</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6272,15 +6274,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Notes de version et actualités de Signal</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Ceci est le seul canal de diffusion officiel de Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Pour découvrir les nouveautés et notes de version.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Ceci est le seul canal de diffusion officiel de Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">Pour découvrir les nouveautés et notes de version</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">Seul canal de diffusion officiel de Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Toutes les activités</string>
@@ -6850,7 +6852,7 @@
     <!-- Dialog title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Désactiver les Stories ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Vous ne pourrez plus partager ou voir de Stories. Les nouveaux contenus récemment ajoutés à vos stories seront également supprimés.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Vous ne pourrez plus partager ni consulter de stories. Les nouveaux contenus récemment ajoutés à vos stories seront également supprimés.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Confidentialité de la story</string>
     <!-- Header for section that lists out stories -->

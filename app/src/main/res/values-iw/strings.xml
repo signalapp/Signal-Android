@@ -694,13 +694,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">אישרת בקשת הודעה מ%1$s. אם זו הייתה טעות, אפשר לבחור פעולה למטה.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">יש לסקור בזהירות</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s אינם מאומתים</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">שמות פרופילים</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">שמות קבוצות</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">טיפים לבטיחות</string>
@@ -713,9 +715,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">הטיפ הבא</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">שמות וחשבונות מזויפים</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal לעולם לא תיצור איתך קשר עבור קוד הרישום או ה–PIN שלך. יש להיזהר מבקשות שנשלחות על ידי מתחזים. שמות פרופילים נבחרים על ידי בעל/ת החשבון ואינם מאומתים.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">הונאות קריפטו או הונאות כספיות</string>
     <!-- Message of tip 1 -->
@@ -734,19 +736,19 @@
     <string name="SafetyTips_tip4_message">חשוב להיזהר מעסקים או סוכנויות ממשלתיות שיוצרים איתך קשר. הודעות הקשורות בסוכנויות מס, שליחויות ועוד עלולות להיות ספאם.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s ב–Signal נבחרים על ידי בעל/ת החשבון.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">שמות פרופילים אינם מאומתים</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">יש להיזהר מחשבונות שמתחזים לאחרים</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">אין לשתף מידע אישי עם אנשים שלא מוכרים לך</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s נבחרים על ידי חברי הקבוצה.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">יש להיזהר מקבוצות שמתחזות לארגונים ועסקים</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">שמות פרופילים של חברי קבוצות אינם מאומתים</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">ניקוי מסנן</string>
@@ -830,10 +832,10 @@
     <string name="AddToFolderBottomSheet_added_to_s">נוסף אל ״%1$s״</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="two">These chats are already in \"%1$s\"</item>
-        <item quantity="many">These chats are already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">הצ׳אט הזה כבר נמצא ב״%1$s״</item>
+        <item quantity="two">הצ׳אטים האלה כבר נמצאים ב״%1$s״</item>
+        <item quantity="many">הצ׳אטים האלה כבר נמצאים ב״%1$s״</item>
+        <item quantity="other">הצ׳אטים האלה כבר נמצאים ב״%1$s״</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -2266,15 +2268,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">דיווח…</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">לאשר את הבקשה?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">כדאי לסקור בקשות בזהירות. שמות פרופילים נבחרים על ידי בעל/ת החשבון ואינם מאומתים.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">להצטרף לקבוצה?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">כדאי לסקור בקשות בזהירות. שמות קבוצות נבחרים על ידי חברי הקבוצה ואינם מאומתים.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">הצטרפות</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">משפטי־סיסמה אינם תואמים!</string>
@@ -2692,15 +2694,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">מאומת</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">שמות פרופילים אינם מאומתים</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">בקשת הודעה ממתינה</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">אין הודעות ישירות עם %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s נמצא.ת באנשי הקשר של הטלפון שלך</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">אין קבוצות במשותף</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">סקור בקשות בזהירות</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3506,7 +3508,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">חסימת בקשה</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">אין קבוצות במשותף</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">אין אנשי קשר בקבוצה הזאת. סקור בקשות בזהירות.</string>
     <string name="ConversationUpdateItem_view">הצג</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">הזמן של ההודעות הנעלמות יוגדר אל %1$s כאשר אתה מתכתב עם הצד השני.</string>
@@ -6305,7 +6307,7 @@
     <string name="DonationsErrors__your_payment_is_still">התרומה שלך עדיין בתהליך עיבוד. זה יכול לקחת מספר דקות בהתאם לחיבור שלך.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ביטול המנוי נכשל</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ביטול מנוי דורש חיבור לאינטרנט.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">המכשיר שלך לא תומך ב–Google Pay, כך שאין לך אפשרות להירשם כמנוי כדי להרוויח תג. עדיין אפשר לתמוך ב–Signal באמצעות ביצוע תרומה באתר שלנו.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">שגיאת רשת. בדוק את החיבור שלך ונסה שוב.</string>
     <string name="NetworkFailure__retry">נסה שוב</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6546,15 +6548,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">הערות שחרור וחדשות של Signal</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">זה הצ׳אט הרשמי והיחיד של Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">להתעדכן בחדשות והערות עדכון גרסה.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">זה הצ׳אט הרשמי והיחיד של Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">להתעדכן בחדשות והערות עדכון גרסה</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">הצ׳אט הרשמי והיחיד של Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">כל הפעילות</string>

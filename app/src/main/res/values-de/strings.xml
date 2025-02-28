@@ -149,11 +149,11 @@
     <string name="FcmFetchManager__you_may_have_messages">Du könntest neue Nachrichten haben</string>
 
     <!-- BlockedUsersActivity -->
-    <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Zu blockierten Nutzern hinzufügen</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Blockierte Nutzer werden dich nicht anrufen oder dir Nachrichten senden können.</string>
-    <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Nutzer</string>
-    <string name="BlockedUsersActivity__block_user">Nutzer blockieren?</string>
+    <string name="BlockedUsersActivity__blocked_users">Blockierte Kontakte</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Zu blockierten Kontakten hinzufügen</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Blockierte Kontakte werden dich nicht anrufen oder dir Nachrichten senden können.</string>
+    <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Kontakte</string>
+    <string name="BlockedUsersActivity__block_user">Kontakt blockieren?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s wird dich nicht anrufen oder dir Nachrichten senden können.</string>
     <string name="BlockedUsersActivity__block">Blockieren</string>
 
@@ -310,7 +310,7 @@
         <item quantity="one">Du kannst mit maximal %1$d Chat teilen.</item>
         <item quantity="other">Du kannst mit maximal %1$d Chats teilen.</item>
     </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal-Empfänger auswählen</string>
+    <string name="CameraContacts_select_signal_recipients">Signal-Empfänger*innen auswählen</string>
     <string name="CameraContacts_no_signal_contacts">Keine Signal-Kontakte</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Mit der Kameraschaltfläche kannst du Fotos nur an Signal-Kontakte senden. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Die gesuchte Person nicht gefunden?</string>
@@ -406,7 +406,7 @@
     <string name="ConversationItem_send_paused">Senden pausiert</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Auf unverschlüsselte SMS ausweichen?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Auf unverschlüsselte MMS ausweichen?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da der Empfänger Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da die empfangende Person Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>
     <string name="ConversationItem_unable_to_open_media">Keine App zum Öffnen dieser Medieninhalte gefunden.</string>
     <string name="ConversationItem_copied_text">%1$s kopiert</string>
     <string name="ConversationItem_from_s">von %1$s</string>
@@ -446,7 +446,7 @@
     <string name="ConversationActivity_compose_message">Nachricht verfassen</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Leider ist ein Fehler beim Hinzufügen des Anhangs aufgetreten.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mobilnummer oder E-Mail-Adresse des Empfängers ist ungültig!</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Mobilnummer oder E-Mail-Adresse der empfangenden Person ungültig!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Die Nachricht ist leer!</string>
     <string name="ConversationActivity_group_members">Gruppenmitglieder</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
@@ -460,7 +460,7 @@
         <item quantity="other">Diese Nachricht kann nur %1$d Male bearbeitet werden.</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">Ungültiger Empfänger!</string>
+    <string name="ConversationActivity_invalid_recipient">Empfänger*in ungültig!</string>
     <string name="ConversationActivity_added_to_home_screen">Zum Startbildschirm hinzugefügt</string>
     <string name="ConversationActivity_calls_not_supported">Anrufe nicht unterstützt</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dieses Gerät scheint keine Wahlvorgänge zu unterstützen.</string>
@@ -617,7 +617,7 @@
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach links wischen</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Medien zur Einmalansicht werden nach dem Senden gelöscht</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Du hast diese Nachricht schon angezeigt</string>
-    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in diesem Chat an dich selbst gerichtete Notizen hinzufügen. Falls dein Nutzerkonto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
+    <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kannst in diesem Chat an dich selbst gerichtete Notizen hinzufügen. Falls dein Konto gekoppelte Geräte besitzt, werden neue Notizen synchronisiert.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d Gruppenmitglieder haben denselben Namen.</string>
     <string name="ConversationFragment__tap_to_review">Zum Prüfen antippen</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
@@ -670,13 +670,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Du hast eine Unterhaltungsanfrage von %1$s angenommen. Wenn das ein Fehler war, kannst du unten eine Aktion auswählen.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">Prüfe sorgfältig</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s werden nicht verifiziert</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">Profilnamen</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">Gruppennamen</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Sicherheitstipps</string>
@@ -689,9 +691,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Nächster Tipp</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">Fake-Namen und -Konten</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal wird dich nie nach deinem Registrierungscode oder deiner PIN fragen. Sei misstrauisch bei Anfragen, bei denen sich jemand als eine bestimmte Person ausgibt. Profilnamen sind frei wählbar und werden nicht verifiziert.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Krypto- oder Geldbetrug</string>
     <!-- Message of tip 1 -->
@@ -710,19 +712,19 @@
     <string name="SafetyTips_tip4_message">Sei vorsichtig, wenn Unternehmen oder Regierungsbehörden dich kontaktieren. Nachrichten, bei denen es um Steuerbehörden, Kuriere usw. geht, können Spam sein.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s auf Signal sind frei wählbar.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profilnamen werden nicht verifiziert</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Sei misstrauisch bei Konten, bei denen sich jemand als eine bestimmte Person ausgibt</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Gib keine persönlichen Informationen an Leute weiter, die du nicht kennst</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s werden von Gruppenmitgliedern gewählt.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Sei misstrauisch bei Gruppen, die sich als Organisationen und Unternehmen ausgeben</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profilnamen von Gruppenmitgliedern werden nicht verifiziert</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Filter entfernen</string>
@@ -788,8 +790,8 @@
     <string name="AddToFolderBottomSheet_added_to_s">Zu »%1$s« hinzugefügt</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">Dieser Chat befindet sich bereits in »%1$s«</item>
+        <item quantity="other">Diese Chats befinden sich bereits in »%1$s«</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -1228,7 +1230,7 @@
         <item quantity="other">%1$d Einladungen versendet</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDer Nutzer wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
+    <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDie Person wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
     <string name="GroupManagement_invite_multiple_users">Diese Personen können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -1396,7 +1398,7 @@
     <string name="AddGroupDetailsFragment__create_group">Gruppe erstellen</string>
     <string name="AddGroupDetailsFragment__create">Erstellen</string>
     <string name="AddGroupDetailsFragment__members">Mitglieder</string>
-    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Nachdem diese Gruppe erstellt wurde, kannst du Freunde hinzufügen oder einladen.</string>
+    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Nachdem diese Gruppe erstellt wurde, kannst du Kontakte hinzufügen oder einladen.</string>
     <string name="AddGroupDetailsFragment__group_name_required">Gruppenname (erforderlich)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Gruppenname (optional)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">Dieses Feld ist erforderlich.</string>
@@ -1607,7 +1609,7 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Freunde einladen</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kontakte einladen</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile einen Link mit Personen, damit sie dieser Gruppe einfach beitreten können.</string>
 
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Link aktivieren und teilen</string>
@@ -1778,7 +1780,7 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Unbekannt</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Eine empfangene Nachricht wurde mit einer alten, nicht mehr unterstützten Version von Signal verschlüsselt. Bitte den Absender, Signal auf die neueste Version zu aktualisieren und die Nachricht erneut zu senden.</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Eine empfangene Nachricht wurde mit einer alten, nicht mehr unterstützten Version von Signal verschlüsselt. Bitte die sendende Person, Signal auf die neueste Version zu aktualisieren und die Nachricht erneut zu senden.</string>
     <string name="MessageRecord_left_group">Du hast die Gruppe verlassen.</string>
     <string name="MessageRecord_you_updated_group">Du hast die Gruppe aktualisiert.</string>
     <string name="MessageRecord_the_group_was_updated">Die Gruppe wurde aktualisiert.</string>
@@ -2134,15 +2136,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Melden …</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">Anfrage annehmen?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Prüfe Anfragen sorgfältig. Profilnamen sind frei wählbar und werden nicht verifiziert.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">Gruppe beitreten?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Prüfe Anfragen sorgfältig. Gruppennamen werden von Gruppenmitgliedern gewählt und werden nicht verifiziert.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">Beitreten</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passphrasen stimmen nicht überein!</string>
@@ -2203,15 +2205,15 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">Falsche PIN</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">PIN-Eingabe überspringen?</string>
     <string name="PinRestoreEntryFragment_need_help">Hilfe benötigt?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Deine PIN ist ein von dir erstellter, numerischer oder alphanumerischer Code aus %1$d+ Zeichen.\n\nFalls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Falls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Deine PIN ist ein von dir erstellter, numerischer oder alphanumerischer Code aus %1$d+ Zeichen.\n\nFalls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Konto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Falls du deine PIN vergessen hast, kannst du eine neue erstellen. Du kannst dich registrieren und dein Konto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">Neue PIN erstellen</string>
     <string name="PinRestoreEntryFragment_contact_support">Support kontaktieren</string>
     <string name="PinRestoreEntryFragment_cancel">Abbrechen</string>
     <string name="PinRestoreEntryFragment_skip">Überspringen</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">Du hast %1$d verbleibenden Versuch. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
-        <item quantity="other">Du hast %1$d verbleibende Versuche. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Nutzerkonto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
+        <item quantity="one">Du hast %1$d verbleibenden Versuch. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Konto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
+        <item quantity="other">Du hast %1$d verbleibende Versuche. Falls du all deine Versuche aufbrauchst, kannst du eine neue PIN erstellen. Du kannst dich registrieren und dein Konto verwenden, wirst aber einige gespeicherte Einstellungen, wie z. B. deine Profilinformationen verlieren.</item>
     </plurals>
     <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-Registrierung – Benötige Hilfe zur PIN für Android</string>
 
@@ -2276,7 +2278,7 @@
     <string name="RedPhone_ending_call">Anruf wird beendet …</string>
     <string name="RedPhone_ringing">Klingelt …</string>
     <string name="RedPhone_busy">Besetzt</string>
-    <string name="RedPhone_recipient_unavailable">Empfänger nicht erreichbar</string>
+    <string name="RedPhone_recipient_unavailable">Empfänger*in nicht erreichbar</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">Netzwerkfehler! Bitte überprüfe deine Netzwerkverbindung und versuche es erneut.</string>
     <string name="RedPhone_number_not_registered">Telefonnummer nicht registriert!</string>
@@ -2452,7 +2454,7 @@
     <string name="WebRtcCallView__toggle_group_ringing">Gruppenklingelstatus umschalten</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Benutzerschnittstelle-Fehler aufgetreten. Bitte melde diesen Fehler dem Entwicklungsteam.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Ein UI-Fehler ist aufgetreten. Bitte melde diesen Fehler dem Entwicklungsteam.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
     <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">Keine geeigneten Audio-Eingänge/-Ausgänge gefunden.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
@@ -2526,15 +2528,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verifiziert</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">Profilnamen werden nicht verifiziert</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">Ausstehende Unterhaltungsanfrage</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Keine Einzelchats mit %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s ist in deinen Telefonkontakten gespeichert</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Keine gemeinsamen Gruppen</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Prüfe Anfragen sorgfältig</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2615,13 +2617,13 @@
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du erhältst einen Anruf zur Verifizierung dieser Telefonnummer.</string>
     <string name="RegistrationActivity_edit_number">Telefonnummer bearbeiten</string>
     <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein Erfahrung damit hast, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
     <string name="RegistrationActivity_i_understand">Verstanden</string>
     <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte versuche es erneut.</string>
     <string name="RegistrationActivity_terms_and_privacy">Nutzungsbedingungen und Datenschutzerklärung</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt die Berechtigungen »Kontakte« und »Speicher«, um dir das Kontaktieren deiner Freunde und das Senden von Nachrichten zu erleichtern. Deine Kontakte werden mittels Signals vertraulicher Kontaktsuche auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt die Berechtigung »Kontakte«, um dir das Kontaktieren deiner Freunde zu erleichtern. Deine Kontakte werden mittels Signals vertraulicher Kontaktsuche auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt die Berechtigungen »Kontakte« und »Speicher«, damit du deine Kontakte einfacher erreichen und ihnen Nachrichten senden kannst. Deine Kontakte werden mittels Signals vertraulicher Kontaktsuche auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt die Berechtigung »Kontakte«, damit du deine Kontakte einfacher erreichen kannst. Deine Kontakte werden mittels Signals vertraulicher Kontaktsuche auf die Signal-Server hochgeladen. Das heißt, sie sind Ende-zu-Ende-verschlüsselt und somit zu keiner Zeit dem Signal-Dienst bekannt.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Du hast zu oft versucht, diese Telefonnummer zu registrieren. Bitte versuche es später erneut.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">Du hast zu oft versucht, diese Nummer zu registrieren. Bitte versuche es erneut in %1$s.</string>
@@ -3105,7 +3107,7 @@
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Datenschutz bei Telefonnummern</string>
     <!-- Row item description for phone number privacy explainer -->
-    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Deine Telefonnummer wird nicht mehr mit Chats geteilt. Wenn deine Nummer in den Kontakten von Freund*innen gespeichert ist, können diese sie trotzdem sehen.</string>
+    <string name="NewWaysToConnectDialogFragment__your_phone_number_is_no_longer_shared">Deine Telefonnummer wird nicht mehr mit Chats geteilt. Wenn deine Nummer im Telefonbuch eines Kontakts gespeichert ist, können diese sie trotzdem sehen.</string>
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Nutzernamen</string>
     <!-- Row item description for usernames explainer -->
@@ -3113,7 +3115,7 @@
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">QR-Codes und Links</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Nutzernamen haben einen einzigartigen QR-Code und einen Link, den du mit Freund*innen teilen kannst, damit diese schnell einen Chat mit dir beginnen können.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Nutzernamen haben einen einzigartigen QR-Code und einen Link, den du mit Kontakten teilen kannst, damit diese schnell einen Chat mit dir beginnen können.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Jetzt nicht</string>
     <!-- Button label for continue -->
@@ -3226,7 +3228,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benötigt zum Anzeigen deiner Kontakte die Berechtigung »Kontakte«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung.</string>
     <string name="ContactSelectionListFragment_username_not_found">Nutzername nicht gefunden</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Nutzernamen und versuche es erneut."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"»%1$s« ist kein Signal-Nutzername. Bitte überprüfe den Nutzernamen und versuche es erneut."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Du musst dich nicht selbst zur Gruppe hinzufügen</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">Maximale Gruppengröße erreicht</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal-Gruppen können maximal %1$d Mitglieder besitzen.</string>
@@ -3308,13 +3310,13 @@
     <string name="ConversationUpdateItem_call_back">Rückruf</string>
     <string name="ConversationUpdateItem_return_to_call">Zurück zum Anruf</string>
     <string name="ConversationUpdateItem_call_is_full">Anruf ist voll</string>
-    <string name="ConversationUpdateItem_invite_friends">Freunde einladen</string>
+    <string name="ConversationUpdateItem_invite_friends">Kontakte einladen</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Benachrichtigungen für Anrufe aktivieren</string>
     <string name="ConversationUpdateItem_update_contact">Kontakt aktualisieren</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Anfrage blockieren</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Keine gemeinsamen Gruppen</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Keine Kontakte in dieser Gruppe. Prüfe Anfragen sorgfältig.</string>
     <string name="ConversationUpdateItem_view">Anzeigen</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Die Ablaufzeit für verschwindende Nachrichten wird auf %1$s festgelegt, sobald du der Person eine Nachricht sendest.</string>
@@ -3351,7 +3353,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Nicht mehr verfügbar</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Spende für einen Freund</string>
+    <string name="QuoteView__donation_for_a_friend">Spende für einen Kontakt</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Nach unten scrollen</string>
@@ -3599,7 +3601,7 @@
     <string name="AndroidManifest__media_preview">Medienvorschau</string>
     <string name="AndroidManifest__message_details">Nachrichtendetails</string>
     <string name="AndroidManifest__linked_devices">Gekoppelte Geräte</string>
-    <string name="AndroidManifest__invite_friends">Freunde einladen</string>
+    <string name="AndroidManifest__invite_friends">Kontakte einladen</string>
     <string name="AndroidManifest_archived_conversations">Archivierte Chats</string>
 
     <!-- HelpFragment -->
@@ -3755,12 +3757,12 @@
     <string name="preferences__privacy">Datenschutz</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Storys</string>
-    <string name="preferences__mms_user_agent">MMS-Nutzer-Agent</string>
+    <string name="preferences__mms_user_agent">MMS-User-Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manuelle MMS-Einstellungen</string>
     <string name="preferences__mmsc_url">MMSC-URL</string>
     <string name="preferences__mms_proxy_host">MMS-Proxy-Host</string>
     <string name="preferences__mms_proxy_port">MMS-Proxy-Port</string>
-    <string name="preferences__mmsc_username">MMSC-Nutzername</string>
+    <string name="preferences__mmsc_username">MMSC-Username</string>
     <string name="preferences__mmsc_password">MMSC-Passwort</string>
     <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
@@ -3889,7 +3891,7 @@
     <string name="preferences_communication__censorship_circumvention">Zensurumgehung</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Bei Aktivierung wird Signal versuchen, Zensurmaßnahmen zu umgehen. Aktiviere diese Funktion nur dann, wenn du dich an einem Ort befindest, an dem Signal zensiert wird.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Die Zensurumgehung wurde aufgrund der Telefonnummer deines Nutzerkontos aktiviert.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Die Zensurumgehung wurde aufgrund der Telefonnummer deines Kontos aktiviert.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Du hast die Zensurumgehung manuell deaktiviert.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -4106,7 +4108,7 @@
 
     <!-- PaymentsTransferQrScanFragment -->
     <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Adress-QR-Code einscannen</string>
-    <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanne den Adress-QR-Code des Empfängers</string>
+    <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanne den Adress-QR-Code der empfangenden Person</string>
 
     <!-- CreatePaymentFragment -->
     <!-- Button text to request the payment from a user -->
@@ -4149,7 +4151,7 @@
     <string name="ConfirmPayment__payment_complete">Zahlung abgeschlossen</string>
     <string name="ConfirmPayment__payment_failed">Zahlung gescheitert</string>
     <string name="ConfirmPayment__payment_will_continue_processing">Verarbeitung der Zahlung wird fortgesetzt</string>
-    <string name="ConfirmPaymentFragment__invalid_recipient">Ungültiger Empfänger</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Empfänger*in ungültig</string>
     <!-- Title of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
     <string name="ConfirmPaymentFragment__failed_to_show_payment_lock">Zahlungssperre konnte nicht angezeigt werden</string>
     <!-- Body of a dialog show when we were unable to present the user\'s screenlock before sending a payment -->
@@ -4179,7 +4181,7 @@
     <!-- Displayed in a row on the new call screen when searching by phone number. -->
     <string name="contact_selection_list__new_call">Neuer Anruf an…</string>
     <string name="contact_selection_list__unknown_contact">Neue Nachricht an …</string>
-    <string name="contact_selection_list__unknown_contact_block">Nutzer blockieren</string>
+    <string name="contact_selection_list__unknown_contact_block">Kontakt blockieren</string>
     <string name="contact_selection_list__unknown_contact_add_to_group">Zur Gruppe hinzufügen</string>
 
     <!-- conversation_callable_insecure -->
@@ -4290,7 +4292,7 @@
     </plurals>
 
     <!-- conversation_group_options -->
-    <string name="convesation_group_options__recipients_list">Empfängerliste</string>
+    <string name="convesation_group_options__recipients_list">Empfangserliste</string>
     <string name="conversation_group_options__delivery">Zustellung</string>
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Chat</string>
@@ -4309,7 +4311,7 @@
     <string name="text_secure_normal__menu_settings">Einstellungen</string>
     <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
     <string name="text_secure_normal__mark_all_as_read">Alle gelesen</string>
-    <string name="text_secure_normal__invite_friends">Freunde einladen</string>
+    <string name="text_secure_normal__invite_friends">Kontakte einladen</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Ungelesene Chats filtern</string>
     <!-- Overflow menu entry to disable unread chats filter -->
@@ -4926,7 +4928,7 @@
     <string name="DeleteAccountFragment__no_country_code">Keine Ländervorwahl angegeben</string>
     <string name="DeleteAccountFragment__no_number">Keine Telefonnummer angegeben</string>
     <string name="DeleteAccountFragment__the_phone_number">Die eingegebene Telefonnummer entspricht nicht der deines Kontos.</string>
-    <string name="DeleteAccountFragment__are_you_sure">Möchtest du dein Nutzerkonto wirklich löschen?</string>
+    <string name="DeleteAccountFragment__are_you_sure">Möchtest du dein Konto wirklich löschen?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dies löscht dein Signal-Konto und setzt die App in ihren Ursprungszustand zurück. Die App wird nach Abschluss des Vorgangs geschlossen.</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In Androids App-Einstellungen kannst du sie manuell löschen.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-Einstellungen öffnen</string>
@@ -4965,7 +4967,7 @@
     <string name="ShareActivity__could_not_get_share_data_from_intent">Konnte keine Freigabedaten abrufen.</string>
 
     <!-- MultiShareDialogs -->
-    <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte nicht an alle Nutzer gesendet werden</string>
+    <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte nicht an alle Kontakte gesendet werden</string>
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kannst nur mit bis zu %1$d Chats teilen</string>
 
     <!-- ChatWallpaperActivity -->
@@ -5117,7 +5119,7 @@
 
     <!-- CanNotSendPaymentDialog -->
     <string name="CanNotSendPaymentDialog__cant_send_payment">Zahlung kann nicht gesendet werden</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Zum Senden einer Zahlung an diesen Nutzer muss er deine Unterhaltungsanfrage akzeptieren. Sende ihm eine Nachricht, um eine Unterhaltungsanfrage zu stellen.</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Zum Senden einer Zahlung an diesen Kontakt muss er deine Unterhaltungsanfrage akzeptieren. Sende ihm eine Nachricht, um eine Unterhaltungsanfrage zu stellen.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Sende eine Nachricht</string>
 
     <!-- GroupsInCommonMessageRequest -->
@@ -5152,7 +5154,7 @@
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Dein Backup-Abo konnte nicht eingelöst werden</string>
     <!-- String displayed telling user to invite their friends to Signal -->
-    <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
+    <string name="AppSettingsFragment__invite_your_friends">Kontakte einladen</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
     <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Spender-ID in die Zwischenablage kopiert</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
@@ -5676,7 +5678,7 @@
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Kontakt anzeigen</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
-    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ist kein Signal-Nutzer</string>
+    <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nutzt Signal nicht</string>
     <!-- Error message shown when we could not get a user from the username link -->
     <string name="NewConversationActivity__">%1$s nutzt Signal nicht</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
@@ -5906,7 +5908,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Weitere Möglichkeiten für Spenden</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Für einen Freund spenden</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Für einen Kontakt spenden</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
     <string name="ManageDonationsFragment__couldnt_confirm_donation">Spende konnte nicht bestätigt werden</string>
     <!-- Dialog message shown when a monthly donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
@@ -6031,13 +6033,13 @@
     <string name="DonationsErrors__your_payment_is_still">Deine Spende wird immer noch bearbeitet. Das kann abhängig von deiner Verbindung ein paar Minuten dauern.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Regelmäßige Spende konnte nicht storniert werden</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Die Stornierung regelmäßiger Spenden benötigt eine Internetverbindung.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Dein Gerät unterstützt Google Pay nicht, daher kannst du nicht spenden, um ein Abzeichen zu erhalten. Aber durch eine Spende auf unserer Website kannst du Signal trotzdem unterstützen.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netzwerkfehler. Überprüfe deine Internetverbindung und versuche es erneut.</string>
     <string name="NetworkFailure__retry">Erneut versuchen</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">Spende kann nicht gesendet werden</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">Dieser User kann keine Spenden erhalten, bis er Signal aktualisiert.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Dieser Kontakt kann keine Spenden erhalten, bis er Signal aktualisiert.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__your_donation_could_not_be_sent">Deine Spende konnte aufgrund eines Netzwerkfehlers nicht gesendet werden. Überprüfe deine Verbindung und versuche es erneut.</string>
     <!-- Displayed as a dialog message when the user encounters an error during an iDEAL donation -->
@@ -6272,15 +6274,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal-Versionshinweise und Neuigkeiten</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Das ist der offizielle und einzige Chat von Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Bleib auf dem Laufenden mit Neuigkeiten und Versionshinweisen.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Das ist der offizielle und einzige Chat von Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">Bleib auf dem Laufenden mit Neuigkeiten und Versionshinweisen</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">Der offizielle und einzige Signal-Chat</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Alle Aktivitäten</string>
@@ -6291,9 +6293,9 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Einmalig</string>
     <!-- Donation receipts gift tab -->
-    <string name="DonationReceiptListFragment__for_a_friend">Für einen Freund</string>
+    <string name="DonationReceiptListFragment__for_a_friend">Für einen Kontakt</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Spende für einen Freund</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Spende für einen Kontakt</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Spendenart</string>
     <!-- Donation receipts date paid heading -->
@@ -6646,7 +6648,7 @@
         <item quantity="other">%1$s · %2$d Tage Laufzeit</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Für einen Freund spenden</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Für einen Kontakt spenden</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Unterstütze Signal, indem du für einen Signal-Kontakt spendest. Der Kontakt erhält ein Abzeichen, das er für %1$d Tag im Profil anzeigen kann.</item>
@@ -6655,19 +6657,19 @@
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Weiter</string>
     <!-- Title text on choose recipient page for badge gifting -->
-    <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Empfänger auswählen</string>
+    <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Empfänger*in auswählen</string>
     <!-- Title text on confirm gift page -->
     <string name="GiftFlowConfirmationFragment__confirm_donation">Spende bestätigen</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Senden an</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Der Empfänger wird in einer persönlichen Nachricht über die Spende informiert. Füge unten deine eigene Nachricht hinzu.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Die empfangende Person wird in einer persönlichen Nachricht über die Spende informiert. Füge unten deine eigene Nachricht hinzu.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Einmalspende</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Füge eine Nachricht hinzu</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__verifying_recipient">Empfänger wird verifiziert …</string>
+    <string name="GiftFlowConfirmationFragment__verifying_recipient">Empfänger*in wird verifiziert …</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s hat für dich gespendet</string>
     <!-- Title for sheet shown when opening a sent gift -->
@@ -6776,7 +6778,7 @@
     <!-- Title of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Änderungen der Sicherheitsnummer</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">Die folgenden Personen haben möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen Empfänger, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">Die folgenden Personen haben möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen empfangenden Kontakt, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Prüfung der Sicherheitsnummer</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
@@ -6797,15 +6799,15 @@
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
     <string name="SafetyNumberBottomSheetFragment__review_connections">Kontakte prüfen</string>
     <!-- Empty state copy for SafetyNumberBottomSheetFragment -->
-    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Keine weiteren Empfänger vorhanden</string>
+    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Keine weiteren Empfänger*innen vorhanden</string>
     <!-- Done button on safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__done">Fertig</string>
     <!-- Title of safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Änderungen der Sicherheitsnummer</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="one">%1$d Empfänger hat möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen Empfänger, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</item>
-        <item quantity="other">%1$d Empfänger haben möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen Empfänger, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</item>
+        <item quantity="one">%1$d empfangende Person hat möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen Kontakt, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</item>
+        <item quantity="other">%1$d empfangende Personen haben möglicherweise Signal erneut installiert oder das Gerät gewechselt. Tippe auf einen Kontakt, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Kontakte</string>
@@ -6947,7 +6949,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredit- oder Debitkarte</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Für einen Freund spenden</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Für einen Kontakt spenden</string>
     <!-- Button label for paying with iDEAL -->
     <string name="GatewaySelectorBottomSheet__ideal">iDEAL</string>
 
@@ -7464,9 +7466,9 @@
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
     <string name="UsernameLinkSettings_qr_result_invalid">Der QR-Code war ungültig.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
-    <string name="UsernameLinkSettings_qr_result_not_found">Nutzer*in mit dem Nutzernamen %1$s konnte nicht gefunden werden.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found">Person mit dem Nutzernamen %1$s konnte nicht gefunden werden.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
-    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Nutzer*in konnte nicht gefunden werden.</string>
+    <string name="UsernameLinkSettings_qr_result_not_found_no_username">Nutzername konnte nicht gefunden werden.</string>
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">Ein Netzwerkfehler ist aufgetreten. Bitte versuche es erneut.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
@@ -7573,9 +7575,9 @@
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">%1$s ist keine gültige Telefonnummer. Versuche es noch einmal mit einer gültigen Telefonnummer.</string>
     <!-- Dialog body for not found username -->
-    <string name="FindByActivity__s_is_not_a_signal_user">»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Nutzernamen und versuche es erneut.</string>
+    <string name="FindByActivity__s_is_not_a_signal_user">»%1$s« nutzt Signal nicht. Bitte überprüfe den Nutzernamen und versuche es erneut.</string>
     <!-- Dialog body for not found phone number -->
-    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s ist kein Signal-Nutzer. Möchtest du diese Nummer einladen?</string>
+    <string name="FindByActivity__s_is_not_a_signal_user_would">%1$s nutzt Signal bislang nicht. Möchtest du diese Nummer einladen?</string>
     <!-- Dialog action to invite the phone number to Signal -->
     <string name="FindByActivity__invite">Einladen</string>
     <!-- Button label for a button that will launch a camera to scan a username QR code -->

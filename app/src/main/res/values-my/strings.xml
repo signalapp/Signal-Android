@@ -658,13 +658,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s ထံမှ မက်ဆေ့ချ်တောင်းဆိုချက်တစ်ခုကို သင် လက်ခံခဲ့ပါသည်။ ၎င်းသည် မှားယွင်းခဲ့ခြင်းဖြစ်ပါက အောက်ပါလုပ်ဆောင်ချက်တစ်ခုကို ရွေးချယ်နိုင်ပါသည်။</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">သေချာပြန်လည်စစ်ဆေးပါ</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s ကို အတည်မပြုထားပါ</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">ပရိုဖိုင်း အမည်များ</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">အဖွဲ့အမည်များ</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
@@ -677,9 +679,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">နောက်ထပ်အကြံပြုချက်</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">အမည်အတုနှင့် အကောင့်များ</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Signal သည် သင်၏ကုဒ် သို့မဟုတ် ပင်နံပါတ်ကို မည်သည့်အခါမျှ ဆက်သွယ်မေးမြန်းမည်မဟုတ်ပါ။ အခြားသူများအယောင်ဆောင်၍ တောင်းဆိုမှုများကို သတိထားပါ။ ပရိုဖိုင်း အမည်များကို ၎င်းတို့၏အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">ခရစ်ပ်တို သို့မဟုတ် ငွေကြေး လိမ်လည်မှုများ</string>
     <!-- Message of tip 1 -->
@@ -698,19 +700,19 @@
     <string name="SafetyTips_tip4_message">သင့်ထံဆက်သွယ်လာသော စီးပွားရေးလုပ်ငန်း သို့မဟုတ် အစိုးရအေဂျင်စီများကို သတိပြုပါ။ အခွန်အေဂျင်စီများ၊ စာပို့သူများနှင့် အခြားအရာများ ပါဝင်သော မက်ဆေ့ချ်များသည် လိမ်လည်မှုဖြစ်နိုင်ပါသည်။</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal တွင် %1$s ကို ၎င်းတို့၏ အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားသည်။</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">ပရိုဖိုင်း အမည်များကို မစစ်ဆေးထားပါ</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">အခြားသူများအယောင်ဆောင်ထားသော အကောင့်များကိုသတိထားပါ</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">ကိုယ်ရေးကိုယ်တာ အချက်အလက်ကို သင်မသိသူများအား မမျှဝေပါနှင့်</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s ကို အဖွဲ့ဝင်များက ရွေးချယ်သည်။</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">အဖွဲ့အစည်းများနှင့် လုပ်ငန်းများ အယောင်ဆောင်ထားသည့် အုပ်စုများကို သတိထားပါ</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">အဖွဲ့များရှိ အဖွဲ့ဝင်များ၏ ပရိုဖိုင်း အမည်များကို အတည်မပြုထားပါ</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">စစ်ထုတ်မှုကို ရှင်းရန်</string>
@@ -767,7 +769,7 @@
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" သို့ ထည့်ခဲ့သည်</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="other">ဤချက်(တ်)များသည် \"%1$s\" တွင် ရှိနှင့်ပြီးဖြစ်သည်</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -2068,15 +2070,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">ရီပို့(တ်)လုပ်ရန်…</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">တောင်းဆိုမှုကို လက်ခံပါသလား။</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">တောင်းဆိုမှုများကို သေချာ ပြန်သုံးသပ်ပါ။ ပရိုဖိုင်း အမည်များကို ၎င်းတို့၏အကောင့်ပိုင်ရှင်က ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">အဖွဲ့တွင် ပါဝင်မလား။</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">တောင်းဆိုမှုများကို သေချာ ပြန်သုံးသပ်ပါ။ အဖွဲ့အမည်များကို အဖွဲ့ဝင်များက ရွေးချယ်ထားပြီး အတည်မပြုထားပါ။</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">ပါဝင်ရန်</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">စကားဝှက်များ မတူညီပါ။</string>
@@ -2443,15 +2445,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">အတည်ပြုပြီး</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">ပရိုဖိုင်း အမည်များကို မစစ်ဆေးထားပါ</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">ဆိုင်းငံ့ထားသော မက်ဆေ့ချ်တောင်းဆိုချက်</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s နှင့် တိုက်ရိုက်မက်ဆေ့ချ် မရှိပါ</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s သည် သင့်ဖုန်းအဆက်အသွယ်များထဲတွင် ရှိနေသည်</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">တူညီသော အဖွဲ့များ မရှိပါ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">တောင်းဆိုမှုများကိုအသေအချာပြန်လည်စစ်ဆေးပါ</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3218,7 +3220,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">တောင်းဆိုချက်ကို ဘလော့ခ်ရန်</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">တူညီသော အဖွဲ့များ မရှိပါ</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">၎င်းအဖွဲ့ထဲတွင် အဆက်အသွယ်များ မရှိပါ။ တောင်းခံမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
     <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">၎င်းတို့ထံ မက်ဆေ့ချ် ပို့ချိန်တွင် ပျောက်သွားမည့် မက်ဆေ့ချ် အချိန်ကို %1$s အဖြစ် သတ်မှတ်သွားပါမည်။</string>
@@ -5894,7 +5896,7 @@
     <string name="DonationsErrors__your_payment_is_still">သင့်လှူဒါန်းမှုကို လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုအပေါ် မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်ရန် မအောင်မြင်ပါ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ပုံမှန်လှူဒါန်းငွေ ပယ်ဖျက်မှုသည် အင်တာနက် ချိတ်ဆက်မှု လိုအပ်ပါသည်။</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">သင့်စက်သည် Google Pay နှင့် တွဲဖက်လုပ်ဆောင်နိုင်ခြင်း မရှိသောကြောင့် ဘဲ့ဂျ်ရရှိရန် လှူဒါန်း၍ မရနိုင်ပါ။ ကျွန်ုပ်တို့၏ ဝက်ဘ်ဆိုက်တွင် လှူဒါန်းမှု ပြုလုပ်ခြင်းဖြင့် Signal ကို ဆက်လက် ပံ့ပိုးကူညီနိုင်ပါသည်။</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ကွန်ရက် ချို့ယွင်းချက်။ သင့်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
     <string name="NetworkFailure__retry">ထပ်ကြိုးစားပါ</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6135,15 +6137,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal ပြန်ကြားရေး မှတ်စုများနှင့် သတင်းများ</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)ဖြစ်သည်။</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">သတင်းများနှင့် ထုတ်ဝေမှုမှတ်ချက်များကို အပ်ဒိတ်ရယူလိုက်ပါ။</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Signal မှ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)ဖြစ်သည်</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">သတင်းများနှင့် ထုတ်ဝေမှုမှတ်ချက်များကို အပ်ဒိတ်ရယူလိုက်ပါ</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">Signal ၏ တစ်ခုတည်းသော တရားဝင်ချက်(တ်)</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">လှုပ်ရှားမှုများအားလုံး</string>

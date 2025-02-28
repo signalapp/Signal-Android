@@ -706,13 +706,15 @@
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Ghlac tú le hiarratas teachtaireachta ó %1$s. Más botún a bhí ann, is féidir leat gníomh a roghnú thíos.</string>
     <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
-    <string name="ConversationFragment_review_carefully">Review carefully</string>
-    <!-- Text shown in conversation header when in a message request state that profile and group names are not verified. Placeholder will either be \'Profile names\' or \'Group names\' -->
-    <string name="ConversationFragment_profile_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_review_carefully">Déan athbhreithniú go cúramach</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">Níl %1$s fíoraithe</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
-    <string name="ConversationFragment_profile_names">Profile names</string>
+    <string name="ConversationFragment_profile_names">ainmneacha próifíle</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
-    <string name="ConversationFragment_group_names">Group names</string>
+    <string name="ConversationFragment_group_names">ainmneacha grúpa</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Leideanna Sábháilteachta</string>
@@ -725,9 +727,9 @@
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">An chéad leid eile</string>
     <!-- Title of tip 0 -->
-    <string name="SafetyTips_tip0_title">Fake names and accounts</string>
+    <string name="SafetyTips_tip0_title">Ainmneacha bréige agus cuntais bhréige</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal will never contact you for your registration code or PIN. Be cautious of requests that impersonate others. Profile names are chosen by their account holder and aren\'t verified.</string>
+    <string name="SafetyTips_tip0_message">Ní iarrfaidh Signal do chód clárúcháin ná UAP ort choíche. Bí ar d\'fhaichill ar iarratais a dhéanann daoine eile a phearsanú. Roghnaíonn sealbhóir an chuntais ainm na próifíle agus níl an t-ainm fíoraithe.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Camscéimeanna criptea-airgeadra nó airgid</string>
     <!-- Message of tip 1 -->
@@ -746,19 +748,19 @@
     <string name="SafetyTips_tip4_message">Bí san airdeall ar ghnólachtaí nó ar ghníomhaireachtaí rialtais a dhéanann teagmháil leat. Is féidir turscar a bheith i dteachtaireachtaí a bhaineann le gníomhaireachtaí cánach, teachtairí agus eile.</string>
 
     <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
-    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s on Signal are chosen by their account holder.</string>
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Roghnaíonn sealbhóir an chuntais %1$s ar Signal.</string>
     <!-- Bottom sheet text explaining that profile names are not verified. -->
-    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Profile names aren’t verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Níl ainmneacha próifíle fíoraithe</string>
     <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Be cautious of accounts that impersonate others</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Bí ar d\'fhaichill ar chuntais a dhéanann daoine eile a phearsanú</string>
     <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
-    <string name="ProfileNameBottomSheet__dont_share_personal">Don’t share personal information with people you don’t know</string>
+    <string name="ProfileNameBottomSheet__dont_share_personal">Ná comhroinn faisnéis phearsanta le daoine nach bhfuil aithne agat orthu</string>
     <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
-    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s are chosen by members of the group.</string>
+    <string name="ProfileNameBottomSheet__group_names_on_signal">Roghnaíonn baill den ghrúpa %1$s.</string>
     <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
-    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Be cautious of groups that impersonate organizations and businesses</string>
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Bí ar d\'fhaichill ar ghrúpaí a dhéanann eagraíochtaí agus gnóthais a phearsanú</string>
     <!-- Bottom sheet text explaining that profile names of group members are not verified -->
-    <string name="ProfileNameBottomSheet__profile_names_in_groups">Profile names of members in groups are not verified</string>
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Níl ainmneacha próifíle ag baill i ngrúpaí fíoraithe</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Glan an scagaire</string>
@@ -851,11 +853,11 @@
     <string name="AddToFolderBottomSheet_added_to_s">Curtha le \"%1$s\"</string>
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
-        <item quantity="one">This chat is already in \"%1$s\"</item>
-        <item quantity="two">These chats are already in \"%1$s\"</item>
-        <item quantity="few">These chats are already in \"%1$s\"</item>
-        <item quantity="many">These chats are already in \"%1$s\"</item>
-        <item quantity="other">These chats are already in \"%1$s\"</item>
+        <item quantity="one">Tá an comhrá sin in \"%1$s\" cheana</item>
+        <item quantity="two">Tá na comhráite sin in \"%1$s\" cheana</item>
+        <item quantity="few">Tá na comhráite sin in \"%1$s\" cheana</item>
+        <item quantity="many">Tá na comhráite sin in \"%1$s\" cheana</item>
+        <item quantity="other">Tá na comhráite sin in \"%1$s\" cheana</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -2332,15 +2334,15 @@
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Tuairiscigh…</string>
     <!-- Alert dialog title to accept a message request -->
-    <string name="MessageRequestBottomView_accept_request">Accept request?</string>
+    <string name="MessageRequestBottomView_accept_request">Glac leis an iarratas?</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">Review requests carefully. Profile names are chosen by their account owner and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">Déan athbhreithniú ar iarratais go cúramach. Roghnaíonn sealbhóir an chuntais ainm na próifíle agus níl an t-ainm fíoraithe.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
-    <string name="MessageRequestBottomView_join_group">Join group?</string>
+    <string name="MessageRequestBottomView_join_group">Téigh isteach sa ghrúpa?</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully_groups">Review requests carefully. Group names are chosen by members of the group and aren’t verified.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Déan athbhreithniú ar iarratais go cúramach. Roghnaíonn baill den ghrúpa ainm an ghrúpa agus níl an t-ainm fíoraithe.</string>
     <!-- Button text to join a group -->
-    <string name="MessageRequestBottomView_join">Join</string>
+    <string name="MessageRequestBottomView_join">Téigh isteach ann</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Ní hionann na nathanna faire!</string>
@@ -2775,15 +2777,15 @@
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Deimhnithe</string>
     <!-- Displayed in a sheet row that tells users that profile names are not verified -->
-    <string name="AboutSheet__profile_names_are_not_verified">Profile names are not verified</string>
+    <string name="AboutSheet__profile_names_are_not_verified">Níl ainmneacha próifíle fíoraithe</string>
     <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
-    <string name="AboutSheet__pending_message_request">Pending message request</string>
+    <string name="AboutSheet__pending_message_request">Iarratas ar theachtaireacht ar feitheamh</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Teachtaireacht dhíreach ar bith le %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">Tá %1$s i dteagmhálaithe do ghutháin</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No groups in common</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Grúpa ar bith i bpáirt</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Déan iarratais a athbhreithniú go cúramach</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -3602,7 +3604,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Cuir bac ar an iarratas</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Grúpa ar bith i bpáirt</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Níl aon teagmhálaithe sa ghrúpa seo. Athbhreithnigh iarratais go cúramach.</string>
     <string name="ConversationUpdateItem_view">Amharc</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">The disappearing message time will be set to %1$s when you message them.</string>
@@ -6442,7 +6444,7 @@
     <string name="DonationsErrors__your_payment_is_still">Tá do thabhartas á phróiseáil fós. D\'fheadfaí go mbeadh cúpla nóiméad i gceist leis sin ag brath ar do nasc.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Theip ar chur an tsíntiúis ar ceal</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc Idirlín chun an síntiús a chur ar ceal.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Is féidir leat tacú le Signal fós trí airgead a thabhairt ar ár suíomh gréasáin.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. Check your connection and try again.</string>
     <string name="NetworkFailure__retry">Bain triail eile as</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6683,15 +6685,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Nótaí Eisiúna agus Nuacht Signal</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">This is the official and only chat from Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Seo é an t-aon chomhrá oifigiúil de chuid Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Keep up to date with news and release notes.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Coinnigh suas chun dáta le nuacht agus le nótaí eisiúna.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">This is the official and only chat from Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Seo é an t-aon chomhrá oifigiúil de chuid Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Keep up to date with news and release notes</string>
+    <string name="ReleaseNotes__keep_up_to_date">Coinnigh suas chun dáta le nuacht agus le nótaí eisiúna</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Official and only Signal chat</string>
+    <string name="ReleaseNotes__official_only_chat">An t-aon chomhrá oifigiúil de chuid Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Gach gníomhaíocht</string>
