@@ -154,6 +154,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
     private volatile boolean shouldKeepRunning = true;
 
     public void run() {
+      Log.d(TAG, "[KeepAliveSender] started");
       identified.lastKeepAliveReceived   = System.currentTimeMillis();
       unidentified.lastKeepAliveReceived = System.currentTimeMillis();
 
@@ -183,6 +184,7 @@ public final class SignalWebSocketHealthMonitor implements HealthMonitor {
           Log.w(TAG, e);
         }
       }
+      Log.d(TAG, "[KeepAliveSender] ended");
     }
 
     private void sleepUntil(long timeMs) {
