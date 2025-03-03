@@ -75,6 +75,9 @@ object FcmFetchManager {
       Log.w(TAG, "May have messages notification kill switch")
       return
     }
+
+    Log.w(TAG, "Notifying the user that they may have new messages.")
+
     val mayHaveMessagesNotification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().ADDITIONAL_MESSAGE_NOTIFICATIONS)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle(context.getString(R.string.FcmFetchManager__you_may_have_messages))
