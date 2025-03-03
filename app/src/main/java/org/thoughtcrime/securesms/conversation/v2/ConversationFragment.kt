@@ -330,6 +330,7 @@ import org.thoughtcrime.securesms.util.atUTC
 import org.thoughtcrime.securesms.util.createActivityViewModel
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.getQuote
 import org.thoughtcrime.securesms.util.getRecordQuoteType
 import org.thoughtcrime.securesms.util.hasAudio
 import org.thoughtcrime.securesms.util.hasGiftBadge
@@ -1594,7 +1595,9 @@ class ConversationFragment :
       return
     }
 
-    if (editMessage.body == composeText.editableText.toString()) {
+    if (editMessage.body == composeText.editableText.toString() &&
+      editMessage.getQuote()?.displayText?.toString() == inputPanel.quote.map { it.text }.orNull()
+    ) {
       Log.d(TAG, "Updated message matches original, exiting edit mode")
       inputPanel.exitEditMessageMode()
       return
