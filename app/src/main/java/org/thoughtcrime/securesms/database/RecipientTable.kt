@@ -3400,7 +3400,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun querySignalContacts(contactSearchQuery: ContactSearchQuery): Cursor? {
-    val query = SqlUtil.buildCaseInsensitiveGlobPattern(contactSearchQuery.query)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(contactSearchQuery.query.trim())
 
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
