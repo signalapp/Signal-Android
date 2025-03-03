@@ -51,10 +51,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -103,7 +103,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
           formattedE164 = if (recipient.get().hasE164 && recipient.get().shouldShowE164) {
-            PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
+            SignalE164Util.prettyPrint(recipient.get().requireE164())
           } else {
             null
           },

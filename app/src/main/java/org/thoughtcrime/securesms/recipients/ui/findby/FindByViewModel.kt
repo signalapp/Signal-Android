@@ -81,7 +81,7 @@ class FindByViewModel(
 
     val e164 = "+$countryCode$nationalNumber"
 
-    return when (val result = RecipientRepository.lookupNewE164(context, e164)) {
+    return when (val result = RecipientRepository.lookupNewE164(e164)) {
       RecipientRepository.LookupResult.InvalidEntry -> FindByResult.InvalidEntry
       RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
       is RecipientRepository.LookupResult.NotFound -> FindByResult.NotFound(result.recipientId)

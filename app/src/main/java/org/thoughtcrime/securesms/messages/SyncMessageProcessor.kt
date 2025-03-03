@@ -99,6 +99,7 @@ import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
@@ -1724,7 +1725,9 @@ object SyncMessageProcessor {
       }
 
       threadE164 != null -> {
-        SignalDatabase.recipients.getOrInsertFromE164(threadE164!!)
+        SignalE164Util.formatAsE164(threadE164!!)?.let {
+          SignalDatabase.recipients.getOrInsertFromE164(threadE164!!)
+        }
       }
 
       else -> null

@@ -12,7 +12,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.dependencies.AppDependencies.application
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.SignalMeUtil.parseE164FromLink
@@ -37,7 +36,7 @@ class SignalMeUtilText_parseE164FromLink(private val input: String?, private val
 
   @Test
   fun parse() {
-    assertEquals(output, parseE164FromLink(application, input))
+    assertEquals(output, parseE164FromLink(input))
   }
 
   companion object {

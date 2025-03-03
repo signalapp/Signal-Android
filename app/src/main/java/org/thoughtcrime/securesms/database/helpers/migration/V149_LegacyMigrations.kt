@@ -39,11 +39,11 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Triple
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -379,7 +379,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
       db.rawQuery("SELECT recipient_ids, system_display_name, signal_profile_name, notification, vibrate FROM recipient_preferences WHERE notification NOT NULL OR vibrate != 0", null).use { cursor ->
         while (cursor != null && cursor.moveToNext()) {
           val rawAddress: String = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"))
-          val address: String = PhoneNumberFormatter.get(context).format(rawAddress)
+          val address: String = SignalE164Util.formatAsE164(rawAddress) ?: ""
           val systemName: String = cursor.getString(cursor.getColumnIndexOrThrow("system_display_name"))
           val profileName: String = cursor.getString(cursor.getColumnIndexOrThrow("signal_profile_name"))
           val messageSound: String? = cursor.getString(cursor.getColumnIndexOrThrow("notification"))

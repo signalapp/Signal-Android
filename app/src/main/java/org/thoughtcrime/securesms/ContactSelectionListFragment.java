@@ -684,7 +684,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       boolean         isUnknown       = contact instanceof ContactSearchKey.UnknownRecipientKey;
       SelectedContact selectedContact = contact.requireSelectedContact();
 
-      if (!canSelectSelf && !selectedContact.hasUsername() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId(requireContext()))) {
+      if (!canSelectSelf && !selectedContact.hasUsername() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId())) {
         Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group, Toast.LENGTH_SHORT).show();
         return;
       }
@@ -840,7 +840,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       contactChipViewModel.add(selectedContact);
     } else {
       SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                     () -> Recipient.resolved(selectedContact.getOrCreateRecipientId(requireContext())),
+                     () -> Recipient.resolved(selectedContact.getOrCreateRecipientId()),
                      resolved -> contactChipViewModel.add(selectedContact));
     }
   }

@@ -11,10 +11,10 @@ import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.services.CdsiV2Service
@@ -45,7 +45,7 @@ object ContactDiscoveryRefreshV2 {
   @JvmStatic
   fun refreshAll(context: Context, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipientE164s: Set<String> = SignalDatabase.recipients.getAllE164s().sanitize()
-    val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s(context).sanitize()
+    val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s().sanitize()
 
     return refreshInternal(
       recipientE164s = recipientE164s,
@@ -246,8 +246,8 @@ object ContactDiscoveryRefreshV2 {
       .toSet()
   }
 
-  private fun Set<String>.toE164s(context: Context): Set<String> {
-    return this.map { PhoneNumberFormatter.get(context).format(it) }.toSet()
+  private fun Set<String>.toE164s(): Set<String> {
+    return this.mapNotNull { SignalE164Util.formatAsE164(it) }.toSet()
   }
 
   private fun Set<String>.sanitize(): Set<String> {

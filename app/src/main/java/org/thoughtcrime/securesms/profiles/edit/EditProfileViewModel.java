@@ -9,17 +9,16 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.BidiUtil;
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileRepository.UploadResult;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.Arrays;

@@ -159,7 +159,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
 
   private void handleNextPressed() {
     List<RecipientId> groupsRecipientIds = Stream.of(contactsFragment.getSelectedContacts())
-                                                 .map(selectedContact -> selectedContact.getOrCreateRecipientId(this))
+                                                 .map(selectedContact -> selectedContact.getOrCreateRecipientId())
                                                  .toList();
 
     viewModel.onContinueWithSelection(groupsRecipientIds);

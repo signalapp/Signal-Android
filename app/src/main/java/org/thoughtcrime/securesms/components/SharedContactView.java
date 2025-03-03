@@ -121,7 +121,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
 
     presentContact(contact);
     presentAvatar(contact.getAvatarAttachment() != null ? contact.getAvatarAttachment().getUri() : null);
-    presentActionButtons(ContactUtil.getRecipients(getContext(), contact));
+    presentActionButtons(ContactUtil.getRecipients(contact));
 
     for (LiveRecipient recipient : activeRecipients.values()) {
       recipient.observeForever(this);

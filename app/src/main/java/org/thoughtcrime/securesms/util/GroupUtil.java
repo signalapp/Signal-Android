@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.BidiUtil;
-import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;

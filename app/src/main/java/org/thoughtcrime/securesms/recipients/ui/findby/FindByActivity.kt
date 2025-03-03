@@ -68,6 +68,7 @@ import org.signal.core.ui.Previews
 import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.TextFields
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.E164Util
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -80,7 +81,6 @@ import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeSelectS
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeState
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.viewModel
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -193,9 +193,9 @@ class FindByActivity : PassphraseRequiredActivity() {
             } else {
               val formattedNumber = remember(state.userEntry) {
                 val cleansed = state.userEntry.removePrefix(state.selectedCountry.countryCode.toString())
-                PhoneNumberFormatter.formatE164(state.selectedCountry.countryCode.toString(), cleansed)
+                E164Util.formatAsE164WithCountryCodeForDisplay(state.selectedCountry.countryCode.toString(), cleansed)
               }
-              stringResource(id = R.string.FindByActivity__s_is_not_a_valid_phone_number, formattedNumber)
+              stringResource(id = R.string.FindByActivity__s_is_not_a_valid_phone_number, state.userEntry)
             }
 
             Dialogs.SimpleAlertDialog(
@@ -232,7 +232,7 @@ class FindByActivity : PassphraseRequiredActivity() {
             } else {
               val formattedNumber = remember(state.userEntry) {
                 val cleansed = state.userEntry.removePrefix(state.selectedCountry.countryCode.toString())
-                PhoneNumberFormatter.formatE164(state.selectedCountry.countryCode.toString(), cleansed)
+                E164Util.formatAsE164WithCountryCodeForDisplay(state.selectedCountry.countryCode.toString(), cleansed)
               }
               stringResource(id = R.string.FindByActivity__s_is_not_a_signal_user_would, formattedNumber)
             }

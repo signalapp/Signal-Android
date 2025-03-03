@@ -237,7 +237,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
       if (context == null) return null;
 
       for (SelectedContact contact : contacts) {
-        RecipientId recipientId    = contact.getOrCreateRecipientId(context);
+        RecipientId recipientId    = contact.getOrCreateRecipientId();
         Recipient   recipient      = Recipient.resolved(recipientId);
 
         MessageSender.send(context, OutgoingMessage.sms(recipient, message), -1L, MessageSender.SendType.SMS, null, null);

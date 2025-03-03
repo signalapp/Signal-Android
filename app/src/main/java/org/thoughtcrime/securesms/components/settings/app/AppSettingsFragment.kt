@@ -71,10 +71,10 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.completed
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CommunicationActions
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -575,7 +575,7 @@ private fun BioRow(
         self.e164
       } else {
         remember(self.e164) {
-          PhoneNumberFormatter.prettyPrint(self.e164)
+          SignalE164Util.prettyPrint(self.e164)
         }
       }
 

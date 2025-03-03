@@ -40,9 +40,9 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.UsernameUtil.isValidUsernameForSearch
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -556,7 +556,7 @@ class Recipient(
     }
 
     if (name.isBlank() && e164Value.isNotNullOrBlank()) {
-      name = PhoneNumberFormatter.prettyPrint(e164Value)
+      name = SignalE164Util.prettyPrint(e164Value)
     }
 
     if (name.isBlank() && emailValue != null) {
@@ -587,7 +587,7 @@ class Recipient(
     }
 
     if (name.isBlank() && e164Value.isNotNullOrBlank()) {
-      name = PhoneNumberFormatter.prettyPrint(e164Value)
+      name = SignalE164Util.prettyPrint(e164Value)
     }
 
     if (name.isBlank()) {
@@ -902,6 +902,37 @@ class Recipient(
     }
 
     /**
+     * Returns a fully-populated [Recipient] based off of a ServiceId and phone number, creating one
+     * in the database if necessary. We want both piece of information so we're able to associate them
+     * both together, depending on which are available.
+     *
+     * In particular, while we may eventually get the ACI of a user created via a phone number
+     * (through a directory sync), the only way we can store the phone number is by retrieving it from
+     * sent messages and whatnot. So we should store it when available.
+     */
+    @JvmStatic
+    @WorkerThread
+    private fun externalPush(serviceId: ServiceId, e164: String?): Recipient {
+      if (ACI.UNKNOWN == serviceId || PNI.UNKNOWN == serviceId) {
+        throw AssertionError()
+      }
+
+      val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
+      val resolved = resolved(recipientId)
+
+      if (resolved.id != recipientId) {
+        Log.w(TAG, "Resolved $recipientId, but got back a recipient with ${resolved.id}")
+      }
+
+      if (!resolved.isRegistered) {
+        Log.w(TAG, "External push was locally marked unregistered. Marking as registered.")
+        SignalDatabase.recipients.markRegistered(recipientId, serviceId)
+      }
+
+      return resolved
+    }
+
+    /**
      * Create a recipient with a full (ACI, PNI, E164) tuple. It is assumed that the association between the PNI and serviceId is trusted.
      * That means it must be from either storage service (with the verified field set) or a PNI verification message.
      */
@@ -928,39 +959,6 @@ class Recipient(
     }
 
     /**
-     * Returns a fully-populated [Recipient] based off of a ServiceId and phone number, creating one
-     * in the database if necessary. We want both piece of information so we're able to associate them
-     * both together, depending on which are available.
-     *
-     * In particular, while we may eventually get the ACI of a user created via a phone number
-     * (through a directory sync), the only way we can store the phone number is by retrieving it from
-     * sent messages and whatnot. So we should store it when available.
-     */
-    @JvmStatic
-    @WorkerThread
-    fun externalPush(serviceId: ServiceId?, e164: String?): Recipient {
-      if (ACI.UNKNOWN == serviceId || PNI.UNKNOWN == serviceId) {
-        throw AssertionError()
-      }
-
-      val recipientId = RecipientId.from(SignalServiceAddress(serviceId, e164))
-      val resolved = resolved(recipientId)
-
-      if (resolved.id != recipientId) {
-        Log.w(TAG, "Resolved $recipientId, but got back a recipient with ${resolved.id}")
-      }
-
-      if (!resolved.isRegistered && serviceId != null) {
-        Log.w(TAG, "External push was locally marked unregistered. Marking as registered.")
-        SignalDatabase.recipients.markRegistered(recipientId, serviceId)
-      } else if (!resolved.isRegistered) {
-        Log.w(TAG, "External push was locally marked unregistered, but we don't have an ACI, so we can't do anything.", Throwable())
-      }
-
-      return resolved
-    }
-
-    /**
      * A safety wrapper around [.external] for when you know you're using an
      * identifier for a system contact, and therefore always want to prevent interpreting it as a
      * UUID. This will crash if given a UUID.
@@ -969,13 +967,14 @@ class Recipient(
      */
     @JvmStatic
     @WorkerThread
-    fun externalContact(identifier: String): Recipient {
+    fun externalContact(identifier: String): Recipient? {
       val id: RecipientId = if (UuidUtil.isUuid(identifier)) {
         throw AssertionError("UUIDs are not valid system contact identifiers!")
       } else if (NumberUtil.isValidEmail(identifier)) {
         SignalDatabase.recipients.getOrInsertFromEmail(identifier)
       } else {
-        SignalDatabase.recipients.getOrInsertFromE164(identifier)
+        val e164 = SignalE164Util.formatAsE164(identifier) ?: return null
+        SignalDatabase.recipients.getOrInsertFromE164(e164)
       }
 
       return resolved(id)
@@ -1027,10 +1026,13 @@ class Recipient(
      * If the identifier is a UUID of a Signal user, prefer using
      * [.externalPush] or its overload, as this will let us associate
      * the phone number with the recipient.
+     *
+     * Important: If the identifier cannot be considered a valid UUID, groupId, email, or phone number,
+     * this will return null.
      */
     @JvmStatic
     @WorkerThread
-    fun external(context: Context, identifier: String): Recipient {
+    fun external(identifier: String): Recipient? {
       val serviceId = ServiceId.parseOrNull(identifier, logFailures = false)
 
       val id: RecipientId = if (serviceId != null) {
@@ -1042,7 +1044,7 @@ class Recipient(
       } else if (isValidUsernameForSearch(identifier)) {
         throw IllegalArgumentException("Creating a recipient based on username alone is not supported!")
       } else {
-        val e164 = PhoneNumberFormatter.get(context).format(identifier)
+        val e164: String = SignalE164Util.formatAsE164(identifier) ?: return null
         SignalDatabase.recipients.getOrInsertFromE164(e164)
       }
 

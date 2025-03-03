@@ -7,7 +7,6 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -17,8 +16,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,7 +53,12 @@ class BlockedUsersRepository {
 
   void createAndBlock(@NonNull String number, @NonNull Runnable success) {
     SignalExecutors.BOUNDED.execute(() -> {
-      RecipientUtil.blockNonGroup(context, Recipient.external(context, number));
+      Recipient recipient = Recipient.external(number);
+      if (recipient != null) {
+        RecipientUtil.blockNonGroup(context, recipient);
+      } else {
+        Log.w(TAG, "Failed to create Recipient for number! Invalid input.");
+      }
       success.run();
     });
   }

@@ -53,6 +53,7 @@ dependencies {
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.coroutines.core.jvm)
+  implementation(libs.google.libphonenumber)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

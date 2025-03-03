@@ -55,12 +55,12 @@ import org.thoughtcrime.securesms.databinding.V2ConversationItemTextOnlyOutgoing
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer
 import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.ui.about.AboutSheet
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ProjectionList
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import java.util.Locale
@@ -576,7 +576,7 @@ class ConversationAdapterV2(
           conversationBanner.hideUnverifiedNameSubtitle()
         }
 
-        val subtitle: String? = recipient.takeIf { it.shouldShowE164 }?.e164?.map { e164: String? -> PhoneNumberFormatter.prettyPrint(e164!!) }?.orElse(null)
+        val subtitle: String? = recipient.takeIf { it.shouldShowE164 }?.e164?.map { e164: String? -> SignalE164Util.prettyPrint(e164!!) }?.orElse(null)
         if (subtitle == null || subtitle == title) {
           conversationBanner.hideSubtitle()
         } else {

@@ -6,6 +6,7 @@ import androidx.core.util.Consumer;
 import com.annimon.stream.Stream;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import org.signal.core.util.E164Util;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository;
@@ -16,7 +17,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -36,7 +36,7 @@ class DeleteAccountRepository {
   }
 
   @NonNull String getRegionDisplayName(@NonNull String region) {
-    return PhoneNumberFormatter.getRegionDisplayName(region).orElse("");
+    return E164Util.getRegionDisplayName(region).orElse("");
   }
 
   int getRegionCountryCode(@NonNull String region) {
@@ -121,7 +121,7 @@ class DeleteAccountRepository {
   }
 
   private static @NonNull Country getCountryForRegion(@NonNull String region) {
-    return new Country(PhoneNumberFormatter.getRegionDisplayName(region).orElse(""),
+    return new Country(E164Util.getRegionDisplayName(region).orElse(""),
                        PhoneNumberUtil.getInstance().getCountryCodeForRegion(region),
                        region);
   }

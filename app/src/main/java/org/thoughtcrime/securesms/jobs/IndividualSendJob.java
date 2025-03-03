@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -211,10 +210,14 @@ public class IndividualSendJob extends PushSendJob {
       AppDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
-      RecipientId recipientId = Recipient.external(context, uie.getIdentifier()).getId();
-      database.addMismatchedIdentity(messageId, recipientId, uie.getIdentityKey());
+      Recipient recipient = Recipient.external(uie.getIdentifier());
+      if (recipient == null) {
+        Log.w(TAG, "Failed to create a Recipient for the identifier!");
+        return;
+      }
+      database.addMismatchedIdentity(messageId, recipient.getId(), uie.getIdentityKey());
       database.markAsSentFailed(messageId);
-      RetrieveProfileJob.enqueue(recipientId);
+      RetrieveProfileJob.enqueue(recipient.getId());
     } catch (ProofRequiredException e) {
       ProofRequiredExceptionHandler.Result result = ProofRequiredExceptionHandler.handle(context, e, SignalDatabase.threads().getRecipientForThreadId(threadId), threadId, messageId);
       if (result.isRetry()) {

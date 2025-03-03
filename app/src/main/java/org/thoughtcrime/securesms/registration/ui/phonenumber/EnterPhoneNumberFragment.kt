@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumberBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
@@ -65,6 +64,7 @@ import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.PlayServicesUtil
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -619,7 +619,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
 
     val message: CharSequence = SpannableStringBuilder().apply {
-      append(SpanUtil.bold(PhoneNumberFormatter.prettyPrint(phoneNumber.toE164())))
+      append(SpanUtil.bold(SignalE164Util.prettyPrint(phoneNumber.toE164())))
       if (!canSkipSms) {
         append("\n\n")
         append(getString(R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number))

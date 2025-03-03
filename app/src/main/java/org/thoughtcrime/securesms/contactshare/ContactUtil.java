@@ -27,10 +27,10 @@ import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.SpanUtil;
 
 import java.io.IOException;
@@ -120,8 +120,8 @@ public final class ContactUtil {
     }
   }
 
-  public static @NonNull String getNormalizedPhoneNumber(@NonNull Context context, @Nullable String number) {
-    return PhoneNumberFormatter.get(context).format(number);
+  public static @Nullable String getNormalizedPhoneNumber(@Nullable String number) {
+    return SignalE164Util.formatAsE164(number != null ? number : "");
   }
 
   @MainThread
@@ -142,11 +142,11 @@ public final class ContactUtil {
     }
   }
 
-  public static List<RecipientId> getRecipients(@NonNull Context context, @NonNull Contact contact) {
+  public static List<RecipientId> getRecipients(@NonNull Contact contact) {
     return contact
         .getPhoneNumbers()
         .stream()
-        .map(phone -> PhoneNumberFormatter.get(context).formatOrNull(phone.getNumber()))
+        .map(phone -> SignalE164Util.formatAsE164(phone.getNumber()))
         .filter(number -> number != null)
         .map(phone -> SignalDatabase.recipients().getOrInsertFromE164(phone))
         .collect(Collectors.toList());

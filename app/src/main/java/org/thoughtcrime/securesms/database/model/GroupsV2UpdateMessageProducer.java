@@ -13,7 +13,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.BidiUtil;
-import org.signal.core.util.StringUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
@@ -61,22 +60,16 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationSelfInvitedUpd
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate;
-import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
-import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
-import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;

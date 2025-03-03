@@ -30,14 +30,11 @@ import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObs
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint;
+import org.thoughtcrime.securesms.jobmanager.migrations.DeprecatedJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.DonationReceiptRedemptionJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.GroupCallPeekJobDataMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushDecryptMessageJobEnvelopeMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageJobMigration;
-import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
-import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
-import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
-import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RetrieveProfileJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SendReadReceiptsJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.SenderKeyDistributionSendJobRecipientMigration;
@@ -243,7 +240,7 @@ public final class JobManagerFactories {
       put(SenderKeyDistributionSendJob.KEY,            new SenderKeyDistributionSendJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                  new SendDeliveryReceiptJob.Factory());
       put(SendPaymentsActivatedJob.KEY,                new SendPaymentsActivatedJob.Factory());
-      put(SendReadReceiptJob.KEY,                      new SendReadReceiptJob.Factory(application));
+      put(SendReadReceiptJob.KEY,                      new SendReadReceiptJob.Factory());
       put(SendRetryReceiptJob.KEY,                     new SendRetryReceiptJob.Factory());
       put(SendViewedReceiptJob.KEY,                    new SendViewedReceiptJob.Factory(application));
       put(StorageRotateManifestJob.KEY,                new StorageRotateManifestJob.Factory());
@@ -415,11 +412,11 @@ public final class JobManagerFactories {
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {
-    return Arrays.asList(new RecipientIdJobMigration(application),
-                         new RecipientIdFollowUpJobMigration(),
-                         new RecipientIdFollowUpJobMigration2(),
+    return Arrays.asList(new DeprecatedJobMigration(2),
+                         new DeprecatedJobMigration(3),
+                         new DeprecatedJobMigration(4),
                          new SendReadReceiptsJobMigration(SignalDatabase.messages()),
-                         new PushProcessMessageQueueJobMigration(application),
+                         new DeprecatedJobMigration(6),
                          new RetrieveProfileJobMigration(),
                          new PushDecryptMessageJobEnvelopeMigration(),
                          new SenderKeyDistributionSendJobRecipientMigration(),

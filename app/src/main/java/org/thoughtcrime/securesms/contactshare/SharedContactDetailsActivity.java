@@ -97,7 +97,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     initViews();
 
     presentContact(contact);
-    presentActionButtons(ContactUtil.getRecipients(this, contact));
+    presentActionButtons(ContactUtil.getRecipients(contact));
     presentAvatar(contact.getAvatarAttachment() != null ? contact.getAvatarAttachment().getUri() : null);
 
     for (LiveRecipient recipient : activeRecipients.values()) {

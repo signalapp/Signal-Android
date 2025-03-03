@@ -62,10 +62,12 @@ public class AvatarMigrationJob extends MigrationJob {
     for (File file : files) {
       try {
         if (isValidFileName(file.getName())) {
-          Recipient recipient = Recipient.external(context, file.getName());
+          Recipient recipient = Recipient.external(file.getName());
           byte[]    data      = StreamUtil.readFully(new FileInputStream(file));
 
-          AvatarHelper.setAvatar(context, recipient.getId(), new ByteArrayInputStream(data));
+          if (recipient != null) {
+            AvatarHelper.setAvatar(context, recipient.getId(), new ByteArrayInputStream(data));
+          }
         } else {
           Log.w(TAG, "Invalid file name! Can't migrate this file. It'll just get deleted.");
         }

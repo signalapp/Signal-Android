@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Annotation;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.Selection;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;

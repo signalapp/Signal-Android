@@ -310,7 +310,7 @@ public class CommunicationActions {
    * If the url is a signal.me link it will handle it.
    */
   public static void handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
-    String                 e164     = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
+    String                 e164     = SignalMeUtil.parseE164FromLink(potentialUrl);
     UsernameLinkComponents username = UsernameRepository.parseLink(potentialUrl);
 
     if (e164 != null) {
@@ -426,7 +426,10 @@ public class CommunicationActions {
     SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
 
     SimpleTask.run(() -> {
-      Recipient recipient = Recipient.external(activity, e164);
+      Recipient recipient = Recipient.external(e164);
+      if (recipient == null) {
+        return null;
+      }
 
       if (!recipient.isRegistered() || !recipient.getHasServiceId()) {
         try {
@@ -441,7 +444,7 @@ public class CommunicationActions {
     }, recipient -> {
       dialog.dismiss();
 
-      if (recipient.isRegistered() && recipient.getHasServiceId()) {
+      if (recipient != null && recipient.isRegistered() && recipient.getHasServiceId()) {
         startConversation(activity, recipient, null);
       } else {
         new MaterialAlertDialogBuilder(activity)
