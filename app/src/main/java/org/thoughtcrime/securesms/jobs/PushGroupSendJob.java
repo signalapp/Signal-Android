@@ -118,6 +118,10 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new AssertionError("Not a group!");
       }
 
+      if (group.isPushV1Group()) {
+        throw new MmsException("Cannot send to GV1 groups");
+      }
+
       MessageTable    database = SignalDatabase.messages();
       OutgoingMessage message  = database.getOutgoingMessage(messageId);
 
