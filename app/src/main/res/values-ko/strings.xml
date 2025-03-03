@@ -662,7 +662,7 @@
     <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
     <string name="ConversationFragment_profile_names_not_verified">%1$s이 확인되지 않았습니다</string>
     <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_group_names_not_verified">%1$s이 확인되지 않았습니다</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">프로필 이름</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -5896,7 +5896,7 @@
     <string name="DonationsErrors__your_payment_is_still">기부를 아직 처리하는 중입니다. 연결에 따라 몇 분이 소요될 수 있습니다.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">구독을 취소하지 못했습니다.</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">구독을 취소하려면 인터넷 연결이 필요합니다.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">기기가 앱 내 기부를 지원하지 않으므로 구독을 통해 배지를 획득할 수 없습니다. 하지만 원하신다면 웹사이트에서 기부하여 Signal을 지원해 주실 수 있습니다.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">네트워크 오류. 연결을 확인하고 다시 시도하세요.</string>
     <string name="NetworkFailure__retry">재시도</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

@@ -674,7 +674,7 @@
     <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
     <string name="ConversationFragment_profile_names_not_verified">%1$s ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ</string>
     <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_group_names_not_verified">%1$s ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">ಪ್ರೊಫೈಲ್ ಹೆಸರುಗಳು</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">ನಿಮ್ಮ ದೇಣಿಗೆಯು ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಗೊಳ್ಳುತ್ತಿದೆ. ಇದು ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಅವಲಂಬಿಸಿಕೊಂಡು ಕೆಲವು ನಿಮಿಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ಚಂದಾ ರದ್ದುಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ಚಂದಾ ರದ್ದತಿಗೆ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಬೇಕಾಗುತ್ತದೆ.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">ನಿಮ್ಮ ಸಾಧನವು ಇನ್-ಆ್ಯಪ್ ದೇಣಿಗೆಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಹಾಗಾಗಿ ನೀವು ಬ್ಯಾಡ್ಜ್ ಗಳಿಸುವುದಕ್ಕೆ ಚಂದಾದಾರರಾಗಲು ಸಾಧ್ಯವಿಲ್ಲ. ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ದೇಣಿಗೆ ನೀಡುವ ಮೂಲಕ ನೀವು ಈಗಲೂ Signal ಅನ್ನು ಬೆಂಬಲಿಸಬಹುದು.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ನೆಟ್‌ವರ್ಕ್ ದೋಷ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="NetworkFailure__retry">ಮರುಪ್ರಯತ್ನಿಸಿ</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

@@ -662,7 +662,7 @@
     <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
     <string name="ConversationFragment_profile_names_not_verified">%1$s冇經過驗證</string>
     <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
-    <string name="ConversationFragment_group_names_not_verified">%1$s are not verified</string>
+    <string name="ConversationFragment_group_names_not_verified">%1$s冇經過驗證</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
     <string name="ConversationFragment_profile_names">個人檔名</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
@@ -5896,7 +5896,7 @@
     <string name="DonationsErrors__your_payment_is_still">仲處理緊你嘅捐款。視乎你嘅上網速度，過程可能需時幾分鐘。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">取消唔到課金計劃</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">取消課金計劃需要連線上網。</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">你部機唔支援 APP 內捐款，所以冇得訂閱課金計劃同賺取徽章。話雖如此，歡迎你繼續喺我哋網站上面捐款支持 Signal。</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡有問題。請檢查您嘅連線，然後再試下啦。</string>
     <string name="NetworkFailure__retry">再試一次</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
