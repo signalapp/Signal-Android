@@ -81,6 +81,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_ACI = "account.aci"
     private const val KEY_PNI = "account.pni"
     private const val KEY_IS_REGISTERED = "account.is_registered"
+    private const val KEY_ACCOUNT_REGISTERED_AT = "account.registered_at"
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
 
@@ -417,7 +418,19 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     if (previous && !registered) {
       clearLocalCredentials()
     }
+
+    if (!previous && registered) {
+      registeredAtTimestamp = System.currentTimeMillis()
+    } else if (!registered) {
+      registeredAtTimestamp = -1
+    }
   }
+
+  /**
+   * Milliseconds since epoch when account was registered or a negative value if not known.
+   */
+  var registeredAtTimestamp: Long by longValue(KEY_ACCOUNT_REGISTERED_AT, -1)
+    private set
 
   /**
    * Function for testing backup/restore
