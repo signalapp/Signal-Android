@@ -133,6 +133,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           overflowParticipants = callParticipantsState.listParticipants,
           localParticipant = callParticipantsState.localParticipant,
           localRenderState = callParticipantsState.localRenderState,
+          reactions = callParticipantsState.reactions,
           callScreenDialogType = dialog,
           callInfoView = {
             CallInfoView.View(

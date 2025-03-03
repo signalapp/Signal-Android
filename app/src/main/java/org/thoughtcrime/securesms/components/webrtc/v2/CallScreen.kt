@@ -60,6 +60,7 @@ import org.signal.core.ui.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant
+import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import kotlin.math.max
@@ -94,6 +95,7 @@ fun CallScreen(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
   callScreenDialogType: CallScreenDialogType,
+  reactions: List<GroupCallReactionEvent>,
   callInfoView: @Composable (Float) -> Unit,
   raiseHandSnackbar: @Composable (Modifier) -> Unit,
   onNavigationClick: () -> Unit,
@@ -234,6 +236,10 @@ fun CallScreen(
             callScreenController = callScreenController
           )
         }
+
+        CallScreenReactionsContainer(
+          reactions = reactions
+        )
       }
 
       val onCallInfoClick: () -> Unit = {
@@ -545,7 +551,8 @@ private fun CallScreenPreview() {
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
       overflowParticipants = emptyList(),
-      onControlsToggled = {}
+      onControlsToggled = {},
+      reactions = emptyList()
     )
   }
 }
