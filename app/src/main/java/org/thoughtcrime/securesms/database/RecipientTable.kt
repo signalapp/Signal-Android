@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
@@ -494,6 +495,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     Log.d(TAG, "[getAndPossiblyMerge] Requires a transaction.")
+    val e164 = e164?.let { SignalE164Util.formatAsE164(it) }
+    require(aci != null || pni != null || e164 != null) { "E164 was improperly formatted!" }
 
     val db = writableDatabase
     lateinit var result: ProcessPnpTupleResult
