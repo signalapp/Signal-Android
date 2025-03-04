@@ -153,6 +153,14 @@ class MediaSelectionActivity :
       textViewModel.restoreFromInstanceState(savedInstanceState)
     }
 
+    viewModel.hasSelectedMedia.observe(this) { hasSelectedMedia->
+      if(hasSelectedMedia) {
+        textStoryToggle.visible = false
+      } else {
+        textStoryToggle.visible = canDisplayStorySwitch()
+      }
+    }
+
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
         R.id.mediaCaptureFragment -> {
@@ -233,7 +241,6 @@ class MediaSelectionActivity :
   private fun canDisplayStorySwitch(): Boolean {
     return Stories.isFeatureEnabled() &&
       isCameraFirst() &&
-      !viewModel.hasSelectedMedia() &&
       (destination == MediaSelectionDestination.ChooseAfterMediaSelection || destination is MediaSelectionDestination.SingleStory)
   }
 
