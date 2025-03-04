@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Dohaintza prozesatzen ari da oraindik. Zure konexioaren arabera, baliteke minutu batzuk behar izatea.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da bertan behera utzi harpidetza</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Harpidetza bertan behera uzteko, Internetera konektatuta egon behar duzu.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Zure gailua ez da bateragarria aplikazioko dohaintzekin; beraz, ezin zara harpidetu bereizgarri bat irabazteko. Hala ere, Signal-i lagundu diezaiokezu, gure webgunean dohaintza bat eginez.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
     <string name="NetworkFailure__retry">Berriro saiatu</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

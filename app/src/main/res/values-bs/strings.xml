@@ -6307,7 +6307,7 @@
     <string name="DonationsErrors__your_payment_is_still">Vaša donacija se još uvijek obrađuje. Ovo može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Neuspjelo otkazivanje pretplate</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Otkazivanje pretplate traži internet-konekciju.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Vaš uređaj ne podržava donacije unutar aplikacije, tako da se ne možete pretplatiti da zaradite značku. Još uvijek možete podržati Signal donacijom na našoj web stranici.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Mrežna greška. Provjerite svoju internet-konekciju i pokušajte ponovo.</string>
     <string name="NetworkFailure__retry">Pokušaj</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

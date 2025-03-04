@@ -1334,7 +1334,7 @@
         <item quantity="other">تمَّ إرسال %1$d دعوة.</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">لا يمكنك إضافة \"%1$s\" تلقائيًا إلى هذه المجموعة. \n\n تمَّت دعوة ذلك الشخص للانضمام، ولن يرى أيّة رسالة من رسائل المجموعة حتى يقبل الدعوة.</string>
+    <string name="GroupManagement_invite_single_user">لا يُمكن إضافة \"%1$s\" تلقائيًا للمجموعة بواسطتك. \n\n تمَّت دعوته للانضمام، لكنه لن يرى أي رسالة من رسائل المجموعة حتى يقبل الدعوة.</string>
     <string name="GroupManagement_invite_multiple_users">لا يمكنك إضافة هؤلاء المستخدمين تلقائيًا إلى هذه المجموعة . \n \n تمَّت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون الدعوة.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -4999,7 +4999,7 @@
     <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي (%1$02d:%2$02d)</string>
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">إعادة إرسال الرمز (%1$02d:%2$02d)</string>
-    <string name="RegistrationActivity_contact_signal_support">الاتصال بقسم الدعم في سيجنال</string>
+    <string name="RegistrationActivity_contact_signal_support">التواصُل مع قسم الدعم في سيجنال</string>
     <string name="RegistrationActivity_code_support_subject">تسجيل سيجنال - كود التحقُّق لـ Android</string>
     <string name="RegistrationActivity_incorrect_code">كود غير صحيح</string>
     <string name="BackupUtil_never">أبدًا</string>
@@ -6581,7 +6581,7 @@
     <string name="DonationsErrors__your_payment_is_still">لا يزال تبرُّعك قيد المعالجة. قد يستغرق الأمر بضع دقائق حسب اتصال شبكتك.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالًا بالإنترنت.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">لا يدعم جهازك التبرُّعات داخل التطبيق، لذلك لا يُمكنك الاشتراك لِربح شارة. لا يزال بإمكانك دعم سيجنال بالتبرُّع على موقعنا الإلكتروني.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">حدث خطأ في الشبكة. يُرجى التحقُّق من اتصالك بالانترنت ثم المحاولة مرّة أخرى.</string>
     <string name="NetworkFailure__retry">إعادة المُحاولة</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

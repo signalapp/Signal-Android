@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Sinu annetus on endiselt töötlemisel. Selleks võib olenevalt sinu ühendusest kuluda mõni minut.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Tellimust ei õnnestunud tühistada</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tellimuse tühistamiseks on vajalik internetiühendus.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Sinu seadmes ei ole äpisisesed annetused lubatud, nii et sa ei saa tellimust teha ja omale märki teenida. Signali toetuseks saad teha annetuse meie veebilehel.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Võrgu viga. Kontrolli oma ühendust ja proovi uuesti.</string>
     <string name="NetworkFailure__retry">Proovi uuesti</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

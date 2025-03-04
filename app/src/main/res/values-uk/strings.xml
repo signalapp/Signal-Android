@@ -6307,7 +6307,7 @@
     <string name="DonationsErrors__your_payment_is_still">Ваш донат ще обробляється. Обробка може зайняти кілька хвилин в залежності від вашого з\'єднання.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалося скасувати підписку</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для скасування підписки потрібне з\'єднання з інтернетом.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Ваш пристрій не підтримує донати в застосунку, тому ви не можете оформити підписку й отримати за це значок. Але ви маєте змогу підтримати Signal, зробивши донат на нашому сайті.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Мережева помилка. Перевірте з\'єднання та спробуйте знов.</string>
     <string name="NetworkFailure__retry">Повторити</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

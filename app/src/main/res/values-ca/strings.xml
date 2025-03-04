@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">La teva donació encara s\'està processant. Això pot trigar uns quants minuts segons la teva connexió.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">No s\'ha pogut cancel·lar la subscripció.</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">La cancel·lació de la subscripció requereix una connexió a Internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">El teu dispositiu no és compatible amb les donacions dins de l\'app, de manera que no t\'hi pots subscriure per guanyar una insígnia. Pots donar suport a Signal fent una donació al nostre lloc web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
     <string name="NetworkFailure__retry">Torneu a provar-ho</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

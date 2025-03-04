@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Sua doação ainda está sendo processada. Isso pode demorar alguns minutos, dependendo da sua conexão.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao cancelar a doação mensal</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da doação mensal requer uma conexão com a internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Seu aparelho não é compatível com doações no aplicativo, portanto você não pode doar para ganhar um selo. Você ainda pode apoiar o Signal ao fazer uma doação em nosso site.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua conexão e tente novamente.</string>
     <string name="NetworkFailure__retry">Tentar novamente</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->

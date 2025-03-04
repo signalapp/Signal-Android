@@ -6033,7 +6033,7 @@
     <string name="DonationsErrors__your_payment_is_still">Je donatie wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Het stopzetten van je maandelijkse donatie is mislukt</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie stop te zetten moet je toegang hebben tot internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Your device doesn\'t support in-app donations, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Je apparaat biedt geen ondersteuning voor in-app-donaties. Hierdoor kun je niet doneren en kun je geen badge verdienen. Je kunt nog wel doneren via onze Signal-website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Controleer je internetverbinding en probeer het opnieuw.</string>
     <string name="NetworkFailure__retry">Opnieuw proberen</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
