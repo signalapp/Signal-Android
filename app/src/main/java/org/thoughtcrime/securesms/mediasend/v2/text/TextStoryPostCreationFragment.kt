@@ -120,6 +120,10 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
       viewModel.setLinkPreview("")
     }
 
+    binding.storyTextPost.setLinkPreviewClickListener {
+      TextStoryPostLinkEntryFragment(true).show(childFragmentManager, null)
+    }
+
     val launcher = registerForActivityResult(StoriesMultiselectForwardActivity.SelectionContract()) {
       if (it.isNotEmpty()) {
         performSend(it.toSet())
