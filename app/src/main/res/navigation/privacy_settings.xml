@@ -15,8 +15,8 @@
             app:argType="boolean" />
 
         <action
-            android:id="@+id/action_privacySettingsFragment_to_blockedUsersActivity"
-            app:destination="@id/blockedUsersActivity"
+            android:id="@+id/action_privacySettingsFragment_to_blockedUsersFragment"
+            app:destination="@id/blockedUsersFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -52,10 +52,23 @@
 
     </fragment>
 
-    <activity
-        android:id="@+id/blockedUsersActivity"
-        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersActivity"
-        android:label="blocked_users_activity" />
+    <fragment
+        android:id="@+id/blockedUsersFragment"
+        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersFragment"
+        android:label="blocked_users_fragment" >
+        <action
+            android:id="@+id/action_blockedUsersFragment_to_blockedUsersContactSelectionFragment"
+            app:destination="@id/blockedUsersContactSelectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blockedUsersContactSelectionFragment"
+        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersContactSelectionFragment"
+        android:label="blocked_users_fragment" />
 
     <fragment
         android:id="@+id/advancedPrivacySettingsFragment"

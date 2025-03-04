@@ -253,7 +253,9 @@ object Rows {
     icon: (@Composable RowScope.() -> Unit)? = null,
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
-    enabled: Boolean = true
+    enabled: Boolean = true,
+    paddingValues: PaddingValues = defaultPadding(),
+    spacerModifier: Modifier = Modifier.width(24.dp)
   ) {
     Row(
       modifier = modifier
@@ -263,12 +265,12 @@ object Rows {
           onClick = onClick ?: {},
           onLongClick = onLongClick ?: {}
         )
-        .padding(defaultPadding()),
+        .padding(paddingValues),
       verticalAlignment = CenterVertically
     ) {
       if (icon != null) {
         icon()
-        Spacer(modifier = Modifier.width(24.dp))
+        Spacer(spacerModifier)
       }
       text()
     }
