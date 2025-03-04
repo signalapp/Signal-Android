@@ -14,10 +14,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/text_switch"
-        app:layout_constraintEnd_toEndOf="@id/text_switch"
-        app:layout_constraintStart_toStartOf="@id/text_switch"
-        app:layout_constraintTop_toTopOf="@id/text_switch" />
+        app:layout_constraintBottom_toBottomOf="@id/video_switch"
+        app:layout_constraintEnd_toEndOf="@id/video_switch"
+        app:layout_constraintStart_toStartOf="@id/video_switch"
+        app:layout_constraintTop_toTopOf="@id/video_switch" />
 
     <TextView
         android:id="@+id/video_switch"
@@ -29,8 +29,7 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/story_pill_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/camera_switch"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/red_500" />
@@ -45,10 +44,10 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/story_pill_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/text_switch"
-        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/video_switch"
         tools:background="@color/red_500" />
 
     <TextView
@@ -61,9 +60,10 @@
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/story_pill_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/camera_switch"
         tools:background="@color/green_500" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
