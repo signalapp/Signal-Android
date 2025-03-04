@@ -33,18 +33,19 @@ final class LogSectionBadges implements LogSection {
     InAppPaymentTable.InAppPayment latestRecurringDonation = SignalDatabase.inAppPayments().getLatestInAppPaymentByType(InAppPaymentType.RECURRING_DONATION);
 
     if (latestRecurringDonation != null) {
-      return new StringBuilder().append("Badge Count                     : ").append(Recipient.self().getBadges().size()).append("\n")
-                                .append("ExpiredBadge                    : ").append(SignalStore.inAppPayments().getExpiredBadge() != null).append("\n")
-                                .append("LastKeepAliveLaunchTime         : ").append(SignalStore.inAppPayments().getLastKeepAliveLaunchTime()).append("\n")
-                                .append("LastEndOfPeriod                 : ").append(SignalStore.inAppPayments().getLastEndOfPeriod()).append("\n")
-                                .append("InAppPayment.State              : ").append(latestRecurringDonation.getState()).append("\n")
-                                .append("InAppPayment.EndOfPeriod        : ").append(latestRecurringDonation.getEndOfPeriodSeconds()).append("\n")
-                                .append("InAppPaymentData.RedemptionState: ").append(getRedemptionStage(latestRecurringDonation.getData())).append("\n")
-                                .append("InAppPaymentData.Error          : ").append(getError(latestRecurringDonation.getData())).append("\n")
-                                .append("InAppPaymentData.Cancellation   : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
-                                .append("DisplayBadgesOnProfile          : ").append(SignalStore.inAppPayments().getDisplayBadgesOnProfile()).append("\n")
-                                .append("ShouldCancelBeforeNextAttempt   : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n")
-                                .append("IsUserManuallyCancelledDonation : ").append(SignalStore.inAppPayments().isDonationSubscriptionManuallyCancelled()).append("\n");
+      return new StringBuilder().append("Badge Count                       : ").append(Recipient.self().getBadges().size()).append("\n")
+                                .append("ExpiredBadge                      : ").append(SignalStore.inAppPayments().getExpiredBadge() != null).append("\n")
+                                .append("LastKeepAliveLaunchTime           : ").append(SignalStore.inAppPayments().getLastKeepAliveLaunchTime()).append("\n")
+                                .append("LastEndOfPeriod                   : ").append(SignalStore.inAppPayments().getLastEndOfPeriod()).append("\n")
+                                .append("InAppPayment.State                : ").append(latestRecurringDonation.getState()).append("\n")
+                                .append("InAppPayment.EndOfPeriod          : ").append(latestRecurringDonation.getEndOfPeriodSeconds()).append("\n")
+                                .append("InAppPaymentData.PaymentMethodType: ").append(getPaymentMethod(latestRecurringDonation.getData())).append("\n")
+                                .append("InAppPaymentData.RedemptionState  : ").append(getRedemptionStage(latestRecurringDonation.getData())).append("\n")
+                                .append("InAppPaymentData.Error            : ").append(getError(latestRecurringDonation.getData())).append("\n")
+                                .append("InAppPaymentData.Cancellation     : ").append(getCancellation(latestRecurringDonation.getData())).append("\n")
+                                .append("DisplayBadgesOnProfile            : ").append(SignalStore.inAppPayments().getDisplayBadgesOnProfile()).append("\n")
+                                .append("ShouldCancelBeforeNextAttempt     : ").append(InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(InAppPaymentSubscriberRecord.Type.DONATION)).append("\n")
+                                .append("IsUserManuallyCancelledDonation   : ").append(SignalStore.inAppPayments().isDonationSubscriptionManuallyCancelled()).append("\n");
 
     } else {
       return new StringBuilder().append("Badge Count                             : ").append(Recipient.self().getBadges().size()).append("\n")
@@ -61,6 +62,10 @@ final class LogSectionBadges implements LogSection {
                                 .append("Has unconverted request context         : ").append(SignalStore.inAppPayments().getSubscriptionRequestCredential() != null).append("\n")
                                 .append("Has unredeemed receipt presentation     : ").append(SignalStore.inAppPayments().getSubscriptionReceiptCredential() != null).append("\n");
     }
+  }
+
+  private @NonNull String getPaymentMethod(@NonNull InAppPaymentData inAppPaymentData) {
+    return inAppPaymentData.paymentMethodType.toString();
   }
 
   private @NonNull String getRedemptionStage(@NonNull InAppPaymentData inAppPaymentData) {

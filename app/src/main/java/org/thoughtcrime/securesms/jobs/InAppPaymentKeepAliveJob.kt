@@ -235,13 +235,33 @@ class InAppPaymentKeepAliveJob private constructor(
         SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
 
+      val subscriptionPaymentMethodType: InAppPaymentData.PaymentMethodType = subscription.paymentMethod.toInAppPaymentDataPaymentMethodType()
+      val subscriberPaymentMethodType: InAppPaymentData.PaymentMethodType = subscriber.paymentMethodType
+
+      val newInAppPaymentMethodType: InAppPaymentData.PaymentMethodType = when (subscriptionPaymentMethodType) {
+        InAppPaymentData.PaymentMethodType.CARD -> {
+          if (subscriberPaymentMethodType == InAppPaymentData.PaymentMethodType.GOOGLE_PAY) {
+            InAppPaymentData.PaymentMethodType.GOOGLE_PAY
+          } else {
+            InAppPaymentData.PaymentMethodType.CARD
+          }
+        }
+        InAppPaymentData.PaymentMethodType.UNKNOWN -> {
+          subscriberPaymentMethodType
+        }
+        else -> subscriptionPaymentMethodType
+      }
+
+      info(type, "Resolved payment method type from subscription: $newInAppPaymentMethodType")
+      SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(subscriber.subscriberId, paymentMethodType = newInAppPaymentMethodType)
+
       val inAppPaymentId = SignalDatabase.inAppPayments.insert(
         type = type.inAppPaymentType,
         state = InAppPaymentTable.State.PENDING,
         subscriberId = subscriber.subscriberId,
         endOfPeriod = endOfCurrentPeriod,
         inAppPaymentData = InAppPaymentData(
-          paymentMethodType = subscriber.paymentMethodType,
+          paymentMethodType = newInAppPaymentMethodType,
           badge = badge,
           amount = FiatValue(
             currencyCode = subscription.currency,
@@ -296,6 +316,18 @@ class InAppPaymentKeepAliveJob private constructor(
 
   private fun warn(type: InAppPaymentSubscriberRecord.Type, message: String, throwable: Throwable? = null) {
     Log.w(TAG, "[$type] $message", throwable, true)
+  }
+
+  private fun ActiveSubscription.PaymentMethod.toInAppPaymentDataPaymentMethodType(): InAppPaymentData.PaymentMethodType {
+    return when (this) {
+      ActiveSubscription.PaymentMethod.UNKNOWN -> InAppPaymentData.PaymentMethodType.UNKNOWN
+      ActiveSubscription.PaymentMethod.CARD -> InAppPaymentData.PaymentMethodType.CARD
+      ActiveSubscription.PaymentMethod.PAYPAL -> InAppPaymentData.PaymentMethodType.PAYPAL
+      ActiveSubscription.PaymentMethod.SEPA_DEBIT -> InAppPaymentData.PaymentMethodType.SEPA_DEBIT
+      ActiveSubscription.PaymentMethod.IDEAL -> InAppPaymentData.PaymentMethodType.IDEAL
+      ActiveSubscription.PaymentMethod.GOOGLE_PLAY_BILLING -> InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+      ActiveSubscription.PaymentMethod.APPLE_APP_STORE -> InAppPaymentData.PaymentMethodType.UNKNOWN
+    }
   }
 
   override fun serialize(): ByteArray? = JsonJobData.Builder().putInt(DATA_TYPE, type.code).build().serialize()

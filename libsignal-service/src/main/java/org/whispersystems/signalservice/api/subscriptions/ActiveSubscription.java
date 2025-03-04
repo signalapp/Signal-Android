@@ -43,6 +43,35 @@ public final class ActiveSubscription {
     }
   }
 
+  /**
+   * As per API documentation
+   */
+  public enum PaymentMethod {
+    UNKNOWN("UNKNOWN"),
+    CARD("CARD"),
+    PAYPAL("PAYPAL"),
+    SEPA_DEBIT("SEPA_DEBIT"),
+    IDEAL("IDEAL"),
+    GOOGLE_PLAY_BILLING("GOOGLE_PLAY_BILLING"),
+    APPLE_APP_STORE("APPLE_APP_STORE");
+
+    private String code;
+
+    PaymentMethod(String code) {
+      this.code = code;
+    }
+
+    static PaymentMethod fromCode(String code) {
+      for (PaymentMethod method : PaymentMethod.values()) {
+        if (Objects.equals(method.code, code)) {
+          return method;
+        }
+      }
+
+      return PaymentMethod.UNKNOWN;
+    }
+  }
+
   private enum Status {
     /**
      * The subscription is currently in a trial period and it's safe to provision your product for your customer.
@@ -153,17 +182,17 @@ public final class ActiveSubscription {
   }
 
   public static final class Subscription {
-    private final int        level;
-    private final String     currency;
-    private final BigDecimal amount;
-    private final long       endOfCurrentPeriod;
-    private final boolean    isActive;
-    private final long       billingCycleAnchor;
-    private final boolean    willCancelAtPeriodEnd;
-    private final String     status;
-    private final Processor  processor;
-    private final String     paymentMethod;
-    private final boolean    paymentPending;
+    private final int           level;
+    private final String        currency;
+    private final BigDecimal    amount;
+    private final long          endOfCurrentPeriod;
+    private final boolean       isActive;
+    private final long          billingCycleAnchor;
+    private final boolean       willCancelAtPeriodEnd;
+    private final String        status;
+    private final Processor     processor;
+    private final PaymentMethod paymentMethod;
+    private final boolean       paymentPending;
 
     @JsonCreator
     public Subscription(@JsonProperty("level") int level,
@@ -187,7 +216,7 @@ public final class ActiveSubscription {
       this.willCancelAtPeriodEnd = willCancelAtPeriodEnd;
       this.status                = status;
       this.processor             = Processor.fromCode(processor);
-      this.paymentMethod         = paymentMethod;
+      this.paymentMethod         = PaymentMethod.fromCode(paymentMethod);
       this.paymentPending        = paymentPending;
     }
 
@@ -243,7 +272,7 @@ public final class ActiveSubscription {
       return processor;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
       return paymentMethod;
     }
 

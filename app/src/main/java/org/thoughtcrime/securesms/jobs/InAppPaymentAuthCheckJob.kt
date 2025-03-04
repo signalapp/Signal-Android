@@ -228,7 +228,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     val setPaymentMethodResponse = if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       AppDependencies.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod)
+      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
     }
 
     when (val result = checkResult(setPaymentMethodResponse)) {
@@ -238,6 +238,10 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Set default payment method via Signal service.", true)
+
+    SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(subscriber.subscriberId, inAppPayment.data.paymentMethodType)
+
+    Log.d(TAG, "Wrote default payment method to subscriber database entry.", true)
 
     val level = inAppPayment.data.level.toString()
 

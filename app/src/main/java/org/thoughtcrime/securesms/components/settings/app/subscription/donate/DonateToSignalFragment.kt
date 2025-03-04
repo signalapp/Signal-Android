@@ -352,7 +352,7 @@ class DonateToSignalFragment :
         R.string.DonateToSignalFragment__your_payment_is_still_being_processed_onetime
       }
     } else {
-      if (state.monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PAYMENT_METHOD_SEPA_DEBIT) {
+      if (state.monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PaymentMethod.SEPA_DEBIT) {
         R.string.DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly
       } else if (state.monthlyDonationState.nonVerifiedMonthlyDonation != null) {
         R.string.DonateToSignalFragment__your_ideal_payment_is_still_processing

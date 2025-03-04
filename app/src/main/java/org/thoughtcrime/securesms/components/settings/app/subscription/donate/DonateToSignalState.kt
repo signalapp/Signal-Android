@@ -86,7 +86,7 @@ data class DonateToSignalState(
     }
 
   val isUpdateLongRunning: Boolean
-    get() = monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PAYMENT_METHOD_SEPA_DEBIT
+    get() = monthlyDonationState.activeSubscription?.paymentMethod == ActiveSubscription.PaymentMethod.SEPA_DEBIT
 
   data class OneTimeDonationState(
     val badge: Badge? = null,

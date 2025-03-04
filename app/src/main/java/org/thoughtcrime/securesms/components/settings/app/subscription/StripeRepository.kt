@@ -210,7 +210,7 @@ class StripeRepository(
         }
 
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
-          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status, it.paymentMethod)
+          StatusAndPaymentMethodId(stripeIntentAccessor.intentId, it.status, it.paymentMethodId)
         }
       }
     }
