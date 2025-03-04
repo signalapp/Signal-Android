@@ -41,19 +41,11 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
     if (!isEnabled) {
       return false
     }
-
-    val scheduleListener = scheduledSendListener
-
-    return if (scheduleListener?.canSchedule() == true) {
-      scheduleListener.onSendScheduled()
-      true
-    } else {
-      false
-    }
+    scheduledSendListener?.onSendScheduled()
+    return true
   }
 
   interface ScheduledSendListener {
     fun onSendScheduled()
-    fun canSchedule(): Boolean
   }
 }

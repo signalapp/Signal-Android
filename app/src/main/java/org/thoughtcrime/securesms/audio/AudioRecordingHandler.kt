@@ -5,6 +5,7 @@ interface AudioRecordingHandler {
   fun onRecordReleased()
   fun onRecordCanceled(byUser: Boolean)
   fun onRecordLocked()
+  fun onRecordSaved()
   fun onRecordMoved(offsetX: Float, absoluteX: Float)
   fun onRecordPermissionRequired()
 }
