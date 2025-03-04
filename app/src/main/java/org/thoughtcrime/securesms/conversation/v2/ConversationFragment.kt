@@ -1596,7 +1596,8 @@ class ConversationFragment :
     }
 
     if (editMessage.body == composeText.editableText.toString() &&
-      editMessage.getQuote()?.displayText?.toString() == inputPanel.quote.map { it.text }.orNull()
+      editMessage.getQuote()?.displayText?.toString() == inputPanel.quote.map { it.text }.orNull() &&
+      editMessage.messageRanges == composeText.styling
     ) {
       Log.d(TAG, "Updated message matches original, exiting edit mode")
       inputPanel.exitEditMessageMode()
