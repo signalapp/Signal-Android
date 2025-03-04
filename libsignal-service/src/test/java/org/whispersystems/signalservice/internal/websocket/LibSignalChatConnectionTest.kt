@@ -417,15 +417,54 @@ class LibSignalChatConnectionTest {
 
   @Test
   fun regressionTestSendWhileConnecting() {
+    var connectionCompletionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
     every { network.connectUnauthChat(any()) } answers {
       chatListener = firstArg()
       delay {
         // We do not complete the future, so we stay in the CONNECTING state forever.
+        connectionCompletionFuture = it
       }
     }
+    sendLatch = CountDownLatch(1)
 
     connection.connect()
-    connection.sendRequest(WebSocketRequestMessage("GET", "/fake-path"))
+
+    val sendSingle = connection.sendRequest(WebSocketRequestMessage("GET", "/fake-path"))
+    val sendObserver = sendSingle.test()
+
+    assertEquals(1, sendLatch!!.count)
+    sendObserver.assertNotComplete()
+
+    connectionCompletionFuture!!.complete(chatConnection)
+
+    sendLatch!!.await(100, TimeUnit.MILLISECONDS)
+    sendObserver.awaitDone(100, TimeUnit.MILLISECONDS)
+    sendObserver.assertValues(RESPONSE_SUCCESS.toWebsocketResponse(true))
+  }
+
+  @Test
+  fun testSendFailsWhenConnectionFails() {
+    var connectionCompletionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
+    every { network.connectUnauthChat(any()) } answers {
+      chatListener = firstArg()
+      delay {
+        connectionCompletionFuture = it
+      }
+    }
+    sendLatch = CountDownLatch(1)
+
+    connection.connect()
+    val sendSingle = connection.sendRequest(WebSocketRequestMessage("GET", "/fake-path"))
+    val sendObserver = sendSingle.test()
+
+    assertEquals(1, sendLatch!!.count)
+    sendObserver.assertNotComplete()
+
+    connectionCompletionFuture!!.completeExceptionally(ChatServiceException(""))
+
+    sendObserver.awaitDone(100, TimeUnit.MILLISECONDS)
+    assertEquals(1, sendLatch!!.count)
+    sendObserver.assertFailure(IOException().javaClass)
   }
 
   private fun <T> delay(action: ((CompletableFuture<T>) -> Unit)): CompletableFuture<T> {

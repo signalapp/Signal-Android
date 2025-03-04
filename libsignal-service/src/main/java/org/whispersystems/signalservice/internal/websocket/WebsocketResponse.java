@@ -7,6 +7,7 @@ import org.whispersystems.signalservice.api.util.Preconditions;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class WebsocketResponse {
   private final int                 status;
@@ -39,6 +40,19 @@ public class WebsocketResponse {
 
   public boolean isUnidentified() {
     return unidentified;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    final WebsocketResponse that = (WebsocketResponse) o;
+    return status == that.status && unidentified == that.unidentified && Objects.equals(body, that.body) && Objects.equals(headers, that.headers);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(status, body, headers, unidentified);
   }
 
   private static Map<String, String> parseHeaders(List<String> rawHeaders) {
