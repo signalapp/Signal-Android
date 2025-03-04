@@ -18,6 +18,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
@@ -60,7 +61,6 @@ public class ConversationItemFooter extends ConstraintLayout {
   private TextView                    audioDuration;
   private LottieAnimationView         revealDot;
   private PlaybackSpeedToggleTextView playbackSpeedToggleTextView;
-  private boolean                     isOutgoing;
   private boolean                     hasShrunkDate;
 
   private OnTouchDelegateChangedListener onTouchDelegateChangedListener;
@@ -93,22 +93,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       typedArray = null;
     }
 
-    final @LayoutRes int contentId;
-    if (typedArray != null) {
-      int mode = typedArray.getInt(R.styleable.ConversationItemFooter_footer_mode, 0);
-      isOutgoing = mode == 0;
-
-      if (isOutgoing) {
-        contentId = R.layout.conversation_item_footer_outgoing;
-      } else {
-        contentId = R.layout.conversation_item_footer_incoming;
-      }
-    } else {
-      contentId  = R.layout.conversation_item_footer_outgoing;
-      isOutgoing = true;
-    }
-
-    inflate(getContext(), contentId, this);
+    inflate(getContext(), R.layout.conversation_item_footer, this);
 
     dateView                    = findViewById(R.id.footer_date);
     simView                     = findViewById(R.id.footer_sim_info);
@@ -120,6 +105,16 @@ public class ConversationItemFooter extends ConstraintLayout {
     playbackSpeedToggleTextView = findViewById(R.id.footer_audio_playback_speed_toggle);
 
     if (typedArray != null) {
+      int     mode       = typedArray.getInt(R.styleable.ConversationItemFooter_footer_mode, 0);
+      boolean isOutgoing = mode == 0;
+      if (isOutgoing) {
+        playbackSpeedToggleTextView.setTextColor(getResources().getColor(R.color.core_white));
+        playbackSpeedToggleTextView.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.transparent_white_20));
+      } else {
+        playbackSpeedToggleTextView.setTextColor(getResources().getColor(R.color.signal_text_secondary));
+        playbackSpeedToggleTextView.setBackgroundTintList(AppCompatResources.getColorStateList(getContext(), R.color.transparent_black_08));
+      }
+
       setTextColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_text_color, getResources().getColor(R.color.core_white)));
       setIconColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_icon_color, getResources().getColor(R.color.core_white)));
       setRevealDotColor(typedArray.getInt(R.styleable.ConversationItemFooter_footer_reveal_dot_color, getResources().getColor(R.color.core_white)));
@@ -247,14 +242,7 @@ public class ConversationItemFooter extends ConstraintLayout {
                                  }
                                });
 
-    if (isOutgoing) {
       dateView.setMaxWidth(ViewUtil.dpToPx(32));
-    } else {
-      ConstraintSet constraintSet = new ConstraintSet();
-      constraintSet.clone(this);
-      constraintSet.constrainMaxWidth(R.id.date_and_expiry_wrapper, ViewUtil.dpToPx(40));
-      constraintSet.applyTo(this);
-    }
   }
 
   private void hidePlaybackSpeedToggle() {
@@ -276,14 +264,7 @@ public class ConversationItemFooter extends ConstraintLayout {
                                  }
                                });
 
-    if (isOutgoing) {
       dateView.setMaxWidth(Integer.MAX_VALUE);
-    } else {
-      ConstraintSet constraintSet = new ConstraintSet();
-      constraintSet.clone(this);
-      constraintSet.constrainMaxWidth(R.id.date_and_expiry_wrapper, -1);
-      constraintSet.applyTo(this);
-    }
   }
 
   private @NonNull Rect getPlaybackSpeedToggleTouchDelegateRect() {

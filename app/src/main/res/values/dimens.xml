@@ -61,7 +61,6 @@
     <dimen name="media_bubble_gif_width">240dp</dimen>
     <dimen name="message_audio_width">212dp</dimen>
     <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
-    <dimen name="message_audio_duration_margin_start">56dp</dimen>
 
     <dimen name="progress_dialog_size">120dp</dimen>
 
