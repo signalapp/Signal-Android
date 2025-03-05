@@ -11,6 +11,7 @@ import org.signal.core.util.insertInto
 import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
+import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase
@@ -54,7 +55,8 @@ object ContactArchiveImporter {
       RecipientTable.NICKNAME_FAMILY_NAME to contact.nickname?.family,
       RecipientTable.SYSTEM_GIVEN_NAME to contact.systemGivenName,
       RecipientTable.SYSTEM_FAMILY_NAME to contact.systemFamilyName,
-      RecipientTable.SYSTEM_NICKNAME to contact.systemNickname
+      RecipientTable.SYSTEM_NICKNAME to contact.systemNickname,
+      RecipientTable.AVATAR_COLOR to contact.avatarColor?.toLocal()?.serialize()
     )
 
     if (contact.registered != null) {
@@ -111,6 +113,6 @@ private fun Contact.toLocalExtras(): RecipientExtras {
 private val Contact.formattedE164: String?
   get() {
     return e164?.let {
-      SignalE164Util.formatAsE164(e164.toString())
+      SignalE164Util.formatAsE164("+$e164")
     }
   }

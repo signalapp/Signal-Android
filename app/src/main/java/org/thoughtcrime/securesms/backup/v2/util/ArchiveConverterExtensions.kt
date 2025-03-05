@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.attachments.TombstoneAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.whispersystems.signalservice.api.backup.MediaName
@@ -25,6 +26,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.Optional
+import org.thoughtcrime.securesms.backup.v2.proto.AvatarColor as RemoteAvatarColor
 
 /**
  * Converts a [FilePointer] to a local [Attachment] object for inserting into the database.
@@ -175,4 +177,40 @@ fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, content
 
 fun Long.clampToValidBackupRange(): Long {
   return this.coerceIn(0, 8640000000000000)
+}
+
+fun AvatarColor.toRemote(): RemoteAvatarColor {
+  return when (this) {
+    AvatarColor.A100 -> RemoteAvatarColor.A100
+    AvatarColor.A110 -> RemoteAvatarColor.A110
+    AvatarColor.A120 -> RemoteAvatarColor.A120
+    AvatarColor.A130 -> RemoteAvatarColor.A130
+    AvatarColor.A140 -> RemoteAvatarColor.A140
+    AvatarColor.A150 -> RemoteAvatarColor.A150
+    AvatarColor.A160 -> RemoteAvatarColor.A160
+    AvatarColor.A170 -> RemoteAvatarColor.A170
+    AvatarColor.A180 -> RemoteAvatarColor.A180
+    AvatarColor.A190 -> RemoteAvatarColor.A190
+    AvatarColor.A200 -> RemoteAvatarColor.A200
+    AvatarColor.A210 -> RemoteAvatarColor.A210
+    AvatarColor.UNKNOWN -> RemoteAvatarColor.A100
+    AvatarColor.ON_SURFACE_VARIANT -> RemoteAvatarColor.A100
+  }
+}
+
+fun RemoteAvatarColor.toLocal(): AvatarColor {
+  return when (this) {
+    RemoteAvatarColor.A100 -> AvatarColor.A100
+    RemoteAvatarColor.A110 -> AvatarColor.A110
+    RemoteAvatarColor.A120 -> AvatarColor.A120
+    RemoteAvatarColor.A130 -> AvatarColor.A130
+    RemoteAvatarColor.A140 -> AvatarColor.A140
+    RemoteAvatarColor.A150 -> AvatarColor.A150
+    RemoteAvatarColor.A160 -> AvatarColor.A160
+    RemoteAvatarColor.A170 -> AvatarColor.A170
+    RemoteAvatarColor.A180 -> AvatarColor.A180
+    RemoteAvatarColor.A190 -> AvatarColor.A190
+    RemoteAvatarColor.A200 -> AvatarColor.A200
+    RemoteAvatarColor.A210 -> AvatarColor.A210
+  }
 }

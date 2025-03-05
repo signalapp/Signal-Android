@@ -55,6 +55,7 @@ fun RecipientTable.getContactsForBackup(selfId: Long): ContactArchiveExporter {
       "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.CHAT_COLORS}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.CUSTOM_CHAT_COLORS_ID}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.AVATAR_COLOR}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
       "${IdentityTable.TABLE_NAME}.${IdentityTable.IDENTITY_KEY}",
       "${IdentityTable.TABLE_NAME}.${IdentityTable.VERIFIED}"
@@ -91,6 +92,7 @@ fun RecipientTable.getGroupsForBackup(selfAci: ServiceId.ACI): GroupArchiveExpor
       "${RecipientTable.TABLE_NAME}.${RecipientTable.PROFILE_SHARING}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.MUTE_UNTIL}",
       "${RecipientTable.TABLE_NAME}.${RecipientTable.EXTRAS}",
+      "${RecipientTable.TABLE_NAME}.${RecipientTable.AVATAR_COLOR}",
       "${GroupTable.TABLE_NAME}.${GroupTable.V2_MASTER_KEY}",
       "${GroupTable.TABLE_NAME}.${GroupTable.SHOW_AS_STORY_STATE}",
       "${GroupTable.TABLE_NAME}.${GroupTable.TITLE}",

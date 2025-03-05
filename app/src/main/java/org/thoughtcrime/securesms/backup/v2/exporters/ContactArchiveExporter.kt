@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Contact
 import org.thoughtcrime.securesms.backup.v2.proto.Self
 import org.thoughtcrime.securesms.backup.v2.util.clampToValidBackupRange
+import org.thoughtcrime.securesms.backup.v2.util.toRemote
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
@@ -49,7 +51,9 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
     if (id == selfId) {
       return ArchiveRecipient(
         id = id,
-        self = Self()
+        self = Self(
+          avatarColor = cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote()
+        )
       )
     }
 
@@ -81,6 +85,7 @@ class ContactArchiveExporter(private val cursor: Cursor, private val selfId: Lon
       .systemGivenName(cursor.requireString(RecipientTable.SYSTEM_GIVEN_NAME) ?: "")
       .systemFamilyName(cursor.requireString(RecipientTable.SYSTEM_FAMILY_NAME) ?: "")
       .systemNickname(cursor.requireString(RecipientTable.SYSTEM_NICKNAME) ?: "")
+      .avatarColor(cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote())
 
     val registeredState = RecipientTable.RegisteredState.fromId(cursor.requireInt(RecipientTable.REGISTERED))
     if (registeredState == RecipientTable.RegisteredState.REGISTERED) {
