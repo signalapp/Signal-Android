@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.push.SignalServiceTrustStore
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
-import org.whispersystems.signalservice.api.SignalWebSocket
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -39,6 +38,7 @@ import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
@@ -70,12 +70,12 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(signalWebSocket, protocolStore, pushServiceSocket)
+    provider.provideSignalServiceMessageSender(authWebSocket, unauthWebSocket, protocolStore, pushServiceSocket)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
-    provider.provideIncomingMessageObserver(signalWebSocket)
+    provider.provideIncomingMessageObserver(authWebSocket)
   }
 
   val pushServiceSocket: PushServiceSocket by lazy {
@@ -90,10 +90,14 @@ class NetworkDependenciesModule(
     provider.provideLibsignalNetwork(signalServiceNetworkAccess.getConfiguration())
   }
 
-  val signalWebSocket: SignalWebSocket by lazy {
-    provider.provideSignalWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {
-      disposables += it.webSocketState.subscribe { webSocketStateSubject.onNext(it) }
+  val authWebSocket: SignalWebSocket.AuthenticatedWebSocket by lazy {
+    provider.provideAuthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork }).also {
+      disposables += it.state.subscribe { s -> webSocketStateSubject.onNext(s) }
     }
+  }
+
+  val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket by lazy {
+    provider.provideUnauthWebSocket({ signalServiceNetworkAccess.getConfiguration() }, { libsignalNetwork })
   }
 
   val groupsV2Authorization: GroupsV2Authorization by lazy {
@@ -122,7 +126,7 @@ class NetworkDependenciesModule(
   }
 
   val profileService: ProfileService by lazy {
-    provider.provideProfileService(groupsV2Operations.profileOperations, signalServiceMessageReceiver, signalWebSocket)
+    provider.provideProfileService(groupsV2Operations.profileOperations, signalServiceMessageReceiver, authWebSocket, unauthWebSocket)
   }
 
   val donationsService: DonationsService by lazy {
@@ -138,7 +142,7 @@ class NetworkDependenciesModule(
   }
 
   val attachmentApi: AttachmentApi by lazy {
-    provider.provideAttachmentApi(signalWebSocket, pushServiceSocket)
+    provider.provideAttachmentApi(authWebSocket, pushServiceSocket)
   }
 
   val linkDeviceApi: LinkDeviceApi by lazy {
@@ -185,7 +189,13 @@ class NetworkDependenciesModule(
     if (_signalServiceMessageSender.isInitialized()) {
       signalServiceMessageSender.cancelInFlightRequests()
     }
+    unauthWebSocket.disconnect()
     disposables.clear()
+  }
+
+  fun openConnections() {
+    incomingMessageObserver
+    unauthWebSocket.connect()
   }
 
   fun resetProtocolStores() {

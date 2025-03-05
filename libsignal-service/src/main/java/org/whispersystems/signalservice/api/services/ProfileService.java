@@ -11,9 +11,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
 import org.signal.libsignal.zkgroup.profiles.ProfileKeyVersion;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -21,6 +19,7 @@ import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 import org.whispersystems.signalservice.internal.push.IdentityCheckRequest;
@@ -59,17 +58,20 @@ public final class ProfileService {
 
   private static final String TAG = ProfileService.class.getSimpleName();
 
-  private final ClientZkProfileOperations    clientZkProfileOperations;
-  private final SignalServiceMessageReceiver receiver;
-  private final SignalWebSocket              signalWebSocket;
+  private final ClientZkProfileOperations                clientZkProfileOperations;
+  private final SignalServiceMessageReceiver             receiver;
+  private final SignalWebSocket.AuthenticatedWebSocket   authWebSocket;
+  private final SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket;
 
   public ProfileService(ClientZkProfileOperations clientZkProfileOperations,
                         SignalServiceMessageReceiver receiver,
-                        SignalWebSocket signalWebSocket)
+                        SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                        SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket)
   {
     this.clientZkProfileOperations = clientZkProfileOperations;
     this.receiver                  = receiver;
-    this.signalWebSocket           = signalWebSocket;
+    this.authWebSocket             = authWebSocket;
+    this.unauthWebSocket           = unauthWebSocket;
   }
 
   public Single<ServiceResponse<ProfileAndCredential>> getProfile(@Nonnull SignalServiceAddress address,
@@ -118,10 +120,24 @@ public final class ProfileService {
                                                                                .withResponseMapper(new ProfileResponseMapper(requestType, requestContext))
                                                                                .build();
 
-    return signalWebSocket.request(requestMessage, sealedSenderAccess)
+    if (sealedSenderAccess == null) {
+      return authWebSocket.request(requestMessage)
                           .map(responseMapper::map)
-                          .onErrorResumeNext(t -> getProfileRestFallback(address, profileKey, sealedSenderAccess, requestType, locale))
+                          .onErrorResumeNext(t -> getProfileRestFallback(address, profileKey, null, requestType, locale))
                           .onErrorReturn(ServiceResponse::forUnknownError);
+    } else {
+      return unauthWebSocket.request(requestMessage, sealedSenderAccess)
+                            .flatMap(response -> {
+                              if (response.getStatus() == 401) {
+                                return authWebSocket.request(requestMessage);
+                              } else {
+                                return Single.just(response);
+                              }
+                            })
+                            .map(responseMapper::map)
+                            .onErrorResumeNext(t -> getProfileRestFallback(address, profileKey, sealedSenderAccess, requestType, locale))
+                            .onErrorReturn(ServiceResponse::forUnknownError);
+    }
   }
 
   public @NonNull Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull Map<ServiceId, IdentityKey> serviceIdIdentityKeyMap) {
@@ -141,7 +157,7 @@ public final class ProfileService {
 
     ResponseMapper<IdentityCheckResponse> responseMapper = DefaultResponseMapper.getDefault(IdentityCheckResponse.class);
 
-    return signalWebSocket.request(builder.build(), SealedSenderAccess.NONE)
+    return unauthWebSocket.request(builder.build())
                           .map(responseMapper::map)
                           .onErrorResumeNext(t -> performIdentityCheckRestFallback(request, responseMapper))
                           .onErrorReturn(ServiceResponse::forUnknownError);

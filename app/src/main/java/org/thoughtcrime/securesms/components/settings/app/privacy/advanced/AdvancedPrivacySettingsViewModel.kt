@@ -93,7 +93,7 @@ class AdvancedPrivacySettingsViewModel(
     val isCountryCodeCensoredByDefault: Boolean = AppDependencies.signalServiceNetworkAccess.isCountryCodeCensoredByDefault(countryCode)
     val enabledState: SettingsValues.CensorshipCircumventionEnabled = SignalStore.settings.censorshipCircumventionEnabled
     val hasInternet: Boolean = NetworkConstraint.isMet(AppDependencies.application)
-    val websocketConnected: Boolean = AppDependencies.signalWebSocket.webSocketState.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
+    val websocketConnected: Boolean = AppDependencies.authWebSocket.state.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
 
     return when {
       SignalStore.internal.allowChangingCensorshipSetting -> {

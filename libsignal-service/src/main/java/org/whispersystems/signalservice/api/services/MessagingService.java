@@ -1,9 +1,9 @@
 package org.whispersystems.signalservice.api.services;
 
-import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.ServiceResponseProcessor;
 import org.whispersystems.signalservice.internal.push.GroupMismatchedDevices;
@@ -37,10 +37,12 @@ import okio.ByteString;
  * Note: To be expanded to have REST fallback and other messaging related operations.
  */
 public class MessagingService {
-  private final SignalWebSocket signalWebSocket;
+  private final SignalWebSocket.AuthenticatedWebSocket   authWebSocket;
+  private final SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket;
 
-  public MessagingService(SignalWebSocket signalWebSocket) {
-    this.signalWebSocket = signalWebSocket;
+  public MessagingService(SignalWebSocket.AuthenticatedWebSocket authWebSocket, SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    this.authWebSocket   = authWebSocket;
+    this.unauthWebSocket = unauthWebSocket;
   }
 
   public Single<ServiceResponse<SendMessageResponse>> send(OutgoingPushMessageList list,
@@ -69,9 +71,22 @@ public class MessagingService {
                                                                               .withCustomError(404, (status, body, getHeader) -> new UnregisteredUserException(list.getDestination(), new NotFoundException("not found")))
                                                                               .build();
 
-    return signalWebSocket.request(requestMessage, sealedSenderAccess)
+    if (sealedSenderAccess == null) {
+      return authWebSocket.request(requestMessage)
                           .map(responseMapper::map)
                           .onErrorReturn(ServiceResponse::forUnknownError);
+    } else {
+      return unauthWebSocket.request(requestMessage, sealedSenderAccess)
+                            .flatMap(response -> {
+                              if (response.getStatus() == 401) {
+                                return authWebSocket.request(requestMessage);
+                              } else {
+                                return Single.just(response);
+                              }
+                            })
+                            .map(responseMapper::map)
+                            .onErrorReturn(ServiceResponse::forUnknownError);
+    }
   }
 
   public Single<ServiceResponse<SendGroupMessageResponse>> sendToGroup(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story) {
@@ -90,7 +105,7 @@ public class MessagingService {
                                                                         .body(ByteString.of(body))
                                                                         .build();
 
-    return signalWebSocket.request(requestMessage)
+    return unauthWebSocket.request(requestMessage)
                           .map(DefaultResponseMapper.extend(SendGroupMessageResponse.class)
                                                     .withCustomError(401, (status, errorBody, getHeader) -> new InvalidUnidentifiedAccessHeaderException())
                                                     .withCustomError(404, (status, errorBody, getHeader) -> new NotFoundException("At least one unregistered user in message send."))

@@ -190,7 +190,7 @@ class ChangeNumberRepository(
     StorageSyncHelper.scheduleSyncForDataChange()
 
     AppDependencies.resetNetwork()
-    AppDependencies.incomingMessageObserver
+    AppDependencies.startNetwork()
 
     AppDependencies.jobManager.add(RefreshAttributesJob())
 

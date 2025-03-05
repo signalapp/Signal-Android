@@ -33,10 +33,10 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.asChain
-import org.whispersystems.signalservice.api.SignalWebSocket
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -54,10 +54,9 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * The application-level manager of our websocket connection.
  *
- *
  * This class is responsible for opening/closing the websocket based on the app's state and observing new inbound messages received on the websocket.
  */
-class IncomingMessageObserver(private val context: Application, private val signalWebSocket: SignalWebSocket) {
+class IncomingMessageObserver(private val context: Application, private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
 
   companion object {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
@@ -244,7 +243,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
   }
 
   private fun disconnect() {
-    signalWebSocket.disconnect()
+    authWebSocket.disconnect()
   }
 
   @JvmOverloads
@@ -384,7 +383,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
         waitForConnectionNecessary()
         Log.i(TAG, "Making websocket connection....")
 
-        val webSocketDisposable = signalWebSocket.webSocketState.subscribe { state: WebSocketConnectionState ->
+        val webSocketDisposable = authWebSocket.state.subscribe { state: WebSocketConnectionState ->
           Log.d(TAG, "WebSocket State: $state")
 
           // Any change to a non-connected state means that we are not drained
@@ -397,13 +396,13 @@ class IncomingMessageObserver(private val context: Application, private val sign
           }
         }
 
-        signalWebSocket.connect()
+        authWebSocket.connect()
         try {
           while (!terminated && isConnectionNecessary()) {
             try {
               Log.d(TAG, "Reading message...")
 
-              val hasMore = signalWebSocket.readMessageBatch(websocketReadTimeout, 30) { batch ->
+              val hasMore = authWebSocket.readMessageBatch(websocketReadTimeout, 30) { batch ->
                 Log.i(TAG, "Retrieved ${batch.size} envelopes!")
                 val bufferedStore = BufferedProtocolStore.create()
 
@@ -425,7 +424,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
                         AppDependencies.jobManager.addAllChains(jobs)
                       }
 
-                      signalWebSocket.sendAck(response)
+                      authWebSocket.sendAck(response)
                     }
                   }
                 }
@@ -448,7 +447,7 @@ class IncomingMessageObserver(private val context: Application, private val sign
               }
             } catch (e: WebSocketUnavailableException) {
               Log.i(TAG, "Pipe unexpectedly unavailable, connecting")
-              signalWebSocket.connect()
+              authWebSocket.connect()
             } catch (e: TimeoutException) {
               Log.w(TAG, "Application level read timeout...")
               attempts = 0

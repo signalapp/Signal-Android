@@ -259,6 +259,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
       checkFreeDiskSpace();
       MemoryTracker.start();
       BackupSubscriptionCheckJob.enqueueIfAble();
+      AppDependencies.getUnauthWebSocket().setShouldSendKeepAlives(true);
 
       long lastForegroundTime = SignalStore.misc().getLastForegroundTime();
       long currentTime        = System.currentTimeMillis();
@@ -282,6 +283,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
     AppDependencies.getFrameRateTracker().stop();
     AppDependencies.getShakeToReport().disable();
     AppDependencies.getDeadlockDetector().stop();
+    AppDependencies.getUnauthWebSocket().setShouldSendKeepAlives(false);
     MemoryTracker.stop();
     AnrDetector.stop();
   }
@@ -378,7 +380,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   public void initializeMessageRetrieval() {
-    AppDependencies.getIncomingMessageObserver();
+    AppDependencies.startNetwork();
   }
 
   @VisibleForTesting

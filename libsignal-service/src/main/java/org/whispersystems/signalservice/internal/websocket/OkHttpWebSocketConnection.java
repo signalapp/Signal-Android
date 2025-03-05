@@ -11,7 +11,6 @@ import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
-import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 

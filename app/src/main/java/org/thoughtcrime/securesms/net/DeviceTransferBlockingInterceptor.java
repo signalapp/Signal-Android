@@ -55,6 +55,6 @@ public final class DeviceTransferBlockingInterceptor implements Interceptor {
 
   public void unblockNetwork() {
     blockNetworking = false;
-    AppDependencies.getIncomingMessageObserver();
+    AppDependencies.startNetwork();
   }
 }

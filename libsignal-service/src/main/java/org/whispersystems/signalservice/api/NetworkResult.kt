@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api
 
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
@@ -147,6 +148,7 @@ sealed class NetworkResult<T>(
    *
    * Useful for bridging to Java, where you may want to use try-catch.
    */
+  @Throws(NonSuccessfulResponseCodeException::class, IOException::class, Throwable::class)
   fun successOrThrow(): T {
     when (this) {
       is Success -> return result

@@ -6,10 +6,10 @@
 package org.whispersystems.signalservice.api.attachment
 
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.SignalWebSocket
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushAttachmentData
@@ -25,13 +25,13 @@ import kotlin.jvm.optionals.getOrNull
  * Class to interact with various attachment-related endpoints.
  */
 class AttachmentApi(
-  private val signalWebSocket: SignalWebSocket,
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
   private val pushServiceSocket: PushServiceSocket
 ) {
   companion object {
     @JvmStatic
-    fun create(signalWebSocket: SignalWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi {
-      return AttachmentApi(signalWebSocket, pushServiceSocket)
+    fun create(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi {
+      return AttachmentApi(authWebSocket, pushServiceSocket)
     }
   }
 
@@ -46,7 +46,7 @@ class AttachmentApi(
     )
 
     return NetworkResult
-      .fromWebSocketRequest(signalWebSocket, request, AttachmentUploadForm::class)
+      .fromWebSocketRequest(authWebSocket, request, AttachmentUploadForm::class)
       .fallbackToFetch(
         unless = { it is NetworkResult.StatusCodeError && it.code == 209 },
         fallback = { pushServiceSocket.attachmentV4UploadAttributes }

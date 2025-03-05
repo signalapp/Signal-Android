@@ -85,6 +85,7 @@ import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
@@ -131,7 +132,6 @@ import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -143,7 +143,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
@@ -170,7 +169,6 @@ public class SignalServiceMessageSender {
   private static final int RETRY_COUNT = 4;
 
   private final PushServiceSocket             socket;
-  private final SignalWebSocket               webSocket;
   private final SignalServiceAccountDataStore aciStore;
   private final SignalSessionLock             sessionLock;
   private final SignalServiceAddress          localAddress;
@@ -182,14 +180,14 @@ public class SignalServiceMessageSender {
   private final AttachmentService attachmentService;
   private final MessagingService  messagingService;
 
-  private final ExecutorService executor;
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
 
   public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
-                                    SignalWebSocket signalWebSocket,
+                                    SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                                    SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket,
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize)
@@ -197,16 +195,14 @@ public class SignalServiceMessageSender {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
     this.socket            = pushServiceSocket;
-    this.webSocket         = signalWebSocket;
     this.aciStore          = store.aci();
     this.sessionLock       = sessionLock;
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
     this.localDeviceId     = credentialsProvider.getDeviceId();
     this.localPni          = credentialsProvider.getPni();
-    this.attachmentService = new AttachmentService(signalWebSocket);
-    this.messagingService  = new MessagingService(signalWebSocket);
+    this.attachmentService = new AttachmentService(authWebSocket);
+    this.messagingService  = new MessagingService(authWebSocket, unauthWebSocket);
     this.eventListener     = eventListener;
-    this.executor          = executor != null ? executor : Executors.newSingleThreadExecutor();
     this.maxEnvelopeSize   = maxEnvelopeSize;
     this.localPniIdentity  = store.pni().getIdentityKeyPair();
     this.scheduler         = Schedulers.from(executor, false, false);
@@ -840,7 +836,7 @@ public class SignalServiceMessageSender {
       }
       Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
     }
-    
+
     if (v4UploadAttributes == null) {
       Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
       v4UploadAttributes = socket.getAttachmentV4UploadAttributes();

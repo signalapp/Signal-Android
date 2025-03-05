@@ -81,7 +81,6 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
@@ -98,6 +97,8 @@ import org.whispersystems.signalservice.api.storage.StorageServiceApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
+import org.whispersystems.signalservice.api.websocket.HealthMonitor;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -147,11 +148,12 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull PushServiceSocket pushServiceSocket) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull PushServiceSocket pushServiceSocket) {
       return new SignalServiceMessageSender(pushServiceSocket,
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
-                                            signalWebSocket,
+                                            authWebSocket,
+                                            unauthWebSocket,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256));
@@ -207,8 +209,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket signalWebSocket) {
-    return new IncomingMessageObserver(context, signalWebSocket);
+  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket.AuthenticatedWebSocket webSocket) {
+    return new IncomingMessageObserver(context, webSocket);
   }
 
   @Override
@@ -297,15 +299,29 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalWebSocket provideSignalWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
-    SleepTimer                   sleepTimer      = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
-    SignalWebSocketHealthMonitor healthMonitor   = new SignalWebSocketHealthMonitor(context, sleepTimer);
-    WebSocketShadowingBridge     bridge          = new DefaultWebSocketShadowingBridge(context);
-    SignalWebSocket              signalWebSocket = new SignalWebSocket(provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier, bridge));
+  public @NonNull SignalWebSocket.AuthenticatedWebSocket provideAuthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
+    SleepTimer                             sleepTimer       = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
+    SignalWebSocketHealthMonitor           healthMonitor    = new SignalWebSocketHealthMonitor(sleepTimer);
+    WebSocketShadowingBridge               bridge           = new DefaultWebSocketShadowingBridge(context);
+    WebSocketFactory                       webSocketFactory = provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier, bridge);
+    SignalWebSocket.AuthenticatedWebSocket webSocket        = new SignalWebSocket.AuthenticatedWebSocket(webSocketFactory::createWebSocket);
 
-    healthMonitor.monitor(signalWebSocket);
+    healthMonitor.monitor(webSocket);
 
-    return signalWebSocket;
+    return webSocket;
+  }
+
+  @Override
+  public @NonNull SignalWebSocket.UnauthenticatedWebSocket provideUnauthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
+    SleepTimer                               sleepTimer       = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
+    SignalWebSocketHealthMonitor             healthMonitor    = new SignalWebSocketHealthMonitor(sleepTimer);
+    WebSocketShadowingBridge                 bridge           = new DefaultWebSocketShadowingBridge(context);
+    WebSocketFactory                         webSocketFactory = provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier, bridge);
+    SignalWebSocket.UnauthenticatedWebSocket webSocket        = new SignalWebSocket.UnauthenticatedWebSocket(webSocketFactory::createUnidentifiedWebSocket);
+
+    healthMonitor.monitor(webSocket);
+
+    return webSocket;
   }
 
   @Override
@@ -383,9 +399,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations clientZkProfileOperations,
                                                        @NonNull SignalServiceMessageReceiver receiver,
-                                                       @NonNull SignalWebSocket signalWebSocket)
+                                                       @NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                                                       @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket)
   {
-    return new ProfileService(clientZkProfileOperations, receiver, signalWebSocket);
+    return new ProfileService(clientZkProfileOperations, receiver, authWebSocket, unauthWebSocket);
   }
 
   @Override
@@ -401,7 +418,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier,
-                                                    @NonNull SignalWebSocketHealthMonitor healthMonitor,
+                                                    @NonNull HealthMonitor healthMonitor,
                                                     @NonNull Supplier<Network> libSignalNetworkSupplier,
                                                     @NonNull WebSocketShadowingBridge bridge)
   {
@@ -479,8 +496,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull AttachmentApi provideAttachmentApi(@NonNull SignalWebSocket signalWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
-    return new AttachmentApi(signalWebSocket, pushServiceSocket);
+  public @NonNull AttachmentApi provideAttachmentApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new AttachmentApi(authWebSocket, pushServiceSocket);
   }
 
   @Override

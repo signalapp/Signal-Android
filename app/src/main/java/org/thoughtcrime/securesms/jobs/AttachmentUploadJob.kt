@@ -196,6 +196,7 @@ class AttachmentUploadJob private constructor(
       if (lastReset > now || lastReset + NETWORK_RESET_THRESHOLD > now) {
         Log.w(TAG, "Our existing connections is getting repeatedly denied by the server, reset network to establish new connections")
         AppDependencies.resetNetwork()
+        AppDependencies.startNetwork()
         SignalStore.misc.lastNetworkResetDueToStreamResets = now
       } else {
         Log.i(TAG, "Stream reset during upload, not resetting network yet, last reset: $lastReset")
