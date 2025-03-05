@@ -415,7 +415,7 @@ private fun shareQrBadge(activity: Activity, badge: Bitmap?) {
       val shareUri = BlobProvider.getInstance()
         .forData(bytes)
         .withMimeType("image/png")
-        .withFileName("SignalGroupQr.png")
+        .withFileName("SignalUsernameQr.png")
         .createForSingleSessionInMemory()
 
       val intent = ShareCompat.IntentBuilder(activity)
