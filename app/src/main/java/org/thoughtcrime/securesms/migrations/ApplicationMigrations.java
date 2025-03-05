@@ -173,9 +173,10 @@ public class ApplicationMigrations {
     static final int FTS_TRIGGER_FIX               = 129;
     static final int THREAD_TABLE_PINNED_MIGRATION = 130;
     static final int GROUP_DECLINE_INVITE_FIX      = 131;
+    static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
   }
 
-  public static final int CURRENT_VERSION = 131;
+  public static final int CURRENT_VERSION = 132;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -796,6 +797,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.GROUP_DECLINE_INVITE_FIX) {
       jobs.put(Version.GROUP_DECLINE_INVITE_FIX, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.AVATAR_COLOR_MIGRATION_JOB) {
+      jobs.put(Version.AVATAR_COLOR_MIGRATION_JOB, new AvatarColorStorageServiceMigrationJob());
     }
 
     return jobs;

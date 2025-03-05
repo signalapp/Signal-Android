@@ -6,6 +6,7 @@ import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNullOrEmpty
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -41,6 +42,7 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.util.Currency
 import kotlin.math.max
+import org.whispersystems.signalservice.internal.storage.protos.AvatarColor as RemoteAvatarColor
 
 object StorageSyncModels {
 
@@ -182,6 +184,7 @@ object StorageSyncModels {
       pniSignatureVerified = recipient.syncExtras.pniSignatureVerified
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
+      avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
@@ -218,6 +221,7 @@ object StorageSyncModels {
       mutedUntilTimestamp = recipient.muteUntil
       dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY
       hideStory = recipient.extras != null && recipient.extras.hideStory()
+      avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       storySendMode = when (groups.getShowAsStoryState(groupId)) {
         ShowAsStoryState.ALWAYS -> GroupV2Record.StorySendMode.ENABLED
         ShowAsStoryState.NEVER -> GroupV2Record.StorySendMode.DISABLED
@@ -339,6 +343,25 @@ object StorageSyncModels {
       )
     } else {
       return null
+    }
+  }
+
+  fun localToRemoteAvatarColor(avatarColor: AvatarColor): RemoteAvatarColor {
+    return when (avatarColor) {
+      AvatarColor.A100 -> RemoteAvatarColor.A100
+      AvatarColor.A110 -> RemoteAvatarColor.A110
+      AvatarColor.A120 -> RemoteAvatarColor.A120
+      AvatarColor.A130 -> RemoteAvatarColor.A130
+      AvatarColor.A140 -> RemoteAvatarColor.A140
+      AvatarColor.A150 -> RemoteAvatarColor.A150
+      AvatarColor.A160 -> RemoteAvatarColor.A160
+      AvatarColor.A170 -> RemoteAvatarColor.A170
+      AvatarColor.A180 -> RemoteAvatarColor.A180
+      AvatarColor.A190 -> RemoteAvatarColor.A190
+      AvatarColor.A200 -> RemoteAvatarColor.A200
+      AvatarColor.A210 -> RemoteAvatarColor.A210
+      AvatarColor.UNKNOWN -> RemoteAvatarColor.A100
+      AvatarColor.ON_SURFACE_VARIANT -> RemoteAvatarColor.A100
     }
   }
 }

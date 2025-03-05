@@ -58,6 +58,7 @@ class GroupV2RecordProcessor(private val recipientTable: RecipientTable, private
       dontNotifyForMentionsIfMuted = remote.proto.dontNotifyForMentionsIfMuted
       hideStory = remote.proto.hideStory
       storySendMode = remote.proto.storySendMode
+      avatarColor = local.proto.avatarColor
     }.build().toSignalGroupV2Record(StorageId.forGroupV2(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

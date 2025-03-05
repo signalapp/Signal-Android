@@ -107,9 +107,7 @@ import java.util.stream.Collectors
  * == Syncing a new field on an existing record ==
  *
  * - Add the field the the respective proto
- * - Update the respective model (i.e. [SignalContactRecord])
- * - Add getters
- * - Update the builder
+ * - Update [StorageSyncModels]
  * - Update the respective record processor (i.e [ContactRecordProcessor]). You need to make sure that you're:
  *   - Merging the attributes, likely preferring remote
  *   - Adding to doParamsMatch()
