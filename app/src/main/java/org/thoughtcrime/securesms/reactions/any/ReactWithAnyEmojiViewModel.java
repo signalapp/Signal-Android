@@ -42,10 +42,12 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   private final BehaviorSubject<EmojiSearchResult> searchResults;
   private final BehaviorSubject<String>            selectedKey;
 
-  private ReactWithAnyEmojiViewModel(@NonNull ReactWithAnyEmojiRepository repository,
-                                     long messageId,
-                                     boolean isMms,
-                                     @NonNull EmojiSearchRepository emojiSearchRepository)
+  private ReactWithAnyEmojiViewModel(
+      @NonNull ReactionsRepository reactionsRepository,
+      @NonNull ReactWithAnyEmojiRepository repository,
+      long messageId,
+      boolean isMms,
+      @NonNull EmojiSearchRepository emojiSearchRepository)
   {
     this.repository            = repository;
     this.messageId             = messageId;
@@ -54,8 +56,8 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
     this.searchResults         = BehaviorSubject.createDefault(new EmojiSearchResult());
     this.selectedKey           = BehaviorSubject.createDefault(getStartingKey());
 
-    Observable<List<ReactWithAnyEmojiPage>> emojiPages = new ReactionsRepository().getReactions(new MessageId(messageId))
-                                                                                  .map(repository::getEmojiPageModels);
+    Observable<List<ReactWithAnyEmojiPage>> emojiPages = reactionsRepository.getReactions(new MessageId(messageId))
+                                                                            .map(repository::getEmojiPageModels);
 
     Observable<MappingModelList> emojiList = emojiPages.map(pages -> {
       MappingModelList list = new MappingModelList();
@@ -154,20 +156,22 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
 
   static class Factory implements ViewModelProvider.Factory {
 
+    private final ReactionsRepository         reactionsRepository;
     private final ReactWithAnyEmojiRepository repository;
     private final long                        messageId;
     private final boolean                     isMms;
 
-    Factory(@NonNull ReactWithAnyEmojiRepository repository, long messageId, boolean isMms) {
-      this.repository = repository;
-      this.messageId  = messageId;
-      this.isMms      = isMms;
+    Factory(@NonNull ReactionsRepository reactionsRepository, @NonNull ReactWithAnyEmojiRepository repository, long messageId, boolean isMms) {
+      this.reactionsRepository = reactionsRepository;
+      this.repository          = repository;
+      this.messageId           = messageId;
+      this.isMms               = isMms;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ReactWithAnyEmojiViewModel(repository, messageId, isMms, new EmojiSearchRepository(AppDependencies.getApplication())));
+      return modelClass.cast(new ReactWithAnyEmojiViewModel(reactionsRepository, repository, messageId, isMms, new EmojiSearchRepository(AppDependencies.getApplication())));
     }
   }
 

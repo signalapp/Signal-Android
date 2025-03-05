@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.reactions
 
+import android.content.Context
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableEmitter
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -10,8 +12,14 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.MessageSender
+import java.util.NoSuchElementException
 
-class ReactionsRepository {
+class ReactionsRepository(
+  localContext: Context
+) {
+
+  private val applicationContext = localContext.applicationContext
 
   fun getReactions(messageId: MessageId): Observable<List<ReactionDetails>> {
     return Observable.create { emitter: ObservableEmitter<List<ReactionDetails>> ->
@@ -44,5 +52,20 @@ class ReactionsRepository {
         timestamp = reaction.dateReceived
       )
     }
+  }
+
+  fun sendReactionRemoval(messageId: MessageId): Completable {
+    val oldReactionRecord = oldReactionRecord(messageId) ?: return Completable.error(NoSuchElementException("Removing invalid emoji!"))
+    return Completable.fromAction {
+      MessageSender.sendReactionRemoval(
+        applicationContext,
+        MessageId(messageId.id),
+        oldReactionRecord
+      )
+    }.subscribeOn(Schedulers.io())
+  }
+
+  private fun oldReactionRecord(messageId: MessageId): ReactionRecord? {
+    return SignalDatabase.reactions.getReactions(messageId).firstOrNull { it.author == Recipient.self().id }
   }
 }
