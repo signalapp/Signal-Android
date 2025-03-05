@@ -27,6 +27,7 @@ class KeyboardPageCategoryIconViewHolder<T : KeyboardPageCategoryIconMappingMode
     }
 
     iconView.setImageDrawable(model.getIcon(context))
+    iconView.contentDescription = model.key
     iconView.isSelected = model.selected
     iconSelected.isSelected = model.selected
   }

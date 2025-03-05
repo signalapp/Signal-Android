@@ -141,6 +141,7 @@ public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWin
     public void bind(@NonNull EmojiModel model) {
       final Drawable drawable = EmojiProvider.getEmojiDrawable(imageView.getContext(), model.emoji.getValue());
 
+      imageView.setContentDescription(model.emoji.getValue());
       if (drawable != null) {
         imageView.setVisibility(View.VISIBLE);
         imageView.setImageDrawable(drawable);
