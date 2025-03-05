@@ -10,6 +10,7 @@ import android.content.res.ColorStateList
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.os.Build
 import androidx.core.content.ContextCompat
 import com.airbnb.lottie.SimpleColorFilter
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -57,6 +58,9 @@ class FallbackAvatarDrawable(
         )
 
         resourceIcon.bounds = iconBounds
+        if (Build.VERSION.SDK_INT >= 23) {
+          resourceIcon.setLayoutDirection(layoutDirection)
+        }
         resourceIcon
       }
 
