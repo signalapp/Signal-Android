@@ -4098,7 +4098,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       PNI_COLUMN to pni?.toString(),
       PNI_SIGNATURE_VERIFIED to pniVerified.toInt(),
       STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey()),
-      AVATAR_COLOR to AvatarColorHash.forAddress((aci ?: pni)?.toString(), e164).serialize()
+      AVATAR_COLOR to AvatarColorHash.forAddress((aci ?: pni), e164).serialize()
     )
 
     if (pni != null || aci != null) {
@@ -4155,7 +4155,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       if (isInsert) {
-        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci?.toString() ?: contact.proto.signalPni?.toString(), contact.proto.e164).serialize())
+        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
       }
     }
   }
