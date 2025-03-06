@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
+import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -18,6 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
@@ -38,32 +41,48 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
   private static final long AVATAR_DOWNLOAD_FAIL_SAFE_MAX_SIZE = ByteUnit.MEGABYTES.toBytes(5);
 
   private static final String KEY_GROUP_ID = "group_id";
-  private static final String CDN_KEY      = "cdn_key";
+  private static final String KEY_CDN_KEY  = "cdn_key";
+  private static final String KEY_FORCE    = "force";
 
   private final GroupId.V2 groupId;
   private final String     cdnKey;
+  private final boolean    force;
+
+  public static void enqueueUnblurredAvatar(@NonNull GroupId.V2 groupId) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      String cdnKey = SignalDatabase.groups().getGroup(groupId).get().requireV2GroupProperties().getAvatarKey();
+      AppDependencies.getJobManager().add(new AvatarGroupsV2DownloadJob(groupId, cdnKey, true));
+    });
+  }
 
   public AvatarGroupsV2DownloadJob(@NonNull GroupId.V2 groupId, @NonNull String cdnKey) {
+    this(groupId, cdnKey, false);
+  }
+
+  public AvatarGroupsV2DownloadJob(@NonNull GroupId.V2 groupId, @NonNull String cdnKey, boolean force) {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
                        .setQueue("AvatarGroupsV2DownloadJob::" + groupId)
                        .setMaxAttempts(10)
                        .build(),
          groupId,
-         cdnKey);
+         cdnKey,
+         force);
   }
 
-  private AvatarGroupsV2DownloadJob(@NonNull Parameters parameters, @NonNull GroupId.V2 groupId, @NonNull String cdnKey) {
+  private AvatarGroupsV2DownloadJob(@NonNull Parameters parameters, @NonNull GroupId.V2 groupId, @NonNull String cdnKey, boolean force) {
     super(parameters);
     this.groupId = groupId;
     this.cdnKey  = cdnKey;
+    this.force   = force;
   }
 
   @Override
   public @Nullable byte[] serialize() {
     return new JsonJobData.Builder()
                    .putString(KEY_GROUP_ID, groupId.toString())
-                   .putString(CDN_KEY, cdnKey)
+                   .putString(KEY_CDN_KEY, cdnKey)
+                   .putBoolean(KEY_FORCE, force)
                    .serialize();
   }
 
@@ -91,13 +110,23 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
         return;
       }
 
+      Recipient recipient = Recipient.resolved(record.get().getRecipientId());
+      if (recipient.getShouldBlurAvatar() && !force) {
+        Log.w(TAG, "Marking group as having an avatar but not downloading because avatar is blurred");
+        database.onAvatarUpdated(groupId, true);
+        return;
+      }
+
       Log.i(TAG, "Downloading new avatar for group " + groupId);
+      if (force) AvatarDownloadStateCache.set(recipient, AvatarDownloadStateCache.DownloadState.IN_PROGRESS);
       byte[] decryptedAvatar = downloadGroupAvatarBytes(context, record.get().requireV2GroupProperties().getGroupMasterKey(), cdnKey);
 
       AvatarHelper.setAvatar(context, record.get().getRecipientId(), decryptedAvatar != null ? new ByteArrayInputStream(decryptedAvatar) : null);
       database.onAvatarUpdated(groupId, true);
+      if (force) AvatarDownloadStateCache.set(recipient, AvatarDownloadStateCache.DownloadState.FINISHED);
 
     } catch (NonSuccessfulResponseCodeException e) {
+      if (force) AvatarDownloadStateCache.set(Recipient.resolved(record.get().getRecipientId()), AvatarDownloadStateCache.DownloadState.FAILED);
       Log.w(TAG, e);
     }
   }
@@ -136,7 +165,9 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
   }
 
   @Override
-  public void onFailure() {}
+  public void onFailure() {
+    if (force) AvatarDownloadStateCache.set(Recipient.externalPossiblyMigratedGroup(groupId), AvatarDownloadStateCache.DownloadState.FAILED);
+  }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
@@ -150,7 +181,8 @@ public final class AvatarGroupsV2DownloadJob extends BaseJob {
 
       return new AvatarGroupsV2DownloadJob(parameters,
                                            GroupId.parseOrThrow(data.getString(KEY_GROUP_ID)).requireV2(),
-                                           data.getString(CDN_KEY));
+                                           data.getString(KEY_CDN_KEY),
+                                           data.getBooleanOrDefault(KEY_FORCE, false));
     }
   }
 }

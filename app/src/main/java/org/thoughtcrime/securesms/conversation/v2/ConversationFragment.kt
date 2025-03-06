@@ -67,6 +67,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.ConversationLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -202,6 +203,7 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplace
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryResultsControllerV2
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewModelV2
 import org.thoughtcrime.securesms.conversation.v2.computed.ConversationMessageComputeWorkers
+import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupCallViewModel
 import org.thoughtcrime.securesms.conversation.v2.groups.ConversationGroupViewModel
@@ -1054,6 +1056,28 @@ class ConversationFragment :
         .collect {
           binding.conversationBanner.collectAndShowBanners(it)
         }
+    }
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+        val recipient = viewModel.recipientSnapshot
+        if (recipient != null) {
+          AvatarDownloadStateCache.forRecipient(recipient.id).collect {
+            when (it) {
+              AvatarDownloadStateCache.DownloadState.NONE,
+              AvatarDownloadStateCache.DownloadState.IN_PROGRESS,
+              AvatarDownloadStateCache.DownloadState.FINISHED -> {
+                viewModel.updateThreadHeader()
+              }
+              AvatarDownloadStateCache.DownloadState.FAILED -> {
+                Snackbar.make(requireView(), R.string.ConversationFragment_photo_failed, Snackbar.LENGTH_LONG).show()
+                presentConversationTitle(recipient)
+                viewModel.onAvatarDownloadFailed()
+              }
+            }
+          }
+        }
+      }
     }
 
     if (TextSecurePreferences.getServiceOutage(context)) {

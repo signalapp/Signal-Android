@@ -257,6 +257,14 @@ class Recipient(
       null
     }
 
+  /**
+   * Whether or not a recipient (either individual or group) has a corresponding avatar
+   */
+  val hasAvatar: Boolean
+    get() {
+      return (isIndividual && profileAvatar != null) || (isGroup && groupAvatarId.orElse(0L) != 0L)
+    }
+
   /** The URI of the ringtone that should be used when receiving a message from this recipient, if set. */
   val messageRingtone: Uri? by lazy {
     if (messageRingtoneUri != null && messageRingtoneUri.scheme != null && messageRingtoneUri.scheme!!.startsWith("file")) {
@@ -376,6 +384,12 @@ class Recipient(
     get() {
       val showOverride = extras.isPresent && extras.get().manuallyShownAvatar()
       return !showOverride && !isSelf && !isProfileSharing && !isSystemContact && !hasGroupsInCommon && isRegistered
+    }
+
+  /** Whether or not the recipient's avatar should be shown in the chat list by default. Even if false, user can still manually choose to show the avatar */
+  val shouldShowAvatarByDefault: Boolean
+    get() {
+      return (isSelf || isProfileSharing || isSystemContact || hasGroupsInCommon) && isRegistered
     }
 
   /** The chat color to use when the "automatic" chat color setting is active, which derives a color from the wallpaper. */
@@ -801,7 +815,8 @@ class Recipient(
       callLinkRoomId == other.callLinkRoomId &&
       phoneNumberSharing == other.phoneNumberSharing &&
       nickname == other.nickname &&
-      note == other.note
+      note == other.note &&
+      shouldBlurAvatar == other.shouldBlurAvatar
   }
 
   override fun equals(other: Any?): Boolean {

@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.RequestManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -36,6 +37,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -55,6 +57,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -308,6 +311,20 @@ class ConversationViewModel(
         override fun onError(e: Throwable) = Unit
         override fun onComplete() = Unit
       })
+  }
+
+  fun onAvatarDownloadFailed() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val recipient = recipientSnapshot
+      if (recipient != null) {
+        recipients.manuallyUpdateShowAvatar(recipient.id, false)
+      }
+      pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
+    }
+  }
+
+  fun updateThreadHeader() {
+    pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
   }
 
   fun getBannerFlows(

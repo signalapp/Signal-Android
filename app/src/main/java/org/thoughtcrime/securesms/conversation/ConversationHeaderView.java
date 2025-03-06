@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.conversation;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -13,6 +17,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewKt;
@@ -21,11 +26,16 @@ import com.bumptech.glide.RequestManager;
 
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors;
+import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.databinding.ConversationHeaderViewBinding;
 import org.thoughtcrime.securesms.fonts.SignalSymbols;
+import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob;
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -34,7 +44,14 @@ import org.whispersystems.signalservice.api.util.Preconditions;
 
 public class ConversationHeaderView extends ConstraintLayout {
 
+  private static final String TAG           = Log.tag(ConversationHeaderView.class);
+  private static final int    FADE_DURATION = 150;
+  private static final int    LOADING_DELAY = 800;
+
   private final ConversationHeaderViewBinding binding;
+
+  private boolean inProgress = false;
+  private Handler handler    = new Handler();
 
   public ConversationHeaderView(Context context) {
     this(context, null);
@@ -52,6 +69,30 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding = ConversationHeaderViewBinding.bind(this);
   }
 
+  public void showProgressBar(@NonNull Recipient recipient) {
+    if (!inProgress) {
+      inProgress = true;
+      animateAvatarLoading(recipient);
+      binding.messageRequestAvatarTapToView.setVisibility(GONE);
+      binding.messageRequestAvatarTapToView.setOnClickListener(null);
+      handler.postDelayed(() -> {
+        boolean isDownloading = AvatarDownloadStateCache.getDownloadState(recipient) == AvatarDownloadStateCache.DownloadState.IN_PROGRESS;
+        binding.progressBar.setVisibility(isDownloading ? View.VISIBLE : View.GONE);
+      }, LOADING_DELAY);
+    }
+  }
+
+  public void hideProgressBar() {
+    inProgress = false;
+    binding.progressBar.setVisibility(View.GONE);
+  }
+
+  public void showFailedAvatarDownload(@NonNull Recipient recipient) {
+    AvatarDownloadStateCache.set(recipient, AvatarDownloadStateCache.DownloadState.NONE);
+    binding.progressBar.setVisibility(View.GONE);
+    binding.messageRequestAvatar.setImageDrawable(AvatarGradientColors.getGradientDrawable(recipient));
+  }
+
   public void setBadge(@Nullable Recipient recipient) {
     if (recipient == null || recipient.isSelf()) {
       binding.messageRequestBadge.setBadge(null);
@@ -61,12 +102,25 @@ public class ConversationHeaderView extends ConstraintLayout {
   }
 
   public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient) {
-    binding.messageRequestAvatar.setAvatar(requestManager, recipient, false);
+    if (recipient == null) {
+      return;
+    }
 
-    if (recipient != null && recipient.getShouldBlurAvatar() && recipient.getContactPhoto() != null) {
+    if (AvatarDownloadStateCache.getDownloadState(recipient) != AvatarDownloadStateCache.DownloadState.IN_PROGRESS) {
+      binding.messageRequestAvatar.setAvatar(requestManager, recipient, false, false, true);
+      hideProgressBar();
+    }
+
+    if (recipient.getShouldBlurAvatar() && recipient.getHasAvatar()) {
       binding.messageRequestAvatarTapToView.setVisibility(VISIBLE);
       binding.messageRequestAvatarTapToView.setOnClickListener(v -> {
-        SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().manuallyShowAvatar(recipient.getId()));
+        AvatarDownloadStateCache.set(recipient, AvatarDownloadStateCache.DownloadState.IN_PROGRESS);
+        SignalExecutors.BOUNDED.execute(() -> SignalDatabase.recipients().manuallyUpdateShowAvatar(recipient.getId(), true));
+        if (recipient.isPushV2Group()) {
+          AvatarGroupsV2DownloadJob.enqueueUnblurredAvatar(recipient.requireGroupId().requireV2());
+        } else {
+          RetrieveProfileAvatarJob.enqueueUnblurredAvatar(recipient);
+        }
       });
     } else {
       binding.messageRequestAvatarTapToView.setVisibility(GONE);
@@ -207,6 +261,22 @@ public class ConversationHeaderView extends ConstraintLayout {
 
   public void setLinkifyDescription(boolean enable) {
     binding.messageRequestDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
+  }
+
+  private void animateAvatarLoading(@NonNull Recipient recipient) {
+    Drawable loadingProfile = AppCompatResources.getDrawable(getContext(), R.drawable.circle_profile_photo);
+    ObjectAnimator animator = ObjectAnimator.ofFloat(binding.messageRequestAvatar, "alpha", 1f, 0f).setDuration(FADE_DURATION);
+    animator.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        if (AvatarDownloadStateCache.getDownloadState(recipient) == AvatarDownloadStateCache.DownloadState.IN_PROGRESS) {
+          binding.messageRequestAvatar.setImageDrawable(loadingProfile);
+        }
+        ObjectAnimator.ofFloat(binding.messageRequestAvatar, "alpha", 0f, 1f).setDuration(FADE_DURATION).start();
+      }
+    });
+
+    animator.start();
   }
 
   private void updateOutlineVisibility() {

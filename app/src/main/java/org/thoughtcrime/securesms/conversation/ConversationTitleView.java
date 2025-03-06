@@ -142,7 +142,7 @@ public class ConversationTitleView extends ConstraintLayout {
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, null, endDrawable, null);
 
     if (recipient != null) {
-      this.avatar.displayChatAvatar(requestManager, recipient, false);
+      this.avatar.displayChatAvatar(requestManager, recipient, false, true);
     }
 
     if (recipient == null || recipient.isSelf()) {

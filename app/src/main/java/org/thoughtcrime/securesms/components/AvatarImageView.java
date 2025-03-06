@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
@@ -25,14 +24,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.shape.RelativeCornerSize;
-import com.google.android.material.shape.RoundedCornerTreatment;
-import com.google.android.material.shape.ShapeAppearanceModel;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -41,17 +37,18 @@ import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
+import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.BlurTransformation;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -157,9 +154,14 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar) {
+    setAvatar(requestManager, recipient, quickContactEnabled, useSelfProfileAvatar, false);
+  }
+
+  public void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, boolean quickContactEnabled, boolean useSelfProfileAvatar, boolean useBlurGradient) {
     setAvatar(requestManager, recipient, new AvatarOptions.Builder(this)
                                                           .withUseSelfProfileAvatar(useSelfProfileAvatar)
                                                           .withQuickContactEnabled(quickContactEnabled)
+                                                          .withUseBlurGradient(useBlurGradient)
                                                           .build());
   }
 
@@ -195,29 +197,34 @@ public final class AvatarImageView extends AppCompatImageView {
           };
         }
 
-        Drawable fallback = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient)).circleCrop();
+        boolean  wasUnblurred           = shouldBlur != blurred;
+        boolean  inProgressDownload     = AvatarDownloadStateCache.getDownloadState(recipient) == AvatarDownloadStateCache.DownloadState.IN_PROGRESS;
+        boolean  shouldShowBlurGradient = avatarOptions.useBlurGradient && (!recipient.getShouldShowAvatarByDefault() || inProgressDownload);
+        boolean  shouldHaveAvatar       = recipient.getHasAvatar();
+        boolean  hasAvatar              = AvatarHelper.hasAvatar(getContext(), recipient.getId()) || (photo.contactPhoto instanceof SystemContactPhoto);
+        Drawable fallback               = new FallbackAvatarDrawable(getContext(), activeFallbackPhotoProvider.getFallbackAvatar(recipient)).circleCrop();
 
         if (fixedSizeTarget != null) {
           requestManager.clear(fixedSizeTarget);
         }
 
-        if (photo.contactPhoto != null) {
-
-          List<Transformation<Bitmap>> transforms = new ArrayList<>();
-          if (shouldBlur) {
-            transforms.add(new BlurTransformation(AppDependencies.getApplication(), 0.25f, BlurTransformation.MAX_RADIUS));
-          }
-          transforms.add(new CircleCrop());
-          blurred = shouldBlur;
+        if (photo.contactPhoto != null && hasAvatar && !shouldBlur) {
+          List<Transformation<Bitmap>> transforms = Collections.singletonList(new CircleCrop());
 
           RequestBuilder<Drawable> request = requestManager.load(photo.contactPhoto)
-                                                         .dontAnimate()
                                                          .fallback(fallback)
                                                          .error(fallback)
                                                          .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                          .downsample(DownsampleStrategy.CENTER_INSIDE)
                                                          .transform(new MultiTransformation<>(transforms))
                                                          .addListener(redownloadRequestListener);
+
+          if (wasUnblurred) {
+            blurred = shouldBlur;
+            request = request.transition(DrawableTransitionOptions.withCrossFade(200));
+          } else {
+            request = request.dontAnimate();
+          }
 
           if (avatarOptions.fixedSize > 0) {
             fixedSizeTarget = new FixedSizeTarget(avatarOptions.fixedSize);
@@ -226,7 +233,13 @@ public final class AvatarImageView extends AppCompatImageView {
             request.into(this);
           }
 
+        } else if ((shouldBlur || shouldShowBlurGradient) && shouldHaveAvatar) {
+          setImageDrawable(AvatarGradientColors.getGradientDrawable(recipient));
+          blurred = true;
         } else {
+          if (!shouldBlur && shouldHaveAvatar && !hasAvatar && recipient.isIndividual()) {
+            RetrieveProfileAvatarJob.enqueueForceUpdate(recipient);
+          }
           setImageDrawable(fallback);
         }
       }
@@ -336,11 +349,13 @@ public final class AvatarImageView extends AppCompatImageView {
 
     private final boolean quickContactEnabled;
     private final boolean useSelfProfileAvatar;
+    private final boolean useBlurGradient;
     private final int     fixedSize;
 
     private AvatarOptions(@NonNull Builder builder) {
       this.quickContactEnabled  = builder.quickContactEnabled;
       this.useSelfProfileAvatar = builder.useSelfProfileAvatar;
+      this.useBlurGradient      = builder.useBlurGradient;
       this.fixedSize            = builder.fixedSize;
     }
 
@@ -350,6 +365,7 @@ public final class AvatarImageView extends AppCompatImageView {
 
       private boolean quickContactEnabled  = false;
       private boolean useSelfProfileAvatar = false;
+      private boolean useBlurGradient      = false;
       private int     fixedSize            = -1;
 
       private Builder(@NonNull AvatarImageView avatarImageView) {
@@ -363,6 +379,11 @@ public final class AvatarImageView extends AppCompatImageView {
 
       public @NonNull Builder withUseSelfProfileAvatar(boolean useSelfProfileAvatar) {
         this.useSelfProfileAvatar = useSelfProfileAvatar;
+        return this;
+      }
+
+      public @NonNull Builder withUseBlurGradient(boolean useBlurGradient) {
+        this.useBlurGradient = useBlurGradient;
         return this;
       }
 

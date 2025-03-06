@@ -84,6 +84,10 @@ public final class MessageRequestRepository {
 
     Recipient recipient = Recipient.resolved(recipientId);
 
+    if (sharedGroups.isEmpty() && recipient.getHasGroupsInCommon()) {
+      SignalDatabase.recipients().clearHasGroupsInCommon(recipient.getId());
+    }
+
     return new MessageRequestRecipientInfo(
         recipient,
         groupInfo,

@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizable
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.Multiselectable
+import org.thoughtcrime.securesms.conversation.v2.data.AvatarDownloadStateCache
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationMessageElement
 import org.thoughtcrime.securesms.conversation.v2.data.ConversationUpdate
@@ -536,7 +537,19 @@ class ConversationAdapterV2(
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
       val isSelf = recipient.id == Recipient.self().id
 
-      conversationBanner.setAvatar(requestManager, recipient)
+      when (model.avatarDownloadState) {
+        AvatarDownloadStateCache.DownloadState.NONE,
+        AvatarDownloadStateCache.DownloadState.FINISHED -> {
+          conversationBanner.setAvatar(requestManager, recipient)
+        }
+        AvatarDownloadStateCache.DownloadState.IN_PROGRESS -> {
+          conversationBanner.showProgressBar(recipient)
+        }
+        AvatarDownloadStateCache.DownloadState.FAILED -> {
+          conversationBanner.showFailedAvatarDownload(recipient)
+        }
+      }
+
       conversationBanner.showBackgroundBubble(recipient.hasWallpaper)
       val title: String = conversationBanner.setTitle(recipient) {
         displayDialogFragment(AboutSheet.create(recipient))

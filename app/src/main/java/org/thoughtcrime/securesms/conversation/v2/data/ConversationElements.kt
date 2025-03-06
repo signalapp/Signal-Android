@@ -73,7 +73,7 @@ data class IncomingMedia(
   }
 }
 
-data class ThreadHeader(val recipientInfo: MessageRequestRecipientInfo) : MappingModel<ThreadHeader> {
+data class ThreadHeader(val recipientInfo: MessageRequestRecipientInfo, val avatarDownloadState: AvatarDownloadStateCache.DownloadState) : MappingModel<ThreadHeader> {
   override fun areItemsTheSame(newItem: ThreadHeader): Boolean {
     return true
   }

@@ -16,6 +16,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminateTint="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintTop_toTopOf="@id/message_request_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/message_request_avatar"
+        app:layout_constraintStart_toStartOf="@id/message_request_avatar"
+        app:layout_constraintEnd_toEndOf="@id/message_request_avatar"
+        tools:visibility="visible" />
+
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/message_request_badge"
         android:layout_width="36dp"
@@ -31,8 +46,6 @@
         android:id="@+id/message_request_avatar_tap_to_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/circle_tint_darker"
-        android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
