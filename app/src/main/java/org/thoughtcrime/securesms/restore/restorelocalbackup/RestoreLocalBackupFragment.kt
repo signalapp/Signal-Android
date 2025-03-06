@@ -6,12 +6,17 @@
 package org.thoughtcrime.securesms.restore.restorelocalbackup
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -30,6 +35,7 @@ import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewModelFactory
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 
@@ -176,9 +182,36 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
   }
 
   private fun presentBackupPassPhrasePromptDialog() {
-    PassphraseDialogManager(requireContext()).showDialog { passphrase ->
-      restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), passphrase)
+    val view = LayoutInflater.from(requireContext()).inflate(R.layout.enter_backup_passphrase_dialog, null)
+    val prompt = view.findViewById<EditText>(R.id.restore_passphrase_input)
+
+    prompt.addTextChangedListener(PassphraseAsYouTypeFormatter())
+
+    val alertDialog = MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
+      .setView(view)
+      .setPositiveButton(R.string.RegistrationActivity_restore) { _, _ ->
+        // Do nothing, we'll handle this in the setOnShowListener method below.
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+      .create()
+
+    alertDialog.setOnShowListener { dialog ->
+      val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+      positiveButton.isEnabled = false
+
+      prompt.doOnTextChanged { text, _, _, _ ->
+        val input = text.toString()
+        positiveButton.isEnabled = input.isNotBlank()
+      }
+
+      positiveButton.setOnClickListener {
+        ViewUtil.hideKeyboard(requireContext(), prompt)
+        restoreLocalBackupViewModel.confirmPassphraseAndBeginRestore(requireContext(), prompt.text.toString())
+        dialog.dismiss()
+      }
     }
+    alertDialog.show()
 
     Log.i(TAG, "Prompt for backup passphrase shown to user.")
   }
