@@ -54,6 +54,8 @@ dependencies {
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.coroutines.core.jvm)
   implementation(libs.google.libphonenumber)
+  implementation(libs.rxjava3.rxjava)
+  implementation(libs.rxjava3.rxkotlin)
 
   testImplementation(testLibs.junit.junit)
   testImplementation(testLibs.assertk)

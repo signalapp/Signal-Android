@@ -23,6 +23,7 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMess
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import kotlin.time.Duration
 
 /**
  * Base wrapper around a [WebSocketConnection] to provide a more developer friend interface to websocket
@@ -95,6 +96,14 @@ sealed class SignalWebSocket(
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
     return try {
       getWebSocket().sendRequest(request)
+    } catch (e: IOException) {
+      Single.error(e)
+    }
+  }
+
+  fun request(request: WebSocketRequestMessage, timeout: Duration): Single<WebsocketResponse> {
+    return try {
+      getWebSocket().sendRequest(request, timeout.inWholeSeconds)
     } catch (e: IOException) {
       Single.error(e)
     }

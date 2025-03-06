@@ -146,7 +146,7 @@ class NetworkDependenciesModule(
   }
 
   val linkDeviceApi: LinkDeviceApi by lazy {
-    provider.provideLinkDeviceApi(pushServiceSocket)
+    provider.provideLinkDeviceApi(authWebSocket)
   }
 
   val registrationApi: RegistrationApi by lazy {

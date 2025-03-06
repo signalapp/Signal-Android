@@ -226,7 +226,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideLinkDeviceApi(pushServiceSocket: PushServiceSocket): LinkDeviceApi {
+  override fun provideLinkDeviceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): LinkDeviceApi {
     return mockk(relaxed = true)
   }
 

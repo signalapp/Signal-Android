@@ -45,29 +45,32 @@ object LinkDeviceRepository {
   private val TAG = Log.tag(LinkDeviceRepository::class)
 
   fun removeDevice(deviceId: Int): Boolean {
-    return try {
-      val accountManager = AppDependencies.signalServiceAccountManager
-      accountManager.removeDevice(deviceId)
-      LinkedDeviceInactiveCheckJob.enqueue()
-      true
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      false
+    return when (val result = AppDependencies.linkDeviceApi.removeDevice(deviceId)) {
+      is NetworkResult.Success -> {
+        LinkedDeviceInactiveCheckJob.enqueue()
+        true
+      }
+      else -> {
+        Log.w(TAG, "Unable to remove device", result.getCause())
+        false
+      }
     }
   }
 
   fun loadDevices(): List<Device>? {
-    val accountManager = AppDependencies.signalServiceAccountManager
-    return try {
-      val devices: List<Device> = accountManager.getDevices()
-        .filter { d: DeviceInfo -> d.getId() != SignalServiceAddress.DEFAULT_DEVICE_ID }
-        .map { deviceInfo: DeviceInfo -> deviceInfo.toDevice() }
-        .sortedBy { it.createdMillis }
-        .toList()
-      devices
-    } catch (e: IOException) {
-      Log.w(TAG, e)
-      null
+    return when (val result = AppDependencies.linkDeviceApi.getDevices()) {
+      is NetworkResult.Success -> {
+        result
+          .result
+          .filter { d: DeviceInfo -> d.getId() != SignalServiceAddress.DEFAULT_DEVICE_ID }
+          .map { deviceInfo: DeviceInfo -> deviceInfo.toDevice() }
+          .sortedBy { it.createdMillis }
+          .toList()
+      }
+      else -> {
+        Log.w(TAG, "Unable to load device", result.getCause())
+        null
+      }
     }
   }
 
@@ -132,12 +135,12 @@ object LinkDeviceRepository {
     val verificationCodeResult: LinkedDeviceVerificationCodeResponse = when (val result = SignalNetwork.linkDevice.getDeviceVerificationCode()) {
       is NetworkResult.Success -> result.result
       is NetworkResult.ApplicationError -> throw result.throwable
-      is NetworkResult.NetworkError -> return LinkDeviceResult.NetworkError
+      is NetworkResult.NetworkError -> return LinkDeviceResult.NetworkError(result.exception)
       is NetworkResult.StatusCodeError -> {
         return when (result.code) {
           411 -> LinkDeviceResult.LimitExceeded
-          429 -> LinkDeviceResult.NetworkError
-          else -> LinkDeviceResult.NetworkError
+          429 -> LinkDeviceResult.NetworkError(result.exception)
+          else -> LinkDeviceResult.NetworkError(result.exception)
         }
       }
     }
@@ -171,15 +174,15 @@ object LinkDeviceRepository {
         LinkDeviceResult.Success(verificationCodeResult.tokenIdentifier)
       }
       is NetworkResult.ApplicationError -> throw deviceLinkResult.throwable
-      is NetworkResult.NetworkError -> LinkDeviceResult.NetworkError
+      is NetworkResult.NetworkError -> LinkDeviceResult.NetworkError(deviceLinkResult.exception)
       is NetworkResult.StatusCodeError -> {
         when (deviceLinkResult.code) {
           403 -> LinkDeviceResult.NoDevice
           409 -> LinkDeviceResult.NoDevice
           411 -> LinkDeviceResult.LimitExceeded
-          422 -> LinkDeviceResult.NetworkError
-          429 -> LinkDeviceResult.NetworkError
-          else -> LinkDeviceResult.NetworkError
+          422 -> LinkDeviceResult.NetworkError(deviceLinkResult.exception)
+          429 -> LinkDeviceResult.NetworkError(deviceLinkResult.exception)
+          else -> LinkDeviceResult.NetworkError(deviceLinkResult.exception)
         }
       }
     }
@@ -200,7 +203,7 @@ object LinkDeviceRepository {
       Log.d(TAG, "[waitForDeviceToBeLinked] Willing to wait for $timeRemaining ms...")
       val result = SignalNetwork.linkDevice.waitForLinkedDevice(
         token = token,
-        timeoutSeconds = timeRemaining.milliseconds.inWholeSeconds.toInt()
+        timeout = timeRemaining.milliseconds
       )
 
       when (result) {
@@ -422,7 +425,7 @@ object LinkDeviceRepository {
     data object None : LinkDeviceResult
     data class Success(val token: String) : LinkDeviceResult
     data object NoDevice : LinkDeviceResult
-    data object NetworkError : LinkDeviceResult
+    data class NetworkError(val error: Throwable) : LinkDeviceResult
     data object KeyError : LinkDeviceResult
     data object LimitExceeded : LinkDeviceResult
     data object BadCode : LinkDeviceResult

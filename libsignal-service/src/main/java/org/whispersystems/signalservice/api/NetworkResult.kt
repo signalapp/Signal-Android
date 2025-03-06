@@ -5,15 +5,21 @@
 
 package org.whispersystems.signalservice.api
 
+import org.signal.core.util.concurrent.safeBlockingGet
+import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
+import org.whispersystems.signalservice.api.NetworkResult.Success
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.util.JsonUtil
+import org.whispersystems.signalservice.internal.websocket.WebSocketConnection
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 import kotlin.reflect.KClass
+import kotlin.reflect.cast
+import kotlin.time.Duration
 
 typealias StatusCodeErrorAction = (NetworkResult.StatusCodeError<*>) -> Unit
 
@@ -52,48 +58,63 @@ sealed class NetworkResult<T>(
     }
 
     /**
+     * A convenience method to convert a websocket request into a network result.
+     * Common HTTP errors will be translated to [StatusCodeError]s.
+     */
+    @JvmStatic
+    fun fromWebSocketRequest(
+      signalWebSocket: SignalWebSocket,
+      request: WebSocketRequestMessage
+    ): NetworkResult<Unit> = fromWebSocketRequest(
+      signalWebSocket = signalWebSocket,
+      request = request,
+      clazz = Unit::class
+    )
+
+    /**
      * A convenience method to convert a websocket request into a network result with simple conversion of the response body to the desired class.
-     * Common exceptions will be caught and translated to errors.
+     * Common HTTP errors will be translated to [StatusCodeError]s.
      */
     @JvmStatic
     fun <T : Any> fromWebSocketRequest(
       signalWebSocket: SignalWebSocket,
       request: WebSocketRequestMessage,
-      clazz: KClass<T>
+      clazz: KClass<T>,
+      timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT
+    ): NetworkResult<T> {
+      return fromWebSocketRequest(
+        signalWebSocket = signalWebSocket,
+        request = request,
+        timeout = timeout,
+        webSocketResponseConverter = DefaultWebSocketConverter(clazz)
+      )
+    }
+
+    /**
+     * A convenience method to convert a websocket request into a network result with the ability to fully customize the conversion of the response.
+     * Common HTTP errors will be translated to [StatusCodeError]s.
+     */
+    @JvmStatic
+    fun <T : Any> fromWebSocketRequest(
+      signalWebSocket: SignalWebSocket,
+      request: WebSocketRequestMessage,
+      timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT,
+      webSocketResponseConverter: WebSocketResponseConverter<T>
     ): NetworkResult<T> = try {
-      val result: Result<T> = signalWebSocket.request(request)
-        .map { response: WebsocketResponse -> Result.success(JsonUtil.fromJson(response.body, clazz.java)) }
-        .onErrorReturn { Result.failure<T>(it) }
-        .blockingGet()
-      Success(result.getOrThrow())
+      val result: Result<NetworkResult<T>> = signalWebSocket.request(request, timeout)
+        .map { response: WebsocketResponse -> Result.success(webSocketResponseConverter.convert(response)) }
+        .onErrorReturn { Result.failure(it) }
+        .safeBlockingGet()
+
+      result.getOrThrow()
     } catch (e: NonSuccessfulResponseCodeException) {
       StatusCodeError(e)
     } catch (e: IOException) {
       NetworkError(e)
     } catch (e: TimeoutException) {
       NetworkError(PushNetworkException(e))
-    } catch (e: Throwable) {
-      ApplicationError(e)
-    }
-
-    /**
-     * A convenience method to convert a websocket request into a network result with the ability to convert the response to your target class.
-     * Common exceptions will be caught and translated to errors.
-     */
-    @JvmStatic
-    fun <T : Any> fromWebSocketRequest(
-      signalWebSocket: SignalWebSocket,
-      request: WebSocketRequestMessage,
-      webSocketResponseConverter: WebSocketResponseConverter<T>
-    ): NetworkResult<T> = try {
-      val result = signalWebSocket.request(request)
-        .map { response: WebsocketResponse -> webSocketResponseConverter.convert(response) }
-        .blockingGet()
-      Success(result)
-    } catch (e: NonSuccessfulResponseCodeException) {
-      StatusCodeError(e)
-    } catch (e: IOException) {
-      NetworkError(e)
+    } catch (e: InterruptedException) {
+      NetworkError(PushNetworkException(e))
     } catch (e: Throwable) {
       ApplicationError(e)
     }
@@ -308,6 +329,37 @@ sealed class NetworkResult<T>(
 
   fun interface WebSocketResponseConverter<T> {
     @Throws(Exception::class)
-    fun convert(response: WebsocketResponse): T
+    fun convert(response: WebsocketResponse): NetworkResult<T>
   }
+
+  class DefaultWebSocketConverter<T : Any>(private val responseJsonClass: KClass<T>) : WebSocketResponseConverter<T> {
+    override fun convert(response: WebsocketResponse): NetworkResult<T> {
+      return if (response.status < 200 || response.status > 299) {
+        response.toStatusCodeError()
+      } else {
+        response.toSuccess(responseJsonClass)
+      }
+    }
+  }
+
+  class LongPollingWebSocketConverter<T : Any>(private val responseJsonClass: KClass<T>) : WebSocketResponseConverter<T> {
+    override fun convert(response: WebsocketResponse): NetworkResult<T> {
+      return if (response.status == 204 || response.status < 200 || response.status > 299) {
+        response.toStatusCodeError()
+      } else {
+        response.toSuccess(responseJsonClass)
+      }
+    }
+  }
+}
+
+private fun <T : Any> WebsocketResponse.toStatusCodeError(): NetworkResult<T> {
+  return StatusCodeError(NonSuccessfulResponseCodeException(this.status, "", this.body))
+}
+
+private fun <T : Any> WebsocketResponse.toSuccess(responseJsonClass: KClass<T>): NetworkResult<T> {
+  if (responseJsonClass == Unit::class) {
+    return Success(responseJsonClass.cast(Unit))
+  }
+  return Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
 }

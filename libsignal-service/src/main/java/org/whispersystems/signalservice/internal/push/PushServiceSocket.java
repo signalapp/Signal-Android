@@ -253,11 +253,7 @@ public class PushServiceSocket {
 
   private static final String CALLING_RELAYS = "/v2/calling/relays";
 
-  private static final String PROVISIONING_CODE_PATH    = "/v1/devices/provisioning/code";
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
-  private static final String DEVICE_PATH               = "/v1/devices/%s";
-  private static final String WAIT_FOR_DEVICES_PATH     = "/v1/devices/wait_for_linked_device/%s?timeout=%s";
-  private static final String TRANSFER_ARCHIVE_PATH     = "/v1/devices/transfer_archive";
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
   private static final String WAIT_RESTORE_METHOD_PATH  = "/v1/devices/restore_account/%s?timeout=%s";
 
@@ -698,29 +694,6 @@ public class PushServiceSocket {
     makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
   }
 
-  public LinkedDeviceVerificationCodeResponse getLinkedDeviceVerificationCode() throws IOException {
-    String responseText = makeServiceRequest(PROVISIONING_CODE_PATH, "GET", null, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
-    return JsonUtil.fromJson(responseText, LinkedDeviceVerificationCodeResponse.class);
-  }
-
-  public List<DeviceInfo> getDevices() throws IOException {
-    String responseText = makeServiceRequest(String.format(DEVICE_PATH, ""), "GET", null);
-    return JsonUtil.fromJson(responseText, DeviceInfoList.class).getDevices();
-  }
-
-  /**
-   * This is a long-polling endpoint that relies on the fact that our normal connection timeout is already 30s.
-   */
-  public WaitForLinkedDeviceResponse waitForLinkedDevice(String token, int timeoutSeconds) throws IOException {
-    String response = makeServiceRequest(String.format(Locale.US, WAIT_FOR_DEVICES_PATH, token, timeoutSeconds), "GET", null, NO_HEADERS, LONG_POLL_HANDLER, SealedSenderAccess.NONE);
-    return JsonUtil.fromJsonResponse(response, WaitForLinkedDeviceResponse.class);
-  }
-
-  public void setLinkedDeviceTransferArchive(SetLinkedDeviceTransferArchiveRequest request) throws IOException {
-    String body = JsonUtil.toJson(request);
-    makeServiceRequest(String.format(Locale.US, TRANSFER_ARCHIVE_PATH), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
-  }
-
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
     String body = JsonUtil.toJson(request);
     makeServiceRequest(String.format(Locale.US, SET_RESTORE_METHOD_PATH, urlEncode(token)), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
@@ -732,10 +705,6 @@ public class PushServiceSocket {
   public @Nonnull RestoreMethodBody waitForRestoreMethodChosen(@Nonnull String token, int timeoutSeconds) throws IOException {
     String response = makeServiceRequest(String.format(Locale.US, WAIT_RESTORE_METHOD_PATH, urlEncode(token), timeoutSeconds), "GET", null, NO_HEADERS, LONG_POLL_HANDLER, SealedSenderAccess.NONE);
     return JsonUtil.fromJsonResponse(response, RestoreMethodBody.class);
-  }
-
-  public void removeDevice(long deviceId) throws IOException {
-    makeServiceRequest(String.format(DEVICE_PATH, String.valueOf(deviceId)), "DELETE", null);
   }
 
   public void sendProvisioningMessage(String destination, byte[] body) throws IOException {

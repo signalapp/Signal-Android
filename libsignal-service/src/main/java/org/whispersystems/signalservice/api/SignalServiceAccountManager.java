@@ -297,15 +297,6 @@ public class SignalServiceAccountManager {
     return pushServiceSocket.getAccountDataReport();
   }
 
-
-  public List<DeviceInfo> getDevices() throws IOException {
-    return this.pushServiceSocket.getDevices();
-  }
-
-  public void removeDevice(int deviceId) throws IOException {
-    this.pushServiceSocket.removeDevice(deviceId);
-  }
-
   public List<TurnServerInfo> getTurnServerInfo() throws IOException {
     List<TurnServerInfo> relays = this.pushServiceSocket.getCallingRelays().getRelays();
     return relays != null ? relays : Collections.emptyList();

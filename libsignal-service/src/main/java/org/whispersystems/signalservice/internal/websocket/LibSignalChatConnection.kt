@@ -37,6 +37,7 @@ import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 import org.signal.libsignal.net.ChatConnection.Request as LibSignalRequest
 
@@ -95,17 +96,16 @@ class LibSignalChatConnection(
     const val SIGNAL_SERVICE_ENVELOPE_TIMESTAMP_HEADER_KEY = "X-Signal-Timestamp"
 
     private val TAG = Log.tag(LibSignalChatConnection::class.java)
-    private val SEND_TIMEOUT: Long = 10.seconds.inWholeMilliseconds
 
     private val KEEP_ALIVE_REQUEST = LibSignalRequest(
       "GET",
       "/v1/keepalive",
       emptyMap(),
       ByteArray(0),
-      SEND_TIMEOUT.toInt()
+      WebSocketConnection.DEFAULT_SEND_TIMEOUT.inWholeMilliseconds.toInt()
     )
 
-    private fun WebSocketRequestMessage.toLibSignalRequest(timeout: Long = SEND_TIMEOUT): LibSignalRequest {
+    private fun WebSocketRequestMessage.toLibSignalRequest(timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT): LibSignalRequest {
       return LibSignalRequest(
         this.verb?.uppercase() ?: "GET",
         this.path ?: "",
@@ -117,7 +117,7 @@ class LibSignalChatConnection(
           parts[0] to parts[1]
         },
         this.body?.toByteArray() ?: byteArrayOf(),
-        timeout.toInt()
+        timeout.inWholeMilliseconds.toInt()
       )
     }
   }
@@ -254,7 +254,7 @@ class LibSignalChatConnection(
     }
   }
 
-  override fun sendRequest(request: WebSocketRequestMessage): Single<WebsocketResponse> {
+  override fun sendRequest(request: WebSocketRequestMessage, timeoutSeconds: Long): Single<WebsocketResponse> {
     CHAT_SERVICE_LOCK.withLock {
       if (isDead()) {
         return Single.error(IOException("$name is closed!"))
@@ -294,7 +294,7 @@ class LibSignalChatConnection(
         return single.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
       }
 
-      val internalRequest = request.toLibSignalRequest()
+      val internalRequest = request.toLibSignalRequest(timeout = timeoutSeconds.seconds)
       chatConnection!!.send(internalRequest)
         .whenComplete(
           onSuccess = { response ->

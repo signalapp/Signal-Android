@@ -1,8 +1,12 @@
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
 @file:JvmName("RxExtensions")
 
 package org.signal.core.util.concurrent
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LifecycleOwner
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
@@ -12,27 +16,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.subjects.Subject
-
-/**
- * Throw an [InterruptedException] if a [Single.blockingGet] call is interrupted. This can
- * happen when being called by code already within an Rx chain that is disposed.
- *
- * [Single.blockingGet] is considered harmful and should not be used.
- */
-@SuppressLint("UnsafeBlockingGet")
-@Throws(InterruptedException::class)
-fun <T : Any> Single<T>.safeBlockingGet(): T {
-  try {
-    return blockingGet()
-  } catch (e: RuntimeException) {
-    val cause = e.cause
-    if (cause is InterruptedException) {
-      throw cause
-    } else {
-      throw e
-    }
-  }
-}
 
 fun <T : Any> Flowable<T>.observe(viewLifecycleOwner: LifecycleOwner, onNext: (T) -> Unit) {
   val lifecycleDisposable = LifecycleDisposable()

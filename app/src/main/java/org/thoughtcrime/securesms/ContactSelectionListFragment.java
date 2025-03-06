@@ -47,8 +47,8 @@ import androidx.transition.TransitionManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.concurrent.JvmRxExtensions;
 import org.signal.core.util.concurrent.LifecycleDisposable;
-import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
@@ -722,7 +722,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
           SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
             try {
-              return RxExtensions.safeBlockingGet(UsernameRepository.fetchAciForUsername(UsernameUtil.sanitizeUsernameFromSearch(username)));
+              return JvmRxExtensions.safeBlockingGet(UsernameRepository.fetchAciForUsername(UsernameUtil.sanitizeUsernameFromSearch(username)));
             } catch (InterruptedException e) {
               Log.w(TAG, "Interrupted?", e);
               return UsernameAciFetchResult.NetworkError.INSTANCE;

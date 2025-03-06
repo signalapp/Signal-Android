@@ -377,7 +377,7 @@ object AppDependencies {
     fun provideArchiveApi(pushServiceSocket: PushServiceSocket): ArchiveApi
     fun provideKeysApi(pushServiceSocket: PushServiceSocket): KeysApi
     fun provideAttachmentApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): AttachmentApi
-    fun provideLinkDeviceApi(pushServiceSocket: PushServiceSocket): LinkDeviceApi
+    fun provideLinkDeviceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): LinkDeviceApi
     fun provideRegistrationApi(pushServiceSocket: PushServiceSocket): RegistrationApi
     fun provideStorageServiceApi(pushServiceSocket: PushServiceSocket): StorageServiceApi
     fun provideAuthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.AuthenticatedWebSocket

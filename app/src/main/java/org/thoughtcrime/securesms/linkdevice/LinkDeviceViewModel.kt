@@ -288,7 +288,7 @@ class LinkDeviceViewModel : ViewModel() {
     Log.d(TAG, "[addDeviceWithSync] Got result: $result")
 
     if (result !is LinkDeviceResult.Success) {
-      Log.w(TAG, "[addDeviceWithSync] Unable to link device $result")
+      Log.w(TAG, "[addDeviceWithSync] Unable to link device $result", if (result is LinkDeviceResult.NetworkError) result.error else null)
       _state.update {
         it.copy(
           dialogState = DialogState.None
@@ -377,7 +377,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     if (result !is LinkDeviceResult.Success) {
-      Log.w(TAG, "Unable to link device $result")
+      Log.w(TAG, "Unable to link device $result", if (result is LinkDeviceResult.NetworkError) result.error else null)
       _state.update {
         it.copy(
           dialogState = DialogState.None

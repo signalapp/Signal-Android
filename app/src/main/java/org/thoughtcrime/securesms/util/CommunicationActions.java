@@ -23,7 +23,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.signal.core.util.concurrent.RxExtensions;
+import org.signal.core.util.concurrent.JvmRxExtensions;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
@@ -460,7 +460,7 @@ public class CommunicationActions {
 
     SimpleTask.run(() -> {
       try {
-        UsernameLinkConversionResult result = RxExtensions.safeBlockingGet(UsernameRepository.fetchUsernameAndAciFromLink(link));
+        UsernameLinkConversionResult result = JvmRxExtensions.safeBlockingGet(UsernameRepository.fetchUsernameAndAciFromLink(link));
 
         // TODO we could be better here and report different types of errors to the UI
         if (result instanceof UsernameLinkConversionResult.Success success) {

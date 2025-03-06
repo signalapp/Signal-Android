@@ -1,5 +1,6 @@
 package org.whispersystems.signalservice.internal.websocket;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.whispersystems.signalservice.api.push.TrustStore;
@@ -227,7 +228,7 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
   }
 
   @Override
-  public synchronized Single<WebsocketResponse> sendRequest(WebSocketRequestMessage request) throws IOException {
+  public synchronized Single<WebsocketResponse> sendRequest(@NotNull WebSocketRequestMessage request, long timeoutSeconds) throws IOException {
     if (client == null) {
       throw new IOException("No connection!");
     }
@@ -247,7 +248,7 @@ public class OkHttpWebSocketConnection extends WebSocketListener implements WebS
 
     return single.subscribeOn(Schedulers.io())
                  .observeOn(Schedulers.io())
-                 .timeout(10, TimeUnit.SECONDS, Schedulers.io());
+                 .timeout(timeoutSeconds, TimeUnit.SECONDS, Schedulers.io());
   }
 
   @Override
