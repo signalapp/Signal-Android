@@ -11,7 +11,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputLayout
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
 
@@ -23,7 +22,6 @@ class PassphraseDialogManager(private val context: Context) {
 
   private fun createDialog(action: (String) -> Unit): AlertDialog {
     val view = LayoutInflater.from(context).inflate(R.layout.enter_backup_passphrase_dialog, null)
-    val passphraseInputLayout = view.findViewById<TextInputLayout>(R.id.restore_passphrase_input_layout)
     val prompt = view.findViewById<EditText>(R.id.restore_passphrase_input)
 
     prompt.addTextChangedListener(PassphraseAsYouTypeFormatter())
@@ -43,12 +41,7 @@ class PassphraseDialogManager(private val context: Context) {
 
       prompt.doOnTextChanged { text, _, _, _ ->
         val input = text.toString()
-        if (input.isBlank()) {
-          positiveButton.isEnabled = false
-        } else {
-          passphraseInputLayout.error = null
-          positiveButton.isEnabled = true
-        }
+        positiveButton.isEnabled = input.isNotBlank()
       }
 
       positiveButton.setOnClickListener {
