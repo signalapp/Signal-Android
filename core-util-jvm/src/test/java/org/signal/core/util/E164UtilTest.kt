@@ -53,6 +53,17 @@ class E164UtilTest {
   }
 
   @Test
+  fun `formatAsE164 - strip leading zeros`() {
+    val formatter: E164Util.Formatter = E164Util.createFormatterForE164("+14152222222")
+    Assert.assertEquals("+15551234567", formatter.formatAsE164("+015551234567"))
+    Assert.assertEquals("+15551234567", formatter.formatAsE164("+0015551234567"))
+    Assert.assertEquals("+15551234567", formatter.formatAsE164("01115551234567"))
+    Assert.assertEquals("1234", formatter.formatAsE164("01234"))
+    Assert.assertEquals(null, formatter.formatAsE164("0"))
+    Assert.assertEquals(null, formatter.formatAsE164("0000000"))
+  }
+
+  @Test
   fun `formatAsE164 - US mix`() {
     val formatter: E164Util.Formatter = E164Util.createFormatterForE164("+16105880522")
 
@@ -116,6 +127,10 @@ class E164UtilTest {
     Assert.assertEquals(null, formatter.formatAsE164("bonbon"))
     Assert.assertEquals(null, formatter.formatAsE164("44444444441234512312312312312312312312"))
     Assert.assertEquals(null, formatter.formatAsE164("144444444441234512312312312312312312312"))
+    Assert.assertEquals(null, formatter.formatAsE164("1"))
+    Assert.assertEquals(null, formatter.formatAsE164("55"))
+    Assert.assertEquals(null, formatter.formatAsE164("0"))
+    Assert.assertEquals(null, formatter.formatAsE164("000"))
   }
 
   @Test

@@ -152,15 +152,20 @@ object E164Util {
    */
   private fun formatAsE164WithRegionCode(localNumber: PhoneNumber?, localAreaCode: String?, regionCode: String, input: String): String? {
     try {
-      val withAreaCodeRules: String = applyAreaCodeRules(localNumber, localAreaCode, input.e164CharsOnly())
+      val correctedInput = input.e164CharsOnly().stripLeadingZerosFromInput()
+      if (correctedInput.trimStart('0').length < 3) {
+        return null
+      }
+
+      val withAreaCodeRules: String = applyAreaCodeRules(localNumber, localAreaCode, correctedInput)
       val parsedNumber: PhoneNumber = PhoneNumberUtil.getInstance().parse(withAreaCodeRules, regionCode)
 
       val isShortCode = ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, regionCode) || withAreaCodeRules.length <= 5
       if (isShortCode) {
-        return input.numbersOnly()
+        return correctedInput.numbersOnly().stripLeadingZerosFromE164()
       }
 
-      return PhoneNumberUtil.getInstance().format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164)
+      return PhoneNumberUtil.getInstance().format(parsedNumber, PhoneNumberUtil.PhoneNumberFormat.E164).stripLeadingZerosFromE164()
     } catch (e: NumberParseException) {
       return null
     }
@@ -206,6 +211,30 @@ object E164Util {
 
   private fun String.e164CharsOnly(): String {
     return this.filter { it.isDigit() || it == '+' }
+  }
+
+  /**
+   * Strips out bad leading zeros from input strings that can confuse libphonenumber.
+   */
+  private fun String.stripLeadingZerosFromInput(): String {
+    return if (this.startsWith("+0")) {
+      "+" + this.substring(1).trimStart('0')
+    } else {
+      this
+    }
+  }
+
+  /**
+   * Strips out leading zeros from a string after it's been e164-formatted by libphonenumber.
+   */
+  private fun String.stripLeadingZerosFromE164(): String {
+    return if (this.startsWith("0")) {
+      this.trimStart('0')
+    } else if (this.startsWith("+0")) {
+      "+" + this.substring(1).trimStart('0')
+    } else {
+      this
+    }
   }
 
   class Formatter(
