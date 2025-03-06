@@ -48,7 +48,6 @@ class PassphraseDialogManager(private val context: Context) {
       prompt.doOnTextChanged { text, _, _, _ ->
         val input = text.toString()
         if (input.isBlank()) {
-          setPassphraseError()
           positiveButton.isEnabled = false
         } else {
           passphraseInputLayout.error = null
