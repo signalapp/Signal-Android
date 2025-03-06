@@ -26,10 +26,6 @@ class PassphraseDialogManager(private val context: Context) {
     val passphraseInputLayout = view.findViewById<TextInputLayout>(R.id.restore_passphrase_input_layout)
     val prompt = view.findViewById<EditText>(R.id.restore_passphrase_input)
 
-    fun setPassphraseError() {
-      passphraseInputLayout.error = context.getText(R.string.RegistrationActivity_enter_backup_passphrase)
-    }
-
     prompt.addTextChangedListener(PassphraseAsYouTypeFormatter())
 
     val alertDialog = MaterialAlertDialogBuilder(context)
@@ -57,13 +53,8 @@ class PassphraseDialogManager(private val context: Context) {
 
       positiveButton.setOnClickListener {
         ViewUtil.hideKeyboard(context, prompt)
-        val passphrase = prompt.text.toString()
-        if (passphrase.isBlank()) {
-          setPassphraseError()
-        } else {
-          action(passphrase)
-          dialog.dismiss()
-        }
+        action(prompt.text.toString())
+        dialog.dismiss()
       }
     }
     return alertDialog
