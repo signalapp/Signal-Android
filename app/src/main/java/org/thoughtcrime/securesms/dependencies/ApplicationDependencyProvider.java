@@ -465,8 +465,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull ArchiveApi provideArchiveApi(@NonNull PushServiceSocket pushServiceSocket) {
-    return new ArchiveApi(pushServiceSocket);
+  public @NonNull ArchiveApi provideArchiveApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new ArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket);
   }
 
   @Override

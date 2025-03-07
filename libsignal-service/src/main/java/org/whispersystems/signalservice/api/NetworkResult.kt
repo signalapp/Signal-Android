@@ -121,6 +121,19 @@ sealed class NetworkResult<T>(
     }
 
     /**
+     * Wraps a local operation, [block], that may throw an exception that should be wrapped in an [ApplicationError]
+     * and abort downstream network requests that directly depend on the output of the local operation. Should
+     * be used almost exclusively prior to a [then].
+     */
+    fun <T : Any> fromLocal(block: () -> T): NetworkResult<T> {
+      return try {
+        Success(block())
+      } catch (e: Throwable) {
+        ApplicationError(e)
+      }
+    }
+
+    /**
      * Runs [operation] to perform a network call. If [shouldRetry] returns false for the result, then returns it. Otherwise will call [operation] repeatedly
      * until [shouldRetry] returns false or is called [maxAttempts] number of times.
      *

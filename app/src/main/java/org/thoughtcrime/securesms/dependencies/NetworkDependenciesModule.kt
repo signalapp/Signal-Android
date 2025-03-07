@@ -136,7 +136,7 @@ class NetworkDependenciesModule(
   }
 
   val archiveApi: ArchiveApi by lazy {
-    provider.provideArchiveApi(pushServiceSocket)
+    provider.provideArchiveApi(authWebSocket, unauthWebSocket, pushServiceSocket)
   }
 
   val keysApi: KeysApi by lazy {

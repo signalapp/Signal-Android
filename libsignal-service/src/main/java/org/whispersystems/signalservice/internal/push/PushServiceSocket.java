@@ -22,7 +22,6 @@ import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
-import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequest;
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest;
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
@@ -47,17 +46,12 @@ import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
-import org.whispersystems.signalservice.api.archive.ArchiveGetBackupInfoResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse;
 import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest;
 import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse;
-import org.whispersystems.signalservice.api.archive.ArchiveServiceCredentialsResponse;
-import org.whispersystems.signalservice.api.archive.ArchiveSetBackupIdRequest;
-import org.whispersystems.signalservice.api.archive.ArchiveSetPublicKeyRequest;
 import org.whispersystems.signalservice.api.archive.BatchArchiveMediaRequest;
 import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse;
 import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest;
-import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -230,6 +224,7 @@ public class PushServiceSocket {
   private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
   private static final String PAYMENTS_AUTH_PATH        = "/v1/payments/auth";
+  private static final String PAYMENTS_CONVERSIONS      = "/v1/payments/conversions";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
   private static final String PROFILE_BATCH_CHECK_PATH  = "/v1/profile/identity_check/batch";
@@ -239,7 +234,6 @@ public class PushServiceSocket {
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
-  private static final String ATTACHMENT_UPLOAD_PATH         = "attachments/";
   private static final String AVATAR_UPLOAD_PATH             = "";
 
   private static final String STICKER_MANIFEST_PATH          = "stickers/%s/manifest.proto";
@@ -253,9 +247,6 @@ public class PushServiceSocket {
   private static final String GROUPSV2_GROUP_JOIN       = "/v2/groups/join/%s";
   private static final String GROUPSV2_TOKEN            = "/v2/groups/token";
   private static final String GROUPSV2_JOINED_AT        = "/v2/groups/joined_at_version";
-
-  private static final String PAYMENTS_CONVERSIONS      = "/v1/payments/conversions";
-
 
   private static final String SUBMIT_RATE_LIMIT_CHALLENGE       = "/v1/challenge";
   private static final String REQUEST_RATE_LIMIT_PUSH_CHALLENGE = "/v1/challenge/push";
@@ -293,22 +284,10 @@ public class PushServiceSocket {
   private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
 
-  private static final String ARCHIVE_CREDENTIALS         = "/v1/archives/auth?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
-  private static final String ARCHIVE_READ_CREDENTIALS    = "/v1/archives/auth/read?cdn=%d";
-  private static final String ARCHIVE_BACKUP_ID           = "/v1/archives/backupid";
-  private static final String ARCHIVE_PUBLIC_KEY          = "/v1/archives/keys";
-  private static final String ARCHIVE_INFO                = "/v1/archives";
-  private static final String ARCHIVE_MESSAGE_UPLOAD_FORM = "/v1/archives/upload/form";
-  private static final String ARCHIVE_MEDIA_UPLOAD_FORM   = "/v1/archives/media/upload/form";
-  private static final String ARCHIVE_MEDIA               = "/v1/archives/media";
-  private static final String ARCHIVE_MEDIA_LIST          = "/v1/archives/media?limit=%d";
-  private static final String ARCHIVE_MEDIA_BATCH         = "/v1/archives/media/batch";
-  private static final String ARCHIVE_MEDIA_DELETE        = "/v1/archives/media/delete";
   private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
 
-  private static final String SET_SHARE_SET_PATH = "/v3/backup/share-set";
-
   private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
+
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
   private static final Map<String, String> NO_HEADERS                         = Collections.emptyMap();
@@ -481,139 +460,6 @@ public class PushServiceSocket {
   public Svr3Credentials getSvr3Authorization() throws IOException {
     String body = makeServiceRequest(SVR3_AUTH, "GET", null);
     return JsonUtil.fromJsonResponse(body, Svr3Credentials.class);
-  }
-
-  public ArchiveServiceCredentialsResponse getArchiveCredentials(long currentTime) throws IOException {
-    long secondsRoundedToNearestDay = TimeUnit.DAYS.toSeconds(TimeUnit.MILLISECONDS.toDays(currentTime));
-    long endTimeInSeconds           = secondsRoundedToNearestDay + TimeUnit.DAYS.toSeconds(7);
-
-    String response = makeServiceRequest(String.format(Locale.US, ARCHIVE_CREDENTIALS, secondsRoundedToNearestDay, endTimeInSeconds), "GET", null, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
-
-    return JsonUtil.fromJson(response, ArchiveServiceCredentialsResponse.class);
-  }
-
-  public void setArchiveBackupId(BackupAuthCredentialRequest messageRequest, BackupAuthCredentialRequest mediaRequest) throws IOException {
-    String body = JsonUtil.toJson(new ArchiveSetBackupIdRequest(messageRequest, mediaRequest));
-    makeServiceRequest(ARCHIVE_BACKUP_ID, "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
-  }
-
-  public void setArchivePublicKey(ECPublicKey publicKey, ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String body = JsonUtil.toJson(new ArchiveSetPublicKeyRequest(publicKey));
-    makeServiceRequestWithoutAuthentication(ARCHIVE_PUBLIC_KEY, "PUT", body, headers, NO_HANDLER);
-  }
-
-  public ArchiveGetBackupInfoResponse getArchiveBackupInfo(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "GET", null, headers, NO_HANDLER);
-    return JsonUtil.fromJson(response, ArchiveGetBackupInfoResponse.class);
-  }
-
-  /**
-   * POST credential presentation to the server to keep backup alive.
-   */
-  public void refreshBackup(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "POST", null, headers, UNOPINIONATED_HANDLER);
-  }
-
-  /**
-   * DELETE credential presentation to the server to delete backup.
-   */
-  public void deleteBackup(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    makeServiceRequestWithoutAuthentication(ARCHIVE_INFO, "DELETE", null, headers, UNOPINIONATED_HANDLER);
-  }
-
-  public List<ArchiveGetMediaItemsResponse.StoredMediaObject> debugGetAllArchiveMediaItems(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    List<ArchiveGetMediaItemsResponse.StoredMediaObject> mediaObjects = new ArrayList<>();
-
-    String cursor = null;
-    do {
-      ArchiveGetMediaItemsResponse response = getArchiveMediaItemsPage(credentialPresentation, 512, cursor);
-      mediaObjects.addAll(response.getStoredMediaObjects());
-      cursor = response.getCursor();
-    } while (cursor != null);
-
-    return mediaObjects;
-  }
-
-  /**
-   * Retrieves a page of media items in the user's archive.
-   * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
-   */
-  public ArchiveGetMediaItemsResponse getArchiveMediaItemsPage(ArchiveCredentialPresentation credentialPresentation, int limit, String cursor) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String url = String.format(Locale.US, ARCHIVE_MEDIA_LIST, limit);
-
-    if (cursor != null) {
-      url += "&cursor=" + cursor;
-    }
-
-    String response = makeServiceRequestWithoutAuthentication(url, "GET", null, headers, NO_HANDLER);
-
-    return JsonUtil.fromJson(response, ArchiveGetMediaItemsResponse.class);
-  }
-
-  /**
-   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
-   */
-  public ArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull ArchiveMediaRequest request) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDLER);
-
-    return JsonUtil.fromJson(response, ArchiveMediaResponse.class);
-  }
-
-  /**
-   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
-   */
-  public BatchArchiveMediaResponse archiveAttachmentMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull BatchArchiveMediaRequest request) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_BATCH, "PUT", JsonUtil.toJson(request), headers, UNOPINIONATED_HANDLER);
-
-    return JsonUtil.fromJson(response, BatchArchiveMediaResponse.class);
-  }
-
-  /**
-   * Delete media from the backup cdn.
-   */
-  public void deleteArchivedMedia(@Nonnull ArchiveCredentialPresentation credentialPresentation, @Nonnull DeleteArchivedMediaRequest request) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_DELETE, "POST", JsonUtil.toJson(request), headers, NO_HANDLER);
-  }
-
-  public AttachmentUploadForm getArchiveMessageBackupUploadForm(ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MESSAGE_UPLOAD_FORM, "GET", null, headers, NO_HANDLER);
-    return JsonUtil.fromJson(response, AttachmentUploadForm.class);
-  }
-
-  public AttachmentUploadForm getArchiveMediaUploadForm(@NotNull ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(ARCHIVE_MEDIA_UPLOAD_FORM, "GET", null, headers, UNOPINIONATED_HANDLER);
-    return JsonUtil.fromJson(response, AttachmentUploadForm.class);
-  }
-
-  /**
-   * Copy and re-encrypt media from the attachments cdn into the backup cdn.
-   */
-  public GetArchiveCdnCredentialsResponse getArchiveCdnReadCredentials(int cdnNumber, @Nonnull ArchiveCredentialPresentation credentialPresentation) throws IOException {
-    Map<String, String> headers = credentialPresentation.toHeaders();
-
-    String response = makeServiceRequestWithoutAuthentication(String.format(Locale.US, ARCHIVE_READ_CREDENTIALS, cdnNumber), "GET", null, headers, NO_HANDLER);
-
-    return JsonUtil.fromJson(response, GetArchiveCdnCredentialsResponse.class);
   }
 
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
@@ -1306,10 +1152,6 @@ public class PushServiceSocket {
     String              response = makeServiceRequest(authPath, "GET", null);
     AuthCredentials     token    = JsonUtil.fromJson(response, AuthCredentials.class);
     return token;
-  }
-
-  private String getCredentials(String authPath) throws IOException {
-    return getAuthCredentials(authPath).asBasic();
   }
 
   public AuthCredentials getPaymentsAuthorization() throws IOException {

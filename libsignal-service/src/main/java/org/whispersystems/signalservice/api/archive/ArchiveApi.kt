@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.api.archive
 
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
@@ -18,25 +19,30 @@ import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
+import org.whispersystems.signalservice.internal.delete
+import org.whispersystems.signalservice.internal.get
+import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.put
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.InputStream
 import java.time.Instant
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Class to interact with various archive-related endpoints.
  * Why is it called archive instead of backup? Because SVR took the "backup" endpoint namespace first :)
  */
-class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
+class ArchiveApi(
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+  private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
+  private val pushServiceSocket: PushServiceSocket
+) {
 
   private val backupServerPublicParams: GenericServerPublicParams = GenericServerPublicParams(pushServiceSocket.configuration.backupServerPublicParams)
-
-  companion object {
-    @JvmStatic
-    fun create(pushServiceSocket: PushServiceSocket): ArchiveApi {
-      return ArchiveApi(pushServiceSocket)
-    }
-  }
 
   /**
    * Retrieves a set of credentials one can use to authorize other requests.
@@ -56,9 +62,11 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun getServiceCredentials(currentTime: Long): NetworkResult<ArchiveServiceCredentialsResponse> {
-    return NetworkResult.fromFetch {
-      pushServiceSocket.getArchiveCredentials(currentTime)
-    }
+    val roundedToNearestDay = currentTime.milliseconds.inWholeDays.days
+    val endTime = roundedToNearestDay + 7.days
+
+    val request = WebSocketRequestMessage.get("/v1/archives/auth?redemptionStartSeconds=${roundedToNearestDay.inWholeSeconds}&redemptionEndSeconds=${endTime.inWholeSeconds}")
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request, ArchiveServiceCredentialsResponse::class)
   }
 
   /**
@@ -73,12 +81,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun getCdnReadCredentials(cdnNumber: Int, aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<GetArchiveCdnCredentialsResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-
-      pushServiceSocket.getArchiveCdnReadCredentials(cdnNumber, presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/auth/read?cdn=$cdnNumber", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, GetArchiveCdnCredentialsResponse::class)
+      }
   }
 
   /**
@@ -92,11 +100,15 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun triggerBackupIdReservation(messageBackupKey: MessageBackupKey, mediaRootBackupKey: MediaRootBackupKey, aci: ACI): NetworkResult<Unit> {
-    return NetworkResult.fromFetch {
-      val messageBackupRequestContext = BackupAuthCredentialRequestContext.create(messageBackupKey.value, aci.rawUuid)
-      val mediaBackupRequestContext = BackupAuthCredentialRequestContext.create(mediaRootBackupKey.value, aci.rawUuid)
-      pushServiceSocket.setArchiveBackupId(messageBackupRequestContext.request, mediaBackupRequestContext.request)
-    }
+    val messageBackupRequestContext = BackupAuthCredentialRequestContext.create(messageBackupKey.value, aci.rawUuid)
+    val mediaBackupRequestContext = BackupAuthCredentialRequestContext.create(mediaRootBackupKey.value, aci.rawUuid)
+
+    val request = WebSocketRequestMessage.put(
+      "/v1/archives/backupid",
+      ArchiveSetBackupIdRequest(messageBackupRequestContext.request, mediaBackupRequestContext.request)
+    )
+
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request)
   }
 
   /**
@@ -113,11 +125,14 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun setPublicKey(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.setArchivePublicKey(presentationData.publicKey, presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .then { presentation ->
+        val headers = presentation.toArchiveCredentialPresentation().toHeaders()
+        val publicKey = presentation.publicKey
+
+        val request = WebSocketRequestMessage.put("/v1/archives/keys", ArchiveSetPublicKeyRequest(publicKey), headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+      }
   }
 
   /**
@@ -130,11 +145,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AttachmentUploadForm> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.getArchiveMessageBackupUploadForm(presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/upload/form", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
+      }
   }
 
   /**
@@ -144,11 +160,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * Will return a [NetworkResult.StatusCodeError] with status code 404 if you haven't uploaded a backup yet.
    */
   fun getBackupInfo(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<ArchiveGetBackupInfoResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.getArchiveBackupInfo(presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveGetBackupInfoResponse::class)
+      }
   }
 
   /**
@@ -165,11 +182,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate limited.
    */
   fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.refreshBackup(presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.post(path = "/v1/archives", body = null, headers = headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+      }
   }
 
   /**
@@ -186,22 +204,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    *
    */
   fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.deleteBackup(presentationData.toArchiveCredentialPresentation())
-    }
-  }
-
-  /**
-   * Lists the media objects in the backup
-   */
-  fun listMediaObjects(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String? = null): NetworkResult<ArchiveGetMediaItemsResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.delete("/v1/archives", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+      }
   }
 
   /**
@@ -238,11 +246,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * - 429: Rate-limited
    */
   fun getMediaUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>): NetworkResult<AttachmentUploadForm> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      pushServiceSocket.getArchiveMediaUploadForm(presentationData.toArchiveCredentialPresentation())
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/media/upload/form", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
+      }
   }
 
   /**
@@ -270,12 +279,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
   fun getArchiveMediaItemsPage(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>, limit: Int, cursor: String?): NetworkResult<ArchiveGetMediaItemsResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-
-      pushServiceSocket.getArchiveMediaItemsPage(presentationData.toArchiveCredentialPresentation(), limit, cursor)
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/media?limit=$limit${if (cursor.isNotNullOrBlank()) "&cursor=$cursor" else ""}", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveGetMediaItemsResponse::class)
+      }
   }
 
   /**
@@ -294,12 +303,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
     archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     item: ArchiveMediaRequest
   ): NetworkResult<ArchiveMediaResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-
-      pushServiceSocket.archiveAttachmentMedia(presentationData.toArchiveCredentialPresentation(), item)
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.put("/v1/archives/media", item, headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, ArchiveMediaResponse::class)
+      }
   }
 
   /**
@@ -310,14 +319,12 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
     archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     items: List<ArchiveMediaRequest>
   ): NetworkResult<BatchArchiveMediaResponse> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-
-      val request = BatchArchiveMediaRequest(items = items)
-
-      pushServiceSocket.archiveAttachmentMedia(presentationData.toArchiveCredentialPresentation(), request)
-    }
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.put("/v1/archives/media/batch", BatchArchiveMediaRequest(items = items), headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, BatchArchiveMediaResponse::class)
+      }
   }
 
   /**
@@ -335,12 +342,18 @@ class ArchiveApi(private val pushServiceSocket: PushServiceSocket) {
     archiveServiceAccess: ArchiveServiceAccess<MediaRootBackupKey>,
     mediaToDelete: List<DeleteArchivedMediaRequest.ArchivedMediaObject>
   ): NetworkResult<Unit> {
-    return NetworkResult.fromFetch {
-      val zkCredential = getZkCredential(aci, archiveServiceAccess)
-      val presentationData = CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
-      val request = DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete)
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+      }
+  }
 
-      pushServiceSocket.deleteArchivedMedia(presentationData.toArchiveCredentialPresentation(), request)
+  private fun getCredentialPresentation(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<CredentialPresentationData> {
+    return NetworkResult.fromLocal {
+      val zkCredential = getZkCredential(aci, archiveServiceAccess)
+      CredentialPresentationData.from(archiveServiceAccess.backupKey, aci, zkCredential, backupServerPublicParams)
     }
   }
 

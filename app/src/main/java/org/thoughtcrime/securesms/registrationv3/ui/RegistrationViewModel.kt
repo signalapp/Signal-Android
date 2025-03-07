@@ -875,6 +875,8 @@ class RegistrationViewModel : ViewModel() {
     SignalStore.registration.localRegistrationMetadata = metadata
     RegistrationRepository.registerAccountLocally(context, metadata)
 
+    AppDependencies.authWebSocket.connect()
+
     if (!remoteResult.storageCapable && SignalStore.registration.restoreDecisionState.isDecisionPending) {
       Log.v(TAG, "Not storage capable and still pending restore decision, likely an account with no data to restore, skipping post register restore")
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
