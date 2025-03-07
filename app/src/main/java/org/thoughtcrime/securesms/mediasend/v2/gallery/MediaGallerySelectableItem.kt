@@ -2,14 +2,12 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.animation.ValueAnimator
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.setPadding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
@@ -20,7 +18,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
-import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -69,14 +66,6 @@ object MediaGallerySelectableItem {
     }
   }
 
-  private fun Uri.toGlideModel(): Any {
-    return if (PartAuthority.isLocalUri(this)) {
-      DecryptableStreamUriLoader.DecryptableUri(this)
-    } else {
-      this
-    }
-  }
-
   abstract class BaseViewHolder<T : MappingModel<T>>(itemView: View) : MappingViewHolder<T>(itemView) {
     protected val imageView: ShapeableImageView = itemView.findViewById(R.id.media_gallery_image)
     protected val playOverlay: ImageView? = itemView.findViewById(R.id.media_gallery_play_overlay)
@@ -87,7 +76,7 @@ object MediaGallerySelectableItem {
   class FolderViewHolder(itemView: View, private val onMediaFolderClicked: OnMediaFolderClicked) : BaseViewHolder<FolderModel>(itemView) {
     override fun bind(model: FolderModel) {
       Glide.with(imageView)
-        .load(model.mediaFolder.thumbnailUri.toGlideModel())
+        .load(DecryptableStreamUriLoader.DecryptableUri(model.mediaFolder.thumbnailUri))
         .into(imageView)
 
       playOverlay?.visible = false
@@ -142,8 +131,7 @@ object MediaGallerySelectableItem {
       }
 
       Glide.with(imageView)
-        .load(model.media.uri.toGlideModel())
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .load(DecryptableStreamUriLoader.DecryptableUri(model.media.uri))
         .addListener(ErrorLoggingRequestListener(FILE_VIEW_HOLDER_TAG))
         .into(imageView)
     }
