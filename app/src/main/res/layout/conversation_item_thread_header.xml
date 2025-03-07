@@ -7,7 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="52dp"
     android:paddingTop="22dp"
     android:paddingBottom="4dp"
     app:layout_constraintTop_toTopOf="parent"

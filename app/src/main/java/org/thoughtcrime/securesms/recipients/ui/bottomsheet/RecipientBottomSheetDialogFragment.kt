@@ -255,6 +255,8 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
         nickname.setOnClickListener {
           nicknameLauncher.launch(NicknameActivity.Args(recipientId, false))
         }
+      } else if (recipient.isReleaseNotes) {
+        fullName.text = name
       }
 
       var aboutText = recipient.combinedAboutAndEmoji

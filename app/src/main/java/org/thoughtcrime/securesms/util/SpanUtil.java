@@ -27,6 +27,7 @@ import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
 import android.text.style.TypefaceSpan;
 import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -95,6 +96,17 @@ public final class SpanUtil {
 
     if (start >= 0 && end <= fullString.length()) {
       spannable.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+    return spannable;
+  }
+
+  public static CharSequence underlineSubstring(CharSequence fullString, CharSequence substring) {
+    SpannableString spannable = new SpannableString(fullString);
+    int             start     = TextUtils.indexOf(fullString, substring);
+    int             end       = start + substring.length();
+
+    if (start >= 0 && end <= fullString.length()) {
+      spannable.setSpan(new UnderlineSpan(), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
     return spannable;
   }

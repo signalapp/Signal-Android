@@ -246,4 +246,8 @@
 
     <dimen name="chat_folder_row_height">64dp</dimen>
 
+    <dimen name="conversation_header_padding">24dp</dimen>
+    <dimen name="conversation_header_padding_expanded">32dp</dimen>
+    <dimen name="conversation_header_max_size">308dp</dimen>
+
 </resources>

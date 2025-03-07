@@ -10,7 +10,6 @@
         android:id="@+id/message_request_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintBottom_toTopOf="@id/message_request_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +79,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.HeadlineMedium"
-        app:layout_constraintBottom_toTopOf="@id/message_request_about"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_avatar"
@@ -94,7 +92,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
-        app:layout_constraintBottom_toTopOf="@id/message_request_divider"
         app:layout_constraintTop_toBottomOf="@id/message_request_title"
         tools:text="Hangin' on the web" />
 
@@ -103,17 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/signal_dark_colorTransparentInverse2"
-        app:layout_constraintBottom_toTopOf="@id/message_request_barrier"
         app:layout_constraintTop_toBottomOf="@id/message_request_about" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/message_request_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="top"
-        app:constraint_referenced_ids="message_request_info,release_header_container" />
 
     <LinearLayout
         android:id="@+id/release_header_container"
@@ -123,10 +111,11 @@
         android:orientation="vertical"
         android:background="@drawable/release_header_background"
         android:minWidth="288dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_divider"
+        app:layout_constraintWidth_max="@dimen/conversation_header_max_size"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -163,14 +152,14 @@
         android:id="@+id/message_request_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_divider"
-        app:layout_constraintWidth_max="308dp"
-        app:layout_constraintWidth_min="256dp">
+        app:layout_constraintWidth_max="@dimen/conversation_header_max_size" >
 
         <TextView
             android:id="@+id/message_request_review_carefully"
@@ -179,7 +168,7 @@
             android:text="@string/ConversationFragment_review_carefully"
             android:textColor="#A88746"
             android:textAppearance="@style/Signal.Text.BodyMedium"
-            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
             android:visibility="gone"
             app:drawableStartCompat="@drawable/symbol_error_triangle_filled_16"
             android:drawablePadding="6dp"
@@ -197,6 +186,7 @@
             android:textAppearance="@style/Signal.Text.BodyMedium"
             android:text="@string/ConversationFragment_profile_names_not_verified"
             android:visibility="gone"
+            android:textAlignment="center"
             android:layout_marginBottom="8dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"

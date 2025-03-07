@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
 public class ConversationHeaderView extends ConstraintLayout {
@@ -135,7 +136,7 @@ public class ConversationHeaderView extends ConstraintLayout {
     }
 
     if (recipient.isIndividual() && !recipient.isSelf()) {
-      CharSequence chevronRight = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, SignalSymbols.Glyph.CHEVRON_RIGHT);
+      CharSequence chevronRight = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, SignalSymbols.Glyph.CHEVRON_RIGHT, R.color.signal_colorOutline);
       title.append(" ");
       title.append(SpanUtil.ofSize(chevronRight, 24));
 
@@ -192,6 +193,7 @@ public class ConversationHeaderView extends ConstraintLayout {
 
     binding.messageRequestDescription.setText(prependIcon(description, iconRes));
     binding.messageRequestDescription.setVisibility(View.VISIBLE);
+    updateOutlineVisibility();
   }
 
   public @NonNull EmojiTextView getDescription() {
@@ -212,17 +214,17 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestReviewCarefully.setVisibility(View.GONE);
   }
 
-  public void setUnverifiedNameSubtitle(@DrawableRes int iconRes, @StringRes int clickableRes, boolean forGroup, @Nullable Runnable onClick) {
+  public void setUnverifiedNameSubtitle(@DrawableRes int iconRes, boolean forGroup, @NonNull Runnable onClick) {
     binding.messageRequestProfileNameUnverified.setVisibility(View.VISIBLE);
-    binding.messageRequestProfileNameUnverified.setMovementMethod(LinkMovementMethod.getInstance());
-    CharSequence builder = SpanUtil.clickSubstring(
-        getContext(),
-        forGroup ? R.string.ConversationFragment_group_names_not_verified : R.string.ConversationFragment_profile_names_not_verified,
-        clickableRes,
-        listener -> onClick.run(),
-        true,
-        R.color.signal_colorOnSurface
-    );
+    binding.messageRequestProfileNameUnverified.setOnClickListener(view -> onClick.run());
+
+    String substring  = forGroup ? getContext().getString(R.string.ConversationFragment_group_names)
+                                 : getContext().getString(R.string.ConversationFragment_profile_names);
+
+    String fullString = forGroup ? getContext().getString(R.string.ConversationFragment_group_names_not_verified, substring)
+                                 : getContext().getString(R.string.ConversationFragment_profile_names_not_verified, substring);
+
+    CharSequence builder = SpanUtil.underlineSubstring(fullString, substring);
     binding.messageRequestProfileNameUnverified.setText(prependIcon(builder, iconRes, forGroup));
   }
 
@@ -286,15 +288,25 @@ public class ConversationHeaderView extends ConstraintLayout {
         binding.messageRequestDivider.setVisibility(View.VISIBLE);
       } else {
         binding.messageRequestInfoOutline.setVisibility(View.VISIBLE);
-        binding.messageRequestDivider.setVisibility(View.INVISIBLE);
+        binding.messageRequestDivider.setVisibility(View.GONE);
       }
-    } else if (ViewKt.isVisible(binding.releaseHeaderContainer)) {
-      binding.messageRequestInfoOutline.setVisibility(View.GONE);
-      binding.messageRequestDivider.setVisibility(View.INVISIBLE);
     } else {
       binding.messageRequestInfoOutline.setVisibility(View.GONE);
       binding.messageRequestDivider.setVisibility(View.GONE);
     }
+  }
+
+  public void updateOutlineBoxSize() {
+    int visibleCount = 0;
+    for (int i = 0; i < binding.messageRequestInfo.getChildCount(); i++) {
+      if (ViewKt.isVisible(binding.messageRequestInfo.getChildAt(i))) {
+        visibleCount++;
+      }
+    }
+
+    int padding = visibleCount == 1 ? getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding) : getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding_expanded);
+    ViewUtil.setPaddingStart(binding.messageRequestInfo, padding);
+    ViewUtil.setPaddingEnd(binding.messageRequestInfo, padding);
   }
 
   private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes) {
@@ -305,8 +317,8 @@ public class ConversationHeaderView extends ConstraintLayout {
   private @NonNull CharSequence prependIcon(@NonNull CharSequence input, @DrawableRes int iconRes, boolean useIntrinsicWidth) {
     Drawable drawable = ContextCompat.getDrawable(getContext(), iconRes);
     Preconditions.checkNotNull(drawable);
-    int width = useIntrinsicWidth ? drawable.getIntrinsicWidth() : (int) DimensionUnit.SP.toPixels(20);
-    drawable.setBounds(0, 0, width, (int) DimensionUnit.SP.toPixels(20));
+    int width = useIntrinsicWidth ? drawable.getIntrinsicWidth() : (int) DimensionUnit.SP.toPixels(16);
+    drawable.setBounds(0, 0, width, (int) DimensionUnit.SP.toPixels(16));
     drawable.setColorFilter(ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface), PorterDuff.Mode.SRC_ATOP);
 
     return new SpannableStringBuilder()
