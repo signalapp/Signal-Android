@@ -174,9 +174,11 @@ public class ApplicationMigrations {
     static final int THREAD_TABLE_PINNED_MIGRATION = 130;
     static final int GROUP_DECLINE_INVITE_FIX      = 131;
     static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
+    static final int DUPLICATE_E164_FIX_2          = 133;
+    static final int E164_FORMATTING               = 134;
   }
 
-  public static final int CURRENT_VERSION = 132;
+  public static final int CURRENT_VERSION = 134;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -801,6 +803,14 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.AVATAR_COLOR_MIGRATION_JOB) {
       jobs.put(Version.AVATAR_COLOR_MIGRATION_JOB, new AvatarColorStorageServiceMigrationJob());
+    }
+    
+    if (lastSeenVersion < Version.DUPLICATE_E164_FIX_2) {
+      jobs.put(Version.DUPLICATE_E164_FIX_2, new DuplicateE164MigrationJob());
+    }
+
+    if (lastSeenVersion < Version.E164_FORMATTING) {
+      jobs.put(Version.E164_FORMATTING, new E164FormattingMigrationJob());
     }
 
     return jobs;
