@@ -2103,7 +2103,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">សុំទោស អ្នកបានភ្ជាប់ចំនួនឧបករណ៍ច្រើនពេក សូមលុបចោលខ្លះ</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">សុំទោស តំណកូដQR ភ្ជាប់ទៅកាន់ឧបករណ៍ មិនត្រឹមត្រូវ។</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">ភ្ជាប់ឧបករណ៍ Signal ១?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">ដើម្បីភ្ជាប់កុំព្យូទ័រលើតុ ឬ iPad ជាមួយគណនី Signal នេះ សូមចូលទៅកាន់ឧបករណ៍ដែលបានភ្ជាប់ ហើយចុច \"ភ្ជាប់ឧបករណ៍ថ្មី\" រួចហើយស្គែនកូដ QR ម្តងទៀត។ ត្រូវប្រាកដថាអ្នកស្គែនតែកូដ QR ដែលមកពី Signal ដោយផ្ទាល់ប៉ុណ្ណោះ។</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីស្កេនកូដ QR ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធិប្រើប្រាស់កាមេរ៉ា</string>
@@ -4346,7 +4346,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">បច្ចុប្បន្នភាពកូដ PIN</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

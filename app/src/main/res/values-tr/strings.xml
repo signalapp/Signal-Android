@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Üzgünüz, halihazırda bağlı olan çok fazla cihazınız var. Bazılarını kaldırmayı deneyin.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Üzgünüz, bu geçerli bir cihaz bağlama karekodu değil.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Bir Signal cihazı bağlansın mı?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Bu Signal hesabına bir masaüstü veya iPad bağlamak için Bağlı Cihazlar\'a git ve \"Yeni Bir Cihaz Bağla\"ya dokunup kare kodu tekrar tara. Yalnızca doğrudan Signal\'den gelen kare kodları taradığından emin ol.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">PIN\'i güncelle</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

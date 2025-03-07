@@ -2433,7 +2433,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرًا، لديك عدة أجهزة مرتبطة. يُرجى إزالة بعضها.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرًا، كود الـ QR الخاص برابط هذا الجهاز غير صالح.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">لِربط حاسوب أو جهاز آيباد بحساب سيجنال هذا، انتقِل إلى \"الأجهزة المُرتبِطة\" وانقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد. تأكَّد من مسح كود الـ QR الصادر مباشرًة من سيجنال فقط.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن بشكلٍ دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا.</string>
@@ -4921,7 +4921,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">تحديث رقم PIN</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

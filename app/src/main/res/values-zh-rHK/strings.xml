@@ -2103,7 +2103,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已連結太多裝置，請試試先移除部分</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這並非有效的裝置連結二維碼。</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">要連結 Signal 裝置嗎？</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">要將桌面電腦或 iPad 連結至此 Signal 帳戶，請前往已連結裝置，並輕按「連結新的裝置」，然後再次掃描二維碼。請確保只掃描直接來自 Signal 的二維碼。</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機權限才可掃描二維碼，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「相機」。</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">缺少「相機」權限下無法掃描二維碼</string>
@@ -4346,7 +4346,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">更新 PIN 碼</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

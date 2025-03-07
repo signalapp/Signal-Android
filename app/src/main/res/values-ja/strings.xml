@@ -2103,7 +2103,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">リンクしている端末が多すぎます。いくつか削除してください。</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">この端末リンク用QRコードは正しくありません。</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal端末をリンクしますか？</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">デスクトップまたはiPadをこのSignalアカウントにリンクするには、［リンク済み端末］→［新しい端末をリンクする］をタップし、もう一度QRコードをスキャンしてください。Signalに直接表示されたQRコードのみをスキャンしてください。</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「カメラ」を有効にしてください。</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">カメラへのアクセス許可がないとQRコードをスキャンできません</string>
@@ -4346,7 +4346,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">PINをアップデート</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

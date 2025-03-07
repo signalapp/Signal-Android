@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Valitettavasti sinulla on jo liian monta laitetta yhdistettynä. Kokeile poistaa joitakin.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Valitettavasti tämä ei ole laitteen yhdistämiseksi tarkoitettu QR-koodi.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Yhdistetäänkö Signal-laite?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Jos haluat yhdistää tietokoneen tai iPadin tähän Signal-tiliin, siirry kohtaan Yhdistetyt laitteet, napauta Yhdistä uusi laite ja skannaa QR-koodi uudelleen. Skannaa vain QR-koodeja, jotka tulevat suoraan Signalista.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal tarvitsee luvan käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">Päivitä tunnusluku</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
@@ -4642,7 +4642,7 @@
 
     <string name="Recipient_unknown">Tuntematon</string>
     <!-- Name to use for a user across the UI when they are unregistered and have no other name available -->
-    <string name="Recipient_deleted_account">Poista tili</string>
+    <string name="Recipient_deleted_account">Poistettu tili</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
     <string name="preferences_account_reregister">Rekisteröi tili uudelleen</string>

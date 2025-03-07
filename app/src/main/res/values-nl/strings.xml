@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, je hebt al te veel apparaten gekoppeld, verwijder er eerst een</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR-code om een apparaat te koppelen.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Om een desktop of iPad aan dit Signal-account te koppelen, ga naar Gekoppelde apparaten, tik op ‘Een nieuw apparaat koppelen’ en scan de QR-code opnieuw. Zorg ervoor dat je alleen QR-codes scant die rechtstreeks van Signal komen.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar je hebt dit geweigerd. Ga naar de app-instellingen in je telefooninstellingen, tik op ‘Machtigingen’ en schakel ‘Camera’ in.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">Pincode bijwerken</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

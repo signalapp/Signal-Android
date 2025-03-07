@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">क्षमा करें, आपके पास पहले से जुड़े बहुत से डिवाइस हैं, कुछ को हटाने का प्रयास करें</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">क्षमा करें, यह एक वैध डिवाइस लिंक क्यूआर कोड नहीं है।</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal डिवाइस को लिंक करें?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">इस Signal अकाउंट से डेस्कटॉप या iPad को लिंक करने के लिए, लिंक्ड डिवाइस पर जाएँ और \"नया डिवाइस लिंक करें\" पर टैप करके QR कोड को फिर से स्कैन करें। पक्का करें कि आप वही QR कोड स्कैन करें जो सीधा Signal से आता है।</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कैमरा अनुमति के बिना एक क्यूआर कोड स्कैन करने में असमर्थ</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">पिन अपडेट करें</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

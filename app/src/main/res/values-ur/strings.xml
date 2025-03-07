@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">معذرت سے، پہلے سے بہت زیادہ ڈیوائسز منسلک ہیں، کچھ ختم کرنے کی کوشش کریں</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">معذرت سے، ڈیوائس لنک QR کوڈ غلط ہے۔</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal ڈیوائس منسلک کریں؟</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">ڈیسک ٹاپ یا iPad کو اس Signal اکاؤنٹ کے ساتھ لنک کرنے کے لیے، لنک کردہ ڈیوائسز پر جائیں اور \"نئی ڈیوائس لنک کریں\" پر ٹیپ کریں اور QR کوڈ کو دوبارہ اسکین کریں۔ یقینی بنائیں کہ آپ صرف وہ QR کوڈز اسکین کریں جو براہ راست Signal سے آتے ہیں۔</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal کو QR کوڈ سکین کرنے کیلئے کیمرہ کی اجازت کی ضرورت ہے، لیکن اس کو مستقل طور پر رد کر دیا گیا۔ براہ کرم ایپ کی ترتیبات میں جا کر\"اجازت نامہ\"کا انتخاب کریں اور \"کیمرہ\" کو فعال کریں۔</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">کیمرہ کی اجازت کے بغیر QR کوڈ سکین کرنا ممکن نہیں</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">پن کو اپ ڈیٹ کریں</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

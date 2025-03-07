@@ -2235,7 +2235,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai deja prea multe dispozitive asociate, încearcă să elimini câteva</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău, acest cod de asociere QR este invalid.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Asociez un dispozitiv Signal?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Pentru a asocia un desktop sau un iPad la acest cont Signal, accesează Dispozitive asociate și atinge „Asociază un dispozitiv nou” și scanează din nou codul QR. Asigură-te că scanezi doar codurile QR care vin direct de la Signal.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Te rugăm continuă în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Cameră\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
@@ -4576,7 +4576,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">Actualizează PIN-ul</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

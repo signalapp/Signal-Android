@@ -2169,7 +2169,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Кешіріңіз, тым көп құрылғы байланыстырылған, бірнешеуін өшіріңіз</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Кешіріңіз, бұл құрылғы сілтемесінің QR коды дұрыс емес.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal құрылғысын байланыстыру керек пе?</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Осы Signal аккаунтына компьютерді немесе iPad құрылғысын байланыстырғыңыз келсе, \"Байланыстырылған құрылғылар\" бөліміне өтіңіз және \"Жаңа құрылғыны байланыстыру\" түймесін түртіп, QR кодын қайта сканерлеңіз. Signal-дан тікелей келетін QR кодтарын ғана сканерлеңіз.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal қолданбасы QR кодты сканерлеу үшін камераны пайдалануға рұқсат болу керек, бірақ параметрлерде оны пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Камера\" функциясын қосыңыз.</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Камераны пайдалануға рұқсат берілмесе, QR кодын сканерлей алмайсыз</string>
@@ -4461,7 +4461,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">PIN-кодты жаңарту</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

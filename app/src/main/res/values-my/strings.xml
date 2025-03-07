@@ -2103,7 +2103,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">သင့်ဖုန်းဖြင့် ချိတ်ဆက်ထားသော ဖုန်းများ များနေသည်။ အချို့ချိတ်ဆက်မှုများအား ဖယ်လိုက်ပါ။</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ဝမ်းနည်းပါတယ်။ QR ကုဒ်မှားနေသည်။</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">Signal အသုံးပြုသော ဖုန်းအားချိတ်မည်။</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">To link a desktop or iPad to this Signal account, go to Linked Devices and tap \"Link a New Device\" and scan the QR code again. Make sure you only scan QR codes that come directly from Signal.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">Desktop သို့မဟုတ် iPad ကို ဤ Signal အကောင့်သို့ လင့်ခ်ချိတ်ရန် ချိတ်ထားသောစက််များသို့ သွားကာ \"စက်အသစ်တစ်ခုကို ချိတ်ဆက်ပါ\" ကိုနှိပ်ပြီး QR ကုဒ်ကို ထပ်မံစကင်န်ဖတ်ပါ။ Signal မှ တိုက်ရိုက်လာသော QR ကုဒ်များကိုသာ စကင်န်ဖတ်ပါ။</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
@@ -4346,7 +4346,7 @@
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">Update PIN</string>
+    <string name="UpdatePinMegaphone__update_pin">ပင်နံပါတ်ကိုအသစ်ပြောင်းပါ</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
