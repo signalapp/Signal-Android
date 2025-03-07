@@ -2718,7 +2718,8 @@ public class SignalServiceMessageSender {
     }
   }
 
-  private void handleMismatchedDevices(PushServiceSocket socket, SignalServiceAddress recipient,
+  private void handleMismatchedDevices(PushServiceSocket socket,
+                                       SignalServiceAddress recipient,
                                        MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {

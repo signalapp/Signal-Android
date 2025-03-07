@@ -21,8 +21,6 @@ import org.signal.libsignal.protocol.kem.KEMPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
-import org.signal.libsignal.usernames.BaseUsernameException;
-import org.signal.libsignal.usernames.Username;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.backups.BackupAuthCredentialRequest;
 import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest;
@@ -46,8 +44,6 @@ import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.GroupResponse;
 import org.signal.storageservice.protos.groups.Member;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
-import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
-import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
@@ -65,14 +61,9 @@ import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResp
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
-import org.whispersystems.signalservice.api.link.LinkedDeviceVerificationCodeResponse;
-import org.whispersystems.signalservice.api.link.SetDeviceNameRequest;
-import org.whispersystems.signalservice.api.link.SetLinkedDeviceTransferArchiveRequest;
-import org.whispersystems.signalservice.api.link.WaitForLinkedDeviceResponse;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
-import org.whispersystems.signalservice.api.messages.multidevice.DeviceInfo;
 import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
@@ -112,10 +103,6 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCodeRateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotAssociatedWithAnAccountException;
-import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException;
-import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
-import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
@@ -123,7 +110,6 @@ import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIn
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
-import org.whispersystems.signalservice.api.svr.SetShareSetRequest;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -190,7 +176,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -201,7 +186,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Call;
@@ -227,24 +211,6 @@ import okhttp3.internal.http2.StreamResetException;
 public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
-
-  private static final String REGISTER_GCM_PATH          = "/v1/accounts/gcm/";
-  private static final String SET_ACCOUNT_ATTRIBUTES     = "/v1/accounts/attributes/";
-  private static final String PIN_PATH                   = "/v1/accounts/pin/";
-  private static final String REGISTRATION_LOCK_PATH     = "/v1/accounts/registration_lock";
-  private static final String WHO_AM_I                   = "/v1/accounts/whoami";
-  private static final String GET_USERNAME_PATH          = "/v1/accounts/username_hash/%s";
-  private static final String MODIFY_USERNAME_PATH       = "/v1/accounts/username_hash";
-  private static final String RESERVE_USERNAME_PATH      = "/v1/accounts/username_hash/reserve";
-  private static final String CONFIRM_USERNAME_PATH      = "/v1/accounts/username_hash/confirm";
-  private static final String USERNAME_LINK_PATH         = "/v1/accounts/username_link";
-  private static final String USERNAME_FROM_LINK_PATH    = "/v1/accounts/username_link/%s";
-  private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
-  private static final String SET_DEVICE_NAME_PATH       = "/v1/accounts/name?deviceId=%s";
-  private static final String CHANGE_NUMBER_PATH         = "/v2/accounts/number";
-  private static final String IDENTIFIER_REGISTERED_PATH = "/v1/accounts/account/%s";
-  private static final String REQUEST_ACCOUNT_DATA_PATH  = "/v2/accounts/data_report";
-  private static final String PNI_KEY_DISTRUBTION_PATH   = "/v2/accounts/phone_number_identity_key_distribution";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
@@ -500,23 +466,6 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
   }
 
-  public WhoAmIResponse getWhoAmI() throws IOException {
-    return JsonUtil.fromJson(makeServiceRequest(WHO_AM_I, "GET", null), WhoAmIResponse.class);
-  }
-
-  public boolean isIdentifierRegistered(ServiceId identifier) throws IOException {
-    try {
-      makeServiceRequestWithoutAuthentication(String.format(IDENTIFIER_REGISTERED_PATH, identifier.toString()), "HEAD", null);
-      return true;
-    } catch (NotFoundException e) {
-      return false;
-    }
-  }
-
-  public String getAccountDataReport() throws IOException {
-    return makeServiceRequest(REQUEST_ACCOUNT_DATA_PATH, "GET", null);
-  }
-
   public CdsiAuthResponse getCdsiAuth() throws IOException {
     String body = makeServiceRequest(CDSI_AUTH, "GET", null);
     return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
@@ -667,33 +616,6 @@ public class PushServiceSocket {
     return JsonUtil.fromJson(response, GetArchiveCdnCredentialsResponse.class);
   }
 
-  public void setShareSet(byte[] shareSet) throws IOException {
-    SetShareSetRequest request = new SetShareSetRequest(shareSet);
-    makeServiceRequest(SET_SHARE_SET_PATH, "PUT", JsonUtil.toJson(request));
-  }
-
-  public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
-      throws IOException
-  {
-    String requestBody  = JsonUtil.toJson(changePhoneNumberRequest);
-    String responseBody = makeServiceRequest(CHANGE_NUMBER_PATH, "PUT", requestBody);
-
-    return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
-  }
-
-  public VerifyAccountResponse distributePniKeys(@NonNull PniKeyDistributionRequest distributionRequest) throws IOException {
-    String request  = JsonUtil.toJson(distributionRequest);
-    String response = makeServiceRequest(PNI_KEY_DISTRUBTION_PATH, "PUT", request);
-
-    return JsonUtil.fromJson(response, VerifyAccountResponse.class);
-  }
-
-  public void setAccountAttributes(@Nonnull AccountAttributes accountAttributes)
-      throws IOException
-  {
-    makeServiceRequest(SET_ACCOUNT_ATTRIBUTES, "PUT", JsonUtil.toJson(accountAttributes));
-  }
-
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
     String body = JsonUtil.toJson(request);
     makeServiceRequest(String.format(Locale.US, SET_RESTORE_METHOD_PATH, urlEncode(token)), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
@@ -712,31 +634,8 @@ public class PushServiceSocket {
                        JsonUtil.toJson(new ProvisioningMessage(Base64.encodeWithPadding(body))));
   }
 
-  public void registerGcmId(@Nonnull String gcmRegistrationId) throws IOException {
-    GcmRegistrationId registration = new GcmRegistrationId(gcmRegistrationId, true);
-    makeServiceRequest(REGISTER_GCM_PATH, "PUT", JsonUtil.toJson(registration));
-  }
-
-  public void unregisterGcmId() throws IOException {
-    makeServiceRequest(REGISTER_GCM_PATH, "DELETE", null);
-  }
-
   public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
-  }
-
-  /** Note: Setting a KBS Pin will clear this */
-  public void removeRegistrationLockV1() throws IOException {
-    makeServiceRequest(PIN_PATH, "DELETE", null);
-  }
-
-  public void setRegistrationLockV2(String registrationLock) throws IOException {
-    RegistrationLockV2 accountLock = new RegistrationLockV2(registrationLock);
-    makeServiceRequest(REGISTRATION_LOCK_PATH, "PUT", JsonUtil.toJson(accountLock));
-  }
-
-  public void disableRegistrationLockV2() throws IOException {
-    makeServiceRequest(REGISTRATION_LOCK_PATH, "DELETE", null);
   }
 
   public byte[] getSenderCertificate() throws IOException {
@@ -1224,136 +1123,6 @@ public class PushServiceSocket {
   public BackupV3AuthCheckResponse checkSvr3AuthCredentials(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
     String response = makeServiceRequest(BACKUP_AUTH_CHECK_V3, "POST", JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords)), NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, BackupV3AuthCheckResponse.class);
-  }
-
-  /**
-   * GET /v1/accounts/username_hash/{usernameHash}
-   *
-   * Gets the ACI for the given username hash, if it exists. This is an unauthenticated request.
-   *
-   * This network request can have the following error responses:
-   * <ul>
-   *   <li>404 - The username given is not associated with an account</li>
-   *   <li>428 - Rate-limited, retry is available in the Retry-After header</li>
-   *   <li>400 - Bad Request. The request included authentication.</li>
-   * </ul>
-   *
-   * @param usernameHash The usernameHash to look up.
-   * @return The ACI for the given username if it exists.
-   * @throws IOException if a network exception occurs.
-   */
-  public @NonNull ACI getAciByUsernameHash(String usernameHash) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(
-        String.format(GET_USERNAME_PATH, urlEncode(usernameHash)),
-        "GET",
-        null,
-        NO_HEADERS,
-        (responseCode, body, getHeader) -> {
-          if (responseCode == 404) {
-            throw new UsernameIsNotAssociatedWithAnAccountException();
-          }
-        }
-    );
-
-    GetAciByUsernameResponse getAciByUsernameResponse = JsonUtil.fromJsonResponse(response, GetAciByUsernameResponse.class);
-    return ACI.from(UUID.fromString(getAciByUsernameResponse.getUuid()));
-  }
-
-  /**
-   * PUT /v1/accounts/username_hash/reserve
-   * Reserve a username for the account. This replaces an existing reservation if one exists. The username is guaranteed to be available for 5 minutes and can
-   * be confirmed with confirmUsername.
-   *
-   * @param usernameHashes    A list of hashed usernames encoded as web-safe base64 strings without padding. The list will have a max length of 20, and each hash will be 32 bytes.
-   * @return                  The reserved username. It is available for confirmation for 5 minutes.
-   * @throws IOException      Thrown when the username is invalid or taken, or when another network error occurs.
-   */
-  public @NonNull ReserveUsernameResponse reserveUsername(@NonNull List<String> usernameHashes) throws IOException {
-    ReserveUsernameRequest reserveUsernameRequest = new ReserveUsernameRequest(usernameHashes);
-
-    String responseString = makeServiceRequest(RESERVE_USERNAME_PATH, "PUT", JsonUtil.toJson(reserveUsernameRequest), NO_HEADERS, (responseCode, body, getHeader) -> {
-      switch (responseCode) {
-        case 422: throw new UsernameMalformedException();
-        case 409: throw new UsernameTakenException();
-      }
-    }, SealedSenderAccess.NONE);
-
-    return JsonUtil.fromJsonResponse(responseString, ReserveUsernameResponse.class);
-  }
-
-  /**
-   * PUT /v1/accounts/username_hash/confirm
-   * Set a previously reserved username for the account.
-   *
-   * @param username     The username the user wishes to confirm.
-   * @throws IOException Thrown when the username is invalid or taken, or when another network error occurs.
-   */
-  public UUID confirmUsernameAndCreateNewLink(Username username, Username.UsernameLink link) throws IOException {
-    try {
-      byte[] randomness = new byte[32];
-      random.nextBytes(randomness);
-
-      byte[]                 proof                  = username.generateProofWithRandomness(randomness);
-      ConfirmUsernameRequest confirmUsernameRequest = new ConfirmUsernameRequest(
-                                                        Base64.encodeUrlSafeWithoutPadding(username.getHash()),
-                                                        Base64.encodeUrlSafeWithoutPadding(proof),
-                                                        Base64.encodeUrlSafeWithoutPadding(link.getEncryptedUsername())
-                                                      );
-
-      String response = makeServiceRequest(CONFIRM_USERNAME_PATH, "PUT", JsonUtil.toJson(confirmUsernameRequest), NO_HEADERS, (responseCode, body, getHeader) -> {
-        switch (responseCode) {
-          case 409:
-            throw new UsernameIsNotReservedException();
-          case 410:
-            throw new UsernameTakenException();
-        }
-      }, SealedSenderAccess.NONE);
-
-      return JsonUtil.fromJson(response, ConfirmUsernameResponse.class).getUsernameLinkHandle();
-    } catch (BaseUsernameException e) {
-      throw new IOException(e);
-    }
-  }
-
-  /**
-   * Remove the username associated with the account.
-   */
-  public void deleteUsername() throws IOException {
-    makeServiceRequest(MODIFY_USERNAME_PATH, "DELETE", null);
-  }
-
-  /**
-   * Creates a new username link for a given username.
-   * @param encryptedUsername URL-safe base64-encoded encrypted username
-   * @return The serverId for the generated link.
-   */
-  public UUID createUsernameLink(String encryptedUsername, boolean keepLinkHandle) throws IOException {
-    String                      response = makeServiceRequest(USERNAME_LINK_PATH, "PUT", JsonUtil.toJson(new SetUsernameLinkRequestBody(encryptedUsername, keepLinkHandle)));
-    SetUsernameLinkResponseBody parsed   = JsonUtil.fromJson(response, SetUsernameLinkResponseBody.class);
-
-    return parsed.getUsernameLinkHandle();
-  }
-
-  /** Deletes your active username link. */
-  public void deleteUsernameLink() throws IOException {
-    makeServiceRequest(USERNAME_LINK_PATH, "DELETE", null);
-  }
-
-  /** Given a link serverId (see {@link #createUsernameLink(String, boolean)}}), this will return the encrypted username associate with the link. */
-  public byte[] getEncryptedUsernameFromLinkServerId(UUID serverId) throws IOException {
-    String                          response = makeServiceRequestWithoutAuthentication(String.format(USERNAME_FROM_LINK_PATH, serverId.toString()), "GET", null);
-    GetUsernameFromLinkResponseBody parsed   = JsonUtil.fromJson(response, GetUsernameFromLinkResponseBody.class);
-
-    return Base64.decode(parsed.getUsernameLinkEncryptedValue());
-  }
-
-  public void deleteAccount() throws IOException {
-    makeServiceRequest(DELETE_ACCOUNT_PATH, "DELETE", null);
-  }
-
-  public void setDeviceName(int deviceId, @Nonnull SetDeviceNameRequest request) throws IOException {
-    String body = JsonUtil.toJson(request);
-    makeServiceRequest(String.format(Locale.US, SET_DEVICE_NAME_PATH, deviceId), "PUT", body);
   }
 
   public void requestRateLimitPushChallenge() throws IOException {
@@ -2713,18 +2482,7 @@ public class PushServiceSocket {
 
   public enum VerificationCodeTransport { SMS, VOICE }
 
-  private static class RegistrationLock {
-    @JsonProperty
-    private String pin;
-
-    public RegistrationLock() {}
-
-    public RegistrationLock(String pin) {
-      this.pin = pin;
-    }
-  }
-
-  private static class RegistrationLockV2 {
+  public static class RegistrationLockV2 {
     @JsonProperty
     private String registrationLock;
 

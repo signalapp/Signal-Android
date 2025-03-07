@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.push.SignalServiceTrustStore
 import org.whispersystems.signalservice.api.SignalServiceAccountManager
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
+import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -37,6 +38,7 @@ import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -83,7 +85,7 @@ class NetworkDependenciesModule(
   }
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
-    provider.provideSignalServiceAccountManager(pushServiceSocket, groupsV2Operations)
+    provider.provideSignalServiceAccountManager(accountApi, pushServiceSocket, groupsV2Operations)
   }
 
   val libsignalNetwork: Network by lazy {
@@ -155,6 +157,14 @@ class NetworkDependenciesModule(
 
   val storageServiceApi: StorageServiceApi by lazy {
     provider.provideStorageServiceApi(pushServiceSocket)
+  }
+
+  val accountApi: AccountApi by lazy {
+    provider.provideAccountApi(authWebSocket)
+  }
+
+  val usernameApi: UsernameApi by lazy {
+    provider.provideUsernameApi(unauthWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

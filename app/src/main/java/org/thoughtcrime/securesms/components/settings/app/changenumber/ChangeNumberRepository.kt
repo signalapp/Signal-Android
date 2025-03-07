@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -266,7 +267,7 @@ class ChangeNumberRepository(
 
       SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       withContext(Dispatchers.IO) {
-        result = accountManager.registrationApi.changeNumber(request)
+        result = SignalNetwork.account.changeNumber(request)
       }
 
       val possibleError = result.getCause() as? MismatchedDevicesException

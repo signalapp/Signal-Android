@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api
 import org.signal.core.util.concurrent.safeBlockingGet
 import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
 import org.whispersystems.signalservice.api.NetworkResult.Success
+import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -159,6 +160,20 @@ sealed class NetworkResult<T>(
   /** Indicates we got a response, but it was a non-2xx response. */
   data class StatusCodeError<T>(val code: Int, val stringBody: String?, val binaryBody: ByteArray?, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
     constructor(e: NonSuccessfulResponseCodeException) : this(e.code, e.stringBody, e.binaryBody, e)
+
+    inline fun <reified T> parseJsonBody(): T? {
+      return try {
+        if (stringBody != null) {
+          JsonUtil.fromJsonResponse(stringBody, T::class.java)
+        } else if (binaryBody != null) {
+          JsonUtil.fromJsonResponse(binaryBody, T::class.java)
+        } else {
+          null
+        }
+      } catch (e: MalformedRequestException) {
+        null
+      }
+    }
   }
 
   /** Indicates that the application somehow failed in a way unrelated to network activity. Usually a runtime crash. */
@@ -358,8 +373,9 @@ private fun <T : Any> WebsocketResponse.toStatusCodeError(): NetworkResult<T> {
 }
 
 private fun <T : Any> WebsocketResponse.toSuccess(responseJsonClass: KClass<T>): NetworkResult<T> {
-  if (responseJsonClass == Unit::class) {
-    return Success(responseJsonClass.cast(Unit))
+  return when (responseJsonClass) {
+    Unit::class -> Success(responseJsonClass.cast(Unit))
+    String::class -> Success(responseJsonClass.cast(this.body))
+    else -> Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
   }
-  return Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
 }

@@ -19,15 +19,16 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
+import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
-import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import java.io.IOException
 import java.security.SecureRandom
 
@@ -112,7 +113,6 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
   }
 
   private fun initializeDevices(newE164: String): Single<NetworkResult<VerifyAccountResponse>> {
-    val accountManager = AppDependencies.signalServiceAccountManager
     val messageSender = AppDependencies.signalServiceMessageSender
 
     return Single.fromCallable {
@@ -125,15 +125,25 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
           newE164 = newE164
         )
 
-        distributionResponse = accountManager.registrationApi.distributePniKeys(request)
-
-        if (distributionResponse is NetworkResult.StatusCodeError &&
-          distributionResponse.exception is MismatchedDevicesException
-        ) {
-          messageSender.handleChangeNumberMismatchDevices((distributionResponse.exception as MismatchedDevicesException).mismatchedDevices)
-          attempts++
-        } else {
-          completed = true
+        distributionResponse = SignalNetwork.account.distributePniKeys(request)
+        when (val result = distributionResponse) {
+          is NetworkResult.Success -> completed = true
+          is NetworkResult.StatusCodeError -> {
+            when (result.code) {
+              409 -> {
+                val mismatchedDevices: MismatchedDevices? = result.parseJsonBody()
+                if (mismatchedDevices != null) {
+                  messageSender.handleChangeNumberMismatchDevices(mismatchedDevices)
+                } else {
+                  Log.w(TAG, "Unable to parse mismatched devices", result.exception)
+                }
+                attempts++
+              }
+              else -> completed = true
+            }
+          }
+          is NetworkResult.NetworkError -> attempts++
+          is NetworkResult.ApplicationError -> completed = true
         }
       }
 

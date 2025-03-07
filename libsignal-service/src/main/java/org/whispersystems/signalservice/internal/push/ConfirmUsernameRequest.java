@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class ConfirmUsernameRequest {
+public class ConfirmUsernameRequest {
   @JsonProperty
   private String usernameHash;
 
@@ -12,7 +12,7 @@ class ConfirmUsernameRequest {
   @JsonProperty
   private String encryptedUsername;
 
-  ConfirmUsernameRequest(String usernameHash, String zkProof, String encryptedUsername) {
+  public ConfirmUsernameRequest(String usernameHash, String zkProof, String encryptedUsername) {
     this.usernameHash      = usernameHash;
     this.zkProof           = zkProof;
     this.encryptedUsername = encryptedUsername;

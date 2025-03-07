@@ -9,8 +9,6 @@ import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
-import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest
-import org.whispersystems.signalservice.api.account.PniKeyDistributionRequest
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
 import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse
@@ -126,23 +124,6 @@ class RegistrationApi(
   fun validateSvr3AuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupV3AuthCheckResponse> {
     return NetworkResult.fromFetch {
       pushServiceSocket.checkSvr3AuthCredentials(e164, usernamePasswords)
-    }
-  }
-
-  /**
-   * Changes the phone number that an account is associated with.
-   *
-   * `PUT /v2/accounts/number`
-   */
-  fun changeNumber(requestBody: ChangePhoneNumberRequest): NetworkResult<VerifyAccountResponse> {
-    return NetworkResult.fromFetch {
-      pushServiceSocket.changeNumber(requestBody)
-    }
-  }
-
-  fun distributePniKeys(requestBody: PniKeyDistributionRequest): NetworkResult<VerifyAccountResponse> {
-    return NetworkResult.fromFetch {
-      pushServiceSocket.distributePniKeys(requestBody)
     }
   }
 

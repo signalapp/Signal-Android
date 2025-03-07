@@ -23,12 +23,14 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -328,7 +330,7 @@ public class RefreshOwnProfileJob extends BaseJob {
       UsernameLinkComponents localUsernameLink = SignalStore.account().getUsernameLink();
 
       if (localUsernameLink != null) {
-        byte[]                remoteEncryptedUsername = AppDependencies.getSignalServiceAccountManager().getEncryptedUsernameFromLinkServerId(localUsernameLink.getServerId());
+        byte[]                remoteEncryptedUsername = NetworkResultUtil.toBasicLegacy(SignalNetwork.username().getEncryptedUsernameFromLinkServerId(localUsernameLink.getServerId()));
         Username.UsernameLink combinedLink            = new Username.UsernameLink(localUsernameLink.getEntropy(), remoteEncryptedUsername);
         Username              remoteUsername          = Username.fromLink(combinedLink);
 

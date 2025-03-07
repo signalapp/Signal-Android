@@ -23,8 +23,10 @@ import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
+import org.whispersystems.signalservice.api.NetworkResultUtil
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery
@@ -360,7 +362,7 @@ object SvrRepository {
       check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
-      AppDependencies.signalServiceAccountManager.enableRegistrationLock(SignalStore.svr.masterKey)
+      NetworkResultUtil.toBasicLegacy(SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey.deriveRegistrationLock()))
       SignalStore.svr.isRegistrationLockEnabled = true
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Registration lock successfully enabled.", true)
     }
@@ -374,7 +376,7 @@ object SvrRepository {
       check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
-      AppDependencies.signalServiceAccountManager.disableRegistrationLock()
+      NetworkResultUtil.toBasicLegacy(SignalNetwork.account.disableRegistrationLock())
       SignalStore.svr.isRegistrationLockEnabled = false
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Registration lock successfully disabled.", true)
     }
