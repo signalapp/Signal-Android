@@ -55,7 +55,8 @@ internal object ConversationOptionsMenu {
         distributionType,
         threadId,
         messageRequestState,
-        isInBubble
+        isInBubble,
+        isSingleMember
       ) = callback.getSnapshot()
 
       if (recipient == null) {
@@ -181,6 +182,13 @@ internal object ConversationOptionsMenu {
         }
       })
 
+      lifecycleDisposable += isSingleMember.subscribeBy(onNext = { yes: Boolean ->
+        val item = menu.findItem(R.id.menu_video_secure)
+        if(item != null) {
+          item.isVisible = item.isVisible && yes
+        }
+      })
+
       menu.findItem(R.id.menu_format_text_submenu).subMenu?.clearHeader()
       menu.findItem(R.id.edittext_bold).applyTitleSpan(MessageStyler.boldStyle())
       menu.findItem(R.id.edittext_italic).applyTitleSpan(MessageStyler.italicStyle())
@@ -258,7 +266,8 @@ internal object ConversationOptionsMenu {
     val distributionType: Int,
     val threadId: Long,
     val messageRequestState: MessageRequestState,
-    val isInBubble: Boolean
+    val isInBubble: Boolean,
+    val isSingleMember: Observable<Boolean>,
   )
 
   /**
