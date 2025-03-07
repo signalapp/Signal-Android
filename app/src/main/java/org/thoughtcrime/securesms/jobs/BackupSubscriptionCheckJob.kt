@@ -78,12 +78,6 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    if (!SignalStore.backup.areBackupsEnabled) {
-      Log.i(TAG, "Backups are not enabled on this device. Clearing mismatch value and exiting.")
-      SignalStore.backup.subscriptionStateMismatchDetected = false
-      return Result.success()
-    }
-
     if (!AppDependencies.billingApi.isApiAvailable()) {
       Log.i(TAG, "Google Play Billing API is not available on this device. Clearing mismatch value and exiting.")
       SignalStore.backup.subscriptionStateMismatchDetected = false
@@ -91,6 +85,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     }
 
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
+    Log.i(TAG, "Retrieved purchase result from Billing api: $purchase")
+
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 

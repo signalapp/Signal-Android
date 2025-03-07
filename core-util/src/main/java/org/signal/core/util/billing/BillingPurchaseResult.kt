@@ -29,7 +29,20 @@ sealed interface BillingPurchaseResult {
       val oneMonthAgo = now - 31.days
       val purchaseTime = this.purchaseTime.milliseconds
 
-      return oneMonthAgo >= purchaseTime
+      return oneMonthAgo < purchaseTime
+    }
+
+    override fun toString(): String {
+      return """
+        BillingPurchaseResult {
+          purchaseState: $purchaseState
+          purchaseToken: <redacted>
+          purchaseTime: $purchaseTime
+          isAcknowledged: $isAcknowledged
+          isAutoRenewing: $isAutoRenewing
+          isWithinTheLastMonth: ${isWithinTheLastMonth()}
+        }
+      """.trimIndent()
     }
   }
   data object UserCancelled : BillingPurchaseResult

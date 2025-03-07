@@ -259,6 +259,7 @@ class MessageBackupsFlowViewModel(
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
+          state = InAppPaymentTable.State.PENDING,
           subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
           data = inAppPayment.data.copy(
             redemption = inAppPayment.data.redemption!!.copy(
