@@ -5,12 +5,12 @@ import android.os.Process;
 
 import androidx.annotation.NonNull;
 
-import org.signal.core.util.LinkedBlockingLifoQueue;
 import org.signal.core.util.ThreadUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +52,7 @@ public final class SignalExecutors {
                                                            maxThreads,
                                                            timeoutSeconds,
                                                            TimeUnit.SECONDS,
-                                                           new LinkedBlockingQueue<Runnable>() {
+                                                           new SynchronousQueue<>() {
                                                              @Override
                                                              public boolean offer(Runnable runnable) {
                                                                if (isEmpty()) {
@@ -72,14 +72,6 @@ public final class SignalExecutors {
     });
 
     return threadPool;
-  }
-
-  /**
-   * Returns an executor that prioritizes newer work. This is the opposite of a traditional executor,
-   * which processor work in FIFO order.
-   */
-  public static ExecutorService newFixedLifoThreadExecutor(String name, int minThreads, int maxThreads) {
-    return new ThreadPoolExecutor(minThreads, maxThreads, 0, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<>(), new NumberedThreadFactory(name, ThreadUtil.PRIORITY_BACKGROUND_THREAD));
   }
 
   public static HandlerThread getAndStartHandlerThread(@NonNull String name, int priority) {
