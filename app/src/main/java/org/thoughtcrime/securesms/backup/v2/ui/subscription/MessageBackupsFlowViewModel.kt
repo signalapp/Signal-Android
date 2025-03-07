@@ -218,10 +218,7 @@ class MessageBackupsFlowViewModel(
               amount = paidFiat.toFiatValue(),
               level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
               recipientId = Recipient.self().id.serialize(),
-              paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
-              redemption = InAppPaymentData.RedemptionState(
-                stage = InAppPaymentData.RedemptionState.Stage.INIT
-              )
+              paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
             )
           )
 
@@ -261,11 +258,11 @@ class MessageBackupsFlowViewModel(
         inAppPayment.copy(
           state = InAppPaymentTable.State.PENDING,
           subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
-          data = inAppPayment.data.copy(
-            redemption = inAppPayment.data.redemption!!.copy(
-              googlePlayBillingPurchaseToken = result.purchaseToken
+          data = inAppPayment.data.newBuilder().redemption(
+            redemption = InAppPaymentData.RedemptionState(
+              stage = InAppPaymentData.RedemptionState.Stage.INIT
             )
-          )
+          ).build()
         )
       )
 

@@ -377,7 +377,6 @@ message InAppPaymentData {
         optional bool   keepAlive                       = 3; // Only present for recurring donations, specifies this redemption started from a keep-alive
         optional bytes  receiptCredentialRequestContext = 4; // Reusable context for retrieving a presentation
         optional bytes  receiptCredentialPresentation   = 5; // Redeemable presentation
-        optional string googlePlayBillingPurchaseToken  = 6; // Only present for backups
     }
 
     message Error {

@@ -92,12 +92,12 @@ class InAppPaymentPurchaseTokenJob private constructor(
       return Result.failure()
     }
 
-    val purchaseState: BillingPurchaseState = when (val purchase = AppDependencies.billingApi.queryPurchases()) {
-      is BillingPurchaseResult.Success -> purchase.purchaseState
-      else -> BillingPurchaseState.UNSPECIFIED
+    val purchase: BillingPurchaseResult = when (val purchase = AppDependencies.billingApi.queryPurchases()) {
+      is BillingPurchaseResult.Success -> purchase
+      else -> BillingPurchaseResult.None
     }
 
-    if (purchaseState != BillingPurchaseState.PURCHASED) {
+    if (purchase !is BillingPurchaseResult.Success || purchase.purchaseState != BillingPurchaseState.PURCHASED) {
       warning("Billing purchase not in the PURCHASED state. Retrying later.")
       return Result.retry(defaultBackoff())
     }
@@ -109,9 +109,12 @@ class InAppPaymentPurchaseTokenJob private constructor(
       return Result.failure()
     }
 
+    info("Attempting to link purchase token for purchase")
+    info("$purchase")
+
     val response = AppDependencies.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
       inAppPayment.subscriberId!!,
-      inAppPayment.data.redemption!!.googlePlayBillingPurchaseToken!!,
+      purchase.purchaseToken,
       InAppPaymentSubscriberRecord.Type.BACKUP.lock
     )
 
@@ -156,11 +159,6 @@ class InAppPaymentPurchaseTokenJob private constructor(
     if (inAppPayment.data.redemption.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED || inAppPayment.data.redemption.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED) {
       warning("Already began redemption.")
       throw IOException("InAppPayment has already started redemption.")
-    }
-
-    if (inAppPayment.data.redemption.googlePlayBillingPurchaseToken == null) {
-      warning("No purchase token for linking!")
-      throw IOException("InAppPayment does not have a purchase token!")
     }
 
     return inAppPayment
