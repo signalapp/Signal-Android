@@ -3669,32 +3669,38 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         PROFILE_SHARING to 0
       )
 
-      val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(e164Query.where, e164Query.whereArgs)
-        .run()
-
-      val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(aciQuery.where, aciQuery.whereArgs)
-        .run()
-
-      val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
-        try {
-          GroupId.v1(raw)
-        } catch (e: BadGroupIdException) {
-          Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
-          null
-        }
+      if (blockedE164s.isNotEmpty()) {
+        val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(e164Query.where, e164Query.whereArgs)
+          .run()
       }
 
-      val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(groupIdQuery.where, groupIdQuery.whereArgs)
-        .run()
+      if (blockedAcis.isNotEmpty()) {
+        val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(aciQuery.where, aciQuery.whereArgs)
+          .run()
+      }
+
+      if (blockedGroupIds.isNotEmpty()) {
+        val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
+          try {
+            GroupId.v1(raw)
+          } catch (e: BadGroupIdException) {
+            Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
+            null
+          }
+        }
+
+        val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(groupIdQuery.where, groupIdQuery.whereArgs)
+          .run()
+      }
     }
 
     AppDependencies.recipientCache.clear()
