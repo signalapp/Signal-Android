@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="52dp">
+    android:layout_height="52dp"
+    tools:viewBindingIgnore="true">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/reactions_bottom_view_recipient_avatar"
@@ -25,23 +25,44 @@
         app:layout_constraintStart_toStartOf="@id/reactions_bottom_view_recipient_avatar"
         app:layout_constraintTop_toTopOf="@id/reactions_bottom_view_recipient_avatar" />
 
-    <org.thoughtcrime.securesms.components.FromTextView
-        android:id="@+id/reactions_bottom_view_recipient_name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:maxLines="2"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        android:textColor="@color/signal_text_primary"
+        android:orientation="vertical"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/reactions_bottom_view_recipient_emoji"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/reactions_bottom_view_recipient_avatar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/full_names" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.components.FromTextView
+            android:id="@+id/reactions_bottom_view_recipient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            android:textColor="@color/signal_text_primary"
+            tools:text="@tools:sample/full_names" />
+
+        <org.thoughtcrime.securesms.components.FromTextView
+            android:id="@+id/reactions_bottom_view_recipient_tap_to_remove_action_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/ReactionsBottomSheetDialogFragment_tap_to_remove"
+            android:textAppearance="@style/TextAppearance.Signal.Caption"
+            android:textColor="@color/signal_text_secondary"
+            android:visibility="gone"
+            tools:text="Tap to remove"
+            tools:visibility="visible" />
+    </LinearLayout>
+
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/reactions_bottom_view_recipient_emoji"
