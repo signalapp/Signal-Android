@@ -70,6 +70,17 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
   }
 
+  public void saveAction() {
+    if (state != State.NOT_RUNNING) {
+      state = State.NOT_RUNNING;
+      hideUi();
+
+      if (handler != null) {
+        handler.onRecordSaved();
+      }
+    }
+  }
+
   public boolean isRecordingLocked() {
     return state == State.RUNNING_LOCKED;
   }
