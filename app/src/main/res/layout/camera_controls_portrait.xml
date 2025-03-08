@@ -24,6 +24,7 @@
         android:layout_marginTop="14dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/circle_transparent_black_40"
+        android:contentDescription="@string/CameraControls_toggle_flash_mode_accessibility_label"
         android:padding="6dp"
         android:scaleType="fitCenter"
         android:src="@drawable/camerax_flash_toggle"
