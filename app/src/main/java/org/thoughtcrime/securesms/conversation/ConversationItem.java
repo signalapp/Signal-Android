@@ -678,9 +678,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int availableWidth;
     if (hasAudio(messageRecord)) {
       availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
+    } else if((hasSticker(messageRecord) && isCaptionlessMms(messageRecord)) || isBorderless(messageRecord)) {
+      availableWidth = stickerStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(stickerStub.get()) + ViewUtil.getRightMargin(stickerStub.get());
+    } else if(hasSharedContact(messageRecord)) {
+      availableWidth = sharedContactStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(sharedContactStub.get()) + ViewUtil.getRightMargin(sharedContactStub.get());
+    } else if(hasDocument(messageRecord)) {
+      availableWidth = documentViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(documentViewStub.get()) + ViewUtil.getRightMargin(documentViewStub.get());
     } else if (!isViewOnceMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
       availableWidth = mediaThumbnailStub.require().getMeasuredWidth();
-    } else {
+    }  else {
       availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
     }
 
