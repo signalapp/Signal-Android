@@ -117,24 +117,37 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
       """
     )
 
-    private val AUDIO_MEDIA_QUERY = String.format(
+    private val GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS_AND_EXCLUDING_SCHEDULED = String.format(
       BASE_MEDIA_QUERY,
       """
-        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
-        ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'
+        (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR (${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL)) AND
+        ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
+        (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
+        ${MessageTable.LINK_PREVIEWS} IS NULL AND
+        ${MessageTable.SCHEDULED_DATE} < 0
       """
     )
 
-    private val ALL_MEDIA_QUERY = String.format(
+    private val AUDIO_MEDIA_QUERY_EXCLUDING_SCHEDULED = String.format(
+      BASE_MEDIA_QUERY,
+      """
+        ${AttachmentTable.DATA_FILE} IS NOT NULL AND
+        ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%' AND
+        ${MessageTable.SCHEDULED_DATE} < 0
+      """
+    )
+
+    private val ALL_MEDIA_QUERY_EXCLUDING_SCHEDULED = String.format(
       BASE_MEDIA_QUERY,
       """
         ${AttachmentTable.DATA_FILE} IS NOT NULL AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
+        ${MessageTable.LINK_PREVIEWS} IS NULL AND
+        ${MessageTable.SCHEDULED_DATE} < 0
       """
     )
 
-    private val DOCUMENT_MEDIA_QUERY = String.format(
+    private val DOCUMENT_MEDIA_QUERY_EXCLUDING_SCHEDULED = String.format(
       BASE_MEDIA_QUERY,
       """
         ${AttachmentTable.DATA_FILE} IS NOT NULL AND
@@ -144,7 +157,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/%' AND 
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'video/%' AND 
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'audio/%' AND 
-            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'
+            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
+            ${MessageTable.SCHEDULED_DATE} < 0
           )
         )"""
     )
@@ -156,7 +170,7 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
 
   @JvmOverloads
   fun getGalleryMediaForThread(threadId: Long, sorting: Sorting, limit: Int = 0): Cursor {
-    var query = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS))
+    var query = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY_INCLUDING_TEMP_VIDEOS_AND_EXCLUDING_SCHEDULED))
     val args = arrayOf(threadId.toString() + "")
 
     if (limit > 0) {
@@ -167,19 +181,19 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
   }
 
   fun getDocumentMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY))
+    val query = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY_EXCLUDING_SCHEDULED))
     val args = arrayOf(threadId.toString() + "")
     return readableDatabase.rawQuery(query, args)
   }
 
   fun getAudioMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY))
+    val query = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY_EXCLUDING_SCHEDULED))
     val args = arrayOf(threadId.toString() + "")
     return readableDatabase.rawQuery(query, args)
   }
 
   fun getAllMediaForThread(threadId: Long, sorting: Sorting): Cursor {
-    val query = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY))
+    val query = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY_EXCLUDING_SCHEDULED))
     val args = arrayOf(threadId.toString() + "")
     return readableDatabase.rawQuery(query, args)
   }
