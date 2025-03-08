@@ -98,6 +98,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private View                             selfieFlash;
   private MemoryFileDescriptor             videoFileDescriptor;
   private LifecycleCameraController        cameraController;
+  private CameraXVideoCaptureHelper        cameraXVideoCaptureHelper;
   private Disposable                       mostRecentItemDisposable = Disposable.disposed();
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
@@ -229,6 +230,12 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
+  @Override public void stopVideoRecording() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      cameraXVideoCaptureHelper.onVideoCaptureComplete();
+    }
+  }
+
   @Override
   public void fadeOutControls(@NonNull Runnable onEndAction) {
     controlsContainer.setEnabled(false);
@@ -347,13 +354,13 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     }
 
     isMediaSelected = selectedMediaCount > 0;
-    updateGalleryVisibility();
+    updateGalleryVisibility(true);
   }
 
-  private void updateGalleryVisibility() {
+  private void updateGalleryVisibility(Boolean shouldPotentiallyHide) {
     View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
 
-    if (isMediaSelected) {
+    if (shouldPotentiallyHide || isMediaSelected) {
       cameraGalleryContainer.setVisibility(View.GONE);
     } else {
       cameraGalleryContainer.setVisibility(View.VISIBLE);
@@ -441,7 +448,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
         Log.d(TAG, "Max duration: " + maxDuration + " sec");
 
-        captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
+        cameraXVideoCaptureHelper = new CameraXVideoCaptureHelper(
             this,
             captureButton,
             lifecycleCameraController,
@@ -453,6 +460,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
               @Override
               public void onVideoRecordStarted() {
                 hideAndDisableControlsForVideoRecording(captureButton, flashButton, flipButton, outAnimation);
+                controller.onVideoCaptureStarted();
               }
 
               @Override
@@ -467,7 +475,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                 controller.onVideoCaptureError();
               }
             }
-        ));
+        );
+        captureButton.setVideoCaptureListener(cameraXVideoCaptureHelper);
         displayVideoRecordingTooltipIfNecessary(captureButton);
       } catch (IOException e) {
         Log.w(TAG, "Video capture is not supported on this device.", e);
@@ -520,6 +529,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     flashButton.setVisibility(View.INVISIBLE);
     flipButton.startAnimation(outAnimation);
     flipButton.setVisibility(View.INVISIBLE);
+    updateGalleryVisibility(true);
   }
 
   private void showAndEnableControlsAfterVideoRecording(@NonNull View captureButton,
@@ -536,6 +546,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         flashButton.setVisibility(View.VISIBLE);
         flipButton.startAnimation(inAnimation);
         flipButton.setVisibility(View.VISIBLE);
+        updateGalleryVisibility(false);
       });
     }
   }
