@@ -204,18 +204,27 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         BackupRepository.getBackupsType(MessageBackupTier.PAID) as MessageBackupsType.Paid
       }
 
-      if (hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription) {
-        _state.update {
-          it.copy(
-            backupState = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
-              messageBackupsType = type,
-              renewalTime = activeSubscription!!.activeSubscription.endOfCurrentPeriod.seconds
+      when {
+        hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
+          _state.update {
+            it.copy(
+              backupState = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
+                messageBackupsType = type,
+                renewalTime = activeSubscription!!.activeSubscription.endOfCurrentPeriod.seconds
+              )
             )
-          )
+          }
+
+          return
+        }
+        hasActiveSignalSubscription && hasActiveGooglePlayBillingSubscription -> {
+          Log.d(TAG, "Found erroneous mismatch. Clearing.")
+          SignalStore.backup.subscriptionStateMismatchDetected = false
+        }
+        else -> {
+          return
         }
       }
-
-      return
     }
 
     when (tier) {
