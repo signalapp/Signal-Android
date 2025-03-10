@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingMessage
+import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -200,6 +201,21 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           }
         )
       }
+
+      clickPref(
+        title = DSLSettingsText.from("Delete Avatar"),
+        summary = DSLSettingsText.from("Deletes the avatar file and clears manually showing the avatar, resulting in a blurred gradient (assuming no profile sharing, no group in common, etc.)"),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Are you sure?")
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              SignalDatabase.recipients.manuallyUpdateShowAvatar(recipient.id, false)
+              AvatarHelper.delete(requireContext(), recipient.id)
+            }
+            .show()
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from("Clear recipient data"),
