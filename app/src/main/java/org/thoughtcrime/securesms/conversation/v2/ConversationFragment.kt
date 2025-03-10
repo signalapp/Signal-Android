@@ -89,6 +89,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.rxSingle
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -2443,12 +2444,12 @@ class ConversationFragment :
       resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachments.size, attachments.size)
     ).build().toBundle()
 
-    SaveAttachmentUtil.saveAttachments(attachments)
+    rxSingle { SaveAttachmentUtil.saveAttachments(attachments) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .doOnSubscribe { progressDialog.show(parentFragmentManager, null) }
       .doOnTerminate { progressDialog.dismissAllowingStateLoss() }
-      .subscribeBy { it.toast(requireContext()) }
+      .subscribeBy { result -> Toast.makeText(context, result.getMessage(requireContext()), Toast.LENGTH_LONG).show() }
       .addTo(disposables)
   }
 

@@ -43,6 +43,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @deprecated Use {@link SaveAttachmentUtil} instead.
+ */
+@Deprecated
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = Log.tag(SaveAttachmentTask.class);
 
@@ -391,14 +395,16 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     switch (result.first()) {
       case FAILURE:
         Toast.makeText(context,
-                       context.getResources().getQuantityText(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, attachmentCount),
+                       context.getResources().getQuantityText(R.plurals.SaveAttachment_error_while_saving_attachments_to_sd_card, attachmentCount),
                        Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
-        Toast.makeText(context, R.string.SaveAttachmentTask_saved, Toast.LENGTH_LONG).show();
+        Toast.makeText(context,
+                       context.getResources().getQuantityText(R.plurals.SaveAttachment_saved_success, attachmentCount),
+                       Toast.LENGTH_LONG).show();
         break;
       case WRITE_ACCESS_FAILURE:
-        Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, R.string.SaveAttachment_unable_to_write_to_sd_card_exclamation, Toast.LENGTH_LONG).show();
         break;
     }
   }
