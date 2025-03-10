@@ -240,6 +240,7 @@ class InAppPaymentRedemptionJob private constructor(
 
       SignalDatabase.inAppPayments.update(
         inAppPayment = inAppPayment.copy(
+          state = InAppPaymentTable.State.END,
           data = inAppPayment.data.copy(
             error = protoError
           )

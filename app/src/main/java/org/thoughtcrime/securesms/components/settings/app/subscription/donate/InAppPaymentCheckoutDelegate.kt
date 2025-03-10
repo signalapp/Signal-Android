@@ -206,6 +206,7 @@ class InAppPaymentCheckoutDelegate(
       InAppPaymentsRepository.updateInAppPayment(
         inAppPayment.copy(
           notified = false,
+          state = InAppPaymentTable.State.END,
           data = inAppPayment.data.copy(
             error = InAppPaymentData.Error(
               type = InAppPaymentData.Error.Type.GOOGLE_PAY_REQUEST_TOKEN
