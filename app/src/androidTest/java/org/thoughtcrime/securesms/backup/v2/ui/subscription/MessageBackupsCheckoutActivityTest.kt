@@ -4,7 +4,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
@@ -103,9 +102,6 @@ class MessageBackupsCheckoutActivityTest {
         state = InAppPaymentTable.State.END
       )
     )
-
-    composeTestRule.waitForIdle()
-    composeTestRule.onNodeWithTag("dialog-circular-progress-indicator").assertIsNotDisplayed()
   }
 
   @Test

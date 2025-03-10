@@ -14,12 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.rx3.asFlowable
+import org.signal.core.ui.Dialogs
 import org.signal.core.util.getSerializableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -121,6 +123,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.TYPE_SELECTION.name) {
         MessageBackupsTypeSelectionScreen(
           stage = state.stage,
+          paymentReadyState = state.paymentReadyState,
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
           availableBackupTypes = state.availableBackupTypes,
@@ -151,6 +154,14 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
         requireActivity().finishAfterTransition()
       }
+    }
+
+    if (state.paymentReadyState == MessageBackupsFlowState.PaymentReadyState.FAILED) {
+      Dialogs.SimpleMessageDialog(
+        message = stringResource(R.string.MessageBackupsFlowFragment__a_network_failure_occurred),
+        dismiss = stringResource(android.R.string.ok),
+        onDismiss = { requireActivity().finishAfterTransition() }
+      )
     }
   }
 

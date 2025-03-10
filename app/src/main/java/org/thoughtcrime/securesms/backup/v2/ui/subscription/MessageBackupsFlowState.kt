@@ -18,5 +18,12 @@ data class MessageBackupsFlowState(
   val startScreen: MessageBackupsStage,
   val stage: MessageBackupsStage = startScreen,
   val accountEntropyPool: AccountEntropyPool = SignalStore.account.accountEntropyPool,
-  val failure: Throwable? = null
-)
+  val failure: Throwable? = null,
+  val paymentReadyState: PaymentReadyState = PaymentReadyState.NOT_READY
+) {
+  enum class PaymentReadyState {
+    NOT_READY,
+    READY,
+    FAILED
+  }
+}

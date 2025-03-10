@@ -70,6 +70,22 @@ class MessageBackupsFlowViewModel(
     check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
 
     viewModelScope.launch {
+      val result = withContext(Dispatchers.IO) {
+        BackupRepository.triggerBackupIdReservation()
+      }
+
+      result.runIfSuccessful {
+        Log.d(TAG, "Successfully triggered backup id reservation.")
+        internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY) }
+      }
+
+      result.runOnStatusCodeError {
+        Log.d(TAG, "Failed to trigger backup id reservation. ($it)")
+        internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.FAILED) }
+      }
+    }
+
+    viewModelScope.launch {
       internalStateFlow.update {
         it.copy(
           availableBackupTypes = BackupRepository.getAvailableBackupsTypes(

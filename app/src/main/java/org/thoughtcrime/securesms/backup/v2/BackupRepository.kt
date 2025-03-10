@@ -143,6 +143,16 @@ object BackupRepository {
   }
 
   /**
+   * Triggers backup id reservation. As documented, this is safe to perform multiple times.
+   */
+  @WorkerThread
+  fun triggerBackupIdReservation(): NetworkResult<Unit> {
+    val messageBackupKey = SignalStore.backup.messageBackupKey
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+    return SignalNetwork.archive.triggerBackupIdReservation(messageBackupKey, mediaRootBackupKey, SignalStore.account.requireAci())
+  }
+
+  /**
    * Refreshes backup via server
    */
   fun refreshBackup(): NetworkResult<Unit> {

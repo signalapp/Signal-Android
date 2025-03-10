@@ -19,6 +19,7 @@ class InAppPaymentsRule : ExternalResource() {
   override fun before() {
     initialiseConfigurationResponse()
     initialisePutSubscription()
+    initialiseSetArchiveBackupId()
   }
 
   private fun initialiseConfigurationResponse() {
@@ -35,6 +36,14 @@ class InAppPaymentsRule : ExternalResource() {
   private fun initialisePutSubscription() {
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Put("/v1/subscription/") {
+        MockResponse().success()
+      }
+    )
+  }
+
+  private fun initialiseSetArchiveBackupId() {
+    InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
+      Put("/v1/archives/backupid") {
         MockResponse().success()
       }
     )
