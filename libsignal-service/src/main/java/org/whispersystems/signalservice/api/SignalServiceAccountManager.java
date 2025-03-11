@@ -238,18 +238,6 @@ public class SignalServiceAccountManager {
     }
   }
 
-  public void requestRateLimitPushChallenge() throws IOException {
-    this.pushServiceSocket.requestRateLimitPushChallenge();
-  }
-
-  public void submitRateLimitPushChallenge(String challenge) throws IOException {
-    this.pushServiceSocket.submitRateLimitPushChallenge(challenge);
-  }
-
-  public void submitRateLimitRecaptchaChallenge(String challenge, String recaptchaToken) throws IOException {
-    this.pushServiceSocket.submitRateLimitRecaptchaChallenge(challenge, recaptchaToken);
-  }
-
   public void cancelInFlightRequests() {
     this.pushServiceSocket.cancelInFlightRequests();
   }

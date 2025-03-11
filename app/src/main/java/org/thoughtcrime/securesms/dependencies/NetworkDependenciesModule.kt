@@ -36,6 +36,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.push.TrustStore
+import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
@@ -175,6 +176,10 @@ class NetworkDependenciesModule(
 
   val cdsApi: CdsApi by lazy {
     provider.provideCdsApi(authWebSocket)
+  }
+
+  val rateLimitChallengeApi: RateLimitChallengeApi by lazy {
+    provider.provideRateLimitChallengeApi(authWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 
@@ -50,6 +51,11 @@ object SignalNetwork {
   @get:JvmName("payments")
   val payments: PaymentsApi
     get() = AppDependencies.paymentsApi
+
+  @JvmStatic
+  @get:JvmName("rateLimitChallenge")
+  val rateLimitChallenge: RateLimitChallengeApi
+    get() = AppDependencies.rateLimitChallengeApi
 
   val storageService: StorageServiceApi
     get() = AppDependencies.storageServiceApi

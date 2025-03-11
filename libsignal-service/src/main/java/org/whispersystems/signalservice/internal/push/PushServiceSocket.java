@@ -230,9 +230,6 @@ public class PushServiceSocket {
   private static final String GROUPSV2_TOKEN            = "/v2/groups/token";
   private static final String GROUPSV2_JOINED_AT        = "/v2/groups/joined_at_version";
 
-  private static final String SUBMIT_RATE_LIMIT_CHALLENGE       = "/v1/challenge";
-  private static final String REQUEST_RATE_LIMIT_PUSH_CHALLENGE = "/v1/challenge/push";
-
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
   private static final String ARCHIVES_REDEEM_RECEIPT = "/v1/archives/redeem-receipt";
 
@@ -943,25 +940,6 @@ public class PushServiceSocket {
   public BackupV3AuthCheckResponse checkSvr3AuthCredentials(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
     String response = makeServiceRequest(BACKUP_AUTH_CHECK_V3, "POST", JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords)), NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, BackupV3AuthCheckResponse.class);
-  }
-
-  public void requestRateLimitPushChallenge() throws IOException {
-    makeServiceRequest(REQUEST_RATE_LIMIT_PUSH_CHALLENGE, "POST", "");
-  }
-
-  public void submitRateLimitPushChallenge(String challenge) throws IOException {
-    String payload = JsonUtil.toJson(new SubmitPushChallengePayload(challenge));
-    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload, NO_HEADERS, (responseCode, body, getHeader) -> {
-      if (responseCode == 428) {
-        throw new CaptchaRejectedException();
-      }
-    }, SealedSenderAccess.NONE);
-
-  }
-
-  public void submitRateLimitRecaptchaChallenge(String challenge, String recaptchaToken) throws IOException {
-    String payload = JsonUtil.toJson(new SubmitRecaptchaChallengePayload(challenge, recaptchaToken));
-    makeServiceRequest(SUBMIT_RATE_LIMIT_CHALLENGE, "PUT", payload);
   }
 
   public void redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) throws IOException {
