@@ -48,7 +48,6 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
-import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
@@ -103,7 +102,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
-import org.whispersystems.signalservice.internal.push.exceptions.CaptchaRejectedException;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
@@ -204,8 +202,6 @@ public class PushServiceSocket {
 
   private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
-  private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
-  private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
   private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
@@ -558,14 +554,6 @@ public class PushServiceSocket {
     }
   }
 
-  public void acknowledgeMessage(String sender, long timestamp) throws IOException {
-    makeServiceRequest(String.format(Locale.US, SENDER_ACK_MESSAGE_PATH, sender, timestamp), "DELETE", null);
-  }
-
-  public void acknowledgeMessage(String uuid) throws IOException {
-    makeServiceRequest(String.format(UUID_ACK_MESSAGE_PATH, uuid), "DELETE", null);
-  }
-
   public void registerPreKeys(PreKeyUpload preKeyUpload)
       throws IOException
   {
@@ -905,22 +893,6 @@ public class PushServiceSocket {
   {
     Single<ServiceResponse<IdentityCheckResponse>> requestSingle = Single.fromCallable(() -> {
       try (Response response = getServiceConnection(PROFILE_BATCH_CHECK_PATH, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), SealedSenderAccess.NONE, false)) {
-        String body = response.body() != null ? readBodyString(response.body()): "";
-        return responseMapper.map(response.code(), body, response::header, false);
-      }
-    });
-
-    return requestSingle
-        .subscribeOn(Schedulers.io())
-        .observeOn(Schedulers.io())
-        .onErrorReturn(ServiceResponse::forUnknownError);
-  }
-
-  public Single<ServiceResponse<BackupV2AuthCheckResponse>> checkSvr2AuthCredentials(@Nonnull BackupAuthCheckRequest request,
-                                                                                     @Nonnull ResponseMapper<BackupV2AuthCheckResponse> responseMapper)
-  {
-    Single<ServiceResponse<BackupV2AuthCheckResponse>> requestSingle = Single.fromCallable(() -> {
-      try (Response response = getServiceConnection(BACKUP_AUTH_CHECK_V2, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), SealedSenderAccess.NONE, false)) {
         String body = response.body() != null ? readBodyString(response.body()): "";
         return responseMapper.map(response.code(), body, response::header, false);
       }
@@ -2191,14 +2163,6 @@ public class PushServiceSocket {
     } catch (IOException e) {
       throw new PushNetworkException(e);
     }
-  }
-
-  /**
-   * Converts {@link IOException} on body reading to {@link PushNetworkException}.
-   * {@link IOException} during json parsing is converted to a {@link MalformedResponseException}
-   */
-  private static <T> T readBodyJson(Response response, Class<T> clazz) throws PushNetworkException, MalformedResponseException {
-    return readBodyJson(response.body(), clazz);
   }
 
   /**
