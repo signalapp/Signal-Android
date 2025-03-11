@@ -249,34 +249,6 @@ sealed class NetworkResult<T>(
   }
 
   /**
-   * Provides the ability to fallback to [fromFetch] if the current [NetworkResult] is non-successful.
-   *
-   * The [fallback] will only be triggered on non-[Success] results. You can provide a [unless] to limit what kinds of errors you fallback on
-   * (the default is to fallback on every error).
-   *
-   * This primary usecase of this is to make a websocket request (see [fromWebSocketRequest]) and fallback to rest upon failure.
-   *
-   * ```kotlin
-   * val user: NetworkResult<LocalUserModel> = NetworkResult
-   *   .fromWebSocketRequest(websocket, request, LocalUserMode.class.java)
-   *   .fallbackTo { result -> NetworkResult.fromFetch { http.getUser() } }
-   * ```
-   *
-   * @param unless If this lamba returns true, the fallback will not be triggered.
-   */
-  fun fallbackToFetch(unless: (NetworkResult<T>) -> Boolean = { false }, fallback: Fetcher<T>): NetworkResult<T> {
-    if (this is Success) {
-      return this
-    }
-
-    return if (unless(this)) {
-      fromFetch(fallback)
-    } else {
-      this
-    }
-  }
-
-  /**
    * Takes the output of one [NetworkResult] and passes it as the input to another if the operation is successful.
    * If it's non-successful, the [result] lambda is not run, and instead the original failure will be propagated.
    * Useful for chaining operations together.
