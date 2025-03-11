@@ -258,7 +258,7 @@ class LinkDeviceFragment : ComposeFragment() {
     override fun onAuthenticationError(errorCode: Int, errorString: CharSequence) {
       Log.w(TAG, "Authentication error: $errorCode")
       if (errorCode == BiometricPrompt.ERROR_CANCELED) {
-        findNavController().safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+        biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link))
       } else {
         onAuthenticationFailed()
       }
