@@ -29,12 +29,13 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
+import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.registration.RegistrationApi
-import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -120,11 +121,7 @@ class NetworkDependenciesModule(
   }
 
   val payments: Payments by lazy {
-    provider.providePayments(signalServiceAccountManager)
-  }
-
-  val callLinksService: CallLinksService by lazy {
-    provider.provideCallLinksService(pushServiceSocket)
+    provider.providePayments(paymentsApi)
   }
 
   val profileService: ProfileService by lazy {
@@ -165,6 +162,14 @@ class NetworkDependenciesModule(
 
   val usernameApi: UsernameApi by lazy {
     provider.provideUsernameApi(unauthWebSocket)
+  }
+
+  val callingApi: CallingApi by lazy {
+    provider.provideCallingApi(authWebSocket, pushServiceSocket)
+  }
+
+  val paymentsApi: PaymentsApi by lazy {
+    provider.providePaymentsApi(authWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

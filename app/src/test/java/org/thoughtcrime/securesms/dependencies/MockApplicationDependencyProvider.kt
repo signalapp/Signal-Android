@@ -39,11 +39,12 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
+import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
-import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -143,7 +144,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun providePayments(signalServiceAccountManager: SignalServiceAccountManager): Payments {
+  override fun providePayments(paymentsApi: PaymentsApi): Payments {
     return mockk(relaxed = true)
   }
 
@@ -180,10 +181,6 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService {
-    return mockk(relaxed = true)
-  }
-
-  override fun provideCallLinksService(pushServiceSocket: PushServiceSocket): CallLinksService {
     return mockk(relaxed = true)
   }
 
@@ -253,6 +250,14 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi {
     return mockk(relaxed = true)
   }
 }

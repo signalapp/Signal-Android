@@ -45,11 +45,12 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
+import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
-import org.whispersystems.signalservice.api.services.CallLinksService
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -279,10 +280,6 @@ object AppDependencies {
     get() = networkModule.payments
 
   @JvmStatic
-  val callLinksService: CallLinksService
-    get() = networkModule.callLinksService
-
-  @JvmStatic
   val profileService: ProfileService
     get() = networkModule.profileService
 
@@ -318,6 +315,12 @@ object AppDependencies {
 
   val usernameApi: UsernameApi
     get() = networkModule.usernameApi
+
+  val callingApi: CallingApi
+    get() = networkModule.callingApi
+
+  val paymentsApi: PaymentsApi
+    get() = networkModule.paymentsApi
 
   @JvmStatic
   val okHttpClient: OkHttpClient
@@ -365,7 +368,7 @@ object AppDependencies {
     fun provideTypingStatusRepository(): TypingStatusRepository
     fun provideTypingStatusSender(): TypingStatusSender
     fun provideDatabaseObserver(): DatabaseObserver
-    fun providePayments(signalServiceAccountManager: SignalServiceAccountManager): Payments
+    fun providePayments(paymentsApi: PaymentsApi): Payments
     fun provideShakeToReport(): ShakeToReport
     fun provideSignalCallManager(): SignalCallManager
     fun providePendingRetryReceiptManager(): PendingRetryReceiptManager
@@ -375,7 +378,6 @@ object AppDependencies {
     fun provideExoPlayerPool(): SimpleExoPlayerPool
     fun provideAndroidCallAudioManager(): AudioManagerCompat
     fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService
-    fun provideCallLinksService(pushServiceSocket: PushServiceSocket): CallLinksService
     fun provideProfileService(profileOperations: ClientZkProfileOperations, signalServiceMessageReceiver: SignalServiceMessageReceiver, authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): ProfileService
     fun provideDeadlockDetector(): DeadlockDetector
     fun provideClientZkReceiptOperations(signalServiceConfiguration: SignalServiceConfiguration): ClientZkReceiptOperations
@@ -392,5 +394,7 @@ object AppDependencies {
     fun provideUnauthWebSocket(signalServiceConfigurationSupplier: Supplier<SignalServiceConfiguration>, libSignalNetworkSupplier: Supplier<Network>): SignalWebSocket.UnauthenticatedWebSocket
     fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi
     fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi
+    fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi
+    fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi
   }
 }

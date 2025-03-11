@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.squareup.wire.Message;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.Base64;
 import org.signal.core.util.concurrent.FutureTransformers;
 import org.signal.core.util.concurrent.ListenableFuture;
@@ -22,8 +21,6 @@ import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
-import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialRequest;
-import org.signal.libsignal.zkgroup.calllinks.CreateCallLinkCredentialResponse;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
@@ -45,13 +42,6 @@ import org.signal.storageservice.protos.groups.Member;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
-import org.whispersystems.signalservice.api.archive.ArchiveCredentialPresentation;
-import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse;
-import org.whispersystems.signalservice.api.archive.ArchiveMediaRequest;
-import org.whispersystems.signalservice.api.archive.ArchiveMediaResponse;
-import org.whispersystems.signalservice.api.archive.BatchArchiveMediaRequest;
-import org.whispersystems.signalservice.api.archive.BatchArchiveMediaResponse;
-import org.whispersystems.signalservice.api.archive.DeleteArchivedMediaRequest;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -159,7 +149,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -211,8 +200,6 @@ public class PushServiceSocket {
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
   private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
 
-  private static final String CALLING_RELAYS = "/v2/calling/relays";
-
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
   private static final String WAIT_RESTORE_METHOD_PATH  = "/v1/devices/restore_account/%s?timeout=%s";
@@ -222,9 +209,6 @@ public class PushServiceSocket {
   private static final String SENDER_ACK_MESSAGE_PATH   = "/v1/messages/%s/%d";
   private static final String UUID_ACK_MESSAGE_PATH     = "/v1/messages/uuid/%s";
   private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
-
-  private static final String PAYMENTS_AUTH_PATH        = "/v1/payments/auth";
-  private static final String PAYMENTS_CONVERSIONS      = "/v1/payments/conversions";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
   private static final String PROFILE_BATCH_CHECK_PATH  = "/v1/profile/identity_check/batch";
@@ -285,8 +269,6 @@ public class PushServiceSocket {
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
 
   private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
-
-  private static final String CALL_LINK_CREATION_AUTH = "/v1/call-link/create-auth";
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
@@ -1137,32 +1119,6 @@ public class PushServiceSocket {
     }
   }
 
-  public CreateCallLinkCredentialResponse getCallLinkAuthResponse(CreateCallLinkCredentialRequest request) throws IOException {
-    String payload = JsonUtil.toJson(CreateCallLinkAuthRequest.create(request));
-    String response = makeServiceRequest(
-        CALL_LINK_CREATION_AUTH,
-        "POST",
-        payload
-    );
-
-    return JsonUtil.fromJson(response, CreateCallLinkAuthResponse.class).getCreateCallLinkCredentialResponse();
-  }
-
-  private AuthCredentials getAuthCredentials(String authPath) throws IOException {
-    String              response = makeServiceRequest(authPath, "GET", null);
-    AuthCredentials     token    = JsonUtil.fromJson(response, AuthCredentials.class);
-    return token;
-  }
-
-  public AuthCredentials getPaymentsAuthorization() throws IOException {
-    return getAuthCredentials(PAYMENTS_AUTH_PATH);
-  }
-
-  public GetCallingRelaysResponse getCallingRelays() throws IOException {
-    String response = makeServiceRequest(CALLING_RELAYS, "GET", null);
-    return JsonUtil.fromJson(response, GetCallingRelaysResponse.class);
-  }
-
   public String getStorageAuth() throws IOException {
     String              response     = makeServiceRequest("/v1/storage/auth", "GET", null);
     StorageAuthResponse authResponse = JsonUtil.fromJson(response, StorageAuthResponse.class);
@@ -1188,14 +1144,6 @@ public class PushServiceSocket {
     }
   }
 
-  public Optional<StorageManifest> writeStorageContacts(String authToken, WriteOperation writeOperation) throws IOException {
-    try (Response response = makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation), NO_HANDLER)) {
-      return Optional.empty();
-    } catch (ContactManifestMismatchException e) {
-      return Optional.of(StorageManifest.ADAPTER.decode(e.getResponseBody()));
-    }
-  }
-
   public void writeStorageItems(String authToken, WriteOperation writeOperation) throws IOException {
     makeStorageRequest(authToken, "/v1/storage", "PUT", protobufRequestBody(writeOperation), UNOPINIONATED_BINARY_ERROR_HANDLER);
   }
@@ -1209,10 +1157,6 @@ public class PushServiceSocket {
   public RemoteConfigResponse getRemoteConfig() throws IOException {
     String response = makeServiceRequest("/v1/config", "GET", null);
     return JsonUtil.fromJson(response, RemoteConfigResponse.class);
-  }
-
-  public void setSoTimeoutMillis(long soTimeoutMillis) {
-    this.soTimeoutMillis = soTimeoutMillis;
   }
 
   public void cancelInFlightRequests() {
@@ -2462,8 +2406,6 @@ public class PushServiceSocket {
     }
   }
 
-  public enum ClientSet { KeyBackup }
-
   public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
       throws IOException
   {
@@ -2649,18 +2591,6 @@ public class PushServiceSocket {
                                                 NO_HANDLER))
     {
       return GroupExternalCredential.ADAPTER.decode(readBodyBytes(response));
-    }
-  }
-
-  public CurrencyConversions getCurrencyConversions()
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    String response = makeServiceRequest(PAYMENTS_CONVERSIONS, "GET", null);
-    try {
-      return JsonUtil.fromJson(response, CurrencyConversions.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
     }
   }
 

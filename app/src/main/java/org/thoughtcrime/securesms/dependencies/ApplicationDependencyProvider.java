@@ -83,14 +83,15 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.account.AccountApi;
 import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.attachment.AttachmentApi;
+import org.whispersystems.signalservice.api.calling.CallingApi;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
+import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
-import org.whispersystems.signalservice.api.services.CallLinksService;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.storage.StorageServiceApi;
@@ -267,11 +268,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @SuppressWarnings("ConstantConditions")
   @Override
-  public @NonNull Payments providePayments(@NonNull SignalServiceAccountManager signalServiceAccountManager) {
+  public @NonNull Payments providePayments(@NonNull PaymentsApi paymentsApi) {
     MobileCoinConfig network;
 
-    if      (BuildConfig.MOBILE_COIN_ENVIRONMENT.equals("mainnet")) network = MobileCoinConfig.getMainNet(signalServiceAccountManager);
-    else if (BuildConfig.MOBILE_COIN_ENVIRONMENT.equals("testnet")) network = MobileCoinConfig.getTestNet(signalServiceAccountManager);
+    if      (BuildConfig.MOBILE_COIN_ENVIRONMENT.equals("mainnet")) network = MobileCoinConfig.getMainNet(paymentsApi);
+    else if (BuildConfig.MOBILE_COIN_ENVIRONMENT.equals("testnet")) network = MobileCoinConfig.getTestNet(paymentsApi);
     else throw new AssertionError("Unknown network " + BuildConfig.MOBILE_COIN_ENVIRONMENT);
 
     return new Payments(network);
@@ -389,11 +390,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull CallLinksService provideCallLinksService(@NonNull PushServiceSocket pushServiceSocket) {
-    return new CallLinksService(pushServiceSocket);
-  }
-
-  @Override
   public @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations clientZkProfileOperations,
                                                        @NonNull SignalServiceMessageReceiver receiver,
                                                        @NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
@@ -502,6 +498,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull UsernameApi provideUsernameApi(@NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
     return new UsernameApi(unauthWebSocket);
+  }
+
+  @Override
+  public @NonNull CallingApi provideCallingApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new CallingApi(authWebSocket, pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull PaymentsApi providePaymentsApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
+    return new PaymentsApi(authWebSocket);
   }
 
   @VisibleForTesting

@@ -230,17 +230,8 @@ public class SignalServiceAccountManager {
     return new RemoteConfigResult(out, response.getServerEpochTime());
   }
 
-  public List<TurnServerInfo> getTurnServerInfo() throws IOException {
-    List<TurnServerInfo> relays = this.pushServiceSocket.getCallingRelays().getRelays();
-    return relays != null ? relays : Collections.emptyList();
-  }
-
   public void checkNetworkConnection() throws IOException {
     this.pushServiceSocket.pingStorageService();
-  }
-
-  public CurrencyConversions getCurrencyConversions() throws IOException {
-    return this.pushServiceSocket.getCurrencyConversions();
   }
 
   public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken) throws IOException {
@@ -333,9 +324,4 @@ public class SignalServiceAccountManager {
   public RegistrationApi getRegistrationApi() {
     return new RegistrationApi(pushServiceSocket);
   }
-
-  public AuthCredentials getPaymentsAuthorization() throws IOException {
-    return pushServiceSocket.getPaymentsAuthorization();
-  }
-
 }

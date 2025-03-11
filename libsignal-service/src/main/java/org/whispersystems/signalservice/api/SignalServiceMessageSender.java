@@ -399,20 +399,6 @@ public class SignalServiceMessageSender {
   }
 
   /**
-   * Send an http request on behalf of the calling infrastructure.
-   *
-   * @param requestId Request identifier
-   * @param url Fully qualified URL to request
-   * @param httpMethod Http method to use (e.g., "GET", "POST")
-   * @param headers Optional list of headers to send with request
-   * @param body Optional body to send with request
-   * @return
-   */
-  public CallingResponse makeCallingRequest(long requestId, String url, String httpMethod, List<Pair<String, String>> headers, byte[] body) {
-    return socket.makeCallingRequest(requestId, url, httpMethod, headers, body);
-  }
-
-  /**
    * Send a message to a single recipient.
    *
    * @param recipient The message's destination.

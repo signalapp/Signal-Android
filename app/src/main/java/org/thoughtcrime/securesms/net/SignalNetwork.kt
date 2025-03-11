@@ -9,8 +9,10 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
+import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 
@@ -29,11 +31,21 @@ object SignalNetwork {
   val attachments: AttachmentApi
     get() = AppDependencies.attachmentApi
 
+  @JvmStatic
+  @get:JvmName("calling")
+  val calling: CallingApi
+    get() = AppDependencies.callingApi
+
   val keys: KeysApi
     get() = AppDependencies.keysApi
 
   val linkDevice: LinkDeviceApi
     get() = AppDependencies.linkDeviceApi
+
+  @JvmStatic
+  @get:JvmName("payments")
+  val payments: PaymentsApi
+    get() = AppDependencies.paymentsApi
 
   val storageService: StorageServiceApi
     get() = AppDependencies.storageServiceApi

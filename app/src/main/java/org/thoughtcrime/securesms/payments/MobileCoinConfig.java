@@ -9,6 +9,7 @@ import com.mobilecoin.lib.ClientConfig;
 
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
@@ -36,12 +37,12 @@ public abstract class MobileCoinConfig {
 
   abstract @NonNull ClientConfig getConfig();
 
-  public static MobileCoinConfig getTestNet(SignalServiceAccountManager signalServiceAccountManager) {
-    return new MobileCoinTestNetConfig(signalServiceAccountManager);
+  public static MobileCoinConfig getTestNet(PaymentsApi paymentsApi) {
+    return new MobileCoinTestNetConfig(paymentsApi);
   }
 
-  public static MobileCoinConfig getMainNet(SignalServiceAccountManager signalServiceAccountManager) {
-    return new MobileCoinMainNetConfig(signalServiceAccountManager);
+  public static MobileCoinConfig getMainNet(PaymentsApi paymentsApi) {
+    return new MobileCoinMainNetConfig(paymentsApi);
   }
 
   protected static Set<X509Certificate> getTrustRoots(@RawRes int pemResource) {

@@ -10,7 +10,9 @@ import com.mobilecoin.lib.exceptions.AttestationException;
 
 import org.thoughtcrime.securesms.R;
 import org.signal.core.util.Base64;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
@@ -20,11 +22,10 @@ import java.util.List;
 import java.util.Set;
 
 final class MobileCoinMainNetConfig extends MobileCoinConfig {
+  private final PaymentsApi paymentsApi;
 
-  private final SignalServiceAccountManager signalServiceAccountManager;
-
-  public MobileCoinMainNetConfig(@NonNull SignalServiceAccountManager signalServiceAccountManager) {
-    this.signalServiceAccountManager = signalServiceAccountManager;
+  public MobileCoinMainNetConfig(@NonNull PaymentsApi paymentsApi) {
+    this.paymentsApi = paymentsApi;
   }
 
   @Override
@@ -63,7 +64,7 @@ final class MobileCoinMainNetConfig extends MobileCoinConfig {
 
   @Override
   @NonNull AuthCredentials getAuth() throws IOException {
-    return signalServiceAccountManager.getPaymentsAuthorization();
+    return NetworkResultUtil.toBasicLegacy(paymentsApi.getAuthorization());
   }
 
   @Override

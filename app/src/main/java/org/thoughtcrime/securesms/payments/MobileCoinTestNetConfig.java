@@ -7,9 +7,10 @@ import androidx.annotation.NonNull;
 import com.mobilecoin.lib.ClientConfig;
 import com.mobilecoin.lib.exceptions.AttestationException;
 
-import org.thoughtcrime.securesms.R;
 import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.thoughtcrime.securesms.R;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
+import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
@@ -19,11 +20,10 @@ import java.util.List;
 import java.util.Set;
 
 final class MobileCoinTestNetConfig extends MobileCoinConfig {
+  private final PaymentsApi paymentsApi;
 
-  private final SignalServiceAccountManager signalServiceAccountManager;
-
-  public MobileCoinTestNetConfig(@NonNull SignalServiceAccountManager signalServiceAccountManager) {
-    this.signalServiceAccountManager = signalServiceAccountManager;
+  public MobileCoinTestNetConfig(@NonNull PaymentsApi paymentsApi) {
+    this.paymentsApi = paymentsApi;
   }
 
   @Override
@@ -51,7 +51,7 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
 
   @Override
   @NonNull AuthCredentials getAuth() throws IOException {
-    return signalServiceAccountManager.getPaymentsAuthorization();
+    return NetworkResultUtil.toBasicLegacy(paymentsApi.getAuthorization());
   }
 
   @Override
