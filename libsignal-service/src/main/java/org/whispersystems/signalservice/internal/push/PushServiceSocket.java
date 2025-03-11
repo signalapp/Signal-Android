@@ -88,7 +88,6 @@ import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCo
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
-import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
@@ -175,7 +174,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
-import okhttp3.Credentials;
 import okhttp3.Dns;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -1111,13 +1109,6 @@ public class PushServiceSocket {
     } else {
       throw new MalformedResponseException("Unable to parse response");
     }
-  }
-
-  public String getStorageAuth() throws IOException {
-    String              response     = makeServiceRequest("/v1/storage/auth", "GET", null);
-    StorageAuthResponse authResponse = JsonUtil.fromJson(response, StorageAuthResponse.class);
-
-    return Credentials.basic(authResponse.getUsername(), authResponse.getPassword());
   }
 
   public StorageManifest getStorageManifest(String authToken) throws IOException {

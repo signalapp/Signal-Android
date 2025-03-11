@@ -487,8 +487,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull StorageServiceApi provideStorageServiceApi(@NonNull PushServiceSocket pushServiceSocket) {
-    return new StorageServiceApi(pushServiceSocket);
+  public @NonNull StorageServiceApi provideStorageServiceApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new StorageServiceApi(authWebSocket, pushServiceSocket);
   }
 
   @Override

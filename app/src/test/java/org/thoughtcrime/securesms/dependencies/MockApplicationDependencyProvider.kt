@@ -234,7 +234,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideStorageServiceApi(pushServiceSocket: PushServiceSocket): StorageServiceApi {
+  override fun provideStorageServiceApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): StorageServiceApi {
     return mockk(relaxed = true)
   }
 

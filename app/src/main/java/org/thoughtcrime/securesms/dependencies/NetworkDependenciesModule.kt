@@ -154,7 +154,7 @@ class NetworkDependenciesModule(
   }
 
   val storageServiceApi: StorageServiceApi by lazy {
-    provider.provideStorageServiceApi(pushServiceSocket)
+    provider.provideStorageServiceApi(authWebSocket, pushServiceSocket)
   }
 
   val accountApi: AccountApi by lazy {
