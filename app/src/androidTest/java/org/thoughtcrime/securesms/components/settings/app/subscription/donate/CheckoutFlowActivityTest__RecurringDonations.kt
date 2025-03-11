@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.Delete
 import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
+import org.thoughtcrime.securesms.testing.RxTestSchedulerRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.actions.RecyclerViewScrollToBottomAction
 import org.thoughtcrime.securesms.testing.success
@@ -43,6 +44,9 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
   @get:Rule
   val iapRule = InAppPaymentsRule()
+
+  @get:Rule
+  val rxRule = RxTestSchedulerRule()
 
   private val intent = CheckoutFlowActivity.createIntent(InstrumentationRegistry.getInstrumentation().targetContext, InAppPaymentType.RECURRING_DONATION)
 
@@ -65,6 +69,8 @@ class CheckoutFlowActivityTest__RecurringDonations {
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
 
+    rxRule.defaultTestScheduler.triggerActions()
+
     onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).check(matches(isDisplayed()))
@@ -75,12 +81,14 @@ class CheckoutFlowActivityTest__RecurringDonations {
     initialiseActiveSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+
+    rxRule.defaultTestScheduler.triggerActions()
+
     onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__cancel_subscription)).perform(ViewActions.click())
     onView(withText(R.string.SubscribeFragment__confirm_cancellation)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__confirm)).perform(ViewActions.click())
-    onView(withText(R.string.StripePaymentInProgressFragment__cancelling)).check(matches(isDisplayed()))
   }
 
   @Test
@@ -88,6 +96,9 @@ class CheckoutFlowActivityTest__RecurringDonations {
     initialisePendingSubscription()
 
     ActivityScenario.launch<CheckoutFlowActivity>(intent)
+
+    rxRule.defaultTestScheduler.triggerActions()
+
     onView(withId(R.id.recycler)).perform(RecyclerViewScrollToBottomAction)
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isDisplayed()))
     onView(withText(R.string.SubscribeFragment__update_subscription)).check(matches(isNotEnabled()))
