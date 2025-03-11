@@ -22,7 +22,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.cast
 import kotlin.time.Duration
 
-typealias StatusCodeErrorAction = (NetworkResult.StatusCodeError<*>) -> Unit
+typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
 
 /**
  * A helper class that wraps the result of a network request, turning common exceptions
@@ -171,8 +171,8 @@ sealed class NetworkResult<T>(
   data class NetworkError<T>(val exception: IOException) : NetworkResult<T>()
 
   /** Indicates we got a response, but it was a non-2xx response. */
-  data class StatusCodeError<T>(val code: Int, val stringBody: String?, val binaryBody: ByteArray?, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
-    constructor(e: NonSuccessfulResponseCodeException) : this(e.code, e.stringBody, e.binaryBody, e)
+  data class StatusCodeError<T>(val code: Int, val stringBody: String?, val binaryBody: ByteArray?, val headers: Map<String, String>, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
+    constructor(e: NonSuccessfulResponseCodeException) : this(e.code, e.stringBody, e.binaryBody, e.headers, e)
 
     inline fun <reified T> parseJsonBody(): T? {
       return try {
@@ -244,7 +244,7 @@ sealed class NetworkResult<T>(
 
       is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
       is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, exception).runOnStatusCodeError(statusCodeErrorActions)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
     }
   }
 
@@ -266,7 +266,7 @@ sealed class NetworkResult<T>(
       is Success -> result(this.result).runOnStatusCodeError(statusCodeErrorActions)
       is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
       is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, exception).runOnStatusCodeError(statusCodeErrorActions)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
     }
   }
 
@@ -354,7 +354,7 @@ sealed class NetworkResult<T>(
 }
 
 private fun <T : Any> WebsocketResponse.toStatusCodeError(): NetworkResult<T> {
-  return StatusCodeError(NonSuccessfulResponseCodeException(this.status, "", this.body))
+  return StatusCodeError(NonSuccessfulResponseCodeException(this.status, "", this.body, this.headers))
 }
 
 private fun <T : Any> WebsocketResponse.toSuccess(responseJsonClass: KClass<T>): NetworkResult<T> {

@@ -38,6 +38,10 @@ public class WebsocketResponse {
     return headers.get(Preconditions.checkNotNull(key.toLowerCase()));
   }
 
+  public Map<String, String> getHeaders() {
+    return headers;
+  }
+
   public boolean isUnidentified() {
     return unidentified;
   }
