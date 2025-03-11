@@ -13,8 +13,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
-import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import java.io.IOException
 import java.lang.Exception
 
 /**
@@ -63,8 +65,10 @@ class SyncArchivedMediaJob private constructor(
       attachmentsToDelete += syncPage(archivedItemPage)
       cursor = archivedItemPage.cursor
       if (attachmentsToDelete.size >= batchSize) {
-        BackupRepository.deleteAbandonedMediaObjects(attachmentsToDelete)
-        Log.i(TAG, "Deleted ${attachmentsToDelete.size} attachments off CDN")
+        when (val result = BackupRepository.deleteAbandonedMediaObjects(attachmentsToDelete)) {
+          is NetworkResult.Success -> Log.i(TAG, "Deleted ${attachmentsToDelete.size} attachments off CDN")
+          else -> Log.w(TAG, "Failed to delete attachments from CDN", result.getCause())
+        }
         attachmentsToDelete.clear()
       }
       if (attachmentsToDelete.isEmpty()) {
@@ -97,7 +101,7 @@ class SyncArchivedMediaJob private constructor(
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
-    return e is NetworkFailureException
+    return e is IOException && e !is NonSuccessfulResponseCodeException
   }
 
   class Factory : Job.Factory<SyncArchivedMediaJob> {
