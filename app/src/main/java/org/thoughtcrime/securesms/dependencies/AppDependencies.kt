@@ -46,6 +46,7 @@ import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
+import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
@@ -322,6 +323,9 @@ object AppDependencies {
   val paymentsApi: PaymentsApi
     get() = networkModule.paymentsApi
 
+  val cdsApi: CdsApi
+    get() = networkModule.cdsApi
+
   @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
@@ -396,5 +400,6 @@ object AppDependencies {
     fun provideUsernameApi(unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): UsernameApi
     fun provideCallingApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): CallingApi
     fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi
+    fun provideCdsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CdsApi
   }
 }

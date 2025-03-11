@@ -1,13 +1,15 @@
-package org.whispersystems.signalservice.api.services;
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
 
-import org.signal.cdsi.proto.ClientRequest;
-import org.signal.cdsi.proto.ClientResponse;
+package org.whispersystems.signalservice.api.cds;
+
 import org.signal.libsignal.net.CdsiLookupRequest;
 import org.signal.libsignal.net.CdsiLookupResponse;
 import org.signal.libsignal.net.Network;
-import org.signal.libsignal.protocol.util.ByteUtil;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
+import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -15,21 +17,13 @@ import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidArgumentE
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException;
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.IllegalArgumentException;
-import java.nio.ByteBuffer;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
@@ -39,17 +33,11 @@ import javax.annotation.Nonnull;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
-import okio.ByteString;
 
 /**
  * Handles network interactions with CDSI, the SGX-backed version of the CDSv2 API.
  */
 public final class CdsiV2Service {
-
-  private static final String TAG = CdsiV2Service.class.getSimpleName();
-
-  private static final UUID EMPTY_UUID         = new UUID(0, 0);
-  private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
@@ -72,8 +60,9 @@ public final class CdsiV2Service {
     };
   }
 
-  public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
-    return cdsiRequestHandler.handleRequest(username, password, request, tokenSaver)
+  public Single<NetworkResult<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
+    return cdsiRequestHandler
+        .handleRequest(username, password, request, tokenSaver)
         .collect(Collectors.toList())
         .flatMap(pages -> {
           Map<String, ResponseItem> all       = new HashMap<>();
@@ -84,83 +73,17 @@ public final class CdsiV2Service {
             quotaUsed += page.getQuotaUsedDebugOnly();
           }
 
-          return Single.just(new Response(all, quotaUsed));
+          return Single.<NetworkResult<Response>>just(new NetworkResult.Success<>(new Response(all, quotaUsed)));
         })
-        .map(result -> ServiceResponse.forResult(result, 200, null))
         .onErrorReturn(error -> {
           if (error instanceof NonSuccessfulResponseCodeException) {
-            int status = ((NonSuccessfulResponseCodeException) error).code;
-            return ServiceResponse.forApplicationError(error, status, null);
+            return new NetworkResult.StatusCodeError<>((NonSuccessfulResponseCodeException) error);
+          } else if (error instanceof IOException) {
+            return new NetworkResult.NetworkError<>((IOException) error);
           } else {
-            return ServiceResponse.forUnknownError(error);
+            return new NetworkResult.ApplicationError<>(error);
           }
         });
-  }
-
-  private static Response parseEntries(ClientResponse clientResponse) {
-    Map<String, ResponseItem> results = new HashMap<>();
-    ByteBuffer                parser  = clientResponse.e164PniAciTriples.asByteBuffer();
-
-    while (parser.remaining() >= RESPONSE_ITEM_SIZE) {
-      String e164    = "+" + parser.getLong();
-      UUID   pniUuid = new UUID(parser.getLong(), parser.getLong());
-      UUID   aciUuid = new UUID(parser.getLong(), parser.getLong());
-
-      if (!pniUuid.equals(EMPTY_UUID)) {
-        PNI pni = PNI.from(pniUuid);
-        ACI aci = aciUuid.equals(EMPTY_UUID) ? null : ACI.from(aciUuid);
-        results.put(e164, new ResponseItem(pni, Optional.ofNullable(aci)));
-      }
-    }
-
-    return new Response(results, clientResponse.debugPermitsUsed);
-  }
-
-  private static ClientRequest buildClientRequest(Request request) {
-    List<Long> previousE164s = parseAndSortE164Strings(request.previousE164s);
-    List<Long> newE164s      = parseAndSortE164Strings(request.newE164s);
-    List<Long> removedE164s  = parseAndSortE164Strings(request.removedE164s);
-
-    ClientRequest.Builder builder = new ClientRequest.Builder()
-                                                     .prevE164s(toByteString(previousE164s))
-                                                     .newE164s(toByteString(newE164s))
-                                                     .discardE164s(toByteString(removedE164s))
-                                                     .aciUakPairs(toByteString(request.serviceIds));
-
-    if (request.token != null) {
-      builder.token(ByteString.of(request.token));
-    }
-
-    return builder.build();
-  }
-
-  private static ByteString toByteString(List<Long> numbers) {
-    ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-    for (long number : numbers) {
-      try {
-        os.write(ByteUtil.longToByteArray(number));
-      } catch (IOException e) {
-        throw new AssertionError("Failed to write long to ByteString", e);
-      }
-    }
-
-    return ByteString.of(os.toByteArray());
-  }
-
-  private static ByteString toByteString(Map<ServiceId, ProfileKey> serviceIds) {
-    ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-    for (Map.Entry<ServiceId, ProfileKey> entry : serviceIds.entrySet()) {
-      try {
-        os.write(UuidUtil.toByteArray(entry.getKey().getRawUuid()));
-        os.write(UnidentifiedAccess.deriveAccessKeyFrom(entry.getValue()));
-      } catch (IOException e) {
-        throw new AssertionError("Failed to write long to ByteString", e);
-      }
-    }
-
-    return ByteString.of(os.toByteArray());
   }
 
   private static CdsiLookupRequest buildLibsignalRequest(Request request) {
@@ -185,14 +108,6 @@ public final class CdsiV2Service {
       return new CdsiInvalidArgumentException();
     }
     return lookupError;
-  }
-
-  private static List<Long> parseAndSortE164Strings(Collection<String> e164s) {
-    return e164s.stream()
-                .map(Long::parseLong)
-                .sorted()
-                .collect(Collectors.toList());
-
   }
 
   public static final class Request {

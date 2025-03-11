@@ -29,13 +29,10 @@ import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
-import org.whispersystems.signalservice.api.services.CdsiV2Service;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.AuthCredentials;
-import org.whispersystems.signalservice.internal.push.CdsiAuthResponse;
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.PaymentAddress;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
@@ -52,15 +49,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
-import io.reactivex.rxjava3.core.Single;
 
 /**
  * The main interface for creating, registering, and
@@ -163,60 +154,6 @@ public class SignalServiceAccountManager {
    */
   public OneTimePreKeyCounts getPreKeyCounts(ServiceIdType serviceIdType) throws IOException {
     return this.pushServiceSocket.getAvailablePreKeys(serviceIdType);
-  }
-
-  @SuppressWarnings("SameParameterValue")
-  public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
-                                                           Set<String> newE164s,
-                                                           Map<ServiceId, ProfileKey> serviceIds,
-                                                           Optional<byte[]> token,
-                                                           Long timeoutMs,
-                                                           @Nonnull Network libsignalNetwork,
-                                                           boolean useLibsignalRouteBasedCDSIConnectionLogic,
-                                                           Consumer<byte[]> tokenSaver)
-      throws IOException
-  {
-    CdsiAuthResponse                                auth    = pushServiceSocket.getCdsiAuth();
-    CdsiV2Service                                   service = new CdsiV2Service(libsignalNetwork, useLibsignalRouteBasedCDSIConnectionLogic);
-    CdsiV2Service.Request                           request = new CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token);
-    Single<ServiceResponse<CdsiV2Service.Response>> single  = service.getRegisteredUsers(auth.getUsername(), auth.getPassword(), request, tokenSaver);
-
-    ServiceResponse<CdsiV2Service.Response> serviceResponse;
-    try {
-      if (timeoutMs == null) {
-        serviceResponse = single
-            .blockingGet();
-      } else {
-        serviceResponse = single
-            .timeout(timeoutMs, TimeUnit.MILLISECONDS)
-            .blockingGet();
-      }
-    } catch (RuntimeException e) {
-      Throwable cause = e.getCause();
-      if (cause instanceof InterruptedException) {
-        throw new IOException("Interrupted", cause);
-      } else if (cause instanceof TimeoutException) {
-        throw new IOException("Timed out");
-      } else {
-        throw e;
-      }
-    } catch (Exception e) {
-      throw new RuntimeException("Unexpected exception when retrieving registered users!", e);
-    }
-
-    if (serviceResponse.getResult().isPresent()) {
-      return serviceResponse.getResult().get();
-    } else if (serviceResponse.getApplicationError().isPresent()) {
-      if (serviceResponse.getApplicationError().get() instanceof IOException) {
-        throw (IOException) serviceResponse.getApplicationError().get();
-      } else {
-        throw new IOException(serviceResponse.getApplicationError().get());
-      }
-    } else if (serviceResponse.getExecutionError().isPresent()) {
-      throw new IOException(serviceResponse.getExecutionError().get());
-    } else {
-      throw new IOException("Missing result!");
-    }
   }
 
   public RemoteConfigResult getRemoteConfig() throws IOException {

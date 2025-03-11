@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
+import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
@@ -170,6 +171,10 @@ class NetworkDependenciesModule(
 
   val paymentsApi: PaymentsApi by lazy {
     provider.providePaymentsApi(authWebSocket)
+  }
+
+  val cdsApi: CdsApi by lazy {
+    provider.provideCdsApi(authWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

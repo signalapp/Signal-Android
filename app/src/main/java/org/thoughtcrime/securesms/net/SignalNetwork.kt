@@ -10,6 +10,7 @@ import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
+import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
@@ -35,6 +36,9 @@ object SignalNetwork {
   @get:JvmName("calling")
   val calling: CallingApi
     get() = AppDependencies.callingApi
+
+  val cdsApi: CdsApi
+    get() = AppDependencies.cdsApi
 
   val keys: KeysApi
     get() = AppDependencies.keysApi

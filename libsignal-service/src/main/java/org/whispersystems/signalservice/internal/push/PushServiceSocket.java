@@ -259,7 +259,6 @@ public class PushServiceSocket {
 
   private static final String REGISTRATION_PATH    = "/v1/registration";
 
-  private static final String CDSI_AUTH = "/v2/directory/auth";
   private static final String SVR2_AUTH = "/v2/backup/auth";
   private static final String SVR3_AUTH = "/v3/backup/auth";
 
@@ -425,11 +424,6 @@ public class PushServiceSocket {
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
-  }
-
-  public CdsiAuthResponse getCdsiAuth() throws IOException {
-    String body = makeServiceRequest(CDSI_AUTH, "GET", null);
-    return JsonUtil.fromJsonResponse(body, CdsiAuthResponse.class);
   }
 
   public AuthCredentials getSvr2Authorization() throws IOException {

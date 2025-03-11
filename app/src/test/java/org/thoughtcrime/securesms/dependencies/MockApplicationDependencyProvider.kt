@@ -40,6 +40,7 @@ import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
+import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
@@ -258,6 +259,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideCdsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CdsApi {
     return mockk(relaxed = true)
   }
 }
