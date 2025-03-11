@@ -77,11 +77,11 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
           onLongClick = { copyToClipboard(e164) }
         )
 
-        val serviceId: String = recipient.serviceId.map { it.toString() }.orElse("null")
+        val aci: String = recipient.aci.map { it.toString() }.orElse("null")
         longClickPref(
-          title = DSLSettingsText.from("ServiceId"),
-          summary = DSLSettingsText.from(serviceId),
-          onLongClick = { copyToClipboard(serviceId) }
+          title = DSLSettingsText.from("ACI"),
+          summary = DSLSettingsText.from(aci),
+          onLongClick = { copyToClipboard(aci) }
         )
 
         val pni: String = recipient.pni.map { it.toString() }.orElse("null")
