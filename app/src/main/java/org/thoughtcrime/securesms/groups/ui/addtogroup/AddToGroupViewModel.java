@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
@@ -43,12 +44,15 @@ public final class AddToGroupViewModel extends ViewModel {
       events.postValue(new Event.CloseEvent());
     } else if (groupRecipientIds.size() == 1) {
       SignalExecutors.BOUNDED.execute(() -> {
-        Recipient recipient      = Recipient.resolved(recipientId);
-        Recipient groupRecipient = Recipient.resolved(groupRecipientIds.get(0));
-        String    recipientName  = recipient.getDisplayName(context);
-        String    groupName      = groupRecipient.getDisplayName(context);
+        Recipient recipient        = Recipient.resolved(recipientId);
+        Recipient groupRecipient   = Recipient.resolved(groupRecipientIds.get(0));
+        String    recipientName    = recipient.getDisplayName(context);
+        String    groupName        = groupRecipient.getDisplayName(context);
+        boolean   isAlreadyInvited = SignalDatabase.groups().getGroup(groupRecipientIds.get(0)).get().isPendingMember(recipient);
 
-        if (groupRecipient.getGroupId().get().isV1() && !recipient.getHasE164()) {
+        if(isAlreadyInvited) {
+          events.postValue(new Event.ToastEvent(context.getResources().getString(R.string.AddToGroupActivity_s_has_already_been_invited_to_s, recipientName, groupName)));
+        } else if (groupRecipient.getGroupId().get().isV1() && !recipient.getHasE164()) {
           events.postValue(new Event.LegacyGroupDenialEvent());
         } else {
           events.postValue(new Event.AddToSingleGroupConfirmationEvent(context.getResources().getString(R.string.AddToGroupActivity_add_member),
