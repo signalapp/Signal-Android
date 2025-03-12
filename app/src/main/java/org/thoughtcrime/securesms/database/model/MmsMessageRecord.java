@@ -317,6 +317,8 @@ public class MmsMessageRecord extends MessageRecord {
            (type & MessageTypes.KEY_EXCHANGE_MASK) == 0 &&
            !isReportedSpam() &&
            !isMessageRequestAccepted() &&
+           !isBlocked() &&
+           !isUnblocked() &&
            storyType == StoryType.NONE &&
            getDateSent() > 0 &&
            (parentStoryId == null || parentStoryId.isDirectReply());

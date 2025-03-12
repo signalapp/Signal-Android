@@ -420,6 +420,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           $TYPE & ${MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT} = 0 AND
           $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
           $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED} AND
+          $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_BLOCKED} AND
+          $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_UNBLOCKED} AND
           $TYPE NOT IN (
             ${MessageTypes.PROFILE_CHANGE_TYPE}, 
             ${MessageTypes.GV1_MIGRATION_TYPE},
@@ -1911,7 +1913,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $TYPE != ${MessageTypes.RELEASE_CHANNEL_DONATION_REQUEST_TYPE} AND
         $TYPE & ${MessageTypes.GROUP_V2_LEAVE_BITS} != ${MessageTypes.GROUP_V2_LEAVE_BITS} AND
         $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_REPORTED_SPAM} AND
-        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}
+        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED} AND
+        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_BLOCKED} AND
+        $TYPE & ${MessageTypes.SPECIAL_TYPES_MASK} != ${MessageTypes.SPECIAL_TYPE_UNBLOCKED}
       )
     """
 
@@ -2556,6 +2560,18 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           sentTimeMillis = timestamp,
           expiresIn = expiresIn
         )
+      } else if (MessageTypes.isBlocked(outboxType)) {
+        OutgoingMessage.blockedMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn
+        )
+      } else if (MessageTypes.isUnblocked(outboxType)) {
+        OutgoingMessage.unblockedMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn
+        )
       } else {
         val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(outboxType)) {
           GiftBadge.ADAPTER.decode(Base64.decode(body))
@@ -2727,6 +2743,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       !MessageTypes.isReportedSpam(type) &&
       !MessageTypes.isMessageRequestAccepted(type) &&
       !MessageTypes.isExpirationTimerUpdate(type) &&
+      !MessageTypes.isBlocked(type) &&
+      !MessageTypes.isUnblocked(type) &&
       !retrieved.storyType.isStory &&
       isNotStoryGroupReply &&
       !silent
@@ -2860,8 +2878,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun insertMessageOutbox(
     message: OutgoingMessage,
     threadId: Long,
-    forceSms: Boolean,
-    insertListener: InsertListener?
+    forceSms: Boolean = false,
+    insertListener: InsertListener? = null
   ): Long {
     return insertMessageOutbox(
       message = message,
@@ -2904,7 +2922,16 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (message.isGroup) {
-      if (message.isV2Group) {
+      if (message.isBlocked) {
+        type = type or MessageTypes.GROUP_V2_BIT or MessageTypes.SPECIAL_TYPE_BLOCKED
+        hasSpecialType = true
+      } else if (message.isUnblocked) {
+        if (hasSpecialType) {
+          throw MmsException("Cannot insert message with multiple special types.")
+        }
+        type = type or MessageTypes.GROUP_V2_BIT or MessageTypes.SPECIAL_TYPE_UNBLOCKED
+        hasSpecialType = true
+      } else if (message.isV2Group) {
         type = type or (MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT)
 
         if (message.isJustAGroupLeave) {
@@ -2926,6 +2953,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (message.isStoryReaction) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
       type = type or MessageTypes.SPECIAL_TYPE_STORY_REACTION
       hasSpecialType = true
     }
@@ -2975,6 +3005,22 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         throw MmsException("Cannot insert message with multiple special types.")
       }
       type = type or MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED
+      hasSpecialType = true
+    }
+
+    if (message.isBlocked && !message.isGroup) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_BLOCKED
+      hasSpecialType = true
+    }
+
+    if (message.isUnblocked && !message.isGroup) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_UNBLOCKED
       hasSpecialType = true
     }
 

@@ -1141,14 +1141,20 @@ object SyncMessageProcessor {
 
     when (response.type) {
       MessageRequestResponse.Type.ACCEPT -> {
+        val wasBlocked = recipient.isBlocked
         SignalDatabase.recipients.setProfileSharing(recipient.id, true)
         SignalDatabase.recipients.setBlocked(recipient.id, false)
-        SignalDatabase.messages.insertMessageOutbox(
-          OutgoingMessage.messageRequestAcceptMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
-          threadId,
-          false,
-          null
-        )
+        if (wasBlocked) {
+          SignalDatabase.messages.insertMessageOutbox(
+            message = OutgoingMessage.unblockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+            threadId = threadId
+          )
+        } else {
+          SignalDatabase.messages.insertMessageOutbox(
+            message = OutgoingMessage.messageRequestAcceptMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+            threadId = threadId
+          )
+        }
       }
       MessageRequestResponse.Type.DELETE -> {
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
@@ -1159,6 +1165,10 @@ object SyncMessageProcessor {
       MessageRequestResponse.Type.BLOCK -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
+        SignalDatabase.messages.insertMessageOutbox(
+          message = OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId = threadId
+        )
       }
       MessageRequestResponse.Type.BLOCK_AND_DELETE -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
@@ -1169,20 +1179,20 @@ object SyncMessageProcessor {
       }
       MessageRequestResponse.Type.SPAM -> {
         SignalDatabase.messages.insertMessageOutbox(
-          OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
-          threadId,
-          false,
-          null
+          message = OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId = threadId
         )
       }
       MessageRequestResponse.Type.BLOCK_AND_SPAM -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
         SignalDatabase.recipients.setProfileSharing(recipient.id, false)
         SignalDatabase.messages.insertMessageOutbox(
-          OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
-          threadId,
-          false,
-          null
+          message = OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId = threadId
+        )
+        SignalDatabase.messages.insertMessageOutbox(
+          message = OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
+          threadId = threadId
         )
       }
       else -> warn("Got an unknown response type! Skipping")

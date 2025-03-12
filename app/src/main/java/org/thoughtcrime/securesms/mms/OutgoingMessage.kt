@@ -55,6 +55,8 @@ data class OutgoingMessage(
   val messageToEdit: Long = 0,
   val isReportSpam: Boolean = false,
   val isMessageRequestAccept: Boolean = false,
+  val isBlocked: Boolean = false,
+  val isUnblocked: Boolean = false,
   val messageExtras: MessageExtras? = null
 ) {
 
@@ -430,6 +432,38 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
         isMessageRequestAccept = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    /**
+     * Message for when you block someone
+     */
+    @JvmStatic
+    fun blockedMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isGroup = threadRecipient.isPushV2Group,
+        isBlocked = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    /**
+     * Message for when you unblock someone
+     */
+    @JvmStatic
+    fun unblockedMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isGroup = threadRecipient.isPushV2Group,
+        isUnblocked = true,
         isUrgent = false,
         isSecure = true
       )

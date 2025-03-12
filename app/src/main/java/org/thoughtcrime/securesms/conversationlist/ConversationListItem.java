@@ -503,7 +503,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                thread.isOutgoingAudioCall() ||
                thread.isOutgoingVideoCall() ||
                thread.isVerificationStatusChange() ||
-               thread.isScheduledMessage())
+               thread.isScheduledMessage() ||
+               thread.getRecipient().isBlocked())
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
@@ -586,6 +587,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
       }
+    } else if (thread.getRecipient().isBlocked()) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked), R.drawable.symbol_block_16, defaultTint);
     } else if (MessageTypes.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
         if (thread.getMessageExtras() != null) {
