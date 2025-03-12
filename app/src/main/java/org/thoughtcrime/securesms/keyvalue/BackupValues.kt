@@ -173,13 +173,14 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var subscriptionStateMismatchDetected: Boolean by booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false)
 
   /**
-   * When seting the backup tier, we also want to write to the latestBackupTier, as long as
+   * When setting the backup tier, we also want to write to the latestBackupTier, as long as
    * the value is non-null. This gives us a 1-deep history of the selected backup tier for
    * use in the UI
    */
   var backupTier: MessageBackupTier?
     get() = MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
     set(value) {
+      Log.i(TAG, "Setting backup tier to $value", Throwable(), true)
       val serializedValue = MessageBackupTier.serialize(value)
       if (value != null) {
         store.beginWrite()
