@@ -153,6 +153,12 @@ class MediaSelectionActivity :
       textViewModel.restoreFromInstanceState(savedInstanceState)
     }
 
+    viewModel.isVideoRecording.observe(this) { isVideoRecording ->
+      if(isVideoRecording) {
+        textStoryToggle.visible = false
+      }
+    }
+
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
         R.id.mediaCaptureFragment -> {
