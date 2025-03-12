@@ -191,6 +191,8 @@ public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
+  private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
+
   private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
   private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
   private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
@@ -910,6 +912,10 @@ public class PushServiceSocket {
   public BackupV3AuthCheckResponse checkSvr3AuthCredentials(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
     String response = makeServiceRequest(BACKUP_AUTH_CHECK_V3, "POST", JsonUtil.toJson(new BackupAuthCheckRequest(number, passwords)), NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, BackupV3AuthCheckResponse.class);
+  }
+
+  public void deleteAccount() throws IOException {
+    makeServiceRequest(DELETE_ACCOUNT_PATH, "DELETE", null);
   }
 
   public void redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) throws IOException {

@@ -124,6 +124,10 @@ public class SignalServiceAccountManager {
     return NetworkResultUtil.toBasicLegacy(accountApi.whoAmI());
   }
 
+  public void deleteAccount() throws IOException {
+    this.pushServiceSocket.deleteAccount();
+  }
+
   /**
    * Request a push challenge. A number will be pushed to the GCM (FCM) id. This can then be used
    * during SMS/call requests to bypass the CAPTCHA.

@@ -16,9 +16,7 @@ import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 
@@ -105,7 +103,7 @@ class DeleteAccountRepository {
       Log.i(TAG, "deleteAccount: attempting to delete account from server...");
 
       try {
-        NetworkResultUtil.toBasicLegacy(SignalNetwork.account().deleteAccount());
+        AppDependencies.getSignalServiceAccountManager().deleteAccount();
       } catch (IOException e) {
         Log.w(TAG, "deleteAccount: failed to delete account from signal service", e);
         onDeleteAccountEvent.accept(DeleteAccountEvent.ServerDeletionFailed.INSTANCE);
