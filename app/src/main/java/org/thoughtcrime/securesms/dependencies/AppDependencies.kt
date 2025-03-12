@@ -50,6 +50,7 @@ import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
@@ -330,6 +331,9 @@ object AppDependencies {
   val rateLimitChallengeApi: RateLimitChallengeApi
     get() = networkModule.rateLimitChallengeApi
 
+  val messageApi: MessageApi
+    get() = networkModule.messageApi
+
   @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
@@ -406,5 +410,6 @@ object AppDependencies {
     fun providePaymentsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): PaymentsApi
     fun provideCdsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CdsApi
     fun provideRateLimitChallengeApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RateLimitChallengeApi
+    fun provideMessageApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): MessageApi
   }
 }

@@ -3,18 +3,18 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable.ReportSpamData;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
@@ -92,8 +92,7 @@ public class ReportSpamJob extends BaseJob {
       reportSpamData = SignalDatabase.messages().getReportSpamMessageServerData(threadId, timestamp, MAX_MESSAGE_COUNT);
     }
 
-    int                         count                       = 0;
-    SignalServiceAccountManager signalServiceAccountManager = AppDependencies.getSignalServiceAccountManager();
+    int count = 0;
 
     for (ReportSpamData data : reportSpamData) {
       RecipientId         recipientId = data.getRecipientId();
@@ -108,7 +107,7 @@ public class ReportSpamJob extends BaseJob {
           reportingTokenEncoded = Base64.encodeWithPadding(reportingTokenBytes);
         }
 
-        signalServiceAccountManager.reportSpam(serviceId.get(), data.getServerGuid(), reportingTokenEncoded);
+        NetworkResultUtil.toBasicLegacy(SignalNetwork.message().reportSpam(serviceId.get(), data.getServerGuid(), reportingTokenEncoded));
         count++;
       } else {
         Log.w(TAG, "Unable to report spam without an ACI for " + recipientId);

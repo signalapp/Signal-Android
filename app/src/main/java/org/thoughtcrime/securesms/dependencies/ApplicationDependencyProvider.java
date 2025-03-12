@@ -89,6 +89,7 @@ import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
+import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.payments.PaymentsApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -520,6 +521,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull RateLimitChallengeApi provideRateLimitChallengeApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
     return new RateLimitChallengeApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull MessageApi provideMessageApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new MessageApi(authWebSocket, unauthWebSocket);
   }
 
   @VisibleForTesting

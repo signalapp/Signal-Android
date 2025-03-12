@@ -13,6 +13,7 @@ import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
+import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -46,6 +47,11 @@ object SignalNetwork {
 
   val linkDevice: LinkDeviceApi
     get() = AppDependencies.linkDeviceApi
+
+  @JvmStatic
+  @get:JvmName("message")
+  val message: MessageApi
+    get() = AppDependencies.messageApi
 
   @JvmStatic
   @get:JvmName("payments")

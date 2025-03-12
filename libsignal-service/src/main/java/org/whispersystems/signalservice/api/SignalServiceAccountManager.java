@@ -171,10 +171,6 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.pingStorageService();
   }
 
-  public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken) throws IOException {
-    this.pushServiceSocket.reportSpam(serviceId, serverGuid, reportingToken);
-  }
-
   /**
    * @return The avatar URL path, if one was written.
    */

@@ -253,8 +253,6 @@ public class PushServiceSocket {
   private static final String SVR2_AUTH = "/v2/backup/auth";
   private static final String SVR3_AUTH = "/v3/backup/auth";
 
-  private static final String REPORT_SPAM = "/v1/messages/report/%s/%s";
-
   private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
 
@@ -2519,12 +2517,6 @@ public class PushServiceSocket {
     {
       return GroupExternalCredential.ADAPTER.decode(readBodyBytes(response));
     }
-  }
-
-  public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken)
-      throws NonSuccessfulResponseCodeException, MalformedResponseException, PushNetworkException
-  {
-    makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", JsonUtil.toJson(new SpamTokenMessage(reportingToken)));
   }
 
   /**
