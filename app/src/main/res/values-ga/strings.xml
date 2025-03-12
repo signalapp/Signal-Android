@@ -596,14 +596,6 @@
         <item quantity="many">Má shábháiltear %1$d mír de na meáin sa stóras, beidh aipeanna eile ar do ghléas in ann iad a rochtain.\n\nLean ar aghaidh?</item>
         <item quantity="other">Má shábháiltear %1$d mír de na meáin sa stóras, beidh aipeanna eile ar do ghléas in ann iad a rochtain.\n\nLean ar aghaidh?</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Tharla earráid agus an ceangaltán á shábháil sa stóras!</item>
-        <item quantity="two">Tharla earráid agus na ceangaltáin á sábháil sa stóras!</item>
-        <item quantity="few">Tharla earráid agus na ceangaltáin á sábháil sa stóras!</item>
-        <item quantity="many">Tharla earráid agus na ceangaltáin á sábháil sa stóras!</item>
-        <item quantity="other">Tharla earráid agus na ceangaltáin á sábháil sa stóras!</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ní féidir scríobh chun stóras.</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Ceangaltán á shábháil</item>
         <item quantity="two">%1$d cheangaltán á sábháil</item>
@@ -715,6 +707,8 @@
     <string name="ConversationFragment_profile_names">ainmneacha próifíle</string>
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
     <string name="ConversationFragment_group_names">ainmneacha grúpa</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">Photo failed to download. Try again.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Leideanna Sábháilteachta</string>
@@ -2270,6 +2264,14 @@
     <string name="MessageRecord_reported_as_spam">Tuairiscithe mar thurscar</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Ghlac tú leis an iarratas teachtaireachta</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">You blocked this person</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">You unblocked this person</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">You blocked this group</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">You unblocked this group</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Glac leis</string>
@@ -3115,6 +3117,8 @@
     <string name="ThreadRecord_message_history_has_been_merged">Cumascadh do stair teachtaireachtaí</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">Is le %2$s %1$s</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Nuashonrú Signal</string>
@@ -3353,8 +3357,36 @@
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Níl freagairt tapa le fáil agus Signal faoi ghlas.</string>
     <string name="QuickResponseService_problem_sending_message">Tharla fadhb ag seoladh na teachtaireachta!</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Meáin sábháilte</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="one">Media saved</item>
+        <item quantity="two">Media saved</item>
+        <item quantity="few">Media saved</item>
+        <item quantity="many">Media saved</item>
+        <item quantity="other">Media saved</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one">Media saved (%1$s of %2$s failed)</item>
+        <item quantity="two">Media saved (%1$s of %2$s failed)</item>
+        <item quantity="few">Media saved (%1$s of %2$s failed)</item>
+        <item quantity="many">Media saved (%1$s of %2$s failed)</item>
+        <item quantity="other">Media saved (%1$s of %2$s failed)</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Error while saving attachment to storage!</item>
+        <item quantity="two">Error while saving attachments to storage!</item>
+        <item quantity="few">Error while saving attachments to storage!</item>
+        <item quantity="many">Error while saving attachments to storage!</item>
+        <item quantity="other">Error while saving attachments to storage!</item>
+    </plurals>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Cuardaigh</string>
@@ -6195,6 +6227,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">Grianghraf socraithe ag ardchaighdeán</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Grianghraf socraithe ag gnáthchaighdeán</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">Add a Media</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Brush and Pen</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Crop and Rotate</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Change Media Quality</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">Save Media</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Toggle emoji keyboard</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Toggle View Once</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">Send Media</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Finish adding a Message</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d mhír socraithe ag ardchaighdeán</item>
@@ -7804,6 +7854,8 @@
     <string name="CameraControls_capture_button_accessibility_label">Cnaipe Gabhála</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">Cnaipe Ar Aghaidh</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Toggle Flash Mode</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -8533,6 +8585,10 @@
     <string name="SubscriptionNotFoundBottomSheet__got_it">Tuigim</string>
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">Déan teagmháil leis an bhfoireann tacaíochta</string>
+
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">A network failure occurred. Please try again later.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
