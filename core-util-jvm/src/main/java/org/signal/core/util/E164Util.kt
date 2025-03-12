@@ -66,7 +66,9 @@ object E164Util {
    * value is needed for user display.
    */
   @JvmStatic
-  fun formatAsE164WithCountryCodeForDisplay(countryCode: String, input: String): String {
+  fun formatAsE164WithCountryCodeForDisplay(countryCode: String, input: String?): String {
+    val input = input ?: ""
+
     val result: String? = formatAsE164WithCountryCode(countryCode, input)
     if (result != null) {
       return result
