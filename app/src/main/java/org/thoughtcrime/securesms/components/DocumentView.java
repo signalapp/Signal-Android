@@ -20,6 +20,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -115,7 +116,7 @@ public class DocumentView extends FrameLayout {
     this.fileName.setText(OptionalUtil.or(documentSlide.getFileName(),
                                           documentSlide.getCaption())
                                       .orElse(getContext().getString(R.string.DocumentView_unnamed_file)));
-    this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
+    this.fileSize.setText(new ByteSize(documentSlide.getFileSize()).toUnitString(2));
     this.document.setText(documentSlide.getFileType(getContext()).orElse("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
   }

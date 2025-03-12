@@ -32,6 +32,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.isNotNullOrBlank
@@ -60,7 +61,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.MemoryUnitFormat
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -600,7 +600,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     videoSizeHint.text = if (state.isVideoTrimmingVisible) {
       val seconds = trimData.getDuration().inWholeSeconds
       val bytes = TranscodingQuality.createFromPreset(state.transcodingPreset, trimData.getDuration().inWholeMilliseconds).byteCountEstimate
-      String.format(Locale.getDefault(), "%d:%02d • %s", seconds / 60, seconds % 60, MemoryUnitFormat.formatBytes(bytes, MemoryUnitFormat.MEGA_BYTES, true))
+      String.format(Locale.getDefault(), "%d:%02d • %s", seconds / 60, seconds % 60, bytes.bytes.toUnitString())
     } else {
       null
     }

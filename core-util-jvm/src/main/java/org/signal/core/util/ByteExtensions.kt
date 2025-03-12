@@ -76,7 +76,8 @@ class ByteSize(val bytes: Long) {
     }
   }
 
-  fun toUnitString(maxPlaces: Int = 1, spaced: Boolean = true): String {
+  @JvmOverloads
+  fun toUnitString(maxPlaces: Int = 2, spaced: Boolean = true): String {
     val (size, unit) = getLargestNonZeroValue()
 
     val formatter = NumberFormat.getInstance().apply {

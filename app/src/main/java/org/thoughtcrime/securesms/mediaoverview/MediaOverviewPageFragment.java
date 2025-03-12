@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
+import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
@@ -327,9 +328,9 @@ public final class MediaOverviewPageFragment extends Fragment
     long                   totalFileSize = adapter.getSelectedMediaTotalFileSize();
 
     return getResources().getQuantityString(R.plurals.MediaOverviewActivity_d_selected_s,
-                                          mediaCount,
-                                          mediaCount,
-                                          Util.getPrettyFileSize(totalFileSize));
+                                            mediaCount,
+                                            mediaCount,
+                                            new ByteSize(totalFileSize).toUnitString());
   }
 
   private MediaGalleryAllAdapter getListAdapter() {

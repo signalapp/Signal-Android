@@ -61,6 +61,7 @@ import org.signal.core.ui.Scaffolds
 import org.signal.core.ui.SignalPreview
 import org.signal.core.ui.Texts
 import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
@@ -71,7 +72,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 
@@ -360,7 +360,7 @@ private fun StorageOverview(
       )
 
       it.findViewById<StorageGraphView>(R.id.storageGraphView).setStorageBreakdown(breakdownEntries)
-      it.findViewById<TextView>(R.id.total_size).text = Util.getPrettyFileSize(breakdownEntries.totalSize)
+      it.findViewById<TextView>(R.id.total_size).text = breakdownEntries.totalSize.bytes.toUnitString()
     }
 
     it.findViewById<View>(R.id.free_up_space).setOnClickListener {

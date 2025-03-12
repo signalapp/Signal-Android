@@ -367,8 +367,8 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
           )
 
           if (restoreProgress != null) {
-            val progressBytes = restoreProgress.count.toUnitString(maxPlaces = 2)
-            val totalBytes = restoreProgress.estimatedTotalCount.toUnitString(maxPlaces = 2)
+            val progressBytes = restoreProgress.count.toUnitString()
+            val totalBytes = restoreProgress.estimatedTotalCount.toUnitString()
             Text(
               text = stringResource(id = R.string.RemoteRestoreActivity__s_of_s_s, progressBytes, totalBytes, "%.2f%%".format(restoreProgress.getProgress())),
               style = MaterialTheme.typography.bodySmall,

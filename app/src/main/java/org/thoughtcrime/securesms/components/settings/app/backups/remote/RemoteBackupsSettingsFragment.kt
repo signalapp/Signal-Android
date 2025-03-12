@@ -103,7 +103,6 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
@@ -610,7 +609,7 @@ private fun LazyListScope.appendBackupDetailsItems(
             color = MaterialTheme.colorScheme.onSurface
           )
           Text(
-            text = Util.getPrettyFileSize(backupMediaSize),
+            text = backupMediaSize.bytes.toUnitString(),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
           )

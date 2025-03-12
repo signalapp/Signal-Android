@@ -262,7 +262,7 @@ sealed interface BackupStatusData {
   class NotEnoughFreeSpace(
     requiredSpace: ByteSize
   ) : BackupStatusData {
-    val requiredSpace = requiredSpace.toUnitString(maxPlaces = 2)
+    val requiredSpace = requiredSpace.toUnitString()
 
     override val iconRes: Int = R.drawable.symbol_backup_error_24
 
@@ -301,8 +301,8 @@ sealed interface BackupStatusData {
       @Composable get() = when (restoreStatus) {
         RestoreStatus.NORMAL -> stringResource(
           R.string.BackupStatus__status_size_of_size,
-          bytesDownloaded.toUnitString(maxPlaces = 2),
-          bytesTotal.toUnitString(maxPlaces = 2)
+          bytesDownloaded.toUnitString(),
+          bytesTotal.toUnitString()
         )
 
         RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatus__status_device_has_low_battery)

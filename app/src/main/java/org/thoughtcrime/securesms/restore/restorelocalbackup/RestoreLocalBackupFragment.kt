@@ -20,6 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.restore.RestoreRepository
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewModelFactory
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
@@ -218,7 +218,7 @@ class RestoreLocalBackupFragment : LoggingFragment(R.layout.fragment_restore_loc
 
   private fun presentBackupFileInfo(backupSize: Long, backupTimestamp: Long) {
     if (backupSize > 0) {
-      binding.backupSizeText.text = getString(R.string.RegistrationActivity_backup_size_s, Util.getPrettyFileSize(backupSize))
+      binding.backupSizeText.text = getString(R.string.RegistrationActivity_backup_size_s, backupSize.bytes.toUnitString())
     }
 
     if (backupTimestamp > 0) {

@@ -35,6 +35,7 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.RequestManager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
+import org.signal.core.util.ByteSize;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -339,7 +340,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       super.bind(context, mediaRecord, slide);
       this.slide = slide;
       if (showFileSizes | detailView) {
-        imageFileSize.setText(Util.getPrettyFileSize(slide.getFileSize()));
+        imageFileSize.setText(new ByteSize(slide.getFileSize()).toUnitString(2));
         imageFileSize.setVisibility(View.VISIBLE);
       } else {
         imageFileSize.setVisibility(View.GONE);
@@ -445,7 +446,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     private String getLine2(@NonNull Context context, @NonNull MediaTable.MediaRecord mediaRecord, @NonNull Slide slide) {
       return context.getString(R.string.MediaOverviewActivity_detail_line_3_part,
-                               Util.getPrettyFileSize(slide.getFileSize()),
+                               new ByteSize(slide.getFileSize()).toUnitString(2),
                                getFileTypeDescription(context, slide),
                                DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(), mediaRecord.getDate()));
     }

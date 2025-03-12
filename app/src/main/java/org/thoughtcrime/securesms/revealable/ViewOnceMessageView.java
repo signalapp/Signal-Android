@@ -18,6 +18,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -176,7 +177,7 @@ public class ViewOnceMessageView extends LinearLayout {
     if (messageRecord.getSlideDeck().getThumbnailSlide() == null) return "";
 
     long size = messageRecord.getSlideDeck().getThumbnailSlide().getFileSize();
-    return Util.getPrettyFileSize(size);
+    return new ByteSize(size).toUnitString(2);
   }
 
   private static @StringRes int getDescriptionId(@NonNull MmsMessageRecord messageRecord) {
