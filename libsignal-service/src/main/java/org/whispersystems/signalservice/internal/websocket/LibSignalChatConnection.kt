@@ -529,5 +529,11 @@ class LibSignalChatConnection(
         }
       }
     }
+
+    override fun onReceivedAlerts(chat: ChatConnection, alerts: Array<out String>) {
+      if (alerts.isNotEmpty()) {
+        Log.i(TAG, "$name Received ${alerts.size} alerts from the server")
+      }
+    }
   }
 }
