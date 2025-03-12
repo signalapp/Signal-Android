@@ -4342,11 +4342,11 @@
     <string name="KbsMegaphone__create_pin">번호 생성</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">Signal PIN 업데이트</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">Signal PIN을 업데이트하여 계정 등록을 완료하세요.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">번호 업데이트</string>
+    <string name="UpdatePinMegaphone__update_pin">PIN 업데이트</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

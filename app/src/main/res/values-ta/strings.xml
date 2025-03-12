@@ -4457,9 +4457,9 @@
     <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">சிக்னல் பின்-ஐப் புதுப்பியுங்கள்</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">கணக்குப் பதிவு செய்தலை நிறைவு செய்ய உங்கள் சிக்னல் பின்-ஐப் புதுப்பியுங்கள்.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
 

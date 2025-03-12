@@ -4342,11 +4342,11 @@
     <string name="KbsMegaphone__create_pin">ပင်နံပါတ်ဖန်တီးပါ</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">Signal PIN ကို အပ်ဒိတ်လုပ်ရန်</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">အကောင့်မှတ်ပုံတင်ခြင်းကို အပြီးသတ်ရန် သင်၏ Signal PIN ကို အပ်ဒိတ်လုပ်ပါ။</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_pin">ပင်နံပါတ်ကိုအသစ်ပြောင်းပါ</string>
+    <string name="UpdatePinMegaphone__update_pin">PIN ကို အပ်ဒိတ်လုပ်ပါ</string>
 
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->

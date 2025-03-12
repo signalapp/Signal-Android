@@ -4457,9 +4457,9 @@
     <string name="KbsMegaphone__create_pin">Loo PIN-kood</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">Uuenda Signali PIN-koodi</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">Konto registreerimise lõpuleviimiseks uuenda oma Signali PIN-koodi.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_pin">Uuenda PIN-koodi</string>
 

@@ -351,7 +351,7 @@
     <!-- Message on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_this_is_not_a_valid_call_link">Dit is geen geldige oproeplink. Zorg dat je de volledige link gebruikt met de juiste karakters voordat je probeert deel te nemen.</string>
     <!-- Displayed in a snackbar when the user is already in a call -->
-    <string name="CommunicationActions__you_are_already_in_a_call">Je neemt op dit moment al aan een oproep deel</string>
+    <string name="CommunicationActions__you_are_already_in_a_call">Je neemt op dit moment al deel aan een oproep</string>
 
     <!-- ConfirmIdentityDialog -->
 
@@ -4457,9 +4457,9 @@
     <string name="KbsMegaphone__create_pin">Pincode aanmaken</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">Signal-pincode bijwerken</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">Werk je Signal-pincode bij om de accountregistratie te voltooien.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_pin">Pincode bijwerken</string>
 
@@ -5569,7 +5569,7 @@
     <string name="KeyboardPagerFragment_search_emoji">Emoji zoeken</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Terug naar emoji-overzicht</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Zoekveld leegmaken</string>
-    <string name="KeyboardPagerFragment_search_giphy">Bij GIPHY zoeken</string>
+    <string name="KeyboardPagerFragment_search_giphy">Zoeken in GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
     <string name="StickerSearchDialogFragment_search_stickers">Stickers zoeken</string>

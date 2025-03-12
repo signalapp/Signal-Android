@@ -4342,9 +4342,9 @@
     <string name="KbsMegaphone__create_pin">PIN قۇر</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">PIN Signal نومۇرىڭىزنى يېڭىلاڭ</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">ھېسابات تىزىملاشنى تاماملاش ئۈچۈن PIN Signal نومۇرىڭىزنى يېڭىلاڭ.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_pin">PIN يېڭىلا</string>
 

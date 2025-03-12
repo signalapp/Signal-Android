@@ -562,7 +562,7 @@
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
-    <string name="ConversationFragment__contacts_app_not_found">L\'application Contacts est introuvable.</string>
+    <string name="ConversationFragment__contacts_app_not_found">Application Contacts introuvable.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Supprimer le message sélectionné ?</item>
         <item quantity="other">Supprimer les messages sélectionnés ?</item>
@@ -3646,7 +3646,7 @@
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilisés récemment</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Récemment utilisés</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Émoticônes et personnages</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Nature</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Nourriture et boissons</string>
@@ -4457,9 +4457,9 @@
     <string name="KbsMegaphone__create_pin">Créer un code PIN</string>
 
     <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__update_signal_pin">Update Signal PIN</string>
+    <string name="UpdatePinMegaphone__update_signal_pin">Mettre à jour le code PIN Signal</string>
     <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
-    <string name="UpdatePinMegaphone__message">Update your Signal PIN to complete account registration.</string>
+    <string name="UpdatePinMegaphone__message">Mettez à jour votre code PIN Signal pour finaliser votre inscription.</string>
     <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
     <string name="UpdatePinMegaphone__update_pin">Mettre à jour le code PIN</string>
 
@@ -5583,7 +5583,7 @@
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Seuls les admins peuvent ajouter du contenu à la story du groupe</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
-    <string name="ConversationSettingsFragment__contacts_app_not_found">Application \"Contacts\" introuvable</string>
+    <string name="ConversationSettingsFragment__contacts_app_not_found">Application Contacts introuvable.</string>
     <string name="ConversationSettingsFragment__start_video_call">Passer un appel vidéo</string>
     <string name="ConversationSettingsFragment__start_audio_call">Passer un appel vocal</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -7120,7 +7120,7 @@
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Ouvrir Contacts</string>
     <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Aucune application de gestion des contacts trouvée</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Application Contacts introuvable.</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
