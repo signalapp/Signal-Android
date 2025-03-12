@@ -1011,7 +1011,7 @@ object RemoteConfig {
   val messageBackups: Boolean by remoteValue(
     key = "android.messageBackups",
     hotSwappable = false,
-    active = false
+    active = true
   ) { value ->
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
