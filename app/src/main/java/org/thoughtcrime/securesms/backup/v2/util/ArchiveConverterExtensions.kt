@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -96,7 +97,7 @@ fun FilePointer?.toLocalAttachment(
       cdn = this.backupLocator.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
       key = this.backupLocator.key.toByteArray(),
       iv = null,
-      cdnKey = this.backupLocator.transitCdnKey,
+      cdnKey = this.backupLocator.transitCdnKey?.nullIfBlank(),
       archiveCdn = this.backupLocator.cdnNumber,
       archiveMediaName = this.backupLocator.mediaName,
       archiveMediaId = importState.mediaRootBackupKey.deriveMediaId(MediaName(this.backupLocator.mediaName)).encode(),
@@ -147,14 +148,17 @@ fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, content
   val pending = this.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED && (this.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && this.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
 
   if (mediaArchiveEnabled && !pending) {
+    val transitCdnKey = this.remoteLocation?.nullIfBlank()
+    val transitCdnNumber = this.cdn.cdnNumber.takeIf { transitCdnKey != null }
+
     builder.backupLocator = FilePointer.BackupLocator(
       mediaName = this.archiveMediaName ?: this.getMediaName().toString(),
-      cdnNumber = if (this.archiveMediaName != null) this.archiveCdn else Cdn.CDN_3.cdnNumber, // TODO [backup]: Update when new proto with optional cdn is landed
+      cdnNumber = this.archiveCdn.takeIf { this.archiveMediaName != null },
       key = Base64.decode(remoteKey).toByteString(),
       size = this.size.toInt(),
       digest = this.remoteDigest.toByteString(),
-      transitCdnNumber = this.cdn.cdnNumber.takeIf { this.remoteLocation != null },
-      transitCdnKey = this.remoteLocation
+      transitCdnNumber = transitCdnNumber,
+      transitCdnKey = transitCdnKey
     )
     return builder.build()
   }
