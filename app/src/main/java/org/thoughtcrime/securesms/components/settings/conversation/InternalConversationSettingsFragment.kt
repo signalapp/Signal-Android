@@ -183,8 +183,8 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         )
 
         clickPref(
-          title = DSLSettingsText.from("Delete Session"),
-          summary = DSLSettingsText.from("Deletes the session, essentially guaranteeing an encryption error if they send you a message."),
+          title = DSLSettingsText.from("Delete Sessions"),
+          summary = DSLSettingsText.from("Deletes all sessions with this recipient, essentially guaranteeing an encryption error if they send you a message."),
           onClick = {
             MaterialAlertDialogBuilder(requireContext())
               .setTitle("Are you sure?")
@@ -196,6 +196,20 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
                 if (recipient.hasPni) {
                   SignalDatabase.sessions.deleteAllFor(serviceId = SignalStore.account.requireAci(), addressName = recipient.requirePni().toString())
                 }
+              }
+              .show()
+          }
+        )
+
+        clickPref(
+          title = DSLSettingsText.from("Archive Sessions"),
+          summary = DSLSettingsText.from("Archives all sessions associated with this recipient, causing you to create a new session the next time you send a message (while not causing decryption errors)."),
+          onClick = {
+            MaterialAlertDialogBuilder(requireContext())
+              .setTitle("Are you sure?")
+              .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+              .setPositiveButton(android.R.string.ok) { _, _ ->
+                AppDependencies.protocolStore.aci().sessions().archiveSessions(recipient.id)
               }
               .show()
           }

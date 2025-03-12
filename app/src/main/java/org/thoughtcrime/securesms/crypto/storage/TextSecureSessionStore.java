@@ -150,6 +150,30 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
     }
   }
 
+  public void archiveSessions(@NonNull RecipientId recipientId) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
+      Recipient recipient = Recipient.resolved(recipientId);
+
+      if (recipient.getHasAci()) {
+        SignalProtocolAddress address = new SignalProtocolAddress(recipient.requireAci().toString(), 1);
+        archiveSiblingSessions(address);
+        archiveSession(address);
+      }
+
+      if (recipient.getHasPni()) {
+        SignalProtocolAddress address = new SignalProtocolAddress(recipient.requirePni().toString(), 1);
+        archiveSiblingSessions(address);
+        archiveSession(address);
+      }
+
+      if (recipient.getHasE164()) {
+        SignalProtocolAddress address = new SignalProtocolAddress(recipient.requireE164(), 1);
+        archiveSiblingSessions(address);
+        archiveSession(address);
+      }
+    }
+  }
+
   public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       List<SessionTable.SessionRow> sessions = SignalDatabase.sessions().getAllFor(accountId, address.getName());
