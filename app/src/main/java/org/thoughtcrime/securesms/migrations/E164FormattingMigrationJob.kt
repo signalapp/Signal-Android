@@ -9,6 +9,7 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.ACI_COLUMN
@@ -73,7 +74,9 @@ internal class E164FormattingMigrationJob(
         val existing: Optional<RecipientId> = SignalDatabase.recipients.getByE164(formattedE164)
         if (existing.isPresent) {
           Log.w(TAG, "Merging ${existing.get()} and $id", true)
-          SignalDatabase.recipients.mergeForMigration(existing.get(), id)
+          SignalDatabase.rawDatabase.withinTransaction {
+            SignalDatabase.recipients.mergeForMigration(existing.get(), id)
+          }
           Log.w(TAG, "Successfully merged ${existing.get()} and $id", true)
         } else {
           Log.w(TAG, "Unable to set E164, and it's not a conflict? Crashing.", e)
