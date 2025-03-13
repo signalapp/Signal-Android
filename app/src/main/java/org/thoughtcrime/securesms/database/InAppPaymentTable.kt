@@ -32,6 +32,7 @@ import org.signal.core.util.withinTransaction
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
 import org.thoughtcrime.securesms.util.parcelers.MillisecondDurationParceler
 import org.thoughtcrime.securesms.util.parcelers.NullableSubscriberIdParceler
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -134,6 +135,9 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     inAppPaymentData: InAppPaymentData
   ): InAppPaymentId {
     val now = System.currentTimeMillis()
+
+    validateInAppPayment(state, inAppPaymentData)
+
     return writableDatabase.insertInto(TABLE_NAME)
       .values(
         TYPE to type.code,
@@ -153,6 +157,9 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     inAppPayment: InAppPayment
   ) {
     val updated = inAppPayment.copy(updatedAt = System.currentTimeMillis().milliseconds)
+
+    validateInAppPayment(updated.state, updated.data)
+
     writableDatabase.update(TABLE_NAME)
       .values(InAppPayment.serialize(updated))
       .where(ID_WHERE, inAppPayment.id)
@@ -303,6 +310,20 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .limit(1)
       .run()
       .readToSingleObject(InAppPayment.Companion)
+  }
+
+  /**
+   * Validates the given InAppPayment properties and throws an exception if they're invalid.
+   */
+  private fun validateInAppPayment(
+    state: State,
+    inAppPaymentData: InAppPaymentData
+  ) {
+    if (inAppPaymentData.error?.data_ == InAppPaymentKeepAliveJob.KEEP_ALIVE) {
+      check(state == State.PENDING) { "Data has keep-alive error: Expected PENDING state but was $state." }
+    } else if (inAppPaymentData.error != null) {
+      check(state == State.END) { "Data has error: Expected END state but was $state" }
+    }
   }
 
   /**

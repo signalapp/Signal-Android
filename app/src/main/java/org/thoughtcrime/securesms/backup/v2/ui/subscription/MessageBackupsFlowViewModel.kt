@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
@@ -252,24 +251,18 @@ class MessageBackupsFlowViewModel(
   }
 
   /**
-   * Ensures we have a SubscriberId created and available for use. This is considered safe because
-   * the screen this is called in is assumed to only be accessible if the user does not currently have
-   * a subscription.
-   */
-  @WorkerThread
-  private fun ensureSubscriberIdForBackups(purchaseToken: IAPSubscriptionId.GooglePlayBillingPurchaseToken) {
-    RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, iapSubscriptionId = purchaseToken).blockingAwait()
-  }
-
-  /**
    * Handles a successful BillingPurchaseResult. Updates the in app payment, enqueues the appropriate job chain,
    * and handles any resulting error. Like donations, we will wait up to 10s for the completion of the job chain.
+   *
+   * This will always rotate the subscriber-id.
    */
   @OptIn(FlowPreview::class)
   private suspend fun handleSuccess(result: BillingPurchaseResult.Success, inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     withContext(SignalDispatchers.IO) {
       Log.d(TAG, "Setting purchase token data on InAppPayment and InAppPaymentSubscriber.")
-      ensureSubscriberIdForBackups(IAPSubscriptionId.GooglePlayBillingPurchaseToken(result.purchaseToken))
+
+      val iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(result.purchaseToken)
+      RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, iapSubscriptionId = iapSubscriptionId, isRotation = true).blockingAwait()
 
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       SignalDatabase.inAppPayments.update(
