@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -25,7 +27,7 @@ object BackupAlertDelegate {
           BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, null)
         } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSheet()) {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
-        } else if (BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet()) {
+        } else if (withContext(Dispatchers.IO) { BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet() }) {
           BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
         }
       }

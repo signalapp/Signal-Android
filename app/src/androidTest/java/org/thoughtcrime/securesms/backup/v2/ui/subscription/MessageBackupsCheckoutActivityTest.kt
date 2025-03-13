@@ -20,9 +20,12 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.coEvery
 import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -38,9 +41,12 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.NetworkResult
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -53,6 +59,10 @@ class MessageBackupsCheckoutActivityTest {
 
   @get:Rule val composeTestRule = createEmptyComposeRule()
 
+  private val testDispatcher = StandardTestDispatcher()
+
+  @get:Rule val coroutineDispatcherRule = CoroutineDispatcherRule(testDispatcher)
+
   private val purchaseResults = MutableSharedFlow<BillingPurchaseResult>()
 
   @Before
@@ -60,6 +70,11 @@ class MessageBackupsCheckoutActivityTest {
     every { AppDependencies.billingApi.getBillingPurchaseResults() } returns purchaseResults
     coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(price = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")))
     coEvery { AppDependencies.billingApi.launchBillingFlow(any()) } returns Unit
+
+    mockkObject(SignalNetwork)
+    every { SignalNetwork.archive } returns mockk {
+      every { triggerBackupIdReservation(any(), any(), any()) } returns NetworkResult.Success(Unit)
+    }
 
     mockkStatic(RemoteConfig::class)
     every { RemoteConfig.messageBackups } returns true
@@ -79,6 +94,8 @@ class MessageBackupsCheckoutActivityTest {
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
     composeTestRule.waitForIdle()
 
+    testDispatcher.scheduler.advanceUntilIdle()
+
     runBlocking {
       purchaseResults.emit(
         BillingPurchaseResult.Success(
@@ -93,6 +110,8 @@ class MessageBackupsCheckoutActivityTest {
 
     composeTestRule.waitForIdle()
     composeTestRule.onNodeWithTag("dialog-circular-progress-indicator").assertIsDisplayed()
+
+    testDispatcher.scheduler.advanceUntilIdle()
 
     val iap = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
     assertThat(iap?.state).isEqualTo(InAppPaymentTable.State.PENDING)
@@ -162,8 +181,11 @@ class MessageBackupsCheckoutActivityTest {
   }
 
   private fun launchCheckoutFlow(tier: MessageBackupTier? = null): ActivityScenario<MessageBackupsCheckoutActivity> {
-    return ActivityScenario.launch(
+    val scenario = ActivityScenario.launch<MessageBackupsCheckoutActivity>(
       MessageBackupsCheckoutActivity.Contract().createIntent(InstrumentationRegistry.getInstrumentation().targetContext, tier)
     )
+
+    testDispatcher.scheduler.advanceUntilIdle()
+    return scenario
   }
 }

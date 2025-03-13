@@ -10,8 +10,6 @@ import android.os.Environment
 import android.os.StatFs
 import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
@@ -305,9 +303,7 @@ object BackupRepository {
     }
 
     val paidType = try {
-      withContext(Dispatchers.IO) {
-        getPaidType()
-      }
+      getPaidType()
     } catch (e: IOException) {
       Log.w(TAG, "Failed to retrieve paid type.", e)
       return false
@@ -1415,7 +1411,8 @@ object BackupRepository {
     }
   }
 
-  private suspend fun getFreeType(): MessageBackupsType.Free {
+  @WorkerThread
+  private fun getFreeType(): MessageBackupsType.Free {
     val config = getSubscriptionsConfiguration()
 
     return MessageBackupsType.Free(
@@ -1426,6 +1423,7 @@ object BackupRepository {
   private suspend fun getPaidType(): MessageBackupsType.Paid? {
     val config = getSubscriptionsConfiguration()
     val product = AppDependencies.billingApi.queryProduct() ?: return null
+
     val backupLevelConfiguration = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL] ?: return null
 
     return MessageBackupsType.Paid(
@@ -1435,12 +1433,11 @@ object BackupRepository {
     )
   }
 
-  private suspend fun getSubscriptionsConfiguration(): SubscriptionsConfiguration {
-    val serviceResponse = withContext(Dispatchers.IO) {
-      AppDependencies
-        .donationsService
-        .getDonationsConfiguration(Locale.getDefault())
-    }
+  @WorkerThread
+  private fun getSubscriptionsConfiguration(): SubscriptionsConfiguration {
+    val serviceResponse = AppDependencies
+      .donationsService
+      .getDonationsConfiguration(Locale.getDefault())
 
     if (serviceResponse.result.isEmpty) {
       if (serviceResponse.applicationError.isPresent) {
