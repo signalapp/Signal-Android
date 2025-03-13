@@ -2021,9 +2021,9 @@
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">메시지 요청을 수락했습니다.</string>
     <!-- Update message shown in chat after you block a person -->
-    <string name="MessageRecord_you_blocked_this_person">You blocked this person</string>
+    <string name="MessageRecord_you_blocked_this_person">이 사용자를 차단했습니다.</string>
     <!-- Update message shown in chat after you unblock a person -->
-    <string name="MessageRecord_you_unblocked_this_person">You unblocked this person</string>
+    <string name="MessageRecord_you_unblocked_this_person">이 사용자를 차단했습니다.</string>
     <!-- Update message shown in chat after you block a group -->
     <string name="MessageRecord_you_blocked_this_group">You blocked this group</string>
     <!-- Update message shown in chat after you unblock a group -->
@@ -2766,7 +2766,7 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s번은 %2$s 님의 전화번호입니다.</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
-    <string name="ThreadRecord_blocked">Blocked</string>
+    <string name="ThreadRecord_blocked">차단함</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal 업데이트</string>
@@ -2994,7 +2994,7 @@
     <string name="QuickResponseService_problem_sending_message">메시지를 보내는 중에 오류가 발생했습니다!</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
-    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">저장 공간에 저장할 수 없습니다!</string>
 
     <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
     <plurals name="SaveAttachment_saved_success">
@@ -3009,7 +3009,7 @@
 
     <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
     <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
-        <item quantity="other">Error while saving attachments to storage!</item>
+        <item quantity="other">첨부 파일 저장 중 오류가 발생했습니다!</item>
     </plurals>
 
     <!-- SearchToolbar -->
@@ -5684,13 +5684,13 @@
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
     <string name="MediaReviewFragment__brush_pen_accessibility_label">Brush and Pen</string>
     <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Crop and Rotate</string>
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">자르기 및 회전</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Change Media Quality</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Save Media</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Toggle emoji keyboard</string>
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">이모지 키보드 전환</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Toggle View Once</string>
     <!-- Accessibility label describing the send media button on the Media review screen -->

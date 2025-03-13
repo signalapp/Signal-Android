@@ -2082,9 +2082,9 @@
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Вие приехте заявката за съобщение</string>
     <!-- Update message shown in chat after you block a person -->
-    <string name="MessageRecord_you_blocked_this_person">You blocked this person</string>
+    <string name="MessageRecord_you_blocked_this_person">Вие блокирахте това лице</string>
     <!-- Update message shown in chat after you unblock a person -->
-    <string name="MessageRecord_you_unblocked_this_person">You unblocked this person</string>
+    <string name="MessageRecord_you_unblocked_this_person">Вие отблокирахте този човек</string>
     <!-- Update message shown in chat after you block a group -->
     <string name="MessageRecord_you_blocked_this_group">You blocked this group</string>
     <!-- Update message shown in chat after you unblock a group -->
@@ -2854,7 +2854,7 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s принадлежи на %2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
-    <string name="ThreadRecord_blocked">Blocked</string>
+    <string name="ThreadRecord_blocked">Блокирана</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Обновление на Signal</string>
@@ -3085,7 +3085,7 @@
     <string name="QuickResponseService_problem_sending_message">Проблем при изпращане на съобщение!</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
-    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Неуспешен запис върху хранилището!</string>
 
     <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
     <plurals name="SaveAttachment_saved_success">
@@ -3102,8 +3102,8 @@
 
     <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
     <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Error while saving attachment to storage!</item>
-        <item quantity="other">Error while saving attachments to storage!</item>
+        <item quantity="one">Грешка при запазването на прикаченият файл!</item>
+        <item quantity="other">Грешка при запазването на прикачените файлове!</item>
     </plurals>
 
     <!-- SearchToolbar -->
@@ -5821,13 +5821,13 @@
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
     <string name="MediaReviewFragment__brush_pen_accessibility_label">Brush and Pen</string>
     <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Crop and Rotate</string>
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Изрязване и завъртане</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">Change Media Quality</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
     <string name="MediaReviewFragment__save_media_accessibility_label">Save Media</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
-    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Toggle emoji keyboard</string>
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Смени emoji клавиатурата</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
     <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Toggle View Once</string>
     <!-- Accessibility label describing the send media button on the Media review screen -->
