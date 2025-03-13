@@ -70,6 +70,7 @@ class RestoreLocalAttachmentJob private constructor(
         SignalDatabase.attachments.setRestoreTransferState(notRestorableAttachments, AttachmentTable.TRANSFER_PROGRESS_FAILED)
 
         // Intentionally enqueues one at a time for safer attachment transfer state management
+        Log.d(TAG, "Adding ${restoreAttachmentJobs.size} restore local attachment jobs")
         restoreAttachmentJobs.forEach { jobManager.add(it) }
       } while (restoreAttachmentJobs.isNotEmpty())
 
@@ -100,7 +101,7 @@ class RestoreLocalAttachmentJob private constructor(
     size = info.size
   )
 
-  override fun serialize(): ByteArray? {
+  override fun serialize(): ByteArray {
     return RestoreLocalAttachmentJobData(
       attachmentId = attachmentId.id,
       messageId = messageId,
@@ -111,6 +112,10 @@ class RestoreLocalAttachmentJob private constructor(
 
   override fun getFactoryKey(): String {
     return KEY
+  }
+
+  override fun onAdded() {
+    SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
   }
 
   override fun run(): Result {
