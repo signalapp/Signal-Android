@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -71,7 +72,9 @@ class AppSettingsViewModel : ViewModel() {
   }
 
   private fun getBackupFailureState(): BackupFailureState {
-    return if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
+    return if (!RemoteConfig.messageBackups) {
+      BackupFailureState.NONE
+    } else if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
       BackupFailureState.BACKUP_FAILED
     } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSettingsRow()) {
       BackupFailureState.COULD_NOT_COMPLETE_BACKUP
