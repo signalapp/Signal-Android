@@ -72,9 +72,9 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
 
   override fun provideSignalServiceMessageSender(
     authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
-    unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
     protocolStore: SignalServiceDataStore,
-    pushServiceSocket: PushServiceSocket
+    pushServiceSocket: PushServiceSocket,
+    messageApi: MessageApi
   ): SignalServiceMessageSender {
     return mockk(relaxed = true)
   }

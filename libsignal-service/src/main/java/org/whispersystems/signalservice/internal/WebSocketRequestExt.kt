@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.internal
 
+import okio.ByteString.Companion.toByteString
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.security.SecureRandom
@@ -55,6 +56,19 @@ fun WebSocketRequestMessage.Companion.put(path: String, body: Any, headers: Map<
     path = path,
     headers = listOf("content-type:application/json") + headers.toHeaderList(),
     body = JsonUtil.toJsonByteString(body),
+    id = SecureRandom().nextLong()
+  )
+}
+
+/**
+ * Create a custom PUT web socket request, where body and content type header are provided by caller.
+ */
+fun WebSocketRequestMessage.Companion.put(path: String, body: ByteArray, headers: Map<String, String>): WebSocketRequestMessage {
+  return WebSocketRequestMessage(
+    verb = "PUT",
+    path = path,
+    headers = headers.toHeaderList(),
+    body = body.toByteString(),
     id = SecureRandom().nextLong()
   )
 }

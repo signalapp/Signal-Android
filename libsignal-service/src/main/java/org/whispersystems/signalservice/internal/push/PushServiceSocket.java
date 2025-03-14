@@ -202,7 +202,6 @@ public class PushServiceSocket {
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
   private static final String WAIT_RESTORE_METHOD_PATH  = "/v1/devices/restore_account/%s?timeout=%s";
 
-  private static final String MESSAGE_PATH              = "/v1/messages/%s";
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
   private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
@@ -529,28 +528,6 @@ public class PushServiceSocket {
       return response;
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
-    }
-  }
-
-  public SignalServiceMessagesResult getMessages(boolean allowStories) throws IOException {
-    Map<String, String> headers = Collections.singletonMap("X-Signal-Receive-Stories", allowStories ? "true" : "false");
-
-    try (Response response = makeServiceRequest(String.format(MESSAGE_PATH, ""), "GET", (RequestBody) null, headers, NO_HANDLER, SealedSenderAccess.NONE, false)) {
-      validateServiceResponse(response);
-
-      List<SignalServiceEnvelopeEntity> envelopes = readBodyJson(response.body(), SignalServiceEnvelopeEntityList.class).getMessages();
-
-      long serverDeliveredTimestamp = 0;
-      try {
-        String stringValue = response.header(SERVER_DELIVERED_TIMESTAMP_HEADER);
-        stringValue = stringValue != null ? stringValue : "0";
-
-        serverDeliveredTimestamp = Long.parseLong(stringValue);
-      } catch (NumberFormatException e) {
-        Log.w(TAG, e);
-      }
-
-      return new SignalServiceMessagesResult(envelopes, serverDeliveredTimestamp);
     }
   }
 

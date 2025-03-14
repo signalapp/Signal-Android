@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
+import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
@@ -122,12 +123,12 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
 
   override fun provideSignalServiceMessageSender(
     authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
-    unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
     protocolStore: SignalServiceDataStore,
-    pushServiceSocket: PushServiceSocket
+    pushServiceSocket: PushServiceSocket,
+    messageApi: MessageApi
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(authWebSocket, unauthWebSocket, protocolStore, pushServiceSocket))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(authWebSocket, protocolStore, pushServiceSocket, messageApi))
     }
     return signalServiceMessageSender!!
   }

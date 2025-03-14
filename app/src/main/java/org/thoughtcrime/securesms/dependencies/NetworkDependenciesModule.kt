@@ -82,7 +82,7 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(authWebSocket, unauthWebSocket, protocolStore, pushServiceSocket)
+    provider.provideSignalServiceMessageSender(authWebSocket, protocolStore, pushServiceSocket, messageApi)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 

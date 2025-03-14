@@ -20,7 +20,6 @@ import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -32,6 +31,7 @@ import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements;
+import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -47,7 +47,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRe
 import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
-import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
@@ -78,7 +77,6 @@ import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.services.AttachmentService;
-import org.whispersystems.signalservice.api.services.MessagingService;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -178,7 +176,7 @@ public class SignalServiceMessageSender {
   private final IdentityKeyPair               localPniIdentity;
 
   private final AttachmentService attachmentService;
-  private final MessagingService  messagingService;
+  private final MessageApi        messageApi;
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
@@ -187,7 +185,7 @@ public class SignalServiceMessageSender {
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
                                     SignalWebSocket.AuthenticatedWebSocket authWebSocket,
-                                    SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket,
+                                    MessageApi messageApi,
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize)
@@ -201,7 +199,7 @@ public class SignalServiceMessageSender {
     this.localDeviceId     = credentialsProvider.getDeviceId();
     this.localPni          = credentialsProvider.getPni();
     this.attachmentService = new AttachmentService(authWebSocket);
-    this.messagingService  = new MessagingService(authWebSocket, unauthWebSocket);
+    this.messageApi        = messageApi;
     this.eventListener     = eventListener;
     this.maxEnvelopeSize   = maxEnvelopeSize;
     this.localPniIdentity  = store.pni().getIdentityKeyPair();
@@ -1940,9 +1938,14 @@ public class SignalServiceMessageSender {
         }
 
         try {
-          SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, sealedSenderAccess, story).blockingGet()).getResultOrThrow();
+          SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), messageApi.sendMessage(messages, sealedSenderAccess, story));
           return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
-        } catch (InvalidUnidentifiedAccessHeaderException | UnregisteredUserException | MismatchedDevicesException | StaleDevicesException e) {
+        } catch (AuthorizationFailedException |
+                 UnregisteredUserException |
+                 MismatchedDevicesException |
+                 StaleDevicesException |
+                 ProofRequiredException |
+                 ServerRejectedException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
@@ -2121,16 +2124,19 @@ public class SignalServiceMessageSender {
             return Single.error(new CancelationException());
           }
 
-          return messagingService.send(messages, sealedSenderAccess, story)
-                                 .map(r -> new kotlin.Pair<>(messages, r));
+          return Single.fromCallable(() -> messageApi.sendMessage(messages, sealedSenderAccess, story))
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .onErrorReturn(NetworkResult.ApplicationError::new)
+                .map(r -> new kotlin.Pair<>(messages, r));
         })
         .observeOn(scheduler)
         .flatMap(pair -> {
-          final OutgoingPushMessageList              messages        = pair.getFirst();
-          final ServiceResponse<SendMessageResponse> serviceResponse = pair.getSecond();
+          final OutgoingPushMessageList            messages      = pair.getFirst();
+          final NetworkResult<SendMessageResponse> networkResult = pair.getSecond();
 
-          if (serviceResponse.getResult().isPresent()) {
-            SendMessageResponse response = serviceResponse.getResult().get();
+          try {
+            SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), networkResult);
             SendMessageResult   result   = SendMessageResult.success(
                 recipient,
                 messages.getDevices(),
@@ -2140,18 +2146,17 @@ public class SignalServiceMessageSender {
                 content.getContent()
             );
             return Single.just(result);
-          } else {
+          } catch (Throwable throwable) {
             if (cancelationSignal != null && cancelationSignal.isCanceled()) {
               return Single.error(new CancelationException());
             }
 
-            //noinspection OptionalGetWithoutIsPresent
-            Throwable throwable = serviceResponse.getApplicationError().or(serviceResponse::getExecutionError).get();
-
-            if (throwable instanceof InvalidUnidentifiedAccessHeaderException ||
+            if (throwable instanceof AuthorizationFailedException ||
                 throwable instanceof UnregisteredUserException ||
                 throwable instanceof MismatchedDevicesException ||
-                throwable instanceof StaleDevicesException)
+                throwable instanceof StaleDevicesException ||
+                throwable instanceof ProofRequiredException ||
+                throwable instanceof ServerRejectedException)
             {
               // Non-technical failures shouldn't be retried with socket
               return Single.error(throwable);
@@ -2424,9 +2429,14 @@ public class SignalServiceMessageSender {
 
       try {
         try {
-          SendGroupMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.sendToGroup(ciphertext, sealedSenderAccess, timestamp, online, urgent, story).blockingGet()).getResultOrThrow();
+
+          SendGroupMessageResponse response = NetworkResultUtil.toGroupMessageSendLegacy(messageApi.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story));
           return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
-        } catch (InvalidUnidentifiedAccessHeaderException | NotFoundException | GroupMismatchedDevicesException | GroupStaleDevicesException e) {
+        } catch (InvalidUnidentifiedAccessHeaderException |
+                 NotFoundException |
+                 GroupMismatchedDevicesException |
+                 GroupStaleDevicesException |
+                 ServerRejectedException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
