@@ -8,8 +8,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
-import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 
 class GatewaySelectorViewModel(
   args: GatewaySelectorBottomSheetArgs,
-  repository: StripeRepository,
+  repository: GooglePayRepository,
   private val gatewaySelectorRepository: GatewaySelectorRepository
 ) : ViewModel() {
 
@@ -68,7 +68,7 @@ class GatewaySelectorViewModel(
 
   class Factory(
     private val args: GatewaySelectorBottomSheetArgs,
-    private val repository: StripeRepository,
+    private val repository: GooglePayRepository,
     private val gatewaySelectorRepository: GatewaySelectorRepository = GatewaySelectorRepository(AppDependencies.donationsService)
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

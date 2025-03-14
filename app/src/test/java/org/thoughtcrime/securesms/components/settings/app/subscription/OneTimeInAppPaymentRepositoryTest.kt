@@ -4,26 +4,21 @@ import android.app.Application
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
-import io.reactivex.rxjava3.core.Flowable
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
-import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.RecipientTable
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.RxPluginsRule
-import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -80,7 +75,7 @@ class OneTimeInAppPaymentRepositoryTest {
   }
 
   @Test
-  fun `Given a registered non-self individual, when I verifyRecipientIsAllowedToReceiveAGift, then I expect completion`() {
+  fun `Given a registered non-self individual, when I verifyRecipientIsAllowedToReceiveAGift, then I expect no error`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
       id = recipientId,
@@ -91,13 +86,10 @@ class OneTimeInAppPaymentRepositoryTest {
     mockkStatic(Recipient::class)
     every { Recipient.resolved(recipientId) } returns recipient
 
-    val testObserver = OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(recipientId).test()
-    rxRule.defaultScheduler.triggerActions()
-
-    testObserver.assertComplete()
+    OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGiftSync(recipientId)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given self, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -108,7 +100,7 @@ class OneTimeInAppPaymentRepositoryTest {
     verifyRecipientIsNotAllowedToBeGiftedBadges(recipient)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given an unregistered individual, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -120,7 +112,7 @@ class OneTimeInAppPaymentRepositoryTest {
     verifyRecipientIsNotAllowedToBeGiftedBadges(recipient)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given a group, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -133,7 +125,7 @@ class OneTimeInAppPaymentRepositoryTest {
     verifyRecipientIsNotAllowedToBeGiftedBadges(recipient)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given a call link, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -146,7 +138,7 @@ class OneTimeInAppPaymentRepositoryTest {
     verifyRecipientIsNotAllowedToBeGiftedBadges(recipient)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given a distribution list, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -159,7 +151,7 @@ class OneTimeInAppPaymentRepositoryTest {
     verifyRecipientIsNotAllowedToBeGiftedBadges(recipient)
   }
 
-  @Test
+  @Test(expected = DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid::class)
   fun `Given release notes, when I verifyRecipientIsAllowedToReceiveAGift, then I expect SelectedRecipientIsInvalid`() {
     val recipientId = RecipientId.from(1L)
     val recipient = Recipient(
@@ -210,68 +202,10 @@ class OneTimeInAppPaymentRepositoryTest {
       .assertComplete()
   }
 
-  @Test
-  fun `Given a long running transaction, when I waitForOneTimeRedemption, then I expect DonationPending`() {
-    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.SEPADebit)
-
-    every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
-
-    val testObserver = OneTimeInAppPaymentRepository
-      .waitForOneTimeRedemption(inAppPayment, "test-intent-id")
-      .test()
-
-    rxRule.defaultScheduler.triggerActions()
-    rxRule.defaultScheduler.advanceTimeBy(10, TimeUnit.SECONDS)
-    rxRule.defaultScheduler.triggerActions()
-
-    testObserver
-      .assertError { it is DonationError.BadgeRedemptionError.DonationPending }
-  }
-
-  @Test
-  fun `Given a non long running transaction, when I waitForOneTimeRedemption, then I expect TimeoutWaitingForTokenError`() {
-    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
-
-    every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
-
-    val testObserver = OneTimeInAppPaymentRepository
-      .waitForOneTimeRedemption(inAppPayment, "test-intent-id")
-      .test()
-
-    rxRule.defaultScheduler.triggerActions()
-    rxRule.defaultScheduler.advanceTimeBy(10, TimeUnit.SECONDS)
-    rxRule.defaultScheduler.triggerActions()
-
-    testObserver
-      .assertError { it is DonationError.BadgeRedemptionError.TimeoutWaitingForTokenError }
-  }
-
-  @Test
-  fun `Given no delays, when I waitForOneTimeRedemption, then I expect happy path`() {
-    val inAppPayment = inAppPaymentsTestRule.createInAppPayment(InAppPaymentType.ONE_TIME_DONATION, PaymentSourceType.Stripe.CreditCard)
-
-    every { InAppPaymentsRepository.observeUpdates(inAppPayment.id) } returns Flowable.just(inAppPayment.copy(state = InAppPaymentTable.State.END))
-    every { SignalDatabase.Companion.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
-
-    val testObserver = OneTimeInAppPaymentRepository
-      .waitForOneTimeRedemption(inAppPayment, "test-intent-id")
-      .test()
-
-    rxRule.defaultScheduler.triggerActions()
-
-    testObserver
-      .assertComplete()
-  }
-
   private fun verifyRecipientIsNotAllowedToBeGiftedBadges(recipient: Recipient) {
     mockkStatic(Recipient::class)
     every { Recipient.resolved(recipient.id) } returns recipient
 
-    val testObserver = OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(recipient.id).test()
-    rxRule.defaultScheduler.triggerActions()
-
-    testObserver.assertError {
-      it is DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
-    }
+    OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGiftSync(recipient.id)
   }
 }

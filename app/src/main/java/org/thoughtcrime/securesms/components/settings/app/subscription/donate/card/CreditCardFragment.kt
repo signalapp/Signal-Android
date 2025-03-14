@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
@@ -30,7 +29,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.st
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ViewUtil
-import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
@@ -40,10 +38,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   private val viewModel: CreditCardViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by navGraphViewModels(
-    R.id.checkout_flow,
-    factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<InAppPaymentComponent>().stripeRepository)
-    }
+    R.id.checkout_flow
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

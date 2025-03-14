@@ -152,6 +152,11 @@ class InAppPaymentOneTimeContextJob private constructor(
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
             data = inAppPayment.data.copy(
+              waitForAuth = null,
+              stripeActionComplete = null,
+              payPalActionComplete = null,
+              payPalRequiresAction = null,
+              stripeRequiresAction = null,
               redemption = InAppPaymentData.RedemptionState(
                 stage = InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED,
                 receiptCredentialPresentation = receiptCredentialPresentation.serialize().toByteString()
@@ -196,7 +201,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Invalid state: ${inAppPayment.state} but expected PENDING")
 
-      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+      if (inAppPayment.state == InAppPaymentTable.State.TRANSACTING) {
         warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
       } else {
         throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
@@ -225,6 +230,11 @@ class InAppPaymentOneTimeContextJob private constructor(
     val updatedPayment = inAppPayment.copy(
       state = InAppPaymentTable.State.PENDING,
       data = inAppPayment.data.copy(
+        waitForAuth = null,
+        stripeActionComplete = null,
+        payPalActionComplete = null,
+        payPalRequiresAction = null,
+        stripeRequiresAction = null,
         redemption = inAppPayment.data.redemption.copy(
           stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
           receiptCredentialRequestContext = requestContext.serialize().toByteString()

@@ -24,8 +24,8 @@ import org.signal.donations.GooglePayApi
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
@@ -54,15 +54,12 @@ class InAppPaymentCheckoutDelegate(
     private val TAG = Log.tag(InAppPaymentCheckoutDelegate::class.java)
   }
 
-  private val inAppPaymentComponent: InAppPaymentComponent by lazy { fragment.requireListener() }
+  private val googlePayComponent: GooglePayComponent by lazy { fragment.requireListener() }
   private val disposables = LifecycleDisposable()
   private val viewModel: DonationCheckoutViewModel by fragment.viewModels()
 
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by fragment.navGraphViewModels(
-    R.id.checkout_flow,
-    factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(inAppPaymentComponent.stripeRepository)
-    }
+    R.id.checkout_flow
   )
 
   init {
@@ -158,7 +155,7 @@ class InAppPaymentCheckoutDelegate(
 
   private fun launchGooglePay(inAppPayment: InAppPaymentTable.InAppPayment) {
     viewModel.provideGatewayRequestForGooglePay(inAppPayment)
-    inAppPaymentComponent.stripeRepository.requestTokenFromGooglePay(
+    googlePayComponent.googlePayRepository.requestTokenFromGooglePay(
       price = inAppPayment.data.amount!!.toFiatMoney(),
       label = InAppDonations.resolveLabel(fragment.requireContext(), inAppPayment.type, inAppPayment.data.level),
       requestCode = InAppPaymentsRepository.getGooglePayRequestCode(inAppPayment.type)
@@ -178,10 +175,10 @@ class InAppPaymentCheckoutDelegate(
   }
 
   private fun registerGooglePayCallback() {
-    disposables += inAppPaymentComponent.googlePayResultPublisher.subscribeBy(
+    disposables += googlePayComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
         viewModel.consumeGatewayRequestForGooglePay()?.let {
-          inAppPaymentComponent.stripeRepository.onActivityResult(
+          googlePayComponent.googlePayRepository.onActivityResult(
             paymentResult.requestCode,
             paymentResult.resultCode,
             paymentResult.data,

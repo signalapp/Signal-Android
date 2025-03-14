@@ -186,7 +186,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
 
         try {
           info("Generating a new subscriber id.")
-          RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, true).blockingAwait()
+          RecurringInAppPaymentRepository.ensureSubscriberIdSync(InAppPaymentSubscriberRecord.Type.BACKUP, true)
 
           info("Writing the new subscriber id to the InAppPayment.")
           val latest = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!

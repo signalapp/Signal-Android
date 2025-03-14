@@ -516,13 +516,13 @@ object InAppPaymentsRepository {
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
-        InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION -> {
+        InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION, InAppPaymentTable.State.REQUIRES_ACTION -> {
           DonationRedemptionJobStatus.PendingExternalVerification(
             pendingOneTimeDonation = inAppPayment.toPendingOneTimeDonation(),
             nonVerifiedMonthlyDonation = inAppPayment.toNonVerifiedMonthlyDonation()
           )
         }
-        InAppPaymentTable.State.PENDING -> {
+        InAppPaymentTable.State.PENDING, InAppPaymentTable.State.TRANSACTING, InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED -> {
           if (inAppPayment.data.redemption?.keepAlive == true) {
             DonationRedemptionJobStatus.PendingKeepAlive
           } else if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
@@ -590,7 +590,7 @@ object InAppPaymentsRepository {
       timestamp = insertedAt.inWholeMilliseconds,
       price = data.amount!!.toFiatMoney(),
       level = data.level.toInt(),
-      checkedVerification = data.waitForAuth!!.checkedVerification
+      checkedVerification = data.waitForAuth?.checkedVerification ?: false
     )
   }
 

@@ -379,6 +379,31 @@ message InAppPaymentData {
         optional bytes  receiptCredentialPresentation   = 5; // Redeemable presentation
     }
 
+    message StripeRequiresActionState {
+                 string uri                 = 1; // URI to navigate the user to in a webview
+                 string returnUri           = 2; // URI to return to the app with if the user moves to an external location
+                 string stripeIntentId      = 3; // Passed to same field in waiting for auth
+                 string stripeClientSecret  = 4; // Passed to same field in waiting for auth
+        optional string paymentMethodId     = 5; // Nullable payment method id
+    }
+
+    message StripeActionCompleteState {
+                 string stripeIntentId      = 3; // Passed to same field in waiting for auth
+                 string stripeClientSecret  = 4; // Passed to same field in waiting for auth
+        optional string paymentMethodId     = 5; // Nullable payment method id
+    }
+
+    message PayPalRequiresActionState {
+        string approvalUrl = 1;
+        string token       = 2;
+    }
+
+    message PayPalActionCompleteState {
+        string payerId      = 1;
+        string paymentId    = 2;
+        string paymentToken = 3;
+    }
+
     message Error {
         enum Type {
             UNKNOWN                        = 0;  // A generic, untyped error. Check log for details.
@@ -413,10 +438,13 @@ message InAppPaymentData {
              PaymentMethodType paymentMethodType = 9; // The method through which this in app payment was made
 
     oneof redemptionState {
-        WaitingForAuthorizationState waitForAuth = 10;   // Waiting on user authorization from an external source (3DS, iDEAL)
-        RedemptionState              redemption  = 11;  // Waiting on processing of token
+        WaitingForAuthorizationState waitForAuth          = 10; // Waiting on user authorization from an external source (3DS, iDEAL)
+        RedemptionState              redemption           = 11; // Waiting on processing of token
+        StripeRequiresActionState    stripeRequiresAction = 12; // Waiting on required user action, user has not navigated away from app.
+        StripeActionCompleteState    stripeActionComplete = 13; // Stripe action completed.
+        PayPalRequiresActionState    payPalRequiresAction = 14; // Waiting on required user action, user has not navigated away from app.
+        PayPalActionCompleteState    payPalActionComplete = 15; // PayPal action completed.
     }
-
 }
 
 // DEPRECATED -- Move to TokenTransactionData

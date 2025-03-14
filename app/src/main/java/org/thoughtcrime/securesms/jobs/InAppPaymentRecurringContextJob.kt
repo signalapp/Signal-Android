@@ -85,7 +85,7 @@ class InAppPaymentRecurringContextJob private constructor(
   override fun onAdded() {
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
     info("Added context job for payment with state ${inAppPayment?.state}")
-    if (inAppPayment?.state == InAppPaymentTable.State.CREATED) {
+    if (inAppPayment?.state == InAppPaymentTable.State.TRANSACTING) {
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           state = InAppPaymentTable.State.PENDING
@@ -155,21 +155,21 @@ class InAppPaymentRecurringContextJob private constructor(
     info("Subscription is valid, proceeding with request for ReceiptCredentialResponse")
 
     val updatedInAppPayment: InAppPaymentTable.InAppPayment = if (inAppPayment.data.redemption!!.stage != InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED || inAppPayment.endOfPeriod.inWholeMilliseconds <= 0) {
-      info("Updating payment state with endOfCurrentPeriod and proper stage.")
+      info("Updating payment state with endOfCurrentPeriod (${subscription.endOfCurrentPeriod}) and proper stage.")
 
       if (inAppPayment.type.requireSubscriberType() == InAppPaymentSubscriberRecord.Type.DONATION) {
-        info("Recording last end of period.")
+        info("Recording last end of period (${subscription.endOfCurrentPeriod}).")
         SignalStore.inAppPayments.setLastEndOfPeriod(subscription.endOfCurrentPeriod)
       }
 
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           endOfPeriod = subscription.endOfCurrentPeriod.seconds,
-          data = inAppPayment.data.copy(
+          data = inAppPayment.data.newBuilder().redemption(
             redemption = inAppPayment.data.redemption.copy(
               stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED
             )
-          )
+          ).build()
         )
       )
 
@@ -180,7 +180,7 @@ class InAppPaymentRecurringContextJob private constructor(
 
     if (hasEntitlementAlready(updatedInAppPayment, subscription.endOfCurrentPeriod)) {
       info("Already have entitlement for this badge. Marking complete.")
-      markInAppPaymentCompleted(updatedInAppPayment)
+      markInAppPaymentCompleted(updatedInAppPayment, subscription)
     } else {
       submitAndValidateCredentials(updatedInAppPayment, subscription, requestContext)
     }
@@ -227,13 +227,15 @@ class InAppPaymentRecurringContextJob private constructor(
     return (code >= 500 || code == 429) && code != 508
   }
 
-  private fun markInAppPaymentCompleted(inAppPayment: InAppPaymentTable.InAppPayment) {
+  private fun markInAppPaymentCompleted(inAppPayment: InAppPaymentTable.InAppPayment, subscription: Subscription) {
+    SignalDatabase.donationReceipts.addReceipt(InAppPaymentReceiptRecord.createForSubscription(subscription))
+
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = InAppPaymentData.RedemptionState(stage = InAppPaymentData.RedemptionState.Stage.REDEEMED)
-        )
+        ).build()
       )
     )
   }
@@ -248,7 +250,7 @@ class InAppPaymentRecurringContextJob private constructor(
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Unexpected state. Got ${inAppPayment.state} but expected PENDING")
 
-      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+      if (inAppPayment.state == InAppPaymentTable.State.TRANSACTING) {
         warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
       } else {
         throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
@@ -279,12 +281,12 @@ class InAppPaymentRecurringContextJob private constructor(
       val requestContext = InAppPaymentsRepository.generateRequestCredential()
       val updatedPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.PENDING,
-        data = inAppPayment.data.copy(
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = inAppPayment.data.redemption.copy(
             stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
             receiptCredentialRequestContext = requestContext.serialize().toByteString()
           )
-        )
+        ).build()
       )
 
       SignalDatabase.inAppPayments.update(updatedPayment)
@@ -550,12 +552,12 @@ class InAppPaymentRecurringContextJob private constructor(
     SignalDatabase.donationReceipts.addReceipt(InAppPaymentReceiptRecord.createForSubscription(subscription))
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
-        data = inAppPayment.data.copy(
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = inAppPayment.data.redemption!!.copy(
             stage = InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED,
             receiptCredentialPresentation = receiptCredentialPresentation.serialize().toByteString()
           )
-        )
+        ).build()
       )
     )
   }

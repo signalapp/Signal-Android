@@ -170,3 +170,46 @@ message MultiDeviceAttachmentBackfillUpdateJobData {
   signalservice.ConversationIdentifier targetConversation = 2;
   uint64 messageId = 3;
 }
+
+message InAppPaymentSourceData {
+  enum Code {
+    UNKNOWN = 0;
+    PAY_PAL = 1;
+    CREDIT_CARD = 2;
+    GOOGLE_PAY = 3;
+    SEPA_DEBIT = 4;
+    IDEAL = 5;
+    GOOGLE_PLAY_BILLING = 6;
+  }
+
+  message TokenData {
+    string parameters = 1;
+    string tokenId = 2;
+    optional string email = 3;
+  }
+
+  message IDEALData {
+    string bank = 1;
+    string name = 2;
+    string email = 3;
+  }
+
+  message SEPAData {
+    string iban = 1;
+    string name = 2;
+    string email = 3;
+  }
+
+  Code code = 1;
+
+  oneof data {
+    TokenData tokenData = 2;
+    IDEALData idealData = 3;
+    SEPAData sepaData = 4;
+  }
+}
+
+message InAppPaymentSetupJobData {
+  uint64 inAppPaymentId = 1;
+  InAppPaymentSourceData inAppPaymentSource = 2;
+}

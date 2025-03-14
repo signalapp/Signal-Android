@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -29,6 +30,9 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.In
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse
@@ -62,7 +66,14 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT -> {
-          viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
+          viewModel.processNewDonation(
+            args.inAppPayment!!,
+            if (args.inAppPaymentType.recurring) {
+              this::monthlyConfirmationPipeline
+            } else {
+              this::oneTimeConfirmationPipeline
+            }
+          )
         }
 
         InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION -> {
@@ -129,12 +140,66 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     }
   }
 
-  private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
-    return routeToOneTimeConfirmation(createPaymentIntentResponse)
+  private fun oneTimeConfirmationPipeline(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Completable {
+    return Single.fromCallable {
+      SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    }.map { inAppPayment ->
+      val requiresAction: InAppPaymentData.PayPalRequiresActionState = inAppPayment.data.payPalRequiresAction ?: error("InAppPayment is missing requiresAction data")
+      PayPalCreatePaymentIntentResponse(
+        requiresAction.approvalUrl,
+        requiresAction.token
+      )
+    }.flatMap {
+      routeToOneTimeConfirmation(it)
+    }.flatMapCompletable {
+      Completable.fromAction {
+        Log.d(TAG, "User confirmed action. Updating intent accessors and resubmitting job.")
+        val postNextActionPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+
+        SignalDatabase.inAppPayments.update(
+          postNextActionPayment.copy(
+            state = InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED,
+            data = postNextActionPayment.data.newBuilder().payPalActionComplete(
+              payPalActionComplete = InAppPaymentData.PayPalActionCompleteState(
+                paymentId = it.paymentId ?: "",
+                paymentToken = it.paymentToken,
+                payerId = it.payerId
+              )
+            ).build()
+          )
+        )
+      }
+    }
   }
 
-  private fun monthlyConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentMethodResponse): Single<PayPalPaymentMethodId> {
-    return routeToMonthlyConfirmation(createPaymentIntentResponse)
+  private fun monthlyConfirmationPipeline(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Completable {
+    return Single.fromCallable {
+      SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    }.map { inAppPayment ->
+      val requiresAction: InAppPaymentData.PayPalRequiresActionState = inAppPayment.data.payPalRequiresAction ?: error("InAppPayment is missing requiresAction data")
+      PayPalCreatePaymentMethodResponse(
+        requiresAction.approvalUrl,
+        requiresAction.token
+      )
+    }.flatMap {
+      routeToMonthlyConfirmation(it)
+    }.flatMapCompletable {
+      Completable.fromAction {
+        Log.d(TAG, "User confirmed action. Updating intent accessors and resubmitting job.")
+        val postNextActionPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+
+        SignalDatabase.inAppPayments.update(
+          postNextActionPayment.copy(
+            state = InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED,
+            data = postNextActionPayment.data.newBuilder().payPalActionComplete(
+              payPalActionComplete = InAppPaymentData.PayPalActionCompleteState(
+                paymentId = it.paymentId
+              )
+            ).build()
+          )
+        )
+      }
+    }
   }
 
   private fun routeToOneTimeConfirmation(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {

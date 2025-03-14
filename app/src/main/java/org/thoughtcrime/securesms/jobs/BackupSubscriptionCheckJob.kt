@@ -142,11 +142,11 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
   }
 
   private fun enqueueRedemptionForNewToken(localDevicePurchaseToken: String, localProductPrice: FiatMoney) {
-    RecurringInAppPaymentRepository.ensureSubscriberId(
+    RecurringInAppPaymentRepository.ensureSubscriberIdSync(
       subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
       isRotation = true,
       iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(localDevicePurchaseToken)
-    ).blockingAwait()
+    )
 
     SignalDatabase.inAppPayments.clearCreated()
 

@@ -13,8 +13,8 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.CreateFoldersFragmentArgs
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -31,12 +31,12 @@ private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
 private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
+class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
   private var wasConfigurationUpdated = false
 
-  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
-  override val googlePayResultPublisher: Subject<InAppPaymentComponent.GooglePayResult> = PublishSubject.create()
+  override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
+  override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     if (intent?.hasExtra(ARG_NAV_GRAPH) != true) {
@@ -134,7 +134,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+    googlePayResultPublisher.onNext(GooglePayComponent.GooglePayResult(requestCode, resultCode, data))
   }
 
   companion object {

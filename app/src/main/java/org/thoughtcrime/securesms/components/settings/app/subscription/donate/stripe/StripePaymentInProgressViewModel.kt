@@ -1,46 +1,37 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.wallet.PaymentData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
-import org.signal.donations.InAppPaymentType
+import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
-import org.signal.donations.StripeIntentAccessor
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.RequiredActionHandler
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.SharedInAppPaymentPipeline
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.toDonationError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Preconditions
-import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
 
-class StripePaymentInProgressViewModel(
-  private val stripeRepository: StripeRepository
-) : ViewModel() {
+class StripePaymentInProgressViewModel : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(StripePaymentInProgressViewModel::class.java)
@@ -73,38 +64,53 @@ class StripePaymentInProgressViewModel(
     disposables.clear()
   }
 
-  fun processNewDonation(inAppPayment: InAppPaymentTable.InAppPayment, nextActionHandler: StripeNextActionHandler) {
+  fun processNewDonation(inAppPayment: InAppPaymentTable.InAppPayment, requiredActionHandler: RequiredActionHandler) {
     Log.d(TAG, "Proceeding with InAppPayment::${inAppPayment.id} of type ${inAppPayment.type}...", true)
 
     val paymentSourceProvider: PaymentSourceProvider = resolvePaymentSourceProvider(inAppPayment.type.toErrorSource())
 
-    return if (inAppPayment.type.recurring) {
-      proceedMonthly(inAppPayment, paymentSourceProvider, nextActionHandler)
-    } else {
-      proceedOneTime(inAppPayment, paymentSourceProvider, nextActionHandler)
-    }
+    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == paymentSourceProvider.paymentSourceType)
+
+    store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
+
+    disposables += paymentSourceProvider.paymentSource.flatMapCompletable { paymentSource ->
+      SharedInAppPaymentPipeline.awaitTransaction(
+        inAppPayment,
+        paymentSource,
+        requiredActionHandler
+      )
+    }.subscribeOn(Schedulers.io()).subscribeBy(
+      onComplete = {
+        Log.d(TAG, "Finished ${inAppPayment.type} payment pipeline...", true)
+        store.update { InAppPaymentProcessorStage.COMPLETE }
+      },
+      onError = {
+        store.update { InAppPaymentProcessorStage.FAILED }
+        SharedInAppPaymentPipeline.handleError(it, inAppPayment.id, paymentSourceProvider.paymentSourceType, inAppPayment.type.toErrorSource())
+      }
+    )
   }
 
   private fun resolvePaymentSourceProvider(errorSource: DonationErrorSource): PaymentSourceProvider {
     return when (val data = stripePaymentData) {
       is StripePaymentData.GooglePay -> PaymentSourceProvider(
         PaymentSourceType.Stripe.GooglePay,
-        Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(data.paymentData)).doAfterTerminate { clearPaymentInformation() }
+        Single.just<PaymentSource>(GooglePayPaymentSource(data.paymentData)).doAfterTerminate { clearPaymentInformation() }
       )
 
       is StripePaymentData.CreditCard -> PaymentSourceProvider(
         PaymentSourceType.Stripe.CreditCard,
-        stripeRepository.createCreditCardPaymentSource(errorSource, data.cardData).doAfterTerminate { clearPaymentInformation() }
+        StripeRepository.createCreditCardPaymentSource(errorSource, data.cardData).doAfterTerminate { clearPaymentInformation() }
       )
 
       is StripePaymentData.SEPADebit -> PaymentSourceProvider(
         PaymentSourceType.Stripe.SEPADebit,
-        stripeRepository.createSEPADebitPaymentSource(data.sepaDebitData).doAfterTerminate { clearPaymentInformation() }
+        StripeRepository.createSEPADebitPaymentSource(data.sepaDebitData).doAfterTerminate { clearPaymentInformation() }
       )
 
       is StripePaymentData.IDEAL -> PaymentSourceProvider(
         PaymentSourceType.Stripe.IDEAL,
-        stripeRepository.createIdealPaymentSource(data.idealData).doAfterTerminate { clearPaymentInformation() }
+        StripeRepository.createIdealPaymentSource(data.idealData).doAfterTerminate { clearPaymentInformation() }
       )
 
       else -> error("This should never happen.")
@@ -140,117 +146,6 @@ class StripePaymentInProgressViewModel(
     stripePaymentData = null
   }
 
-  private fun proceedMonthly(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceProvider: PaymentSourceProvider, nextActionHandler: StripeNextActionHandler) {
-    val ensureSubscriberId: Completable = RecurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
-    val createAndConfirmSetupIntent: Single<StripeApi.Secure3DSAction> = paymentSourceProvider.paymentSource.flatMap {
-      stripeRepository.createAndConfirmSetupIntent(inAppPayment.type, it, paymentSourceProvider.paymentSourceType as PaymentSourceType.Stripe)
-    }
-
-    val setLevel: Completable = RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceProvider.paymentSourceType)
-
-    Log.d(TAG, "Starting subscription payment pipeline...", true)
-    store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
-
-    val setup: Completable = ensureSubscriberId
-      .andThen(RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))
-      .andThen(createAndConfirmSetupIntent)
-      .flatMap { secure3DSAction ->
-        nextActionHandler.handle(
-          action = secure3DSAction,
-          inAppPayment = inAppPayment.copy(
-            subscriberId = InAppPaymentsRepository.requireSubscriber(inAppPayment.type.requireSubscriberType()).subscriberId,
-            state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
-            data = inAppPayment.data.copy(
-              redemption = null,
-              waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
-                stripeIntentId = secure3DSAction.stripeIntentAccessor.intentId,
-                stripeClientSecret = secure3DSAction.stripeIntentAccessor.intentClientSecret
-              )
-            )
-          )
-        )
-          .flatMap { secure3DSResult -> stripeRepository.getStatusAndPaymentMethodId(secure3DSResult, secure3DSAction.paymentMethodId) }
-      }
-      .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it.paymentMethod!!, it.intentId, inAppPayment.type.requireSubscriberType(), paymentSourceProvider.paymentSourceType) }
-      .onErrorResumeNext {
-        when (it) {
-          is DonationError -> Completable.error(it)
-          is InAppPaymentProcessorError -> Completable.error(it.toDonationError(DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType))
-          else -> Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, paymentSourceProvider.paymentSourceType))
-        }
-      }
-
-    disposables += setup.andThen(setLevel).subscribeBy(
-      onError = { throwable ->
-        Log.w(TAG, "Failure in subscription payment pipeline...", throwable, true)
-        store.update { InAppPaymentProcessorStage.FAILED }
-        InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, paymentSourceProvider.paymentSourceType, throwable)
-      },
-      onComplete = {
-        Log.d(TAG, "Finished subscription payment pipeline...", true)
-        store.update { InAppPaymentProcessorStage.COMPLETE }
-      }
-    )
-  }
-
-  private fun proceedOneTime(
-    inAppPayment: InAppPaymentTable.InAppPayment,
-    paymentSourceProvider: PaymentSourceProvider,
-    nextActionHandler: StripeNextActionHandler
-  ) {
-    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == paymentSourceProvider.paymentSourceType)
-
-    Log.w(TAG, "Beginning one-time payment pipeline...", true)
-
-    val amount = inAppPayment.data.amount!!.toFiatMoney()
-    val recipientId = inAppPayment.data.recipientId?.let { RecipientId.from(it) } ?: Recipient.self().id
-    val verifyUser = if (inAppPayment.type == InAppPaymentType.ONE_TIME_GIFT) {
-      OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(recipientId)
-    } else {
-      Completable.complete()
-    }
-
-    val continuePayment: Single<StripeIntentAccessor> = verifyUser.andThen(stripeRepository.continuePayment(amount, recipientId, inAppPayment.data.level, paymentSourceProvider.paymentSourceType))
-    val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider.paymentSource, ::Pair)
-
-    disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
-      stripeRepository.confirmPayment(paymentSource, paymentIntent, recipientId)
-        .flatMap { action ->
-          nextActionHandler
-            .handle(
-              action = action,
-              inAppPayment = inAppPayment.copy(
-                state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
-                data = inAppPayment.data.copy(
-                  redemption = null,
-                  waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
-                    stripeIntentId = action.stripeIntentAccessor.intentId,
-                    stripeClientSecret = action.stripeIntentAccessor.intentClientSecret
-                  )
-                )
-              )
-            )
-            .flatMap { stripeRepository.getStatusAndPaymentMethodId(it, action.paymentMethodId) }
-        }
-        .flatMapCompletable {
-          OneTimeInAppPaymentRepository.waitForOneTimeRedemption(
-            inAppPayment = inAppPayment,
-            paymentIntentId = paymentIntent.intentId
-          )
-        }
-    }.subscribeBy(
-      onError = { throwable ->
-        Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
-        store.update { InAppPaymentProcessorStage.FAILED }
-        InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.ONE_TIME, paymentSourceProvider.paymentSourceType, throwable)
-      },
-      onComplete = {
-        Log.w(TAG, "Completed one-time payment pipeline...", true)
-        store.update { InAppPaymentProcessorStage.COMPLETE }
-      }
-    )
-  }
-
   fun cancelSubscription(subscriberType: InAppPaymentSubscriberRecord.Type) {
     Log.d(TAG, "Beginning cancellation...", true)
 
@@ -273,7 +168,14 @@ class StripePaymentInProgressViewModel(
     disposables += RecurringInAppPaymentRepository
       .cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType())
       .andThen(RecurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
-      .flatMapCompletable { paymentSourceType -> RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, paymentSourceType) }
+      .flatMapCompletable { paymentSourceType ->
+        val freshPayment = SignalDatabase.inAppPayments.moveToTransacting(inAppPayment.id)!!
+
+        Single.fromCallable {
+          RecurringInAppPaymentRepository.setSubscriptionLevelSync(freshPayment)
+        }.flatMapCompletable { SharedInAppPaymentPipeline.awaitRedemption(it, paymentSourceType) }
+      }
+      .subscribeOn(Schedulers.io())
       .subscribeBy(
         onComplete = {
           Log.w(TAG, "Completed subscription update", true)
@@ -292,7 +194,7 @@ class StripePaymentInProgressViewModel(
 
   private data class PaymentSourceProvider(
     val paymentSourceType: PaymentSourceType,
-    val paymentSource: Single<StripeApi.PaymentSource>
+    val paymentSource: Single<PaymentSource>
   )
 
   private sealed interface StripePaymentData {
@@ -300,13 +202,5 @@ class StripePaymentInProgressViewModel(
     class CreditCard(val cardData: StripeApi.CardData) : StripePaymentData
     class SEPADebit(val sepaDebitData: StripeApi.SEPADebitData) : StripePaymentData
     class IDEAL(val idealData: StripeApi.IDEALData) : StripePaymentData
-  }
-
-  class Factory(
-    private val stripeRepository: StripeRepository
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(StripePaymentInProgressViewModel(stripeRepository)) as T
-    }
   }
 }

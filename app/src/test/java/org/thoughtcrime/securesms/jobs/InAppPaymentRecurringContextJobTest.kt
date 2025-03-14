@@ -534,7 +534,7 @@ class InAppPaymentRecurringContextJobTest {
 
   private fun insertInAppPayment(
     type: InAppPaymentType = InAppPaymentType.RECURRING_DONATION,
-    state: InAppPaymentTable.State = InAppPaymentTable.State.CREATED,
+    state: InAppPaymentTable.State = InAppPaymentTable.State.TRANSACTING,
     subscriberId: SubscriberId? = SubscriberId.generate(),
     paymentSourceType: PaymentSourceType = PaymentSourceType.Stripe.CreditCard,
     badge: BadgeList.Badge? = null,
@@ -551,6 +551,11 @@ class InAppPaymentRecurringContextJobTest {
       endOfPeriod = null,
       inAppPaymentData = iap.data.copy(
         badge = badge,
+        waitForAuth = null,
+        stripeActionComplete = null,
+        payPalActionComplete = null,
+        payPalRequiresAction = null,
+        stripeRequiresAction = null,
         redemption = redemptionState
       )
     )

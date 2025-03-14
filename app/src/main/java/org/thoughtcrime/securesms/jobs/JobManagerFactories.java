@@ -168,6 +168,10 @@ public final class JobManagerFactories {
       put(InAppPaymentRecurringContextJob.KEY,         new InAppPaymentRecurringContextJob.Factory());
       put(InAppPaymentOneTimeContextJob.KEY,           new InAppPaymentOneTimeContextJob.Factory());
       put(InAppPaymentRedemptionJob.KEY,               new InAppPaymentRedemptionJob.Factory());
+      put(InAppPaymentPayPalOneTimeSetupJob.KEY,       new InAppPaymentPayPalOneTimeSetupJob.Factory());
+      put(InAppPaymentPayPalRecurringSetupJob.KEY,     new InAppPaymentPayPalRecurringSetupJob.Factory());
+      put(InAppPaymentStripeOneTimeSetupJob.KEY,       new InAppPaymentStripeOneTimeSetupJob.Factory());
+      put(InAppPaymentStripeRecurringSetupJob.KEY,     new InAppPaymentStripeRecurringSetupJob.Factory());
       put(IndividualSendJob.KEY,                       new IndividualSendJob.Factory());
       put(LeaveGroupV2Job.KEY,                         new LeaveGroupV2Job.Factory());
       put(LeaveGroupV2WorkerJob.KEY,                   new LeaveGroupV2WorkerJob.Factory());

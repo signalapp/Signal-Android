@@ -9,6 +9,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.os.Parcelable
+import androidx.annotation.CheckResult
 import androidx.core.content.contentValuesOf
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
@@ -153,6 +154,21 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .let { InAppPaymentId(it) }
   }
 
+  @CheckResult
+  fun moveToTransacting(inAppPaymentId: InAppPaymentId): InAppPayment? {
+    writableDatabase.update(TABLE_NAME)
+      .values(STATE to State.serialize(State.TRANSACTING))
+      .where(ID_WHERE, inAppPaymentId)
+      .run()
+
+    val fresh = getById(inAppPaymentId)
+    if (fresh != null) {
+      AppDependencies.databaseObserver.notifyInAppPaymentsObservers(fresh)
+    }
+
+    return fresh
+  }
+
   fun update(
     inAppPayment: InAppPayment
   ) {
@@ -166,6 +182,24 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .run()
 
     AppDependencies.databaseObserver.notifyInAppPaymentsObservers(inAppPayment)
+  }
+
+  /**
+   * Returns true if the user has submitted a pre-pending recurring donation.
+   * In this state, the user would have had to cancel their subscription or be in the process of trying
+   * to update, so we should not try to run the keep-alive job.
+   */
+  fun hasPrePendingRecurringTransaction(type: InAppPaymentType): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where(
+        "($STATE = ? OR $STATE = ? OR $STATE = ?) AND $TYPE = ?",
+        State.serialize(State.REQUIRES_ACTION),
+        State.serialize(State.WAITING_FOR_AUTHORIZATION),
+        State.serialize(State.TRANSACTING),
+        InAppPaymentType.serialize(type)
+      )
+      .run()
   }
 
   fun hasWaitingForAuth(): Boolean {
@@ -400,8 +434,11 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
    *
    * ```mermaid
    * flowchart TD
-   *     CREATED -- Auth required --> WAITING_FOR_AUTHORIZATION
-   *     CREATED -- Auth not required --> PENDING
+   *     CREATED --> TRANSACTING
+   *     TRANSACTING -- Auth required --> REQUIRES_ACTION
+   *     TRANSACTING -- Auth not required --> PENDING
+   *     REQUIRES_ACTION -- User completes auth in app --> TRANSACTING
+   *     REQUIRES_ACTION -- User launches external application --> WAITING_FOR_AUTHORIZATION
    *     WAITING_FOR_AUTHORIZATION -- User completes auth --> PENDING
    *     WAITING_FOR_AUTHORIZATION -- User does not complete auth --> END
    *     PENDING --> END
@@ -418,20 +455,35 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
     CREATED(0),
 
     /**
-     * This payment is awaiting the user to return from an external authorization2
+     * This payment is awaiting the user to return from an external authorization
      * such as a 3DS flow or IDEAL confirmation.
      */
     WAITING_FOR_AUTHORIZATION(1),
 
     /**
-     * This payment is authorized and is waiting to be processed.
+     * This payment is transacted and is performing receipt redemption.
      */
     PENDING(2),
 
     /**
      * This payment pipeline has been completed. Check the data to see the state.
      */
-    END(3);
+    END(3),
+
+    /**
+     * Requires user action via 3DS or iDEAL
+     */
+    REQUIRES_ACTION(4),
+
+    /**
+     * User has completed the required action and the transaction should be finished.
+     */
+    REQUIRED_ACTION_COMPLETED(5),
+
+    /**
+     * Performing monetary transaction
+     */
+    TRANSACTING(6);
 
     companion object : Serializer<State, Int> {
       override fun serialize(data: State): Int = data.code

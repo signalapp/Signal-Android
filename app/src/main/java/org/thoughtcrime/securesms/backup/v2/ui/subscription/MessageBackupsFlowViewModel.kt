@@ -262,7 +262,7 @@ class MessageBackupsFlowViewModel(
       Log.d(TAG, "Setting purchase token data on InAppPayment and InAppPaymentSubscriber.")
 
       val iapSubscriptionId = IAPSubscriptionId.GooglePlayBillingPurchaseToken(result.purchaseToken)
-      RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, iapSubscriptionId = iapSubscriptionId, isRotation = true).blockingAwait()
+      RecurringInAppPaymentRepository.ensureSubscriberIdSync(InAppPaymentSubscriberRecord.Type.BACKUP, iapSubscriptionId = iapSubscriptionId, isRotation = true)
 
       val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
       SignalDatabase.inAppPayments.update(

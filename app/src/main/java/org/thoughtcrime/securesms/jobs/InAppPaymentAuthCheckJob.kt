@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
-import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -161,13 +160,12 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.PENDING,
-        data = inAppPayment.data.copy(
-          waitForAuth = null,
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = InAppPaymentData.RedemptionState(
             stage = InAppPaymentData.RedemptionState.Stage.INIT,
             paymentIntentId = inAppPayment.data.waitForAuth.stripeIntentId
           )
-        )
+        ).build()
       )
     )
 
@@ -272,12 +270,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
         SignalDatabase.inAppPayments.update(
           inAppPayment = inAppPayment.copy(
             state = InAppPaymentTable.State.PENDING,
-            data = inAppPayment.data.copy(
-              waitForAuth = null,
+            data = inAppPayment.data.newBuilder().redemption(
               redemption = InAppPaymentData.RedemptionState(
                 stage = InAppPaymentData.RedemptionState.Stage.INIT
               )
-            )
+            ).build()
           )
         )
 
@@ -347,7 +344,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
             data_ = errorData
           ),
           waitForAuth = InAppPaymentData.WaitingForAuthorizationState("", ""),
-          redemption = null
+          redemption = null,
+          stripeActionComplete = null,
+          payPalActionComplete = null,
+          payPalRequiresAction = null,
+          stripeRequiresAction = null
         )
       )
     )
@@ -367,11 +368,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
   }
 
   override fun onShouldRetry(e: Exception): Boolean = e is InAppPaymentRetryException
-  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): StripeIntentAccessor {
     error("Not needed, this job should not be creating intents.")
   }
 
-  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): StripeIntentAccessor {
     error("Not needed, this job should not be creating intents.")
   }
 

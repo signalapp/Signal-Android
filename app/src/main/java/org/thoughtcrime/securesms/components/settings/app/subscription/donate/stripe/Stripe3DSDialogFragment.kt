@@ -110,6 +110,10 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   private fun handleLaunchExternal(intent: Intent) {
+    if (isDetached) {
+      return
+    }
+
     startActivity(intent)
 
     SignalExecutors.BOUNDED_IO.execute {

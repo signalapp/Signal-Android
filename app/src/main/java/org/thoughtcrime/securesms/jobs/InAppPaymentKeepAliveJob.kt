@@ -100,6 +100,11 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
+      info(type, "We are currently processing a transaction for this type. Skipping.")
+      return
+    }
+
     val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(type)
     if (subscriber == null) {
       info(type, "Subscriber not present. Skipping.")
@@ -146,12 +151,12 @@ class InAppPaymentKeepAliveJob private constructor(
       InAppPaymentData.RedemptionState.Stage.INIT -> {
         info(type, "Transitioning payment from INIT to CONVERSION_STARTED and generating a request credential")
         val payment = activeInAppPayment.copy(
-          data = activeInAppPayment.data.copy(
+          data = activeInAppPayment.data.newBuilder().redemption(
             redemption = activeInAppPayment.data.redemption.copy(
               stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
               receiptCredentialRequestContext = InAppPaymentsRepository.generateRequestCredential().serialize().toByteString()
             )
-          )
+          ).build()
         )
 
         SignalDatabase.inAppPayments.update(payment)
@@ -212,7 +217,7 @@ class InAppPaymentKeepAliveJob private constructor(
       val oldInAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)
       val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: InAppPaymentsRepository.getFallbackLastEndOfPeriod(type)
       if (oldEndOfPeriod > endOfCurrentPeriod) {
-        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
         return null
       }
 
@@ -235,7 +240,7 @@ class InAppPaymentKeepAliveJob private constructor(
         oldInAppPayment.data.badge
       }
 
-      info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+      info(type, "End of period has changed. Requesting receipt refresh. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
       if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
         SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
