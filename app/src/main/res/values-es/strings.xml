@@ -788,7 +788,7 @@
     <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
     <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
         <item quantity="one">Este chat ya está en \"%1$s\"</item>
-        <item quantity="other">Estos chats ya está en \"%1$s\"</item>
+        <item quantity="other">Estos chats ya están en \"%1$s\"</item>
     </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
@@ -1057,7 +1057,7 @@
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">Contactar con asistencia</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">¿Enviar registro de depuración?</string>
+    <string name="LinkDeviceFragment__submit_debug_log">¿Enviar registro?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="LinkDeviceFragment__your_debug_logs">El registro de depuración nos ayudará a solucionar tu problema más rápido. Enviar tu registro es opcional.</string>
     <!-- Button option to submit debug log when contacting support -->
@@ -5017,7 +5017,7 @@
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">¿Quieres reemplazar los colores de todos tus chats?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">¿Quieres reemplazar los fondos de todos tus chats?</string>
-    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminados</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Restablecer predeterminado</string>
     <string name="ChatWallpaperFragment__reset_all_colors">Restablecer todos</string>
     <string name="ChatWallpaperFragment__reset_default_wallpaper">Restablecer predeterminado</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Restablecer todos</string>
@@ -6084,7 +6084,7 @@
     <string name="DonationsErrors__your_payment_is_still">Tu donación aún se está procesando. Este proceso puede llevar unos minutos dependiendo de tu conexión.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Fallo al cancelar la suscripción</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Necesitas conexión a Internet para cancelar la suscripción.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Tu dispositivo no permite hacer donaciones dentro de la app, por lo que no puedes suscribirte y conseguir una insignia. Prueba hacer una donación en la página web de Signal para apoyar a Signal.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Tu dispositivo no permite hacer donaciones dentro de la app, por lo que no puedes suscribirte y conseguir una insignia. Aun así, puedes apoyar a Signal haciendo una donación en nuestra página web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de red. Comprueba tu conexión e inténtalo de nuevo.</string>
     <string name="NetworkFailure__retry">Reintentar</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6325,15 +6325,15 @@
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Notas de las versiones y novedades de Signal</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat_period">Este es el chat oficial y único de Signal.</string>
+    <string name="ReleaseNotes__this_is_official_chat_period">Este es el único chat oficial de Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date_period">Mantente al día con las noticias y las notas de la versión.</string>
+    <string name="ReleaseNotes__keep_up_to_date_period">Mantente al día con las novedades y las notas de la versión.</string>
     <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__this_is_official_chat">Este es el chat oficial y único de Signal</string>
+    <string name="ReleaseNotes__this_is_official_chat">Este es el único chat oficial de Signal</string>
     <!-- Text description in Signal Release channel details explaining what the channel is for -->
-    <string name="ReleaseNotes__keep_up_to_date">Mantente al día con las noticias y las notas de la versión</string>
+    <string name="ReleaseNotes__keep_up_to_date">Mantente al día con las novedades y las notas de la versión</string>
     <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
-    <string name="ReleaseNotes__official_only_chat">Chat oficial y único de Signal</string>
+    <string name="ReleaseNotes__official_only_chat">Único chat oficial de Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Actividad</string>

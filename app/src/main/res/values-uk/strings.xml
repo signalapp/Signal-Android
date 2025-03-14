@@ -4819,15 +4819,15 @@
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Хто може бачити мій номер</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Ваш номер телефону буде видно людям і групам, яким ви відправляєте повідомлення.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Ваш номер телефону буде видно людям і групам, яким ви надсилаєте повідомлення.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
-    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ваш номер телефону не зможе бачити ніхто, окрім людей, які вже зберегли його у своїх контактах.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_on_description">Ваш номер телефону не зможе бачити ніхто, крім людей, які вже зберегли його в адресній книзі свого телефона.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Ніхто не зможе бачити ваш номер телефону.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
     <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Хто може знайти мене за номером</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
-    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Будь-яка людина, що має ваш номер телефону, бачитиме вас у Signal і зможе розпочати з вами розмову.</string>
+    <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Будь-яка людина, що має ваш номер телефону, бачитиме вас у Signal і зможе почати з вами чат.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_off_description">Крім людей, яким ви напишете самі й з якими ви вже маєте спільний чат, ніхто не побачить, що ви зареєстровані в Signal.</string>
     <!-- Snackbar text when pressing invalid radio item -->
@@ -4909,11 +4909,11 @@
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Оновити Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
-    <string name="preferences_account_delete_all_data">Видалити усі дані</string>
+    <string name="preferences_account_delete_all_data">Видалити всі дані</string>
     <!-- Title for confirmation dialog confirming user wants to delete all their data -->
-    <string name="preferences_account_delete_all_data_confirmation_title">Видалити усі дані?</string>
+    <string name="preferences_account_delete_all_data_confirmation_title">Видалити всі дані?</string>
     <!-- Message in confirmation dialog to delete all data explaining how it works, and that the app will be closed after deletion -->
-    <string name="preferences_account_delete_all_data_confirmation_message">Ця дія скине налаштування застосунку і видалить усі повідомлення. Після видалення застосунок закриється.</string>
+    <string name="preferences_account_delete_all_data_confirmation_message">Налаштування застосунку буде скинуто, а всі повідомлення — видалено. Після завершення цього процесу застосунок закриється.</string>
     <!-- Confirmation action to proceed with application data deletion -->
     <string name="preferences_account_delete_all_data_confirmation_proceed">Продовжити</string>
     <!-- Confirmation action to cancel application data deletion -->
@@ -4990,7 +4990,7 @@
     <string name="DeviceTransferSetup__location_permission">Доступ до місцеположення</string>
     <string name="DeviceTransferSetup__location_services">Геодані</string>
     <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На екрані Wi-Fi Direct, видаліть всі групи які запам\'ятались і від\'єднайте будь-які запрошені або з\'єднані пристрої.</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">У вкладці Wi-Fi Direct видаліть всі збережені групи і від\'єднайте всі запрошені або з\'єднані пристрої.</string>
     <string name="DeviceTransferSetup__wifi_direct_screen">Екран Wi-Fi Direct</string>
     <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Спробуйте вимкнути і ввімкнути Wi-Fi на обох пристроях.</string>
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Переконайтеся, що на обох пристроях здійснюється перенос.</string>
@@ -5004,7 +5004,7 @@
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Неможливо перенести дані з новіших версій Signal</string>
     <!-- Error message indicating that we could not finish the user\'s device transfer. Displayed in a toast at the bottom of the screen. -->
-    <string name="NewDeviceTransfer__failure_foreign_key">Передані дані були сформовані неправильно</string>
+    <string name="NewDeviceTransfer__failure_foreign_key">Передані дані були некоректні</string>
 
     <!-- DeviceTransferFragment -->
     <string name="DeviceTransfer__transferring_data">Триває передача даних</string>
@@ -5067,15 +5067,15 @@
     <string name="RecipientBottomSheet_add_to_another_group">Додати до іншої групи</string>
     <string name="RecipientBottomSheet_view_safety_number">Переглянути код безпеки</string>
     <string name="RecipientBottomSheet_make_admin">Призначити адміністратором</string>
-    <string name="RecipientBottomSheet_remove_as_admin">Вилучити як адміністратора</string>
+    <string name="RecipientBottomSheet_remove_as_admin">Забрати права адміністратора</string>
     <string name="RecipientBottomSheet_remove_from_group">Вилучити з групи</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Вилучити %1$s як адміністратора групи?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Забрати в користувача %1$s права адміністратора групи?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s зможе змінювати інформацію про цю групу і її склад."</string>
 
-    <string name="RecipientBottomSheet_remove_s_from_the_group">Вилучити %1$s з цієї групи?</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group">Вилучити користувача %1$s з групи?</string>
     <!-- Dialog message shown when removing someone from a group with group link being active to indicate they will not be able to rejoin -->
-    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Вилучити %1$s з групи? Користувач більше не зможе приєднатись за посиланням групи.</string>
+    <string name="RecipientBottomSheet_remove_s_from_the_group_they_will_not_be_able_to_rejoin">Вилучити користувача %1$s з групи? Цей користувач не зможе знов приєднатися до групи за посиланням.</string>
     <string name="RecipientBottomSheet_remove">Вилучити</string>
     <string name="RecipientBottomSheet_copied_to_clipboard">Скопійовано в буфер обміну</string>
 
@@ -5113,15 +5113,15 @@
 
     <!-- StorageUtil -->
     <string name="StorageUtil__s_s">%1$s/%2$s</string>
-    <string name="BlockedUsersActivity__s_has_been_blocked">«%1$s» було заблоковано.</string>
-    <string name="BlockedUsersActivity__failed_to_block_s">Не вдалося заблокувати «%1$s»</string>
-    <string name="BlockedUsersActivity__s_has_been_unblocked">«%1$s» було розблоковано.</string>
+    <string name="BlockedUsersActivity__s_has_been_blocked">Користувача %1$s заблоковано.</string>
+    <string name="BlockedUsersActivity__failed_to_block_s">Не вдалося заблокувати користувача %1$s</string>
+    <string name="BlockedUsersActivity__s_has_been_unblocked">Користувача %1$s розблоковано.</string>
 
     <!-- ReviewCardDialogFragment -->
     <!-- Title of a screen where the user will be prompted to review group members with the same name -->
-    <string name="ReviewCardDialogFragment__review_members">Перегляд учасників</string>
+    <string name="ReviewCardDialogFragment__review_members">Перегляньте учасників</string>
     <!-- Title of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
-    <string name="ReviewCardDialogFragment__review_request">Переглянути запит</string>
+    <string name="ReviewCardDialogFragment__review_request">Перегляньте запит</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
         <item quantity="one">%1$d учасник групи має однакові імена. Перегляньте учасників нижче й вирішіть, як з ними вчинити.</item>
@@ -5150,9 +5150,9 @@
         <item quantity="many">%1$d спільних груп</item>
         <item quantity="other">%1$d спільної групи</item>
     </plurals>
-    <string name="ReviewCardDialogFragment__remove_s_from_group">Вилучити %1$s з групи?</string>
+    <string name="ReviewCardDialogFragment__remove_s_from_group">Вилучити користувача %1$s з групи?</string>
     <string name="ReviewCardDialogFragment__remove">Вилучити</string>
-    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Не вдалося Вилучити учасника групи.</string>
+    <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Не вдалося вилучити учасника групи.</string>
 
     <!-- ReviewCard -->
     <string name="ReviewCard__request">Запит</string>
@@ -5160,7 +5160,7 @@
     <string name="ReviewCard__remove_from_group">Вилучити з групи</string>
     <string name="ReviewCard__update_contact">Оновити контакт</string>
     <string name="ReviewCard__block">Заблокувати</string>
-    <string name="ReviewCard__delete">Видалити</string>
+    <string name="ReviewCard__delete">Вилучити</string>
     <!-- Displayed when a recent name change has occurred. First placeholder is new short name, second is previous name, third is new name. -->
     <string name="ReviewCard__s_recently_changed">Користувач %1$s недавно змінив ім\'я профілю з %2$s на %3$s</string>
     <!-- Displayed when a review user is in your system contacts. Placeholder is short name. -->
@@ -5198,18 +5198,18 @@
     <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Слабкий сигнал Wi-Fi. Виклик здійснюється через мобільний інтернет.</string>
 
     <!-- DeleteAccountFragment -->
-    <string name="DeleteAccountFragment__deleting_your_account_will">Видалення акаунту:</string>
+    <string name="DeleteAccountFragment__deleting_your_account_will">Видалення акаунту передбачає:</string>
     <string name="DeleteAccountFragment__enter_your_phone_number">Введіть свій номер телефону</string>
     <string name="DeleteAccountFragment__delete_account">Видалити акаунт</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Видалення ваших облікових даних і фото профілю</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Видалення всіх ваших повідомлень</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видаліть %1$s з вашого платіжного профілю</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Видалення %1$s з вашого платіжного профілю</string>
     <string name="DeleteAccountFragment__no_country_code">Не зазначено код країни</string>
     <string name="DeleteAccountFragment__no_number">Не зазначено номер</string>
     <string name="DeleteAccountFragment__the_phone_number">Ви ввели номер телефону, не пов\'язаний з вашим акаунтом.</string>
     <string name="DeleteAccountFragment__are_you_sure">Ви точно хочете видалити свій акаунт?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ваш акаунт Signal буде видалено, а налаштування застосунку скинуто. Після завершення цього процесу застосунок закриється.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях програми.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">Не вдалося видалити локальні дані. Ви можете видалити їх вручну в системних налаштуваннях застосунку.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Відкрити налаштування застосунку</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Триває вихід з груп…</string>
@@ -5296,7 +5296,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Про MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin — нова цифрова валюта, націлена на конфіденційність.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin — нова цифрова валюта підвищеної конфіденційності.</string>
     <string name="payment_info_card_adding_funds">Як додавати кошти</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Ви можете додавати кошти для використання в Signal, надсилаючи MobileCoin на адресу свого гаманця.</string>
     <string name="payment_info_card_cashing_out">Як виводити кошти</string>
@@ -5324,7 +5324,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Деактивувати без переведення</string>
     <string name="DeactivateWalletFragment__deactivate">Деактивувати</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивувати без переведення коштів?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Баланс залишиться в гаманці, прив\'язаному до Signal, якщо ви вирішите знов увімкнути платежі.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Якщо ви знов активуєте платежі, залишок буде в гаманці, зв\'язаному з Signal.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Під час деактивації гаманця сталася помилка.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -5335,15 +5335,15 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Збережіть кодову фразу</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Введіть кодову фразу</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слова і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
-        <item quantity="few">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слів і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
-        <item quantity="many">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слів і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
-        <item quantity="other">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слова і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
+        <item quantity="one">Ваш залишок автоматично відновиться, коли ви знову встановите Signal і підтвердите свій PIN-код. Залишок можна також відновити за допомогою унікальної кодової фрази, яка складається з %1$d слова. Запишіть її та зберігайте в надійному місці.</item>
+        <item quantity="few">Ваш залишок автоматично відновиться, коли ви знову встановите Signal і підтвердите свій PIN-код. Залишок можна також відновити за допомогою унікальної кодової фрази, яка складається з %1$d слів. Запишіть її та зберігайте в надійному місці.</item>
+        <item quantity="many">Ваш залишок автоматично відновиться, коли ви знову встановите Signal і підтвердите свій PIN-код. Залишок можна також відновити за допомогою унікальної кодової фрази, яка складається з %1$d слів. Запишіть її та зберігайте в надійному місці.</item>
+        <item quantity="other">Ваш залишок автоматично відновиться, коли ви знову встановите Signal і підтвердите свій PIN-код. Залишок можна також відновити за допомогою унікальної кодової фрази, яка складається з %1$d слова. Запишіть її та зберігайте в надійному місці.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">Ви маєте баланс! Час зберегти кодову фразу — ключ із 24 слів, за допомогою якого можна відновити свій баланс.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">У вас є залишок! Збережіть кодову фразу — пароль з 24 слів, за допомогою якого ви зможете відновити свій залишок.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
-    <string name="PaymentsRecoveryStartFragment__time_to_save">Час зберегти кодову фразу — ключ із 24 слів, за допомогою якого можна відновити баланс.</string>
+    <string name="PaymentsRecoveryStartFragment__time_to_save">Збережіть кодову фразу — пароль з 24 слів, за допомогою якого ви зможете відновити свій залишок.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Ваша кодова фраза — це унікальна фраза з %1$d слів. Вона необхідна для відновлення балансу.</string>
     <string name="PaymentsRecoveryStartFragment__start">Почати</string>
     <string name="PaymentsRecoveryStartFragment__enter_manually">Ввести вручну</string>
@@ -5351,7 +5351,7 @@
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">Продовжити без збереження?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Кодова фраза дає можливість відновити баланс у випадку найгіршого. Ми дуже радимо її зберегти.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Кодова фраза дає змогу відновити залишок, якщо станеться найгірше. Ми настійно радимо її зберегти.</string>
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Пропустити кодову фразу</string>
     <!-- Alert dialog option to cancel dialog-->
@@ -5407,7 +5407,7 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">У вас немає спільних груп із цією людиною. Щоб уникнути небажаних повідомлень, не приймайте запитів без уважної перевірки відправника.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Жоден із ваших контактів або людей, з якими ви спілкуєтесь, не входить до цієї групи. Двічі перевірте всі запити на контакт, перш ніж їх прийняти, щоб уникнути небажаних повідомлень.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">У цій групі немає ваших контактів і людей, з якими ви маєте спільні чати. Щоб уникнути небажаних повідомлень, не приймайте запитів без уважної перевірки відправника.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Про запити на повідомлення</string>
     <string name="GroupsInCommonMessageRequest__okay">Зрозуміло</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -5459,7 +5459,7 @@
     <!-- Explanation of account data the user can request. %1$s is replaced with Learn more with a link -->
     <string name="ExportAccountDataFragment__export_explanation">Експортуйте файл зі своїми обліковими даними користувача Signal. Облікові дані не включають повідомлення та медіафайли. %1$s</string>
     <!-- Learn more link to more information about requesting account data -->
-    <string name="ExportAccountDataFragment__learn_more">Подробиці</string>
+    <string name="ExportAccountDataFragment__learn_more">Докладніше</string>
     <!-- Button action to export the report data to another app (e.g. email) -->
     <string name="ExportAccountDataFragment__export_report">Експортувати файл</string>
 
@@ -5476,11 +5476,11 @@
     <string name="ExportAccountDataFragment__cancel_action">Скасувати</string>
 
     <!-- Acknowledgement for download failure -->
-    <string name="ExportAccountDataFragment__ok_action">Добре</string>
+    <string name="ExportAccountDataFragment__ok_action">Зрозуміло</string>
     <!-- Title of dialog shown when report fails to generate -->
-    <string name="ExportAccountDataFragment__report_generation_failed">Не вдалося створити звіт</string>
+    <string name="ExportAccountDataFragment__report_generation_failed">Не вдалося створити файл</string>
     <!-- Message of dialog shown when report fails to generate asking user to check network connection -->
-    <string name="ExportAccountDataFragment__check_network">Перевірте підключення до мережі і спробуйте знову.</string>
+    <string name="ExportAccountDataFragment__check_network">Перевірте з\'єднання та спробуйте ще раз.</string>
 
     <!-- Title for export confirmation dialog -->
     <string name="ExportAccountDataFragment__export_report_confirmation">Експортувати дані?</string>
@@ -5490,7 +5490,7 @@
     <string name="ExportAccountDataFragment__export_report_action">Експортувати</string>
 
     <!-- Shown in a dialog with a spinner while the report is downloading -->
-    <string name="ExportAccountDataFragment__download_progress">Створюємо звіт…</string>
+    <string name="ExportAccountDataFragment__download_progress">Створюємо файл…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Файл з обліковими даними створюється лише під час експортування. Signal не зберігає файл на вашому пристрої.</string>
 
@@ -5787,16 +5787,16 @@
     <!-- Text shown on a circle button to indicate the app will automatically select a color for conversation bubbles for this chat. -->
     <string name="ChatColorSelectionFragment__auto">Авто</string>
     <string name="ChatColorSelectionFragment__use_custom_colors">Використовувати власні кольори</string>
-    <string name="ChatColorSelectionFragment__chat_color">Колір чату</string>
+    <string name="ChatColorSelectionFragment__chat_color">Колір чатів</string>
     <string name="ChatColorSelectionFragment__edit">Змінити</string>
     <string name="ChatColorSelectionFragment__duplicate">Створити копію</string>
     <string name="ChatColorSelectionFragment__delete">Видалити</string>
-    <string name="ChatColorSelectionFragment__delete_color">Видалити колір</string>
+    <string name="ChatColorSelectionFragment__delete_color">Скинути колір</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Цей власний колір використовується в чаті: %1$d Бажаєте його видалити для усіх чатів?</item>
-        <item quantity="few">Цей власний колір використовується в чаті: %1$d Бажаєте його видалити для усіх чатів?</item>
-        <item quantity="many">Цей власний колір використовується в чатах: %1$d. Бажаєте його видалити для усіх чатів?</item>
-        <item quantity="other">Цей власний колір використовується в чатах: %1$d. Бажаєте його видалити для усіх чатів?</item>
+        <item quantity="one">Цей власний колір використовується в %1$d чаті. Скинути його в усіх чатах?</item>
+        <item quantity="few">Цей власний колір використовується в %1$d чатах. Скинути його в усіх чатах?</item>
+        <item quantity="many">Цей власний колір використовується в %1$d чатах. Скинути його в усіх чатах?</item>
+        <item quantity="other">Цей власний колір використовується в %1$d чату. Скинути його в усіх чатах?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Скинути колір цього чату?</string>
 
@@ -5810,10 +5810,10 @@
     <string name="CustomChatColorCreatorFragmentPage__save">Зберегти</string>
     <string name="CustomChatColorCreatorFragmentPage__edit_color">Змінити колір</string>
     <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-        <item quantity="one">Цей колір використовується в %1$d чаті. Бажаєте зберегти зміни для усіх чатів?</item>
-        <item quantity="few">Цей колір використовується в %1$d чаті. Бажаєте зберегти зміни для усіх чатів?</item>
-        <item quantity="many">Цей колір використовується в %1$d чатах. Бажаєте зберегти зміни для усіх чатів?</item>
-        <item quantity="other">Цей колір використовується в %1$d чатах. Бажаєте зберегти зміни для усіх чатів?</item>
+        <item quantity="one">Цей колір використовується в %1$d чаті. Зберегти зміни для всіх чатів?</item>
+        <item quantity="few">Цей колір використовується в %1$d чаті. Зберегти зміни для всіх чатів?</item>
+        <item quantity="many">Цей колір використовується в %1$d чатах. Зберегти зміни для всіх чатів?</item>
+        <item quantity="other">Цей колір використовується в %1$d чату. Зберегти зміни для всіх чатів?</item>
     </plurals>
 
     <!-- ChatColorGradientTool -->
@@ -5889,7 +5889,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Не сповіщати</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__muted">Сповіщення вимкнені</string>
+    <string name="ConversationSettingsFragment__muted">Сповіщення вимкнено</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Пошук</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Тимчасові повідомлення</string>
@@ -5912,7 +5912,7 @@
     <string name="ConversationSettingsFragment__unmute">Увімкнути сповіщення</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Сповіщення в чаті вимкнено до %1$s</string>
-    <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення чату вимкнені назавжди</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Сповіщення чату вимкнено назавжди</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефону скопійовано в буфер обміну.</string>
     <string name="ConversationSettingsFragment__phone_number">Номер телефону</string>
     <string name="ConversationSettingsFragment__get_badges">Отримуйте значки для профілю за підтримку Signal. Торкніться значка, щоб дізнатися більше.</string>
@@ -5957,21 +5957,21 @@
     <!-- Context menu item video call -->
     <string name="NewConversationActivity__video_call">Відеовиклик</string>
     <!-- Context menu item remove -->
-    <string name="NewConversationActivity__remove">Вилучити</string>
+    <string name="NewConversationActivity__remove">Видалити</string>
     <!-- Context menu item block -->
     <string name="NewConversationActivity__block">Заблокувати</string>
     <!-- Dialog title when removing a contact -->
-    <string name="NewConversationActivity__remove_s">Вилучити %1$s?</string>
+    <string name="NewConversationActivity__remove_s">Вилучити користувача %1$s?</string>
     <!-- Dialog message when removing a contact -->
-    <string name="NewConversationActivity__you_wont_see_this_person">Ви не бачитиме цю людину під час пошуку. Якщо в майбутньому вона вам напише, ви отримаєте запит на повідомлення.</string>
+    <string name="NewConversationActivity__you_wont_see_this_person">Ви не побачите цю людину під час пошуку. Якщо в майбутньому вона вам напише, ви отримаєте запит на повідомлення.</string>
     <!-- Snackbar message after removing a contact -->
-    <string name="NewConversationActivity__s_has_been_removed">Вилучено: %1$s</string>
+    <string name="NewConversationActivity__s_has_been_removed">Користувача %1$s вилучено</string>
     <!-- Snackbar message after blocking a contact -->
-    <string name="NewConversationActivity__s_has_been_blocked">Заблоковано: %1$s</string>
+    <string name="NewConversationActivity__s_has_been_blocked">Користувача %1$s заблоковано</string>
     <!-- Dialog title when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__unable_to_remove_s">Не вдалося вилучити: %1$s</string>
+    <string name="NewConversationActivity__unable_to_remove_s">Не вдалося вилучити користувача %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Ця людина збережена в контактах вашого пристрою. Видаліть її з контактів і спробуйте знову.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Цю людину збережено в контактах вашого пристрою. Видаліть її з контактів і спробуйте знову.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Переглянути контакт</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -5980,10 +5980,10 @@
     <string name="NewConversationActivity__">%1$s не користується Signal</string>
     <!-- Error message shown in a dialog when trying to create a new group with non-signal users (e.g., unregistered or phone number only contacts) -->
     <plurals name="CreateGroupActivity_not_signal_users">
-        <item quantity="one">%1$s не використовує Signal</item>
-        <item quantity="few">%1$s не використовують Signal</item>
-        <item quantity="many">%1$s не використовують Signal</item>
-        <item quantity="other">%1$s не використовують Signal</item>
+        <item quantity="one">%1$s не користується Signal</item>
+        <item quantity="few">%1$s не користуються Signal</item>
+        <item quantity="many">%1$s не користуються Signal</item>
+        <item quantity="other">%1$s не користуються Signal</item>
     </plurals>
 
     <!-- ContactFilterView -->
@@ -6073,7 +6073,7 @@
     <string name="MediaReviewFragment__add_a_message">Додати повідомлення</string>
     <!-- Hint text inside of a compose box that is shown when the user is adding media while quoting a message. -->
     <string name="MediaReviewFragment__add_a_reply">Додати відповідь</string>
-    <string name="MediaReviewFragment__send_to">Надіслати</string>
+    <string name="MediaReviewFragment__send_to">Кому надіслати:</string>
     <string name="MediaReviewFragment__view_once_message">Одноразовий файл</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Принаймні один файл був завеликий</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Принаймні один елемент був неприпустимий</string>
@@ -6139,7 +6139,7 @@
 
     <string name="MediaCountIndicatorButton__send">Надіслати</string>
 
-    <string name="MediaReviewSelectedItem__tap_to_remove">Натисніть для вилучення</string>
+    <string name="MediaReviewSelectedItem__tap_to_remove">Натисніть, щоб вилучити</string>
     <string name="MediaReviewSelectedItem__tap_to_select">Торкніться, щоб вибрати</string>
 
     <string name="MediaReviewImagePageFragment__discard">Відхилити</string>
@@ -6169,7 +6169,7 @@
 
 
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Оберіть значок</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ви маєте обрати значок</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Необхідно обрати значок</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не вдалось оновити профіль</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
