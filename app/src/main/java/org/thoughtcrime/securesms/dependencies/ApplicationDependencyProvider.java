@@ -151,12 +151,17 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull PushServiceSocket pushServiceSocket, @NonNull MessageApi messageApi) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                                                                               @NonNull SignalServiceDataStore protocolStore,
+                                                                               @NonNull PushServiceSocket pushServiceSocket,
+                                                                               @NonNull MessageApi messageApi,
+                                                                               @NonNull KeysApi keysApi) {
       return new SignalServiceMessageSender(pushServiceSocket,
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
                                             authWebSocket,
                                             messageApi,
+                                            keysApi,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256));
@@ -471,8 +476,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull KeysApi provideKeysApi(@NonNull PushServiceSocket pushServiceSocket) {
-    return new KeysApi(pushServiceSocket);
+  public @NonNull KeysApi provideKeysApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new KeysApi(authWebSocket, unauthWebSocket);
   }
 
   @Override

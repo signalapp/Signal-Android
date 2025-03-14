@@ -10,7 +10,6 @@ import org.signal.libsignal.net.Network;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountApi;
-import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
@@ -22,7 +21,6 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
@@ -30,7 +28,6 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.PaymentAddress;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
@@ -143,26 +140,6 @@ public class SignalServiceAccountManager {
    */
   public void requestRegistrationPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     pushServiceSocket.requestPushChallenge(sessionId, gcmRegistrationId);
-  }
-
-  /**
-   * Register an identity key, signed prekey, and list of one time prekeys
-   * with the server.
-   *
-   * @throws IOException
-   */
-  public void setPreKeys(PreKeyUpload preKeyUpload)
-      throws IOException
-  {
-    this.pushServiceSocket.registerPreKeys(preKeyUpload);
-  }
-
-  /**
-   * @return The server's count of currently available (eg. unused) prekeys for this user.
-   * @throws IOException
-   */
-  public OneTimePreKeyCounts getPreKeyCounts(ServiceIdType serviceIdType) throws IOException {
-    return this.pushServiceSocket.getAvailablePreKeys(serviceIdType);
   }
 
   public RemoteConfigResult getRemoteConfig() throws IOException {

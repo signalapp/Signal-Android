@@ -31,6 +31,7 @@ import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements;
+import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -85,7 +86,6 @@ import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.AttachmentPointer;
@@ -177,6 +177,7 @@ public class SignalServiceMessageSender {
 
   private final AttachmentService attachmentService;
   private final MessageApi        messageApi;
+  private final KeysApi           keysApi;
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
@@ -186,6 +187,7 @@ public class SignalServiceMessageSender {
                                     SignalSessionLock sessionLock,
                                     SignalWebSocket.AuthenticatedWebSocket authWebSocket,
                                     MessageApi messageApi,
+                                    KeysApi keysApi,
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize)
@@ -204,6 +206,7 @@ public class SignalServiceMessageSender {
     this.maxEnvelopeSize   = maxEnvelopeSize;
     this.localPniIdentity  = store.pni().getIdentityKeyPair();
     this.scheduler         = Schedulers.from(executor, false, false);
+    this.keysApi           = keysApi;
   }
 
   /**
@@ -1983,7 +1986,7 @@ public class SignalServiceMessageSender {
         }
       } catch (MismatchedDevicesException mde) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
-        handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
+        handleMismatchedDevices(recipient, mde.getMismatchedDevices());
       } catch (StaleDevicesException ste) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling stale devices. (" + ste.getMessage() + ")");
         handleStaleDevices(recipient, ste.getStaleDevices());
@@ -2228,7 +2231,7 @@ public class SignalServiceMessageSender {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
 
         return Single.fromCallable(() -> {
-                       handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
+                       handleMismatchedDevices(recipient, mde.getMismatchedDevices());
                        return Unit.INSTANCE;
                      })
                      .flatMap(unused -> sendMessageRx(
@@ -2451,7 +2454,7 @@ public class SignalServiceMessageSender {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + e.getMessage() + ")");
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(ServiceId.parseOrThrow(mismatched.getUuid()), Optional.empty());
-          handleMismatchedDevices(socket, address, mismatched.getDevices());
+          handleMismatchedDevices(address, mismatched.getDevices());
         }
       } catch (GroupStaleDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices. (" + e.getMessage() + ")");
@@ -2703,19 +2706,18 @@ public class SignalServiceMessageSender {
         sealedSenderAccess = null;
       }
 
-      return socket.getPreKeys(recipient, sealedSenderAccess, deviceId);
+      return NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKeys(recipient, sealedSenderAccess, deviceId));
     } catch (NonSuccessfulResponseCodeException e) {
       if (e.code == 401 && story) {
         Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
-        return socket.getPreKeys(recipient, null, deviceId);
+        return NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKeys(recipient, null, deviceId));
       } else {
         throw e;
       }
     }
   }
 
-  private void handleMismatchedDevices(PushServiceSocket socket,
-                                       SignalServiceAddress recipient,
+  private void handleMismatchedDevices(SignalServiceAddress recipient,
                                        MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {
@@ -2724,7 +2726,7 @@ public class SignalServiceMessageSender {
       archiveSessions(recipient, mismatchedDevices.getExtraDevices());
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
-        PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
+        PreKeyBundle preKey = NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKey(recipient, missingDeviceId));
 
         try {
           SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
@@ -2746,7 +2748,7 @@ public class SignalServiceMessageSender {
   public void handleChangeNumberMismatchDevices(@Nonnull MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {
-    handleMismatchedDevices(socket, localAddress, mismatchedDevices);
+    handleMismatchedDevices(localAddress, mismatchedDevices);
   }
 
   private void archiveSessions(SignalServiceAddress recipient, List<Integer> devices) {

@@ -1,10 +1,9 @@
-/**
- * Copyright (C) 2014-2016 Open Whisper Systems
- *
- * Licensed according to the LICENSE file in this repository.
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.whispersystems.signalservice.internal.push;
+package org.whispersystems.signalservice.api.keys;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

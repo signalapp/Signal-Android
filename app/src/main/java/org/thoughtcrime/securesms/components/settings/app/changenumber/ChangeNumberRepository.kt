@@ -161,7 +161,7 @@ class ChangeNumberRepository(
       pniMetadataStore.activeSignedPreKeyId = signedPreKey.id
       Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
 
-      accountManager.setPreKeys(
+      SignalNetwork.keys.setPreKeys(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
           signedPreKey = signedPreKey,
@@ -169,7 +169,7 @@ class ChangeNumberRepository(
           lastResortKyberPreKey = lastResortKyberPreKey,
           oneTimeKyberPreKeys = oneTimeKyberPreKeys
         )
-      )
+      ).successOrThrow()
       pniMetadataStore.isSignedPreKeyRegistered = true
       pniMetadataStore.lastResortKyberPreKeyId = pniLastResortKyberPreKeyId
 

@@ -15,10 +15,7 @@ import org.signal.core.util.concurrent.FutureTransformers;
 import org.signal.core.util.concurrent.ListenableFuture;
 import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.ECPublicKey;
-import org.signal.libsignal.protocol.kem.KEMPublicKey;
 import org.signal.libsignal.protocol.logging.Log;
-import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
@@ -41,7 +38,6 @@ import org.signal.storageservice.protos.groups.GroupResponse;
 import org.signal.storageservice.protos.groups.Member;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
-import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
@@ -51,7 +47,6 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
-import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
@@ -156,7 +151,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -190,11 +184,6 @@ public class PushServiceSocket {
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
-
-  private static final String PREKEY_METADATA_PATH      = "/v2/keys?identity=%s";
-  private static final String PREKEY_PATH               = "/v2/keys?identity=%s";
-  private static final String PREKEY_DEVICE_PATH        = "/v2/keys/%s/%s";
-  private static final String PREKEY_CHECK_PATH        = "/v2/keys/check";
 
   private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
@@ -511,174 +500,6 @@ public class PushServiceSocket {
     } catch (NotFoundException nfe) {
       throw new UnregisteredUserException(bundle.getDestination(), nfe);
     }
-  }
-
-  public void registerPreKeys(PreKeyUpload preKeyUpload)
-      throws IOException
-  {
-    SignedPreKeyEntity      signedPreKey          = null;
-    List<PreKeyEntity>      oneTimeEcPreKeys      = null;
-    KyberPreKeyEntity       lastResortKyberPreKey = null;
-    List<KyberPreKeyEntity> oneTimeKyberPreKeys   = null;
-
-    try {
-      if (preKeyUpload.getSignedPreKey() != null) {
-        signedPreKey = new SignedPreKeyEntity(preKeyUpload.getSignedPreKey().getId(),
-                                              preKeyUpload.getSignedPreKey().getKeyPair().getPublicKey(),
-                                              preKeyUpload.getSignedPreKey().getSignature());
-      }
-    } catch (InvalidKeyException e) {
-      throw new AssertionError("unexpected invalid key", e);
-    }
-
-    if (preKeyUpload.getOneTimeEcPreKeys() != null) {
-      oneTimeEcPreKeys = preKeyUpload
-          .getOneTimeEcPreKeys()
-          .stream()
-          .map(it -> {
-            try {
-              return new PreKeyEntity(it.getId(), it.getKeyPair().getPublicKey());
-            } catch (InvalidKeyException e) {
-              throw new AssertionError("unexpected invalid key", e);
-            }
-          })
-          .collect(Collectors.toList());
-    }
-
-    if (preKeyUpload.getLastResortKyberPreKey() != null) {
-      try {
-        lastResortKyberPreKey = new KyberPreKeyEntity(preKeyUpload.getLastResortKyberPreKey().getId(),
-                                                      preKeyUpload.getLastResortKyberPreKey().getKeyPair().getPublicKey(),
-                                                      preKeyUpload.getLastResortKyberPreKey().getSignature());
-      } catch (InvalidKeyException e) {
-        throw new AssertionError("unexpected invalid key", e);
-      }
-    }
-
-    if (preKeyUpload.getOneTimeKyberPreKeys() != null) {
-      oneTimeKyberPreKeys = preKeyUpload
-          .getOneTimeKyberPreKeys()
-          .stream()
-          .map(it -> {
-            try {
-              return new KyberPreKeyEntity(it.getId(), it.getKeyPair().getPublicKey(), it.getSignature());
-            } catch (InvalidKeyException e) {
-              throw new AssertionError("unexpected invalid key", e);
-            }
-          })
-          .collect(Collectors.toList());
-    }
-
-    makeServiceRequest(String.format(Locale.US, PREKEY_PATH, preKeyUpload.getServiceIdType().queryParam()),
-                       "PUT",
-                       JsonUtil.toJson(new PreKeyState(signedPreKey,
-                                                       oneTimeEcPreKeys,
-                                                       lastResortKyberPreKey,
-                                                       oneTimeKyberPreKeys)));
-  }
-
-  public OneTimePreKeyCounts getAvailablePreKeys(ServiceIdType serviceIdType) throws IOException {
-    String              path         = String.format(PREKEY_METADATA_PATH, serviceIdType.queryParam());
-    String              responseText = makeServiceRequest(path, "GET", null);
-    OneTimePreKeyCounts preKeyStatus = JsonUtil.fromJson(responseText, OneTimePreKeyCounts.class);
-
-    return preKeyStatus;
-  }
-
-  /**
-   * Retrieves prekeys. If the specified device is the primary (i.e. deviceId 1), it will retrieve prekeys
-   * for all devices. If it is not a primary, it will only contain the prekeys for that specific device.
-   */
-  public List<PreKeyBundle> getPreKeys(SignalServiceAddress destination,
-                                       @Nullable SealedSenderAccess sealedSenderAccess,
-                                       int deviceId)
-      throws IOException
-  {
-    return getPreKeysBySpecifier(destination, sealedSenderAccess, deviceId == 1 ? "*" : String.valueOf(deviceId));
-  }
-
-  /**
-   * Retrieves a prekey for a specific device.
-   */
-  public PreKeyBundle getPreKey(SignalServiceAddress destination, int deviceId) throws IOException {
-    List<PreKeyBundle> bundles = getPreKeysBySpecifier(destination, null, String.valueOf(deviceId));
-
-    if (bundles.size() > 0) {
-      return bundles.get(0);
-    } else {
-      throw new IOException("No prekeys available!");
-    }
-  }
-
-  private List<PreKeyBundle> getPreKeysBySpecifier(SignalServiceAddress destination,
-                                                   @Nullable SealedSenderAccess sealedSenderAccess,
-                                                   String deviceSpecifier)
-      throws IOException
-  {
-    try {
-      String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), deviceSpecifier);
-
-      Log.d(TAG, "Fetching prekeys for " + destination.getIdentifier() + "." + deviceSpecifier + ", i.e. GET " + path);
-
-      String             responseText = makeServiceRequest(path, "GET", null, NO_HEADERS, NO_HANDLER, sealedSenderAccess);
-      PreKeyResponse     response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);
-      List<PreKeyBundle> bundles      = new LinkedList<>();
-
-      for (PreKeyResponseItem device : response.getDevices()) {
-        ECPublicKey  preKey                = null;
-        ECPublicKey  signedPreKey          = null;
-        byte[]       signedPreKeySignature = null;
-        int          preKeyId              = PreKeyBundle.NULL_PRE_KEY_ID;
-        int          signedPreKeyId        = PreKeyBundle.NULL_PRE_KEY_ID;
-        int          kyberPreKeyId         = PreKeyBundle.NULL_PRE_KEY_ID;
-        KEMPublicKey kyberPreKey           = null;
-        byte[]       kyberPreKeySignature  = null;
-
-        if (device.getSignedPreKey() != null) {
-          signedPreKey          = device.getSignedPreKey().getPublicKey();
-          signedPreKeyId        = device.getSignedPreKey().getKeyId();
-          signedPreKeySignature = device.getSignedPreKey().getSignature();
-        }
-
-        if (device.getPreKey() != null) {
-          preKeyId = device.getPreKey().getKeyId();
-          preKey   = device.getPreKey().getPublicKey();
-        }
-
-        if (device.getKyberPreKey() != null) {
-          kyberPreKey          = device.getKyberPreKey().getPublicKey();
-          kyberPreKeyId        = device.getKyberPreKey().getKeyId();
-          kyberPreKeySignature = device.getKyberPreKey().getSignature();
-        }
-
-        bundles.add(new PreKeyBundle(device.getRegistrationId(),
-                                     device.getDeviceId(),
-                                     preKeyId,
-                                     preKey,
-                                     signedPreKeyId,
-                                     signedPreKey,
-                                     signedPreKeySignature,
-                                     response.getIdentityKey(),
-                                     kyberPreKeyId,
-                                     kyberPreKey,
-                                     kyberPreKeySignature));
-      }
-
-      return bundles;
-    } catch (NotFoundException nfe) {
-      throw new UnregisteredUserException(destination.getIdentifier(), nfe);
-    }
-  }
-
-  public void checkRepeatedUsePreKeys(ServiceIdType serviceIdType, byte[] digest) throws IOException {
-    String body = JsonUtil.toJson(new CheckRepeatedUsedPreKeysRequest(serviceIdType.toString(), digest));
-
-    makeServiceRequest(PREKEY_CHECK_PATH, "POST", body, NO_HEADERS, (responseCode, errorBody, getHeader) -> {
-      // Must override this handling because otherwise code assumes a device mismatch error
-      if  (responseCode == 409) {
-        throw new NonSuccessfulResponseCodeException(409);
-      }
-    }, null);
   }
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, long maxSizeBytes, ProgressListener listener)

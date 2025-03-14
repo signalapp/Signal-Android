@@ -42,6 +42,8 @@ object SignalNetwork {
   val cdsApi: CdsApi
     get() = AppDependencies.cdsApi
 
+  @JvmStatic
+  @get:JvmName("keys")
   val keys: KeysApi
     get() = AppDependencies.keysApi
 

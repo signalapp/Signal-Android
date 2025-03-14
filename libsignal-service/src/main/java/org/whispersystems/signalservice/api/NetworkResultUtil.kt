@@ -130,4 +130,28 @@ object NetworkResultUtil {
       }
     }
   }
+
+  @JvmStatic
+  @Throws(IOException::class)
+  fun <T> toPreKeysLegacy(result: NetworkResult<T>): T {
+    return when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.StatusCodeError -> {
+        throw when (result.code) {
+          400, 401 -> AuthorizationFailedException(result.code, "Authorization failed!")
+          404 -> NotFoundException("Not found")
+          429 -> RateLimitException(result.code, "Rate limit exceeded: ${result.code}", Optional.empty())
+          508 -> ServerRejectedException()
+          else -> result.exception
+        }
+      }
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.ApplicationError -> {
+        throw when (val error = result.throwable) {
+          is IOException, is RuntimeException -> error
+          else -> RuntimeException(error)
+        }
+      }
+    }
+  }
 }
