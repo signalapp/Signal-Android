@@ -95,7 +95,7 @@ class NetworkDependenciesModule(
   }
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
-    provider.provideSignalServiceAccountManager(accountApi, pushServiceSocket, groupsV2Operations)
+    provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
   }
 
   val libsignalNetwork: Network by lazy {

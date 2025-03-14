@@ -17,12 +17,9 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
-import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
-import org.whispersystems.signalservice.api.payments.CurrencyConversions;
 import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
@@ -31,8 +28,8 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.push.AuthCredentials;
 import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts;
 import org.whispersystems.signalservice.internal.push.PaymentAddress;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
@@ -43,7 +40,6 @@ import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputSt
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -52,6 +48,9 @@ import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * The main interface for creating, registering, and
@@ -63,10 +62,11 @@ public class SignalServiceAccountManager {
 
   private static final String TAG = SignalServiceAccountManager.class.getSimpleName();
 
-  private final PushServiceSocket          pushServiceSocket;
-  private final GroupsV2Operations         groupsV2Operations;
-  private final SignalServiceConfiguration configuration;
-  private final AccountApi                 accountApi;
+  private final PushServiceSocket                      pushServiceSocket;
+  private final GroupsV2Operations                     groupsV2Operations;
+  private final SignalServiceConfiguration             configuration;
+  private final SignalWebSocket.AuthenticatedWebSocket authWebSocket;
+  private final AccountApi                             accountApi;
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -92,12 +92,17 @@ public class SignalServiceAccountManager {
 
     return new SignalServiceAccountManager(
         null,
+        null,
         new PushServiceSocket(configuration, credentialProvider, signalAgent, gv2Operations.getProfileOperations(), automaticNetworkRetry),
         gv2Operations
     );
   }
 
-  public SignalServiceAccountManager(AccountApi accountApi, PushServiceSocket pushServiceSocket, GroupsV2Operations groupsV2Operations) {
+  public SignalServiceAccountManager(@Nullable SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                                     @Nullable AccountApi accountApi,
+                                     @Nonnull PushServiceSocket pushServiceSocket,
+                                     @Nonnull GroupsV2Operations groupsV2Operations) {
+    this.authWebSocket      = authWebSocket;
     this.accountApi         = accountApi;
     this.groupsV2Operations = groupsV2Operations;
     this.pushServiceSocket  = pushServiceSocket;
@@ -113,11 +118,11 @@ public class SignalServiceAccountManager {
   }
 
   public SecureValueRecoveryV2 getSecureValueRecoveryV2(String mrEnclave) {
-    return new SecureValueRecoveryV2(configuration, mrEnclave, pushServiceSocket);
+    return new SecureValueRecoveryV2(configuration, mrEnclave, authWebSocket);
   }
 
   public SecureValueRecoveryV3 getSecureValueRecoveryV3(Network network) {
-    return new SecureValueRecoveryV3(network, pushServiceSocket);
+    return new SecureValueRecoveryV3(network, authWebSocket);
   }
 
   public WhoAmIResponse getWhoAmI() throws IOException {
@@ -243,7 +248,7 @@ public class SignalServiceAccountManager {
   }
 
   public GroupsV2Api getGroupsV2Api() {
-    return new GroupsV2Api(pushServiceSocket, groupsV2Operations);
+    return new GroupsV2Api(authWebSocket, pushServiceSocket, groupsV2Operations);
   }
 
   public RegistrationApi getRegistrationApi() {

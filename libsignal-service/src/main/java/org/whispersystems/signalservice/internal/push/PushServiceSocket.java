@@ -43,7 +43,6 @@ import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
-import org.whispersystems.signalservice.api.groupsv2.CredentialResponse;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
@@ -51,7 +50,6 @@ import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -218,7 +216,6 @@ public class PushServiceSocket {
   private static final String STICKER_MANIFEST_PATH          = "stickers/%s/manifest.proto";
   private static final String STICKER_PATH                   = "stickers/%s/full/%d";
 
-  private static final String GROUPSV2_CREDENTIAL       = "/v1/certificate/auth/group?redemptionStartSeconds=%d&redemptionEndSeconds=%d";
   private static final String GROUPSV2_GROUP            = "/v2/groups/";
   private static final String GROUPSV2_GROUP_PASSWORD   = "/v2/groups/?inviteLinkPassword=%s";
   private static final String GROUPSV2_GROUP_CHANGES    = "/v2/groups/logs/%s?maxSupportedChangeEpoch=%d&includeFirstState=%s&includeLastState=false";
@@ -250,9 +247,6 @@ public class PushServiceSocket {
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
 
   private static final String REGISTRATION_PATH    = "/v1/registration";
-
-  private static final String SVR2_AUTH = "/v2/backup/auth";
-  private static final String SVR3_AUTH = "/v3/backup/auth";
 
   private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
@@ -414,18 +408,6 @@ public class PushServiceSocket {
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
-  }
-
-  public AuthCredentials getSvr2Authorization() throws IOException {
-    String          body        = makeServiceRequest(SVR2_AUTH, "GET", null);
-    AuthCredentials credentials = JsonUtil.fromJsonResponse(body, AuthCredentials.class);
-
-    return credentials;
-  }
-
-  public Svr3Credentials getSvr3Authorization() throws IOException {
-    String body = makeServiceRequest(SVR3_AUTH, "GET", null);
-    return JsonUtil.fromJsonResponse(body, Svr3Credentials.class);
   }
 
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
@@ -2312,20 +2294,6 @@ public class PushServiceSocket {
         throw new NonSuccessfulResponseCodeException(responseCode, "Response: " + responseCode, bodyBytes);
       }
     }
-  }
-
-  public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
-      throws IOException
-  {
-    long todayPlus7 = todaySeconds + TimeUnit.DAYS.toSeconds(7);
-    String response = makeServiceRequest(String.format(Locale.US, GROUPSV2_CREDENTIAL, todaySeconds, todayPlus7),
-                                         "GET",
-                                         null,
-                                         NO_HEADERS,
-                                         NO_HANDLER,
-                                         SealedSenderAccess.NONE);
-
-    return JsonUtil.fromJson(response, CredentialResponse.class);
   }
 
   private static final ResponseCodeHandler GROUPS_V2_PUT_RESPONSE_HANDLER   = (responseCode, body, getHeader) -> {
