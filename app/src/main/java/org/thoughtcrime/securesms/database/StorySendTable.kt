@@ -349,7 +349,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
         INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID
         WHERE $TABLE_NAME.$SENT_TIMESTAMP = ?
       """,
-      arrayOf(sentTimestamp)
+      sentTimestamp
     ).use { cursor ->
       val results: MutableMap<RecipientId, SentStorySyncManifest.Entry> = mutableMapOf()
       while (cursor.moveToNext()) {
