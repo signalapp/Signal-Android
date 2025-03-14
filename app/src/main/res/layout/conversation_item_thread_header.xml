@@ -2,12 +2,21 @@
   ~ Copyright 2023 Signal Messenger, LLC
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
-<org.thoughtcrime.securesms.conversation.ConversationHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="22dp"
-    android:paddingBottom="4dp"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:viewBindingIgnore="true" />
+    android:layout_height="wrap_content">
+
+    <org.thoughtcrime.securesms.conversation.ConversationHeaderView
+        android:id="@+id/header"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingTop="22dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:viewBindingIgnore="true" />
+
+</FrameLayout>

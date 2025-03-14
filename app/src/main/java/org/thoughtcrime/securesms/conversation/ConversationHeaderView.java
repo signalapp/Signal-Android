@@ -162,17 +162,17 @@ public class ConversationHeaderView extends ConstraintLayout {
     binding.messageRequestAbout.setVisibility(TextUtils.isEmpty(about) || recipient.isReleaseNotes() ? GONE : VISIBLE);
   }
 
-  public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes, @Nullable Runnable onClick) {
+  public void setSubtitle(@NonNull CharSequence subtitle, @DrawableRes int iconRes, @Nullable String substring, @Nullable Runnable onClick) {
     if (TextUtils.isEmpty(subtitle)) {
       hideSubtitle();
       return;
     }
 
-    if (onClick != null) {
+    if (onClick != null && substring != null) {
       binding.messageRequestSubtitle.setMovementMethod(LinkMovementMethod.getInstance());
       CharSequence builder = SpanUtil.clickSubstring(
           subtitle,
-          subtitle,
+          substring,
           listener -> onClick.run(),
           ContextCompat.getColor(getContext(), R.color.signal_colorOnSurface),
           true
@@ -302,6 +302,11 @@ public class ConversationHeaderView extends ConstraintLayout {
       if (ViewKt.isVisible(binding.messageRequestInfo.getChildAt(i))) {
         visibleCount++;
       }
+    }
+
+    if (getBackground() != null) {
+      ViewUtil.setPaddingTop(binding.messageRequestInfo, 0);
+      ViewUtil.setPaddingBottom(binding.messageRequestInfo, getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding));
     }
 
     int padding = visibleCount == 1 ? getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding) : getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding_expanded);

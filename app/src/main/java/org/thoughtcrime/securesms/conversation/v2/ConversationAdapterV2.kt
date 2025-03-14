@@ -531,7 +531,7 @@ class ConversationAdapterV2(
   }
 
   inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {
-    private val conversationBanner: ConversationHeaderView = itemView as ConversationHeaderView
+    private val conversationBanner: ConversationHeaderView = itemView.findViewById(R.id.header)
 
     override fun bind(model: ThreadHeader) {
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
@@ -570,19 +570,16 @@ class ConversationAdapterV2(
           conversationBanner.hideUnverifiedNameSubtitle()
         }
 
-        if (groupInfo.pendingMemberCount > 0) {
-          val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, groupInfo.pendingMemberCount, groupInfo.pendingMemberCount)
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members_and_invited, groupInfo.fullMemberCount, groupInfo.fullMemberCount, invited), R.drawable.symbol_group_compact_16) { goToGroupSettings(recipient) }
-        } else if (groupInfo.fullMemberCount > 0) {
+        if (groupInfo.fullMemberCount > 0 || groupInfo.pendingMemberCount > 0) {
           if (groupInfo.fullMemberCount == 1 && recipient.isActiveGroup) {
             conversationBanner.hideUnverifiedNameSubtitle()
           }
-          conversationBanner.setSubtitle(context.resources.getQuantityString(R.plurals.MessageRequestProfileView_members, groupInfo.fullMemberCount, groupInfo.fullMemberCount), R.drawable.symbol_group_compact_16) { goToGroupSettings(recipient) }
+          setSubtitle(context, groupInfo.pendingMemberCount, groupInfo.fullMemberCount, groupInfo.membersPreview, recipient)
         } else {
           conversationBanner.hideSubtitle()
         }
       } else if (isSelf) {
-        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_compact_16, null)
+        conversationBanner.setSubtitle(context.getString(R.string.ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation), R.drawable.symbol_note_compact_16, null, null)
       } else {
         if ((recipient.profileName.toString() == recipient.getDisplayName(context)) && recipient.nickname.isEmpty && !recipient.isSystemContact) {
           conversationBanner.setUnverifiedNameSubtitle(R.drawable.symbol_person_question_16, false) {
@@ -596,7 +593,7 @@ class ConversationAdapterV2(
         if (subtitle == null || subtitle == title) {
           conversationBanner.hideSubtitle()
         } else {
-          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_compact_16, null)
+          conversationBanner.setSubtitle(subtitle, R.drawable.symbol_phone_compact_16, null, null)
         }
       }
 
@@ -639,6 +636,35 @@ class ConversationAdapterV2(
         conversationBanner.setDescription(getDescription(context, sharedGroups), R.drawable.symbol_group_compact_16)
       }
       conversationBanner.updateOutlineBoxSize()
+    }
+
+    private fun setSubtitle(context: Context, pendingMemberCount: Int, size: Int, members: List<Recipient>, recipient: Recipient) {
+      val names = members.map { member -> member.getDisplayName(context) }
+      val otherMembers = if (size > 3) context.resources.getQuantityString(R.plurals.MessageRequestProfileView_other_members, size - 3, size - 3) else null
+      val membersSubtitle = if (recipient.isActiveGroup) {
+        when (size) {
+          1 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
+          2 -> context.getString(R.string.MessageRequestProfileView_group_members_one_and_you, names[0])
+          3 -> context.getString(R.string.MessageRequestProfileView_group_members_two_and_you, names[0], names[1])
+          else -> context.getString(R.string.MessageRequestProfileView_group_members_other, names[0], names[1], names[2], otherMembers)
+        }
+      } else {
+        when (size) {
+          0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
+          1 -> context.getString(R.string.MessageRequestProfileView_group_members_one, names[0])
+          2 -> context.getString(R.string.MessageRequestProfileView_group_members_two, names[0], names[1])
+          3 -> context.getString(R.string.MessageRequestProfileView_group_members_three, names[0], names[1], names[2])
+          else -> context.getString(R.string.MessageRequestProfileView_group_members_other, names[0], names[1], names[2], otherMembers)
+        }
+      }
+
+      if (pendingMemberCount > 0) {
+        val invited = context.resources.getQuantityString(R.plurals.MessageRequestProfileView_invited, pendingMemberCount, pendingMemberCount)
+        val subtitle = context.getString(R.string.MessageRequestProfileView_member_names_and_invited, membersSubtitle, invited)
+        conversationBanner.setSubtitle(subtitle, R.drawable.symbol_group_compact_16, otherMembers) { goToGroupSettings(recipient) }
+      } else {
+        conversationBanner.setSubtitle(membersSubtitle, R.drawable.symbol_group_compact_16, otherMembers) { goToGroupSettings(recipient) }
+      }
     }
 
     private fun getDescription(context: Context, sharedGroups: List<String>): String {
