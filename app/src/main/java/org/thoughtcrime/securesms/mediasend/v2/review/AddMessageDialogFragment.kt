@@ -91,6 +91,7 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     })
 
     binding.content.addAMessageInput.setText(requireArguments().getCharSequence(ARG_INITIAL_TEXT))
+    binding.content.addAMessageInput.addTextChangedListener { viewModel.setMessage(it) }
 
     binding.content.emojiToggle.setOnClickListener { onEmojiToggleClicked() }
     if (requireArguments().getBoolean(ARG_INITIAL_EMOJI_TOGGLE) && view is KeyboardAwareLinearLayout) {
@@ -124,7 +125,11 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
     )
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
-      binding.content.viewOnceToggle.displayedChild = if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) 1 else 0
+      val newChild = if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) 1 else 0
+      if (binding.content.viewOnceToggle.displayedChild != newChild) {
+        binding.content.viewOnceToggle.displayedChild = newChild
+      }
+
       if (state.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE) {
         binding.content.addAMessageInput.text = null
         dismiss()

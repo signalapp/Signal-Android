@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.text.SpannableString
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -496,10 +497,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     when (viewOnceState) {
       MediaSelectionState.ViewOnceToggleState.INFINITE -> {
         addMessageButton.gravity = Gravity.CENTER_VERTICAL
-        addMessageButton.setText(
-          message.takeIf { it.isNotNullOrBlank() } ?: getString(R.string.MediaReviewFragment__add_a_message),
-          TextView.BufferType.SPANNABLE
-        )
+        addMessageButton.text = SpannableString(message.takeIf { it.isNotNullOrBlank() } ?: getString(R.string.MediaReviewFragment__add_a_message))
         addMessageButton.isClickable = true
       }
       MediaSelectionState.ViewOnceToggleState.ONCE -> {
