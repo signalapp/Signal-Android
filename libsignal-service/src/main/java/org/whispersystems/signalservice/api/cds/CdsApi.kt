@@ -72,8 +72,6 @@ class CdsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) 
             is TimeoutException -> NetworkResult.NetworkError(IOException("Timed out"))
             else -> throw e
           }
-        } catch (e: Exception) {
-          throw RuntimeException("Unexpected exception when retrieving registered users!", e)
         }
       }
   }

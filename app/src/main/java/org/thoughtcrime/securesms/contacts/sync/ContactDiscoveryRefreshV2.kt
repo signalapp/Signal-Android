@@ -123,7 +123,7 @@ object ContactDiscoveryRefreshV2 {
       }
 
       is NetworkResult.NetworkError -> throw result.exception
-      is NetworkResult.ApplicationError -> throw RuntimeException("Unexpected exception", result.throwable)
+      is NetworkResult.ApplicationError -> throw result.throwable
     }
 
     return response.results[e164]?.let { item ->
@@ -213,7 +213,7 @@ object ContactDiscoveryRefreshV2 {
       }
 
       is NetworkResult.NetworkError -> throw result.exception
-      is NetworkResult.ApplicationError -> throw RuntimeException("Unexpected exception", result.throwable)
+      is NetworkResult.ApplicationError -> throw result.throwable
     }
 
     if (!isPartialRefresh && SignalStore.misc.isCdsBlocked) {
