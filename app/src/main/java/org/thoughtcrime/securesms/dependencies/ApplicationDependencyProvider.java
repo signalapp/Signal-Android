@@ -93,6 +93,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
 import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.whispersystems.signalservice.api.profiles.ProfileApi;
 import org.whispersystems.signalservice.api.provisioning.ProvisioningApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
@@ -448,11 +449,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations clientZkProfileOperations,
-                                                       @NonNull SignalServiceMessageReceiver receiver,
                                                        @NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
                                                        @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket)
   {
-    return new ProfileService(clientZkProfileOperations, receiver, authWebSocket, unauthWebSocket);
+    return new ProfileService(clientZkProfileOperations, authWebSocket, unauthWebSocket);
   }
 
   @Override
@@ -545,6 +545,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull CertificateApi provideCertificateApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
     return new CertificateApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull ProfileApi provideProfileApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new ProfileApi(authWebSocket, pushServiceSocket);
   }
 
   @VisibleForTesting

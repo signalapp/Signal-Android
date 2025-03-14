@@ -38,6 +38,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.profiles.ProfileApi
 import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
@@ -136,7 +137,7 @@ class NetworkDependenciesModule(
   }
 
   val profileService: ProfileService by lazy {
-    provider.provideProfileService(groupsV2Operations.profileOperations, signalServiceMessageReceiver, authWebSocket, unauthWebSocket)
+    provider.provideProfileService(groupsV2Operations.profileOperations, authWebSocket, unauthWebSocket)
   }
 
   val donationsService: DonationsService by lazy {
@@ -201,6 +202,10 @@ class NetworkDependenciesModule(
 
   val certificateApi: CertificateApi by lazy {
     provider.provideCertificateApi(authWebSocket)
+  }
+
+  val profileApi: ProfileApi by lazy {
+    provider.provideProfileApi(authWebSocket, pushServiceSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

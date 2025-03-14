@@ -7,44 +7,25 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.libsignal.net.Network;
-import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
-import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.account.AccountApi;
-import org.whispersystems.signalservice.api.crypto.ProfileCipher;
-import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
-import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
-import org.whispersystems.signalservice.api.profiles.AvatarUploadParams;
-import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV2;
 import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
-import org.whispersystems.signalservice.internal.push.PaymentAddress;
-import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
-import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -147,69 +128,6 @@ public class SignalServiceAccountManager {
 
   public void checkNetworkConnection() throws IOException {
     this.pushServiceSocket.pingStorageService();
-  }
-
-  /**
-   * @return The avatar URL path, if one was written.
-   */
-  public Optional<String> setVersionedProfile(ACI aci,
-                                              ProfileKey profileKey,
-                                              String name,
-                                              String about,
-                                              String aboutEmoji,
-                                              Optional<PaymentAddress> paymentsAddress,
-                                              AvatarUploadParams avatar,
-                                              List<String> visibleBadgeIds,
-                                              boolean phoneNumberSharing)
-      throws IOException
-  {
-    if (name == null) name = "";
-
-    ProfileCipher     profileCipher                = new ProfileCipher(profileKey);
-    byte[]            ciphertextName               = profileCipher.encryptString(name, ProfileCipher.getTargetNameLength(name));
-    byte[]            ciphertextAbout              = profileCipher.encryptString(about, ProfileCipher.getTargetAboutLength(about));
-    byte[]            ciphertextEmoji              = profileCipher.encryptString(aboutEmoji, ProfileCipher.EMOJI_PADDED_LENGTH);
-    byte[]            ciphertextMobileCoinAddress  = paymentsAddress.map(address -> profileCipher.encryptWithLength(address.encode(), ProfileCipher.PAYMENTS_ADDRESS_CONTENT_SIZE)).orElse(null);
-    byte[]            cipherTextPhoneNumberSharing = profileCipher.encryptBoolean(phoneNumberSharing);
-    ProfileAvatarData profileAvatarData            = null;
-
-    if (avatar.stream != null && !avatar.keepTheSame) {
-      profileAvatarData = new ProfileAvatarData(avatar.stream.getStream(),
-                                                ProfileCipherOutputStream.getCiphertextLength(avatar.stream.getLength()),
-                                                avatar.stream.getContentType(),
-                                                new ProfileCipherOutputStreamFactory(profileKey));
-    }
-
-    return this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion(aci.getLibSignalAci()).serialize(),
-                                                                             ciphertextName,
-                                                                             ciphertextAbout,
-                                                                             ciphertextEmoji,
-                                                                             ciphertextMobileCoinAddress,
-                                                                             cipherTextPhoneNumberSharing,
-                                                                             avatar.hasAvatar,
-                                                                             avatar.keepTheSame,
-                                                                             profileKey.getCommitment(aci.getLibSignalAci()).serialize(),
-                                                                             visibleBadgeIds),
-                                                                             profileAvatarData);
-  }
-
-  public Optional<ExpiringProfileKeyCredential> resolveProfileKeyCredential(ACI serviceId, ProfileKey profileKey, Locale locale)
-      throws NonSuccessfulResponseCodeException, PushNetworkException
-  {
-    try {
-      ProfileAndCredential credential = this.pushServiceSocket.retrieveVersionedProfileAndCredential(serviceId, profileKey, SealedSenderAccess.NONE, locale).get(10, TimeUnit.SECONDS);
-      return credential.getExpiringProfileKeyCredential();
-    } catch (InterruptedException | TimeoutException e) {
-      throw new PushNetworkException(e);
-    } catch (ExecutionException e) {
-      if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
-        throw (NonSuccessfulResponseCodeException) e.getCause();
-      } else if (e.getCause() instanceof PushNetworkException) {
-        throw (PushNetworkException) e.getCause();
-      } else {
-        throw new PushNetworkException(e);
-      }
-    }
   }
 
   public void cancelInFlightRequests() {

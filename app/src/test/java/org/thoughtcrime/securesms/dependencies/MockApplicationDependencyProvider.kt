@@ -47,6 +47,7 @@ import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.profiles.ProfileApi
 import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
@@ -192,7 +193,6 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
 
   override fun provideProfileService(
     profileOperations: ClientZkProfileOperations,
-    signalServiceMessageReceiver: SignalServiceMessageReceiver,
     authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
     unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket
   ): ProfileService {
@@ -284,6 +284,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideCertificateApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CertificateApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideProfileApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ProfileApi {
     return mockk(relaxed = true)
   }
 }

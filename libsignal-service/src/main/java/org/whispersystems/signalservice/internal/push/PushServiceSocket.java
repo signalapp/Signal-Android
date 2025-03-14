@@ -11,19 +11,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.squareup.wire.Message;
 
 import org.signal.core.util.Base64;
-import org.signal.core.util.concurrent.FutureTransformers;
-import org.signal.core.util.concurrent.ListenableFuture;
-import org.signal.core.util.concurrent.SettableFuture;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
-import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
-import org.signal.libsignal.zkgroup.profiles.ProfileKey;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequest;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyCredentialRequestContext;
-import org.signal.libsignal.zkgroup.profiles.ProfileKeyVersion;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
@@ -36,6 +27,7 @@ import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.GroupJoinInfo;
 import org.signal.storageservice.protos.groups.GroupResponse;
 import org.signal.storageservice.protos.groups.Member;
+import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
@@ -43,10 +35,6 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
-import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfileWrite;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
@@ -89,7 +77,6 @@ import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
@@ -106,9 +93,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentRec
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
-import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
-import org.whispersystems.signalservice.internal.push.http.AcceptLanguagesUtil;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.DigestingRequestBody;
 import org.whispersystems.signalservice.internal.push.http.NoCipherOutputStreamFactory;
@@ -122,7 +107,6 @@ import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.internal.websocket.ResponseMapper;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -158,10 +142,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
@@ -188,9 +169,6 @@ public class PushServiceSocket {
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
 
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
-
-  private static final String PROFILE_PATH              = "/v1/profile/%s";
-  private static final String PROFILE_BATCH_CHECK_PATH  = "/v1/profile/identity_check/batch";
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
@@ -523,72 +501,6 @@ public class PushServiceSocket {
     return output.toByteArray();
   }
 
-  public ListenableFuture<SignalServiceProfile> retrieveProfile(SignalServiceAddress target, @Nullable SealedSenderAccess sealedSenderAccess, Locale locale) {
-    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, target.getIdentifier()), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), sealedSenderAccess);
-
-    return FutureTransformers.map(response, body -> {
-      try {
-        return JsonUtil.fromJson(body, SignalServiceProfile.class);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-        throw new MalformedResponseException("Unable to parse entity", e);
-      }
-    });
-  }
-
-  public ListenableFuture<ProfileAndCredential> retrieveVersionedProfileAndCredential(ACI target, ProfileKey profileKey, @Nullable SealedSenderAccess sealedSenderAccess, Locale locale) {
-    ProfileKeyVersion                  profileKeyIdentifier = profileKey.getProfileKeyVersion(target.getLibSignalAci());
-    ProfileKeyCredentialRequestContext requestContext       = clientZkProfileOperations.createProfileKeyCredentialRequestContext(random, target.getLibSignalAci(), profileKey);
-    ProfileKeyCredentialRequest        request              = requestContext.getRequest();
-
-    String version           = profileKeyIdentifier.serialize();
-    String credentialRequest = Hex.toStringCondensed(request.serialize());
-    String subPath           = String.format("%s/%s/%s?credentialType=expiringProfileKey", target, version, credentialRequest);
-
-
-    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), sealedSenderAccess);
-
-    return FutureTransformers.map(response, body -> formatProfileAndCredentialBody(requestContext, body));
-  }
-
-  private ProfileAndCredential formatProfileAndCredentialBody(ProfileKeyCredentialRequestContext requestContext, String body)
-      throws MalformedResponseException
-  {
-    try {
-      SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(body, SignalServiceProfile.class);
-
-      try {
-        ExpiringProfileKeyCredential expiringProfileKeyCredential = signalServiceProfile.getExpiringProfileKeyCredentialResponse() != null
-                                                                    ? clientZkProfileOperations.receiveExpiringProfileKeyCredential(requestContext, signalServiceProfile.getExpiringProfileKeyCredentialResponse())
-                                                                    : null;
-        return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.ofNullable(expiringProfileKeyCredential));
-      } catch (VerificationFailedException e) {
-        Log.w(TAG, "Failed to verify credential.", e);
-        return new ProfileAndCredential(signalServiceProfile, SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL, Optional.empty());
-      }
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
-    }
-  }
-
-  public ListenableFuture<SignalServiceProfile> retrieveVersionedProfile(ACI target, ProfileKey profileKey, @Nullable SealedSenderAccess sealedSenderAccess, Locale locale) {
-    ProfileKeyVersion profileKeyIdentifier = profileKey.getProfileKeyVersion(target.getLibSignalAci());
-
-    String                   version  = profileKeyIdentifier.serialize();
-    String                   subPath  = String.format("%s/%s", target, version);
-    ListenableFuture<String> response = submitServiceRequest(String.format(PROFILE_PATH, subPath), "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), sealedSenderAccess);
-
-    return FutureTransformers.map(response, body -> {
-      try {
-        return JsonUtil.fromJson(body, SignalServiceProfile.class);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-        throw new MalformedResponseException("Unable to parse entity", e);
-      }
-    });
-  }
-
   public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
       throws IOException
   {
@@ -600,56 +512,21 @@ public class PushServiceSocket {
   }
 
   /**
-   * @return The avatar URL path, if one was written.
+   * Only used to upload self profile avatar as part of writing the profile to the service.
+   *
+   * @return Profile avatar key
    */
-  public Optional<String> writeProfile(SignalServiceProfileWrite signalServiceProfileWrite, ProfileAvatarData profileAvatar)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    String                        requestBody    = JsonUtil.toJson(signalServiceProfileWrite);
-    ProfileAvatarUploadAttributes formAttributes;
-
-    String response = makeServiceRequest(String.format(PROFILE_PATH, ""),
-                                         "PUT",
-                                         requestBody,
-                                         NO_HEADERS,
-                                         PaymentsRegionException::responseCodeHandler,
-                                         SealedSenderAccess.NONE);
-
-    if (signalServiceProfileWrite.hasAvatar() && profileAvatar != null) {
-      try {
-        formAttributes = JsonUtil.fromJson(response, ProfileAvatarUploadAttributes.class);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-        throw new MalformedResponseException("Unable to parse entity", e);
-      }
-
+  public NetworkResult<String> uploadProfileAvatar(ProfileAvatarUploadAttributes formAttributes, ProfileAvatarData profileAvatar) {
+    return NetworkResult.fromFetch(() -> {
       uploadToCdn0(AVATAR_UPLOAD_PATH, formAttributes.getAcl(), formAttributes.getKey(),
-                  formAttributes.getPolicy(), formAttributes.getAlgorithm(),
-                  formAttributes.getCredential(), formAttributes.getDate(),
-                  formAttributes.getSignature(), profileAvatar.getData(),
-                  profileAvatar.getContentType(), profileAvatar.getDataLength(), false,
-                  profileAvatar.getOutputStreamFactory(), null, null);
+                   formAttributes.getPolicy(), formAttributes.getAlgorithm(),
+                   formAttributes.getCredential(), formAttributes.getDate(),
+                   formAttributes.getSignature(), profileAvatar.getData(),
+                   profileAvatar.getContentType(), profileAvatar.getDataLength(), false,
+                   profileAvatar.getOutputStreamFactory(), null, null);
 
-       return Optional.of(formAttributes.getKey());
-    }
-
-    return Optional.empty();
-  }
-
-  public Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull IdentityCheckRequest request,
-                                                                             @Nonnull ResponseMapper<IdentityCheckResponse> responseMapper)
-  {
-    Single<ServiceResponse<IdentityCheckResponse>> requestSingle = Single.fromCallable(() -> {
-      try (Response response = getServiceConnection(PROFILE_BATCH_CHECK_PATH, "POST", jsonRequestBody(JsonUtil.toJson(request)), Collections.emptyMap(), SealedSenderAccess.NONE, false)) {
-        String body = response.body() != null ? readBodyString(response.body()): "";
-        return responseMapper.map(response.code(), body, response::header, false);
-      }
+      return formAttributes.getKey();
     });
-
-    return requestSingle
-        .subscribeOn(Schedulers.io())
-        .observeOn(Schedulers.io())
-        .onErrorReturn(ServiceResponse::forUnknownError);
   }
 
   public BackupV2AuthCheckResponse checkSvr2AuthCredentials(@Nullable String number, @Nonnull List<String> passwords) throws IOException {
@@ -1444,41 +1321,6 @@ public class PushServiceSocket {
   private static RequestBody protobufRequestBody(Message<?, ?> protobufBody) {
     return protobufBody != null ? RequestBody.create(MediaType.parse("application/x-protobuf"), protobufBody.encode())
                                 : null;
-  }
-
-  private ListenableFuture<String> submitServiceRequest(String urlFragment,
-                                                        String method,
-                                                        String jsonBody,
-                                                        Map<String, String> headers,
-                                                        @Nullable SealedSenderAccess sealedSenderAccess)
-  {
-    OkHttpClient okHttpClient = buildOkHttpClient(sealedSenderAccess != null);
-    Call         call         = okHttpClient.newCall(buildServiceRequest(urlFragment, method, jsonRequestBody(jsonBody), headers, sealedSenderAccess, false));
-
-    synchronized (connections) {
-      connections.add(call);
-    }
-
-    SettableFuture<String> bodyFuture = new SettableFuture<>();
-
-    call.enqueue(new Callback() {
-      @Override
-      public void onResponse(Call call, Response response) {
-        try (ResponseBody body = response.body()) {
-          validateServiceResponse(response);
-          bodyFuture.set(readBodyString(body));
-        } catch (IOException e) {
-          bodyFuture.setException(e);
-        }
-      }
-
-      @Override
-      public void onFailure(Call call, IOException e) {
-        bodyFuture.setException(e);
-      }
-    });
-
-    return bodyFuture;
   }
 
   private Response makeServiceRequest(String urlFragment,

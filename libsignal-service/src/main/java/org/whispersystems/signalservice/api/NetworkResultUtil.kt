@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatched
 import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
+import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionException
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException
 import java.io.IOException
 import java.util.Optional
@@ -150,6 +151,32 @@ object NetworkResultUtil {
         throw when (val error = result.throwable) {
           is IOException, is RuntimeException -> error
           else -> RuntimeException(error)
+        }
+      }
+    }
+  }
+
+  /**
+   * Convert a [NetworkResult] into typed exceptions expected during setting the user's profile.
+   */
+  @JvmStatic
+  @Throws(AuthorizationFailedException::class, PaymentsRegionException::class, RateLimitException::class, IOException::class)
+  fun toSetProfileLegacy(result: NetworkResult<String?>): String? {
+    return when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.ApplicationError -> {
+        throw when (val error = result.throwable) {
+          is IOException, is RuntimeException -> error
+          else -> RuntimeException(error)
+        }
+      }
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.StatusCodeError -> {
+        throw when (result.code) {
+          401 -> AuthorizationFailedException(result.code, "Authorization failed!")
+          403 -> PaymentsRegionException(result.code)
+          413, 429 -> RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()))
+          else -> result.exception
         }
       }
     }
