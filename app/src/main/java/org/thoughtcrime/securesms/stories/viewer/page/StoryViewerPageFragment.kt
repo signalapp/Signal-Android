@@ -11,7 +11,6 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
-import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.StyleSpan
@@ -86,6 +85,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
+import org.thoughtcrime.securesms.util.LongClickMovementMethod
 import org.thoughtcrime.securesms.util.Projection
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -924,7 +924,7 @@ class StoryViewerPageFragment :
     largeCaption.text = displayBody
     caption.visible = displayBody.isNotEmpty()
     caption.requestLayout()
-    caption.movementMethod = LinkMovementMethod.getInstance()
+    caption.movementMethod = LongClickMovementMethod.getInstance(requireContext())
     val overflow = SpannableString(getString(R.string.StoryViewerPageFragment__read_more))
     overflow.setSpan(StyleSpan(Typeface.BOLD), 0, overflow.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     caption.setOverflowText(overflow)
