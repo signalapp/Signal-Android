@@ -252,7 +252,7 @@ object SignalDatabaseMigrations {
     267 to V267_FixGroupInvitationDeclinedUpdate
   )
 
-  const val DATABASE_VERSION = 267
+  const val DATABASE_VERSION = 268
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {
