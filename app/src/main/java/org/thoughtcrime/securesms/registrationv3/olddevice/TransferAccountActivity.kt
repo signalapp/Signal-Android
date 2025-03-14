@@ -69,7 +69,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.viewModel
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 
 /**
  * Launched after scanning QR code from new device to start the transfer/reregistration process from

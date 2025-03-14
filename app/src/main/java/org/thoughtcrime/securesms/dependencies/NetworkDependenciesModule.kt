@@ -32,11 +32,13 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
+import org.whispersystems.signalservice.api.certificate.CertificateApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
@@ -82,7 +84,7 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(authWebSocket, protocolStore, pushServiceSocket, messageApi, keysApi)
+    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
@@ -191,6 +193,14 @@ class NetworkDependenciesModule(
 
   val messageApi: MessageApi by lazy {
     provider.provideMessageApi(authWebSocket, unauthWebSocket)
+  }
+
+  val provisioningApi: ProvisioningApi by lazy {
+    provider.provideProvisioningApi(authWebSocket)
+  }
+
+  val certificateApi: CertificateApi by lazy {
+    provider.provideCertificateApi(authWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

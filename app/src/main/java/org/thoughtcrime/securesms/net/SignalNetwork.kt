@@ -11,10 +11,12 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
+import org.whispersystems.signalservice.api.certificate.CertificateApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
 import org.whispersystems.signalservice.api.username.UsernameApi
@@ -43,6 +45,11 @@ object SignalNetwork {
     get() = AppDependencies.cdsApi
 
   @JvmStatic
+  @get:JvmName("certificate")
+  val certificate: CertificateApi
+    get() = AppDependencies.certificateApi
+
+  @JvmStatic
   @get:JvmName("keys")
   val keys: KeysApi
     get() = AppDependencies.keysApi
@@ -59,6 +66,9 @@ object SignalNetwork {
   @get:JvmName("payments")
   val payments: PaymentsApi
     get() = AppDependencies.paymentsApi
+
+  val provisioning: ProvisioningApi
+    get() = AppDependencies.provisioningApi
 
   @JvmStatic
   @get:JvmName("rateLimitChallenge")

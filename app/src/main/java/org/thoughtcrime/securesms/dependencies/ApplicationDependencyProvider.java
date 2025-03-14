@@ -86,12 +86,14 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.calling.CallingApi;
 import org.whispersystems.signalservice.api.cds.CdsApi;
+import org.whispersystems.signalservice.api.certificate.CertificateApi;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
 import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi;
@@ -151,15 +153,15 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
-                                                                               @NonNull SignalServiceDataStore protocolStore,
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalServiceDataStore protocolStore,
                                                                                @NonNull PushServiceSocket pushServiceSocket,
+                                                                               @NonNull AttachmentApi attachmentApi,
                                                                                @NonNull MessageApi messageApi,
                                                                                @NonNull KeysApi keysApi) {
       return new SignalServiceMessageSender(pushServiceSocket,
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
-                                            authWebSocket,
+                                            attachmentApi,
                                             messageApi,
                                             keysApi,
                                             Optional.of(new SecurityEventListener(context)),
@@ -533,6 +535,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull MessageApi provideMessageApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
     return new MessageApi(authWebSocket, unauthWebSocket);
+  }
+
+  @Override
+  public @NonNull ProvisioningApi provideProvisioningApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
+    return new ProvisioningApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull CertificateApi provideCertificateApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
+    return new CertificateApi(authWebSocket);
   }
 
   @VisibleForTesting

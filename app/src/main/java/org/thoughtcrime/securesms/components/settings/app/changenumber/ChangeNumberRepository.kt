@@ -206,8 +206,8 @@ class ChangeNumberRepository(
 
     for (certificateType in certificateTypes) {
       val certificate: ByteArray? = when (certificateType) {
-        CertificateType.ACI_AND_E164 -> accountManager.senderCertificate
-        CertificateType.ACI_ONLY -> accountManager.senderCertificateForPhoneNumberPrivacy
+        CertificateType.ACI_AND_E164 -> SignalNetwork.certificate.getSenderCertificate().successOrThrow()
+        CertificateType.ACI_ONLY -> SignalNetwork.certificate.getSenderCertificateForPhoneNumberPrivacy().successOrThrow()
         else -> throw AssertionError()
       }
 

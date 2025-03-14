@@ -185,18 +185,12 @@ public class PushServiceSocket {
 
   private static final String DELETE_ACCOUNT_PATH        = "/v1/accounts/me";
 
-  private static final String PROVISIONING_MESSAGE_PATH = "/v1/provisioning/%s";
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
-  private static final String WAIT_RESTORE_METHOD_PATH  = "/v1/devices/restore_account/%s?timeout=%s";
 
   private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
-  private static final String ATTACHMENT_V4_PATH        = "/v4/attachments/form/upload";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
   private static final String PROFILE_BATCH_CHECK_PATH  = "/v1/profile/identity_check/batch";
-
-  private static final String SENDER_CERTIFICATE_PATH         = "/v1/certificate/delivery";
-  private static final String SENDER_CERTIFICATE_NO_E164_PATH = "/v1/certificate/delivery?includeE164=false";
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
@@ -242,11 +236,8 @@ public class PushServiceSocket {
 
   private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
 
-  private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
-
   private static final Map<String, String> NO_HEADERS                         = Collections.emptyMap();
   private static final ResponseCodeHandler NO_HANDLER                         = new EmptyResponseCodeHandler();
-  private static final ResponseCodeHandler LONG_POLL_HANDLER                  = new LongPollingResponseCodeHandler();
   private static final ResponseCodeHandler UNOPINIONATED_HANDLER              = new UnopinionatedResponseCodeHandler();
   private static final ResponseCodeHandler UNOPINIONATED_BINARY_ERROR_HANDLER = new UnopinionatedBinaryErrorResponseCodeHandler();
 
@@ -404,31 +395,8 @@ public class PushServiceSocket {
     makeServiceRequest(String.format(Locale.US, SET_RESTORE_METHOD_PATH, urlEncode(token)), "PUT", body, NO_HEADERS, UNOPINIONATED_HANDLER, SealedSenderAccess.NONE);
   }
 
-  /**
-   * This is a long-polling endpoint that relies on the fact that our normal connection timeout is already 30s.
-   */
-  public @Nonnull RestoreMethodBody waitForRestoreMethodChosen(@Nonnull String token, int timeoutSeconds) throws IOException {
-    String response = makeServiceRequest(String.format(Locale.US, WAIT_RESTORE_METHOD_PATH, urlEncode(token), timeoutSeconds), "GET", null, NO_HEADERS, LONG_POLL_HANDLER, SealedSenderAccess.NONE);
-    return JsonUtil.fromJsonResponse(response, RestoreMethodBody.class);
-  }
-
-  public void sendProvisioningMessage(String destination, byte[] body) throws IOException {
-    makeServiceRequest(String.format(PROVISIONING_MESSAGE_PATH, urlEncode(destination)), "PUT",
-                       JsonUtil.toJson(new ProvisioningMessage(Base64.encodeWithPadding(body))));
-  }
-
   public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
-  }
-
-  public byte[] getSenderCertificate() throws IOException {
-    String responseText = makeServiceRequest(SENDER_CERTIFICATE_PATH, "GET", null);
-    return JsonUtil.fromJson(responseText, SenderCertificate.class).getCertificate();
-  }
-
-  public byte[] getUuidOnlySenderCertificate() throws IOException {
-    String responseText = makeServiceRequest(SENDER_CERTIFICATE_NO_E164_PATH, "GET", null);
-    return JsonUtil.fromJson(responseText, SenderCertificate.class).getCertificate();
   }
 
   public SendGroupMessageResponse sendGroupMessage(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story)
@@ -885,18 +853,6 @@ public class PushServiceSocket {
         Log.w(TAG, "Canceling: " + connection);
         connection.cancel();
       }
-    }
-  }
-
-  public AttachmentUploadForm getAttachmentV4UploadAttributes()
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    String response = makeServiceRequest(ATTACHMENT_V4_PATH, "GET", null);
-    try {
-      return JsonUtil.fromJson(response, AttachmentUploadForm.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      throw new MalformedResponseException("Unable to parse entity", e);
     }
   }
 

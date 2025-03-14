@@ -26,10 +26,10 @@ import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
+import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.push.TrustStore
-import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
@@ -123,14 +123,14 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   }
 
   override fun provideSignalServiceMessageSender(
-    authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
     protocolStore: SignalServiceDataStore,
     pushServiceSocket: PushServiceSocket,
+    attachmentApi: AttachmentApi,
     messageApi: MessageApi,
     keysApi: KeysApi
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(authWebSocket, protocolStore, pushServiceSocket, messageApi, keysApi))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi))
     }
     return signalServiceMessageSender!!
   }

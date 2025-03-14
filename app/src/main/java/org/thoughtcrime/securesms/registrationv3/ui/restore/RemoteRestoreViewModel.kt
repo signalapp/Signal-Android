@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 
 class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package org.whispersystems.signalservice.internal.push;
+package org.whispersystems.signalservice.api.provisioning;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

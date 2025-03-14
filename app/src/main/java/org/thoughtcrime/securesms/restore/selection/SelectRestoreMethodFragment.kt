@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registrationv3.ui.restore.SelectRestoreMethodScreen
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
-import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod
 
 /**
  * Provide options to select restore/transfer operation during quick/post registration.

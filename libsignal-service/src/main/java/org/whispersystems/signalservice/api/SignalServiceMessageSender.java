@@ -21,6 +21,7 @@ import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
+import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -77,14 +78,12 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.services.AttachmentService;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -175,9 +174,9 @@ public class SignalServiceMessageSender {
   private final Optional<EventListener>       eventListener;
   private final IdentityKeyPair               localPniIdentity;
 
-  private final AttachmentService attachmentService;
-  private final MessageApi        messageApi;
-  private final KeysApi           keysApi;
+  private final AttachmentApi attachmentApi;
+  private final MessageApi    messageApi;
+  private final KeysApi       keysApi;
 
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
@@ -185,7 +184,7 @@ public class SignalServiceMessageSender {
   public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
-                                    SignalWebSocket.AuthenticatedWebSocket authWebSocket,
+                                    AttachmentApi attachmentApi,
                                     MessageApi messageApi,
                                     KeysApi keysApi,
                                     Optional<EventListener> eventListener,
@@ -194,19 +193,19 @@ public class SignalServiceMessageSender {
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
-    this.socket            = pushServiceSocket;
-    this.aciStore          = store.aci();
-    this.sessionLock       = sessionLock;
-    this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
-    this.localDeviceId     = credentialsProvider.getDeviceId();
-    this.localPni          = credentialsProvider.getPni();
-    this.attachmentService = new AttachmentService(authWebSocket);
-    this.messageApi        = messageApi;
-    this.eventListener     = eventListener;
-    this.maxEnvelopeSize   = maxEnvelopeSize;
-    this.localPniIdentity  = store.pni().getIdentityKeyPair();
-    this.scheduler         = Schedulers.from(executor, false, false);
-    this.keysApi           = keysApi;
+    this.socket           = pushServiceSocket;
+    this.aciStore         = store.aci();
+    this.sessionLock      = sessionLock;
+    this.localAddress     = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
+    this.localDeviceId    = credentialsProvider.getDeviceId();
+    this.localPni         = credentialsProvider.getPni();
+    this.attachmentApi    = attachmentApi;
+    this.messageApi       = messageApi;
+    this.eventListener    = eventListener;
+    this.maxEnvelopeSize  = maxEnvelopeSize;
+    this.localPniIdentity = store.pni().getIdentityKeyPair();
+    this.scheduler        = Schedulers.from(executor, false, false);
+    this.keysApi          = keysApi;
   }
 
   /**
@@ -810,24 +809,8 @@ public class SignalServiceMessageSender {
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
-    AttachmentUploadForm v4UploadAttributes = null;
-
     Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
-    try {
-      v4UploadAttributes = new AttachmentService.AttachmentAttributesResponseProcessor<>(attachmentService.getAttachmentV4UploadAttributes().blockingGet()).getResultOrThrow();
-    } catch (WebSocketUnavailableException e) {
-      Log.w(TAG, "[getResumableUploadSpec] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-    } catch (IOException e) {
-      if (e instanceof RateLimitException) {
-        throw e;
-      }
-      Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
-    }
-
-    if (v4UploadAttributes == null) {
-      Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
-      v4UploadAttributes = socket.getAttachmentV4UploadAttributes();
-    }
+    AttachmentUploadForm v4UploadAttributes = NetworkResultUtil.toBasicLegacy(attachmentApi.getAttachmentV4UploadForm());
 
     return socket.getResumableUploadSpec(v4UploadAttributes);
   }

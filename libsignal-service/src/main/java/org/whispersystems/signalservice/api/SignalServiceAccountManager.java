@@ -106,14 +106,6 @@ public class SignalServiceAccountManager {
     this.configuration      = pushServiceSocket.getConfiguration();
   }
 
-  public byte[] getSenderCertificate() throws IOException {
-    return this.pushServiceSocket.getSenderCertificate();
-  }
-
-  public byte[] getSenderCertificateForPhoneNumberPrivacy() throws IOException {
-    return this.pushServiceSocket.getUuidOnlySenderCertificate();
-  }
-
   public SecureValueRecoveryV2 getSecureValueRecoveryV2(String mrEnclave) {
     return new SecureValueRecoveryV2(configuration, mrEnclave, authWebSocket);
   }

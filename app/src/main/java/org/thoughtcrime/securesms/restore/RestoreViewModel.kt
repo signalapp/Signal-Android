@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepositor
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
-import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod
 
 /**
  * Shared view model for the restore flow.
