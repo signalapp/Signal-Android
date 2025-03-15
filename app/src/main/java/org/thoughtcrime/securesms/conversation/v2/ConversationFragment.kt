@@ -2458,7 +2458,7 @@ class ConversationFragment :
   }
 
   private fun handleResend(conversationMessage: ConversationMessage) {
-    viewModel.resendMessage(conversationMessage).subscribe()
+    viewModel.resendMessage(conversationMessage).subscribe().addTo(disposables)
   }
 
   private fun handleEnterMultiselect(conversationMessage: ConversationMessage) {
