@@ -43,6 +43,45 @@ import org.signal.core.ui.Rows.TextAndLabel
 object Rows {
 
   /**
+   * Link row that positions [text] and optional [label] in a [TextAndLabel] to the side of an [icon] on the right.
+   */
+  @OptIn(ExperimentalFoundationApi::class)
+  @Composable
+  fun LinkRow(
+    text: String,
+    onClick: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
+    label: String? = null,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true,
+    icon: ImageVector
+  ) {
+    Row(
+      modifier = modifier
+        .fillMaxWidth()
+        .clickable(
+          enabled = enabled,
+          onClick = onClick ?: {}
+        )
+        .padding(defaultPadding()),
+      verticalAlignment = CenterVertically
+    ) {
+      TextAndLabel(
+        text = text,
+        label = label,
+        textColor = textColor,
+        enabled = enabled,
+        modifier = Modifier.padding(end = 16.dp)
+      )
+
+      Icon(
+        imageVector = icon,
+        contentDescription = null
+      )
+    }
+  }
+
+  /**
    * A row consisting of a radio button and [text] and optional [label] in a [TextAndLabel].
    */
   @Composable
@@ -287,7 +326,7 @@ object Rows {
    */
   @Composable
   fun RowScope.TextAndLabel(
-    text: String,
+    text: String? = null,
     modifier: Modifier = Modifier,
     label: String? = null,
     enabled: Boolean = true,
@@ -299,11 +338,13 @@ object Rows {
         .alpha(if (enabled) 1f else 0.4f)
         .weight(1f)
     ) {
-      Text(
-        text = text,
-        style = textStyle,
-        color = textColor
-      )
+      if (text != null) {
+        Text(
+          text = text,
+          style = textStyle,
+          color = textColor
+        )
+      }
 
       if (label != null) {
         Text(
