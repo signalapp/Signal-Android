@@ -41,7 +41,7 @@ class AppSettingsViewModel : ViewModel() {
     disposables += RecurringInAppPaymentRepository.getActiveSubscription(InAppPaymentSubscriberRecord.Type.DONATION).subscribeBy(
       onSuccess = { activeSubscription ->
         store.update { state ->
-          state.copy(allowUserToGoToDonationManagementScreen = activeSubscription.isActive || InAppDonations.hasAtLeastOnePaymentMethodAvailable())
+          state.copy(allowUserToGoToDonationManagementScreen = SignalStore.account.isRegistered && (activeSubscription.isActive || InAppDonations.hasAtLeastOnePaymentMethodAvailable()))
         }
       },
       onError = {}

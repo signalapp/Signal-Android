@@ -95,6 +95,11 @@ class InAppPaymentKeepAliveJob private constructor(
   }
 
   private fun doRun() {
+    if (!SignalStore.account.isRegistered) {
+      warn(type, "User is not registered. Skipping.")
+      return
+    }
+
     val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(type)
     if (subscriber == null) {
       info(type, "Subscriber not present. Skipping.")
