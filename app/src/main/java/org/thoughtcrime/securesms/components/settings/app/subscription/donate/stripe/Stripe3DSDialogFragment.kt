@@ -18,12 +18,17 @@ import androidx.activity.ComponentDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationWebViewOnBackPressedCallback
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -110,21 +115,23 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
   }
 
   private fun handleLaunchExternal(intent: Intent) {
-    if (isDetached) {
-      return
+    lifecycleScope.launch {
+      val progress = ProgressCardDialogFragment.create()
+      progress.show(parentFragmentManager, null)
+
+      withContext(Dispatchers.IO) {
+        SignalDatabase.inAppPayments.update(args.inAppPayment)
+      }
+
+      progress.dismissAllowingStateLoss()
+      startActivity(intent)
+
+      result = bundleOf(
+        LAUNCHED_EXTERNAL to true
+      )
+
+      dismissAllowingStateLoss()
     }
-
-    startActivity(intent)
-
-    SignalExecutors.BOUNDED_IO.execute {
-      SignalDatabase.inAppPayments.update(args.inAppPayment)
-    }
-
-    result = bundleOf(
-      LAUNCHED_EXTERNAL to true
-    )
-
-    dismissAllowingStateLoss()
   }
 
   private inner class Stripe3DSWebClient : WebViewClient() {
