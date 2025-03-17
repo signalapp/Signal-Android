@@ -420,10 +420,8 @@ class LibSignalChatConnectionTest {
     var connectionCompletionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
     every { network.connectUnauthChat(any()) } answers {
       chatListener = firstArg()
-      delay {
-        // We do not complete the future, so we stay in the CONNECTING state forever.
-        connectionCompletionFuture = it
-      }
+      connectionCompletionFuture = CompletableFuture<UnauthenticatedChatConnection>()
+      connectionCompletionFuture!!
     }
     sendLatch = CountDownLatch(1)
 
@@ -447,9 +445,8 @@ class LibSignalChatConnectionTest {
     var connectionCompletionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
     every { network.connectUnauthChat(any()) } answers {
       chatListener = firstArg()
-      delay {
-        connectionCompletionFuture = it
-      }
+      connectionCompletionFuture = CompletableFuture<UnauthenticatedChatConnection>()
+      connectionCompletionFuture!!
     }
     sendLatch = CountDownLatch(1)
 
