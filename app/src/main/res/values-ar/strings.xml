@@ -964,13 +964,13 @@
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">تعذَّر استرجاع الوسائط.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">لا يتوفَّر في جهازك مساحة كافية. وفِّر مساحة تخزين لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى الاسترجاع\"، فسيتمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">لا يتوفَّر في جهازك مساحة كافية. وفِّر مساحة تخزين لاسترجاع وسائطك.\n\nإذا اخترت \"تخطِّي الاستعادة\"، فسيتمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">لا يتوفَّر في جهازك مساحة كافية. وفِّر %1$s من المساحة لاسترجاع وسائطك.\n\nإذا اخترت \"تخطّى الاسترجاع\"، فسَيمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">لا يتوفَّر في جهازك مساحة كافية. وفِّر %1$s من المساحة لاسترجاع وسائطك.\n\nإذا اخترتَ \"تخطِّي الاستعادة\"، فسَيمُّ حذف الوسائط في نسختك الاحتياطية في المرة القادمة التي يُكمل فيها جهازك حفظ نسخة احتياطية جديدة.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Okay">موافق</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
-    <string name="RestoreMediaFailedBottomSheet__Skip_restore">تخطى الاسترجاع</string>
+    <string name="RestoreMediaFailedBottomSheet__Skip_restore">تخطِّي الاستعادة</string>
     <!-- Accessibility content description for the "Backup Error" icon -->
     <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">أيقونة خطأ في النسخ الاحتياطي</string>
 
@@ -994,7 +994,7 @@
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
     <string name="RestoreMediaReminder__Free_up_space">وفِّر %1$s لاسترجاع وسائطك.</string>
     <!-- Button label to abort media restoration -->
-    <string name="RestoreMediaReminder__Skip_restore">تخطّى الاسترجاع</string>
+    <string name="RestoreMediaReminder__Skip_restore">تخطِّي الاستعادة</string>
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">النسخ الاحتياطية للدردشات</string>
@@ -1008,7 +1008,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">اختبر العبارة السرية للنسخة الاحتياطية الخاصة بك وتأكَّد من تطابقها.</string>
     <string name="BackupsPreferenceFragment__turn_on">تشغيل</string>
     <string name="BackupsPreferenceFragment__turn_off">إيقاف</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"لاستعادة نسخة احتياطية، قُم بتثبيت نسخة جديدة من سيجنال. افتح التطبيق وانقر على \"استعادة نسخة احتياطية\"، ثم حدِّد مكان ملف النسخة الاحتياطية. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"لاستعادة النسخة الاحتياطية، قُم بتثبيت نسخة جديدة من سيجنال. افتح التطبيق وانقر على \"استعادة النسخة الاحتياطية\"، ثم حدِّد مكان ملف النسخة الاحتياطية. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">اعرف المزيد</string>
     <string name="BackupsPreferenceFragment__in_progress">قيد المعالجة…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1102,7 +1102,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">تمَّ تحديث جلسة الدردشة</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يَستخدم سيجنال التشفير من طرف لطرف، وقد يتطلَّب الأمر منك تحديث جلسة الدردشة في بعض الأحيان. وهذا لا يؤثِّر على أمان دردشتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، حيث يمكن الطلب منهم إعادة إرسالها.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يَستخدم سيجنال التشفير من طرف لِطرف، وقد يتطلَّب الأمر منك تحديث جلسة الدردشة في بعض الأحيان. وهذا لا يؤثِّر على أمان دردشتك، لكن قد تفوتك رسالة من جهة الاتصال هذه، حيث يمكن الطلب منهم إعادة إرسالها.</string>
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
@@ -1110,7 +1110,7 @@
     <!-- Button prompting users to link a new device to their account -->
     <string name="LinkDeviceFragment__link_a_new_device">قُم بربط جهازٍ جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
-    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف لطرف على جميع الأجهزة</string>
+    <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف لِطرف على جميع الأجهزة</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
     <string name="LinkDeviceFragment__signal_on_desktop_ipad">تطبيق سيجنال على الكمبيوتر المكتبي أو جهاز الآيباد</string>
     <!-- Bottom sheet description explaining that messages on linked devices are private -->
@@ -1149,13 +1149,13 @@
     <!-- Option on button to contact support -->
     <string name="LinkDeviceFragment__contact_support">الاتصال بالدعم</string>
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
-    <string name="LinkDeviceFragment__submit_debug_log">أترغبُ بالإرسال إلى سجل التصحيح؟</string>
+    <string name="LinkDeviceFragment__submit_debug_log">هل ترغبُ بإرسال سجل الأخطاء؟</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">تساعدنا سجلات التصحيح في استكشاف مشاكلك وإصلاحها في أسرع وقت. إرسال سجلاتك إلينا أمر اختياري.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">تساعدنا سجلات الأخطاء في استكشاف مشاكلك وإصلاحها في أسرع وقت. إرسال سجلاتك إلينا أمر اختياري.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">إرسال مع سجل التصحيح</string>
+    <string name="LinkDeviceFragment__submit_with_debug">إرسال مع سجل الأخطاء</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">إرسال بدون سجل التصحيح</string>
+    <string name="LinkDeviceFragment__submit_without_debug">إرسال بدون سجل الأخطاء</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">إلغاء</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
@@ -1463,13 +1463,13 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">لاحظنا تأخُّر الإشعارات. أترغبُ بالإبلاغ عن المشكلة؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">لاحظنا تأخُّر الإشعارات. هل ترغبُ بإرسال سجل الأخطاء؟</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا الإبلاغات عن المشاكل في تشخيص المشكلة وإصلاحها، وهي لا تحتوي على معلومات تعريفية عن المستخدم.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">تساعدنا سجلات الأخطاء في تشخيص المشكلة وإصلاحها، وهي لا تحتوي على معلومات تعريفية عن المُستخدِم.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">واجه تطبيق سيجنال مشكلة. أترغبُ بالإبلاغ عن المشكلة؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">واجه تطبيق سيجنال مشكلة. هل ترغبُ بإرسال سجل الأخطاء؟</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
-    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">قد تكون غير قادر على استلام الرسائل. أترغبُ بالإبلاغ عن المشكلة؟</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">قد تكون غير قادر على استلام الرسائل. هل ترغبُ بإرسال سجل الأخطاء؟</string>
 
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1584,7 +1584,7 @@
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لديك الصلاحية للقيام بذلك.</string>
     <string name="ManageGroupActivity_not_capable">أحد الذين أضفتهم لا يدعم المجموعات الجديدة ويتعيّن عليه تحديث تطبيق سيجنال.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">أحد الذين أضفتهم لا يدعم مجموعات الإعلان ويتعيّن عليه تحديث سيجنال.</string>
+    <string name="ManageGroupActivity_not_announcement_capable">أحد الذين أضفتهم لا يدعم مجموعات الإعلامات ويتعيَّن عليه تحديث سيجنال.</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">فشل تحديث المجموعة</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">لست عضوًا في المجموعة</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">فشل تحديث المجموعة. يُرجى المحاولة لاحقًا.</string>
@@ -1623,7 +1623,7 @@
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">تتضمن النسخة الاحتياطية:</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">استعادة نسخة احتياطية</string>
+    <string name="RemoteRestoreActivity__restore_backup">استعادة النسخة الاحتياطية</string>
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخر نسخة احتياطية في %1$s عند الساعة %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
@@ -1631,7 +1631,7 @@
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">جارٍ إعداد تفاصيل النسخة الاحتياطية…</string>
     <!-- Text label button to skip restore from remote -->
-    <string name="RemoteRestoreActivity__skip_restore">تخطّي الاستعادة</string>
+    <string name="RemoteRestoreActivity__skip_restore">تخطِّي الاستعادة</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">تعذَّر إنهاء عملية النقل</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -1691,7 +1691,7 @@
 
 
     <!-- ManageRecipientActivity -->
-    <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مشتركة</string>
+    <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مُشتركة</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
         <item quantity="zero">%1$d مجموعة مشتركة</item>
         <item quantity="one">%1$d مجموعة مشتركة</item>
@@ -1782,7 +1782,7 @@
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قُم بتحديث سيجنال لاستخدام روابط المجموعة.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">لا يدعم إصدار سيجنال المُستعمَل رابط المجموعة هذا. لذا، قُم بالتحديث إلى آخر إصدار للانضمام إلى هذه المجموعة عبر رابط.</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قُم بتحديث سيجنال</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">تحديث سيجنال</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">رابط المجموعة غير صالح</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1890,7 +1890,7 @@
     <string name="MediaOverviewActivity_Grid_view_description">عرض شبكي</string>
     <string name="MediaOverviewActivity_List_view_description">عرض كقائمة</string>
     <string name="MediaOverviewActivity_Selected_description">مُحدَّد</string>
-    <string name="MediaOverviewActivity_select_all">تحديد الجميع</string>
+    <string name="MediaOverviewActivity_select_all">تحديد الكل</string>
     <plurals name="MediaOverviewActivity_save_plural">
         <item quantity="zero">حفظ</item>
         <item quantity="one">حفظ</item>
@@ -2434,7 +2434,7 @@
     <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرًا، لديك عدة أجهزة مرتبطة. يُرجى إزالة بعضها.</string>
     <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرًا، كود الـ QR الخاص برابط هذا الجهاز غير صالح.</string>
     <string name="DeviceProvisioningActivity_link_a_signal_device">هل ترغبُ بربط جهاز يستخدم سيجنال؟</string>
-    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">لِربط حاسوب أو جهاز آيباد بحساب سيجنال هذا، انتقِل إلى \"الأجهزة المُرتبِطة\" وانقر على \"ربط جهاز جديد\" وامسح كود الـ QR من جديد. تأكَّد من مسح كود الـ QR الصادر مباشرًة من سيجنال فقط.</string>
+    <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">لِربط حاسوب أو جهاز آيباد بحساب سيجنال هذا، انتقِل إلى \"الأجهزة المُرتبِطة\" وانقر على \"ربط جهاز جديد\" وامسح ضوئيًا كود الـ QR من جديد. تأكَّد من مسح كود الـ QR الصادر مباشرًة من سيجنال فقط.</string>
 
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا من أجل مسح كود الـ QR ضوئيًا، ولكن رُفِض الإذن بشكلٍ دائم. يُرجى زيارة \"الإعدادات\" في جهازك، وتحديد \"التطبيقات\"، ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح كود الـ QR بدون منح إذن الوصول إلى الكاميرا.</string>
@@ -2869,7 +2869,7 @@
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s موجود في جهات الاتصال على هاتفك</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مشتركة</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">لا توجد مجموعات مُشتركة</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">مراجعة الطلبات بعناية</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2935,7 +2935,7 @@
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">اسحب لعرض مشاركة الشاشة</string>
 
     <!-- ProxyBottomSheetFragment -->
-    <string name="ProxyBottomSheetFragment_proxy_server">خادم الوكيل</string>
+    <string name="ProxyBottomSheetFragment_proxy_server">خادم البروكسي</string>
     <string name="ProxyBottomSheetFragment_proxy_address">عنوان البروكسي</string>
     <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ألديك رغبة في استخدام عنوان البروكسي هذا؟</string>
     <string name="ProxyBottomSheetFragment_use_proxy">استخدم البروكسي</string>
@@ -2998,12 +2998,12 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
     <string name="RegistrationActivity_code_requested">تمَّ طلب كود التحقُّق</string>
     <plurals name="RegistrationActivity_debug_log_hint">
-        <item quantity="zero">أنت الآن على بعد %1$d خطوة من الإبلاغ عن مشكلة.</item>
-        <item quantity="one">أنت الآن على بعد %1$d خطوة من الإبلاغ عن مشكلة.</item>
-        <item quantity="two">أنت الآن على بعد %1$d خطوتان من الإبلاغ عن مشكلة.</item>
-        <item quantity="few">أنت الآن على بعد %1$d خطواتٍ من الإبلاغ عن مشكلة.</item>
-        <item quantity="many">أنت الآن على بعد %1$d خطوةً من الإبلاغ عن مشكلة.</item>
-        <item quantity="other">أنت الآن على بعد %1$d خطوةٍ من الإبلاغ عن مشكلة.</item>
+        <item quantity="zero">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
+        <item quantity="one">أنت الآن على بعد %1$d خطوة من إرسال سجل الأخطاء.</item>
+        <item quantity="two">أنت الآن على بعد %1$d خطوتان من إرسال سجل الأخطاء.</item>
+        <item quantity="few">أنت الآن على بعد %1$d خطواتٍ من إرسال سجل الأخطاء.</item>
+        <item quantity="many">أنت الآن على بعد %1$d خطوةً من إرسال سجل الأخطاء.</item>
+        <item quantity="other">أنت الآن على بعد %1$d خطوةٍ من إرسال سجل الأخطاء.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقُّق من أنك إنسان.</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
@@ -3553,7 +3553,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">حدِّث تطبيق سيجنال للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدَّثًا.</string>
+    <string name="EnclaveFailureReminder_update_signal">قُم بتحديث سيجنال للاستمرار في استخدام عمليات الدفع. قد لا يكون رصيدك مُحدَّثًا.</string>
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
@@ -3734,7 +3734,7 @@
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">حظر الطلب</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا توجد مجموعات مشتركة</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">لا توجد مجموعات مُشتركة</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">لا يوجود جهات اتصال في هذه المجموعة. يُرجى مراجعة الطلبات بعناية.</string>
     <string name="ConversationUpdateItem_view">إظهار</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">سيتمُّ تعيين توقيت إخفاء الرسائل إلى %1$s عندما تقوم بمراسلته.</string>
@@ -4001,7 +4001,7 @@
 
     <!-- verify_display_fragment -->
     <!-- Explanation of how to verify the safety numbers. %s is replaced with the name of the other recipient -->
-    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقُّق من أمان التشفير من طرف لطرف مع %1$s، قارِن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الكود على جهازه.</string>
+    <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقُّق من أمان التشفير من طرف لِطرف مع %1$s، قارِن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الكود على جهازه.</string>
     <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
     <string name="verify_display_fragment__successful_match">مطابقة ناجحة</string>
     <string name="verify_display_fragment__failed_to_verify_safety_number">فشل التحقُّق من رقم الأمان</string>
@@ -4055,7 +4055,7 @@
     <string name="HelpFragment__next">التالي</string>
     <string name="HelpFragment__contact_us">تواصَل معنا</string>
     <string name="HelpFragment__tell_us_whats_going_on">أخبرنا بالذي يجري</string>
-    <string name="HelpFragment__include_debug_log">أرفِق سِجل التصحيح.</string>
+    <string name="HelpFragment__include_debug_log">أرفِق سجل الأخطاء.</string>
     <string name="HelpFragment__whats_this">ما هذا؟</string>
     <string name="HelpFragment__how_do_you_feel">كيف تشعر؟ (اختياري)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">يُرجى إخبارنا عن سبب تواصلك معنا.</string>
@@ -4084,7 +4084,7 @@
         <item>أخرى</item>
     </string-array>
     <!-- Subject of email when submitting debug logs to help debug slow notifications -->
-    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سِجل تصحيح أخطاء سيجنال للأندرويد</string>
+    <string name="DebugLogsPromptDialogFragment__signal_android_support_request">إرسال سجل الأخطاء على سيجنال أندرويد</string>
     <!-- Action to submit logs and take user to send an e-mail -->
     <string name="DebugLogsPromptDialogFragment__submit">تقديم</string>
     <!-- Action to decline to submit logs -->
@@ -4210,8 +4210,8 @@
     <string name="preferences__mms_user_agent">وكيل المُستخدم لرسائل الوسائط المتعددة</string>
     <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
     <string name="preferences__mmsc_url">رابط MMSC</string>
-    <string name="preferences__mms_proxy_host">مستضيف خدمة MMS</string>
-    <string name="preferences__mms_proxy_port">منفذ الوسيط MMS</string>
+    <string name="preferences__mms_proxy_host">مستضيف بروكسي MMS</string>
+    <string name="preferences__mms_proxy_port">منفذ بروكسي MMS</string>
     <string name="preferences__mmsc_username">اسم المُستخدم MMSC</string>
     <string name="preferences__mmsc_password">كلمة السر لمركز MMSC</string>
     <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
@@ -4261,7 +4261,7 @@
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
     <string name="preferences__free_private_messages_and_calls">رسائل ومكالمات مجانية وآمنة مع مستخدمي سيجنال</string>
-    <string name="preferences__submit_debug_log">إرسال سِجل التصحيح</string>
+    <string name="preferences__submit_debug_log">إرسال سجل الأخطاء</string>
     <string name="preferences__delete_account">حذف الحساب</string>
     <string name="preferences__support_wifi_calling">وضع التوافق مع \"التواصل بالواي فاي\"</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
@@ -4360,7 +4360,7 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل خاصية \"المُرسِل المُشفَّر\" للرسائل الواردة من غير جهات الاتصال والأشخاص الذين لم تشارِك معه ملفّك الشخصي.</string>
     <string name="preferences_proxy">البروكسي</string>
-    <string name="preferences_use_proxy">استخدم البروكسي</string>
+    <string name="preferences_use_proxy">استخدِم البروكسي</string>
     <string name="preferences_off">في حالة إيقاف</string>
     <string name="preferences_on">في حالة تشغيل</string>
     <string name="preferences_proxy_address">عنوان البروكسي</string>
@@ -4552,7 +4552,7 @@
 
     <!-- PaymentsTransferFragment -->
     <string name="PaymentsTransferFragment__transfer">إرسال</string>
-    <string name="PaymentsTransferFragment__scan_qr_code">مسح كود الـ QR</string>
+    <string name="PaymentsTransferFragment__scan_qr_code">امسح ضوئيًا كود الـ QR</string>
     <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">إلى : يُرجى مسح كود الـ QR ضوئيًا أو إدخال عنوان المحفظة</string>
     <string name="PaymentsTransferFragment__you_can_transfer">يمكنك نقل Mobilecoin من خلال إكمال عملية نقل إلى عنوان المحفظة التي تقدِّمها منصة التداول. عنوان المحفظة عبارة عن سلسلة من الحروف والأرقام، والتي غالبًا ما تكون ظاهرة تحت كود الـ QR.</string>
     <string name="PaymentsTransferFragment__next">التالي</string>
@@ -4983,7 +4983,7 @@
     <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك العبارة السرية هذه لاستعادة نسخة احتياطية.</string>
     <string name="backup_enable_dialog__folder">المجلد</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمتُ بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
-    <string name="registration_activity__restore_backup">استعادة نسخة احتياطية</string>
+    <string name="registration_activity__restore_backup">استعادة النسخة الاحتياطية</string>
     <string name="registration_activity__transfer_or_restore_account">نقل أو استعادة الحساب</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">الاستعادة أو النقل</string>
@@ -5211,7 +5211,7 @@
     <string name="DeviceTransferSetup__turn_on_wifi">تشغيل الواي فاي</string>
     <string name="DeviceTransferSetup__error_connecting">خطأ في الاتصال</string>
     <string name="DeviceTransferSetup__retry">إعادة المُحاولة</string>
-    <string name="DeviceTransferSetup__submit_debug_logs">إرسال سجلات التصحيح</string>
+    <string name="DeviceTransferSetup__submit_debug_logs">إرسال سجلات الأخطاء</string>
     <string name="DeviceTransferSetup__verify_code">التحقُّق من الكود</string>
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">يُرجى التحقُّق من أن الكود في الأسفل هو نفسه الذي يظهر في كلا جهازيك. بعدها انقر على \"متابعة\".</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">الأعداد غير متطابقة</string>
@@ -5299,9 +5299,9 @@
     <string name="RecipientBottomSheet_unable_to_open_contacts">تعذَّر إيجاد تطبيق يستطيع فتح جهات الاتصال.</string>
     <string name="RecipientBottomSheet_add_to_a_group">إضافة إلى مجموعة</string>
     <string name="RecipientBottomSheet_add_to_another_group">إضافة إلى مجموعة أخرى</string>
-    <string name="RecipientBottomSheet_view_safety_number">إظهار رقم الأمان</string>
+    <string name="RecipientBottomSheet_view_safety_number">عرض رقم اﻷمان</string>
     <string name="RecipientBottomSheet_make_admin">اجعله مشرفًا</string>
-    <string name="RecipientBottomSheet_remove_as_admin">أزِل عنه ميزة الإشراف</string>
+    <string name="RecipientBottomSheet_remove_as_admin">إزالة ميزة الإشراف</string>
     <string name="RecipientBottomSheet_remove_from_group">إزالة من المجموعة</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">هل ترغب بإزالة ميزة الإشراف على المجموعة عن %1$s؟</string>
@@ -5375,7 +5375,7 @@
         <item quantity="other">إذا لم تكن متأكِّدًا من مصدر الطلب، يُرجى مراجعة جهات الاتصال أدناه والقيام بالإجراء المناسب.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">لا وجود لمجموعات أخرى مشتركة.</string>
-    <string name="ReviewCardDialogFragment__no_groups_in_common">لا وجود لمجموعات مشتركة.</string>
+    <string name="ReviewCardDialogFragment__no_groups_in_common">لا توجد مجموعات مُشتركة</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
         <item quantity="zero">%1$d مجموعة مشتركة</item>
         <item quantity="one">%1$d مجموعة مشتركة</item>
@@ -5538,7 +5538,7 @@
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">وسِّع للتكبير، اسحب للتعديل.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع الدردشات.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s.‏</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">تعيين الخلفية لـ %1$s.‏</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال تعيين الخلفية.</string>
     <string name="WallpaperCropActivity__blur_photo">تمويه الصورة</string>
 
@@ -5801,7 +5801,7 @@
     <string name="ChangeNumberLockActivity__retry">إعادة المُحاولة</string>
     <!-- Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow -->
     <string name="ChangeNumberLockActivity__leave">مغادرة</string>
-    <string name="ChangeNumberLockActivity__submit_debug_log">إرسال سِجل التصحيح</string>
+    <string name="ChangeNumberLockActivity__submit_debug_log">إرسال سجل الأخطاء</string>
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
@@ -6025,7 +6025,7 @@
     <string name="HelpSettingsFragment__support_center">مركز الدعم</string>
     <string name="HelpSettingsFragment__contact_us">تواصَل معنا</string>
     <string name="HelpSettingsFragment__version">اﻹصدار</string>
-    <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
+    <string name="HelpSettingsFragment__debug_log">سجل الأخطاء</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">التراخيص</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
@@ -6160,7 +6160,7 @@
     <string name="ConversationSettingsFragment__sounds_and_notifications">الأصوات والإشعارات</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">معلومات عن جهة اتصال الهاتف</string>
-    <string name="ConversationSettingsFragment__view_safety_number">إظهار رقم الأمان</string>
+    <string name="ConversationSettingsFragment__view_safety_number">عرض رقم اﻷمان</string>
     <string name="ConversationSettingsFragment__block">حظر</string>
     <string name="ConversationSettingsFragment__block_group">حظر المجموعة</string>
     <string name="ConversationSettingsFragment__unblock">رفع الحظر</string>
@@ -7224,7 +7224,7 @@
     <!-- Name story screen error when save attempted but label is duplicate -->
     <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">توجد قصة بهذا الاسم مسبقًا.</string>
     <!-- Text for select all action when editing recipients for a story -->
-    <string name="BaseStoryRecipientSelectionFragment__select_all">اختيار الكُل</string>
+    <string name="BaseStoryRecipientSelectionFragment__select_all">تحديد الكل</string>
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">اختر نوع القصة</string>
     <!-- Choose story type bottom sheet new story row title -->
@@ -8418,7 +8418,7 @@
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">تخطّي</string>
     <!-- Dialog title for skipping media restore -->
-    <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطي الاستعادة؟</string>
+    <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطِّي الاستعادة؟</string>
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق عند توفُّر مساحة التخزين.</string>
     <!-- Dialog title when a backup fails to be created -->
@@ -8463,11 +8463,11 @@
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__restoring_s_of_s_s">جارٍ التحميل: %1$s من أصل %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
-    <string name="BackupStatusRow__restore_waiting_for_wifi">تمَّ توقيف الاستعادة مؤقَّتًا: بانتظار الاتصال بشبكة الواي فاي…</string>
+    <string name="BackupStatusRow__restore_waiting_for_wifi">تمَّ إيقاف الاستعادة: بانتظار الاتصال بشبكة الواي فاي…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
-    <string name="BackupStatusRow__restore_no_internet">تمَّ توقيف الاستعادة مؤقَّتًا: لا يوجد اتصال بالإنترنت…</string>
+    <string name="BackupStatusRow__restore_no_internet">تمَّ إيقاف الاستعادة مؤقَّتًا: لا يوجد اتصال بالإنترنت…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">تمَّ توقيف الاستعادة مؤقَّتًا: بطارية الجهاز منخفضة</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">تمَّ إيقاف الاستعادة مؤقَّتًا: بطارية الجهاز منخفضة</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">لا توجد مساحة كافية لتنزيل النسخة الاحتياطية الخاصة بك. للمواصلة، قُم بتحرير %1$s من المساحة.</string>
     <!-- Text row label to skip download -->
@@ -8997,7 +8997,7 @@
     <!-- No Backup to Restore step 3 to enable backups on old device -->
     <string name="NoBackupToRestore_step3">فعِّل النسخ الاحتياطية وانتظر حتى تكتمل عملية النسخ الاحتياطي</string>
     <!-- No backup to Restore tonal cta to skip restore -->
-    <string name="NoBackupToRestore_skip_restore">تخطّي الاستعادة</string>
+    <string name="NoBackupToRestore_skip_restore">تخطِّي الاستعادة</string>
 
     <!-- EOF -->
 </resources>

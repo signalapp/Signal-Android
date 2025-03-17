@@ -3030,7 +3030,7 @@
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s שייך ל%2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
-    <string name="ThreadRecord_blocked">חסום/ה</string>
+    <string name="ThreadRecord_blocked">חסומ/ה</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">עדכון Signal</string>
