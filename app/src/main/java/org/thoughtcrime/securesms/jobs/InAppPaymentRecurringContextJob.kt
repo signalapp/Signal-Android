@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Subscription
@@ -117,6 +118,10 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: java.lang.Exception): Long {
+    if (exception is InAppPaymentRetryException && exception.cause is NonSuccessfulResponseCodeException) {
+      return super.getNextRunAttemptBackoff(pastAttemptCount, exception)
+    }
+
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
     return if (inAppPayment != null) {
       when (inAppPayment.data.paymentMethodType) {
@@ -186,7 +191,20 @@ class InAppPaymentRecurringContextJob private constructor(
     endOfCurrentSubscriptionPeriod: Long
   ): Boolean {
     @Suppress("UsePropertyAccessSyntax")
-    val whoAmIResponse = AppDependencies.signalServiceAccountManager.getWhoAmI()
+    val whoAmIResponse = try {
+      AppDependencies.signalServiceAccountManager.getWhoAmI()
+    } catch (e: NonSuccessfulResponseCodeException) {
+      warning("Failed to download whoAmI information for user: HTTP ${e.code}", e)
+      if (isRetryableErrorCode(e.code)) {
+        info("Retrying later for code ${e.code}")
+        throw InAppPaymentRetryException(e)
+      } else {
+        throw e
+      }
+    } catch (e: IOException) {
+      info("Retrying for network exception.")
+      throw InAppPaymentRetryException(e)
+    }
 
     return when (inAppPayment.type) {
       InAppPaymentType.RECURRING_BACKUP -> {
@@ -203,6 +221,10 @@ class InAppPaymentRecurringContextJob private constructor(
 
       else -> error("Unsupported IAP type ${inAppPayment.type}")
     }
+  }
+
+  private fun isRetryableErrorCode(code: Int): Boolean {
+    return (code >= 500 || code == 429) && code != 508
   }
 
   private fun markInAppPaymentCompleted(inAppPayment: InAppPaymentTable.InAppPayment) {
@@ -481,6 +503,12 @@ class InAppPaymentRecurringContextJob private constructor(
         }
 
         updateInAppPaymentWithTokenAlreadyRedeemedError(inAppPayment)
+        throw Exception(applicationError)
+      }
+
+      508 -> {
+        warning("Loop detected on server. Failing.", applicationError)
+        updateInAppPaymentWithGenericRedemptionError(inAppPayment)
         throw Exception(applicationError)
       }
 
