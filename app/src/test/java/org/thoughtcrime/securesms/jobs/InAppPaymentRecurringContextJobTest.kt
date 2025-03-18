@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
+import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
@@ -42,6 +43,9 @@ import kotlin.time.Duration.Companion.milliseconds
 class InAppPaymentRecurringContextJobTest {
 
   @get:Rule
+  val mockSignalStore = MockSignalStoreRule()
+
+  @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
   @get:Rule
@@ -50,6 +54,9 @@ class InAppPaymentRecurringContextJobTest {
   @Before
   fun setUp() {
     Log.initialize(SystemOutLogger())
+
+    every { mockSignalStore.account.isRegistered } returns true
+    every { mockSignalStore.inAppPayments.setLastEndOfPeriod(any()) } returns Unit
 
     mockkObject(InAppPaymentsRepository)
     every { InAppPaymentsRepository.generateRequestCredential() } returns mockk {
