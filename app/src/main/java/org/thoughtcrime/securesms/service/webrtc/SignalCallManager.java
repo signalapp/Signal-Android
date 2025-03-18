@@ -1033,21 +1033,42 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {
-        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
-        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
-        process((s, p) -> {
-          RemotePeer activePeer = s.getCallInfoState().getActivePeer();
-          if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
-            return p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context));
-          }
+        List<PeerConnection.IceServer> cachedServers = TurnServerCache.getCachedServers();
+        if (cachedServers != null) {
+          processTurnServers(remotePeer, cachedServers);
+          return;
+        }
 
-          Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
-          return s;
-        });
+        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
+
+        // Find *any* provided ttl values as long as they are valid.
+        long minTtl = turnServerInfos.stream()
+                                     .map(TurnServerInfo::getTtl)
+                                     .filter(ttl -> ttl != null && ttl > 0)
+                                     .min(Long::compare)
+                                     .orElse(0L);
+
+        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
+
+        TurnServerCache.updateCache(iceServers, minTtl);
+
+        processTurnServers(remotePeer, iceServers);
       } catch (IOException e) {
         Log.w(TAG, "Unable to retrieve turn servers: ", e);
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));
       }
+    });
+  }
+
+  private void processTurnServers(RemotePeer remotePeer, List<PeerConnection.IceServer> servers) {
+    process((s, p) -> {
+      RemotePeer activePeer = s.getCallInfoState().getActivePeer();
+      if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
+        return p.handleTurnServerUpdate(s, servers, TextSecurePreferences.isTurnOnly(context));
+      }
+
+      Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
+      return s;
     });
   }
 
