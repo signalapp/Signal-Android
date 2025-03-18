@@ -13,6 +13,7 @@ import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
@@ -93,7 +94,7 @@ object SharedInAppPaymentPipeline {
               Completable.error(InAppPaymentError(iap.data.error))
             } else {
               Log.d(TAG, "Unexpected early end state. Possible payment failure.", true)
-              Completable.error(DonationError.genericPaymentFailure(DonationErrorSource.MONTHLY))
+              Completable.error(DonationError.genericPaymentFailure(inAppPayment.type.toErrorSource()))
             }
           }
 
@@ -122,18 +123,15 @@ object SharedInAppPaymentPipeline {
       BadgeRedemptionError.TimeoutWaitingForTokenError(errorSource)
     }
 
-    return Single.fromCallable {
-      Log.d(TAG, "Awaiting completion of redemption chain for up to 10 seconds.", true)
-      InAppPaymentsRepository.observeUpdates(inAppPayment.id).filter {
-        it.state == InAppPaymentTable.State.END
-      }.take(1).map {
-        if (it.data.error != null) {
-          Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
-          throw InAppPaymentError(it.data.error)
-        }
-        it
-      }.firstOrError()
-    }.timeout(10, TimeUnit.SECONDS, Single.error(timeoutError)).ignoreElement()
+    return InAppPaymentsRepository.observeUpdates(inAppPayment.id).filter {
+      it.state == InAppPaymentTable.State.END
+    }.take(1).map {
+      if (it.data.error != null) {
+        Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
+        throw InAppPaymentError(it.data.error)
+      }
+      it
+    }.firstOrError().timeout(10, TimeUnit.SECONDS, Single.error(timeoutError)).ignoreElement()
   }
 
   /**
