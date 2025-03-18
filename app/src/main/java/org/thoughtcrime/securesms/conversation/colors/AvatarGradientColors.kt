@@ -2,24 +2,30 @@ package org.thoughtcrime.securesms.conversation.colors
 
 import android.graphics.drawable.GradientDrawable
 import androidx.annotation.ColorInt
+import org.signal.core.util.CryptoUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import kotlin.jvm.optionals.getOrNull
-import kotlin.math.abs
 
 /**
- * Lists gradients used to hide profiles during message request states
+ * Lists gradients used to hide profiles during message request states. Uses the same algorithm that determines avatar colors.
  */
 object AvatarGradientColors {
 
   @JvmStatic
   fun getGradientDrawable(recipient: Recipient): GradientDrawable {
     return if (recipient.serviceId.getOrNull() != null) {
-      gradients[abs(recipient.requireServiceId().hashCode() % gradients.size)].getDrawable()
+      forId(recipient.requireServiceId().toByteArray()).getDrawable()
     } else if (recipient.groupId.getOrNull() != null) {
-      gradients[abs(recipient.requireGroupId().hashCode() % gradients.size)].getDrawable()
+      forId(recipient.requireGroupId().decodedId).getDrawable()
     } else {
       gradients[0].getDrawable()
     }
+  }
+
+  private fun forId(data: ByteArray): AvatarGradientColor {
+    val hash = CryptoUtil.sha256(data)
+    val firstByte: Byte = hash[0]
+    return gradients[(firstByte.toUInt() % gradients.size.toUInt()).toInt()]
   }
 
   private val gradients = listOf(
