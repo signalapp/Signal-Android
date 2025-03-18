@@ -140,6 +140,11 @@ class InAppPaymentRecurringContextJob private constructor(
   }
 
   private fun doRun() {
+    if (!SignalStore.account.isRegistered) {
+      warning("User is not registered. Failing.")
+      throw Exception("Unregistered users cannot perform this job.")
+    }
+
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
     val activeSubscription = getActiveSubscription(inAppPayment)
     val subscription = activeSubscription.activeSubscription

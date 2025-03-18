@@ -142,6 +142,11 @@ class InAppPaymentRedemptionJob private constructor(
   }
 
   override fun onRun() {
+    if (!SignalStore.account.isRegistered) {
+      Log.w(TAG, "User is not registered. Failing.")
+      throw Exception("Unregistered users cannot perform this job.")
+    }
+
     if (jobData.inAppPaymentId != null) {
       onRunForInAppPayment(InAppPaymentTable.InAppPaymentId(jobData.inAppPaymentId))
     } else {

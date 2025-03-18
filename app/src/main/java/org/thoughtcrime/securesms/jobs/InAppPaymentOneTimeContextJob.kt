@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
 import java.io.IOException
@@ -112,6 +113,11 @@ class InAppPaymentOneTimeContextJob private constructor(
   }
 
   override fun onRun() {
+    if (!SignalStore.account.isRegistered) {
+      warning("User is not registered. Failing.")
+      throw Exception("Unregistered users cannot perform this job.")
+    }
+
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
 
     info("Submitting request context to server...")
