@@ -42,7 +42,7 @@ public final class SignalProxyUtil {
       AppDependencies.resetNetwork();
     }
 
-    AppDependencies.startNetwork();
+    SignalExecutors.UNBOUNDED.execute(AppDependencies::startNetwork);
   }
 
   /**

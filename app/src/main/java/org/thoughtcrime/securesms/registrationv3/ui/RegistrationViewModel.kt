@@ -79,6 +79,7 @@ import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.SvrNoDataException
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
+import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import java.nio.charset.StandardCharsets
@@ -875,7 +876,11 @@ class RegistrationViewModel : ViewModel() {
     SignalStore.registration.localRegistrationMetadata = metadata
     RegistrationRepository.registerAccountLocally(context, metadata)
 
-    AppDependencies.authWebSocket.connect()
+    try {
+      AppDependencies.authWebSocket.connect()
+    } catch (e: WebSocketUnavailableException) {
+      Log.w(TAG, "Unable to start auth websocket", e)
+    }
 
     if (!remoteResult.storageCapable && SignalStore.registration.restoreDecisionState.isDecisionPending) {
       Log.v(TAG, "Not storage capable and still pending restore decision, likely an account with no data to restore, skipping post register restore")

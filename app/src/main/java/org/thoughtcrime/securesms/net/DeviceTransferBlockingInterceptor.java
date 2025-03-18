@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 
 import java.io.IOException;
 
@@ -50,11 +51,13 @@ public final class DeviceTransferBlockingInterceptor implements Interceptor {
 
   public void blockNetwork() {
     blockNetworking = true;
+    SignalWebSocket.setCanConnect(false);
     AppDependencies.resetNetwork();
   }
 
   public void unblockNetwork() {
     blockNetworking = false;
+    SignalWebSocket.setCanConnect(true);
     AppDependencies.startNetwork();
   }
 }

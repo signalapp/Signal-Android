@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.Subject
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
+import org.signal.core.util.logging.Log
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.receipts.ClientZkReceiptOperations
@@ -46,6 +47,7 @@ import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
+import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager
 import org.whispersystems.signalservice.internal.util.Util
@@ -63,6 +65,10 @@ class NetworkDependenciesModule(
   private val provider: AppDependencies.Provider,
   private val webSocketStateSubject: Subject<WebSocketConnectionState>
 ) {
+
+  companion object {
+    private val TAG = "NetworkDependencies"
+  }
 
   private val disposables: CompositeDisposable = CompositeDisposable()
 
@@ -215,6 +221,7 @@ class NetworkDependenciesModule(
   }
 
   fun closeConnections() {
+    Log.i(TAG, "Closing connections.")
     incomingMessageObserver.terminateAsync()
     if (_signalServiceMessageSender.isInitialized()) {
       signalServiceMessageSender.cancelInFlightRequests()
@@ -224,8 +231,19 @@ class NetworkDependenciesModule(
   }
 
   fun openConnections() {
+    try {
+      authWebSocket.connect()
+    } catch (e: WebSocketUnavailableException) {
+      Log.w(TAG, "Not allowed to start auth websocket", e)
+    }
+
+    try {
+      unauthWebSocket.connect()
+    } catch (e: WebSocketUnavailableException) {
+      Log.w(TAG, "Not allowed to start unauth websocket", e)
+    }
+
     incomingMessageObserver
-    unauthWebSocket.connect()
   }
 
   fun resetProtocolStores() {

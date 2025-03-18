@@ -78,7 +78,7 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
 
   /**
    * PUT /v1/accounts/registration_lock
-   * - 200: Success
+   * - 204: Success
    */
   fun enableRegistrationLock(registrationLock: String): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.put("/v1/accounts/registration_lock", PushServiceSocket.RegistrationLockV2(registrationLock))

@@ -109,7 +109,7 @@ class SignalWebSocketHealthMonitor(
   }
 
   private fun sendKeepAlives(): Boolean {
-    return needsKeepAlive && webSocket?.shouldSendKeepAlives == true
+    return needsKeepAlive && webSocket?.shouldSendKeepAlives() == true
   }
 
   /**

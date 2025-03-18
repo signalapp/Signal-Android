@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.service.webrtc.SignalCallManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.Environment;
@@ -102,15 +103,14 @@ import org.whispersystems.signalservice.api.username.UsernameApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
-import org.whispersystems.signalservice.api.websocket.HealthMonitor;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
+import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.websocket.LibSignalChatConnection;
 import org.whispersystems.signalservice.internal.websocket.LibSignalNetworkExtensions;
 import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection;
-import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -303,10 +303,37 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull SignalWebSocket.AuthenticatedWebSocket provideAuthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
-    SleepTimer                             sleepTimer       = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
-    SignalWebSocketHealthMonitor           healthMonitor    = new SignalWebSocketHealthMonitor(sleepTimer);
-    WebSocketFactory                       webSocketFactory = provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier);
-    SignalWebSocket.AuthenticatedWebSocket webSocket        = new SignalWebSocket.AuthenticatedWebSocket(webSocketFactory::createWebSocket);
+    SleepTimer                   sleepTimer    = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
+    SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
+
+    WebSocketFactory authFactory = () -> {
+      DynamicCredentialsProvider credentialsProvider = new DynamicCredentialsProvider();
+
+      if (credentialsProvider.isInvalid()) {
+        throw new WebSocketUnavailableException("Invalid auth credentials");
+      }
+
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
+        Network network = libSignalNetworkSupplier.get();
+        return new LibSignalChatConnection("libsignal-auth",
+                                           network,
+                                           credentialsProvider,
+                                           Stories.isFeatureEnabled(),
+                                           healthMonitor);
+      } else {
+        return new OkHttpWebSocketConnection("auth",
+                                             signalServiceConfigurationSupplier.get(),
+                                             Optional.of(credentialsProvider),
+                                             BuildConfig.SIGNAL_AGENT,
+                                             healthMonitor,
+                                             Stories.isFeatureEnabled());
+      }
+    };
+
+    SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    if (AppForegroundObserver.isForegrounded()) {
+      webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
+    }
 
     healthMonitor.monitor(webSocket);
 
@@ -315,13 +342,33 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
 
   @Override
   public @NonNull SignalWebSocket.UnauthenticatedWebSocket provideUnauthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
-    SleepTimer                               sleepTimer       = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
-    SignalWebSocketHealthMonitor             healthMonitor    = new SignalWebSocketHealthMonitor(sleepTimer);
-    WebSocketFactory                         webSocketFactory = provideWebSocketFactory(signalServiceConfigurationSupplier, healthMonitor, libSignalNetworkSupplier);
-    SignalWebSocket.UnauthenticatedWebSocket webSocket        = new SignalWebSocket.UnauthenticatedWebSocket(webSocketFactory::createUnidentifiedWebSocket);
+    SleepTimer                   sleepTimer    = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
+    SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
+
+    WebSocketFactory unauthFactory = () -> {
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
+        Network network = libSignalNetworkSupplier.get();
+        return new LibSignalChatConnection("libsignal-unauth",
+                                           network,
+                                           null,
+                                           Stories.isFeatureEnabled(),
+                                           healthMonitor);
+      } else {
+        return new OkHttpWebSocketConnection("unauth",
+                                             signalServiceConfigurationSupplier.get(),
+                                             Optional.empty(),
+                                             BuildConfig.SIGNAL_AGENT,
+                                             healthMonitor,
+                                             Stories.isFeatureEnabled());
+      }
+    };
+
+    SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    if (AppForegroundObserver.isForegrounded()) {
+      webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
+    }
 
     healthMonitor.monitor(webSocket);
-
     return webSocket;
   }
 
@@ -411,51 +458,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull ClientZkReceiptOperations provideClientZkReceiptOperations(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
     return provideClientZkOperations(signalServiceConfiguration).getReceiptOperations();
-  }
-
-  @NonNull WebSocketFactory provideWebSocketFactory(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier,
-                                                    @NonNull HealthMonitor healthMonitor,
-                                                    @NonNull Supplier<Network> libSignalNetworkSupplier)
-  {
-    return new WebSocketFactory() {
-      @Override
-      public WebSocketConnection createWebSocket() {
-        if (RemoteConfig.libSignalWebSocketEnabled()) {
-          Network network = libSignalNetworkSupplier.get();
-          return new LibSignalChatConnection("libsignal-auth",
-                                             network,
-                                             new DynamicCredentialsProvider(),
-                                             Stories.isFeatureEnabled(),
-                                             healthMonitor);
-        } else {
-          return new OkHttpWebSocketConnection("normal",
-                                               signalServiceConfigurationSupplier.get(),
-                                               Optional.of(new DynamicCredentialsProvider()),
-                                               BuildConfig.SIGNAL_AGENT,
-                                               healthMonitor,
-                                               Stories.isFeatureEnabled());
-        }
-      }
-
-      @Override
-      public WebSocketConnection createUnidentifiedWebSocket() {
-        if (RemoteConfig.libSignalWebSocketEnabled()) {
-          Network network = libSignalNetworkSupplier.get();
-          return new LibSignalChatConnection("libsignal-unauth",
-                                             network,
-                                             null,
-                                             Stories.isFeatureEnabled(),
-                                             healthMonitor);
-        } else {
-          return new OkHttpWebSocketConnection("unidentified",
-                                               signalServiceConfigurationSupplier.get(),
-                                               Optional.empty(),
-                                               BuildConfig.SIGNAL_AGENT,
-                                               healthMonitor,
-                                               Stories.isFeatureEnabled());
-        }
-      }
-    };
   }
 
   @Override
