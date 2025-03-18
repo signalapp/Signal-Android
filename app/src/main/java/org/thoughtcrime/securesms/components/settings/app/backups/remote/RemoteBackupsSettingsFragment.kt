@@ -1036,8 +1036,8 @@ private fun getBackupPhaseMessage(state: ArchiveUploadProgressState): String {
       pluralStringResource(
         R.plurals.RemoteBackupsSettingsFragment__processing_d_of_d_d_messages,
         progress.total.toInt(),
-        progress.completed,
-        progress.total,
+        "%,d".format(progress.completed.toInt()),
+        "%,d".format(progress.total.toInt()),
         (progress.progress * 100).toInt()
       )
     }
