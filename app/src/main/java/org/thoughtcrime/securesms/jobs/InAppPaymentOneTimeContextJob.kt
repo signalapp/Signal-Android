@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -46,7 +47,8 @@ class InAppPaymentOneTimeContextJob private constructor(
 
     const val KEY = "InAppPurchaseOneTimeContextJob"
 
-    private fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
+    @VisibleForTesting
+    fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
       return InAppPaymentOneTimeContextJob(
         inAppPayment.id,
         parameters = Parameters.Builder()
