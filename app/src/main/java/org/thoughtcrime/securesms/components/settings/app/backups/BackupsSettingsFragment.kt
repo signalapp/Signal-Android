@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,9 +20,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -95,7 +98,8 @@ class BackupsSettingsFragment : ComposeFragment() {
           else -> Unit
         }
       },
-      onOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment) }
+      onOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment) },
+      onBackupTierInternalOverrideChanged = { viewModel.onBackupTierInternalOverrideChanged(it) }
     )
   }
 }
@@ -105,7 +109,8 @@ private fun BackupsSettingsContent(
   backupsSettingsState: BackupsSettingsState,
   onNavigationClick: () -> Unit = {},
   onBackupsRowClick: () -> Unit = {},
-  onOnDeviceBackupsRowClick: () -> Unit = {}
+  onOnDeviceBackupsRowClick: () -> Unit = {},
+  onBackupTierInternalOverrideChanged: (MessageBackupTier?) -> Unit = {}
 ) {
   Scaffolds.Settings(
     title = stringResource(R.string.preferences_chats__backups),
@@ -115,6 +120,23 @@ private fun BackupsSettingsContent(
     LazyColumn(
       modifier = Modifier.padding(paddingValues)
     ) {
+      if (backupsSettingsState.showBackupTierInternalOverride) {
+        item {
+          Column(modifier = Modifier.padding(horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.gutter))) {
+            Text(
+              text = "INTERNAL ONLY",
+              style = MaterialTheme.typography.titleMedium
+            )
+            Text(
+              text = "Use this to override the subscription state to one of your choosing.",
+              style = MaterialTheme.typography.bodyMedium
+            )
+            InternalBackupOverrideRow(backupsSettingsState, onBackupTierInternalOverrideChanged)
+          }
+          Dividers.Default()
+        }
+      }
+
       item {
         Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__back_up_your_message_history),
@@ -334,6 +356,30 @@ private fun LoadingBackupsRow() {
   }
 }
 
+@Composable
+private fun InternalBackupOverrideRow(
+  backupsSettingsState: BackupsSettingsState,
+  onBackupTierInternalOverrideChanged: (MessageBackupTier?) -> Unit = {}
+) {
+  val options = remember {
+    mapOf(
+      "Unset" to null,
+      "Free" to MessageBackupTier.FREE,
+      "Paid" to MessageBackupTier.PAID
+    )
+  }
+
+  Row(verticalAlignment = Alignment.CenterVertically) {
+    options.forEach { option ->
+      RadioButton(
+        selected = option.value == backupsSettingsState.backupTierInternalOverride,
+        onClick = { onBackupTierInternalOverrideChanged(option.value) }
+      )
+      Text(option.key)
+    }
+  }
+}
+
 @SignalPreview
 @Composable
 private fun BackupsSettingsContentPreview() {
@@ -361,6 +407,20 @@ private fun BackupsSettingsContentNotAvailablePreview() {
     BackupsSettingsContent(
       backupsSettingsState = BackupsSettingsState(
         enabledState = BackupsSettingsState.EnabledState.NotAvailable
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BackupsSettingsContentBackupTierInternalOverridePreview() {
+  Previews.Preview {
+    BackupsSettingsContent(
+      backupsSettingsState = BackupsSettingsState(
+        enabledState = BackupsSettingsState.EnabledState.Never,
+        showBackupTierInternalOverride = true,
+        backupTierInternalOverride = null
       )
     )
   }

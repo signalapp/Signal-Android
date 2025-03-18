@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
@@ -30,6 +31,8 @@ import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
+import java.math.BigDecimal
 import java.util.Locale
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -52,11 +55,33 @@ object RecurringInAppPaymentRepository {
     }.subscribeOn(Schedulers.io())
   }
 
+  /** A fake paid subscription to return when the backup tier override is set. */
+  private val MOCK_PAID_SUBSCRIPTION = ActiveSubscription(
+    ActiveSubscription.Subscription(
+      SubscriptionsConfiguration.BACKUPS_LEVEL,
+      "USD",
+      BigDecimal(42),
+      2147472000,
+      true,
+      2147472000,
+      false,
+      "active",
+      "USA",
+      "credit-card",
+      false
+    ),
+    null
+  )
+
   /**
    * Gets the active subscription if it exists for the given [InAppPaymentSubscriberRecord.Type]
    */
   @WorkerThread
   fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): Result<ActiveSubscription> {
+    if (SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
+      return Result.success(MOCK_PAID_SUBSCRIPTION)
+    }
+
     val response = InAppPaymentsRepository.getSubscriber(type)?.let {
       donationsService.getSubscription(it.subscriberId)
     } ?: return Result.success(ActiveSubscription.EMPTY)

@@ -132,10 +132,14 @@ object BackupRepository {
       }
 
       403 -> {
-        Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
-        SignalStore.backup.backupTier = MessageBackupTier.FREE
-        SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-        // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
+        if (SignalStore.backup.backupTierInternalOverride != null) {
+          Log.w(TAG, "Received status 403, but the internal override is set, so not doing anything.", error.exception)
+        } else {
+          Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
+          SignalStore.backup.backupTier = MessageBackupTier.FREE
+          SignalStore.uiHints.markHasEverEnabledRemoteBackups()
+          // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
+        }
       }
     }
   }
