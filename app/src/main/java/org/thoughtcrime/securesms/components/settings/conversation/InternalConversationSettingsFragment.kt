@@ -12,6 +12,7 @@ import org.signal.core.util.Hex
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
 import org.signal.core.util.roundedString
+import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
@@ -20,12 +21,14 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -259,6 +262,41 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               }
 
               startActivity(MainActivity.clearTop(requireContext()))
+            }
+            .show()
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Add 1,000 dummy messages"),
+        summary = DSLSettingsText.from("Just adds 1,000 random messages to the chat. Text-only, nothing complicated."),
+        onClick = {
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Are you sure?")
+            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+              val messageCount = 1000
+              val startTime = System.currentTimeMillis() - messageCount
+              SignalDatabase.rawDatabase.withinTransaction {
+                val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+                for (i in 1..messageCount) {
+                  val time = startTime + i
+                  if (Math.random() > 0.5) {
+                    val id = SignalDatabase.messages.insertMessageOutbox(
+                      message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
+                      threadId = targetThread
+                    )
+                    SignalDatabase.messages.markAsSent(id, true)
+                  } else {
+                    SignalDatabase.messages.insertMessageInbox(
+                      retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
+                      candidateThreadId = targetThread
+                    )
+                  }
+                }
+              }
+
+              Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
             }
             .show()
         }
