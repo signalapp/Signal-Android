@@ -568,15 +568,10 @@ class InAppPaymentRecurringContextJobTest {
       state = state,
       subscriberId = subscriberId,
       endOfPeriod = null,
-      inAppPaymentData = iap.data.copy(
-        badge = badge,
-        waitForAuth = null,
-        stripeActionComplete = null,
-        payPalActionComplete = null,
-        payPalRequiresAction = null,
-        stripeRequiresAction = null,
-        redemption = redemptionState
-      )
+      inAppPaymentData = iap.data.newBuilder()
+        .badge(badge)
+        .redemption(redemptionState)
+        .build()
     )
 
     return iap
