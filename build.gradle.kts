@@ -1,3 +1,9 @@
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.runBlocking
+
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.jetbrains.kotlin.android) apply false
@@ -76,6 +82,7 @@ tasks.register("qa") {
   description = "Quality Assurance. Run before pushing."
   dependsOn(
     "clean",
+    "checkStopship",
     "buildQa",
     ":Signal-Android:testPlayProdReleaseUnitTest",
     ":Signal-Android:lintPlayProdRelease",
@@ -102,4 +109,41 @@ tasks.register("format") {
     gradle.includedBuild("build-logic").task(":tools:ktlintFormat"),
     *subprojects.mapNotNull { tasks.findByPath(":${it.name}:ktlintFormat") }.toTypedArray()
   )
+}
+
+tasks.register("checkStopship") {
+  doLast {
+    val excludedFiles = listOf(
+      "build.gradle.kts",
+      "app/lint.xml"
+    )
+
+    val allowedExtensions = setOf("kt", "kts", "java", "xml")
+
+    val allFiles = projectDir.walkTopDown()
+      .asSequence()
+      .filter { it.isFile && it.extension in allowedExtensions }
+      .filterNot { excludedFiles.contains(it.relativeTo(projectDir).path) }
+      .toList()
+
+    println("[STOPSHIP Check] There are ${allFiles.size} relevant files.")
+
+    val scope = CoroutineScope(Dispatchers.IO)
+    val stopshipFiles = mutableSetOf<String>()
+
+    runBlocking {
+      allFiles.map { file ->
+        scope.async {
+          if (file.readText().contains("STOPSHIP")) {
+            stopshipFiles += file.relativeTo(projectDir).path
+          }
+        }
+      }
+      .awaitAll()
+    }
+
+    if (stopshipFiles.isNotEmpty()) {
+      throw GradleException("STOPSHIP found! Files: $stopshipFiles")
+    }
+  }
 }
