@@ -78,6 +78,18 @@ class InAppPaymentRecurringContextJobTest {
   }
 
   @Test
+  fun `Given user is unregistered, when I run then I expect failure`() {
+    every { mockSignalStore.account.isRegistered } returns true
+
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+
+    val result = job.run()
+
+    assertThat(result.isFailure).isTrue()
+  }
+
+  @Test
   fun `Given a CREATED IAP, when I onAdded, then I expect PENDING`() {
     val iap = insertInAppPayment()
     val job = InAppPaymentRecurringContextJob.create(iap)
