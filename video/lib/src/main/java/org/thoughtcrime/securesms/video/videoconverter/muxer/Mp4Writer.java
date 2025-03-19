@@ -277,7 +277,33 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
           final @NonNull StreamingSample streamingSample,
           final @NonNull StreamingTrack streamingTrack) throws IOException
   {
-
+    if (streamingSample.getContent().limit() == 0) {
+      //
+      // For currently unknown reason, the STSZ table of AAC audio stream
+      // related to the very last chunk comes with the extra table elements
+      // whose value is zero.
+      //
+      // The ISO MP4 spec does not absolutely prohibit such a case, but strongly
+      // stipulates that the stream has to have the inner logic to support
+      // the zero length audio frames (QCELP happens to be one such example).
+      //
+      // Spec excerpt:
+      // ----------------------------------------------------------------------
+      // 8.7.3 Sample Size Boxes
+      // 8.7.3.1 Definition
+      // ...
+      // NOTE A sample size of zero is not prohibited in general, but it
+      // must be valid and defined for the coding system, as defined by
+      // the sample entry, that the sample belongs to
+      // ----------------------------------------------------------------------
+      //
+      // In all other cases, having zero STSZ table values is very illogical
+      // and may pose the problems down the road. Here we will eliminate such
+      // samples from all the related bookkeeping
+      //
+      Log.d(TAG, "skipping zero-sized sample");
+      return;
+    }
     TrackBox tb = trackBoxes.get(streamingTrack);
     if (tb == null) {
       tb = new TrackBox();
