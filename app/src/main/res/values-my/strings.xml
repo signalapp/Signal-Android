@@ -664,7 +664,7 @@
     <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
     <string name="ConversationFragment_group_names">အဖွဲ့အမည်များ</string>
     <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
-    <string name="ConversationFragment_photo_failed">Photo failed to download. Try again.</string>
+    <string name="ConversationFragment_photo_failed">ဓာတ်ပုံကို ဒေါင်းလုဒ်လုပ်၍မရပါ။ ထပ်မံကြိုးစားပါ။</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">ဘေးကင်းရေး အကြံပြုချက်များ</string>
@@ -2025,9 +2025,9 @@
     <!-- Update message shown in chat after you unblock a person -->
     <string name="MessageRecord_you_unblocked_this_person">သင် ဤလူကို ဘလော့ခ်ဖြေလိုက်ပြီ</string>
     <!-- Update message shown in chat after you block a group -->
-    <string name="MessageRecord_you_blocked_this_group">You blocked this group</string>
+    <string name="MessageRecord_you_blocked_this_group">သင် ဤအဖွဲ့ကို ဘလော့ခ်ထားသည်</string>
     <!-- Update message shown in chat after you unblock a group -->
-    <string name="MessageRecord_you_unblocked_this_group">You unblocked this group</string>
+    <string name="MessageRecord_you_unblocked_this_group">သင် ဤအဖွဲ့ကို ဘလော့ခ်ဖြေလိုက်ပြီ</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
@@ -2994,22 +2994,22 @@
     <string name="QuickResponseService_problem_sending_message">စာပို့ခြင်းအခက်အခဲ</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
-    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">သိမ်းဆည်း၍မရနိုင်ပါ!</string>
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">သိမ်းဆည်း၍မရနိုင်ပါ။</string>
 
     <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
     <plurals name="SaveAttachment_saved_success">
-        <item quantity="other">Media saved</item>
+        <item quantity="other">မီဒီယာ သိမ်းဆည်းပြီး</item>
     </plurals>
 
     <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
          %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
     <plurals name="SaveAttachment_saved_success_n_failures">
-        <item quantity="other">Media saved (%1$s of %2$s failed)</item>
+        <item quantity="other">မီဒီယာကို သိမ်းဆည်းထားသည် (%2$s အနက်မှ %1$s မအောင်မြင်ပါ)</item>
     </plurals>
 
     <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
     <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
-        <item quantity="other">ပူးတွဲဖိုင်ကို သိမ်းဆည်းရာတွင်အခက်အခဲရှိ!</item>
+        <item quantity="other">ပူးတွဲဖိုင်ကို သိမ်းဆည်းရာတွင်အခက်အခဲရှိသည်။</item>
     </plurals>
 
     <!-- SearchToolbar -->
@@ -5680,23 +5680,23 @@
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">ဓာတ်ပုံကို ပုံမှန်အရည်အသွေးအဖြစ် သတ်မှတ်ထားသည်</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Add a Media</string>
+    <string name="MediaReviewFragment__add_media_accessibility_label">မီဒီယာတစ်ခုထည့်ရန်</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
-    <string name="MediaReviewFragment__brush_pen_accessibility_label">Brush and Pen</string>
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Brush နှင့် Pen</string>
     <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
     <string name="MediaReviewFragment__crop_rotate_accessibility_label">ဖြတ်တောက်ပြီး လှည့်ရန်</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
-    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Change Media Quality</string>
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">မီဒီယာ အရည်အသွေး ပြောင်းရန်</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
-    <string name="MediaReviewFragment__save_media_accessibility_label">Save Media</string>
+    <string name="MediaReviewFragment__save_media_accessibility_label">မီဒီယာကို သိမ်းဆည်းရန်</string>
     <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
     <string name="MediaReviewFragment__emoji_toggle_accessibility_label">ရုပ်စုံကီးဘုတ်အတွက်နှိပ်ပါ</string>
     <!-- Accessibility label describing the toggle view once button on the Media review screen -->
-    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Toggle View Once</string>
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">တစ်ကြိမ်ကြည့်ရှုမှုသို့ ပြောင်းရန်</string>
     <!-- Accessibility label describing the send media button on the Media review screen -->
-    <string name="MediaReviewFragment__send_media_accessibility_label">Send Media</string>
+    <string name="MediaReviewFragment__send_media_accessibility_label">မီဒီယာကို ပို့ရန်</string>
     <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
-    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Finish adding a Message</string>
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">မက်ဆေ့ချ်တစ်ခုထည့်ခြင်း အပြီးသတ်ရန်</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="other">ဖိုင် %1$d ဖိုင်ကို အရည်အသွေးအမြင့် သတ်မှတ်ထားသည်</item>
@@ -7203,7 +7203,7 @@
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">ဆက်လုပ်ရန် ခလုတ်</string>
     <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
-    <string name="CameraControls_toggle_flash_mode_accessibility_label">Toggle Flash Mode</string>
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Flash မုဒ်ကို ပြောင်းရန်</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -7896,7 +7896,7 @@
 
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
-    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">A network failure occurred. Please try again later.</string>
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">ကွန်ရက်ချို့ယွင်းမှုတစ်ခု ဖြစ်နေပါသည်။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
