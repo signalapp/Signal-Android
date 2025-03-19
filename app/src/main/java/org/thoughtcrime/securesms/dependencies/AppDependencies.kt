@@ -57,6 +57,7 @@ import org.whispersystems.signalservice.api.profiles.ProfileApi
 import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -346,6 +347,9 @@ object AppDependencies {
   val profileApi: ProfileApi
     get() = networkModule.profileApi
 
+  val remoteConfigApi: RemoteConfigApi
+    get() = networkModule.remoteConfigApi
+
   @JvmStatic
   val okHttpClient: OkHttpClient
     get() = networkModule.okHttpClient
@@ -426,5 +430,6 @@ object AppDependencies {
     fun provideProvisioningApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): ProvisioningApi
     fun provideCertificateApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CertificateApi
     fun provideProfileApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ProfileApi
+    fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RemoteConfigApi
   }
 }

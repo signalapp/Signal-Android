@@ -1,22 +1,22 @@
-package org.whispersystems.signalservice.internal.push;
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.whispersystems.signalservice.api.remoteconfig;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class RemoteConfigResponse {
   @JsonProperty
   private List<Config> config;
 
-  @JsonProperty
-  private long serverEpochTime;
-
   public List<Config> getConfig() {
     return config;
-  }
-
-  public long getServerEpochTime() {
-    return serverEpochTime;
   }
 
   public static class Config {
@@ -37,7 +37,7 @@ public class RemoteConfigResponse {
       return enabled;
     }
 
-    public String getValue() {
+    public @Nullable String getValue() {
       return value;
     }
   }

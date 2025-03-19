@@ -43,6 +43,7 @@ import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
@@ -206,6 +207,10 @@ class NetworkDependenciesModule(
 
   val profileApi: ProfileApi by lazy {
     provider.provideProfileApi(authWebSocket, pushServiceSocket)
+  }
+
+  val remoteConfigApi: RemoteConfigApi by lazy {
+    provider.provideRemoteConfigApi(authWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

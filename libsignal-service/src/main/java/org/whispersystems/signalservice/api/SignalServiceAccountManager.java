@@ -19,13 +19,10 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecoveryV3;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
-import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -113,17 +110,6 @@ public class SignalServiceAccountManager {
    */
   public void requestRegistrationPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     pushServiceSocket.requestPushChallenge(sessionId, gcmRegistrationId);
-  }
-
-  public RemoteConfigResult getRemoteConfig() throws IOException {
-    RemoteConfigResponse response = this.pushServiceSocket.getRemoteConfig();
-    Map<String, Object>  out      = new HashMap<>();
-
-    for (RemoteConfigResponse.Config config : response.getConfig()) {
-      out.put(config.getName(), config.getValue() != null ? config.getValue() : config.isEnabled());
-    }
-
-    return new RemoteConfigResult(out, response.getServerEpochTime());
   }
 
   public void checkNetworkConnection() throws IOException {

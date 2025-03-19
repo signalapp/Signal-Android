@@ -718,11 +718,6 @@ public class PushServiceSocket {
     }
   }
 
-  public RemoteConfigResponse getRemoteConfig() throws IOException {
-    String response = makeServiceRequest("/v1/config", "GET", null);
-    return JsonUtil.fromJson(response, RemoteConfigResponse.class);
-  }
-
   public void cancelInFlightRequests() {
     synchronized (connections) {
       Log.w(TAG, "Canceling: " + connections.size());
