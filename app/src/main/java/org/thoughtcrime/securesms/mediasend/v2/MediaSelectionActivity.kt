@@ -23,6 +23,7 @@ import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
@@ -83,6 +84,12 @@ class MediaSelectionActivity :
 
   private val debouncer = Debouncer(200)
 
+  enum class MediaMode {
+    VIDEO, CAMERA, TEXT
+  }
+
+  private val lifecycleDisposable = LifecycleDisposable()
+
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
     super.attachBaseContext(newBase)
@@ -121,16 +128,30 @@ class MediaSelectionActivity :
     val textSelectedConstraintSet = ConstraintSet().apply {
       clone(this@MediaSelectionActivity, R.layout.media_selection_activity_text_selected_constraints)
     }
+    val videoSelectedConstraintSet = ConstraintSet().apply {
+      clone(this@MediaSelectionActivity, R.layout.media_selection_activity_video_selected_constraints)
+    }
 
     val textSwitch: TextView = findViewById(R.id.text_switch)
     val cameraSwitch: TextView = findViewById(R.id.camera_switch)
+    val videoSwitch: TextView = findViewById(R.id.video_switch)
+
+    val navHostFragment = NavHostFragment.create(R.navigation.media)
 
     textSwitch.setOnClickListener {
       viewModel.sendCommand(HudCommand.GoToText)
     }
 
     cameraSwitch.setOnClickListener {
-      debouncer.publish { viewModel.sendCommand(HudCommand.GoToCapture) }
+      debouncer.publish {
+        viewModel.sendCommand(HudCommand.GoToCamera)
+      }
+    }
+
+    videoSwitch.setOnClickListener {
+      debouncer.publish {
+        viewModel.sendCommand(HudCommand.GoToVideo)
+      }
     }
 
     if (savedInstanceState == null) {
@@ -139,8 +160,6 @@ class MediaSelectionActivity :
       }
 
       cameraSwitch.isSelected = true
-
-      val navHostFragment = NavHostFragment.create(R.navigation.media)
 
       supportFragmentManager
         .beginTransaction()
@@ -153,22 +172,64 @@ class MediaSelectionActivity :
       textViewModel.restoreFromInstanceState(savedInstanceState)
     }
 
+    fun updateMediaModeStateToggle(selectedSwitch: TextView, unselectedSwitch: TextView, constraintSet: ConstraintSet, mediaMode: MediaMode) {
+      if(viewModel.mediaMode.value==mediaMode) return
+      viewModel.updateMediaModeState(mediaMode)
+      animateTextStyling(selectedSwitch, unselectedSwitch, 200)
+      TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
+      constraintSet.applyTo(textStoryToggle)
+      textSwitch.visible = canDisplayTextStoryButton()
+    }
+
+    fun removeTextStoryFragment() {
+      if(navHostFragment.navController.currentDestination?.id == R.id.textStoryPostCreationFragment) {
+        navHostFragment.navController.popBackStack()
+      }
+    }
+
+    lifecycleDisposable.bindTo(this)
+    lifecycleDisposable += viewModel.hudCommands.subscribe { command ->
+      when (command) {
+        HudCommand.GoToCamera -> {
+          if(viewModel.mediaMode.value==MediaMode.TEXT) {
+            removeTextStoryFragment()
+            updateMediaModeStateToggle(cameraSwitch, textSwitch, cameraSelectedConstraintSet, MediaMode.CAMERA)
+          } else if(viewModel.mediaMode.value==MediaMode.VIDEO) {
+            updateMediaModeStateToggle(cameraSwitch, videoSwitch, cameraSelectedConstraintSet, MediaMode.CAMERA)
+          }
+        }
+
+        HudCommand.GoToVideo -> {
+          if(viewModel.mediaMode.value==MediaMode.TEXT) {
+            removeTextStoryFragment()
+            updateMediaModeStateToggle(videoSwitch, textSwitch, videoSelectedConstraintSet, MediaMode.VIDEO)
+          } else if(viewModel.mediaMode.value==MediaMode.CAMERA) {
+            updateMediaModeStateToggle(videoSwitch, cameraSwitch, videoSelectedConstraintSet, MediaMode.VIDEO)
+          }
+        }
+
+        HudCommand.GoToText -> {
+          if(viewModel.mediaMode.value==MediaMode.CAMERA) {
+            updateMediaModeStateToggle(textSwitch, cameraSwitch, textSelectedConstraintSet, MediaMode.TEXT)
+          } else if(viewModel.mediaMode.value==MediaMode.VIDEO) {
+            updateMediaModeStateToggle(textSwitch, videoSwitch, textSelectedConstraintSet, MediaMode.TEXT)
+          }
+        }
+
+        else -> {}
+      }
+    }
+
     (supportFragmentManager.findFragmentByTag(NAV_HOST_TAG) as NavHostFragment).navController.addOnDestinationChangedListener { _, d, _ ->
       when (d.id) {
         R.id.mediaCaptureFragment -> {
           textStoryToggle.visible = canDisplayStorySwitch()
-
-          animateTextStyling(cameraSwitch, textSwitch, 200)
-          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
-          cameraSelectedConstraintSet.applyTo(textStoryToggle)
+          textSwitch.visible = canDisplayTextStoryButton()
         }
 
         R.id.textStoryPostCreationFragment -> {
           textStoryToggle.visible = canDisplayStorySwitch()
-
-          animateTextStyling(textSwitch, cameraSwitch, 200)
-          TransitionManager.beginDelayedTransition(textStoryToggle, AutoTransition().setDuration(200))
-          textSelectedConstraintSet.applyTo(textStoryToggle)
+          textSwitch.visible = canDisplayTextStoryButton()
         }
 
         else -> textStoryToggle.visible = false
@@ -231,6 +292,11 @@ class MediaSelectionActivity :
   }
 
   private fun canDisplayStorySwitch(): Boolean {
+    return isCameraFirst() &&
+      (destination == MediaSelectionDestination.ChooseAfterMediaSelection || destination is MediaSelectionDestination.SingleStory || destination is MediaSelectionDestination.SingleRecipient)
+  }
+
+  private fun canDisplayTextStoryButton() : Boolean {
     return Stories.isFeatureEnabled() &&
       isCameraFirst() &&
       !viewModel.hasSelectedMedia() &&
@@ -336,14 +402,18 @@ class MediaSelectionActivity :
 
   private inner class OnBackPressed : OnBackPressedCallback(true) {
     override fun handleOnBackPressed() {
-      val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
+      if(viewModel.mediaMode.value==MediaMode.TEXT) {
+        viewModel.sendCommand(HudCommand.GoToCamera)
+      } else {
+        val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
 
-      if (shareToTextStory && navController.currentDestination?.id == R.id.textStoryPostCreationFragment) {
-        finish()
-      }
+        if (shareToTextStory && navController.currentDestination?.id == R.id.textStoryPostCreationFragment) {
+          finish()
+        }
 
-      if (!navController.popBackStack()) {
-        finish()
+        if (!navController.popBackStack()) {
+          finish()
+        }
       }
     }
   }
