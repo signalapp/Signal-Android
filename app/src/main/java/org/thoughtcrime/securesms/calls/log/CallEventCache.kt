@@ -123,7 +123,7 @@ class CallEventCache(
     }
 
     private fun isMissedCall(call: CacheRecord): Boolean {
-      return call.event in MISSED_CALL_EVENTS || isMissedGroupCall(call)
+      return (call.direction == Direction.serialize(CallTable.Direction.INCOMING) && call.event in MISSED_CALL_EVENTS) || isMissedGroupCall(call)
     }
 
     private fun isEventMatch(parent: CacheRecord, child: CacheRecord): Boolean {
