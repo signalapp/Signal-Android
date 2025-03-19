@@ -118,12 +118,20 @@ tasks.register("checkStopship") {
       "app/lint.xml"
     )
 
+    val excludedDirectories = listOf(
+      "app/build",
+      "libsignal-service/build"
+    )
+
     val allowedExtensions = setOf("kt", "kts", "java", "xml")
 
     val allFiles = projectDir.walkTopDown()
       .asSequence()
       .filter { it.isFile && it.extension in allowedExtensions }
-      .filterNot { excludedFiles.contains(it.relativeTo(projectDir).path) }
+      .filterNot {
+        val path = it.relativeTo(projectDir).path
+        excludedFiles.contains(path) || excludedDirectories.any { d -> path.startsWith(d) }
+      }
       .toList()
 
     println("[STOPSHIP Check] There are ${allFiles.size} relevant files.")
