@@ -390,13 +390,11 @@ public class TextSecurePreferences {
 
     if (previous != value) {
       Recipient.self().live().refresh();
+
       if (value) {
         notifyUnregisteredReceived(context);
+        clearLocalCredentials(context);
       }
-    }
-
-    if (value) {
-      clearLocalCredentials(context);
     }
   }
 
@@ -895,7 +893,6 @@ public class TextSecurePreferences {
   }
 
   private static void clearLocalCredentials(Context context) {
-
     ProfileKey newProfileKey = ProfileKeyUtil.createNew();
     Recipient  self          = Recipient.self();
     SignalDatabase.recipients().setProfileKey(self.getId(), newProfileKey);

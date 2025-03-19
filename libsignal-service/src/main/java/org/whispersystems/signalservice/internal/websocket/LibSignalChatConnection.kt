@@ -21,6 +21,7 @@ import org.signal.libsignal.net.ChatServiceException
 import org.signal.libsignal.net.DeviceDeregisteredException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.UnauthenticatedChatConnection
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.util.CredentialsProvider
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
@@ -285,10 +286,14 @@ class LibSignalChatConnection(
                 { error -> single.onError(error) }
               )
           },
-          onFailure = {
+          onFailure = { throwable ->
             // This matches the behavior of OkHttpWebSocketConnection when the connection fails
             //   before the buffered request can be sent.
-            single.onError(SocketException("Closed unexpectedly"))
+            val downstreamThrowable = when (throwable) {
+              is DeviceDeregisteredException -> NonSuccessfulResponseCodeException(403)
+              else -> SocketException("Closed unexpectedly")
+            }
+            single.onError(downstreamThrowable)
           }
         )
         return single.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
