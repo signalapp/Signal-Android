@@ -307,6 +307,9 @@ public class ConversationHeaderView extends ConstraintLayout {
     if (getBackground() != null) {
       ViewUtil.setPaddingTop(binding.messageRequestInfo, 0);
       ViewUtil.setPaddingBottom(binding.messageRequestInfo, getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding));
+      int margin = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_margin);
+      ViewUtil.setLeftMargin(this, margin);
+      ViewUtil.setRightMargin(this, margin);
     }
 
     int padding = visibleCount == 1 ? getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding) : getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_header_padding_expanded);

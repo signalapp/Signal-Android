@@ -89,10 +89,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textAlignment="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Hangin' on the web" />
 
     <View

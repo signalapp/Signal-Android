@@ -531,7 +531,7 @@ class ConversationAdapterV2(
   }
 
   inner class ThreadHeaderViewHolder(itemView: View) : MappingViewHolder<ThreadHeader>(itemView) {
-    private val conversationBanner: ConversationHeaderView = itemView.findViewById(R.id.header)
+    private val conversationBanner: ConversationHeaderView = itemView as ConversationHeaderView
 
     override fun bind(model: ThreadHeader) {
       val (recipient, groupInfo, sharedGroups, messageRequestState) = model.recipientInfo
