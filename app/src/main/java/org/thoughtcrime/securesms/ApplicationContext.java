@@ -354,7 +354,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   private void initializeRx() {
     RxDogTag.install();
-    RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED_IO, true, false));
+    RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.UNBOUNDED, true, false));
     RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
     RxJavaPlugins.setErrorHandler(e -> {
       boolean wasWrapped = false;

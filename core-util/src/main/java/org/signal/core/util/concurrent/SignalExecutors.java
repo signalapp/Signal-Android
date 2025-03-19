@@ -10,7 +10,6 @@ import org.signal.core.util.ThreadUtil;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -52,7 +51,7 @@ public final class SignalExecutors {
                                                            maxThreads,
                                                            timeoutSeconds,
                                                            TimeUnit.SECONDS,
-                                                           new SynchronousQueue<>() {
+                                                           new LinkedBlockingQueue<>() {
                                                              @Override
                                                              public boolean offer(Runnable runnable) {
                                                                if (isEmpty()) {
