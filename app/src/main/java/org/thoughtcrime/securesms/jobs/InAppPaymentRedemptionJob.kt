@@ -259,16 +259,11 @@ class InAppPaymentRedemptionJob private constructor(
       inAppPayment = inAppPayment.copy(
         notified = !jobData.isFromAuthCheck,
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
-          waitForAuth = null,
-          stripeActionComplete = null,
-          payPalActionComplete = null,
-          payPalRequiresAction = null,
-          stripeRequiresAction = null,
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = inAppPayment.data.redemption.copy(
             stage = InAppPaymentData.RedemptionState.Stage.REDEEMED
           )
-        )
+        ).build()
       )
     )
 
