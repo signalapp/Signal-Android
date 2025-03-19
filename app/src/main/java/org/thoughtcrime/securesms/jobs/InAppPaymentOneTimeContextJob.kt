@@ -159,17 +159,12 @@ class InAppPaymentOneTimeContextJob private constructor(
 
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
-            data = inAppPayment.data.copy(
-              waitForAuth = null,
-              stripeActionComplete = null,
-              payPalActionComplete = null,
-              payPalRequiresAction = null,
-              stripeRequiresAction = null,
+            data = inAppPayment.data.newBuilder().redemption(
               redemption = InAppPaymentData.RedemptionState(
                 stage = InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED,
                 receiptCredentialPresentation = receiptCredentialPresentation.serialize().toByteString()
               )
-            )
+            ).build()
           )
         )
       } else {

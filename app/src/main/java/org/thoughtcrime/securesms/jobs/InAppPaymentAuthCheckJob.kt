@@ -144,18 +144,6 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       return checkIntentStatusResult
     }
 
-    Log.i(TAG, "Creating and inserting receipt.", true)
-    val receipt = when (inAppPayment.type) {
-      InAppPaymentType.ONE_TIME_DONATION -> InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
-      InAppPaymentType.ONE_TIME_GIFT -> InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
-      else -> {
-        Log.e(TAG, "Unexpected type ${inAppPayment.type}", true)
-        return CheckResult.Failure()
-      }
-    }
-
-    SignalDatabase.donationReceipts.addReceipt(receipt)
-
     Log.i(TAG, "Verified payment. Updating InAppPayment::${inAppPayment.id.serialize()}")
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
