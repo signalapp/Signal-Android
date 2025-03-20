@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.scribbles;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -805,6 +806,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     });
   }
 
+  @SuppressLint("WrongThread")
   @WorkerThread
   public @NonNull Uri renderToSingleUseBlob() {
     return renderToSingleUseBlob(requireContext(), imageEditorView.getModel());

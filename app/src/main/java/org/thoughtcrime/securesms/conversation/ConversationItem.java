@@ -1804,6 +1804,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (author.equals(Recipient.self().getId())) {
         return context.getString(R.string.ConversationItem__reacted_to_your_story);
       } else {
+        //noinspection WrongThread
         return context.getString(R.string.ConversationItem__you_reacted_to_s_story, Recipient.resolved(author).getShortDisplayName(context));
       }
     } else {
