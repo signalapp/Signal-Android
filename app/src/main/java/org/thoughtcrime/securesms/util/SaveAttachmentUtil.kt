@@ -16,19 +16,13 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import android.widget.CheckBox
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.contentValuesOf
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
-import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
 import java.io.FileOutputStream
@@ -50,36 +44,7 @@ private typealias BatchOperationNameCache = HashMap<Uri, HashSet<String>>
  * a progress dialog and is not backed by an async task.
  */
 object SaveAttachmentUtil {
-
   private val TAG = Log.tag(SaveAttachmentUtil::class.java)
-
-  fun showWarningDialogIfNecessary(context: Context, count: Int, onSave: () -> Unit) {
-    if (SignalStore.uiHints.hasDismissedSaveStorageWarning()) {
-      onSave()
-    } else {
-      MaterialAlertDialogBuilder(context)
-        .setView(R.layout.dialog_save_attachment)
-        .setTitle(R.string.ConversationFragment__save_to_phone)
-        .setCancelable(true)
-        .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
-        .setPositiveButton(R.string.save) { dialog, _ ->
-          val checkbox = (dialog as AlertDialog).findViewById<CheckBox>(R.id.checkbox)!!
-          if (checkbox.isChecked) {
-            SignalStore.uiHints.markDismissedSaveStorageWarning()
-          }
-          onSave()
-        }
-        .setNegativeButton(android.R.string.cancel, null)
-        .show()
-    }
-  }
-
-  fun getAttachmentsForRecord(record: MmsMessageRecord): Set<SaveAttachment> {
-    return record.slideDeck.slides
-      .filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
-      .map { SaveAttachment(it.uri!!, it.contentType, record.dateSent, it.fileName.orNull()) }
-      .toSet()
-  }
 
   suspend fun saveAttachments(attachments: Set<SaveAttachment>): SaveAttachmentsResult {
     check(attachments.isNotEmpty()) { "must pass in at least one attachment" }

@@ -89,7 +89,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx3.rxSingle
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -111,6 +110,7 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.badges.gifts.OpenableGift
 import org.thoughtcrime.securesms.badges.gifts.OpenableGiftItemDecoration
@@ -126,8 +126,6 @@ import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.components.InputPanel
 import org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
-import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
-import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
 import org.thoughtcrime.securesms.components.SendButton
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -322,9 +320,7 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil.getEditMessageThre
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil.isValidEditMessageSend
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
-import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
@@ -2421,36 +2417,9 @@ class ConversationFragment :
       error("Cannot save a view-once message")
     }
 
-    val attachments = SaveAttachmentUtil.getAttachmentsForRecord(record)
-
-    SaveAttachmentUtil.showWarningDialogIfNecessary(requireContext(), attachments.size) {
-      if (StorageUtil.canWriteToMediaStore()) {
-        performAttachmentSave(attachments)
-      } else {
-        Permissions.with(this)
-          .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-          .ifNecessary()
-          .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-          .onAnyDenied { toast(R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, toastDuration = Toast.LENGTH_LONG) }
-          .onAllGranted { performAttachmentSave(attachments) }
-          .execute()
-      }
+    lifecycleScope.launch {
+      AttachmentSaver(this@ConversationFragment).saveAttachments(record)
     }
-  }
-
-  private fun performAttachmentSave(attachments: Set<SaveAttachmentUtil.SaveAttachment>) {
-    val progressDialog = ProgressCardDialogFragment.create()
-    progressDialog.arguments = ProgressCardDialogFragmentArgs.Builder(
-      resources.getQuantityString(R.plurals.ConversationFragment_saving_n_attachments_to_sd_card, attachments.size, attachments.size)
-    ).build().toBundle()
-
-    rxSingle { SaveAttachmentUtil.saveAttachments(attachments) }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .doOnSubscribe { progressDialog.show(parentFragmentManager, null) }
-      .doOnTerminate { progressDialog.dismissAllowingStateLoss() }
-      .subscribeBy { result -> Toast.makeText(context, result.getMessage(requireContext()), Toast.LENGTH_LONG).show() }
-      .addTo(disposables)
   }
 
   private fun handleCopyMessage(messageParts: Set<MultiselectPart>) {
