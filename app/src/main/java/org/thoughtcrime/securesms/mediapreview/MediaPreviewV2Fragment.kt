@@ -144,7 +144,7 @@ class MediaPreviewV2Fragment :
       Log.w(TAG, "Unsupported media type sent to MediaPreviewV2Fragment, finishing.")
       Snackbar.make(binding.root, R.string.MediaPreviewActivity_unssuported_media_type, Snackbar.LENGTH_LONG)
         .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
-          requireActivity().finish()
+          activity?.finish()
         }.show()
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
