@@ -102,7 +102,7 @@ class AttachmentSaver(private val host: Host) {
     fun dismissSaveProgress()
   }
 
-  private data class FragmentHost(private val fragment: Fragment) : Host {
+  data class FragmentHost(private val fragment: Fragment) : Host {
 
     override fun showToast(getMessage: (Context) -> CharSequence) {
       Toast.makeText(fragment.requireContext(), getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()

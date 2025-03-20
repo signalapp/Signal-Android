@@ -31,6 +31,7 @@ import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -40,6 +41,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.launch
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.dp
@@ -47,6 +49,7 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
+import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
@@ -63,6 +66,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
@@ -476,9 +480,11 @@ class StoryViewerPageFragment :
         state.hideChromeImmediate -> {
           hideChromeImmediate()
         }
+
         state.hideChrome -> {
           hideChrome()
         }
+
         else -> {
           showChrome()
         }
@@ -493,6 +499,7 @@ class StoryViewerPageFragment :
           is StoryViewerDialog.GroupDirectReply -> {
             onStartDirectReply(sheet.storyId, sheet.recipientId)
           }
+
           StoryViewerDialog.Delete,
           StoryViewerDialog.Forward -> Unit
         }
@@ -537,6 +544,11 @@ class StoryViewerPageFragment :
 
   override fun onDismissForwardSheet() {
     viewModel.setIsDisplayingForwardDialog(false)
+  }
+
+  @Suppress("OVERRIDE_DEPRECATION")
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
   private fun checkEventIntersectsClickableSpan(cardWrapper: ViewGroup, event: MotionEvent): Boolean {
@@ -712,12 +724,14 @@ class StoryViewerPageFragment :
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
         card.radius = DimensionUnit.DP.toPixels(18f)
       }
+
       StoryDisplay.MEDIUM -> {
         constraintSet.setDimensionRatio(cardWrapper.id, "9:16")
         constraintSet.clear(viewsAndReplies.id, ConstraintSet.TOP)
         constraintSet.connect(viewsAndReplies.id, ConstraintSet.BOTTOM, cardWrapper.id, ConstraintSet.BOTTOM)
         card.radius = DimensionUnit.DP.toPixels(18f)
       }
+
       StoryDisplay.SMALL -> {
         constraintSet.setDimensionRatio(cardWrapper.id, null)
         constraintSet.clear(viewsAndReplies.id, ConstraintSet.TOP)
@@ -757,6 +771,7 @@ class StoryViewerPageFragment :
         isFromNotification,
         groupReplyStartPosition
       )
+
       StoryViewerPageState.ReplyState.PRIVATE -> StoryDirectReplyDialogFragment.create(storyPostId)
       StoryViewerPageState.ReplyState.GROUP_SELF -> StoryViewsAndRepliesDialogFragment.create(
         storyPostId,
@@ -765,14 +780,17 @@ class StoryViewerPageFragment :
         isFromNotification,
         groupReplyStartPosition
       )
+
       StoryViewerPageState.ReplyState.PARTIAL_SEND -> {
         handleResend(storyPost)
         return
       }
+
       StoryViewerPageState.ReplyState.SEND_FAILURE -> {
         handleResend(storyPost)
         return
       }
+
       StoryViewerPageState.ReplyState.SENDING -> return
     }
 
@@ -854,24 +872,28 @@ class StoryViewerPageFragment :
         viewModel.setIsDisplayingSlate(false)
         markViewedIfAble()
       }
+
       AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
         Log.d(TAG, "Story content download is pending.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
+
       AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
         Log.d(TAG, "Story content download is in progress.")
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
+
       AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
         Log.d(TAG, "Story content download has failed temporarily.")
         storySlate.moveToState(StorySlateView.State.ERROR, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
+
       AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
         Log.d(TAG, "Story content download has failed permanently.")
         storySlate.moveToState(StorySlateView.State.FAILED, post.id, post.sender)
@@ -1175,7 +1197,12 @@ class StoryViewerPageFragment :
         StoryContextMenu.share(this, it.conversationMessage.messageRecord as MmsMessageRecord)
       },
       onSave = {
-        StoryContextMenu.save(requireContext(), it.conversationMessage.messageRecord)
+        lifecycleScope.launch {
+          StoryContextMenu.save(
+            host = AttachmentSaver.FragmentHost(this@StoryViewerPageFragment),
+            messageRecord = it.conversationMessage.messageRecord
+          )
+        }
       },
       onDelete = {
         viewModel.setIsDisplayingDeleteDialog(true)

@@ -15,6 +15,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
 import androidx.transition.TransitionInflater
@@ -23,9 +24,11 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
@@ -200,7 +203,13 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
           .ifNecessary()
           .onAllGranted { startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true)) }
           .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
-          .withPermanentDenialDialog(getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos), null, R.string.CameraXFragment_allow_access_camera, R.string.CameraXFragment_to_capture_photos_videos, getParentFragmentManager())
+          .withPermanentDenialDialog(
+            getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
+            null,
+            R.string.CameraXFragment_allow_access_camera,
+            R.string.CameraXFragment_to_capture_photos_videos,
+            getParentFragmentManager()
+          )
           .onAnyDenied { Toast.makeText(requireContext(), R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
           .execute()
       }
@@ -320,7 +329,12 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
         StoryContextMenu.share(this@StoriesLandingFragment, it.data.primaryStory.messageRecord as MmsMessageRecord)
       },
       onSave = {
-        StoryContextMenu.save(requireContext(), it.data.primaryStory.messageRecord)
+        lifecycleScope.launch {
+          StoryContextMenu.save(
+            host = AttachmentSaver.FragmentHost(this@StoriesLandingFragment),
+            messageRecord = it.data.primaryStory.messageRecord
+          )
+        }
       },
       onDeleteStory = {
         handleDeleteStory(it)
@@ -406,6 +420,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     }
   }
 
+  @Suppress("OVERRIDE_DEPRECATION")
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
