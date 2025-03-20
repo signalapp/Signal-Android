@@ -1198,10 +1198,12 @@ class StoryViewerPageFragment :
       },
       onSave = {
         lifecycleScope.launch {
+          viewModel.setIsSavingMedia(true)
           StoryContextMenu.save(
             host = AttachmentSaver.FragmentHost(this@StoryViewerPageFragment),
             messageRecord = it.conversationMessage.messageRecord
           )
+          viewModel.setIsSavingMedia(false)
         }
       },
       onDelete = {
