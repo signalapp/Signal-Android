@@ -140,7 +140,6 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           showMutedChats = cursor.requireBoolean(ChatFolderTable.SHOW_MUTED),
           showIndividualChats = cursor.requireBoolean(ChatFolderTable.SHOW_INDIVIDUAL),
           showGroupChats = cursor.requireBoolean(ChatFolderTable.SHOW_GROUPS),
-          isMuted = cursor.requireBoolean(ChatFolderTable.IS_MUTED),
           folderType = ChatFolderRecord.FolderType.deserialize(cursor.requireInt(ChatFolderTable.FOLDER_TYPE)),
           includedChats = includedChats[id] ?: emptyList(),
           excludedChats = excludedChats[id] ?: emptyList()
@@ -153,7 +152,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Maps the chat folder ids to its corresponding chat folder
    */
-  fun getChatFolders(includeUnreadAndMutedCount: Boolean = false): List<ChatFolderRecord> {
+  fun getChatFolders(): List<ChatFolderRecord> {
     val includedChats: Map<Long, List<Long>> = getIncludedChats()
     val excludedChats: Map<Long, List<Long>> = getExcludedChats()
 
@@ -172,23 +171,26 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           showMutedChats = cursor.requireBoolean(ChatFolderTable.SHOW_MUTED),
           showIndividualChats = cursor.requireBoolean(ChatFolderTable.SHOW_INDIVIDUAL),
           showGroupChats = cursor.requireBoolean(ChatFolderTable.SHOW_GROUPS),
-          isMuted = cursor.requireBoolean(ChatFolderTable.IS_MUTED),
           folderType = ChatFolderRecord.FolderType.deserialize(cursor.requireInt(ChatFolderTable.FOLDER_TYPE)),
           includedChats = includedChats[id] ?: emptyList(),
           excludedChats = excludedChats[id] ?: emptyList()
         )
       }
 
-    if (includeUnreadAndMutedCount) {
-      return folders.map { folder ->
-        folder.copy(
-          unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder),
-          isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
-        )
-      }
-    }
-
     return folders
+  }
+
+  /**
+   * Given a list of folders, maps a folder id to the folder's unread count and whether all the chats in the folder are muted
+   */
+  fun getUnreadCountAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Pair<Int, Boolean>> {
+    val map: HashMap<Long, Pair<Int, Boolean>> = hashMapOf()
+    folders.map { folder ->
+      val unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+      val isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
+      map[folder.id] = Pair(unreadCount, isMuted)
+    }
+    return map
   }
 
   /**
@@ -263,7 +265,6 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
             ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
             ChatFolderTable.SHOW_INDIVIDUAL to chatFolder.showIndividualChats,
             ChatFolderTable.SHOW_GROUPS to chatFolder.showGroupChats,
-            ChatFolderTable.IS_MUTED to chatFolder.isMuted,
             ChatFolderTable.POSITION to position
           )
         )
@@ -304,8 +305,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           ChatFolderTable.SHOW_UNREAD to chatFolder.showUnread,
           ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
           ChatFolderTable.SHOW_INDIVIDUAL to chatFolder.showIndividualChats,
-          ChatFolderTable.SHOW_GROUPS to chatFolder.showGroupChats,
-          ChatFolderTable.IS_MUTED to chatFolder.isMuted
+          ChatFolderTable.SHOW_GROUPS to chatFolder.showGroupChats
         )
         .where("${ChatFolderTable.ID} = ?", chatFolder.id)
         .run(SQLiteDatabase.CONFLICT_IGNORE)

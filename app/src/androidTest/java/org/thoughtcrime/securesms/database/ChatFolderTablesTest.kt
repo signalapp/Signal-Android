@@ -73,7 +73,6 @@ class ChatFolderTablesTest {
       showUnread = true,
       showMutedChats = true,
       showGroupChats = true,
-      isMuted = true,
       folderType = ChatFolderRecord.FolderType.GROUP
     )
 
@@ -96,7 +95,6 @@ class ChatFolderTablesTest {
     val updatedFolder = folder.copy(
       name = "updatedFolder2",
       position = 1,
-      isMuted = true,
       includedChats = listOf(aliceThread, charlieThread),
       excludedChats = listOf(bobThread)
     )

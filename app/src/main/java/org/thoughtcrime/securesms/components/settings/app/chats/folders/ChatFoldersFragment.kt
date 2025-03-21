@@ -404,7 +404,6 @@ private fun ChatFolderPreview() {
       showIndividualChats = true,
       showGroupChats = true,
       showMutedChats = true,
-      isMuted = false,
       folderType = ChatFolderRecord.FolderType.CUSTOM
     ),
     ChatFolderRecord(
@@ -415,7 +414,6 @@ private fun ChatFolderPreview() {
       showIndividualChats = true,
       showGroupChats = false,
       showMutedChats = false,
-      isMuted = false,
       folderType = ChatFolderRecord.FolderType.CUSTOM
     )
   )

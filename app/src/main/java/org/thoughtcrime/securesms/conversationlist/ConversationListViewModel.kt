@@ -218,7 +218,8 @@ class ConversationListViewModel(
 
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = true)
+      val folders = ChatFoldersRepository.getCurrentFolders()
+      val unreadCountAndMutedStatus = ChatFoldersRepository.getUnreadCountAndMutedStatusForFolders(folders)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -226,7 +227,12 @@ class ConversationListViewModel(
         currentFolder.id
       }
       val chatFolders = folders.map { folder ->
-        ChatFolderMappingModel(folder, selectedFolderId == folder.id)
+        ChatFolderMappingModel(
+          chatFolder = folder,
+          unreadCount = unreadCountAndMutedStatus[folder.id]?.first ?: 0,
+          isMuted = unreadCountAndMutedStatus[folder.id]?.second ?: false,
+          isSelected = selectedFolderId == folder.id
+        )
       }
 
       store.update {
