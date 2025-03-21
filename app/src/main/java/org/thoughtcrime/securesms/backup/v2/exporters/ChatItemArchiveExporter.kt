@@ -612,7 +612,7 @@ private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(): ChatUpdateMes
   return ChatUpdateMessage(
     sessionSwitchover = try {
       val event = SessionSwitchoverEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
-      SessionSwitchoverChatUpdate(event.e164.e164ToLong()!!)
+      SessionSwitchoverChatUpdate(event.e164.e164ToLong() ?: 0)
     } catch (e: IOException) {
       SessionSwitchoverChatUpdate()
     }
