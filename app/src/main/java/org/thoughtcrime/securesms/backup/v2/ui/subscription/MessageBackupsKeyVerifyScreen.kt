@@ -32,16 +32,17 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
@@ -63,6 +64,8 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registrationv3.ui.restore.BackupKeyVisualTransformation
+import org.thoughtcrime.securesms.registrationv3.ui.restore.attachBackupKeyAutoFillHelper
+import org.thoughtcrime.securesms.registrationv3.ui.restore.backupKeyAutoFillHelper
 import org.whispersystems.signalservice.api.AccountEntropyPool
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -71,7 +74,7 @@ import org.signal.core.ui.R as CoreUiR
 /**
  * Prompt user to re-enter backup key (AEP) to confirm they have it still.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun MessageBackupsKeyVerifyScreen(
   backupKey: String,
@@ -119,12 +122,20 @@ fun MessageBackupsKeyVerifyScreen(
 
         Spacer(modifier = Modifier.height(48.dp))
 
+        val updateEnteredBackupKey = { input: String ->
+          enteredBackupKey = AccountEntropyPool.removeIllegalCharacters(input).uppercase()
+          isBackupKeyValid = enteredBackupKey == backupKey
+          showError = !isBackupKeyValid && enteredBackupKey.length >= backupKey.length
+        }
+
+        var requestFocus: Boolean by remember { mutableStateOf(true) }
+        val autoFillHelper = backupKeyAutoFillHelper { updateEnteredBackupKey(it) }
+
         TextField(
           value = enteredBackupKey,
           onValueChange = {
-            enteredBackupKey = AccountEntropyPool.removeIllegalCharacters(it).uppercase()
-            isBackupKeyValid = enteredBackupKey == backupKey
-            showError = !isBackupKeyValid && enteredBackupKey.length >= backupKey.length
+            updateEnteredBackupKey(it)
+            autoFillHelper.onValueChanged(it)
           },
           label = {
             Text(text = stringResource(id = R.string.MessageBackupsKeyVerifyScreen__backup_key))
@@ -154,11 +165,14 @@ fun MessageBackupsKeyVerifyScreen(
           modifier = Modifier
             .fillMaxWidth()
             .focusRequester(focusRequester)
+            .attachBackupKeyAutoFillHelper(autoFillHelper)
+            .onGloballyPositioned {
+              if (requestFocus) {
+                focusRequester.requestFocus()
+                requestFocus = false
+              }
+            }
         )
-      }
-
-      LaunchedEffect(Unit) {
-        focusRequester.requestFocus()
       }
 
       Surface(

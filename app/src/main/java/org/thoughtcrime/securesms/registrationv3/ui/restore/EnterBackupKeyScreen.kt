@@ -30,13 +30,16 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -124,12 +127,18 @@ fun EnterBackupKeyScreen(
     }
   ) {
     val focusRequester = remember { FocusRequester() }
+    var requestFocus: Boolean by remember { mutableStateOf(true) }
     val visualTransform = remember(chunkLength) { BackupKeyVisualTransformation(chunkSize = chunkLength) }
     val keyboardController = LocalSoftwareKeyboardController.current
 
+    val autoFillHelper = backupKeyAutoFillHelper { onBackupKeyChanged(it) }
+
     TextField(
       value = backupKey,
-      onValueChange = onBackupKeyChanged,
+      onValueChange = {
+        onBackupKeyChanged(it)
+        autoFillHelper.onValueChanged(it)
+      },
       label = {
         Text(text = stringResource(id = R.string.EnterBackupKey_backup_key))
       },
@@ -158,11 +167,14 @@ fun EnterBackupKeyScreen(
       modifier = Modifier
         .fillMaxWidth()
         .focusRequester(focusRequester)
+        .attachBackupKeyAutoFillHelper(autoFillHelper)
+        .onGloballyPositioned {
+          if (requestFocus) {
+            focusRequester.requestFocus()
+            requestFocus = false
+          }
+        }
     )
-
-    LaunchedEffect(Unit) {
-      focusRequester.requestFocus()
-    }
 
     if (sheetState.isVisible) {
       ModalBottomSheet(
