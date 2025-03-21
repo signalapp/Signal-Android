@@ -26,6 +26,7 @@ object SignalSymbols {
 
   enum class Glyph(val unicode: Char) {
     CHECKMARK('\u2713'),
+    CHEVRON_LEFT('\uE024'),
     CHEVRON_RIGHT('\uE025'),
     PERSON_CIRCLE('\uE05E'),
     LOCK('\uE041')

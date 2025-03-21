@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -59,14 +60,26 @@ class PendingParticipantsView @JvmOverloads constructor(
     avatar.setAvatar(firstRecipient)
     avatar.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
-    name.text = SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
-      .append(" ")
-      .append(
-        SpanUtil.ofSize(
-          SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
-          16
+    name.text = if (ViewUtil.isLtr(this)) {
+      SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
+        .append(" ")
+        .append(
+          SpanUtil.ofSize(
+            SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
+            16
+          )
         )
-      )
+    } else {
+      SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
+        .insert(0, " ")
+        .insert(
+          0,
+          SpanUtil.ofSize(
+            SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_LEFT),
+            16
+          )
+        )
+    }
     name.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
     allow.setOnClickListener { listener?.onAllowPendingRecipient(firstRecipient) }

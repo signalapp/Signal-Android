@@ -136,9 +136,16 @@ public class ConversationHeaderView extends ConstraintLayout {
     }
 
     if (recipient.isIndividual() && !recipient.isSelf()) {
-      CharSequence chevronRight = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, SignalSymbols.Glyph.CHEVRON_RIGHT, R.color.signal_colorOutline);
-      title.append(" ");
-      title.append(SpanUtil.ofSize(chevronRight, 24));
+      boolean isLtr = ViewUtil.isLtr(this);
+      CharSequence chevron = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.BOLD, isLtr ? SignalSymbols.Glyph.CHEVRON_RIGHT : SignalSymbols.Glyph.CHEVRON_LEFT, R.color.signal_colorOutline);
+
+      if (isLtr) {
+        title.append(" ");
+        title.append(SpanUtil.ofSize(chevron, 24));
+      } else {
+        title.insert(0, " ");
+        title.insert(0, SpanUtil.ofSize(chevron, 24));
+      }
 
       binding.messageRequestTitle.setOnClickListener(v -> onTitleClicked.run());
     } else {
