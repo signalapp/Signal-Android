@@ -718,14 +718,20 @@ class AttachmentTable(
   }
 
   /**
-   * Returns the number of attachments that are in pending upload states to the archive cdn.
+   * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
    */
-  fun getPendingArchiveUploadCount(): Long {
+  fun getPendingArchiveUploadBytes(): Long {
     return readableDatabase
-      .count()
-      .from(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.UPLOAD_IN_PROGRESS.value}, ${ArchiveTransferState.COPY_PENDING.value})")
-      .run()
+      .rawQuery(
+        """
+          SELECT SUM($DATA_SIZE)
+          FROM (
+            SELECT DISTINCT $ARCHIVE_MEDIA_ID, $DATA_SIZE
+            FROM $TABLE_NAME
+            WHERE $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})
+          )
+        """.trimIndent()
+      )
       .readToSingleLong()
   }
 

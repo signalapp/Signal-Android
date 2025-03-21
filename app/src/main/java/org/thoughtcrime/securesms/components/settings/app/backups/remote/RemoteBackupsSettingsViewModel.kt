@@ -25,6 +25,7 @@ import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
 import java.util.Currency
 import kotlin.time.Duration.Companion.seconds
@@ -103,6 +105,20 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         delay(1.seconds)
       }
     }
+
+    viewModelScope.launch {
+      var previous: ArchiveUploadProgressState.State? = null
+      ArchiveUploadProgress.progress
+        .collect { current ->
+          if (previous != null && current.state == ArchiveUploadProgressState.State.None) {
+            _state.update {
+              it.copy(lastBackupTimestamp = SignalStore.backup.lastBackupTime)
+            }
+            refreshState(null)
+          }
+          previous = current.state
+        }
+    }
   }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
@@ -152,6 +168,42 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         refreshState(null)
       }
     }
+  }
+
+  fun turnOffAndDeleteBackups() {
+    viewModelScope.launch {
+      Log.d(TAG, "Beginning to turn off and delete backup.")
+      requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
+
+      val hasMediaBackupUploaded = SignalStore.backup.backsUpMedia && SignalStore.backup.hasBackupBeenUploaded
+
+      val succeeded = withContext(Dispatchers.IO) {
+        BackupRepository.turnOffAndDisableBackups()
+      }
+
+      if (isActive) {
+        if (succeeded) {
+          if (hasMediaBackupUploaded && SignalStore.backup.optimizeStorage) {
+            Log.d(TAG, "User has optimized storage, downloading.")
+            requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
+
+            SignalStore.backup.optimizeStorage = false
+            RestoreOptimizedMediaJob.enqueue()
+          } else {
+            Log.d(TAG, "User does not have optimized storage, finished.")
+            requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
+          }
+          refresh()
+        } else {
+          Log.d(TAG, "Failed to disable backups.")
+          requestDialog(RemoteBackupsSettingsState.Dialog.TURN_OFF_FAILED)
+        }
+      }
+    }
+  }
+
+  fun onBackupNowClick() {
+    BackupMessagesJob.enqueue()
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
@@ -307,39 +359,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     }
   }
 
-  fun turnOffAndDeleteBackups() {
-    viewModelScope.launch {
-      Log.d(TAG, "Beginning to turn off and delete backup.")
-      requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
-
-      val hasMediaBackupUploaded = SignalStore.backup.backsUpMedia && SignalStore.backup.hasBackupBeenUploaded
-
-      val succeeded = withContext(Dispatchers.IO) {
-        BackupRepository.turnOffAndDisableBackups()
-      }
-
-      if (isActive) {
-        if (succeeded) {
-          if (hasMediaBackupUploaded && SignalStore.backup.optimizeStorage) {
-            Log.d(TAG, "User has optimized storage, downloading.")
-            requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
-
-            SignalStore.backup.optimizeStorage = false
-            RestoreOptimizedMediaJob.enqueue()
-          } else {
-            Log.d(TAG, "User does not have optimized storage, finished.")
-            requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
-          }
-          refresh()
-        } else {
-          Log.d(TAG, "Failed to disable backups.")
-          requestDialog(RemoteBackupsSettingsState.Dialog.TURN_OFF_FAILED)
-        }
-      }
-    }
-  }
-
-  fun onBackupNowClick() {
-    BackupMessagesJob.enqueue()
+  private fun refreshLocalState() {
   }
 }

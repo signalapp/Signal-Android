@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.conversation
 
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.text.TextUtils
 import android.widget.Toast
@@ -16,11 +17,14 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -31,14 +35,18 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.BitmapUtil
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Objects
+import kotlin.random.Random
 import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.DurationUnit
 
@@ -267,40 +275,71 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         }
       )
 
-      clickPref(
-        title = DSLSettingsText.from("Add 1,000 dummy messages"),
-        summary = DSLSettingsText.from("Just adds 1,000 random messages to the chat. Text-only, nothing complicated."),
-        onClick = {
-          MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Are you sure?")
-            .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
-            .setPositiveButton(android.R.string.ok) { _, _ ->
-              val messageCount = 1000
-              val startTime = System.currentTimeMillis() - messageCount
-              SignalDatabase.rawDatabase.withinTransaction {
-                val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-                for (i in 1..messageCount) {
-                  val time = startTime + i
-                  if (Math.random() > 0.5) {
+      if (!recipient.isGroup) {
+        clickPref(
+          title = DSLSettingsText.from("Add 1,000 dummy messages"),
+          summary = DSLSettingsText.from("Just adds 1,000 random messages to the chat. Text-only, nothing complicated."),
+          onClick = {
+            MaterialAlertDialogBuilder(requireContext())
+              .setTitle("Are you sure?")
+              .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+              .setPositiveButton(android.R.string.ok) { _, _ ->
+                val messageCount = 1000
+                val startTime = System.currentTimeMillis() - messageCount
+                SignalDatabase.rawDatabase.withinTransaction {
+                  val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+                  for (i in 1..messageCount) {
+                    val time = startTime + i
+                    if (Math.random() > 0.5) {
+                      val id = SignalDatabase.messages.insertMessageOutbox(
+                        message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
+                        threadId = targetThread
+                      )
+                      SignalDatabase.messages.markAsSent(id, true)
+                    } else {
+                      SignalDatabase.messages.insertMessageInbox(
+                        retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
+                        candidateThreadId = targetThread
+                      )
+                    }
+                  }
+                }
+
+                Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
+              }
+              .show()
+          }
+        )
+
+        clickPref(
+          title = DSLSettingsText.from("Add 10 dummy messages with attachments"),
+          summary = DSLSettingsText.from("Adds 10 random messages to the chat with attachments of a random image. Attachments are not uploaded."),
+          onClick = {
+            MaterialAlertDialogBuilder(requireContext())
+              .setTitle("Are you sure?")
+              .setNegativeButton(android.R.string.cancel) { d, _ -> d.dismiss() }
+              .setPositiveButton(android.R.string.ok) { _, _ ->
+                val messageCount = 10
+                val startTime = System.currentTimeMillis() - messageCount
+                SignalDatabase.rawDatabase.withinTransaction {
+                  val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+                  for (i in 1..messageCount) {
+                    val time = startTime + i
+                    val attachment = makeDummyAttachment()
                     val id = SignalDatabase.messages.insertMessageOutbox(
-                      message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
+                      message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
                       threadId = targetThread
                     )
                     SignalDatabase.messages.markAsSent(id, true)
-                  } else {
-                    SignalDatabase.messages.insertMessageInbox(
-                      retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
-                      candidateThreadId = targetThread
-                    )
                   }
                 }
-              }
 
-              Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
-            }
-            .show()
-        }
-      )
+                Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
+              }
+              .show()
+          }
+        )
+      }
 
       if (recipient.isSelf) {
         sectionHeaderPref(DSLSettingsText.from("Donations"))
@@ -397,6 +436,37 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         }
       )
     }
+  }
+
+  private fun makeDummyAttachment(): Attachment {
+    val bitmapDimens = 1024
+    val bitmap = Bitmap.createBitmap(
+      IntArray(bitmapDimens * bitmapDimens) { Random.nextInt(0xFFFFFF) },
+      0,
+      bitmapDimens,
+      bitmapDimens,
+      bitmapDimens,
+      Bitmap.Config.RGB_565
+    )
+    val stream = BitmapUtil.toCompressedJpeg(bitmap)
+    val bytes = stream.readBytes()
+    val uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionOnDisk(requireContext())
+    return UriAttachment(
+      uri = uri,
+      contentType = MediaUtil.IMAGE_JPEG,
+      transferState = AttachmentTable.TRANSFER_PROGRESS_DONE,
+      size = bytes.size.toLong(),
+      fileName = null,
+      voiceNote = false,
+      borderless = false,
+      videoGif = false,
+      quote = false,
+      caption = null,
+      stickerLocator = null,
+      blurHash = null,
+      audioHash = null,
+      transformProperties = null
+    )
   }
 
   private fun copyToClipboard(text: String) {

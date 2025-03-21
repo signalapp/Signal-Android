@@ -147,7 +147,7 @@ tasks.register("checkStopship") {
           }
         }
       }
-      .awaitAll()
+        .awaitAll()
     }
 
     if (stopshipFiles.isNotEmpty()) {

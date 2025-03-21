@@ -12,6 +12,7 @@ import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import java.io.IOException
 import java.net.ProtocolException
 import kotlin.random.Random
@@ -135,7 +137,11 @@ class UploadAttachmentToArchiveJob private constructor(
         context = context,
         attachment = attachment,
         uploadSpec = uploadSpec!!,
-        cancellationSignal = { this.isCanceled }
+        cancellationSignal = { this.isCanceled },
+        progressListener = object : SignalServiceAttachment.ProgressListener {
+          override fun onAttachmentProgress(total: Long, progress: Long) = ArchiveUploadProgress.onAttachmentProgress(attachmentId, progress)
+          override fun shouldCancel() = this@UploadAttachmentToArchiveJob.isCanceled
+        }
       )
     } catch (e: IOException) {
       Log.e(TAG, "[$attachmentId] Failed to get attachment stream.", e)

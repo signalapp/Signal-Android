@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -89,6 +90,10 @@ class BackupMessagesJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
+  override fun onAdded() {
+    ArchiveUploadProgress.begin()
+  }
+
   override fun onFailure() {
     if (!isCanceled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.")
@@ -108,6 +113,8 @@ class BackupMessagesJob private constructor(
       BackupFileResult.Failure -> return Result.failure()
       BackupFileResult.Retry -> return Result.retry(defaultBackoff())
     }
+
+    ArchiveUploadProgress.onMessageBackupCreated(tempBackupFile.length())
 
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
@@ -134,8 +141,16 @@ class BackupMessagesJob private constructor(
       is NetworkResult.ApplicationError -> throw result.throwable
     }
 
+    val progressListener = object : SignalServiceAttachment.ProgressListener {
+      override fun onAttachmentProgress(total: Long, progress: Long) {
+        ArchiveUploadProgress.onMessageBackupUploadProgress(total, progress)
+      }
+
+      override fun shouldCancel(): Boolean = isCanceled
+    }
+
     FileInputStream(tempBackupFile).use {
-      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), ArchiveUploadProgress.ArchiveUploadProgressListener { isCanceled })) {
+      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
           SignalStore.backup.hasBackupBeenUploaded = true
@@ -204,7 +219,6 @@ class BackupMessagesJob private constructor(
 
     BlobProvider.getInstance().clearTemporaryBackupsDirectory(AppDependencies.application)
 
-    ArchiveUploadProgress.begin()
     val tempBackupFile = BlobProvider.getInstance().forTemporaryBackup(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
@@ -243,8 +257,6 @@ class BackupMessagesJob private constructor(
     if (isCanceled) {
       return BackupFileResult.Failure
     }
-
-    ArchiveUploadProgress.onMessageBackupCreated()
 
     return BackupFileResult.Success(tempBackupFile, currentTime)
   }

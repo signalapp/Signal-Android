@@ -19,9 +19,9 @@ message LeastActiveLinkedDevice {
 message ArchiveUploadProgressState {
     enum State {
         None = 0;
-        BackingUpMessages = 1;
-        UploadingMessages = 2;
-        UploadingAttachments = 3;
+        Export = 1;
+        UploadBackupFile = 2;
+        UploadMedia = 3;
     }
 
     /**
@@ -41,7 +41,11 @@ message ArchiveUploadProgressState {
     }
 
     State state = 1;
-    uint64 completedAttachments = 2;
-    uint64 totalAttachments = 3;
-    BackupPhase backupPhase = 4;
+    BackupPhase backupPhase = 2;
+    uint64 frameExportCount = 3;
+    uint64 frameTotalCount = 4;
+    uint64 backupFileUploadedBytes = 5;
+    uint64 backupFileTotalBytes = 6;
+    uint64 mediaUploadedBytes = 7;
+    uint64 mediaTotalBytes = 8;
 }
