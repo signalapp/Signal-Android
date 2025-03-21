@@ -712,6 +712,7 @@ message SyncMessage {
 
     message AttachmentDataList {
       repeated AttachmentData attachments = 1;
+      optional AttachmentData longText = 2;
     }
 
     optional AddressableMessage targetMessage = 1;

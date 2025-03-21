@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.MultiDeviceAttachmentBackfillUpdateJobData
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException
@@ -72,25 +73,16 @@ class MultiDeviceAttachmentBackfillUpdateJob(
   }
 
   override fun run(): Result {
-    val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId).filterNot { it.quote }.sortedBy { it.displayOrder }
-    if (attachments.isEmpty()) {
+    val allAttachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
+    val syncAttachments: List<DatabaseAttachment> = allAttachments
+      .filterNot { it.quote || it.contentType == MediaUtil.LONG_TEXT }
+      .sortedBy { it.displayOrder }
+    val longTextAttachment: DatabaseAttachment? = allAttachments.firstOrNull { it.contentType == MediaUtil.LONG_TEXT }
+
+    if (syncAttachments.isEmpty() && longTextAttachment == null) {
       Log.w(TAG, "Failed to find any attachments for the message! Sending a missing response.")
       MultiDeviceAttachmentBackfillMissingJob.enqueue(targetMessage, targetConversation)
       return Result.failure()
-    }
-
-    val attachmentDatas = attachments.map { attachment ->
-      when {
-        attachment.hasData && !attachment.isInProgress && attachment.withinUploadThreshold() -> {
-          AttachmentData(attachment = attachment.toAttachmentPointer(context))
-        }
-        !attachment.hasData || attachment.isPermanentlyFailed -> {
-          AttachmentData(status = AttachmentData.Status.TERMINAL_ERROR)
-        }
-        else -> {
-          AttachmentData(status = AttachmentData.Status.PENDING)
-        }
-      }
     }
 
     val syncMessage = SignalServiceSyncMessage.forAttachmentBackfillResponse(
@@ -98,7 +90,8 @@ class MultiDeviceAttachmentBackfillUpdateJob(
         targetMessage = targetMessage,
         targetConversation = targetConversation,
         attachments = SyncMessage.AttachmentBackfillResponse.AttachmentDataList(
-          attachments = attachmentDatas
+          attachments = syncAttachments.map { it.toAttachmentData() },
+          longText = longTextAttachment?.toAttachmentData()
         )
       )
     )
@@ -128,6 +121,20 @@ class MultiDeviceAttachmentBackfillUpdateJob(
     if (isCascadingFailure) {
       Log.w(TAG, "The upload job failed! Enqueuing another instance of the job to notify of the failure.")
       MultiDeviceAttachmentBackfillUpdateJob.enqueue(targetMessage, targetConversation, messageId)
+    }
+  }
+
+  private fun DatabaseAttachment.toAttachmentData(): AttachmentData {
+    return when {
+      this.hasData && !this.isInProgress && this.withinUploadThreshold() -> {
+        AttachmentData(attachment = this.toAttachmentPointer(context))
+      }
+      !this.hasData || this.isPermanentlyFailed -> {
+        AttachmentData(status = AttachmentData.Status.TERMINAL_ERROR)
+      }
+      else -> {
+        AttachmentData(status = AttachmentData.Status.PENDING)
+      }
     }
   }
 

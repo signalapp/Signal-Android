@@ -1711,10 +1711,8 @@ object SyncMessageProcessor {
         .enqueue()
     }
 
-    if (needsUpload.size != attachments.size) {
-      log(timestamp, "[AttachmentBackfillRequest] At least one attachment didn't need to be uploaded. Enqueuing update job immediately.")
-      MultiDeviceAttachmentBackfillUpdateJob.enqueue(request.targetMessage!!, request.targetConversation!!, messageId)
-    }
+    // Enqueueing an update immediately to tell the requesting device that the primary is online.
+    MultiDeviceAttachmentBackfillUpdateJob.enqueue(request.targetMessage!!, request.targetConversation!!, messageId)
   }
 
   private fun ConversationIdentifier.toRecipientId(): RecipientId? {
