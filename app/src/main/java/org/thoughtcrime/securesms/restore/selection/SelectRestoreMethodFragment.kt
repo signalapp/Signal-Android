@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.ui.Dialogs
+import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository

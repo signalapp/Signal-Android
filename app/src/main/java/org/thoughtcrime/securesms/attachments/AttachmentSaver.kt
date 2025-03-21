@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.view.AlertDialogResult
+import org.signal.core.ui.view.awaitResult
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -21,11 +23,9 @@ import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.util.AlertDialogResult
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachment
 import org.thoughtcrime.securesms.util.StorageUtil
-import org.thoughtcrime.securesms.util.awaitResult
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

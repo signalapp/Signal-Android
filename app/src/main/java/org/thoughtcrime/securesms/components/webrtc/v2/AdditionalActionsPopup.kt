@@ -33,11 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.persistentListOf
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.Previews
-import org.signal.core.ui.TriggerAlignedPopup
-import org.signal.core.ui.TriggerAlignedPopupState
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TriggerAlignedPopup
+import org.signal.core.ui.compose.TriggerAlignedPopupState
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.Emojifier
 

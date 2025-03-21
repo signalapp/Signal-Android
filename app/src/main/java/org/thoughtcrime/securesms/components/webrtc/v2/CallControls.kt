@@ -29,10 +29,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.Previews
-import org.signal.core.ui.TriggerAlignedPopupState.Companion.popupTrigger
-import org.signal.core.ui.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.popupTrigger
+import org.signal.core.ui.compose.TriggerAlignedPopupState.Companion.rememberTriggerAlignedPopupState
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState

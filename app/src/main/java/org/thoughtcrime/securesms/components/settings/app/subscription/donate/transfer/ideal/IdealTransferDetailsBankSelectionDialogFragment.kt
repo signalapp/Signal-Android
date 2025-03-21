@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.signal.core.ui.R as CoreUiR
