@@ -8,6 +8,7 @@ import io.mockk.verify
 import io.reactivex.rxjava3.observers.TestObserver
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -109,6 +110,7 @@ class LibSignalChatConnectionTest {
       WebSocketConnectionState.CONNECTING,
       WebSocketConnectionState.CONNECTED
     )
+    observer.assertNoConsecutiveDuplicates()
   }
 
   // Test that the LibSignalChatConnection transitions to FAILED if the
@@ -139,6 +141,7 @@ class LibSignalChatConnectionTest {
       WebSocketConnectionState.CONNECTING,
       WebSocketConnectionState.FAILED
     )
+    observer.assertNoConsecutiveDuplicates()
   }
 
   // Test connect followed by disconnect, checking the state transitions.
@@ -157,6 +160,10 @@ class LibSignalChatConnectionTest {
     connection.disconnect()
     disconnectLatch!!.await(100, TimeUnit.MILLISECONDS)
 
+    // onConnectionInterrupted acts like the onClosed callback for the connection here, driving the
+    //   transition from DISCONNECTING -> DISCONNECTED.
+    chatListener!!.onConnectionInterrupted(chatConnection, null)
+
     observer.assertNotComplete()
     observer.assertValues(
       WebSocketConnectionState.DISCONNECTED,
@@ -165,6 +172,7 @@ class LibSignalChatConnectionTest {
       WebSocketConnectionState.DISCONNECTING,
       WebSocketConnectionState.DISCONNECTED
     )
+    observer.assertNoConsecutiveDuplicates()
   }
 
   // Test that a disconnect failure transitions from CONNECTED -> DISCONNECTING -> DISCONNECTED anyway,
@@ -197,6 +205,7 @@ class LibSignalChatConnectionTest {
       WebSocketConnectionState.DISCONNECTING,
       WebSocketConnectionState.DISCONNECTED
     )
+    observer.assertNoConsecutiveDuplicates()
   }
 
   // Test a successful keepAlive, i.e. we get a 200 OK in response to the keepAlive request,
@@ -278,6 +287,7 @@ class LibSignalChatConnectionTest {
       // Disconnects as a result of keep-alive failure
       WebSocketConnectionState.DISCONNECTED
     )
+    observer.assertNoConsecutiveDuplicates()
     verify(exactly = 0) {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
@@ -303,6 +313,7 @@ class LibSignalChatConnectionTest {
       // Disconnects as a result of the connection interrupted event
       WebSocketConnectionState.DISCONNECTED
     )
+    observer.assertNoConsecutiveDuplicates()
     verify(exactly = 0) {
       healthMonitor.onKeepAliveResponse(any(), any())
       healthMonitor.onMessageError(any(), any())
@@ -470,6 +481,17 @@ class LibSignalChatConnectionTest {
       action(future)
     }
     return future
+  }
+
+  private fun TestObserver<WebSocketConnectionState>.assertNoConsecutiveDuplicates() {
+    val states = this.values()
+    for (i in 1 until states.size) {
+      assertNotEquals(
+        "Found duplicate consecutive states states[${i - 1}] = states[$i] = ${states[i]}",
+        states[i - 1],
+        states[i]
+      )
+    }
   }
 
   companion object {
