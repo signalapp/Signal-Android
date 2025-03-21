@@ -111,12 +111,20 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         val context = LocalContext.current
 
         MessageBackupsKeyRecordScreen(
-          backupKey = state.accountEntropyPool.value,
+          backupKey = state.accountEntropyPool.displayValue,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {
             Util.copyToClipboard(context, it)
           }
+        )
+      }
+
+      composable(route = MessageBackupsStage.Route.BACKUP_KEY_VERIFY.name) {
+        MessageBackupsKeyVerifyScreen(
+          backupKey = state.accountEntropyPool.displayValue,
+          onNavigationClick = viewModel::goToPreviousStage,
+          onNextClick = viewModel::goToNextStage
         )
       }
 
@@ -140,7 +148,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       val currentRoute = navController.currentDestination?.route
       if (currentRoute != newRoute) {
         if (currentRoute != null && MessageBackupsStage.Route.valueOf(currentRoute).isAfter(state.stage.route)) {
-          navController.popBackStack()
+          navController.popBackStack(newRoute, inclusive = false)
         } else {
           navController.navigate(newRoute)
         }

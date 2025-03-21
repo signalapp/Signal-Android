@@ -19,7 +19,7 @@ class BackupKeyDisplayFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     MessageBackupsKeyRecordScreen(
-      backupKey = SignalStore.account.accountEntropyPool.value,
+      backupKey = SignalStore.account.accountEntropyPool.displayValue,
       onNavigationClick = { findNavController().popBackStack() },
       onCopyToClipboardClick = { Util.copyToClipboard(requireContext(), it) },
       onNextClick = { findNavController().popBackStack() }

@@ -15,6 +15,7 @@ enum class MessageBackupsStage(
   EDUCATION(route = Route.EDUCATION),
   BACKUP_KEY_EDUCATION(route = Route.BACKUP_KEY_EDUCATION),
   BACKUP_KEY_RECORD(route = Route.BACKUP_KEY_RECORD),
+  BACKUP_KEY_VERIFY(route = Route.BACKUP_KEY_VERIFY),
   TYPE_SELECTION(route = Route.TYPE_SELECTION),
   CREATING_IN_APP_PAYMENT(route = Route.TYPE_SELECTION),
   CHECKOUT_SHEET(route = Route.TYPE_SELECTION),
@@ -31,6 +32,7 @@ enum class MessageBackupsStage(
     EDUCATION,
     BACKUP_KEY_EDUCATION,
     BACKUP_KEY_RECORD,
+    BACKUP_KEY_VERIFY,
     TYPE_SELECTION;
 
     fun isAfter(other: Route): Boolean = ordinal > other.ordinal

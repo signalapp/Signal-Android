@@ -12,7 +12,10 @@ import org.signal.libsignal.messagebackup.AccountEntropyPool as LibSignalAccount
 /**
  * The Root of All Entropy. You can use this to derive the [MasterKey] or [MessageBackupKey].
  */
-class AccountEntropyPool(val value: String) {
+class AccountEntropyPool(value: String) {
+
+  val value = value.lowercase()
+  val displayValue = value.uppercase()
 
   companion object {
     private val INVALID_CHARACTERS = Regex("[^0-9a-zA-Z]")
