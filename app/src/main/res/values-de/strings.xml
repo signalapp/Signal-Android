@@ -1227,7 +1227,7 @@
         <item quantity="other">%1$d Einladungen versendet</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDie Person wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis er die Einladung angenommen hat.</string>
+    <string name="GroupManagement_invite_single_user">»%1$s« kann von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nDie Person wurde eingeladen beizutreten, wird aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen hat.</string>
     <string name="GroupManagement_invite_multiple_users">Diese Personen können von dir nicht automatisch zu dieser Gruppe hinzugefügt werden.\n\nSie wurden eingeladen, der Gruppe beizutreten, werden aber keine Gruppennachrichten erhalten, bis sie die Einladung angenommen haben.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -2281,7 +2281,7 @@
     <!-- RedPhone -->
     <string name="RedPhone_answering">Anruf wird angenommen …</string>
     <string name="RedPhone_ending_call">Anruf wird beendet …</string>
-    <string name="RedPhone_ringing">Klingelt …</string>
+    <string name="RedPhone_ringing">Es klingelt …</string>
     <string name="RedPhone_busy">Besetzt</string>
     <string name="RedPhone_recipient_unavailable">Empfänger*in nicht erreichbar</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
@@ -2417,11 +2417,11 @@
         <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt werden</item>
     </plurals>
 
-    <string name="WebRtcCallView__ringing_s">Klingelt gerade bei %1$s</string>
-    <string name="WebRtcCallView__ringing_s_and_s">Klingelt bei %1$s und %2$s</string>
+    <string name="WebRtcCallView__ringing_s">Es klingelt gerade bei %1$s</string>
+    <string name="WebRtcCallView__ringing_s_and_s">Es klingelt bei %1$s und %2$s</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
-        <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
+        <item quantity="one">Es klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
+        <item quantity="other">Es klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
     </plurals>
 
     <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich an</string>
@@ -2622,7 +2622,7 @@
     <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du erhältst einen Anruf zur Verifizierung dieser Telefonnummer.</string>
     <string name="RegistrationActivity_edit_number">Telefonnummer bearbeiten</string>
     <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein Erfahrung damit hast, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du keine Erfahrung damit hast, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
     <string name="RegistrationActivity_i_understand">Verstanden</string>
     <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte versuche es erneut.</string>
@@ -4318,7 +4318,7 @@
     </plurals>
 
     <!-- conversation_group_options -->
-    <string name="convesation_group_options__recipients_list">Empfangserliste</string>
+    <string name="convesation_group_options__recipients_list">Empfänger*innenliste</string>
     <string name="conversation_group_options__delivery">Zustellung</string>
     <!-- Label for a menu item that appears after pressing the three-dot icon in a  -->
     <string name="conversation_group_options__conversation">Chat</string>
@@ -7923,7 +7923,7 @@
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Datensicherung gelöscht und ausgeschaltet.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
-    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Art der Datensicherung geändert und Abo storniert</string>
+    <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup-Art geändert und Abo storniert</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
     <string name="RemoteBackupsSettingsFragment__subscription_cancelled">Abo gekündigt</string>
     <!-- Snackbar text displayed when backup is successfully downloaded -->

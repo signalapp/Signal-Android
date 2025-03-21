@@ -561,7 +561,7 @@
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">‫لم يعُد هذا الشخص يستخدم سيجنال. ادْعُه إلى سيجنال لإبقاء الدردشة هنا.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__invite_to_signal">ادْعُ إلى سيجنال</string>
+    <string name="ConversationActivity__invite_to_signal">اُدْعُ إلى سيجنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">سنُذكّرك مرة أخرى قريبًا.</string>
 
@@ -1812,7 +1812,7 @@
     <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">ارسم لتمويه مزيدٍ من الوجوه والأماكن</string>
 
     <!-- InputPanel -->
-    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">انقر واضغط لتسجيل رسالة صوتية، ارفع إصبعك للإرسال</string>
+    <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">انقر مُطوَّلًا لتسجيل رسالة صوتية، ارفع إصبعك للإرسال</string>
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">تعديل الرسالة</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
@@ -2273,7 +2273,7 @@
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed -->
     <string name="MessageRecord__missed_video_call">مكالمة فيديو فائتة</string>
     <!-- Chat log text for a group call that ended more than 5 minutes ago and was missed with a placeholder for formatted time -->
-    <string name="MessageRecord__missed_video_call_s">مكالمة بالصورة فائتة · %1$s</string>
+    <string name="MessageRecord__missed_video_call_s">مكالمة فيديو فائتة · %1$s</string>
     <!-- Chat log text for a group call that ended that the local user did not start -->
     <string name="MessageRecord__incoming_video_call">مكالمة فيديو واردة</string>
     <!-- Chat log text for a group call that ended that the local user did not start with a placeholder for formatted time -->
@@ -2566,7 +2566,7 @@
     <!-- Content description for navigation icon -->
     <string name="CallScreenTopBar__go_back">عودة للوراء</string>
     <!-- Content description for info icon -->
-    <string name="CallScreenTopBar__call_information">معلومات عن المكالمة</string>
+    <string name="CallScreenTopBar__call_information">معلومات المكالمة</string>
 
     <!-- CallScreenPreJoinOverlay -->
     <!-- Displayed when users camera is disabled -->
@@ -2598,7 +2598,7 @@
         <item quantity="other">أترغبُ بالموافقة على %1$d طلب؟</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
-    <string name="WebRtcCallActivity__approve_all">موافقة على الكل</string>
+    <string name="WebRtcCallActivity__approve_all">الموافقة على الكل</string>
     <!-- Message for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_be_added_to_the_call">
         <item quantity="zero">سيُضاف %1$d شخص إلى المكالمة.</item>
@@ -2948,7 +2948,7 @@
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">يجب عليك تحديد بلدك</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك.
+    <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد كود دولتك.
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">يُرجى إدخال رقم هاتف صحيح للتسجيل.</string>
     <string name="RegistrationActivity_invalid_number">الرقم غير صحيح</string>
@@ -3020,7 +3020,7 @@
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخِل الكود الذي أرسلناه إلى %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
-    <string name="RegistrationActivity_country_code_description">رمز البلد</string>
+    <string name="RegistrationActivity_country_code_description">كود الدولة</string>
     <string name="RegistrationActivity_call">اتصال</string>
     <string name="RegistrationActivity_verification_code">كود التحقُّق</string>
     <string name="RegistrationActivity_resend_code">أعِد إرسال الرمز</string>
@@ -3067,13 +3067,13 @@
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">إضافة إلى جهات الاتصال</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى سيجنال</string>
+    <string name="SharedContactDetailsActivity_invite_to_signal">اُدْعُ إلى سيجنال</string>
     <string name="SharedContactDetailsActivity_signal_message">‫رسالة سيجنال</string>
     <string name="SharedContactDetailsActivity_signal_call">مكالمة سيجنال</string>
 
     <!-- SharedContactView -->
     <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
-    <string name="SharedContactView_invite_to_signal">الدعوة إلى سيجنال</string>
+    <string name="SharedContactView_invite_to_signal">اُدْعُ إلى سيجنال</string>
     <string name="SharedContactView_message">‫رسالة سيجنال</string>
 
     <!-- SignalBottomActionBar -->
@@ -3132,7 +3132,7 @@
     <string name="SubmitDebugLogActivity_save_complete">اكتمل الحفظ</string>
     <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">انقر على الخط لحذفه</string>
     <string name="SubmitDebugLogActivity_submit">إرسال</string>
-    <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل في الإبلاغ عن مشكلة</string>
+    <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجلات</string>
     <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
@@ -4075,7 +4075,7 @@
     <string-array name="HelpFragment__categories_6">
         <item>يُرجى تحديد خيار</item>
         <item>شيء ما لا يعمل</item>
-        <item>طلب الميزات</item>
+        <item>طلب ميّزة</item>
         <item>سؤال</item>
         <item>الملاحظات</item>
         <item>عمليات الدفع (MobileCoin)</item>
@@ -5450,7 +5450,7 @@
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">حذف معلومات حسابك وصورة حسابك الشخصي</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">حذف كل رسائلك</string>
     <string name="DeleteAccountFragment__delete_s_in_your_payments_account">حذف %1$s في حساب مدفوعاتك.</string>
-    <string name="DeleteAccountFragment__no_country_code">لم يُحدَّد رمز الدولة</string>
+    <string name="DeleteAccountFragment__no_country_code">لم يُحدَّد كود الدولة</string>
     <string name="DeleteAccountFragment__no_number">لم يُحدَّد أي رقم</string>
     <string name="DeleteAccountFragment__the_phone_number">رقم الهاتف الذي أدخلت لا يطابق رقم حسابك.</string>
     <string name="DeleteAccountFragment__are_you_sure">هل أنت متأكد من أنك تريد حذف حسابك؟</string>
@@ -5759,9 +5759,9 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">رقم هاتفك الجديد</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">رقم الهاتف الجديد</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">رقم الهاتف الذي أدخلته لا يطابق الرقم المُرفَق مع حسابك.</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">يجب عليك تحديد رمز الدولة لرقم هاتفك القديم.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">يجب عليك تحديد كود الدولة لرقم هاتفك القديم.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">يجب عليك تحديد رقم هاتفك القديم.</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">يجب عليك تحديد رمز الدولة لرقم هاتفك الجديد.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">يجب عليك تحديد كود الدولة لرقم هاتفك الجديد.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">يجب عليك تحديد رقم هاتفك الجديد.</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">لا يُمكن أن يَكون رقم هاتفك الجديد مطابقًا لِرقمك القديم.</string>
 
@@ -6939,9 +6939,9 @@
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">لا توجد تحديثات أخيرة للعرض حاليًا.</string>
     <!-- Context menu option to hide a story -->
-    <string name="StoriesLandingItem__hide_story">إخفاء قصة</string>
+    <string name="StoriesLandingItem__hide_story">إخفاء القصة</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">إظهار قصة</string>
+    <string name="StoriesLandingItem__unhide_story">إظهار القصة</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">إعادة التوجيه</string>
     <!-- Context menu option to share a story -->
@@ -7708,7 +7708,7 @@
     <!-- Error label for IBAN field when number is too long -->
     <string name="BankTransferDetailsFragment__iban_is_too_long">رقم IBAN طويل جدًا</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">رمز الدولة للـ IBAN غير مدعوم.</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">كود الدولة للـ IBAN غير مدعوم.</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">رقم IBAN غير صحيح</string>
     <!-- Error label for name field when name is not at least two characters long -->
@@ -8264,7 +8264,7 @@
     <!-- Title of activity when finding by phone number -->
     <string name="FindByActivity__find_by_phone_number">إيجاد بحسب رقم الهاتف</string>
     <!-- Title of screen to select a country code -->
-    <string name="FindByActivity__select_country_code">اختر رمز الدولة</string>
+    <string name="FindByActivity__select_country_code">اختر كود الدولة</string>
     <!-- Entry placeholder for find by username -->
     <string name="FindByActivity__username">اسم المُستخدم</string>
     <!-- Entry placeholder for find by phone number -->
@@ -8591,9 +8591,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">إجراء النسخ الاحتياطي باستخدام بيانات الجوال</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">عرض مفتاح النسخ الاحتياطي</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">عرض مفتاح النسخة الاحتياطية</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">افتح القفل لعرض مفتاح النسخ الاحتياطي</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">افتح القفل لعرض مفتاح النسخة الاحتياطية</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">إيقاف وحذف النسخ الاحتياطية</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8921,23 +8921,23 @@
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">تخطَّي الاستعادة</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">مفتاح النسخ الاحتياطي غير صحيح.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">مفتاح النسخة الاحتياطية غير صحيح.</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">تأكَّد من أنك تُسجِّل باستخدام نفس رقم الهاتف ومفتاح النسخ الاحتياطي المُكوَّن من 64 رمزًا الذي حفظته عند تفعيل النسخ الاحتياطية لسيجنال. لا يمكن استرجاع النسخ الاحتياطية دون هذا المفتاح.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">تأكَّد من أنك تُسجِّل باستخدام نفس رقم الهاتف ومفتاح النسخة الاحتياطية المُكوَّن من 64 رمزًا الذي حفظته عند تفعيل النسخ الاحتياطية لسيجنال. لا يمكن استرجاع النسخ الاحتياطية دون هذا المفتاح.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
     <string name="EnterBackupKey_try_again">حاوِل مُجدَّدًا</string>
     <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">المساعدة بخصوص مفتاح النسخ الاحتياطي</string>
+    <string name="EnterBackupKey_backup_key_help">المساعدة بخصوص مفتاح النسخة الاحتياطية</string>
     <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">مفتاح النسخ الاحتياطي غير صحيح.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">مفتاح النسخة الاحتياطية غير صحيح.</string>
     <!-- Text field error text when the backup key is too long -->
     <string name="EnterBackupKey_too_long_error">طويل جدًا (%1$d/%2$d)</string>
     <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">مفتاح النسخ الاحتياطي غير صالح.</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">مفتاح النسخة الاحتياطية غير صالح.</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">لا توجد نسخة احتياطية</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخ الاحتياطي الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخ الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل من جديد.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخة الاحتياطية الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخة الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل من جديد.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
 
