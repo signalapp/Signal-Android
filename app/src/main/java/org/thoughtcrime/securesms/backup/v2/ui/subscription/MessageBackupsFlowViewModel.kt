@@ -161,6 +161,7 @@ class MessageBackupsFlowViewModel(
   fun goToNextStage() {
     internalStateFlow.update {
       when (it.stage) {
+        MessageBackupsStage.CANCEL -> error("Unsupported state transition from terminal state CANCEL")
         MessageBackupsStage.EDUCATION -> it.copy(stage = MessageBackupsStage.BACKUP_KEY_EDUCATION)
         MessageBackupsStage.BACKUP_KEY_EDUCATION -> it.copy(stage = MessageBackupsStage.BACKUP_KEY_RECORD)
         MessageBackupsStage.BACKUP_KEY_RECORD -> it.copy(stage = MessageBackupsStage.TYPE_SELECTION)
@@ -178,10 +179,11 @@ class MessageBackupsFlowViewModel(
   fun goToPreviousStage() {
     internalStateFlow.update {
       if (it.stage == it.startScreen) {
-        it.copy(stage = MessageBackupsStage.COMPLETED)
+        it.copy(stage = MessageBackupsStage.CANCEL)
       } else {
         val previousScreen = when (it.stage) {
-          MessageBackupsStage.EDUCATION -> MessageBackupsStage.COMPLETED
+          MessageBackupsStage.CANCEL -> error("Unsupported state transition from terminal state CANCEL")
+          MessageBackupsStage.EDUCATION -> MessageBackupsStage.CANCEL
           MessageBackupsStage.BACKUP_KEY_EDUCATION -> MessageBackupsStage.EDUCATION
           MessageBackupsStage.BACKUP_KEY_RECORD -> MessageBackupsStage.BACKUP_KEY_EDUCATION
           MessageBackupsStage.TYPE_SELECTION -> MessageBackupsStage.BACKUP_KEY_RECORD

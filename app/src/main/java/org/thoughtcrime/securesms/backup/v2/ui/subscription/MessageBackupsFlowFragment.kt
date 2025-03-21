@@ -146,13 +146,14 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         }
       }
 
-      if (state.stage == MessageBackupsStage.CHECKOUT_SHEET) {
-        AppDependencies.billingApi.launchBillingFlow(requireActivity())
-      }
-
-      if (state.stage == MessageBackupsStage.COMPLETED) {
-        requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
-        requireActivity().finishAfterTransition()
+      when (state.stage) {
+        MessageBackupsStage.CANCEL -> requireActivity().finishAfterTransition()
+        MessageBackupsStage.CHECKOUT_SHEET -> AppDependencies.billingApi.launchBillingFlow(requireActivity())
+        MessageBackupsStage.COMPLETED -> {
+          requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
+          requireActivity().finishAfterTransition()
+        }
+        else -> Unit
       }
     }
 

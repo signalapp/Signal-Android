@@ -11,6 +11,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 enum class MessageBackupsStage(
   val route: Route
 ) {
+  CANCEL(route = Route.CANCEL),
   EDUCATION(route = Route.EDUCATION),
   BACKUP_KEY_EDUCATION(route = Route.BACKUP_KEY_EDUCATION),
   BACKUP_KEY_RECORD(route = Route.BACKUP_KEY_RECORD),
@@ -26,6 +27,7 @@ enum class MessageBackupsStage(
    * Compose navigation route to display while in a given stage.
    */
   enum class Route {
+    CANCEL,
     EDUCATION,
     BACKUP_KEY_EDUCATION,
     BACKUP_KEY_RECORD,
