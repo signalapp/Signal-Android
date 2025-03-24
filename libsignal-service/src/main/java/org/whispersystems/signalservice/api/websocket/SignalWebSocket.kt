@@ -238,8 +238,10 @@ sealed class SignalWebSocket(
             lastInteractionTime = now
           }
           val sleepDuration = (lastInteractionTime + disconnectTimeout) - now
-          Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
-          sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
+          if (sleepDuration.isPositive()) {
+            Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
+            sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
+          }
         }
       } catch (_: InterruptedException) { }
 

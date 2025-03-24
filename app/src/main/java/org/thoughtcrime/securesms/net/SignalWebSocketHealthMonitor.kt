@@ -63,7 +63,7 @@ class SignalWebSocketHealthMonitor(
         .distinctUntilChanged()
         .subscribeBy { onStateChanged(it) }
 
-      webSocket.keepAliveChangedListener = this::updateKeepAliveSenderStatus
+      webSocket.keepAliveChangedListener = { executor.execute(this::updateKeepAliveSenderStatus) }
     }
   }
 
@@ -100,10 +100,9 @@ class SignalWebSocketHealthMonitor(
 
   private fun updateKeepAliveSenderStatus() {
     if (keepAliveSender == null && sendKeepAlives()) {
-      keepAliveSender = KeepAliveSender()
-      keepAliveSender!!.start()
+      keepAliveSender = KeepAliveSender().also { it.start() }
     } else if (keepAliveSender != null && !sendKeepAlives()) {
-      keepAliveSender!!.shutdown()
+      keepAliveSender?.shutdown()
       keepAliveSender = null
     }
   }
