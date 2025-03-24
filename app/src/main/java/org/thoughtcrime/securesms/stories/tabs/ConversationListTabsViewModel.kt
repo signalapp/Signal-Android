@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -46,6 +47,10 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
     disposables += performStoreUpdate(repository.getHasFailedOutgoingStories()) { hasFailedStories, state ->
       state.copy(hasFailedStory = hasFailedStories)
     }
+  }
+
+  fun refreshNavigationBarState() {
+    store.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar) }
   }
 
   override fun onCleared() {
