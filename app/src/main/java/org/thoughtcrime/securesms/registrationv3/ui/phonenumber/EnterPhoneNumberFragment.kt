@@ -130,6 +130,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       fragmentViewModel.supportedCountryPrefixes
     )
     binding.registerButton.setOnClickListener { onRegistrationButtonClicked() }
+    binding.cancelButton.setOnClickListener { popBackStack() }
 
     binding.toolbar.title = ""
     val activity = requireActivity() as AppCompatActivity
