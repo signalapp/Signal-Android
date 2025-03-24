@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.CallParticipantId
+import org.thoughtcrime.securesms.events.GroupCallSpeechEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -82,6 +83,8 @@ class WebRtcCallViewModel : ViewModel() {
   private val elapsedTimeHandler = Handler(Looper.getMainLooper())
   private val elapsedTimeRunnable = Runnable { handleTick() }
   private val stopOutgoingRingingMode = Runnable { stopOutgoingRingingMode() }
+
+  val groupCallSpeechEvents = MutableStateFlow<GroupCallSpeechEvent?>(null)
 
   private var canDisplayTooltipIfNeeded = true
   private var canDisplaySwitchCameraTooltipIfNeeded = true
@@ -273,6 +276,10 @@ class WebRtcCallViewModel : ViewModel() {
     canEnterPipMode.value = !webRtcViewModel.state.isPreJoinOrNetworkUnavailable
     if (isCallStarting && webRtcViewModel.state.isPassedPreJoin) {
       isCallStarting = false
+    }
+
+    groupCallSpeechEvents.update {
+      webRtcViewModel.groupCallSpeechEvent
     }
 
     val localParticipant = webRtcViewModel.localParticipant

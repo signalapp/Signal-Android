@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -972,7 +973,9 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onSpeakingNotification(@NonNull GroupCall groupCall, @NonNull GroupCall.SpeechEvent speechEvent) {
-
+    if (RemoteConfig.internalUser()) {
+      process((s, p) -> p.handleGroupCallSpeechEvent(s, speechEvent));
+    }
   }
 
   @Override

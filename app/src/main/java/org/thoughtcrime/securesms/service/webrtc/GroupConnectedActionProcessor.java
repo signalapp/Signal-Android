@@ -15,6 +15,7 @@ import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent;
+import org.thoughtcrime.securesms.events.GroupCallSpeechEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -296,5 +297,15 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
     }
 
     return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
+    Log.i(tag, "handleGroupCallSpeechEvent :: " + speechEvent.name());
+
+    return currentState.builder()
+                       .changeCallInfoState()
+                       .setGroupCallSpeechEvent(new GroupCallSpeechEvent(speechEvent))
+                       .build();
   }
 }

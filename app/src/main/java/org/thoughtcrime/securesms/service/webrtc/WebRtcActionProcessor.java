@@ -786,6 +786,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
+    Log.i(tag, "handleGroupCallSpeechEvent not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleGroupMessageSentError(@NonNull WebRtcServiceState currentState,
                                                                     @NonNull Collection<RecipientId> recipientIds,
                                                                     @NonNull WebRtcViewModel.State errorCallState)
