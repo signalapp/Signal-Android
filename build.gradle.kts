@@ -112,6 +112,7 @@ tasks.register("format") {
 }
 
 tasks.register("checkStopship") {
+  val cachedProjectDir = projectDir
   doLast {
     val excludedFiles = listOf(
       "build.gradle.kts",
@@ -125,11 +126,11 @@ tasks.register("checkStopship") {
 
     val allowedExtensions = setOf("kt", "kts", "java", "xml")
 
-    val allFiles = projectDir.walkTopDown()
+    val allFiles = cachedProjectDir.walkTopDown()
       .asSequence()
       .filter { it.isFile && it.extension in allowedExtensions }
       .filterNot {
-        val path = it.relativeTo(projectDir).path
+        val path = it.relativeTo(cachedProjectDir).path
         excludedFiles.contains(path) || excludedDirectories.any { d -> path.startsWith(d) }
       }
       .toList()
@@ -143,7 +144,7 @@ tasks.register("checkStopship") {
       allFiles.map { file ->
         scope.async {
           if (file.readText().contains("STOPSHIP")) {
-            stopshipFiles += file.relativeTo(projectDir).path
+            stopshipFiles += file.relativeTo(cachedProjectDir).path
           }
         }
       }
