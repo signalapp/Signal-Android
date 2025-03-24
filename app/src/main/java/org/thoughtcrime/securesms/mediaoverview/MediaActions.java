@@ -47,8 +47,8 @@ final class MediaActions {
     SaveAttachmentTask.showWarningDialogIfNecessary(context, mediaRecords.size(), () -> Permissions.with(fragment)
                       .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                       .ifNecessary()
-                      .withPermanentDenialDialog(fragment.getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-                      .onAnyDenied(() -> Toast.makeText(context, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+                      .withPermanentDenialDialog(fragment.getString(R.string.AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                      .onAnyDenied(() -> Toast.makeText(context, R.string.AttachmentSaver__unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
                       .onAllGranted(() -> performSaveToDisk(context, mediaRecords, postExecute))
                       .execute());
   }

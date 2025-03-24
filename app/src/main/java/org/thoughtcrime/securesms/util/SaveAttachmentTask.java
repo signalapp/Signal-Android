@@ -447,9 +447,9 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     } else {
       new MaterialAlertDialogBuilder(context)
           .setView(R.layout.dialog_save_attachment)
-          .setTitle(R.string.ConversationFragment__save_to_phone)
+          .setTitle(R.string.AttachmentSaver__save_to_phone)
           .setCancelable(true)
-          .setMessage(context.getResources().getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
+          .setMessage(context.getResources().getQuantityString(R.plurals.AttachmentSaver__this_media_will_be_saved, count, count))
           .setPositiveButton(R.string.save, ((dialog, i) -> {
             CheckBox checkbox = ((AlertDialog) dialog).findViewById(R.id.checkbox);
             if (checkbox.isChecked()) {

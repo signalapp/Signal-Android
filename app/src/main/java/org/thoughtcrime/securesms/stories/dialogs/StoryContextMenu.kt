@@ -49,19 +49,19 @@ object StoryContextMenu {
     ).map { (_, deletedThread) -> deletedThread }
   }
 
-  suspend fun save(host: AttachmentSaver.Host, messageRecord: MessageRecord) {
+  suspend fun save(fragment: Fragment, messageRecord: MessageRecord) {
     val mediaMessageRecord = messageRecord as? MmsMessageRecord
     val uri: Uri? = mediaMessageRecord?.slideDeck?.firstSlide?.uri
     val contentType: String? = mediaMessageRecord?.slideDeck?.firstSlide?.contentType
 
     when {
-      mediaMessageRecord?.storyType?.isTextStory == true -> saveTextStory(host, mediaMessageRecord)
-      uri == null || contentType == null -> showErrorCantSaveStory(host, uri, contentType)
-      else -> saveMediaStory(host, uri, contentType, mediaMessageRecord)
+      mediaMessageRecord?.storyType?.isTextStory == true -> saveTextStory(fragment, mediaMessageRecord)
+      uri == null || contentType == null -> showErrorCantSaveStory(fragment, uri, contentType)
+      else -> saveMediaStory(fragment, uri, contentType, mediaMessageRecord)
     }
   }
 
-  private suspend fun saveTextStory(host: AttachmentSaver.Host, messageRecord: MmsMessageRecord) {
+  private suspend fun saveTextStory(fragment: Fragment, messageRecord: MmsMessageRecord) {
     val saveAttachment = withContext(Dispatchers.Main) {
       val model = StoryTextPostModel.parseFrom(messageRecord)
       val decoder = StoryTextPostModel.Decoder()
@@ -78,17 +78,17 @@ object StoryContextMenu {
       )
     }
 
-    AttachmentSaver(host).saveAttachments(setOf(saveAttachment))
+    AttachmentSaver(fragment).saveAttachments(setOf(saveAttachment))
   }
 
-  private suspend fun saveMediaStory(host: AttachmentSaver.Host, uri: Uri, contentType: String, mediaMessageRecord: MmsMessageRecord) {
+  private suspend fun saveMediaStory(fragment: Fragment, uri: Uri, contentType: String, mediaMessageRecord: MmsMessageRecord) {
     val saveAttachment = SaveAttachmentUtil.SaveAttachment(uri = uri, contentType = contentType, date = mediaMessageRecord.dateSent, fileName = null)
-    AttachmentSaver(host).saveAttachments(setOf(saveAttachment))
+    AttachmentSaver(fragment).saveAttachments(setOf(saveAttachment))
   }
 
-  private fun showErrorCantSaveStory(host: AttachmentSaver.Host, uri: Uri?, contentType: String?) {
+  private fun showErrorCantSaveStory(fragment: Fragment, uri: Uri?, contentType: String?) {
     Log.w(TAG, "Unable to save story media uri: $uri contentType: $contentType")
-    host.showToast { context -> context.getString(R.string.MyStories__unable_to_save) }
+    Toast.makeText(fragment.requireContext(), R.string.MyStories__unable_to_save, Toast.LENGTH_LONG).show()
   }
 
   fun share(fragment: Fragment, messageRecord: MmsMessageRecord) {

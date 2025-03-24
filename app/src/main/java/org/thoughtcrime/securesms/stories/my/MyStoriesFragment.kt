@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -84,7 +83,7 @@ class MyStoriesFragment : DSLSettingsFragment(
                 onSaveClick = {
                   lifecycleScope.launch {
                     StoryContextMenu.save(
-                      host = AttachmentSaver.FragmentHost(this@MyStoriesFragment),
+                      fragment = this@MyStoriesFragment,
                       messageRecord = it.distributionStory.messageRecord
                     )
                   }

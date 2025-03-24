@@ -49,7 +49,6 @@ import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
-import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.components.segmentedprogressbar.SegmentedProgressBar
@@ -1200,7 +1199,7 @@ class StoryViewerPageFragment :
         lifecycleScope.launch {
           viewModel.setIsSavingMedia(true)
           StoryContextMenu.save(
-            host = AttachmentSaver.FragmentHost(this@StoryViewerPageFragment),
+            fragment = this@StoryViewerPageFragment,
             messageRecord = it.conversationMessage.messageRecord
           )
           viewModel.setIsSavingMedia(false)

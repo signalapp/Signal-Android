@@ -9,6 +9,7 @@ import android.app.Application
 import android.net.Uri
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
@@ -62,6 +63,37 @@ class AttachmentSaverTest {
     )
   )
 
+  private fun setUpTestEnvironment(
+    hasDismissedSaveStorageWarning: Boolean,
+    canWriteToMediaStore: Boolean,
+    saveWarningResult: SaveToStorageWarningResult = SaveToStorageWarningResult.ACCEPTED,
+    writeExternalStoragePermissionResult: RequestPermissionResult = RequestPermissionResult.GRANTED,
+    saveAttachmentsResult: SaveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 2)
+  ): TestEnvironment {
+    val host = mockk<Host>(relaxUnitFun = true) {
+      coEvery { showSaveToStorageWarning(attachmentCount = any()) } returns saveWarningResult
+      coEvery { requestWriteExternalStoragePermission() } returns writeExternalStoragePermissionResult
+    }
+
+    val uiHints = mockk<UiHintValues> {
+      every { hasDismissedSaveStorageWarning() } returns hasDismissedSaveStorageWarning
+    }
+
+    mockkObject(SignalStore)
+    every { SignalStore.uiHints } returns uiHints
+
+    mockkStatic(StorageUtil::class)
+    every { StorageUtil.canWriteToMediaStore() } returns canWriteToMediaStore
+
+    mockkObject(SaveAttachmentUtil)
+    coEvery { SaveAttachmentUtil.saveAttachments(any()) } returns saveAttachmentsResult
+
+    return TestEnvironment(
+      host = host,
+      uiHints = uiHints
+    )
+  }
+
   @After
   fun tearDown() {
     unmockkObject(SignalStore)
@@ -71,253 +103,256 @@ class AttachmentSaverTest {
 
   @Test
   fun `saveAttachments shows save to storage warning when it has not been dismissed`() = runTest(testDispatcher) {
-    val host = mockk<Host> {
-      coEvery { showSaveToStorageWarning(attachmentCount = any()) } returns mockk()
-    }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { host.showSaveToStorageWarning(attachmentCount = 2) }
+    coVerify { testEnv.host.showSaveToStorageWarning(attachmentCount = 2) }
   }
 
   @Test
   fun `saveAttachments does not show save to storage warning when it has been dismissed`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true) {
-      coEvery { requestWriteExternalStoragePermission() } returns mockk()
-    }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
-    }
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify(exactly = 0) { host.showSaveToStorageWarning(attachmentCount = any()) }
+    coVerify(exactly = 0) { testEnv.host.showSaveToStorageWarning(attachmentCount = any()) }
   }
 
   @Test
   fun `saveAttachments requests WRITE_EXTERNAL_STORAGE permission when not yet granted and save to storage warning has been dismissed`() = runTest(testDispatcher) {
-    val host = mockk<Host> {
-      coEvery { requestWriteExternalStoragePermission() } returns mockk()
-    }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
-    }
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = false
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns false
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { host.requestWriteExternalStoragePermission() }
+    coVerify { testEnv.host.requestWriteExternalStoragePermission() }
   }
 
   @Test
   fun `saveAttachments requests WRITE_EXTERNAL_STORAGE permission when not yet granted and save to storage warning is accepted`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true) {
-      coEvery { showSaveToStorageWarning(attachmentCount = any()) } returns SaveToStorageWarningResult.ACCEPTED
-      coEvery { requestWriteExternalStoragePermission() } returns mockk()
-    }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = false,
+      saveWarningResult = SaveToStorageWarningResult.ACCEPTED
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns false
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { host.requestWriteExternalStoragePermission() }
+    coVerify { testEnv.host.requestWriteExternalStoragePermission() }
   }
 
   @Test
   fun `saveAttachments does not request WRITE_EXTERNAL_STORAGE permission when not yet granted and save to storage warning is denied`() = runTest(testDispatcher) {
-    val host = mockk<Host> {
-      coEvery { showSaveToStorageWarning(attachmentCount = any()) } returns SaveToStorageWarningResult.DENIED
-    }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = false,
+      saveWarningResult = SaveToStorageWarningResult.DENIED
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify(exactly = 0) { host.requestWriteExternalStoragePermission() }
+    coVerify(exactly = 0) { testEnv.host.requestWriteExternalStoragePermission() }
   }
 
   @Test
-  fun `saveAttachments does not request WRITE_EXTERNAL_STORAGE permission when already granted`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true)
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
-    }
+  fun `saveAttachments does not request WRITE_EXTERNAL_STORAGE permission when canWriteToMediaStore = true`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true
+    )
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns true
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify(exactly = 0) { host.requestWriteExternalStoragePermission() }
+    coVerify(exactly = 0) { testEnv.host.requestWriteExternalStoragePermission() }
   }
 
   @Test
   fun `saveAttachments does not perform save when save to storage warning is denied`() = runTest(testDispatcher) {
-    val host = mockk<Host> {
-      coEvery { showSaveToStorageWarning(attachmentCount = any()) } returns SaveToStorageWarningResult.DENIED
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true,
+      saveWarningResult = SaveToStorageWarningResult.DENIED
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerify(exactly = 0) {
+      SaveAttachmentUtil.saveAttachments(attachments = any())
+      testEnv.host.showSaveProgress(any())
+      testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2))
+      testEnv.host.dismissSaveProgress()
     }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
-
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
-
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns true
-
-    mockkObject(SaveAttachmentUtil)
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify(exactly = 0) { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify(exactly = 0) { host.showSaveProgress(any()) }
-    verify(exactly = 0) { host.dismissSaveProgress() }
   }
 
   @Test
   fun `saveAttachments does not perform save when WRITE_EXTERNAL_STORAGE permission is denied`() = runTest(testDispatcher) {
-    val host = mockk<Host> {
-      coEvery { requestWriteExternalStoragePermission() } returns RequestPermissionResult.DENIED
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = false,
+      writeExternalStoragePermissionResult = RequestPermissionResult.DENIED
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerify(exactly = 0) {
+      SaveAttachmentUtil.saveAttachments(attachments = any())
+      testEnv.host.showSaveProgress(any())
+      testEnv.host.dismissSaveProgress()
     }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
-    }
-
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
-
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns false
-
-    mockkObject(SaveAttachmentUtil)
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify(exactly = 0) { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify(exactly = 0) { host.showSaveProgress(any()) }
-    verify(exactly = 0) { host.dismissSaveProgress() }
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
   }
 
   @Test
   fun `saveAttachments performs save when save storage warning is accepted and WRITE_EXTERNAL_STORAGE permission is granted`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true) {
-      coEvery { showSaveToStorageWarning(attachmentCount = 2) } returns SaveToStorageWarningResult.ACCEPTED
-      coEvery { requestWriteExternalStoragePermission() } returns RequestPermissionResult.GRANTED
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = false,
+      saveWarningResult = SaveToStorageWarningResult.ACCEPTED,
+      writeExternalStoragePermissionResult = RequestPermissionResult.GRANTED
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerifyOrder {
+      testEnv.host.showSaveProgress(attachmentCount = 2)
+      SaveAttachmentUtil.saveAttachments(attachments = testAttachments)
+      testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2))
+      testEnv.host.dismissSaveProgress()
     }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
-
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
-
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns false
-
-    mockkObject(SaveAttachmentUtil)
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify { host.showSaveProgress(attachmentCount = 2) }
-    verify { host.dismissSaveProgress() }
   }
 
   @Test
   fun `saveAttachments performs save when save storage warning is dismissed and WRITE_EXTERNAL_STORAGE permission is granted`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true) {
-      coEvery { requestWriteExternalStoragePermission() } returns RequestPermissionResult.GRANTED
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = false,
+      writeExternalStoragePermissionResult = RequestPermissionResult.GRANTED,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 2)
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerifyOrder {
+      testEnv.host.showSaveProgress(attachmentCount = 2)
+      SaveAttachmentUtil.saveAttachments(attachments = testAttachments)
+      testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2))
+      testEnv.host.dismissSaveProgress()
     }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
-    }
-
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
-
-    mockkObject(SaveAttachmentUtil)
-    coEvery { SaveAttachmentUtil.saveAttachments(testAttachments) } returns SaveAttachmentsResult.Completed(successCount = 2, errorCount = 0)
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify { host.showSaveProgress(attachmentCount = 2) }
-    verify { host.dismissSaveProgress() }
   }
 
   @Test
-  fun `saveAttachments performs save when save storage warning is accepted and hasWriteExternalStoragePermission=true`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true) {
-      coEvery { showSaveToStorageWarning(attachmentCount = 2) } returns SaveToStorageWarningResult.ACCEPTED
+  fun `saveAttachments performs save when save storage warning is accepted and canWriteToMediaStore = true`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = false,
+      canWriteToMediaStore = true,
+      saveWarningResult = SaveToStorageWarningResult.ACCEPTED,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 2)
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerifyOrder {
+      testEnv.host.showSaveProgress(attachmentCount = 2)
+      SaveAttachmentUtil.saveAttachments(attachments = testAttachments)
+      testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2))
+      testEnv.host.dismissSaveProgress()
     }
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns false
-    }
-
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
-
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns true
-
-    mockkObject(SaveAttachmentUtil)
-    coEvery { SaveAttachmentUtil.saveAttachments(testAttachments) } returns SaveAttachmentsResult.Completed(successCount = 2, errorCount = 0)
-
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
-
-    coVerify { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify { host.showSaveProgress(attachmentCount = 2) }
-    verify { host.dismissSaveProgress() }
   }
 
   @Test
-  fun `saveAttachments performs save when save storage warning is dismissed and hasWriteExternalStoragePermission=true`() = runTest(testDispatcher) {
-    val host = mockk<Host>(relaxUnitFun = true)
-    val uiHints = mockk<UiHintValues> {
-      every { hasDismissedSaveStorageWarning() } returns true
+  fun `saveAttachments performs save when save storage warning is dismissed and canWriteToMediaStore=true`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 2)
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    coVerifyOrder {
+      testEnv.host.showSaveProgress(attachmentCount = 2)
+      SaveAttachmentUtil.saveAttachments(attachments = testAttachments)
+      testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2))
+      testEnv.host.dismissSaveProgress()
     }
+  }
 
-    mockkObject(SignalStore)
-    every { SignalStore.uiHints } returns uiHints
+  @Test
+  fun `saveAttachments shows success result when save result is Success`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.Success(successesCount = 2)
+    )
 
-    mockkStatic(StorageUtil::class)
-    every { StorageUtil.canWriteToMediaStore() } returns true
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
 
-    mockkObject(SaveAttachmentUtil)
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.Success(successesCount = 2)) }
+  }
 
-    AttachmentSaver(host = host).saveAttachments(testAttachments)
+  @Test
+  fun `saveAttachments shows partial success result when save result is PartialSuccess`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.PartialSuccess(successesCount = 1, failuresCount = 1)
+    )
 
-    coVerify { SaveAttachmentUtil.saveAttachments(attachments = any()) }
-    verify { host.showSaveProgress(attachmentCount = 2) }
-    verify { host.dismissSaveProgress() }
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.PartialSuccess(successesCount = 1, failuresCount = 1)) }
+  }
+
+  @Test
+  fun `saveAttachments shows failure result when save result is Failure`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = true,
+      saveAttachmentsResult = SaveAttachmentsResult.Failure(failuresCount = 2)
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.Failure(failuresCount = 2)) }
+  }
+
+  @Test
+  fun `saveAttachments shows no write access result when save result is ErrorNoWriteAccess`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = false,
+      saveAttachmentsResult = SaveAttachmentsResult.ErrorNoWriteAccess
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.ErrorNoWriteAccess) }
+  }
+
+  @Test
+  fun `saveAttachments shows permission denied result when save result is WriteStoragePermissionDenied`() = runTest(testDispatcher) {
+    val testEnv = setUpTestEnvironment(
+      hasDismissedSaveStorageWarning = true,
+      canWriteToMediaStore = false,
+      saveAttachmentsResult = SaveAttachmentsResult.WriteStoragePermissionDenied
+    )
+
+    AttachmentSaver(host = testEnv.host).saveAttachments(testAttachments)
+
+    verify { testEnv.host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied) }
   }
 }
+
+private data class TestEnvironment(
+  val host: Host,
+  val uiHints: UiHintValues
+)

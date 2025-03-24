@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.attachments
 
 import android.Manifest
-import android.content.Context
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -27,6 +26,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachment
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil.SaveAttachmentsResult
 import org.thoughtcrime.securesms.util.StorageUtil
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -63,6 +63,7 @@ class AttachmentSaver(private val host: Host) {
         saveToStorage(attachments)
       } else {
         Log.d(TAG, "Cancel saving ${attachments.size} attachments: media store permission denied.")
+        host.showSaveResult(SaveAttachmentsResult.WriteStoragePermissionDenied)
       }
     } else {
       Log.d(TAG, "Cancel saving ${attachments.size} attachments: save to storage warning denied.")
@@ -83,12 +84,12 @@ class AttachmentSaver(private val host: Host) {
     return host.requestWriteExternalStoragePermission()
   }
 
-  private suspend fun saveToStorage(attachments: Set<SaveAttachment>): SaveAttachmentUtil.SaveAttachmentsResult {
+  private suspend fun saveToStorage(attachments: Set<SaveAttachment>): SaveAttachmentsResult {
     host.showSaveProgress(attachmentCount = attachments.size)
     return try {
       val result = SaveAttachmentUtil.saveAttachments(attachments)
       withContext(SignalDispatchers.Main) {
-        host.showToast { context -> result.getMessage(context) }
+        host.showSaveResult(result)
       }
       result
     } finally {
@@ -101,23 +102,23 @@ class AttachmentSaver(private val host: Host) {
   interface Host {
     suspend fun showSaveToStorageWarning(attachmentCount: Int): SaveToStorageWarningResult
     suspend fun requestWriteExternalStoragePermission(): RequestPermissionResult
-    fun showToast(getMessage: (Context) -> CharSequence)
     fun showSaveProgress(attachmentCount: Int)
+    fun showSaveResult(result: SaveAttachmentsResult)
     fun dismissSaveProgress()
   }
 
   data class FragmentHost(private val fragment: Fragment) : Host {
 
-    override fun showToast(getMessage: (Context) -> CharSequence) {
-      Toast.makeText(fragment.requireContext(), getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()
+    override fun showSaveResult(result: SaveAttachmentsResult) {
+      Toast.makeText(fragment.requireContext(), result.getMessage(fragment.requireContext()), Toast.LENGTH_LONG).show()
     }
 
     override suspend fun showSaveToStorageWarning(attachmentCount: Int): SaveToStorageWarningResult = withContext(SignalDispatchers.Main) {
       val dialog = MaterialAlertDialogBuilder(fragment.requireContext())
         .setView(R.layout.dialog_save_attachment)
-        .setTitle(R.string.ConversationFragment__save_to_phone)
+        .setTitle(R.string.AttachmentSaver__save_to_phone)
         .setCancelable(true)
-        .setMessage(fragment.resources.getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, attachmentCount, attachmentCount))
+        .setMessage(fragment.resources.getQuantityString(R.plurals.AttachmentSaver__this_media_will_be_saved, attachmentCount, attachmentCount))
         .create()
 
       val result = dialog.awaitResult(
@@ -140,7 +141,7 @@ class AttachmentSaver(private val host: Host) {
         Permissions.with(fragment)
           .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
           .ifNecessary()
-          .withPermanentDenialDialog(fragment.getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+          .withPermanentDenialDialog(fragment.getString(R.string.AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
           .onAnyDenied {
             Log.d(TAG, "WRITE_EXTERNAL_STORAGE permission request denied.")
             continuation.resume(RequestPermissionResult.DENIED)

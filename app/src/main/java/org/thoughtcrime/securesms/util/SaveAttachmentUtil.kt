@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logI
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -50,21 +51,20 @@ object SaveAttachmentUtil {
     check(attachments.isNotEmpty()) { "must pass in at least one attachment" }
 
     if (!StorageUtil.canWriteToMediaStore()) {
-      return SaveAttachmentsResult.ErrorNoWriteAccess(errorCount = attachments.size)
+      return SaveAttachmentsResult.ErrorNoWriteAccess
     }
 
     val nameCache: BatchOperationNameCache = HashMap()
 
-    val (successes, errors) = attachments
+    val (successes, failures) = attachments
       .map { saveAttachment(it, nameCache) }
       .partition { saveResult -> saveResult is SaveAttachmentResult.Success }
 
-    return SaveAttachmentsResult.Completed(
-      successCount = successes.size,
-      errorCount = errors.size
-    ).also {
-      Log.i(TAG, "Save attachments completed (${it.successCount} of ${attachments.size} saved successfully).")
-    }
+    return when {
+      failures.isEmpty() -> SaveAttachmentsResult.Success(successesCount = successes.size)
+      successes.isEmpty() -> SaveAttachmentsResult.Failure(failuresCount = failures.size)
+      else -> SaveAttachmentsResult.PartialSuccess(successesCount = successes.size, failuresCount = failures.size)
+    }.logI(TAG, "Save attachments completed (${successes.size} of ${attachments.size} saved successfully).")
   }
 
   private suspend fun saveAttachment(attachment: SaveAttachment, nameCache: BatchOperationNameCache): SaveAttachmentResult = withContext(Dispatchers.IO) {
@@ -284,38 +284,39 @@ object SaveAttachmentUtil {
   }
 
   sealed interface SaveAttachmentsResult {
-    val successCount: Int
-    val errorCount: Int
-
     fun getMessage(context: Context): CharSequence
 
-    data class Completed(
-      override val successCount: Int,
-      override val errorCount: Int
-    ) : SaveAttachmentsResult {
-
+    data class Success(val successesCount: Int) : SaveAttachmentsResult {
       override fun getMessage(context: Context): CharSequence {
-        return when {
-          errorCount == 0 -> context.resources.getQuantityText(R.plurals.SaveAttachment_saved_success, successCount)
-          successCount == 0 -> context.resources.getQuantityText(R.plurals.SaveAttachment_error_while_saving_attachments_to_sd_card, errorCount)
-          else -> {
-            val numberFormat = NumberFormat.getInstance()
-            context.resources.getQuantityString(
-              R.plurals.SaveAttachment_saved_success_n_failures,
-              errorCount,
-              numberFormat.format(errorCount),
-              numberFormat.format(errorCount + successCount)
-            )
-          }
-        }
+        return context.resources.getQuantityText(R.plurals.SaveAttachment_saved_success, successesCount)
       }
     }
 
-    data class ErrorNoWriteAccess(
-      override val errorCount: Int
-    ) : SaveAttachmentsResult {
-      override val successCount: Int = 0
+    data class PartialSuccess(val successesCount: Int, val failuresCount: Int) : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        val numberFormat = NumberFormat.getInstance()
+        return context.resources.getQuantityString(
+          R.plurals.SaveAttachment_saved_success_n_failures,
+          failuresCount,
+          numberFormat.format(failuresCount),
+          numberFormat.format(failuresCount + successesCount)
+        )
+      }
+    }
 
+    data class Failure(val failuresCount: Int) : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.resources.getQuantityText(R.plurals.SaveAttachment_error_while_saving_attachments_to_sd_card, failuresCount)
+      }
+    }
+
+    data object WriteStoragePermissionDenied : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.getString(R.string.AttachmentSaver__unable_to_write_to_external_storage_without_permission)
+      }
+    }
+
+    data object ErrorNoWriteAccess : SaveAttachmentsResult {
       override fun getMessage(context: Context): CharSequence {
         return context.getString(R.string.SaveAttachment_unable_to_write_to_sd_card_exclamation)
       }

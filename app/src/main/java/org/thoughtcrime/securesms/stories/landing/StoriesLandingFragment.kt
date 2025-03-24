@@ -28,7 +28,6 @@ import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.banner.BannerManager
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
@@ -331,7 +330,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       onSave = {
         lifecycleScope.launch {
           StoryContextMenu.save(
-            host = AttachmentSaver.FragmentHost(this@StoriesLandingFragment),
+            fragment = this@StoriesLandingFragment,
             messageRecord = it.data.primaryStory.messageRecord
           )
         }
