@@ -11,6 +11,8 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.reactivex.rxjava3.core.Completable
+import kotlinx.coroutines.rx3.rxCompletable
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.view.AlertDialogResult
 import org.signal.core.ui.view.awaitResult
@@ -51,6 +53,8 @@ class AttachmentSaver(private val host: Host) {
       .toSet()
     saveAttachments(attachments)
   }
+
+  fun saveAttachmentsRx(attachments: Set<SaveAttachment>): Completable = rxCompletable { saveAttachments(attachments) }
 
   suspend fun saveAttachments(attachments: Set<SaveAttachment>) {
     if (checkIsSaveWarningAccepted(attachmentCount = attachments.size) == SaveToStorageWarningResult.ACCEPTED) {
