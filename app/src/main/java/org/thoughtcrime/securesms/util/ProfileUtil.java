@@ -335,7 +335,11 @@ public final class ProfileUtil {
           Log.i(TAG, String.format("Got new profile key credential for recipient %s", recipient.getId()));
           return profileKeyCredentialOptional;
         }
+      } else {
+        Log.w(TAG, "Failed to fetch updated profile key credential for recipient " + recipient.getId());
       }
+    } else {
+      Log.w(TAG, "Unable to fetch credential as no profile key exists for " + recipient.getId());
     }
 
     return Optional.empty();
