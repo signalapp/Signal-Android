@@ -100,19 +100,23 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun getGroupsInCommon(recipientId: RecipientId, consumer: (List<Recipient>) -> Unit) {
-    SignalExecutors.BOUNDED.execute {
-      consumer(
-        SignalDatabase
-          .groups
-          .getPushGroupsContainingMember(recipientId)
-          .asSequence()
-          .filter { it.members.contains(Recipient.self().id) }
-          .map(GroupRecord::recipientId)
-          .map(Recipient::resolved)
-          .sortedBy { gr -> gr.getDisplayName(context) }
-          .toList()
-      )
+  fun getGroupsInCommon(recipientId: RecipientId): Observable<List<Recipient>> {
+    return Recipient.observable(recipientId).flatMapSingle { recipient ->
+      if (recipient.hasGroupsInCommon) {
+        Single.fromCallable {
+          SignalDatabase
+            .groups
+            .getPushGroupsContainingMember(recipientId)
+            .asSequence()
+            .filter { it.members.contains(Recipient.self().id) }
+            .map(GroupRecord::recipientId)
+            .map(Recipient::resolved)
+            .sortedBy { gr -> gr.getDisplayName(context) }
+            .toList()
+        }.observeOn(Schedulers.io())
+      } else {
+        Single.just(listOf())
+      }
     }
   }
 
