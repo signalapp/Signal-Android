@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -23,7 +24,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val RESTORING_ON_NEW_DEVICE = "registration.restoring_on_new_device"
 
     @VisibleForTesting
-    const val RESTORE_DECISION_STATE = "registration.restore_decision_state"
+    const val RESTORE_DECISION_STATE = "registration.restore_decision_state.2"
   }
 
   @Synchronized
@@ -33,7 +34,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
       .putBoolean(HAS_UPLOADED_PROFILE, false)
       .putBoolean(REGISTRATION_COMPLETE, false)
       .putBoolean(PIN_REQUIRED, true)
-      .putBlob(RESTORE_DECISION_STATE, RestoreDecisionState.Start.encode())
+      .apply { if (BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED) putBlob(RESTORE_DECISION_STATE, RestoreDecisionState.Start.encode()) }
       .commit()
   }
 
