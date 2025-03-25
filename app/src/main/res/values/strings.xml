@@ -1683,7 +1683,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
     <string name="MediaOverviewActivity_Sort_by">Sort by</string>
     <string name="MediaOverviewActivity_Newest">Newest</string>
     <string name="MediaOverviewActivity_Oldest">Oldest</string>

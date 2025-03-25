@@ -21,6 +21,7 @@ import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragmentArgs
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -56,6 +57,20 @@ class AttachmentSaver(private val host: Host) {
 
   fun saveAttachmentsRx(attachments: Set<SaveAttachment>): Completable = rxCompletable { saveAttachments(attachments) }
 
+  suspend fun saveAttachments(records: Collection<MediaTable.MediaRecord>) {
+    val attachments = records.mapNotNull { record ->
+      val uri = record.attachment?.uri
+      val contentType = record.contentType
+      if (uri != null && contentType != null) {
+        SaveAttachment(uri, contentType, record.date, record.attachment.fileName)
+      } else {
+        null
+      }
+    }.toSet()
+    saveAttachments(attachments)
+  }
+
+  fun saveAttachmentsRx(records: Collection<MediaTable.MediaRecord>): Completable = rxCompletable { saveAttachments(records) }
   suspend fun saveAttachments(attachments: Set<SaveAttachment>) {
     if (checkIsSaveWarningAccepted(attachmentCount = attachments.size) == SaveToStorageWarningResult.ACCEPTED) {
       if (checkCanWriteToMediaStore() == RequestPermissionResult.GRANTED) {

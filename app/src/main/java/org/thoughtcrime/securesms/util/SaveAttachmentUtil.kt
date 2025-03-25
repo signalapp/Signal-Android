@@ -40,10 +40,6 @@ import java.util.concurrent.TimeUnit
  */
 private typealias BatchOperationNameCache = HashMap<Uri, HashSet<String>>
 
-/**
- * This is a rewrite of [SaveAttachmentTask] that does not handle displaying
- * a progress dialog and is not backed by an async task.
- */
 object SaveAttachmentUtil {
   private val TAG = Log.tag(SaveAttachmentUtil::class.java)
 
