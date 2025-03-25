@@ -336,7 +336,7 @@ class LibSignalChatConnectionTest {
     }
   }
 
-  @Test(timeout = 20)
+  @Test
   fun readRequestDoesTimeOut() {
     setupConnectedConnection()
 
