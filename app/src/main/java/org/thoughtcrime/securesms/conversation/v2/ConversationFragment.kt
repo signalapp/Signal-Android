@@ -3853,6 +3853,8 @@ class ConversationFragment :
           .putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
           .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
+      } else {
+        binding.conversationBanner.clearBanner()
       }
     }
 
