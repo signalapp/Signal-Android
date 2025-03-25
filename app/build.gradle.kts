@@ -675,7 +675,7 @@ tasks.withType<Test>().configureEach {
 
 gradle.taskGraph.whenReady {
   if (gradle.startParameter.taskNames.any { it.contains("nightly", ignoreCase = true) }) {
-    if (!file("nightly-url.txt").exists()) {
+    if (!file("${project.rootDir}/nightly-url.txt").exists()) {
       throw GradleException("Missing required file: nightly-url.txt")
     }
   }
