@@ -141,7 +141,7 @@ class SignalServiceNetworkAccess(context: Context) {
 
   private val interceptors: List<Interceptor> = listOf(
     StandardUserAgentInterceptor(),
-    RemoteDeprecationDetectorInterceptor(),
+    RemoteDeprecationDetectorInterceptor(this::getConfiguration),
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance()
   )
