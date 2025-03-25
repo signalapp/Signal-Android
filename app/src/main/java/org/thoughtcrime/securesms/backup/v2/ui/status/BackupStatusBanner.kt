@@ -282,7 +282,7 @@ sealed interface BackupStatusData {
     val bytesTotal: ByteSize = 0.bytes,
     val restoreStatus: RestoreStatus = RestoreStatus.NORMAL
   ) : BackupStatusData {
-    override val iconRes: Int = R.drawable.symbol_backup_light
+    override val iconRes: Int = if (restoreStatus == RestoreStatus.FINISHED) R.drawable.symbol_check_circle_24 else R.drawable.symbol_backup_light
     override val iconColors: BackupsIconColors = if (restoreStatus == RestoreStatus.FINISHED) BackupsIconColors.Success else BackupsIconColors.Normal
     override val showDismissAction: Boolean = restoreStatus == RestoreStatus.FINISHED
 
@@ -311,7 +311,7 @@ sealed interface BackupStatusData {
         RestoreStatus.FINISHED -> bytesTotal.toUnitString()
       }
 
-    override val progress: Float = if (bytesTotal.bytes > 0) {
+    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus != RestoreStatus.FINISHED) {
       min(1f, max(0f, bytesDownloaded.bytes.toFloat() / bytesTotal.bytes.toFloat()))
     } else {
       NONE.toFloat()
