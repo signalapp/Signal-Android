@@ -777,7 +777,7 @@
         <item quantity="other">%1$d seleccionados</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
-    <string name="ConversationListFragment_add_to_folder">Añadir a la carpeta</string>
+    <string name="ConversationListFragment_add_to_folder">Añadir a una carpeta</string>
     <!-- Context menu option to remove a chat from a folder -->
     <string name="ConversationListFragment_remove_from_folder">Eliminar de la carpeta</string>
 

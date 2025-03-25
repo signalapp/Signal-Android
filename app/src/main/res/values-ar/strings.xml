@@ -53,7 +53,7 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">هل ترغب بتعطيل العبارة السرية؟</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل سيجنال وإشعارات الرسائل بشكل دائم.</string>
     <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">حدث خطأ خلال الاتصال بالخادم !</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">حدث خطأ خلال الاتصال بالخادم!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">رقم التعريف الشخصي (PIN) مطلوب لقفل التسجيل. لتعطيله، يُرجى أولًا تعطيل قفل التسجيل.</string>
     <string name="ApplicationPreferencesActivity_pin_created">تمَّ إنشاء رقم التعريف الشخصي (PIN).</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">تمَّ تعطيل رقم التعريف الشخصي (PIN).</string>
@@ -522,7 +522,7 @@
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج سيجنال إلى إذن الوصول إلى الكاميرا لالتقاط الصور أو تسجيل مقاطع الفيديو.</string>
     <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">يُرجى تفعيل الإذن للميكروفون للتمكُّن من تسجيل مقاطع الفيديو مع الصوت.</string>
     <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">يحتاج سيجنال إلى أذونات الوصول إلى الميكروفون لتسجيل مقاطع الفيديو، لكنه لم يُمنَح الإذن. يُرجى الذهاب إلى إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\" و \"الكاميرا\".</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج سيجنال الى أذونات الميكروفون لتسجيل مقاطع الفيديو.</string>
+    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج سيجنال الى إذن الوصول إلى الميكروفون لتسجيل مقاطع الفيديو.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_no">لا</string>
@@ -1029,7 +1029,7 @@
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">التقاط صورة يتطلَّب إذن الوصول إلى الكاميرا.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">الوصول إلى معرض الصور يتطلَّب السماح بالوصول إلى ذاكرة التخزين.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">الوصول إلى معرض الصور يتطلَّب إذن الوصول إلى ذاكرة التخزين.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">الآن</string>
@@ -1108,7 +1108,7 @@
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
     <string name="LinkDeviceFragment__use_signal_on_desktop_ipad">استخدِم حساب سيجنال هذا على الحاسوب أو جهاز الآيباد.</string>
     <!-- Button prompting users to link a new device to their account -->
-    <string name="LinkDeviceFragment__link_a_new_device">قُم بربط جهازٍ جديد</string>
+    <string name="LinkDeviceFragment__link_a_new_device">ربط جهاز جديد</string>
     <!-- Text explaining that on linked devices, messages will be encrypted where %s will be replaced with an image-->
     <string name="LinkDeviceFragment__messages_and_chat_info_are_protected">%1$s الرسائل والدردشات محمية من خلال التشفير من طرف لِطرف على جميع الأجهزة</string>
     <!-- Bottom sheet title explaining how Signal works on a linked device -->
@@ -1241,7 +1241,7 @@
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل مُمكِنًا بمُجرَّد إلغاء ربط الجهاز.</string>
     <string name="DeviceListActivity_network_connection_failed">فَشِلَ الاتصال بالشبكة</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
-    <string name="DeviceListActivity_try_again">حاوِل مرة أخرى.</string>
+    <string name="DeviceListActivity_try_again">حاوِل مرّة أخرى.</string>
     <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء الارتباط بالجهاز…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء الارتباط بالجهاز</string>
     <string name="DeviceListActivity_network_failed">فَشِلَ الاتصال بالشبكة!</string>
@@ -1357,7 +1357,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">قُم بترقية هذه المجموعة</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">تحوي المجموعات الجديدة ميزات كالإشارة بتاغ ‎@mentions‎ والمشرفين على المجموعة، كما ستدعم مستقبلًا المزيد من الميزات.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">سيُحتفَظ بكل سجل الرسائل والوسائط التي كانت قبل الترقية.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">حدث خطأ في الشبكة. حاوِل مرّة أخرى لاحقًا.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">فشلت الترقية.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
         <item quantity="zero">يحتاج هذا العضو إلى قبول دعوة الانضمام إلى هذه المجموعة مرة أخرى، ولن تصله أي رسائل من المجموعة إلى حين موافقته على الانضمام إليها:</item>
@@ -1421,12 +1421,12 @@
         <item quantity="other">إضافة أعضاء</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="zero">فشل انعدام إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
-        <item quantity="one">فشلت إضافة العضو. يُرجى المحاولة ﻻحقًا.</item>
-        <item quantity="two">فشلت إضافة العضويْن. يُرجى المحاولة ﻻحقًا.</item>
-        <item quantity="few">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
-        <item quantity="many">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
-        <item quantity="other">فشلت إضافة الأعضاء. يُرجى المحاولة ﻻحقًا.</item>
+        <item quantity="zero">فشل انعدام إضافة الأعضاء. حاوِل مرّة ﻻحقًا.</item>
+        <item quantity="one">فشلت إضافة العضو. حاوِل مرّة أخرى ﻻحقًا.</item>
+        <item quantity="two">فشلت إضافة العضويْن. حاوِل مرّة أخرى ﻻحقًا.</item>
+        <item quantity="few">فشلت إضافة الأعضاء.حاوِل مرّة أخرى ﻻحقًا.</item>
+        <item quantity="many">فشلت إضافة الأعضاء. حاوِل مرّة أخرى ﻻحقًا.</item>
+        <item quantity="other">فشلت إضافة الأعضاء. حاوِل مرّة أخرى ﻻحقًا.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
         <item quantity="zero">لا يمكن إضافة عضو.</item>
@@ -1635,11 +1635,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">تعذَّر إنهاء عملية النقل</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذّر نقل حسابك إثر ذلك. حاوِل من جديد من خلال اختيار طريقة النقل.</string>
+    <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذّر نقل حسابك إثر ذلك. حاوِل مرّة أخرى من خلال اختيار طريقة النقل.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
     <string name="RemoteRestoreActivity__couldnt_restore">تعذَّرت استعادة هذه النسخة الاحتياطية.</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">لا يُمكن لهذه النسخة من سيجنال استعادة نسختك الاحتياطية. تحديث لآخر نسخة والمُحاولة من جديد.</string>
+    <string name="RemoteRestoreActivity__update_latest">لا يُمكن لهذه النسخة من سيجنال استعادة نسختك الاحتياطية. حدِّث لآخر نسخة وحاوِل مرّة أخرى.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
     <string name="RemoteRestoreActivity__update_signal">تحديث سيجنال</string>
     <!-- Text label button to dismiss the dialog -->
@@ -1648,7 +1648,7 @@
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">أترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات الصامتة؟</string>
-    <string name="GroupMentionSettingDialog_always_notify_me">نبّهني دومًا</string>
+    <string name="GroupMentionSettingDialog_always_notify_me">نبِّهني دومًا</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
     <!-- ManageProfileFragment -->
@@ -1754,7 +1754,7 @@
     <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">أنت عضو بالفعل</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">انضم</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">أرسِل طلب للانضمام</string>
-    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">تعذَّر الانضمام إلى المجموعة. يُرجى إعادة المحاولة لاحقًا.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">تعذَّر الانضمام إلى المجموعة.حاوِل مرّة أخرى لاحقًا.</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة.</string>
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">رابط هذه المجموعة غير مُفعَّل.</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
@@ -1792,7 +1792,7 @@
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">تفعيل ومشاركة رابط</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">مشاركة رابط</string>
 
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">تعذَّر تفعيل رابط المجموعة. يُرجى إعادة المحاولة لاحقًا.</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">تعذَّر تفعيل رابط المجموعة. حاوِل مرّة أخرى لاحقًا.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">ليس لديك الصلاحية لتفعيل رابط المجموعة. يُرجى الطلب من أحد المشرفين القيام بذلك.</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">لستَ عضوًا في المجموعة حاليًا.</string>
@@ -2468,7 +2468,7 @@
     <string name="PlacePickerActivity_accept_address">اقبل العنوان</string>
 
     <!-- PlayServicesProblemFragment -->
-    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخة خدمات Google Play التي قمت بتثبيتها لا تعمل بشكل صحيح. يُرجى إعادة تثبيت خدمات Google Play والمحاولة مرّة أُخرى.</string>
+    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخة خدمات Google Play التي قُمتَ بتثبيتها لا تعمل بشكلٍ صحيح. يُرجى إعادة تثبيت خدمات Google Play والمحاولة مرّة أُخرى.</string>
 
     <!-- PinRestoreEntryFragment -->
     <string name="PinRestoreEntryFragment_incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
@@ -2510,7 +2510,7 @@
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">تحذير</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">إذا قمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستفقد جميع بياناتك عند قيامك بإعادة التسجيل في سيجنال، إلّا إذا قمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل رقم التعريف الشخصي (PIN).</string>
-    <string name="PinOptOutDialog_disable_pin">تعطيل رقم التعريف الشخصي (PIN)</string>
+    <string name="PinOptOutDialog_disable_pin">تعطيل رقم الـ PIN</string>
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
@@ -2553,7 +2553,7 @@
     <string name="RedPhone_busy">مشغول</string>
     <string name="RedPhone_recipient_unavailable">متلقي المكالمة غير مُتوفِّر</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
-    <string name="RedPhone_network_failed">فشل في الشبكة! يُرجى التحقُّق من اتصالك بالانترنت ثم حاول مرّة أُخرى.</string>
+    <string name="RedPhone_network_failed">فشل في الشبكة! يُرجى التحقُّق من اتصالك بالانترنت ثم حاوِل مرّة أُخرى.</string>
     <string name="RedPhone_number_not_registered">الرقم غير مُسجَّل!</string>
     <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">الرقم المطلوب لا يدعم مكالمات صوتية آمنة!</string>
     <string name="RedPhone_got_it">تم</string>
@@ -2579,7 +2579,7 @@
     <string name="WebRtcCallActivity__signal_s">سيجنال‏ %1$s</string>
     <string name="WebRtcCallActivity__calling">جارٍ الاتصال…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">تجري إعادة الاتصال…</string>
+    <string name="WebRtcCallActivity__reconnecting">جارٍ إعادة الاتصال…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">تمَّ رفض إذن بلوتوث</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -2681,9 +2681,9 @@
     <string name="WebRtcCallView__start_call">بدء المكالمة</string>
     <string name="WebRtcCallView__join_call">الانضمام للمكالمة</string>
     <string name="WebRtcCallView__call_is_full">المكالمة ممتلئة</string>
-    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصل عدد المشاركين إلى %1$d مشاركًا، وهو الحد الأقصى في هذه المكالمة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
+    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصلَ عدد المشاركين إلى %1$d مُشارِكًا، وهو الحد الأقصى في هذه المكالمة. حاوِل مرّة أخرى لاحقًا.</string>
     <string name="WebRtcCallView__your_video_is_off">توقَّف الفيديو لديك</string>
-    <string name="WebRtcCallView__reconnecting">إعادة الاتصال جارية…</string>
+    <string name="WebRtcCallView__reconnecting">جارٍ إعادة الاتصال…</string>
     <string name="WebRtcCallView__joining">يجري الانضمام…</string>
     <string name="WebRtcCallView__disconnected">توقَّف الاتصال</string>
     <!-- Utilized in the lobby before joining a call link -->
@@ -2973,16 +2973,16 @@
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام سيجنال، ولكن هذا الضبط قد يؤدي إلى ضعف في الموثوقية أو الأداء. إن لم تكن مستخدمًا مُتقدمًا، أو لم تكن مُشغِّلًا لـ Android ROM من جهة خارجية، أو تعتقد أن رؤيتك لهذه الرسالة ناجمة عن خطأ، يُرجى التواصل مع support@signal.org للمساعدة في اكتشاف الأخطاء وإصلاحها.</string>
     <string name="RegistrationActivity_i_understand">فهمت</string>
     <string name="RegistrationActivity_play_services_error">خطأ في خدمات Google Play</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جارٍ تحديث خدمات Google Play أو أنها غير موجودة مؤقتًا. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جارٍ تحديث خدمات Google Play أو أنها غير موجودة مؤقتًا. حاوِل مرّة أخرى.</string>
     <string name="RegistrationActivity_terms_and_privacy">الشروط وسياسة الخصوصية</string>
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال والوسائط للمساعدة في التواصل مع أصدقائك وإرسال الرسائل. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتم تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
-    <string name="RegistrationActivity_rate_limited_to_service">قمتَ بمحاولات كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج سيجنال إلى أذونات جهات الاتصال للمساعدة في التواصل مع أصدقائك. يتمُّ تحميل جهات اتصالك باستخدام نظام اكتشاف جهة الاتصال الخاص في سيجنال، وهذا يعني أنها مُشفَّرة من الطرفين وغير مرئية على الإطلاق لخدمة سيجنال.</string>
+    <string name="RegistrationActivity_rate_limited_to_service">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">قمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">قُمتَ بمحاولاتٍ كثيرة للتسجيل بهذا الرقم. يُرجى المحاولة لاحقًا %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. يُرجى التأكُّد من الاتصال بالشبكة والمحاولة مرّة أخرى.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
-    <string name="RegistrationActivity_sms_provider_error">تعذَّر على سيجنال إرسال كود عبر رسالة نصية قصيرة نظرًا لمشاكل في مُزوِّد الرسائل القصيرة. حاوِل من جديد خلال بضع ساعات.</string>
+    <string name="RegistrationActivity_sms_provider_error">تعذَّر على سيجنال إرسال كود عبر رسالة نصية قصيرة نظرًا لمشاكل في مُزوِّد الرسائل القصيرة. حاوِل مرّة أخرى خلال بضع ساعات.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">تعذَّر إرسال كود التحقُّق عبر رسالة نصية. حاوِل الحصول على الكود الخاص بك عبر مكالمة صوتية بدلًا من ذلك.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
@@ -3237,7 +3237,7 @@
     <string name="UsernameEditFragment_successfully_removed_username">تمَّ حذف اسم المُستخدم بنجاح.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">حدث خطأ في الشبكة.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
-    <string name="UsernameEditFragment_rate_limit_exceeded_error">قمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة لاحقًا.</string>
+    <string name="UsernameEditFragment_rate_limit_exceeded_error">قُمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة لاحقًا.</string>
     <string name="UsernameEditFragment_this_username_is_taken">اسم المُستخدم هذا غير متوفِّر.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">أسماء المُستخدمين يجب أن تحتوي فقط على الحروف الأبجدية، أو الأرقام 0-9، أو \"_\".</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">اسم المُستخدم لا يمكن أن يبدأ برقم.</string>
@@ -3326,7 +3326,7 @@
     <string name="MediaPreviewActivity_you">أنت</string>
     <string name="MediaPreviewActivity_unssuported_media_type">نوع الوسائط غير مدعوم</string>
     <string name="MediaPreviewActivity_draft">مسوَّدة</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الوصول إلى مساحة التخزين من أجل استخدام الذاكرة الخارجية، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، وتحديد \"الصلاحيات\"، ثم تفعيل \"مساحة التخزين\".</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الوصول إلى مساحة التخزين من أجل استخدام الذاكرة الخارجية، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، وتحديد \"الأذونات\"، ثم تفعيل \"مساحة التخزين\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات.</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">أترغبُ بحذف الرسالة؟</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">هذا الإجراء سَيحذف الرسالة بشكلٍ دائم.</string>
@@ -3631,7 +3631,7 @@
     <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى أذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سيجنال إلى إذن الوصول إلى جهات الاتصال من أجل عرضها لك، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في استرجاع جهات الاتصال. يُرجى التحقُّق مِن اتصالك بالشبكة.</string>
     <string name="ContactSelectionListFragment_username_not_found">لم يتم العثور على اسم المُستخدم</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"\"%1$s\" ليس مُستخدم لِسيجنال. يُرجى التحقُّق من اسم المُستخدم والمحاولة مُجدَّدًا."</string>
@@ -3947,8 +3947,8 @@
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">مشكل في التوصيل</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">لم يتمكَّن %1$s من توصيل رسالة نصية أو مُلصَق أو تفاعُل أو تأكيد بالقراءة إليك. يُحتمَل أنه أُرسلَها إليك مباشرةً أو أنهُ أرسلها في مجموعة.</string>
-    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">لم يتم توصيل  رسالة أو مُلصَق أو تفاعُل أو تأكيد بالقراءة إليك من %1$s.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">لم يتمكَّن %1$s من توصيل رسالة نصية أو مُلصَق أو تفاعُل أو إيصال تأكيد القراءة إليك. يُحتمَل أنه أُرسلَها إليك مباشرةً أو أنهُ أرسلها في مجموعة.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">لم يتم توصيل  رسالة أو مُلصَق أو تفاعُل أو إيصال تأكيد القراءة إليك من %1$s.</string>
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">الاسم الأول (مطلوب)</string>
@@ -4207,7 +4207,7 @@
     <string name="preferences__privacy">الخصوصية</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">القِصَص</string>
-    <string name="preferences__mms_user_agent">وكيل المُستخدم لرسائل الوسائط المتعددة</string>
+    <string name="preferences__mms_user_agent">وكيل المُستخدِم لرسائل الوسائط المتعددة</string>
     <string name="preferences__advanced_mms_access_point_names">الإعدادات اليدوية لرسائل الوسائط المتعددة</string>
     <string name="preferences__mmsc_url">رابط MMSC</string>
     <string name="preferences__mms_proxy_host">مستضيف بروكسي MMS</string>
@@ -4250,7 +4250,7 @@
     <string name="preferences__app_icon_learn_more">اعرف المزيد</string>
     <!--Text description of a graphic illustrating the limitations of the app icon change. -->
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">رسم يُوضِّح المكان الذي سَتظهر فيه أيقونة التطبيق البديلة.</string>
-    <string name="preferences__disable_pin">تعطيل رقم التعريف الشخصي (PIN)</string>
+    <string name="preferences__disable_pin">تعطيل رقم الـ PIN</string>
     <string name="preferences__enable_pin">تفعيل رقم PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قٌمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستضيع جميع البيانات عند قيامك بإعادة التسجيل في سيجنال إلّا إذا قُمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل بينما رقم التعريف الشخصي (PIN) في حالة تعطيل.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
@@ -4267,7 +4267,7 @@
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم تسليم رسائل SMS أو رسائل MMS عبر الواي فاي (قُم بالتفعيل فقط في حال تمكين التواصل بالواي فاي بهاتفك)</string>
     <string name="preferences__incognito_keyboard">لوحة مفاتيح في وضع متخفي</string>
     <string name="preferences__read_receipts">إيصالات تأكيد القراءة</string>
-    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتَ بإلغاء تفعيل إيصالات تأكيد القراءة، فلن يمكنك رؤية إيصالات القراءة من الآخرين.</string>
+    <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قُمتَ بإلغاء تفعيل إيصالات تأكيد القراءة، فلن يمكنك رؤية إيصالات تأكيد القراءة من الآخرين.</string>
     <string name="preferences__typing_indicators">مؤشرات الكتابة</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">إذا تمَّ إلغاء تفعيل مؤشرات الكتابة، فلن يمكنك رؤية المؤشر عند قيام الآخرين بالكتابة.</string>
     <string name="preferences__request_keyboard_to_disable">الطلب من لوحة المفاتيح عدم تمكين التعلُّم المُخصَّص.</string>
@@ -4431,7 +4431,7 @@
     <string name="PaymentsHomeFragment__continue">متابعة</string>
     <string name="PaymentsHomeFragment__balance_is_not_currently_available">الرصيد غير متاح حاليًا.</string>
     <string name="PaymentsHomeFragment__payments_deactivated">عُطِّلَت المدفوعات</string>
-    <string name="PaymentsHomeFragment__payment_failed">فشِلت المدفوعات</string>
+    <string name="PaymentsHomeFragment__payment_failed">فشِلت عملية الدفع</string>
     <string name="PaymentsHomeFragment__details">التفاصيل</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
@@ -4464,7 +4464,7 @@
     <!-- Displayed as an action button at the bottom end of the screen -->
     <string name="GrantPermissionsFragment__next">التالي</string>
     <!-- Displayed as a title at the top of the screen -->
-    <string name="GrantPermissionsFragment__allow_permissions">تمكين الصلاحيّات</string>
+    <string name="GrantPermissionsFragment__allow_permissions">تمكين الأذونات</string>
     <!-- Displayed as a subtitle at the top of the screen -->
     <string name="GrantPermissionsFragment__to_help_you_message_people_you_know">لِمساعدتك على مراسلة الأشخاص الذين تعرفهم، سيطلب سيجنال هذه الأذونات. </string>
     <!-- Notifications permission row title -->
@@ -4488,7 +4488,7 @@
     <!-- Sheet describing step 1 on how to give permissions by opening settings -->
     <string name="PermissionDeniedBottomSheet__1_tap_settings_below">1. انقر على \"الإعدادات\" في الأسفل</string>
     <!-- Sheet describing step 2 on how to give permissions by checking the permissions button in settings where %s will be replaced with an image of a checked button -->
-    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s امنح الصلاحية</string>
+    <string name="PermissionDeniedBottomSheet__2_allow_permission">2. %1$s امنح الإذن</string>
     <!-- Sheet describing step 2 on how to give permissions by tapping permissions in their settings -->
     <string name="PermissionDeniedBottomSheet__2_tap_permissions">2. انقر على \"الأذونات\"</string>
     <!-- Sheet describing step 3 on how to give permissions for photos and videos in settings where %s will be replaced with an image of a checked button -->
@@ -4846,7 +4846,7 @@
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقم تعريف شخصي (PIN) أقوى.</string>
 
     <!-- ConfirmKbsPinFragment -->
-    <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية (PIN) غير متطابقة. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية (PIN) غير متطابقة. حاوِل مرّة أخرى.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
     <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">أعِد إدخال رقم التعريف الشخصي (PIN) الذي أنشأته للتو.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">قُم بتأكيد رقم الـ PIN.</string>
@@ -4866,7 +4866,7 @@
     <string name="KbsSplashFragment__update_pin">تحديث رقم PIN</string>
     <string name="KbsSplashFragment__create_your_pin">إنشاء رقم الـ PIN</string>
     <string name="KbsSplashFragment__learn_more_about_pins">اعرف المزيد عن أرقام التعريف الشخصية (PINs)</string>
-    <string name="KbsSplashFragment__disable_pin">تعطيل رقم التعريف الشخصي (PIN)</string>
+    <string name="KbsSplashFragment__disable_pin">تعطيل رقم الـ PIN</string>
 
     <!-- KBS Reminder Dialog -->
     <string name="KbsReminderDialog__enter_your_signal_pin">أدخِل رقم التعريف الشخصي (PIN) على سيجنال</string>
@@ -4874,7 +4874,7 @@
     <string name="KbsReminderDialog__skip">تخطّي</string>
     <string name="KbsReminderDialog__submit">تقديم</string>
     <string name="KbsReminderDialog__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
-    <string name="KbsReminderDialog__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="KbsReminderDialog__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">تمَّ قفل الحساب</string>
@@ -4890,7 +4890,7 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">أدخِل رقم التعريف الشخصي (PIN) الذي أنشأته لحسابك.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
     <string name="RegistrationLockFragment__switch_keyboard">تغيير لوحة المفاتيح</string>
-    <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="RegistrationLockFragment__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="RegistrationLockFragment__forgot_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
     <string name="RegistrationLockFragment__incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
     <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت رقم التعريف الشخصي (PIN)؟</string>
@@ -5005,13 +5005,13 @@
     <string name="RegistrationActivity_d_messages_so_far">%1$d رسالة (رسائل) حتى الآن…</string>
     <string name="RegistrationActivity_restore_from_backup">هل ترغب بالاستعادة مِن نسخة احتياطية؟</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استعِد الرسائل والوسائط من نسخة احتياطية محليّة. إذا لم تقم باستعادتها الآن، لن يمكنك الاستعادة لاحقًا.</string>
-    <string name="RegistrationActivity_backup_size_s">حجم النسخة الإحتياطية: %1$s</string>
+    <string name="RegistrationActivity_backup_size_s">حجم النسخة الاحتياطية: %1$s</string>
     <string name="RegistrationActivity_backup_timestamp_s">السجل الزمني للنسخ الاحتياطي: %1$s</string>
-    <string name="BackupDialog_enable_local_backups">هل ترغب بتفعيل النسخ الإحتياطية المحلية؟</string>
+    <string name="BackupDialog_enable_local_backups">هل ترغب بتفعيل النسخ الاحتياطية المحلية؟</string>
     <string name="BackupDialog_enable_backups">تفعيل النسخ الاحتياطية</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">يُرجى الإقرار بفهم الخاصية عبر وضع علامة تأكيد في الصندوق.</string>
-    <string name="BackupDialog_delete_backups">هل ترغبُ بحذف النسخ الإحتياطية؟</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">هل ترغبُ بتعطيل وحذف كل النسخ الإحتياطية المحلية؟</string>
+    <string name="BackupDialog_delete_backups">هل ترغبُ بحذف النسخ الاحتياطية؟</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">هل ترغبُ بتعطيل وحذف كل النسخ الاحتياطية المحلية؟</string>
     <string name="BackupDialog_delete_backups_statement">حذف النسخ الاحتياطية</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">لتفعيل النسخ اﻻحتياطية، اختر مجلد. سوف تُخزَّن النسخ اﻻحتياطية في هذا الموقع.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
@@ -5081,13 +5081,13 @@
     <string name="preferences_app_protection__to_use_screen_lock">لاستخدام قفل الشاشة، قُم بتعيين رقم تعريف شخصي (PIN) أو نمط أو كلمة مرور على هذا الجهاز.</string>
     <string name="preferences_app_protection__signal_pin">رقم PIN الخاص بسيجنال</string>
     <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريف شخصي (PIN)</string>
-    <string name="preferences_app_protection__change_your_pin">تغيير رقم التعريف الشخصي (PIN)</string>
+    <string name="preferences_app_protection__change_your_pin">تغيير رقم الـ PIN</string>
     <string name="preferences_app_protection__pin_reminders">تذكيرات رقم التعريف الشخصي (PIN)</string>
     <string name="preferences_app_protection__turn_off">إيقاف</string>
     <string name="preferences_app_protection__confirm_pin">تأكيد رقم التعريف الشخصي (PIN)</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">تأكيد رقم PIN الخاص بسيجنال</string>
     <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">يجب عليك التأكُّد من حفظ رقم التعريف الشخصي (PIN) أو تخزينه في مكان آمن، لأنه لا يمكن استعادته في حال فقدانه. في حال نسيانك رقم التعريف الشخصي (PIN)، قد تخسر البيانات عند إعادة تسجيل حسابك على سيجنال.</string>
-    <string name="preferences_app_protection__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. يُرجى المحاولة مرّة أخرى.</string>
+    <string name="preferences_app_protection__incorrect_pin_try_again">رقم التعريف الشخصي (PIN) غير صحيح. حاوِل مرّة أخرى.</string>
     <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذَّر تفعيل قفل التسجيل.</string>
     <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذَّر تعطيل قفل التسجيل.</string>
     <string name="AppProtectionPreferenceFragment_none">لا شيء</string>
@@ -5095,9 +5095,9 @@
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال رقم التعريف الشخصي (PIN) لقفل التسجيل</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم التعريف الشخصي (PIN) على %1$d أرقام أو حروف على الأقل.</string>
     <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
-    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">قمتَ بمحاولاتٍ عديدة خاطئة لإدخال رقم التعريف الشخصي (PIN) لقفل الشاشة. يُرجى المحاولة مرّة أخرى بعد يوم.</string>
+    <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">قمتَ بمحاولاتٍ عديدة خاطئة لإدخال رقم التعريف الشخصي (PIN) لقفل الشاشة. حاوِل مرّة أخرى بعد يوم.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
-    <string name="RegistrationActivity_error_connecting_to_service">خطأ في الاتصال بالخدمة</string>
+    <string name="RegistrationActivity_error_connecting_to_service">حدث خطأ خلال الاتصال بالخادم</string>
     <string name="preferences_chats__backups">النُسخ الاحتياطية</string>
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">فتح قفل سيجنال</string>
@@ -5220,7 +5220,7 @@
     <string name="DeviceTransferSetup__stop_transfer">إيقاف النقل</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">تعذَّر اكتشاف الجهاز القديم</string>
     <string name="DeviceTransferSetup__unable_to_discover_new_device">تعذَّر اكتشاف الجهاز الجديد</string>
-    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">يُرجى التحقُّق من أن الأُذونات والخدمات التالية مُفعَّلة:</string>
+    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">يُرجى التحقُّق من أن الأذونات والخدمات التالية مُفعَّلة:</string>
     <string name="DeviceTransferSetup__location_permission">إذن الوصول إلى الموقع</string>
     <string name="DeviceTransferSetup__location_services">خدمات الموقع</string>
     <string name="DeviceTransferSetup__wifi">الواي فاي</string>
@@ -5506,7 +5506,7 @@
     <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين ألوان الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين لون الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_color_question">أترغبُ بإعادة تعيين لون الدردشة؟</string>
-    <string name="ChatWallpaperFragment__set_wallpaper">إعادة تعيين الخلفية</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">تعيين الخلفية</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">الوضع الداكن يعتم الخلفية</string>
     <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
     <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
@@ -5529,8 +5529,8 @@
     <string name="ChatWallpaperPreviewActivity__preview">معاينة</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين الخلفية</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">اسحب لمعاينة المزيد من الخلفيات</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">تعيين الخلفية لجميع الدردشات</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">تعيين الخلفية لـ %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع الدردشات</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">تعيين خلفية لـ %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">مشاهدة معرض الصور لديك يتطلب إذن الوصول إلى مساحة التخزين.</string>
 
     <!-- WallpaperImageSelectionActivity -->
@@ -5538,7 +5538,7 @@
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">وسِّع للتكبير، اسحب للتعديل.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تعيين خلفية لجميع الدردشات.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">تعيين الخلفية لـ %1$s.‏</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">تعيين خلفية لـ %1$s.‏</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">حدث خطأ خلال تعيين الخلفية.</string>
     <string name="WallpaperCropActivity__blur_photo">تمويه الصورة</string>
 
@@ -5556,7 +5556,7 @@
     <string name="payment_info_card_your_recovery_phrase_gives_you">توفر لك عبارة الاستعادة وسيلة أخرى لاستعادة حساب مدفوعاتك.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">حفظ جملتك</string>
-    <string name="payment_info_card_update_your_pin">تحديث رقم PIN الخاص بك</string>
+    <string name="payment_info_card_update_your_pin">تحديث رقم الـ PIN</string>
     <string name="payment_info_card_with_a_high_balance">عند توفُّر رصيد كبير لديك، قد تكون لديك الرغبة في زيادة حماية حسابك عبر تحديث رقم التعريف الشخصي (PIN) إلى أرقام وحروف.</string>
     <string name="payment_info_card_update_pin">تحديث رقم PIN</string>
 
@@ -6011,7 +6011,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">ساعة واحدة</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 دقائق</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 ثانية</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">تخصيص الوقت</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">وقت مُخصَّص</string>
     <string name="ExpireTimerSettingsFragment__set">تعيين</string>
     <string name="ExpireTimerSettingsFragment__save">حفظ</string>
 
@@ -6195,7 +6195,7 @@
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">كتم الإشعارات</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">غير مكتومة</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">الإشارات إلى اﻷفراد</string>
-    <string name="SoundsAndNotificationsSettingsFragment__always_notify">التنبيه دومًا</string>
+    <string name="SoundsAndNotificationsSettingsFragment__always_notify">نبِّه دومًا</string>
     <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">عدم التنبيه</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مُخصَّصة</string>
@@ -6611,7 +6611,7 @@
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
     <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">أُلغيت هذه العملية من قبل صاحب الحساب وتعذّر معالجتها. لم تُحصّل أي رسوم منك.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
-    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ أثناء معالجة عملية الدفع هذه، يُرجى إعادة المُحاولة لاحقًا.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ أثناء معالجة عملية الدفع هذه. يُرجى المُحاولة مرّة أخرى.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة التبرُّع</string>
@@ -6621,7 +6621,7 @@
     <string name="DonationsErrors__learn_more">اعرف المزيد</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة التبرُّع. %1$s</string>
-    <string name="DonationsErrors__your_payment">تعذَّرت معالجة تبرّعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة.</string>
+    <string name="DonationsErrors__your_payment">تعذَّرت معالجة تبرّعك ولم يتم تحصيل رسوم منك. يُرجى إعادة المُحاولة مرّة أخرى.</string>
     <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
     <string name="DonationsErrors__couldnt_add_badge">تعذَّرت إضافة الشارة</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
@@ -6641,7 +6641,7 @@
     <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالًا بالإنترنت.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">لا يدعم جهازك التبرُّعات داخل التطبيق، لذلك لا يُمكنك الاشتراك لِربح شارة. لا يزال بإمكانك دعم سيجنال بالتبرُّع على موقعنا الإلكتروني.</string>
-    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">حدث خطأ في الشبكة. يُرجى التحقُّق من اتصالك بالانترنت ثم المحاولة مرّة أخرى.</string>
+    <string name="NetworkFailure__network_error_check_your_connection_and_try_again">حدث خطأ في الشبكة. يُرجى التحقُّق من اتصالك بالانترنت ثم حاوِل مرّة أخرى.</string>
     <string name="NetworkFailure__retry">إعادة المُحاولة</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">تعذَّر إرسال التبرُّع</string>
@@ -6721,7 +6721,7 @@
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification -->
     <string name="StripeFailureCode__this_payment_was_revoked">أُلغي هذا التبرُّع من قِبل صاحب الحساب وتعذَّر معالجته. لم يتم تحصيل أي رسوم منك.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ ما أثناء معالجة هذا التبرُّع. يُرجى المحاولة مُجدَّدًا.</string>
+    <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">حدث خطأ ما أثناء معالجة هذا التبرُّع. حاوِل مرّة أخرى.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">تعذَّر معالجة المعلومات المصرفية المُقدَّمة. يُرجى الاتصال بمصرفك للمزيد من المعلومات.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
@@ -7310,7 +7310,7 @@
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">التبرُّع لمرّة واحدة</string>
     <!-- Hint for add message input -->
-    <string name="GiftFlowConfirmationFragment__add_a_message">إضافة نص</string>
+    <string name="GiftFlowConfirmationFragment__add_a_message">إضافة رسالة</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">جارٍ التحقّق من المُستلِم …</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
@@ -7578,7 +7578,7 @@
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">ليس الآن</string>
     <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">لإعادة تفعيل النُسخ الاحتياطية:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">لإعادة تفعيل النسخ الاحتياطية:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">انقر على زر \"انتقِل إلى الإعدادات\" أدناه</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -7938,12 +7938,12 @@
     <string name="CallLogFragment__deletion_failed">فشلت عملية الحذف.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
-        <item quantity="zero">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
-        <item quantity="one">لا يمكن حذف الرابط. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
-        <item quantity="two">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
-        <item quantity="few">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
-        <item quantity="many">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
-        <item quantity="other">لا يمكن حذف جميع روابط المكالمات. يُرجى التحقّق من اتصالك بالشبكة والمحاولة مرّة أخرى.</item>
+        <item quantity="zero">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
+        <item quantity="one">لا يمكن حذف الرابط. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
+        <item quantity="two">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
+        <item quantity="few">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
+        <item quantity="many">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
+        <item quantity="other">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
     <string name="CallLogFragment__cleared_call_history">تمَّ مسح سجِل المكالمات</string>
@@ -8177,7 +8177,7 @@
     <!-- Body of a dialog that is displayed when we experienced a network error when looking up a username. -->
     <string name="UsernameLinkSettings_qr_result_network_error">حدث خطأ في الشبكة. يُرجى إعادة المُحاولة.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ليس لديك وصول إلى الشبكة. لم يتم إعادة تعيين رابطك. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_unavailable">ليس لديك وصول إلى الشبكة. لم يتم إعادة تعيين رابطك. حاوِل مرّة أخرى لاحقًا.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
     <string name="UsernameLinkSettings_reset_link_result_network_error">حدث خطأ في الشبكة أثناء محاولة إعادة تعيين الرابط الخاص بك. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
@@ -8673,7 +8673,7 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">يُرجى إدخال رقم تعريف الجهاز أو كلمة المرور أو نمط كلمة المرور لجهازك.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">إعادة تفعيل النُسخ الاحتياطية</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">إعادة تفعيل النسخ الاحتياطية</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">تمَّ إيقاف النُسخ الاحتياطية، وتمَّ حذف بياناتك من خدمة التخزين الآمنة لسيجنال.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
@@ -8773,7 +8773,7 @@
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
     <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">احذف نسختك الاحتياطية في أي وقت</string>
     <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">تفعيل النُسخ الإحتياطية</string>
+    <string name="MessageBackupsEducationScreen__enable_backups">تفعيل النسخ الاحتياطية</string>
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">اعرف المزيد</string>
 
@@ -8937,7 +8937,7 @@
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">لا توجد نسخة احتياطية</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخة الاحتياطية الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخة الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل من جديد.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح النسخة الاحتياطية الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخة الاحتياطية مُفعَّلة وأن عملية النسخ الاحتياطي قد اكتملت بالفعل، وحاوِل مرّة أخرى.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
 
