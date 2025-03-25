@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
-import android.graphics.Typeface
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -48,7 +47,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -63,6 +61,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registrationv3.ui.restore.BackupKeyVisualTransformation
 import org.thoughtcrime.securesms.registrationv3.ui.restore.attachBackupKeyAutoFillHelper
 import org.thoughtcrime.securesms.registrationv3.ui.restore.backupKeyAutoFillHelper
@@ -141,7 +140,7 @@ fun MessageBackupsKeyVerifyScreen(
             Text(text = stringResource(id = R.string.MessageBackupsKeyVerifyScreen__backup_key))
           },
           textStyle = LocalTextStyle.current.copy(
-            fontFamily = FontFamily(typeface = Typeface.MONOSPACE),
+            fontFamily = MonoTypeface.fontFamily(),
             lineHeight = 36.sp
           ),
           keyboardOptions = KeyboardOptions(

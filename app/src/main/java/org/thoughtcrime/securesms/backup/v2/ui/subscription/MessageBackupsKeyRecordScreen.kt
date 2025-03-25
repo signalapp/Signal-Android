@@ -25,7 +25,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -36,8 +35,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
-import kotlin.random.Random
-import kotlin.random.nextInt
+import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -120,7 +118,7 @@ fun MessageBackupsKeyRecordScreen(
                   letterSpacing = 1.44.sp,
                   lineHeight = 36.sp,
                   textAlign = TextAlign.Center,
-                  fontFamily = FontFamily.Monospace
+                  fontFamily = MonoTypeface.fontFamily()
                 )
             )
           }
@@ -160,7 +158,7 @@ fun MessageBackupsKeyRecordScreen(
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
-      backupKey = (0 until 64).map { Random.nextInt(97..122).toChar() }.joinToString("")
+      backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0"
     )
   }
 }

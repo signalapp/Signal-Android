@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.registrationv3.ui.restore
 
-import android.graphics.Typeface
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -43,7 +42,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -58,6 +56,7 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.BackupsIconColors
+import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
@@ -143,7 +142,7 @@ fun EnterBackupKeyScreen(
         Text(text = stringResource(id = R.string.EnterBackupKey_backup_key))
       },
       textStyle = LocalTextStyle.current.copy(
-        fontFamily = FontFamily(typeface = Typeface.MONOSPACE),
+        fontFamily = MonoTypeface.fontFamily(),
         lineHeight = 36.sp
       ),
       keyboardOptions = KeyboardOptions(
@@ -215,7 +214,7 @@ private fun AccountEntropyPoolVerification.AEPValidationError.ValidationErrorMes
 private fun EnterBackupKeyScreenPreview() {
   Previews.Preview {
     EnterBackupKeyScreen(
-      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t".uppercase(),
       isBackupKeyValid = true,
       inProgress = false,
       chunkLength = 4,
@@ -229,7 +228,7 @@ private fun EnterBackupKeyScreenPreview() {
 private fun EnterBackupKeyScreenErrorPreview() {
   Previews.Preview {
     EnterBackupKeyScreen(
-      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t",
+      backupKey = "UY38jh2778hjjhj8lk19ga61s672jsj089r023s6a57809bap92j2yh5t326vv7t".uppercase(),
       isBackupKeyValid = true,
       inProgress = false,
       chunkLength = 4,
