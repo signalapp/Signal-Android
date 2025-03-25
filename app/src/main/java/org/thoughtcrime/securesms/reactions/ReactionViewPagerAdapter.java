@@ -18,10 +18,12 @@ import java.util.List;
  */
 class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPagerAdapter.ViewHolder> {
 
-  private int selectedPosition = 0;
+  private       int           selectedPosition = 0;
+  private final EventListener listener;
 
-  protected ReactionViewPagerAdapter() {
+  protected ReactionViewPagerAdapter(@NonNull EventListener listener) {
     super(new AlwaysChangedDiffUtil<>());
+    this.listener = listener;
   }
 
   @NonNull EmojiCount getEmojiCount(int position) {
@@ -50,7 +52,7 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    holder.onBind(getItem(position));
+    holder.onBind(getItem(position),listener);
     holder.setSelected(selectedPosition);
   }
 
@@ -80,12 +82,17 @@ class ReactionViewPagerAdapter extends ListAdapter<EmojiCount, ReactionViewPager
       recycler.setAdapter(adapter);
     }
 
-    public void onBind(@NonNull EmojiCount emojiCount) {
+    public void onBind(@NonNull EmojiCount emojiCount, EventListener listener) {
       adapter.updateData(emojiCount.getReactions());
+      adapter.setListener(listener);
     }
 
     public void setSelected(int position) {
       recycler.setNestedScrollingEnabled(getAdapterPosition() == position);
     }
+  }
+
+  interface EventListener {
+    void onClick();
   }
 }
