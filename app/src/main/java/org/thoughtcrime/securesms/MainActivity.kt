@@ -12,7 +12,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
+import androidx.fragment.compose.AndroidFragment
+import androidx.fragment.compose.rememberFragmentState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
@@ -29,11 +37,14 @@ import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSh
 import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDialog
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainActivityListHostFragment
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository
+import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsFragment
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.AppStartup
 import org.thoughtcrime.securesms.util.CachedInflater
@@ -42,6 +53,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.viewModel
+import org.thoughtcrime.securesms.window.AppScaffold
 
 class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider {
 
@@ -85,7 +97,39 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     AppStartup.getInstance().onCriticalRenderEventStart()
     super.onCreate(savedInstanceState, ready)
 
-    setContentView(R.layout.main_activity)
+    setContent {
+      val navState = rememberFragmentState()
+      val listHostState = rememberFragmentState()
+      val detailLocation by navigator.viewModel.detailLocation.collectAsStateWithLifecycle()
+
+      LaunchedEffect(detailLocation) {
+        if (detailLocation is MainNavigationDetailLocation.Conversation) {
+          startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
+          overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out)
+        }
+      }
+
+      AppScaffold(
+        bottomNavContent = {
+          AndroidFragment(
+            clazz = ConversationListTabsFragment::class.java,
+            fragmentState = navState
+          )
+        },
+        navRailContent = {
+          AndroidFragment(
+            clazz = ConversationListTabsFragment::class.java,
+            fragmentState = navState
+          )
+        }
+      ) {
+        AndroidFragment(
+          clazz = MainActivityListHostFragment::class.java,
+          fragmentState = listHostState,
+          modifier = Modifier.fillMaxSize()
+        )
+      }
+    }
 
     val content: View = findViewById(android.R.id.content)
     content.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {

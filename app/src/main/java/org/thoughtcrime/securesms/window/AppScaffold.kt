@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 enum class Navigation {
   RAIL,
@@ -38,6 +40,10 @@ enum class Navigation {
 
 /**
  * Describes the size of screen we are displaying, and what components should be displayed.
+ *
+ * Screens should utilize this class by convention instead of calling [currentWindowAdaptiveInfo]
+ * themselves, as this class includes checks with [RemoteConfig] to ensure we're allowed to display
+ * content in different screen sizes.
  *
  * https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes
  */
@@ -54,8 +60,19 @@ enum class WindowSizeClass(
   companion object {
     @Composable
     fun rememberWindowSizeClass(): WindowSizeClass {
-      val wsc = currentWindowAdaptiveInfo().windowSizeClass
       val orientation = LocalConfiguration.current.orientation
+
+      if (!LocalInspectionMode.current && !RemoteConfig.largeScreenUi) {
+        return when (orientation) {
+          Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
+            COMPACT_PORTRAIT
+          }
+          Configuration.ORIENTATION_LANDSCAPE -> COMPACT_LANDSCAPE
+          else -> error("Unexpected orientation: $orientation")
+        }
+      }
+
+      val wsc = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(orientation, wsc) {
         when (orientation) {
@@ -88,10 +105,10 @@ enum class WindowSizeClass(
  */
 @Composable
 fun AppScaffold(
-  listContent: @Composable () -> Unit,
-  detailContent: @Composable () -> Unit,
-  navRailContent: @Composable () -> Unit,
-  bottomNavContent: @Composable () -> Unit
+  detailContent: @Composable () -> Unit = {},
+  navRailContent: @Composable () -> Unit = {},
+  bottomNavContent: @Composable () -> Unit = {},
+  listContent: @Composable () -> Unit
 ) {
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 

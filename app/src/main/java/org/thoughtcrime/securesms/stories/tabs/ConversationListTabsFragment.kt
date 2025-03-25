@@ -8,7 +8,10 @@ import androidx.fragment.app.viewModels
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationDestination
+import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
+import org.thoughtcrime.securesms.window.Navigation
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 /**
  * Displays the "Chats" and "Stories" tab to a user.
@@ -37,16 +40,28 @@ class ConversationListTabsFragment : ComposeFragment() {
     }
 
     if (state.visibilityState.isVisible()) {
-      MainNavigationBar(
-        state = navState,
-        onDestinationSelected = {
+      val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+      val onDestinationSelected: (MainNavigationDestination) -> Unit = remember {
+        {
           when (it) {
             MainNavigationDestination.CHATS -> viewModel.onChatsSelected()
             MainNavigationDestination.CALLS -> viewModel.onCallsSelected()
             MainNavigationDestination.STORIES -> viewModel.onStoriesSelected()
           }
         }
-      )
+      }
+
+      if (windowSizeClass.navigation == Navigation.BAR) {
+        MainNavigationBar(
+          state = navState,
+          onDestinationSelected = onDestinationSelected
+        )
+      } else {
+        MainNavigationRail(
+          state = navState,
+          onDestinationSelected = onDestinationSelected
+        )
+      }
     }
   }
 
