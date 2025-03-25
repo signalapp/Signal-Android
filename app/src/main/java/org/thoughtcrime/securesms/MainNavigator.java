@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,10 +20,10 @@ public class MainNavigator {
 
   public static final int REQUEST_CONFIG_CHANGES = 901;
 
-  private final MainActivity        activity;
+  private final AppCompatActivity   activity;
   private final LifecycleDisposable lifecycleDisposable;
 
-  public MainNavigator(@NonNull MainActivity activity) {
+  public MainNavigator(@NonNull AppCompatActivity activity) {
     this.activity            = activity;
     this.lifecycleDisposable = new LifecycleDisposable();
 
@@ -34,7 +35,7 @@ public class MainNavigator {
       throw new IllegalArgumentException("Activity must be an instance of MainActivity!");
     }
 
-    return ((MainActivity) activity).getNavigator();
+    return ((NavigatorProvider) activity).getNavigator();
   }
 
   /**
@@ -87,5 +88,10 @@ public class MainNavigator {
      * to the system to do the default behavior.
      */
     boolean onBackPressed();
+  }
+
+  public interface NavigatorProvider {
+    @NonNull MainNavigator getNavigator();
+    void onFirstRender();
   }
 }

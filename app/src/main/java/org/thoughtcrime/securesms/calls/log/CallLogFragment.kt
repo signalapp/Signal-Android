@@ -33,7 +33,7 @@ import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.MainActivity
+import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
@@ -134,7 +134,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     callLogAdapter.setPagingController(viewModel.controller)
     callLogAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
       override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
-        (requireActivity() as? MainActivity)?.onFirstRender()
+        (requireActivity() as? MainNavigator.NavigatorProvider)?.onFirstRender()
         callLogAdapter.unregisterAdapterDataObserver(this)
       }
     })
@@ -328,8 +328,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     }
 
-    filterViewOffsetChangeListener = AppBarLayout.OnOffsetChangedListener {
-        layout: AppBarLayout, verticalOffset: Int ->
+    filterViewOffsetChangeListener = AppBarLayout.OnOffsetChangedListener { layout: AppBarLayout, verticalOffset: Int ->
       val progress = 1 - verticalOffset.toFloat() / -layout.height
       binding.pullView.onUserDrag(progress)
     }
@@ -485,6 +484,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
               .setPositiveButton(android.R.string.ok, null)
               .show()
           }
+
           CallLogDeletionResult.Success -> {
             Snackbar
               .make(
@@ -494,6 +494,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
               )
               .show()
           }
+
           is CallLogDeletionResult.UnknownFailure -> {
             Log.w(TAG, "Deletion failed.", it.reason)
             Toast.makeText(requireContext(), R.string.CallLogFragment__deletion_failed, Toast.LENGTH_SHORT).show()

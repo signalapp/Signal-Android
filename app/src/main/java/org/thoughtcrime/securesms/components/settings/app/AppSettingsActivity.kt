@@ -53,6 +53,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         StartLocation.BACKUPS -> AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
         StartLocation.HELP -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
           .setStartCategoryIndex(intent.getIntExtra(HelpFragment.START_CATEGORY_INDEX, 0))
+
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
@@ -64,6 +65,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         StartLocation.NOTIFICATION_PROFILE_DETAILS -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
           EditNotificationProfileScheduleFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).profileId
         )
+
         StartLocation.PRIVACY -> AppSettingsFragmentDirections.actionDirectToPrivacy()
         StartLocation.LINKED_DEVICES -> AppSettingsFragmentDirections.actionDirectToDevices()
         StartLocation.USERNAME_LINK -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
@@ -74,6 +76,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
           CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).folderId,
           CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).threadIds
         )
+
         StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
       }
     }

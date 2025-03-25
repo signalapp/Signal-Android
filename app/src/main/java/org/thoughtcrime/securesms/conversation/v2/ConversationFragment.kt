@@ -1066,6 +1066,7 @@ class ConversationFragment :
               AvatarDownloadStateCache.DownloadState.FINISHED -> {
                 viewModel.updateThreadHeader()
               }
+
               AvatarDownloadStateCache.DownloadState.FAILED -> {
                 Snackbar.make(requireView(), R.string.ConversationFragment_photo_failed, Snackbar.LENGTH_LONG).show()
                 presentConversationTitle(recipient)
@@ -2255,6 +2256,7 @@ class ConversationFragment :
                   Log.d(TAG, "report spam complete")
                   toast(R.string.ConversationFragment_reported_as_spam_and_blocked)
                 }
+
                 is Result.Failure -> {
                   Log.d(TAG, "report spam failed ${result.failure}")
                   toast(GroupErrors.getUserDisplayMessage(result.failure))
@@ -3724,7 +3726,10 @@ class ConversationFragment :
           MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orNull(), it.transformProperties.orNull())
           MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption.orNull())
           MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption.orNull(), null, it.transformProperties.orNull())
-          MediaUtil.isDocumentType(it.contentType) -> { DocumentSlide(requireContext(), it.uri, it.contentType, it.size, it.fileName.orNull()) }
+          MediaUtil.isDocumentType(it.contentType) -> {
+            DocumentSlide(requireContext(), it.uri, it.contentType, it.size, it.fileName.orNull())
+          }
+
           else -> {
             Log.w(TAG, "Asked to send an unexpected mimeType: '${it.contentType}'. Skipping.")
             null
@@ -4142,7 +4147,13 @@ class ConversationFragment :
         .request(Manifest.permission.RECORD_AUDIO)
         .ifNecessary()
         .withRationaleDialog(getString(R.string.ConversationActivity_allow_access_microphone), getString(R.string.ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone), R.drawable.ic_mic_24)
-        .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages), null, R.string.ConversationActivity_allow_access_microphone, R.string.ConversationActivity_signal_to_send_audio_messages, this@ConversationFragment.parentFragmentManager)
+        .withPermanentDenialDialog(
+          getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages),
+          null,
+          R.string.ConversationActivity_allow_access_microphone,
+          R.string.ConversationActivity_signal_to_send_audio_messages,
+          this@ConversationFragment.parentFragmentManager
+        )
         .onAnyDenied { Toast.makeText(this@ConversationFragment.requireContext(), R.string.ConversationActivity_signal_needs_microphone_access_voice_message, Toast.LENGTH_LONG).show() }
         .execute()
     }

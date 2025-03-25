@@ -970,8 +970,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         startupStopwatch.split("data-set");
         SignalLocalMetrics.ColdStart.onConversationListDataLoaded();
         defaultAdapter.unregisterAdapterDataObserver(this);
-        if (requireActivity() instanceof MainActivity) {
-          ((MainActivity) requireActivity()).onFirstRender();
+        if (requireActivity() instanceof MainNavigator.NavigatorProvider) {
+          ((MainNavigator.NavigatorProvider) requireActivity()).onFirstRender();
         }
         list.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
           @Override
