@@ -16,19 +16,19 @@ jobs:
     runs-on: ubuntu-latest-8-cores
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
           submodules: true
 
     - name: set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
         cache: gradle
 
     - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v1
+      uses: gradle/wrapper-validation-action@v3
 
     - name: Build with Gradle
       run: ./gradlew qa
