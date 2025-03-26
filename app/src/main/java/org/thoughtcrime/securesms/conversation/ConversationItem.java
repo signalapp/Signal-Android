@@ -1188,7 +1188,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         mediaThumbnailStub.require().setVisibility(VISIBLE);
         mediaThumbnailStub.require().setMinimumThumbnailWidth(readDimen(R.dimen.media_bubble_min_width_with_content));
         mediaThumbnailStub.require().setMaximumThumbnailHeight(readDimen(R.dimen.media_bubble_max_height));
-        mediaThumbnailStub.require().setImageResource(requestManager, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false);
+        mediaThumbnailStub.require().setImageResource(requestManager, Collections.singletonList(new ImageSlide(linkPreview.getThumbnail().get())), showControls, false, getDefaultBubbleColor(hasWallpaper));
         mediaThumbnailStub.require().setThumbnailClickListener(new LinkPreviewThumbnailClickListener());
         mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);
         mediaThumbnailStub.require().setCancelTransferClickListener(attachmentCancelClickListener);
@@ -1291,11 +1291,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (hasSticker(messageRecord)) {
         //noinspection ConstantConditions
-        stickerStub.get().setSlide(requestManager, ((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide());
+        stickerStub.get().setSlide(requestManager, ((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide(), getDefaultBubbleColor(hasWallpaper));
         stickerStub.get().setThumbnailClickListener(new StickerClickListener());
       } else {
         //noinspection ConstantConditions
-        stickerStub.get().setSlide(requestManager, ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide());
+        stickerStub.get().setSlide(requestManager, ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide(), getDefaultBubbleColor(hasWallpaper));
         stickerStub.get().setThumbnailClickListener((v, slide) -> performClick());
       }
 
@@ -1337,7 +1337,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.require().setImageResource(requestManager,
                                                     thumbnailSlides,
                                                     showControls,
-                                                    false);
+                                                    false,
+                                                    getDefaultBubbleColor(hasWallpaper));
       if (!messageRecord.isOutgoing()) {
         mediaThumbnailStub.require().setConversationColor(getDefaultBubbleColor(hasWallpaper));
         mediaThumbnailStub.require().setStartTransferClickListener(downloadClickListener);

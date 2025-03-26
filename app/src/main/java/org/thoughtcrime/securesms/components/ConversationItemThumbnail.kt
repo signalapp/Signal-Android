@@ -195,7 +195,8 @@ class ConversationItemThumbnail @JvmOverloads constructor(
     requestManager: RequestManager,
     slides: List<Slide>,
     showControls: Boolean,
-    isPreview: Boolean
+    isPreview: Boolean,
+    @ColorInt missingThumbnailBackgroundColor: Int
   ) {
     if (slides.size == 1) {
       val slide = slides[0]
@@ -223,7 +224,7 @@ class ConversationItemThumbnail @JvmOverloads constructor(
 
       val attachment = slides[0].asAttachment()
 
-      thumbnail.get().setImageResource(requestManager, slides[0], showControls, isPreview, attachment.width, attachment.height)
+      thumbnail.get().setImageResource(requestManager, slides[0], showControls, isPreview, attachment.width, attachment.height, missingThumbnailBackgroundColor)
       touchDelegate = thumbnail.get().touchDelegate
     } else {
       state = state.copy(
