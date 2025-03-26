@@ -72,7 +72,7 @@ public final class ActiveSubscription {
     }
   }
 
-  private enum Status {
+  public enum Status {
     /**
      * The subscription is currently in a trial period and it's safe to provision your product for your customer.
      * The subscription transitions automatically to active when the first payment is made.
@@ -123,7 +123,7 @@ public final class ActiveSubscription {
       this.status = status;
     }
 
-    private static Status getStatus(String status) {
+    public static Status getStatus(String status) {
       for (Status s : Status.values()) {
         if (Objects.equals(status, s.status)) {
           return s;
