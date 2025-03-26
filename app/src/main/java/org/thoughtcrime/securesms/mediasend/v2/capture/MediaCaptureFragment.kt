@@ -124,6 +124,10 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
         viewLifecycleOwner,
         object : OnBackPressedCallback(true) {
           override fun handleOnBackPressed() {
+            if(sharedViewModel.isVideoRecording.value==true) {
+              captureChildFragment.stopVideoRecording()
+              return
+            }
             requireActivity().finish()
           }
         }
@@ -138,6 +142,11 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
   override fun onResume() {
     super.onResume()
     captureChildFragment.fadeInControls()
+  }
+
+  override fun onStop() {
+    super.onStop()
+    sharedViewModel.updateIsVideoRecordingState(false)
   }
 
   override fun onCameraError() {
@@ -155,12 +164,18 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
     viewModel.onImageCaptured(data, width, height)
   }
 
+  override fun onVideoCaptureStarted() {
+    sharedViewModel.updateIsVideoRecordingState(true)
+  }
+
   override fun onVideoCaptured(fd: FileDescriptor) {
     viewModel.onVideoCaptured(fd)
+    sharedViewModel.updateIsVideoRecordingState(false)
   }
 
   override fun onVideoCaptureError() {
     Log.w(TAG, "Video capture error.")
+    sharedViewModel.updateIsVideoRecordingState(false)
     Toast.makeText(requireContext(), R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show()
   }
 
