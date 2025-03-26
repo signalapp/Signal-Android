@@ -31,7 +31,7 @@ class TranscodingQuality private constructor(@VideoCodec val codec: String, val 
   }
 
   val targetTotalBitRate = targetVideoBitRate + targetAudioBitRate
-  val byteCountEstimate = (targetTotalBitRate / 8) * (durationMs / 1000)
+  val byteCountEstimate = ((targetTotalBitRate / 8f) * (durationMs / 1000f)).toInt()
 
   override fun toString(): String {
     return "Quality{codec=$codec, targetVideoBitRate=$targetVideoBitRate, targetAudioBitRate=$targetAudioBitRate, duration=$durationMs, filesize=$byteCountEstimate}"
