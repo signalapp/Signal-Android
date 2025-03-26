@@ -98,7 +98,6 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -1655,11 +1654,6 @@ object SyncMessageProcessor {
   }
 
   private fun handleSynchronizeAttachmentBackfillRequest(request: SyncMessage.AttachmentBackfillRequest, timestamp: Long) {
-    if (!RemoteConfig.attachmentBackfillSync) {
-      warn(timestamp, "[AttachmentBackfillRequest] Remote config not enabled! Skipping.")
-      return
-    }
-
     if (request.targetMessage == null || request.targetConversation == null) {
       warn(timestamp, "[AttachmentBackfillRequest] Target message or target conversation was unset! Can't formulate a response, ignoring.")
       return

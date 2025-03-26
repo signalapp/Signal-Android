@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms
 
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.account.AccountAttributes
 
 object AppCapabilities {
@@ -15,7 +14,7 @@ object AppCapabilities {
       deleteSync = true,
       versionedExpirationTimer = true,
       storageServiceEncryptionV2 = true,
-      attachmentBackfill = RemoteConfig.attachmentBackfillSync
+      attachmentBackfill = true
     )
   }
 }
