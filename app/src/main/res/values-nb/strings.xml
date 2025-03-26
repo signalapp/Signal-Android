@@ -462,7 +462,7 @@
 
     <string name="ConversationActivity_invalid_recipient">Ugyldig mottaker.</string>
     <string name="ConversationActivity_added_to_home_screen">Lagt til startskjermen</string>
-    <string name="ConversationActivity_calls_not_supported">Samtaler støttes ikke</string>
+    <string name="ConversationActivity_calls_not_supported">Anrop støttes ikke</string>
     <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å støtte oppringing.</string>
     <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
@@ -1180,7 +1180,7 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg i Google Play-tjenesten. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunne ikke registreres i Google Play-tjenesten. Signal-meldinger og Signal-anrop er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
 
 
     <!-- GiphyActivity -->
@@ -3054,7 +3054,7 @@
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_channel_messages">Meldinger</string>
-    <string name="NotificationChannel_calls">Samtaler</string>
+    <string name="NotificationChannel_calls">Anrop</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Feil</string>
     <string name="NotificationChannel_backups">Sikkerhetskopiering</string>
@@ -3180,7 +3180,7 @@
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å svare på anropet.</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">Gi Signal tilgang til mikrofonen og kameraet for å svare på videoanropet.</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe og motta telefonsamtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
     <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvart på en koblet enhet.</string>
     <string name="WebRtcCallActivity__declined_on_a_linked_device">Avslått på en koblet enhet.</string>
     <string name="WebRtcCallActivity__busy_on_a_linked_device">Opptatt på en koblet enhet.</string>
@@ -3832,11 +3832,11 @@
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
     <string name="preferences__system_default">System standard</string>
     <string name="preferences__language">Språk</string>
-    <string name="preferences__signal_messages_and_calls">Signal-meldinger og -samtaler</string>
+    <string name="preferences__signal_messages_and_calls">Meldinger og anrop i Signal</string>
     <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
     <!-- Title of toolbar for the advanced pin settings screen -->
     <string name="preferences__advanced_pin_settings_title">Avanserte innstillinger for PIN-kode</string>
-    <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
+    <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og anrop til Signal-brukere</string>
     <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
     <string name="preferences__delete_account">Slett kontoen</string>
     <string name="preferences__support_wifi_calling">«Wi-Fi-anrop»-tilbakefallsmodus</string>
@@ -3891,8 +3891,8 @@
 
     <string name="preferences_storage__custom">Selvvalgt</string>
     <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
-    <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle anrop gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
+    <string name="preferences_advanced__always_relay_calls">Omdiriger alle telefonsamtaler</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Betalinger</string>
     <string name="preferences_chats__chats">Samtaler</string>
@@ -3902,7 +3902,7 @@
     <string name="preferences_data_and_storage__never">Aldri</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
     <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre samtaler på dårlige nettverk</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre telefonsamtaler på dårlige nettverk</string>
     <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
     <string name="preferences_notifications__show">Vis</string>
     <string name="preferences_notifications__ringtone">Ringetone</string>

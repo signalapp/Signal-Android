@@ -637,11 +637,11 @@
     <!-- Action shown to allow a user to re-register as they are no longer registered -->
     <string name="ConversationFragment__reregister_signal">Volver a registrarse en Signal</string>
     <!-- Label for a button displayed in the conversation toolbar to return to the previous screen. -->
-    <string name="ConversationFragment__content_description_back_button">Volver atrás.</string>
+    <string name="ConversationFragment__content_description_back_button">Volver</string>
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Abrir Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">Ya no está verificado</string>
+    <string name="ConversationFragment__no_longer_verified">Contactos no verificados</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
     <string name="ConversationFragment_safety_tips">Consejos de seguridad</string>
     <!-- Menu option to report spam in a conversation -->
@@ -981,7 +981,7 @@
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Aceptar</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Para volver a habilitar la programación de mensajes:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Para reactivar la programación de mensajes:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
     <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Seleccionar fecha</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
@@ -991,9 +991,9 @@
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
     <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Programar envío</string>
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todas las horas en (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todas las horas se muestran en (%1$s) %2$s</string>
     <!-- Warning dialog message text shown when select time for scheduled send is in the past resulting in an immediate send if scheduled. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">El tiempo seleccionado ya ha pasado. Esto enviará el mensaje inmediatamente.</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning">La hora seleccionada ya ha pasado. Si continúas, se enviará el mensaje inmediatamente.</string>
     <!-- Positive button text for warning dialog shown when scheduled send is in the past -->
     <string name="ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button">Enviar inmediatamente</string>
 
@@ -1315,11 +1315,11 @@
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title">Hemos notado que las notificaciones se retrasan. ¿Enviar registro de depuración?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title">Hemos notado que las notificaciones llegan con retraso. ¿Enviar registro de depuración?</string>
     <!-- Message for dialog asking user to submit logs for debugging a crash -->
-    <string name="PromptLogsSlowNotificationsDialog__message">Los registros de depuración nos ayudan a diagnosticar y solucionar el problema y no contienen información que pueda identificarte.</string>
+    <string name="PromptLogsSlowNotificationsDialog__message">Los registros de depuración nos ayudan a diagnosticar y solucionar el problema, y no contienen información que pueda identificarte.</string>
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
-    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal ha encontrado un problema. ¿Enviar registro de depuración?</string>
+    <string name="PromptLogsSlowNotificationsDialog__title_crash">Signal ha detectado un problema. ¿Enviar registro de depuración?</string>
     <!-- Title for dialog asking user to submit logs for a situation where they\'re not able to connect to the signal service -->
     <string name="PromptLogsSlowNotificationsDialog__title_connectivity_warning">Es posible que no estés recibiendo mensajes. ¿Enviar registro de depuración?</string>
 
@@ -1327,7 +1327,7 @@
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
     <string name="PromptBatterySaverBottomSheet__title">Las notificaciones pueden retrasarse debido a los procesos de optimización de la batería</string>
     <!-- Message explaining that battery saver may delay notifications -->
-    <string name="PromptBatterySaverBottomSheet__message">Puedes deshabilitar las opciones de optimización de batería para Signal para asegurarte de que las notificaciones de mensajes no se retrasen.</string>
+    <string name="PromptBatterySaverBottomSheet__message">Puedes deshabilitar la optimización de la batería para asegurarte de que las notificaciones de mensajes de Signal no se retrasen.</string>
 
     <!-- Title in bottom sheet that states that notifications for this device could be delayed -->
     <string name="DeviceSpecificNotificationBottomSheet__notifications_may_be_delayed">Las notificaciones pueden retrasarse debido a las optimizaciones de la batería</string>
@@ -1407,7 +1407,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Has seleccionado un contacto que no tiene habilitados los grupos en Signal, así que este grupo será MMS. Solo tú podrás ver los nombres personalizados y las fotos de los grupos MMS.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Has seleccionado un contacto que no usa Signal, por lo que los mensajes de este grupo se enviarán como MMS. Los nombres e imágenes de grupos MMS solo son visibles para ti. Los grupos de MMS pronto no serán compatibles porque nos centraremos en seguir desarrollando mensajería cifrada.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Has seleccionado un contacto que usa una versión de Signal no compatible con los grupos, por lo que los mensajes de este grupo se enviarán como MMS. Los nombres y las imágenes de los grupos de MMS serán visibles solo para ti. Los grupos de MMS pronto dejarán de ser compatibles, ya que nos centraremos en seguir desarrollando la mensajería cifrada.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_who_can_add_new_members">¿Quién puede añadir participantes?</string>
@@ -1434,7 +1434,7 @@
     <string name="ManageGroupActivity_legacy_group_upgrade">Este es un grupo del sistema antiguo de Signal. Para acceder a funciones como @menciones y admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Este grupo no se puede actualizar al nuevo sistema porque es demasiado grande. Se permite un máximo de %1$d participantes.</string>
     <string name="ManageGroupActivity_upgrade_this_group">actualiza este grupo.</string>
-    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS sin cifrar. Para chatear en privado, invita a tus amistades a usar Signal.</string>
+    <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este es un grupo de MMS no cifrado. Para chatear de forma privada, invita a tus contactos a Signal.</string>
     <string name="ManageGroupActivity_invite_now">Invitar ahora</string>
     <string name="ManageGroupActivity_more">más</string>
     <string name="ManageGroupActivity_add_group_description">Añadir descripción del grupo…</string>
@@ -1515,13 +1515,13 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">¿Eliminar alias?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Se eliminará tu alias y deshabilitarán tu código QR y tu enlace. %1$s estará disponible para que otras personas lo usen. ¿Seguro que quieres continuar?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Se eliminará tu alias y se deshabilitarán tu código QR y tu enlace. %1$s estará disponible para que otras personas lo usen. ¿Seguro que quieres continuar?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
     <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Ha habido un problema con tu alias; ya no está asignado a tu cuenta. Puedes intentar configurarlo de nuevo o elegir uno distinto.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
-    <string name="UsernameOutOfSyncReminder__link_corrupt">Ha habido un problema con el código QR y el enlace de tu alias, por lo que ya no son válidos. Crea un nuevo enlace para compartir.</string>
+    <string name="UsernameOutOfSyncReminder__link_corrupt">Se ha producido un error con el código QR y el enlace de tu alias, por lo que ya no son válidos. Crea un enlace nuevo para compartir.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
     <string name="UsernameOutOfSyncReminder__fix_now">Corregir ahora</string>
 
@@ -1584,7 +1584,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">No es posible unirse al grupo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No puedes volver a unirte a este grupo usando el enlace porque un admin te ha eliminado.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No puedes volver a unirte a este grupo usando el enlace porque alguien con permisos de admin te ha eliminado.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">El enlace a este grupo ya no es válido.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1997,13 +1997,13 @@
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s pertenece a %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">Has enviado una solicitud a  %1$s para que active Pagos</string>
+    <string name="MessageRecord_you_sent_request">Has enviado una solicitud a %1$s para que active Pagos</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s quiere que actives Pagos. Envía pagos solamente a las personas en las que confíes.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s quiere que actives Pagos. Envía pagos solo a personas de confianza.</string>
     <!-- Message to inform user that payments was activated-->
     <string name="MessageRecord_you_activated_payments">Has activado Pagos</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s ya puede aceptar Pagos</string>
+    <string name="MessageRecord_can_accept_payments">%1$s ya puede aceptar pagos en Signal</string>
     <!-- Message shown to inform user that a payment is missing details due to restore -->
     <string name="MessageRecord_payments_restore_tombstone">Los detalles de pago no están disponibles</string>
     <!-- Message shown to inform user to tap the payment to learn more about why the details arent available -->
@@ -2070,9 +2070,9 @@
     </plurals>
 
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Pronto ya no podrás enviar mensajes SMS desde Signal. Invita a %1$s a Signal para mantener aquí tu conversación.</string>
+    <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Pronto ya no podrás enviar mensajes SMS desde Signal. Invita a %1$s a Signal para seguir chateando aquí.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
-    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Ya no puedes enviar mensajes SMS desde Signal. Invita a %1$s a Signal para mantener aquí tu conversación.</string>
+    <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Ya no puedes enviar mensajes SMS desde Signal. Invita a %1$s a Signal para seguir chateando aquí.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
     <string name="MessageRecord__payment_s">Pago: %1$s</string>
     <!-- Body for quote when message being quoted is an in-app payment message tombstone without an amount -->
@@ -2100,13 +2100,13 @@
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">¿Compartir tu nombre y foto de perfil con %1$s y permitir que te envíe mensajes? Has eliminado a esta persona anteriormente.</string>
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Permitir que %1$s te envíe mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has visto sus mensajes hasta que aceptes.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir que %1$s te envíe mensajes y compartir tu nombre y foto de perfil con esta persona? No sabrá que has recibido sus mensajes hasta la desbloquees.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Permitir que %1$s te envíe mensajes y compartir tu nombre y foto de perfil con esta persona? No recibirás ninguno de sus mensajes hasta la desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">¿Quieres permitir a %1$s chatear contigo? No recibirás ningún mensaje si no desbloqueas el chat.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">¿Permitir que %1$s te envíe mensajes? No recibirás ningún mensaje de esta persona hasta que la desbloquees.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">¿Quieres recibir noticias de %1$s? No recibirás ninguna novedad hasta que desbloquees a esta persona.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">¿Quieres recibir noticias de %1$s? No recibirás ninguna novedad hasta que desbloquees a este contacto.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Seguir chateando con este grupo y compartir tu nombre y foto de perfil con sus participantes?</string>
-    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este es un grupo antiguo y ya no puede usarse. Crea un nuevo grupo para activar funciones nuevas como @menciones y admins.</string>
+    <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Este grupo ya no puede usarse porque pertenece al sistema antiguo. Crea un nuevo grupo para activar funciones nuevas como @menciones y admins.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo del sistema antiguo no es válido porque es demasiado grande. Se permite un máximo de %1$d participantes.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Seguir chateando con %1$s y compartir tu nombre y foto de perfil con esta persona?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Unirte a este grupo y compartir tu nombre y foto de perfil con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
@@ -2237,11 +2237,11 @@
     <!-- Dialog message shown in reregister flow when user requests to skip this flow and return to the normal flow -->
     <string name="ReRegisterWithPinFragment_skip_local">Si olvidas tu PIN, puedes crear uno nuevo.</string>
     <!-- Dialog message shown in reregister flow when user uses up all of their guesses for their pin and we are going to move on -->
-    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Se te han acabado los intentos para introducir tu PIN, pero aún puedes acceder a tu cuenta de Signal creando un nuevo PIN.</string>
+    <string name="ReRegisterWithPinFragment_out_of_guesses_local">Te has quedado sin intentos para verificar el PIN. Podrás acceder a tu cuenta de Signal si creas un PIN nuevo.</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Advertencia</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Al desactivar el PIN perderás todos los datos de tu cuenta si vuelves a registrarte en Signal, a menos que hagas una copia de seguridad manual y la restaures. No se puede activar el bloqueo de registro mientras el PIN esté desactivado.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Si desactivas el PIN, perderás todos los datos de tu cuenta en caso de volver a registrarte en Signal, a menos que hagas una copia de seguridad manual y la restaures. No se puede activar el bloqueo de registro mientras el PIN esté desactivado.</string>
     <string name="PinOptOutDialog_disable_pin">Desactivar PIN</string>
 
     <!-- RatingManager -->
@@ -2322,7 +2322,7 @@
     <string name="WebRtcCallActivity__not_now">Ahora no</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="one">¿Aprobar %1$d solicitud?</item>
+        <item quantity="one">¿Aprobar solicitud?</item>
         <item quantity="other">¿Aprobar %1$d solicitudes?</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
@@ -2334,7 +2334,7 @@
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="one">¿Rechazar %1$d solicitud?</item>
+        <item quantity="one">¿Rechazar solicitud?</item>
         <item quantity="other">¿Rechazar %1$d solicitudes?</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
@@ -2343,7 +2343,7 @@
         <item quantity="other">No se añadirá a %1$d personas a la llamada.</item>
     </plurals>
     <!-- Positive action for call link deny all dialog -->
-    <string name="WebRtcCallActivity__deny_all">Denegar todas</string>
+    <string name="WebRtcCallActivity__deny_all">Rechazar todas</string>
     <!-- Displayed in call status when users are pending -->
     <plurals name="WebRtcCallActivity__d_people_waiting">
         <item quantity="one">%1$d persona esperando</item>
@@ -2359,7 +2359,7 @@
     <!-- Message of dialog displayed when a user\'s join request is denied for call link entry -->
     <string name="WebRtcCallActivity__your_request_to_join_this_call_has_been_denied">Se ha rechazado tu solicitud para unirte a la llamada.</string>
     <!-- Title of dialog displayed when a user is removed from a call link -->
-    <string name="WebRtcCallActivity__removed_from_call">Se ha eliminado de la llamada</string>
+    <string name="WebRtcCallActivity__removed_from_call">Ya no estás en la llamada</string>
     <!-- Message of dialog displayed when a user is removed from a call link -->
     <string name="WebRtcCallActivity__someone_has_removed_you_from_the_call">Alguien te ha eliminado de la llamada.</string>
     <!-- Dialog title asking users for camera and microphone permission -->
@@ -2410,11 +2410,11 @@
         <item quantity="other">Signal sonará en la app de %1$s, %2$s y %3$d más</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_will_be_notified">Se enviará una notificación a %1$s</string>
-    <string name="WebRtcCallView__s_and_s_will_be_notified">Se enviará una notificación a %1$s y %2$s</string>
+    <string name="WebRtcCallView__s_will_be_notified">Se notificará a %1$s</string>
+    <string name="WebRtcCallView__s_and_s_will_be_notified">Se notificará a %1$s y %2$s</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="one">Se enviará una notificación a %1$s, %2$s y %3$d más</item>
-        <item quantity="other">Se enviará una notificación a %1$s, %2$s y %3$d más</item>
+        <item quantity="one">Se notificará a %1$s, %2$s y %3$d más</item>
+        <item quantity="other">Se notificará a %1$s, %2$s y %3$d más</item>
     </plurals>
 
     <string name="WebRtcCallView__ringing_s">Sonando en la app de %1$s</string>
@@ -2444,13 +2444,13 @@
     </plurals>
 
     <!-- Toggle content description for toggling camera direction  -->
-    <string name="WebRtcCallView__toggle_camera_direction">Rotar cámara</string>
+    <string name="WebRtcCallView__toggle_camera_direction">Alternar cámara</string>
     <!-- Toggle content description for toggling audio output  -->
     <string name="WebRtcCallView__toggle_speaker">Alternar altavoz</string>
     <!-- Toggle content description for toggling camera state  -->
     <string name="WebRtcCallView__toggle_camera">Alternar cámara</string>
     <!-- Toggle content description for toggling mute state  -->
-    <string name="WebRtcCallView__toggle_mute">Modificar silenciado</string>
+    <string name="WebRtcCallView__toggle_mute">Activar o desactivar micrófono</string>
     <!-- Content description for additional actions menu button -->
     <string name="WebRtcCallView__additional_actions">Acciones adicionales</string>
     <!-- Content description for end-call button -->
@@ -2459,9 +2459,9 @@
     <string name="WebRtcCallView__toggle_group_ringing">Activar o desactivar sonido de llamada grupal</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
-    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Se ha producido un error de interfaz de usuario. Informa este error a los desarrolladores.</string>
+    <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Se ha producido un error de interfaz de usuario. Informa de este error a los desarrolladores.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
-    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No se detectó ninguna E/S de audio apto.</string>
+    <string name="WebRtcAudioOutputToggleButton_no_eligible_audio_i_o_detected">No se ha detectado ninguna entrada o salida de audio.</string>
     <!-- A text description of the bluetooth icon, used for accessibility. -->
     <string name="WebRtcAudioOutputBottomSheet__bluetooth_icon_content_description">Icono que representa un dispositivo Bluetooth.</string>
     <!-- A text description of the headset icon, used for accessibility. -->
@@ -2562,8 +2562,8 @@
         <item quantity="other">En esta llamada (%1$d)</item>
     </plurals>
     <plurals name="CallParticipantsListDialog__signal_will_ring">
-        <item quantity="one">Signal sonará en la app de %1$d</item>
-        <item quantity="other">Signal sonará en la app de %1$d</item>
+        <item quantity="one">Signal sonará en la app de (%1$d)</item>
+        <item quantity="other">Signal sonará en la app de (%1$d)</item>
     </plurals>
     <!-- Header text shown in a bottom sheet that indicates how many people will be notified about an outgoing call -->
     <plurals name="CallParticipantsListDialog__signal_will_notify">
@@ -2576,7 +2576,7 @@
     </plurals>
 
     <!-- CallParticipantView -->
-    <string name="CallParticipantView__s_is_blocked">Se ha bloqueado a %1$s</string>
+    <string name="CallParticipantView__s_is_blocked">Has bloqueado a %1$s</string>
     <string name="CallParticipantView__more_info">Más detalles</string>
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">No recibirás el audio ni el vídeo de esta persona y ella no recibirá los tuyos.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">No se puede recibir audio ni vídeo de %1$s</string>
@@ -2636,7 +2636,7 @@
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
     <string name="RegistrationActivity_sms_provider_error">Signal no ha podido enviar un código SMS debido a problemas con el proveedor de SMS. Vuelve a intentarlo dentro de unas horas.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte el código de verificación por SMS. Intenta recibir tu código mediante llamada.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte el código de verificación por SMS. Puedes recibir tu código mediante llamada.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">No se ha podido solicitar un código de verificación. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Número en formato no estándar</string>
@@ -2675,11 +2675,11 @@
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">¿Tienes problemas para registrarte?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Asegúrate de que tu teléfono tenga señal para recibir tu SMS o llamada\n • Confirma que puedes recibir llamadas a ese número\n • Comprueba que has ingresado tu número de teléfono correctamente.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Asegúrate de que tu teléfono tenga señal para recibir SMS o llamadas.\n • Confirma que puedes recibir llamadas en ese número.\n • Comprueba que has ingresado tu número de teléfono correctamente.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Para obtener más información, consulta %1$s o selecciona %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
-    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">estos pasos de solución de problemas</string>
+    <string name="RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring">estos pasos para solucionar el problema</string>
     <!--    A clickable piece of text that will pre-fill a request for support email in the user\'s email app.-->
     <string name="RegistrationActivity_support_bottom_sheet_cta_contact_support_substring">Contactar con asistencia</string>
 
@@ -2816,7 +2816,7 @@
     <!-- Displayed in the notification when the user activates payments -->
     <string name="ThreadRecord_you_activated_payments">Has activado Pagos</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s ya puede aceptar Pagos</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s ya puede aceptar pagos en Signal</string>
     <string name="ThreadRecord_s_is_on_signal">¡%1$s usa Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Mensajes temporales desactivados</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">La duración de los mensajes temporales se ha establecido en %1$s</string>
@@ -2828,7 +2828,7 @@
     <string name="ThreadRecord_delivery_issue">Fallo en la entrega</string>
     <string name="ThreadRecord_message_request">Solicitud de mensaje</string>
     <!-- Thread preview for a recipient that has been hidden -->
-    <string name="ThreadRecord_hidden_recipient">Has ocultado a esta persona, envíale un mensaje de nuevo y se la volverá a añadir a tu lista.</string>
+    <string name="ThreadRecord_hidden_recipient">Has ocultado a esta persona. Envíale un mensaje para que vuelva a aparecer en tu lista de contactos.</string>
     <string name="ThreadRecord_photo">Foto</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Mensaje de voz</string>
@@ -2838,31 +2838,31 @@
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s ha hecho una donación en tu nombre</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">Has hecho una donación por %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Has hecho una donación en nombre de %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Has canjeado una insignia</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Ha reaccionado con %1$s a tu historia</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Ha reaccionado con %1$s a su historia</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Has reaccionado con %1$s a su historia</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Pago</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
     <string name="ThreadRecord_scheduled_message">Mensaje programado</string>
     <!--  Displayed in the conversation list when your message history has been merged -->
-    <string name="ThreadRecord_message_history_has_been_merged">Tu historial de mensajes se ha combinado</string>
+    <string name="ThreadRecord_message_history_has_been_merged">Tu historial de mensajes se ha fusionado</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s pertenece a %2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloqueado</string>
 
     <!-- ApkUpdateNotifications -->
-    <string name="ApkUpdateNotifications_prompt_install_title">Actualizar Signal</string>
+    <string name="ApkUpdateNotifications_prompt_install_title">Actualización de Signal</string>
     <string name="ApkUpdateNotifications_prompt_install_body">Una nueva versión de Signal está disponible. Toca para actualizar.</string>
-    <string name="ApkUpdateNotifications_failed_general_title">Signal no se ha podido actualizar</string>
+    <string name="ApkUpdateNotifications_failed_general_title">Signal no se ha podido actualizar.</string>
     <string name="ApkUpdateNotifications_failed_general_body">Lo intentaremos de nuevo más tarde.</string>
-    <string name="ApkUpdateNotifications_auto_update_success_title">Signal se ha actualizado con éxito</string>
-    <string name="ApkUpdateNotifications_auto_update_success_body">Se actualizó automáticamente a la versión %1$s.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_title">Signal se ha actualizado correctamente.</string>
+    <string name="ApkUpdateNotifications_auto_update_success_body">Se ha actualizado automáticamente a la versión %1$s.</string>
     <string name="ApkUpdateNotifications_manual_update_success_body">Has actualizado a la versión %1$s.</string>
 
     <!-- UntrustedSendDialog -->
@@ -2882,7 +2882,7 @@
     <string name="UsernameEditFragment__choose_your_username">Elige tu alias</string>
     <string name="UsernameEditFragment_username">Alias</string>
     <string name="UsernameEditFragment_delete">Eliminar</string>
-    <string name="UsernameEditFragment_successfully_removed_username">Alias eliminado con éxito.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Alias eliminado correctamente.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Se ha producido un error de red.</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
     <string name="UsernameEditFragment_rate_limit_exceeded_error">Se han realizado demasiados intentos. Inténtalo de nuevo más tarde.</string>
@@ -2895,7 +2895,7 @@
     <string name="UsernameEditFragment__usernames_let_others_message">Los alias siempre incluyen un conjunto de números.</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
     <string name="UsernameEditFragment__what_is_this_number">¿Qué es este número?</string>
-    <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos te ayudarán a mantener tu alias en privado para así evitar que recibas mensajes no deseados. Comparte tu alias solo con aquellas personas y grupos con los que quieras charlar. Si cambias tu alias, recibirás una nueva serie de dígitos.</string>
+    <string name="UsernameEditFragment__these_digits_help_keep">Estos dígitos ayudan a proteger la privacidad de tu alias para evitar que recibas mensajes no deseados. Comparte tu alias solo con aquellas personas y grupos con los que quieras chatear. Si cambias tu alias, recibirás una nueva serie de dígitos.</string>
     <!-- Button to allow user to skip -->
     <string name="UsernameEditFragment__skip">Omitir</string>
     <!-- Content description for done button -->
@@ -2973,7 +2973,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento para guardar archivos en el almacenamiento externo. Ve al menú Ajustes de tu dispositivo y selecciona Aplicaciones y notificaciones &gt; Signal &gt; Permisos de la aplicación &gt; Almacenamiento &gt; Permitir. Estos pasos pueden variar dependiendo de tu dispositivo.</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Signal no tiene acceso</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">Se eliminará el mensaje de forma permanente.</string>
     <string name="MediaPreviewActivity_s_to_s">De %1$s para %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">De ti para %1$s</string>
@@ -3863,13 +3863,13 @@
     <string name="preferences_storage__delete_older_messages">¿Eliminar mensajes antiguos?</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
     <string name="preferences_storage__delete_message_history">¿Eliminar historial de mensajes?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo con más antigüedad de %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Se eliminarán de forma permanente todos los mensajes y archivos multimedia de este dispositivo que tengan más de %1$s.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
         <item quantity="one">Esto recortará permanentemente todos los chats y mantendrá el mensaje más reciente.</item>
         <item quantity="other">Esto recortará permanentemente todos los chats y mantendrá los %1$s mensajes más recientes.</item>
     </plurals>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Esto eliminará permanentemente todos los mensajes y adjuntos de este dispositivo.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Se eliminará de forma permanente todo el historial de mensajes y todos los archivos multimedia de tu dispositivo.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device_linked_device">Se eliminará de forma permanente todo el historial de mensajes y todos los archivos multimedia de este dispositivo y de cualquier otro dispositivo vinculado.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">¿Seguro que quieres eliminar todo tu historial de mensajes?</string>

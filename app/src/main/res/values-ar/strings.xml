@@ -193,7 +193,7 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">%1$s مرة واحدة</string>
+    <string name="OneTimeDonationPreference__one_time_s">%1$s مرّة واحدة</string>
     <!-- Preference subtitle when donation is pending -->
     <string name="OneTimeDonationPreference__donation_pending">التبرّع مُعلَّق</string>
     <!-- Preference subtitle when donation is processing -->
@@ -654,7 +654,7 @@
     <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة.</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليمين فوق أي رسالة للرد بسرعة.</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف \"وسائط العرض لِمرة واحدة\" بعد الإرسال.</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">تُحذف \"وسائط العرض لِمرّة واحدة\" بعد الإرسال.</string>
     <string name="ConversationFragment_you_already_viewed_this_message">سبَق لك رؤية هذه الرسالة.</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يُمكِنُك إضافة مُلاحظات لنفسك في هذه الدردشة. إذا كان حسابك يحتوي على أي أجهزة مُرتبطة، ستتم مُزامنة المُلاحظات الجديدة.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d أعضاء بالمجموعة لهم نفس اﻻسم.</string>
@@ -3156,9 +3156,9 @@
     <string name="ThreadRecord_draft">مسودة:</string>
     <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
     <string name="ThreadRecord_sticker">مُلصَق</string>
-    <string name="ThreadRecord_view_once_photo">صورة للمشاهدة لمرة واحدة</string>
-    <string name="ThreadRecord_view_once_video">فيديو للمشاهدة لمرة واحدة</string>
-    <string name="ThreadRecord_view_once_media">وسيط للمشاهدة لمرة واحدة</string>
+    <string name="ThreadRecord_view_once_photo">صورة للمشاهدة لمرّة واحدة</string>
+    <string name="ThreadRecord_view_once_video">فيديو للمشاهدة لمرّة واحدة</string>
+    <string name="ThreadRecord_view_once_media">وسيط للمشاهدة لمرّة واحدة</string>
     <string name="ThreadRecord_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
     <string name="ThreadRecord_you_deleted_this_message">حذفتَ هذه الرسالة.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
@@ -3384,8 +3384,8 @@
     <string name="MessageNotifier_mark_all_as_read">تحديد جميع الرسائل كمقروءة</string>
     <string name="MessageNotifier_mark_read">تحديد كمقروءة</string>
     <string name="MessageNotifier_turn_off_these_notifications">إيقاف هذه الإشعارات</string>
-    <string name="MessageNotifier_view_once_photo">صورة للعرض لمرة واحدة</string>
-    <string name="MessageNotifier_view_once_video">مقطع فيديو للعرض لمرة واحدة</string>
+    <string name="MessageNotifier_view_once_photo">صورة للعرض لمرّة واحدة</string>
+    <string name="MessageNotifier_view_once_video">مقطع فيديو للعرض لمرّة واحدة</string>
     <string name="MessageNotifier_reply">الرد</string>
     <string name="MessageNotifier_signal_message">‫رسالة سيجنال</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -3396,7 +3396,7 @@
     <string name="MessageNotifier_reacted_s_to_your_gif">تفاعل %1$s مع صورة GIF الخاصة بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">تفاعل %1$s مع الملف الخاص بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">تفاعل %1$s مع الملف الصوتي الخاص بك.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعل %1$s مع ملف الوسائط لديك الذي يُعرَض لمرة واحدة.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">تفاعَلَ %1$s مع ملف الوسائط لديك الذي يُعرَض لمرّة واحدة.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">تفاعل %1$s مع عملية الدفع الخاصة بك.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">تفاعل %1$s مع الملصق الخاص بك.</string>
@@ -4290,12 +4290,12 @@
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط الأقدم من %1$s من جهازك.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="zero">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="one">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="two">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسالتين.</item>
-        <item quantity="few">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسائل.</item>
-        <item quantity="many">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسالة.</item>
-        <item quantity="other">سَيتم تقليل كل الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="zero">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="one">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="two">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالتين.</item>
+        <item quantity="few">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسائل.</item>
+        <item quantity="many">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
+        <item quantity="other">سَيتمُّ تقليل جميع الدردشات إلى أحدث %1$s رسالة.</item>
     </plurals>
     <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط من جهازك.</string>
     <!-- Dialog message warning about delete chat message history will delete everything everywhere including linked devices -->
@@ -6143,7 +6143,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">القصة</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__message">رِسالَة</string>
+    <string name="ConversationSettingsFragment__message">رسالة</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">فيديو</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -7613,7 +7613,7 @@
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">شهريًا</string>
     <!-- Donation pill toggle one-time text -->
-    <string name="DonationPillToggle__one_time">مرة واحدة</string>
+    <string name="DonationPillToggle__one_time">مرّة واحدة</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
@@ -7752,7 +7752,7 @@
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
     <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">تبرُّعك الشهري مُعلَّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور استلام تبرُّعك.</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">تبرُّعك لمرة واحدة مُعلَّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور استلام تبرُّعك.</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">تبرُّعك لمرّة واحدة مُعلَّق. ستتمكّن من عرض شارتك %1$s على حسابك الشخصي فور استلام تبرُّعك.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">عادةً ما تستغرق معالجة التحويلات المصرفية ما بين يوم واحد و14 يوم عمل. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
