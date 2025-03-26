@@ -622,6 +622,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onClearAll() {
     if (imageEditorView != null) {
       imageEditorView.getModel().clearUndoStack();
+      imageEditorHud.setBlurFacesToggleEnabled(false);
       updateHudDialRotation();
     }
   }
