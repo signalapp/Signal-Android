@@ -32,7 +32,7 @@ public final class AppInitialization {
 
     TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, Util.getCanonicalVersionCode());
+    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     SignalStore.settings().setPassphraseDisabled(true);
     TextSecurePreferences.setReadReceiptsEnabled(context, true);
@@ -72,7 +72,7 @@ public final class AppInitialization {
 
     TextSecurePreferences.setAppMigrationVersion(context, ApplicationMigrations.CURRENT_VERSION);
     TextSecurePreferences.setJobManagerVersion(context, JobManager.CURRENT_VERSION);
-    TextSecurePreferences.setLastVersionCode(context, Util.getCanonicalVersionCode());
+    TextSecurePreferences.setLastVersionCode(context, BuildConfig.VERSION_CODE);
     TextSecurePreferences.setHasSeenStickerIntroTooltip(context, true);
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getMegaphoneRepository().onFirstEverAppLaunch();
