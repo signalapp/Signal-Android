@@ -4953,7 +4953,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
               SELECT 1 FROM $TABLE_NAME AS m2
               WHERE m1.$FROM_RECIPIENT_ID = m2.$FROM_RECIPIENT_ID
               AND m1.$DATE_SENT = m2.$DATE_SENT
-              AN m1.$THREAD_ID != m2.$THREAD_ID
+              AND m1.$THREAD_ID != m2.$THREAD_ID
               AND m1.$ID > m2.$ID
             )
           )
