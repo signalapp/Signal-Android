@@ -162,6 +162,7 @@ fun MessageBackupsKeyVerifyScreen(
           minLines = 4,
           visualTransformation = visualTransform,
           modifier = Modifier
+            .testTag("message-backups-key-verify-screen-backup-key-input-field")
             .fillMaxWidth()
             .focusRequester(focusRequester)
             .attachBackupKeyAutoFillHelper(autoFillHelper)

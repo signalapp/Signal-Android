@@ -11,6 +11,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.performTextInput
 import androidx.core.content.ContextCompat
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -158,7 +159,7 @@ class MessageBackupsCheckoutActivityTest {
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)).performClick()
 
     scenario.onActivity {
-      val backupKeyString = SignalStore.account.accountEntropyPool.value.chunked(4).joinToString("  ")
+      val backupKeyString = SignalStore.account.accountEntropyPool.displayValue.chunked(4).joinToString("  ")
       val clipboardManager = ContextCompat.getSystemService(context, ClipboardManager::class.java)
       assertThat(clipboardManager?.primaryClip?.getItemAt(0)?.coerceToText(context)).isEqualTo(backupKeyString)
     }
@@ -166,12 +167,18 @@ class MessageBackupsCheckoutActivityTest {
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__next)).assertIsDisplayed()
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__next)).performClick()
 
+    // Key verification page
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded)).assertIsDisplayed()
+    composeTestRule.onNodeWithTag("message-backups-key-verify-screen-backup-key-input-field").performTextInput(
+      SignalStore.account.accountEntropyPool.displayValue
+    )
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__next)).assertIsEnabled()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__next)).performClick()
+
     // Key record bottom sheet
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__keep_your_key_safe)).assertIsDisplayed()
     composeTestRule.onNodeWithTag("message-backups-key-record-screen-sheet-content")
       .performScrollToNode(hasText(context.getString(R.string.MessageBackupsKeyRecordScreen__continue)))
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__continue)).assertIsNotEnabled()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__ive_recorded_my_key)).performClick()
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__continue)).assertIsEnabled()
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__continue)).performClick()
 
