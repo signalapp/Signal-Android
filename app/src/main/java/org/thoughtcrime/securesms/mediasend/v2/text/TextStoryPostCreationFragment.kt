@@ -70,11 +70,6 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     binding.storyTextPost.enableCreationMode()
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-    lifecycleDisposable += sharedViewModel.hudCommands.subscribe {
-      if (it == HudCommand.GoToCapture) {
-        findNavController().popBackStack()
-      }
-    }
 
     lifecycleDisposable += viewModel.typeface.subscribeBy { typeface ->
       binding.storyTextPost.setTypeface(typeface)
