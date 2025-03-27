@@ -767,6 +767,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             RecipientPreference.Model(
               recipient = member.member,
               isAdmin = member.isAdmin,
+              lifecycleOwner = viewLifecycleOwner,
               onClick = {
                 RecipientBottomSheetDialogFragment.show(parentFragmentManager, member.member.id, groupState.groupId)
               }

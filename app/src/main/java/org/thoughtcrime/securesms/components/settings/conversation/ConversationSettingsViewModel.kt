@@ -449,6 +449,7 @@ sealed class ConversationSettingsViewModel(
               internalEvents.onNext(ConversationSettingsEvent.ShowMembersAdded(it.numberOfMembersAdded))
             }
           }
+
           is GroupAddMembersResult.Failure -> internalEvents.onNext(ConversationSettingsEvent.ShowAddMembersToGroupError(it.reason))
         }
       }
