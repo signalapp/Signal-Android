@@ -3,6 +3,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
+import java.io.FileNotFoundException
 
 plugins {
   alias(libs.plugins.android.application) apply false
@@ -143,8 +144,12 @@ tasks.register("checkStopship") {
     runBlocking {
       allFiles.map { file ->
         scope.async {
-          if (file.readText().contains("STOPSHIP")) {
-            stopshipFiles += file.relativeTo(cachedProjectDir).path
+          try {
+            if (file.readText().contains("STOPSHIP")) {
+              stopshipFiles += file.relativeTo(cachedProjectDir).path
+            }
+          } catch (e: FileNotFoundException) {
+            // Ignore
           }
         }
       }
