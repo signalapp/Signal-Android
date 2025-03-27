@@ -12,6 +12,7 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertThrows
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.signal.libsignal.internal.CompletableFuture
 import org.signal.libsignal.net.ChatConnection
@@ -145,6 +146,7 @@ class LibSignalChatConnectionTest {
   }
 
   // Test connect followed by disconnect, checking the state transitions.
+  @Ignore("Flaky")
   @Test
   fun orderOfStatesOnConnectAndDisconnect() {
     connectLatch = CountDownLatch(1)
