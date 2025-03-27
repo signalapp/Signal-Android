@@ -474,6 +474,9 @@ public final class PushGroupSendJob extends PushSendJob {
 
       markAttachmentsUploaded(messageId, message);
 
+      // For scheduled messages, which may not have updated the thread with it's snippet yet
+      SignalDatabase.threads().updateSilently(threadId, false);
+
       if (skippedRecipients.size() > 0) {
         SignalDatabase.groupReceipts().setSkipped(skippedRecipients, messageId);
       }
