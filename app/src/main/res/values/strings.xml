@@ -1156,6 +1156,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Unnamed file</string>
+    <string name="DocumentView_document_file">Document file</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
@@ -3393,6 +3394,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
     <string name="audio_view__download_accessibility_description">Download</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Download</string>
+    <string name="document_view__upload_accessibility_description">Upload</string>
+    <string name="document_view__cancel_accessibility_description">Cancel</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>

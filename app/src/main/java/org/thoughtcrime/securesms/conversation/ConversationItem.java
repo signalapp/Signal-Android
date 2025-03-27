@@ -1267,6 +1267,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           displayMode != ConversationItemDisplayMode.Detailed.INSTANCE
       );
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
+      documentViewStub.get().setCancelTransferClickListener(attachmentCancelClickListener);
+      documentViewStub.get().setResendTransferClickListener(new ResendClickListener(messageRecord));
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
