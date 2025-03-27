@@ -5,12 +5,15 @@ import android.graphics.Shader
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListCompat
 import org.signal.core.util.getParcelableCompat
@@ -80,13 +83,13 @@ class StoryViewerFragment :
     storyPager.adapter = adapter
     storyPager.overScrollMode = ViewPager2.OVER_SCROLL_NEVER
 
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.allowParentScrolling.observeOn(AndroidSchedulers.mainThread()).subscribe {
       storyPager.isUserInputEnabled = it
     }
 
     storyPager.offscreenPageLimit = 1
 
-    lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       if (state.noPosts) {
         ActivityCompat.finishAfterTransition(requireActivity())
@@ -101,7 +104,6 @@ class StoryViewerFragment :
 
         if (state.page >= state.pages.size) {
           ActivityCompat.finishAfterTransition(requireActivity())
-          lifecycleDisposable.clear()
         }
       }
 
@@ -114,6 +116,11 @@ class StoryViewerFragment :
       if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.Record) {
         storyCrossfader.setTargetView(state.crossfadeTarget.messageRecord)
         requireActivity().supportStartPostponedEnterTransition()
+      }
+
+      if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.None) {
+        toast(R.string.ConversationFragment_quoted_message_not_found)
+        finish()
       }
 
       if (state.skipCrossfade) {
@@ -146,6 +153,20 @@ class StoryViewerFragment :
         } else {
           requireView().rootView.setRenderEffect(null)
         }
+      }
+    }
+  }
+
+  private fun finish() {
+    requireActivity().finish()
+  }
+
+  private fun toast(@StringRes toastTextId: Int, toastDuration: Int = Toast.LENGTH_SHORT) {
+    ThreadUtil.runOnMain {
+      if (context != null) {
+        Toast.makeText(context, toastTextId, toastDuration).show()
+      } else {
+        Log.w(TAG, "Dropping toast without context.")
       }
     }
   }
