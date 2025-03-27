@@ -289,7 +289,9 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       requestNewSizesThrottle.clear()
     }
 
-    AppDependencies.signalCallManager.setEnableVideo(false)
+    if (!isChangingConfigurations) {
+      AppDependencies.signalCallManager.setEnableVideo(false)
+    }
 
     if (!viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
