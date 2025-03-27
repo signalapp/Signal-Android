@@ -43,4 +43,5 @@
     </issue>
 
     <issue id="OptionalUsedAsFieldOrParameterType" severity="ignore" />
+    <issue id="SameParameterValue" severity="ignore" />
 </lint>
