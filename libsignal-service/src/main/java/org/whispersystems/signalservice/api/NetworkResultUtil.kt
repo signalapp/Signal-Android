@@ -23,6 +23,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionE
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException
 import java.io.IOException
 import java.util.Optional
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Bridge layer to convert [NetworkResult]s into the response data or thrown exceptions.
@@ -48,7 +49,7 @@ object NetworkResultUtil {
       is NetworkResult.StatusCodeError -> {
         when (result.code) {
           401, 403 -> throw AuthorizationFailedException(result.code, "Authorization failed!")
-          413, 429 -> throw RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()))
+          413, 429 -> throw RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()?.seconds?.inWholeMilliseconds))
           else -> throw result.exception
         }
       }
