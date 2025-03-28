@@ -5,6 +5,8 @@
 
 package org.whispersystems.signalservice.api.cds
 
+import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.CdsiProtocolException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.NetworkResult
@@ -26,6 +28,10 @@ import java.util.function.Consumer
  * Contact Discovery Service API endpoint.
  */
 class CdsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
+
+  companion object {
+    private val TAG = Log.tag(CdsApi::class)
+  }
 
   /**
    * Get CDS authentication and then request registered users for the provided e164s.
@@ -70,7 +76,12 @@ class CdsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) 
           when (val cause = e.cause) {
             is InterruptedException -> NetworkResult.NetworkError(IOException("Interrupted", cause))
             is TimeoutException -> NetworkResult.NetworkError(IOException("Timed out"))
-            else -> throw e
+            is CdsiProtocolException -> NetworkResult.NetworkError(IOException("CdsiProtocol", cause))
+            is CdsiInvalidTokenException -> NetworkResult.NetworkError(IOException("CdsiInvalidToken", cause))
+            else -> {
+              Log.w(TAG, "Unexpected exception", cause)
+              NetworkResult.NetworkError(IOException(cause))
+            }
           }
         }
       }
