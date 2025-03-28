@@ -53,6 +53,7 @@ import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -394,8 +395,9 @@ private fun NotificationProfileAction(
     IconButtons.IconButton(
       onClick = callback::onNotificationProfileClick
     ) {
+      // TODO [alex] - Add proper icon (cannot utilize layer-list)
       Image(
-        imageVector = ImageVector.vectorResource(R.drawable.ic_notification_profile_active),
+        painter = painterResource(R.drawable.ic_moon_24),
         contentDescription = null
       )
     }
