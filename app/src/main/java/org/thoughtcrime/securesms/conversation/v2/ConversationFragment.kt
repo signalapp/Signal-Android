@@ -345,7 +345,9 @@ import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
+import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.ExecutionException
@@ -4404,8 +4406,15 @@ class ConversationFragment :
 
         datePicker.addOnPositiveButtonClickListener { selectedDate ->
           if (selectedDate != null) {
+            val localMidnightTimestamp = Instant.ofEpochMilli(selectedDate)
+              .atZone(ZoneId.systemDefault())
+              .toLocalDate()
+              .atStartOfDay(ZoneId.systemDefault())
+              .toInstant()
+              .toEpochMilli()
+
             disposables += viewModel
-              .moveToDate(selectedDate)
+              .moveToDate(localMidnightTimestamp)
               .observeOn(AndroidSchedulers.mainThread())
               .subscribeBy { position ->
                 moveToPosition(position - 1)
