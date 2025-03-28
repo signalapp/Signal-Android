@@ -83,7 +83,11 @@ abstract class DSLSettingsFragment(
       return null
     }
 
-    return Material3OnScrollHelper(requireActivity(), toolbar, viewLifecycleOwner)
+    return Material3OnScrollHelper(
+      activity = requireActivity(),
+      views = listOf(toolbar),
+      lifecycleOwner = viewLifecycleOwner
+    )
   }
 
   open fun onToolbarNavigationClicked() {

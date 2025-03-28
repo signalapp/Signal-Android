@@ -96,6 +96,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     AppStartup.getInstance().onCriticalRenderEventStart()
     super.onCreate(savedInstanceState, ready)
+    conversationListTabsViewModel
 
     setContent {
       val navState = rememberFragmentState()
@@ -147,7 +148,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     lifecycleDisposable.bindTo(this)
 
     mediaController = VoiceNoteMediaController(this, true)
-    conversationListTabsViewModel
 
     handleDeepLinkIntent(intent)
     CachedInflater.from(this).clear()

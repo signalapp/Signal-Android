@@ -27,8 +27,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.view.ActionMode;
-import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -51,7 +49,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   private Stub<View>                  emptyState;
   private PulsingFloatingActionButton fab;
   private PulsingFloatingActionButton cameraFab;
-  private Stub<Toolbar>               toolbar;
 
   public static ConversationListArchiveFragment newInstance() {
     return new ConversationListArchiveFragment();
@@ -65,8 +62,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    toolbar = requireCallback().getBasicToolbar();
-
     super.onViewCreated(view, savedInstanceState);
 
     coordinator = view.findViewById(R.id.coordinator);
@@ -75,9 +70,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     fab         = view.findViewById(R.id.fab);
     cameraFab   = view.findViewById(R.id.camera_fab);
     foldersList = view.findViewById(R.id.chat_folder_list);
-
-    toolbar.get().setNavigationOnClickListener(v -> NavHostFragment.findNavController(this).popBackStack());
-    toolbar.get().setTitle(R.string.AndroidManifest_archived_conversations);
 
     fab.hide();
     cameraFab.hide();
@@ -96,11 +88,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @Override
   protected boolean isArchived() {
     return true;
-  }
-
-  @Override
-  protected @NonNull Toolbar getToolbar(@NonNull View rootView) {
-    return toolbar.get();
   }
 
   @Override

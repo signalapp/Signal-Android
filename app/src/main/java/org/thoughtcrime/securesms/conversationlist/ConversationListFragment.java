@@ -36,7 +36,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +53,6 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionMode;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.TooltipCompat;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
@@ -87,7 +84,6 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
@@ -112,7 +108,6 @@ import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
 import org.thoughtcrime.securesms.banner.banners.UsernameOutOfSyncBanner;
 import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
-import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
@@ -121,7 +116,6 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord;
-import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment;
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation;
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
@@ -145,14 +139,13 @@ import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
-import org.thoughtcrime.securesms.jobs.MultiDeviceAttachmentBackfillMissingJob;
-import org.thoughtcrime.securesms.jobs.MultiDeviceAttachmentBackfillUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity;
+import org.thoughtcrime.securesms.main.MainToolbarMode;
+import org.thoughtcrime.securesms.main.MainToolbarViewModel;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
-import org.thoughtcrime.securesms.main.SearchBinder;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
@@ -166,7 +159,6 @@ import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTab;
@@ -255,6 +247,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private   Stopwatch                             startupStopwatch;
   private   ConversationListTabsViewModel         conversationListTabsViewModel;
   private   ContactSearchMediator                 contactSearchMediator;
+  private   MainToolbarViewModel                  mainToolbarViewModel;
 
   private BannerManager bannerManager;
 
@@ -276,8 +269,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    setHasOptionsMenu(true);
-    startupStopwatch = new Stopwatch("startup");
+    startupStopwatch     = new Stopwatch("startup");
+    mainToolbarViewModel = new ViewModelProvider(getActivity()).get(MainToolbarViewModel.class);
   }
 
   @Override
@@ -353,10 +346,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       switch (state) {
         case CLOSING:
           viewModel.setFiltered(false, source);
+          mainToolbarViewModel.setChatFilter(ConversationFilter.OFF);
           break;
         case OPENING:
           ViewUtil.setMinimumHeight(collapsingToolbarLayout, openHeight);
           viewModel.setFiltered(true, source);
+          mainToolbarViewModel.setChatFilter(ConversationFilter.UNREAD);
           break;
         case OPEN_APEX:
           if (source == ConversationFilterSource.DRAG) {
@@ -437,8 +432,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
-    TooltipCompat.setTooltipText(requireCallback().getSearchAction(), getText(R.string.SearchToolbar_search_for_conversations_contacts_and_messages));
-
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {
@@ -516,11 +509,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     super.onResume();
 
     initializeSearchListener();
+    initializeFilterListener();
     EventBus.getDefault().register(this);
     itemAnimator.disable();
     SpoilerAnnotation.resetRevealedSpoilers();
 
-    if ((!requireCallback().getSearchToolbar().resolved() || !(requireCallback().getSearchToolbar().get().getVisibility() == View.VISIBLE)) && list.getAdapter() != defaultAdapter) {
+    if (mainToolbarViewModel.getState().getValue().getMode() != MainToolbarMode.SEARCH && list.getAdapter() != defaultAdapter) {
       setAdapter(defaultAdapter);
     }
 
@@ -586,7 +580,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onPause() {
     super.onPause();
 
-    requireCallback().getSearchAction().setOnClickListener(null);
     fab.stopPulse();
     cameraFab.stopPulse();
     EventBus.getDefault().unregister(this);
@@ -596,58 +589,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onStop() {
     super.onStop();
     AppForegroundObserver.removeListener(appForegroundObserver);
-  }
-
-  @Override
-  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-    menu.clear();
-    inflater.inflate(R.menu.text_secure_normal, menu);
-  }
-
-  @Override
-  public void onPrepareOptionsMenu(Menu menu) {
-    menu.findItem(R.id.menu_clear_passphrase).setVisible(!SignalStore.settings().getPassphraseDisabled());
-
-    ConversationFilterRequest request             = viewModel.getConversationFilterRequest();
-    boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;
-
-    menu.findItem(R.id.menu_filter_unread_chats).setVisible(!isChatFilterEnabled);
-    menu.findItem(R.id.menu_clear_unread_filter).setVisible(isChatFilterEnabled);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    super.onOptionsItemSelected(item);
-
-    int itemId = item.getItemId();
-
-    if (itemId == R.id.menu_new_group) {
-      handleCreateGroup();
-      return true;
-    } else if (itemId == R.id.menu_settings) {
-      handleDisplaySettings();
-      return true;
-    } else if (itemId == R.id.menu_clear_passphrase) {
-      handleClearPassphrase();
-      return true;
-    } else if (itemId == R.id.menu_mark_all_read) {
-      handleMarkAllRead();
-      return true;
-    } else if (itemId == R.id.menu_invite) {
-      handleInvite();
-      return true;
-    } else if (itemId == R.id.menu_notification_profile) {
-      handleNotificationProfile();
-      return true;
-    } else if (itemId == R.id.menu_filter_unread_chats) {
-      handleFilterUnreadChats();
-      return true;
-    } else if (itemId == R.id.menu_clear_unread_filter) {
-      onClearFilterClick();
-      return true;
-    } else {
-      return false;
-    }
   }
 
   @Override
@@ -718,14 +659,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private boolean isSearchVisible() {
-    return (requireCallback().getSearchToolbar().resolved() && requireCallback().getSearchToolbar().get().getVisibility() == View.VISIBLE);
+    return mainToolbarViewModel.getState().getValue().getMode() == MainToolbarMode.SEARCH;
   }
 
   private boolean closeSearchIfOpen() {
     if (isSearchOpen()) {
       setAdapter(defaultAdapter);
-      requireCallback().getSearchToolbar().get().collapse();
-      requireCallback().onSearchClosed();
+      mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL);
+      conversationListTabsViewModel.onSearchClosed();
       return true;
     }
 
@@ -839,49 +780,33 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         })
     );
 
-    requireCallback().getSearchAction().setOnClickListener(v -> {
-      fadeOutButtonsAndMegaphone(250);
-      requireCallback().onSearchOpened();
-
-      requireCallback().getSearchToolbar().get().setListener(new Material3SearchToolbar.Listener() {
-        @Override
-        public void onSearchTextChange(String text) {
-          String trimmed = text.trim();
-
-          contactSearchMediator.onFilterChanged(trimmed);
-
-          if (trimmed.length() > 0) {
-            if (activeAdapter != searchAdapter && list != null) {
-              setAdapter(searchAdapter);
-            }
-          } else {
-            if (activeAdapter != defaultAdapter) {
-              if (list != null) {
-                setAdapter(defaultAdapter);
-              }
-            }
+    lifecycleDisposable.add(
+        mainToolbarViewModel.getSearchEventsFlowable().subscribe(event -> {
+          if (event instanceof MainToolbarViewModel.Event.Search.Open) {
+            onSearchOpen();
+          } else if (event instanceof MainToolbarViewModel.Event.Search.Close) {
+            onSearchClose();
+          } else if (event instanceof MainToolbarViewModel.Event.Search.Query) {
+            onSearchQueryUpdated(((MainToolbarViewModel.Event.Search.Query) event).getQuery());
           }
-        }
+        })
+    );
+  }
 
-        @Override
-        public void onSearchClosed() {
-          if (list != null) {
-            setAdapter(defaultAdapter);
+  private void initializeFilterListener() {
+    lifecycleDisposable.add(
+        mainToolbarViewModel.getChatEventsFlowable().subscribe(event -> {
+          if (event instanceof MainToolbarViewModel.Event.Chats.ApplyFilter) {
+            handleFilterUnreadChats();
+          } else if (event instanceof MainToolbarViewModel.Event.Chats.ClearFilter) {
+            onClearFilterClick();
           }
-          requireCallback().onSearchClosed();
-          fadeInButtonsAndMegaphone(250);
-        }
-      });
-      updateSearchToolbarHint(Objects.requireNonNull(viewModel.getConversationFilterRequest()));
-    });
+        })
+    );
   }
 
   private void updateSearchToolbarHint(@NonNull ConversationFilterRequest conversationFilterRequest) {
-    Stub<Material3SearchToolbar> searchToolbar = requireCallback().getSearchToolbar();
-    if (!searchToolbar.resolved()) {
-      return;
-    }
-    searchToolbar.get().setSearchInputHint(
+    mainToolbarViewModel.setSearchHint(
         conversationFilterRequest.getFilter() == ConversationFilter.OFF ? R.string.SearchToolbar_search : R.string.SearchToolbar_search_unread_chats
     );
   }
@@ -1058,10 +983,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     startupStopwatch.stop(TAG);
     mediaControllerOwner.getVoiceNoteMediaController().finishPostpone();
 
-    if (getParentFragment() != null) {
-      requireCallback().getSearchToolbar().get();
-    }
-
     Context context = getContext();
     if (context != null) {
       FrameLayout parent = new FrameLayout(context);
@@ -1128,31 +1049,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     viewModel.onMegaphoneVisible(megaphone);
   }
 
-  private void handleCreateGroup() {
-    getNavigator().goToGroupCreation();
-  }
-
-  private void handleDisplaySettings() {
-    getNavigator().goToAppSettings();
-  }
-
-  private void handleClearPassphrase() {
-    Intent intent = new Intent(requireActivity(), KeyCachingService.class);
-    intent.setAction(KeyCachingService.CLEAR_KEY_ACTION);
-    requireActivity().startService(intent);
-  }
-
-  private void handleMarkAllRead() {
-    Context context = requireContext();
-
-    SignalExecutors.BOUNDED.execute(() -> {
-      List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setAllThreadsRead();
-
-      AppDependencies.getMessageNotifier().updateNotification(context);
-      MarkReadReceiver.process(messageIds);
-    });
-  }
-
   private void handleMarkAsRead(@NonNull Collection<Long> ids) {
     Context   context   = requireContext();
     Stopwatch stopwatch = new Stopwatch("mark-read");
@@ -1178,23 +1074,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void handleMarkAsUnread(@NonNull Collection<Long> ids) {
-    Context context = requireContext();
-
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       SignalDatabase.threads().setForcedUnread(ids);
       StorageSyncHelper.scheduleSyncForDataChange();
       return null;
-    }, none -> {
-      endActionModeIfActive();
-    });
-  }
-
-  private void handleInvite() {
-    getNavigator().goToInvite();
-  }
-
-  private void handleNotificationProfile() {
-    NotificationProfileSelectionFragment.show(getParentFragmentManager());
+    }, none -> endActionModeIfActive());
   }
 
   private void handleFilterUnreadChats() {
@@ -1592,7 +1476,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void showAddToFolderBottomSheet(Set<Conversation> conversations) {
-    List<Long> threadIds = new ArrayList<>();
+    List<Long>    threadIds   = new ArrayList<>();
     List<Integer> threadTypes = new ArrayList<>();
 
     for (Conversation conversation : conversations) {
@@ -1608,8 +1492,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private int getThreadType(Conversation conversation) {
     boolean isIndividual = conversation.getThreadRecord().getRecipient().isIndividual();
-    boolean isGroup = conversation.getThreadRecord().getRecipient().isPushGroup();
-    int type;
+    boolean isGroup      = conversation.getThreadRecord().getRecipient().isPushGroup();
+    int     type;
     if (isIndividual) {
       type = AddToFolderBottomSheet.ThreadType.INDIVIDUAL.getValue();
     } else if (isGroup) {
@@ -1687,10 +1571,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   protected Callback requireCallback() {
     return ((Callback) getParentFragment().getParentFragment());
-  }
-
-  protected Toolbar getToolbar(@NonNull View rootView) {
-    return requireCallback().getToolbar();
   }
 
   protected @PluralsRes int getArchivedSnackbarTitleRes() {
@@ -1815,7 +1695,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onReadAll(@NonNull ChatFolderRecord chatFolder) {
     if (chatFolder.getFolderType() == ChatFolderRecord.FolderType.ALL) {
-      handleMarkAllRead();
+      mainToolbarViewModel.markAllMessagesRead();
     } else {
       viewModel.markChatFolderRead(chatFolder);
     }
@@ -1829,6 +1709,35 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onFolderSettingsClick() {
     startActivity(AppSettingsActivity.chatFolders(requireContext()));
+  }
+
+  private void onSearchOpen() {
+    fadeOutButtonsAndMegaphone(250);
+  }
+
+  private void onSearchClose() {
+    if (list != null) {
+      setAdapter(defaultAdapter);
+    }
+    fadeInButtonsAndMegaphone(250);
+  }
+
+  private void onSearchQueryUpdated(@NonNull String query) {
+    String trimmed = query.trim();
+
+    contactSearchMediator.onFilterChanged(trimmed);
+
+    if (!trimmed.isEmpty()) {
+      if (activeAdapter != searchAdapter && list != null) {
+        setAdapter(searchAdapter);
+      }
+    } else {
+      if (activeAdapter != defaultAdapter) {
+        if (list != null) {
+          setAdapter(defaultAdapter);
+        }
+      }
+    }
   }
 
   private class ArchiveListenerCallback extends ItemTouchHelper.SimpleCallback {
@@ -2083,13 +1992,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
   }
 
-  public interface Callback extends Material3OnScrollHelperBinder, SearchBinder {
-    @NonNull Toolbar getToolbar();
-
-    @NonNull View getUnreadPaymentsDot();
-
-    @NonNull Stub<Toolbar> getBasicToolbar();
-
+  public interface Callback extends Material3OnScrollHelperBinder {
     void updateProxyStatus(@NonNull WebSocketConnectionState state);
 
     void onMultiSelectStarted();
