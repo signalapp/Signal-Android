@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.util.dynamiclanguage;
 
-import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 import org.thoughtcrime.securesms.BuildConfig;
 
@@ -41,10 +41,14 @@ final class LocaleParser {
    * Get the first preferred language the app supports.
    */
   private static @NonNull Locale findBestSystemLocale() {
-    final Configuration config = Resources.getSystem().getConfiguration();
+    LocaleListCompat localeList;
+    if (Build.VERSION.SDK_INT < 24) {
+      localeList = LocaleListCompat.create(Resources.getSystem().getConfiguration().locale);
+    } else {
+      localeList = LocaleListCompat.getAdjustedDefault();
+    }
 
-    final Locale firstMatch = ConfigurationCompat.getLocales(config)
-                                                 .getFirstMatch(BuildConfig.LANGUAGES);
+    final Locale firstMatch = localeList.getFirstMatch(BuildConfig.LANGUAGES);
 
     if (firstMatch != null) {
       return firstMatch;
