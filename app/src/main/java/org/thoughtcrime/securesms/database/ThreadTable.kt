@@ -1131,6 +1131,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .select(ID, RECIPIENT_ID)
       .from(TABLE_NAME)
       .where("$PINNED_ORDER NOT NULL")
+      .orderBy("$PINNED_ORDER ASC")
       .run()
       .readToList { cursor ->
         RecipientId.from(cursor.requireLong(RECIPIENT_ID))
@@ -1145,6 +1146,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .select(ID)
       .from(TABLE_NAME)
       .where("$PINNED_ORDER NOT NULL")
+      .orderBy("$PINNED_ORDER ASC")
       .run()
       .readToList { cursor ->
         cursor.requireLong(ID)
