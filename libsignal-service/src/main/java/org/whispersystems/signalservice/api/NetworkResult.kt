@@ -21,6 +21,7 @@ import java.util.concurrent.TimeoutException
 import kotlin.reflect.KClass
 import kotlin.reflect.cast
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
 
@@ -214,6 +215,10 @@ sealed class NetworkResult<T>(
 
     fun header(key: String): String? {
       return headers[key.lowercase()]
+    }
+
+    fun retryAfter(): Duration? {
+      return header("retry-after")?.toLongOrNull()?.seconds
     }
   }
 

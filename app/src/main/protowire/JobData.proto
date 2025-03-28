@@ -142,6 +142,7 @@ message UploadAttachmentToArchiveJobData {
 
 message BackupMediaSnapshotSyncJobData {
   uint64 syncTime = 1;
+  string serverCursor = 2;
 }
 
 message DeviceNameChangeJobData {

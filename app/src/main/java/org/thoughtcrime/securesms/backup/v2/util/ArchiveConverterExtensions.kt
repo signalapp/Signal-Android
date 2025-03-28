@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.emptyIfNull
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
@@ -16,8 +17,8 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
 import org.thoughtcrime.securesms.backup.v2.ImportState
+import org.thoughtcrime.securesms.backup.v2.getMediaName
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -150,10 +151,11 @@ fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, content
   if (mediaArchiveEnabled && !pending) {
     val transitCdnKey = this.remoteLocation?.nullIfBlank()
     val transitCdnNumber = this.cdn.cdnNumber.takeIf { transitCdnKey != null }
+    val archiveMediaName = this.getMediaName()?.toString()
 
     builder.backupLocator = FilePointer.BackupLocator(
-      mediaName = this.archiveMediaName ?: this.getMediaName().toString(),
-      cdnNumber = this.archiveCdn.takeIf { this.archiveMediaName != null },
+      mediaName = archiveMediaName.emptyIfNull(),
+      cdnNumber = this.archiveCdn.takeIf { archiveMediaName != null },
       key = Base64.decode(remoteKey).toByteString(),
       size = this.size.toInt(),
       digest = this.remoteDigest.toByteString(),

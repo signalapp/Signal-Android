@@ -333,7 +333,7 @@ class ArchiveApi(
    * POST /v1/archives/media/delete
    *
    * - 400: Bad args or made on an authenticated channel
-   * - 401: Bad presentation, invalid public key signature, no matching backupId on teh server, or the credential was of the wrong type (messages/media)
+   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
    * - 403: Forbidden
    * - 429: Rate-limited
    */

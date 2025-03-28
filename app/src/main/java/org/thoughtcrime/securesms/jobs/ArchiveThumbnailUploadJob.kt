@@ -13,8 +13,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getMediaName
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
+import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -98,7 +97,7 @@ class ArchiveThumbnailUploadJob private constructor(
       .getAttachmentUploadForm()
       .then { form ->
         SignalNetwork.attachments.getResumableUploadSpec(
-          key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.getThumbnailMediaName()),
+          key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.requireThumbnailMediaName()),
           iv = attachment.remoteIv!!,
           uploadForm = form
         )
@@ -133,15 +132,18 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.retry(defaultBackoff())
     }
 
-    val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(attachment.getThumbnailMediaName())
+    val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName())
 
     return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
         // save attachment thumbnail
-        val archiveMediaId = attachment.archiveMediaId ?: mediaRootBackupKey.deriveMediaId(attachment.getMediaName()).encode()
-        SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(attachmentId, archiveMediaId, mediaSecrets.id, thumbnailResult.data)
+        SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(
+          attachmentId = attachmentId,
+          attachmentDigest = attachment.remoteDigest!!,
+          data = thumbnailResult.data
+        )
 
-        Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.getThumbnailMediaName()}")
+        Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.requireThumbnailMediaName()}")
         Result.success()
       }
       is NetworkResult.NetworkError -> {

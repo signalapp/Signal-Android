@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
-import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
@@ -90,7 +89,6 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
           AppDependencies
             .jobManager
             .startChain(BackupRestoreJob())
-            .then(SyncArchivedMediaJob())
             .then(BackupRestoreMediaJob())
             .enqueue(listener)
 

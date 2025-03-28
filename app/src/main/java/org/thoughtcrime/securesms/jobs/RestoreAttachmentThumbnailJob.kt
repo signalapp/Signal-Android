@@ -9,8 +9,8 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
-import org.thoughtcrime.securesms.backup.v2.database.createArchiveThumbnailPointer
+import org.thoughtcrime.securesms.backup.v2.createArchiveThumbnailPointer
+import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -112,8 +112,8 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    if (attachment.archiveMediaName == null) {
-      Log.w(TAG, "$attachmentId was never archived! Cannot proceed.")
+    if (attachment.remoteDigest == null) {
+      Log.w(TAG, "$attachmentId has no digest! Cannot proceed.")
       return
     }
 
@@ -132,7 +132,7 @@ class RestoreAttachmentThumbnailJob private constructor(
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
     val downloadResult = AppDependencies.signalServiceMessageReceiver
       .retrieveArchivedAttachment(
-        SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.getThumbnailMediaName()),
+        SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
@@ -142,7 +142,7 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, downloadResult.dataStream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest!!, downloadResult.dataStream, thumbnailTransferFile)
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)

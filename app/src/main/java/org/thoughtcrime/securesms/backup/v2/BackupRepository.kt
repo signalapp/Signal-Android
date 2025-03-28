@@ -28,7 +28,7 @@ import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireInt
-import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.Recurring
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable.ArchiveMediaItem
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -357,6 +358,7 @@ object BackupRepository {
 
       Log.d(TAG, "Disabling backups.")
       SignalStore.backup.disableBackups()
+      SignalDatabase.attachments.clearAllArchiveData()
       true
     } catch (e: Exception) {
       Log.w(TAG, "Failed to turn off backups.", e)
@@ -1100,7 +1102,7 @@ object BackupRepository {
   fun copyThumbnailToArchive(thumbnailAttachment: Attachment, parentAttachment: DatabaseAttachment): NetworkResult<ArchiveMediaResponse> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        val request = thumbnailAttachment.toArchiveMediaRequest(parentAttachment.getThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
+        val request = thumbnailAttachment.toArchiveMediaRequest(parentAttachment.requireThumbnailMediaName(), credential.mediaBackupAccess.backupKey)
 
         SignalNetwork.archive.copyAttachmentToArchive(
           aci = SignalStore.account.requireAci(),
@@ -1116,7 +1118,7 @@ object BackupRepository {
   fun copyAttachmentToArchive(attachment: DatabaseAttachment): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
-        val mediaName = attachment.getMediaName()
+        val mediaName = attachment.requireMediaName()
         val request = attachment.toArchiveMediaRequest(mediaName, credential.mediaBackupAccess.backupKey)
         SignalNetwork.archive
           .copyAttachmentToArchive(
@@ -1124,12 +1126,9 @@ object BackupRepository {
             archiveServiceAccess = credential.mediaBackupAccess,
             item = request
           )
-          .map { credential to Triple(mediaName, request.mediaId, it) }
       }
-      .map { (credential, triple) ->
-        val (mediaName, mediaId, response) = triple
-        val thumbnailId = credential.mediaBackupAccess.backupKey.deriveMediaId(attachment.getThumbnailMediaName()).encode()
-        SignalDatabase.attachments.setArchiveData(attachmentId = attachment.attachmentId, archiveCdn = response.cdn, archiveMediaName = mediaName.name, archiveMediaId = mediaId, archiveThumbnailMediaId = thumbnailId)
+      .map { response ->
+        SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = response.cdn)
       }
       .also { Log.i(TAG, "archiveMediaResult: $it") }
   }
@@ -1142,7 +1141,7 @@ object BackupRepository {
         val attachmentIdToMediaName = mutableMapOf<AttachmentId, String>()
 
         databaseAttachments.forEach {
-          val mediaName = it.getMediaName()
+          val mediaName = it.requireMediaName()
           val request = it.toArchiveMediaRequest(mediaName, credential.mediaBackupAccess.backupKey)
           requests += request
           mediaIdToAttachmentId[request.mediaId] = it.attachmentId
@@ -1164,7 +1163,7 @@ object BackupRepository {
             val attachmentId = result.mediaIdToAttachmentId(it.mediaId)
             val mediaName = result.attachmentIdToMediaName(attachmentId)
             val thumbnailId = credential.mediaBackupAccess.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(mediaName = mediaName)).encode()
-            SignalDatabase.attachments.setArchiveData(attachmentId = attachmentId, archiveCdn = it.cdn!!, archiveMediaName = mediaName, archiveMediaId = it.mediaId, thumbnailId)
+            SignalDatabase.attachments.setArchiveCdn(attachmentId = attachmentId, archiveCdn = it.cdn!!)
           }
         result
       }
@@ -1172,12 +1171,14 @@ object BackupRepository {
   }
 
   fun deleteArchivedMedia(attachments: List<DatabaseAttachment>): NetworkResult<Unit> {
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
+
     val mediaToDelete = attachments
-      .filter { it.archiveMediaId != null }
+      .filter { it.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED }
       .map {
         DeleteArchivedMediaRequest.ArchivedMediaObject(
           cdn = it.archiveCdn,
-          mediaId = it.archiveMediaId!!
+          mediaId = it.requireMediaName().toMediaId(mediaRootBackupKey).encode()
         )
       }
 
@@ -1538,14 +1539,6 @@ object BackupRepository {
     val profileKey: ProfileKey
   )
 
-  fun DatabaseAttachment.getMediaName(): MediaName {
-    return MediaName.fromDigest(remoteDigest!!)
-  }
-
-  fun DatabaseAttachment.getThumbnailMediaName(): MediaName {
-    return MediaName.fromDigestForThumbnail(remoteDigest!!)
-  }
-
   private fun Attachment.toArchiveMediaRequest(mediaName: MediaName, mediaRootBackupKey: MediaRootBackupKey): ArchiveMediaRequest {
     val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(mediaName)
 
@@ -1646,7 +1639,7 @@ sealed class ImportResult {
  * // Cursor is closed after use block.
  * ```
  */
-class ArchivedMediaObjectIterator(private val cursor: Cursor) : Iterator<ArchivedMediaObject> {
+class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMediaItem> {
 
   init {
     cursor.moveToFirst()
@@ -1654,10 +1647,14 @@ class ArchivedMediaObjectIterator(private val cursor: Cursor) : Iterator<Archive
 
   override fun hasNext(): Boolean = !cursor.isAfterLast
 
-  override fun next(): ArchivedMediaObject {
-    val mediaId = cursor.requireNonNullString(AttachmentTable.ARCHIVE_MEDIA_ID)
+  override fun next(): ArchiveMediaItem {
+    val digest = cursor.requireNonNullBlob(AttachmentTable.REMOTE_DIGEST)
     val cdn = cursor.requireInt(AttachmentTable.ARCHIVE_CDN)
+
+    val mediaId = MediaName.fromDigest(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+    val thumbnailMediaId = MediaName.fromDigestForThumbnail(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
     cursor.moveToNext()
-    return ArchivedMediaObject(mediaId, cdn)
+    return ArchiveMediaItem(mediaId, thumbnailMediaId, cdn, digest)
   }
 }

@@ -17,6 +17,18 @@ value class MediaName(val name: String) {
     fun fromDigest(digest: ByteArray) = MediaName(Hex.toStringCondensed(digest))
     fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Hex.toStringCondensed(digest)}_thumbnail")
     fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
+
+    /**
+     * For java, since it struggles with value classes.
+     */
+    @JvmStatic
+    fun toMediaIdString(mediaName: String, mediaRootBackupKey: MediaRootBackupKey): String {
+      return MediaName(mediaName).toMediaId(mediaRootBackupKey).encode()
+    }
+  }
+
+  fun toMediaId(mediaRootBackupKey: MediaRootBackupKey): MediaId {
+    return mediaRootBackupKey.deriveMediaId(this)
   }
 
   fun toByteArray(): ByteArray {

@@ -1,16 +1,14 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.backup.v2.database
+package org.thoughtcrime.securesms.backup.v2
 
 import android.text.TextUtils
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MediaName
@@ -18,6 +16,43 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import java.io.IOException
 import java.util.Optional
+
+object DatabaseAttachmentArchiveUtil {
+  @JvmStatic
+  fun requireMediaName(attachment: DatabaseAttachment): MediaName {
+    return MediaName.fromDigest(attachment.remoteDigest!!)
+  }
+
+  /**
+   * For java, since it struggles with value classes.
+   */
+  @JvmStatic
+  fun requireMediaNameAsString(attachment: DatabaseAttachment): String {
+    return MediaName.fromDigest(attachment.remoteDigest!!).name
+  }
+
+  @JvmStatic
+  fun getMediaName(attachment: DatabaseAttachment): MediaName? {
+    return attachment.remoteDigest?.let { MediaName.fromDigest(it) }
+  }
+
+  @JvmStatic
+  fun requireThumbnailMediaName(attachment: DatabaseAttachment): MediaName {
+    return MediaName.fromDigestForThumbnail(attachment.remoteDigest!!)
+  }
+}
+
+fun DatabaseAttachment.requireMediaName(): MediaName {
+  return DatabaseAttachmentArchiveUtil.requireMediaName(this)
+}
+
+fun DatabaseAttachment.getMediaName(): MediaName? {
+  return DatabaseAttachmentArchiveUtil.getMediaName(this)
+}
+
+fun DatabaseAttachment.requireThumbnailMediaName(): MediaName {
+  return DatabaseAttachmentArchiveUtil.requireThumbnailMediaName(this)
+}
 
 /**
  * Creates a [SignalServiceAttachmentPointer] for the archived attachment of the given [DatabaseAttachment].
@@ -39,7 +74,7 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
 
       val id = SignalServiceAttachmentRemoteId.Backup(
         mediaCdnPath = mediaCdnPath,
-        mediaId = mediaRootBackupKey.deriveMediaId(MediaName(archiveMediaName!!)).encode()
+        mediaId = this.requireMediaName().toMediaId(mediaRootBackupKey).encode()
       )
 
       id to archiveCdn
@@ -93,8 +128,8 @@ fun DatabaseAttachment.createArchiveThumbnailPointer(): SignalServiceAttachmentP
   val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
   val mediaCdnPath = BackupRepository.getArchivedMediaCdnPath().successOrThrow()
   return try {
-    val key = mediaRootBackupKey.deriveThumbnailTransitKey(getThumbnailMediaName())
-    val mediaId = mediaRootBackupKey.deriveMediaId(getThumbnailMediaName()).encode()
+    val key = mediaRootBackupKey.deriveThumbnailTransitKey(requireThumbnailMediaName())
+    val mediaId = mediaRootBackupKey.deriveMediaId(requireThumbnailMediaName()).encode()
     SignalServiceAttachmentPointer(
       cdnNumber = archiveCdn,
       remoteId = SignalServiceAttachmentRemoteId.Backup(

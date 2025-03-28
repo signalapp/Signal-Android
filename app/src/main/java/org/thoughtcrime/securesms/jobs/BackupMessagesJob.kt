@@ -10,8 +10,8 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
-import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObjectIterator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -52,14 +52,10 @@ class BackupMessagesJob private constructor(
      * Pruning abandoned remote media is relatively expensive, so we should
      * not do this every time we backup.
      */
-    fun enqueue(pruneAbandonedRemoteMedia: Boolean = false) {
+    fun enqueue() {
       val jobManager = AppDependencies.jobManager
 
       val chain = jobManager.startChain(BackupMessagesJob())
-
-      if (pruneAbandonedRemoteMedia) {
-        chain.then(SyncArchivedMediaJob())
-      }
 
       if (SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
         chain.then(OptimizeMediaJob())
@@ -272,9 +268,9 @@ class BackupMessagesJob private constructor(
 
   private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
     if (mediaBackupEnabled) {
-      db.attachmentTable.getMediaIdCursor().use {
+      db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
-          mediaObjects = ArchivedMediaObjectIterator(it).asSequence(),
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence(),
           pendingSyncTime = currentTime
         )
       }
