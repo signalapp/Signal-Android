@@ -1025,7 +1025,9 @@ object RemoteConfig {
     key = "android.libsignalWebSocketEnabled",
     defaultValue = false,
     hotSwappable = false
-  )
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
 
   /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
   @JvmStatic
