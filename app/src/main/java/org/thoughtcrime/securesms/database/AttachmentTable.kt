@@ -308,11 +308,7 @@ class AttachmentTable(
 
   @Throws(IOException::class)
   fun getAttachmentStream(attachmentId: AttachmentId, offset: Long): InputStream {
-    return try {
-      getDataStream(attachmentId, offset)
-    } catch (e: FileNotFoundException) {
-      throw IOException("No stream for: $attachmentId", e)
-    } ?: throw IOException("No stream for: $attachmentId")
+    return getDataStream(attachmentId, offset) ?: throw FileNotFoundException("No stream for: $attachmentId")
   }
 
   @Throws(IOException::class)
@@ -667,6 +663,26 @@ class AttachmentTable(
         .update(TABLE_NAME)
         .values(ARCHIVE_TRANSFER_STATE to state.value)
         .where("$DATA_FILE = ?", dataFile)
+        .run()
+    }
+  }
+
+  /**
+   * Sets the archive transfer state for the given attachment and all other attachments that share the same data file.
+   */
+  fun setArchiveTransferStateUnlessPermanentFailure(id: AttachmentId, state: ArchiveTransferState) {
+    writableDatabase.withinTransaction {
+      val dataFile: String = readableDatabase
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ?", id.id)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) } ?: return@withinTransaction
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(ARCHIVE_TRANSFER_STATE to state.value)
+        .where("$DATA_FILE = ? AND $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}", dataFile)
         .run()
     }
   }
