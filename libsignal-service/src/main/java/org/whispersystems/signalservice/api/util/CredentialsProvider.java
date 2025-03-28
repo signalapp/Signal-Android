@@ -18,7 +18,7 @@ public interface CredentialsProvider {
   String getPassword();
 
   default boolean isInvalid() {
-    return (getAci() == null && getE164() == null) || getPassword() == null;
+    return getAci() == null || getPassword() == null;
   }
 
   default String getUsername() {
