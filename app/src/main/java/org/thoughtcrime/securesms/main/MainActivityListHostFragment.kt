@@ -310,7 +310,9 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       when (state) {
         WebSocketConnectionState.CONNECTING, WebSocketConnectionState.DISCONNECTING, WebSocketConnectionState.DISCONNECTED -> proxyStatus.setImageResource(R.drawable.ic_proxy_connecting_24)
         WebSocketConnectionState.CONNECTED -> proxyStatus.setImageResource(R.drawable.ic_proxy_connected_24)
-        WebSocketConnectionState.AUTHENTICATION_FAILED, WebSocketConnectionState.FAILED -> proxyStatus.setImageResource(R.drawable.ic_proxy_failed_24)
+        WebSocketConnectionState.AUTHENTICATION_FAILED,
+        WebSocketConnectionState.REMOTE_DEPRECATED,
+        WebSocketConnectionState.FAILED -> proxyStatus.setImageResource(R.drawable.ic_proxy_failed_24)
         else -> proxyStatus.visibility = View.GONE
       }
     } else {

@@ -142,6 +142,7 @@ public class EditProxyFragment extends Fragment {
           proxyStatus.setTextColor(getResources().getColor(R.color.signal_accent_green));
           break;
         case AUTHENTICATION_FAILED:
+        case REMOTE_DEPRECATED:
         case FAILED:
           proxyStatus.setText(R.string.preferences_connection_failed);
           proxyStatus.setTextColor(getResources().getColor(R.color.signal_alert_primary));
