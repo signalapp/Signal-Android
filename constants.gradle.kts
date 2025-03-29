@@ -1,4 +1,4 @@
-val signalBuildToolsVersion by extra("34.0.0")
+val signalBuildToolsVersion by extra("35.0.0")
 val signalCompileSdkVersion by extra("android-35")
 val signalTargetSdkVersion by extra(34)
 val signalMinSdkVersion by extra(21)
