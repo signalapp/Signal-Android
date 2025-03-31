@@ -157,6 +157,7 @@ class MainToolbarViewModel : ViewModel() {
     sealed interface Chats : Event {
       data object ApplyFilter : Chats
       data object ClearFilter : Chats
+      data object CloseArchive : Chats
     }
 
     sealed interface CallLog : Event {

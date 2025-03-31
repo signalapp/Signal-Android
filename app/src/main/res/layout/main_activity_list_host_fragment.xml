@@ -7,11 +7,6 @@
     android:orientation="vertical"
     tools:viewBindingIgnore="true">
 
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/toolbar_container"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/signal_m3_toolbar_height" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"

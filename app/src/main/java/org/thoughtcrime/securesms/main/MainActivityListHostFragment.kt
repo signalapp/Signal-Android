@@ -1,47 +1,31 @@
 package org.thoughtcrime.securesms.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.InviteActivity
-import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.calls.log.CallLogFragment
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
-import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
-import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
-import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsState
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.TopToastPopup
 import org.thoughtcrime.securesms.util.Util
@@ -59,111 +43,10 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val destinationChangedListener = DestinationChangedListener()
-
-  private val openSettings = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-    if (result.resultCode == MainActivity.RESULT_CONFIG_CHANGED) {
-      requireActivity().recreate()
-    }
-  }
-
-  private val toolbarCallback = object : MainToolbarCallback {
-    override fun onNewGroupClick() {
-      startActivity(CreateGroupActivity.newIntent(requireActivity()))
-    }
-
-    override fun onClearPassphraseClick() {
-      val intent = Intent(requireActivity(), KeyCachingService::class.java)
-      intent.setAction(KeyCachingService.CLEAR_KEY_ACTION)
-      requireActivity().startService(intent)
-    }
-
-    override fun onMarkReadClick() {
-      toolbarViewModel.markAllMessagesRead()
-    }
-
-    override fun onInviteFriendsClick() {
-      val intent = Intent(requireContext(), InviteActivity::class.java)
-      startActivity(intent)
-    }
-
-    override fun onFilterUnreadChatsClick() {
-      toolbarViewModel.setChatFilter(ConversationFilter.UNREAD)
-    }
-
-    override fun onClearUnreadChatsFilterClick() {
-      toolbarViewModel.setChatFilter(ConversationFilter.OFF)
-    }
-
-    override fun onSettingsClick() {
-      openSettings.launch(AppSettingsActivity.home(requireContext()))
-    }
-
-    override fun onNotificationProfileClick() {
-      NotificationProfileSelectionFragment.show(parentFragmentManager)
-    }
-
-    override fun onProxyClick() {
-      startActivity(AppSettingsActivity.proxy(requireContext()))
-    }
-
-    override fun onSearchClick() {
-      conversationListTabsViewModel.onSearchOpened()
-      toolbarViewModel.setToolbarMode(MainToolbarMode.SEARCH)
-      toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Search.Open)
-    }
-
-    override fun onClearCallHistoryClick() {
-      toolbarViewModel.clearCallHistory()
-    }
-
-    override fun onFilterMissedCallsClick() {
-      toolbarViewModel.setCallLogFilter(CallLogFilter.MISSED)
-    }
-
-    override fun onClearCallFilterClick() {
-      toolbarViewModel.setCallLogFilter(CallLogFilter.ALL)
-    }
-
-    override fun onStoryPrivacyClick() {
-      startActivity(StorySettingsActivity.getIntent(requireContext()))
-    }
-
-    override fun onCloseSearchClick() {
-      conversationListTabsViewModel.onSearchClosed()
-      toolbarViewModel.setToolbarMode(MainToolbarMode.FULL)
-      toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Search.Close)
-    }
-
-    override fun onCloseArchiveClick() {
-      getChildNavController().popBackStack()
-    }
-
-    override fun onSearchQueryUpdated(query: String) {
-      toolbarViewModel.setSearchQuery(query)
-    }
-
-    override fun onNotificationProfileTooltipDismissed() {
-      SignalStore.notificationProfile.hasSeenTooltip = true
-      toolbarViewModel.setShowNotificationProfilesTooltip(false)
-    }
-  }
-
   private val toolbarViewModel: MainToolbarViewModel by activityViewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     disposables.bindTo(viewLifecycleOwner)
-
-    val toolbarContainer = view.findViewById<ComposeView>(R.id.toolbar_container)
-    toolbarContainer.setContent {
-      val state by toolbarViewModel.state.collectAsStateWithLifecycle()
-
-      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
-        MainToolbar(
-          state = state,
-          callback = toolbarCallback
-        )
-      }
-    }
 
     UnreadPaymentsLiveData().observe(viewLifecycleOwner) { unread ->
       toolbarViewModel.setHasUnreadPayments(unread.isPresent)

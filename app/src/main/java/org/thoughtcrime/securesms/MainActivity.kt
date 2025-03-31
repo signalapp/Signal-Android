@@ -13,36 +13,53 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
+import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
 import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
+import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
 import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDialog
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.MainActivityListHostFragment
 import org.thoughtcrime.securesms.main.MainNavigationDestination
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainToolbar
+import org.thoughtcrime.securesms.main.MainToolbarCallback
+import org.thoughtcrime.securesms.main.MainToolbarMode
+import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
+import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsFragment
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
@@ -50,6 +67,7 @@ import org.thoughtcrime.securesms.util.AppStartup
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.viewModel
@@ -91,6 +109,15 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     VitalsViewModel(application)
   }
 
+  private val openSettings: ActivityResultLauncher<Intent> = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    if (result.resultCode == RESULT_CONFIG_CHANGED) {
+      recreate()
+    }
+  }
+
+  private val toolbarViewModel: MainToolbarViewModel by viewModels()
+  private val toolbarCallback = ToolbarCallback()
+
   private var onFirstRender = false
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
@@ -124,11 +151,22 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           )
         }
       ) {
-        AndroidFragment(
-          clazz = MainActivityListHostFragment::class.java,
-          fragmentState = listHostState,
-          modifier = Modifier.fillMaxSize()
-        )
+        Column {
+          val state by toolbarViewModel.state.collectAsStateWithLifecycle()
+
+          SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+            MainToolbar(
+              state = state,
+              callback = toolbarCallback
+            )
+          }
+
+          AndroidFragment(
+            clazz = MainActivityListHostFragment::class.java,
+            fragmentState = listHostState,
+            modifier = Modifier.fillMaxSize()
+          )
+        }
       }
     }
 
@@ -175,6 +213,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           conversationListTabsViewModel.onStoriesSelected()
         }
       }
+
       null -> Unit
     }
   }
@@ -296,6 +335,89 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       if (data.toString().startsWith(StripeApi.RETURN_URL_IDEAL)) {
         startActivity(manageSubscriptions(this))
       }
+    }
+  }
+
+  inner class ToolbarCallback : MainToolbarCallback {
+
+    override fun onNewGroupClick() {
+      startActivity(CreateGroupActivity.newIntent(this@MainActivity))
+    }
+
+    override fun onClearPassphraseClick() {
+      val intent = Intent(this@MainActivity, KeyCachingService::class.java)
+      intent.setAction(KeyCachingService.CLEAR_KEY_ACTION)
+      startService(intent)
+    }
+
+    override fun onMarkReadClick() {
+      toolbarViewModel.markAllMessagesRead()
+    }
+
+    override fun onInviteFriendsClick() {
+      val intent = Intent(this@MainActivity, InviteActivity::class.java)
+      startActivity(intent)
+    }
+
+    override fun onFilterUnreadChatsClick() {
+      toolbarViewModel.setChatFilter(ConversationFilter.UNREAD)
+    }
+
+    override fun onClearUnreadChatsFilterClick() {
+      toolbarViewModel.setChatFilter(ConversationFilter.OFF)
+    }
+
+    override fun onSettingsClick() {
+      openSettings.launch(AppSettingsActivity.home(this@MainActivity))
+    }
+
+    override fun onNotificationProfileClick() {
+      NotificationProfileSelectionFragment.show(supportFragmentManager)
+    }
+
+    override fun onProxyClick() {
+      startActivity(AppSettingsActivity.proxy(this@MainActivity))
+    }
+
+    override fun onSearchClick() {
+      conversationListTabsViewModel.onSearchOpened()
+      toolbarViewModel.setToolbarMode(MainToolbarMode.SEARCH)
+      toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Search.Open)
+    }
+
+    override fun onClearCallHistoryClick() {
+      toolbarViewModel.clearCallHistory()
+    }
+
+    override fun onFilterMissedCallsClick() {
+      toolbarViewModel.setCallLogFilter(CallLogFilter.MISSED)
+    }
+
+    override fun onClearCallFilterClick() {
+      toolbarViewModel.setCallLogFilter(CallLogFilter.ALL)
+    }
+
+    override fun onStoryPrivacyClick() {
+      startActivity(StorySettingsActivity.getIntent(this@MainActivity))
+    }
+
+    override fun onCloseSearchClick() {
+      conversationListTabsViewModel.onSearchClosed()
+      toolbarViewModel.setToolbarMode(MainToolbarMode.FULL)
+      toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Search.Close)
+    }
+
+    override fun onCloseArchiveClick() {
+      toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Chats.CloseArchive)
+    }
+
+    override fun onSearchQueryUpdated(query: String) {
+      toolbarViewModel.setSearchQuery(query)
+    }
+
+    override fun onNotificationProfileTooltipDismissed() {
+      SignalStore.notificationProfile.hasSeenTooltip = true
+      toolbarViewModel.setShowNotificationProfilesTooltip(false)
     }
   }
 }
