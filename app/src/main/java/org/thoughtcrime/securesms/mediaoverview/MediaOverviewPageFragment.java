@@ -33,6 +33,7 @@ import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
@@ -56,7 +57,7 @@ import java.util.Objects;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
-public final class MediaOverviewPageFragment extends Fragment
+public final class MediaOverviewPageFragment extends LoggingFragment
   implements MediaGalleryAllAdapter.ItemClickListener,
              MediaGalleryAllAdapter.AudioItemListener,
              LoaderManager.LoaderCallbacks<GroupedThreadMediaLoader.GroupedThreadMedia>
