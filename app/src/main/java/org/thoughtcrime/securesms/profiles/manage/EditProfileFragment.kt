@@ -247,6 +247,7 @@ class EditProfileFragment : LoggingFragment() {
       binding.manageProfileName.setText(R.string.ManageProfileFragment_profile_name)
     } else {
       binding.manageProfileName.text = profileName.toString()
+      updateInitials(getAbbreviation(profileName.toString()).toString())
     }
 
     binding.manageProfileName.isEnabled = viewModel.isRegisteredAndUpToDate
