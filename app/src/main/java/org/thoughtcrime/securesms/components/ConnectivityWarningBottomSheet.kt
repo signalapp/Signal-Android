@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -38,7 +40,7 @@ class ConnectivityWarningBottomSheet : ComposeBottomSheetDialogFragment() {
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
       if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
-        ConnectivityWarningBottomSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        BottomSheetUtil.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG, ConnectivityWarningBottomSheet())
         SignalStore.misc.lastConnectivityWarningTime = System.currentTimeMillis()
       }
     }
@@ -56,7 +58,10 @@ class ConnectivityWarningBottomSheet : ComposeBottomSheetDialogFragment() {
 private fun Sheet(onDismiss: () -> Unit = {}) {
   return Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)
+    modifier = Modifier
+      .verticalScroll(rememberScrollState())
+      .fillMaxWidth()
+      .wrapContentSize(Alignment.Center)
   ) {
     BottomSheets.Handle()
     Icon(

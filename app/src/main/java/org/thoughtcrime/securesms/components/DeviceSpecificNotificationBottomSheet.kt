@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -67,7 +69,10 @@ class DeviceSpecificNotificationBottomSheet : ComposeBottomSheetDialogFragment()
 private fun DeviceSpecificSheet(onContinue: () -> Unit = {}, onDismiss: () -> Unit = {}) {
   return Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)
+    modifier = Modifier
+      .verticalScroll(rememberScrollState())
+      .fillMaxWidth()
+      .wrapContentSize(Alignment.Center)
   ) {
     BottomSheets.Handle()
     Icon(
@@ -95,13 +100,17 @@ private fun DeviceSpecificSheet(onContinue: () -> Unit = {}, onDismiss: () -> Un
     ) {
       Buttons.MediumTonal(
         onClick = onDismiss,
-        modifier = Modifier.padding(end = 12.dp).weight(1f)
+        modifier = Modifier
+          .padding(end = 12.dp)
+          .weight(1f)
       ) {
         Text(stringResource(id = R.string.DeviceSpecificNotificationBottomSheet__no_thanks))
       }
       Buttons.MediumTonal(
         onClick = onContinue,
-        modifier = Modifier.padding(start = 12.dp).weight(1f)
+        modifier = Modifier
+          .padding(start = 12.dp)
+          .weight(1f)
       ) {
         Icon(painterResource(id = R.drawable.ic_open_20), contentDescription = null, modifier = Modifier.padding(end = 4.dp))
         Text(stringResource(id = R.string.DeviceSpecificNotificationBottomSheet__continue))

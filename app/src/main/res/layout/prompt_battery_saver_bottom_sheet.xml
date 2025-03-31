@@ -2,86 +2,86 @@
   ~ Copyright 2023 Signal Messenger, LLC
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
-
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <View
-        android:layout_width="48dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@color/signal_icon_tint_tab_unselected"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_troubleshoot_notification"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        style="@style/Signal.Text.TitleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="24dp"
-        android:text="@string/PromptBatterySaverBottomSheet__title"
-        />
-
-    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
-        android:id="@+id/message"
-        style="@style/Signal.Text.BodyMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="24dp"
-        android:text="@string/PromptBatterySaverBottomSheet__message"
-        />
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minWidth="340dp"
-        android:gravity="center_horizontal"
-        android:layout_marginHorizontal="24dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dismiss_button"
-            style="@style/Signal.Widget.Button.Medium.Tonal"
+        <View
+            android:layout_width="48dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@color/signal_icon_tint_tab_unselected" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:minWidth="170dp"
-            android:layout_weight="1"
-            android:layout_marginEnd="12dp"
-            android:text="@string/PromptBatterySaverBottomSheet__no_thanks"/>
+            android:src="@drawable/ic_troubleshoot_notification" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/continue_button"
-            style="@style/Signal.Widget.Button.Medium.Tonal"
+        <TextView
+            style="@style/Signal.Text.TitleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:minWidth="170dp"
-            android:layout_weight="1"
-            android:layout_marginStart="12dp"
-            android:text="@string/PromptBatterySaverBottomSheet__continue"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/PromptBatterySaverBottomSheet__title" />
+
+        <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+            android:id="@+id/message"
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/PromptBatterySaverBottomSheet__message" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:gravity="center_horizontal"
+            android:minWidth="340dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dismiss_button"
+                style="@style/Signal.Widget.Button.Medium.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="1"
+                android:minWidth="170dp"
+                android:text="@string/PromptBatterySaverBottomSheet__no_thanks" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continue_button"
+                style="@style/Signal.Widget.Button.Medium.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="1"
+                android:minWidth="170dp"
+                android:text="@string/PromptBatterySaverBottomSheet__continue" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>
