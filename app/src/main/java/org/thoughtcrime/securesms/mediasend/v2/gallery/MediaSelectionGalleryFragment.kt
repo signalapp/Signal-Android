@@ -53,16 +53,14 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       mediaGalleryFragment.onViewStateUpdated(MediaGalleryFragment.ViewState(state.selectedMedia))
     }
 
-    if (arguments?.containsKey("first") == true) {
-      requireActivity().onBackPressedDispatcher.addCallback(
-        viewLifecycleOwner,
-        object : OnBackPressedCallback(true) {
-          override fun handleOnBackPressed() {
-            requireActivity().finish()
-          }
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          onBackPressed()
         }
-      )
-    }
+      }
+    )
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += sharedViewModel.mediaErrors
@@ -139,6 +137,19 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   }
 
   override fun onToolbarNavigationClicked() {
-    requireActivity().onBackPressed()
+    onBackPressed()
+  }
+
+  fun onBackPressed() {
+    if (arguments?.containsKey("first") == true) {
+      requireActivity().finish()
+      return
+    }
+
+    if (navigator.isPreviousScreenMediaReview(findNavController()) && sharedViewModel.isSelectedMediaEmpty()) {
+      requireActivity().finish()
+    } else {
+      findNavController().popBackStack()
+    }
   }
 }

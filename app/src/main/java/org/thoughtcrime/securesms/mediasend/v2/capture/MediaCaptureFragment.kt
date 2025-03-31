@@ -119,7 +119,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
       }
     }
 
-    if (isFirst()) {
+    if (isFirst() || sharedViewModel.isSelectedMediaEmpty()) {
       requireActivity().onBackPressedDispatcher.addCallback(
         viewLifecycleOwner,
         object : OnBackPressedCallback(true) {
