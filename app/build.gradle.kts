@@ -91,6 +91,7 @@ android {
   kotlinOptions {
     jvmTarget = signalKotlinJvmTarget
     freeCompilerArgs = listOf("-Xjvm-default=all")
+    suppressWarnings = true
   }
 
   keystores["debug"]?.let { properties ->
@@ -413,6 +414,8 @@ android {
     abortOnError = true
     baseline = file("lint-baseline.xml")
     checkReleaseBuilds = false
+    ignoreWarnings = true
+    quiet = true
     disable += "LintError"
   }
 

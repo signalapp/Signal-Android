@@ -36,6 +36,7 @@ tasks.withType<KotlinCompile>().configureEach {
     compilerOptions {
       jvmTarget = JvmTarget.fromTarget(signalKotlinJvmTarget)
       freeCompilerArgs = listOf("-Xjvm-default=all")
+      suppressWarnings = true
     }
   }
 }
