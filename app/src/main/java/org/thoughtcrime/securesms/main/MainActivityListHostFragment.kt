@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsState
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.BottomSheetUtil
@@ -190,7 +189,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   private fun goToStateFromConversationList(state: ConversationListTabsState, navController: NavController) {
-    if (state.tab == ConversationListTab.CHATS) {
+    if (state.tab == MainNavigationDestination.CHATS) {
       return
     } else {
       val cameraFab = requireView().findViewById<View?>(R.id.camera_fab)
@@ -210,7 +209,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
         else -> null
       }
 
-      val destination = if (state.tab == ConversationListTab.STORIES) {
+      val destination = if (state.tab == MainNavigationDestination.STORIES) {
         R.id.action_conversationListFragment_to_storiesLandingFragment
       } else {
         R.id.action_conversationListFragment_to_callLogFragment
@@ -227,17 +226,17 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   private fun goToStateFromCalling(state: ConversationListTabsState, navController: NavController) {
     when (state.tab) {
-      ConversationListTab.CALLS -> return
-      ConversationListTab.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
-      ConversationListTab.STORIES -> navController.navigate(R.id.action_callLogFragment_to_storiesLandingFragment)
+      MainNavigationDestination.CALLS -> return
+      MainNavigationDestination.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      MainNavigationDestination.STORIES -> navController.navigate(R.id.action_callLogFragment_to_storiesLandingFragment)
     }
   }
 
   private fun goToStateFromStories(state: ConversationListTabsState, navController: NavController) {
     when (state.tab) {
-      ConversationListTab.STORIES -> return
-      ConversationListTab.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
-      ConversationListTab.CALLS -> navController.navigate(R.id.action_storiesLandingFragment_to_callLogFragment)
+      MainNavigationDestination.STORIES -> return
+      MainNavigationDestination.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      MainNavigationDestination.CALLS -> navController.navigate(R.id.action_storiesLandingFragment_to_callLogFragment)
     }
   }
 

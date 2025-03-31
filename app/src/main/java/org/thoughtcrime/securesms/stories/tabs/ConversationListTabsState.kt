@@ -1,10 +1,11 @@
 package org.thoughtcrime.securesms.stories.tabs
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainNavigationDestination
 
 data class ConversationListTabsState(
-  val tab: ConversationListTab = ConversationListTab.CHATS,
-  val prevTab: ConversationListTab = if (tab == ConversationListTab.CHATS) ConversationListTab.STORIES else ConversationListTab.CHATS,
+  val tab: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val prevTab: MainNavigationDestination = if (tab == MainNavigationDestination.CHATS) MainNavigationDestination.STORIES else MainNavigationDestination.CHATS,
   val unreadMessagesCount: Long = 0L,
   val unreadCallsCount: Long = 0L,
   val unreadStoriesCount: Long = 0L,

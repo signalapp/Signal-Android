@@ -38,11 +38,11 @@ import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDia
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.MainActivityListHostFragment
+import org.thoughtcrime.securesms.main.MainNavigationDestination
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTab
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsFragment
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
@@ -68,7 +68,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
 
     @JvmStatic
-    fun clearTopAndOpenTab(context: Context, startingTab: ConversationListTab): Intent {
+    fun clearTopAndOpenTab(context: Context, startingTab: MainNavigationDestination): Intent {
       return clearTop(context).putExtra(KEY_STARTING_TAB, startingTab)
     }
   }
@@ -83,8 +83,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     get() = mediaController
 
   private val conversationListTabsViewModel: ConversationListTabsViewModel by viewModel {
-    val startingTab = intent.extras?.getSerializableCompat(KEY_STARTING_TAB, ConversationListTab::class.java)
-    ConversationListTabsViewModel(startingTab ?: ConversationListTab.CHATS, ConversationListTabRepository())
+    val startingTab = intent.extras?.getSerializableCompat(KEY_STARTING_TAB, MainNavigationDestination::class.java)
+    ConversationListTabsViewModel(startingTab ?: MainNavigationDestination.CHATS, ConversationListTabRepository())
   }
 
   private val vitalsViewModel: VitalsViewModel by viewModel {
@@ -165,12 +165,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     handleDeepLinkIntent(intent)
 
     val extras = intent.extras ?: return
-    val startingTab = extras.getSerializableCompat(KEY_STARTING_TAB, ConversationListTab::class.java)
+    val startingTab = extras.getSerializableCompat(KEY_STARTING_TAB, MainNavigationDestination::class.java)
 
     when (startingTab) {
-      ConversationListTab.CHATS -> conversationListTabsViewModel.onChatsSelected()
-      ConversationListTab.CALLS -> conversationListTabsViewModel.onCallsSelected()
-      ConversationListTab.STORIES -> {
+      MainNavigationDestination.CHATS -> conversationListTabsViewModel.onChatsSelected()
+      MainNavigationDestination.CALLS -> conversationListTabsViewModel.onCallsSelected()
+      MainNavigationDestination.STORIES -> {
         if (Stories.isFeatureEnabled()) {
           conversationListTabsViewModel.onStoriesSelected()
         }

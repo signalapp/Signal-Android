@@ -31,9 +31,9 @@ class ConversationListTabsFragment : ComposeFragment() {
         storiesCount = state.unreadStoriesCount.toInt(),
         storyFailure = state.hasFailedStory,
         selectedDestination = when (state.tab) {
-          ConversationListTab.CHATS -> MainNavigationDestination.CHATS
-          ConversationListTab.CALLS -> MainNavigationDestination.CALLS
-          ConversationListTab.STORIES -> MainNavigationDestination.STORIES
+          MainNavigationDestination.CHATS -> MainNavigationDestination.CHATS
+          MainNavigationDestination.CALLS -> MainNavigationDestination.CALLS
+          MainNavigationDestination.STORIES -> MainNavigationDestination.STORIES
         },
         compact = state.compact
       )
