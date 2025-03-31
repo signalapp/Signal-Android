@@ -32,7 +32,7 @@ object Snackbars {
   }
 
   @Composable
-  internal fun Default(snackbarData: SnackbarData) {
+  fun Default(snackbarData: SnackbarData) {
     val colors = LocalSnackbarColors.current
     Snackbar(
       snackbarData = snackbarData,
