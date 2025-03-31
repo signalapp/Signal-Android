@@ -2140,9 +2140,9 @@
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
-    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
     <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>

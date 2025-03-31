@@ -5,23 +5,23 @@
   -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
-    <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
-    <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
-    <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -43,7 +43,7 @@
     <string name="app_icon_label_waves">Хвилі</string>
 
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Триває оновлення Signal…</string>
@@ -62,16 +62,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Перед вимкненням PIN-коду ви повинні записати кодову фразу для свого платіжного профілю, щоб мати змогу відновити його.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Клавіша повернення</string>
 
@@ -1064,7 +1064,7 @@
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Після зв\'язування повідомлення в Signal будуть синхронізуватися з застосунком Signal на вашому мобільному телефоні. Попередню історію повідомлень не буде перенесено на новий зв\'язаний пристрій.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Щоб установити Signal на пристрої, який ви хочете зв\'язати, зайдіть з нього на сторінку %1$s</string>
-    <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Мої зв\'язані пристрої</string>
     <!-- Dialog confirmation to unlink a device -->
@@ -1105,7 +1105,7 @@
     <string name="LinkDeviceFragment__cancel">Закрити</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Помилка експорту з Android (Link&amp;Sync)</string>
-    <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Повідомлення не синхронізовано</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1114,7 +1114,7 @@
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">Новий пристрій зв\'язано, але нам не вдалося перенести ваші повідомлення.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Докладніше</string>
-    <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Повторити спробу</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
@@ -1251,7 +1251,7 @@
     <string name="GroupManagement_access_level_all_members">Усі учасники</string>
     <string name="GroupManagement_access_level_only_admins">Тільки адміністратори</string>
     <string name="GroupManagement_access_level_no_one">Ніхто</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1415,7 +1415,7 @@
     <string name="PromptBatterySaverBottomSheet__continue">Продовжити</string>
     <!-- Button to dismiss battery saver dialog prompt-->
     <string name="PromptBatterySaverBottomSheet__no_thanks">Не хочу</string>
-    <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Запити і запрошення</string>
@@ -1589,7 +1589,7 @@
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_title">Видалити ім\'я користувача?</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_body">"Ваше ім'я користувача буде видалено, а QR-код і посилання — деактивовано. Ім'я користувача «%1$s» зможуть узяти собі інші користувачі. Ви впевнені?"</string>
+    <string name="ManageProfileFragment__delete_username_dialog_body">"Ваше ім\'я користувача буде видалено, а QR-код і посилання — деактивовано. Ім\'я користувача «%1$s» зможуть узяти собі інші користувачі. Ви впевнені?"</string>
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
@@ -1810,8 +1810,8 @@
     <string name="MediaOverviewActivity_audio">Аудіо</string>
     <string name="MediaOverviewActivity_video">Відео</string>
     <string name="MediaOverviewActivity_image">Зображення</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Надіслав користувач %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Надіслали ви</string>
@@ -2227,7 +2227,7 @@
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Приєднатися до групи? Учасники не знатимуть, що ви бачите їхні повідомлення, доки ви не приймете запрошення.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Розблокувати цю групу й поділитися іменем і фото з її учасниками? Ви не отримуватимете повідомлень, поки не розблокуєте групу.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Показати</string>
     <string name="MessageRequestProfileView_member_of_one_group">Учасник «%1$s»</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Учасник «%1$s» і «%2$s»</string>
@@ -2267,9 +2267,9 @@
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
-    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
     <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
@@ -2374,7 +2374,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Створіть PIN-код</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ви використали всі спроби введення PIN-коду, але все одно можете отримати доступ до свого акаунту Signal, якщо створите новий PIN-код. З міркувань конфіденційності та безпеки ваш акаунт буде відновлено без збереженої інформації профілю й налаштувань.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Створіть новий PIN-код</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
     <string name="ReRegisterWithPinFragment_send_sms_code">Надіслати SMS з кодом</string>
@@ -2899,12 +2899,12 @@
     <string name="SearchFragment_no_results">Результатів для «%1$s» не знайдено</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Додати до контактів</string>
@@ -2980,14 +2980,14 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Цей журнал буде загальнодоступний онлайн для перегляду відповідними фахівцями. Ви можете ознайомитися з ним перед вивантаженням.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Фільтр:</string>
     <string name="SupportEmailUtil_device_info">Про пристрій:</string>
     <string name="SupportEmailUtil_android_version">Версія Android:</string>
-    <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string>
-    <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Блокування реєстрації:</string>
-    <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Групу оновлено</string>
@@ -3141,10 +3141,10 @@
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">Добре</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Повідомлення зашифровано для неіснуючої сесії</string>
@@ -3798,7 +3798,7 @@
     <string name="EditProfileFragment__edit_group">Редагування інформації</string>
     <string name="EditProfileFragment__group_name">Назва групи</string>
     <string name="EditProfileFragment__group_description">Опис групи</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Оновити Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
@@ -3884,17 +3884,17 @@
     <string name="HelpFragment__whats_this">Що це?</string>
     <string name="HelpFragment__how_do_you_feel">Який у вас настрій? (необов\'язково)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Яка причина вашого звернення?</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Інформація для служби підтримки</string>
     <string name="HelpFragment__signal_android_support_request">Звернення в службу підтримки щодо Signal для Android</string>
-    <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Не вдалося вивантажити журнал налагодження</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Будь ласка, опишіть проблему якомога детальніше, це нам допоможе.</string>
     <string-array name="HelpFragment__categories_6">
@@ -4095,7 +4095,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Якщо індикатор набору тексту вимкнено, його не буде видно, коли інший користувач набиратиме повідомлення.</string>
     <string name="preferences__request_keyboard_to_disable">Вимкнути персоналізоване навчання клавіатури.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Це налаштування спрацьовує не в усіх випадках. Ваша клавіатура може його ігнорувати.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Через мобільний інтернет</string>
     <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
     <string name="preferences_chats__when_roaming">У роумінгу</string>
@@ -4206,9 +4206,9 @@
     <string name="configurable_single_select__customize_option">Налаштувати опцію</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -4252,14 +4252,14 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Платежі вимкнено.</string>
     <string name="PaymentsHomeFragment__payment_failed">Не вдалося здійснити платіж</string>
     <string name="PaymentsHomeFragment__details">Докладніше</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Signal можна використовувати, щоб надсилати й отримувати валюту MobileCoin. Усі платежі здійснюються відповідно до Умов використання MobileCoin і гаманця MobileCoin. Можуть виникнути певні проблеми, і в разі втрати платежів чи залишку на рахунку кошти буде неможливо відновити. </string>
     <string name="PaymentsHomeFragment__activate">Активувати</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ознайомитися з умовами використання MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Платежі у Signal більше не доступні. Ви й досі можете переказувати кошти для обміну, але більше не можете надсилати та отримувати платежі та поповнювати рахунок.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Увімкнути захист платежів для надсилання коштів у майбутньому?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -4341,7 +4341,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Копіювати</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Скопійовано в буфер обміну</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Щоб додати кошти, надішліть MobileCoin на адресу свого гаманця. Почніть операцію у своєму обліковому записі на біржі, що підтримує MobileCoin, і зіскануйте QR-код або скопіюйте адресу свого гаманця.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Докладніше</string>
@@ -4362,8 +4362,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Комісія за округлення койнів</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">«Плата за округлення койнів» стягується, коли ваші койни неможливо згрупувати для здійснення трансакції. Округлення дасть вам змогу продовжити надсилати платежі.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Інша інформація про цю операцію відсутня</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Надісланий платіж</string>
     <string name="PaymentsDetailsFragment__received_payment">Отриманий платіж</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Платіж здійснено %1$s</string>
@@ -4408,7 +4408,7 @@
     <string name="CreatePaymentFragment__backspace">Видалення останньої цифри</string>
     <string name="CreatePaymentFragment__add_note">Додати примітку</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Курси обміну валют орієнтовні, тому сума може бути неточна.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Примітка</string>
@@ -4635,7 +4635,7 @@
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Створити буквено-цифровий PIN-код</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Створити цифровий PIN-код</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -4671,7 +4671,7 @@
     <string name="KbsSplashFragment__introducing_pins">Новинка: PIN-коди</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коди забезпечують шифрування інформації, що зберігається в Signal, щоб отримати до неї доступ могли тільки ви. У разі перевстановлення Signal ви зможете відновити свій профіль, налаштування й контакти. Щоб відкрити застосунок, PIN-код не потрібен.</string>
     <string name="KbsSplashFragment__learn_more">Дізнатися більше</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Блокування реєстрації = PIN-код</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Блокування реєстрації тепер називається PIN-кодом, і цей код здатний на більше. Оновіть його одразу.</string>
     <string name="KbsSplashFragment__update_pin">Оновити PIN-код</string>
@@ -4692,7 +4692,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ваш акаунт заблоковано з міркувань конфіденційності та безпеки. Через %1$d днів без активності в акаунті ви зможете заново зареєструвати цей номер телефону без введення PIN-коду. Весь вміст буде видалено.</string>
     <string name="AccountLockedFragment__next">Далі</string>
     <string name="AccountLockedFragment__learn_more">Дізнатися більше</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Введіть свій PIN-код</string>
@@ -5347,9 +5347,9 @@
     <string name="payment_info_card_with_a_high_balance">Якщо у вас велика сума на рахунку, рекомендуємо створити буквено-цифровий PIN-код для надійнішого захисту акаунту.</string>
     <string name="payment_info_card_update_pin">Оновити PIN-код</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Деактивувати гаманець</string>
@@ -5361,7 +5361,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Деактивувати без переведення коштів?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Якщо ви знов активуєте платежі, залишок буде в гаманці, зв\'язаному з Signal.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Під час деактивації гаманця сталася помилка.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Кодова фраза</string>
@@ -5399,8 +5399,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Неправильна кодова фраза</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Перевірте, чи ви ввели %1$d слова, і повторіть спробу.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Далі</string>
@@ -5445,7 +5445,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">У цій групі немає ваших контактів і людей, з якими ви маєте спільні чати. Щоб уникнути небажаних повідомлень, не приймайте запитів без уважної перевірки відправника.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Про запити на повідомлення</string>
     <string name="GroupsInCommonMessageRequest__okay">Зрозуміло</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Таким буде колір чату.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Цей колір бачите лише ви.</string>
 
@@ -5771,7 +5771,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Показувати значок стану</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Показувати піктограму в інформації про повідомлення, доставлене від засекреченого відправника.</string>
 
@@ -5929,7 +5929,7 @@
     <string name="ConversationSettingsFragment__search">Пошук</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Тимчасові повідомлення</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки і сповіщення</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Дані з контактів телефона</string>
     <string name="ConversationSettingsFragment__view_safety_number">Переглянути код безпеки</string>
     <string name="ConversationSettingsFragment__block">Заблокувати</string>
@@ -6873,7 +6873,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">вони є в контактах вашого телефона.</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Контакти Signal бачать ваше ім'я та фото, а також усе, що ви викладаєте в «Моїй історії», якщо ви її не приховали."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Контакти Signal бачать ваше ім\'я та фото, а також усе, що ви викладаєте в «Моїй історії», якщо ви її не приховали."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Додати глядача</string>
     <!-- Clickable option to delete a custom story -->
@@ -8649,7 +8649,7 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
-    <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>

@@ -5,23 +5,23 @@
   -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
-    <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
-    <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
-    <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -43,7 +43,7 @@
     <string name="app_icon_label_waves">Mawimbi</string>
 
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa…</string>
@@ -62,16 +62,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Kabla ya kuzima PIN yako, lazima urekodi kifungu chako cha kurejesha malipo ili uhakikishe kuwa unaweza kurejesha akaunti yako ya malipo.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Nafasi ya kurudi nyuma</string>
 
@@ -1020,7 +1020,7 @@
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Jumbe za Signal zimesawazishwa na Signal kwenye simu mahiri yako baada ya kuunganishwa. Historia ya zamani ya jumbe zako haitaonekana.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">Kwenye kifaa unachotaka kuunganisha, tembelea %1$s ili kusakinisha Signal</string>
-    <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Vifaa vyangu vilivyounganishwa</string>
     <!-- Dialog confirmation to unlink a device -->
@@ -1061,7 +1061,7 @@
     <string name="LinkDeviceFragment__cancel">Ghairi</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Kiungo cha Android&amp;Sync Export Hakijafanikiwa</string>
-    <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Usawazishaji wa ujumbe umeshindikana</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1070,7 +1070,7 @@
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">Kifaa chako kimeunganishwa, lakini jumbe zako hazikuweza kuhamishwa.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Jifunze zaidi</string>
-    <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Jaribu Upya</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
@@ -1205,7 +1205,7 @@
     <string name="GroupManagement_access_level_all_members">Wanachama wote</string>
     <string name="GroupManagement_access_level_only_admins">Wasimamizi pekee</string>
     <string name="GroupManagement_access_level_no_one">Hakuna mtu</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1343,7 +1343,7 @@
     <string name="PromptBatterySaverBottomSheet__continue">Endelea</string>
     <!-- Button to dismiss battery saver dialog prompt-->
     <string name="PromptBatterySaverBottomSheet__no_thanks">Hapana nashukuru</string>
-    <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Maombi na mialiko</string>
@@ -1710,8 +1710,8 @@
     <string name="MediaOverviewActivity_audio">Sauti</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Picha</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Umetumwa na %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Uliyotuma</string>
@@ -2107,7 +2107,7 @@
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunga na kikundi hiki? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Ondoa kizuizi kwa kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka utakapoondoa kizuizi kwao.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Tazama</string>
     <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
@@ -2139,9 +2139,9 @@
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
-    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
     <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
@@ -2240,7 +2240,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Unda Nenosiri lako</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Umefikia idadi ya juu zaidi ya majaribio ya PIN, lakini bado unaweza kufikia akaunti yako ya Signal kwa kuunda PIN mpya. Kwa faragha na usalama wako, akaunti yako itarejeshwa bila maelezo au mipangilio ya wasifu iliyohifadhiwa.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Unda PIN mpya</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
     <string name="ReRegisterWithPinFragment_send_sms_code">Tuma kodi ya SMS</string>
@@ -2723,12 +2723,12 @@
     <string name="SearchFragment_no_results">Hakuna matokeo yamepatikana kwa \'%1$s\'</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Ongeza mawasiliano</string>
@@ -2804,14 +2804,14 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Kumbukumbu hii itachapishwa hadharani mtandaoni ili wachangiaji waitazame. Unaweza kuichunguza kabla ya kuipakia.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Kichujio:</string>
     <string name="SupportEmailUtil_device_info">Maelezo ya kifaa:</string>
     <string name="SupportEmailUtil_android_version">Toleo la Android:</string>
-    <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string>
-    <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Kufuli ya usajili:</string>
-    <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Kikundi kimesasishwa</string>
@@ -2963,10 +2963,10 @@
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">Sawa</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ujumbe umesimbwa kwa kipindi kisichopo</string>
@@ -3586,7 +3586,7 @@
     <string name="EditProfileFragment__edit_group">Hariri kikundi</string>
     <string name="EditProfileFragment__group_name">Jina la kikundi</string>
     <string name="EditProfileFragment__group_description">Maelezo ya kikundi</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Sasisha Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
@@ -3672,17 +3672,17 @@
     <string name="HelpFragment__whats_this">Hii ni nini?</string>
     <string name="HelpFragment__how_do_you_feel">Unahisije? (Si lazima)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Tuambie kwa nini unawasiliana nasi</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Maelezo ya Usaidizi</string>
     <string name="HelpFragment__signal_android_support_request">Ombi la Usaidizi wa Signal Android</string>
-    <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">Hukuweza kupakia kumbukumbu</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Tafadhali toa maelezo ya kina iwezekanavyo utusaidie kuelewa suala hili.</string>
     <string-array name="HelpFragment__categories_6">
@@ -3881,7 +3881,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kucharaza vimelemazwa, hutaweza kuona viashiria vya kucharaza kutoka kwa wengine.</string>
     <string name="preferences__request_keyboard_to_disable">Omba kiibodi ili uzime kipengele cha kujifunza inavyokufaa.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Mpangilio huu sio hakikisho, na kibodi yako inaweza kuipuuza.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
     <string name="preferences_chats__when_using_wifi">Wakati unatumia WiFi</string>
     <string name="preferences_chats__when_roaming">Wakati unarandaranda</string>
@@ -3988,9 +3988,9 @@
     <string name="configurable_single_select__customize_option">Badilisha chaguo likufae</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -4034,14 +4034,14 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Malipo yamezimwa.</string>
     <string name="PaymentsHomeFragment__payment_failed">Malipo hayajatumwa</string>
     <string name="PaymentsHomeFragment__details">Maelezo</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Unaweza kutumia Signal kutuma na kupokea MobileCoin. Malipo yote yako chini ya Masharti ya Matumizi kwa MobileCoins na MobileCoin Wallet. Unaweza kukumbana na hitilafu na malipo au salio ambazo huenda ukapoteza zisirejeshwe. </string>
     <string name="PaymentsHomeFragment__activate">Wezesha</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Angalia masharti ya MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Malipo katika Signal hayapatikani tena. Bado unaweza kuhamishia fedha kwenye ubadilishanaji lakini huwezi kutuma na kupokea malipo au kuongeza pesa.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Washa Payment Lock ili kutuma kwa baadae?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -4123,7 +4123,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Nakili</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Ili kuongeza pesa, tuma MobileCoin kwenye anwani yako ya mkoba. Anzisha muamala shughuli kutoka kwenye akaunti yako kwa ubadilishaji unatumia MobileCoin, kisha changanua msimbo wa QR au unakili anwani yako ya mkoba.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Maelezo</string>
@@ -4144,8 +4144,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Ada ya kusafisha sarafu</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">“Ada ya kusafisha sarafu” inatozwa wakati sarafu ulizonazo haziwezi kuunganishwa ili kukamilisha muamala. Usafishaji utakuwezesha kuendelea kutuma malipo.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Hakuna maelezo zaidi yanayopatikana kwa muamal huu</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Umepokea malipo</string>
     <string name="PaymentsDetailsFragment__received_payment">Ulipokea malipo</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Malipo yalitumwa tarehe %1$s</string>
@@ -4190,7 +4190,7 @@
     <string name="CreatePaymentFragment__backspace">Nafasi ya kurudi nyuma</string>
     <string name="CreatePaymentFragment__add_note">Ongeza dokezo</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Ubadilishaji ni makadirio tu na huenda yasiwe sahihi.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Kumbuka</string>
@@ -4413,7 +4413,7 @@
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Unda Nenosiri lenye herufi na nambari</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Unda Nenosiri lenye nambari</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -4445,7 +4445,7 @@
     <string name="KbsSplashFragment__introducing_pins">Uanzishaji Nenosiri</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN hutumiwa kuhakikisha maelezo yaliyohifadhiwa katika Signal yamesimbwa kwa njia fiche hivi kwamba ni wewe tu unayeweza kuyafikia. Wasifu wako, mipangilio, na waasilian wako wa watarejeshwa utakapoisakinisha upya. Hutahitaji PIN yako kufungua programu.</string>
     <string name="KbsSplashFragment__learn_more">Jifunze Zaidi</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Kufuli ya Usajili = Nenosiri</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kifunga usajili wako sasa kinaitwa Nenosiri, na kinafanya mengi zaidi. Kisasishe sasa.</string>
     <string name="KbsSplashFragment__update_pin">Sasisha Nenosiri</string>
@@ -4466,7 +4466,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akaunti yako imefungwa ili kulinda faragha yako na usalama wako. Baada ya siku %1$d bila shughuli kwenye akaunti yako utaweza kusajili upya nambari hii ya simu bila kuhitaji Nenosiri lako. Yote yaliyomo yatafutwa.</string>
     <string name="AccountLockedFragment__next">Ifuatayo</string>
     <string name="AccountLockedFragment__learn_more">Jifunze Zaidi</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ingiza Nenosiri lako</string>
@@ -5097,9 +5097,9 @@
     <string name="payment_info_card_with_a_high_balance">Ikiwa una salio kubwa, huenda utahitaji kubadilisha utumie PIN ya herufi na nambari ili kudumisha ulinzi kwenye akaunti yako.</string>
     <string name="payment_info_card_update_pin">Sasisha Nenosiri</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Zima Mkoba</string>
@@ -5111,7 +5111,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ungependa kuzima bila kuhamisha?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Salio lako litabakia kwenye mkoba wako uliounganishwa na Signal ukichagua kuwezesha malipo tena.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Hitilafu imetokea wakati wa kuzima mkoba.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Maneno ya kurejesha</string>
@@ -5147,8 +5147,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Maneno ya kurejesha si sahihi</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Hakikisha umeweka maneno %1$d kisha ujaribu tena.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Ifuatayo</string>
@@ -5193,7 +5193,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Hakuna waasiliani wako au watu unaozungumza nao walio kwenye kikundi hiki. Kagua maombi kwa uangalifu kabla ya kukubali ili kuepuka kutumiwa ujumbe usiohitajika.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Kuhusu maombi ya ujumbe</string>
     <string name="GroupsInCommonMessageRequest__okay">Sawa</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hii hapa hakiki ya rangi ya gumzo.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ni wewe tu unayeweza kuiona rangi hii.</string>
 
@@ -5509,7 +5509,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Onyesha aikoni ya hali</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Onyesha aikoni katika maelezo ya ujumbe wakati uliwasilishwa kwa kutumia huduma ya kuficha ujumbe.</string>
 
@@ -5663,7 +5663,7 @@
     <string name="ConversationSettingsFragment__search">Tafuta</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Jumbe zinazotoweka</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sauti na arifa</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Taarifa za wawasiliani</string>
     <string name="ConversationSettingsFragment__view_safety_number">Tazama nambari ya usalama</string>
     <string name="ConversationSettingsFragment__block">Zuia</string>
@@ -8297,7 +8297,7 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
-    <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>

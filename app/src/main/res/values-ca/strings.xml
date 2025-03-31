@@ -5,23 +5,23 @@
   -->
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string>
-    <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string>
-    <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string>
-    <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_failed_support_url" translatable="false">https://support.signal.org/hc/articles/8768161836954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="username_support_url" translatable="false">https://support.signal.org/hc/articles/5389476324250</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="export_account_data_url" translatable="false">https://support.signal.org/hc/articles/5538911756954</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="pending_transfer_url" translatable="false">https://support.signal.org/hc/articles/360031949872#pending</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_faq_url" translatable="false">https://support.signal.org/hc/articles/360031949872#donate</string> -->
 
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
@@ -43,7 +43,7 @@
     <string name="app_icon_label_waves">Ones</string>
 
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">El Signal s\'actualitza…</string>
@@ -62,16 +62,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Abans de poder desactivar el PIN, heu de registrar la frase de recuperació de pagaments per assegurar-vos que podeu recuperar el compte de pagaments.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Retrocés</string>
 
@@ -895,9 +895,9 @@
     <!-- Remote media restoration paused status title. -->
     <string name="RestoreMediaReminder__Restoring_media_paused">La restauració dels arxius s s\'ha interromput</string>
     <!-- Remote media restoration paused status description for when the restore is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_Wifi">Esperant el WiFi...</string>
+    <string name="RestoreMediaReminder__Waiting_for_Wifi">Esperant el WiFi…</string>
     <!-- Remote media restoration paused status description for when the restore is paused because internet is unavailable. -->
-    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Esperant la connexió a Internet...</string>
+    <string name="RestoreMediaReminder__Waiting_for_internet_connection">Esperant la connexió a Internet…</string>
     <!-- Remote media restoration paused status description for when the device\'s battery is low -->
     <string name="RestoreMediaReminder__low_battery">Bateria baixa. Carrega el teu dispositiu.</string>
     <!-- Remote media restoration call to action when the device is out of space. The placeholder string is a file size, such as "1.23 GB". -->
@@ -917,7 +917,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Proveu la contrasenya de còpia de seguretat i verifiqueu que coincideix.</string>
     <string name="BackupsPreferenceFragment__turn_on">Activa</string>
     <string name="BackupsPreferenceFragment__turn_off">Desactiva</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Per restaurar una còpia de seguretat, instal·leu una còpia del Signal. Obriu l'aplicació i toqueu Restaura la còpia de seguretat. Indiqueu el fitxer de còpia de seguretat. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Per restaurar una còpia de seguretat, instal·leu una còpia del Signal. Obriu l\'aplicació i toqueu Restaura la còpia de seguretat. Indiqueu el fitxer de còpia de seguretat. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Més informació</string>
     <string name="BackupsPreferenceFragment__in_progress">En curs…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1020,7 +1020,7 @@
     <string name="LinkDeviceFragment__signal_messages_are_synchronized">Els missatges de Signal se sincronitzaran amb l\'app al teu telèfon un cop l\'hagis vinculat. L\'historial de missatges anteriors no apareixerà.</string>
     <!-- Bottom sheet description explaining that for non-desktop/iPad devices, they should go to %s to download Signal where %s is Signal\'s website -->
     <string name="LinkDeviceFragment__on_other_device_visit_signal">En l\'altre dispositiu que vols vincular, ves a %1$s per instal·lar Signal</string>
-    <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__signal_download_url" translatable="false">signal.org/download</string> -->
     <!-- Header title listing out current linked devices -->
     <string name="LinkDeviceFragment__my_linked_devices">Els meus dispositius connectats</string>
     <!-- Dialog confirmation to unlink a device -->
@@ -1034,7 +1034,7 @@
     <!-- Toast message shown after a device has been linked -->
     <string name="LinkDeviceFragment__device_approved">Dispositiu aprovat</string>
     <!-- Progress dialog message indicating that the list of linked devices is currently loading -->
-    <string name="LinkDeviceFragment__loading">Carregant...</string>
+    <string name="LinkDeviceFragment__loading">Carregant…</string>
     <!-- Progress dialog message indicating that you are syncing messages to your linked device -->
     <string name="LinkDeviceFragment__syncing_messages">Sincronitzant missatges…</string>
     <!-- Text message shown when the user has no linked devices -->
@@ -1061,7 +1061,7 @@
     <string name="LinkDeviceFragment__cancel">Cancel·lar</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
     <string name="LinkDeviceFragment__link_sync_failure_support_email">Error en l\'exportació d\'Android Link&amp;Sync</string>
-    <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">La sincronització de missatges ha fallat</string>
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed -->
@@ -1070,7 +1070,7 @@
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">El dispositiu s\'ha enllaçat amb èxit, però els teus missatges no s\'han pogut transferir.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
     <string name="LinkDeviceFragment__learn_more">Més informació</string>
-    <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string>
+  <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Torna a provar-ho</string>
     <!-- Text button of a button in a dialog that, when pressed, will ignore syncing errors and link a new device without syncing message content -->
@@ -1205,7 +1205,7 @@
     <string name="GroupManagement_access_level_all_members">Tots els membres</string>
     <string name="GroupManagement_access_level_only_admins">Només els administradors</string>
     <string name="GroupManagement_access_level_no_one">Cap</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1343,7 +1343,7 @@
     <string name="PromptBatterySaverBottomSheet__continue">Continuar</string>
     <!-- Button to dismiss battery saver dialog prompt-->
     <string name="PromptBatterySaverBottomSheet__no_thanks">No, gràcies.</string>
-    <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string>
+  <!-- Removed by excludeNonTranslatables <string name="PromptBatterySaverBottomSheet__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007318711#android_notifications_troubleshooting</string> -->
 
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">Sol·licituds i invitacions</string>
@@ -1370,8 +1370,8 @@
     <string name="RequestingMembersFragment_pending_member_requests">Sol·licituds d\'adhesió pendents</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No hi ha cap sol·licitud d\'adhesió per mostrar.</string>
     <string name="RequestingMembersFragment_explanation">La gent d\'aquesta llista intenta afegir-se a aquest grup per l\'enllaç del grup.</string>
-    <string name="RequestingMembersFragment_added_s">"S'hi ha afegit %1$s"</string>
-    <string name="RequestingMembersFragment_denied_s">"S'ha rebutjat %1$s"</string>
+    <string name="RequestingMembersFragment_added_s">"S\'hi ha afegit %1$s"</string>
+    <string name="RequestingMembersFragment_denied_s">"S\'ha rebutjat %1$s"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Fet</string>
@@ -1710,8 +1710,8 @@
     <string name="MediaOverviewActivity_audio">Àudio</string>
     <string name="MediaOverviewActivity_video">Vídeo</string>
     <string name="MediaOverviewActivity_image">Imatge</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Enviat per %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Ho heu enviat</string>
@@ -2107,7 +2107,7 @@
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Voleu afegir-vos a aquest grup? No sabran que n\'heu vist els missatges fins que no ho accepteu.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Vols desbloquejar aquest grup i compartir el nom i la fotografia amb els seus membres? No rebràs cap missatge fins que no el desbloquegis.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Mostra</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Membre de %1$s i %2$s</string>
@@ -2139,9 +2139,9 @@
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
-    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
-    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members' names -->
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
     <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
@@ -2240,7 +2240,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Creeu el PIN</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Se us han acabat els intents del PIN, però encara podeu accedir al compte del Signal creant un PIN nou. Per a la vostra privadesa i seguretat, el compte es restaurarà sense cap tipus d\'informació ni configuració de perfil.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Crea un PIN nou</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
     <string name="ReRegisterWithPinFragment_send_sms_code">Enviar codi per SMS</string>
@@ -2723,12 +2723,12 @@
     <string name="SearchFragment_no_results">No s\'ha trobat cap resultat per a «%1$s»</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Afegeix als contactes</string>
@@ -2804,14 +2804,14 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Aquest registre es penjarà públicament en línia perquè els col·laboradors el vegin. Podeu examinar-lo abans de penjar-lo.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Filtre:</string>
     <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
     <string name="SupportEmailUtil_android_version">Versió d\'Android:</string>
-    <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string>
-    <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_package" translatable="false">Signal package:</string> -->
     <string name="SupportEmailUtil_registration_lock">Bloqueig de registre:</string>
-    <string name="SupportEmailUtil_locale" translatable="false">Locale:</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">S\'ha actualitzat el grup</string>
@@ -2963,10 +2963,10 @@
     <string name="VerifyDisplayFragment__scan_result_dialog_ok">D\'acord</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge encriptat per a una sessió que no existeix</string>
@@ -3282,7 +3282,7 @@
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">El Signal necessita el permís de l\'aplicació dels contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi els contactes.</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
     <string name="ContactSelectionListFragment_username_not_found">No s\'ha trobat l\'àlies.</string>
-    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne l'àlies i torneu-ho a provar."</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s no és un usuari del Signal. Si us plau, comproveu-ne l\'àlies i torneu-ho a provar."</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">No cal que us afegiu al grup.</string>
     <string name="ContactSelectionListFragment_maximum_group_size_reached">S\'ha assolit la mida màxima del grup.</string>
     <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Els grups del Signal poden tenir un màxim de %1$d membres.</string>
@@ -3586,7 +3586,7 @@
     <string name="EditProfileFragment__edit_group">Edita el grup</string>
     <string name="EditProfileFragment__group_name">Nom del grup</string>
     <string name="EditProfileFragment__group_description">Descripció del grup</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <!-- The title of a dialog prompting user to update to the latest version of Signal. -->
     <string name="EditProfileFragment_deprecated_dialog_title">Actualitza el Signal</string>
     <!-- The body of a dialog prompting user to update to the latest version of Signal. -->
@@ -3672,17 +3672,17 @@
     <string name="HelpFragment__whats_this">Què és això?</string>
     <string name="HelpFragment__how_do_you_feel">Com us sentiu? (opcional)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Expliqueu-nos per què us poseu en contacte.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <!-- Heading used within support email that lists additional information to help with debugging -->
     <string name="HelpFragment__support_info">Informació de suport</string>
     <string name="HelpFragment__signal_android_support_request">Petició de suport de Signal d\'Android</string>
-    <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__debug_log" translatable="false">Debug Log:</string> -->
     <string name="HelpFragment__could_not_upload_logs">No s\'han pogut carregar els registres.</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Si us plau, expliqueu-ho de la manera més descriptiva possible per ajudar-nos a entendre el problema.</string>
     <string-array name="HelpFragment__categories_6">
@@ -3881,7 +3881,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
     <string name="preferences__request_keyboard_to_disable">Sol·licita un teclat per desactivar l\'aprenentatge personalitzat.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
     <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
     <string name="preferences_chats__when_roaming">En itinerància</string>
@@ -3988,9 +3988,9 @@
     <string name="configurable_single_select__customize_option">Opció de personalització</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -4034,14 +4034,14 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Pagaments desactivats</string>
     <string name="PaymentsHomeFragment__payment_failed">Ha fallat el pagament.</string>
     <string name="PaymentsHomeFragment__details">Detalls</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
     <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Pots fer servir Signal per enviar i rebre MobileCoin. Tots els pagaments estan subjectes a les Condicions d\'ús de MobileCoins i MobileCoin Wallet. És possible que tinguis algun problema, i els pagaments o fons que perdis no podran ser recuperats. </string>
     <string name="PaymentsHomeFragment__activate">Activa\'ls</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vegeu els termes de MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Els pagaments al Signal ja no estan disponibles. Encara podeu transferir fons a un intercanvi, però ja no podeu enviar ni rebre pagaments ni afegir-hi fons.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Vols activar el bloqueig de pagament per a futurs enviaments?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -4123,7 +4123,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Copia</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiat al porta-retalls</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Per afegir-hi fons, envieu MobileCoin a la vostra adreça de cartera. Inicieu una transacció des del compte amb un intercanvi que admeti MobileCoin i, a continuació, escaneu el codi QR o copieu la vostra adreça de cartera.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Detalls</string>
@@ -4144,8 +4144,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comissió de neteja de monedes</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Es cobra una comissió de neteja de monedes quan les monedes que teniu no es poden combinar per completar una transacció. La neteja us permetrà continuar enviant pagaments.</string>
     <string name="PaymentsDetailsFragment__no_details_available">No hi ha més detalls disponibles per a aquesta transacció.</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Pagament enviat</string>
     <string name="PaymentsDetailsFragment__received_payment">Pagament rebut</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Pagament fet: %1$s</string>
@@ -4190,7 +4190,7 @@
     <string name="CreatePaymentFragment__backspace">Retrocés</string>
     <string name="CreatePaymentFragment__add_note">Afegeix-hi una nota</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Les conversions són només estimacions i és possible que no siguin exactes.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Nota</string>
@@ -4413,7 +4413,7 @@
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Creeu un PIN alfanumèric</string>
     <!-- Button label to prompt them to return to creating a numbers-only password ("PIN") -->
     <string name="BaseKbsPinFragment__create_numeric_pin">Creeu un PIN numèric</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -4445,7 +4445,7 @@
     <string name="KbsSplashFragment__introducing_pins">S\'introdueixen els PIN</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Els PIN mantenen encriptada la informació desada amb el Signal de manera que no hi pugui accedir ningú més. El perfil, la configuració i els contactes es restauraran quan el reinstal·leu. No necessitareu el PIN per obrir l\'aplicació.</string>
     <string name="KbsSplashFragment__learn_more">Més informació</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueig de registre = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">El bloqueig de registre ara s\'anomena PIN i serveix per a molt més. Actualitzeu-lo ara.</string>
     <string name="KbsSplashFragment__update_pin">Actualitza el PIN</string>
@@ -4466,7 +4466,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Hem blocat el compte per protegir la vostra privadesa i seguretat. Al cap de %1$d dies d’inactivitat, podreu tornar a registrar aquest número de telèfon sense necessitar el PIN. Se n\'esborrarà tot el contingut.</string>
     <string name="AccountLockedFragment__next">Següent</string>
     <string name="AccountLockedFragment__learn_more">Més informació</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Marqueu el PIN</string>
@@ -5097,9 +5097,9 @@
     <string name="payment_info_card_with_a_high_balance">Amb un saldo elevat, és possible que vulgueu passar a un PIN alfanumèric per afegir més protecció al compte.</string>
     <string name="payment_info_card_update_pin">Actualitza el PIN</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Desactiva la cartera</string>
@@ -5111,7 +5111,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Voleu desactivar els fons sense transferir-los?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">El saldo es mantindrà a la cartera enllaçada amb Signal si decideixes reactivar els pagaments.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Error en desactivar la cartera</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frase de recuperació</string>
@@ -5147,8 +5147,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frase de recuperació no vàlida</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Assegureu-vos que heu introduït %1$d paraules i torneu-ho a provar.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Següent</string>
@@ -5193,7 +5193,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Cap dels teus contactes o persones amb qui xateges forma part d\'aquest grup. Revisa les sol·licituds amb atenció abans d’acceptar-les per evitar missatges no desitjats.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Quant a les sol·licituds de missatges</string>
     <string name="GroupsInCommonMessageRequest__okay">D\'acord</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aquí tens una previsualització del color del xat.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">El color només el veieu vós.</string>
 
@@ -5509,7 +5509,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Mostra la icona d\'estat</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Mostra una icona als detalls del missatge quan es lliuri mitjançant un remitent segellat.</string>
 
@@ -5663,7 +5663,7 @@
     <string name="ConversationSettingsFragment__search">Cerca</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Missatges efímers</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sons i notificacions</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Informació de contacte del telèfon</string>
     <string name="ConversationSettingsFragment__view_safety_number">Mostra el número de seguretat</string>
     <string name="ConversationSettingsFragment__block">Bloquejar</string>
@@ -6956,7 +6956,7 @@
     <!-- Section header for who can view a group story -->
     <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui pot veure aquesta història</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Els membres del grup \"%1$s\" poden veure i respondre a aquesta història. Pots actualitzar l'afiliació a aquest xat a través del grup."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Els membres del grup \"%1$s\" poden veure i respondre a aquesta història. Pots actualitzar l\'afiliació a aquest xat a través del grup."</string>
     <!-- Preference label for removing this group story -->
     <string name="GroupStorySettingsFragment__remove_group_story">Suprimir història de grup</string>
 
@@ -8297,7 +8297,7 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
-    <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
