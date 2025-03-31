@@ -1002,7 +1002,7 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
     ?: emptyList()
   val hasVoiceNote = messageAttachments.any { it.voiceNote }
   return StandardMessage(
-    quote = this.toRemoteQuote(mediaArchiveEnabled, quotedAttachments),
+    quote = this.toRemoteQuote(exportState, mediaArchiveEnabled, quotedAttachments),
     text = text.takeUnless { hasVoiceNote },
     attachments = messageAttachments.toRemoteAttachments(mediaArchiveEnabled).withFixedVoiceNotes(textPresent = text != null || longTextAttachment != null),
     linkPreview = linkPreviews.map { it.toRemoteLinkPreview(mediaArchiveEnabled) },
@@ -1011,8 +1011,8 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
   )
 }
 
-private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, attachments: List<DatabaseAttachment>? = null): Quote? {
-  if (this.quoteTargetSentTimestamp == MessageTable.QUOTE_NOT_PRESENT_ID || this.quoteAuthor <= 0) {
+private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, mediaArchiveEnabled: Boolean, attachments: List<DatabaseAttachment>? = null): Quote? {
+  if (this.quoteTargetSentTimestamp == MessageTable.QUOTE_NOT_PRESENT_ID || this.quoteAuthor <= 0 || exportState.groupRecipientIds.contains(this.quoteAuthor)) {
     return null
   }
 
