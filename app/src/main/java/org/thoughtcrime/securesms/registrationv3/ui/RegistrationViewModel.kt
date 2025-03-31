@@ -87,6 +87,7 @@ import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * ViewModel shared across all of registration.
@@ -898,7 +899,14 @@ class RegistrationViewModel : ViewModel() {
 
     if (SignalStore.account.restoredAccountEntropyPool) {
       Log.d(TAG, "Restoring backup tier")
-      BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
+      var tries = 0
+      while (tries < 3 && !SignalStore.backup.isBackupTierRestored) {
+        if (tries > 0) {
+          delay(1.seconds)
+        }
+        BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
+        tries++
+      }
     }
 
     refreshRemoteConfig()

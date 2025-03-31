@@ -388,9 +388,9 @@ private fun AdvancedAlertDialogPreview() {
     AdvancedAlertDialog(
       title = "Title text",
       body = "Body message text.",
-      positive = "Continue",
-      neutral = "Learn more",
-      negative = "Not now",
+      positive = "Positive",
+      neutral = "Neutral",
+      negative = "Negative",
       onPositive = {},
       onNegative = {},
       onNeutral = {}

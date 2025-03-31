@@ -51,7 +51,12 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   val state: StateFlow<ScreenState> = store.asStateFlow()
 
   init {
+    reload()
+  }
+
+  fun reload() {
     viewModelScope.launch(Dispatchers.IO) {
+      store.update { it.copy(loadState = ScreenState.LoadState.LOADING, loadAttempts = it.loadAttempts + 1) }
       val tier: MessageBackupTier? = BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
       store.update {
         if (tier != null && SignalStore.backup.lastBackupTime > 0) {
@@ -161,7 +166,8 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     val backupSize: ByteSize = 0.bytes,
     val importState: ImportState = ImportState.None,
     val restoreProgress: RestoreV2Event? = null,
-    val loadState: LoadState = if (backupTier != null) LoadState.LOADED else LoadState.LOADING
+    val loadState: LoadState = if (backupTier != null) LoadState.LOADED else LoadState.LOADING,
+    val loadAttempts: Int = 0
   ) {
 
     fun isLoaded(): Boolean {
