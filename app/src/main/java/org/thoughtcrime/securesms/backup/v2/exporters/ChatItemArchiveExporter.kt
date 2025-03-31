@@ -291,7 +291,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate() ?: continue
+          builder.updateMessage = record.toRemoteThreadMergeUpdate()?.takeIf { exportState.recipientIdToAci.contains(builder.authorId) } ?: continue
           transformTimer.emit("thread-merge")
         }
 
