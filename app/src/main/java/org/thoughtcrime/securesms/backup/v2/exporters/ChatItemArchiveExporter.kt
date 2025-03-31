@@ -875,21 +875,21 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
       name = sharedContact.name.toRemote(),
       avatar = (sharedContact.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
       organization = sharedContact.organization ?: "",
-      number = sharedContact.phoneNumbers.map { phone ->
+      number = sharedContact.phoneNumbers.mapNotNull { phone ->
         ContactAttachment.Phone(
           value_ = phone.number,
           type = phone.type.toRemote(),
           label = phone.label ?: ""
-        )
+        ).takeUnless { it.value_.isBlank() }
       },
-      email = sharedContact.emails.map { email ->
+      email = sharedContact.emails.mapNotNull { email ->
         ContactAttachment.Email(
           value_ = email.email,
           label = email.label ?: "",
           type = email.type.toRemote()
-        )
+        ).takeUnless { it.value_.isBlank() }
       },
-      address = sharedContact.postalAddresses.map { address ->
+      address = sharedContact.postalAddresses.mapNotNull { address ->
         ContactAttachment.PostalAddress(
           type = address.type.toRemote(),
           label = address.label ?: "",
@@ -900,7 +900,7 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
           region = address.region ?: "",
           postcode = address.postalCode ?: "",
           country = address.country ?: ""
-        )
+        ).takeUnless { it.street.isBlank() && it.pobox.isBlank() && it.neighborhood.isBlank() && it.city.isBlank() && it.region.isBlank() && it.postcode.isBlank() && it.country.isBlank() }
       }
     ),
     reactions = reactionRecords.toRemote()
