@@ -76,7 +76,9 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
     ) {
       val standardQuality = quality == SentMediaQuality.STANDARD
       Button(
-        modifier = Modifier.defaultMinSize(minWidth = 174.dp, minHeight = 60.dp),
+        modifier = Modifier
+          .defaultMinSize(minWidth = 174.dp, minHeight = 60.dp)
+          .weight(1f),
         onClick = { onQualitySelected(SentMediaQuality.STANDARD) },
         shape = RoundedCornerShape(percent = 25),
         colors = if (standardQuality) ButtonDefaults.filledTonalButtonColors() else ButtonDefaults.textButtonColors(),
@@ -86,7 +88,9 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
         ButtonLabel(title = stringResource(id = R.string.QualitySelectorBottomSheetDialog__standard), description = stringResource(id = R.string.QualitySelectorBottomSheetDialog__faster_less_data))
       }
       Button(
-        modifier = Modifier.defaultMinSize(minWidth = 174.dp, minHeight = 60.dp),
+        modifier = Modifier
+          .defaultMinSize(minWidth = 174.dp, minHeight = 60.dp)
+          .weight(1f),
         onClick = { onQualitySelected(SentMediaQuality.HIGH) },
         shape = RoundedCornerShape(percent = 25),
         colors = if (!standardQuality) ButtonDefaults.filledTonalButtonColors() else ButtonDefaults.textButtonColors(),
