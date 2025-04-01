@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.main
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -321,7 +322,7 @@ private fun NavigationDestinationIcon(
   )
 
   val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(destination.icon))
-  val progress by animateFloatAsState(if (selected) 1f else 0f)
+  val progress by animateFloatAsState(targetValue = if (selected) 1f else 0f, animationSpec = tween(durationMillis = composition?.duration?.toInt() ?: 0))
 
   LottieAnimation(
     composition = composition,
