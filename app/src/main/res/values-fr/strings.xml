@@ -8261,7 +8261,7 @@
     <!-- Backup key text field hint -->
     <string name="EnterBackupKey_backup_key">Clé de sauvegarde</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Vous ne pouvez pas restaurer vos sauvegardes sans votre code à 64 caractères. Si vous l\'avez perdu, Signal ne peut pas vous aider à les restaurer.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Vous ne pouvez pas restaurer vos sauvegardes sans votre clé de sauvegarde (code de 64 caractères).  Si vous ne retrouvez pas cette clé, Signal ne peut pas vous aider à les restaurer.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
     <string name="EnterBackupKey_no_key_paragraph_2">Si vous avez toujours accès à votre ancien appareil, vous pouvez retrouver votre clé sous Paramètres &gt; Sauvegardes &gt; Afficher la clé de sauvegarde.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->

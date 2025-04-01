@@ -1720,7 +1720,7 @@
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Herinner me later</string>
-    <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
+    <string name="Megaphones_verify_your_signal_pin">Bevestig je Signal-pincode</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We vragen je af en toe om je pincode te bevestigen, zodat je je pincode goed onthoudt.</string>
     <string name="Megaphones_verify_pin">Pincode bevestigen</string>
     <string name="Megaphones_get_started">Aan de slag</string>

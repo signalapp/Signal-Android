@@ -1216,7 +1216,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">انقل رسائلك النصية وآخر 45 يومًا من الوسائط.</string>
     <!-- Option in bottom sheet to not transfer message history -->
-    <string name="LinkDeviceSyncBottomSheet_dont_transfer">لا تنقل</string>
+    <string name="LinkDeviceSyncBottomSheet_dont_transfer">عدم نقل سِجل الرسائل</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
     <string name="LinkDeviceSyncBottomSheet_no_old_messages">لن يتم نقل أي رسائل قديمة أو وسائط لجهازك المُرتبِط.</string>
 
@@ -1637,7 +1637,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">أترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات الصامتة؟</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">أترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات المكتومة؟</string>
     <string name="GroupMentionSettingDialog_always_notify_me">نبِّهني دومًا</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
@@ -3522,7 +3522,7 @@
 
     <!-- Material3 Search Toolbar -->
     <string name="Material3SearchToolbar__close">إغلاق</string>
-    <string name="Material3SearchToolbar__clear">محو</string>
+    <string name="Material3SearchToolbar__clear">إزالة</string>
 
     <!-- ShortcutLauncherActivity -->
     <string name="ShortcutLauncherActivity_invalid_shortcut">اختصار غير صالح</string>
@@ -3602,7 +3602,7 @@
     <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">انضم شخص لهذه المكالمة برقم أمان مختلف.</string>
 
     <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">يُرجى السحب للأعلى لتغيير نمط العرض</string>
+    <string name="WebRtcCallScreen_swipe_up_to_change_views">اسحب للأعلى لتغيير نمط العرض</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -3651,7 +3651,7 @@
     <string name="contact_selection_activity__more">المزيد</string>
 
     <!-- contact_filter_toolbar -->
-    <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص الذي أدخلته</string>
+    <string name="contact_filter_toolbar__clear_entered_text_description">إزالة النص الذي أدخلته</string>
     <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
     <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
 
@@ -4041,7 +4041,7 @@
     <string name="verify_display_fragment__pnp_verify_safety_numbers_explanation_with_s">للتحقُّق من أمان التشفير من طرف لِطرف مع %1$s، قارِن الأرقام أعلاه بأجهزته. يُمكنه أيضًا مسح الكود على جهازه.</string>
     <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
     <string name="verify_display_fragment__successful_match">مطابقة ناجحة</string>
-    <string name="verify_display_fragment__failed_to_verify_safety_number">فشل التحقُّق من رقم الأمان</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">فشل التحقُّق من رقم اﻷمان</string>
     <string name="verify_display_fragment__loading">جارٍ التحميل…</string>
     <string name="verify_display_fragment__mark_as_verified">تحديد كتمَّ التحقُّق منه</string>
     <string name="verify_display_fragment__clear_verification">إزالة التحقُّق</string>
@@ -4080,7 +4080,7 @@
     <string name="AndroidManifest__create_passphrase">إنشاء عبارة سرية</string>
     <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
     <string name="AndroidManifest__change_passphrase">تغيير العبارة السرية</string>
-    <string name="AndroidManifest__verify_safety_number">تحقَّق من رقم اﻷمان</string>
+    <string name="AndroidManifest__verify_safety_number">التحقُّق من رقم اﻷمان</string>
     <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
     <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
     <string name="AndroidManifest__linked_devices">الأجهزة المُرتبِطة</string>
@@ -4260,7 +4260,7 @@
     <string name="preferences__payment_lock">قفل عملية الدفع</string>
     <string name="preferences__conversation_length_limit">الحد الأقصى للرسائل في الدردشة</string>
     <string name="preferences__keep_messages">احتفظ بالرسائل</string>
-    <string name="preferences__clear_message_history">مسح سجل الرسائل</string>
+    <string name="preferences__clear_message_history">إزالة سجل الرسائل</string>
     <string name="preferences__linked_devices">الأجهزة المُرتبِطة</string>
     <string name="preferences__light_theme">فاتح</string>
     <string name="preferences__dark_theme">داكن</string>
@@ -4818,7 +4818,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">فلترة الدردشات غير المقروءة</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">مسح فلتر المحادثات غير المقروءة</string>
+    <string name="text_secure_normal__clear_unread_filter">إزالة فلتر المحادثات غير المقروءة</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
@@ -5492,7 +5492,7 @@
     <string name="DeleteAccountFragment__the_phone_number">رقم الهاتف الذي أدخلت لا يطابق رقم حسابك.</string>
     <string name="DeleteAccountFragment__are_you_sure">هل أنت متأكد من أنك تريد حذف حسابك؟</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">سَيؤدي هذا إلى حذف حساب سيجنال الخاص بك وإعادة تعيين التطبيق. سيتمُّ إغلاق التطبيق بعد انتهاء العملية.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك مَحْوها يدويًا في إعدادات تطبيق النظام.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">فشل حذف البيانات المحلية. يمكنك إزالتها يدويًا في إعدادات تطبيق النظام.</string>
     <string name="DeleteAccountFragment__launch_app_settings">فتح إعدادات التطبيق</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">جارٍ مغادرة المجموعات…</string>
@@ -6159,7 +6159,7 @@
     <string name="KeyboardPagerFragment_gifs">الصور المتحركة</string>
     <string name="KeyboardPagerFragment_search_emoji">البحث في الرمز التعبيري (الإيموجي)</string>
     <string name="KeyboardPagerfragment_back_to_emoji">الرجوع للرمز التعبيري (الإيموجي)</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">مسح مُدخلات البحث</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">إزالة مُدخلات البحث</string>
     <string name="KeyboardPagerFragment_search_giphy">البحث في GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
@@ -6170,7 +6170,7 @@
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">تعذَّرت الإضافة إلى قصة المجموعة</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">تعذَّرت الإضافة إلى قِصة المجموعة</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">فقط المُشرِفون على هذه المجموعة هم من يمكنُهم الإضافة إلى قصتها</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
@@ -6378,7 +6378,7 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">إضافة إلى قصة المجموعة \"%1$s\"</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">إضافة إلى قِصة المجموعة \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">إضافة إلى القصة</string>
     <string name="MediaReviewFragment__add_a_message">إضافة رسالة</string>
@@ -7210,7 +7210,7 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">تمّ</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">هل ترغبُ بإزالة قصة المجموعات؟</string>
+    <string name="StoryDialogs__remove_group_story">هل ترغبُ بإزالة قصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">سيتمُّ حذف \"%1$s\".</string>
     <!-- Dialog positive action for removing a group story -->
@@ -7271,7 +7271,7 @@
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">ظاهرة فقط لأفراد مُعيَّنين</string>
     <!-- Choose story type bottom sheet group story title -->
-    <string name="ChooseStoryTypeBottomSheet__group_story">قصة للمجموعات</string>
+    <string name="ChooseStoryTypeBottomSheet__group_story">قِصة المجموعة</string>
     <!-- Choose story type bottom sheet group story summary -->
     <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">المشاركة مع مجموعة موجودة</string>
     <!-- Choose groups bottom sheet title -->
@@ -7391,12 +7391,12 @@
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="zero">قصة المجموعات· %1$d مشاهد</item>
-        <item quantity="one">قصة المجموعات· مشاهد واحد</item>
-        <item quantity="two">قصة المجموعات· %1$d مشاهدين </item>
-        <item quantity="few">قصة المجموعات· %1$d مشاهدين</item>
-        <item quantity="many">قصة المجموعات· %1$d مشاهدًا</item>
-        <item quantity="other">قصة المجموعات· %1$d مشاهدٍ</item>
+        <item quantity="zero">قصة المجموعة· %1$d مشاهد</item>
+        <item quantity="one">قصة المجموعة· مشاهد واحد</item>
+        <item quantity="two">قصة المجموعة· %1$d مشاهدين </item>
+        <item quantity="few">قصة المجموعة· %1$d مشاهدين</item>
+        <item quantity="many">قصة المجموعة· %1$d مشاهدًا</item>
+        <item quantity="other">قصة المجموعة· %1$d مشاهدٍ</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -7434,7 +7434,7 @@
     <!-- Label for context menu item to delete a custom story -->
     <string name="ContactSearchItems__delete_story">حذف القصة</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">هل ترغبُ بحذف قصة المجموعات؟</string>
+    <string name="ContactSearchMediator__remove_group_story">هل ترغبُ بإزالة قِصة المجموعة؟</string>
     <!-- Dialog message for removing a group story -->
     <string name="ContactSearchMediator__this_will_remove">سَيتسبب هذا في إزالة القصة من هذه اللائحة. يُمكنك مواصلة مشاهدة القِصص من هذه المجموعة.</string>
     <!-- Dialog action item for removing a group story -->
@@ -7509,7 +7509,7 @@
         <item quantity="other">%1$d جهة اتصال قد يكونوا أعادوا تثبيت سيجنال أو غيّروا أجهزتهم. يمكنك مراجعة أرقام الأمان الخاصة بهم أو المواصلة للإرسال.</item>
     </plurals>
     <!-- Menu action to launch safety number verification screen -->
-    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">تحقَّق من رقم اﻷمان</string>
+    <string name="SafetyNumberBottomSheetFragment__verify_safety_number">التحقُّق من رقم اﻷمان</string>
     <!-- Menu action to remove user from story -->
     <string name="SafetyNumberBottomSheetFragment__remove_from_story">حذف من القصة</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
@@ -7543,7 +7543,7 @@
     <!-- Subtitle of initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__choose_who_can_see_posts_to_my_story_you_can_always_make_changes_in_settings">اختيار من يُمكنه رؤية منشورات في قصتي. يُمكنك إحداث تغييرات في أي وقت في الإعدادات.</string>
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">كل جهات اتصال سيجنال</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">جميع جهات اتصال سيجنال</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_except">الكل باستثناء…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
@@ -7594,7 +7594,7 @@
     <!-- Explanation of who can view a group story -->
     <string name="GroupStorySettingsFragment__members_of_the_group_s">"يُمكن لعضو في هذه المجموعة %1$s مشاهدة هذه القصة و الرّد عليها. يمكنك تحديث العضوية لهذه الدردشة في المجموعة."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">حذف قصة المجموعات</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">حذف قصة المجموعة</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">قائمة الخيارات</string>
@@ -7914,7 +7914,7 @@
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">مخفي</string>
     <!-- Popup menu label for clearing applied formatting -->
-    <string name="TextFormatting_clear_formatting">محو التنسيق</string>
+    <string name="TextFormatting_clear_formatting">إزالة التنسيق</string>
 
     <!-- Username edit dialog -->
     <!-- Option to open username editor displayed as a list item in a dialog -->
@@ -7985,13 +7985,13 @@
         <item quantity="other">لا يمكن حذف جميع روابط المكالمات. تحقَّق من اتصالك بالشبكة وحاوِل مرّة أخرى.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">تمَّ مسح سجِل المكالمات</string>
+    <string name="CallLogFragment__cleared_call_history">تمَّت إزالة سجِل المكالمات</string>
     <!-- Dialog title to clear all call events -->
-    <string name="CallLogFragment__clear_call_history_question">هل ترغبُ بمسح سجِل المكالمات؟</string>
+    <string name="CallLogFragment__clear_call_history_question">هل ترغبُ بإزالة سجِل المكالمات؟</string>
     <!-- Dialog body to clear all call events -->
     <string name="CallLogFragment__this_will_permanently_delete_all_call_history">سيؤدي هذا إلى حذف كامل سجِل الاتصالات بشكلٍ دائم.</string>
     <!-- Action bar menu item to delete all call events -->
-    <string name="CallLogFragment__clear_call_history">مسح سجِل المكالمات</string>
+    <string name="CallLogFragment__clear_call_history">إزالة سجِل المكالمات</string>
     <!-- Action bar menu item to only display missed calls -->
     <string name="CallLogFragment__filter_missed_calls">فلترة المكالمات الفائتة</string>
     <!-- Action bar menu item to clear missed call filter -->
@@ -8042,7 +8042,7 @@
     <!-- Displayed when the user disables group call ringing -->
     <string name="CallStateUpdatePopupWindow__ringing_off">تمَّ إيقاف الرنين</string>
     <!-- Displayed when the user cannot enable group call ringing -->
-    <string name="CallStateUpdatePopupWindow__group_is_too_large">المجموعة كبيرة جدًا لكي يرن التطبيق على المشاركين</string>
+    <string name="CallStateUpdatePopupWindow__group_is_too_large">المجموعة كبيرة جدًا لكي يرن التطبيق على المُشارِكين.</string>
     <!-- Displayed when the user turns on their mic -->
     <string name="CallStateUpdatePopupWindow__mic_on">الميكروفون مُفعَّل</string>
     <!-- Displayed when the user turns off their mic -->
@@ -8317,7 +8317,7 @@
     <!-- Dialog title for invalid username -->
     <string name="FindByActivity__invalid_username">اسم مُستخدم غير صحيح</string>
     <!-- Dialog title for invalid phone number -->
-    <string name="FindByActivity__invalid_phone_number">رقم هاتف غير صحيح</string>
+    <string name="FindByActivity__invalid_phone_number">رقم الهاتف غير صحيح</string>
     <!-- Dialog title when phone number is not a registered signal user -->
     <string name="FindByActivity__invite_to_signal">ادْعُ إلى سيجنال</string>
     <!-- Dialog title when username is not found -->
@@ -8361,11 +8361,11 @@
     <!-- Field label for given name -->
     <string name="NicknameActivity__first_name">الاسم</string>
     <!-- Content description for first name clear button -->
-    <string name="NicknameActivity__clear_first_name">مسح الاسم</string>
+    <string name="NicknameActivity__clear_first_name">إزالة الاسم</string>
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">اسم العائلة</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">مسح اسم العائلة</string>
+    <string name="NicknameActivity__clear_last_name">إزالة اسم العائلة</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">مُلاحظة</string>
     <!-- Button label to save -->

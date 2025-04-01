@@ -683,7 +683,7 @@
     <!-- Title of tip 0 -->
     <string name="SafetyTips_tip0_title">Fake-Namen und -Konten</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">Signal wird dich nie nach deinem Registrierungscode oder deiner PIN fragen. Sei misstrauisch bei Anfragen, bei denen sich jemand als eine bestimmte Person ausgibt. Profilnamen sind frei wählbar und werden nicht verifiziert.</string>
+    <string name="SafetyTips_tip0_message">Signal wird dich nie wegen deinem Registrierungscode oder deiner PIN kontaktieren.Sei misstrauisch bei Anfragen, bei denen sich jemand als eine bestimmte Person ausgibt. Profilnamen sind frei wählbar und werden nicht verifiziert.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Krypto- oder Geldbetrug</string>
     <!-- Message of tip 1 -->
