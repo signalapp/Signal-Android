@@ -24,6 +24,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.GestureDetectorCompat
@@ -230,7 +231,7 @@ class StoryViewerPageFragment :
     )
 
     closeView.setOnClickListener {
-      requireActivity().onBackPressed()
+      onBackPressed()
     }
 
     val addToGroupStoryDelegate = AddToGroupStoryDelegate(this)
@@ -288,7 +289,7 @@ class StoryViewerPageFragment :
         val canCloseFromHorizontalSlide = requireView().translationX > DimensionUnit.DP.toPixels(56f)
         val canCloseFromVerticalSlide = requireView().translationY > DimensionUnit.DP.toPixels(56f) || requireView().translationY < -DimensionUnit.DP.toPixels(56f)
         if ((canCloseFromHorizontalSlide || canCloseFromVerticalSlide) && event.actionMasked == MotionEvent.ACTION_UP) {
-          requireActivity().onBackPressed()
+          onBackPressed()
         } else {
           sharedViewModel.setIsChildScrolling(false)
           requireView().animate()
@@ -513,6 +514,14 @@ class StoryViewerPageFragment :
         reactionAnimationView.playForEmoji(listOf(emoji))
         viewModel.setIsDisplayingReactionAnimation(true)
       }
+    }
+  }
+
+  private fun onBackPressed() {
+    if (sharedViewModel.getInitialRecipientId() != storyViewerPageArgs.recipientId) {
+      requireActivity().finish()
+    } else {
+      ActivityCompat.finishAfterTransition(requireActivity())
     }
   }
 

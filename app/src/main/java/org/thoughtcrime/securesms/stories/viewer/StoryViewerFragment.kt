@@ -5,6 +5,7 @@ import android.graphics.Shader
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -89,7 +90,7 @@ class StoryViewerFragment :
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += viewModel.state.observeOn(AndroidSchedulers.mainThread()).subscribe { state ->
       if (state.noPosts) {
-        ActivityCompat.finishAfterTransition(requireActivity())
+        onBackPressed(adapter.getRecipientId(storyPager.currentItem))
       }
 
       adapter.setPages(state.pages)
@@ -100,7 +101,7 @@ class StoryViewerFragment :
         pagerOnPageSelectedLock = false
 
         if (state.page >= state.pages.size) {
-          ActivityCompat.finishAfterTransition(requireActivity())
+          onBackPressed(adapter.getRecipientId(storyPager.currentItem))
           lifecycleDisposable.clear()
         }
       }
@@ -147,6 +148,23 @@ class StoryViewerFragment :
           requireView().rootView.setRenderEffect(null)
         }
       }
+    }
+
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          onBackPressed(adapter.getRecipientId(storyPager.currentItem))
+        }
+      }
+    )
+  }
+
+  private fun onBackPressed(currentId: RecipientId) {
+    if (viewModel.getInitialRecipientId() != currentId) {
+      requireActivity().finish()
+    } else {
+      ActivityCompat.finishAfterTransition(requireActivity())
     }
   }
 
