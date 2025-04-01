@@ -1936,24 +1936,17 @@ public class SignalServiceMessageSender {
           throw e;
         } catch (WebSocketUnavailableException e) {
           String pipe = sealedSenderAccess == null ? "Pipe" : "Unidentified pipe";
-          Log.i(TAG, "[sendMessage][" + timestamp + "] " + pipe + " unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.i(TAG, "[sendMessage][" + timestamp + "] " + pipe + " unavailable (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         } catch (IOException e) {
           String pipe = sealedSenderAccess == null ? "Pipe" : "Unidentified pipe";
           Throwable cause = e;
           if (e.getCause() != null) {
             cause = e.getCause();
           }
-          Log.w(TAG, "[sendMessage][" + timestamp + "] " + pipe + " failed, falling back... (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+          Log.w(TAG, "[sendMessage][" + timestamp + "] " + pipe + " failed (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+          throw (cause instanceof IOException) ? (IOException) cause : e;
         }
-
-        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
-        }
-
-        SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
-
-        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
-
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
         if (sealedSenderAccess != null) {
@@ -2132,7 +2125,7 @@ public class SignalServiceMessageSender {
                 content.getContent()
             );
             return Single.just(result);
-          } catch (Throwable throwable) {
+          } catch (IOException throwable) {
             if (cancelationSignal != null && cancelationSignal.isCanceled()) {
               return Single.error(new CancelationException());
             }
@@ -2147,23 +2140,13 @@ public class SignalServiceMessageSender {
               // Non-technical failures shouldn't be retried with socket
               return Single.error(throwable);
             } else if (throwable instanceof WebSocketUnavailableException) {
-              Log.i(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe unavailable, falling back... (" + throwable.getClass().getSimpleName() + ": " + throwable.getMessage() + ")");
-            } else if (throwable instanceof IOException) {
+              Log.i(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe unavailable (" + throwable.getClass().getSimpleName() + ": " + throwable.getMessage() + ")");
+              return Single.error(throwable);
+            } else {
               Throwable cause = throwable.getCause() != null ? throwable.getCause() : throwable;
-              Log.w(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe failed, falling back... (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+              Log.w(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe failed (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+              return Single.error((cause instanceof IOException) ? cause : throwable);
             }
-
-            return Single.fromCallable(() -> {
-              SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
-              return SendMessageResult.success(
-                  recipient,
-                  messages.getDevices(),
-                  response.sentUnidentified(),
-                  response.getNeedsSync() || aciStore.isMultiDevice(),
-                  System.currentTimeMillis() - startTime,
-                  content.getContent()
-              );
-            }).subscribeOn(scheduler);
           }
         });
 
@@ -2426,13 +2409,12 @@ public class SignalServiceMessageSender {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
-          Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         } catch (IOException e) {
-          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         }
-
-        SendGroupMessageResponse response = socket.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story);
-        return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
       } catch (GroupMismatchedDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + e.getMessage() + ")");
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
