@@ -85,10 +85,15 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      val availableBackupTypes = withContext(SignalDispatchers.IO) {
-        BackupRepository.getAvailableBackupsTypes(
-          if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
-        )
+      val availableBackupTypes = try {
+        withContext(SignalDispatchers.IO) {
+          BackupRepository.getAvailableBackupsTypes(
+            if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
+          )
+        }
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to download available backup types.", e)
+        emptyList()
       }
 
       internalStateFlow.update {
