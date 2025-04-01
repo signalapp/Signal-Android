@@ -30,12 +30,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -203,43 +205,46 @@ private fun SearchToolbar(
 ) {
   val focusRequester = remember { FocusRequester() }
 
-  TextFields.TextField(
-    value = state.searchQuery,
-    onValueChange = callback::onSearchQueryUpdated,
-    leadingIcon = {
-      IconButtons.IconButton(
-        onClick = callback::onCloseSearchClick
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_left_24),
-          contentDescription = null
-        )
-      }
-    },
-    contentPadding = PaddingValues(0.dp),
-    colors = TextFieldDefaults.colors(
-      focusedIndicatorColor = Color.Transparent,
-      unfocusedIndicatorColor = Color.Transparent,
-      disabledIndicatorColor = Color.Transparent,
-      errorIndicatorColor = Color.Transparent,
-      unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
-    ),
-    textStyle = MaterialTheme.typography.bodyLarge,
-    shape = RoundedCornerShape(50),
-    singleLine = true,
-    placeholder = {
-      Text(text = stringResource(state.searchHint))
-    },
-    modifier = modifier
-      .background(color = state.toolbarColor ?: MaterialTheme.colorScheme.surface)
-      .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
-      .padding(horizontal = 16.dp, vertical = 10.dp)
-      .fillMaxWidth()
-      .focusRequester(focusRequester)
-  )
+  CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurface) {
+    TextFields.TextField(
+      value = state.searchQuery,
+      onValueChange = callback::onSearchQueryUpdated,
+      leadingIcon = {
+        IconButtons.IconButton(
+          onClick = callback::onCloseSearchClick
+        ) {
+          Icon(
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_left_24),
+            contentDescription = null
+          )
+        }
+      },
+      contentPadding = PaddingValues(0.dp),
+      colors = TextFieldDefaults.colors(
+        focusedIndicatorColor = Color.Transparent,
+        unfocusedIndicatorColor = Color.Transparent,
+        disabledIndicatorColor = Color.Transparent,
+        errorIndicatorColor = Color.Transparent,
+        unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+        errorContainerColor = MaterialTheme.colorScheme.surfaceVariant
+      ),
+      textStyle = MaterialTheme.typography.bodyLarge,
+      shape = RoundedCornerShape(50),
+      singleLine = true,
+      placeholder = {
+        Text(text = stringResource(state.searchHint))
+      },
+      modifier = modifier
+        .background(color = state.toolbarColor ?: MaterialTheme.colorScheme.surface)
+        .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
+        .padding(horizontal = 16.dp, vertical = 10.dp)
+        .fillMaxWidth()
+        .focusRequester(focusRequester)
+    )
+  }
+
 
   LaunchedEffect(state.mode) {
     if (state.mode == MainToolbarMode.SEARCH) {
