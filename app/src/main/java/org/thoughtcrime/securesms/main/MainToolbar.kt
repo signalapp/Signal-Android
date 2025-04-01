@@ -245,7 +245,6 @@ private fun SearchToolbar(
     )
   }
 
-
   LaunchedEffect(state.mode) {
     if (state.mode == MainToolbarMode.SEARCH) {
       focusRequester.requestFocus()

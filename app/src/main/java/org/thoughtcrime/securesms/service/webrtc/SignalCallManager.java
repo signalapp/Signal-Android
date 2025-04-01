@@ -973,9 +973,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onSpeakingNotification(@NonNull GroupCall groupCall, @NonNull GroupCall.SpeechEvent speechEvent) {
-    if (RemoteConfig.internalUser()) {
-      process((s, p) -> p.handleGroupCallSpeechEvent(s, speechEvent));
-    }
+    process((s, p) -> p.handleGroupCallSpeechEvent(s, speechEvent));
   }
 
   @Override
