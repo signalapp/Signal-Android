@@ -35,7 +35,8 @@ class ConversationListTabsFragment : ComposeFragment() {
           MainNavigationDestination.CALLS -> MainNavigationDestination.CALLS
           MainNavigationDestination.STORIES -> MainNavigationDestination.STORIES
         },
-        compact = state.compact
+        compact = state.compact,
+        isStoriesFeatureEnabled = state.isStoriesFeatureEnabled
       )
     }
 

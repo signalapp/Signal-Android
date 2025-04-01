@@ -87,6 +87,7 @@ data class MainNavigationState(
   val callsCount: Int = 0,
   val storiesCount: Int = 0,
   val storyFailure: Boolean = false,
+  val isStoriesFeatureEnabled: Boolean = true,
   val selectedDestination: MainNavigationDestination = MainNavigationDestination.CHATS,
   val compact: Boolean = false
 )
@@ -104,7 +105,15 @@ fun MainNavigationBar(
     contentColor = MaterialTheme.colorScheme.onSurface,
     modifier = Modifier.height(if (state.compact) 48.dp else 80.dp)
   ) {
-    MainNavigationDestination.entries.forEach { destination ->
+    val entries = remember(state.isStoriesFeatureEnabled) {
+      if (state.isStoriesFeatureEnabled) {
+        MainNavigationDestination.entries
+      } else {
+        MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
+      }
+    }
+
+    entries.forEach { destination ->
 
       val badgeCount = when (destination) {
         MainNavigationDestination.CHATS -> state.chatsCount
@@ -241,7 +250,15 @@ fun MainNavigationRail(
       }
     }
   ) {
-    MainNavigationDestination.entries.forEachIndexed { idx, destination ->
+    val entries = remember(state.isStoriesFeatureEnabled) {
+      if (state.isStoriesFeatureEnabled) {
+        MainNavigationDestination.entries
+      } else {
+        MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
+      }
+    }
+
+    entries.forEachIndexed { idx, destination ->
       val selected = state.selectedDestination == destination
 
       Box {

@@ -51,7 +51,7 @@ class ConversationListTabsViewModel(startingTab: MainNavigationDestination, repo
   }
 
   fun refreshNavigationBarState() {
-    store.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar) }
+    store.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar, isStoriesFeatureEnabled = Stories.isFeatureEnabled()) }
   }
 
   override fun onCleared() {

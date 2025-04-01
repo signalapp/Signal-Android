@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.stories.tabs
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.MainNavigationDestination
+import org.thoughtcrime.securesms.stories.Stories
 
 data class ConversationListTabsState(
   val tab: MainNavigationDestination = MainNavigationDestination.CHATS,
@@ -11,7 +12,8 @@ data class ConversationListTabsState(
   val unreadStoriesCount: Long = 0L,
   val hasFailedStory: Boolean = false,
   val visibilityState: VisibilityState = VisibilityState(),
-  val compact: Boolean = SignalStore.settings.useCompactNavigationBar
+  val compact: Boolean = SignalStore.settings.useCompactNavigationBar,
+  val isStoriesFeatureEnabled: Boolean = Stories.isFeatureEnabled()
 ) {
   data class VisibilityState(
     val isSearchOpen: Boolean = false,
