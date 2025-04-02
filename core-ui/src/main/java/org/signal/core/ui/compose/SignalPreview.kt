@@ -12,6 +12,6 @@ import androidx.compose.ui.tooling.preview.Preview
  * Our very own preview that will generate light and dark previews for
  * composables
  */
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Light Theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
 annotation class SignalPreview()

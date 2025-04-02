@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
+import org.thoughtcrime.securesms.groups.ui.incommon.GroupsInCommonActivity
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -115,7 +116,8 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         onClickSignalConnections = this::openSignalConnectionsSheet,
         onAvatarClicked = this::openProfilePhotoViewer,
         onNoteClicked = this::openNoteSheet,
-        onUnverifiedProfileClicked = this::openUnverifiedProfileSheet
+        onUnverifiedProfileClicked = this::openUnverifiedProfileSheet,
+        onGroupsInCommonClicked = this::openGroupsInCommon
       )
     }
   }
@@ -137,6 +139,10 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   private fun openUnverifiedProfileSheet() {
     dismiss()
     UnverifiedProfileNameBottomSheet.show(fragmentManager = parentFragmentManager, forGroup = false)
+  }
+
+  private fun openGroupsInCommon() {
+    startActivity(GroupsInCommonActivity.createIntent(requireContext(), recipientId))
   }
 }
 
@@ -162,7 +168,8 @@ private fun Content(
   onClickSignalConnections: () -> Unit,
   onAvatarClicked: () -> Unit,
   onNoteClicked: () -> Unit,
-  onUnverifiedProfileClicked: () -> Unit = {}
+  onUnverifiedProfileClicked: () -> Unit = {},
+  onGroupsInCommonClicked: () -> Unit = {}
 ) {
   Box(
     contentAlignment = Alignment.Center,
@@ -303,6 +310,8 @@ private fun Content(
       AboutRow(
         startIcon = groupsInCommonIcon,
         text = groupsInCommonText,
+        endIcon = if (model.groupsInCommon > 0) ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16) else null,
+        onClick = if (model.groupsInCommon > 0) onGroupsInCommonClicked else null,
         modifier = Modifier.fillMaxWidth()
       )
     }
