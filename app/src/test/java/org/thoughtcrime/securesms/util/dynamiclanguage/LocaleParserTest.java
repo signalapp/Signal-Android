@@ -1,6 +1,10 @@
 package org.thoughtcrime.securesms.util.dynamiclanguage;
 
 import android.app.Application;
+import android.content.res.Resources;
+
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -24,7 +28,7 @@ public final class LocaleParserTest {
   @Test
   public void findBestMatchingLocaleForLanguage_all_build_config_languages_can_be_resolved() {
     for (String lang : buildConfigLanguages()) {
-      Locale locale = LocaleParser.findBestMatchingLocaleForLanguage(lang);
+      Locale locale = LocaleParser.findBestMatchingLocaleForLanguage(lang, getSystemLocales());
       assertEquals(lang, locale.toString());
     }
   }
@@ -33,14 +37,14 @@ public final class LocaleParserTest {
   @Config(qualifiers = "fr")
   public void findBestMatchingLocaleForLanguage_a_non_build_config_language_defaults_to_device_value_which_is_supported_directly() {
     String unsupportedLanguage = getUnsupportedLanguage();
-    assertEquals(Locale.FRENCH, LocaleParser.findBestMatchingLocaleForLanguage(unsupportedLanguage));
+    assertEquals(Locale.FRENCH, LocaleParser.findBestMatchingLocaleForLanguage(unsupportedLanguage, getSystemLocales()));
   }
 
   @Test
   @Config(qualifiers = "en-rCA")
   public void findBestMatchingLocaleForLanguage_a_non_build_config_language_defaults_to_device_value_which_is_not_supported_directly() {
     String unsupportedLanguage = getUnsupportedLanguage();
-    assertEquals(Locale.CANADA, LocaleParser.findBestMatchingLocaleForLanguage(unsupportedLanguage));
+    assertEquals(Locale.CANADA, LocaleParser.findBestMatchingLocaleForLanguage(unsupportedLanguage, getSystemLocales()));
   }
 
   private static String getUnsupportedLanguage() {
@@ -51,5 +55,9 @@ public final class LocaleParserTest {
 
   private static List<String> buildConfigLanguages() {
     return Arrays.asList(BuildConfig.LANGUAGES);
+  }
+
+  private static LocaleListCompat getSystemLocales() {
+    return ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration());
   }
 }
