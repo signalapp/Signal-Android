@@ -556,7 +556,7 @@ private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCall
         )
       },
       onClick = {
-        callback.onNewGroupClick()
+        callback.onClearPassphraseClick()
         onOptionSelected()
       }
     )
