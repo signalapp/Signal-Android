@@ -32,11 +32,14 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.orNull
@@ -190,6 +193,9 @@ class ConversationViewModel(
   private val _jumpToDateValidator: JumpToDateValidator by lazy { JumpToDateValidator(threadId) }
   val jumpToDateValidator: JumpToDateValidator
     get() = _jumpToDateValidator
+
+  private val internalBackPressedState = MutableStateFlow(BackPressedState())
+  val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
 
   init {
     disposables += recipient
@@ -603,5 +609,24 @@ class ConversationViewModel(
     return repository
       .getEarliestMessageSentDate(threadId)
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun setIsReactionDelegateShowing(isReactionDelegateShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isReactionDelegateShowing = isReactionDelegateShowing)
+    }
+  }
+
+  fun setIsSearchRequested(isSearchRequested: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isSearchRequested = isSearchRequested)
+    }
+  }
+
+  data class BackPressedState(
+    val isReactionDelegateShowing: Boolean = false,
+    val isSearchRequested: Boolean = false
+  ) {
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
   }
 }
