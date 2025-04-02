@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -339,7 +340,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       }
     };
 
-    SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory,
+                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                  sleepTimer,
+                                                                                                  TimeUnit.SECONDS.toMillis(10));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }
@@ -372,7 +376,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       }
     };
 
-    SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory,
+                                                                                                      () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                      sleepTimer,
+                                                                                                      TimeUnit.SECONDS.toMillis(10));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }

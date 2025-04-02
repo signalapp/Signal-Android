@@ -33,6 +33,7 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 sealed class SignalWebSocket(
   private val connectionFactory: WebSocketFactory,
+  private val canConnect: CanConnect,
   val sleepTimer: SleepTimer,
   private val disconnectTimeout: Duration
 ) {
@@ -43,14 +44,6 @@ sealed class SignalWebSocket(
     const val SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp"
 
     const val FOREGROUND_KEEPALIVE = "Foregrounded"
-
-    /**
-     * Set to false to prevent web sockets from connecting. After setting back to true the caller
-     * must manually start the sockets again by calling [connect].
-     */
-    @Volatile
-    @JvmStatic
-    var canConnect: Boolean = true
   }
 
   private var connection: WebSocketConnection? = null
@@ -98,7 +91,7 @@ sealed class SignalWebSocket(
   @Synchronized
   @Throws(IOException::class)
   fun sendKeepAlive() {
-    if (canConnect) {
+    if (canConnect.canConnect()) {
       Log.v(TAG, "$connectionName keepAliveTokens: $keepAliveTokens")
       getWebSocket().sendKeepAlive()
     }
@@ -119,7 +112,7 @@ sealed class SignalWebSocket(
       Log.v(TAG, "$connectionName Adding keepAliveToken: $token, current: $keepAliveTokens")
     }
 
-    if (canConnect) {
+    if (canConnect.canConnect()) {
       try {
         connect()
       } catch (e: WebSocketUnavailableException) {
@@ -169,7 +162,7 @@ sealed class SignalWebSocket(
   @Synchronized
   @Throws(WebSocketUnavailableException::class)
   protected fun getWebSocket(): WebSocketConnection {
-    if (!canConnect) {
+    if (!canConnect.canConnect()) {
       throw WebSocketUnavailableException()
     }
 
@@ -203,7 +196,7 @@ sealed class SignalWebSocket(
 
   @Synchronized
   fun forceNewWebSocket() {
-    Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: $canConnect")
+    Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: ${canConnect.canConnect()}")
     disconnect()
   }
 
@@ -282,7 +275,7 @@ sealed class SignalWebSocket(
   /**
    * WebSocket type for communicating with the server without authenticating. Also known as "unidentified".
    */
-  class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, sleepTimer, disconnectTimeoutMs.milliseconds) {
+  class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
     fun request(requestMessage: WebSocketRequestMessage, sealedSenderAccess: SealedSenderAccess): Single<WebsocketResponse> {
       val headers: MutableList<String> = requestMessage.headers.toMutableList()
       headers.add(sealedSenderAccess.header)
@@ -312,7 +305,7 @@ sealed class SignalWebSocket(
   /**
    * WebSocket type for communicating with the server with authentication. Also known as "identified".
    */
-  class AuthenticatedWebSocket(connectionFactory: WebSocketFactory, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, sleepTimer, disconnectTimeoutMs.milliseconds) {
+  class AuthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
 
     /**
      * The reads a batch of messages off of the websocket.
@@ -420,5 +413,9 @@ sealed class SignalWebSocket(
       /** Called with the batch of envelopes. You are responsible for sending acks.  */
       fun onMessageBatch(envelopeResponses: List<EnvelopeResponse>)
     }
+  }
+
+  fun interface CanConnect {
+    fun canConnect(): Boolean
   }
 }

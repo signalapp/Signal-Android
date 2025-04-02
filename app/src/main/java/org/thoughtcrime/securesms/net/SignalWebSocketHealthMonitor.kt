@@ -102,7 +102,15 @@ class SignalWebSocketHealthMonitor(
     }
   }
 
-  override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) = Unit
+  override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {
+    executor.execute {
+      if (status == 499 && !SignalStore.misc.isClientDeprecated) {
+        Log.w(TAG, "Received 499. Client version is deprecated.", true)
+        SignalStore.misc.isClientDeprecated = true
+        webSocket?.forceNewWebSocket()
+      }
+    }
+  }
 
   private fun updateKeepAliveSenderStatus() {
     if (keepAliveSender == null && sendKeepAlives()) {
