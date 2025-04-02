@@ -1,4 +1,9 @@
-package org.whispersystems.signalservice.internal.push;
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.whispersystems.signalservice.api.donations;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -7,6 +12,8 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.core.util.Base64;
 
 import java.io.IOException;
+
+import javax.annotation.Nullable;
 
 class ReceiptCredentialResponseJson {
 
@@ -23,7 +30,7 @@ class ReceiptCredentialResponseJson {
     this.receiptCredentialResponse = response;
   }
 
-  public ReceiptCredentialResponse getReceiptCredentialResponse() {
+  public @Nullable ReceiptCredentialResponse getReceiptCredentialResponse() {
     return receiptCredentialResponse;
   }
 }

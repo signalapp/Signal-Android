@@ -87,6 +87,7 @@ import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.calling.CallingApi;
 import org.whispersystems.signalservice.api.cds.CdsApi;
 import org.whispersystems.signalservice.api.certificate.CertificateApi;
+import org.whispersystems.signalservice.api.donations.DonationsApi;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
@@ -140,7 +141,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new PushServiceSocket(signalServiceConfiguration,
                                  new DynamicCredentialsProvider(),
                                  BuildConfig.SIGNAL_AGENT,
-                                 groupsV2Operations.getProfileOperations(),
                                  RemoteConfig.okHttpAutomaticRetry());
   }
 
@@ -444,8 +444,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull DonationsService provideDonationsService(@NonNull PushServiceSocket pushServiceSocket) {
-    return new DonationsService(pushServiceSocket);
+  public @NonNull DonationsService provideDonationsService(@NonNull DonationsApi donationsApi) {
+    return new DonationsService(donationsApi);
   }
 
   @Override
@@ -556,6 +556,11 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull RemoteConfigApi provideRemoteConfigApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
     return new RemoteConfigApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull DonationsApi provideDonationsApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new DonationsApi(authWebSocket, unauthWebSocket);
   }
 
   @VisibleForTesting

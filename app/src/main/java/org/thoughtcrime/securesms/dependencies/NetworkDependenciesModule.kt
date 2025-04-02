@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.certificate.CertificateApi
+import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
@@ -142,7 +143,7 @@ class NetworkDependenciesModule(
   }
 
   val donationsService: DonationsService by lazy {
-    provider.provideDonationsService(pushServiceSocket)
+    provider.provideDonationsService(donationsApi)
   }
 
   val archiveApi: ArchiveApi by lazy {
@@ -211,6 +212,10 @@ class NetworkDependenciesModule(
 
   val remoteConfigApi: RemoteConfigApi by lazy {
     provider.provideRemoteConfigApi(authWebSocket)
+  }
+
+  val donationsApi: DonationsApi by lazy {
+    provider.provideDonationsApi(authWebSocket, unauthWebSocket)
   }
 
   val okHttpClient: OkHttpClient by lazy {

@@ -14,10 +14,6 @@ import org.signal.core.util.Base64;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
-import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations;
-import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
-import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
-import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.signal.storageservice.protos.groups.AvatarUploadAttributes;
 import org.signal.storageservice.protos.groups.Group;
 import org.signal.storageservice.protos.groups.GroupChange;
@@ -67,11 +63,6 @@ import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedExcept
 import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCodeRateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
-import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
-import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
-import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
-import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -85,8 +76,6 @@ import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenExcept
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
-import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError;
-import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -179,25 +168,6 @@ public class PushServiceSocket {
   private static final String GROUPSV2_TOKEN            = "/v2/groups/token";
   private static final String GROUPSV2_JOINED_AT        = "/v2/groups/joined_at_version";
 
-  private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
-  private static final String ARCHIVES_REDEEM_RECEIPT = "/v1/archives/redeem-receipt";
-
-  private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
-  private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
-  private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method?type=%s";
-  private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
-  private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/stripe/%s";
-  private static final String DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/default_payment_method_for_ideal/%s";
-  private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/braintree/%s";
-  private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
-  private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
-  private static final String CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/paypal/create";
-  private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
-  private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
-  private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
-  private static final String BANK_MANDATE                               = "/v1/subscription/bank_mandate/%s";
-  private static final String LINK_PLAY_BILLING_PURCHASE_TOKEN           = "/v1/subscription/%s/playbilling/%s";
-
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
 
@@ -228,13 +198,11 @@ public class PushServiceSocket {
   private final CredentialsProvider              credentialsProvider;
   private final String                           signalAgent;
   private final SecureRandom                     random;
-  private final ClientZkProfileOperations        clientZkProfileOperations;
   private final boolean                          automaticNetworkRetry;
 
   public PushServiceSocket(SignalServiceConfiguration configuration,
                            CredentialsProvider credentialsProvider,
                            String signalAgent,
-                           ClientZkProfileOperations clientZkProfileOperations,
                            boolean automaticNetworkRetry)
   {
     this.configuration             = configuration;
@@ -245,7 +213,6 @@ public class PushServiceSocket {
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.random                    = new SecureRandom();
-    this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
   public SignalServiceConfiguration getConfiguration() {
@@ -464,153 +431,6 @@ public class PushServiceSocket {
 
   public void deleteAccount() throws IOException {
     makeServiceRequest(DELETE_ACCOUNT_PATH, "DELETE", null);
-  }
-
-  public void redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) throws IOException {
-    String payload = JsonUtil.toJson(new RedeemDonationReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize()), visible, primary));
-    makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
-  }
-
-  public void redeemArchivesReceipt(ReceiptCredentialPresentation receiptCredentialPresentation) throws IOException {
-    String payload = JsonUtil.toJson(new RedeemArchivesReceiptRequest(Base64.encodeWithPadding(receiptCredentialPresentation.serialize())));
-    makeServiceRequest(ARCHIVES_REDEEM_RECEIPT, "POST", payload);
-  }
-
-  public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, String paymentMethod, long amount, long level) throws IOException {
-    String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level, paymentMethod));
-    String result  = makeServiceRequestWithoutAuthentication(CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT, "POST", payload);
-    return JsonUtil.fromJsonResponse(result, StripeClientSecret.class);
-  }
-
-  public PayPalCreatePaymentIntentResponse createPayPalOneTimePaymentIntent(Locale locale, String currencyCode, long amount, long level, String returnUrl, String cancelUrl) throws IOException {
-    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
-    String              payload = JsonUtil.toJson(new PayPalCreateOneTimePaymentIntentPayload(amount, currencyCode, level, returnUrl, cancelUrl));
-    String              result  = makeServiceRequestWithoutAuthentication(CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, headers, NO_HANDLER);
-
-    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentIntentResponse.class);
-  }
-
-  public PayPalConfirmPaymentIntentResponse confirmPayPalOneTimePaymentIntent(String currency, String amount, long level, String payerId, String paymentId, String paymentToken) throws IOException {
-    String payload = JsonUtil.toJson(new PayPalConfirmOneTimePaymentIntentPayload(amount, currency, level, payerId, paymentId, paymentToken));
-    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, NO_HEADERS, new InAppPaymentResponseCodeHandler());
-    return JsonUtil.fromJsonResponse(result, PayPalConfirmPaymentIntentResponse.class);
-  }
-
-  public PayPalCreatePaymentMethodResponse createPayPalPaymentMethod(Locale locale, String subscriberId, String returnUrl, String cancelUrl) throws IOException {
-    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
-    String              payload = JsonUtil.toJson(new PayPalCreatePaymentMethodPayload(returnUrl, cancelUrl));
-    String              result  = makeServiceRequestWithoutAuthentication(String.format(CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", payload, headers, NO_HANDLER);
-    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentMethodResponse.class);
-  }
-
-  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) throws IOException {
-    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest, processor));
-    String response = makeServiceRequestWithoutAuthentication(
-        BOOST_RECEIPT_CREDENTIALS,
-        "POST",
-        payload,
-        NO_HEADERS,
-        (code, body, getHeader) -> {
-          if (code == 204) throw new NonSuccessfulResponseCodeException(204);
-          if (code == 402) {
-            InAppPaymentReceiptCredentialError inAppPaymentReceiptCredentialError;
-            try {
-              inAppPaymentReceiptCredentialError = JsonUtil.fromJson(body.string(), InAppPaymentReceiptCredentialError.class);
-            } catch (IOException e) {
-              throw new NonSuccessfulResponseCodeException(402);
-            }
-
-            throw inAppPaymentReceiptCredentialError;
-          }
-        });
-
-    ReceiptCredentialResponseJson responseJson = JsonUtil.fromJson(response, ReceiptCredentialResponseJson.class);
-    if (responseJson.getReceiptCredentialResponse() != null) {
-      return responseJson.getReceiptCredentialResponse();
-    } else {
-      throw new MalformedResponseException("Unable to parse response");
-    }
-  }
-
-  /**
-   * Get the DonationsConfiguration pointed at by /v1/subscriptions/configuration
-   */
-  public SubscriptionsConfiguration getDonationsConfiguration(Locale locale) throws IOException {
-    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
-    String              result  = makeServiceRequestWithoutAuthentication(DONATIONS_CONFIGURATION, "GET", null, headers, NO_HANDLER);
-
-    return JsonUtil.fromJson(result, SubscriptionsConfiguration.class);
-  }
-
-  /**
-   * @param bankTransferType Valid values for bankTransferType are {SEPA_DEBIT}.
-   * @return localized bank mandate text for the given bankTransferType.
-   */
-  public BankMandate getBankMandate(Locale locale, String bankTransferType) throws IOException {
-    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
-    String              result  = makeServiceRequestWithoutAuthentication(String.format(BANK_MANDATE, urlEncode(bankTransferType)), "GET", null, headers, NO_HANDLER);
-
-    return JsonUtil.fromJson(result, BankMandate.class);
-  }
-
-  public void linkPlayBillingPurchaseToken(String subscriberId, String purchaseToken) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(LINK_PLAY_BILLING_PURCHASE_TOKEN, subscriberId, urlEncode(purchaseToken)), "POST", "", NO_HEADERS, new LinkGooglePlayBillingPurchaseTokenResponseCodeHandler());
-  }
-
-  public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(UPDATE_SUBSCRIPTION_LEVEL, subscriberId, urlEncode(level), urlEncode(currencyCode), idempotencyKey), "PUT", "", NO_HEADERS, new InAppPaymentResponseCodeHandler());
-  }
-
-  public ActiveSubscription getSubscription(String subscriberId) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "GET", null);
-    return JsonUtil.fromJson(response, ActiveSubscription.class);
-  }
-
-  public void putSubscription(String subscriberId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "PUT", "");
-  }
-
-  public void deleteSubscription(String subscriberId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "DELETE", null);
-  }
-
-  /**
-   * @param type One of CARD or SEPA_DEBIT
-   */
-  public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId, String type) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(type)), "POST", "");
-    return JsonUtil.fromJson(response, StripeClientSecret.class);
-  }
-
-  public void setDefaultStripeSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(paymentMethodId)), "POST", "");
-  }
-
-  public void setDefaultIdealSubscriptionPaymentMethod(String subscriberId, String setupIntentId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_IDEAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(setupIntentId)), "POST", "");
-  }
-
-  public void setDefaultPaypalSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, urlEncode(paymentMethodId)), "POST", "");
-  }
-
-  public ReceiptCredentialResponse submitReceiptCredentials(String subscriptionId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
-    String payload  = JsonUtil.toJson(new ReceiptCredentialRequestJson(receiptCredentialRequest));
-    String response = makeServiceRequestWithoutAuthentication(
-        String.format(SUBSCRIPTION_RECEIPT_CREDENTIALS, subscriptionId),
-        "POST",
-        payload,
-        NO_HEADERS,
-        (code, body, getHeader) -> {
-          if (code == 204) throw new NonSuccessfulResponseCodeException(204);
-        });
-
-    ReceiptCredentialResponseJson responseJson = JsonUtil.fromJson(response, ReceiptCredentialResponseJson.class);
-    if (responseJson.getReceiptCredentialResponse() != null) {
-      return responseJson.getReceiptCredentialResponse();
-    } else {
-      throw new MalformedResponseException("Unable to parse response");
-    }
   }
 
   public StorageManifest getStorageManifest(String authToken) throws IOException {
@@ -1203,20 +1023,6 @@ public class PushServiceSocket {
                                 .build();
   }
 
-  private String makeServiceRequestWithoutAuthentication(String urlFragment, String method, String jsonBody)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    return makeServiceRequestWithoutAuthentication(urlFragment, method, jsonBody, NO_HEADERS, NO_HANDLER);
-  }
-
-  private String makeServiceRequestWithoutAuthentication(String urlFragment, String method, String jsonBody, Map<String, String> headers, ResponseCodeHandler responseCodeHandler)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
-  {
-    try (Response response = makeServiceRequest(urlFragment, method, jsonRequestBody(jsonBody), headers, responseCodeHandler, SealedSenderAccess.NONE, true)) {
-      return readBodyString(response);
-    }
-  }
-
   private String makeServiceRequest(String urlFragment, String method, String jsonBody)
       throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
   {
@@ -1794,28 +1600,6 @@ public class PushServiceSocket {
   }
 
   /**
-   * Like {@link UnopinionatedResponseCodeHandler} but also treats a 204 as a failure, since that means that the server intentionally
-   * timed out before a valid result for the long poll was returned. Easier that way.
-   */
-  private static class LongPollingResponseCodeHandler implements ResponseCodeHandler {
-    @Override
-    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
-      if (responseCode == 204 || responseCode < 200 || responseCode > 299) {
-        String bodyString = null;
-        if (body != null) {
-          try {
-            bodyString = readBodyString(body);
-          } catch (MalformedResponseException e) {
-            Log.w(TAG, "Failed to read body string", e);
-          }
-        }
-
-        throw new NonSuccessfulResponseCodeException(responseCode, "Response: " + responseCode, bodyString);
-      }
-    }
-  }
-
-  /**
    * A {@link ResponseCodeHandler} that only throws {@link NonSuccessfulResponseCodeException} with the response body.
    * Any further processing is left to the caller.
    */
@@ -2004,45 +1788,6 @@ public class PushServiceSocket {
                                                 NO_HANDLER))
     {
       return GroupExternalCredential.ADAPTER.decode(readBodyBytes(response));
-    }
-  }
-
-  /**
-   * Handler for Google Play Billing purchase token linking
-   */
-  private static class LinkGooglePlayBillingPurchaseTokenResponseCodeHandler implements ResponseCodeHandler {
-    @Override
-    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
-      if (responseCode < 400) {
-        return;
-      }
-
-      throw new NonSuccessfulResponseCodeException(responseCode);
-    }
-  }
-
-  /**
-   * Handler for a couple in app payment endpoints.
-   */
-  private static class InAppPaymentResponseCodeHandler implements ResponseCodeHandler {
-    @Override
-    public void handle(int responseCode, ResponseBody body, Function<String, String> getHeader) throws NonSuccessfulResponseCodeException, PushNetworkException {
-      if (responseCode < 400) {
-        return;
-      }
-
-      if (responseCode == 440) {
-        InAppPaymentProcessorError exception;
-        try {
-          exception = JsonUtil.fromJson(body.string(), InAppPaymentProcessorError.class);
-        } catch (IOException e) {
-          throw new NonSuccessfulResponseCodeException(440);
-        }
-
-        throw exception;
-      } else {
-        throw new NonSuccessfulResponseCodeException(responseCode);
-      }
     }
   }
 

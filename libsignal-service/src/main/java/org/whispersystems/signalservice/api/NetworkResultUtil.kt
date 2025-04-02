@@ -17,6 +17,8 @@ import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
 import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException
 import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentProcessorError
+import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import org.whispersystems.signalservice.internal.push.exceptions.PaymentsRegionException
@@ -29,6 +31,26 @@ import kotlin.time.Duration.Companion.seconds
  * Bridge layer to convert [NetworkResult]s into the response data or thrown exceptions.
  */
 object NetworkResultUtil {
+
+  /**
+   * Unwraps [NetworkResult] to a basic [IOException] or [NonSuccessfulResponseCodeException]. Should only
+   * be used when you don't need a specific flavor of IOException for a specific response  of any kind.
+   */
+  @JvmStatic
+  @Throws(IOException::class)
+  fun <T> successOrThrow(result: NetworkResult<T>): T {
+    return when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.ApplicationError -> {
+        throw when (val error = result.throwable) {
+          is IOException, is RuntimeException -> error
+          else -> RuntimeException(error)
+        }
+      }
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.StatusCodeError -> throw result.exception
+    }
+  }
 
   /**
    * Convert to a basic [IOException] or [NonSuccessfulResponseCodeException]. Should only be used when you don't
@@ -177,6 +199,33 @@ object NetworkResultUtil {
           401 -> AuthorizationFailedException(result.code, "Authorization failed!")
           403 -> PaymentsRegionException(result.code)
           413, 429 -> RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()))
+          else -> result.exception
+        }
+      }
+    }
+  }
+
+  /**
+   * Convert a [NetworkResult] into typed exceptions expected during calls with IAP endpoints. Not all endpoints require
+   * specific error parsing but if those errors do happen for them they'll fail to parse and get the normal status code
+   * exception.
+   */
+  @JvmStatic
+  @Throws(IOException::class)
+  fun <T> toIAPBasicLegacy(result: NetworkResult<T>): T {
+    return when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.ApplicationError -> {
+        throw when (val error = result.throwable) {
+          is IOException, is RuntimeException -> error
+          else -> RuntimeException(error)
+        }
+      }
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.StatusCodeError -> {
+        throw when (result.code) {
+          402 -> result.parseJsonBody<InAppPaymentReceiptCredentialError>() ?: result.exception
+          440 -> result.parseJsonBody<InAppPaymentProcessorError>() ?: result.exception
           else -> result.exception
         }
       }

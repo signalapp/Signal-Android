@@ -105,9 +105,13 @@ class DeleteAccountRepository {
       try {
         AppDependencies.getSignalServiceAccountManager().deleteAccount();
       } catch (IOException e) {
-        Log.w(TAG, "deleteAccount: failed to delete account from signal service", e);
-        onDeleteAccountEvent.accept(DeleteAccountEvent.ServerDeletionFailed.INSTANCE);
-        return;
+        if (e instanceof NonSuccessfulResponseCodeException && ((NonSuccessfulResponseCodeException) e).code == 4401) {
+          Log.i(TAG, "deleteAccount: WebSocket closed with expected status after delete account, moving forward as delete was successful");
+        } else {
+          Log.w(TAG, "deleteAccount: failed to delete account from signal service, bail", e);
+          onDeleteAccountEvent.accept(DeleteAccountEvent.ServerDeletionFailed.INSTANCE);
+          return;
+        }
       }
 
       Log.i(TAG, "deleteAccount: successfully removed account from server");

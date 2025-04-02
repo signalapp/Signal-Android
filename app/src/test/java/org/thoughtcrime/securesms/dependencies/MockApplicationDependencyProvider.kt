@@ -42,6 +42,7 @@ import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
 import org.whispersystems.signalservice.api.certificate.CertificateApi
+import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
@@ -188,7 +189,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService {
+  override fun provideDonationsService(donationsApi: DonationsApi): DonationsService {
     return mockk(relaxed = true)
   }
 
@@ -293,6 +294,10 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RemoteConfigApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideDonationsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): DonationsApi {
     return mockk(relaxed = true)
   }
 }

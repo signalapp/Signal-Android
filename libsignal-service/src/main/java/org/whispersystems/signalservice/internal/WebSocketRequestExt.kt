@@ -55,7 +55,10 @@ fun WebSocketRequestMessage.Companion.put(path: String, body: Any, headers: Map<
     verb = "PUT",
     path = path,
     headers = listOf("content-type:application/json") + headers.toHeaderList(),
-    body = JsonUtil.toJsonByteString(body),
+    body = when (body) {
+      is String -> body.toByteArray().toByteString()
+      else -> JsonUtil.toJsonByteString(body)
+    },
     id = SecureRandom().nextLong()
   )
 }
@@ -63,7 +66,7 @@ fun WebSocketRequestMessage.Companion.put(path: String, body: Any, headers: Map<
 /**
  * Create a custom PUT web socket request, where body and content type header are provided by caller.
  */
-fun WebSocketRequestMessage.Companion.put(path: String, body: ByteArray, headers: Map<String, String>): WebSocketRequestMessage {
+fun WebSocketRequestMessage.Companion.putCustom(path: String, body: ByteArray, headers: Map<String, String>): WebSocketRequestMessage {
   return WebSocketRequestMessage(
     verb = "PUT",
     path = path,

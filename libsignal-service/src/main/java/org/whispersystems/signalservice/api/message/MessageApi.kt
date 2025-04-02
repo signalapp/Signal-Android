@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.internal.push.OutgoingPushMessageList
 import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse
 import org.whispersystems.signalservice.internal.push.SendMessageResponse
 import org.whispersystems.signalservice.internal.put
+import org.whispersystems.signalservice.internal.putCustom
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 
@@ -80,7 +81,7 @@ class MessageApi(
    * - 410: Stale devices supplied for some recipients
    */
   fun sendGroupMessage(body: ByteArray, sealedSenderAccess: SealedSenderAccess, timestamp: Long, online: Boolean, urgent: Boolean, story: Boolean): NetworkResult<SendGroupMessageResponse> {
-    val request = WebSocketRequestMessage.put(
+    val request = WebSocketRequestMessage.putCustom(
       path = "/v1/messages/multi_recipient?ts=$timestamp&online=${online.toQueryParam()}&urgent=${urgent.toQueryParam()}&story=${story.toQueryParam()}",
       body = body,
       headers = mapOf("content-type" to "application/vnd.signal-messenger.mrm")

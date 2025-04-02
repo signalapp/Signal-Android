@@ -68,7 +68,7 @@ public class SignalServiceAccountManager {
     return new SignalServiceAccountManager(
         null,
         null,
-        new PushServiceSocket(configuration, credentialProvider, signalAgent, gv2Operations.getProfileOperations(), automaticNetworkRetry),
+        new PushServiceSocket(configuration, credentialProvider, signalAgent, automaticNetworkRetry),
         gv2Operations
     );
   }

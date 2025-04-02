@@ -21,8 +21,6 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.coEvery
 import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.runBlocking
@@ -42,12 +40,10 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.whispersystems.signalservice.api.NetworkResult
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -71,11 +67,6 @@ class MessageBackupsCheckoutActivityTest {
     every { AppDependencies.billingApi.getBillingPurchaseResults() } returns purchaseResults
     coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(price = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")))
     coEvery { AppDependencies.billingApi.launchBillingFlow(any()) } returns Unit
-
-    mockkObject(SignalNetwork)
-    every { SignalNetwork.archive } returns mockk {
-      every { triggerBackupIdReservation(any(), any(), any()) } returns NetworkResult.Success(Unit)
-    }
 
     mockkStatic(RemoteConfig::class)
     every { RemoteConfig.messageBackups } returns true
