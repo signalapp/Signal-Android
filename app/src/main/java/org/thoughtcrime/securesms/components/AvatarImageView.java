@@ -62,13 +62,13 @@ public final class AvatarImageView extends AppCompatImageView {
 
   private final RequestListener<Drawable> redownloadRequestListener = new RedownloadRequestListener();
 
-  private int                             size;
-  private boolean                         inverted;
-  private OnClickListener                 listener;
-  private boolean                         blurred;
-  private ChatColors                      chatColors;
-  private String                          initials;
-  private FixedSizeTarget                 fixedSizeTarget;
+  private int             size;
+  private boolean         inverted;
+  private OnClickListener listener;
+  private boolean         blurred;
+  private ChatColors      chatColors;
+  private String          initials;
+  private FixedSizeTarget fixedSizeTarget;
 
   private @Nullable RecipientContactPhoto  recipientContactPhoto;
   private @NonNull  Drawable               unknownRecipientDrawable;
