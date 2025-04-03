@@ -12,6 +12,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -287,7 +289,11 @@ private fun CallLinkDetails(
       return@Settings
     }
 
-    Column(modifier = Modifier.padding(paddingValues)) {
+    Column(
+      modifier = Modifier
+        .padding(paddingValues)
+        .verticalScroll(rememberScrollState())
+    ) {
       SignalCallRow(
         callLink = state.callLink,
         callLinkPeekInfo = state.peekInfo,
