@@ -116,7 +116,7 @@ interface MainToolbarCallback {
 }
 
 enum class MainToolbarMode {
-  NONE,
+  ACTION_MODE,
   FULL,
   BASIC,
   SEARCH
@@ -146,12 +146,14 @@ data class MainToolbarState(
   }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback
 ) {
-  if (state.mode == MainToolbarMode.NONE) {
+  if (state.mode == MainToolbarMode.ACTION_MODE) {
+    TopAppBar(title = {})
     return
   }
 

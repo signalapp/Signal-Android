@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.main
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.getValue
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -162,7 +161,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   private fun presentToolbarForMultiselect() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.NONE)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.ACTION_MODE)
   }
 
   override fun onDestroyView() {
