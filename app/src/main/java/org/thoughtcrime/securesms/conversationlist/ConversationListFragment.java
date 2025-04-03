@@ -801,7 +801,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           } else if (event instanceof MainToolbarViewModel.Event.Chats.ClearFilter) {
             onClearFilterClick();
           } else if (event instanceof MainToolbarViewModel.Event.Chats.CloseArchive) {
-            NavHostFragment.findNavController(this).popBackStack();
+            NavHostFragment.findNavController(this).popBackStack(R.id.conversationListFragment, false);
           }
         })
     );
