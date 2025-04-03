@@ -815,8 +815,7 @@ class Recipient(
       callLinkRoomId == other.callLinkRoomId &&
       phoneNumberSharing == other.phoneNumberSharing &&
       nickname == other.nickname &&
-      note == other.note &&
-      shouldBlurAvatar == other.shouldBlurAvatar
+      note == other.note
   }
 
   override fun equals(other: Any?): Boolean {
