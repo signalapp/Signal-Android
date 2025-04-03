@@ -19,6 +19,7 @@ import org.signal.libsignal.net.AuthenticatedChatConnection
 import org.signal.libsignal.net.ChatConnection
 import org.signal.libsignal.net.ChatConnectionListener
 import org.signal.libsignal.net.ChatServiceException
+import org.signal.libsignal.net.ConnectionInvalidatedException
 import org.signal.libsignal.net.DeviceDeregisteredException
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.UnauthenticatedChatConnection
@@ -545,8 +546,16 @@ class LibSignalChatConnection(
           Log.i(TAG, "$name disconnected")
         } else {
           Log.i(TAG, "$name connection unexpectedly closed", disconnectReason)
+
+          val downstreamThrowable = when (disconnectReason) {
+            // This matches the behavior of OkHttpWebSocketConnection when the connection terminates
+            //   by the server before the response is received.
+            is ConnectionInvalidatedException -> NonSuccessfulResponseCodeException(4401)
+            else -> disconnectReason
+          }
+
           for (pendingResponse in pendingResponses) {
-            pendingResponse.onError(disconnectReason)
+            pendingResponse.onError(downstreamThrowable)
           }
         }
         chatConnection = null
