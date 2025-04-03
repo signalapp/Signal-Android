@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -264,7 +265,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     }
   }
 
-  override fun bindScrollHelper(recyclerView: RecyclerView) {
+  override fun bindScrollHelper(recyclerView: RecyclerView, lifecycleOwner: LifecycleOwner) {
     Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(),
@@ -272,11 +273,12 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },
-      lifecycleOwner = viewLifecycleOwner
+      setStatusBarColor = {},
+      lifecycleOwner = lifecycleOwner
     ).attach(recyclerView)
   }
 
-  override fun bindScrollHelper(recyclerView: RecyclerView, chatFolders: RecyclerView, setChatFolder: (Int) -> Unit) {
+  override fun bindScrollHelper(recyclerView: RecyclerView, lifecycleOwner: LifecycleOwner, chatFolders: RecyclerView, setChatFolder: (Int) -> Unit) {
     Material3OnScrollHelper(
       activity = requireActivity(),
       views = listOf(chatFolders),
@@ -284,7 +286,8 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       onSetToolbarColor = {
         toolbarViewModel.setToolbarColor(it)
       },
-      lifecycleOwner = viewLifecycleOwner,
+      lifecycleOwner = lifecycleOwner,
+      setStatusBarColor = {},
       setChatFolderColor = setChatFolder
     ).attach(recyclerView)
   }

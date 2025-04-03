@@ -149,7 +149,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     binding.recycler.adapter = callLogAdapter
     this.callLogAdapter = callLogAdapter
 
-    requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler)
+    requireListener<Material3OnScrollHelperBinder>().bindScrollHelper(binding.recycler, viewLifecycleOwner)
     binding.fab.setOnClickListener {
       startActivity(NewCallActivity.createIntent(requireContext()))
     }

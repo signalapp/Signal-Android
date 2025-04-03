@@ -457,7 +457,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                            }
                                                          }));
 
-    requireCallback().bindScrollHelper(list, chatFolderList, color -> {
+    requireCallback().bindScrollHelper(list, getViewLifecycleOwner(), chatFolderList, color -> {
       for (int i = 0; i < chatFolderList.getChildCount(); i++) {
         View child = chatFolderList.getChildAt(i);
         if (child != null && child.isSelected()) {

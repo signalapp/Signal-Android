@@ -59,6 +59,10 @@ open class Material3OnScrollHelper(
 
   init {
     lifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+      override fun onResume(owner: LifecycleOwner) {
+        setColorImmediate()
+      }
+
       override fun onDestroy(owner: LifecycleOwner) {
         animator?.cancel()
         setStatusBarColor(previousStatusBarColor)
