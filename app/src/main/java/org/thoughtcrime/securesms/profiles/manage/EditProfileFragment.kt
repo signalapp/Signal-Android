@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.map
 import androidx.navigation.Navigation.findNavController
@@ -247,7 +248,17 @@ class EditProfileFragment : LoggingFragment() {
       binding.manageProfileName.setText(R.string.ManageProfileFragment_profile_name)
     } else {
       binding.manageProfileName.text = profileName.toString()
-      updateInitials(getAbbreviation(profileName.toString()).toString())
+      if (binding.manageProfileAvatarPlaceholder.isVisible || binding.manageProfileAvatarInitials.isVisible) {
+        val initials = getAbbreviation(profileName.toString())
+        if (TextUtils.isEmpty(initials)) {
+          binding.manageProfileAvatarPlaceholder.visibility = View.VISIBLE
+          binding.manageProfileAvatarInitials.visibility = View.GONE
+        } else {
+          updateInitials(initials.toString())
+          binding.manageProfileAvatarPlaceholder.visibility = View.GONE
+          binding.manageProfileAvatarInitials.visibility = View.VISIBLE
+        }
+      }
     }
 
     binding.manageProfileName.isEnabled = viewModel.isRegisteredAndUpToDate
