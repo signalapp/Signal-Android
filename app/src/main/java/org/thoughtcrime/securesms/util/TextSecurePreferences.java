@@ -109,11 +109,6 @@ public class TextSecurePreferences {
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";
 
-  @Deprecated
-  public static final  String REGISTRATION_LOCK_PREF_V1                = "pref_registration_lock";
-  @Deprecated
-  private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
-
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
 
@@ -262,33 +257,6 @@ public class TextSecurePreferences {
 
   public static void unregisterListener(@NonNull Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
     getSharedPreferences(context).unregisterOnSharedPreferenceChangeListener(listener);
-  }
-
-  /**
-   * @deprecated Use only during re-reg where user had pinV1.
-   */
-  @Deprecated
-  public static void setV1RegistrationLockEnabled(@NonNull Context context, boolean value) {
-    //noinspection deprecation
-    setBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, value);
-  }
-
-  /**
-   * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
-   */
-  @Deprecated
-  public static @Nullable String getDeprecatedV1RegistrationLockPin(@NonNull Context context) {
-    //noinspection deprecation
-    return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, null);
-  }
-
-  /**
-   * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
-   */
-  @Deprecated
-  public static void setV1RegistrationLockPin(@NonNull Context context, String pin) {
-    //noinspection deprecation
-    setStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, pin);
   }
 
   public static long getRegistrationLockLastReminderTime(@NonNull Context context) {

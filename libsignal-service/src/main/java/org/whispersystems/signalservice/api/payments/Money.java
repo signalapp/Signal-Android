@@ -222,11 +222,6 @@ public abstract class Money {
       return amount.compareTo(other.amount) < 0;
     }
 
-    @Deprecated
-    public double toDouble() {
-      return amountDecimal.doubleValue();
-    }
-
     public BigDecimal toBigDecimal() {
       return amountDecimal;
     }
