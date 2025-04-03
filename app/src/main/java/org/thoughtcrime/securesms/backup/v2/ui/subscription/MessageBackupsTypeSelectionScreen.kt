@@ -82,7 +82,7 @@ fun MessageBackupsTypeSelectionScreen(
   Scaffolds.Settings(
     title = "",
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     Column(
       modifier = Modifier

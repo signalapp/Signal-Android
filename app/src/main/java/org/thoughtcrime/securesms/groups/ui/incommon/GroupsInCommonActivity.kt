@@ -140,7 +140,7 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = pluralStringResource(R.plurals.GroupsInCommon__n_groups_in_common_title, groupCount, NumberFormat.getInstance().format(groupCount)),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = onBackPress,
     scrollBehavior = scrollBehavior
   )

@@ -285,7 +285,7 @@ fun Tabs(
           navigationIcon = {
             IconButton(onClick = onBack) {
               Icon(
-                painter = painterResource(R.drawable.symbol_arrow_left_24),
+                painter = painterResource(R.drawable.symbol_arrow_start_24),
                 tint = MaterialTheme.colorScheme.onSurface,
                 contentDescription = null
               )

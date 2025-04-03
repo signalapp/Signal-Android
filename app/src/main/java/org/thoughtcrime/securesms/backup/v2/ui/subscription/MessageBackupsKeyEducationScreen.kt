@@ -39,7 +39,7 @@ fun MessageBackupsKeyEducationScreen(
 ) {
   Scaffolds.Settings(
     title = "",
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = onNavigationClick
   ) {
     Column(

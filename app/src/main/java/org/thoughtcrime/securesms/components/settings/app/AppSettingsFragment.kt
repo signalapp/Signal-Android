@@ -181,7 +181,7 @@ private fun AppSettingsContent(
   Scaffolds.Settings(
     title = stringResource(R.string.text_secure_normal__menu_settings),
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = callbacks::onNavigationClick
   ) { contentPadding ->
     Column(

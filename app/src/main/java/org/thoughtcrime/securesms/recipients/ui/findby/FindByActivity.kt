@@ -132,7 +132,7 @@ class FindByActivity : PassphraseRequiredActivity() {
             Scaffolds.Settings(
               title = stringResource(id = title),
               onNavigationClick = { finishAfterTransition() },
-              navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+              navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
             ) {
               val context = LocalContext.current
 

@@ -67,7 +67,7 @@ private fun Content(
   Scaffolds.Settings(
     title = "Conversation Test Springboard",
     onNavigationClick = onBackPressed,
-    navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_left_24))
+    navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24))
   ) {
     Column(modifier = Modifier.padding(it)) {
       Rows.TextRow(

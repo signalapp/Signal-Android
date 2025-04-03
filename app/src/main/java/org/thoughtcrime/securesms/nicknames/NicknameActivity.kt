@@ -217,7 +217,7 @@ private fun NicknameContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.NicknameActivity__nickname),
     onNavigationClick = callback::onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
 
     val firstNameFocusRequester = remember { FocusRequester() }

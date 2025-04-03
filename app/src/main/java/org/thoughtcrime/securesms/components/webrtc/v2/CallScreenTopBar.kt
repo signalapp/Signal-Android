@@ -176,7 +176,7 @@ fun CallScreenTopAppBar(
         onClick = onNavigationClick
       ) {
         Icon(
-          painter = painterResource(id = R.drawable.symbol_arrow_left_24),
+          painter = painterResource(id = R.drawable.symbol_arrow_start_24),
           contentDescription = stringResource(id = R.string.CallScreenTopBar__go_back),
           tint = Color.White
         )

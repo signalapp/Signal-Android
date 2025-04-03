@@ -363,7 +363,7 @@ private fun RemoteBackupsSettingsContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups),
     onNavigationClick = contentCallbacks::onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
     snackbarHost = {
       Snackbars.Host(snackbarHostState = snackbarHostState)
     }

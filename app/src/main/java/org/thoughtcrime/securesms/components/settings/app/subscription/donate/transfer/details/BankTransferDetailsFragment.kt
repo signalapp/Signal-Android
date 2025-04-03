@@ -202,7 +202,7 @@ private fun BankTransferDetailsContent(
   Scaffolds.Settings(
     title = "Bank transfer",
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) {
     Column(
       horizontalAlignment = CenterHorizontally,

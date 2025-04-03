@@ -228,7 +228,7 @@ private fun IdealTransferDetailsContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.GatewaySelectorBottomSheet__ideal),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) {
     val focusManager = LocalFocusManager.current
 

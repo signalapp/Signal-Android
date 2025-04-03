@@ -87,7 +87,7 @@ fun MessageBackupsKeyVerifyScreen(
 
   Scaffolds.Settings(
     title = stringResource(R.string.MessageBackupsKeyVerifyScreen__confirm_your_backup_key),
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = onNavigationClick
   ) { paddingValues ->
 

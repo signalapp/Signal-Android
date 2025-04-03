@@ -109,7 +109,7 @@ private fun Content(
 ) {
   Scaffolds.Settings(
     title = "One-time donation state",
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
     navigationContentDescription = null,
     onNavigationClick = onNavigationClick
   ) {

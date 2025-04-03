@@ -221,7 +221,7 @@ private fun SearchToolbar(
           onClick = callback::onCloseSearchClick
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_left_24),
+            imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
             contentDescription = null
           )
         }
@@ -276,7 +276,7 @@ private fun ArchiveToolbar(
         callback.onCloseArchiveClick()
       }) {
         Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_left_24),
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
           contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
         )
       }

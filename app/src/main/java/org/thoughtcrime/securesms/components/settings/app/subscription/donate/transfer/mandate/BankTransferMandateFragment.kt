@@ -171,7 +171,7 @@ fun BankTransferScreen(
             Modifier.padding(end = 16.dp)
           ) {
             Icon(
-              painter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_left_24)),
+              painter = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)),
               contentDescription = null
             )
           }
