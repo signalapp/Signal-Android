@@ -2693,6 +2693,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       quoteAttachments += retrieved.quote.attachments
+    } else {
+      contentValues.put(QUOTE_ID, 0)
+      contentValues.put(QUOTE_AUTHOR, 0)
     }
 
     val (messageId, insertedAttachments) = insertMediaMessage(
@@ -2716,6 +2719,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (editedMessage != null) {
+      writableDatabase.update(TABLE_NAME)
+        .values(QUOTE_ID to retrieved.sentTimeMillis)
+        .where("$QUOTE_ID = ?", editedMessage.dateSent)
+        .run()
+
       if (retrieved.quote != null && editedMessage.quote != null) {
         writableDatabase.execSQL(
           """  
@@ -3116,6 +3124,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       if (editedMessage == null) {
         quoteAttachments += message.outgoingQuote.attachments
       }
+    } else {
+      contentValues.put(QUOTE_ID, 0)
+      contentValues.put(QUOTE_AUTHOR, 0)
     }
 
     val updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.body, message.mentions)
@@ -3166,6 +3177,13 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       for (recipientId in earlyDeliveryReceipts.keys) {
         groupReceipts.update(recipientId, messageId, GroupReceiptTable.STATUS_DELIVERED, -1)
       }
+    }
+
+    if (editedMessage != null) {
+      writableDatabase.update(TABLE_NAME)
+        .values(QUOTE_ID to message.sentTimeMillis)
+        .where("$QUOTE_ID = ?", editedMessage.dateSent)
+        .run()
     }
 
     if (message.messageToEdit > 0) {
@@ -4054,8 +4072,12 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
    */
   fun isQuoted(messageRecord: MessageRecord): Boolean {
     return readableDatabase
-      .exists(TABLE_NAME)
-      .where("$QUOTE_ID = ?  AND $QUOTE_AUTHOR = ? AND $SCHEDULED_DATE = ?", messageRecord.dateSent, messageRecord.fromRecipient.id, -1)
+      .exists(TABLE_NAME).where(
+        "$QUOTE_ID = ? AND $QUOTE_AUTHOR = ? AND $SCHEDULED_DATE = ? AND $ID NOT IN (SELECT $ORIGINAL_MESSAGE_ID FROM $TABLE_NAME)",
+        messageRecord.dateSent,
+        messageRecord.fromRecipient.id,
+        -1
+      )
       .run()
   }
 
@@ -4080,19 +4102,24 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     val quotedIds: MutableSet<Long> = mutableSetOf()
 
+    val pastRevisionMessageIds = records.mapNotNull { it.originalMessageId?.id }.toSet()
+
     buildCustomCollectionQuery("$QUOTE_ID = ?  AND $QUOTE_AUTHOR = ? AND $SCHEDULED_DATE = ?", args).forEach { query ->
       readableDatabase
-        .select(QUOTE_ID, QUOTE_AUTHOR)
+        .select(ID, QUOTE_ID, QUOTE_AUTHOR)
         .from(TABLE_NAME)
         .where(query.where, query.whereArgs)
         .run()
         .forEach { cursor ->
-          val quoteLocator = QuoteDescriptor(
-            timestamp = cursor.requireLong(QUOTE_ID),
-            author = RecipientId.from(cursor.requireNonNullString(QUOTE_AUTHOR))
-          )
+          val messageId = cursor.requireLong(ID)
+          if (messageId !in pastRevisionMessageIds) {
+            val quoteLocator = QuoteDescriptor(
+              timestamp = cursor.requireLong(QUOTE_ID),
+              author = RecipientId.from(cursor.requireNonNullString(QUOTE_AUTHOR))
+            )
 
-          quotedIds += byQuoteDescriptor[quoteLocator]!!.id
+            quotedIds += byQuoteDescriptor[quoteLocator]!!.id
+          }
         }
     }
 
