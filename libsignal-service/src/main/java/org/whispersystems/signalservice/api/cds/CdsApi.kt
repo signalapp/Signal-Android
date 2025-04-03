@@ -51,14 +51,13 @@ class CdsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) 
     token: Optional<ByteArray>,
     timeoutMs: Long?,
     libsignalNetwork: Network,
-    useLibsignalRouteBasedCDSIConnectionLogic: Boolean,
     tokenSaver: Consumer<ByteArray>
   ): NetworkResult<CdsiV2Service.Response> {
     val authRequest = WebSocketRequestMessage.get("/v2/directory/auth")
 
     return NetworkResult.fromWebSocketRequest(authWebSocket, authRequest, CdsiAuthResponse::class)
       .then { auth ->
-        val service = CdsiV2Service(libsignalNetwork, useLibsignalRouteBasedCDSIConnectionLogic)
+        val service = CdsiV2Service(libsignalNetwork)
         val request = CdsiV2Service.Request(previousE164s, newE164s, serviceIds, token)
 
         val single = service.getRegisteredUsers(auth.username, auth.password, request, tokenSaver)

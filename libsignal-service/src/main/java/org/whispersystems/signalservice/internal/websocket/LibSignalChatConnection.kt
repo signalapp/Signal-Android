@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.internal.util.whenComplete
 import java.io.IOException
 import java.net.SocketException
 import java.time.Instant
+import java.util.Collections
 import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
@@ -63,6 +64,7 @@ class LibSignalChatConnection(
   private val healthMonitor: HealthMonitor
 ) : WebSocketConnection {
   private val incomingRequestQueue = LinkedBlockingQueue<WebSocketRequestMessage>()
+  private val pendingResponses = Collections.synchronizedSet(HashSet<SingleSubject<WebsocketResponse>>())
 
   // One of the more nasty parts of this is that libsignal-net does not expose, nor does it ever
   // intend to expose, the ID of the incoming "request" to the app layer. Instead, the app layer
@@ -148,6 +150,7 @@ class LibSignalChatConnection(
     // there is no ackSender for a pseudoId gracefully in sendResponse.
     ackSenderForInternalPseudoId.clear()
     // There's no sense in resetting nextIncomingMessageInternalPseudoId.
+    pendingResponses.clear()
   }
 
   init {
@@ -297,8 +300,14 @@ class LibSignalChatConnection(
             //   fires after the one enqueued in connect().
             sendRequest(request)
               .subscribe(
-                { response -> single.onSuccess(response) },
-                { error -> single.onError(error) }
+                { response ->
+                  pendingResponses.remove(single)
+                  single.onSuccess(response)
+                },
+                { error ->
+                  pendingResponses.remove(single)
+                  single.onError(error)
+                }
               )
           },
           onFailure = { throwable ->
@@ -308,9 +317,11 @@ class LibSignalChatConnection(
               is DeviceDeregisteredException -> NonSuccessfulResponseCodeException(403)
               else -> SocketException("Closed unexpectedly")
             }
+            pendingResponses.remove(single)
             single.onError(downstreamThrowable)
           }
         )
+        pendingResponses.add(single)
         return single.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
       }
 
@@ -329,6 +340,7 @@ class LibSignalChatConnection(
             }
             // Here success means "we received the response" even if it is reporting an error.
             // This is consistent with the behavior of the OkHttpWebSocketConnection.
+            pendingResponses.remove(single)
             single.onSuccess(response.toWebsocketResponse(isUnidentified = (chatConnection is UnauthenticatedChatConnection)))
           },
           onFailure = { throwable ->
@@ -336,9 +348,11 @@ class LibSignalChatConnection(
             // The clients of WebSocketConnection are often sensitive to the exact type of exception returned.
             // This is the exception that OkHttpWebSocketConnection throws in the closest scenario to this, when
             //   the connection fails before the request completes.
+            pendingResponses.remove(single)
             single.onError(SocketException("Failed to get response for request"))
           }
         )
+      pendingResponses.add(single)
       return single.subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
     }
   }
@@ -531,6 +545,9 @@ class LibSignalChatConnection(
           Log.i(TAG, "$name disconnected")
         } else {
           Log.i(TAG, "$name connection unexpectedly closed", disconnectReason)
+          for (pendingResponse in pendingResponses) {
+            pendingResponse.onError(disconnectReason)
+          }
         }
         chatConnection = null
         state.onNext(WebSocketConnectionState.DISCONNECTED)

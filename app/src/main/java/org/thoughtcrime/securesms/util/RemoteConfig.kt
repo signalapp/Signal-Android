@@ -1109,13 +1109,6 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether or not libsignal-net's CDSI lookups use the new route-based internals or the old ones */
-  val libsignalRouteBasedCDSILookup: Boolean by remoteBoolean(
-    key = "android.libsignal.libsignalRouteBasedCDSILookup",
-    defaultValue = true,
-    hotSwappable = true
-  )
-
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
   val largeScreenUi: Boolean by remoteBoolean(
     key = "android.largeScreenUI",
