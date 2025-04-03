@@ -31,12 +31,14 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.Start
 import org.thoughtcrime.securesms.keyvalue.intendToRestore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.keyvalue.isTerminal
 import org.thoughtcrime.securesms.keyvalue.isWantingManualRemoteRestore
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.pin.SvrRepository
@@ -891,10 +893,12 @@ class RegistrationViewModel : ViewModel() {
     if (reglockEnabled || SignalStore.svr.hasOptedInWithAccess()) {
       SignalStore.onboarding.clearAll()
 
-      if (!SignalStore.registration.restoreDecisionState.isDecisionPending) {
+      if (SignalStore.registration.restoreDecisionState.isTerminal) {
         Log.d(TAG, "No pending restore decisions, can restore account from storage service")
         StorageServiceRestore.restore()
       }
+    } else if (SignalStore.registration.restoreDecisionState.isTerminal && SignalStore.misc.needsUsernameRestore) {
+      AppDependencies.jobManager.runSynchronously(ReclaimUsernameAndLinkJob(), 10.seconds.inWholeMilliseconds)
     }
 
     if (SignalStore.account.restoredAccountEntropyPool) {
