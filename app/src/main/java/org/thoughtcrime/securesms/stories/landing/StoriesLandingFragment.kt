@@ -251,6 +251,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       if (state.displayMyStoryItem) {
         customPref(
           MyStoriesItem.Model(
+            lifecycleOwner = viewLifecycleOwner,
             onClick = {
               cameraFab.performClick()
             }

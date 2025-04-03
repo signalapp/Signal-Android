@@ -66,8 +66,18 @@ object StoriesLandingItem {
         data == newItem.data &&
         !hasStatusChange(newItem) &&
         !hasThumbChange(newItem) &&
+        !hasSelfProfileChange(newItem) &&
         (data.sendingCount == newItem.data.sendingCount && data.failureCount == newItem.data.failureCount) &&
         data.storyViewState == newItem.data.storyViewState
+    }
+
+    private fun hasSelfProfileChange(newItem: Model): Boolean {
+      if (!data.storyRecipient.isMyStory || !newItem.data.storyRecipient.isMyStory) {
+        return false
+      }
+      val old = data.individualRecipient
+      val new = Recipient.self()
+      return old.hasAvatar != new.hasAvatar || old.profileAvatarFileDetails != new.profileAvatarFileDetails || old.profileName.toString() != new.profileName.toString()
     }
 
     override fun getChangePayload(newItem: Model): Any? {
