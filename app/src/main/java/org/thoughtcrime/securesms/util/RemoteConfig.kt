@@ -1021,9 +1021,8 @@ object RemoteConfig {
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
-  val libSignalWebSocketEnabled: Boolean by remoteBoolean(
+  val libSignalWebSocketEnabled: Boolean by remoteValue(
     key = "android.libsignalWebSocketEnabled",
-    defaultValue = false,
     hotSwappable = false
   ) { value ->
     value.asBoolean(false) || Environment.IS_NIGHTLY
