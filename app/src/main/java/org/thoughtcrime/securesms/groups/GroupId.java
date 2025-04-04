@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.DatabaseId;
 import org.signal.core.util.Hex;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
@@ -299,7 +299,7 @@ public abstract class GroupId implements DatabaseId {
 
     public GroupMasterKey deriveV2MigrationMasterKey() {
       try {
-        return new GroupMasterKey(new HKDFv3().deriveSecrets(getDecodedId(), "GV2 Migration".getBytes(), GroupMasterKey.SIZE));
+        return new GroupMasterKey(HKDF.deriveSecrets(getDecodedId(), "GV2 Migration".getBytes(), GroupMasterKey.SIZE));
       } catch (InvalidInputException e) {
         throw new AssertionError(e);
       }
