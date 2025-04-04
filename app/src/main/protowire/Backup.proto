@@ -1311,4 +1311,5 @@ message ChatFolder {
   FolderType folderType = 6;
   repeated uint64 includedRecipientIds = 7; // generated recipient id of groups, contacts, and/or note to self
   repeated uint64 excludedRecipientIds = 8; // generated recipient id of groups, contacts, and/or note to self
+  bytes id = 9; // should be 16 bytes
 }

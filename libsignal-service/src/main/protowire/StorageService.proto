@@ -51,6 +51,7 @@ message ManifestRecord {
       ACCOUNT                 = 4;
       STORY_DISTRIBUTION_LIST = 5;
       CALL_LINK               = 7;
+      CHAT_FOLDER             = 8;
     }
 
     bytes raw  = 1;
@@ -72,6 +73,7 @@ message StorageRecord {
     AccountRecord               account               = 4;
     StoryDistributionListRecord storyDistributionList = 5;
     CallLinkRecord              callLink              = 7;
+    ChatFolderRecord            chatFolder            = 8;
   }
 }
 
@@ -280,4 +282,38 @@ message CallLinkRecord {
   bytes rootKey               = 1;
   bytes adminPasskey          = 2;
   uint64 deletedAtTimestampMs = 3;
+}
+
+message ChatFolderRecord {
+  message Recipient {
+    message Contact {
+      string serviceId = 1;
+      string e164      = 2;
+    }
+
+    oneof identifier {
+      Contact contact = 1;
+      bytes legacyGroupId = 2;
+      bytes groupMasterKey = 3;
+    }
+  }
+
+  // Represents the default "All chats" folder record vs all other custom folders
+  enum FolderType {
+    UNKNOWN = 0;
+    ALL = 1;
+    CUSTOM = 2;
+  }
+
+  bytes identifier = 1;
+  string name = 2;
+  uint32 position = 3;
+  bool showOnlyUnread = 4;
+  bool showMutedChats = 5;
+  bool includeAllIndividualChats = 6; // Folder includes all 1:1 chats, unless excluded
+  bool includeAllGroupChats = 7;      // Folder includes all group chats, unless excluded
+  FolderType folderType = 8;
+  repeated Recipient includedRecipients = 9;
+  repeated Recipient excludedRecipients = 10;
+  uint64 deletedAtTimestampMs = 11;   // When non-zero, `position` should be set to -1 and includedRecipients should be empty
 }

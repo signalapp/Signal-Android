@@ -151,6 +151,11 @@ public final class StorageSyncValidations {
         throw new DuplicateCallLinkError();
       }
 
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.CHAT_FOLDER.getValue());
+      if (ids.size() != new HashSet<>(ids).size()) {
+        throw new DuplicateChatFolderError();
+      }
+
       throw new DuplicateRawIdAcrossTypesError();
     }
 
@@ -204,6 +209,9 @@ public final class StorageSyncValidations {
   }
 
   private static final class DuplicateCallLinkError extends Error {
+  }
+
+  private static final class DuplicateChatFolderError extends Error {
   }
 
   private static final class DuplicateInsertInWriteError extends Error {

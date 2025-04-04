@@ -49,6 +49,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.proto.callLink != null) {
         row += "Call Link"
         row += record.proto.callLink.toString()
+      } else if (record.proto.chatFolder != null) {
+        row += "Chat Folder"
+        row += record.proto.chatFolder.toString()
       } else {
         row += "Unknown"
         row += ""

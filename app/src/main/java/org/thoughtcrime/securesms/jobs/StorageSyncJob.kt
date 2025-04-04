@@ -2,10 +2,13 @@ package org.thoughtcrime.securesms.jobs
 
 import android.content.Context
 import com.annimon.stream.Stream
+import org.signal.core.util.Base64
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.InvalidKeyException
+import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -16,6 +19,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.AccountRecordProcessor
 import org.thoughtcrime.securesms.storage.CallLinkRecordProcessor
+import org.thoughtcrime.securesms.storage.ChatFolderRecordProcessor
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor
@@ -31,6 +35,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
@@ -43,6 +48,7 @@ import org.whispersystems.signalservice.api.storage.StorageServiceRepository
 import org.whispersystems.signalservice.api.storage.StorageServiceRepository.ManifestIfDifferentVersionResult
 import org.whispersystems.signalservice.api.storage.toSignalAccountRecord
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
@@ -283,7 +289,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
         db.beginTransaction()
         try {
-          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV1: ${remoteOnly.gv1.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}")
+          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV1: ${remoteOnly.gv1.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}")
 
           processKnownRecords(context, remoteOnly)
 
@@ -420,11 +426,13 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     AccountRecordProcessor(context, freshSelf()).process(records.account, StorageSyncHelper.KEY_GENERATOR)
     StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR)
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
+    ChatFolderRecordProcessor().process(records.chatFolderRecords, StorageSyncHelper.KEY_GENERATOR)
   }
 
   private fun getAllLocalStorageIds(self: Recipient): List<StorageId> {
     return SignalDatabase.recipients.getContactStorageSyncIds() +
       listOf(StorageId.forAccount(self.storageId)) +
+      SignalDatabase.chatFolders.getStorageSyncIds() +
       SignalDatabase.unknownStorageIds.allUnknownIds
   }
 
@@ -488,6 +496,16 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
           }
         }
 
+        ManifestRecord.Identifier.Type.CHAT_FOLDER -> {
+          val query = SqlUtil.buildQuery("${ChatFolderTable.STORAGE_SERVICE_ID} = ?", Base64.encodeWithPadding(id.raw))
+          val chatFolderRecord = SignalDatabase.chatFolders.getChatFolder(query)
+          if (chatFolderRecord?.chatFolderId != null) {
+            records.add(StorageSyncModels.localToRemoteRecord(chatFolderRecord, id.raw))
+          } else {
+            throw MissingChatFolderModelError("Missing local chat folder model!")
+          }
+        }
+
         else -> {
           val unknown = SignalDatabase.unknownStorageIds.getById(id.raw)
           if (unknown != null) {
@@ -521,6 +539,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     val unknown: MutableList<SignalStorageRecord> = mutableListOf()
     val storyDistributionLists: MutableList<SignalStoryDistributionListRecord> = mutableListOf()
     val callLinkRecords: MutableList<SignalCallLinkRecord> = mutableListOf()
+    val chatFolderRecords: MutableList<SignalChatFolderRecord> = mutableListOf()
 
     init {
       for (record in records) {
@@ -536,6 +555,8 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
           storyDistributionLists += record.proto.storyDistributionList!!.toSignalStoryDistributionListRecord(record.id)
         } else if (record.proto.callLink != null) {
           callLinkRecords += record.proto.callLink!!.toSignalCallLinkRecord(record.id)
+        } else if (record.proto.chatFolder != null) {
+          chatFolderRecords += record.proto.chatFolder!!.toSignalChatFolderRecord(record.id)
         } else if (record.id.isUnknown) {
           unknown += record
         } else {
@@ -548,6 +569,8 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
   private class MissingGv2MasterKeyError : Error()
 
   private class MissingRecipientModelError(message: String?) : Error(message)
+
+  private class MissingChatFolderModelError(message: String?) : Error(message)
 
   private class MissingUnknownModelError(message: String?) : Error(message)
 

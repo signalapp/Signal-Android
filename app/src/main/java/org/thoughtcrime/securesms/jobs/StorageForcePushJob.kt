@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
+import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -95,6 +98,18 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.add(accountRecord)
     allNewStorageIds.add(accountRecord.id)
 
+    val oldChatFolderStorageIds = SignalDatabase.chatFolders.getStorageSyncIdsMap()
+    val newChatFolderStorageIds = generateChatFolderStorageIds(oldChatFolderStorageIds)
+    val newChatFolderInserts: List<SignalStorageRecord> = oldChatFolderStorageIds.keys
+      .mapNotNull {
+        val query = SqlUtil.buildQuery("${ChatFolderTable.CHAT_FOLDER_ID} = ?", it)
+        SignalDatabase.chatFolders.getChatFolder(query)
+      }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newChatFolderStorageIds[record.chatFolderId]!!.raw) }
+
+    inserts.addAll(newChatFolderInserts)
+    allNewStorageIds.addAll(newChatFolderStorageIds.values)
+
     val recordIkm: RecordIkm? = if (Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
       Log.i(TAG, "Generating and including a new recordIkm.")
       RecordIkm.generate()
@@ -135,6 +150,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     SignalStore.svr.masterKeyForInitialDataRestore = null
     SignalDatabase.recipients.applyStorageIdUpdates(newContactStorageIds)
     SignalDatabase.recipients.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().id, accountRecord.id))
+    SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }
 
@@ -146,6 +162,16 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
 
   private fun generateContactStorageIds(oldKeys: Map<RecipientId, StorageId>): Map<RecipientId, StorageId> {
     val out: MutableMap<RecipientId, StorageId> = mutableMapOf()
+
+    for ((key, value) in oldKeys) {
+      out[key] = value.withNewBytes(StorageSyncHelper.generateKey())
+    }
+
+    return out
+  }
+
+  private fun generateChatFolderStorageIds(oldKeys: Map<ChatFolderId, StorageId>): Map<ChatFolderId, StorageId> {
+    val out: MutableMap<ChatFolderId, StorageId> = mutableMapOf()
 
     for ((key, value) in oldKeys) {
       out[key] = value.withNewBytes(StorageSyncHelper.generateKey())
