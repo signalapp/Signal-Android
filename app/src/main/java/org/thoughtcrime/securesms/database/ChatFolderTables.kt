@@ -192,7 +192,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           includedChats = includedChats[id] ?: emptyList(),
           excludedChats = excludedChats[id] ?: emptyList(),
           chatFolderId = ChatFolderId.from(cursor.requireNonNullString(ChatFolderTable.CHAT_FOLDER_ID)),
-          storageServiceId = StorageId.forChatFolder(Base64.decodeNullableOrThrow(cursor.requireString(ChatFolderTable.STORAGE_SERVICE_ID))),
+          storageServiceId = cursor.requireString(ChatFolderTable.STORAGE_SERVICE_ID)?.let { StorageId.forChatFolder(Base64.decodeNullableOrThrow(it)) },
           storageServiceProto = Base64.decodeOrNull(cursor.requireString(ChatFolderTable.STORAGE_SERVICE_PROTO)),
           deletedTimestampMs = cursor.requireLong(ChatFolderTable.DELETED_TIMESTAMP_MS)
         )
@@ -228,7 +228,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           includedChats = includedChats[id] ?: emptyList(),
           excludedChats = excludedChats[id] ?: emptyList(),
           chatFolderId = ChatFolderId.from(cursor.requireNonNullString((ChatFolderTable.CHAT_FOLDER_ID))),
-          storageServiceId = StorageId.forChatFolder(Base64.decodeNullableOrThrow(cursor.requireString(RecipientTable.STORAGE_SERVICE_ID))),
+          storageServiceId = cursor.requireString(ChatFolderTable.STORAGE_SERVICE_ID)?.let { StorageId.forChatFolder(Base64.decodeNullableOrThrow(it)) },
           storageServiceProto = Base64.decodeOrNull(cursor.requireString(ChatFolderTable.STORAGE_SERVICE_PROTO))
         )
       }
@@ -470,6 +470,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
     return readableDatabase
       .select(ChatFolderTable.CHAT_FOLDER_ID, ChatFolderTable.STORAGE_SERVICE_ID)
       .from(ChatFolderTable.TABLE_NAME)
+      .where("${ChatFolderTable.STORAGE_SERVICE_ID} IS NOT NULL")
       .run()
       .readToMap { cursor ->
         val id = ChatFolderId.from(cursor.requireNonNullString(ChatFolderTable.CHAT_FOLDER_ID))
@@ -486,6 +487,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
     return readableDatabase
       .select(ChatFolderTable.STORAGE_SERVICE_ID)
       .from(ChatFolderTable.TABLE_NAME)
+      .where("${ChatFolderTable.STORAGE_SERVICE_ID} IS NOT NULL")
       .run()
       .readToList { cursor ->
         val encodedKey = cursor.requireNonNullString(ChatFolderTable.STORAGE_SERVICE_ID)
