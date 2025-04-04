@@ -2085,7 +2085,7 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="other">%1$d others</item>
+        <item quantity="other">%1$dផ្សេង</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">រាយការណ៍…</string>
@@ -2200,7 +2200,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">ទាំងអស់ · %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">ចុចដើម្បីដកចេញ</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2423,7 +2423,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">ដាក់ដៃរបស់អ្នកចុះឬ?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s បានលើកដៃ</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3026,18 +3026,18 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">រក្សាទុកក្នុងទូរសព្ទឬ?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="other">មេឌៀនេះនឹងត្រូវបានរក្សាទុកទៅក្នុងទំហំផ្ទុកទូរសព្ទរបស់អ្នក។ កម្មវិធីផ្សេងៗទៀតអាចនឹងចូលប្រើវាបាន អាស្រ័យលើការអនុញ្ញាតរបស់ទូរសព្ទអ្នក។</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signalត្រូវការសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកដើម្បីរក្សាឯកសារក្នុងអង្គរក្សាទុកខាងក្រៅ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\"។</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">មិនអាចរក្សាទុកក្នុងអង្គរក្សាទុកខាងក្រៅ ដោយគ្មានការអនុញ្ញាត</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ស្វែងរក</string>
@@ -3293,9 +3293,9 @@
     <string name="audio_view__download_accessibility_description">ទាញយក</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">ទាញយក</string>
+    <string name="document_view__upload_accessibility_description">បង្ហោះ</string>
+    <string name="document_view__cancel_accessibility_description">បោះបង់</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">សំឡេង</string>
@@ -7981,13 +7981,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">សោបម្រុងទុក</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">សោបម្រុងទុកមិនត្រឹមត្រូវ</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">មើលសោម្តងទៀត</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">បន្ទាប់</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8117,20 +8117,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">ទាក់ទងផ្នែកជំនួយ</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">ដាក់បញ្ជូនកំណត់ត្រាបញ្ហា?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">កំណត់ត្រាបញ្ហារបស់អ្នកនឹងជួយយើងដោះស្រាយបញ្ហារបស់អ្នកឱ្យបានកាន់តែលឿន។ អ្នកមានជម្រើសដាក់ឬមិនដាក់បញ្ជូនកំណត់ត្រារបស់អ្នក។</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">ដាក់បញ្ជូនជាមួយកំណត់ត្រាបញ្ហា</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">ដាក់បញ្ជូនដោយគ្មានកំណត់ត្រាបញ្ហា</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">ស្គែនកូដនេះដោយប្រើទូរសព្ទចាស់របស់អ្នក</string>

@@ -2277,10 +2277,10 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="one">%1$d other</item>
-        <item quantity="few">%1$d others</item>
-        <item quantity="many">%1$d others</item>
-        <item quantity="other">%1$d others</item>
+        <item quantity="one">%1$d druga osoba</item>
+        <item quantity="few">%1$d druge osobe</item>
+        <item quantity="many">%1$d drugih osoba</item>
+        <item quantity="other">%1$d drugih osoba</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Prijavi…</string>
@@ -2401,7 +2401,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">Sve · %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Dotaknite da uklonite</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2657,7 +2657,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">Spustiti ruku?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s je podignuo/la ruku.</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3308,21 +3308,21 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">Spremiti na telefon?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="few">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="many">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="one">Ovaj medijski sadržaj će biti spremljen u memoriji vašeg telefona. Druge aplikacije će mu možda moći pristupiti ovisno o dozvolama vašeg telefona.</item>
+        <item quantity="few">Ovaj medijski sadržaj će biti spremljen u memoriji vašeg telefona. Druge aplikacije će mu možda moći pristupiti ovisno o dozvolama vašeg telefona.</item>
+        <item quantity="many">Ovaj medijski sadržaj će biti spremljen u memoriji vašeg telefona. Druge aplikacije će mu možda moći pristupiti ovisno o dozvolama vašeg telefona.</item>
+        <item quantity="other">Ovaj medijski sadržaj će biti spremljen u memoriji vašeg telefona. Druge aplikacije će mu možda moći pristupiti ovisno o dozvolama vašeg telefona.</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signalu je potrebno dopuštenje da pristupi memoriji uređaja kako bi mogao pohranjivati podatke, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"Prostor za pohranu\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Nije moguće bez dopuštenja pohraniti podatke u memoriju uređaja</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Traži</string>
@@ -3590,9 +3590,9 @@
     <string name="audio_view__download_accessibility_description">Preuzmi</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">Preuzmi</string>
+    <string name="document_view__upload_accessibility_description">Preuzmi</string>
+    <string name="document_view__cancel_accessibility_description">Otkaži</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audiozapisi</string>
@@ -8503,13 +8503,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Rezervni ključ</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Netočan rezervni ključ</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">Vidi ključ ponovo</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">Dalje</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8645,20 +8645,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">Kontaktirajte podršku</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">Pošalji zapisnik o otklanjanju grešaka?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">Vaši zapisnici o otklanjanju grešaka će nam pomoći da brže dijagnosticiramo problem. Slanje zapisnika je opcionalno.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">Pošaljite sa zapisnikom o otklanjanju grešaka</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">Pošaljite bez zapisnika o otklanjanju grešaka</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Skenirajte ovaj kod svojim starim telefonom</string>

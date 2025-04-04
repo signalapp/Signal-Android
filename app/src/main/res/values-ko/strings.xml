@@ -2076,7 +2076,7 @@
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
+    <string name="MessageRequestProfileView_group_members_two">%1$s %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
@@ -2085,7 +2085,7 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="other">%1$d others</item>
+        <item quantity="other">기타 %1$d명</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">신고…</string>
@@ -2200,7 +2200,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">모두: %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">탭하여 제거</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2423,7 +2423,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">손을 내릴까요?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s이(가) 손을 들었습니다.</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3026,18 +3026,18 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">휴대폰에 저장할까요?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="other">이 미디어를 휴대폰 저장 공간에 저장합니다. 휴대폰 사용 권한에 따라 다른 앱에서 해당 미디어에 액세스할 수 있습니다.</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal에서 외부 저장 공간에 저장하려면 저장 공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'저장 공간\' 항목을 허용해 주세요.</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">외부 저장 공간에 저장하려면 저장 공간 권한이 필요함</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">검색</string>
@@ -3293,9 +3293,9 @@
     <string name="audio_view__download_accessibility_description">다운로드</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">다운로드</string>
+    <string name="document_view__upload_accessibility_description">업로드</string>
+    <string name="document_view__cancel_accessibility_description">취소</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">오디오</string>
@@ -7981,13 +7981,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">백업 키</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">잘못된 백업 키</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">키 다시 보기</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">다음</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8117,20 +8117,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">지원팀에 문의</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">디버그 로그를 제출할까요?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">디버그 로그를 보내 문제 해결에 도움을 주실 수 있습니다. 로그 보내기는 선택 사항입니다.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">디버그 로그와 함께 보내기</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">디버그 로그를 제외하고 보내기</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">이전 휴대폰으로 이 코드 스캔</string>

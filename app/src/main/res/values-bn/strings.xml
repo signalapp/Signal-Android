@@ -2140,7 +2140,7 @@
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
+    <string name="MessageRequestProfileView_group_members_two">%1$s এবং %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
@@ -2149,8 +2149,8 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="one">%1$d other</item>
-        <item quantity="other">%1$d others</item>
+        <item quantity="one">%1$d অন্যান্য</item>
+        <item quantity="other">%1$d অন্যান্য</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">রিপোর্ট…</string>
@@ -2267,7 +2267,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">সবগুলো। %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">সরিয়ে ফেলতে ট্যাপ করুন</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+ %1$d</string>
@@ -2501,7 +2501,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">হাত নামবেন?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s হাত তুলেছেন</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3120,19 +3120,19 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">ফোনে সেভ করবেন?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="one">এই মিডিয়াটি আপনার ফোনের স্টোরেজে সেভ হবে। আপনার ফোনের অনুমতির উপর নির্ভর করে অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে সক্ষম হতে পারে।</item>
+        <item quantity="other">এই মিডিয়াটি আপনার ফোনের স্টোরেজে সেভ হবে। আপনার ফোনের অনুমতির উপর নির্ভর করে অন্যান্য অ্যাপ এটি অ্যাক্সেস করতে সক্ষম হতে পারে।</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">বাহ্যিক স্টোরেজে সংরক্ষণের জন্য Signalএর স্টোরেজের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">অনুমতি ব্যতীত বাহ্যিক স্টোরেজে সংরক্ষণ করতে অক্ষম</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">খুঁজুন</string>
@@ -3392,9 +3392,9 @@
     <string name="audio_view__download_accessibility_description">ডাউনলোড</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">ডাউনলোড</string>
+    <string name="document_view__upload_accessibility_description">আপলোড করুন</string>
+    <string name="document_view__cancel_accessibility_description">বাতিল করুন</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">অডিও</string>
@@ -8155,13 +8155,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">ব্যাকআপ \'কি\'</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ভুল ব্যাকআপ \'কি\'</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">\'কি\'-টি আবার দেখুন</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">পরবর্তী</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8293,20 +8293,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">সহায়তা কেন্দ্রে যোগাযোগ করুন</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">ডিবাগ লগ জমা দেবেন?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">আপনার ডিবাগ লগগুলি আমাদেরকে সমস্যা দ্রুত সমাধানে সহায়তা করবে। আপনার লগ জমা দেওয়া বাধ্যতামূলক নয়।</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">ডিবাগ লগ সহ জমা দিন</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">ডিবাগ লগ ছাড়াই জমা দিন</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">আপনার পুরানো ফোন দিয়ে এই কোডটি স্ক্যান করুন</string>

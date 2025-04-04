@@ -2149,8 +2149,8 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="one">%1$d other</item>
-        <item quantity="other">%1$d others</item>
+        <item quantity="one">%1$d மற்றவை</item>
+        <item quantity="other">%1$d மற்றவர்கள்</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">புகாரளி…</string>
@@ -2267,7 +2267,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">அனைத்தும் · %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">அகற்றுவதற்கு தட்டவும்</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2501,7 +2501,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">உங்கள் கையைத் தாழ்த்துகிறீர்களா?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s கையை உயர்த்தியுள்ளார்</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3120,19 +3120,19 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">தொலைபேசியில் சேமிக்கவா?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="one">உங்கள் பேசியின் சேமிப்பகத்தில் இந்த ஊடகம் சேமிக்கப்படும். உங்கள் பேசியின் அனுமதிகளைப் பொறுத்து பிற பயன்பாடுகள் அதை அணுக முடியும்.</item>
+        <item quantity="other">உங்கள் பேசியின் சேமிப்பகத்தில் இந்த ஊடகங்கள் சேமிக்கப்படும். உங்கள் பேசியின் அனுமதிகளைப் பொறுத்து பிற பயன்பாடுகள் அதை அணுக முடியும்.</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">வெளிப்புற சேமிப்பகத்தில் சேமிக்க Signal சேமிப்பக அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"சேமிப்பகத்தை\" இயக்கவும்.</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">அனுமதியின்றி வெளிப்புற சேமிப்பகத்தில் சேமிக்க முடியவில்லை</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">தேடு</string>
@@ -3392,9 +3392,9 @@
     <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">பதிவிறக்க</string>
+    <string name="document_view__upload_accessibility_description">பதிவேற்று</string>
+    <string name="document_view__cancel_accessibility_description">ரத்துசெய்</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">கேட்பொலி</string>
@@ -8155,13 +8155,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">காப்புப்பிரதி குறியீடு</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">தவறான காப்புப்பிரதி குறியீடு</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">குறியீட்டைப் மீண்டும் காண்க</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">அடுத்து</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8293,20 +8293,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">பிழைத்திருத்தப் பதிவு சமர்ப்பிப்பதா?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">உங்கள் பிழைத்திருத்தப் பதிவுகள் உங்கள் சிக்கலை விரைவாகச் சரிசெய்ய உதவும். உங்கள் பதிவுகளைச் சமர்ப்பிப்பது விருப்பத்தேர்வுக்குரியது.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">பிழைத்திருத்தப் பதிவுடன் சமர்ப்பி</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">பிழைத்திருத்தப் பதிவு இல்லாமல் சமர்ப்பி</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">உங்களின் பழைய ஃபோன் கொண்டு இந்தக் குறியீட்டை ஸ்கேன் செய்யவும்</string>

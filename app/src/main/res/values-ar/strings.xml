@@ -1954,7 +1954,7 @@
     <string name="NotificationsMegaphone_not_now">ليس الآن</string>
 
     <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
+    <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة متعددة الوسائط</string>
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة متعددة الوسائط، انقر لإعادة المحاولة</string>
 
@@ -2396,7 +2396,7 @@
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
     <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
+    <string name="MessageRequestProfileView_group_members_two">%1$s و%2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
@@ -2405,12 +2405,12 @@
     <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="zero">%1$d others</item>
-        <item quantity="one">%1$d other</item>
-        <item quantity="two">%1$d others</item>
-        <item quantity="few">%1$d others</item>
-        <item quantity="many">%1$d others</item>
-        <item quantity="other">%1$d others</item>
+        <item quantity="zero">%1$d آخر</item>
+        <item quantity="one">%1$d آخر</item>
+        <item quantity="two">%1$d آخران</item>
+        <item quantity="few">%1$d آخرون</item>
+        <item quantity="many">%1$d آخرون</item>
+        <item quantity="other">%1$d آخرون</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">إبلاغ…</string>
@@ -2487,7 +2487,7 @@
     <!-- PinRestoreEntryFragment -->
     <string name="PinRestoreEntryFragment_incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">أترغبُ بتخطي إدخال رقم التعريف الشخصي (PIN)؟</string>
-    <string name="PinRestoreEntryFragment_need_help">هل تحتاج إلى مساعدة؟</string>
+    <string name="PinRestoreEntryFragment_need_help">هل تحتاج لمُساعدة؟</string>
     <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">رقم التعريف الشخصي (PIN) الخاص بك هو سلسلة مكونة من %1$d حروف قد تكون أرقامًا فقط أو مزيج من الحروف والأرقام.\n\nإذا كُنتَ لا تتذكر رمز التعريف الشخصي الخاص بك، يمكنك إنشاء رمز جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كُنتَ لا تتذكر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء واحد جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
     <string name="PinRestoreEntryFragment_create_new_pin">إنشاء رقم تعريفي شخصي (PIN) جديد</string>
@@ -2535,7 +2535,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">الكل · %1$d</string>
-    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Tap to remove</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">انقر للإزالة</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2813,7 +2813,7 @@
 
 
     <!-- A notification to the user that their hand is raised but they are currently speaking -->
-    <string name="CallRaiseHandSnackbar__lower_your_hand">Lower your hand?</string>
+    <string name="CallRaiseHandSnackbar__lower_your_hand">هل تريد خفض يدك؟</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s رفع يده</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -3171,7 +3171,7 @@
     <string name="ThreadRecord_left_the_group">غادَرَ المجموعة</string>
     <string name="ThreadRecord_secure_session_reset">تمَّت إعادة ضبط جلسة آمنة.</string>
     <string name="ThreadRecord_draft">مسودة:</string>
-    <string name="ThreadRecord_media_message">رسالة وسائط متعددة</string>
+    <string name="ThreadRecord_media_message">رسالة وسائط</string>
     <string name="ThreadRecord_sticker">مُلصَق</string>
     <string name="ThreadRecord_view_once_photo">صورة للمشاهدة لمرّة واحدة</string>
     <string name="ThreadRecord_view_once_video">فيديو للمشاهدة لمرّة واحدة</string>
@@ -3496,23 +3496,23 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Save to phone?</string>
+    <string name="AttachmentSaver__save_to_phone">هل ترغبُ بالحفظ في الهاتف؟</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="zero">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="one">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="two">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="few">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="many">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
-        <item quantity="other">This media will be saved to your phone\'s storage. Other apps may be able to access it depending on your phone\'s permissions.</item>
+        <item quantity="zero">سَيتمُّ حفظ هذه الوسائط في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليها حسب أذونات هاتفك.</item>
+        <item quantity="one">سَيتمُّ حفظ ملف الوسائط هذا في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليه حسب أذونات هاتفك.</item>
+        <item quantity="two">سَيتمُّ حفظ ملفي الوسائط في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليهما حسب أذونات هاتفك.</item>
+        <item quantity="few">سَيتمُّ حفظ هذه الوسائط في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليها حسب أذونات هاتفك.</item>
+        <item quantity="many">سَيتمُّ حفظ هذه الوسائط في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليها حسب أذونات هاتفك.</item>
+        <item quantity="other">سَيتمُّ حفظ هذه الوسائط في مساحة التخزين على هاتفك. قد تتمكّن تطبيقات أخرى من الوصول إليها حسب أذونات هاتفك.</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سيجنال إلى إذن الوصول إلى مساحة التخزين من أجل استخدام الذاكرة الخارجية، ولكن تمَّ إيقاف الإذن بشكلٍ دائم. يُرجى زيارة إعدادات التطبيق، وتحديد \"الأذونات\"، ثم تفعيل \"مساحة التخزين\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات.</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">بحث</string>
@@ -3739,7 +3739,7 @@
     <string name="conversation_input_panel__cancel">إلغاء</string>
 
     <!-- conversation_item -->
-    <string name="conversation_item__mms_image_description">رسالة وسائط متعددة</string>
+    <string name="conversation_item__mms_image_description">رسالة وسائط</string>
     <string name="conversation_item__secure_message_description">رسالة آمنة</string>
 
     <!-- conversation_item_sent -->
@@ -3788,9 +3788,9 @@
     <string name="audio_view__download_accessibility_description">تنزيل</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Download</string>
-    <string name="document_view__upload_accessibility_description">Upload</string>
-    <string name="document_view__cancel_accessibility_description">Cancel</string>
+    <string name="document_view__download_accessibility_description">تنزيل</string>
+    <string name="document_view__upload_accessibility_description">رفع</string>
+    <string name="document_view__cancel_accessibility_description">إلغاء</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">صوت</string>
@@ -4136,7 +4136,7 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">الأنشطة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__places">الأماكن</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">الأشياء</string>
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز الخاصة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
@@ -6102,7 +6102,7 @@
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">موحَّد</string>
     <string name="CustomChatColorCreatorFragment__gradient">مُتدرِّج</string>
-    <string name="CustomChatColorCreatorFragment__hue">الصبغة</string>
+    <string name="CustomChatColorCreatorFragment__hue">اللون</string>
     <string name="CustomChatColorCreatorFragment__saturation">التشبُّع اللوني</string>
 
     <!-- CustomChatColorCreatorFragmentPage -->
@@ -6157,9 +6157,9 @@
     <string name="KeyboardPagerFragment_stickers">المُلصَقات</string>
     <string name="KeyboardPagerFragment_backspace">مسافة للخلف</string>
     <string name="KeyboardPagerFragment_gifs">الصور المتحركة</string>
-    <string name="KeyboardPagerFragment_search_emoji">البحث في الرمز التعبيري (الإيموجي)</string>
+    <string name="KeyboardPagerFragment_search_emoji">البحث في الرموز التعبيرية (الإيموجي)</string>
     <string name="KeyboardPagerfragment_back_to_emoji">الرجوع للرمز التعبيري (الإيموجي)</string>
-    <string name="KeyboardPagerfragment_clear_search_entry">إزالة مُدخلات البحث</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">مسح مُدخلات البحث</string>
     <string name="KeyboardPagerFragment_search_giphy">البحث في GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
@@ -6724,7 +6724,7 @@
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">رقم بطاقتك غير صحيح. قُم بتحديثها في Google Pay ثم حاوِل مرّة أخرى.</string>
     <!-- Stripe decline code incorrect cvc -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">رقم رمز التحقُّق لبطاقتك (CVC) غير صحيح. يُرجى تحديثه في Google Pay ثم المحاولة مرّة أخرى.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">كود التحقُّق من بطاقتك (CVC) غير صحيح. يُرجى تحديثه في Google Pay ثم المحاولة مرّة أخرى.</string>
     <!-- Stripe decline code insufficient funds -->
     <string name="DeclineCode__your_card_does_not_have_sufficient_funds">لا يوجد رصيد كافي في بطاقتك لإتمام عملية الشراء هذه. جرِّب استخدام طريقة دفع أخرى.</string>
     <!-- Stripe decline code incorrect expiration month -->
@@ -6744,7 +6744,7 @@
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_has_expired_verify_your_card_details">انتهت صلاحية بطاقتك. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">رقم رمز التحقُّق لبطاقتك (CVC) غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">كود التحقُّق من بطاقتك (CVC) غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">شهر انتهاء الصلاحية الخاص ببطاقتك غير صحيح. تأكَّد من صحة تفاصيل بطاقتك وحاوِل مرّة أخرى.</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
@@ -8003,7 +8003,7 @@
     <!-- Call log new call content description -->
     <string name="CallLogFragment__start_a_new_call">بدء مكالمة جديدة</string>
     <!-- Filter pull text when pulled -->
-    <string name="CallLogFragment__filtered_by_missed">تمَّت الفلترة بحسب الفائتة</string>
+    <string name="CallLogFragment__filtered_by_missed">تمَّت الفلترة بحسب المكالمات الفائتة</string>
     <!-- Bottom bar option to select all call entries -->
     <string name="CallLogFragment__select_all">تحديد الكل</string>
     <!-- Bottom bar option to delete all selected call entries and dialog action to confirm deletion -->
@@ -8851,13 +8851,13 @@
     <!-- Confirm your key subtitle -->
     <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">مفتاح النسخة الاحتياطية</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">مفتاح النسخة الاحتياطية غير صحيح.</string>
     <!-- Confirm your key button text to return to record key screen. -->
-    <string name="MessageBackupsKeyVerifyScreen__see_key_again">See key again</string>
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">اطَّلِع على المفتاح مُجدَّدًا</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
-    <string name="MessageBackupsKeyVerifyScreen__next">Next</string>
+    <string name="MessageBackupsKeyVerifyScreen__next">التالي</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8997,20 +8997,20 @@
     <!-- Dialog body text when encountering backup restore network error -->
     <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
     <!-- Dialog button text to contact support on network error -->
-    <string name="EnterBackupKey_contact_support">Contact support</string>
+    <string name="EnterBackupKey_contact_support">الاتصال بالدعم</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
-    <string name="ContactSupportDialog_submit_debug_log">Submit debug log?</string>
+    <string name="ContactSupportDialog_submit_debug_log">هل ترغبُ بإرسال سجل الأخطاء؟</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="ContactSupportDialog_your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="ContactSupportDialog_your_debug_logs">تساعدنا سجلات الأخطاء في استكشاف مشاكلك وإصلاحها في أسرع وقت. إرسال سجلاتك إلينا أمر اختياري.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Submit with debug log</string>
+    <string name="ContactSupportDialog_submit_with_debug">إرسال مع سجل الأخطاء</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Submit without debug log</string>
+    <string name="ContactSupportDialog_submit_without_debug">إرسال بدون سجل الأخطاء</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">امسح هذا الكود ضوئيًا باستخدام جهازك القديم</string>
