@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
-import java.util.Locale
 
 /**
  * Sets up some common infrastructure for on-device InAppPayment testing
