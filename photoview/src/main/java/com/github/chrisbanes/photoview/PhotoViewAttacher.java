@@ -266,11 +266,6 @@ public class PhotoViewAttacher implements View.OnTouchListener,
         this.mSingleFlingListener = onSingleFlingListener;
     }
 
-    @Deprecated
-    public boolean isZoomEnabled() {
-        return mZoomEnabled;
-    }
-
     public RectF getDisplayRect() {
         checkMatrixBounds();
         return getDisplayRect(getDrawMatrix());

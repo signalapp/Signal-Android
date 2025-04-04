@@ -432,18 +432,6 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   var registeredAtTimestamp: Long by longValue(KEY_ACCOUNT_REGISTERED_AT, -1)
     private set
 
-  /**
-   * Function for testing backup/restore
-   */
-  @Deprecated("debug only")
-  fun clearRegistrationButKeepCredentials() {
-    putBoolean(KEY_IS_REGISTERED, false)
-
-    AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
-
-    Recipient.self().live().refresh()
-  }
-
   val deviceName: String?
     get() = getString(KEY_DEVICE_NAME, null)
 
