@@ -83,18 +83,25 @@ object CallPreference {
 
     @StringRes
     private fun getMissedCallString(isVideo: Boolean, callEvent: CallTable.Event): Int {
-      return if (callEvent == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
-        if (isVideo) {
-          R.string.MessageRecord_missed_video_call_notification_profile
-        } else {
-          R.string.MessageRecord_missed_voice_call_notification_profile
-        }
-      } else {
-        if (isVideo) {
-          R.string.MessageRecord_missed_video_call
-        } else {
-          R.string.MessageRecord_missed_voice_call
-        }
+      return when (callEvent) {
+        CallTable.Event.MISSED_NOTIFICATION_PROFILE ->
+          if (isVideo) {
+            R.string.MessageRecord_missed_video_call_notification_profile
+          } else {
+            R.string.MessageRecord_missed_voice_call_notification_profile
+          }
+        CallTable.Event.NOT_ACCEPTED ->
+          if (isVideo) {
+            R.string.MessageRecord_declined_video_call
+          } else {
+            R.string.MessageRecord_declined_voice_call
+          }
+        else ->
+          if (isVideo) {
+            R.string.MessageRecord_missed_video_call
+          } else {
+            R.string.MessageRecord_missed_voice_call
+          }
       }
     }
 
