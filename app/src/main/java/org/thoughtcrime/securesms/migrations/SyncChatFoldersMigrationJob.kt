@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.database.ChatFolderTables
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 
 /**
@@ -26,11 +25,6 @@ internal class SyncChatFoldersMigrationJob(parameters: Parameters = Parameters.B
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (SignalStore.account.aci == null) {
-      Log.w(TAG, "Self not available yet.")
-      return
-    }
-
     val folderIds = SignalDatabase.chatFolders.getAllFoldersForSync()
 
     SignalDatabase.chatFolders.markNeedsSync(folderIds)
