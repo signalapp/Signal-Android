@@ -448,6 +448,7 @@ class IncomingMessageObserver(private val context: Application, private val auth
           Log.w(TAG, e)
         } finally {
           webSocketDisposable.dispose()
+          decryptionDrained = false
         }
         Log.i(TAG, "Looping...")
       }
