@@ -1199,7 +1199,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">Súbor</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
@@ -2262,23 +2262,23 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">Zatiaľ tu nie sú žiadni ďalší členovia skupiny</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s a vy</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s a %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s a vy</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s a %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s a %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
         <item quantity="one">%1$d ďalší</item>
-        <item quantity="few">%1$d ďalších</item>
+        <item quantity="few">%1$d ďalší</item>
         <item quantity="many">%1$d ďalších</item>
         <item quantity="other">%1$d ďalších</item>
     </plurals>
@@ -3319,7 +3319,7 @@
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Zvoľte, prosím, v nastaveniach aplikácií \"Oprávnenia\", a povoľte \"Úložisko\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Bez povolenia sa nedá zapisovať na externé úložisko</string>
@@ -6779,7 +6779,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Odpovedať skupine</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Viac reakcií</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Zatiaľ žiadne zobrazenia</string>
     <!-- Displayed when user has disabled receipts -->
@@ -8396,10 +8396,10 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Pripravuje sa záloha…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="few">Processing %1$s of ~%2$s messages (%3$d%%)</item>
-        <item quantity="many">Processing %1$s of ~%2$s messages (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">Spracováva sa %1$s z %2$s správ (%3$d %%)</item>
+        <item quantity="few">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
+        <item quantity="many">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
+        <item quantity="other">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8499,9 +8499,9 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Pozrieť si kľúč znova</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Potvrďte záložný kľúč</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Zadajte záložný kľúč, ktorý ste si práve zaznamenali</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">Záložný kľúč</string>
     <!-- Confirm your key text entry error text -->
@@ -8641,14 +8641,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskočiť obnovenie</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">Nepodarilo sa obnoviť zálohu</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Vašu zálohu nie je momentálne možné obnoviť. Skontrolujte internetové pripojenie a skúste to znova. </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">Kontaktovať podporu</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Chyba siete pri obnovovaní zálohy Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->

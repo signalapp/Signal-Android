@@ -3129,7 +3129,7 @@
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pour enregistrer des données sur un stockage externe, Signal doit accéder à l\'application Stockage, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, puis touchez Applications &gt; Signal &gt; Autorisations et activez l\'option \"Stockage\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pour enregistrer des données sur un stockage externe, Signal doit accéder à l\'application Stockage, mais vous lui en avez interdit l\'accès. Ouvrez l\'application Paramètres de votre appareil, touchez Applications &gt; Signal &gt; Autorisations, puis activez l\'option \"Stockage\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Enregistrement sur le stockage externe impossible sans autorisation d\'accès</string>

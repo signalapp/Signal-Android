@@ -748,12 +748,12 @@
         <item quantity="other">%1$d chat spostate nei messaggi in arrivo</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
-        <item quantity="one">Letto</item>
-        <item quantity="other">Letti</item>
+        <item quantity="one">Letta</item>
+        <item quantity="other">Lette</item>
     </plurals>
     <plurals name="ConversationListFragment_unread_plural">
-        <item quantity="one">Non letto</item>
-        <item quantity="other">Non letti</item>
+        <item quantity="one">Non letta</item>
+        <item quantity="other">Non lette</item>
     </plurals>
     <string name="ConversationListFragment_pin">Fissa</string>
     <string name="ConversationListFragment_unpin">Non fissare</string>
@@ -1155,7 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">File senza nome</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">File del documento</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
@@ -2134,19 +2134,19 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">Non ci sono altre persone nel gruppo</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">Tu e %1$s</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s e %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">Tu, %1$s e %2$s</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s e %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s e %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
         <item quantity="one">%1$d altro</item>
@@ -3129,7 +3129,7 @@
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare nella memoria esterna, ma questa è stata negata in modo permanente. Apri il menu delle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Impossibile salvare nella memoria esterna senza l\'autorizzazione</string>
@@ -3392,7 +3392,7 @@
     <string name="audio_view__download_accessibility_description">Scarica</string>
 
     <!-- document_view -->
-    <string name="document_view__download_accessibility_description">Scarica</string>
+    <string name="document_view__download_accessibility_description">Download</string>
     <string name="document_view__upload_accessibility_description">Carica</string>
     <string name="document_view__cancel_accessibility_description">Annulla</string>
 
@@ -3962,7 +3962,7 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Abilita il mittente sigillato per i messaggi in arrivo da non-contatti e persone con cui non hai condiviso il tuo profilo.</string>
     <string name="preferences_proxy">Proxy</string>
     <string name="preferences_use_proxy">Usa proxy</string>
-    <string name="preferences_off">Off</string>
+    <string name="preferences_off">No</string>
     <string name="preferences_on">On</string>
     <string name="preferences_proxy_address">Indirizzo proxy</string>
     <string name="preferences_only_use_a_proxy_if">Usa un proxy solo se non sei in grado di connetterti a Signal su dati mobili o Wi-Fi.</string>
@@ -4254,8 +4254,8 @@
 
     <!-- Heading which shows how many messages are currently selected -->
     <plurals name="conversation_context__s_selected">
-        <item quantity="one">%1$d selezionata</item>
-        <item quantity="other">%1$d selezionate</item>
+        <item quantity="one">%1$d selezionato</item>
+        <item quantity="other">%1$d selezionati</item>
     </plurals>
 
     <!-- conversation_context_image -->
@@ -4374,7 +4374,7 @@
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filtra per chat non lette</string>
     <!-- Overflow menu entry to disable unread chats filter -->
-    <string name="text_secure_normal__clear_unread_filter">Rimuovi filtro non letti</string>
+    <string name="text_secure_normal__clear_unread_filter">Rimuovi filtro non lette</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia negli appunti</string>
@@ -4677,7 +4677,7 @@
 
     <!-- ScreenLockSettingsFragment -->
     <!-- Text shown when screen lock is not enabled -->
-    <string name="ScreenLockSettingsFragment__off">Off</string>
+    <string name="ScreenLockSettingsFragment__off">No</string>
     <!-- Text shown with toggle that when switched on will enable screen lock -->
     <string name="ScreenLockSettingsFragment__use_screen_lock">Usa il blocco schermo</string>
     <!-- Description of what screen locking will do and how notification content will not be shown when screen is locked -->
@@ -5516,7 +5516,7 @@
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Una volta abilitati, i nuovi messaggi inviati e ricevuti in nuove chat avviate da te scompariranno dopo essere stati visti.</string>
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Una volta abilitati, i nuovi messaggi inviati e ricevuti in questa chat scompariranno dopo essere stati visti.</string>
-    <string name="ExpireTimerSettingsFragment__off">Off</string>
+    <string name="ExpireTimerSettingsFragment__off">No</string>
     <string name="ExpireTimerSettingsFragment__4_weeks">4 settimane</string>
     <string name="ExpireTimerSettingsFragment__1_week">1 settimana</string>
     <string name="ExpireTimerSettingsFragment__1_day">1 giorno</string>
@@ -6493,7 +6493,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Rispondi al gruppo</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Altre reazioni</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ancora nessuna visualizzazione</string>
     <!-- Displayed when user has disabled receipts -->
@@ -6583,7 +6583,7 @@
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Le tue connessioni possono vedere il tuo nome e la tua foto, così come i post su \"La mia Storia\", a meno che tu non decida di nasconderli a qualcuno."</string>
     <!-- Clickable option to add a viewer to a custom story -->
-    <string name="PrivateStorySettingsFragment__add_viewer">Aggiungi visualizzatore</string>
+    <string name="PrivateStorySettingsFragment__add_viewer">Aggiungi persona</string>
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Elimina Storia personalizzata</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
@@ -6652,13 +6652,13 @@
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
-    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Scegli visualizzatori</string>
+    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Scegli chi vedrà la Storia</string>
     <!-- New story viewer selection action button label -->
     <string name="CreateStoryViewerSelectionFragment__next">Avanti</string>
     <!-- New story viewer selection screen title as recipients are selected -->
     <plurals name="SelectViewersFragment__d_viewers">
-        <item quantity="one">%1$d persona può vedere la storia</item>
-        <item quantity="other">%1$d persone possono vedere la storia</item>
+        <item quantity="one">%1$d persona vedrà la Storia</item>
+        <item quantity="other">%1$d persone vedranno la Storia</item>
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Nome Storia</string>
@@ -6667,7 +6667,7 @@
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Nome della Storia (obbligatorio)</string>
     <!-- Name story screen viewers subheading -->
-    <string name="CreateStoryWithViewersFragment__viewers">Visualizzatori</string>
+    <string name="CreateStoryWithViewersFragment__viewers">Persone</string>
     <!-- Name story screen create button label -->
     <string name="CreateStoryWithViewersFragment__create">Crea</string>
     <!-- Name story screen error when save attempted with no label -->
@@ -7233,7 +7233,7 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtra per non letti</string>
+    <string name="ChatFilter__filtered_by_unread">Filtra per non lette</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
     <string name="ChatFilter__pull_to_filter">Scorri in basso per filtrare</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
@@ -7266,7 +7266,7 @@
     <!-- Popup menu label for applying strikethrough style -->
     <string name="TextFormatting_strikethrough">Barrato</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Monospaziato</string>
     <!-- Popup menu label for applying spoiler style -->
     <string name="TextFormatting_spoiler">Spoiler</string>
     <!-- Popup menu label for clearing applied formatting -->
@@ -8054,8 +8054,8 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparazione del backup…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">Elaborazione in corso di %1$s messaggio su %2$s (%3$d%%)</item>
+        <item quantity="other">Elaborazione in corso di %1$s messaggi su ~%2$s (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8151,9 +8151,9 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Vedi di nuovo la chiave</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Conferma la tua chiave di backup</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Inserisci la chiave di backup che hai appena registrato</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">Chiave di backup</string>
     <!-- Confirm your key text entry error text -->
@@ -8289,14 +8289,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Salta il ripristino</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">Impossibile ripristinare il backup</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Al momento non è possibile ripristinare il tuo backup. Controlla la tua connessione Internet e riprova. </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">Contatta l\'assistenza</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Errore di network per il ripristino del backup di Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->

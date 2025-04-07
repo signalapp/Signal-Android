@@ -1155,7 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">ഡോക്യുമെന്റ് ഫയൽ</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Play Services ഇല്ലാത്തതിനാൽ ഡിവൈസ് ഒപ്റ്റിമൈസ് ചെയ്യുക</string>
@@ -2134,19 +2134,19 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങളൊന്നും ഇതുവരെ ഇല്ല</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s എന്നയാളും നിങ്ങളും</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
+    <string name="MessageRequestProfileView_group_members_two">%1$s, %2$s എന്നിവർ</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, എന്നിവരും നിങ്ങളും</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, %3$s എന്നിവർ</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, %4$s എന്നിവർ</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
         <item quantity="one">%1$d മറ്റുള്ളവ</item>
@@ -3129,7 +3129,7 @@
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ബാഹ്യ സ്റ്റോറേജിലെക് സംരക്ഷിക്കുന്നതിന് Signal-ന് സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കുന്നതിന് Signal-ന് സ്റ്റോറേജ് അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. ആപ്പ് ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറേജ്\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">അനുമതിയില്ലാതെ ബാഹ്യ സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കാൻ കഴിയില്ല</string>
@@ -3393,7 +3393,7 @@
 
     <!-- document_view -->
     <string name="document_view__download_accessibility_description">ഡൌൺലോഡ് ചെയ്യുക</string>
-    <string name="document_view__upload_accessibility_description">അപ്‌ലോഡ്</string>
+    <string name="document_view__upload_accessibility_description">അപ്‌ലോഡ് ചെയ്യുക</string>
     <string name="document_view__cancel_accessibility_description">റദ്ദാക്കുക</string>
 
     <!-- QuoteView -->
@@ -6493,7 +6493,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ഗ്രൂപ്പിന് മറുപടി നൽകുക</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">കൂടുതൽ പ്രതികരണങ്ങൾ</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ഇതുവരെ കാഴ്ച്ചകളൊന്നുമില്ല</string>
     <!-- Displayed when user has disabled receipts -->
@@ -8054,8 +8054,8 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">ബാക്കപ്പ് തയ്യാറാക്കുന്നു…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">%2$s സന്ദേശത്തിൽ %1$s പ്രോസസ്സ് ചെയ്യുന്നു (%3$d%%)</item>
+        <item quantity="other">%2$s സന്ദേശങ്ങളിൽ %1$s പ്രോസസ്സ് ചെയ്യുന്നു (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8151,13 +8151,13 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">കീ വീണ്ടും കാണുക</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">നിങ്ങളുടെ ബാക്കപ്പ് കീ സ്ഥിരീകരിക്കുക</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">നിങ്ങൾ ഇപ്പോൾ റെക്കോർഡ് ചെയ്ത ബാക്കപ്പ് കീ നൽകുക</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">ബാക്കപ്പ് കീ</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ബാക്ക്അപ്പ് കീ തെറ്റാണ്</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ബാക്കപ്പ് കീ തെറ്റാണ്</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">കീ വീണ്ടും കാണുക</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
@@ -8289,14 +8289,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">നിങ്ങളുടെ ബാക്കപ്പ് ഇപ്പോൾ പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല. നിങ്ങളുടെ ഇൻ്റർനെറ്റ് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക. </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android ബാക്കപ്പ് പുനഃസ്ഥാപിക്കുമ്പോൾ നെറ്റ്‌വർക്ക് പിശക്</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->

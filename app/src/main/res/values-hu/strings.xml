@@ -1155,7 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Névtelen fájl</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">Dokumentumfájl</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
@@ -2134,19 +2134,19 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">Még nincs más csoporttag</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s és te</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s és %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s és te</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s és %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s és %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
         <item quantity="one">%1$d további</item>
@@ -6493,7 +6493,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Válasz a csoportnak</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Még több reakció</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Még nem látta senki</string>
     <!-- Displayed when user has disabled receipts -->
@@ -8054,8 +8054,8 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Biztonsági mentés előkészítése…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">%1$s/%2$s üzenet feldolgozása (%3$d%%)</item>
+        <item quantity="other">%1$s/%2$s üzenet feldolgozása (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8151,9 +8151,9 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Kulcs újbóli megtekintése</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Erősítsd meg a biztonsági kulcsot</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Írd be az imént rögzített biztonsági kulcsot</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">Biztonsági kulcs</string>
     <!-- Confirm your key text entry error text -->
@@ -8289,14 +8289,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Visszaállítás kihagyása</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">Nem lehet visszaállítani a biztonsági másolatot</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">A biztonsági másolatot jelenleg nem lehet visszaállítani. Ellenőrizd az internetkapcsolatot, és próbáld újra. </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">Segítségkérés</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android biztonsági mentés visszaállítási hálózati hiba</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->

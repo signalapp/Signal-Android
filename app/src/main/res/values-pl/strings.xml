@@ -3312,17 +3312,17 @@
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="one">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje, co zależy od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
-        <item quantity="few">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje, co zależy od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
-        <item quantity="many">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje, co zależy od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
-        <item quantity="other">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje, co zależy od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
+        <item quantity="one">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje w zależności od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
+        <item quantity="few">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje w zależności od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
+        <item quantity="many">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje w zależności od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
+        <item quantity="other">Multimedia zostaną zapisane w pamięci Twojego telefonu. Dostęp do nich mogą mieć inne aplikacje w zależności od uprawnień skonfigurowanych w ustawieniach urządzenia.</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do danych telefonu w celu zapisu do pamięci zewnętrznej, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Aby zapisać dane w zewnętrznej pamięci, Signal wymaga uprawnienia dostępu do pamięci, które nie zostało udzielone. Przejdź do ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć\".</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Nie można zapisać do pamięci zewnętrznej bez odpowiedniego pozwolenia</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Nie można zapisać do pamięci zewnętrznej bez uprawnień</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Szukaj</string>
@@ -8656,9 +8656,9 @@
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
     <string name="ContactSupportDialog_your_debug_logs">Dzienniki debugowania pomogą nam szybciej rozwiązać problem. Załączenie dzienników jest opcjonalne.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_with_debug">Wyślij z dziennikami debugowania</string>
+    <string name="ContactSupportDialog_submit_with_debug">Wyślij z dziennikiem debugowania</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="ContactSupportDialog_submit_without_debug">Wyślij bez dzienników debugowania</string>
+    <string name="ContactSupportDialog_submit_without_debug">Wyślij bez dziennika debugowania</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Zeskanuj ten kod swoim starym telefonem</string>

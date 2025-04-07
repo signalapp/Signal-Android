@@ -3102,14 +3102,14 @@
 
     <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
     <plurals name="SaveAttachment_saved_success">
-        <item quantity="one">Archivo multimedia guardado</item>
-        <item quantity="other">Archivos multimedia guardados</item>
+        <item quantity="one">Archivo guardado</item>
+        <item quantity="other">Archivos guardados</item>
     </plurals>
 
     <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
          %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
     <plurals name="SaveAttachment_saved_success_n_failures">
-        <item quantity="one">Archivos guardados (%1$s de %2$s no se ha descargado)</item>
+        <item quantity="one">Archivo guardado (%1$s de %2$s no se ha descargado)</item>
         <item quantity="other">Archivos guardados (%1$s de %2$s no se han descargado)</item>
     </plurals>
 
@@ -5850,7 +5850,7 @@
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto configurada en calidad estándar</string>
     <!-- Accessibility label describing the add media button on the Media review screen -->
-    <string name="MediaReviewFragment__add_media_accessibility_label">Añadir a Archivos multimedia</string>
+    <string name="MediaReviewFragment__add_media_accessibility_label">Añadir un archivo</string>
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
     <string name="MediaReviewFragment__brush_pen_accessibility_label">Pincel y bolígrafo</string>
     <!-- Accessibility label describing the crop and rotate button on the Media review screen -->

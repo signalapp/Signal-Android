@@ -1155,7 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">ਬੇਨਾਮ ਫ਼ਾਈਲ</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">ਦਸਤਾਵੇਜ਼ ਫ਼ਾਈਲ</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">ਗਾਇਬ ਪਲੇਅ ਸੇਵਾਵਾਂ ਲਈ ਅਨੁਕੂਲ ਬਣਾਓ</string>
@@ -2134,22 +2134,22 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">ਹਾਲੇ ਤੱਕ ਕੋਈ ਹੋਰ ਗਰੁੱਪ ਮੈਂਬਰ ਨਹੀਂ ਹੈ</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s ਅਤੇ ਤੁਸੀਂ</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two">%1$s and %2$s</string>
+    <string name="MessageRequestProfileView_group_members_two">%1$s ਅਤੇ %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, ਅਤੇ ਤੁਸੀਂ</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, ਅਤੇ %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, ਅਤੇ %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
-        <item quantity="one">%1$d ਹੋਰ </item>
+        <item quantity="one">%1$d ਹੋਰ</item>
         <item quantity="other">%1$d ਹੋਰ</item>
     </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
@@ -3124,15 +3124,15 @@
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
-        <item quantity="one">ਇਹ ਮੀਡੀਆ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਜਾਵੇਗਾ। ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਹੋਰ ਐਪਾਂ ਇਸ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੀਆਂ ਹਨ।</item>
-        <item quantity="other">ਇਹ ਮੀਡੀਆ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕੀਤਾ ਜਾਵੇਗਾ। ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਹੋਰ ਐਪਾਂ ਇਸ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੀਆਂ ਹਨ।</item>
+        <item quantity="one">ਇਹ ਮੀਡੀਆ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕੀਤਾ ਜਾਵੇਗਾ। ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਹੋਰ ਐਪਾਂ ਇਸ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੀਆਂ ਹਨ।</item>
+        <item quantity="other">ਇਹ ਮੀਡੀਆ ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕੀਤਾ ਜਾਵੇਗਾ। ਤੁਹਾਡੇ ਫ਼ੋਨ ਦੀਆਂ ਇਜਾਜ਼ਤਾਂ ਦੇ ਆਧਾਰ \'ਤੇ ਹੋਰ ਐਪਾਂ ਇਸ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੀਆਂ ਹਨ।</item>
     </plurals>
 
     <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
-    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ਬਾਹਰੀ ਸਟੋਰੇਜ ’ਤੇ ਸੰਭਾਲਣ ਲਈ Signal ਨੂੰ ਸਟੋਰੇਜ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ, ਪਰ ਇਸਨੂੰ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ, ਅਤੇ \"ਸਟੋਰੇਜ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕਰਨ ਲਈ Signal ਨੂੰ ਸਟੋਰੇਜ ਸੰਬੰਧੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ, ਪਰ ਇਸਨੂੰ ਸਥਾਈ ਤੌਰ ’ਤੇ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ’ਤੇ ਜਾਓ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ, ਅਤੇ \"ਸਟੋਰੇਜ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
 
     <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
-    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ਇਜਾਜ਼ਤਾਂ ਦੇ ਬਿਨਾਂ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਦਰਜ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ</string>
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ਇਜਾਜ਼ਤਾਂ ਤੋਂ ਬਿਨਾਂ ਬਾਹਰੀ ਸਟੋਰੇਜ ਵਿੱਚ ਸੇਵ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਰਹੇ</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ਖੋਜੋ</string>
@@ -6493,7 +6493,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ਗਰੁੱਪ ਨੂੰ ਜਵਾਬ ਦਿਓ</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">ਹੋਰ ਰਿਐਕਸ਼ਨ</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ਅਜੇ ਤੱਕ ਕਿਸੇ ਨੇ ਨਹੀਂ ਦੇਖਿਆ</string>
     <!-- Displayed when user has disabled receipts -->
@@ -8054,8 +8054,8 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">ਬੈਕਅੱਪ ਤਿਆਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">%2$s ਵਿੱਚੋਂ %1$s ਸੁਨੇਹੇ (%3$d%%) ਉੱਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</item>
+        <item quantity="other">%2$s ਵਿੱਚੋਂ %1$s ਸੁਨੇਹਿਆਂ (%3$d%%) ਉੱਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8151,9 +8151,9 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">ਕੁੰਜੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ਆਪਣੀ ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">ਉਹ ਬੈਕਅੱਪ ਕੁੰਜੀ ਦਰਜ ਕਰੋ ਜੋ ਤੁਸੀਂ ਹੁਣੇ ਰਿਕਾਰਡ ਕੀਤੀ ਹੈ</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">ਬੈਕਅੱਪ ਕੁੰਜੀ</string>
     <!-- Confirm your key text entry error text -->
@@ -8289,14 +8289,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">ਤੁਹਾਡਾ ਬੈਕਅੱਪ ਇਸ ਵੇਲੇ ਰੀਸਟੋਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਆਪਣੇ ਇੰਟਰਨੈੱਟ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ। </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">ਸਹਾਇਤਾ ਟੀਮ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਨੈੱਟਵਰਕ ਗੜਬੜੀ</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
