@@ -4944,8 +4944,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No other groups in common.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">No groups in common.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%d group in common</item>
-        <item quantity="other">%d groups in common</item>
+        <item quantity="one">%d other group in common</item>
+        <item quantity="other">%d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%d group in common</item>
