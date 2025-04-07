@@ -24,7 +24,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
-import androidx.core.widget.TextViewCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.StringUtil
@@ -177,8 +176,6 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else {
       binding.body.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25))
     }
-
-    TextViewCompat.setLineHeight(binding.body, TypedValue.COMPLEX_UNIT_SP, 22f)
 
     binding.bodyWrapper.background = bodyBubbleDrawable
     binding.bodyWrapper.layoutTransition = bodyBubbleLayoutTransition
