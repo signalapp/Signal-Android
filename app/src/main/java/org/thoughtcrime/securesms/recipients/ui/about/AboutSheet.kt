@@ -142,6 +142,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun openGroupsInCommon() {
+    dismiss()
     startActivity(GroupsInCommonActivity.createIntent(requireContext(), recipientId))
   }
 }

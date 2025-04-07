@@ -11,6 +11,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -50,6 +51,7 @@ import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 
@@ -78,15 +80,28 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    super.onCreate(savedInstanceState, ready)
+
     setContent {
       SignalTheme {
         GroupsInCommonScreen(
           viewModel = viewModel,
-          onBackPress = { supportFinishAfterTransition() },
+          onNavigateBack = ::supportFinishAfterTransition,
+          onNavigateToConversation = ::navigateToConversation,
           activity = this
         )
       }
     }
+  }
+
+  override fun finish() {
+    super.finish()
+    overridePendingTransition(0, R.anim.slide_fade_to_bottom)
+  }
+
+  private fun navigateToConversation(group: Recipient) {
+    CommunicationActions.startConversation(this, group, null)
+    finish()
   }
 }
 
@@ -94,14 +109,16 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
 private fun GroupsInCommonScreen(
   viewModel: GroupsInCommonViewModel,
   activity: Activity,
-  onBackPress: () -> Unit = {}
+  onNavigateBack: () -> Unit = {},
+  onNavigateToConversation: (recipient: Recipient) -> Unit = {}
 ) {
   val groups by viewModel.groups.collectAsStateWithLifecycle()
   val nestedScrollConnection = remember { StatusBarColorNestedScrollConnection(activity) }
 
   GroupsInCommonContent(
     groups = groups,
-    onBackPress = onBackPress,
+    onBackPress = onNavigateBack,
+    onRowClick = onNavigateToConversation,
     modifier = Modifier.nestedScroll(nestedScrollConnection)
   )
 }
@@ -111,6 +128,7 @@ private fun GroupsInCommonScreen(
 private fun GroupsInCommonContent(
   groups: List<Recipient>,
   onBackPress: () -> Unit = {},
+  onRowClick: (recipient: Recipient) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -124,7 +142,7 @@ private fun GroupsInCommonContent(
       modifier = Modifier.padding(padding)
     ) {
       items(groups) {
-        GroupRow(it)
+        GroupRow(group = it, onRowClick = onRowClick)
       }
     }
   }
@@ -148,12 +166,14 @@ private fun TopAppBar(
 
 @Composable
 private fun GroupRow(
-  group: Recipient
+  group: Recipient,
+  onRowClick: (recipient: Recipient) -> Unit = { }
 ) {
   Row(
     modifier = Modifier
       .fillMaxWidth()
       .background(MaterialTheme.colorScheme.surface)
+      .clickable(onClick = { onRowClick(group) })
       .padding(start = 24.dp, top = 12.dp, end = 24.dp, bottom = 12.dp),
     verticalAlignment = Alignment.CenterVertically
   ) {
