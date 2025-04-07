@@ -587,6 +587,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
       }
+    } else if (thread.getRecipient().isBlocked() && thread.getRecipient().isGroup()) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked_group), R.drawable.symbol_block_16, defaultTint);
     } else if (thread.getRecipient().isBlocked()) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked), R.drawable.symbol_block_16, defaultTint);
     } else if (MessageTypes.isGroupUpdate(thread.getType())) {

@@ -2886,6 +2886,8 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Blocked</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal update</string>
