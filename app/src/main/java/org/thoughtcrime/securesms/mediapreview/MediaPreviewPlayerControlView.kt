@@ -104,10 +104,9 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
     val currentSeconds: Long = currentPosition.inWholeSeconds % 60
     val videoDuration: Duration = finalPlayer.duration.milliseconds
     currentPositionLabel.text = "${currentMinutes.toString().padStart(2, '0')}:${currentSeconds.toString().padStart(2, '0')}"
-    val totalMinutes = videoDuration.inWholeMinutes
-    val remainingMinutes: Long = totalMinutes - currentMinutes
-    val totalSeconds = videoDuration.inWholeSeconds % 60
-    val remainingSeconds: Long = totalSeconds - currentSeconds
+    val remainingDuration: Duration = videoDuration - currentPosition
+    val remainingMinutes: Long = remainingDuration.inWholeMinutes
+    val remainingSeconds: Long = remainingDuration.inWholeSeconds % 60
     remainingDurationLabel.text = "–${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}"
   }
 
