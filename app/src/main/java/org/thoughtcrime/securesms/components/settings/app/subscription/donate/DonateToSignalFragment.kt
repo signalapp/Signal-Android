@@ -336,6 +336,8 @@ class DonateToSignalFragment :
           }
         )
       }
+
+      space(24.dp)
     }
   }
 

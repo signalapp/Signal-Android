@@ -252,4 +252,6 @@
     <dimen name="conversation_header_max_size">308dp</dimen>
     <dimen name="conversation_header_margin">40dp</dimen>
 
+    <dimen name="donation_pill_max_width">150dp</dimen>
+
 </resources>

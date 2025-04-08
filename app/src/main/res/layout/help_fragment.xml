@@ -217,6 +217,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:paddingVertical="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/HelpFragment__have_you_read_our_faq_yet"
         android:textAllCaps="false"
         android:textAppearance="@style/Signal.Text.Body"
