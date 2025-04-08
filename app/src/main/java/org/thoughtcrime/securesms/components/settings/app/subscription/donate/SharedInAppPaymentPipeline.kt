@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPayPalOneTimeSetupJob
@@ -47,17 +48,17 @@ object SharedInAppPaymentPipeline {
    * This method will enqueue the proper setup job based off the type of [InAppPaymentTable.InAppPayment] and then
    * await for either [InAppPaymentTable.State.PENDING], [InAppPaymentTable.State.REQUIRES_ACTION] or [InAppPaymentTable.State.END]
    * before moving further, handling each state appropriately.
-   *
-   * @param requiredActionHandler Dispatch method for handling PayPal input, 3DS, iDEAL, etc.
    */
   @CheckResult
   fun awaitTransaction(
-    inAppPayment: InAppPaymentTable.InAppPayment,
+    inAppPaymentId: InAppPaymentTable.InAppPaymentId,
     paymentSource: PaymentSource,
-    requiredActionHandler: RequiredActionHandler
-  ): Completable {
-    return InAppPaymentsRepository.observeUpdates(inAppPayment.id)
+    oneTimeRequiredActionHandler: RequiredActionHandler,
+    monthlyRequiredActionHandler: RequiredActionHandler
+  ): Single<InAppPaymentTable.InAppPayment> {
+    return InAppPaymentsRepository.observeUpdates(inAppPaymentId)
       .doOnSubscribe {
+        val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
         val job = if (inAppPayment.type.recurring) {
           if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.PAYPAL) {
             InAppPaymentPayPalRecurringSetupJob.create(inAppPayment, paymentSource)
@@ -76,25 +77,27 @@ object SharedInAppPaymentPipeline {
       }
       .skipWhile { it.state != InAppPaymentTable.State.PENDING && it.state != InAppPaymentTable.State.REQUIRES_ACTION && it.state != InAppPaymentTable.State.END }
       .firstOrError()
-      .flatMapCompletable { iap ->
+      .flatMap { iap ->
         when (iap.state) {
           InAppPaymentTable.State.PENDING -> {
-            Log.w(TAG, "Payment of type ${inAppPayment.type} is pending. Awaiting completion.")
+            Log.w(TAG, "Payment of type ${iap.type} is pending. Awaiting completion.")
             awaitRedemption(iap, paymentSource.type)
           }
 
           InAppPaymentTable.State.REQUIRES_ACTION -> {
-            Log.d(TAG, "Payment of type ${inAppPayment.type} requires user action to set up.", true)
-            requiredActionHandler(iap.id).andThen(awaitTransaction(iap, paymentSource, requiredActionHandler))
+            Log.d(TAG, "Payment of type ${iap.type} requires user action to set up.", true)
+
+            val requiredActionHandler = if (iap.type.recurring) monthlyRequiredActionHandler else oneTimeRequiredActionHandler
+            requiredActionHandler(iap.id).andThen(awaitTransaction(iap.id, paymentSource, oneTimeRequiredActionHandler, monthlyRequiredActionHandler))
           }
 
           InAppPaymentTable.State.END -> {
             if (iap.data.error != null) {
               Log.d(TAG, "IAP error detected.", true)
-              Completable.error(InAppPaymentError(iap.data.error))
+              Single.error(InAppPaymentError(iap.data.error))
             } else {
               Log.d(TAG, "Unexpected early end state. Possible payment failure.", true)
-              Completable.error(DonationError.genericPaymentFailure(inAppPayment.type.toErrorSource()))
+              Single.error(DonationError.genericPaymentFailure(iap.type.toErrorSource()))
             }
           }
 
@@ -107,7 +110,7 @@ object SharedInAppPaymentPipeline {
    * Waits 10 seconds for the redemption to complete, and fails with a temporary error afterwards.
    */
   @CheckResult
-  fun awaitRedemption(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceType: PaymentSourceType): Completable {
+  fun awaitRedemption(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceType: PaymentSourceType): Single<InAppPaymentTable.InAppPayment> {
     val isLongRunning = paymentSourceType.isBankTransfer
     val errorSource = when (inAppPayment.type) {
       InAppPaymentType.UNKNOWN -> error("Unsupported type UNKNOWN.")
@@ -131,19 +134,6 @@ object SharedInAppPaymentPipeline {
         throw InAppPaymentError(it.data.error)
       }
       it
-    }.firstOrError().timeout(10, TimeUnit.SECONDS, Single.error(timeoutError)).ignoreElement()
-  }
-
-  /**
-   * Generic error handling for donations.
-   */
-  fun handleError(
-    throwable: Throwable,
-    inAppPaymentId: InAppPaymentTable.InAppPaymentId,
-    paymentSourceType: PaymentSourceType,
-    donationErrorSource: DonationErrorSource
-  ) {
-    Log.w(TAG, "Failure in $donationErrorSource payment pipeline...", throwable, true)
-    InAppPaymentsRepository.handlePipelineError(inAppPaymentId, donationErrorSource, paymentSourceType, throwable)
+    }.firstOrError().timeout(10, TimeUnit.SECONDS, Single.error(timeoutError))
   }
 }

@@ -42,9 +42,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Collects SEPA Debit bank transfer details from the user to proceed with donation.
@@ -75,7 +76,10 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDelegate.ErrorHandlerCallback {
 
   private val args: BankTransferDetailsFragmentArgs by navArgs()
-  private val viewModel: BankTransferDetailsViewModel by viewModels()
+
+  private val viewModel: BankTransferDetailsViewModel by viewModel {
+    BankTransferDetailsViewModel(args.inAppPaymentId)
+  }
 
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by navGraphViewModels(
     R.id.checkout_flow
@@ -84,7 +88,7 @@ class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDeleg
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
 
-    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
+    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPaymentId)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
@@ -98,17 +102,33 @@ class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDeleg
   @Composable
   override fun FragmentContent() {
     val state: BankTransferDetailsState by viewModel.state
+    val inAppPayment by viewModel.inAppPayment.collectAsStateWithLifecycle(null)
 
-    val donateLabel = remember(args.inAppPayment) {
-      if (args.inAppPayment.type.recurring) { // TODO [message-requests] backups copy
+    if (inAppPayment != null) {
+      ReadyContent(
+        state,
+        viewModel,
+        inAppPayment!!
+      )
+    }
+  }
+
+  @Composable
+  private fun ReadyContent(
+    state: BankTransferDetailsState,
+    viewModel: BankTransferDetailsViewModel,
+    inAppPayment: InAppPaymentTable.InAppPayment
+  ) {
+    val donateLabel = remember(inAppPayment) {
+      if (inAppPayment.type.recurring) { // TODO [message-requests] backups copy
         getString(
           R.string.BankTransferDetailsFragment__donate_s_month,
-          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+          FiatMoneyUtil.format(resources, inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
         )
       } else {
         getString(
           R.string.BankTransferDetailsFragment__donate_s,
-          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney())
+          FiatMoneyUtil.format(resources, inAppPayment.data.amount!!.toFiatMoney())
         )
       }
     }
@@ -142,8 +162,7 @@ class BankTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDeleg
     findNavController().safeNavigate(
       BankTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-        args.inAppPayment,
-        args.inAppPayment.type
+        args.inAppPaymentId
       )
     )
   }

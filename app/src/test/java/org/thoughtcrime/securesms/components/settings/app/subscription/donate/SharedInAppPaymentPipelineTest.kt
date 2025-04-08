@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsTestRule
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPayPalOneTimeSetupJob
@@ -63,9 +64,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -94,9 +98,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -120,9 +127,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -152,9 +162,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -175,9 +188,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -207,9 +223,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -236,9 +255,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -267,9 +289,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -298,9 +323,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -338,9 +366,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 
@@ -373,9 +404,12 @@ class SharedInAppPaymentPipelineTest {
       Completable.complete()
     }
 
+    every { SignalDatabase.inAppPayments.getById(inAppPayment.id) } returns inAppPayment
+
     val test = SharedInAppPaymentPipeline.awaitTransaction(
-      inAppPayment,
+      inAppPayment.id,
       paymentSource,
+      requiredActionHandler,
       requiredActionHandler
     ).test()
 

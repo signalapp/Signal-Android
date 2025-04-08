@@ -7,17 +7,15 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.getAvaila
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
-import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.util.Locale
 
-class GatewaySelectorRepository(
-  private val donationsService: DonationsService
-) {
+object GatewaySelectorRepository {
   fun getAvailableGatewayConfiguration(currencyCode: String): Single<GatewayConfiguration> {
     return Single.fromCallable {
-      donationsService.getDonationsConfiguration(Locale.getDefault())
+      AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault())
     }.flatMap { it.flattenResult() }
       .map { configuration ->
         val available = configuration.getAvailablePaymentMethods(currencyCode).map {

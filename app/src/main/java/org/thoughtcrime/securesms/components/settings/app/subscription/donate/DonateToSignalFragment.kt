@@ -165,7 +165,7 @@ class DonateToSignalFragment :
 
         is DonateToSignalAction.DisplayGatewaySelectorDialog -> {
           Log.d(TAG, "Presenting gateway selector for ${action.inAppPayment.id}")
-          val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.inAppPayment)
+          val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToGatewaySelectorBottomSheetDialog(action.inAppPayment.id)
 
           findNavController().safeNavigate(navAction)
         }
@@ -173,8 +173,7 @@ class DonateToSignalFragment :
         is DonateToSignalAction.CancelSubscription -> {
           val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
             InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION,
-            null,
-            InAppPaymentType.RECURRING_DONATION
+            null
           )
 
           findNavController().safeNavigate(navAction)
@@ -184,16 +183,14 @@ class DonateToSignalFragment :
           if (action.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.PAYPAL) {
             val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
               InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
-              action.inAppPayment,
-              action.inAppPayment.type
+              action.inAppPayment.id
             )
 
             findNavController().safeNavigate(navAction)
           } else {
             val navAction = DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
               InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION,
-              action.inAppPayment,
-              action.inAppPayment.type
+              action.inAppPayment.id
             )
 
             findNavController().safeNavigate(navAction)
@@ -477,8 +474,7 @@ class DonateToSignalFragment :
     findNavController().safeNavigate(
       DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-        inAppPayment,
-        inAppPayment.type
+        inAppPayment.id
       )
     )
   }
@@ -487,22 +483,21 @@ class DonateToSignalFragment :
     findNavController().safeNavigate(
       DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-        inAppPayment,
-        inAppPayment.type
+        inAppPayment.id
       )
     )
   }
 
   override fun navigateToCreditCardForm(inAppPayment: InAppPaymentTable.InAppPayment) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(inAppPayment))
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(inAppPayment.id))
   }
 
   override fun navigateToIdealDetailsFragment(inAppPayment: InAppPaymentTable.InAppPayment) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToIdealTransferDetailsFragment(inAppPayment))
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToIdealTransferDetailsFragment(inAppPayment.id))
   }
 
   override fun navigateToBankTransferMandate(inAppPayment: InAppPaymentTable.InAppPayment) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToBankTransferMandateFragment(inAppPayment))
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToBankTransferMandateFragment(inAppPayment.id))
   }
 
   override fun onPaymentComplete(inAppPayment: InAppPaymentTable.InAppPayment) {
@@ -523,7 +518,7 @@ class DonateToSignalFragment :
   }
 
   override fun navigateToDonationPending(inAppPayment: InAppPaymentTable.InAppPayment) {
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(inAppPayment))
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToDonationPendingBottomSheet(inAppPayment.id))
   }
 
   override fun exitCheckoutFlow() {

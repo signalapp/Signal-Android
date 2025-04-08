@@ -21,7 +21,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
-import org.signal.donations.InAppPaymentType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
@@ -35,6 +34,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.In
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -67,15 +67,15 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT -> {
-          viewModel.processNewDonation(args.inAppPayment!!, this::handleRequiredAction)
+          viewModel.processNewDonation(args.inAppPaymentId!!, this::handleRequiredAction, this::handleRequiredAction)
         }
 
         InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.inAppPayment!!)
+          viewModel.updateSubscription(args.inAppPaymentId!!)
         }
 
         InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription(args.inAppPaymentType.requireSubscriberType())
+          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
         }
       }
     }
@@ -98,8 +98,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
-              inAppPayment = args.inAppPayment,
-              inAppPaymentType = args.inAppPaymentType,
+              inAppPaymentId = args.inAppPaymentId,
               status = InAppPaymentProcessorActionResult.Status.FAILURE
             )
           )
@@ -114,8 +113,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
-              inAppPayment = args.inAppPayment,
-              inAppPaymentType = args.inAppPaymentType,
+              inAppPaymentId = args.inAppPaymentId,
               status = InAppPaymentProcessorActionResult.Status.SUCCESS
             )
           )
@@ -127,11 +125,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   }
 
   private fun getProcessingStatus(): String {
-    return if (args.inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
-      getString(R.string.InAppPaymentInProgressFragment__processing_payment)
-    } else {
-      getString(R.string.InAppPaymentInProgressFragment__processing_donation)
-    }
+    return getString(R.string.InAppPaymentInProgressFragment__processing_donation)
   }
 
   private fun handleRequiredAction(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Completable {
@@ -183,11 +177,13 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
               if (result != null) {
                 emitter.onSuccess(result)
               } else {
-                val didLaunchExternal = bundle.getBoolean(Stripe3DSDialogFragment.LAUNCHED_EXTERNAL, false)
-                if (didLaunchExternal) {
-                  emitter.onError(DonationError.UserLaunchedExternalApplication(args.inAppPaymentType.toErrorSource()))
-                } else {
-                  emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
+                disposables += viewModel.getInAppPaymentType(args.inAppPaymentId!!).subscribeBy { inAppPaymentType ->
+                  val didLaunchExternal = bundle.getBoolean(Stripe3DSDialogFragment.LAUNCHED_EXTERNAL, false)
+                  if (didLaunchExternal) {
+                    emitter.onError(DonationError.UserLaunchedExternalApplication(inAppPaymentType.toErrorSource()))
+                  } else {
+                    emitter.onError(DonationError.UserCancelledPaymentError(inAppPaymentType.toErrorSource()))
+                  }
                 }
               }
             }

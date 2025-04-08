@@ -9,6 +9,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navGraphViewModels
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,7 +18,10 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayApi
@@ -126,12 +130,17 @@ class InAppPaymentCheckoutDelegate(
   }
 
   private fun handleSuccessfulDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
-    setActivityResult(result.action, result.inAppPaymentType)
-
     if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
-      callback.onSubscriptionCancelled(result.inAppPaymentType)
+      setActivityResult(result.action, InAppPaymentType.RECURRING_DONATION)
+      callback.onSubscriptionCancelled(InAppPaymentType.RECURRING_DONATION)
     } else {
-      callback.onPaymentComplete(result.inAppPayment!!)
+      fragment.lifecycleScope.launch {
+        val inAppPayment = withContext(SignalDispatchers.IO) {
+          SignalDatabase.inAppPayments.getById(result.inAppPaymentId!!)!!
+        }
+
+        callback.onPaymentComplete(inAppPayment)
+      }
     }
   }
 

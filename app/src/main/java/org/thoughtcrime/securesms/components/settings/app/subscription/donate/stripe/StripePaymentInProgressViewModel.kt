@@ -12,13 +12,13 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
+import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSource
 import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
@@ -64,29 +64,29 @@ class StripePaymentInProgressViewModel : ViewModel() {
     disposables.clear()
   }
 
-  fun processNewDonation(inAppPayment: InAppPaymentTable.InAppPayment, requiredActionHandler: RequiredActionHandler) {
-    Log.d(TAG, "Proceeding with InAppPayment::${inAppPayment.id} of type ${inAppPayment.type}...", true)
-
-    val paymentSourceProvider: PaymentSourceProvider = resolvePaymentSourceProvider(inAppPayment.type.toErrorSource())
-
-    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == paymentSourceProvider.paymentSourceType)
-
+  fun processNewDonation(inAppPaymentId: InAppPaymentTable.InAppPaymentId, oneTimeRequiredActionHandler: RequiredActionHandler, monthlyRequiredActionHandler: RequiredActionHandler) {
     store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
+    val iap = InAppPaymentsRepository.requireInAppPayment(inAppPaymentId)
 
-    disposables += paymentSourceProvider.paymentSource.flatMapCompletable { paymentSource ->
-      SharedInAppPaymentPipeline.awaitTransaction(
-        inAppPayment,
-        paymentSource,
-        requiredActionHandler
-      )
+    disposables += iap.flatMap { inAppPayment ->
+      resolvePaymentSourceProvider(inAppPayment.type.toErrorSource()).paymentSource.flatMap { paymentSource ->
+        SharedInAppPaymentPipeline.awaitTransaction(
+          inAppPaymentId,
+          paymentSource,
+          oneTimeRequiredActionHandler,
+          monthlyRequiredActionHandler
+        )
+      }
     }.subscribeOn(Schedulers.io()).subscribeBy(
-      onComplete = {
-        Log.d(TAG, "Finished ${inAppPayment.type} payment pipeline...", true)
+      onSuccess = {
+        Log.d(TAG, "Finished ${it.type} payment pipeline...", true)
         store.update { InAppPaymentProcessorStage.COMPLETE }
       },
       onError = {
         store.update { InAppPaymentProcessorStage.FAILED }
-        SharedInAppPaymentPipeline.handleError(it, inAppPayment.id, paymentSourceProvider.paymentSourceType, inAppPayment.type.toErrorSource())
+        SignalExecutors.BOUNDED_IO.execute {
+          InAppPaymentsRepository.handlePipelineError(inAppPaymentId, it)
+        }
       }
     )
   }
@@ -137,6 +137,10 @@ class StripePaymentInProgressViewModel : ViewModel() {
     this.stripePaymentData = StripePaymentData.IDEAL(bankData)
   }
 
+  fun getInAppPaymentType(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Single<InAppPaymentType> {
+    return InAppPaymentsRepository.requireInAppPayment(inAppPaymentId).map { it.type }.observeOn(AndroidSchedulers.mainThread())
+  }
+
   private fun requireNoPaymentInformation() {
     require(stripePaymentData == null)
   }
@@ -162,22 +166,25 @@ class StripePaymentInProgressViewModel : ViewModel() {
     )
   }
 
-  fun updateSubscription(inAppPayment: InAppPaymentTable.InAppPayment) {
+  fun updateSubscription(inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     Log.d(TAG, "Beginning subscription update...", true)
     store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
-    disposables += RecurringInAppPaymentRepository
-      .cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType())
-      .andThen(RecurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
-      .flatMapCompletable { paymentSourceType ->
-        val freshPayment = SignalDatabase.inAppPayments.moveToTransacting(inAppPayment.id)!!
+    val iap = InAppPaymentsRepository.requireInAppPayment(inAppPaymentId)
+    disposables += iap.flatMap { inAppPayment ->
+      RecurringInAppPaymentRepository
+        .cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType())
+        .andThen(RecurringInAppPaymentRepository.getPaymentSourceTypeOfLatestSubscription(inAppPayment.type.requireSubscriberType()))
+        .flatMap { paymentSourceType ->
+          val freshPayment = SignalDatabase.inAppPayments.moveToTransacting(inAppPayment.id)!!
 
-        Single.fromCallable {
-          RecurringInAppPaymentRepository.setSubscriptionLevelSync(freshPayment)
-        }.flatMapCompletable { SharedInAppPaymentPipeline.awaitRedemption(it, paymentSourceType) }
-      }
+          Single.fromCallable {
+            RecurringInAppPaymentRepository.setSubscriptionLevelSync(freshPayment)
+          }.flatMap { SharedInAppPaymentPipeline.awaitRedemption(it, paymentSourceType) }
+        }
+    }
       .subscribeOn(Schedulers.io())
       .subscribeBy(
-        onComplete = {
+        onSuccess = {
           Log.w(TAG, "Completed subscription update", true)
           store.update { InAppPaymentProcessorStage.COMPLETE }
         },
@@ -185,8 +192,7 @@ class StripePaymentInProgressViewModel : ViewModel() {
           Log.w(TAG, "Failed to update subscription", throwable, true)
           store.update { InAppPaymentProcessorStage.FAILED }
           SignalExecutors.BOUNDED_IO.execute {
-            val paymentSourceType = InAppPaymentsRepository.getLatestPaymentMethodType(inAppPayment.type.requireSubscriberType()).toPaymentSourceType()
-            InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, paymentSourceType, throwable)
+            InAppPaymentsRepository.handlePipelineError(inAppPaymentId, throwable)
           }
         }
       )

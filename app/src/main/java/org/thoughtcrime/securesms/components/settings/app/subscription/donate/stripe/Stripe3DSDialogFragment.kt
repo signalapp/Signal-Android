@@ -86,7 +86,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       )
     )
 
-    if (RemoteConfig.internalUser && args.inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
+    if (RemoteConfig.internalUser && args.waitingForAuthPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       val openApp = MaterialButton(requireContext()).apply {
         text = "Open App"
         layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
@@ -119,7 +119,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       progress.show(parentFragmentManager, null)
 
       withContext(Dispatchers.IO) {
-        SignalDatabase.inAppPayments.update(args.inAppPayment)
+        SignalDatabase.inAppPayments.update(args.waitingForAuthPayment)
       }
 
       progress.dismissAllowingStateLoss()

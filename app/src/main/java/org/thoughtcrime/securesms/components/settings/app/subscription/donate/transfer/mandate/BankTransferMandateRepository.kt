@@ -11,7 +11,7 @@ import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import java.util.Locale
 
-class BankTransferMandateRepository {
+object BankTransferMandateRepository {
 
   fun getMandate(paymentSourceType: PaymentSourceType.Stripe): Single<String> {
     return Single
