@@ -354,9 +354,13 @@ class IncomingMessageObserver(private val context: Application, private val auth
       while (!terminated) {
         Log.i(TAG, "Waiting for websocket state change....")
         if (attempts > 1) {
-          val backoff = BackoffUtil.exponentialBackoff(attempts, TimeUnit.SECONDS.toMillis(30))
-          Log.w(TAG, "Too many failed connection attempts,  attempts: $attempts backing off: $backoff")
-          sleepTimer.sleep(backoff)
+          if (RemoteConfig.libSignalWebSocketEnabled) {
+            Log.i(TAG, "Skipping app-level exponential back-off; depending on built-in back-off in LibSignalChatConnection.")
+          } else {
+            val backoff = BackoffUtil.exponentialBackoff(attempts, TimeUnit.SECONDS.toMillis(30))
+            Log.w(TAG, "Too many failed connection attempts,  attempts: $attempts backing off: $backoff")
+            sleepTimer.sleep(backoff)
+          }
         }
 
         waitForConnectionNecessary()
