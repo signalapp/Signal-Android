@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.groups.ui.incommon
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -15,11 +16,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class GroupsInCommonViewModel(
-  recipientId: RecipientId,
-  groupsInCommonRepo: GroupsInCommonRepository
+  context: Context,
+  recipientId: RecipientId
 ) : ViewModel() {
 
-  val groups: StateFlow<List<Recipient>> = groupsInCommonRepo.getGroupsInCommon(recipientId)
+  val groups: StateFlow<List<Recipient>> = GroupsInCommonRepository.getGroupsInCommon(context, recipientId)
     .stateIn(
       scope = viewModelScope,
       started = SharingStarted.WhileSubscribed(),

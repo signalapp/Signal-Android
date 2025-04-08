@@ -75,7 +75,7 @@ class CallLinkIncomingRequestSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private val viewModel by viewModel {
-    CallLinkIncomingRequestViewModel(recipientId)
+    CallLinkIncomingRequestViewModel(requireContext(), recipientId)
   }
 
   @Composable

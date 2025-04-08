@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.rx3.asObservable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
+import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
@@ -101,23 +103,8 @@ class ConversationSettingsRepository(
   }
 
   fun getGroupsInCommon(recipientId: RecipientId): Observable<List<Recipient>> {
-    return Recipient.observable(recipientId).flatMapSingle { recipient ->
-      if (recipient.hasGroupsInCommon) {
-        Single.fromCallable {
-          SignalDatabase
-            .groups
-            .getPushGroupsContainingMember(recipientId)
-            .asSequence()
-            .filter { it.members.contains(Recipient.self().id) }
-            .map(GroupRecord::recipientId)
-            .map(Recipient::resolved)
-            .sortedBy { gr -> gr.getDisplayName(context) }
-            .toList()
-        }.observeOn(Schedulers.io())
-      } else {
-        Single.just(listOf())
-      }
-    }
+    return GroupsInCommonRepository.getGroupsInCommon(context, recipientId)
+      .asObservable()
   }
 
   fun getGroupMembership(recipientId: RecipientId, consumer: (List<RecipientId>) -> Unit) {

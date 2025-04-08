@@ -464,7 +464,7 @@ open class ContactSearchAdapter(
     override fun bindNumberField(model: RecipientModel) {
       val recipient = getRecipient(model)
       if (model.knownRecipient.sectionKey == ContactSearchConfiguration.SectionKey.GROUP_MEMBERS) {
-        number.text = model.knownRecipient.groupsInCommon.toDisplayText(context)
+        number.text = model.knownRecipient.groupsInCommon.toDisplayText(context, displayGroupsLimit = 2)
         number.visible = true
       } else if (model.shortSummary && recipient.isGroup) {
         val count = recipient.participantIds.size

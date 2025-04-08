@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
-import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CommunicationActions
@@ -74,8 +73,8 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
 
   private val viewModel by viewModel {
     GroupsInCommonViewModel(
-      recipientId = intent.getParcelableExtraCompat(EXTRA_RECIPIENT_ID, RecipientId::class.java)!!,
-      groupsInCommonRepo = GroupsInCommonRepository(context = this)
+      context = this,
+      recipientId = intent.getParcelableExtraCompat(EXTRA_RECIPIENT_ID, RecipientId::class.java)!!
     )
   }
 
@@ -85,10 +84,10 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
     setContent {
       SignalTheme {
         GroupsInCommonScreen(
+          activity = this,
           viewModel = viewModel,
           onNavigateBack = ::supportFinishAfterTransition,
-          onNavigateToConversation = ::navigateToConversation,
-          activity = this
+          onNavigateToConversation = ::navigateToConversation
         )
       }
     }
@@ -107,8 +106,8 @@ class GroupsInCommonActivity : PassphraseRequiredActivity() {
 
 @Composable
 private fun GroupsInCommonScreen(
-  viewModel: GroupsInCommonViewModel,
   activity: Activity,
+  viewModel: GroupsInCommonViewModel,
   onNavigateBack: () -> Unit = {},
   onNavigateToConversation: (recipient: Recipient) -> Unit = {}
 ) {

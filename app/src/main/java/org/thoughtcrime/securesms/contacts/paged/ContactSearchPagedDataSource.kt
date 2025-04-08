@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.contacts.paged
 
 import android.database.Cursor
+import androidx.annotation.WorkerThread
 import org.signal.core.util.requireLong
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.R
@@ -168,6 +169,7 @@ class ContactSearchPagedDataSource(
       .filter { contactSearchPagedDataSourceRepository.recipientNameContainsQuery(it.recipient, query) }
   }
 
+  @WorkerThread
   private fun getSectionData(section: ContactSearchConfiguration.Section, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
     return when (section) {
       is ContactSearchConfiguration.Section.Groups -> getGroupContactsData(section, query, startIndex, endIndex)
@@ -432,6 +434,7 @@ class ContactSearchPagedDataSource(
     }
   }
 
+  @WorkerThread
   private fun getGroupMembersContactData(section: ContactSearchConfiguration.Section.GroupMembers, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
     return getGroupMembersSearchIterator(query).use { records ->
       readContactData(
