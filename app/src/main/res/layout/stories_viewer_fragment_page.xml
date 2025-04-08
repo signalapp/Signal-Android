@@ -138,24 +138,19 @@
 
     <FrameLayout
         android:id="@+id/story_caption_container"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="95sp"
         android:layout_marginBottom="12dp"
-        app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1">
+        app:layout_constraintStart_toStartOf="parent">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/story_caption"
-            android:layout_width="match_parent"
-            android:layout_height="95sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:gravity="bottom"
+            android:layout_gravity="bottom"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/core_white"
             app:emoji_renderSpoilers="true"
