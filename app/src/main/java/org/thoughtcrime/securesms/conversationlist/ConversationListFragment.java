@@ -1038,10 +1038,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       }
     } else {
       megaphoneContainer.get().setVisibility(View.GONE);
-
-      if (megaphone.getOnVisibleListener() != null) {
-        megaphone.getOnVisibleListener().onEvent(megaphone, this);
-      }
     }
 
     viewModel.onMegaphoneVisible(megaphone);
