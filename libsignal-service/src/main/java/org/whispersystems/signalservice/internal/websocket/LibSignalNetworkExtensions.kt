@@ -10,9 +10,21 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.net.Network
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
+import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 
 private const val TAG = "LibSignalNetworkExtensions"
+
+fun Network.transformAndSetRemoteConfig(remoteConfig: Map<String, Any>) {
+  val libsignalRemoteConfig = HashMap<String, String>()
+  for (key in remoteConfig.keys) {
+    if (key.startsWith("android.libsignal.") or key.startsWith("global.libsignal.")) {
+      libsignalRemoteConfig[key] = JsonUtil.toJson(remoteConfig[key])
+    }
+  }
+
+  this.setRemoteConfig(libsignalRemoteConfig)
+}
 
 /**
  * Helper method to apply settings from the SignalServiceConfiguration.

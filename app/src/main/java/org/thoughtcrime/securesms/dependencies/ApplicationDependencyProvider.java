@@ -260,6 +260,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
     LibSignalNetworkExtensions.applyConfiguration(network, config);
+    LibSignalNetworkExtensions.transformAndSetRemoteConfig(network, RemoteConfig.getMemoryValues());
 
     return network;
   }

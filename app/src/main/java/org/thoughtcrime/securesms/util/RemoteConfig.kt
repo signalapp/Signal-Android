@@ -121,10 +121,9 @@ object RemoteConfig {
     Log.i(TAG, "[Disk]   After : ${result.disk}")
   }
 
-  /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
-  val debugMemoryValues: Map<String, Any>
+  val memoryValues: Map<String, Any>
     get() = TreeMap(REMOTE_VALUES)
 
   /** Only for rendering debug info.  */
