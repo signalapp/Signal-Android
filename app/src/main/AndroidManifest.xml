@@ -101,6 +101,7 @@
                  android:supportsRtl="true"
                  android:resizeableActivity="true"
                  android:fullBackupOnly="false"
+                 android:enableOnBackInvokedCallback="false"
                  android:allowBackup="true"
                  android:backupAgent=".absbackup.SignalBackupAgent"
                  android:theme="@style/TextSecure.LightTheme"
@@ -1069,6 +1070,7 @@
               android:exported="false"/>
 
     <activity android:name=".MainActivity"
+              android:enableOnBackInvokedCallback="true"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:resizeableActivity="true"

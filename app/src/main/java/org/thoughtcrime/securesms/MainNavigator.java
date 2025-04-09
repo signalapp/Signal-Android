@@ -6,10 +6,8 @@ import android.content.Intent;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.viewmodel.internal.ViewModelProviders;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
@@ -52,20 +50,6 @@ public class MainNavigator {
     }
 
     return ((NavigatorProvider) activity).getNavigator();
-  }
-
-  /**
-   * @return True if the back pressed was handled in our own custom way, false if it should be given
-   * to the system to do the default behavior.
-   */
-  public boolean onBackPressed() {
-    Fragment fragment = getFragmentManager().findFragmentById(R.id.fragment_container);
-
-    if (fragment instanceof BackHandler) {
-      return ((BackHandler) fragment).onBackPressed();
-    }
-
-    return false;
   }
 
   public void goToConversation(@NonNull RecipientId recipientId, long threadId, int distributionType, int startingPosition) {

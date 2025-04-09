@@ -244,6 +244,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private   ConversationListTabsViewModel         conversationListTabsViewModel;
   private   ContactSearchMediator                 contactSearchMediator;
   private   MainToolbarViewModel                  mainToolbarViewModel;
+  private   ChatListBackHandler                   chatListBackHandler;
 
   private BannerManager bannerManager;
 
@@ -428,16 +429,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
-    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
-      @Override
-      public void handleOnBackPressed() {
-        if (!closeSearchIfOpen()) {
-          if (!NavHostFragment.findNavController(ConversationListFragment.this).popBackStack()) {
-            requireActivity().finish();
-          }
-        }
-      }
-    });
+    chatListBackHandler = new ChatListBackHandler(false);
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), chatListBackHandler);
 
     conversationListTabsViewModel = new ViewModelProvider(requireActivity()).get(ConversationListTabsViewModel.class);
 
@@ -658,15 +651,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     return mainToolbarViewModel.getState().getValue().getMode() == MainToolbarMode.SEARCH;
   }
 
-  private boolean closeSearchIfOpen() {
+  private void closeSearchIfOpen() {
     if (isSearchOpen()) {
       setAdapter(defaultAdapter);
       fadeInButtonsAndMegaphone(250);
       mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL);
+      chatListBackHandler.setEnabled(false);
       return true;
     }
-
-    return false;
   }
 
   @Override
@@ -1690,6 +1682,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void onSearchOpen() {
+    chatListBackHandler.setEnabled(true);
     fadeOutButtonsAndMegaphone(250);
   }
 
@@ -1697,6 +1690,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (list != null) {
       setAdapter(defaultAdapter);
     }
+
+    chatListBackHandler.setEnabled(false);
     fadeInButtonsAndMegaphone(250);
   }
 
@@ -1967,6 +1962,18 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @Override
     public void onChatTypeClicked(@NonNull View view, @NonNull ContactSearchData.ChatTypeRow chatTypeRow, boolean isSelected) {
       throw new UnsupportedOperationException();
+    }
+  }
+
+  private class ChatListBackHandler extends OnBackPressedCallback {
+
+    public ChatListBackHandler(boolean enabled) {
+      super(enabled);
+    }
+
+    @Override
+    public void handleOnBackPressed() {
+      closeSearchIfOpen();
     }
   }
 

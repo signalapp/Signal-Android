@@ -260,12 +260,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
-  override fun onBackPressed() {
-    if (!navigator.onBackPressed()) {
-      super.onBackPressed()
-    }
-  }
-
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
