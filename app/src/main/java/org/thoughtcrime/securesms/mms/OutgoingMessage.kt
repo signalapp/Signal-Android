@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Represents all the data needed for an outgoing message.
@@ -465,6 +466,24 @@ data class OutgoingMessage(
         isGroup = threadRecipient.isPushV2Group,
         isUnblocked = true,
         isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun quickReply(
+      threadRecipient: Recipient,
+      slideDeck: SlideDeck?,
+      body: String,
+      parentStoryId: ParentStoryId?
+    ): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
+        attachments = slideDeck?.asAttachments() ?: emptyList(),
+        body = body,
+        parentStoryId = parentStoryId,
         isSecure = true
       )
     }
