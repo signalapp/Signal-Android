@@ -5,35 +5,59 @@
 
 package org.thoughtcrime.securesms
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
+import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.calls.new.NewCallActivity
 import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
 import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet
@@ -43,36 +67,55 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Co
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
+import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
+import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
 import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDialog
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.main.MainActivityListHostFragment
+import org.thoughtcrime.securesms.main.MainBottomChrome
+import org.thoughtcrime.securesms.main.MainBottomChromeCallback
+import org.thoughtcrime.securesms.main.MainBottomChromeState
+import org.thoughtcrime.securesms.main.MainMegaphoneState
 import org.thoughtcrime.securesms.main.MainNavigationDestination
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
+import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainToolbar
 import org.thoughtcrime.securesms.main.MainToolbarCallback
 import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
+import org.thoughtcrime.securesms.main.SnackbarState
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
+import org.thoughtcrime.securesms.megaphone.Megaphone
+import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
+import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
+import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabRepository
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsFragment
 import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
+import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.AppStartup
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SplashScreenUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.window.AppScaffold
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider {
 
@@ -119,56 +162,152 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
 
+  private val motionEventRelay: MotionEventRelay by viewModels()
+
   private var onFirstRender = false
 
+  private val mainBottomChromeCallback = BottomChromeCallback()
+  private val megaphoneActionController = MainMegaphoneActionController()
+
+  override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+    return motionEventRelay.offer(ev) || super.dispatchTouchEvent(ev)
+  }
+
+  @OptIn(ExperimentalMaterial3AdaptiveApi::class)
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     enableEdgeToEdge()
+
     AppStartup.getInstance().onCriticalRenderEventStart()
     super.onCreate(savedInstanceState, ready)
     conversationListTabsViewModel
+
+    AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
+      override fun onForeground() {
+        navigator.viewModel.getNextMegaphone()
+      }
+    })
+
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        navigator.viewModel.navigationEvents.collectLatest {
+          when (it) {
+            MainNavigationViewModel.NavigationEvent.STORY_CAMERA_FIRST -> {
+              mainBottomChromeCallback.onCameraClick(MainNavigationDestination.STORIES)
+            }
+          }
+        }
+      }
+    }
 
     setContent {
       val navState = rememberFragmentState()
       val listHostState = rememberFragmentState()
       val detailLocation by navigator.viewModel.detailLocation.collectAsStateWithLifecycle(MainNavigationDetailLocation.Empty)
+      val snackbar by navigator.viewModel.snackbar.collectAsStateWithLifecycle()
+      val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
+      val megaphone by navigator.viewModel.megaphone.collectAsStateWithLifecycle()
 
-      LaunchedEffect(detailLocation) {
-        if (detailLocation is MainNavigationDetailLocation.Conversation) {
-          startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
-          overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out)
+      val mainBottomChromeState = remember(mainToolbarState.destination, snackbar, mainToolbarState.mode, megaphone) {
+        MainBottomChromeState(
+          destination = mainToolbarState.destination,
+          snackbarState = snackbar,
+          mainToolbarMode = mainToolbarState.mode,
+          megaphoneState = MainMegaphoneState(
+            megaphone = megaphone,
+            mainToolbarMode = mainToolbarState.mode
+          )
+        )
+      }
+
+      val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>()
+      val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
+      val contentClip: Shape = remember(windowSizeClass) {
+        if (windowSizeClass.isExtended()) {
+          RoundedCornerShape(18.dp)
+        } else {
+          RectangleShape
         }
       }
 
-      AppScaffold(
-        bottomNavContent = {
-          AndroidFragment(
-            clazz = ConversationListTabsFragment::class.java,
-            fragmentState = navState
-          )
-        },
-        navRailContent = {
-          AndroidFragment(
-            clazz = ConversationListTabsFragment::class.java,
-            fragmentState = navState
-          )
-        }
-      ) {
-        Column {
-          val state by toolbarViewModel.state.collectAsStateWithLifecycle()
-
-          SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
-            MainToolbar(
-              state = state,
-              callback = toolbarCallback
-            )
+      LaunchedEffect(detailLocation) {
+        if (detailLocation is MainNavigationDetailLocation.Conversation) {
+          if (RemoteConfig.largeScreenUi) {
+            scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
+          } else {
+            startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
           }
-
-          AndroidFragment(
-            clazz = MainActivityListHostFragment::class.java,
-            fragmentState = listHostState,
-            modifier = Modifier.fillMaxSize()
-          )
         }
+      }
+
+      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+        AppScaffold(
+          navigator = scaffoldNavigator,
+          bottomNavContent = {
+            AndroidFragment(
+              clazz = ConversationListTabsFragment::class.java,
+              fragmentState = navState
+            )
+          },
+          navRailContent = {
+            AndroidFragment(
+              clazz = ConversationListTabsFragment::class.java,
+              fragmentState = navState
+            )
+          },
+          listContent = {
+            val listContainerColor = if (windowSizeClass.isMedium()) {
+              SignalTheme.colors.colorSurface1
+            } else {
+              MaterialTheme.colorScheme.surface
+            }
+
+            Column(
+              modifier = Modifier
+                .fillMaxSize()
+                .background(listContainerColor)
+                .clip(contentClip)
+            ) {
+              MainToolbar(
+                state = mainToolbarState,
+                callback = toolbarCallback
+              )
+
+              Box(
+                modifier = Modifier.weight(1f)
+              ) {
+                AndroidFragment(
+                  clazz = MainActivityListHostFragment::class.java,
+                  fragmentState = listHostState,
+                  modifier = Modifier.fillMaxSize()
+                )
+
+                MainBottomChrome(
+                  state = mainBottomChromeState,
+                  callback = mainBottomChromeCallback,
+                  megaphoneActionController = megaphoneActionController,
+                  modifier = Modifier.align(Alignment.BottomCenter)
+                )
+              }
+            }
+          },
+          detailContent = {
+            when (val destination = scaffoldNavigator.currentDestination?.contentKey) {
+              is MainNavigationDetailLocation.Conversation -> {
+                val fragmentState = key(destination) { rememberFragmentState() }
+                AndroidFragment(
+                  clazz = ConversationFragment::class.java,
+                  fragmentState = fragmentState,
+                  arguments = requireNotNull(destination.intent.extras) { "Handed null Conversation intent arguments." },
+                  modifier = Modifier
+                    .background(color = MaterialTheme.colorScheme.surface)
+                    .fillMaxSize()
+                    .clip(contentClip)
+                )
+              }
+            }
+          }
+        )
       }
     }
 
@@ -260,10 +399,28 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     SplashScreenUtil.setSplashScreenThemeIfNecessary(this, SignalStore.settings.theme)
   }
 
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray, deviceId: Int) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+  }
+
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
       recreate()
+    }
+
+    if (resultCode == RESULT_OK && requestCode == CreateSvrPinActivity.REQUEST_NEW_PIN) {
+      getNavigator().getViewModel().setSnackbar(SnackbarState(message = getString(R.string.ConfirmKbsPinFragment__pin_created)))
+      getNavigator().getViewModel().onMegaphoneCompleted(Megaphones.Event.PINS_FOR_ALL)
+    }
+
+    if (resultCode == RESULT_OK && requestCode == UsernameEditFragment.REQUEST_CODE) {
+      val snackbarString = getString(R.string.ConversationListFragment_username_recovered_toast, SignalStore.account.username)
+      getNavigator().getViewModel().setSnackbar(
+        SnackbarState(
+          message = snackbarString
+        )
+      )
     }
   }
 
@@ -410,6 +567,88 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     override fun onNotificationProfileTooltipDismissed() {
       SignalStore.notificationProfile.hasSeenTooltip = true
       toolbarViewModel.setShowNotificationProfilesTooltip(false)
+    }
+  }
+
+  inner class BottomChromeCallback : MainBottomChromeCallback {
+    override fun onNewChatClick() {
+      startActivity(Intent(this@MainActivity, NewConversationActivity::class.java))
+    }
+
+    override fun onNewCallClick() {
+      startActivity(NewCallActivity.createIntent(this@MainActivity))
+    }
+
+    override fun onCameraClick(destination: MainNavigationDestination) {
+      val onGranted = {
+        startActivity(
+          MediaSelectionActivity.camera(
+            context = this@MainActivity,
+            isStory = destination == MainNavigationDestination.STORIES
+          )
+        )
+      }
+
+      if (CameraXUtil.isSupported()) {
+        onGranted()
+      } else {
+        Permissions.with(this@MainActivity)
+          .request(Manifest.permission.CAMERA)
+          .ifNecessary()
+          .withRationaleDialog(getString(R.string.CameraXFragment_allow_access_camera), getString(R.string.CameraXFragment_to_capture_photos_and_video_allow_camera), R.drawable.symbol_camera_24)
+          .withPermanentDenialDialog(
+            getString(R.string.CameraXFragment_signal_needs_camera_access_capture_photos),
+            null,
+            R.string.CameraXFragment_allow_access_camera,
+            R.string.CameraXFragment_to_capture_photos_videos,
+            supportFragmentManager
+          )
+          .onAllGranted(onGranted)
+          .onAnyDenied { Toast.makeText(this@MainActivity, R.string.CameraXFragment_signal_needs_camera_access_capture_photos, Toast.LENGTH_LONG).show() }
+          .execute()
+      }
+    }
+
+    override fun onMegaphoneVisible(megaphone: Megaphone) {
+      navigator.viewModel.onMegaphoneVisible(megaphone)
+    }
+
+    override fun onSnackbarDismissed() {
+      navigator.viewModel.setSnackbar(null)
+    }
+  }
+
+  inner class MainMegaphoneActionController : MegaphoneActionController {
+    override fun onMegaphoneNavigationRequested(intent: Intent) {
+      startActivity(intent)
+    }
+
+    override fun onMegaphoneNavigationRequested(intent: Intent, requestCode: Int) {
+      startActivityForResult(intent, requestCode)
+    }
+
+    override fun onMegaphoneToastRequested(string: String) {
+      getNavigator().viewModel.setSnackbar(
+        SnackbarState(
+          message = string
+        )
+      )
+    }
+
+    override fun getMegaphoneActivity(): Activity {
+      return this@MainActivity
+    }
+
+    override fun onMegaphoneSnooze(event: Megaphones.Event) {
+      getNavigator().viewModel.onMegaphoneSnoozed(event)
+    }
+
+    override fun onMegaphoneCompleted(event: Megaphones.Event) {
+      getNavigator().viewModel.onMegaphoneCompleted(event)
+    }
+
+    override fun onMegaphoneDialogFragmentRequested(dialogFragment: DialogFragment) {
+      dialogFragment.show(supportFragmentManager, "megaphone_dialog")
     }
   }
 }

@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -103,7 +104,9 @@ fun MainNavigationBar(
   NavigationBar(
     containerColor = SignalTheme.colors.colorSurface2,
     contentColor = MaterialTheme.colorScheme.onSurface,
-    modifier = Modifier.height(if (state.compact) 48.dp else 80.dp)
+    modifier = Modifier
+      .navigationBarsPadding()
+      .height(if (state.compact) 48.dp else 80.dp)
   ) {
     val entries = remember(state.isStoriesFeatureEnabled) {
       if (state.isStoriesFeatureEnabled) {

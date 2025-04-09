@@ -6,11 +6,14 @@
 package org.thoughtcrime.securesms.main
 
 import android.content.Intent
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 /**
  * Describes which content to display in the detail view.
  */
-sealed interface MainNavigationDetailLocation {
+@Parcelize
+sealed interface MainNavigationDetailLocation : Parcelable {
   data object Empty : MainNavigationDetailLocation
   data class Conversation(val intent: Intent) : MainNavigationDetailLocation
 }

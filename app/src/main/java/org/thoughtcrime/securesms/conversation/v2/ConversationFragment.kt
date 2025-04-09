@@ -346,6 +346,7 @@ import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
+import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -589,7 +590,10 @@ class ConversationFragment :
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
     disposables.bindTo(viewLifecycleOwner)
-    FullscreenHelper(requireActivity()).showSystemUI()
+
+    if (requireActivity() is ConversationActivity) {
+      FullscreenHelper(requireActivity()).showSystemUI()
+    }
 
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
     markReadHelper.ignoreViewReveals()
@@ -1361,10 +1365,17 @@ class ConversationFragment :
   }
 
   private fun presentNavigationIconForNormal() {
-    binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left_24)
-    binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
-    binding.toolbar.setNavigationOnClickListener {
-      requireActivity().finishAfterTransition()
+    val windowSizeClass = resources.getWindowSizeClass()
+
+    if (windowSizeClass.isCompact()) {
+      binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left_24)
+      binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
+      binding.toolbar.setNavigationOnClickListener {
+        requireActivity().finishAfterTransition()
+      }
+    } else {
+      binding.toolbar.navigationIcon = null
+      binding.toolbar.contentInsetStartWithNavigation = 0
     }
   }
 

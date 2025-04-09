@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 
 data class SnackbarState(
   val message: String,
-  val actionState: ActionState?,
+  val actionState: ActionState? = null,
   val showProgress: Boolean = false,
   val duration: SnackbarDuration = SnackbarDuration.Long
 ) {
@@ -59,7 +59,8 @@ interface MainBottomChromeCallback {
 data class MainBottomChromeState(
   val destination: MainNavigationDestination = MainNavigationDestination.CHATS,
   val megaphoneState: MainMegaphoneState = MainMegaphoneState(),
-  val snackbarState: SnackbarState? = null
+  val snackbarState: SnackbarState? = null,
+  val mainToolbarMode: MainToolbarMode = MainToolbarMode.FULL
 )
 
 /**
@@ -72,30 +73,33 @@ data class MainBottomChromeState(
 fun MainBottomChrome(
   state: MainBottomChromeState,
   callback: MainBottomChromeCallback,
-  megaphoneActionController: MegaphoneActionController
+  megaphoneActionController: MegaphoneActionController,
+  modifier: Modifier = Modifier
 ) {
   Column(
-    modifier = Modifier
+    modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
   ) {
-    Box(
-      contentAlignment = Alignment.CenterEnd,
-      modifier = Modifier.fillMaxWidth()
-    ) {
-      MainFloatingActionButtons(
-        destination = state.destination,
-        onCameraClick = callback::onCameraClick,
-        onNewCallClick = callback::onNewCallClick,
-        onNewChatClick = callback::onNewChatClick
+    if (state.mainToolbarMode == MainToolbarMode.FULL) {
+      Box(
+        contentAlignment = Alignment.CenterEnd,
+        modifier = Modifier.fillMaxWidth()
+      ) {
+        MainFloatingActionButtons(
+          destination = state.destination,
+          onCameraClick = callback::onCameraClick,
+          onNewCallClick = callback::onNewCallClick,
+          onNewChatClick = callback::onNewChatClick
+        )
+      }
+
+      MainMegaphoneContainer(
+        state = state.megaphoneState,
+        controller = megaphoneActionController,
+        onMegaphoneVisible = callback::onMegaphoneVisible
       )
     }
-
-    MainMegaphoneContainer(
-      state = state.megaphoneState,
-      controller = megaphoneActionController,
-      onMegaphoneVisible = callback::onMegaphoneVisible
-    )
 
     MainSnackbar(
       snackbarState = state.snackbarState,
@@ -116,12 +120,13 @@ private fun MainSnackbar(
   LaunchedEffect(snackbarState) {
     if (snackbarState != null) {
       val result = hostState.showSnackbar(
-        message = snackbarState.message
+        message = snackbarState.message,
+        actionLabel = snackbarState.actionState?.action
       )
 
       when (result) {
         SnackbarResult.Dismissed -> Unit
-        SnackbarResult.ActionPerformed -> snackbarState.actionState
+        SnackbarResult.ActionPerformed -> snackbarState.actionState?.onActionClick?.invoke()
       }
 
       onDismissed()

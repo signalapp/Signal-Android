@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.conversationlist;
 
 import android.annotation.SuppressLint;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
@@ -27,18 +26,23 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.view.ActionMode;
+import androidx.compose.material3.SnackbarDuration;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-
+import org.signal.core.util.concurrent.LifecycleDisposable;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.main.SnackbarState;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.util.Set;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Unit;
 
 
 public class ConversationListArchiveFragment extends ConversationListFragment implements ActionMode.Callback
@@ -47,8 +51,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   private RecyclerView                list;
   private RecyclerView                foldersList;
   private Stub<View>                  emptyState;
-  private PulsingFloatingActionButton fab;
-  private PulsingFloatingActionButton cameraFab;
+  private LifecycleDisposable         lifecycleDisposable = new LifecycleDisposable();
 
   public static ConversationListArchiveFragment newInstance() {
     return new ConversationListArchiveFragment();
@@ -64,15 +67,13 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
+
     coordinator = view.findViewById(R.id.coordinator);
     list        = view.findViewById(R.id.list);
     emptyState  = new Stub<>(view.findViewById(R.id.empty_state));
-    fab         = view.findViewById(R.id.fab);
-    cameraFab   = view.findViewById(R.id.camera_fab);
     foldersList = view.findViewById(R.id.chat_folder_list);
 
-    fab.hide();
-    cameraFab.hide();
     foldersList.setVisibility(View.GONE);
   }
 
@@ -118,26 +119,34 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     archiveDecoration.onArchiveStarted();
     itemAnimator.enable();
 
-    new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
-                                coordinator,
-                                getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
-                                getString(R.string.ConversationListFragment_undo),
-                                getResources().getColor(R.color.amber_500),
-                                Snackbar.LENGTH_LONG,
-                                false)
-    {
-      @Override
-      protected void executeAction(@Nullable Long parameter) {
-        SignalDatabase.threads().unarchiveConversation(threadId);
-        ConversationUtil.refreshRecipientShortcuts();
-      }
+    lifecycleDisposable.add(
+        Completable
+            .fromAction(() -> {
+              SignalDatabase.threads().unarchiveConversation(threadId);
+              ConversationUtil.refreshRecipientShortcuts();
+            })
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(() -> {
+              getNavigator().getViewModel().setSnackbar(new SnackbarState(
+                  getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
+                  new SnackbarState.ActionState(
+                      getString(R.string.ConversationListFragment_undo),
+                      R.color.amber_500,
+                      () -> {
+                        SignalExecutors.BOUNDED_IO.execute(() -> {
+                          SignalDatabase.threads().archiveConversation(threadId);
+                          ConversationUtil.refreshRecipientShortcuts();
+                        });
 
-      @Override
-      protected void reverseAction(@Nullable Long parameter) {
-        SignalDatabase.threads().archiveConversation(threadId);
-        ConversationUtil.refreshRecipientShortcuts();
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
+                        return Unit.INSTANCE;
+                      }
+                  ),
+                  false,
+                  SnackbarDuration.Long
+              ));
+            })
+    );
   }
 
   @Override

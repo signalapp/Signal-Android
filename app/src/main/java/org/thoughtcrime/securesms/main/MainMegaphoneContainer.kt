@@ -23,12 +23,8 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 
 data class MainMegaphoneState(
   val megaphone: Megaphone = Megaphone.NONE,
-  val isDisplayingArchivedChats: Boolean = false,
-  private val isSearchOpen: Boolean = false,
-  private val isInActionMode: Boolean = false
-) {
-  fun isVisible(): Boolean = !isDisplayingArchivedChats && !isSearchOpen && !isInActionMode
-}
+  val mainToolbarMode: MainToolbarMode = MainToolbarMode.FULL
+)
 
 object EmptyMegaphoneActionController : MegaphoneActionController {
   override fun onMegaphoneNavigationRequested(intent: Intent) = Unit
@@ -51,7 +47,7 @@ fun MainMegaphoneContainer(
 ) {
   val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
   val visible = remember(isLandscape, state) {
-    !isLandscape && state.isVisible()
+    !(state.megaphone == Megaphone.NONE || state.mainToolbarMode != MainToolbarMode.FULL || isLandscape)
   }
 
   AnimatedVisibility(visible = visible) {
@@ -61,10 +57,12 @@ fun MainMegaphoneContainer(
     )
   }
 
-  LaunchedEffect(state.megaphone, state.isDisplayingArchivedChats, isLandscape) {
-    if (!(state.megaphone == Megaphone.NONE || state.isDisplayingArchivedChats || isLandscape)) {
-      onMegaphoneVisible(state.megaphone)
+  LaunchedEffect(state, isLandscape) {
+    if (state.megaphone == Megaphone.NONE || state.mainToolbarMode == MainToolbarMode.BASIC || isLandscape) {
+      return@LaunchedEffect
     }
+
+    onMegaphoneVisible(state.megaphone)
   }
 }
 

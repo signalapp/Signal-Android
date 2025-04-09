@@ -7,11 +7,10 @@ package org.thoughtcrime.securesms.main
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.EnterExitState
+import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,11 +31,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.window.Navigation
+import org.thoughtcrime.securesms.window.WindowSizeClass
 import kotlin.math.roundToInt
 
 private val ACTION_BUTTON_SIZE = 56.dp
@@ -49,6 +51,11 @@ fun MainFloatingActionButtons(
   onCameraClick: (MainNavigationDestination) -> Unit = {},
   onNewCallClick: () -> Unit = {}
 ) {
+  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+  if (windowSizeClass.navigation == Navigation.RAIL) {
+    return
+  }
+
   val boxHeightDp = (ACTION_BUTTON_SIZE * 2 + ACTION_BUTTON_SPACING)
   val boxHeightPx = with(LocalDensity.current) {
     boxHeightDp.toPx().roundToInt()
@@ -65,38 +72,65 @@ fun MainFloatingActionButtons(
       enter = slideInVertically(initialOffsetY = { boxHeightPx - it }),
       exit = slideOutVertically(targetOffsetY = { boxHeightPx - it })
     ) {
+      val elevation by transition.animateDp(targetValueByState = { if (it == EnterExitState.Visible) 4.dp else 0.dp })
+
       CameraButton(
         colors = IconButtonDefaults.filledTonalIconButtonColors().copy(
           containerColor = SignalTheme.colors.colorSurface1
         ),
         onClick = {
           onCameraClick(MainNavigationDestination.CHATS)
-        }
+        },
+        shadowElevation = elevation
       )
     }
 
-    AnimatedContent(
-      targetState = destination,
-      modifier = Modifier.align(Alignment.BottomCenter),
-      transitionSpec = { EnterTransition.None togetherWith ExitTransition.None }
-    ) { targetState ->
-      when (targetState) {
-        MainNavigationDestination.CHATS -> NewChatButton(onNewChatClick)
-        MainNavigationDestination.CALLS -> NewCallButton(onNewCallClick)
-        MainNavigationDestination.STORIES -> CameraButton(onClick = { onCameraClick(MainNavigationDestination.STORIES) })
-      }
+    Box(
+      modifier = Modifier.align(Alignment.BottomCenter)
+    ) {
+      PrimaryActionButton(
+        destination = destination,
+        onNewChatClick = onNewChatClick,
+        onCameraClick = onCameraClick,
+        onNewCallClick = onNewCallClick
+      )
     }
   }
 }
 
 @Composable
-private fun NewChatButton(
-  onClick: () -> Unit
+private fun PrimaryActionButton(
+  destination: MainNavigationDestination,
+  onNewChatClick: () -> Unit = {},
+  onCameraClick: (MainNavigationDestination) -> Unit = {},
+  onNewCallClick: () -> Unit = {}
 ) {
+  val onClick = remember(destination) {
+    when (destination) {
+      MainNavigationDestination.CHATS -> onNewChatClick
+      MainNavigationDestination.CALLS -> onNewCallClick
+      MainNavigationDestination.STORIES -> {
+        { onCameraClick(destination) }
+      }
+    }
+  }
+
   MainFloatingActionButton(
     onClick = onClick,
-    contentDescription = "",
-    icon = ImageVector.vectorResource(R.drawable.symbol_edit_24)
+    icon = {
+      AnimatedContent(destination) { targetState ->
+        val icon = when (targetState) {
+          MainNavigationDestination.CHATS -> R.drawable.symbol_edit_24
+          MainNavigationDestination.CALLS -> R.drawable.symbol_phone_plus_24
+          MainNavigationDestination.STORIES -> R.drawable.symbol_camera_24
+        }
+
+        Icon(
+          imageVector = ImageVector.vectorResource(icon),
+          contentDescription = ""
+        )
+      }
+    }
   )
 }
 
@@ -104,34 +138,29 @@ private fun NewChatButton(
 private fun CameraButton(
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
+  shadowElevation: Dp = 4.dp,
   colors: IconButtonColors = IconButtonDefaults.filledTonalIconButtonColors()
 ) {
   MainFloatingActionButton(
     onClick = onClick,
-    contentDescription = "",
-    icon = ImageVector.vectorResource(R.drawable.symbol_camera_24),
+    icon = {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_camera_24),
+        contentDescription = ""
+      )
+    },
     colors = colors,
-    modifier = modifier
-  )
-}
-
-@Composable
-private fun NewCallButton(
-  onClick: () -> Unit
-) {
-  MainFloatingActionButton(
-    onClick = onClick,
-    contentDescription = "",
-    icon = ImageVector.vectorResource(R.drawable.symbol_phone_plus_24)
+    modifier = modifier,
+    shadowElevation = shadowElevation
   )
 }
 
 @Composable
 private fun MainFloatingActionButton(
   onClick: () -> Unit,
-  icon: ImageVector,
-  contentDescription: String,
+  icon: @Composable () -> Unit,
   modifier: Modifier = Modifier,
+  shadowElevation: Dp = 4.dp,
   colors: IconButtonColors = IconButtonDefaults.filledTonalIconButtonColors()
 ) {
   FilledTonalIconButton(
@@ -139,14 +168,11 @@ private fun MainFloatingActionButton(
     shape = RoundedCornerShape(18.dp),
     modifier = modifier
       .size(ACTION_BUTTON_SIZE)
-      .shadow(4.dp, RoundedCornerShape(18.dp)),
+      .shadow(shadowElevation, RoundedCornerShape(18.dp)),
     enabled = true,
     colors = colors
   ) {
-    Icon(
-      imageVector = icon,
-      contentDescription = contentDescription
-    )
+    icon()
   }
 }
 
@@ -161,36 +187,6 @@ private fun MainFloatingActionButtonsPreview() {
       onCameraClick = { destination = MainNavigationDestination.CALLS },
       onNewChatClick = { destination = MainNavigationDestination.STORIES },
       onNewCallClick = { destination = MainNavigationDestination.CHATS }
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun NewChatButtonPreview() {
-  Previews.Preview {
-    NewChatButton(
-      onClick = {}
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun CameraButtonPreview() {
-  Previews.Preview {
-    CameraButton(
-      onClick = {}
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun NewCallButtonPreview() {
-  Previews.Preview {
-    NewCallButton(
-      onClick = {}
     )
   }
 }

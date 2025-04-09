@@ -6,16 +6,20 @@
 package org.thoughtcrime.securesms.window
 
 import android.content.res.Configuration
+import android.content.res.Resources
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.adaptive.layout.AnimatedPane
+import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
+import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,7 +29,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.Previews
@@ -58,43 +62,76 @@ enum class WindowSizeClass(
   EXTENDED_PORTRAIT(Navigation.RAIL),
   EXTENDED_LANDSCAPE(Navigation.RAIL);
 
+  fun isCompact(): Boolean = this == COMPACT_PORTRAIT || this == COMPACT_LANDSCAPE
+  fun isMedium(): Boolean = this == MEDIUM_PORTRAIT || this == MEDIUM_LANDSCAPE
+  fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
+
   companion object {
+
+    @OptIn(ExperimentalWindowCoreApi::class)
+    fun Resources.getWindowSizeClass(): WindowSizeClass {
+      val orientation = configuration.orientation
+
+      if (!RemoteConfig.largeScreenUi) {
+        return getCompactSizeClassForOrientation(orientation)
+      }
+
+      val windowSizeClass = androidx.window.core.layout.WindowSizeClass.compute(
+        displayMetrics.widthPixels,
+        displayMetrics.heightPixels,
+        displayMetrics.density
+      )
+
+      return getSizeClassForOrientationAndSystemSizeClass(orientation, windowSizeClass)
+    }
+
     @Composable
     fun rememberWindowSizeClass(): WindowSizeClass {
       val orientation = LocalConfiguration.current.orientation
 
       if (!LocalInspectionMode.current && !RemoteConfig.largeScreenUi) {
-        return when (orientation) {
-          Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
-            COMPACT_PORTRAIT
-          }
-          Configuration.ORIENTATION_LANDSCAPE -> COMPACT_LANDSCAPE
-          else -> error("Unexpected orientation: $orientation")
-        }
+        return getCompactSizeClassForOrientation(orientation)
       }
 
       val wsc = currentWindowAdaptiveInfo().windowSizeClass
 
       return remember(orientation, wsc) {
-        when (orientation) {
-          Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
-            when (wsc.windowWidthSizeClass) {
-              WindowWidthSizeClass.COMPACT -> COMPACT_PORTRAIT
-              WindowWidthSizeClass.MEDIUM -> MEDIUM_PORTRAIT
-              WindowWidthSizeClass.EXPANDED -> EXTENDED_PORTRAIT
-              else -> error("Unsupported.")
-            }
-          }
-          Configuration.ORIENTATION_LANDSCAPE -> {
-            when (wsc.windowHeightSizeClass) {
-              WindowHeightSizeClass.COMPACT -> COMPACT_LANDSCAPE
-              WindowHeightSizeClass.MEDIUM -> MEDIUM_LANDSCAPE
-              WindowHeightSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
-              else -> error("Unsupported.")
-            }
-          }
-          else -> error("Unexpected orientation: $orientation")
+        getSizeClassForOrientationAndSystemSizeClass(orientation, wsc)
+      }
+    }
+
+    private fun getCompactSizeClassForOrientation(orientation: Int): WindowSizeClass {
+      return when (orientation) {
+        Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
+          COMPACT_PORTRAIT
         }
+
+        Configuration.ORIENTATION_LANDSCAPE -> COMPACT_LANDSCAPE
+        else -> error("Unexpected orientation: $orientation")
+      }
+    }
+
+    private fun getSizeClassForOrientationAndSystemSizeClass(orientation: Int, windowSizeClass: androidx.window.core.layout.WindowSizeClass): WindowSizeClass {
+      return when (orientation) {
+        Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
+          when (windowSizeClass.windowWidthSizeClass) {
+            WindowWidthSizeClass.COMPACT -> COMPACT_PORTRAIT
+            WindowWidthSizeClass.MEDIUM -> MEDIUM_PORTRAIT
+            WindowWidthSizeClass.EXPANDED -> EXTENDED_PORTRAIT
+            else -> error("Unsupported.")
+          }
+        }
+
+        Configuration.ORIENTATION_LANDSCAPE -> {
+          when (windowSizeClass.windowHeightSizeClass) {
+            WindowHeightSizeClass.COMPACT -> COMPACT_LANDSCAPE
+            WindowHeightSizeClass.MEDIUM -> MEDIUM_LANDSCAPE
+            WindowHeightSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
+            else -> error("Unsupported.")
+          }
+        }
+
+        else -> error("Unexpected orientation: $orientation")
       }
     }
   }
@@ -104,8 +141,10 @@ enum class WindowSizeClass(
  * Composable who's precise layout will depend on the window size class of the device it is being utilized on.
  * This is built to be generic so that we can use it throughout the application to support different device classes.
  */
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun AppScaffold(
+  navigator: ThreePaneScaffoldNavigator<Any> = rememberListDetailPaneScaffoldNavigator<Any>(),
   detailContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
@@ -113,49 +152,68 @@ fun AppScaffold(
 ) {
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
-  Row {
+  if (windowSizeClass.isMedium()) {
+    Row {
+      Box(modifier = Modifier.weight(1f)) {
+        ListAndNavigation(
+          listContent = listContent,
+          navRailContent = navRailContent,
+          bottomNavContent = bottomNavContent,
+          windowSizeClass = windowSizeClass
+        )
+      }
+
+      Box(modifier = Modifier.weight(1f)) {
+        detailContent()
+      }
+    }
+  } else {
+    NavigableListDetailPaneScaffold(
+      navigator = navigator,
+      listPane = {
+        AnimatedPane {
+          ListAndNavigation(
+            listContent = listContent,
+            navRailContent = navRailContent,
+            bottomNavContent = bottomNavContent,
+            windowSizeClass = windowSizeClass
+          )
+        }
+      },
+      detailPane = {
+        AnimatedPane {
+          detailContent()
+        }
+      }
+    )
+  }
+}
+
+@Composable
+private fun ListAndNavigation(
+  listContent: @Composable () -> Unit,
+  navRailContent: @Composable () -> Unit,
+  bottomNavContent: @Composable () -> Unit,
+  windowSizeClass: WindowSizeClass
+) {
+  Row(modifier = Modifier.navigationBarsPadding()) {
     if (windowSizeClass.navigation == Navigation.RAIL) {
       navRailContent()
     }
 
-    BoxWithConstraints(
-      modifier = Modifier.weight(1f)
-    ) {
-      val listWidth = when (windowSizeClass) {
-        WindowSizeClass.COMPACT_PORTRAIT -> maxWidth
-        WindowSizeClass.COMPACT_LANDSCAPE -> maxWidth
-        WindowSizeClass.MEDIUM_PORTRAIT -> maxWidth * 0.5f
-        WindowSizeClass.MEDIUM_LANDSCAPE -> 360.dp
-        WindowSizeClass.EXTENDED_PORTRAIT -> 360.dp
-        WindowSizeClass.EXTENDED_LANDSCAPE -> 360.dp
+    Column {
+      Box(modifier = Modifier.weight(1f)) {
+        listContent()
       }
 
-      val detailWidth = maxWidth - listWidth
-
-      Row {
-        Column(
-          modifier = Modifier.width(listWidth).navigationBarsPadding()
-        ) {
-          Box(modifier = Modifier.weight(1f)) {
-            listContent()
-          }
-
-          if (windowSizeClass.navigation == Navigation.BAR) {
-            bottomNavContent()
-          }
-        }
-
-        if (detailWidth > 0.dp) {
-          // TODO -- slider to divide sizing?
-          Box(modifier = Modifier.width(detailWidth)) {
-            detailContent()
-          }
-        }
+      if (windowSizeClass.navigation == Navigation.BAR) {
+        bottomNavContent()
       }
     }
   }
 }
 
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Preview(device = "spec:width=360dp,height=640dp,orientation=portrait")
 @Preview(device = "spec:width=640dp,height=360dp,orientation=landscape")
 @Preview(device = "spec:width=600dp,height=1024dp,orientation=portrait")

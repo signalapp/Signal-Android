@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -244,6 +245,7 @@ private fun SearchToolbar(
         Text(text = stringResource(state.searchHint))
       },
       modifier = modifier
+        .systemBarsPadding()
         .background(color = state.toolbarColor ?: MaterialTheme.colorScheme.surface)
         .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
         .padding(horizontal = 16.dp, vertical = 10.dp)
