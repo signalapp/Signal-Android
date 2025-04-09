@@ -39,6 +39,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
@@ -275,8 +276,11 @@ private fun MegaphoneImage(
   val sharedModifier = modifier.size(64.dp)
 
   if (megaphone.imageRes != 0) {
+    val context = LocalContext.current
+    val drawable = remember(megaphone.imageRes) { ContextCompat.getDrawable(context, megaphone.imageRes) }
+
     Image(
-      imageVector = ImageVector.vectorResource(megaphone.imageRes),
+      painter = rememberDrawablePainter(drawable),
       contentDescription = null,
       contentScale = ContentScale.Inside,
       modifier = sharedModifier
