@@ -6,10 +6,12 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.Surface
 import android.view.View
+import android.view.WindowInsets
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.Insets
+import androidx.core.view.OnApplyWindowInsetsListener
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
@@ -66,16 +68,24 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private var previousKeyboardHeight: Int = 0
   private var applyRootInsets: Boolean = false
 
+  private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
+    applyInsets(windowInsets = insets.getInsets(windowTypes), keyboardInsets = insets.getInsets(keyboardType))
+    insets
+  }
+
   val isKeyboardShowing: Boolean
     get() = previousKeyboardHeight > 0
 
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
 
-    ViewCompat.setOnApplyWindowInsetsListener(insetTarget()) { _, windowInsetsCompat ->
-      applyInsets(windowInsets = windowInsetsCompat.getInsets(windowTypes), keyboardInsets = windowInsetsCompat.getInsets(keyboardType))
-      windowInsetsCompat
-    }
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), windowInsetsListener)
+  }
+
+  override fun onDetachedFromWindow() {
+    super.onDetachedFromWindow()
+
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), null)
   }
 
   init {

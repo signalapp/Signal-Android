@@ -1272,7 +1272,7 @@ class ConversationFragment :
     inputPanel.setHideForMessageRequestState(inputDisabled)
 
     if (inputDisabled) {
-      WindowUtil.setNavigationBarColor(requireActivity(), disabledInputView.color)
+      binding.navBar.setBackgroundColor(disabledInputView.color)
     } else {
       disabledInputView.clear()
     }
@@ -1482,7 +1482,7 @@ class ConversationFragment :
       )
     )
 
-    WindowUtil.setNavigationBarColor(requireActivity(), ContextCompat.getColor(requireContext(), navColor))
+    binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), navColor))
   }
 
   private fun presentChatColors(chatColors: ChatColors) {
