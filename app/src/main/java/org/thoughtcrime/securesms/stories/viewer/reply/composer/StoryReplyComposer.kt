@@ -92,15 +92,22 @@ class StoryReplyComposer @JvmOverloads constructor(
     }
 
     input.doAfterTextChanged {
-      val notEmpty = !it.isNullOrEmpty()
-      reply.isEnabled = notEmpty
-      if (notEmpty && reply.visibility != View.VISIBLE) {
-        val transition = AutoTransition().setDuration(200L).setInterpolator(OvershootInterpolator(1f))
+      if (it == null) return@doAfterTextChanged
+      val isEmpty = it.isBlank()
+      reply.isEnabled = !isEmpty
+      val transition = AutoTransition().setDuration(200L).setInterpolator(OvershootInterpolator(1f))
+      if (!isEmpty && reply.visibility != View.VISIBLE) {
         TransitionManager.beginDelayedTransition(bubbleView, transition)
         reply.visibility = View.VISIBLE
         reply.scaleX = 0f
         reply.scaleY = 0f
         reply.animate().setDuration(150).scaleX(1f).scaleY(1f).setInterpolator(OvershootInterpolator(1f)).start()
+      } else if (isEmpty) {
+        TransitionManager.beginDelayedTransition(bubbleView, transition)
+        reply.visibility = View.GONE
+        reply.scaleX = 1f
+        reply.scaleY = 1f
+        reply.animate().setDuration(150).scaleX(0f).scaleY(0f).setInterpolator(OvershootInterpolator(1f)).start()
       }
     }
 
