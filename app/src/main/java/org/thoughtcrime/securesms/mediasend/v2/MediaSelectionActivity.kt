@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -21,8 +22,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.animation.ArgbEvaluatorCompat
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
@@ -63,6 +66,8 @@ class MediaSelectionActivity :
   private var animateOutTextColorValueAnimator: ValueAnimator? = null
 
   lateinit var viewModel: MediaSelectionViewModel
+
+  private val lifecycleDisposable = LifecycleDisposable()
 
   private val textViewModel: TextStoryPostCreationViewModel by viewModels(
     factoryProducer = {
@@ -172,7 +177,28 @@ class MediaSelectionActivity :
       }
     }
 
+    lifecycleDisposable.bindTo(this)
+    lifecycleDisposable += viewModel.mediaErrors
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(this::handleError)
+
     onBackPressedDispatcher.addCallback(OnBackPressed())
+  }
+
+  private fun handleError(error: MediaValidator.FilterError) {
+    when (error) {
+      MediaValidator.FilterError.None -> return
+      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.TooManyItems -> Toast.makeText(this, R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.NoItems -> {
+        if (error.cause != null) {
+          handleError(error.cause)
+        }
+      }
+    }
+
+    viewModel.clearMediaErrors()
   }
 
   private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
