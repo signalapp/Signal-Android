@@ -281,7 +281,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideProvisioningApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): ProvisioningApi {
+  override fun provideProvisioningApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): ProvisioningApi {
     return mockk(relaxed = true)
   }
 

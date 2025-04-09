@@ -8,6 +8,7 @@ import android.os.HandlerThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.billing.BillingFactory;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.billing.BillingApi;
@@ -547,8 +548,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull ProvisioningApi provideProvisioningApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
-    return new ProvisioningApi(authWebSocket);
+  public @NonNull ProvisioningApi provideProvisioningApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, SignalWebSocket.@NotNull UnauthenticatedWebSocket unauthWebSocket) {
+    return new ProvisioningApi(authWebSocket, unauthWebSocket);
   }
 
   @Override

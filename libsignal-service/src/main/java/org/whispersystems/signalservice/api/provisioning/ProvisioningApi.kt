@@ -21,7 +21,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Linked and new device provisioning endpoints.
  */
-class ProvisioningApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
+class ProvisioningApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket, private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket) {
 
   /**
    * Encrypts and sends the [registrationProvisionMessage] from the current primary (old device) to the new device over
@@ -56,7 +56,7 @@ class ProvisioningApi(private val authWebSocket: SignalWebSocket.AuthenticatedWe
     val request = WebSocketRequestMessage.get("/v1/devices/restore_account/${token.urlEncode()}?timeout=$timeout")
 
     return NetworkResult.fromWebSocket(NetworkResult.LongPollingWebSocketConverter(RestoreMethodBody::class)) {
-      authWebSocket.request(request, timeout.seconds)
+      unauthWebSocket.request(request, timeout.seconds)
     }.map {
       it.method ?: RestoreMethod.DECLINE
     }

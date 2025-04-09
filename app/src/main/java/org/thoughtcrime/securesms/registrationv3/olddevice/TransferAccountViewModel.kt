@@ -30,13 +30,15 @@ class TransferAccountViewModel(reRegisterUri: String) : ViewModel() {
       val result = QuickRegistrationRepository.transferAccount(store.value.reRegisterUri, restoreMethodToken)
       store.update { it.copy(reRegisterResult = result, inProgress = false) }
 
-      val restoreMethod = QuickRegistrationRepository.waitForRestoreMethodSelectionOnNewDevice(restoreMethodToken)
+      if (result == QuickRegistrationRepository.TransferAccountResult.SUCCESS) {
+        val restoreMethod = QuickRegistrationRepository.waitForRestoreMethodSelectionOnNewDevice(restoreMethodToken)
 
-      if (restoreMethod != RestoreMethod.DECLINE) {
-        SignalStore.registration.restoringOnNewDevice = true
+        if (restoreMethod != RestoreMethod.DECLINE) {
+          SignalStore.registration.restoringOnNewDevice = true
+        }
+
+        store.update { it.copy(restoreMethodSelected = restoreMethod) }
       }
-
-      store.update { it.copy(restoreMethodSelected = restoreMethod) }
     }
   }
 

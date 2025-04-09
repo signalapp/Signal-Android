@@ -199,7 +199,7 @@ class NetworkDependenciesModule(
   }
 
   val provisioningApi: ProvisioningApi by lazy {
-    provider.provideProvisioningApi(authWebSocket)
+    provider.provideProvisioningApi(authWebSocket, unauthWebSocket)
   }
 
   val certificateApi: CertificateApi by lazy {
