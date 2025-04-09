@@ -226,8 +226,38 @@ final class Mp4Writer extends DefaultBoxes implements SampleSink {
     }
 
 
-    mvhd.setTimescale(Mp4Math.lcm(timescales));
-    mvhd.setDuration((long) (Mp4Math.lcm(timescales) * duration));
+    long chosenTimescale = Mp4Math.lcm(timescales);
+    Log.d(TAG, "chosenTimescale = " + chosenTimescale);
+    final long MAX_UNSIGNED_INT = 0xFFFFFFFFL;
+    if (chosenTimescale > MAX_UNSIGNED_INT) {
+      int nRatio = (int)(chosenTimescale / MAX_UNSIGNED_INT);
+      Log.d(TAG, "chosenTimescale exceeds 32-bit range " + nRatio + " times !");
+      int nDownscaleFactor = 1;
+      if (nRatio < 10) {
+        nDownscaleFactor = 10;
+      } else if (nRatio < 100) {
+        nDownscaleFactor = 100;
+      } else if (nRatio < 1000) {
+        nDownscaleFactor = 1000;
+      } else if (nRatio < 10000) {
+        nDownscaleFactor = 10000;
+      }
+      chosenTimescale /= nDownscaleFactor;
+      Log.d(TAG, "chosenTimescale is scaled down by factor of " + nDownscaleFactor + " to value " + chosenTimescale);
+    }
+
+    double fDurationTicks = chosenTimescale * duration;
+    Log.d(TAG, "fDurationTicks = chosenTimescale * duration = " + fDurationTicks);
+    final double MAX_UNSIGNED_64_BIT_VALUE = 18446744073709551615.0;
+    if (fDurationTicks > MAX_UNSIGNED_64_BIT_VALUE) {
+      // Highly unlikely, as duration (number of seconds)
+      // would need to be larger than MAX_UNSIGNED_INT
+      // to produce fDuration = chosenTimescale * duration
+      // which whould exceed 64-bit storage
+      Log.d(TAG, "Numeric overflow !!!");
+    }
+    mvhd.setTimescale(chosenTimescale);
+    mvhd.setDuration((long) (fDurationTicks));
     // find the next available trackId
     mvhd.setNextTrackId(maxTrackId + 1);
     return mvhd;
