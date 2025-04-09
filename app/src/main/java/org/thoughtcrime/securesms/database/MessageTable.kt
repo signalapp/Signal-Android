@@ -1743,13 +1743,21 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
   private fun disassociateStoryQuotes(storyId: Long) {
     writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        QUOTE_MISSING to 1,
-        QUOTE_BODY to null
+      .rawQuery(
+        """
+            UPDATE $TABLE_NAME
+            SET $QUOTE_MISSING = 1, $QUOTE_BODY = NULL
+            WHERE $PARENT_STORY_ID = ${DirectReply(storyId).serialize()}
+            RETURNING $THREAD_ID
+        """.trimIndent()
       )
-      .where("$PARENT_STORY_ID = ?", DirectReply(storyId).serialize())
-      .run()
+      .readToList { cursor ->
+        cursor.requireLong(THREAD_ID)
+      }
+      .distinct()
+      .forEach { threadId ->
+        notifyConversationListeners(threadId)
+      }
   }
 
   fun isGroupQuitMessage(messageId: Long): Boolean {
