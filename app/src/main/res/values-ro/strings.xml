@@ -1836,6 +1836,10 @@
     <string name="MessageRecord_missed_voice_call">Apel vocal nepreluat</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Apel video nepreluat</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Apel vocal pierdut în timp ce profilul de notificare este activat</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2656,6 +2660,13 @@
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="few">%1$s groups in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">În acest apel (%1$d)</item>
@@ -2960,6 +2971,8 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s aparține persoanei %2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Blocat</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Actualizare Signal</string>
@@ -5054,9 +5067,9 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d grup în comun</item>
-        <item quantity="few">%1$d grupuri în comun</item>
-        <item quantity="other">%1$d de grupuri în comun</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="few">%1$d other groups in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d grup în comun</item>

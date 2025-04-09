@@ -1786,6 +1786,10 @@
     <string name="MessageRecord_missed_voice_call">ಮಿಸ್ಡ್ ವಾಯ್ಸ್ ಕಾಲ್</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕಾಲ್</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ಧ್ವನಿ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2573,6 +2577,12 @@
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
 
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
+
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
         <item quantity="one">ಈ ಕರೆಯಲ್ಲಿ (%1$d)</item>
@@ -2872,6 +2882,8 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s ಯು %2$s ಅವರದ್ದಾಗಿದೆ</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal ನವೀಕರಿಸಿ</string>
@@ -4934,8 +4946,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ಬೇರೆ ಯಾವುದೇ ಗುಂಪುಗಳು ಸಾಮಾನ್ಯವಾಗಿಲ್ಲ.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">ಯಾವುದೇ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %1$d</item>
-        <item quantity="other">%1$d ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %1$d</item>
