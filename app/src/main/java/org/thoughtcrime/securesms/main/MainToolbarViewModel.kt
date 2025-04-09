@@ -64,9 +64,13 @@ class MainToolbarViewModel : ViewModel() {
 
   @JvmOverloads
   fun setToolbarMode(mode: MainToolbarMode, destination: MainNavigationDestination? = null) {
+    val previousMode = internalStateFlow.value.mode
+
     internalStateFlow.update {
       it.copy(mode = mode, destination = destination ?: it.destination, searchQuery = "")
     }
+
+    emitPossibleSearchStateChangeEvent(previousMode, mode)
   }
 
   fun setProxyState(proxyState: MainToolbarState.ProxyState) {
@@ -144,6 +148,14 @@ class MainToolbarViewModel : ViewModel() {
   fun setSearchHint(@StringRes hint: Int) {
     internalStateFlow.update {
       it.copy(searchHint = hint)
+    }
+  }
+
+  private fun emitPossibleSearchStateChangeEvent(previousMode: MainToolbarMode, mode: MainToolbarMode) {
+    if (previousMode == MainToolbarMode.SEARCH && mode != MainToolbarMode.SEARCH) {
+      emitEvent(Event.Search.Close)
+    } else if (mode == MainToolbarMode.SEARCH && previousMode != MainToolbarMode.SEARCH) {
+      emitEvent(Event.Search.Open)
     }
   }
 

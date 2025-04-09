@@ -663,7 +663,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       setAdapter(defaultAdapter);
       fadeInButtonsAndMegaphone(250);
       mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL);
-      conversationListTabsViewModel.onSearchClosed();
       return true;
     }
 

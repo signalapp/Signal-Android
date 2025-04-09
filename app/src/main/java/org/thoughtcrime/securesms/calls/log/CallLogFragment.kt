@@ -416,7 +416,6 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private fun closeSearchIfOpen(): Boolean {
     if (isSearchOpen()) {
       mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL)
-      tabsViewModel.onSearchClosed()
       return true
     }
     return false

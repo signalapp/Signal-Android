@@ -415,7 +415,6 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
   private fun closeSearchIfOpen(): Boolean {
     if (isSearchOpen()) {
       mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL)
-      tabsViewModel.onSearchClosed()
       return true
     }
     return false
