@@ -184,13 +184,14 @@ private fun Modifier.drawNavigationBarBadge(count: Int, compact: Boolean): Modif
         drawContent()
 
         val xOffset = size.width.toFloat() / 2f + xOffsetExtra
+        val yRadius = size.height.toFloat() / 2f
 
         if (size != IntSize.Zero) {
           drawRoundRect(
             color = color,
             topLeft = Offset(xOffset, yOffset),
             size = Size(textLayoutResult.size.width.toFloat() + padding * 2, textLayoutResult.size.height.toFloat()),
-            cornerRadius = CornerRadius(20f, 20f)
+            cornerRadius = CornerRadius(yRadius, yRadius)
           )
 
           drawText(
