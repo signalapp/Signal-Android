@@ -130,7 +130,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     setContent {
       val navState = rememberFragmentState()
       val listHostState = rememberFragmentState()
-      val detailLocation by navigator.viewModel.detailLocation.collectAsStateWithLifecycle()
+      val detailLocation by navigator.viewModel.detailLocation.collectAsStateWithLifecycle(MainNavigationDetailLocation.Empty)
 
       LaunchedEffect(detailLocation) {
         if (detailLocation is MainNavigationDetailLocation.Conversation) {

@@ -6,16 +6,19 @@
 package org.thoughtcrime.securesms.main
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
 
 class MainNavigationViewModel : ViewModel() {
-  private val detailLocationFlow = MutableStateFlow<MainNavigationDetailLocation>(MainNavigationDetailLocation.Empty)
+  private val detailLocationFlow = MutableSharedFlow<MainNavigationDetailLocation>()
 
-  val detailLocation: StateFlow<MainNavigationDetailLocation> = detailLocationFlow
+  val detailLocation: SharedFlow<MainNavigationDetailLocation> = detailLocationFlow
 
   fun goTo(location: MainNavigationDetailLocation) {
-    detailLocationFlow.update { location }
+    viewModelScope.launch {
+      detailLocationFlow.emit(location)
+    }
   }
 }
