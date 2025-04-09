@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.Surface
 import android.view.View
-import android.view.WindowInsets
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.withStyledAttributes

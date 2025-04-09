@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -196,7 +195,7 @@ private fun ListAndNavigation(
   bottomNavContent: @Composable () -> Unit,
   windowSizeClass: WindowSizeClass
 ) {
-  Row(modifier = Modifier.navigationBarsPadding()) {
+  Row {
     if (windowSizeClass.navigation == Navigation.RAIL) {
       navRailContent()
     }

@@ -40,7 +40,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
@@ -112,7 +111,6 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SplashScreenUtil
-import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.WindowSizeClass
@@ -330,7 +328,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     handleDeepLinkIntent(intent)
     CachedInflater.from(this).clear()
-    updateNavigationBarColor()
 
     lifecycleDisposable += vitalsViewModel.vitalsState.subscribe(this::presentVitalsState)
   }
@@ -389,8 +386,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         .show()
     }
 
-    updateNavigationBarColor()
-
     vitalsViewModel.checkSlowNotificationHeuristics()
   }
 
@@ -438,10 +433,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     handleSignalMeIntent(intent)
     handleCallLinkInIntent(intent)
     handleDonateReturnIntent(intent)
-  }
-
-  private fun updateNavigationBarColor() {
-    WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_colorSurface2))
   }
 
   @SuppressLint("NewApi")

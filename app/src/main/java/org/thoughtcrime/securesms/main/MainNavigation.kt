@@ -101,46 +101,48 @@ fun MainNavigationBar(
   state: MainNavigationState,
   onDestinationSelected: (MainNavigationDestination) -> Unit
 ) {
-  NavigationBar(
-    containerColor = SignalTheme.colors.colorSurface2,
-    contentColor = MaterialTheme.colorScheme.onSurface,
-    modifier = Modifier
-      .navigationBarsPadding()
-      .height(if (state.compact) 48.dp else 80.dp)
-  ) {
-    val entries = remember(state.isStoriesFeatureEnabled) {
-      if (state.isStoriesFeatureEnabled) {
-        MainNavigationDestination.entries
-      } else {
-        MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
-      }
-    }
-
-    entries.forEach { destination ->
-
-      val badgeCount = when (destination) {
-        MainNavigationDestination.CHATS -> state.chatsCount
-        MainNavigationDestination.CALLS -> state.callsCount
-        MainNavigationDestination.STORIES -> state.storiesCount
+  Box(modifier = Modifier.background(color = SignalTheme.colors.colorSurface2)) {
+    NavigationBar(
+      containerColor = SignalTheme.colors.colorSurface2,
+      contentColor = MaterialTheme.colorScheme.onSurface,
+      modifier = Modifier
+        .navigationBarsPadding()
+        .height(if (state.compact) 48.dp else 80.dp)
+    ) {
+      val entries = remember(state.isStoriesFeatureEnabled) {
+        if (state.isStoriesFeatureEnabled) {
+          MainNavigationDestination.entries
+        } else {
+          MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
+        }
       }
 
-      val selected = state.selectedDestination == destination
-      NavigationBarItem(
-        selected = selected,
-        icon = {
-          NavigationDestinationIcon(
-            destination = destination,
-            selected = selected
-          )
-        },
-        label = if (state.compact) null else {
-          { NavigationDestinationLabel(destination) }
-        },
-        onClick = {
-          onDestinationSelected(destination)
-        },
-        modifier = Modifier.drawNavigationBarBadge(count = badgeCount, compact = state.compact)
-      )
+      entries.forEach { destination ->
+
+        val badgeCount = when (destination) {
+          MainNavigationDestination.CHATS -> state.chatsCount
+          MainNavigationDestination.CALLS -> state.callsCount
+          MainNavigationDestination.STORIES -> state.storiesCount
+        }
+
+        val selected = state.selectedDestination == destination
+        NavigationBarItem(
+          selected = selected,
+          icon = {
+            NavigationDestinationIcon(
+              destination = destination,
+              selected = selected
+            )
+          },
+          label = if (state.compact) null else {
+            { NavigationDestinationLabel(destination) }
+          },
+          onClick = {
+            onDestinationSelected(destination)
+          },
+          modifier = Modifier.drawNavigationBarBadge(count = badgeCount, compact = state.compact)
+        )
+      }
     }
   }
 }
