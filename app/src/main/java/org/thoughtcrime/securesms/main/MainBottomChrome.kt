@@ -19,6 +19,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
@@ -116,6 +117,10 @@ private fun MainSnackbar(
   val hostState = remember { SnackbarHostState() }
 
   Snackbars.Host(hostState)
+
+  if (snackbarState?.showProgress == true) {
+    Dialogs.IndeterminateProgressDialog()
+  }
 
   LaunchedEffect(snackbarState) {
     if (snackbarState != null) {
