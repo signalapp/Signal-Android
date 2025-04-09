@@ -161,7 +161,7 @@
     <!-- Title of fragment -->
     <string name="CreditCardFragment__credit_or_debit_card">Carte de crédit ou de débit</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Veuillez saisir les informations de votre carte. Signal ne collecte ni ne sauvegarde vos informations personnelles.</string>
+    <string name="CreditCardFragment__enter_your_card_details">Veuillez saisir les informations de votre carte. Signal ne collecte pas et ne stocke pas vos informations personnelles.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">Numéro de la carte</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -873,7 +873,7 @@
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Impossible de restaurer les médias</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">L’espace libre disponible sur votre appareil est insuffisant. Libérez de l’espace pour restaurer vos médias.\n\nSi vous sélectionnez \"Ignorer la restauration\", les fichiers stockés dans votre sauvegarde seront supprimés lors de la prochaine sauvegarde.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">L\'espace libre disponible sur votre appareil est insuffisant. Libérez de l\'espace pour restaurer vos médias.\n\nSi vous sélectionnez \"Ignorer la restauration\", les fichiers stockés dans votre sauvegarde seront supprimés lors de la prochaine sauvegarde.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
     <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">L’espace libre disponible sur votre appareil est insuffisant. Libérez %1$s d’espace pour restaurer vos médias. \n\nSi vous sélectionnez \"Ignorer la restauration\", les fichiers stockés dans votre sauvegarde seront supprimés lors de la prochaine sauvegarde.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
@@ -884,7 +884,7 @@
     <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Icône indiquant une erreur de sauvegarde</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
-    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Libérez de l’espace de stockage pour restaurer vos médias.</string>
+    <string name="RestoreMediaErrorBanner__Free_up_storage_space">Libérez de l\'espace de stockage pour restaurer vos médias.</string>
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. The placeholder is a filesize, such as "1.23 GB." -->
     <string name="RestoreMediaErrorBanner__Free_up_of_space">Libérez %1$s d’espace pour restaurer vos médias.</string>
 
@@ -1155,7 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Fichier sans titre</string>
-    <string name="DocumentView_document_file">Document file</string>
+    <string name="DocumentView_document_file">Fichier de type document</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour le fonctionnement sans services Google Play</string>
@@ -2134,19 +2134,19 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">No other group members yet</string>
+    <string name="MessageRequestProfileView_group_members_zero">Aucun autre membre</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
-    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s and you</string>
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s et vous</string>
     <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
     <string name="MessageRequestProfileView_group_members_two">%1$s et %2$s</string>
     <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
-    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s, and you</string>
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s et vous</string>
     <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
-    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s et %3$s</string>
     <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
-    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s, and %4$s</string>
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s et %4$s</string>
     <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
     <plurals name="MessageRequestProfileView_other_members">
         <item quantity="one">%1$d autre</item>
@@ -2954,7 +2954,7 @@
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de scanner le code QR sans l\'autorisation \"Appareil photo\".</string>
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Pour afficher le numéro de sécurité de %1$s, commencez par échanger des messages avec ce contact.</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
-    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Un numéro de sécurité sera créé pour cette personne après un premier échange de messages.</string>
+    <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">Un numéro de sécurité sera associé à cet utilisateur une fois que vous aurez échangé des messages.</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_ok">OK</string>
     <!-- Learn more option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -3157,7 +3157,7 @@
 
     <!-- NewWaysToConnectDialogFragment -->
     <!-- Fragment title, displayed at the top of the content -->
-    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">De nouvelles façons de rester en contact</string>
+    <string name="NewWaysToConnectDialogFragment__new_ways_to_connect">Prendre contact autrement</string>
     <!-- Row item title for phone number privacy explainer -->
     <string name="NewWaysToConnectDialogFragment__phone_number_privacy">Confidentialité du numéro de téléphone</string>
     <!-- Row item description for phone number privacy explainer -->
@@ -4284,7 +4284,7 @@
     <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Sélectionner</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
-    <string name="conversation_selection__menu_payment_details">Détails des paiements</string>
+    <string name="conversation_selection__menu_payment_details">Infos du paiement</string>
 
     <!-- conversation_expiring_on -->
 
@@ -4869,7 +4869,7 @@
     <string name="RecipientBottomSheet_remove_as_admin">Révoquer les droits d\'admin</string>
     <string name="RecipientBottomSheet_remove_from_group">Retirer du groupe</string>
 
-    <string name="RecipientBottomSheet_remove_s_as_group_admin">Retirer %1$s en tant qu’administrateur du groupe ?</string>
+    <string name="RecipientBottomSheet_remove_s_as_group_admin">Révoquer les droits d\'admin de %1$s ?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"%1$s pourra apporter des modifications à ce groupe, y ajouter et en supprimer des membres."</string>
 
     <string name="RecipientBottomSheet_remove_s_from_the_group">Retirer %1$s du groupe ?</string>
@@ -5003,7 +5003,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Suppression du compte…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Annulation de votre abonnement…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Résiliation de votre don mensuel…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">En fonction du nombre de groupes auxquels vous appartenez, cette étape peut prendre quelques minutes</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -5222,11 +5222,11 @@
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Identifiant d’abonnement du donateur copié dans le presse-papiers</string>
+    <string name="AppSettingsFragment__copied_donor_subscriber_id_to_clipboard">Identifiant du donateur copié dans le presse-papiers</string>
     <!-- String displayed in a toast when we successfully copy the backups subscriber id to the clipboard -->
-    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Identifiant d’abonnement aux sauvegardes copié dans le presse-papiers</string>
+    <string name="AppSettingsFragment__copied_backups_subscriber_id_to_clipboard">Identifiant d\'abonnement aux sauvegardes copié dans le presse-papiers</string>
     <!-- String displayed in a toast when a subscriber id is not present for a given type -->
-    <string name="AppSettingsFragment__no_subscriber_id_set">Aucun identifiant d’abonnement défini</string>
+    <string name="AppSettingsFragment__no_subscriber_id_set">Aucun identifiant d\'abonnement défini</string>
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Compte</string>
@@ -5943,15 +5943,15 @@
     <string name="SubscribeFragment__you_wont_be_charged_again">Vous ne serez plus facturé. Votre macaron sera supprimé de votre profil à la fin de la période de facturation.</string>
     <string name="SubscribeFragment__not_now">Plus tard</string>
     <string name="SubscribeFragment__confirm">Confirmer</string>
-    <string name="SubscribeFragment__update_subscription">Mettre à jour l’abonnement</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Votre abonnement a été annulé.</string>
-    <string name="SubscribeFragment__update_subscription_question">Mettre à jour l\'abonnement ?</string>
+    <string name="SubscribeFragment__update_subscription">Modifier le don mensuel</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Votre don mensuel a été résilié.</string>
+    <string name="SubscribeFragment__update_subscription_question">Modifier le don mensuel ?</string>
     <string name="SubscribeFragment__update">Mise à jour</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Le montant total (%1$s) du prix du nouvel abonnement vous sera facturé aujourd’hui. Votre abonnement sera renouvelé tous les mois.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Le montant total de votre nouveau don mensuel (%1$s) sera prélevé aujourd\'hui. Votre don se renouvellera ensuite tous les mois.</string>
 
     <string name="Subscription__s_per_month">%1$s/mois</string>
     <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renouvellement %1$s</string>
+    <string name="Subscription__renews_s">Prochaine échéance : %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Expire le %1$s</string>
 
@@ -5988,7 +5988,7 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Reçus de don</string>
     <string name="ManageDonationsFragment__badges">Macarons</string>
-    <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
+    <string name="ManageDonationsFragment__subscription_faq">FAQ donateurs</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Nous soutenir autrement</string>
     <!-- Preference label to launch badge gifting -->
@@ -6005,7 +6005,7 @@
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">Le montant minimum que vous pouvez donner est de %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/mois</string>
-    <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
+    <string name="MySupportPreference__renews_s">Prochaine échéance : %1$s</string>
     <!-- Subtitle shown when processing a donation transaction -->
     <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
@@ -6057,11 +6057,11 @@
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Votre don mensuel récurrent a été automatiquement annulé. %1$s Votre macaron %2$s n\'est plus visible sur votre profil.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez bien sûr continuer d\'utiliser l\'appli, mais pour soutenir Signal et réactiver votre macaron, n\'hésitez pas à renouveler votre don.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler le don mensuel</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Accéder à Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement de l’abonnement</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Impossible de traiter le paiement mensuel</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Nous ne parvenons pas à encaisser le paiement de votre don mensuel à Signal. Votre mode de paiement est-il à jour ? Si tel n\'est pas le cas, nous vous invitons à le mettre à jour dans Google Pay. Signal réessaiera de traiter le paiement dans quelques jours. Merci !</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne plus afficher</string>
 
@@ -6116,7 +6116,7 @@
     <string name="DonationsErrors__your_badge_could_not">Nous n\'avons pas pu ajouter votre macaron à votre compte, mais vous avez peut-être été facturé. Merci de contacter l\'assistance.</string>
     <string name="DonationsErrors__your_payment_is_still">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pour résiliser votre don mensuel, veuillez vous connecter à Internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Votre appareil n\'est pas compatible avec les dons dans l\'application : vous ne pouvez malheureusement pas vous abonner et gagner un macaron. Quand même envie de soutenir Signal ? Vous pouvez encore faire un don via notre site web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Veuillez vérifier votre connexion et réessayer.</string>
     <string name="NetworkFailure__retry">Réessayer</string>
@@ -6130,7 +6130,7 @@
     <string name="DonationsErrors__your_ideal_couldnt_be_processed">Impossible de traiter votre don iDEAL. Veuillez essayer un autre mode de paiement. Vous pouvez aussi contacter votre banque pour en savoir plus.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_on_behalf_of_s">Don de la part de %1$s</string>
+    <string name="GiftMessageView__donation_on_behalf_of_s">Don offert à %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">%1$s a effectué un don de votre part</string>
     <!-- Gift badge redeem action label -->
@@ -6168,9 +6168,9 @@
     <!-- Stripe decline code insufficient funds -->
     <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Les fonds associés à cette carte sont insuffisants pour effectuer cet achat. Veuillez choisir un autre mode de paiement.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">Erreur liée à la date d\'expiration de la carte : le mois indiqué est incorrect. Veuillez le mettre à jour dans Google Pay et réessayer.</string>
+    <string name="DeclineCode__the_expiration_month">Le mois d\'expiration associé à votre mode de paiement est incorrect. Veuillez le rectifier dans Google Pay et réessayer.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">Erreur liée à la date d\'expiration de la carte : l\'année indiquée est incorrecte. Veuillez la mettre à jour dans Google Pay et réessayer.</string>
+    <string name="DeclineCode__the_expiration_year">L\'année d\'expiration associée à votre mode de paiement est incorrecte. Veuillez la rectifier dans Google Pay et réessayer.</string>
     <!-- Stripe decline code issuer not available -->
     <string name="DeclineCode__try_completing_the_payment_again">Essayez à nouveau d’effectuer le paiement ou contactez votre banque pour plus d’informations.</string>
     <!-- Stripe decline code processing error -->
@@ -6178,19 +6178,19 @@
 
     <!-- Credit Card decline code error strings -->
     <!-- Stripe decline code approve_with_id for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">Veuillez vérifier les informations de votre carte et réessayer.</string>
     <!-- Stripe decline code call_issuer for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">Veuillez vérifier que les informations de votre carte sont correctes puis réessayez. Si le problème persiste, veuillez contacter votre banque.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">Veuillez vérifier les informations de votre carte et réessayer. Si le problème persiste, contactez votre banque.</string>
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_card_has_expired_verify_your_card_details">Votre carte  est arrivée à expiration. Vérifiez que les informations de votre carte sont à jour, puis réessayez.</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
     <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">Cryptogramme visuel incorrect. Veuillez vérifier le code figurant au dos de votre carte et réessayer.</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">Le mois d’expiration de votre carte est erroné. Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
+    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">Mois d\'expiration incorrect. Veuillez vérifier les informations de votre carte et réessayer.</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">L’année d’expiration de votre carte est erronée. Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
+    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">Année d\'expiration incorrecte. Veuillez vérifier les informations de votre carte et réessayer.</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">Le numéro de votre carte est erroné. Veuillez vérifier que les informations de votre carte sont correctes puis réessayez.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">Numéro de carte incorrect. Veuillez vérifier les informations de votre carte et réessayer.</string>
 
     <!-- Stripe Failure Codes for failed bank transfers -->
     <!-- Failure code text for insufficient funds, displayed in a dialog or notification -->
@@ -6202,7 +6202,7 @@
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
     <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Les coordonnées bancaires renseignées n’ont pas été reconnues. Veuillez contacter votre banque pour plus d’informations.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier que vos informations bancaires sont correctes puis réessayeréessayer. Si le problème persiste, veuillez contacter votre banque.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier vos informations bancaires et réessayer. Si le problème persiste, contactez votre banque.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Nommer ce profil</string>
@@ -6493,7 +6493,7 @@
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Répondre au groupe</string>
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
-    <string name="StoryViewerPageFragment_any_reaction_content_description">More reactions</string>
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Plus de réactions</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
     <!-- Displayed when user has disabled receipts -->
@@ -6745,11 +6745,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Choisir un destinataire</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirmez le don</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirmer le don</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Envoyer à</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Le destinataire sera informé du don grâce à un message privé. Veuillez ajouter votre message ci-dessous.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Le destinataire recevra un message privé l\'informant de votre don. Vous pouvez saisir un message personnalisé ci-dessous.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Don ponctuel</string>
     <!-- Hint for add message input -->
@@ -6771,7 +6771,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_badge">Récupération du macaron…</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">Vous avez effectué un don à Signal pour %1$s. Cette personne aura la possibilité d\'afficher son soutien sur son profil.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Vous avez fait un don à Signal pour %1$s. Cette personne aura la possibilité d\'afficher son soutien sur son profil.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Votre macaron est arrivé à expiration</string>
     <!-- Expired gift sheet top description text -->
@@ -7121,7 +7121,7 @@
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank">Saisissez vos coordonnées bancaires, votre nom et votre adresse e-mail. Stripe utilisera cette adresse e-mail pour vous tenir informé du statut de votre don. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Veuillez saisir vos coordonnées bancaires. Signal ne collecte ni ne sauvegarde vos informations personnelles. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Veuillez saisir vos coordonnées bancaires. Signal ne collecte pas et ne stocke pas vos informations personnelles. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">En savoir plus</string>
     <!-- Hint label for text entry box for name on bank account -->
@@ -7209,7 +7209,7 @@
 
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Vos données sont privées</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal ne collecte ni ne sauvegarde vos informations personnelles lorsque vous faites un don.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Lorsque vous faites un don, Signal ne collecte et ne stocke aucune de vos données personnelles.</string>
     <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Vos dons sont traités par le système de paiement Stripe. Nous n’avons pas accès et nous ne sauvegardons pas les informations que vous leur fournissez.</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal n’est pas en mesure d’associer votre don à votre compte Signal.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Merci pour votre aide !</string>
@@ -7250,7 +7250,7 @@
     <string name="SetUpYourUsername__learn_more">En savoir plus</string>
 
     <!-- Displayed as a title on a megaphone which prompts user to set up a username -->
-    <string name="PnpLaunchMegaphone_title">De nouvelles façons de rester en contact</string>
+    <string name="PnpLaunchMegaphone_title">Prendre contact autrement</string>
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_body">Protégez la confidentialité de votre numéro de téléphone, choisissez un nom d’utilisateur facultatif et découvrez les liens de conversation.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
@@ -7629,7 +7629,7 @@
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, learn more used in placeholder for body for dialog. -->
     <string name="MonthlyDonationCanceled__learn_more">En savoir plus</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, primary button to renew subscription with new data -->
-    <string name="MonthlyDonationCanceled__renew_button">Renouveler l’abonnement</string>
+    <string name="MonthlyDonationCanceled__renew_button">Renouveler le don mensuel</string>
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, second button to dismiss the dialog entirely -->
     <string name="MonthlyDonationCanceled__not_now_button">Plus tard</string>
 
@@ -8054,8 +8054,8 @@
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Préparation de la sauvegarde…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">Processing %1$s of %2$s message (%3$d%%)</item>
-        <item quantity="other">Processing %1$s of ~%2$s messages (%3$d%%)</item>
+        <item quantity="one">%1$s message traité sur %2$s (%3$d %%)</item>
+        <item quantity="other">%1$s messages traités sur ≃ %2$s (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8151,9 +8151,9 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Afficher de nouveau la clé</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your backup key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirmer la clé de sauvegarde</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the backup key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Saisissez la clé de sauvegarde que vous venez d\'enregistrer</string>
     <!-- Confirm your key text entry hint text -->
     <string name="MessageBackupsKeyVerifyScreen__backup_key">Clé de sauvegarde</string>
     <!-- Confirm your key text entry error text -->
@@ -8213,7 +8213,7 @@
     <!-- Action button label to cancel subscription and download later -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_later">Confirmer et télécharger plus tard</string>
     <!-- Action button label to keep current subscription -->
-    <string name="ConfirmBackupCancellationDialog__keep_subscription">Conserver l’abonnement</string>
+    <string name="ConfirmBackupCancellationDialog__keep_subscription">Conserver l\'abonnement</string>
 
     <!-- Accessible content description for the reminder view, describing the icon in the view. -->
     <string name="ReminderView_icon_content_description">Icône de rappel</string>
@@ -8221,7 +8221,7 @@
     <!-- Row title for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Vous avez accès à votre ancien téléphone</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_scan_qr">Utilisez votre ancien téléphone pour scanner l\'un des codes QR qui s\'affichent</string>
+    <string name="WelcomeFragment_restore_action_scan_qr">Scannez un code QR depuis votre compte Signal existant pour démarrer rapidement</string>
 
     <!-- Row title for restore/transfer without using a previous device -->
     <string name="WelcomeFragment_restore_action_i_dont_have_my_old_phone">Vous n\'avez pas accès à votre ancien téléphone</string>
@@ -8289,14 +8289,14 @@
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ignorer la restauration</string>
     <!-- Dialog title text when encountering backup restore network error -->
-    <string name="EnterBackupKey_cant_restore_backup">Can\'t restore backup</string>
+    <string name="EnterBackupKey_cant_restore_backup">Impossible de restaurer la sauvegarde</string>
     <!-- Dialog body text when encountering backup restore network error -->
-    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Your backup can\'t be restored right now. Check your internet connection and try again. </string>
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Signal ne peut pas restaurer votre sauvegarde pour le moment. Vérifiez votre connexion Internet et réessayez. </string>
     <!-- Dialog button text to contact support on network error -->
     <string name="EnterBackupKey_contact_support">Contacter l\'assistance</string>
 
     <!-- Email subject when contacting support on a restore backup network issue -->
-    <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
+    <string name="EnterBackupKey_network_failure_support_email">Erreur réseau – Restauration de sauvegarde Signal pour Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
