@@ -608,7 +608,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       setAdapter(defaultAdapter);
       mainToolbarViewModel.setToolbarMode(MainToolbarMode.FULL);
       chatListBackHandler.setEnabled(false);
-      return true;
     }
   }
 
