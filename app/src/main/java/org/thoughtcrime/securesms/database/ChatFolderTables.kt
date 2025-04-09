@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
+import java.util.concurrent.TimeUnit
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 
 /**
@@ -48,6 +49,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
 
   companion object {
     private val TAG = Log.tag(ChatFolderTable::class.java)
+    private val DELETED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
 
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(ChatFolderTable.CREATE_TABLE, ChatFolderMembershipTable.CREATE_TABLE)
@@ -542,6 +544,36 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
    */
   fun updateChatFolderFromStorageSync(record: SignalChatFolderRecord) {
     updateFolder(remoteChatFolderRecordToLocal(record))
+  }
+
+  /**
+   * Removes storageIds from folders that have been deleted for [DELETED_LIFESPAN].
+   */
+  fun removeStorageIdsFromOldDeletedFolders(now: Long): Int {
+    return writableDatabase
+      .update(ChatFolderTable.TABLE_NAME)
+      .values(ChatFolderTable.STORAGE_SERVICE_ID to null)
+      .where("${ChatFolderTable.STORAGE_SERVICE_ID} NOT NULL AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} < ?", now - DELETED_LIFESPAN)
+      .run()
+  }
+
+  /**
+   * Removes storageIds of folders from the given collection because those folders are local only and deleted
+   */
+  fun removeStorageIdsFromLocalOnlyDeletedFolders(storageIds: Collection<StorageId>): Int {
+    var updated = 0
+
+    SqlUtil.buildCollectionQuery(ChatFolderTable.STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND")
+      .forEach {
+        updated += writableDatabase.update(
+          ChatFolderTable.TABLE_NAME,
+          contentValuesOf(ChatFolderTable.STORAGE_SERVICE_ID to null),
+          it.where,
+          it.whereArgs
+        )
+      }
+
+    return updated
   }
 
   /**

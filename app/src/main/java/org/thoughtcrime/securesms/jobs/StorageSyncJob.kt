@@ -257,10 +257,11 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       Log.i(TAG, "[Remote Sync] Pre-Merge ID Difference :: $idDifference")
 
       if (idDifference.localOnlyIds.isNotEmpty()) {
-        val updated = SignalDatabase.recipients.removeStorageIdsFromLocalOnlyUnregisteredRecipients(idDifference.localOnlyIds)
+        val updatedRecipients = SignalDatabase.recipients.removeStorageIdsFromLocalOnlyUnregisteredRecipients(idDifference.localOnlyIds)
+        val updatedFolders = SignalDatabase.chatFolders.removeStorageIdsFromLocalOnlyDeletedFolders(idDifference.localOnlyIds)
 
-        if (updated > 0) {
-          Log.w(TAG, "Found $updated records that were deleted remotely but only marked unregistered locally. Removed those from local store. Recalculating diff.")
+        if (updatedRecipients > 0 || updatedFolders > 0) {
+          Log.w(TAG, "Found $updatedRecipients recipients and $updatedFolders folders that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
 
           localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
           idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
@@ -333,6 +334,11 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis())
       if (removedUnregistered > 0) {
         Log.i(TAG, "Removed $removedUnregistered recipients from storage service that have been unregistered for longer than 30 days.")
+      }
+
+      val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
+      if (removedDeletedFolders > 0) {
+        Log.i(TAG, "Removed $removedDeletedFolders folders from storage service that have been deleted for longer than 30 days.")
       }
 
       val localStorageIds = getAllLocalStorageIds(self)

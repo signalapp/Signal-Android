@@ -285,6 +285,12 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
+      record.proto.chatFolder != null -> {
+        Column {
+          Text("Chat Folder", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
       else -> {
         Column {
           Text("Unknown!")

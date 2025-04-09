@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
+import org.signal.core.util.Base64
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.database.SQLiteDatabase
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import java.util.UUID
 
 /**
@@ -30,7 +32,7 @@ object V270_FixChatFolderColumnsForStorageSync : SignalDatabaseMigration {
     db.rawQuery(
       """
       UPDATE chat_folder
-      SET chat_folder_id = '${UUID.randomUUID()}', position = $newPosition
+      SET chat_folder_id = '${UUID.randomUUID()}', position = $newPosition, storage_service_id = '${Base64.encodeWithPadding(StorageSyncHelper.generateKey())}'
       WHERE _id = $id
       """
     )
