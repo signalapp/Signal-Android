@@ -1371,7 +1371,7 @@ class ConversationFragment :
       binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left_24)
       binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
       binding.toolbar.setNavigationOnClickListener {
-        requireActivity().finishAfterTransition()
+        requireActivity().onBackPressedDispatcher.onBackPressed()
       }
     } else {
       binding.toolbar.navigationIcon = null
