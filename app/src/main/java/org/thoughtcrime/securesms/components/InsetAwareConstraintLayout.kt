@@ -133,10 +133,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
     if (keyboardInsets.bottom > 0) {
       setKeyboardHeight(keyboardInsets.bottom)
-      if (!keyboardAnimator.animating) {
-        keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
-      } else {
-        keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+      if (!overridingKeyboard) {
+        if (!keyboardAnimator.animating) {
+          keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
+        } else {
+          keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+        }
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
