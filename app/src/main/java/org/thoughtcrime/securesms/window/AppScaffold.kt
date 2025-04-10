@@ -84,11 +84,20 @@ enum class WindowSizeClass(
       return getSizeClassForOrientationAndSystemSizeClass(orientation, windowSizeClass)
     }
 
+    fun isForcedCompact(): Boolean {
+      return !RemoteConfig.largeScreenUi
+    }
+
     @Composable
-    fun rememberWindowSizeClass(): WindowSizeClass {
+    fun checkForcedCompact(): Boolean {
+      return !LocalInspectionMode.current && isForcedCompact()
+    }
+
+    @Composable
+    fun rememberWindowSizeClass(forceCompact: Boolean = checkForcedCompact()): WindowSizeClass {
       val orientation = LocalConfiguration.current.orientation
 
-      if (!LocalInspectionMode.current && !RemoteConfig.largeScreenUi) {
+      if (forceCompact) {
         return getCompactSizeClassForOrientation(orientation)
       }
 
@@ -149,7 +158,19 @@ fun AppScaffold(
   bottomNavContent: @Composable () -> Unit = {},
   listContent: @Composable () -> Unit
 ) {
+  val isForcedCompact = WindowSizeClass.checkForcedCompact()
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
+  if (isForcedCompact) {
+    ListAndNavigation(
+      listContent = listContent,
+      navRailContent = navRailContent,
+      bottomNavContent = bottomNavContent,
+      windowSizeClass = windowSizeClass
+    )
+
+    return
+  }
 
   if (windowSizeClass.isMedium()) {
     Row {
