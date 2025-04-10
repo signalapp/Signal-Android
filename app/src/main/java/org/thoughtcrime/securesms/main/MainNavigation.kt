@@ -12,9 +12,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -101,13 +102,12 @@ fun MainNavigationBar(
   state: MainNavigationState,
   onDestinationSelected: (MainNavigationDestination) -> Unit
 ) {
-  Box(modifier = Modifier.background(color = SignalTheme.colors.colorSurface2)) {
+  Column(modifier = Modifier.background(color = SignalTheme.colors.colorSurface2)) {
     NavigationBar(
       containerColor = SignalTheme.colors.colorSurface2,
       contentColor = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier
-        .navigationBarsPadding()
-        .height(if (state.compact) 48.dp else 80.dp)
+      modifier = Modifier.height(if (state.compact) 48.dp else 80.dp),
+      windowInsets = WindowInsets(0, 0, 0, 0)
     ) {
       val entries = remember(state.isStoriesFeatureEnabled) {
         if (state.isStoriesFeatureEnabled) {
@@ -144,6 +144,8 @@ fun MainNavigationBar(
         )
       }
     }
+
+    NavigationBarSpacerCompat()
   }
 }
 

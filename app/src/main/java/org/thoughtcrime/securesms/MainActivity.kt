@@ -10,7 +10,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -177,15 +176,13 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     AppStartup.getInstance().onCriticalRenderEventStart()
 
-    if (Build.VERSION.SDK_INT > 21) {
-      enableEdgeToEdge(
-        navigationBarStyle = if (DynamicTheme.isDarkTheme(this)) {
-          SystemBarStyle.dark(0)
-        } else {
-          SystemBarStyle.light(0, 0)
-        }
-      )
-    }
+    enableEdgeToEdge(
+      navigationBarStyle = if (DynamicTheme.isDarkTheme(this)) {
+        SystemBarStyle.dark(0)
+      } else {
+        SystemBarStyle.light(0, 0)
+      }
+    )
 
     conversationListTabsViewModel
 
