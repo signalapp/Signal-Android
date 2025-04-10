@@ -370,6 +370,7 @@ android {
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
       buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\"")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
+      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
 
     create("prod") {
