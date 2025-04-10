@@ -705,6 +705,11 @@ public class SignalServiceMessageSender {
     Content content;
     boolean urgent = false;
 
+    if (!aciStore.isMultiDevice()) {
+      Log.w(TAG, "We do not have any linked devices. Skipping.");
+      return SendMessageResult.success(localAddress, Collections.emptyList(), false, false, 0, Optional.empty());
+    }
+
     if (message.getContacts().isPresent()) {
       content = createMultiDeviceContactsContent(message.getContacts().get().getContactsStream().asStream(), message.getContacts().get().isComplete());
     } else if (message.getRead().isPresent()) {
