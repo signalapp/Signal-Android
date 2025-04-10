@@ -2176,6 +2176,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
     AppDependencies.databaseObserver.notifyMessageInsertObservers(threadId, MessageId(messageId))
     AppDependencies.databaseObserver.notifyScheduledMessageObservers(threadId)
+    notifyConversationListeners(threadId)
 
     return rowsUpdated > 0
   }
