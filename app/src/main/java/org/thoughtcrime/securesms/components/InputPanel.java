@@ -784,11 +784,15 @@ public class InputPanel extends ConstraintLayout
   }
 
   private void updateVisibility() {
-    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState) {
+    if (isHidden()) {
       setVisibility(GONE);
     } else {
       setVisibility(VISIBLE);
     }
+  }
+
+  public boolean isHidden() {
+    return hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState;
   }
 
   public @Nullable MessageRecord getEditMessage() {

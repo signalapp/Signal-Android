@@ -1482,7 +1482,9 @@ class ConversationFragment :
       )
     )
 
-    binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), navColor))
+    if (!inputPanel.isHidden) {
+      binding.navBar.setBackgroundColor(ContextCompat.getColor(requireContext(), navColor))
+    }
   }
 
   private fun presentChatColors(chatColors: ChatColors) {
