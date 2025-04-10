@@ -18,11 +18,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -39,6 +40,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -302,18 +304,26 @@ private fun PrimaryToolbar(
       Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-          .padding(start = 28.dp, end = 26.dp)
-          .fillMaxHeight()
+          .padding(start = 20.dp, end = 16.dp)
+          .size(48.dp)
       ) {
         AvatarImage(
           recipient = state.self,
           modifier = Modifier
             .clip(CircleShape)
+            .size(28.dp)
+        )
+
+        val interactionSource = remember { MutableInteractionSource() }
+        Box(
+          modifier = Modifier
+            .fillMaxSize()
             .clickable(
               onClick = callback::onSettingsClick,
-              onClickLabel = stringResource(R.string.conversation_list_settings_shortcut)
+              onClickLabel = stringResource(R.string.conversation_list_settings_shortcut),
+              interactionSource = interactionSource,
+              indication = ripple(radius = 14.dp)
             )
-            .size(28.dp)
         )
 
         BadgeImageSmall(
@@ -698,7 +708,9 @@ private fun SearchToolbarPreview() {
 private fun ArchiveToolbarPreview() {
   Previews.Preview {
     ArchiveToolbar(
-      state = MainToolbarState(),
+      state = MainToolbarState(
+        self = Recipient(isResolving = false)
+      ),
       callback = MainToolbarCallback.Empty
     )
   }

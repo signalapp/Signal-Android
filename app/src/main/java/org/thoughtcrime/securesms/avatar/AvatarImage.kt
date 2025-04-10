@@ -28,14 +28,13 @@ fun AvatarImage(
   modifier: Modifier = Modifier,
   useProfile: Boolean = true
 ) {
-  val context = LocalContext.current
-
   if (LocalInspectionMode.current) {
     Spacer(
       modifier = modifier
         .background(color = Color.Red, shape = CircleShape)
     )
   } else {
+    val context = LocalContext.current
     val state = recipient.live().liveData.map { AvatarImageState(NameUtil.getAbbreviation(it.getDisplayName(context)), it, AvatarHelper.getAvatarFileDetails(context, it.id)) }.observeAsState().value ?: return
 
     AndroidView(
