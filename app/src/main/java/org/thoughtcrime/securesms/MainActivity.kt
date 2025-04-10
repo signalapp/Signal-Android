@@ -10,11 +10,13 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
@@ -173,10 +175,18 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   @OptIn(ExperimentalMaterial3AdaptiveApi::class)
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    enableEdgeToEdge()
-
     AppStartup.getInstance().onCriticalRenderEventStart()
-    super.onCreate(savedInstanceState, ready)
+
+    if (Build.VERSION.SDK_INT > 21) {
+      enableEdgeToEdge(
+        navigationBarStyle = if (DynamicTheme.isDarkTheme(this)) {
+          SystemBarStyle.dark(0)
+        } else {
+          SystemBarStyle.light(0, 0)
+        }
+      )
+    }
+
     conversationListTabsViewModel
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
