@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.view.ActionMode;
 import androidx.compose.material3.SnackbarDuration;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
@@ -75,6 +77,13 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     foldersList = view.findViewById(R.id.chat_folder_list);
 
     foldersList.setVisibility(View.GONE);
+
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+      @Override
+      public void handleOnBackPressed() {
+        NavHostFragment.findNavController(ConversationListArchiveFragment.this).popBackStack();
+      }
+    });
   }
 
   @Override
