@@ -97,7 +97,7 @@ class CreateFoldersFragment : ComposeFragment() {
     val isNewFolder = state.originalFolder.folderRecord.id == -1L
 
     LaunchedEffect(Unit) {
-      if (state.originalFolder.folderRecord.id == state.currentFolder.folderRecord.id) {
+      if (viewModel.shouldSetInitialFolder()) {
         viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
         viewModel.addThreadsToFolder(arguments?.getLongArray(KEY_THREAD_IDS))
       }

@@ -356,4 +356,14 @@ class ChatFoldersViewModel : ViewModel() {
   fun hasEmptyName(): Boolean {
     return state.value.currentFolder.folderRecord.name.isEmpty()
   }
+
+  fun shouldSetInitialFolder(): Boolean {
+    val original = state.value.originalFolder
+    val current = state.value.currentFolder
+    return original.folderRecord.id == current.folderRecord.id &&
+      original.folderRecord.showIndividualChats == current.folderRecord.showIndividualChats &&
+      original.folderRecord.showGroupChats == current.folderRecord.showGroupChats &&
+      original.includedRecipients == current.includedRecipients &&
+      original.excludedRecipients == current.excludedRecipients
+  }
 }
