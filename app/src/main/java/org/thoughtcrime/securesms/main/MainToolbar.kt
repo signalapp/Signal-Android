@@ -245,7 +245,6 @@ private fun SearchToolbar(
         Text(text = stringResource(state.searchHint))
       },
       modifier = modifier
-        .systemBarsPadding()
         .background(color = state.toolbarColor ?: MaterialTheme.colorScheme.surface)
         .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
         .padding(horizontal = 16.dp, vertical = 10.dp)
