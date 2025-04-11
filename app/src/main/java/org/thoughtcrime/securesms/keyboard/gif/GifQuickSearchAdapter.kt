@@ -19,6 +19,7 @@ class GifQuickSearchAdapter(clickListener: (GifQuickSearchOption) -> Unit) : Map
     override fun bind(model: GifQuickSearch) {
       image.setImageResource(model.gifQuickSearchOption.image)
       image.isSelected = model.selected
+      image.contentDescription = itemView.context.getString(model.gifQuickSearchOption.categoryLabel)
       imageSelected.isSelected = model.selected
       itemView.setOnClickListener { listener(model.gifQuickSearchOption) }
     }
