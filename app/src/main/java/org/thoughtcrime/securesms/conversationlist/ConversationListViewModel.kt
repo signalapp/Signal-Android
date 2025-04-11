@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
@@ -261,6 +262,7 @@ class ConversationListViewModel(
   fun removeChatFromFolder(threadId: Long) {
     viewModelScope.launch(Dispatchers.IO) {
       SignalDatabase.chatFolders.removeFromFolder(currentFolder.id, threadId)
+      scheduleChatFolderSync(currentFolder.id)
     }
   }
 
@@ -271,7 +273,13 @@ class ConversationListViewModel(
         includedChats?.contains(threadId) ?: false
       }
       SignalDatabase.chatFolders.addToFolder(folderId, threadIdsNotIncluded)
+      scheduleChatFolderSync(folderId)
     }
+  }
+
+  private fun scheduleChatFolderSync(id: Long) {
+    SignalDatabase.chatFolders.markNeedsSync(id)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 
   private data class ConversationListState(
