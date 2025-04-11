@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
@@ -63,6 +64,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private val displayMetrics = DisplayMetrics()
   private var overridingKeyboard: Boolean = false
   private var previousKeyboardHeight: Int = 0
+  private var otherKeyboardAnimator: ValueAnimator? = null
 
   val isKeyboardShowing: Boolean
     get() = previousKeyboardHeight > 0
@@ -123,6 +125,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
         keyboardGuideline?.setGuidelineEnd(windowInsets.bottom)
+        // animateKeyboardGuidelineTo(windowInsets.bottom)
       } else {
         keyboardAnimator.endingGuidelineEnd = windowInsets.bottom
       }
@@ -143,7 +146,8 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun overrideKeyboardGuidelineWithPreviousHeight() {
     overridingKeyboard = true
-    keyboardGuideline?.setGuidelineEnd(getKeyboardHeight())
+    // keyboardGuideline?.setGuidelineEnd(getKeyboardHeight())
+    animateKeyboardGuidelineTo(getKeyboardHeight())
   }
 
   protected fun clearKeyboardGuidelineOverride() {
@@ -152,7 +156,28 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun resetKeyboardGuideline() {
     clearKeyboardGuidelineOverride()
-    keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
+    // keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
+    animateKeyboardGuidelineTo(navigationBarGuideline.guidelineEnd)
+  }
+
+  private fun animateKeyboardGuidelineTo(target: Int) {
+    if (keyboardGuideline != null) {
+      otherKeyboardAnimator?.end()
+      otherKeyboardAnimator = null
+    }
+    otherKeyboardAnimator = ValueAnimator.ofInt(target, target, keyboardGuideline.guidelineEnd, target, keyboardGuideline.guidelineEnd, target).apply {
+      duration = 10_000
+      addUpdateListener { animation ->
+        (animation.animatedValue as? Int)?.let { currentValue ->
+          keyboardGuideline?.setGuidelineEnd(currentValue)
+          forceLayout()
+          requestLayout()
+          invalidate()
+          forceLayout()
+        }
+      }
+      start()
+    }
   }
 
   private fun getKeyboardHeight(): Int {

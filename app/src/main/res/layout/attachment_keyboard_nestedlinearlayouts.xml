@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:viewBindingIgnore="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/attachment_keyboard_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/signal_background_primary"
+        tools:layout_height="200dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/attachment_keyboard_media_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingStart="12dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/attachment_keyboard_manage_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="104dp"
+                android:minHeight="36dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="16dp"
+                android:padding="8dp"
+                app:iconPadding="0dp"
+                style="@style/Signal.Widget.Button.Large.Tonal"
+                android:text="@string/AttachmentKeyboard_manage"
+                android:maxLines="1"
+                android:visibility="gone"
+                app:icon="@drawable/symbol_settings_android_24" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/attachment_keyboard_permission_text"
+            style="@style/Signal.Text.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:text="@string/AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos"
+            android:textColor="@color/attachment_keyboard_button_foreground"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/attachment_keyboard_permission_button"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            app:backgroundTint="@color/signal_colorPrimaryContainer"
+            android:textColor="@color/signal_colorOnPrimaryContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/AttachmentKeyboard_allow_access"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attachment_keyboard_button_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clipChildren="false"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+</merge>
