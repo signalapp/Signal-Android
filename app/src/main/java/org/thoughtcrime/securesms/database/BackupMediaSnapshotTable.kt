@@ -156,6 +156,10 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
    * Given a list of media objects, find the ones that we have no knowledge of in our local store.
    */
   fun getMediaObjectsWithNonMatchingCdn(objects: List<ArchivedMediaObject>): List<CdnMismatchResult> {
+    if (objects.isEmpty()) {
+      return emptyList()
+    }
+
     val inputValues = objects.joinToString(separator = ", ") { "('${it.mediaId}', ${it.cdn})" }
     return readableDatabase.rawQuery(
       """
