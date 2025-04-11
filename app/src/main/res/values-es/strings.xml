@@ -1787,9 +1787,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Videollamada perdida</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">Llamada rechazada</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">Videollamada rechazada</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Llamada perdida mientras el perfil de notificación estaba activo</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2579,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$s grupo en común</item>
+        <item quantity="other">%1$s grupos en común</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2883,7 +2883,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloqueado</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Bloqueado</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Actualización de Signal</string>
@@ -3733,10 +3733,10 @@
     <string name="arrays__use_default">Usar predeterminado</string>
     <string name="arrays__use_custom">Usar personalizado</string>
 
-    <string name="arrays__mute_for_one_hour">Durante 1 hora</string>
-    <string name="arrays__mute_for_eight_hours">Durante 8 horas</string>
-    <string name="arrays__mute_for_one_day">Durante 1 día</string>
-    <string name="arrays__mute_for_seven_days">Durante 7 días</string>
+    <string name="arrays__mute_for_one_hour">1 hora</string>
+    <string name="arrays__mute_for_eight_hours">8 horas</string>
+    <string name="arrays__mute_for_one_day">1 día</string>
+    <string name="arrays__mute_for_seven_days">7 días</string>
     <string name="arrays__always">Siempre</string>
 
     <string name="arrays__settings_default">Ajustes predeterminados</string>
@@ -4048,7 +4048,7 @@
     <string name="PaymentsHomeFragment__details">Detalles</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate</string> -->
     <!-- Displayed as a description in a dialog when the user tries to activate payments -->
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoin y su cartera. Puede que te encuentres con problemas, y los pagos o fondos que pierdas no podrán ser recuperados. </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send_and">Puedes usar Signal para enviar y recibir MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoin y su cartera. Advertencia: En caso de producirse algún problema, podrías perder pagos o saldos de forma irreversible. </string>
     <string name="PaymentsHomeFragment__activate">Activar</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Términos del uso de MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Los pagos en Signal ya no están disponibles. Podrás seguir transfiriendo tus fondos a una plataforma de intercambio de monedas, pero ya no podrás recibir ni enviar pagos, ni añadir fondos.</string>
@@ -5637,7 +5637,7 @@
     <string name="KeyboardPagerFragment_stickers">Stickers</string>
     <string name="KeyboardPagerFragment_backspace">Atrás</string>
     <string name="KeyboardPagerFragment_gifs">GIF</string>
-    <string name="KeyboardPagerFragment_search_emoji">Buscar emoji</string>
+    <string name="KeyboardPagerFragment_search_emoji">Buscar emojis</string>
     <string name="KeyboardPagerfragment_back_to_emoji">Volver a emojis</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Borrar término de búsqueda</string>
     <string name="KeyboardPagerFragment_search_giphy">Buscar en GIPHY</string>

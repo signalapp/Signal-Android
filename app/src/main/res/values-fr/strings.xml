@@ -1787,9 +1787,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Appel vidéo manqué</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">Appel vocal rejeté</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">Appel vidéo rejeté</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Appel vocal manqué lorsque le profil de notification était activé</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2579,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$s groupe en commun</item>
+        <item quantity="other">%1$s groupes en commun</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2883,7 +2883,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloqué</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Bloqué</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Mise à jour de Signal</string>
@@ -6124,7 +6124,7 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Échec de l\'envoi du don</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Votre don a été traité, mais Signal n\'a pas pu envoyer le message de confirmation. Veuillez contacter l’assistance.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Votre don a bien été traité, mais impossible d\'envoyer à votre ami le message l\'informant de ce don. Merci de bien vouloir contacter l\'assistance.</string>
     <string name="DonationsErrors__your_badge_could_not">Nous n\'avons pas pu ajouter votre macaron à votre compte, mais vous avez peut-être été facturé. Merci de contacter l\'assistance.</string>
     <string name="DonationsErrors__your_payment_is_still">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
@@ -6144,7 +6144,7 @@
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Don offert à %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s a effectué un don de votre part</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s a fait un don à Signal pour vous</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Récupérer</string>
     <!-- Gift badge view action label -->
@@ -6212,9 +6212,9 @@
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
     <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Une erreur s’est produite lors du traitement de ce paiement. Veuillez réessayer.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Les coordonnées bancaires renseignées n’ont pas été reconnues. Veuillez contacter votre banque pour plus d’informations.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Impossible de traiter les coordonnées bancaires saisies. Veuillez contacter votre banque pour en savoir plus.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier vos informations bancaires et réessayer. Si le problème persiste, contactez votre banque.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier vos coordonnées bancaires et réessayer. Si le problème persiste, nous vous invitons à contacter votre banque.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Nommer ce profil</string>
@@ -7015,15 +7015,15 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Les virements sont généralement traités en 1 à 14 jours ouvrés. Veuillez attendre que ce paiement soit effectif avant d’effectuer un autre don.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de mettre à jour votre don.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de modifier votre don.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant d’effectuer un autre don.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de faire un autre don.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Votre don iDEAL est en cours de traitement. Consultez votre application bancaire pour approuver votre paiement avant d\'effectuer un nouveau don.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Le montant du don est trop élevé</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Vous pouvez envoyer jusqu’à %1$s par virement bancaire. Veuillez saisir un autre montant ou choisir une méthode de paiement différente.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Vous pouvez envoyer jusqu\'à %1$s par virement bancaire. Veuillez saisir un autre montant ou choisir un autre mode de paiement.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Don mensuel</string>
@@ -7109,7 +7109,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">E-mail</string>
     <!-- Text label for button to show user how to find their IBAN -->
-    <string name="BankTransferDetailsFragment__find_account_info">Trouver les coordonnées bancaires</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Trouver vos informations bancaires</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Faire un don de %1$s/mois</string>
     <!-- Donate button label for one-time -->
@@ -7154,7 +7154,7 @@
     <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Choisissez votre banque</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Trouver les détails relatifs à votre compte</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">Trouver vos coordonnées bancaires</string>
     <!-- Body of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__look_for_your_iban_at">Votre numéro IBAN se trouve généralement en haut de vos relevés bancaires. Les numéros IBAN contiennent jusqu’à 34 caractères. Le nom que vous saisissez doit correspondre au nom complet associé à votre compte bancaire. Veuillez contacter votre banque pour plus d’informations.</string>
 
@@ -7657,7 +7657,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numéro de téléphone</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Saisissez un nom d’utilisateur composé d’un nom, d’un point et d’une série de chiffres.</string>
+    <string name="FindByActivity__enter_username_description">Saisissez un nom d\'utilisateur suivi d\'un point et d\'une série de chiffres.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Suivant</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -7671,7 +7671,7 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nom d’utilisateur introuvable</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s n’est pas un nom d’utilisateur valide. Le nom d’utilisateur complet doit comporter un point suivi d’une série de chiffres associés.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s n\'est pas un nom d\'utilisateur valide. Le nom d\'utilisateur complet doit comporter un nom suivi d\'un point et d\'une série de chiffres.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">Le numéro %1$s est incorrect. Veuillez réessayer avec un numéro de téléphone valide.</string>
     <!-- Dialog body for not found username -->

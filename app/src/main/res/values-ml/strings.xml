@@ -1787,9 +1787,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">മിസ്‌ഡ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">നിരസിച്ച വോയിസ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">നിരസിച്ച വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വോയ്സ് കോൾ മിസ്സ് ആയി</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2579,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">സാമാന്യമായി %1$s ഗ്രൂപ്പ് ഉണ്ട്</item>
+        <item quantity="other">സാമാന്യമായി %1$s ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2883,7 +2883,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ബ്ലോക്ക് ചെയ്തിരിക്കുന്നു</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">ബ്ലോക്ക് ചെയ്തിരിക്കുന്നു</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal അപ്‌ഡേറ്റ്</string>

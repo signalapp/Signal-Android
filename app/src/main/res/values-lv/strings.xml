@@ -1837,9 +1837,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Neatbildēts videozvans</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">Noraidīts balss zvans</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">Noraidīts video zvans</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Neatbildēts balss zvans, kamēr bija aktivizēts paziņojumu profils</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2662,9 +2662,9 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="zero">%1$s groups in common</item>
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="zero">%1$s kopīga grupa</item>
+        <item quantity="one">%1$s kopīga grupa</item>
+        <item quantity="other">%1$s kopīgas grupas</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2972,7 +2972,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloķēti</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Bloķēti</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal atjauninājums</string>

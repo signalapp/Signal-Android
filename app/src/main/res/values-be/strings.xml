@@ -2745,10 +2745,10 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="few">%1$s groups in common</item>
-        <item quantity="many">%1$s groups in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$s агульная група</item>
+        <item quantity="few">%1$s агульныя групы</item>
+        <item quantity="many">%1$s агульных груп</item>
+        <item quantity="other">%1$s агульных груп</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -3061,7 +3061,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Заблакаваны</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Заблакаваны</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Абнаўленне Signal</string>

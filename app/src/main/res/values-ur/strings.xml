@@ -1787,9 +1787,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">مسڈ ویڈیو کال</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">مسترد کردہ وائس کال</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">مسترد کردہ ویڈیو کال</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مسڈ وائس کال</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2579,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$sمشترکہ گروپ</item>
+        <item quantity="other">%1$sمشترکہ گروپس</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2883,7 +2883,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">بلاک کر دیا گیا</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">بلاک کر دیا گیا</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal اپ ڈیٹ</string>
@@ -4946,8 +4946,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">کوئی دوسرا گروہ مشترکہ نہیں۔</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">مشترکہ طور پر کوئی گروپ نہیں۔</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">%1$d دیگر مشترکہ گروپ</item>
+        <item quantity="other">%1$d دیگر مشترکہ گروپس</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$dمشترکہ گروپ</item>
