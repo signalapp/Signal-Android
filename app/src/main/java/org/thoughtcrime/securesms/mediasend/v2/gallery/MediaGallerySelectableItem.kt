@@ -19,6 +19,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
+import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -40,12 +41,13 @@ object MediaGallerySelectableItem {
 
   fun registerAdapter(
     mappingAdapter: MappingAdapter,
+    mediaGalleryGridItemTouchListener: MediaGalleryGridItemTouchListener,
     onMediaFolderClicked: OnMediaFolderClicked,
     onMediaClicked: OnMediaClicked,
     isMultiselectEnabled: Boolean
   ) {
     mappingAdapter.registerFactory(FolderModel::class.java, LayoutFactory({ FolderViewHolder(it, onMediaFolderClicked) }, R.layout.v2_media_gallery_folder_item))
-    mappingAdapter.registerFactory(FileModel::class.java, LayoutFactory({ FileViewHolder(it, onMediaClicked) }, if (isMultiselectEnabled) R.layout.v2_media_gallery_item else R.layout.v2_media_gallery_item_no_check))
+    mappingAdapter.registerFactory(FileModel::class.java, LayoutFactory({ FileViewHolder(it, onMediaClicked, mediaGalleryGridItemTouchListener) }, if (isMultiselectEnabled) R.layout.v2_media_gallery_item else R.layout.v2_media_gallery_item_no_check))
     mappingAdapter.registerFactory(PlaceholderModel::class.java, LayoutFactory({ PlaceholderViewHolder(it) }, R.layout.v2_media_gallery_placeholder_item))
   }
 
@@ -116,7 +118,7 @@ object MediaGallerySelectableItem {
     }
   }
 
-  class FileViewHolder(itemView: View, private val onMediaClicked: OnMediaClicked) : BaseViewHolder<FileModel>(itemView) {
+  class FileViewHolder(itemView: View, private val onMediaClicked: OnMediaClicked, private val mediaGalleryGridItemTouchListener: MediaGalleryGridItemTouchListener) : BaseViewHolder<FileModel>(itemView) {
 
     private val selectedPadding = DimensionUnit.DP.toPixels(12f)
     private val selectedRadius = DimensionUnit.DP.toPixels(12f)
@@ -126,6 +128,10 @@ object MediaGallerySelectableItem {
       checkView?.visible = model.isSelected
       checkView?.text = "${model.selectionOneBasedIndex}"
       itemView.setOnClickListener { onMediaClicked(model.media, model.isSelected) }
+      itemView.setOnLongClickListener {
+        mediaGalleryGridItemTouchListener.startDragSelection(bindingAdapterPosition)
+        true
+      }
       playOverlay?.visible = MediaUtil.isVideo(model.media.contentType) && !model.media.isVideoGif
       title?.visible = false
 
