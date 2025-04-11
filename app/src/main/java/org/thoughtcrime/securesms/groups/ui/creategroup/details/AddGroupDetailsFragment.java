@@ -262,11 +262,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void setCreateEnabled(boolean isEnabled) {
-    if (create.isClickable() == isEnabled) {
-      return;
-    }
-
     create.setClickable(isEnabled);
+    create.setEnabled(isEnabled);
   }
 
   private void showAvatarPicker() {
