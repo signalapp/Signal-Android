@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.net.ProxyInfo
 import android.os.IBinder
 import androidx.annotation.VisibleForTesting
 import androidx.core.app.NotificationCompat
@@ -86,16 +87,29 @@ class IncomingMessageObserver(private val context: Application, private val auth
 
   private val lock: ReentrantLock = ReentrantLock()
   private val connectionNecessarySemaphore = Semaphore(0)
-  private val networkConnectionListener = NetworkConnectionListener(context) { isNetworkUnavailable ->
-    lock.withLock {
-      AppDependencies.libsignalNetwork.onNetworkChange()
-      if (isNetworkUnavailable()) {
-        Log.w(TAG, "Lost network connection. Resetting the drained state.")
-        decryptionDrained = false
+  private var previousProxyInfo: ProxyInfo? = null
+  private val networkConnectionListener = NetworkConnectionListener(
+    context,
+    { isNetworkUnavailable ->
+      lock.withLock {
+        AppDependencies.libsignalNetwork.onNetworkChange()
+        if (isNetworkUnavailable()) {
+          Log.w(TAG, "Lost network connection. Resetting the drained state.")
+          decryptionDrained = false
+        }
+        connectionNecessarySemaphore.release()
       }
-      connectionNecessarySemaphore.release()
+    },
+    { proxyInfo ->
+      if (proxyInfo != previousProxyInfo) {
+        val networkReset = AppDependencies.onSystemHttpProxyChange(proxyInfo?.host, proxyInfo?.port)
+        if (networkReset) {
+          Log.i(TAG, "System proxy configuration changed, network reset.")
+        }
+      }
+      previousProxyInfo = proxyInfo
     }
-  }
+  )
 
   private val messageContentProcessor = MessageContentProcessor(context)
 

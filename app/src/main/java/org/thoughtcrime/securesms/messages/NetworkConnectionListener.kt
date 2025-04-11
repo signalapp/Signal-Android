@@ -10,7 +10,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.net.LinkProperties
 import android.net.Network
+import android.net.ProxyInfo
 import android.os.Build
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
@@ -24,7 +26,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil
  * API 28+ only runs on lost networks, so it provides a conditional that's always true because that is guaranteed by the call site.
  * Earlier versions use [NetworkConstraint.isMet] to query the current network state upon receiving the broadcast.
  */
-class NetworkConnectionListener(private val context: Context, private val onNetworkLost: (() -> Boolean) -> Unit) {
+class NetworkConnectionListener(private val context: Context, private val onNetworkLost: (() -> Boolean) -> Unit, private val onProxySettingsChanged: ((ProxyInfo?) -> Unit)) {
   companion object {
     private val TAG = Log.tag(NetworkConnectionListener::class.java)
   }
@@ -54,6 +56,12 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
       super.onLost(network)
       Log.d(TAG, "ConnectivityManager.NetworkCallback onLost()")
       onNetworkLost { true }
+    }
+
+    override fun onLinkPropertiesChanged(network: Network, linkProperties: LinkProperties) {
+      super.onLinkPropertiesChanged(network, linkProperties)
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onLinkPropertiesChanged()")
+      onProxySettingsChanged(linkProperties.httpProxy)
     }
   }
 

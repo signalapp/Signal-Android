@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import org.signal.core.util.billing.BillingApi
 import org.signal.core.util.concurrent.DeadlockDetector
 import org.signal.core.util.concurrent.LatestValueObservable
+import org.signal.core.util.orNull
 import org.signal.core.util.resettableLazy
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.zkgroup.profiles.ClientZkProfileOperations
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.components.TypingStatusSender
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceDataStoreImpl
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache
+import org.thoughtcrime.securesms.dependencies.AppDependencies.authWebSocket
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
@@ -376,6 +378,16 @@ object AppDependencies {
   @JvmStatic
   fun startNetwork() {
     networkModule.openConnections()
+  }
+
+  fun onSystemHttpProxyChange(host: String?, port: Int?): Boolean {
+    val currentSystemProxy = signalServiceNetworkAccess.getConfiguration().systemHttpProxy.orNull()
+    return if (currentSystemProxy?.host != host || currentSystemProxy?.port != port) {
+      resetNetwork()
+      true
+    } else {
+      false
+    }
   }
 
   interface Provider {
