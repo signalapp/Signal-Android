@@ -32,6 +32,7 @@ import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.Previews
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
@@ -72,7 +73,7 @@ enum class WindowSizeClass(
     fun Resources.getWindowSizeClass(): WindowSizeClass {
       val orientation = configuration.orientation
 
-      if (!RemoteConfig.largeScreenUi) {
+      if (isForcedCompact()) {
         return getCompactSizeClassForOrientation(orientation)
       }
 
@@ -86,7 +87,7 @@ enum class WindowSizeClass(
     }
 
     fun isForcedCompact(): Boolean {
-      return !RemoteConfig.largeScreenUi
+      return !SignalStore.internal.largeScreenUi
     }
 
     @Composable

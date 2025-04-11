@@ -240,7 +240,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
       LaunchedEffect(detailLocation) {
         if (detailLocation is MainNavigationDetailLocation.Conversation) {
-          if (RemoteConfig.largeScreenUi) {
+          if (SignalStore.internal.largeScreenUi) {
             scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
           } else {
             startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
