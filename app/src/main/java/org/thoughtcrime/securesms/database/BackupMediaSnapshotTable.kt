@@ -128,6 +128,10 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
    * Given a list of media objects, find the ones that we have no knowledge of in our local store.
    */
   fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): Set<ArchivedMediaObject> {
+    if (objects.isEmpty()) {
+      return emptySet()
+    }
+
     val query = SqlUtil.buildSingleCollectionQuery(
       column = MEDIA_ID,
       values = objects.map { it.mediaId },
