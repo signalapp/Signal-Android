@@ -38,6 +38,7 @@ public final class Log {
     void w(@NonNull String tag, @NonNull String message);
     void e(@NonNull String tag, @NonNull String message, @Nullable Throwable throwable);
 
+
     Provider EMPTY = new Provider() {
       @Override
       public void v(@NonNull String tag, @NonNull String message) { }
