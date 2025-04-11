@@ -152,6 +152,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blocked users</string>
     <string name="BlockedUsersActivity__add_blocked_user">Add blocked user</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">Blocked users will not be able to call you or send you messages.</string>
     <string name="BlockedUsersActivity__no_blocked_users">No blocked users</string>
     <string name="BlockedUsersActivity__block_user">Block user?</string>

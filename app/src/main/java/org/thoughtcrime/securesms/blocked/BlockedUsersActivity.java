@@ -38,6 +38,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private BlockedUsersViewModel viewModel;
+  private View                  container;
 
   private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
@@ -57,7 +58,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
     Toolbar           toolbar           = findViewById(R.id.toolbar);
     ContactFilterView contactFilterView = findViewById(R.id.contact_filter_edit_text);
-    View              container         = findViewById(R.id.fragment_container);
+    container                           = findViewById(R.id.fragment_container);
 
     toolbar.setNavigationOnClickListener(unused -> onBackPressed());
     contactFilterView.setOnFilterChangedListener(query -> {
@@ -99,7 +100,23 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
   @Override
   public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType, @NonNull Consumer<Boolean> callback) {
-    final String displayName = recipientId.map(id -> Recipient.resolved(id).getDisplayName(this)).orElse(number);
+    Optional<Recipient> resolvedRecipient = recipientId.map(Recipient::resolved);
+
+    final String displayName = resolvedRecipient
+        .map(r -> r.getDisplayName(this))
+        .orElse(number);
+
+    boolean isSelf = resolvedRecipient
+        .map(Recipient::isSelf)
+        .orElseGet(() -> Optional.ofNullable(number)
+                                 .map(Recipient::external)
+                                 .map(Recipient::isSelf)
+                                 .orElse(false));
+
+    if (isSelf) {
+      Snackbar.make(container, getString(R.string.BlockedUsersActivity__cannot_block_yourself), Snackbar.LENGTH_SHORT).show();
+      return;
+    }
 
     AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)
         .setTitle(R.string.BlockedUsersActivity__block_user)
