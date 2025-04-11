@@ -53,9 +53,11 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
     adapter.registerFactory(RecipientMappingModel.RecipientIdMappingModel::class.java, LayoutFactory({ RecipientViewHolder(it, null) }, R.layout.stories_recipient_item))
 
     binding.create.setOnClickListener { viewModel.create(recipientIds.toSet()) }
+    binding.create.setCanPress(false)
 
     val nameViewHolder = CreateStoryNameFieldItem.ViewHolder(binding.nameField.root) {
       viewModel.setLabel(it)
+      binding.create.setCanPress(it.isNotBlank())
     }
 
     disposables.bindTo(viewLifecycleOwner)
@@ -70,7 +72,7 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
       nameViewHolder.bind(nameModel)
 
       when (state.saveState) {
-        CreateStoryWithViewersState.SaveState.Init -> binding.create.setCanPress(state.label.isNotEmpty())
+        CreateStoryWithViewersState.SaveState.Init -> binding.create.setCanPress(state.label.isNotBlank())
         CreateStoryWithViewersState.SaveState.Saving -> binding.create.setCanPress(false)
         is CreateStoryWithViewersState.SaveState.Saved -> onDone(state.saveState.recipientId)
       }
