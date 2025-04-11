@@ -327,7 +327,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.atMidnight
 import org.thoughtcrime.securesms.util.atUTC
-import org.thoughtcrime.securesms.util.createActivityViewModel
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.getQuote
@@ -473,7 +472,9 @@ class ConversationFragment :
     StickerSuggestionsViewModel()
   }
 
-  private lateinit var inlineQueryViewModel: InlineQueryViewModelV2
+  private val inlineQueryViewModel: InlineQueryViewModelV2 by viewModel {
+    InlineQueryViewModelV2(conversationRecipientRepository)
+  }
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
 
@@ -597,8 +598,6 @@ class ConversationFragment :
 
     markReadHelper = MarkReadHelper(ConversationId.forConversation(args.threadId), requireContext(), viewLifecycleOwner)
     markReadHelper.ignoreViewReveals()
-
-    inlineQueryViewModel = createActivityViewModel { InlineQueryViewModelV2(recipientRepository = conversationRecipientRepository) }
 
     attachmentManager = AttachmentManager(requireContext(), requireView(), AttachmentManagerListener())
 

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 
 /**
- * Activity (at least) scope view model for managing inline queries. The view model needs to be larger scope so it can
+ * View model for managing inline queries. The view model needs to be larger scope so it can
  * be shared between the fragment requesting the search and the fragment used for displaying the results.
  */
 class InlineQueryViewModelV2(
