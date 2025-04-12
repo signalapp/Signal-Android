@@ -65,7 +65,8 @@ class MessageBackupsFlowViewModel(
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
 
   init {
-    check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
+    // TODO this is not correct for all usages. See BackupAlertBottomSheet.
+//    check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
 
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
