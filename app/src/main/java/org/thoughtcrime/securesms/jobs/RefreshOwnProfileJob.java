@@ -293,7 +293,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   private void syncWithStorageServiceThenUploadProfile() {
     AppDependencies.getJobManager()
-                   .startChain(new StorageSyncJob())
+                   .startChain(StorageSyncJob.forRemoteChange())
                    .then(new ProfileUploadJob())
                    .enqueue();
   }

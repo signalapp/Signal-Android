@@ -45,12 +45,12 @@ internal class StorageFixLocalUnknownMigrationJob(
 
     if (SignalStore.account.hasLinkedDevices) {
       Log.i(TAG, "Multi-device.")
-      jobManager.startChain(StorageSyncJob())
+      jobManager.startChain(StorageSyncJob.forLocalChange())
         .then(MultiDeviceKeysUpdateJob())
         .enqueue()
     } else {
       Log.i(TAG, "Single-device.")
-      jobManager.add(StorageSyncJob())
+      jobManager.add(StorageSyncJob.forRemoteChange())
     }
   }
 

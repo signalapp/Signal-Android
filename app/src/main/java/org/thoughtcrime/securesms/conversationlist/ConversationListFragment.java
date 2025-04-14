@@ -931,7 +931,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void handleMarkAsUnread(@NonNull Collection<Long> ids) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       SignalDatabase.threads().setForcedUnread(ids);
-      StorageSyncHelper.scheduleSyncForDataChange();
       return null;
     }, none -> endActionModeIfActive());
   }

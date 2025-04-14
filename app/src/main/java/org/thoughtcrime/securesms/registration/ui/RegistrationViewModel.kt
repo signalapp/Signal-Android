@@ -874,7 +874,7 @@ class RegistrationViewModel : ViewModel() {
       stopwatch.split("account-restore")
 
       AppDependencies.jobManager
-        .startChain(StorageSyncJob())
+        .startChain(StorageSyncJob.forRemoteChange())
         .then(ReclaimUsernameAndLinkJob())
         .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
       stopwatch.split("storage-sync")

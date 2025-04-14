@@ -160,7 +160,7 @@ fun ToolScreen(
     modifier = Modifier.fillMaxWidth()
   ) {
     ActionRow("Enqueue StorageSyncJob", "Just a normal syncing operation.") {
-      AppDependencies.jobManager.add(StorageSyncJob())
+      AppDependencies.jobManager.add(StorageSyncJob.forLocalChange())
     }
 
     ActionRow("Enqueue StorageForcePushJob", "Forces your local state over the remote.") {
