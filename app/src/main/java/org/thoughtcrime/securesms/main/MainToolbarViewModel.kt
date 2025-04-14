@@ -63,7 +63,7 @@ class MainToolbarViewModel : ViewModel() {
   }
 
   @JvmOverloads
-  fun setToolbarMode(mode: MainToolbarMode, destination: MainNavigationDestination? = null) {
+  fun setToolbarMode(mode: MainToolbarMode, destination: MainNavigationListLocation? = null) {
     val previousMode = internalStateFlow.value.mode
 
     internalStateFlow.update {

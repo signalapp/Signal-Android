@@ -255,7 +255,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
-import org.thoughtcrime.securesms.main.MainNavigationDestination
+import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity
@@ -3055,7 +3055,7 @@ class ConversationFragment :
       } else if ("username_edit" == action) {
         startActivity(EditProfileActivity.getIntentForUsernameEdit(requireContext()))
       } else if ("calls_tab" == action) {
-        startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainNavigationDestination.CALLS))
+        startActivity(MainActivity.clearTopAndOpenTab(requireContext(), MainNavigationListLocation.CALLS))
       } else if ("chat_folder" == action) {
         startActivity(AppSettingsActivity.chatFolders(requireContext()))
       }

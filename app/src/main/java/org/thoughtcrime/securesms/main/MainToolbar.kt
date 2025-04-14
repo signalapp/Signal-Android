@@ -131,7 +131,7 @@ data class MainToolbarState(
   val toolbarColor: Color? = null,
   val self: Recipient = Recipient.self(),
   val mode: MainToolbarMode = MainToolbarMode.FULL,
-  val destination: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val chatFilter: ConversationFilter = ConversationFilter.OFF,
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
@@ -373,9 +373,9 @@ private fun PrimaryToolbar(
         controller = controller
       ) {
         when (state.destination) {
-          MainNavigationDestination.CHATS -> ChatDropdownItems(state, callback, dismiss)
-          MainNavigationDestination.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
-          MainNavigationDestination.STORIES -> StoryDropDownItems(callback, dismiss)
+          MainNavigationListLocation.CHATS -> ChatDropdownItems(state, callback, dismiss)
+          MainNavigationListLocation.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
+          MainNavigationListLocation.STORIES -> StoryDropDownItems(callback, dismiss)
         }
       }
     }
@@ -671,7 +671,7 @@ private fun FullMainToolbarPreview() {
       state = MainToolbarState(
         self = Recipient(isResolving = false),
         mode = mode,
-        destination = MainNavigationDestination.CHATS,
+        destination = MainNavigationListLocation.CHATS,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
         hasFailedBackups = true

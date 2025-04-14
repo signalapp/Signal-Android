@@ -137,7 +137,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(() -> {
-              getNavigator().getViewModel().setSnackbar(new SnackbarState(
+              mainNavigationViewModel.setSnackbar(new SnackbarState(
                   getResources().getQuantityString(R.plurals.ConversationListFragment_moved_conversations_to_inbox, 1, 1),
                   new SnackbarState.ActionState(
                       getString(R.string.ConversationListFragment_undo),

@@ -46,9 +46,9 @@ private val ACTION_BUTTON_SPACING = 16.dp
 
 @Composable
 fun MainFloatingActionButtons(
-  destination: MainNavigationDestination,
+  destination: MainNavigationListLocation,
   onNewChatClick: () -> Unit = {},
-  onCameraClick: (MainNavigationDestination) -> Unit = {},
+  onCameraClick: (MainNavigationListLocation) -> Unit = {},
   onNewCallClick: () -> Unit = {}
 ) {
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
@@ -67,7 +67,7 @@ fun MainFloatingActionButtons(
       .height(boxHeightDp)
   ) {
     AnimatedVisibility(
-      visible = destination == MainNavigationDestination.CHATS,
+      visible = destination == MainNavigationListLocation.CHATS,
       modifier = Modifier.align(Alignment.TopCenter),
       enter = slideInVertically(initialOffsetY = { boxHeightPx - it }),
       exit = slideOutVertically(targetOffsetY = { boxHeightPx - it })
@@ -79,7 +79,7 @@ fun MainFloatingActionButtons(
           containerColor = SignalTheme.colors.colorSurface1
         ),
         onClick = {
-          onCameraClick(MainNavigationDestination.CHATS)
+          onCameraClick(MainNavigationListLocation.CHATS)
         },
         shadowElevation = elevation
       )
@@ -100,16 +100,16 @@ fun MainFloatingActionButtons(
 
 @Composable
 private fun PrimaryActionButton(
-  destination: MainNavigationDestination,
+  destination: MainNavigationListLocation,
   onNewChatClick: () -> Unit = {},
-  onCameraClick: (MainNavigationDestination) -> Unit = {},
+  onCameraClick: (MainNavigationListLocation) -> Unit = {},
   onNewCallClick: () -> Unit = {}
 ) {
   val onClick = remember(destination) {
     when (destination) {
-      MainNavigationDestination.CHATS -> onNewChatClick
-      MainNavigationDestination.CALLS -> onNewCallClick
-      MainNavigationDestination.STORIES -> {
+      MainNavigationListLocation.CHATS -> onNewChatClick
+      MainNavigationListLocation.CALLS -> onNewCallClick
+      MainNavigationListLocation.STORIES -> {
         { onCameraClick(destination) }
       }
     }
@@ -120,9 +120,9 @@ private fun PrimaryActionButton(
     icon = {
       AnimatedContent(destination) { targetState ->
         val icon = when (targetState) {
-          MainNavigationDestination.CHATS -> R.drawable.symbol_edit_24
-          MainNavigationDestination.CALLS -> R.drawable.symbol_phone_plus_24
-          MainNavigationDestination.STORIES -> R.drawable.symbol_camera_24
+          MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24
+          MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24
+          MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24
         }
 
         Icon(
@@ -179,14 +179,14 @@ private fun MainFloatingActionButton(
 @SignalPreview
 @Composable
 private fun MainFloatingActionButtonsPreview() {
-  var destination by remember { mutableStateOf(MainNavigationDestination.CHATS) }
+  var destination by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
 
   Previews.Preview {
     MainFloatingActionButtons(
       destination = destination,
-      onCameraClick = { destination = MainNavigationDestination.CALLS },
-      onNewChatClick = { destination = MainNavigationDestination.STORIES },
-      onNewCallClick = { destination = MainNavigationDestination.CHATS }
+      onCameraClick = { destination = MainNavigationListLocation.CALLS },
+      onNewChatClick = { destination = MainNavigationListLocation.STORIES },
+      onNewCallClick = { destination = MainNavigationListLocation.CHATS }
     )
   }
 }

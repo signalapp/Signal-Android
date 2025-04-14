@@ -46,21 +46,21 @@ data class SnackbarState(
 interface MainBottomChromeCallback {
   fun onNewChatClick()
   fun onNewCallClick()
-  fun onCameraClick(destination: MainNavigationDestination)
+  fun onCameraClick(destination: MainNavigationListLocation)
   fun onMegaphoneVisible(megaphone: Megaphone)
   fun onSnackbarDismissed()
 
   object Empty : MainBottomChromeCallback {
     override fun onNewChatClick() = Unit
     override fun onNewCallClick() = Unit
-    override fun onCameraClick(destination: MainNavigationDestination) = Unit
+    override fun onCameraClick(destination: MainNavigationListLocation) = Unit
     override fun onMegaphoneVisible(megaphone: Megaphone) = Unit
     override fun onSnackbarDismissed() = Unit
   }
 }
 
 data class MainBottomChromeState(
-  val destination: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val megaphoneState: MainMegaphoneState = MainMegaphoneState(),
   val snackbarState: SnackbarState? = null,
   val mainToolbarMode: MainToolbarMode = MainToolbarMode.FULL
