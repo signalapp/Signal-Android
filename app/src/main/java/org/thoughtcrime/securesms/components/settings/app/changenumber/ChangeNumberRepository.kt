@@ -267,7 +267,7 @@ class ChangeNumberRepository(
 
       SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       withContext(Dispatchers.IO) {
-        result = SignalNetwork.account.changeNumber(request)
+        result = accountManager.registrationApi.changeNumber(request)
       }
 
       val possibleError = result.getCause() as? MismatchedDevicesException

@@ -25,6 +25,7 @@ import org.signal.storageservice.protos.groups.GroupResponse;
 import org.signal.storageservice.protos.groups.Member;
 import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
+import org.whispersystems.signalservice.api.account.ChangePhoneNumberRequest;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
@@ -325,6 +326,16 @@ public class PushServiceSocket {
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE);
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
+  }
+
+
+  public VerifyAccountResponse changeNumber(@Nonnull ChangePhoneNumberRequest changePhoneNumberRequest)
+      throws IOException
+  {
+    String requestBody  = JsonUtil.toJson(changePhoneNumberRequest);
+    String responseBody = makeServiceRequest("/v2/accounts/number", "PUT", requestBody);
+
+    return JsonUtil.fromJson(responseBody, VerifyAccountResponse.class);
   }
 
   public void setRestoreMethodChosen(@Nonnull String token, @Nonnull RestoreMethodBody request) throws IOException {
