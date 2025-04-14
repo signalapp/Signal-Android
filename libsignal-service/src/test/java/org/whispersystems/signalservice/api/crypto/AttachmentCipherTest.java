@@ -6,7 +6,7 @@ import org.signal.core.util.StreamUtil;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice;
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
-import org.signal.libsignal.protocol.kdf.HKDFv3;
+import org.signal.libsignal.protocol.kdf.HKDF;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory;
@@ -516,7 +516,7 @@ public final class AttachmentCipherTest {
   }
 
   private static byte[] expandPackKey(byte[] shortKey) {
-    return new HKDFv3().deriveSecrets(shortKey, "Sticker Pack".getBytes(), 64);
+    return HKDF.deriveSecrets(shortKey, "Sticker Pack".getBytes(), 64);
   }
 
   private static class EncryptResult {
