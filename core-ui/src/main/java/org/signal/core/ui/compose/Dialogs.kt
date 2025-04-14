@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -29,11 +30,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -48,6 +50,51 @@ object Dialogs {
   const val NoTitle = ""
   const val NoDismiss = ""
 
+  object Defaults {
+    val shape: Shape @Composable get() = RoundedCornerShape(28.dp)
+    val containerColor: Color @Composable get() = SignalTheme.colors.colorSurface1
+    val iconContentColor: Color @Composable get() = MaterialTheme.colorScheme.onSurface
+    val titleContentColor: Color @Composable get() = MaterialTheme.colorScheme.onSurface
+    val textContentColor: Color @Composable get() = MaterialTheme.colorScheme.onSurfaceVariant
+
+    val TonalElevation: Dp = AlertDialogDefaults.TonalElevation
+  }
+
+  @Composable
+  fun BaseAlertDialog(
+    onDismissRequest: () -> Unit,
+    confirmButton: @Composable () -> Unit,
+    modifier: Modifier,
+    dismissButton: (@Composable () -> Unit)? = null,
+    icon: (@Composable () -> Unit)? = null,
+    title: (@Composable () -> Unit)? = null,
+    text: (@Composable () -> Unit)? = null,
+    shape: Shape = Defaults.shape,
+    containerColor: Color = Defaults.containerColor,
+    iconContentColor: Color = Defaults.iconContentColor,
+    titleContentColor: Color = Defaults.titleContentColor,
+    textContentColor: Color = Defaults.textContentColor,
+    tonalElevation: Dp = Defaults.TonalElevation,
+    properties: DialogProperties = DialogProperties()
+  ) {
+    androidx.compose.material3.AlertDialog(
+      onDismissRequest = onDismissRequest,
+      confirmButton = confirmButton,
+      modifier = modifier,
+      dismissButton = dismissButton,
+      icon = icon,
+      title = title,
+      text = text,
+      shape = shape,
+      containerColor = containerColor,
+      iconContentColor = iconContentColor,
+      titleContentColor = titleContentColor,
+      textContentColor = textContentColor,
+      tonalElevation = tonalElevation,
+      properties = properties
+    )
+  }
+
   @Composable
   fun SimpleMessageDialog(
     message: String,
@@ -58,7 +105,7 @@ object Dialogs {
     dismissColor: Color = Color.Unspecified,
     properties: DialogProperties = DialogProperties()
   ) {
-    androidx.compose.material3.AlertDialog(
+    BaseAlertDialog(
       onDismissRequest = onDismiss,
       title = if (title == null) {
         null
@@ -93,7 +140,7 @@ object Dialogs {
     dismissColor: Color = Color.Unspecified,
     properties: DialogProperties = DialogProperties()
   ) {
-    androidx.compose.material3.AlertDialog(
+    BaseAlertDialog(
       onDismissRequest = onDismissRequest,
       title = if (title.isNotEmpty()) {
         {
@@ -137,7 +184,7 @@ object Dialogs {
    */
   @Composable
   fun IndeterminateProgressDialog() {
-    androidx.compose.material3.AlertDialog(
+    BaseAlertDialog(
       onDismissRequest = {},
       confirmButton = {},
       dismissButton = {},
@@ -160,7 +207,7 @@ object Dialogs {
    */
   @Composable
   fun IndeterminateProgressDialog(message: String) {
-    androidx.compose.material3.AlertDialog(
+    BaseAlertDialog(
       onDismissRequest = {},
       confirmButton = {},
       dismissButton = {},
@@ -187,7 +234,7 @@ object Dialogs {
    */
   @Composable
   fun IndeterminateProgressDialog(message: String, caption: String = "", dismiss: String, onDismiss: () -> Unit) {
-    androidx.compose.material3.AlertDialog(
+    BaseAlertDialog(
       onDismissRequest = {},
       confirmButton = {},
       dismissButton = {
@@ -353,7 +400,7 @@ object Dialogs {
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun PermissionRationaleDialogPreview() {
   Previews.Preview {
@@ -368,17 +415,19 @@ private fun PermissionRationaleDialogPreview() {
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun AlertDialogPreview() {
-  SimpleAlertDialog(
-    title = "Title Text",
-    body = "Body text message",
-    confirm = "Confirm Button",
-    dismiss = "Dismiss Button",
-    onConfirm = {},
-    onDismiss = {}
-  )
+  Previews.Preview {
+    SimpleAlertDialog(
+      title = "Title Text",
+      body = "Body text message",
+      confirm = "Confirm Button",
+      dismiss = "Dismiss Button",
+      onConfirm = {},
+      onDismiss = {}
+    )
+  }
 }
 
 @SignalPreview
@@ -398,30 +447,38 @@ private fun AdvancedAlertDialogPreview() {
   }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun MessageDialogPreview() {
-  SimpleMessageDialog(
-    message = "Message here",
-    dismiss = "OK",
-    onDismiss = {}
-  )
+  Previews.Preview {
+    SimpleMessageDialog(
+      message = "Message here",
+      dismiss = "OK",
+      onDismiss = {}
+    )
+  }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun IndeterminateProgressDialogPreview() {
-  Dialogs.IndeterminateProgressDialog()
+  Previews.Preview {
+    Dialogs.IndeterminateProgressDialog()
+  }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun IndeterminateProgressDialogMessagePreview() {
-  Dialogs.IndeterminateProgressDialog("Completing...")
+  Previews.Preview {
+    Dialogs.IndeterminateProgressDialog("Completing...")
+  }
 }
 
-@Preview
+@SignalPreview
 @Composable
 private fun IndeterminateProgressDialogCancellablePreview() {
-  Dialogs.IndeterminateProgressDialog("Completing...", "Do not close app", "Cancel") {}
+  Previews.Preview {
+    Dialogs.IndeterminateProgressDialog("Completing...", "Do not close app", "Cancel") {}
+  }
 }

@@ -31,8 +31,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -1179,8 +1177,8 @@ private fun CircularProgressDialog(
     )
   ) {
     Surface(
-      shape = AlertDialogDefaults.shape,
-      color = AlertDialogDefaults.containerColor
+      shape = Dialogs.Defaults.shape,
+      color = Dialogs.Defaults.containerColor
     ) {
       Box(
         contentAlignment = Alignment.Center,
@@ -1202,17 +1200,16 @@ private fun BackupFrequencyDialog(
   onSelected: (BackupFrequency) -> Unit,
   onDismiss: () -> Unit
 ) {
-  AlertDialog(
+  BasicAlertDialog(
     onDismissRequest = onDismiss
   ) {
-    Surface {
+    Surface(
+      color = Dialogs.Defaults.containerColor,
+      shape = Dialogs.Defaults.shape,
+      shadowElevation = Dialogs.Defaults.TonalElevation
+    ) {
       Column(
-        modifier = Modifier
-          .background(
-            color = AlertDialogDefaults.containerColor,
-            shape = AlertDialogDefaults.shape
-          )
-          .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
       ) {
         Text(
           text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
