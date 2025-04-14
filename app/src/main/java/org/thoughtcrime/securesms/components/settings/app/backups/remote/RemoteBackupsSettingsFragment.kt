@@ -99,7 +99,7 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
+import org.thoughtcrime.securesms.fonts.SignalSymbols.signalSymbolText
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -687,14 +687,10 @@ private fun BackupCard(
         }
 
         Text(
-          text = buildAnnotatedString {
-            if (backupState.isActive()) {
-              SignalSymbol(SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHECKMARK)
-              append(" ")
-            }
-
-            append(title)
-          },
+          text = signalSymbolText(
+            text = title,
+            glyphStart = if (backupState.isActive()) SignalSymbols.Glyph.CHECKMARK else null
+          ),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
         )
