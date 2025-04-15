@@ -126,7 +126,8 @@ private fun MainSnackbar(
     if (snackbarState != null) {
       val result = hostState.showSnackbar(
         message = snackbarState.message,
-        actionLabel = snackbarState.actionState?.action
+        actionLabel = snackbarState.actionState?.action,
+        duration = snackbarState.duration
       )
 
       when (result) {
