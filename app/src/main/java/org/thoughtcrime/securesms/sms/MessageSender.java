@@ -478,6 +478,7 @@ public class MessageSender {
     onMessageSent();
   }
 
+  @WorkerThread
   public static void resend(Context context, MessageRecord messageRecord) {
     long       messageId   = messageRecord.getId();
     boolean    forceSms    = messageRecord.isForcedSms();
@@ -517,6 +518,7 @@ public class MessageSender {
     return outgoingMessage;
   }
 
+  @WorkerThread
   private static void sendMessageInternal(Context context,
                                           Recipient recipient,
                                           SendType sendType,
@@ -534,6 +536,7 @@ public class MessageSender {
     }
   }
 
+  @WorkerThread
   private static void sendMediaPush(Context context, Recipient recipient, long messageId, @NonNull Collection<String> uploadJobIds) {
     JobManager jobManager = AppDependencies.getJobManager();
 
@@ -545,6 +548,7 @@ public class MessageSender {
     }
   }
 
+  @WorkerThread
   private static void sendGroupPush(@NonNull Context context, @NonNull Recipient recipient, long messageId, @NonNull Set<RecipientId> filterRecipientIds, @NonNull Collection<String> uploadJobIds) {
     JobManager jobManager = AppDependencies.getJobManager();
 
@@ -556,6 +560,7 @@ public class MessageSender {
     }
   }
 
+  @WorkerThread
   private static void sendDistributionList(@NonNull Context context, @NonNull Recipient recipient, long messageId, @NonNull Set<RecipientId> filterRecipientIds, @NonNull Collection<String> uploadJobIds) {
     JobManager jobManager = AppDependencies.getJobManager();
 
