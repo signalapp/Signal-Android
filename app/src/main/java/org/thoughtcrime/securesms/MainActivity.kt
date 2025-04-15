@@ -23,13 +23,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -39,7 +43,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
@@ -245,7 +248,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
       }
 
-      SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(LocalContext.current)) {
+      MainContainer {
         AppScaffold(
           navigator = scaffoldNavigator,
           bottomNavContent = {
@@ -337,6 +340,32 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     CachedInflater.from(this).clear()
 
     lifecycleDisposable += vitalsViewModel.vitalsState.subscribe(this::presentVitalsState)
+  }
+
+  @Composable
+  private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
+    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+    val modifier = if (windowSizeClass.isLandscape()) {
+      Modifier.displayCutoutPadding()
+    } else {
+      Modifier
+    }
+
+    val backgroundColor = if (windowSizeClass.isCompact()) {
+      MaterialTheme.colorScheme.surface
+    } else {
+      SignalTheme.colors.colorSurface1
+    }
+
+    SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(this)) {
+      BoxWithConstraints(
+        modifier = Modifier
+          .background(color = backgroundColor)
+          .then(modifier)
+      ) {
+        content()
+      }
+    }
   }
 
   override fun getIntent(): Intent {

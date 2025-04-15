@@ -65,8 +65,9 @@ enum class WindowSizeClass(
   fun isMedium(): Boolean = this == MEDIUM_PORTRAIT || this == MEDIUM_LANDSCAPE
   fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
 
-  companion object {
+  fun isLandscape(): Boolean = this == COMPACT_LANDSCAPE || this == MEDIUM_LANDSCAPE || this == EXTENDED_LANDSCAPE
 
+  companion object {
     @OptIn(ExperimentalWindowCoreApi::class)
     fun Resources.getWindowSizeClass(): WindowSizeClass {
       val orientation = configuration.orientation
@@ -98,7 +99,9 @@ enum class WindowSizeClass(
       val orientation = LocalConfiguration.current.orientation
 
       if (forceCompact) {
-        return getCompactSizeClassForOrientation(orientation)
+        return remember(orientation) {
+          getCompactSizeClassForOrientation(orientation)
+        }
       }
 
       val wsc = currentWindowAdaptiveInfo().windowSizeClass

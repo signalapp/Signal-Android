@@ -5,12 +5,8 @@
 
 package org.thoughtcrime.securesms.main
 
-import android.os.Build
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,14 +17,10 @@ import org.thoughtcrime.securesms.util.ViewUtil
 
 @Composable
 fun NavigationBarSpacerCompat() {
-  if (Build.VERSION.SDK_INT > 23) {
-    Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
-  } else {
-    val resources = LocalContext.current.resources
-    val navigationBarHeight = remember(resources) {
-      DimensionUnit.PIXELS.toDp(ViewUtil.getNavigationBarHeight(resources).toFloat()).dp
-    }
-
-    Spacer(Modifier.height(navigationBarHeight))
+  val resources = LocalContext.current.resources
+  val navigationBarHeight = remember(resources) {
+    DimensionUnit.PIXELS.toDp(ViewUtil.getNavigationBarHeight(resources).toFloat()).dp
   }
+
+  Spacer(Modifier.height(navigationBarHeight))
 }
