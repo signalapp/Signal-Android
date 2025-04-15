@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 data class SnackbarState(
   val message: String,
@@ -102,9 +104,17 @@ fun MainBottomChrome(
       )
     }
 
+    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+    val snackBarModifier = if (windowSizeClass.isCompact() && state.mainToolbarMode == MainToolbarMode.BASIC) {
+      Modifier.navigationBarsPadding()
+    } else {
+      Modifier
+    }
+
     MainSnackbar(
       snackbarState = state.snackbarState,
-      onDismissed = callback::onSnackbarDismissed
+      onDismissed = callback::onSnackbarDismissed,
+      modifier = snackBarModifier
     )
   }
 }
@@ -112,11 +122,15 @@ fun MainBottomChrome(
 @Composable
 private fun MainSnackbar(
   snackbarState: SnackbarState?,
-  onDismissed: () -> Unit
+  onDismissed: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   val hostState = remember { SnackbarHostState() }
 
-  Snackbars.Host(hostState)
+  Snackbars.Host(
+    hostState,
+    modifier = modifier
+  )
 
   if (snackbarState?.showProgress == true) {
     Dialogs.IndeterminateProgressDialog()
