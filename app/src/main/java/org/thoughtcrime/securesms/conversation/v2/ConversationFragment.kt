@@ -590,6 +590,8 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
+    binding.root.setUseWindowTypes(resources.getWindowSizeClass().isCompact())
+
     disposables.bindTo(viewLifecycleOwner)
 
     if (requireActivity() is ConversationActivity) {
