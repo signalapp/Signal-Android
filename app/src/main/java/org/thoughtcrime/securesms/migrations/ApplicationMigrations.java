@@ -176,9 +176,11 @@ public class ApplicationMigrations {
     static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
     static final int DUPLICATE_E164_FIX_2          = 133;
     static final int E164_FORMATTING               = 134;
+    // Need to skip because a 135 exists in 7.40, which went to beta users before this
+    static final int FIX_CHANGE_NUMBER_ERROR       = 136;
   }
 
-  public static final int CURRENT_VERSION = 134;
+  public static final int CURRENT_VERSION = 136;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -811,6 +813,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.E164_FORMATTING) {
       jobs.put(Version.E164_FORMATTING, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.FIX_CHANGE_NUMBER_ERROR) {
+      jobs.put(Version.FIX_CHANGE_NUMBER_ERROR, new FixChangeNumberErrorMigrationJob());
     }
 
     return jobs;
