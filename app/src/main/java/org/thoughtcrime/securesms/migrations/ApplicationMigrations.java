@@ -176,10 +176,12 @@ public class ApplicationMigrations {
     static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
     static final int DUPLICATE_E164_FIX_2          = 133;
     static final int E164_FORMATTING               = 134;
-    static final int CHAT_FOLDER_STORAGE_SYNC      = 135;
+    // Need to skip 135 because of hotfix ordering issues
+    static final int FIX_CHANGE_NUMBER_ERROR       = 136;
+    static final int CHAT_FOLDER_STORAGE_SYNC      = 137;
   }
 
-  public static final int CURRENT_VERSION = 135;
+  public static final int CURRENT_VERSION = 137;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -812,6 +814,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.E164_FORMATTING) {
       jobs.put(Version.E164_FORMATTING, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.FIX_CHANGE_NUMBER_ERROR) {
+      jobs.put(Version.FIX_CHANGE_NUMBER_ERROR, new FixChangeNumberErrorMigrationJob());
     }
 
     if (lastSeenVersion < Version.CHAT_FOLDER_STORAGE_SYNC) {
