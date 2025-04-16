@@ -77,7 +77,7 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
       val standardQuality = quality == SentMediaQuality.STANDARD
       Button(
         modifier = Modifier
-          .defaultMinSize(minWidth = 174.dp, minHeight = 60.dp)
+          .defaultMinSize(minHeight = 60.dp)
           .weight(1f),
         onClick = { onQualitySelected(SentMediaQuality.STANDARD) },
         shape = RoundedCornerShape(percent = 25),
@@ -89,7 +89,7 @@ private fun Content(quality: SentMediaQuality, onQualitySelected: (SentMediaQual
       }
       Button(
         modifier = Modifier
-          .defaultMinSize(minWidth = 174.dp, minHeight = 60.dp)
+          .defaultMinSize(minHeight = 60.dp)
           .weight(1f),
         onClick = { onQualitySelected(SentMediaQuality.HIGH) },
         shape = RoundedCornerShape(percent = 25),
