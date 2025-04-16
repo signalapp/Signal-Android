@@ -4271,7 +4271,7 @@ class ConversationFragment :
     }
 
     private fun sendKeyboardImage(uri: Uri, contentType: String, keyboardImageDetails: KeyboardUtil.ImageDetails?) {
-      if (keyboardImageDetails == null || !keyboardImageDetails.hasTransparency) {
+      if (keyboardImageDetails == null || !keyboardImageDetails.isSticker) {
         setMedia(uri, requireNotNull(SlideFactory.MediaType.from(contentType)))
         return
       }

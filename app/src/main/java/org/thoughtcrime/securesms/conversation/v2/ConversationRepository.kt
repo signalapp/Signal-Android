@@ -14,7 +14,6 @@ import android.text.SpannableStringBuilder
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -111,7 +110,7 @@ class ConversationRepository(
    */
   fun getKeyboardImageDetails(uri: Uri): Maybe<KeyboardUtil.ImageDetails> {
     return MaybeCompat.fromCallable {
-      KeyboardUtil.getImageDetails(Glide.with(applicationContext), uri)
+      KeyboardUtil.getImageDetails(uri)
     }.subscribeOn(Schedulers.io())
   }
 
