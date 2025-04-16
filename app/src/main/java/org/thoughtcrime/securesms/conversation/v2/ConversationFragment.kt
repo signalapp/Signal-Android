@@ -3275,7 +3275,7 @@ class ConversationFragment :
                 multiselectItemDecoration.hideShade(binding.conversationItemRecycler)
                 ViewUtil.fadeOut(binding.reactionsShade, resources.getInteger(R.integer.reaction_scrubber_hide_duration), View.GONE)
 
-                if (focusedView == composeText) {
+                if (focusedView == composeText || searchMenuItem?.isActionViewExpanded == true) {
                   container.showSoftkey(composeText)
                 }
               }
@@ -4349,7 +4349,11 @@ class ConversationFragment :
       isEnabled = false
     }
 
-    override fun onKeyboardShown() = Unit
+    override fun onKeyboardShown() {
+      if (searchMenuItem?.isActionViewExpanded == true && searchMenuItem?.actionView?.hasFocus() == false) {
+        searchMenuItem?.actionView?.requestFocus()
+      }
+    }
 
     override fun onKeyboardHidden() {
       closeEmojiSearch()

@@ -194,6 +194,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   protected fun resetKeyboardGuideline() {
     clearKeyboardGuidelineOverride()
     keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
+    keyboardAnimator.endingGuidelineEnd = navigationBarGuideline.guidelineEnd
   }
 
   private fun getKeyboardHeight(): Int {
