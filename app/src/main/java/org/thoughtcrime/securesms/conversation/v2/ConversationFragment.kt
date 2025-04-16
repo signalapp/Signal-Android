@@ -677,6 +677,8 @@ class ConversationFragment :
 
     if (!args.conversationScreenType.isInBubble) {
       AppDependencies.messageNotifier.setVisibleThread(ConversationId.forConversation(args.threadId))
+    } else {
+      AppDependencies.messageNotifier.setVisibleBubbleThread(ConversationId.forConversation(args.threadId))
     }
 
     viewModel.updateIdentityRecordsInBackground()
@@ -707,6 +709,8 @@ class ConversationFragment :
 
     if (!args.conversationScreenType.isInBubble) {
       AppDependencies.messageNotifier.clearVisibleThread()
+    } else {
+      AppDependencies.messageNotifier.clearVisibleBubbleThread()
     }
 
     if (activity?.isFinishing == true) {
