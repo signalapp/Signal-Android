@@ -16,6 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.AnimatedPane
+import androidx.compose.material3.adaptive.layout.PaneExpansionState
+import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldScope
+import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth
+import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
@@ -28,6 +32,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
@@ -57,7 +62,7 @@ enum class WindowSizeClass(
 ) {
   COMPACT_PORTRAIT(Navigation.BAR),
   COMPACT_LANDSCAPE(Navigation.BAR),
-  MEDIUM_PORTRAIT(Navigation.BAR),
+  MEDIUM_PORTRAIT(Navigation.RAIL),
   MEDIUM_LANDSCAPE(Navigation.RAIL),
   EXTENDED_PORTRAIT(Navigation.RAIL),
   EXTENDED_LANDSCAPE(Navigation.RAIL);
@@ -160,6 +165,7 @@ fun AppScaffold(
   detailContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
+  paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   listContent: @Composable () -> Unit
 ) {
   val isForcedCompact = WindowSizeClass.checkForcedCompact()
@@ -176,9 +182,10 @@ fun AppScaffold(
     return
   }
 
-  if (windowSizeClass.isMedium()) {
-    Row {
-      Box(modifier = Modifier.weight(1f)) {
+  NavigableListDetailPaneScaffold(
+    navigator = navigator,
+    listPane = {
+      AnimatedPane {
         ListAndNavigation(
           listContent = listContent,
           navRailContent = navRailContent,
@@ -186,31 +193,15 @@ fun AppScaffold(
           windowSizeClass = windowSizeClass
         )
       }
-
-      Box(modifier = Modifier.weight(1f)) {
+    },
+    detailPane = {
+      AnimatedPane {
         detailContent()
       }
-    }
-  } else {
-    NavigableListDetailPaneScaffold(
-      navigator = navigator,
-      listPane = {
-        AnimatedPane {
-          ListAndNavigation(
-            listContent = listContent,
-            navRailContent = navRailContent,
-            bottomNavContent = bottomNavContent,
-            windowSizeClass = windowSizeClass
-          )
-        }
-      },
-      detailPane = {
-        AnimatedPane {
-          detailContent()
-        }
-      }
-    )
-  }
+    },
+    paneExpansionDragHandle = paneExpansionDragHandle,
+    paneExpansionState = rememberPaneExpansionState()
+  )
 }
 
 @Composable
@@ -248,6 +239,13 @@ private fun ListAndNavigation(
 private fun AppScaffoldPreview() {
   Previews.Preview {
     AppScaffold(
+      navigator = rememberListDetailPaneScaffoldNavigator<Any>(
+        scaffoldDirective = calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth(
+          currentWindowAdaptiveInfo()
+        ).copy(
+          horizontalPartitionSpacerSize = 10.dp
+        )
+      ),
       listContent = {
         Box(
           contentAlignment = Alignment.Center,

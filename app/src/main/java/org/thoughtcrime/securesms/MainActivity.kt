@@ -28,10 +28,12 @@ import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
+import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,9 +43,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
@@ -83,6 +82,7 @@ import org.thoughtcrime.securesms.main.MainActivityListHostFragment
 import org.thoughtcrime.securesms.main.MainBottomChrome
 import org.thoughtcrime.securesms.main.MainBottomChromeCallback
 import org.thoughtcrime.securesms.main.MainBottomChromeState
+import org.thoughtcrime.securesms.main.MainContentLayoutData
 import org.thoughtcrime.securesms.main.MainMegaphoneState
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
@@ -231,28 +231,29 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         )
       }
 
-      val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>()
       val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-
-      val contentClip: Shape = remember(windowSizeClass) {
-        if (windowSizeClass.isExtended()) {
-          RoundedCornerShape(18.dp)
-        } else {
-          RectangleShape
-        }
-      }
-
-      LaunchedEffect(detailLocation) {
-        if (detailLocation is MainNavigationDetailLocation.Conversation) {
-          if (SignalStore.internal.largeScreenUi) {
-            scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
-          } else {
-            startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
-          }
-        }
-      }
+      val contentLayoutData = MainContentLayoutData.rememberContentLayoutData()
 
       MainContainer {
+        val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
+          scaffoldDirective = calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth(
+            currentWindowAdaptiveInfo()
+          ).copy(
+            horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
+            defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
+          )
+        )
+
+        LaunchedEffect(detailLocation) {
+          if (detailLocation is MainNavigationDetailLocation.Conversation) {
+            if (SignalStore.internal.largeScreenUi) {
+              scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
+            } else {
+              startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
+            }
+          }
+        }
+
         AppScaffold(
           navigator = scaffoldNavigator,
           bottomNavContent = {
@@ -280,9 +281,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
             Column(
               modifier = Modifier
+                .padding(start = contentLayoutData.listPaddingStart)
                 .fillMaxSize()
                 .background(listContainerColor)
-                .clip(contentClip)
+                .clip(contentLayoutData.shape)
             ) {
               MainToolbar(
                 state = mainToolbarState,
@@ -316,13 +318,17 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
                   fragmentState = fragmentState,
                   arguments = requireNotNull(destination.intent.extras) { "Handed null Conversation intent arguments." },
                   modifier = Modifier
+                    .padding(end = contentLayoutData.detailPaddingEnd)
+                    .clip(contentLayoutData.shape)
                     .background(color = MaterialTheme.colorScheme.surface)
                     .fillMaxSize()
-                    .clip(contentClip)
                 )
               }
             }
-          }
+          },
+          paneExpansionDragHandle = if (contentLayoutData.hasDragHandle()) {
+            { }
+          } else null
         )
       }
     }
