@@ -2769,6 +2769,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN verified successfully. We\'ll remind you again in a week.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN verified successfully. We\'ll remind you again in a couple weeks.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN verified successfully. We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
