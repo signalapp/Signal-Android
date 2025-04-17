@@ -268,6 +268,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             if (isNavigationVisible) {
               MainNavigationRail(
                 state = mainNavigationState,
+                mainFloatingActionButtonsCallback = mainBottomChromeCallback,
                 onDestinationSelected = mainNavigationCallback
               )
             }

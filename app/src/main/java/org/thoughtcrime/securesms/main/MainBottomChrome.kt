@@ -43,10 +43,7 @@ data class SnackbarState(
   )
 }
 
-interface MainBottomChromeCallback {
-  fun onNewChatClick()
-  fun onNewCallClick()
-  fun onCameraClick(destination: MainNavigationListLocation)
+interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
   fun onMegaphoneVisible(megaphone: Megaphone)
   fun onSnackbarDismissed()
 
@@ -79,21 +76,21 @@ fun MainBottomChrome(
   megaphoneActionController: MegaphoneActionController,
   modifier: Modifier = Modifier
 ) {
+  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
   Column(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
   ) {
-    if (state.mainToolbarMode == MainToolbarMode.FULL) {
+    if (state.mainToolbarMode == MainToolbarMode.FULL && windowSizeClass.isCompact()) {
       Box(
         contentAlignment = Alignment.CenterEnd,
         modifier = Modifier.fillMaxWidth()
       ) {
         MainFloatingActionButtons(
           destination = state.destination,
-          onCameraClick = callback::onCameraClick,
-          onNewCallClick = callback::onNewCallClick,
-          onNewChatClick = callback::onNewChatClick
+          callback = callback
         )
       }
 

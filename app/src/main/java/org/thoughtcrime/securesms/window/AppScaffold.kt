@@ -38,6 +38,7 @@ import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
@@ -45,7 +46,16 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 
 enum class Navigation {
   RAIL,
-  BAR
+  BAR;
+
+  companion object {
+    @Composable
+    fun rememberNavigation(): Navigation {
+      val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
+      return remember(windowSizeClass) { windowSizeClass.navigation }
+    }
+  }
 }
 
 /**
@@ -275,6 +285,7 @@ private fun AppScaffoldPreview() {
       navRailContent = {
         MainNavigationRail(
           state = MainNavigationState(),
+          mainFloatingActionButtonsCallback = MainFloatingActionButtonsCallback.Empty,
           onDestinationSelected = {}
         )
       },

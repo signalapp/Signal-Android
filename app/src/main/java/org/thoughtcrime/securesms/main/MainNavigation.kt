@@ -19,9 +19,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilledTonalIconButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -40,12 +37,10 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.IntSize
@@ -214,48 +209,17 @@ private fun Modifier.drawNavigationBarBadge(count: Int, compact: Boolean): Modif
 @Composable
 fun MainNavigationRail(
   state: MainNavigationState,
+  mainFloatingActionButtonsCallback: MainFloatingActionButtonsCallback,
   onDestinationSelected: (MainNavigationListLocation) -> Unit
 ) {
   NavigationRail(
     containerColor = SignalTheme.colors.colorSurface1,
     header = {
-      FilledTonalIconButton(
-        onClick = { },
-        shape = RoundedCornerShape(18.dp),
-        modifier = Modifier
-          .padding(top = 56.dp, bottom = 16.dp)
-          .size(56.dp),
-        enabled = true,
-        colors = IconButtonDefaults.filledTonalIconButtonColors()
-          .copy(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onBackground
-          )
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_edit_24),
-          contentDescription = null
-        )
-      }
-
-      FilledTonalIconButton(
-        onClick = { },
-        shape = RoundedCornerShape(18.dp),
-        modifier = Modifier
-          .padding(bottom = 80.dp)
-          .size(56.dp),
-        enabled = true,
-        colors = IconButtonDefaults.filledTonalIconButtonColors()
-          .copy(
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.onSurface
-          )
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_camera_24),
-          contentDescription = null
-        )
-      }
+      MainFloatingActionButtons(
+        destination = state.selectedDestination,
+        callback = mainFloatingActionButtonsCallback,
+        modifier = Modifier.padding(vertical = 40.dp)
+      )
     }
   ) {
     val entries = remember(state.isStoriesFeatureEnabled) {
@@ -351,7 +315,7 @@ private fun NavigationDestinationIcon(
 
   LottieAnimation(
     composition = composition,
-    progress = { progress },
+    progress = { if (selected) progress else 0f },
     dynamicProperties = dynamicProperties,
     modifier = Modifier.size(LOTTIE_SIZE)
   )
@@ -383,6 +347,7 @@ private fun MainNavigationRailPreview() {
         storiesCount = 5,
         selectedDestination = selected
       ),
+      mainFloatingActionButtonsCallback = MainFloatingActionButtonsCallback.Empty,
       onDestinationSelected = { selected = it }
     )
   }
