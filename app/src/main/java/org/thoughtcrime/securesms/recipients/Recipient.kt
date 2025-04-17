@@ -294,8 +294,9 @@ class Recipient(
   /** The [ACI]'s of the members if this recipient is a group, otherwise empty. */
   val participantAcis: List<ServiceId>
     get() {
-      check(groupRecord.isPresent)
-      return groupRecord.get().requireV2GroupProperties().getMemberServiceIds().toImmutableList()
+      return groupRecord
+        .map { it.requireV2GroupProperties().getMemberServiceIds().toImmutableList() }
+        .orElse(emptyList<ServiceId>().toImmutableList())
     }
 
   /** The [RegisteredState] of this recipient. Signal groups/lists are always registered. */
