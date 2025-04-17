@@ -359,13 +359,13 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       Modifier
     }
 
-    val backgroundColor = if (windowSizeClass.isCompact()) {
-      MaterialTheme.colorScheme.surface
-    } else {
-      SignalTheme.colors.colorSurface1
-    }
-
     SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(this)) {
+      val backgroundColor = if (windowSizeClass.isCompact()) {
+        MaterialTheme.colorScheme.surface
+      } else {
+        SignalTheme.colors.colorSurface1
+      }
+
       BoxWithConstraints(
         modifier = Modifier
           .background(color = backgroundColor)
