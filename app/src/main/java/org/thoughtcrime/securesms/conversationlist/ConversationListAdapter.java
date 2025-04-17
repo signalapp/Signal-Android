@@ -39,6 +39,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private static final int TYPE_CLEAR_FILTER_FOOTER = 6;
   private static final int TYPE_CLEAR_FILTER_EMPTY  = 7;
   private static final int TYPE_CHAT_FOLDER_EMPTY   = 8;
+  private static final int TYPE_EMPTY_ARCHIVED      = 9;
 
   private enum Payload {
     TYPING_INDICATOR,
@@ -112,6 +113,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       return new PlaceholderViewHolder(v);
     } else if (viewType == TYPE_HEADER) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dsl_section_header, parent, false);
+      return new HeaderViewHolder(v);
+    } else if (viewType == TYPE_EMPTY_ARCHIVED) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_archived_empty_state, parent, false);
       return new HeaderViewHolder(v);
     } else if (viewType == TYPE_EMPTY) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_empty_state, parent, false);
@@ -240,6 +244,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         return TYPE_CHAT_FOLDER_EMPTY;
       case THREAD:
         return TYPE_THREAD;
+      case ARCHIVED_EMPTY:
+        return TYPE_EMPTY_ARCHIVED;
       case EMPTY:
         return TYPE_EMPTY;
       default:
