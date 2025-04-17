@@ -9,6 +9,7 @@ import com.squareup.wire.FieldEncoding
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import okio.IOException
+import org.signal.core.util.bytes
 import org.signal.core.util.isNotEmpty
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.whispersystems.signalservice.api.NetworkResult
@@ -272,7 +273,8 @@ class StorageServiceRepository(private val storageServiceApi: StorageServiceApi)
       version = manifestRecord.version,
       sourceDeviceId = manifestRecord.sourceDevice,
       recordIkm = manifestRecord.recordIkm.takeIf { it.isNotEmpty() }?.toByteArray()?.let { RecordIkm(it) },
-      storageIds = ids
+      storageIds = ids,
+      protoByteSize = this.encode().size.bytes
     )
   }
 

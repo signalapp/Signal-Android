@@ -13,6 +13,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -33,6 +35,10 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
   private val _storageItems: MutableState<List<SignalStorageRecord>> = mutableStateOf(emptyList())
   val storageRecords: State<List<SignalStorageRecord>>
     get() = _storageItems
+
+  private val _storageInsights: MutableState<StorageInsights> = mutableStateOf(StorageInsights())
+  val storageInsights: State<StorageInsights>
+    get() = _storageInsights
 
   private val _oneOffEvents: MutableState<OneOffEvent> = mutableStateOf(OneOffEvent.None)
   val oneOffEvents: State<OneOffEvent>
@@ -69,11 +75,44 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
         }
 
         _storageItems.value = records
+
+        // TODO get total manifest size -- we need the raw proto, which we don't have
+        val insights = StorageInsights(
+          totalManifestSize = manifest.protoByteSize,
+          totalRecordSize = records.sumOf { it.sizeInBytes() }.bytes,
+          totalContactSize = records.filter { it.proto.contact != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalGroupV1Size = records.filter { it.proto.groupV1 != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalGroupV2Size = records.filter { it.proto.groupV2 != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalAccountRecordSize = records.filter { it.proto.account != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalCallLinkSize = records.filter { it.proto.callLink != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalDistributionListSize = records.filter { it.proto.storyDistributionList != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalChatFolderSize = records.filter { it.proto.chatFolder != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalUnknownSize = records.filter { it.isUnknown }.sumOf { it.sizeInBytes() }.bytes
+        )
+
+        _storageInsights.value = insights
       }
     }
+  }
+
+  private fun SignalStorageRecord.sizeInBytes(): Int {
+    return this.proto.encode().size
   }
 
   enum class OneOffEvent {
     None, ManifestDecryptionError, StorageRecordDecryptionError, ManifestNotFoundError
   }
+
+  data class StorageInsights(
+    val totalManifestSize: ByteSize = 0.bytes,
+    val totalRecordSize: ByteSize = 0.bytes,
+    val totalContactSize: ByteSize = 0.bytes,
+    val totalGroupV1Size: ByteSize = 0.bytes,
+    val totalGroupV2Size: ByteSize = 0.bytes,
+    val totalAccountRecordSize: ByteSize = 0.bytes,
+    val totalCallLinkSize: ByteSize = 0.bytes,
+    val totalDistributionListSize: ByteSize = 0.bytes,
+    val totalChatFolderSize: ByteSize = 0.bytes,
+    val totalUnknownSize: ByteSize = 0.bytes
+  )
 }

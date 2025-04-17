@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
+import org.thoughtcrime.securesms.net.StorageServiceSizeLoggingInterceptor
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.internal.configuration.HttpProxy
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
@@ -168,6 +169,7 @@ class SignalServiceNetworkAccess(context: Context) {
 
   private val interceptors: List<Interceptor> = listOf(
     StandardUserAgentInterceptor(),
+    StorageServiceSizeLoggingInterceptor(),
     RemoteDeprecationDetectorInterceptor(this::getConfiguration),
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance()
