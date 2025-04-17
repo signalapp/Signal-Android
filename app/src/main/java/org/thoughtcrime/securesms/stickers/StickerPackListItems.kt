@@ -19,16 +19,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
+import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
@@ -53,6 +54,7 @@ fun StickerPackSectionHeader(
 fun AvailableStickerPackRow(
   pack: AvailableStickerPack,
   onStartDownloadClick: () -> Unit = {},
+  onCancelDownloadClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -69,15 +71,25 @@ fun AvailableStickerPackRow(
       modifier = Modifier.weight(1f)
     )
 
-    // TODO show TransferProgressIndicator based on download state
-    IconButtons.IconButton(
-      size = 48.dp,
-      onClick = onStartDownloadClick,
-      content = {
-        Image(
-          imageVector = ImageVector.vectorResource(id = R.drawable.symbol_arrow_circle_down_24),
-          colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-          contentDescription = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title)
+    TransferProgressIndicator(
+      state = when (pack.downloadStatus) {
+        DownloadStatus.NotDownloaded -> TransferProgressState.Ready(
+          iconPainter = painterResource(id = R.drawable.symbol_arrow_circle_down_24),
+          startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download),
+          startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title),
+          onStartClick = onStartDownloadClick
+        )
+
+        is DownloadStatus.InProgress -> TransferProgressState.InProgress(
+          progress = pack.downloadStatus.progress,
+          cancelButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_cancel),
+          cancelButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_cancel_downloading_pack, pack.record.title),
+          onCancelClick = onCancelDownloadClick
+        )
+
+        DownloadStatus.Downloaded -> TransferProgressState.Complete(
+          iconPainter = painterResource(id = R.drawable.symbol_check_24),
+          iconContentDesc = stringResource(R.string.StickerManagement_accessibility_downloaded_checkmark, pack.record.title)
         )
       }
     )
@@ -215,7 +227,7 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = false,
-      downloadStatus = DownloadStatus.InProgress(progressPercent = 22.0)
+      downloadStatus = DownloadStatus.InProgress(progress = 0.37f)
     )
   )
 }
