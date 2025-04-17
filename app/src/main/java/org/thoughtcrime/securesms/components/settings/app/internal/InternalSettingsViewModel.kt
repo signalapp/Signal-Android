@@ -167,7 +167,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     hasPendingOneTimeDonation = SignalStore.inAppPayments.getPendingOneTimeDonation() != null,
     hevcEncoding = SignalStore.internal.hevcEncoding,
     newCallingUi = SignalStore.internal.newCallingUi,
-    largeScreenUi = SignalStore.internal.largeScreenUi
+    largeScreenUi = SignalStore.internal.largeScreenUi,
+    forceSplitPaneOnCompactLandscape = SignalStore.internal.forceSplitPaneOnCompactLandscape
   )
 
   fun onClearOnboardingState() {
@@ -185,6 +186,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
 
   fun setUseLargeScreenUi(largeScreenUi: Boolean) {
     SignalStore.internal.largeScreenUi = largeScreenUi
+    refresh()
+  }
+
+  fun setForceSplitPaneOnCompactLandscape(forceSplitPaneOnCompactLandscape: Boolean) {
+    SignalStore.internal.forceSplitPaneOnCompactLandscape = forceSplitPaneOnCompactLandscape
     refresh()
   }
 

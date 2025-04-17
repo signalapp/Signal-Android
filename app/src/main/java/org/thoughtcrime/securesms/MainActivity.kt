@@ -29,11 +29,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
-import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth
+import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -93,6 +94,7 @@ import org.thoughtcrime.securesms.main.MainToolbar
 import org.thoughtcrime.securesms.main.MainToolbarCallback
 import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
+import org.thoughtcrime.securesms.main.NavigationBarSpacerCompat
 import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -236,9 +238,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
       MainContainer {
         val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
-          scaffoldDirective = calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth(
+          scaffoldDirective = calculatePaneScaffoldDirective(
             currentWindowAdaptiveInfo()
           ).copy(
+            maxHorizontalPartitions = if (windowSizeClass.isSplitPane()) 2 else 1,
             horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
             defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
           )
@@ -258,10 +261,20 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           navigator = scaffoldNavigator,
           bottomNavContent = {
             if (isNavigationVisible) {
-              MainNavigationBar(
-                state = mainNavigationState,
-                onDestinationSelected = mainNavigationCallback
-              )
+              Column(
+                modifier = Modifier
+                  .clip(contentLayoutData.navigationBarShape)
+                  .background(color = SignalTheme.colors.colorSurface2)
+              ) {
+                MainNavigationBar(
+                  state = mainNavigationState,
+                  onDestinationSelected = mainNavigationCallback
+                )
+
+                if (!windowSizeClass.isSplitPane()) {
+                  NavigationBarSpacerCompat()
+                }
+              }
             }
           },
           navRailContent = {
@@ -360,17 +373,18 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   @Composable
   private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
     val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-    val modifier = if (windowSizeClass.isLandscape()) {
-      Modifier.displayCutoutPadding()
-    } else {
-      Modifier
-    }
 
     SignalTheme(isDarkMode = DynamicTheme.isDarkTheme(this)) {
       val backgroundColor = if (windowSizeClass.isCompact()) {
         MaterialTheme.colorScheme.surface
       } else {
         SignalTheme.colors.colorSurface1
+      }
+
+      val modifier = if (windowSizeClass.isSplitPane()) {
+        Modifier.systemBarsPadding().displayCutoutPadding()
+      } else {
+        Modifier
       }
 
       BoxWithConstraints(

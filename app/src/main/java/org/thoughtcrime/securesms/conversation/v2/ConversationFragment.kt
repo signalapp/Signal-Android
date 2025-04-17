@@ -590,7 +590,7 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
-    binding.root.setUseWindowTypes(resources.getWindowSizeClass().isCompact())
+    binding.root.setUseWindowTypes(!resources.getWindowSizeClass().isSplitPane())
 
     disposables.bindTo(viewLifecycleOwner)
 
@@ -1370,9 +1370,7 @@ class ConversationFragment :
   }
 
   private fun presentNavigationIconForNormal() {
-    val windowSizeClass = resources.getWindowSizeClass()
-
-    if (windowSizeClass.isCompact()) {
+    if (!resources.getWindowSizeClass().isSplitPane()) {
       binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_left_24)
       binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
       binding.toolbar.setNavigationOnClickListener {

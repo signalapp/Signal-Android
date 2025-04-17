@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
@@ -18,7 +19,7 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.PaneExpansionState
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldScope
-import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth
+import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
@@ -82,6 +83,14 @@ enum class WindowSizeClass(
   fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
 
   fun isLandscape(): Boolean = this == COMPACT_LANDSCAPE || this == MEDIUM_LANDSCAPE || this == EXTENDED_LANDSCAPE
+
+  fun isSplitPane(): Boolean {
+    return if (SignalStore.internal.largeScreenUi && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
+      this != COMPACT_PORTRAIT
+    } else {
+      this.navigation != Navigation.BAR
+    }
+  }
 
   companion object {
     @OptIn(ExperimentalWindowCoreApi::class)
@@ -221,7 +230,11 @@ private fun ListAndNavigation(
   bottomNavContent: @Composable () -> Unit,
   windowSizeClass: WindowSizeClass
 ) {
-  Row {
+  Row(
+    modifier = if (windowSizeClass.isLandscape()) {
+      Modifier.displayCutoutPadding()
+    } else Modifier
+  ) {
     if (windowSizeClass.navigation == Navigation.RAIL) {
       navRailContent()
     }
@@ -250,7 +263,7 @@ private fun AppScaffoldPreview() {
   Previews.Preview {
     AppScaffold(
       navigator = rememberListDetailPaneScaffoldNavigator<Any>(
-        scaffoldDirective = calculatePaneScaffoldDirectiveWithTwoPanesOnMediumWidth(
+        scaffoldDirective = calculatePaneScaffoldDirective(
           currentWindowAdaptiveInfo()
         ).copy(
           horizontalPartitionSpacerSize = 10.dp

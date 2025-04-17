@@ -26,5 +26,6 @@ data class InternalSettingsState(
   val hasPendingOneTimeDonation: Boolean,
   val hevcEncoding: Boolean,
   val newCallingUi: Boolean,
-  val largeScreenUi: Boolean
+  val largeScreenUi: Boolean,
+  val forceSplitPaneOnCompactLandscape: Boolean
 )
