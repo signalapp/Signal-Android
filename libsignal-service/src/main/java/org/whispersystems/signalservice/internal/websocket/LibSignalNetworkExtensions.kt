@@ -16,12 +16,11 @@ import java.io.IOException
 private const val TAG = "LibSignalNetworkExtensions"
 
 fun Network.transformAndSetRemoteConfig(remoteConfig: Map<String, Any>) {
-  val libsignalRemoteConfig = HashMap<String, String>()
-  for (key in remoteConfig.keys) {
-    if (key.startsWith("android.libsignal.") or key.startsWith("global.libsignal.")) {
-      libsignalRemoteConfig[key] = JsonUtil.toJson(remoteConfig[key])
-    }
-  }
+  val libsignalRemoteConfig: Map<String, String> = remoteConfig
+    .filterKeys { it.startsWith("android.libsignal.") }
+    .mapKeys { (k, _) -> k.removePrefix("android.libsignal.") }
+    // libsignal-net's RemoteConfig diverges from JSON-spec by not quoting string values.
+    .mapValues { (_, v) -> (v as? String) ?: JsonUtil.toJson(v) }
 
   this.setRemoteConfig(libsignalRemoteConfig)
 }
