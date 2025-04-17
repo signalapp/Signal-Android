@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.stickers;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
@@ -16,19 +15,16 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.List;
 
 final class StickerManagementRepository {
 
-  private final Context         context;
   private final StickerTable    stickerDatabase;
   private final AttachmentTable attachmentDatabase;
 
-  StickerManagementRepository(@NonNull Context context) {
-    this.context            = context.getApplicationContext();
+  StickerManagementRepository() {
     this.stickerDatabase    = SignalDatabase.stickers();
     this.attachmentDatabase = SignalDatabase.attachments();
   }

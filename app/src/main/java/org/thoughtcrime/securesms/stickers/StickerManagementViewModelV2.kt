@@ -10,13 +10,36 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
+import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 
 class StickerManagementViewModelV2 : ViewModel() {
+  private val stickerManagementRepo = StickerManagementRepository()
+
   private val _uiState = MutableStateFlow(StickerManagementUiState())
   val uiState: StateFlow<StickerManagementUiState> = _uiState.asStateFlow()
+
+  init {
+    stickerManagementRepo.deleteOrphanedStickerPacks()
+    stickerManagementRepo.fetchUnretrievedReferencePacks()
+    loadStickerPacks()
+  }
+
+  private fun loadStickerPacks() {
+    stickerManagementRepo.getStickerPacks { result ->
+      _uiState.value = _uiState.value.copy(
+        availableBlessedPacks = result.blessedPacks
+          .map { AvailableStickerPack(record = it, isBlessed = true, downloadStatus = DownloadStatus.NotDownloaded) },
+        availablePacks = result.availablePacks
+          .map { AvailableStickerPack(record = it, isBlessed = false, downloadStatus = DownloadStatus.NotDownloaded) },
+        installedPacks = result.installedPacks
+          .mapIndexed { index, record -> InstalledStickerPack(record = record, isBlessed = BlessedPacks.contains(record.packId), sortOrder = index) }
+      )
+    }
+  }
 }
 
 data class StickerManagementUiState(
+  val availableBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val availablePacks: List<AvailableStickerPack> = emptyList(),
   val installedPacks: List<InstalledStickerPack> = emptyList(),
   val isMultiSelectMode: Boolean = false
@@ -35,7 +58,8 @@ data class AvailableStickerPack(
 }
 
 data class InstalledStickerPack(
-  private val record: StickerPackRecord,
+  val record: StickerPackRecord,
+  val isBlessed: Boolean,
   val sortOrder: Int,
-  val isSelected: Boolean
+  val isSelected: Boolean = false
 )

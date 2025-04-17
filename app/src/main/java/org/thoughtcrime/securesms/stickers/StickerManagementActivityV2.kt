@@ -10,9 +10,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,16 +35,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.viewModel
 
+/**
+ * Displays all of the available and installed sticker packs, enabling installation, uninstallation, and sorting.
+ */
 class StickerManagementActivityV2 : PassphraseRequiredActivity() {
   companion object {
     @JvmStatic
@@ -84,7 +94,7 @@ private fun StickerManagementScreen(
     val pages = listOf(
       Page(
         title = stringResource(R.string.StickerManagement_available_tab_label),
-        getContent = { AvailableStickersContent(uiState.availablePacks) }
+        getContent = { AvailableStickersContent(blessedPacks = uiState.availableBlessedPacks, availablePacks = uiState.availablePacks) }
       ),
       Page(
         title = stringResource(R.string.StickerManagement_installed_tab_label),
@@ -164,23 +174,64 @@ private fun PagerTab(
 
 @Composable
 private fun AvailableStickersContent(
-  packs: List<AvailableStickerPack>
+  blessedPacks: List<AvailableStickerPack>,
+  availablePacks: List<AvailableStickerPack>,
+  modifier: Modifier = Modifier
 ) {
-  if (packs.isEmpty()) {
+  if (blessedPacks.isEmpty() && availablePacks.isEmpty()) {
     EmptyView(text = stringResource(R.string.StickerManagement_available_tab_empty_text))
   } else {
-    // TODO show available stickers list
+    LazyColumn(
+      contentPadding = PaddingValues(top = 8.dp),
+      modifier = modifier.fillMaxHeight()
+    ) {
+      if (blessedPacks.isNotEmpty()) {
+        item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_signal_artist_series_header)) }
+        items(
+          items = blessedPacks,
+          key = { it.record.packId }
+        ) {
+          AvailableStickerPackRow(it)
+        }
+      }
+
+      if (blessedPacks.isNotEmpty() && availablePacks.isNotEmpty()) {
+        item { Dividers.Default() }
+      }
+
+      if (availablePacks.isNotEmpty()) {
+        item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_stickers_you_received_header)) }
+        items(
+          items = availablePacks,
+          key = { it.record.packId }
+        ) {
+          AvailableStickerPackRow(it)
+        }
+      }
+    }
   }
 }
 
 @Composable
 private fun InstalledStickersContent(
-  packs: List<InstalledStickerPack>
+  packs: List<InstalledStickerPack>,
+  modifier: Modifier = Modifier
 ) {
   if (packs.isEmpty()) {
     EmptyView(text = stringResource(R.string.StickerManagement_installed_tab_empty_text))
   } else {
-    // TODO show installed stickers list
+    LazyColumn(
+      contentPadding = PaddingValues(top = 8.dp),
+      modifier = modifier.fillMaxHeight()
+    ) {
+      item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header)) }
+      items(
+        items = packs,
+        key = { it.record.packId }
+      ) {
+        InstalledStickerPackRow(it)
+      }
+    }
   }
 }
 
@@ -206,6 +257,61 @@ private fun StickerManagementScreenEmptyStatePreview() {
       StickerManagementUiState(
         availablePacks = emptyList(),
         installedPacks = emptyList()
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun AvailableStickersContentPreview() {
+  Previews.Preview {
+    AvailableStickersContent(
+      blessedPacks = listOf(
+        StickerPreviewDataFactory.availablePack(
+          title = "Swoon / Faces",
+          author = "Swoon",
+          isBlessed = true
+        )
+      ),
+      availablePacks = listOf(
+        StickerPreviewDataFactory.availablePack(
+          title = "Bandit the Cat",
+          author = "Agnes Lee",
+          isBlessed = false,
+          downloadStatus = DownloadStatus.InProgress(progressPercent = 22.0)
+        ),
+        StickerPreviewDataFactory.availablePack(
+          title = "Day by Day",
+          author = "Miguel Ángel Camprubí",
+          isBlessed = false,
+          downloadStatus = DownloadStatus.Downloaded
+        )
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun InstalledStickersContentPreview() {
+  Previews.Preview {
+    InstalledStickersContent(
+      packs = listOf(
+        StickerPreviewDataFactory.installedPack(
+          title = "Swoon / Faces",
+          author = "Swoon",
+          isBlessed = true
+        ),
+        StickerPreviewDataFactory.installedPack(
+          title = "Bandit the Cat",
+          author = "Agnes Lee",
+          isBlessed = true
+        ),
+        StickerPreviewDataFactory.installedPack(
+          title = "Day by Day",
+          author = "Miguel Ángel Camprubí"
+        )
       )
     )
   }

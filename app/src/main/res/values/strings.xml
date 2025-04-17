@@ -2790,16 +2790,23 @@
     <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed -->
     <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %s sticker pack</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Installed Stickers</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Stickers You Received</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Series</string>
     <string name="StickerManagementAdapter_no_stickers_installed">No stickers installed</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickers from incoming messages will appear here</string>
     <string name="StickerManagementAdapter_untitled">Untitled</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">Unknown</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">Untitled</string>
