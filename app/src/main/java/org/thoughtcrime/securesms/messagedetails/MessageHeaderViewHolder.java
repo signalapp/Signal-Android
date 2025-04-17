@@ -24,8 +24,6 @@ import com.bumptech.glide.RequestManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
@@ -165,11 +163,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   private boolean isMmsFailedWithState(MessageRecord messageRecord, int expectedTransferState) {
-    if (messageRecord instanceof MmsMessageRecord) {
-      List<Slide> slides = ((MmsMessageRecord) messageRecord).getSlideDeck().getSlides();
-      return TransferControlView.getTransferState(slides) == expectedTransferState && messageRecord.isOutgoing();
-    }
-    return false;
+    return messageRecord.isAttachmentInExpectedState(expectedTransferState) && messageRecord.isOutgoing();
   }
 
   private boolean isPermanentFailed(MessageRecord messageRecord) {

@@ -41,6 +41,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -55,6 +56,7 @@ import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -850,6 +852,17 @@ public abstract class MessageRecord extends DisplayRecord {
    * A message that can be correctly identified and delete sync'd across devices.
    */
   public boolean canDeleteSync() {
+    return false;
+  }
+
+  public boolean isAttachmentInExpectedState(int expectedTransferState) {
+    if (this instanceof MmsMessageRecord) {
+      List<Slide> slides = ((MmsMessageRecord) this).getSlideDeck().getSlides();
+      if (slides.isEmpty()) {
+        return false;
+      }
+      return TransferControlView.getTransferState(slides) == expectedTransferState;
+    }
     return false;
   }
 
