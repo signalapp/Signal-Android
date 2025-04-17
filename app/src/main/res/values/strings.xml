@@ -1719,6 +1719,8 @@
     <string name="MediaOverviewActivity_sent_by_you">Sent by you</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">Sent by %1$s to %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sent by you to %1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Remind me later</string>
@@ -5738,6 +5740,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Phone number</string>
     <string name="ConversationSettingsFragment__get_badges">Get badges for your profile by supporting Signal. Tap on a badge to learn more.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Add members</string>
