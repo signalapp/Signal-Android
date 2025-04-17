@@ -305,7 +305,7 @@ class StickerTable(
     notifyStickerListeners()
   }
 
-  fun updatePackOrder(packsInOrder: MutableList<StickerPackRecord>) {
+  fun updatePackOrder(packsInOrder: List<StickerPackRecord>) {
     writableDatabase.withinTransaction { db ->
       for ((i, pack) in packsInOrder.withIndex()) {
         db.update(TABLE_NAME)
@@ -468,6 +468,12 @@ class StickerTable(
         cover = cover,
         isInstalled = cursor.requireBoolean(INSTALLED)
       )
+    }
+
+    fun asSequence(): Sequence<StickerPackRecord> = sequence {
+      while (getNext() != null) {
+        yield(getCurrent())
+      }
     }
 
     override fun close() {

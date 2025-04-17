@@ -6,35 +6,41 @@
 package org.thoughtcrime.securesms.stickers
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 
 class StickerManagementViewModelV2 : ViewModel() {
-  private val stickerManagementRepo = StickerManagementRepository()
+  private val stickerManagementRepo = StickerManagementRepository
 
   private val _uiState = MutableStateFlow(StickerManagementUiState())
   val uiState: StateFlow<StickerManagementUiState> = _uiState.asStateFlow()
 
   init {
-    stickerManagementRepo.deleteOrphanedStickerPacks()
-    stickerManagementRepo.fetchUnretrievedReferencePacks()
-    loadStickerPacks()
+    viewModelScope.launch {
+      stickerManagementRepo.deleteOrphanedStickerPacks()
+      stickerManagementRepo.fetchUnretrievedReferencePacks()
+      loadStickerPacks()
+    }
   }
 
-  private fun loadStickerPacks() {
-    stickerManagementRepo.getStickerPacks { result ->
-      _uiState.value = _uiState.value.copy(
-        availableBlessedPacks = result.blessedPacks
-          .map { AvailableStickerPack(record = it, isBlessed = true, downloadStatus = DownloadStatus.NotDownloaded) },
-        availablePacks = result.availablePacks
-          .map { AvailableStickerPack(record = it, isBlessed = false, downloadStatus = DownloadStatus.NotDownloaded) },
-        installedPacks = result.installedPacks
-          .mapIndexed { index, record -> InstalledStickerPack(record = record, isBlessed = BlessedPacks.contains(record.packId), sortOrder = index) }
-      )
-    }
+  private suspend fun loadStickerPacks() {
+    StickerManagementRepository.getStickerPacks()
+      .collectLatest { result ->
+        _uiState.value = _uiState.value.copy(
+          availableBlessedPacks = result.blessedPacks
+            .map { AvailableStickerPack(record = it, isBlessed = true, downloadStatus = DownloadStatus.NotDownloaded) },
+          availablePacks = result.availablePacks
+            .map { AvailableStickerPack(record = it, isBlessed = false, downloadStatus = DownloadStatus.NotDownloaded) },
+          installedPacks = result.installedPacks
+            .mapIndexed { index, record -> InstalledStickerPack(record = record, isBlessed = BlessedPacks.contains(record.packId), sortOrder = index) }
+        )
+      }
   }
 }
 
