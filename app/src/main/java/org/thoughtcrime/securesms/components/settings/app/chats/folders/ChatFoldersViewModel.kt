@@ -325,12 +325,6 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun enableButton(): Boolean {
-    return internalState.value.pendingIncludedRecipients.isNotEmpty() ||
-      internalState.value.pendingChatTypes.isNotEmpty() ||
-      internalState.value.pendingExcludedRecipients.isNotEmpty()
-  }
-
   fun hasChanges(): Boolean {
     val currentFolder = state.value.currentFolder
     val originalFolder = state.value.originalFolder
