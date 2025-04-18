@@ -224,7 +224,7 @@ private fun SearchToolbar(
         ) {
           Icon(
             imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
-            contentDescription = null
+            contentDescription = stringResource(R.string.MainToolbar__close_search_content_description)
           )
         }
       },
@@ -400,7 +400,7 @@ private fun TooltipOverflowButton(
       ) {
         Icon(
           imageVector = ImageVector.vectorResource(R.drawable.symbol_more_vertical),
-          contentDescription = null
+          contentDescription = stringResource(R.string.MainToolbar__more_options_content_description)
         )
       }
     }
@@ -419,7 +419,7 @@ private fun NotificationProfileAction(
       // TODO [alex] - Add proper icon (cannot utilize layer-list)
       Image(
         painter = painterResource(R.drawable.ic_moon_24),
-        contentDescription = null
+        contentDescription = stringResource(R.string.MainToolbar__notification_profile_content_description)
       )
     }
   }
@@ -436,7 +436,7 @@ private fun ProxyAction(
     ) {
       Image(
         imageVector = ImageVector.vectorResource(state.proxyState.icon),
-        contentDescription = null
+        contentDescription = stringResource(R.string.MainToolbar__proxy_content_description)
       )
     }
   }
