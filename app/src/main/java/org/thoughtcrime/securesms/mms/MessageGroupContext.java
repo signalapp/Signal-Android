@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.E164Util;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
@@ -16,6 +17,7 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.Base64;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
@@ -128,6 +130,7 @@ public final class MessageGroupContext {
       RecipientId selfId = Recipient.self().getId();
 
       return Stream.of(groupContext.members)
+                   .filter(m -> SignalE164Util.isPotentialE164(m.e164))
                    .map(m -> m.e164)
                    .withoutNulls()
                    .map(RecipientId::fromE164)
