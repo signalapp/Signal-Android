@@ -366,12 +366,12 @@ fun CreateFolderScreen(
 
     Buttons.MediumTonal(
       colors = ButtonDefaults.filledTonalButtonColors(
-        contentColor = if (state.currentFolder.folderRecord.name.isEmpty()) {
+        contentColor = if (state.currentFolder.folderRecord.name.isBlank()) {
           MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
         } else {
           MaterialTheme.colorScheme.onSurface
         },
-        containerColor = if (state.currentFolder.folderRecord.name.isEmpty()) {
+        containerColor = if (state.currentFolder.folderRecord.name.isBlank()) {
           MaterialTheme.colorScheme.surfaceVariant
         } else {
           MaterialTheme.colorScheme.primaryContainer
@@ -380,7 +380,7 @@ fun CreateFolderScreen(
       ),
       enabled = hasChanges,
       onClick = {
-        if (state.currentFolder.folderRecord.name.isEmpty()) {
+        if (state.currentFolder.folderRecord.name.isBlank()) {
           onShowToast()
         } else {
           onCreateConfirmed()
