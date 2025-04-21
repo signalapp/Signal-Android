@@ -228,6 +228,22 @@ private fun SearchToolbar(
           )
         }
       },
+      trailingIcon = if (state.searchQuery.isNotEmpty()) {
+        {
+          IconButtons.IconButton(
+            onClick = {
+              callback.onSearchQueryUpdated("")
+            }
+          ) {
+            Icon(
+              imageVector = ImageVector.vectorResource(R.drawable.ic_x_20),
+              contentDescription = stringResource(R.string.MainToolbar__clear_search_content_description)
+            )
+          }
+        }
+      } else {
+        null
+      },
       contentPadding = PaddingValues(0.dp),
       colors = TextFieldDefaults.colors(
         focusedIndicatorColor = Color.Transparent,
