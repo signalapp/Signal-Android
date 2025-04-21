@@ -12,7 +12,8 @@ data class NotificationProfile(
   val allowAllCalls: Boolean = true,
   val allowAllMentions: Boolean = false,
   val schedule: NotificationProfileSchedule,
-  val allowedMembers: Set<RecipientId> = emptySet()
+  val allowedMembers: Set<RecipientId> = emptySet(),
+  val notificationProfileId: NotificationProfileId
 ) : Comparable<NotificationProfile> {
 
   fun isRecipientAllowed(id: RecipientId): Boolean {
